@@ -1,0 +1,14 @@
+package BaseInterfaces
+
+thread interface BaseThread
+use properties StandardProperties::ThreadProperties
+is
+	ProcessorCycles: requires binding;
+end;
+
+processor interface BaseProcessor
+is
+	ProcessorCycles: provides binding;
+end;
+
+end ;

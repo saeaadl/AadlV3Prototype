@@ -1,0 +1,23 @@
+package CommonAncestor 
+// two interface extensions based on a common interface
+// composed to implement a system
+	interface common 
+	features
+		inport : in port ;
+	end ;
+	interface ext1 extends common 
+	features
+		e1port : in port ;
+	end ;
+	interface ext2 extends common 
+	features
+		e2port : out port ;
+	end ;
+	
+	system interface mine extends ext1 , ext2 end;
+	
+	system mine.i 
+	subcomponents
+		sub : thread common ;
+	end ;
+end ;

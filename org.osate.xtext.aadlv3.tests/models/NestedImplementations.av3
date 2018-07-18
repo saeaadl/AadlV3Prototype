@@ -1,0 +1,27 @@
+package NestedImplementations 
+	system interface ControlSystem end;
+	
+	system ControlSystem.i
+	subcomponents
+		sensing : device { 
+			sensedata : out port ;
+		} ;
+		processing : process {
+			filter : thread {
+				inp : in port ;
+				outp : out port ;
+			} ; 
+			control : thread {
+				inp : in port ;
+				outp : out port ;
+			} ;
+			filtercontrolconn : port filter.outp -> control.inp ;
+		} ;
+		actuating : device { 
+			inp :  in port ;
+		} ;
+	connections
+		sensefilterconn : port sensing.sensedata -> processing.filter.inp ;
+		controlactuateconn : port processing.control.outp -> actuating.inp;
+	end ;
+end ;

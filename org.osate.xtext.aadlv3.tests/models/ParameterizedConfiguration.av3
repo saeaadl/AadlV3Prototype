@@ -1,0 +1,54 @@
+package ParameterizedConfiguration 
+	interface receiver  is
+		inp: in port;
+	end ;
+	interface sender is
+		outp: out port;
+	end ;
+	
+	component sender.i is
+		sub1: component sub;
+	end ;
+	
+	configuration sender.sensetask extends sender.i  is
+		sub1 => sub.i;
+	end;
+	
+	component receiver.i  is
+		sub2: component sub;
+	end ;
+	
+	interface sub  is
+		p1: in port ;
+	end ;
+	component sub.i extends sub is
+		t1: component subsub;
+	end ;
+	interface subsub is
+		p1: in port ;
+	end ;
+	
+	system interface top
+	end;
+	
+	system top.i  is
+		sense: component sender ;
+		sense1 : component sender.i;
+		sense2: component sender.i;
+		actuate: component receiver;
+	end ;
+	
+	configuration top.topc(p1: sender) extends top.i  is
+		sense => p1;
+//		sense1 => { sub1 => p1;};
+	end;
+	
+	system interface supertop 
+	end;
+	
+	system supertop.i  is
+		tops: system top.topc(p1 => sender.sensetask);
+	end ;
+	
+	configuration top.topcc extends  top.topc(p1=>sender.sensetask) end;
+end ;

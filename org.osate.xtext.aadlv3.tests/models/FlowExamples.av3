@@ -1,0 +1,93 @@
+package FlowExamples 
+// connections without and with reach down into subcomponents
+// shared data component
+
+	type systemstate;
+	
+	interface actuator is
+		inp: in port;
+		fea: feature;
+		action: flow sink inp;
+	end;
+	interface sensor is
+		outp: out port;
+		fea: feature;
+		reading: flow source outp;
+	end ;
+	
+	component sensor.i extends sensor is
+		sub1: thread sense;
+		upmap: mapping outp => sub1.p1 ;
+		reading => flow sub1;
+	end ;
+	component actuator.i extends actuator is
+		sub2: thread actuate;
+		downmap: mapping inp => sub2.p1;
+		action=> flow sub2.taction;
+	end ;
+	thread interface sense  is
+		p1: out port ;
+	end ;
+	thread interface actuate  is
+		p1: in port ;
+		taction: flow sink p1;
+	end ;
+	
+	interface control is
+	insignal: in port;
+	outaction: out port;
+	processflow: flow path insignal -> outaction;
+	end;
+	
+	process control.impl is
+		dofilter: thread filter;
+		docompute: thread compute;
+		extin: mapping insignal => dofilter.insignal;
+		ftoc: port dofilter.outsignal -> docompute.insignal;
+		extout: mapping outaction => docompute.outsignal ;
+		processflow => flow dofilter.filterpath -> ftoc -> docompute.computepath ;
+	end;
+	
+	thread interface filter is
+	insignal : in port;
+	outsignal : out port;
+	filterpath: flow path insignal -> outsignal;
+	end;
+	
+	thread interface compute is
+	insignal : in port;
+	outsignal : out port;
+	computepath: flow path insignal -> outsignal;
+	end;
+	
+	system interface conntop end;
+	system conntop.i is
+		sense: component sensor.i;
+		processing: process control.impl;
+		actuate: component actuator.i;
+		hw : system hardwareplatform.impl;
+		sensetocontrol: port sense.sub1.p1 -> processing.insignal;
+		controltoactuate: port processing.outaction -> actuate.inp;
+		etef: end to end flow sense.reading -> sensetocontrol -> processing.processflow -> controltoactuate -> actuate.action;
+	end;
+	
+	bus interface canbus is
+	canbusaccess: provides bus access;
+	end;
+	
+	processor interface x86 is
+	canbusaccess: requires bus access;
+	end;
+	
+	system interface hardwareplatform is
+		canbusaccess: provides bus access canbus;
+	end;
+	
+	system hardwareplatform.impl is
+	cpu: processor x86;
+	mybus: bus canbus;
+	busconn: bus cpu.canbusaccess -> mybus.canbusaccess;
+	extbusaccess: mapping canbusaccess => mybus.canbusaccess;
+	end;
+	
+end;

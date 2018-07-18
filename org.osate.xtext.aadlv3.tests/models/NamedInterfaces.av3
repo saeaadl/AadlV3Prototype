@@ -1,0 +1,24 @@
+package NamedInterfaces 
+	type date; 
+	type person ;
+
+	interface sub 
+	features
+		name : feature person ;
+		p1: in port date;
+		p2: in port date;
+	end;
+	
+	interface mine 
+	features
+		name: feature person;
+	end;
+	
+	system interface subsub 
+	features 
+		subi: interface sub;
+		minei: interface mine;
+//	flows
+//		c1: port subi.p1 -> minei.name; 
+	end;
+end;

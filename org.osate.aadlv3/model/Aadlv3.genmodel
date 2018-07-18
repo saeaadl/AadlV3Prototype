@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright 2018 Carnegie Mellon University. All Rights Reserved.&#xD;&#xA;&#xD;&#xA;NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE ENGINEERING INSTITUTE&#xD;&#xA;MATERIAL IS FURNISHED ON AN &quot;AS-IS&quot; BASIS. CARNEGIE MELLON UNIVERSITY MAKES NO&#xD;&#xA;WARRANTIES OF ANY KIND, EITHER EXPRESSED OR IMPLIED, AS TO ANY MATTER INCLUDING,&#xD;&#xA;BUT NOT LIMITED TO, WARRANTY OF FITNESS FOR PURPOSE OR MERCHANTABILITY,&#xD;&#xA;EXCLUSIVITY, OR RESULTS OBTAINED FROM USE OF THE MATERIAL. CARNEGIE MELLON&#xD;&#xA;UNIVERSITY DOES NOT MAKE ANY WARRANTY OF ANY KIND WITH RESPECT TO FREEDOM FROM&#xD;&#xA;PATENT, TRADEMARK, OR COPYRIGHT INFRINGEMENT.&#xD;&#xA;&#xD;&#xA;Released under the Eclipse Public License (http://www.eclipse.org/org/documents/epl-v10.php)&#xD;&#xA;&#xD;&#xA;See COPYRIGHT file for full details."
+    modelDirectory="/org.osate.aadlv3/src" editorDirectory="" modelPluginID="org.osate.aadlv3"
+    modelName="Aadlv3" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    codeFormatting="true" testsDirectory="" complianceLevel="6.0" copyrightFields="false"
+    runtimeVersion="2.13" importOrganizing="true" cleanup="true">
+  <genPackages prefix="Aadlv3" basePackage="org.osate.aadlv3" disposableProviderFactory="true"
+      fileExtensions="axv3" ecorePackage="Aadlv3.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Aadlv3.ecore#//ComponentCategory">
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//ComponentCategory/component"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//ComponentCategory/thread"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//ComponentCategory/system"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//ComponentCategory/process"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//ComponentCategory/processor"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//ComponentCategory/memory"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//ComponentCategory/bus"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//ComponentCategory/device"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//ComponentCategory/virtualbus"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//ComponentCategory/virtualprocessor"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//ComponentCategory/virtualmemory"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//ComponentCategory/virtualdevice"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//ComponentCategory/subprogram"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//ComponentCategory/subprogramgroup"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//ComponentCategory/threadgroup"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//ComponentCategory/data"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Aadlv3.ecore#//FeatureCategory">
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//FeatureCategory/feature"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//FeatureCategory/port"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//FeatureCategory/dataaccess"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//FeatureCategory/busaccess"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//FeatureCategory/bindingpoint"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//FeatureCategory/interface"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Aadlv3.ecore#//FeatureDirection">
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//FeatureDirection/NONE"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//FeatureDirection/IN"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//FeatureDirection/OUT"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//FeatureDirection/INOUT"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//FeatureDirection/REQUIRES"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//FeatureDirection/PROVIDES"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//FeatureDirection/REQUIRESWRITE"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//FeatureDirection/REQUIRESREADWRITE"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//FeatureDirection/REQUIRESREAD"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//FeatureDirection/PROVIDESWRITE"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//FeatureDirection/PROVIDESREADWRITE"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//FeatureDirection/PROVIDESREAD"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Aadlv3.ecore#//AssociationType">
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//AssociationType/featureconnection"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//AssociationType/busconnection"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//AssociationType/binding"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//AssociationType/interfaceconnection"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//AssociationType/portconnection"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//AssociationType/dataconnection"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//AssociationType/flowpath"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//AssociationType/flowsource"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//AssociationType/flowsink"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//AssociationType/featuremapping"/>
+    </genEnums>
+    <genClasses ecoreClass="Aadlv3.ecore#//PackageDeclaration">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//PackageDeclaration/imports"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//PackageDeclaration/elements"/>
+    </genClasses>
+    <genClasses ecoreClass="Aadlv3.ecore#//NamedElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//NamedElement/name"/>
+    </genClasses>
+    <genClasses ecoreClass="Aadlv3.ecore#//PackageElement"/>
+    <genClasses ecoreClass="Aadlv3.ecore#//Property">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Property/type"/>
+    </genClasses>
+    <genClasses ecoreClass="Aadlv3.ecore#//PropertySet">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//PropertySet/properties"/>
+    </genClasses>
+    <genClasses ecoreClass="Aadlv3.ecore#//ModelElement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ModelElement/propertyAssociations"/>
+    </genClasses>
+    <genClasses ecoreClass="Aadlv3.ecore#//Type"/>
+    <genClasses ecoreClass="Aadlv3.ecore#//PrimitiveType"/>
+    <genClasses ecoreClass="Aadlv3.ecore#//ComponentClassifier">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//ComponentClassifier/category"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ComponentClassifier/superClassifiers"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ComponentClassifier/propertyAssociations"/>
+    </genClasses>
+    <genClasses ecoreClass="Aadlv3.ecore#//ComponentInterface">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ComponentInterface/features"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ComponentInterface/implementations"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ComponentInterface/configurations"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ComponentInterface/flows"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ComponentInterface/useProperties"/>
+    </genClasses>
+    <genClasses ecoreClass="Aadlv3.ecore#//ComponentImplementation">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ComponentImplementation/components"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ComponentImplementation/connections"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ComponentImplementation/assignments"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ComponentImplementation/interface"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ComponentImplementation/flowAssignments"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ComponentImplementation/paths"/>
+    </genClasses>
+    <genClasses ecoreClass="Aadlv3.ecore#//ComponentConfiguration">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ComponentConfiguration/parameters"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ComponentConfiguration/assignments"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//ComponentConfiguration/parameterized"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ComponentConfiguration/interface"/>
+    </genClasses>
+    <genClasses ecoreClass="Aadlv3.ecore#//Feature">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//Feature/direction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//Feature/sampled"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//Feature/category"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//Feature/reverse"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Feature/type"/>
+    </genClasses>
+    <genClasses ecoreClass="Aadlv3.ecore#//Component">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//Component/category"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Component/typeReference"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Component/components"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Component/connections"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Component/features"/>
+    </genClasses>
+    <genClasses ecoreClass="Aadlv3.ecore#//Import">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//Import/importedNamespace"/>
+    </genClasses>
+    <genClasses ecoreClass="Aadlv3.ecore#//Association">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//Association/associationType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Association/source"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Association/destination"/>
+    </genClasses>
+    <genClasses ecoreClass="Aadlv3.ecore#//ConfigurationAssignment">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ConfigurationAssignment/target"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ConfigurationAssignment/assignments"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ConfigurationAssignment/value"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ConfigurationAssignment/propertyAssociations"/>
+    </genClasses>
+    <genClasses ecoreClass="Aadlv3.ecore#//ModelElementReference">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ModelElementReference/element"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ModelElementReference/context"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ModelElementReference/property"/>
+    </genClasses>
+    <genClasses ecoreClass="Aadlv3.ecore#//ConfigurationParameter">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ConfigurationParameter/type"/>
+    </genClasses>
+    <genClasses ecoreClass="Aadlv3.ecore#//TypeReference">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//TypeReference/reverse"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//TypeReference/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//TypeReference/actuals"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//TypeReference/componentinterface"/>
+    </genClasses>
+    <genClasses ecoreClass="Aadlv3.ecore#//ConfigurationActual">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ConfigurationActual/parameter"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ConfigurationActual/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Aadlv3.ecore#//Workingset">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Workingset/rootComponents"/>
+    </genClasses>
+    <genClasses ecoreClass="Aadlv3.ecore#//PropertyValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//PropertyValue/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Aadlv3.ecore#//PropertyAssociation">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//PropertyAssociation/target"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//PropertyAssociation/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Aadlv3.ecore#//PathElement">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//PathElement/previous"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//PathElement/next"/>
+    </genClasses>
+    <genClasses ecoreClass="Aadlv3.ecore#//PathSequence">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//PathSequence/pathType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//PathSequence/target"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//PathSequence/elements"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

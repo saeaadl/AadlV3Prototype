@@ -1,0 +1,77 @@
+package CarExample
+system interface car end;
+
+system car.design
+subcomponents
+  Powertrain:  system Powertrain.design ;
+  EntertainmentSystem:  system EntertainmentSystem.basic;
+end car.design;
+
+configuration car.configurable (gasengine: gasengine , speakers:  Speakers ) extends car.design is
+Powertrain.myengine => gasengine ;
+EntertainmentSystem.soundsystem.speakers => speakers;
+end;
+
+configuration car.config extends car.configurable 
+( gasengine => gasengine.v4 , speakers => Speakers.Bose)
+end car.config;
+
+system interface EntertainmentSystem end;
+
+system EntertainmentSystem.basic 
+subcomponents  
+  tuner:  system Tuner.Alpine;
+  soundsystem: system MySoundSystem.Selectablespeakers;
+end EntertainmentSystem.basic;
+
+system interface MySoundSystem end;
+
+system MySoundSystem.design 
+subcomponents
+  amplifier:  system Amplifier.Kenwood;
+  speakers: system Speakers;
+end MySoundSystem.design;
+
+configuration MySoundSystem.Selectablespeakers (speakers: Speakers) extends MySoundSystem.design
+is  speakers => speakers ;
+end;
+
+system interface Speakers
+end;
+
+system Speakers.Bose
+end;
+
+
+system interface Amplifier
+end;
+
+system Amplifier.Kenwood
+end;
+
+
+system interface Tuner
+end;
+
+system Tuner.Alpine
+end;
+
+
+system interface Powertrain
+end;
+
+system Powertrain.design
+subcomponents
+  myengine:  system gasengine;
+end Powertrain.design;
+
+configuration Powertrain.gas (gasengine : gasengine) extends Powertrain.design
+is myengine => gasengine;
+end;
+
+system interface gasengine
+end;
+
+system gasengine.v4 end;
+
+end;

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright 2018 Carnegie Mellon University. All Rights Reserved.&#xD;&#xA;&#xD;&#xA;NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE ENGINEERING INSTITUTE&#xD;&#xA;MATERIAL IS FURNISHED ON AN &quot;AS-IS&quot; BASIS. CARNEGIE MELLON UNIVERSITY MAKES NO&#xD;&#xA;WARRANTIES OF ANY KIND, EITHER EXPRESSED OR IMPLIED, AS TO ANY MATTER INCLUDING,&#xD;&#xA;BUT NOT LIMITED TO, WARRANTY OF FITNESS FOR PURPOSE OR MERCHANTABILITY,&#xD;&#xA;EXCLUSIVITY, OR RESULTS OBTAINED FROM USE OF THE MATERIAL. CARNEGIE MELLON&#xD;&#xA;UNIVERSITY DOES NOT MAKE ANY WARRANTY OF ANY KIND WITH RESPECT TO FREEDOM FROM&#xD;&#xA;PATENT, TRADEMARK, OR COPYRIGHT INFRINGEMENT.&#xD;&#xA;&#xD;&#xA;Released under the Eclipse Public License (http://www.eclipse.org/org/documents/epl-v10.php)&#xD;&#xA;&#xD;&#xA;See COPYRIGHT file for full details."
+    modelDirectory="/org.osate.aadlv3/src" creationCommands="false" creationIcons="false"
+    creationSubmenus="true" editDirectory="/org.osate.aadlv3.edit/src" editorDirectory="/org.osate.aadlv3.editor/src"
+    modelPluginID="org.osate.aadlv3" modelName="AV3Instance" editPluginClass="org.osate.aadlv3.provider.AV3InstanceEditPlugin"
+    editorPluginClass="org.osate.aadlv3.presentation.AV3InstanceEditorPlugin" nonNLSMarkers="true"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" codeFormatting="true"
+    testsDirectory="" testSuiteClass="org.osate.aadlv3.av3instance.tests.AV3InstanceAllTests"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    editPluginID="org.osate.aadlv3.edit" editorPluginID="org.osate.aadlv3.editor"
+    usedGenPackages="Aadlv3.genmodel#//aadlv3" operationReflection="true" importOrganizing="true"
+    cleanup="true">
+  <foreignModel>AV3Instance.ecore</foreignModel>
+  <genPackages prefix="Av3instance" basePackage="org.osate.av3instance" disposableProviderFactory="true"
+      fileExtensions="aiv3" ecorePackage="AV3Instance.ecore#/">
+    <genClasses image="false" ecoreClass="AV3Instance.ecore#//InstanceObject">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AV3Instance.ecore#//InstanceObject/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//InstanceObject/properties"/>
+    </genClasses>
+    <genClasses ecoreClass="AV3Instance.ecore#//FeatureInstance">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//FeatureInstance/feature"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AV3Instance.ecore#//FeatureInstance/direction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AV3Instance.ecore#//FeatureInstance/sampled"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AV3Instance.ecore#//FeatureInstance/category"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//FeatureInstance/features"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//FeatureInstance/outgoingAssociations"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//FeatureInstance/incomingAssociations"/>
+    </genClasses>
+    <genClasses ecoreClass="AV3Instance.ecore#//ComponentInstance">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AV3Instance.ecore#//ComponentInstance/category"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//ComponentInstance/subcomponents"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//ComponentInstance/component"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//ComponentInstance/connections"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//ComponentInstance/features"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//ComponentInstance/flowspecs"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//ComponentInstance/paths"/>
+    </genClasses>
+    <genClasses ecoreClass="AV3Instance.ecore#//AssociationInstance">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AV3Instance.ecore#//AssociationInstance/associationType"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//AssociationInstance/association"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//AssociationInstance/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//AssociationInstance/destination"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//AssociationInstance/sourceMappings"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//AssociationInstance/destinationMappings"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AV3Instance.ecore#//AssociationInstance/external"/>
+    </genClasses>
+    <genClasses ecoreClass="AV3Instance.ecore#//PropertyAssociationInstance">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//PropertyAssociationInstance/property"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//PropertyAssociationInstance/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AV3Instance.ecore#//PropertyAssociationInstance/final"/>
+    </genClasses>
+    <genClasses ecoreClass="AV3Instance.ecore#//PathInstance">
+      <genFeatures children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference AV3Instance.ecore#//PathInstance/elements"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//PathInstance/path"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

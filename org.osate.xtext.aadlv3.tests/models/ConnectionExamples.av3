@@ -1,0 +1,71 @@
+package ConnectionExamples 
+// connections without and with reach down into subcomponents
+// shared data component
+
+	type systemstate;
+	
+	interface actuator is
+		state: provides read access systemstate;
+		inp: in port;
+		fea: feature;
+	end;
+	interface sensor is
+		state: requires read access systemstate;
+		outp: out port;
+		fea: feature;
+	end ;
+	
+	component sensor.i extends sensor is
+		sub1: thread sense;
+		upmap: mapping outp => sub1.p1 ;
+		stateaccess: mapping state => sub1.state;
+	end ;
+	component actuator.i extends actuator is
+		mystate: data systemstate { stateread : provides read access systemstate;
+			statewrite : provides write access systemstate;
+		};
+		sub2: thread actuate;
+		downmap: mapping inp => sub2.p1;
+		stateread: mapping state => mystate.stateread ;
+		statewrite: data sub2.state -> mystate.statewrite ;
+	end ;
+	thread interface sense  is
+		state: requires read access systemstate;
+		p1: out port ;
+	end ;
+	thread interface actuate  is
+		p1: in port ;
+		state: requires write access systemstate;
+	end ;
+	
+	system interface conntop end;
+	system conntop.i is
+		sense: component sensor.i;
+		actuate: component actuator.i;
+		hw : system hardwareplatform.impl;
+		conn1: port sense.sub1.p1 -> actuate.sub2.p1;
+		conn2: port sense.outp -> actuate.inp;
+		stateaccess: data actuate.state ->sense.state;
+		fconn: feature sense.fea -> actuate.fea;
+	end;
+	
+	bus interface canbus is
+	canbusaccess: provides bus access;
+	end;
+	
+	processor interface x86 is
+	canbusaccess: requires bus access;
+	end;
+	
+	system interface hardwareplatform is
+		canbusaccess: provides bus access canbus;
+	end;
+	
+	system hardwareplatform.impl is
+	cpu: processor x86;
+	mybus: bus canbus;
+	busconn: bus cpu.canbusaccess -> mybus.canbusaccess;
+	extbusaccess: mapping canbusaccess => mybus.canbusaccess;
+	end;
+	
+end;

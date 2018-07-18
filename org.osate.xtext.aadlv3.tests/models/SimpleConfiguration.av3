@@ -1,0 +1,86 @@
+package SimpleConfiguration 
+	type int;
+
+	property Period int;
+
+	property Size int;
+
+	interface receiver  is
+		inp: in port;
+		extout: out feature;
+		#Period => 20;
+	end ;
+
+	interface sender  is
+		extin: in feature;
+		outp: out port;
+	end ;
+
+	component sender.i extends sender  is
+		sub1: component sub;
+	end ;
+
+	component sender.isubi extends sender  is
+		sub1: component sub.i2t;
+	end ;
+
+	configuration sender.sensorconf extends sender.i  
+	is
+		sub1 => sub.i {#Period => 23;
+			t1#Period => 30;
+		};
+		sub1.p1#Size => 30;
+	end;
+
+	component receiver.i extends receiver  is
+		sub2: component sub;
+	end ;
+
+	interface sub  is
+		p1: in port ;
+	end ;
+
+	thread subsub.i
+	end;
+
+	component sub.i extends sub  is
+		t1: thread subsub;
+	end ;
+	
+	component sub.i2t extends sub.i is
+		t2: thread subsub;
+		t1 => subsub.i; 
+	end;
+
+	thread interface subsub  is
+		p1: in port ;
+	end ;
+
+	system interface top is
+		eextin : in feature;
+		eextout: out feature;
+	end;
+
+	system top.i  is
+		sense: component sender; // subcomponent by interface
+		sense1 : component sender.i; // subcomponent by implementation with a subcomponent by interface
+		sense2: component sender.i;
+		sense21: component sender.isubi;
+		sense3: component sender;
+		actuate: component receiver; // subcomponent by interface
+		sense1#Period => 33;
+		sense2.sub1#Period => 44;
+		extconn1: mapping eextin => sense.extin;
+		extconn2: mapping eextout => actuate.extout;
+	end ;
+
+	configuration top.topc extends top.i is
+		sense => sender.i  { sub1 => sub.i; } ; // configure in implementation and inline configure its subcomponent
+		actuate => receiver.i; // configure in implementation
+		sense1.sub1 => sub.i ; // Configure in subcomponent of implementation via reach down
+		sense21.sub1.t1 => subsub.i ; // Configure in subcomponent of implementation via reach down
+		sense2 =>  { sub1 => sub.i2t; }; // Configure in subcomponent of implementation via nesting
+		sense3 => sender.sensorconf; // Configure in configuration of implementation that contains configured subcomponent
+	end;
+
+end ;

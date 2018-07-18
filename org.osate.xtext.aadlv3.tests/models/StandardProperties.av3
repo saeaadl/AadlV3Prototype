@@ -1,0 +1,11 @@
+package StandardProperties
+	type int;
+	type real;
+	type time;
+	
+	property Period time;
+	property Deadline time;
+	property DataSize int;
+	
+	ThreadProperties : properties is Period , Deadline, DataSize end;
+end;

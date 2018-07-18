@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+  <extension point="org.eclipse.sirius.componentization">
+    <component class="org.osate.aadlv3.design.Activator"
+               id="org.osate.aadlv3.design"
+	       name="aadlv3">
+    </component>
+  </extension>
+   <extension
+         point="org.eclipse.sirius.externalJavaAction">
+      <javaActions
+            actionClass="org.osate.aadlv3.design.OpenInstanceSourceAction"
+            id="org.osate.aadlv3.design.OpenInstanceSourceAction">
+      </javaActions>
+    </extension>
+   <extension
+         point="org.eclipse.sirius.externalJavaAction">
+       <javaActions
+            actionClass="org.osate.aadlv3.design.DoubleClickSelectAction"
+            id="org.osate.aadlv3.design.DoubleClickSelectAction">
+      </javaActions>
+   </extension>
+</plugin>

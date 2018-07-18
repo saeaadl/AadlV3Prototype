@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="aadlv3" nsURI="http://www.osate.org/aadlv3/Aadlv3" nsPrefix="aadlv3">
+  <eClassifiers xsi:type="ecore:EClass" name="PackageDeclaration" eSuperTypes="#//PackageElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="imports" upperBound="-1"
+        eType="#//Import" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
+        eType="#//PackageElement" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PackageElement" abstract="true" eSuperTypes="#//NamedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Property" eSuperTypes="#//PackageElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Type"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PropertySet" eSuperTypes="#//PackageElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
+        eType="#//Property"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ModelElement" abstract="true" eSuperTypes="#//NamedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="propertyAssociations" upperBound="-1"
+        eType="#//PropertyAssociation" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Type" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PrimitiveType" eSuperTypes="#//PackageElement #//Type"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ComponentClassifier" abstract="true"
+      eSuperTypes="#//PackageElement #//Type">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="category" eType="#//ComponentCategory"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="superClassifiers" upperBound="-1"
+        eType="#//TypeReference" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="propertyAssociations" upperBound="-1"
+        eType="#//PropertyAssociation" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ComponentInterface" eSuperTypes="#//ComponentClassifier">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="features" upperBound="-1"
+        eType="#//Feature" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="implementations" ordered="false"
+        upperBound="-1" eType="#//ComponentImplementation" transient="true" eOpposite="#//ComponentImplementation/interface"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="configurations" ordered="false"
+        upperBound="-1" eType="#//ComponentConfiguration" transient="true" resolveProxies="false"
+        eOpposite="#//ComponentConfiguration/interface"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="flows" upperBound="-1"
+        eType="#//Association" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="useProperties" upperBound="-1"
+        eType="#//PropertySet"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ComponentImplementation" eSuperTypes="#//ComponentClassifier">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="components" upperBound="-1"
+        eType="#//Component" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="connections" upperBound="-1"
+        eType="#//Association" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="assignments" upperBound="-1"
+        eType="#//ConfigurationAssignment" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="interface" ordered="false"
+        eType="#//ComponentInterface" resolveProxies="false" eOpposite="#//ComponentInterface/implementations"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="flowAssignments" upperBound="-1"
+        eType="#//PathSequence" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="paths" upperBound="-1"
+        eType="#//PathSequence" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ComponentConfiguration" eSuperTypes="#//ComponentClassifier">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
+        eType="#//ConfigurationParameter" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="assignments" upperBound="-1"
+        eType="#//ConfigurationAssignment" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="parameterized" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="interface" ordered="false"
+        eType="#//ComponentInterface" resolveProxies="false" eOpposite="#//ComponentInterface/configurations"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Feature" eSuperTypes="#//ModelElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="direction" eType="#//FeatureDirection"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sampled" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="category" eType="#//FeatureCategory"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="reverse" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Type"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Component" eSuperTypes="#//ModelElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="category" eType="#//ComponentCategory"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="typeReference" eType="#//TypeReference"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="components" upperBound="-1"
+        eType="#//Component" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="connections" upperBound="-1"
+        eType="#//Association" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="features" upperBound="-1"
+        eType="#//Feature" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Import">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="importedNamespace" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Association" eSuperTypes="#//ModelElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="associationType" eType="#//AssociationType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//ModelElementReference"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="destination" eType="#//ModelElementReference"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConfigurationAssignment">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//ModelElementReference"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="assignments" upperBound="-1"
+        eType="#//ConfigurationAssignment" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//TypeReference"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="propertyAssociations" upperBound="-1"
+        eType="#//PropertyAssociation" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ModelElementReference">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="element" eType="#//ModelElement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="#//ModelElementReference"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="property" eType="#//Property"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConfigurationParameter" eSuperTypes="#//NamedElement #//Type">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Type"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TypeReference">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="reverse" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Type"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="actuals" upperBound="-1"
+        eType="#//ConfigurationActual" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="componentinterface" eType="#//ComponentInterface"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConfigurationActual">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parameter" eType="#//ConfigurationParameter"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//TypeReference"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Workingset" eSuperTypes="#//PackageElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rootComponents" upperBound="-1"
+        eType="#//Component" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ComponentCategory">
+    <eLiterals name="component" literal="component"/>
+    <eLiterals name="thread" value="1" literal="thread"/>
+    <eLiterals name="system" value="2" literal="system"/>
+    <eLiterals name="process" value="3" literal="process"/>
+    <eLiterals name="processor" value="4" literal="processor"/>
+    <eLiterals name="memory" value="5" literal="memory"/>
+    <eLiterals name="bus" value="6" literal="bus"/>
+    <eLiterals name="device" value="7" literal="device"/>
+    <eLiterals name="virtualbus" value="8" literal="virtual bus"/>
+    <eLiterals name="virtualprocessor" value="9" literal="virtual processor"/>
+    <eLiterals name="virtualmemory" value="10" literal="virtual memory"/>
+    <eLiterals name="virtualdevice" value="11" literal="virtual device"/>
+    <eLiterals name="subprogram" value="11" literal="subprogram"/>
+    <eLiterals name="subprogramgroup" value="12" literal="subprogram group"/>
+    <eLiterals name="threadgroup" value="13" literal="thread group"/>
+    <eLiterals name="data" value="14" literal="data"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="FeatureCategory">
+    <eLiterals name="feature" literal="feature"/>
+    <eLiterals name="port" value="1" literal="port"/>
+    <eLiterals name="dataaccess" value="2" literal="data access"/>
+    <eLiterals name="busaccess" value="3" literal="bus access"/>
+    <eLiterals name="bindingpoint" value="4" literal="binding point"/>
+    <eLiterals name="interface" value="5" literal="interface"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="FeatureDirection">
+    <eLiterals name="NONE" literal="none"/>
+    <eLiterals name="IN" value="1" literal="in"/>
+    <eLiterals name="OUT" value="2" literal="out"/>
+    <eLiterals name="INOUT" value="3" literal="in out"/>
+    <eLiterals name="REQUIRES" value="4" literal="requires"/>
+    <eLiterals name="PROVIDES" value="5" literal="provides"/>
+    <eLiterals name="REQUIRESWRITE" value="6" literal="requires write"/>
+    <eLiterals name="REQUIRESREADWRITE" value="7" literal="requires readwrite"/>
+    <eLiterals name="REQUIRESREAD" value="8" literal="requires read"/>
+    <eLiterals name="PROVIDESWRITE" value="9" literal="provides write"/>
+    <eLiterals name="PROVIDESREADWRITE" value="10" literal="provides readwrite"/>
+    <eLiterals name="PROVIDESREAD" value="11" literal="provides read"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="AssociationType">
+    <eLiterals name="featureconnection" literal="feature connection"/>
+    <eLiterals name="busconnection" value="1" literal="bus connection"/>
+    <eLiterals name="binding" value="2" literal="binding"/>
+    <eLiterals name="interfaceconnection" value="3" literal="interface connection"/>
+    <eLiterals name="portconnection" value="4" literal="port connection"/>
+    <eLiterals name="dataconnection" value="5" literal="data connection"/>
+    <eLiterals name="flowpath" value="6" literal="flow path"/>
+    <eLiterals name="flowsource" value="7" literal="flow source"/>
+    <eLiterals name="flowsink" value="8" literal="flow sink"/>
+    <eLiterals name="featuremapping" value="9" literal="feature mapping"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PropertyValue">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PropertyAssociation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//ModelElementReference"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//PropertyValue"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PathElement" eSuperTypes="#//ModelElementReference">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="previous" upperBound="-1"
+        eType="#//PathElement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="next" upperBound="-1" eType="#//PathElement"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PathSequence" eSuperTypes="#//ModelElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="pathType" eType="#//AssociationType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//ModelElementReference"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
+        eType="#//PathElement" containment="true"/>
+  </eClassifiers>
+</ecore:EPackage>

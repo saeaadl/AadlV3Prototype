@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="av3instance" nsURI="http://www.osate.org/aadlv3/AV3Instance"
+    nsPrefix="av3instance">
+  <eClassifiers xsi:type="ecore:EClass" name="InstanceObject" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
+        eType="#//PropertyAssociationInstance" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FeatureInstance" eSuperTypes="#//InstanceObject">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="feature" eType="ecore:EClass Aadlv3.ecore#//Feature"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="direction" eType="ecore:EEnum Aadlv3.ecore#//FeatureDirection"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sampled" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="category" eType="ecore:EEnum Aadlv3.ecore#//FeatureCategory"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="features" upperBound="-1"
+        eType="#//FeatureInstance" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outgoingAssociations" ordered="false"
+        upperBound="-1" eType="#//AssociationInstance" transient="true" resolveProxies="false"
+        eOpposite="#//AssociationInstance/source"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="incomingAssociations" ordered="false"
+        upperBound="-1" eType="#//AssociationInstance" transient="true" resolveProxies="false"
+        eOpposite="#//AssociationInstance/destination"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ComponentInstance" eSuperTypes="#//InstanceObject">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="category" eType="ecore:EEnum Aadlv3.ecore#//ComponentCategory"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subcomponents" upperBound="-1"
+        eType="#//ComponentInstance" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="component" eType="ecore:EClass Aadlv3.ecore#//Component"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="connections" upperBound="-1"
+        eType="#//AssociationInstance" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="features" upperBound="-1"
+        eType="#//FeatureInstance" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="flowspecs" upperBound="-1"
+        eType="#//AssociationInstance" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="paths" upperBound="-1"
+        eType="#//PathInstance" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AssociationInstance" eSuperTypes="#//InstanceObject">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="associationType" eType="ecore:EEnum Aadlv3.ecore#//AssociationType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="association" eType="ecore:EClass Aadlv3.ecore#//Association"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" ordered="false"
+        eType="#//FeatureInstance" resolveProxies="false" eOpposite="#//FeatureInstance/outgoingAssociations"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="destination" ordered="false"
+        eType="#//FeatureInstance" resolveProxies="false" eOpposite="#//FeatureInstance/incomingAssociations"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceMappings" upperBound="-1"
+        eType="ecore:EClass Aadlv3.ecore#//Association"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="destinationMappings" upperBound="-1"
+        eType="ecore:EClass Aadlv3.ecore#//Association"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="external" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PropertyAssociationInstance" eSuperTypes="#//InstanceObject">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="property" eType="ecore:EClass Aadlv3.ecore#//Property"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="ecore:EClass Aadlv3.ecore#//PropertyValue"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="final" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        transient="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PathInstance" eSuperTypes="#//InstanceObject">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
+        eType="#//InstanceObject"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="path" eType="ecore:EClass Aadlv3.ecore#//PathSequence"/>
+  </eClassifiers>
+</ecore:EPackage>
