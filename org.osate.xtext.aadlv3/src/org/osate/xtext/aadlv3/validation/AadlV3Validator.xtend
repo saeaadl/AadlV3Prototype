@@ -3,6 +3,10 @@
  */
 package org.osate.xtext.aadlv3.validation
 
+import org.osate.aadlv3.aadlv3.ComponentInterface
+import org.eclipse.xtext.validation.Check
+import org.osate.aadlv3.aadlv3.Aadlv3Package
+import static extension org.osate.aadlv3.util.Aadlv3Util.*
 
 /**
  * This class contains custom validation rules. 
@@ -11,15 +15,19 @@ package org.osate.xtext.aadlv3.validation
  */
 class AadlV3Validator extends AbstractAadlV3Validator {
 	
-//	public static val INVALID_NAME = 'invalidName'
-//
-//	@Check
-//	def checkGreetingStartsWithCapital(Greeting greeting) {
-//		if (!Character.isUpperCase(greeting.name.charAt(0))) {
-//			warning('Name should start with a capital', 
-//					AadlV3Package.Literals.GREETING__NAME,
-//					INVALID_NAME)
-//		}
-//	}
+	public static val ONLY_SUPER_INTERFACES = 'OnlySuperInterfaces'
+
+	@Check
+	def checkComponentInterface(ComponentInterface cif) {
+		cif.checkComponentInterfaceExtensions()
+	}
+	
+	def checkComponentInterfaceExtensions(ComponentInterface cif){
+		if (!cif.allComponentClassifiers.forall[scif|scif instanceof ComponentInterface]){
+			error('Name should start with a capital', 
+					Aadlv3Package.Literals.COMPONENT_CLASSIFIER__SUPER_CLASSIFIERS,
+					ONLY_SUPER_INTERFACES)
+		}
+	}
 	
 }

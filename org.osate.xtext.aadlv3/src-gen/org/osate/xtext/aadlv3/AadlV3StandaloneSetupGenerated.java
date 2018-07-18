@@ -17,7 +17,6 @@ package org.osate.xtext.aadlv3;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.ISetup;
 import org.eclipse.xtext.common.TerminalsStandaloneSetup;
@@ -41,9 +40,6 @@ public class AadlV3StandaloneSetupGenerated implements ISetup {
 	}
 	
 	public void register(Injector injector) {
-		if (!EPackage.Registry.INSTANCE.containsKey("http://www.osate.org/aadlv3/Aadlv3")) {
-			EPackage.Registry.INSTANCE.put("http://www.osate.org/aadlv3/Aadlv3", org.osate.aadlv3.aadlv3.Aadlv3Package.eINSTANCE);
-		}
 		IResourceFactory resourceFactory = injector.getInstance(IResourceFactory.class);
 		IResourceServiceProvider serviceProvider = injector.getInstance(IResourceServiceProvider.class);
 		

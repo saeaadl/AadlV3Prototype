@@ -3,6 +3,11 @@
  */
 package org.osate.xtext.aadlv3
 
+import com.google.inject.Injector
+import org.eclipse.xtext.resource.IResourceFactory
+import org.eclipse.xtext.resource.IResourceServiceProvider
+import org.eclipse.emf.ecore.resource.Resource
+import org.eclipse.emf.ecore.EPackage
 
 /**
  * Initialization support for running Xtext languages without Equinox extension registry.
@@ -12,4 +17,12 @@ class AadlV3StandaloneSetup extends AadlV3StandaloneSetupGenerated {
 	def static void doSetup() {
 		new AadlV3StandaloneSetup().createInjectorAndDoEMFRegistration()
 	}
+
+	override void register(Injector injector) {
+		if (!EPackage.Registry.INSTANCE.containsKey("http://www.osate.org/aadlv3/Aadlv3")) {
+			EPackage.Registry.INSTANCE.put("http://www.osate.org/aadlv3/Aadlv3", org.osate.aadlv3.aadlv3.Aadlv3Package.eINSTANCE);
+		}
+		super.register(injector)
+	}
+	
 }
