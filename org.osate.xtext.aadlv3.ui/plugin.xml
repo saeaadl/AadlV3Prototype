@@ -12,6 +12,7 @@
 			name="AadlV3 Editor">
 		</editor>
 	</extension>
+	
 	<extension
 		point="org.eclipse.ui.handlers">
 		<handler
@@ -51,6 +52,12 @@
 					</iterate>
 				</and>
 			</activeWhen>
+		</handler>
+		
+		<!-- PHF -->
+		<handler 
+			class="org.osate.xtext.aadlv3.ui.handlers.InstantiateWorkingSetHandler"
+			commandId="org.osate.xtext.aadlv3.ui.instantiate.workingset">
 		</handler>
 	</extension>
 	<extension point="org.eclipse.core.expressions.definitions">
@@ -137,6 +144,14 @@
 			description="Copy the qualified name for the selected element"
 			name="Copy Qualified Name">
 	</command>
+	
+	<!-- PHF -->
+		<command
+			description="Instantiate Workingset"
+			id="org.osate.xtext.aadlv3.ui.instantiate.workingset"
+			name="Instantiate Workingset">
+		</command>
+	
 	</extension>
 	<extension point="org.eclipse.ui.menus">
 		<menuContribution
@@ -182,6 +197,21 @@
 				</visibleWhen>
 			</command>
 		</menuContribution>
+		
+  	<!-- PHF -->
+		<menuContribution
+		 allPopups="false"
+         locationURI="popup:#TextEditorContext">
+        <command commandId="org.osate.xtext.aadlv3.ui.instantiate.workingset"
+		 style="push">
+         <visibleWhen checkEnabled="false">
+               <reference
+                     definitionId="org.osate.xtext.aadlv3.AadlV3.Editor.opened">
+               </reference>
+         </visibleWhen>
+        </command>
+      </menuContribution> 
+		
 	</extension>
 	<extension point="org.eclipse.ui.menus">
 		<menuContribution locationURI="popup:#TextEditorContext?endof=group.find">

@@ -3,28 +3,28 @@
  */
 package org.osate.xtext.aadlv3.validation
 
-import org.osate.aadlv3.aadlv3.ComponentInterface
 import org.eclipse.xtext.validation.Check
 import org.osate.aadlv3.aadlv3.Aadlv3Package
-import static extension org.osate.aadlv3.util.Aadlv3Util.*
-import org.osate.aadlv3.aadlv3.ComponentImplementation
-import org.osate.aadlv3.aadlv3.ComponentConfiguration
+import org.osate.aadlv3.aadlv3.Association
+import org.osate.aadlv3.aadlv3.AssociationType
+import org.osate.aadlv3.aadlv3.Component
+import org.osate.aadlv3.aadlv3.ComponentCategory
 import org.osate.aadlv3.aadlv3.ComponentClassifier
+import org.osate.aadlv3.aadlv3.ComponentConfiguration
+import org.osate.aadlv3.aadlv3.ComponentImplementation
+import org.osate.aadlv3.aadlv3.ComponentInterface
+import org.osate.aadlv3.aadlv3.ConfigurationActual
+import org.osate.aadlv3.aadlv3.ConfigurationAssignment
+import org.osate.aadlv3.aadlv3.ConfigurationParameter
 import org.osate.aadlv3.aadlv3.Feature
 import org.osate.aadlv3.aadlv3.FeatureCategory
 import org.osate.aadlv3.aadlv3.FeatureDirection
-import org.osate.aadlv3.aadlv3.ComponentCategory
 import org.osate.aadlv3.aadlv3.ModelElement
-import org.osate.aadlv3.aadlv3.Association
-import org.osate.aadlv3.aadlv3.AssociationType
-import org.osate.aadlv3.aadlv3.ConfigurationAssignment
-import org.osate.aadlv3.aadlv3.Component
+import org.osate.aadlv3.aadlv3.PathElement
 import org.osate.aadlv3.aadlv3.PathSequence
 import org.osate.aadlv3.aadlv3.PrimitiveType
-import org.osate.aadlv3.aadlv3.ConfigurationActual
-import org.osate.aadlv3.aadlv3.ConfigurationParameter
-import org.osate.aadlv3.aadlv3.PathElement
-import org.osate.aadlv3.aadlv3.Type
+
+import static extension org.osate.aadlv3.util.Aadlv3Util.*
 
 /**
  * This class contains custom validation rules. 
@@ -350,7 +350,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 			if (matchcat != targetcat && matchcat != ComponentCategory.COMPONENT){
 				error('Extension category differs', matchcl,
 					Aadlv3Package.Literals.COMPONENT_CLASSIFIER__SUPER_CLASSIFIERS,
-					org.osate.xtext.aadlv3.validation.AadlV3Validator.MISMATCHED_COMPONENT_CATEGORY)
+					AadlV3Validator.MISMATCHED_COMPONENT_CATEGORY)
 			}
 			}
 		}
