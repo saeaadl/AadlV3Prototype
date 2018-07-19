@@ -295,7 +295,7 @@ class Aadlv3Util {
 	// we have added only one scope as references are resolved relative to the enclosing model element reference
 	def static ComponentClassifier getConfiguredClassifier(Component match,
 		Stack<Iterable<ConfigurationAssignment>> casscopes) {
-		val ctype = match?.typeReference?.type
+		val ctype = match.typeReference?.type
 		val n = casscopes.size
 		// component has no type or 
 		if(ctype === null || !(ctype instanceof ComponentClassifier) || ctype.isParameterizedConfiguration) return null
@@ -424,18 +424,6 @@ class Aadlv3Util {
 		val res = cls.map[cl|cl.eContents.typeSelect(ModelElement)].flatten
 		res
 	}
-//	
-//	static def Iterable<? extends ModelElement> getAllImplementationModelElements(Iterable<? extends ComponentImplementation> cls) {
-//		if(cls.empty) return Collections.EMPTY_LIST
-//		val res = cls.map[cl|cl.eContents.typeSelect(ModelElement)].flatten
-//		res
-//	}
-//	
-//	static def Iterable<? extends ModelElement> getAllInterfaceModelElements(Iterable<? extends ComponentInterface> cls) {
-//		if(cls.empty) return Collections.EMPTY_LIST
-//		val res = cls.map[cl|cl.eContents.typeSelect(ModelElement)].flatten
-//		res
-//	}
 
 	static def Iterable<? extends ModelElement> myContents(ComponentClassifier co) {
 		co.eContents.typeSelect(ModelElement)
@@ -443,7 +431,7 @@ class Aadlv3Util {
 
 	// handle component pointing to classifier
 	static def Iterable<? extends ModelElement> getAllContents(Component co) {
-		val ctype = co?.typeReference?.type
+		val ctype = co.typeReference?.type
 		if (ctype instanceof ComponentClassifier){
 			var cls = ctype.allComponentClassifiers
 			val cat = cls.componentCategory
@@ -555,7 +543,7 @@ class Aadlv3Util {
 		}
 	}
 
-	// superClassifer has to be a direct or indirect supper classifier, i.e., they cannot be the same
+	// superClassifer has to be a direct or indirect super classifier, i.e., they cannot be the same
 	// handle the case that a component implementation or configuration also refers to an interface
 	def static boolean isSuperClassifierOf(ComponentClassifier superClassifier, ComponentClassifier cl) {
 		if(superClassifier === null || cl === null || superClassifier.eIsProxy || cl.eIsProxy) return false
@@ -675,51 +663,59 @@ class Aadlv3Util {
 		])
 	}
 	
-	// connection is between two subcomponents
+	// association is connection 
 	def static boolean isConnection(AssociationType connType){
 		connType == AssociationType.FEATURECONNECTION || connType == AssociationType.PORTCONNECTION ||connType == AssociationType.DATACONNECTION 
 		||connType == AssociationType.BUSCONNECTION  ||connType == AssociationType.INTERFACECONNECTION
 	}
 
+	// association is connection 
+	def static boolean isConnection(Association assoc){
+		val connType = assoc.associationType
+		connType == AssociationType.FEATURECONNECTION || connType == AssociationType.PORTCONNECTION ||connType == AssociationType.DATACONNECTION 
+		||connType == AssociationType.BUSCONNECTION  ||connType == AssociationType.INTERFACECONNECTION
+	}
 	
 	// mapping from an outer to an inner feature
 	def static boolean isFeatureMapping(AssociationType connType){
 		connType === AssociationType.FEATUREMAPPING
 	}
 	
-	// connection represents a flow specification
+	// association represents a flow specification
 	def static boolean isFlowSpec(AssociationType connType){
 		connType == AssociationType.FLOWPATH || connType == AssociationType.FLOWSOURCE ||connType == AssociationType.FLOWSINK 
 	}
+	// association represents a binding
+	def static boolean isBinding(AssociationType connType){
+		connType == AssociationType.BINDING 
+	}
 
+	
+	// association represents a flow specification
+	def static boolean isFlowSpec(Association conn){
+		val connType = conn.associationType
+		connType == AssociationType.FLOWPATH || connType == AssociationType.FLOWSOURCE ||connType == AssociationType.FLOWSINK 
+	}
 
 	// model element reference reaches into a component, i.e., the first path element refers to a component
 	def static boolean isContainedComponentModelElementReference(ModelElementReference mer) {
-		mer.firstModelElement instanceof Component
+		mer.getReferencedContainingComponent !== null
 	}
 	
 	/**
-	 * returns the the first element of the MER path
+	 * returns the closest component reference in the MER path
 	 */
-	def static ModelElement getFirstModelElement(ModelElementReference mer) {
+	def static Component getReferencedContainingComponent(ModelElementReference mer) {
 		var first = mer
 		while (first.context !== null) {
 			first = first.context
-		}
-		first.element
-	}
-
-	
-	/**
-	 * return the model element that is the context of the MER target, i.e., the model element referenced by the context MER
-	 */
-	def static ModelElement getContextModelElement(ModelElementReference mer) {
-		var target = mer
-		if (target.context !== null) {
-			return target.context.element
+			if (first.element instanceof Component){
+				return first.element as Component
+			}
 		}
 		null
 	}
+
 	
 	////////////////////////////////////
 	// deal with predeclared base interfaces for different component categories

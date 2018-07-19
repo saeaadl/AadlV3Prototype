@@ -1,0 +1,132 @@
+package ConfigurationPresentation 
+type int;
+property SecurityLevel int ;
+property SafetyLevel int;
+property Period int;
+property Deadline int;
+
+system interface x end;
+
+system x.i extends x is
+	xsub1: process subsubsys;
+ 	xsub2: process subsubsys;
+end;
+
+//interface y end;
+//
+//system y.i is
+//	ysub1: process subsubsys;
+// 	ysub2: process subsubsys;
+//end;
+
+interface subsubsys end;
+
+//system subsubsys.i end; 
+//
+//system interface top end;
+//
+//system  top.basic
+// is
+// 	Sub1: system x;
+// 	Sub2: system y;
+// end;
+// 
+// configuration top.config_L1 extends top.basic
+//is
+//	Sub1 => x.i;
+//	Sub2 => y.i;
+//end;
+//
+//// slide 5
+//
+//configuration top.sub1impl extends top.basic
+// is
+// 	Sub1 => x.i;
+// end;
+// 
+//system top.sub1impl2 
+// is
+// 	Sub1 : system x.i;
+// 	Sub2: system y;
+// end;
+//
+//configuration top.config_Sub1 extends top.sub1impl 
+//is
+//  Sub1.xsub1 => subsubsys.i;
+//  Sub1.xsub2 => subsubsys.i;
+//end;
+//
+// // slide 6
+// 
+// configuration x.config_L1 extends x.i is
+//  xsub1 => subsubsys.i ;
+//  xsub2 => subsubsys.i;
+//end;
+//configuration y.config_L1 extends y.i is
+//  ysub1 => subsubsys.i ;
+//  ysub2 => subsubsys.i;
+//end;
+// 
+//configuration top.config_L2 extends top.basic is
+//  Sub1 => x.config_L1 ;
+//  Sub2 => y.config_L1;
+//end;
+//
+//// slide 7
+//
+//configuration top.config_L22 extends top.config_L1 is
+//  Sub1.xsub1 => subsubsys.i ;  
+//  Sub1.xsub2 => subsubsys.i;
+//  Sub2 => { ysub1 => subsubsys.i;
+//            ysub2 => subsubsys.i;
+//          };
+//end;
+//
+//system  y.security extends y.i
+// is
+// 	#SecurityLevel => 9;
+// end;
+//
+//configuration top.config_Sub2 extends top.config_L1 
+//is
+//  Sub1 => x.config_L1 ;
+//  Sub2 => y.security ;
+//end;
+//
+//// slide 8
+//
+//configuration top.config_Security extends top.config_L2 
+//is
+//  #SecurityLevel => 1;
+//  Sub1#SecurityLevel => 2;
+//  Sub1.xsub1#SecurityLevel => 0;
+//  Sub2#SecurityLevel => 1;
+//end;
+//
+//configuration top.config_Safety extends top.config_L1 
+//is
+//  #SafetyLevel => 3; 
+//  Sub1#SafetyLevel => 2;
+//  Sub2 => {#SafetyLevel => 3;};
+//end;
+//
+//configuration x.config_Performance extends x.i 
+//is
+//  xsub1 => subsubsys.i {
+//   #Period => 10; 
+//   #Deadline => 10; };
+//end;
+//
+//// slide 9
+//
+//configuration top.config_L211 extends  top.config_Sub1, top.config_Sub2 end;
+//configuration top.config_L212 extends  top.config_Sub1, top.config_Sub2 end;
+//
+//configuration top.config_full extends top.config_L2, top.config_Safety, 
+//  top.config_Security
+//end;
+//
+//configuration top.config_SafetySecurity extends top.config_L1, top.config_Security, top.config_Safety end;
+
+	
+end;

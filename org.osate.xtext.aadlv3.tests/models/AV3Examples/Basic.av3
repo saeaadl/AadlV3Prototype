@@ -10,9 +10,9 @@ package Basic
 	package nested  
 		type signal ;
 	end ;
-	interface sub 
+	interface sub
 	features
-		name : in feature person ;
+		name : in feature person;
 		surname : in feature person ;
 	end ;
 	process interface subsub 
@@ -30,7 +30,7 @@ package Basic
 
 	interface sub1 extends sub 
 	features
-		name : in port date ;
+		name : in port date;
 	end ;
 	
 	system interface gps end;

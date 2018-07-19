@@ -81,7 +81,7 @@ class Instantiator {
 					cl.allFlowSpecs.forEach[fs| fs.instantiateFlowSpec(ci)]
 				}
 				ComponentConfiguration,ComponentImplementation: {
-					comp.allFeatures.forEach[f| ci.features += f.instantiateFeature(cl.isReverseFeature(f))]
+					comp.allFeatures.forEach[f| ci.features += f.instantiateFeature(cl.isReverseFeature(f))] 
 					cl.allFlowSpecs.forEach[fs| fs.instantiateFlowSpec(ci)]
 					val comps = cl.allComponents
 					casscopes.push(cl.allConfigurationAssignments?:Collections.EMPTY_LIST)
@@ -328,7 +328,7 @@ class Instantiator {
 		for (pe : ps.elements){
 			val InstanceObject previousflowelementinstance = psi.elements.last
 			val flowelement = pe.element
-			if (flowelement instanceof Association && (flowelement as Association).associationType.isFlowSpec){
+			if (flowelement instanceof Association && (flowelement as Association).isFlowSpec){
 					// expand flowspec by its configured flow
 					if (previousflowelementinstance.isFlowSpec){
 						// find the missing connection instance

@@ -22,7 +22,7 @@ package Basic
 
 	end ;
 
-	process interface subsub
+	interface subsub
 	features
 		p1 : in port date ;
 		p2 : in port date { #Size => 3; };

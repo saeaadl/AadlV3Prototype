@@ -13,9 +13,10 @@ package interfacecomposition
 		name: feature person;
 	end ;
 	
-	system interface subsub extends sub, mine 
+	system interface subsub extends sub, mine
 	// should have error message about duplicate names coming from the two extends elements
 	end;
+	
 	system subsub.i is 
 		c1: feature p1 -> name ;
 	end ;
