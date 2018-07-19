@@ -304,7 +304,7 @@ class Aadlv3Util {
 		if(n == 0) return ccl
 		// we have configuration assignment scopes, find a matching assignment and use its vlaue
 		for (ca : casscopes.get(0)) {
-			if (ca.target === match) {
+			if (ca.target.element === match) {
 				val actualClorP = ca.value?.type
 				if (actualClorP instanceof ComponentClassifier) {
 					if (ccl.isSuperClassifierOf(actualClorP)) {

@@ -3,13 +3,13 @@ workingset simpleinstances is
 	first : system SimpleConfiguration::top.i ;
 	second : system SimpleConfiguration::top.topc ;
 	
-//	pres1: system ConfigurationPresentation::top.config_SafetySecurity ;
-//	pres2: system ConfigurationPresentation::top.config_full ;
+	pres1: system ConfigurationPresentation::top.config_SafetySecurity;
+	pres2: system ConfigurationPresentation::top.config_full ;
 	
-//	nested: system NestedImplementations::ControlSystem.i;
+	nested: system NestedImplementations::ControlSystem.i;
 	
-//	connex: system ConnectionExamples::conntop.i;
+	connex: system ConnectionExamples::conntop.i;
 
-//  flowex: system FlowExamples::conntop.i;
+  flowex: system FlowExamples::conntop.i;
 end;
 end;

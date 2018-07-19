@@ -15,7 +15,7 @@ package Basic
 		name : in feature person;
 		surname : in feature person ;
 	end ;
-	process interface subsub 
+	interface subsub 
 	features
 		p1 : in port date ;
 		p2 : in port date { #Size => 3; };

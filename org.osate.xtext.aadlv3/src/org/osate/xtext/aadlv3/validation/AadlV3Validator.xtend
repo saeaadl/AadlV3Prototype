@@ -517,7 +517,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 			null,
 			OnlyPropertyAssociations)
 		}
-	    if (comp.category !== ComponentCategory.DATA || comp.category !==ComponentCategory.COMPONENT){
+	    if (!(comp.category === ComponentCategory.DATA || comp.category ===ComponentCategory.COMPONENT)){
 			error('Components other than "data" or "component" cannot have primitive type', comp,
 			Aadlv3Package.Literals.COMPONENT__CATEGORY,
 			NoPrimitiveType)

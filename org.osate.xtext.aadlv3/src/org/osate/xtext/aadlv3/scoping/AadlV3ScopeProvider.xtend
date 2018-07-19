@@ -111,7 +111,7 @@ class AadlV3ScopeProvider extends AbstractAadlV3ScopeProvider {
 							val pcl = previousElement.getConfiguredClassifier(casscopes)
 							if (pcl !== null ){
 								if(!pcl.eIsProxy) {
-									previousElement.getAllContents
+									pcl.allComponentClassifiers.allModelElements
 								} else {
 									Collections.EMPTY_LIST
 								}
