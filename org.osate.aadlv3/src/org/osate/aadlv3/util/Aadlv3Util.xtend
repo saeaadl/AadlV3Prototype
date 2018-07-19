@@ -547,6 +547,7 @@ class Aadlv3Util {
 	// handle the case that a component implementation or configuration also refers to an interface
 	def static boolean isSuperClassifierOf(ComponentClassifier superClassifier, ComponentClassifier cl) {
 		if(superClassifier === null || cl === null || superClassifier.eIsProxy || cl.eIsProxy) return false
+		if (superClassifier === cl) return true
 		val clinterface = if (cl instanceof ComponentImplementation){
 			cl.interface
 		} else if (cl instanceof ComponentConfiguration){

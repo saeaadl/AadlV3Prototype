@@ -24,6 +24,7 @@ import org.osate.aadlv3.aadlv3.PrimitiveType
 import org.osate.aadlv3.aadlv3.ConfigurationActual
 import org.osate.aadlv3.aadlv3.ConfigurationParameter
 import org.osate.aadlv3.aadlv3.PathElement
+import org.osate.aadlv3.aadlv3.Type
 
 /**
  * This class contains custom validation rules. 
@@ -119,15 +120,15 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 		} else {
 			val comp = ca.target.element as Component
 			val assignedtype = ca.value.type
-			if (assignedtype instanceof ComponentClassifier){
-				val clcat = assignedtype.componentCategory
+			val thetype = if (assignedtype instanceof ConfigurationParameter) assignedtype.type else assignedtype
+			if (thetype instanceof 	ComponentClassifier) {
+				val clcat = thetype.componentCategory
 				if (!(comp.category === clcat || clcat === ComponentCategory.COMPONENT)){
-					error('Category of assigned classifier must be the same as the category of the component or must be "component"', ca,
+					error('Category \''+clcat+'\' of assigned classifier must be the same as the category \''+comp.category+'\' of the component or must be "component"', ca,
 					null,
 					MISMATCHED_COMPONENT_CATEGORY)
 				}
-				
-			} else {
+			} else if (thetype instanceof PrimitiveType) {
 				// primitive type
 				if (comp.category === ComponentCategory.DATA || comp.category === ComponentCategory.COMPONENT ){
 					if (comp.typeReference !== null){
@@ -142,7 +143,6 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 				}
 			}
 		}
-		
 	}
 
 	@Check 
@@ -263,7 +263,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 			var idx = 0;
 			for (sclref : cl.superClassifiers){
 				val scl = sclref.type as ComponentClassifier
-				if (firstcl === scl || firstcl.isSuperClassifierOf(scl)){
+				if (firstcl.isSuperClassifierOf(scl)){
 					idx = cl.superClassifiers.indexOf(sclref)
 				}
 			}

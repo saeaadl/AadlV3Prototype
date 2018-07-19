@@ -21,7 +21,7 @@ end;
 
 interface subsubsys end;
 
-system subsubsys.i end; 
+component subsubsys.i end; 
 
 system interface top end;
 
@@ -52,7 +52,7 @@ system top.sub1impl2
 
 configuration top.config_Sub1 extends top.sub1impl 
 is
-  Sub1.xsub1 => subsubsys.i;
+  Sub1.xsub1 => subsubsys.i; 
   Sub1.xsub2 => subsubsys.i;
 end;
 
