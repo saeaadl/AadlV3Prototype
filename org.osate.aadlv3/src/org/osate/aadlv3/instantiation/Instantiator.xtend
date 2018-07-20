@@ -26,18 +26,13 @@ import org.osate.av3instance.av3instance.FeatureInstance
 import org.osate.av3instance.av3instance.AssociationInstance
 import org.osate.av3instance.av3instance.PathInstance
 import org.osate.av3instance.av3instance.InstanceObject
+import org.osate.aadlv3.aadlv3.TypeReference
 
 class Instantiator {
 	def instantiate(Workingset ws) {
 		for (iroot : ws.rootComponents) {
-			val wsinstancesresourceURI = getInstanceURI(ws, iroot)
-			var instanceResource = ws.eResource.resourceSet.getResource(wsinstancesresourceURI,false)
-			if (instanceResource === null){
-				instanceResource = ws.eResource.resourceSet.createResource(wsinstancesresourceURI)
-			}
-			instanceResource.contents.clear
-			instanceResource.contents += iroot.instantiateRoot
-			instanceResource.save(null)
+			val rootinstance = iroot.instantiateRoot
+			rootinstance.eResource.save(null)
 		}
 	}
 	
@@ -53,19 +48,38 @@ class Instantiator {
 		// cas scope represents the configuration assignments (CAs) for a given nesting level in the component hierarchy
 		// The top of the stack has the CAs whose single path element references are relevant
 		Aadlv3Util.resetComponentInstanceCache
+		val ws = c.eContainer as Workingset
+		val wsinstancesresourceURI = getInstanceURI(ws, c)
+		var instanceResource = ws.eResource.resourceSet.getResource(wsinstancesresourceURI,false)
+		if (instanceResource === null){
+			instanceResource = ws.eResource.resourceSet.createResource(wsinstancesresourceURI)
+		}
+		instanceResource.contents.clear
+		
 		val casscopes = new Stack <Iterable<ConfigurationAssignment>>()
-//		casscopes.push(cl.allConfigurationAssignments?:Collections.EMPTY_LIST)
-		return c.instantiateComponent(casscopes,null)
+		val tref = c.getConfiguredType(casscopes, null)
+		// set component instance to configured classifier
+		val ci = c.createComponentInstance(tref)
+		instanceResource.contents.add(ci)
+		c.instantiateComponent(casscopes,ci)
+		return ci
 	}
 
 	//  component to be instantiated using configured classifier confcl and set of configuration assignments
-	def ComponentInstance instantiateComponent(Component comp,  Stack<Iterable<ConfigurationAssignment>> casscopes, ComponentInstance context) {
-		// we have a component with a classifier
-		val tref = comp.getConfiguredType(casscopes, context)
-		// set component instance to configured classifier
-		val ci = comp.createComponentInstance(tref)
-		if (context !== null){
-			context.subcomponents += ci
+	def void instantiateComponent(Component comp,  Stack<Iterable<ConfigurationAssignment>> casscopes, ComponentInstance context) {
+		var TypeReference tref = null
+		val isRoot = comp.eContainer instanceof Workingset
+		val ci = if (isRoot){
+			// root
+			tref = context.configuredTypeReference
+			context
+		} else {
+			// subcomponent
+			tref = comp.getConfiguredType(casscopes, context)
+			// set component instance to configured classifier
+			val subci = comp.createComponentInstance(tref)
+			context.subcomponents += subci
+			subci
 		}
 		if (tref === null) {
 			// inline subcomponents without explicit classifier
@@ -101,7 +115,7 @@ class Instantiator {
 			for (conn: actualConns){
 				conn.instantiateConnection(ci)
 			}
-			if (context === null){
+			if (isRoot){
 			// generate external connections - only for the root component
 				val incomingConns = cl.allConnections.filter[conn|conn.isIncomingFeatureMapping]
 				for (conn : incomingConns){
@@ -138,7 +152,6 @@ class Instantiator {
 				}
 			}
 		}
-		ci
 	}
 	
 	def void processConfigurationAssignmentProperties(ConfigurationAssignment ca, InstanceObject context){

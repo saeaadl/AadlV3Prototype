@@ -37,6 +37,7 @@ import org.osate.av3instance.av3instance.Av3instanceFactory
 import org.osate.av3instance.av3instance.PathInstance
 import org.osate.av3instance.av3instance.AssociationInstance
 import org.osate.av3instance.av3instance.PropertyAssociationInstance
+import java.util.LinkedHashSet
 
 class Aadlv3Util {
 	
@@ -68,7 +69,7 @@ class Aadlv3Util {
 	}
 
 	static def HashSet<ComponentClassifier> getAllComponentClassifiers(ComponentClassifier cc) {
-		val result = new HashSet<ComponentClassifier>
+		val result = new LinkedHashSet<ComponentClassifier>
 		if(cc === null || cc.eIsProxy) return result
 		if (cc instanceof ComponentClassifier) {
 			result.add(cc)
@@ -108,7 +109,7 @@ class Aadlv3Util {
 
 	static def Iterable<? extends ComponentImplementation> getAllComponentImplementations(ComponentClassifier cc) {
 		if(cc === null || cc.eIsProxy) return Collections.EMPTY_LIST
-		val result = new HashSet<ComponentImplementation>
+		val result = new LinkedHashSet<ComponentImplementation>
 		if (cc instanceof ComponentImplementation) {
 			result.add(cc)
 		}
@@ -130,7 +131,7 @@ class Aadlv3Util {
 
 	static def Iterable<? extends ComponentConfiguration> getAllComponentConfigurations(ComponentClassifier cc) {
 		if(cc === null || cc.eIsProxy) return Collections.EMPTY_LIST
-		val result = new HashSet<ComponentConfiguration>
+		val result = new LinkedHashSet<ComponentConfiguration>
 		if (cc instanceof ComponentConfiguration) {
 			result.add(cc)
 		} else {
@@ -142,7 +143,7 @@ class Aadlv3Util {
 
 	static def Iterable<? extends ComponentConfiguration> getAllSuperComponentConfigurations(ComponentClassifier cc) {
 		if(cc === null || cc.eIsProxy) return Collections.EMPTY_LIST
-		val result = new HashSet<ComponentConfiguration>
+		val result = new LinkedHashSet<ComponentConfiguration>
 		cc.addSuperComponentConfigurations(result)
 		return result
 	}
@@ -816,6 +817,10 @@ class Aadlv3Util {
 	
 	def static getConfiguredClassifier(ComponentInstance ci){
 		configuredClassifierTypereferenceCache.get(ci)?.type as ComponentClassifier
+	}
+	
+	def static getConfiguredTypeReference(ComponentInstance ci){
+		configuredClassifierTypereferenceCache.get(ci)
 	}
 	
 	/**
