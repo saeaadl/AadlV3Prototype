@@ -82,29 +82,44 @@ class Aadlv3Util {
 
 	private static def void addSuperComponentClassifiers(ComponentClassifier cl, HashSet<ComponentClassifier> set) {
 		if (cl instanceof ComponentImplementation){
-			if (set.add(cl.interface)){
-				addSuperComponentClassifiers(cl.interface, set)
-			}
-		} else if (cl instanceof ComponentConfiguration){
-			if (set.add(cl.interface)){
+			if (cl.superClassifiers.empty){
+				set.add(cl.interface)
 				addSuperComponentClassifiers(cl.interface, set)
 			}
 		}
 		if(cl.superClassifiers.empty) return
-		val supercls = cl.superClassifiers.map[scc|scc.type]
+		val supercls = cl.superClassifiers.map[scc|scc.type as ComponentClassifier]
 		supercls.forEach [ scl |
-			if(scl instanceof ComponentClassifier) {
-				if (set.add(scl)){
-					addSuperComponentClassifiers(scl, set)
-				}
-			}
+			set.add(scl)
+		]
+		supercls.forEach [ scl |
+			addSuperComponentClassifiers(scl, set)
 		]
 	}
 
 	static def Iterable<? extends ComponentInterface> getAllComponentInterfaces(ComponentClassifier cc) {
-		val cls = cc.allComponentClassifiers
-		val result = cls.filter[cl| cl instanceof ComponentInterface] as Iterable<? extends ComponentInterface>
+		if(cc === null || cc.eIsProxy) return Collections.EMPTY_LIST
+		val result = new LinkedHashSet<ComponentInterface>
+		val cif = switch cc {
+			ComponentInterface: cc
+			ComponentImplementation: cc.interface
+			ComponentConfiguration: cc.interface
+		}
+		result.add(cif)
+		cif.addSuperComponentInterfaces(result)
 		return result
+	}
+
+	private static def void addSuperComponentInterfaces(ComponentInterface cl,
+		HashSet<ComponentInterface> set) {
+		if(cl.superClassifiers.empty) return
+		val supercls = cl.superClassifiers.map[scc|scc.type as ComponentInterface]
+		supercls.forEach [ scl |
+			set.add(scl)
+		]
+		supercls.forEach [ scl |
+			addSuperComponentInterfaces(scl, set)
+		]
 	}
 
 	static def Iterable<? extends ComponentImplementation> getAllComponentImplementations(ComponentClassifier cc) {
@@ -112,8 +127,8 @@ class Aadlv3Util {
 		val result = new LinkedHashSet<ComponentImplementation>
 		if (cc instanceof ComponentImplementation) {
 			result.add(cc)
+			cc.addSuperComponentImplementations(result)
 		}
-		cc.addSuperComponentImplementations(result)
 		return result
 	}
 
@@ -125,24 +140,24 @@ class Aadlv3Util {
 			if(scl instanceof ComponentImplementation) {
 				set.add(scl)
 			}
-			addSuperComponentImplementations(scl, set)
+		]
+		supercls.forEach [ scl |
+			if(scl instanceof ComponentImplementation) {
+				addSuperComponentImplementations(scl, set)
+			}
 		]
 	}
 
 	static def Iterable<? extends ComponentConfiguration> getAllComponentConfigurations(ComponentClassifier cc) {
-		if(cc === null || cc.eIsProxy) return Collections.EMPTY_LIST
+		if(cc === null || cc.eIsProxy || !(cc instanceof ComponentConfiguration)) return Collections.EMPTY_LIST
 		val result = new LinkedHashSet<ComponentConfiguration>
-		if (cc instanceof ComponentConfiguration) {
-			result.add(cc)
-		} else {
-			return result
-		}
+		result.add(cc as ComponentConfiguration)
 		cc.addSuperComponentConfigurations(result)
 		return result
 	}
 
 	static def Iterable<? extends ComponentConfiguration> getAllSuperComponentConfigurations(ComponentClassifier cc) {
-		if(cc === null || cc.eIsProxy) return Collections.EMPTY_LIST
+		if(cc === null || cc.eIsProxy|| !(cc instanceof ComponentConfiguration)) return Collections.EMPTY_LIST
 		val result = new LinkedHashSet<ComponentConfiguration>
 		cc.addSuperComponentConfigurations(result)
 		return result
@@ -155,6 +170,10 @@ class Aadlv3Util {
 		supercls.forEach [ scl |
 			if(scl instanceof ComponentConfiguration) {
 				set.add(scl);
+			}
+		]
+		supercls.forEach [ scl |
+			if(scl instanceof ComponentConfiguration) {
 				addSuperComponentConfigurations(scl, set)
 			}
 		]
@@ -269,14 +288,14 @@ class Aadlv3Util {
 	static def Iterable<ConfigurationAssignment> getAllConfigurationAssignments(ComponentClassifier cc) {
 		if(cc === null || cc.eIsProxy || !(cc instanceof ComponentConfiguration)) return Collections.EMPTY_LIST
 		val cls = cc.allComponentConfigurations
-		val clas = cls.map[cl|cl.getAllContentsOfType(ConfigurationAssignment)].flatten
+		val clas = cls.map[cl|cl.assignments].flatten
 		clas
 	}
 
 	static def Iterable<ConfigurationAssignment> getAllSuperConfigurationAssignments(ComponentConfiguration cc) {
 		if(cc === null || cc.eIsProxy) return Collections.EMPTY_LIST
 		val cls = cc.allSuperComponentConfigurations
-		val clas = cls.map[cl|cl.getAllContentsOfType(ConfigurationAssignment)].flatten
+		val clas = cls.map[cl|cl.assignments].flatten
 		clas
 	}
 
