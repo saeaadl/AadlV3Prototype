@@ -79,6 +79,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	def checkComponentInterface(ComponentInterface cif) {
 		cif.checkUniqueModelElementNames()
 		cif.checkComponentInterfaceExtensions()
+		cif.checkUniqueImplementationsConfigurations()
 	}
 	
 	@Check
@@ -270,6 +271,46 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 			error('Duplicate model element with name '+first.name, cl,
 				Aadlv3Package.Literals.COMPONENT_CLASSIFIER__SUPER_CLASSIFIERS, idx,
 				DUPLICATE_NAMES)
+		}
+	}
+	
+	def void checkUniqueImplementationsConfigurations(ComponentInterface cif){
+		val cics = cif.implementations+cif.configurations
+		val maxmels = cics.length
+		for (var firstidx = 0; firstidx < maxmels-1; firstidx++){
+			val first = cics.get(firstidx)
+			for (var secondidx = firstidx+1 ; secondidx <maxmels; secondidx++){
+				val second = cics.get(secondidx)
+				if (first !== second && first.name == second.name){
+					reportDuplicateNames(first,cif)
+					reportDuplicateNames(second,cif)
+				}
+			}
+		}
+	}
+	
+	def void reportDuplicateNames (ComponentClassifier firstcl, ComponentInterface cif){
+		if (firstcl instanceof ComponentImplementation){
+			var idx = 0;
+			for (impl : cif.implementations){
+				if (impl === firstcl){
+					idx = cif.implementations.indexOf(impl)
+				}
+			}
+			error('Duplicate implementation or configuration with name '+firstcl.name, firstcl,
+			Aadlv3Package.Literals.COMPONENT_INTERFACE__IMPLEMENTATIONS, idx,
+			DUPLICATE_NAMES)
+		} else {
+			// configuration
+			var idx = 0;
+			for (impl : cif.configurations){
+				if (impl === firstcl){
+					idx = cif.configurations.indexOf(impl)
+				}
+			}
+			error('Duplicate implementation or configuration with name '+firstcl.name, firstcl,
+			Aadlv3Package.Literals.COMPONENT_INTERFACE__CONFIGURATIONS, idx,
+			DUPLICATE_NAMES)
 		}
 	}
 	

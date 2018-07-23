@@ -57,7 +57,7 @@ class Instantiator {
 		instanceResource.contents.clear
 		
 		val casscopes = new Stack <Iterable<ConfigurationAssignment>>()
-		val tref = c.getConfiguredType(casscopes, null)
+		val tref = c.getConfiguredTypeReference(casscopes, null)
 		// set component instance to configured classifier
 		val ci = c.createComponentInstance(tref)
 		instanceResource.contents.add(ci)
@@ -75,7 +75,7 @@ class Instantiator {
 			context
 		} else {
 			// subcomponent
-			tref = comp.getConfiguredType(casscopes, context)
+			tref = comp.getConfiguredTypeReference(casscopes, context)
 			// set component instance to configured classifier
 			val subci = comp.createComponentInstance(tref)
 			context.subcomponents += subci
@@ -132,6 +132,10 @@ class Instantiator {
 			}
 			
 			// finally we fill in property associations
+			// should do:
+			// in classifier order
+			// outer over inner
+			// currently we assign inner first
 			for (pa : cl.allPropertyAssociations){
 				val target = ci.getInstanceElement(pa.target)
 				val pai = createPropertyAssociationInstance(pa)

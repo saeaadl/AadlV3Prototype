@@ -147,6 +147,31 @@ class Aadlv3Util {
 			}
 		]
 	}
+	
+	static def ComponentImplementation getTopComponentImplementation(ComponentClassifier cl){
+		val impls = getAllComponentImplementations(cl)
+		var top = impls.head
+		for (impl : impls){
+			if(impl instanceof ComponentImplementation){
+				if (top.isSuperImplementationOf(impl)){
+					top = impl
+				}
+			}
+		}
+		return top
+	}
+	
+	static def ComponentImplementation getTopComponentImplementation(Iterable<? extends ComponentClassifier> cls){
+		var ComponentImplementation top = null
+		for (cl : cls){
+			if (cl instanceof ComponentImplementation){
+				if (top.isSuperImplementationOf(cl)){
+					top = cl
+				}
+			}
+		}
+		return top
+	}
 
 	static def Iterable<? extends ComponentConfiguration> getAllComponentConfigurations(ComponentClassifier cc) {
 		if(cc === null || cc.eIsProxy || !(cc instanceof ComponentConfiguration)) return Collections.EMPTY_LIST
@@ -301,7 +326,7 @@ class Aadlv3Util {
 
 	static def Iterable<? extends PropertyAssociation> getAllPropertyAssociations(ComponentClassifier cc) {
 		if(cc === null || cc.eIsProxy) return Collections.EMPTY_LIST
-		val cls = cc.allComponentClassifiers
+		val cls = cc.allComponentClassifiers.toList.reverseView
 		val clas = cls.map[cl|cl.propertyAssociations].flatten
 		clas
 	}
@@ -344,13 +369,16 @@ class Aadlv3Util {
 	// this method is used to determine the type for instantiation as component instance
 	// match is component in instance hierarchy with enclosing container a component rather than the original which may be the classifier
 	// match can be a component or component instance
-	def static TypeReference getConfiguredType(Component match,
+	// TODO currently returns the last match - inner to outer
+	// TODO when we override we want to make sure it does not change the implementation
+	def static TypeReference getConfiguredTypeReference(Component match,
 		Stack<Iterable<ConfigurationAssignment>> casscopes, ComponentInstance context) {
 		var ctyperef = match.typeReference
 		if (ctyperef === null) return null
 		val n = casscopes.size
 		if(n===0 || ctyperef.type instanceof PrimitiveType) return ctyperef 
 		// Also handle ConfigurationParameter
+		// We work from inner to outer CA scope reaching in
 		for (k : n - 1 .. 0) {
 			for (ca : casscopes.get(k)) {
 				if (ca.target.isSamePath(match, n - k, context)) {
@@ -563,11 +591,11 @@ class Aadlv3Util {
 		}
 	}
 
-	// superClassifer has to be a direct or indirect super classifier, i.e., they cannot be the same
+	// superClassifer has to be a direct or indirect super classifier, or the same
 	// handle the case that a component implementation or configuration also refers to an interface
 	def static boolean isSuperClassifierOf(ComponentClassifier superClassifier, ComponentClassifier cl) {
-		if(superClassifier === null || cl === null || superClassifier.eIsProxy || cl.eIsProxy) return false
-		if (superClassifier === cl) return true
+		if( cl === null || superClassifier.eIsProxy || cl.eIsProxy) return false
+		if (superClassifier === null || superClassifier === cl) return true
 		val clinterface = if (cl instanceof ComponentImplementation){
 			cl.interface
 		} else if (cl instanceof ComponentConfiguration){
@@ -594,6 +622,21 @@ class Aadlv3Util {
 		(superClassifierref.type as ComponentClassifier).isSuperClassifierOf(clref.type as ComponentClassifier)
 	}
 
+
+	// superImpl has to be a direct or indirect super implementation, or the same
+	def static boolean isSuperImplementationOf(ComponentImplementation superImpl, ComponentImplementation impl) {
+		if( impl === null || superImpl.eIsProxy || impl.eIsProxy) return false
+		if (superImpl === null || superImpl === impl) return true
+		var superclrefs = impl.superClassifiers
+		for (superclref : superclrefs) {
+			val stype = superclref.type
+			if (stype instanceof ComponentImplementation){
+				if(stype == superImpl) return true
+				if(superImpl.isSuperClassifierOf(stype)) return true
+			}
+		}
+		false
+	}
 
 	// returns the enclosing component classifier. For a component configuration as 'elem' it is returned
 	def static ComponentClassifier getContainingComponentClassifier(EObject elem) {
