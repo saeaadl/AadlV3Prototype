@@ -10,6 +10,7 @@ end car.design;
 configuration car.configurable (gasengine: gasengine , speakers:  Speakers ) extends car.design is
 Powertrain.myengine => gasengine ;
 EntertainmentSystem.soundsystem.speakers => speakers;
+EntertainmentSystem.soundsystem => MySoundSystem.Selectablespeakers(speakers => speakers);
 end;
 
 configuration car.config extends car.configurable 

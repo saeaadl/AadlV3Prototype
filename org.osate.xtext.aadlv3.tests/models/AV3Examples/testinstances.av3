@@ -1,0 +1,5 @@
+package simpleinstances
+workingset simpleinstances is
+	first : system AncestorOrder::mine.i ;
+end;
+end;

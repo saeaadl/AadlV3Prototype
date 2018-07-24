@@ -37,9 +37,8 @@ package Basic
 	
 	system gps.i
 	subcomponents
-		locator : process LocatorProcess.impl ;
+		locator : process LocatorProcess.impl;
 	end ;
-	
 	process interface LocatorProcess
 	properties
 	#Period => 20;

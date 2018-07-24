@@ -25,6 +25,8 @@ import org.osate.aadlv3.aadlv3.PathSequence
 import org.osate.aadlv3.aadlv3.PrimitiveType
 
 import static extension org.osate.aadlv3.util.Aadlv3Util.*
+import org.eclipse.emf.ecore.util.EcoreUtil
+import org.osate.aadlv3.aadlv3.NamedElement
 
 /**
  * This class contains custom validation rules. 
@@ -278,40 +280,25 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 		val cics = cif.implementations+cif.configurations
 		val maxmels = cics.length
 		for (var firstidx = 0; firstidx < maxmels-1; firstidx++){
-			val first = cics.get(firstidx)
+			val first = EcoreUtil.resolve(cics.get(firstidx),cif) as ComponentClassifier
 			for (var secondidx = firstidx+1 ; secondidx <maxmels; secondidx++){
-				val second = cics.get(secondidx)
+				val second = EcoreUtil.resolve(cics.get(secondidx),cif) as ComponentClassifier
 				if (first !== second && first.name == second.name){
-					reportDuplicateNames(first,cif)
-					reportDuplicateNames(second,cif)
+					error('Implementation or configuration'+first.fullName , first,
+						Aadlv3Package.Literals.NAMED_ELEMENT__NAME, 
+						DUPLICATE_NAMES)
+					error('Duplicate implementation or configuration with name '+second.fullName, second,
+						Aadlv3Package.Literals.NAMED_ELEMENT__NAME,
+						DUPLICATE_NAMES)
 				}
 			}
 		}
 	}
 	
 	def void reportDuplicateNames (ComponentClassifier firstcl, ComponentInterface cif){
-		if (firstcl instanceof ComponentImplementation){
-			var idx = 0;
-			for (impl : cif.implementations){
-				if (impl === firstcl){
-					idx = cif.implementations.indexOf(impl)
-				}
-			}
 			error('Duplicate implementation or configuration with name '+firstcl.name, firstcl,
-			Aadlv3Package.Literals.COMPONENT_INTERFACE__IMPLEMENTATIONS, idx,
+			Aadlv3Package.Literals.NAMED_ELEMENT__NAME,
 			DUPLICATE_NAMES)
-		} else {
-			// configuration
-			var idx = 0;
-			for (impl : cif.configurations){
-				if (impl === firstcl){
-					idx = cif.configurations.indexOf(impl)
-				}
-			}
-			error('Duplicate implementation or configuration with name '+firstcl.name, firstcl,
-			Aadlv3Package.Literals.COMPONENT_INTERFACE__CONFIGURATIONS, idx,
-			DUPLICATE_NAMES)
-		}
 	}
 	
 	def checkComponentInterfaceExtensions(ComponentInterface cif){

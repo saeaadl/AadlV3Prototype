@@ -1,0 +1,31 @@
+package AncestorOrder
+	import StandardProperties.*;
+// two interface extensions based on a common interface
+// composed to implement a system
+
+	type int;
+	property DataSize int;
+
+	interface common 
+	is
+		inport : in port ;
+		#DataSize => 0;
+	end ;
+	interface ext1 extends common 
+	is
+		e1port : in port ;
+		#DataSize => 1;
+	end ;
+	interface ext2 extends common 
+	is
+		e2port : out port ;
+		#DataSize => 2;
+	end ;
+	
+	system interface mine extends ext1 , ext2 end;
+	
+	system mine.i 
+	subcomponents
+		sub : thread common ;
+	end ;
+end ;

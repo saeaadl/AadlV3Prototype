@@ -41,11 +41,11 @@ import java.util.LinkedHashSet
 
 class Aadlv3Util {
 	
-	static def String getName(Type type){
-		switch (type){
-			case ComponentClassifier: type.name
-			case Type: type.name
-			case ConfigurationParameter: type.name
+	static def String getFullName(ComponentClassifier cl){
+		switch (cl){
+			ComponentInterface: cl.name
+			ComponentImplementation: cl.interface.name+"."+cl.name
+			ComponentConfiguration: cl.interface.name+"."+cl.name
 		}
 	}
 	
