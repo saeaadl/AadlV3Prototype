@@ -836,6 +836,67 @@
     <semanticResources>java:/Objects/org.eclipse.xtext.xbase.lib.ExclusiveRange</semanticResources>
     <semanticResources>java:/Objects/java.lang.Math</semanticResources>
     <semanticResources>java:/Objects/org.eclipse.xtext.xbase.lib.IntegerRange</semanticResources>
+    <semanticResources>java:/Objects/org.eclipse.xtext.EcoreUtil2</semanticResources>
+    <semanticResources>java:/Objects/org.eclipse.xtext.util.CancelIndicator</semanticResources>
+    <semanticResources>java:/Objects/org.osate.av3instance.av3instance.ComponentInstance</semanticResources>
+    <semanticResources>java:/Objects/org.osate.av3instance.av3instance.InstanceObject</semanticResources>
+    <semanticResources>java:/Objects/org.osate.av3instance.av3instance.AssociationInstance</semanticResources>
+    <semanticResources>java:/Objects/org.osate.av3instance.av3instance.FeatureInstance</semanticResources>
+    <semanticResources>java:/Objects/org.osate.av3instance.av3instance.PathInstance</semanticResources>
+    <semanticResources>java:/Objects/org.osate.av3instance.av3instance.PropertyAssociationInstance</semanticResources>
+    <semanticResources>java:/Objects/org.osate.av3instance.av3instance.Av3instanceFactory</semanticResources>
+    <semanticResources>java:/Objects/org.osate.av3instance.av3instance.Av3instancePackage</semanticResources>
+    <semanticResources>java:/Objects/org.eclipse.xtext.xbase.lib.ArrayLiterals</semanticResources>
+    <semanticResources>java:/Objects/org.eclipse.xtext.xbase.lib.CollectionLiterals</semanticResources>
+    <semanticResources>java:/Objects/org.eclipse.xtext.xbase.lib.InputOutput</semanticResources>
+    <semanticResources>java:/Objects/org.eclipse.xtext.xbase.lib.ArrayExtensions</semanticResources>
+    <semanticResources>java:/Objects/org.eclipse.xtext.xbase.lib.BigDecimalExtensions</semanticResources>
+    <semanticResources>java:/Objects/org.eclipse.xtext.xbase.lib.BigIntegerExtensions</semanticResources>
+    <semanticResources>java:/Objects/org.eclipse.xtext.xbase.lib.ByteExtensions</semanticResources>
+    <semanticResources>java:/Objects/org.eclipse.xtext.xbase.lib.CharacterExtensions</semanticResources>
+    <semanticResources>java:/Objects/org.eclipse.xtext.xbase.lib.ComparableExtensions</semanticResources>
+    <semanticResources>java:/Objects/org.eclipse.xtext.xbase.lib.DoubleExtensions</semanticResources>
+    <semanticResources>java:/Objects/org.eclipse.xtext.xbase.lib.FloatExtensions</semanticResources>
+    <semanticResources>java:/Objects/java.lang.Float</semanticResources>
+    <semanticResources>java:/Objects/org.eclipse.xtext.xbase.lib.FunctionExtensions</semanticResources>
+    <semanticResources>java:/Objects/org.eclipse.xtext.xbase.lib.IteratorExtensions</semanticResources>
+    <semanticResources>java:/Objects/com.google.common.collect.Iterators</semanticResources>
+    <semanticResources>java:/Objects/com.google.common.collect.MultitransformedIterator</semanticResources>
+    <semanticResources>java:/Objects/com.google.common.collect.PeekingIterator</semanticResources>
+    <semanticResources>java:/Objects/org.eclipse.xtext.xbase.lib.LongExtensions</semanticResources>
+    <semanticResources>java:/Objects/org.eclipse.xtext.xbase.lib.MapExtensions</semanticResources>
+    <semanticResources>java:/Objects/org.eclipse.xtext.xbase.lib.ProcedureExtensions</semanticResources>
+    <semanticResources>java:/Objects/org.eclipse.xtext.xbase.lib.ShortExtensions</semanticResources>
+    <semanticResources>java:/Objects/java.lang.Short</semanticResources>
+    <semanticResources>java:/Objects/org.eclipse.xtext.xbase.lib.StringExtensions</semanticResources>
+    <semanticResources>../src/org/osate/aadlv3/util/AssertHelper.xtend</semanticResources>
+    <semanticResources>java:/Objects/com.google.inject.Inject</semanticResources>
+    <semanticResources>java:/Objects/com.itemis.xtext.testing.FluentIssueCollection</semanticResources>
+    <semanticResources>java:/Objects/org.eclipse.xtext.diagnostics.Severity</semanticResources>
+    <semanticResources>java:/Objects/org.eclipse.xtext.scoping.IScopeProvider</semanticResources>
+    <semanticResources>java:/Objects/org.eclipse.xtext.serializer.tokens.SerializerScopeProviderBinding</semanticResources>
+    <semanticResources>java:/Objects/org.eclipse.xtext.validation.Issue</semanticResources>
+    <semanticResources>java:/Objects/org.junit.ComparisonFailure</semanticResources>
+    <semanticResources>java:/Objects/org.junit.Assert</semanticResources>
+    <semanticResources>java:/Objects/org.eclipse.xtext.scoping.IScope</semanticResources>
+    <semanticResources>java:/Objects/org.eclipse.xtext.resource.IEObjectDescription</semanticResources>
+    <semanticResources>java:/Objects/org.eclipse.xtext.naming.QualifiedName</semanticResources>
+    <semanticResources>java:/Objects/org.eclipse.emf.ecore.resource.impl.BinaryResourceImpl</semanticResources>
+    <semanticResources>java:/Objects/org.eclipse.emf.ecore.resource.impl.ResourceImpl</semanticResources>
+    <semanticResources>java:/Objects/org.eclipse.emf.common.notify.impl.NotifierImpl</semanticResources>
+    <semanticResources>java:/Objects/org.eclipse.emf.ecore.util.NotifyingInternalEListImpl</semanticResources>
+    <semanticResources>java:/Objects/org.eclipse.emf.common.notify.impl.AdapterImpl</semanticResources>
+    <semanticResources>java:/Objects/org.eclipse.emf.common.notify.impl.BasicNotifierImpl</semanticResources>
+    <semanticResources>java:/Objects/org.eclipse.emf.common.notify.impl.NotifyingListImpl</semanticResources>
+    <semanticResources>java:/Objects/org.eclipse.emf.common.notify.NotifyingList</semanticResources>
+    <semanticResources>java:/Objects/org.eclipse.emf.common.notify.impl.NotificationImpl</semanticResources>
+    <semanticResources>java:/Objects/com.google.inject.BindingAnnotation</semanticResources>
+    <semanticResources>java:/Objects/org.eclipse.xtext.validation.CheckType</semanticResources>
+    <semanticResources>java:/Objects/java.lang.AssertionError</semanticResources>
+    <semanticResources>java:/Objects/org.junit.internal.ArrayComparisonFailure</semanticResources>
+    <semanticResources>java:/Objects/org.hamcrest.Matcher</semanticResources>
+    <semanticResources>java:/Objects/org.hamcrest.SelfDescribing</semanticResources>
+    <semanticResources>java:/Objects/org.hamcrest.Description</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" xmi:id="_pazAoHPkEeiCF7iON-8ppA">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
       <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_qgF0wHPkEeiCF7iON-8ppA" name="aadlv3 class diagram" repPath="#_NKM3kHSOEei3aPN4cRFf8w">

@@ -18,7 +18,7 @@ package FlowExamples
 	component sensor.i extends sensor is
 		sub1: thread sense;
 		upmap: mapping outp => sub1.p1 ;
-		reading => flow sub1;
+		reading => flow upmap -> sub1.reading;
 	end ;
 	component actuator.i extends actuator is
 		sub2: thread actuate;
@@ -27,6 +27,7 @@ package FlowExamples
 	end ;
 	thread interface sense  is
 		p1: out port ;
+		reading: flow source p1;
 	end ;
 	thread interface actuate  is
 		p1: in port ;
@@ -68,7 +69,7 @@ package FlowExamples
 		hw : system hardwareplatform.impl;
 		sensetocontrol: port sense.sub1.p1 -> processing.insignal;
 		controltoactuate: port processing.outaction -> actuate.inp;
-		etef: end to end flow sense.reading -> sensetocontrol -> processing.processflow -> controltoactuate -> actuate.action;
+		etef: end to end flow sense.sub1.reading -> sensetocontrol-> processing.processflow -> controltoactuate -> actuate.action;
 	end;
 	
 	bus interface canbus is

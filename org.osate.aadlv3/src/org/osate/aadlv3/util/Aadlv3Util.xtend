@@ -88,12 +88,16 @@ class Aadlv3Util {
 			}
 		}
 		if(cl.superClassifiers.empty) return
-		val supercls = cl.superClassifiers.map[scc|scc.type as ComponentClassifier]
+		val supercls = cl.superClassifiers.map[scc|scc.type]
 		supercls.forEach [ scl |
-			set.add(scl)
+			if (scl instanceof ComponentClassifier){
+				set.add(scl)
+			}
 		]
 		supercls.forEach [ scl |
-			addSuperComponentClassifiers(scl, set)
+			if (scl instanceof ComponentClassifier){
+				addSuperComponentClassifiers(scl, set)
+			}
 		]
 	}
 
@@ -128,6 +132,8 @@ class Aadlv3Util {
 		if (cc instanceof ComponentImplementation) {
 			result.add(cc)
 			cc.addSuperComponentImplementations(result)
+		} else if (cc instanceof ComponentConfiguration){
+			cc.addSuperComponentImplementations(result)
 		}
 		return result
 	}
@@ -142,7 +148,7 @@ class Aadlv3Util {
 			}
 		]
 		supercls.forEach [ scl |
-			if(scl instanceof ComponentImplementation) {
+			if(scl instanceof ComponentImplementation || scl instanceof ComponentConfiguration) {
 				addSuperComponentImplementations(scl, set)
 			}
 		]
@@ -310,26 +316,111 @@ class Aadlv3Util {
 		res
 	}
 
-	static def Iterable<ConfigurationAssignment> getAllConfigurationAssignments(ComponentClassifier cc) {
-		if(cc === null || cc.eIsProxy || !(cc instanceof ComponentConfiguration)) return Collections.EMPTY_LIST
-		val cls = cc.allComponentConfigurations
-		val clas = cls.map[cl|cl.assignments].flatten
-		clas
+	// return all configuration assignments including those of super configurations
+	// Those from super configurations may get overridden if they are for the same target
+	static def Iterable<ConfigurationAssignment> getAllConfigurationAssignments(ComponentConfiguration cc) {
+		if(cc === null || cc.eIsProxy ) return Collections.EMPTY_LIST
+		val cas = cc.assignments
+		if (cc.superClassifiers.isEmpty) return cas
+		val supercls = cc.allSuperComponentConfigurations
+		val supercas = supercls.map[cl|cl.allOwnConfigurationAssignments.filter[superca|!cas.containsAdditionTarget(superca)]].flatten
+		cas+supercas
 	}
 
+
+	// returns configuration assignments from all super configurations
+	// if two super configurations contain the same configuration assignment target the first one is used
 	static def Iterable<ConfigurationAssignment> getAllSuperConfigurationAssignments(ComponentConfiguration cc) {
-		if(cc === null || cc.eIsProxy) return Collections.EMPTY_LIST
-		val cls = cc.allSuperComponentConfigurations
-		val clas = cls.map[cl|cl.assignments].flatten
-		clas
+		if(cc === null || cc.eIsProxy || cc.superClassifiers.isEmpty) return Collections.EMPTY_LIST
+		val supercls = cc.allSuperComponentConfigurations
+		if (supercls.empty) return Collections.EMPTY_LIST
+		val firstcas = supercls.head.allOwnConfigurationAssignments
+		if (supercls.tail.empty) return firstcas
+		val supercas = supercls.tail.map[cl|cl.allOwnConfigurationAssignments.filter[superca|!firstcas.containsAdditionTarget(superca)]].flatten
+		firstcas+supercas
+	}
+
+	
+	// return configuration assignments defined in configuration including those down the hierarchy
+	// out assignments override inner ones
+	private static def Iterable<ConfigurationAssignment> getAllOwnConfigurationAssignments(ComponentConfiguration cc) {
+		val cassignments = cc.assignments
+		val nestedcas = cassignments.map[ca|ca.nestedConfigurationAssignments].flatten
+		return cassignments+nestedcas.filter[nca|!cassignments.containsAdditionTarget(nca)]
+	}
+	
+	// return configuration assignments that are contained in the specified configuration assignment
+	private static def Iterable<ConfigurationAssignment> getNestedConfigurationAssignments(ConfigurationAssignment ca) {
+		return ca.assignments+ca.assignments.map[subca| subca.fullTargetPath(ca.target)].map[subca|subca.nestedConfigurationAssignments].flatten.filter[nca|!ca.assignments.containsAdditionTarget(nca)]
+	}
+	
+	// makes a copy of the configuration assignment with the target path expanded
+	private static def ConfigurationAssignment fullTargetPath(ConfigurationAssignment ca, ModelElementReference contextpath){
+		val fullca = ca.copy
+		val newcontextpath = contextpath.copy
+		val first = fullca.target.firstModelElementReference
+		if (first !== null){
+			first.context = newcontextpath
+		} else {
+			fullca.target = newcontextpath
+		}
+		return fullca
+	}
+	
+	// the specified list contains a configuration assignment with the same target as the addition
+	static def boolean containsAdditionTarget(Iterable<ConfigurationAssignment> primary, ConfigurationAssignment addition){
+		for ( pca : primary){
+			if (pca.target.isSamePath(addition.target)){
+				return true
+			}
+		}
+		return false
 	}
 
 	static def Iterable<? extends PropertyAssociation> getAllPropertyAssociations(ComponentClassifier cc) {
 		if(cc === null || cc.eIsProxy) return Collections.EMPTY_LIST
-		val cls = cc.allComponentClassifiers.toList.reverseView
+		val cls = cc.allComponentClassifiers
 		val clas = cls.map[cl|cl.propertyAssociations].flatten
 		clas
 	}
+
+	// return configuration assignments defined in configuration including those down the hierarchy
+	private static def Iterable<PropertyAssociation> getAllOwnPropertyAssociations(ComponentClassifier cc) {
+		val propassignments = cc.propertyAssociations
+		if (cc instanceof ComponentConfiguration){
+			return propassignments+ cc.assignments.map[subca|subca.nestedPropertyAssociations].flatten.filter[subpa|!propassignments.containsAdditionTarget(subpa)]
+		}
+		return propassignments
+	}
+	
+	// return property associations and any associations further down that are not overridden by the outer ones
+	private static def Iterable<PropertyAssociation> getNestedPropertyAssociations(ConfigurationAssignment ca) {
+		val pas = ca.propertyAssociations.map[pa| pa.fullTargetPath(ca.target)]
+		return pas+ca.assignments.map[subca|subca.nestedPropertyAssociations].flatten.filter[subpa|!pas.containsAdditionTarget(subpa)]
+	}
+	
+	
+	private static def PropertyAssociation fullTargetPath(PropertyAssociation pa, ModelElementReference contextpath){
+		val fullpa = pa.copy
+		val newcontextpath = contextpath.copy
+		val first = fullpa.target.firstModelElementReference
+		if (first !== null){
+			first.context = newcontextpath
+		} else {
+			fullpa.target = newcontextpath
+		}
+		return fullpa
+	}
+	
+	static def boolean containsAdditionTarget(Iterable<PropertyAssociation> primary, PropertyAssociation addition){
+		for ( pca : primary){
+			if (pca.target.isSamePath(addition.target)){
+				return true
+			}
+		}
+		return false
+	}
+
 
 	static def boolean isParameterizedConfiguration(Type cc) {
 		cc instanceof ComponentConfiguration && (cc as ComponentConfiguration).parameterized
@@ -438,11 +529,23 @@ class Aadlv3Util {
 		Collections.EMPTY_LIST
 	}
 
-//	// true of model element reference points to model element
-//	def static boolean isSame(ModelElementReference mer, ModelElement match) {
-//		// case sensitive TODO fix if we go case insensitive
-//		mer.element?.name == match.name
-//	}
+	// true of model element reference paths are the same, i.e., all referenced elements are the same
+	def static boolean isSamePath(ModelElementReference mer1, ModelElementReference mer2) {
+		var m1 = mer1
+		var m2 = mer2
+		while (m1?.element === m2.element){
+			// the next elements up the path must match
+			if (m1.context !== null && m2.context !== null){
+				m1 = m1.context
+				m2 = m2.context
+			} else if (m1.context === null && m2.context === null){
+				return true
+			} else {
+				return false
+			}
+		}
+		return false
+	}
 
 
 	// depth indicates the target path length to be considered
@@ -677,14 +780,6 @@ class Aadlv3Util {
 		return false
 	}
 
-	// returns the EObject that contains the Model Element Reference
-	def static EObject getModelElementReferenceContext(ModelElementReference mer) {
-		var EObject cxt = mer
-		while (cxt instanceof ModelElementReference) {
-			cxt = cxt.eContainer
-		}
-		cxt
-	}
 	
 	// mapping maps an outgoing feature, i.e., a source
 	def static boolean isOutgoingFeatureMapping(Association conn){
@@ -741,6 +836,11 @@ class Aadlv3Util {
 	}
 	
 	// mapping from an outer to an inner feature
+	def static boolean isFeatureMapping(Association conn){
+		conn.associationType === AssociationType.FEATUREMAPPING
+	}
+	
+	// mapping from an outer to an inner feature
 	def static boolean isFeatureMapping(AssociationType connType){
 		connType === AssociationType.FEATUREMAPPING
 	}
@@ -760,6 +860,10 @@ class Aadlv3Util {
 		val connType = conn.associationType
 		connType == AssociationType.FLOWPATH || connType == AssociationType.FLOWSOURCE ||connType == AssociationType.FLOWSINK 
 	}
+	
+	//-------------------------
+	// ModelElementReference methods
+	//-------------------------
 
 	// model element reference reaches into a component, i.e., the first path element refers to a component
 	def static boolean isContainedComponentModelElementReference(ModelElementReference mer) {
@@ -778,6 +882,37 @@ class Aadlv3Util {
 			}
 		}
 		null
+	}
+
+	// returns the EObject that contains the Model Element Reference
+	def static EObject getModelElementReferenceContext(ModelElementReference mer) {
+		var EObject cxt = mer
+		while (cxt instanceof ModelElementReference) {
+			cxt = cxt.eContainer
+		}
+		cxt
+	}
+
+	// returns the the Model Element Reference identifying the first element of the path
+	// this is the MER without a context reference
+	def static ModelElementReference getFirstModelElementReference(ModelElementReference mer) {
+		if(mer === null) return null
+		var ModelElementReference cxt = mer
+		while (cxt.context !== null) {
+			cxt = cxt.context
+		}
+		cxt
+	}
+	
+	def static String getTargetPath(ModelElementReference mer){
+		var res = mer.element.name
+		var cxt = mer.context
+		while( cxt !== null){
+			res = cxt.element.name + "." + res
+			cxt = cxt.context
+		}
+		return res
+		
 	}
 
 	

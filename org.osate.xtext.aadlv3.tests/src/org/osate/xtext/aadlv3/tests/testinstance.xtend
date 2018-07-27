@@ -16,8 +16,10 @@ import org.osate.aadlv3.instantiation.Instantiator
 import org.osate.aadlv3.util.TestHelper
 import org.osate.av3instance.av3instance.ComponentInstance
 
-import static org.junit.jupiter.api.Assertions.assertAll
-import static org.junit.jupiter.api.Assertions.assertEquals
+import static extension org.junit.jupiter.api.Assertions.*
+import static extension org.osate.aadlv3.util.AssertHelper.assertError
+import com.itemis.xtext.testing.FluentIssueCollection
+import org.osate.aadlv3.aadlv3.ComponentInterface
 
 @ExtendWith(InjectionExtension)
 @InjectWith(AadlV3InjectorProvider)
@@ -44,8 +46,8 @@ class testinstance extends XtextTest{
 	}
 
 	@Test
-	def void test() {
-		val pd = testHelper.parseFile("org.osate.xtext.aadlv3.tests/models/simpleinstances.av3","org.osate.xtext.aadlv3.tests/models/SimpleConfiguration.av3")
+	def void simpleinstancestest() {
+		val pd = testHelper.parseFile("org.osate.xtext.aadlv3.tests/models/AV3Examples/simpleinstances.av3","org.osate.xtext.aadlv3.tests/models/AV3Examples/SimpleConfiguration.av3")
 		val ws = pd.getElements().get(0) as Workingset
 		root = new Instantiator().instantiateRoot(ws.getRootComponents().get(0));
 		println("Instantiated "+root.getName());
@@ -53,5 +55,26 @@ class testinstance extends XtextTest{
 			[assertEquals(6,root.getSubcomponents().size())]
 		);
 	}
+	
+//	@Test
+//	def void basictest(){
+//		val testFileResult = issues = testHelper.testFile("org.osate.xtext.aadlv3.tests/models/AV3Examples/Basic.av3")
+//		val issueCollection = new FluentIssueCollection(testFileResult.resource, newArrayList, newArrayList)
+//		
+//		testFileResult.resource.contents.head as PackageDeclaration => [
+//			assertEquals(elements.size, 14)
+//			elements.get(9) as ComponentInterface => [
+//				assertError(testFileResult.issues, issueCollection, "Duplicate model element with name name")
+//				features.get(0) => [
+//					"name".assertEquals(name)
+//					assertError(testFileResult.issues, issueCollection, "Duplicate model element with name name")
+//				]
+//			]
+//			
+//		]
+//		issueCollection.sizeIs(4)
+//		assertConstraints(issueCollection)
+//		
+//	}
 	
 }

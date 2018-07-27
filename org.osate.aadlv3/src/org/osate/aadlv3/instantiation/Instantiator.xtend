@@ -94,11 +94,22 @@ class Instantiator {
 					comp.allFeatures.forEach[f| ci.features +=f.instantiateFeature(cl.isReverseFeature(f))]
 					cl.allFlowSpecs.forEach[fs| fs.instantiateFlowSpec(ci)]
 				}
-				ComponentConfiguration,ComponentImplementation: {
-					comp.allFeatures.forEach[f| ci.features += f.instantiateFeature(cl.isReverseFeature(f))] 
+				ComponentConfiguration:{
+					cl.allClassifierFeatures.forEach[f| ci.features += f.instantiateFeature(cl.isReverseFeature(f))] 
 					cl.allFlowSpecs.forEach[fs| fs.instantiateFlowSpec(ci)]
 					val comps = cl.allComponents
-					casscopes.push(cl.allConfigurationAssignments?:Collections.EMPTY_LIST)
+					val cas = cl.allConfigurationAssignments
+					System.out.println("cl "+cl.fullName)
+					cas.forEach[ca|System.out.println("ca "+ca.target.targetPath)]
+					casscopes.push(cas)
+					comps.forEach[subc| subc.instantiateComponent(casscopes,ci)]
+					casscopes.pop
+				}
+				ComponentImplementation: {
+					cl.allClassifierFeatures.forEach[f| ci.features += f.instantiateFeature(cl.isReverseFeature(f))] 
+					cl.allFlowSpecs.forEach[fs| fs.instantiateFlowSpec(ci)]
+					val comps = cl.allComponents
+					casscopes.push(Collections.EMPTY_LIST)
 					comps.forEach[subc| subc.instantiateComponent(casscopes,ci)]
 					casscopes.pop
 				}

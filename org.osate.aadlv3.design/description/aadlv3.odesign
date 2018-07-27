@@ -3,7 +3,7 @@
   <ownedViewpoints name="Av3InstanceViewpoint" modelFileExtension="aiv3">
     <ownedRepresentations xsi:type="description_1:DiagramDescription" name="ComponentHierarchy" titleExpression="aql:'Component Hierarchy of '+self.name" domainClass="av3instance::ComponentInstance" rootExpression="[self/]" enablePopupBars="true">
       <metamodel href="../../org.osate.aadlv3/model/AV3Instance.ecore#/"/>
-      <layout xsi:type="description_1:OrderedTreeLayout" childrenExpression="feature:componentInstance" nodeMapping="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='ComponentHierarchy']/@defaultLayer/@nodeMappings[name='ComponentInstanceMap']"/>
+      <layout xsi:type="description_1:OrderedTreeLayout" childrenExpression="feature:subcomponents" nodeMapping="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='ComponentHierarchy']/@defaultLayer/@nodeMappings[name='ComponentInstanceMap']"/>
       <diagramInitialisation>
         <firstModelOperations xsi:type="tool:ChangeContext"/>
       </diagramInitialisation>
@@ -16,7 +16,7 @@
               <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_green']"/>
             </style>
           </borderedNodeMappings>
-          <style xsi:type="style:SquareDescription" labelPosition="node" resizeKind="NSEW">
+          <style xsi:type="style:SquareDescription" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" width="10" height="3">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_blue']"/>

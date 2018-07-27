@@ -122,7 +122,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 			ToSubcomponent)
 		} else {
 			val comp = ca.target.element as Component
-			val assignedtype = ca.value.type
+			val assignedtype = ca.value?.type
 			val thetype = if (assignedtype instanceof ConfigurationParameter) assignedtype.type else assignedtype
 			if (thetype instanceof 	ComponentClassifier) {
 				val clcat = thetype.componentCategory
@@ -167,7 +167,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	
 	@Check 
 	def checkPathElement(PathElement pe){
-		if (!(pe.element instanceof Association && ((pe.element as Association).isFlowSpec || (pe.element as Association).isConnection)
+		if (!(pe.element instanceof Association && ((pe.element as Association).isFlowSpec || (pe.element as Association).isConnection || (pe.element as Association).isFeatureMapping)
 			|| pe.element instanceof Component)){
 			error('path element must reference a connection, flow spec, or component', pe,
 			null,
@@ -385,10 +385,10 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	}
 	
 	def checkConsistentDirection(Association assoc){
-		val srcdir = assoc.source.realFeatureDirection
-		val dstdir = assoc.destination.realFeatureDirection
+		val srcdir = assoc.source?.realFeatureDirection
+		val dstdir = assoc.destination?.realFeatureDirection
 		if (assoc.associationType.isConnection){
-			if (!(srcdir.outgoing&&dstdir.incoming)){
+			if (!(srcdir?.outgoing&&dstdir?.incoming)){
 				error('Connection source must be outgoing and destination must be incoming', assoc,
 					null,
 					OUT_TO_IN)
@@ -400,26 +400,26 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 					SAME_DIRECTION)
 			}
 		} else if (assoc.associationType === AssociationType.FLOWPATH){
-			if (!(srcdir.incoming&&dstdir.outgoing)){
+			if (!(srcdir?.incoming&&dstdir?.outgoing)){
 				error('FLow path must be from incoming to outgoing', assoc,
 					null,
 					IN_TO_OUT)
 				
 			}
 		} else if (assoc.associationType === AssociationType.FLOWSINK){
-			if (!(srcdir.incoming)){
+			if (!(srcdir?.incoming)){
 				error('Flow sink must be incoming', assoc,
 					Aadlv3Package.Literals.ASSOCIATION__SOURCE,
 					MUST_BE_IN)
 			}
 		} else if (assoc.associationType === AssociationType.FLOWSOURCE){
-			if (!(dstdir.outgoing)){
+			if (!(dstdir?.outgoing)){
 				error('FLow source must be outgoing', assoc,
 					Aadlv3Package.Literals.ASSOCIATION__DESTINATION,
 					MUST_BE_OUT)
 			}
 		} else if (assoc.associationType.isBinding){
-			if (!(srcdir.outgoingBinding&&dstdir.incomingBinding)){
+			if (!(srcdir?.outgoingBinding&&dstdir?.incomingBinding)){
 				error('Binding must be from requires to provides', assoc,
 					null,
 					REQUIRES_TO_PROVIDES)
@@ -428,30 +428,30 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	}
 
 	def checkConsistentFeatureCategory(Association assoc){
-		val src = assoc.source.element as Feature
-		val dst = assoc.destination.element as Feature
+		val src = assoc.source?.element as Feature
+		val dst = assoc.destination?.element as Feature
 		if (assoc.associationType.isConnection){
-			if (!(src.category === dst.category)){
+			if (!(src?.category === dst?.category)){
 				error('Feature category of connection ends must match', assoc,
 					null,
 					MATCH_FEATURE_CATEGORY)
 			}
 		} else if (assoc.associationType.isFeatureMapping){
-			if (!(src.category === dst.category)){
+			if (!(src?.category === dst?.category)){
 				error('Feature category of connection ends must match', assoc,
 					null,
 					MATCH_FEATURE_CATEGORY)
 			}
 		} 
 		if (assoc.associationType.isBinding){
-			if (!(src.isBindingPoint&&dst.isBindingPoint)){
+			if (!(src?.isBindingPoint&&dst?.isBindingPoint)){
 				error('Binding must be between bindingpoints', assoc,
 					null,
 					MUST_BE_BINDING_POINT)
 			}
 		} else {
 			// others should not have binding points
-			if (src.isBindingPoint||dst.isBindingPoint){
+			if (src !== null && src.isBindingPoint || dst !== null&&dst.isBindingPoint){
 				error('Bindingpoints can only be in bindings', assoc,
 					null,
 					NO_BINDING_POINT)
@@ -556,7 +556,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 		var PathElement prevPathElement = null
 		for (pathElement : path.elements){
 			val element = pathElement.element
-			val prevElement = prevPathElement.element
+			val prevElement = prevPathElement?.element
 			val elementidx = path.elements.indexOf(pathElement)
 			if (prevElement instanceof Association){
 				if(prevElement.isFlowSpec){
