@@ -1,0 +1,10 @@
+package PackB 
+	import PackA::nested.*;
+	import PackA.*;
+	interface mine
+	features
+		name : in feature PackA::person;
+		surname : in feature person ;
+	end ;
+	
+end ;

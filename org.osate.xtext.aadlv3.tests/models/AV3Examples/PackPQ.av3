@@ -1,0 +1,13 @@
+package PackP::Q 
+	import nested;
+	type date ;
+	type person ;
+	type int;
+	property Period int;
+	property Size int;
+
+	package nested  
+		type signal ;
+	end ;
+	
+end ;

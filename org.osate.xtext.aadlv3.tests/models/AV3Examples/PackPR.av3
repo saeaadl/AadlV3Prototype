@@ -1,0 +1,7 @@
+package PackP::R 
+import PackP::Q;
+	interface mine is
+	p1: in feature PackP::Q::date;
+	end;
+	
+end ;

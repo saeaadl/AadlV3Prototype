@@ -1,4 +1,4 @@
-package Basic 
+package Formatting 
 // example with nested packages, duplicate feature name in original and extension,
 // property associated with model element and as contained property in classifier
 	type date ;
