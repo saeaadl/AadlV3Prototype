@@ -20,9 +20,11 @@ import static extension org.junit.jupiter.api.Assertions.*
 import static extension org.osate.aadlv3.util.AssertHelper.assertError
 import com.itemis.xtext.testing.FluentIssueCollection
 import org.osate.aadlv3.aadlv3.ComponentInterface
+import org.junit.jupiter.api.DisplayName
 
 @ExtendWith(InjectionExtension)
 @InjectWith(AadlV3InjectorProvider)
+@DisplayName("Verification Plan")
 class testinstance extends XtextTest{
 	@Inject
 	TestHelper<PackageDeclaration> testHelper
@@ -46,35 +48,41 @@ class testinstance extends XtextTest{
 	}
 
 	@Test
+	@DisplayName("Req 1")
 	def void simpleinstancestest() {
 		val pd = testHelper.parseFile("org.osate.xtext.aadlv3.tests/models/AV3Examples/simpleinstances.av3","org.osate.xtext.aadlv3.tests/models/AV3Examples/SimpleConfiguration.av3")
 		val ws = pd.getElements().get(0) as Workingset
 		root = new Instantiator().instantiateRoot(ws.getRootComponents().get(0));
 		println("Instantiated "+root.getName());
-		assertAll("Root ", [ assertEquals(root.getName(),"first")], 
+		// all verification activities
+		assertAll("Root ", 
+			// VA 1
+			[ assertEquals(root.getName(),"first")], 
+			// VA 2
 			[assertEquals(6,root.getSubcomponents().size())]
 		);
 	}
 	
-//	@Test
-//	def void basictest(){
-//		val testFileResult = issues = testHelper.testFile("org.osate.xtext.aadlv3.tests/models/AV3Examples/Basic.av3")
-//		val issueCollection = new FluentIssueCollection(testFileResult.resource, newArrayList, newArrayList)
-//		
-//		testFileResult.resource.contents.head as PackageDeclaration => [
-//			assertEquals(elements.size, 14)
-//			elements.get(9) as ComponentInterface => [
-//				assertError(testFileResult.issues, issueCollection, "Duplicate model element with name name")
-//				features.get(0) => [
-//					"name".assertEquals(name)
-//					assertError(testFileResult.issues, issueCollection, "Duplicate model element with name name")
-//				]
-//			]
-//			
-//		]
-//		issueCollection.sizeIs(4)
-//		assertConstraints(issueCollection)
-//		
-//	}
+	@Test
+	def void basictest(){
+		val testFileResult  = testHelper.testFile("org.osate.xtext.aadlv3.tests/models/AV3Examples/Basic.av3")
+		issues = testFileResult
+		val issueCollection = new FluentIssueCollection(testFileResult.resource, newArrayList, newArrayList)
+		
+		testFileResult.resource.contents.head as PackageDeclaration => [
+			assertEquals(elements.size, 14)
+			elements.get(9) as ComponentInterface => [
+				assertError(testFileResult.issues, issueCollection, "Duplicate model element with name name")
+				features.get(0) => [
+					"name".assertEquals(name)
+					assertError(testFileResult.issues, issueCollection, "Duplicate model element with name name")
+				]
+			]
+			
+		]
+		issueCollection.sizeIs(2)
+		assertConstraints(issueCollection)
+		
+	}
 	
 }
