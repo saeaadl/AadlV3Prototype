@@ -35,6 +35,8 @@ Workflow {
 			referencedResource = "platform:/resource/org.osate.aadlv3/model/Aadlv3.genmodel"
 			
 			fragment = ecore2xtext.Ecore2XtextValueConverterServiceFragment2 auto-inject {}
+    		fragment = scoping.ImportNamespacesScopingFragment2 {}
+   			fragment = exporting.QualifiedNamesFragment2 {}
 
 			formatter = {
 				generateStub = true

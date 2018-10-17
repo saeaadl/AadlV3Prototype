@@ -93,10 +93,10 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 				sequence_ClassifierExtensions_ComponentConfiguration_ConfigurationElementBlock_Parameters(context, (ComponentConfiguration) semanticObject); 
 				return; 
 			case Aadlv3Package.COMPONENT_IMPLEMENTATION:
-				sequence_ClassifierExtensions_ComponentImplementation_ImplementationBody_PropertyElement_SectionsImplementationBody(context, (ComponentImplementation) semanticObject); 
+				sequence_ClassifierExtensions_ComponentImplementation_ImplementationBody_PropertyElement(context, (ComponentImplementation) semanticObject); 
 				return; 
 			case Aadlv3Package.COMPONENT_INTERFACE:
-				sequence_ComponentInterface_InterfaceBody_InterfaceExtensions_PropertyElement_SectionsInterfaceBody(context, (ComponentInterface) semanticObject); 
+				sequence_ComponentInterface_InterfaceBody_InterfaceExtensions_PropertyElement(context, (ComponentInterface) semanticObject); 
 				return; 
 			case Aadlv3Package.CONFIGURATION_ACTUAL:
 				sequence_ConfigurationActual(context, (ConfigurationActual) semanticObject); 
@@ -183,8 +183,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *
 	 * Constraint:
 	 *     (
-	 *         interface=[ComponentInterface|QualifiedName] 
-	 *         name=ID 
+	 *         name=QualifiedName 
 	 *         (parameterized?='(' (parameters+=ConfigurationParameter parameters+=ConfigurationParameter*)?)? 
 	 *         superClassifiers+=TypeReference 
 	 *         superClassifiers+=TypeReference* 
@@ -203,49 +202,20 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 * Constraint:
 	 *     (
 	 *         category=ComponentCategory 
-	 *         interface=[ComponentInterface|QualifiedName] 
-	 *         name=ID 
+	 *         name=QualifiedName 
 	 *         (superClassifiers+=TypeReference superClassifiers+=TypeReference*)? 
 	 *         (
-	 *             (
-	 *                 (components+=Component | assignments+=ConfigurationAssignment)* 
-	 *                 connections+=Connection? 
-	 *                 (connections+=FeatureMapping? connections+=Connection?)* 
-	 *                 (flowAssignments+=FlowAssignment paths+=Path?)* 
-	 *                 (
-	 *                     flowAssignments+=FlowAssignment | 
-	 *                     (
-	 *                         flowAssignments+=FlowAssignment 
-	 *                         propertyAssociations+=PropertyAssociation? 
-	 *                         (
-	 *                             (
-	 *                                 connections+=Connection | 
-	 *                                 connections+=FeatureMapping | 
-	 *                                 components+=Component | 
-	 *                                 paths+=Path | 
-	 *                                 flowAssignments+=FlowAssignment | 
-	 *                                 assignments+=ConfigurationAssignment
-	 *                             )? 
-	 *                             propertyAssociations+=PropertyAssociation?
-	 *                         )+
-	 *                     )
-	 *                 )?
-	 *             ) | 
-	 *             (
-	 *                 (
-	 *                     connections+=Connection | 
-	 *                     connections+=FeatureMapping | 
-	 *                     components+=Component | 
-	 *                     paths+=Path | 
-	 *                     flowAssignments+=FlowAssignment | 
-	 *                     assignments+=ConfigurationAssignment
-	 *                 )? 
-	 *                 propertyAssociations+=PropertyAssociation?
-	 *             )+
-	 *         )
+	 *             connections+=Connection | 
+	 *             connections+=FeatureMapping | 
+	 *             components+=Component | 
+	 *             paths+=Path | 
+	 *             flowAssignments+=FlowAssignment | 
+	 *             assignments+=ConfigurationAssignment | 
+	 *             propertyAssociations+=PropertyAssociation
+	 *         )*
 	 *     )
 	 */
-	protected void sequence_ClassifierExtensions_ComponentImplementation_ImplementationBody_PropertyElement_SectionsImplementationBody(ISerializationContext context, ComponentImplementation semanticObject) {
+	protected void sequence_ClassifierExtensions_ComponentImplementation_ImplementationBody_PropertyElement(ISerializationContext context, ComponentImplementation semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -259,17 +229,11 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *         category=ComponentCategory? 
 	 *         name=ID 
 	 *         (superClassifiers+=ReversableTypeReference superClassifiers+=ReversableTypeReference*)? 
-	 *         (useProperties+=[PropertySet|QualifiedName] useProperties+=[PropertySet|QualifiedName]*)? 
-	 *         (
-	 *             (features+=Feature* (flows+=FlowPath | flows+=FlowSource | flows+=FlowSink)*) | 
-	 *             (
-	 *                 (features+=Feature* (flows+=FlowPath | flows+=FlowSource | flows+=FlowSink)* propertyAssociations+=PropertyAssociation?)? 
-	 *                 ((features+=Feature | flows+=FlowPath | flows+=FlowSource | flows+=FlowSink)? propertyAssociations+=PropertyAssociation?)+
-	 *             )
-	 *         )
+	 *         (features+=Feature | flows+=FlowPath | flows+=FlowSource | flows+=FlowSink | propertyAssociations+=PropertyAssociation)* 
+	 *         (useProperties+=[PropertySet|QualifiedName] useProperties+=[PropertySet|QualifiedName]*)?
 	 *     )
 	 */
-	protected void sequence_ComponentInterface_InterfaceBody_InterfaceExtensions_PropertyElement_SectionsInterfaceBody(ISerializationContext context, ComponentInterface semanticObject) {
+	protected void sequence_ComponentInterface_InterfaceBody_InterfaceExtensions_PropertyElement(ISerializationContext context, ComponentInterface semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -329,10 +293,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     TypeReference returns TypeReference
 	 *
 	 * Constraint:
-	 *     (
-	 *         ((componentinterface=[ComponentInterface|QualifiedName] type=[Type|ID]) | type=[Type|QualifiedName]) 
-	 *         (actuals+=ConfigurationActual actuals+=ConfigurationActual*)?
-	 *     )
+	 *     (type=[Type|QualifiedName] (actuals+=ConfigurationActual actuals+=ConfigurationActual*)?)
 	 */
 	protected void sequence_ConfigurationActuals_TypeReference(ISerializationContext context, TypeReference semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

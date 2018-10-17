@@ -38,7 +38,7 @@ import org.osate.aadlv3.aadlv3.ComponentConfiguration;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ComponentConfigurationItemProvider extends ComponentClassifierItemProvider {
+public class ComponentConfigurationItemProvider extends ComponentRealizationItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -61,7 +61,6 @@ public class ComponentConfigurationItemProvider extends ComponentClassifierItemP
 			super.getPropertyDescriptors(object);
 
 			addParameterizedPropertyDescriptor(object);
-			addInterfacePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -80,21 +79,6 @@ public class ComponentConfigurationItemProvider extends ComponentClassifierItemP
 								"_UI_ComponentConfiguration_parameterized_feature", "_UI_ComponentConfiguration_type"),
 						Aadlv3Package.Literals.COMPONENT_CONFIGURATION__PARAMETERIZED, true, false, false,
 						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Interface feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addInterfacePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_ComponentConfiguration_interface_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_ComponentConfiguration_interface_feature",
-						"_UI_ComponentConfiguration_type"),
-				Aadlv3Package.Literals.COMPONENT_CONFIGURATION__INTERFACE, true, false, true, null, null, null));
 	}
 
 	/**

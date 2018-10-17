@@ -26,14 +26,10 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-import org.eclipse.emf.ecore.util.EObjectWithInverseEList;
-import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.Association;
-import org.osate.aadlv3.aadlv3.ComponentConfiguration;
-import org.osate.aadlv3.aadlv3.ComponentImplementation;
 import org.osate.aadlv3.aadlv3.ComponentInterface;
 import org.osate.aadlv3.aadlv3.Feature;
 import org.osate.aadlv3.aadlv3.PropertySet;
@@ -47,8 +43,6 @@ import org.osate.aadlv3.aadlv3.PropertySet;
  * </p>
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentInterfaceImpl#getFeatures <em>Features</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentInterfaceImpl#getImplementations <em>Implementations</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentInterfaceImpl#getConfigurations <em>Configurations</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentInterfaceImpl#getFlows <em>Flows</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentInterfaceImpl#getUseProperties <em>Use Properties</em>}</li>
  * </ul>
@@ -65,26 +59,6 @@ public class ComponentInterfaceImpl extends ComponentClassifierImpl implements C
 	 * @ordered
 	 */
 	protected EList<Feature> features;
-
-	/**
-	 * The cached value of the '{@link #getImplementations() <em>Implementations</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getImplementations()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<ComponentImplementation> implementations;
-
-	/**
-	 * The cached value of the '{@link #getConfigurations() <em>Configurations</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getConfigurations()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<ComponentConfiguration> configurations;
 
 	/**
 	 * The cached value of the '{@link #getFlows() <em>Flows</em>}' containment reference list.
@@ -145,36 +119,6 @@ public class ComponentInterfaceImpl extends ComponentClassifierImpl implements C
 	 * @generated
 	 */
 	@Override
-	public EList<ComponentImplementation> getImplementations() {
-		if (implementations == null) {
-			implementations = new EObjectWithInverseResolvingEList<ComponentImplementation>(
-					ComponentImplementation.class, this, Aadlv3Package.COMPONENT_INTERFACE__IMPLEMENTATIONS,
-					Aadlv3Package.COMPONENT_IMPLEMENTATION__INTERFACE);
-		}
-		return implementations;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<ComponentConfiguration> getConfigurations() {
-		if (configurations == null) {
-			configurations = new EObjectWithInverseEList<ComponentConfiguration>(ComponentConfiguration.class, this,
-					Aadlv3Package.COMPONENT_INTERFACE__CONFIGURATIONS,
-					Aadlv3Package.COMPONENT_CONFIGURATION__INTERFACE);
-		}
-		return configurations;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EList<Association> getFlows() {
 		if (flows == null) {
 			flows = new EObjectContainmentEList<Association>(Association.class, this,
@@ -202,32 +146,11 @@ public class ComponentInterfaceImpl extends ComponentClassifierImpl implements C
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-		case Aadlv3Package.COMPONENT_INTERFACE__IMPLEMENTATIONS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getImplementations()).basicAdd(otherEnd, msgs);
-		case Aadlv3Package.COMPONENT_INTERFACE__CONFIGURATIONS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getConfigurations()).basicAdd(otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case Aadlv3Package.COMPONENT_INTERFACE__FEATURES:
 			return ((InternalEList<?>) getFeatures()).basicRemove(otherEnd, msgs);
-		case Aadlv3Package.COMPONENT_INTERFACE__IMPLEMENTATIONS:
-			return ((InternalEList<?>) getImplementations()).basicRemove(otherEnd, msgs);
-		case Aadlv3Package.COMPONENT_INTERFACE__CONFIGURATIONS:
-			return ((InternalEList<?>) getConfigurations()).basicRemove(otherEnd, msgs);
 		case Aadlv3Package.COMPONENT_INTERFACE__FLOWS:
 			return ((InternalEList<?>) getFlows()).basicRemove(otherEnd, msgs);
 		}
@@ -244,10 +167,6 @@ public class ComponentInterfaceImpl extends ComponentClassifierImpl implements C
 		switch (featureID) {
 		case Aadlv3Package.COMPONENT_INTERFACE__FEATURES:
 			return getFeatures();
-		case Aadlv3Package.COMPONENT_INTERFACE__IMPLEMENTATIONS:
-			return getImplementations();
-		case Aadlv3Package.COMPONENT_INTERFACE__CONFIGURATIONS:
-			return getConfigurations();
 		case Aadlv3Package.COMPONENT_INTERFACE__FLOWS:
 			return getFlows();
 		case Aadlv3Package.COMPONENT_INTERFACE__USE_PROPERTIES:
@@ -268,14 +187,6 @@ public class ComponentInterfaceImpl extends ComponentClassifierImpl implements C
 		case Aadlv3Package.COMPONENT_INTERFACE__FEATURES:
 			getFeatures().clear();
 			getFeatures().addAll((Collection<? extends Feature>) newValue);
-			return;
-		case Aadlv3Package.COMPONENT_INTERFACE__IMPLEMENTATIONS:
-			getImplementations().clear();
-			getImplementations().addAll((Collection<? extends ComponentImplementation>) newValue);
-			return;
-		case Aadlv3Package.COMPONENT_INTERFACE__CONFIGURATIONS:
-			getConfigurations().clear();
-			getConfigurations().addAll((Collection<? extends ComponentConfiguration>) newValue);
 			return;
 		case Aadlv3Package.COMPONENT_INTERFACE__FLOWS:
 			getFlows().clear();
@@ -300,12 +211,6 @@ public class ComponentInterfaceImpl extends ComponentClassifierImpl implements C
 		case Aadlv3Package.COMPONENT_INTERFACE__FEATURES:
 			getFeatures().clear();
 			return;
-		case Aadlv3Package.COMPONENT_INTERFACE__IMPLEMENTATIONS:
-			getImplementations().clear();
-			return;
-		case Aadlv3Package.COMPONENT_INTERFACE__CONFIGURATIONS:
-			getConfigurations().clear();
-			return;
 		case Aadlv3Package.COMPONENT_INTERFACE__FLOWS:
 			getFlows().clear();
 			return;
@@ -326,10 +231,6 @@ public class ComponentInterfaceImpl extends ComponentClassifierImpl implements C
 		switch (featureID) {
 		case Aadlv3Package.COMPONENT_INTERFACE__FEATURES:
 			return features != null && !features.isEmpty();
-		case Aadlv3Package.COMPONENT_INTERFACE__IMPLEMENTATIONS:
-			return implementations != null && !implementations.isEmpty();
-		case Aadlv3Package.COMPONENT_INTERFACE__CONFIGURATIONS:
-			return configurations != null && !configurations.isEmpty();
 		case Aadlv3Package.COMPONENT_INTERFACE__FLOWS:
 			return flows != null && !flows.isEmpty();
 		case Aadlv3Package.COMPONENT_INTERFACE__USE_PROPERTIES:

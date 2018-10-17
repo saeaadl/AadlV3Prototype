@@ -25,7 +25,7 @@ package AncestorOrder
 	system interface mine extends ext1 , ext2 end;
 	
 	system mine.i 
-	subcomponents
+	is
 		sub : thread common ;
 	end ;
 end ;

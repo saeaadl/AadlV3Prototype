@@ -2,7 +2,7 @@ package CarExample
 system interface car end;
 
 system car.design
-subcomponents
+is
   Powertrain:  system Powertrain.design ;
   EntertainmentSystem:  system EntertainmentSystem.basic;
 end car.design;
@@ -20,7 +20,7 @@ end car.config;
 system interface EntertainmentSystem end;
 
 system EntertainmentSystem.basic 
-subcomponents  
+is  
   tuner:  system Tuner.Alpine;
   soundsystem: system MySoundSystem.Selectablespeakers;
 end EntertainmentSystem.basic;
@@ -28,7 +28,7 @@ end EntertainmentSystem.basic;
 system interface MySoundSystem end;
 
 system MySoundSystem.design 
-subcomponents
+is
   amplifier:  system Amplifier.Kenwood;
   speakers: system Speakers;
 end MySoundSystem.design;
@@ -62,7 +62,7 @@ system interface Powertrain
 end;
 
 system Powertrain.design
-subcomponents
+is
   myengine:  system gasengine;
 end Powertrain.design;
 

@@ -9,16 +9,16 @@ PackageDeclaration returns av3::PackageDeclaration:
 	'package' name=QualifiedName 
 	imports+=Import*
 	elements+=(PackageDeclaration | PrimitiveType | ComponentInterface | ComponentImplementation | ComponentConfiguration | Property | PropertySet | Workingset)*
-	'end' QualifiedName? SEMICOLON;
+	'end' SEMICOLON;
 
 
 Property returns av3::Property:
 	'property' name=ID type=[av3::Type|QualifiedName] SEMICOLON;
 
 PropertySet returns av3::PropertySet:
-	name=ID ':' 'properties' 'is' 
+	'properties' name=ID  
 		properties += [av3::Property|QualifiedName] (',' properties += [av3::Property|QualifiedName])*
-		'end' ID? SEMICOLON
+		'end' SEMICOLON
 ;
 
 PrimitiveType returns av3::PrimitiveType:
@@ -26,42 +26,29 @@ PrimitiveType returns av3::PrimitiveType:
 
 ComponentInterface returns av3::ComponentInterface:
 	category=ComponentCategory? 'interface'  name=ID ('extends' (InterfaceExtensions)?)? 
-	('use''properties' useProperties += [av3::PropertySet|QualifiedName] (',' useProperties += [av3::PropertySet|QualifiedName])* )?
-	(SectionsInterfaceBody | InterfaceBody)
-	'end' ID? SEMICOLON;
-	
-fragment SectionsInterfaceBody*:
-	('features' features+=Feature+)?
-	('flows' (flows+=FlowPath |  flows+=FlowSource |  flows+=FlowSink)+)?
- 	('properties' PropertyElement+ )?
-;
+	 InterfaceBody?
+	('use''properties' useProperties += [av3::PropertySet|QualifiedName] (',' useProperties += [av3::PropertySet|QualifiedName])* SEMICOLON)?
+	'end' SEMICOLON;
 
 fragment InterfaceBody*:
 	'is' (features+=Feature | flows+=FlowPath |  flows+=FlowSource |  flows+=FlowSink | PropertyElement)*
 ;
 
 ComponentImplementation returns av3::ComponentImplementation:
-	category=ComponentCategory interface =[av3::ComponentInterface|QualifiedName] '.'name=ID 
+	category=ComponentCategory name=QualifiedName 
 	('extends' (ClassifierExtensions)?)? 
-	(SectionsImplementationBody | ImplementationBody )
-	'end' DottedName? SEMICOLON;
-
-fragment SectionsImplementationBody*:
-	('subcomponents'(components+=Component|assignments+=ConfigurationAssignment)+ )?
- 	('connections' connections+=(Connection|FeatureMapping)+ )?
- 	('flows' (flowAssignments+=FlowAssignment| paths+= Path )+)?
- 	('properties' PropertyElement+ )?
-;
+	 ImplementationBody? 
+	'end'  SEMICOLON;
 
 fragment ImplementationBody*:
 	'is' (connections+=Connection |connections+=FeatureMapping | components+=Component | paths+= Path | flowAssignments+=FlowAssignment | assignments+=ConfigurationAssignment| PropertyElement)*
 ;
 
 ComponentConfiguration returns av3::ComponentConfiguration:
-	'configuration' interface =[av3::ComponentInterface|QualifiedName]'.'name=ID  
+	'configuration' name=QualifiedName  
 	Parameters?
 	'extends' ClassifierExtensions ConfigurationElementBlock? 
-	'end' DottedName? SEMICOLON;
+	'end'  SEMICOLON;
 	
 
 // (Instance) model elements
@@ -164,9 +151,8 @@ ReversableTypeReference returns av3::TypeReference:
 	reverse?='reverse'? type=[av3::Type|QualifiedName] ConfigurationActuals? ;
 
 TypeReference returns av3::TypeReference :  
-	(( componentinterface=[av3::ComponentInterface|QualifiedName] '.' type=[av3::Type|ID])
-		| type=[av3::Type|QualifiedName]
-	)  ConfigurationActuals?
+	 type=[av3::Type|QualifiedName]
+	  ConfigurationActuals?
 ;
 
 fragment PropertiesBlock *:
@@ -209,7 +195,7 @@ DottedName:
 	ID '.' ID;
 
 QualifiedName:
-	ID ('::' ID)*;
+	ID ('.' ID)*;
 
 SEMICOLON:
 	';';

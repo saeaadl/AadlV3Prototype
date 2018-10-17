@@ -3,6 +3,7 @@ package org.osate.xtext.aadlv3.naming;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.naming.DefaultDeclarativeQualifiedNameProvider;
 import org.eclipse.xtext.naming.QualifiedName;
+import org.osate.aadlv3.aadlv3.ComponentClassifier;
 import org.osate.aadlv3.aadlv3.ComponentConfiguration;
 import org.osate.aadlv3.aadlv3.ComponentImplementation;
 import org.osate.aadlv3.aadlv3.ComponentInterface;
@@ -16,7 +17,7 @@ public class AadlV3QualifiedNameProvider extends DefaultDeclarativeQualifiedName
 
 	@Override
 	public QualifiedName getFullyQualifiedName(final EObject obj) {
-		if (obj instanceof ComponentInterface 
+		if (obj instanceof ComponentClassifier 
 				|| obj instanceof PackageDeclaration || obj instanceof Property || obj instanceof PropertySet
 				|| obj instanceof Workingset || obj instanceof PrimitiveType) {
 			return super.getFullyQualifiedName(obj);

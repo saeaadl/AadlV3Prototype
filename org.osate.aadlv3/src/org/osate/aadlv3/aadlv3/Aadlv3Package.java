@@ -392,7 +392,71 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getComponentInterface()
 	 * @generated
 	 */
-	int COMPONENT_INTERFACE = 9;
+	int COMPONENT_INTERFACE = 10;
+
+	/**
+	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.ComponentRealizationImpl <em>Component Realization</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.osate.aadlv3.aadlv3.impl.ComponentRealizationImpl
+	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getComponentRealization()
+	 * @generated
+	 */
+	int COMPONENT_REALIZATION = 9;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_REALIZATION__NAME = COMPONENT_CLASSIFIER__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Category</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_REALIZATION__CATEGORY = COMPONENT_CLASSIFIER__CATEGORY;
+
+	/**
+	 * The feature id for the '<em><b>Super Classifiers</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_REALIZATION__SUPER_CLASSIFIERS = COMPONENT_CLASSIFIER__SUPER_CLASSIFIERS;
+
+	/**
+	 * The feature id for the '<em><b>Property Associations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_REALIZATION__PROPERTY_ASSOCIATIONS = COMPONENT_CLASSIFIER__PROPERTY_ASSOCIATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Interface</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_REALIZATION__INTERFACE = COMPONENT_CLASSIFIER_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Component Realization</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_REALIZATION_FEATURE_COUNT = COMPONENT_CLASSIFIER_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -440,31 +504,13 @@ public interface Aadlv3Package extends EPackage {
 	int COMPONENT_INTERFACE__FEATURES = COMPONENT_CLASSIFIER_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Implementations</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPONENT_INTERFACE__IMPLEMENTATIONS = COMPONENT_CLASSIFIER_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Configurations</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPONENT_INTERFACE__CONFIGURATIONS = COMPONENT_CLASSIFIER_FEATURE_COUNT + 2;
-
-	/**
 	 * The feature id for the '<em><b>Flows</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_INTERFACE__FLOWS = COMPONENT_CLASSIFIER_FEATURE_COUNT + 3;
+	int COMPONENT_INTERFACE__FLOWS = COMPONENT_CLASSIFIER_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Use Properties</b></em>' reference list.
@@ -473,7 +519,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_INTERFACE__USE_PROPERTIES = COMPONENT_CLASSIFIER_FEATURE_COUNT + 4;
+	int COMPONENT_INTERFACE__USE_PROPERTIES = COMPONENT_CLASSIFIER_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Component Interface</em>' class.
@@ -482,7 +528,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_INTERFACE_FEATURE_COUNT = COMPONENT_CLASSIFIER_FEATURE_COUNT + 5;
+	int COMPONENT_INTERFACE_FEATURE_COUNT = COMPONENT_CLASSIFIER_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.ComponentImplementationImpl <em>Component Implementation</em>}' class.
@@ -492,7 +538,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getComponentImplementation()
 	 * @generated
 	 */
-	int COMPONENT_IMPLEMENTATION = 10;
+	int COMPONENT_IMPLEMENTATION = 11;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -501,7 +547,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_IMPLEMENTATION__NAME = COMPONENT_CLASSIFIER__NAME;
+	int COMPONENT_IMPLEMENTATION__NAME = COMPONENT_REALIZATION__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Category</b></em>' attribute.
@@ -510,7 +556,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_IMPLEMENTATION__CATEGORY = COMPONENT_CLASSIFIER__CATEGORY;
+	int COMPONENT_IMPLEMENTATION__CATEGORY = COMPONENT_REALIZATION__CATEGORY;
 
 	/**
 	 * The feature id for the '<em><b>Super Classifiers</b></em>' containment reference list.
@@ -519,7 +565,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_IMPLEMENTATION__SUPER_CLASSIFIERS = COMPONENT_CLASSIFIER__SUPER_CLASSIFIERS;
+	int COMPONENT_IMPLEMENTATION__SUPER_CLASSIFIERS = COMPONENT_REALIZATION__SUPER_CLASSIFIERS;
 
 	/**
 	 * The feature id for the '<em><b>Property Associations</b></em>' containment reference list.
@@ -528,34 +574,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_IMPLEMENTATION__PROPERTY_ASSOCIATIONS = COMPONENT_CLASSIFIER__PROPERTY_ASSOCIATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Components</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPONENT_IMPLEMENTATION__COMPONENTS = COMPONENT_CLASSIFIER_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Connections</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPONENT_IMPLEMENTATION__CONNECTIONS = COMPONENT_CLASSIFIER_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Assignments</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPONENT_IMPLEMENTATION__ASSIGNMENTS = COMPONENT_CLASSIFIER_FEATURE_COUNT + 2;
+	int COMPONENT_IMPLEMENTATION__PROPERTY_ASSOCIATIONS = COMPONENT_REALIZATION__PROPERTY_ASSOCIATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Interface</b></em>' reference.
@@ -564,7 +583,34 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_IMPLEMENTATION__INTERFACE = COMPONENT_CLASSIFIER_FEATURE_COUNT + 3;
+	int COMPONENT_IMPLEMENTATION__INTERFACE = COMPONENT_REALIZATION__INTERFACE;
+
+	/**
+	 * The feature id for the '<em><b>Components</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_IMPLEMENTATION__COMPONENTS = COMPONENT_REALIZATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Connections</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_IMPLEMENTATION__CONNECTIONS = COMPONENT_REALIZATION_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Assignments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_IMPLEMENTATION__ASSIGNMENTS = COMPONENT_REALIZATION_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Flow Assignments</b></em>' containment reference list.
@@ -573,7 +619,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_IMPLEMENTATION__FLOW_ASSIGNMENTS = COMPONENT_CLASSIFIER_FEATURE_COUNT + 4;
+	int COMPONENT_IMPLEMENTATION__FLOW_ASSIGNMENTS = COMPONENT_REALIZATION_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Paths</b></em>' containment reference list.
@@ -582,7 +628,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_IMPLEMENTATION__PATHS = COMPONENT_CLASSIFIER_FEATURE_COUNT + 5;
+	int COMPONENT_IMPLEMENTATION__PATHS = COMPONENT_REALIZATION_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Component Implementation</em>' class.
@@ -591,7 +637,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_IMPLEMENTATION_FEATURE_COUNT = COMPONENT_CLASSIFIER_FEATURE_COUNT + 6;
+	int COMPONENT_IMPLEMENTATION_FEATURE_COUNT = COMPONENT_REALIZATION_FEATURE_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.ComponentConfigurationImpl <em>Component Configuration</em>}' class.
@@ -601,7 +647,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getComponentConfiguration()
 	 * @generated
 	 */
-	int COMPONENT_CONFIGURATION = 11;
+	int COMPONENT_CONFIGURATION = 12;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -610,7 +656,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_CONFIGURATION__NAME = COMPONENT_CLASSIFIER__NAME;
+	int COMPONENT_CONFIGURATION__NAME = COMPONENT_REALIZATION__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Category</b></em>' attribute.
@@ -619,7 +665,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_CONFIGURATION__CATEGORY = COMPONENT_CLASSIFIER__CATEGORY;
+	int COMPONENT_CONFIGURATION__CATEGORY = COMPONENT_REALIZATION__CATEGORY;
 
 	/**
 	 * The feature id for the '<em><b>Super Classifiers</b></em>' containment reference list.
@@ -628,7 +674,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_CONFIGURATION__SUPER_CLASSIFIERS = COMPONENT_CLASSIFIER__SUPER_CLASSIFIERS;
+	int COMPONENT_CONFIGURATION__SUPER_CLASSIFIERS = COMPONENT_REALIZATION__SUPER_CLASSIFIERS;
 
 	/**
 	 * The feature id for the '<em><b>Property Associations</b></em>' containment reference list.
@@ -637,34 +683,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_CONFIGURATION__PROPERTY_ASSOCIATIONS = COMPONENT_CLASSIFIER__PROPERTY_ASSOCIATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPONENT_CONFIGURATION__PARAMETERS = COMPONENT_CLASSIFIER_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Assignments</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPONENT_CONFIGURATION__ASSIGNMENTS = COMPONENT_CLASSIFIER_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Parameterized</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPONENT_CONFIGURATION__PARAMETERIZED = COMPONENT_CLASSIFIER_FEATURE_COUNT + 2;
+	int COMPONENT_CONFIGURATION__PROPERTY_ASSOCIATIONS = COMPONENT_REALIZATION__PROPERTY_ASSOCIATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Interface</b></em>' reference.
@@ -673,7 +692,34 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_CONFIGURATION__INTERFACE = COMPONENT_CLASSIFIER_FEATURE_COUNT + 3;
+	int COMPONENT_CONFIGURATION__INTERFACE = COMPONENT_REALIZATION__INTERFACE;
+
+	/**
+	 * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_CONFIGURATION__PARAMETERS = COMPONENT_REALIZATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Assignments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_CONFIGURATION__ASSIGNMENTS = COMPONENT_REALIZATION_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Parameterized</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_CONFIGURATION__PARAMETERIZED = COMPONENT_REALIZATION_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Component Configuration</em>' class.
@@ -682,7 +728,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_CONFIGURATION_FEATURE_COUNT = COMPONENT_CLASSIFIER_FEATURE_COUNT + 4;
+	int COMPONENT_CONFIGURATION_FEATURE_COUNT = COMPONENT_REALIZATION_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.FeatureImpl <em>Feature</em>}' class.
@@ -692,7 +738,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getFeature()
 	 * @generated
 	 */
-	int FEATURE = 12;
+	int FEATURE = 13;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -774,7 +820,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getComponent()
 	 * @generated
 	 */
-	int COMPONENT = 13;
+	int COMPONENT = 14;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -856,7 +902,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getImport()
 	 * @generated
 	 */
-	int IMPORT = 14;
+	int IMPORT = 15;
 
 	/**
 	 * The feature id for the '<em><b>Imported Namespace</b></em>' attribute.
@@ -884,7 +930,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getAssociation()
 	 * @generated
 	 */
-	int ASSOCIATION = 15;
+	int ASSOCIATION = 16;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -948,7 +994,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getConfigurationAssignment()
 	 * @generated
 	 */
-	int CONFIGURATION_ASSIGNMENT = 16;
+	int CONFIGURATION_ASSIGNMENT = 17;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' containment reference.
@@ -1003,7 +1049,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getModelElementReference()
 	 * @generated
 	 */
-	int MODEL_ELEMENT_REFERENCE = 17;
+	int MODEL_ELEMENT_REFERENCE = 18;
 
 	/**
 	 * The feature id for the '<em><b>Element</b></em>' reference.
@@ -1049,7 +1095,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getConfigurationParameter()
 	 * @generated
 	 */
-	int CONFIGURATION_PARAMETER = 18;
+	int CONFIGURATION_PARAMETER = 19;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1086,7 +1132,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getTypeReference()
 	 * @generated
 	 */
-	int TYPE_REFERENCE = 19;
+	int TYPE_REFERENCE = 20;
 
 	/**
 	 * The feature id for the '<em><b>Reverse</b></em>' attribute.
@@ -1116,22 +1162,13 @@ public interface Aadlv3Package extends EPackage {
 	int TYPE_REFERENCE__ACTUALS = 2;
 
 	/**
-	 * The feature id for the '<em><b>Componentinterface</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_REFERENCE__COMPONENTINTERFACE = 3;
-
-	/**
 	 * The number of structural features of the '<em>Type Reference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_REFERENCE_FEATURE_COUNT = 4;
+	int TYPE_REFERENCE_FEATURE_COUNT = 3;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.ConfigurationActualImpl <em>Configuration Actual</em>}' class.
@@ -1141,7 +1178,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getConfigurationActual()
 	 * @generated
 	 */
-	int CONFIGURATION_ACTUAL = 20;
+	int CONFIGURATION_ACTUAL = 21;
 
 	/**
 	 * The feature id for the '<em><b>Parameter</b></em>' reference.
@@ -1178,7 +1215,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getWorkingset()
 	 * @generated
 	 */
-	int WORKINGSET = 21;
+	int WORKINGSET = 22;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1215,7 +1252,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getPropertyValue()
 	 * @generated
 	 */
-	int PROPERTY_VALUE = 22;
+	int PROPERTY_VALUE = 23;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1243,7 +1280,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getPropertyAssociation()
 	 * @generated
 	 */
-	int PROPERTY_ASSOCIATION = 23;
+	int PROPERTY_ASSOCIATION = 24;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' containment reference.
@@ -1280,7 +1317,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getPathElement()
 	 * @generated
 	 */
-	int PATH_ELEMENT = 24;
+	int PATH_ELEMENT = 25;
 
 	/**
 	 * The feature id for the '<em><b>Element</b></em>' reference.
@@ -1344,7 +1381,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getPathSequence()
 	 * @generated
 	 */
-	int PATH_SEQUENCE = 25;
+	int PATH_SEQUENCE = 26;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1408,7 +1445,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getComponentCategory()
 	 * @generated
 	 */
-	int COMPONENT_CATEGORY = 26;
+	int COMPONENT_CATEGORY = 27;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.FeatureCategory <em>Feature Category</em>}' enum.
@@ -1418,7 +1455,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getFeatureCategory()
 	 * @generated
 	 */
-	int FEATURE_CATEGORY = 27;
+	int FEATURE_CATEGORY = 28;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.FeatureDirection <em>Feature Direction</em>}' enum.
@@ -1428,7 +1465,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getFeatureDirection()
 	 * @generated
 	 */
-	int FEATURE_DIRECTION = 28;
+	int FEATURE_DIRECTION = 29;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.AssociationType <em>Association Type</em>}' enum.
@@ -1438,7 +1475,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getAssociationType()
 	 * @generated
 	 */
-	int ASSOCIATION_TYPE = 29;
+	int ASSOCIATION_TYPE = 30;
 
 	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.PackageDeclaration <em>Package Declaration</em>}'.
@@ -1651,28 +1688,6 @@ public interface Aadlv3Package extends EPackage {
 	EReference getComponentInterface_Features();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.osate.aadlv3.aadlv3.ComponentInterface#getImplementations <em>Implementations</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Implementations</em>'.
-	 * @see org.osate.aadlv3.aadlv3.ComponentInterface#getImplementations()
-	 * @see #getComponentInterface()
-	 * @generated
-	 */
-	EReference getComponentInterface_Implementations();
-
-	/**
-	 * Returns the meta object for the reference list '{@link org.osate.aadlv3.aadlv3.ComponentInterface#getConfigurations <em>Configurations</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Configurations</em>'.
-	 * @see org.osate.aadlv3.aadlv3.ComponentInterface#getConfigurations()
-	 * @see #getComponentInterface()
-	 * @generated
-	 */
-	EReference getComponentInterface_Configurations();
-
-	/**
 	 * Returns the meta object for the containment reference list '{@link org.osate.aadlv3.aadlv3.ComponentInterface#getFlows <em>Flows</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1738,17 +1753,6 @@ public interface Aadlv3Package extends EPackage {
 	EReference getComponentImplementation_Assignments();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.osate.aadlv3.aadlv3.ComponentImplementation#getInterface <em>Interface</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Interface</em>'.
-	 * @see org.osate.aadlv3.aadlv3.ComponentImplementation#getInterface()
-	 * @see #getComponentImplementation()
-	 * @generated
-	 */
-	EReference getComponentImplementation_Interface();
-
-	/**
 	 * Returns the meta object for the containment reference list '{@link org.osate.aadlv3.aadlv3.ComponentImplementation#getFlowAssignments <em>Flow Assignments</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1812,17 +1816,6 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 */
 	EAttribute getComponentConfiguration_Parameterized();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.osate.aadlv3.aadlv3.ComponentConfiguration#getInterface <em>Interface</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Interface</em>'.
-	 * @see org.osate.aadlv3.aadlv3.ComponentConfiguration#getInterface()
-	 * @see #getComponentConfiguration()
-	 * @generated
-	 */
-	EReference getComponentConfiguration_Interface();
 
 	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.Feature <em>Feature</em>}'.
@@ -2180,17 +2173,6 @@ public interface Aadlv3Package extends EPackage {
 	EReference getTypeReference_Actuals();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.osate.aadlv3.aadlv3.TypeReference#getComponentinterface <em>Componentinterface</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Componentinterface</em>'.
-	 * @see org.osate.aadlv3.aadlv3.TypeReference#getComponentinterface()
-	 * @see #getTypeReference()
-	 * @generated
-	 */
-	EReference getTypeReference_Componentinterface();
-
-	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.ConfigurationActual <em>Configuration Actual</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2370,6 +2352,27 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 */
 	EReference getPathSequence_Elements();
+
+	/**
+	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.ComponentRealization <em>Component Realization</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Component Realization</em>'.
+	 * @see org.osate.aadlv3.aadlv3.ComponentRealization
+	 * @generated
+	 */
+	EClass getComponentRealization();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.osate.aadlv3.aadlv3.ComponentRealization#getInterface <em>Interface</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Interface</em>'.
+	 * @see org.osate.aadlv3.aadlv3.ComponentRealization#getInterface()
+	 * @see #getComponentRealization()
+	 * @generated
+	 */
+	EReference getComponentRealization_Interface();
 
 	/**
 	 * Returns the meta object for enum '{@link org.osate.aadlv3.aadlv3.ComponentCategory <em>Component Category</em>}'.
@@ -2615,22 +2618,6 @@ public interface Aadlv3Package extends EPackage {
 		EReference COMPONENT_INTERFACE__FEATURES = eINSTANCE.getComponentInterface_Features();
 
 		/**
-		 * The meta object literal for the '<em><b>Implementations</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference COMPONENT_INTERFACE__IMPLEMENTATIONS = eINSTANCE.getComponentInterface_Implementations();
-
-		/**
-		 * The meta object literal for the '<em><b>Configurations</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference COMPONENT_INTERFACE__CONFIGURATIONS = eINSTANCE.getComponentInterface_Configurations();
-
-		/**
 		 * The meta object literal for the '<em><b>Flows</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2681,14 +2668,6 @@ public interface Aadlv3Package extends EPackage {
 		EReference COMPONENT_IMPLEMENTATION__ASSIGNMENTS = eINSTANCE.getComponentImplementation_Assignments();
 
 		/**
-		 * The meta object literal for the '<em><b>Interface</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference COMPONENT_IMPLEMENTATION__INTERFACE = eINSTANCE.getComponentImplementation_Interface();
-
-		/**
 		 * The meta object literal for the '<em><b>Flow Assignments</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2737,14 +2716,6 @@ public interface Aadlv3Package extends EPackage {
 		 * @generated
 		 */
 		EAttribute COMPONENT_CONFIGURATION__PARAMETERIZED = eINSTANCE.getComponentConfiguration_Parameterized();
-
-		/**
-		 * The meta object literal for the '<em><b>Interface</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference COMPONENT_CONFIGURATION__INTERFACE = eINSTANCE.getComponentConfiguration_Interface();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.FeatureImpl <em>Feature</em>}' class.
@@ -3028,14 +2999,6 @@ public interface Aadlv3Package extends EPackage {
 		EReference TYPE_REFERENCE__ACTUALS = eINSTANCE.getTypeReference_Actuals();
 
 		/**
-		 * The meta object literal for the '<em><b>Componentinterface</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TYPE_REFERENCE__COMPONENTINTERFACE = eINSTANCE.getTypeReference_Componentinterface();
-
-		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.ConfigurationActualImpl <em>Configuration Actual</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3182,6 +3145,24 @@ public interface Aadlv3Package extends EPackage {
 		 * @generated
 		 */
 		EReference PATH_SEQUENCE__ELEMENTS = eINSTANCE.getPathSequence_Elements();
+
+		/**
+		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.ComponentRealizationImpl <em>Component Realization</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.osate.aadlv3.aadlv3.impl.ComponentRealizationImpl
+		 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getComponentRealization()
+		 * @generated
+		 */
+		EClass COMPONENT_REALIZATION = eINSTANCE.getComponentRealization();
+
+		/**
+		 * The meta object literal for the '<em><b>Interface</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPONENT_REALIZATION__INTERFACE = eINSTANCE.getComponentRealization_Interface();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.ComponentCategory <em>Component Category</em>}' enum.

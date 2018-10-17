@@ -150,16 +150,6 @@ class AadlV3ScopeProvider extends AbstractAadlV3ScopeProvider {
 			
 			if (context instanceof TypeReference ) {
 				if (reference == Aadlv3Package.Literals.TYPE_REFERENCE__TYPE){
-					if (context.componentinterface !== null){
-						// we have a component implementation or configuration reference
-						val interface = context.componentinterface
-						if (!interface.eIsProxy){
-							return new SimpleScope(IScope::NULLSCOPE, Scopes::scopedElementsFor(interface.implementations+interface.configurations,
-							QualifiedName::wrapper(SimpleAttributeResolver::NAME_RESOLVER)), false)
-						} else {
-							return IScope.NULLSCOPE
-						}
-					} else {
 						//	we have a primitive type, component interface, or configuration parameter reference
 						val classifierscope = super.getScope(context, reference)
 						val conf = context.containingComponentConfiguration
@@ -170,10 +160,6 @@ class AadlV3ScopeProvider extends AbstractAadlV3ScopeProvider {
 						} else {
 							return classifierscope
 						}
-					}
-				} else if ( reference ==Aadlv3Package.Literals.TYPE_REFERENCE__COMPONENTINTERFACE){
-					// reference to component interface
-					return super.getScope(context, reference)
 				}
 			} 
 			

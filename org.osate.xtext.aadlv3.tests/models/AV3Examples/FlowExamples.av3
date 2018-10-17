@@ -1,5 +1,5 @@
 package FlowExamples 
-// connections without and with reach down into subcomponents
+// connections without and with reach down into is
 // shared data component
 
 	type systemstate;

@@ -83,8 +83,10 @@ class Aadlv3Util {
 	private static def void addSuperComponentClassifiers(ComponentClassifier cl, HashSet<ComponentClassifier> set) {
 		if (cl instanceof ComponentImplementation){
 			if (cl.superClassifiers.empty){
-				set.add(cl.interface)
-				addSuperComponentClassifiers(cl.interface, set)
+				if (cl.interface !== null) {
+					set.add(cl.interface)
+					addSuperComponentClassifiers(cl.interface, set)
+				}
 			}
 		}
 		if(cl.superClassifiers.empty) return
@@ -109,8 +111,10 @@ class Aadlv3Util {
 			ComponentImplementation: cc.interface
 			ComponentConfiguration: cc.interface
 		}
-		result.add(cif)
-		cif.addSuperComponentInterfaces(result)
+		if (cif !== null){
+			result.add(cif)
+			cif.addSuperComponentInterfaces(result)
+		}
 		return result
 	}
 
@@ -119,10 +123,10 @@ class Aadlv3Util {
 		if(cl.superClassifiers.empty) return
 		val supercls = cl.superClassifiers.map[scc|scc.type as ComponentInterface]
 		supercls.forEach [ scl |
-			set.add(scl)
+			if (scl !== null) set.add(scl)
 		]
 		supercls.forEach [ scl |
-			addSuperComponentInterfaces(scl, set)
+			if (scl !== null) addSuperComponentInterfaces(scl, set)
 		]
 	}
 
@@ -923,7 +927,7 @@ class Aadlv3Util {
 	def static ComponentInterface getBaseInterface(EObject context, ComponentCategory cat){
 		switch cat {
 			case ComponentCategory.THREAD: {
-				Av3API.lookupComponentInterface(context,"BaseInterfaces::BaseThread")
+				Av3API.lookupComponentClassifier(context,"BaseInterfaces.BaseThread") as ComponentInterface
 				}
 			case BUS: {
 			}
@@ -938,7 +942,7 @@ class Aadlv3Util {
 			case PROCESS: {
 			}
 			case PROCESSOR: {
-				Av3API.lookupComponentInterface(context,"BaseInterfaces::BaseProcessor")
+				Av3API.lookupComponentClassifier(context,"BaseInterfaces.BaseProcessor") as ComponentInterface
 			}
 			case SUBPROGRAM: {
 			}
@@ -1006,7 +1010,7 @@ class Aadlv3Util {
 		return pai
 	}
 
-	private static HashMap<ComponentInstance, TypeReference> configuredClassifierTypereferenceCache = new HashMap;
+	static HashMap<ComponentInstance, TypeReference> configuredClassifierTypereferenceCache = new HashMap;
 	
 	def static void resetComponentInstanceCache(){
 		configuredClassifierTypereferenceCache.clear

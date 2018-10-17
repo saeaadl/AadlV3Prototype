@@ -32,41 +32,37 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="propertyAssociations" upperBound="-1"
         eType="#//PropertyAssociation" containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ComponentRealization" abstract="true"
+      eSuperTypes="#//ComponentClassifier">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="interface" ordered="false"
+        eType="#//ComponentInterface" transient="true" resolveProxies="false"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ComponentInterface" eSuperTypes="#//ComponentClassifier">
     <eStructuralFeatures xsi:type="ecore:EReference" name="features" upperBound="-1"
         eType="#//Feature" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="implementations" ordered="false"
-        upperBound="-1" eType="#//ComponentImplementation" transient="true" eOpposite="#//ComponentImplementation/interface"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="configurations" ordered="false"
-        upperBound="-1" eType="#//ComponentConfiguration" transient="true" resolveProxies="false"
-        eOpposite="#//ComponentConfiguration/interface"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="flows" upperBound="-1"
         eType="#//Association" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="useProperties" upperBound="-1"
         eType="#//PropertySet"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ComponentImplementation" eSuperTypes="#//ComponentClassifier">
+  <eClassifiers xsi:type="ecore:EClass" name="ComponentImplementation" eSuperTypes="#//ComponentRealization">
     <eStructuralFeatures xsi:type="ecore:EReference" name="components" upperBound="-1"
         eType="#//Component" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="connections" upperBound="-1"
         eType="#//Association" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="assignments" upperBound="-1"
         eType="#//ConfigurationAssignment" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="interface" ordered="false"
-        eType="#//ComponentInterface" resolveProxies="false" eOpposite="#//ComponentInterface/implementations"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="flowAssignments" upperBound="-1"
         eType="#//PathSequence" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="paths" upperBound="-1"
         eType="#//PathSequence" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ComponentConfiguration" eSuperTypes="#//ComponentClassifier">
+  <eClassifiers xsi:type="ecore:EClass" name="ComponentConfiguration" eSuperTypes="#//ComponentRealization">
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
         eType="#//ConfigurationParameter" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="assignments" upperBound="-1"
         eType="#//ConfigurationAssignment" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="parameterized" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="interface" ordered="false"
-        eType="#//ComponentInterface" resolveProxies="false" eOpposite="#//ComponentInterface/configurations"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Feature" eSuperTypes="#//ModelElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="direction" eType="#//FeatureDirection"/>
@@ -120,7 +116,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Type"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="actuals" upperBound="-1"
         eType="#//ConfigurationActual" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="componentinterface" eType="#//ComponentInterface"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConfigurationActual">
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameter" eType="#//ConfigurationParameter"/>

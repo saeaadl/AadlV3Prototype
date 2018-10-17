@@ -16,17 +16,12 @@
 package org.osate.aadlv3.aadlv3.impl;
 
 import java.util.Collection;
-
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -34,7 +29,6 @@ import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.Association;
 import org.osate.aadlv3.aadlv3.Component;
 import org.osate.aadlv3.aadlv3.ComponentImplementation;
-import org.osate.aadlv3.aadlv3.ComponentInterface;
 import org.osate.aadlv3.aadlv3.ConfigurationAssignment;
 import org.osate.aadlv3.aadlv3.PathSequence;
 
@@ -49,14 +43,13 @@ import org.osate.aadlv3.aadlv3.PathSequence;
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentImplementationImpl#getComponents <em>Components</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentImplementationImpl#getConnections <em>Connections</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentImplementationImpl#getAssignments <em>Assignments</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentImplementationImpl#getInterface <em>Interface</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentImplementationImpl#getFlowAssignments <em>Flow Assignments</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentImplementationImpl#getPaths <em>Paths</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ComponentImplementationImpl extends ComponentClassifierImpl implements ComponentImplementation {
+public class ComponentImplementationImpl extends ComponentRealizationImpl implements ComponentImplementation {
 	/**
 	 * The cached value of the '{@link #getComponents() <em>Components</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -86,16 +79,6 @@ public class ComponentImplementationImpl extends ComponentClassifierImpl impleme
 	 * @ordered
 	 */
 	protected EList<ConfigurationAssignment> assignments;
-
-	/**
-	 * The cached value of the '{@link #getInterface() <em>Interface</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getInterface()
-	 * @generated
-	 * @ordered
-	 */
-	protected ComponentInterface interface_;
 
 	/**
 	 * The cached value of the '{@link #getFlowAssignments() <em>Flow Assignments</em>}' containment reference list.
@@ -184,58 +167,6 @@ public class ComponentImplementationImpl extends ComponentClassifierImpl impleme
 	 * @generated
 	 */
 	@Override
-	public ComponentInterface getInterface() {
-		return interface_;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetInterface(ComponentInterface newInterface, NotificationChain msgs) {
-		ComponentInterface oldInterface = interface_;
-		interface_ = newInterface;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					Aadlv3Package.COMPONENT_IMPLEMENTATION__INTERFACE, oldInterface, newInterface);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setInterface(ComponentInterface newInterface) {
-		if (newInterface != interface_) {
-			NotificationChain msgs = null;
-			if (interface_ != null)
-				msgs = ((InternalEObject) interface_).eInverseRemove(this,
-						Aadlv3Package.COMPONENT_INTERFACE__IMPLEMENTATIONS, ComponentInterface.class, msgs);
-			if (newInterface != null)
-				msgs = ((InternalEObject) newInterface).eInverseAdd(this,
-						Aadlv3Package.COMPONENT_INTERFACE__IMPLEMENTATIONS, ComponentInterface.class, msgs);
-			msgs = basicSetInterface(newInterface, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.COMPONENT_IMPLEMENTATION__INTERFACE,
-					newInterface, newInterface));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EList<PathSequence> getFlowAssignments() {
 		if (flowAssignments == null) {
 			flowAssignments = new EObjectContainmentEList<PathSequence>(PathSequence.class, this,
@@ -264,23 +195,6 @@ public class ComponentImplementationImpl extends ComponentClassifierImpl impleme
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-		case Aadlv3Package.COMPONENT_IMPLEMENTATION__INTERFACE:
-			if (interface_ != null)
-				msgs = ((InternalEObject) interface_).eInverseRemove(this,
-						Aadlv3Package.COMPONENT_INTERFACE__IMPLEMENTATIONS, ComponentInterface.class, msgs);
-			return basicSetInterface((ComponentInterface) otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case Aadlv3Package.COMPONENT_IMPLEMENTATION__COMPONENTS:
@@ -289,8 +203,6 @@ public class ComponentImplementationImpl extends ComponentClassifierImpl impleme
 			return ((InternalEList<?>) getConnections()).basicRemove(otherEnd, msgs);
 		case Aadlv3Package.COMPONENT_IMPLEMENTATION__ASSIGNMENTS:
 			return ((InternalEList<?>) getAssignments()).basicRemove(otherEnd, msgs);
-		case Aadlv3Package.COMPONENT_IMPLEMENTATION__INTERFACE:
-			return basicSetInterface(null, msgs);
 		case Aadlv3Package.COMPONENT_IMPLEMENTATION__FLOW_ASSIGNMENTS:
 			return ((InternalEList<?>) getFlowAssignments()).basicRemove(otherEnd, msgs);
 		case Aadlv3Package.COMPONENT_IMPLEMENTATION__PATHS:
@@ -313,8 +225,6 @@ public class ComponentImplementationImpl extends ComponentClassifierImpl impleme
 			return getConnections();
 		case Aadlv3Package.COMPONENT_IMPLEMENTATION__ASSIGNMENTS:
 			return getAssignments();
-		case Aadlv3Package.COMPONENT_IMPLEMENTATION__INTERFACE:
-			return getInterface();
 		case Aadlv3Package.COMPONENT_IMPLEMENTATION__FLOW_ASSIGNMENTS:
 			return getFlowAssignments();
 		case Aadlv3Package.COMPONENT_IMPLEMENTATION__PATHS:
@@ -343,9 +253,6 @@ public class ComponentImplementationImpl extends ComponentClassifierImpl impleme
 		case Aadlv3Package.COMPONENT_IMPLEMENTATION__ASSIGNMENTS:
 			getAssignments().clear();
 			getAssignments().addAll((Collection<? extends ConfigurationAssignment>) newValue);
-			return;
-		case Aadlv3Package.COMPONENT_IMPLEMENTATION__INTERFACE:
-			setInterface((ComponentInterface) newValue);
 			return;
 		case Aadlv3Package.COMPONENT_IMPLEMENTATION__FLOW_ASSIGNMENTS:
 			getFlowAssignments().clear();
@@ -376,9 +283,6 @@ public class ComponentImplementationImpl extends ComponentClassifierImpl impleme
 		case Aadlv3Package.COMPONENT_IMPLEMENTATION__ASSIGNMENTS:
 			getAssignments().clear();
 			return;
-		case Aadlv3Package.COMPONENT_IMPLEMENTATION__INTERFACE:
-			setInterface((ComponentInterface) null);
-			return;
 		case Aadlv3Package.COMPONENT_IMPLEMENTATION__FLOW_ASSIGNMENTS:
 			getFlowAssignments().clear();
 			return;
@@ -403,8 +307,6 @@ public class ComponentImplementationImpl extends ComponentClassifierImpl impleme
 			return connections != null && !connections.isEmpty();
 		case Aadlv3Package.COMPONENT_IMPLEMENTATION__ASSIGNMENTS:
 			return assignments != null && !assignments.isEmpty();
-		case Aadlv3Package.COMPONENT_IMPLEMENTATION__INTERFACE:
-			return interface_ != null;
 		case Aadlv3Package.COMPONENT_IMPLEMENTATION__FLOW_ASSIGNMENTS:
 			return flowAssignments != null && !flowAssignments.isEmpty();
 		case Aadlv3Package.COMPONENT_IMPLEMENTATION__PATHS:

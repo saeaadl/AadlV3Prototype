@@ -29,14 +29,13 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.osate.aadlv3.aadlv3.ComponentConfiguration#getParameters <em>Parameters</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.ComponentConfiguration#getAssignments <em>Assignments</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.ComponentConfiguration#isParameterized <em>Parameterized</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.ComponentConfiguration#getInterface <em>Interface</em>}</li>
  * </ul>
  *
  * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getComponentConfiguration()
  * @model
  * @generated
  */
-public interface ComponentConfiguration extends ComponentClassifier {
+public interface ComponentConfiguration extends ComponentRealization {
 	/**
 	 * Returns the value of the '<em><b>Parameters</b></em>' containment reference list.
 	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.ConfigurationParameter}.
@@ -94,33 +93,5 @@ public interface ComponentConfiguration extends ComponentClassifier {
 	 * @generated
 	 */
 	void setParameterized(boolean value);
-
-	/**
-	 * Returns the value of the '<em><b>Interface</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.osate.aadlv3.aadlv3.ComponentInterface#getConfigurations <em>Configurations</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Interface</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Interface</em>' reference.
-	 * @see #setInterface(ComponentInterface)
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getComponentConfiguration_Interface()
-	 * @see org.osate.aadlv3.aadlv3.ComponentInterface#getConfigurations
-	 * @model opposite="configurations" resolveProxies="false" ordered="false"
-	 * @generated
-	 */
-	ComponentInterface getInterface();
-
-	/**
-	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.ComponentConfiguration#getInterface <em>Interface</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Interface</em>' reference.
-	 * @see #getInterface()
-	 * @generated
-	 */
-	void setInterface(ComponentInterface value);
 
 } // ComponentConfiguration

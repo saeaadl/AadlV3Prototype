@@ -31,7 +31,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.osate.aadlv3.aadlv3.TypeReference#isReverse <em>Reverse</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.TypeReference#getType <em>Type</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.TypeReference#getActuals <em>Actuals</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.TypeReference#getComponentinterface <em>Componentinterface</em>}</li>
  * </ul>
  *
  * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getTypeReference()
@@ -106,31 +105,5 @@ public interface TypeReference extends EObject {
 	 * @generated
 	 */
 	EList<ConfigurationActual> getActuals();
-
-	/**
-	 * Returns the value of the '<em><b>Componentinterface</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Componentinterface</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Componentinterface</em>' reference.
-	 * @see #setComponentinterface(ComponentInterface)
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getTypeReference_Componentinterface()
-	 * @model
-	 * @generated
-	 */
-	ComponentInterface getComponentinterface();
-
-	/**
-	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.TypeReference#getComponentinterface <em>Componentinterface</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Componentinterface</em>' reference.
-	 * @see #getComponentinterface()
-	 * @generated
-	 */
-	void setComponentinterface(ComponentInterface value);
 
 } // TypeReference

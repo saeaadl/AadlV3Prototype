@@ -11,11 +11,6 @@ import org.eclipse.xtext.naming.IQualifiedNameConverter
  */
 class AadlV3RuntimeModule extends AbstractAadlV3RuntimeModule {
 	
-	
-	def Class<? extends IQualifiedNameConverter> bindIQualifiedNameConverter() {
-		return org.osate.xtext.aadlv3.naming.AadlV3QualifiedNameConverter;
-	}
-
 	override Class<? extends org.eclipse.xtext.naming.IQualifiedNameProvider> bindIQualifiedNameProvider() {
 		return org.osate.xtext.aadlv3.naming.AadlV3QualifiedNameProvider;
 	}

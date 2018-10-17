@@ -2,7 +2,7 @@ package NestedImplementations
 	system interface ControlSystem end;
 	
 	system ControlSystem.i
-	subcomponents
+	is
 		sensing : device { 
 			sensedata : out port ;
 		} ;

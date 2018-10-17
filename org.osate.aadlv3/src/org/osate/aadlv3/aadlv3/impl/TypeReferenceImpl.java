@@ -32,7 +32,6 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
-import org.osate.aadlv3.aadlv3.ComponentInterface;
 import org.osate.aadlv3.aadlv3.ConfigurationActual;
 import org.osate.aadlv3.aadlv3.Type;
 import org.osate.aadlv3.aadlv3.TypeReference;
@@ -48,7 +47,6 @@ import org.osate.aadlv3.aadlv3.TypeReference;
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.TypeReferenceImpl#isReverse <em>Reverse</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.TypeReferenceImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.TypeReferenceImpl#getActuals <em>Actuals</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.TypeReferenceImpl#getComponentinterface <em>Componentinterface</em>}</li>
  * </ul>
  *
  * @generated
@@ -93,16 +91,6 @@ public class TypeReferenceImpl extends MinimalEObjectImpl.Container implements T
 	 * @ordered
 	 */
 	protected EList<ConfigurationActual> actuals;
-
-	/**
-	 * The cached value of the '{@link #getComponentinterface() <em>Componentinterface</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getComponentinterface()
-	 * @generated
-	 * @ordered
-	 */
-	protected ComponentInterface componentinterface;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -208,49 +196,6 @@ public class TypeReferenceImpl extends MinimalEObjectImpl.Container implements T
 	 * @generated
 	 */
 	@Override
-	public ComponentInterface getComponentinterface() {
-		if (componentinterface != null && componentinterface.eIsProxy()) {
-			InternalEObject oldComponentinterface = (InternalEObject) componentinterface;
-			componentinterface = (ComponentInterface) eResolveProxy(oldComponentinterface);
-			if (componentinterface != oldComponentinterface) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							Aadlv3Package.TYPE_REFERENCE__COMPONENTINTERFACE, oldComponentinterface,
-							componentinterface));
-			}
-		}
-		return componentinterface;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ComponentInterface basicGetComponentinterface() {
-		return componentinterface;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setComponentinterface(ComponentInterface newComponentinterface) {
-		ComponentInterface oldComponentinterface = componentinterface;
-		componentinterface = newComponentinterface;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.TYPE_REFERENCE__COMPONENTINTERFACE,
-					oldComponentinterface, componentinterface));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case Aadlv3Package.TYPE_REFERENCE__ACTUALS:
@@ -275,10 +220,6 @@ public class TypeReferenceImpl extends MinimalEObjectImpl.Container implements T
 			return basicGetType();
 		case Aadlv3Package.TYPE_REFERENCE__ACTUALS:
 			return getActuals();
-		case Aadlv3Package.TYPE_REFERENCE__COMPONENTINTERFACE:
-			if (resolve)
-				return getComponentinterface();
-			return basicGetComponentinterface();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -302,9 +243,6 @@ public class TypeReferenceImpl extends MinimalEObjectImpl.Container implements T
 			getActuals().clear();
 			getActuals().addAll((Collection<? extends ConfigurationActual>) newValue);
 			return;
-		case Aadlv3Package.TYPE_REFERENCE__COMPONENTINTERFACE:
-			setComponentinterface((ComponentInterface) newValue);
-			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -326,9 +264,6 @@ public class TypeReferenceImpl extends MinimalEObjectImpl.Container implements T
 		case Aadlv3Package.TYPE_REFERENCE__ACTUALS:
 			getActuals().clear();
 			return;
-		case Aadlv3Package.TYPE_REFERENCE__COMPONENTINTERFACE:
-			setComponentinterface((ComponentInterface) null);
-			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -347,8 +282,6 @@ public class TypeReferenceImpl extends MinimalEObjectImpl.Container implements T
 			return type != null;
 		case Aadlv3Package.TYPE_REFERENCE__ACTUALS:
 			return actuals != null && !actuals.isEmpty();
-		case Aadlv3Package.TYPE_REFERENCE__COMPONENTINTERFACE:
-			return componentinterface != null;
 		}
 		return super.eIsSet(featureID);
 	}

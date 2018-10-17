@@ -1,4 +1,4 @@
-package Basic 
+package Basic
 // example with nested packages, duplicate feature name in original and extension,
 // property associated with model element and as contained property in classifier
 	type date ;
@@ -10,40 +10,33 @@ package Basic
 	package nested  
 		type signal ;
 	end ;
-	interface sub
-	features
+	interface sub is
 		name : in feature person;
 		surname : in feature person ;
 	end ;
-	interface subsub 
-	features
+	interface subsub is
 		p1 : in port date ;
 		p2 : in port date { #Size => 3; };
-	properties
 		p1#Size => 3;
 	end ;
-	system sub.impl 
-	subcomponents
+	system sub.impl is
 		s1 : process subsub ;
 		s2 : thread subsub { #Period => 20; };
 	end ;
 
-	interface sub1 extends sub 
-	features
+	interface sub1 extends sub is
 		name : in port date;
 	end ;
 	
 	system interface gps end;
 	
-	system gps.i
-	subcomponents
+	system gps.i is
 		locator : process LocatorProcess.impl;
 	end ;
-	process interface LocatorProcess
-	properties
+	process interface LocatorProcess is
 	#Period => 20;
 	end;
 	
-	process LocatorProcess.impl end;
+	process LocatorProcess.impl is end;
 	
 end ;

@@ -33,6 +33,7 @@ import org.osate.aadlv3.aadlv3.ComponentClassifier;
 import org.osate.aadlv3.aadlv3.ComponentConfiguration;
 import org.osate.aadlv3.aadlv3.ComponentImplementation;
 import org.osate.aadlv3.aadlv3.ComponentInterface;
+import org.osate.aadlv3.aadlv3.ComponentRealization;
 import org.osate.aadlv3.aadlv3.ConfigurationActual;
 import org.osate.aadlv3.aadlv3.ConfigurationAssignment;
 import org.osate.aadlv3.aadlv3.ConfigurationParameter;
@@ -244,6 +245,13 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	private EClass pathSequenceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass componentRealizationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -543,7 +551,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getComponentInterface_Implementations() {
+	public EReference getComponentInterface_Flows() {
 		return (EReference) componentInterfaceEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -553,28 +561,8 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getComponentInterface_Configurations() {
-		return (EReference) componentInterfaceEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getComponentInterface_Flows() {
-		return (EReference) componentInterfaceEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EReference getComponentInterface_UseProperties() {
-		return (EReference) componentInterfaceEClass.getEStructuralFeatures().get(4);
+		return (EReference) componentInterfaceEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -623,7 +611,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getComponentImplementation_Interface() {
+	public EReference getComponentImplementation_FlowAssignments() {
 		return (EReference) componentImplementationEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -633,18 +621,8 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getComponentImplementation_FlowAssignments() {
-		return (EReference) componentImplementationEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EReference getComponentImplementation_Paths() {
-		return (EReference) componentImplementationEClass.getEStructuralFeatures().get(5);
+		return (EReference) componentImplementationEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -685,16 +663,6 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	@Override
 	public EAttribute getComponentConfiguration_Parameterized() {
 		return (EAttribute) componentConfigurationEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getComponentConfiguration_Interface() {
-		return (EReference) componentConfigurationEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -1033,16 +1001,6 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getTypeReference_Componentinterface() {
-		return (EReference) typeReferenceEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getConfigurationActual() {
 		return configurationActualEClass;
 	}
@@ -1213,6 +1171,26 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
+	public EClass getComponentRealization() {
+		return componentRealizationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getComponentRealization_Interface() {
+		return (EReference) componentRealizationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EEnum getComponentCategory() {
 		return componentCategoryEEnum;
 	}
@@ -1304,10 +1282,11 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		createEReference(componentClassifierEClass, COMPONENT_CLASSIFIER__SUPER_CLASSIFIERS);
 		createEReference(componentClassifierEClass, COMPONENT_CLASSIFIER__PROPERTY_ASSOCIATIONS);
 
+		componentRealizationEClass = createEClass(COMPONENT_REALIZATION);
+		createEReference(componentRealizationEClass, COMPONENT_REALIZATION__INTERFACE);
+
 		componentInterfaceEClass = createEClass(COMPONENT_INTERFACE);
 		createEReference(componentInterfaceEClass, COMPONENT_INTERFACE__FEATURES);
-		createEReference(componentInterfaceEClass, COMPONENT_INTERFACE__IMPLEMENTATIONS);
-		createEReference(componentInterfaceEClass, COMPONENT_INTERFACE__CONFIGURATIONS);
 		createEReference(componentInterfaceEClass, COMPONENT_INTERFACE__FLOWS);
 		createEReference(componentInterfaceEClass, COMPONENT_INTERFACE__USE_PROPERTIES);
 
@@ -1315,7 +1294,6 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		createEReference(componentImplementationEClass, COMPONENT_IMPLEMENTATION__COMPONENTS);
 		createEReference(componentImplementationEClass, COMPONENT_IMPLEMENTATION__CONNECTIONS);
 		createEReference(componentImplementationEClass, COMPONENT_IMPLEMENTATION__ASSIGNMENTS);
-		createEReference(componentImplementationEClass, COMPONENT_IMPLEMENTATION__INTERFACE);
 		createEReference(componentImplementationEClass, COMPONENT_IMPLEMENTATION__FLOW_ASSIGNMENTS);
 		createEReference(componentImplementationEClass, COMPONENT_IMPLEMENTATION__PATHS);
 
@@ -1323,7 +1301,6 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		createEReference(componentConfigurationEClass, COMPONENT_CONFIGURATION__PARAMETERS);
 		createEReference(componentConfigurationEClass, COMPONENT_CONFIGURATION__ASSIGNMENTS);
 		createEAttribute(componentConfigurationEClass, COMPONENT_CONFIGURATION__PARAMETERIZED);
-		createEReference(componentConfigurationEClass, COMPONENT_CONFIGURATION__INTERFACE);
 
 		featureEClass = createEClass(FEATURE);
 		createEAttribute(featureEClass, FEATURE__DIRECTION);
@@ -1365,7 +1342,6 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		createEAttribute(typeReferenceEClass, TYPE_REFERENCE__REVERSE);
 		createEReference(typeReferenceEClass, TYPE_REFERENCE__TYPE);
 		createEReference(typeReferenceEClass, TYPE_REFERENCE__ACTUALS);
-		createEReference(typeReferenceEClass, TYPE_REFERENCE__COMPONENTINTERFACE);
 
 		configurationActualEClass = createEClass(CONFIGURATION_ACTUAL);
 		createEReference(configurationActualEClass, CONFIGURATION_ACTUAL__PARAMETER);
@@ -1435,9 +1411,10 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		primitiveTypeEClass.getESuperTypes().add(this.getType());
 		componentClassifierEClass.getESuperTypes().add(this.getPackageElement());
 		componentClassifierEClass.getESuperTypes().add(this.getType());
+		componentRealizationEClass.getESuperTypes().add(this.getComponentClassifier());
 		componentInterfaceEClass.getESuperTypes().add(this.getComponentClassifier());
-		componentImplementationEClass.getESuperTypes().add(this.getComponentClassifier());
-		componentConfigurationEClass.getESuperTypes().add(this.getComponentClassifier());
+		componentImplementationEClass.getESuperTypes().add(this.getComponentRealization());
+		componentConfigurationEClass.getESuperTypes().add(this.getComponentRealization());
 		featureEClass.getESuperTypes().add(this.getModelElement());
 		componentEClass.getESuperTypes().add(this.getModelElement());
 		associationEClass.getESuperTypes().add(this.getModelElement());
@@ -1500,19 +1477,17 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 				"propertyAssociations", null, 0, -1, ComponentClassifier.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(componentRealizationEClass, ComponentRealization.class, "ComponentRealization", IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getComponentRealization_Interface(), this.getComponentInterface(), null, "interface", null, 0, 1,
+				ComponentRealization.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
 		initEClass(componentInterfaceEClass, ComponentInterface.class, "ComponentInterface", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getComponentInterface_Features(), this.getFeature(), null, "features", null, 0, -1,
 				ComponentInterface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getComponentInterface_Implementations(), this.getComponentImplementation(),
-				this.getComponentImplementation_Interface(), "implementations", null, 0, -1, ComponentInterface.class,
-				IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, !IS_ORDERED);
-		initEReference(getComponentInterface_Configurations(), this.getComponentConfiguration(),
-				this.getComponentConfiguration_Interface(), "configurations", null, 0, -1, ComponentInterface.class,
-				IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
-				IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getComponentInterface_Flows(), this.getAssociation(), null, "flows", null, 0, -1,
 				ComponentInterface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1531,10 +1506,6 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		initEReference(getComponentImplementation_Assignments(), this.getConfigurationAssignment(), null, "assignments",
 				null, 0, -1, ComponentImplementation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getComponentImplementation_Interface(), this.getComponentInterface(),
-				this.getComponentInterface_Implementations(), "interface", null, 0, 1, ComponentImplementation.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
-				IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getComponentImplementation_FlowAssignments(), this.getPathSequence(), null, "flowAssignments",
 				null, 0, -1, ComponentImplementation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1553,10 +1524,6 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		initEAttribute(getComponentConfiguration_Parameterized(), ecorePackage.getEBoolean(), "parameterized", null, 0,
 				1, ComponentConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getComponentConfiguration_Interface(), this.getComponentInterface(),
-				this.getComponentInterface_Configurations(), "interface", null, 0, 1, ComponentConfiguration.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
-				IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(featureEClass, Feature.class, "Feature", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getFeature_Direction(), this.getFeatureDirection(), "direction", null, 0, 1, Feature.class,
@@ -1649,9 +1616,6 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		initEReference(getTypeReference_Actuals(), this.getConfigurationActual(), null, "actuals", null, 0, -1,
 				TypeReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTypeReference_Componentinterface(), this.getComponentInterface(), null, "componentinterface",
-				null, 0, 1, TypeReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(configurationActualEClass, ConfigurationActual.class, "ConfigurationActual", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

@@ -22,8 +22,6 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
-
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
@@ -37,7 +35,7 @@ import org.osate.aadlv3.aadlv3.ComponentImplementation;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ComponentImplementationItemProvider extends ComponentClassifierItemProvider {
+public class ComponentImplementationItemProvider extends ComponentRealizationItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -59,24 +57,8 @@ public class ComponentImplementationItemProvider extends ComponentClassifierItem
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addInterfacePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Interface feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addInterfacePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_ComponentImplementation_interface_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_ComponentImplementation_interface_feature",
-						"_UI_ComponentImplementation_type"),
-				Aadlv3Package.Literals.COMPONENT_IMPLEMENTATION__INTERFACE, true, false, true, null, null, null));
 	}
 
 	/**

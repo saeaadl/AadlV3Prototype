@@ -170,6 +170,21 @@ public class Aadlv3Switch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case Aadlv3Package.COMPONENT_REALIZATION: {
+			ComponentRealization componentRealization = (ComponentRealization) theEObject;
+			T result = caseComponentRealization(componentRealization);
+			if (result == null)
+				result = caseComponentClassifier(componentRealization);
+			if (result == null)
+				result = casePackageElement(componentRealization);
+			if (result == null)
+				result = caseType(componentRealization);
+			if (result == null)
+				result = caseNamedElement(componentRealization);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		case Aadlv3Package.COMPONENT_INTERFACE: {
 			ComponentInterface componentInterface = (ComponentInterface) theEObject;
 			T result = caseComponentInterface(componentInterface);
@@ -189,6 +204,8 @@ public class Aadlv3Switch<T> extends Switch<T> {
 			ComponentImplementation componentImplementation = (ComponentImplementation) theEObject;
 			T result = caseComponentImplementation(componentImplementation);
 			if (result == null)
+				result = caseComponentRealization(componentImplementation);
+			if (result == null)
 				result = caseComponentClassifier(componentImplementation);
 			if (result == null)
 				result = casePackageElement(componentImplementation);
@@ -203,6 +220,8 @@ public class Aadlv3Switch<T> extends Switch<T> {
 		case Aadlv3Package.COMPONENT_CONFIGURATION: {
 			ComponentConfiguration componentConfiguration = (ComponentConfiguration) theEObject;
 			T result = caseComponentConfiguration(componentConfiguration);
+			if (result == null)
+				result = caseComponentRealization(componentConfiguration);
 			if (result == null)
 				result = caseComponentClassifier(componentConfiguration);
 			if (result == null)
@@ -731,6 +750,21 @@ public class Aadlv3Switch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T casePathSequence(PathSequence object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Component Realization</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Component Realization</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseComponentRealization(ComponentRealization object) {
 		return null;
 	}
 
