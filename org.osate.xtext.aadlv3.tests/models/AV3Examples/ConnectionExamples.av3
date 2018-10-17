@@ -17,16 +17,16 @@ package ConnectionExamples
 	
 	component sensor.i extends sensor is
 		sub1: thread sense;
-		upmap: mapping outp => sub1.p1 ;
-		stateaccess: mapping state => sub1.state;
+		upmap: mapping outp -> sub1.p1 ;
+		stateaccess: mapping state -> sub1.state;
 	end ;
 	component actuator.i extends actuator is
 		mystate: data systemstate { stateread : provides read access systemstate;
 			statewrite : provides write access systemstate;
 		};
 		sub2: thread actuate;
-		downmap: mapping inp => sub2.p1;
-		stateread: mapping state => mystate.stateread ;
+		downmap: mapping inp -> sub2.p1;
+		stateread: mapping state -> mystate.stateread ;
 		statewrite: data sub2.state -> mystate.statewrite ;
 	end ;
 	thread interface sense  is
@@ -65,7 +65,7 @@ package ConnectionExamples
 	cpu: processor x86;
 	mybus: bus canbus;
 	busconn: bus cpu.canbusaccess -> mybus.canbusaccess;
-	extbusaccess: mapping canbusaccess => mybus.canbusaccess;
+	extbusaccess: mapping canbusaccess -> mybus.canbusaccess;
 	end;
 	
 end;
