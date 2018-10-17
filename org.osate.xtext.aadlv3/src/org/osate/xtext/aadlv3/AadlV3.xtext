@@ -69,7 +69,7 @@ Connection returns av3::Association:
 
 FeatureMapping returns av3::Association:
 	name=ID ':' associationType=MappingType source=ModelElementReference
-	'=>' destination=ModelElementReference PropertiesBlock? SEMICOLON;
+	'->' destination=ModelElementReference PropertiesBlock? SEMICOLON;
 
 
 FlowPath returns av3::Association:

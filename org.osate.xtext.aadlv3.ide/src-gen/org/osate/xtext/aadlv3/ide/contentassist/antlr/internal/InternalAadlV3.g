@@ -4523,9 +4523,9 @@ rule__FeatureMapping__Group__4__Impl
 	}
 :
 (
-	{ before(grammarAccess.getFeatureMappingAccess().getEqualsSignGreaterThanSignKeyword_4()); }
-	'=>'
-	{ after(grammarAccess.getFeatureMappingAccess().getEqualsSignGreaterThanSignKeyword_4()); }
+	{ before(grammarAccess.getFeatureMappingAccess().getHyphenMinusGreaterThanSignKeyword_4()); }
+	'->'
+	{ after(grammarAccess.getFeatureMappingAccess().getHyphenMinusGreaterThanSignKeyword_4()); }
 )
 ;
 finally {

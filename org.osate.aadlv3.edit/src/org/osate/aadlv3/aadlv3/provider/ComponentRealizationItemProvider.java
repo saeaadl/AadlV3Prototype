@@ -53,24 +53,25 @@ public class ComponentRealizationItemProvider extends ComponentClassifierItemPro
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addInterfacePropertyDescriptor(object);
+			addCachedInterfaceReferencePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Interface feature.
+	 * This adds a property descriptor for the Cached Interface Reference feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addInterfacePropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_ComponentRealization_interface_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_ComponentRealization_interface_feature",
-								"_UI_ComponentRealization_type"),
-						Aadlv3Package.Literals.COMPONENT_REALIZATION__INTERFACE, true, false, true, null, null, null));
+	protected void addCachedInterfaceReferencePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_ComponentRealization_cachedInterfaceReference_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_ComponentRealization_cachedInterfaceReference_feature", "_UI_ComponentRealization_type"),
+				Aadlv3Package.Literals.COMPONENT_REALIZATION__CACHED_INTERFACE_REFERENCE, true, false, true, null, null,
+				null));
 	}
 
 	/**

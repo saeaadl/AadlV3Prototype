@@ -441,13 +441,13 @@ public interface Aadlv3Package extends EPackage {
 	int COMPONENT_REALIZATION__PROPERTY_ASSOCIATIONS = COMPONENT_CLASSIFIER__PROPERTY_ASSOCIATIONS;
 
 	/**
-	 * The feature id for the '<em><b>Interface</b></em>' reference.
+	 * The feature id for the '<em><b>Cached Interface Reference</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_REALIZATION__INTERFACE = COMPONENT_CLASSIFIER_FEATURE_COUNT + 0;
+	int COMPONENT_REALIZATION__CACHED_INTERFACE_REFERENCE = COMPONENT_CLASSIFIER_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Component Realization</em>' class.
@@ -577,13 +577,13 @@ public interface Aadlv3Package extends EPackage {
 	int COMPONENT_IMPLEMENTATION__PROPERTY_ASSOCIATIONS = COMPONENT_REALIZATION__PROPERTY_ASSOCIATIONS;
 
 	/**
-	 * The feature id for the '<em><b>Interface</b></em>' reference.
+	 * The feature id for the '<em><b>Cached Interface Reference</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_IMPLEMENTATION__INTERFACE = COMPONENT_REALIZATION__INTERFACE;
+	int COMPONENT_IMPLEMENTATION__CACHED_INTERFACE_REFERENCE = COMPONENT_REALIZATION__CACHED_INTERFACE_REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Components</b></em>' containment reference list.
@@ -686,13 +686,13 @@ public interface Aadlv3Package extends EPackage {
 	int COMPONENT_CONFIGURATION__PROPERTY_ASSOCIATIONS = COMPONENT_REALIZATION__PROPERTY_ASSOCIATIONS;
 
 	/**
-	 * The feature id for the '<em><b>Interface</b></em>' reference.
+	 * The feature id for the '<em><b>Cached Interface Reference</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_CONFIGURATION__INTERFACE = COMPONENT_REALIZATION__INTERFACE;
+	int COMPONENT_CONFIGURATION__CACHED_INTERFACE_REFERENCE = COMPONENT_REALIZATION__CACHED_INTERFACE_REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
@@ -2364,15 +2364,15 @@ public interface Aadlv3Package extends EPackage {
 	EClass getComponentRealization();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.osate.aadlv3.aadlv3.ComponentRealization#getInterface <em>Interface</em>}'.
+	 * Returns the meta object for the reference '{@link org.osate.aadlv3.aadlv3.ComponentRealization#getCachedInterfaceReference <em>Cached Interface Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Interface</em>'.
-	 * @see org.osate.aadlv3.aadlv3.ComponentRealization#getInterface()
+	 * @return the meta object for the reference '<em>Cached Interface Reference</em>'.
+	 * @see org.osate.aadlv3.aadlv3.ComponentRealization#getCachedInterfaceReference()
 	 * @see #getComponentRealization()
 	 * @generated
 	 */
-	EReference getComponentRealization_Interface();
+	EReference getComponentRealization_CachedInterfaceReference();
 
 	/**
 	 * Returns the meta object for enum '{@link org.osate.aadlv3.aadlv3.ComponentCategory <em>Component Category</em>}'.
@@ -3157,12 +3157,13 @@ public interface Aadlv3Package extends EPackage {
 		EClass COMPONENT_REALIZATION = eINSTANCE.getComponentRealization();
 
 		/**
-		 * The meta object literal for the '<em><b>Interface</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Cached Interface Reference</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference COMPONENT_REALIZATION__INTERFACE = eINSTANCE.getComponentRealization_Interface();
+		EReference COMPONENT_REALIZATION__CACHED_INTERFACE_REFERENCE = eINSTANCE
+				.getComponentRealization_CachedInterfaceReference();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.ComponentCategory <em>Component Category</em>}' enum.

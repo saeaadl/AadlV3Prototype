@@ -34,8 +34,8 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ComponentRealization" abstract="true"
       eSuperTypes="#//ComponentClassifier">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="interface" ordered="false"
-        eType="#//ComponentInterface" transient="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cachedInterfaceReference"
+        ordered="false" eType="#//ComponentInterface" transient="true" resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ComponentInterface" eSuperTypes="#//ComponentClassifier">
     <eStructuralFeatures xsi:type="ecore:EReference" name="features" upperBound="-1"

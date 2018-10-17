@@ -20,7 +20,6 @@ package NestedImplementations
 		actuating : device { 
 			inp :  in port ;
 		} ;
-	connections
 		sensefilterconn : port sensing.sensedata -> processing.filter.inp ;
 		controlactuateconn : port processing.control.outp -> actuating.inp;
 	end ;

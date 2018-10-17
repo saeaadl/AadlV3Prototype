@@ -39,13 +39,15 @@ import org.osate.av3instance.av3instance.AssociationInstance
 import org.osate.av3instance.av3instance.PropertyAssociationInstance
 import java.util.LinkedHashSet
 
+import static extension org.osate.aadlv3.util.Av3API.*
+
 class Aadlv3Util {
 	
 	static def String getFullName(ComponentClassifier cl){
 		switch (cl){
 			ComponentInterface: cl.name
-			ComponentImplementation: cl.interface.name+"."+cl.name
-			ComponentConfiguration: cl.interface.name+"."+cl.name
+			ComponentImplementation: cl.componentInterface.name+"."+cl.name
+			ComponentConfiguration: cl.componentInterface.name+"."+cl.name
 		}
 	}
 	
@@ -83,9 +85,9 @@ class Aadlv3Util {
 	private static def void addSuperComponentClassifiers(ComponentClassifier cl, HashSet<ComponentClassifier> set) {
 		if (cl instanceof ComponentImplementation){
 			if (cl.superClassifiers.empty){
-				if (cl.interface !== null) {
-					set.add(cl.interface)
-					addSuperComponentClassifiers(cl.interface, set)
+				if (cl.componentInterface !== null) {
+					set.add(cl.componentInterface)
+					addSuperComponentClassifiers(cl.componentInterface, set)
 				}
 			}
 		}
@@ -108,8 +110,8 @@ class Aadlv3Util {
 		val result = new LinkedHashSet<ComponentInterface>
 		val cif = switch cc {
 			ComponentInterface: cc
-			ComponentImplementation: cc.interface
-			ComponentConfiguration: cc.interface
+			ComponentImplementation: cc.componentInterface
+			ComponentConfiguration: cc.componentInterface
 		}
 		if (cif !== null){
 			result.add(cif)
@@ -250,9 +252,9 @@ class Aadlv3Util {
 		val cif = if (cc instanceof ComponentInterface) {
 			cc
 		} else if (cc instanceof ComponentImplementation){
-			cc.interface
+			cc.componentInterface
 		} else if (cc instanceof ComponentConfiguration){
-			cc.interface
+			cc.componentInterface
 		}
 		if (cif.features.contains(f)){
 			return false
@@ -704,9 +706,9 @@ class Aadlv3Util {
 		if( cl === null || superClassifier.eIsProxy || cl.eIsProxy) return false
 		if (superClassifier === null || superClassifier === cl) return true
 		val clinterface = if (cl instanceof ComponentImplementation){
-			cl.interface
+			cl.componentInterface
 		} else if (cl instanceof ComponentConfiguration){
-			cl.interface
+			cl.componentInterface
 		}
 		if (clinterface !== null){
 			if(clinterface == superClassifier) return true

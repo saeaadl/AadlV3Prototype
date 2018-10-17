@@ -30,21 +30,21 @@ import org.osate.aadlv3.aadlv3.ComponentRealization;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentRealizationImpl#getInterface <em>Interface</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentRealizationImpl#getCachedInterfaceReference <em>Cached Interface Reference</em>}</li>
  * </ul>
  *
  * @generated
  */
 public abstract class ComponentRealizationImpl extends ComponentClassifierImpl implements ComponentRealization {
 	/**
-	 * The cached value of the '{@link #getInterface() <em>Interface</em>}' reference.
+	 * The cached value of the '{@link #getCachedInterfaceReference() <em>Cached Interface Reference</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getInterface()
+	 * @see #getCachedInterfaceReference()
 	 * @generated
 	 * @ordered
 	 */
-	protected ComponentInterface interface_;
+	protected ComponentInterface cachedInterfaceReference;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -71,8 +71,8 @@ public abstract class ComponentRealizationImpl extends ComponentClassifierImpl i
 	 * @generated
 	 */
 	@Override
-	public ComponentInterface getInterface() {
-		return interface_;
+	public ComponentInterface getCachedInterfaceReference() {
+		return cachedInterfaceReference;
 	}
 
 	/**
@@ -81,12 +81,13 @@ public abstract class ComponentRealizationImpl extends ComponentClassifierImpl i
 	 * @generated
 	 */
 	@Override
-	public void setInterface(ComponentInterface newInterface) {
-		ComponentInterface oldInterface = interface_;
-		interface_ = newInterface;
+	public void setCachedInterfaceReference(ComponentInterface newCachedInterfaceReference) {
+		ComponentInterface oldCachedInterfaceReference = cachedInterfaceReference;
+		cachedInterfaceReference = newCachedInterfaceReference;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.COMPONENT_REALIZATION__INTERFACE,
-					oldInterface, interface_));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					Aadlv3Package.COMPONENT_REALIZATION__CACHED_INTERFACE_REFERENCE, oldCachedInterfaceReference,
+					cachedInterfaceReference));
 	}
 
 	/**
@@ -97,8 +98,8 @@ public abstract class ComponentRealizationImpl extends ComponentClassifierImpl i
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case Aadlv3Package.COMPONENT_REALIZATION__INTERFACE:
-			return getInterface();
+		case Aadlv3Package.COMPONENT_REALIZATION__CACHED_INTERFACE_REFERENCE:
+			return getCachedInterfaceReference();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -111,8 +112,8 @@ public abstract class ComponentRealizationImpl extends ComponentClassifierImpl i
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case Aadlv3Package.COMPONENT_REALIZATION__INTERFACE:
-			setInterface((ComponentInterface) newValue);
+		case Aadlv3Package.COMPONENT_REALIZATION__CACHED_INTERFACE_REFERENCE:
+			setCachedInterfaceReference((ComponentInterface) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -126,8 +127,8 @@ public abstract class ComponentRealizationImpl extends ComponentClassifierImpl i
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case Aadlv3Package.COMPONENT_REALIZATION__INTERFACE:
-			setInterface((ComponentInterface) null);
+		case Aadlv3Package.COMPONENT_REALIZATION__CACHED_INTERFACE_REFERENCE:
+			setCachedInterfaceReference((ComponentInterface) null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -141,8 +142,8 @@ public abstract class ComponentRealizationImpl extends ComponentClassifierImpl i
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case Aadlv3Package.COMPONENT_REALIZATION__INTERFACE:
-			return interface_ != null;
+		case Aadlv3Package.COMPONENT_REALIZATION__CACHED_INTERFACE_REFERENCE:
+			return cachedInterfaceReference != null;
 		}
 		return super.eIsSet(featureID);
 	}

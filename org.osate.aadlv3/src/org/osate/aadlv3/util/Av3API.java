@@ -43,14 +43,14 @@ public class Av3API {
 	}
 
 	public static ComponentInterface getComponentInterface(ComponentRealization creal) {
-		if (creal.getInterface() != null) {
-			return creal.getInterface();
+		if (creal.getCachedInterfaceReference() != null) {
+			return creal.getCachedInterfaceReference();
 		}
 		String iname = creal.getName();
 		String ifname = iname.substring(0,iname.lastIndexOf('.'));
-		 ComponentInterface cif = (ComponentInterface) Aadlv3GlobalScopeUtil.get(creal, Aadlv3Package.eINSTANCE.getComponentRealization_Interface(), ifname);
+		 ComponentInterface cif = (ComponentInterface) Aadlv3GlobalScopeUtil.get(creal, Aadlv3Package.eINSTANCE.getComponentRealization_CachedInterfaceReference(), ifname);
 		 if (cif != null) {
-			 creal.setInterface(cif);
+			 creal.setCachedInterfaceReference(cif);
 		 }
 		 return cif;
 	}

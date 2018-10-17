@@ -196,15 +196,23 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	def checkConfigurationActual(ConfigurationActual ca) {
 		val cif = ca.parameter.type
 		if (cif instanceof ComponentInterface) {
-			val assignedcif = ca.value.type
-			if (assignedcif instanceof ComponentClassifier) {
-				if (!(cif.isSuperClassifierOf(assignedcif))) {
-					error('Configuration actual does not match interface of configuration parameter', ca, null,
+			val assignedtype = ca.value.type
+			if (assignedtype instanceof ComponentClassifier) {
+				if (!(cif.isSuperClassifierOf(assignedtype))) {
+					error('Configuration actual does not match component interface of configuration parameter', ca, null,
 						FormalActualMismatch)
+				}
+			} else if (assignedtype instanceof ConfigurationParameter){
+				val assignedcif = assignedtype.type
+				if (assignedcif instanceof ComponentClassifier){
+					if (!(cif.isSuperClassifierOf(assignedcif))){
+						error('Configuration actual does not match component interface of referenced configuration parameter', ca, null,
+							FormalActualMismatch)
+					}
 				}
 			} else {
 				// should an assigned component classifier
-				error('Configuration actual is not not a component classifier', ca, null,
+				error('Configuration actual is not a component classifier', ca, null,
 					FormalActualMismatch)
 			}
 		}
@@ -230,8 +238,6 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 		if (interface === null){
 			error('Could not find Component Interface', cimpl, null,
 					FormalActualMismatch)
-		} else {
-			cimpl.interface = interface
 		}
 	}
 	
