@@ -15,19 +15,42 @@
  */
 package org.osate.aadlv3.aadlv3.impl;
 
+import java.util.Collection;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.PrimitiveType;
+import org.osate.aadlv3.aadlv3.PropertyAssociation;
 
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Primitive Type</b></em>'.
  * <!-- end-user-doc -->
+ * <p>
+ * The following features are implemented:
+ * </p>
+ * <ul>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.PrimitiveTypeImpl#getPropertyAssociations <em>Property Associations</em>}</li>
+ * </ul>
  *
  * @generated
  */
 public class PrimitiveTypeImpl extends PackageElementImpl implements PrimitiveType {
+	/**
+	 * The cached value of the '{@link #getPropertyAssociations() <em>Property Associations</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPropertyAssociations()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<PropertyAssociation> propertyAssociations;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -45,6 +68,94 @@ public class PrimitiveTypeImpl extends PackageElementImpl implements PrimitiveTy
 	@Override
 	protected EClass eStaticClass() {
 		return Aadlv3Package.Literals.PRIMITIVE_TYPE;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<PropertyAssociation> getPropertyAssociations() {
+		if (propertyAssociations == null) {
+			propertyAssociations = new EObjectContainmentEList<PropertyAssociation>(PropertyAssociation.class, this,
+					Aadlv3Package.PRIMITIVE_TYPE__PROPERTY_ASSOCIATIONS);
+		}
+		return propertyAssociations;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case Aadlv3Package.PRIMITIVE_TYPE__PROPERTY_ASSOCIATIONS:
+			return ((InternalEList<?>) getPropertyAssociations()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+		case Aadlv3Package.PRIMITIVE_TYPE__PROPERTY_ASSOCIATIONS:
+			return getPropertyAssociations();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+		case Aadlv3Package.PRIMITIVE_TYPE__PROPERTY_ASSOCIATIONS:
+			getPropertyAssociations().clear();
+			getPropertyAssociations().addAll((Collection<? extends PropertyAssociation>) newValue);
+			return;
+		}
+		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+		case Aadlv3Package.PRIMITIVE_TYPE__PROPERTY_ASSOCIATIONS:
+			getPropertyAssociations().clear();
+			return;
+		}
+		super.eUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+		case Aadlv3Package.PRIMITIVE_TYPE__PROPERTY_ASSOCIATIONS:
+			return propertyAssociations != null && !propertyAssociations.isEmpty();
+		}
+		return super.eIsSet(featureID);
 	}
 
 } //PrimitiveTypeImpl

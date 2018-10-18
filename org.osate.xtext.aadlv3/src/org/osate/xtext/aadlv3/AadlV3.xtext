@@ -22,7 +22,7 @@ PropertySet returns av3::PropertySet:
 ;
 
 PrimitiveType returns av3::PrimitiveType:
-	'type' name=ID SEMICOLON;
+	'type' name=ID PropertiesBlock? SEMICOLON;
 
 ComponentInterface returns av3::ComponentInterface:
 	category=ComponentCategory? 'interface'  name=ID ('extends' (InterfaceExtensions)?)? 
@@ -31,7 +31,7 @@ ComponentInterface returns av3::ComponentInterface:
 	'end' SEMICOLON;
 
 fragment InterfaceBody*:
-	'is' (features+=Feature | flows+=FlowPath |  flows+=FlowSource |  flows+=FlowSink | PropertyElement)*
+	'is' (features+=Feature | flows+=FlowPath |  flows+=FlowSource |  flows+=FlowSink | propertyAssociations+=PropertyAssociation)*
 ;
 
 ComponentImplementation returns av3::ComponentImplementation:
@@ -41,7 +41,7 @@ ComponentImplementation returns av3::ComponentImplementation:
 	'end'  SEMICOLON;
 
 fragment ImplementationBody*:
-	'is' (connections+=Connection |connections+=FeatureMapping | components+=Component | paths+= Path | flowAssignments+=FlowAssignment | assignments+=ConfigurationAssignment| PropertyElement)*
+	'is' (connections+=Connection |connections+=FeatureMapping | components+=Component | paths+= Path | flowAssignments+=FlowAssignment | assignments+=ConfigurationAssignment| propertyAssociations+=PropertyAssociation)*
 ;
 
 ComponentConfiguration returns av3::ComponentConfiguration:
@@ -129,14 +129,7 @@ fragment ConfigurationElementBlock *:
 	'is' ( propertyAssociations+=PropertyAssociation | assignments+=ConfigurationAssignment )+;
 
 fragment CurlyConfigurationElementBlock *:
-	'{' (PropertyElement | ConfigurationElement )* '}';
-
-fragment PropertyElement*:
-     propertyAssociations+=PropertyAssociation	
-;
-
-fragment ConfigurationElement *:
-	assignments+=ConfigurationAssignment;
+	'{' (propertyAssociations+=PropertyAssociation | assignments+=ConfigurationAssignment )* '}';
 
 fragment Parameters *:
 	parameterized?='(' (parameters+=ConfigurationParameter (',' parameters+=ConfigurationParameter)*)? ')';
@@ -156,11 +149,11 @@ TypeReference returns av3::TypeReference :
 ;
 
 fragment PropertiesBlock *:
-	'{' PropertyElement* '}';
+	'{' propertyAssociations+=PropertyAssociation* '}';
 
 // to be used for inline nested component implementations 
 fragment NestedComponentImplementationBlock *:
-	 '{' (features+=Feature | connections+=Connection| connections+=FeatureMapping  | components+=Component |  PropertyElement)* '}';
+	 '{' (features+=Feature | connections+=Connection| connections+=FeatureMapping  | components+=Component |  propertyAssociations+=PropertyAssociation)* '}';
 
 
 

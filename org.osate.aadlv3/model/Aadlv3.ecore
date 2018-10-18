@@ -23,7 +23,10 @@
         eType="#//PropertyAssociation" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Type" abstract="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="PrimitiveType" eSuperTypes="#//PackageElement #//Type"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PrimitiveType" eSuperTypes="#//PackageElement #//Type">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="propertyAssociations" upperBound="-1"
+        eType="#//PropertyAssociation" containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ComponentClassifier" abstract="true"
       eSuperTypes="#//PackageElement #//Type">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="category" eType="#//ComponentCategory"/>

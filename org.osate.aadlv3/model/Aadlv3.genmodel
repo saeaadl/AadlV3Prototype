@@ -77,7 +77,9 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ModelElement/propertyAssociations"/>
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//Type"/>
-    <genClasses ecoreClass="Aadlv3.ecore#//PrimitiveType"/>
+    <genClasses ecoreClass="Aadlv3.ecore#//PrimitiveType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//PrimitiveType/propertyAssociations"/>
+    </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//ComponentClassifier">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//ComponentClassifier/category"/>
       <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ComponentClassifier/superClassifiers"/>

@@ -321,13 +321,22 @@ public interface Aadlv3Package extends EPackage {
 	int PRIMITIVE_TYPE__NAME = PACKAGE_ELEMENT__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Property Associations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMITIVE_TYPE__PROPERTY_ASSOCIATIONS = PACKAGE_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Primitive Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRIMITIVE_TYPE_FEATURE_COUNT = PACKAGE_ELEMENT_FEATURE_COUNT + 0;
+	int PRIMITIVE_TYPE_FEATURE_COUNT = PACKAGE_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.ComponentClassifierImpl <em>Component Classifier</em>}' class.
@@ -1624,6 +1633,17 @@ public interface Aadlv3Package extends EPackage {
 	EClass getPrimitiveType();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link org.osate.aadlv3.aadlv3.PrimitiveType#getPropertyAssociations <em>Property Associations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Property Associations</em>'.
+	 * @see org.osate.aadlv3.aadlv3.PrimitiveType#getPropertyAssociations()
+	 * @see #getPrimitiveType()
+	 * @generated
+	 */
+	EReference getPrimitiveType_PropertyAssociations();
+
+	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.ComponentClassifier <em>Component Classifier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2563,6 +2583,14 @@ public interface Aadlv3Package extends EPackage {
 		 * @generated
 		 */
 		EClass PRIMITIVE_TYPE = eINSTANCE.getPrimitiveType();
+
+		/**
+		 * The meta object literal for the '<em><b>Property Associations</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PRIMITIVE_TYPE__PROPERTY_ASSOCIATIONS = eINSTANCE.getPrimitiveType_PropertyAssociations();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.ComponentClassifierImpl <em>Component Classifier</em>}' class.

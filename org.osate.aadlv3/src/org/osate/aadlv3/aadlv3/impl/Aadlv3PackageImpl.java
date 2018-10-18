@@ -491,6 +491,16 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
+	public EReference getPrimitiveType_PropertyAssociations() {
+		return (EReference) primitiveTypeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getComponentClassifier() {
 		return componentClassifierEClass;
 	}
@@ -1276,6 +1286,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		typeEClass = createEClass(TYPE);
 
 		primitiveTypeEClass = createEClass(PRIMITIVE_TYPE);
+		createEReference(primitiveTypeEClass, PRIMITIVE_TYPE__PROPERTY_ASSOCIATIONS);
 
 		componentClassifierEClass = createEClass(COMPONENT_CLASSIFIER);
 		createEAttribute(componentClassifierEClass, COMPONENT_CLASSIFIER__CATEGORY);
@@ -1464,6 +1475,9 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 
 		initEClass(primitiveTypeEClass, PrimitiveType.class, "PrimitiveType", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPrimitiveType_PropertyAssociations(), this.getPropertyAssociation(), null,
+				"propertyAssociations", null, 0, -1, PrimitiveType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(componentClassifierEClass, ComponentClassifier.class, "ComponentClassifier", IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
