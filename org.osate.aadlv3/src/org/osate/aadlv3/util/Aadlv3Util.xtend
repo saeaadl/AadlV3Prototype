@@ -123,12 +123,12 @@ class Aadlv3Util {
 	private static def void addSuperComponentInterfaces(ComponentInterface cl,
 		HashSet<ComponentInterface> set) {
 		if(cl.superClassifiers.empty) return
-		val supercls = cl.superClassifiers.map[scc|scc.type as ComponentInterface]
+		val supercls = cl.superClassifiers.map[scc|scc.type ]
 		supercls.forEach [ scl |
-			if (scl !== null) set.add(scl)
+			if (scl instanceof ComponentInterface) set.add(scl )
 		]
 		supercls.forEach [ scl |
-			if (scl !== null) addSuperComponentInterfaces(scl, set)
+			if (scl instanceof ComponentInterface) addSuperComponentInterfaces(scl, set)
 		]
 	}
 
@@ -147,7 +147,7 @@ class Aadlv3Util {
 	private static def void addSuperComponentImplementations(ComponentClassifier cl,
 		HashSet<ComponentImplementation> set) {
 		if(cl.superClassifiers.empty) return
-		val supercls = cl.superClassifiers.map[scc|scc.type as ComponentClassifier]
+		val supercls = cl.superClassifiers.map[scc|scc.type ]
 		supercls.forEach [ scl |
 			if(scl instanceof ComponentImplementation) {
 				set.add(scl)
@@ -155,7 +155,7 @@ class Aadlv3Util {
 		]
 		supercls.forEach [ scl |
 			if(scl instanceof ComponentImplementation || scl instanceof ComponentConfiguration) {
-				addSuperComponentImplementations(scl, set)
+				addSuperComponentImplementations(scl as ComponentClassifier, set)
 			}
 		]
 	}

@@ -1,0 +1,18 @@
+package PackC 
+import packcc.*;
+import packccc.*;
+	type tt;
+	package packcc 
+		type tt;
+	end;
+	package packccc 
+		type tt;
+	end;
+	interface mine
+	is
+		name : in feature PackP.Q.date;
+		surname : in feature tt ;
+		sig : in feature packcc.tt;
+	end ;
+	
+end ;

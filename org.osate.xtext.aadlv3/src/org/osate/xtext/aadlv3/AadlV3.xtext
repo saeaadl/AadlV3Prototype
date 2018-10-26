@@ -36,7 +36,7 @@ fragment InterfaceBody*:
 
 ComponentImplementation returns av3::ComponentImplementation:
 	category=ComponentCategory name=QualifiedName 
-	('extends' (ClassifierExtensions)?)? 
+	('extends' (ImplementationExtensions)?)? 
 	 ImplementationBody? 
 	'end'  SEMICOLON;
 
@@ -140,12 +140,16 @@ ConfigurationParameter returns av3::ConfigurationParameter:
 
 // reference objects for classifiers including configurations with parameter
 
-ReversableTypeReference returns av3::TypeReference:
-	reverse?='reverse'? type=[av3::Type|QualifiedName] ConfigurationActuals? ;
+ReversableInterfaceReference returns av3::TypeReference:
+	reverse?='reverse'? type=[av3::ComponentInterface|QualifiedName] ;
 
 TypeReference returns av3::TypeReference :  
 	 type=[av3::Type|QualifiedName]
 	  ConfigurationActuals?
+;
+
+ImplementationReference returns av3::TypeReference :  
+	 type=[av3::ComponentImplementation|QualifiedName]
 ;
 
 fragment PropertiesBlock *:
@@ -161,10 +165,14 @@ fragment ClassifierExtensions *:
 	superClassifiers +=TypeReference
 	("," superClassifiers +=TypeReference)*;
 
+fragment ImplementationExtensions *:
+	superClassifiers +=ImplementationReference
+	("," superClassifiers +=ImplementationReference)*;
+
 
 fragment InterfaceExtensions *:
-	superClassifiers +=ReversableTypeReference
-	("," superClassifiers +=ReversableTypeReference)*;
+	superClassifiers +=ReversableInterfaceReference
+	("," superClassifiers +=ReversableInterfaceReference)*;
 
 
 fragment ConfigurationActuals*:
@@ -214,7 +222,7 @@ ConnectionType returns av3::AssociationType:
 	'feature'| 'bus' | 'binding' | 'interface'| 'port'| 'data' ;
 
 MappingType returns av3::AssociationType:
-	'mapping' ;
+	'map' ;
 
 FlowPathType returns av3::AssociationType:
 	FlowPathKeywords ;

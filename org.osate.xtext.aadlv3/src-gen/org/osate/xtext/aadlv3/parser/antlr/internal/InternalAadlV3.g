@@ -832,11 +832,11 @@ ruleComponentImplementation returns [EObject current=null]
 					if ($current==null) {
 						$current = createModelElement(grammarAccess.getComponentImplementationRule());
 					}
-					newCompositeNode(grammarAccess.getComponentImplementationAccess().getClassifierExtensionsParserRuleCall_2_1());
+					newCompositeNode(grammarAccess.getComponentImplementationAccess().getImplementationExtensionsParserRuleCall_2_1());
 				}
-				this_ClassifierExtensions_3=ruleClassifierExtensions[$current]
+				this_ImplementationExtensions_3=ruleImplementationExtensions[$current]
 				{
-					$current = $this_ClassifierExtensions_3.current;
+					$current = $this_ImplementationExtensions_3.current;
 					afterParserOrEnumRuleCall();
 				}
 			)?
@@ -2873,15 +2873,15 @@ ruleConfigurationParameter returns [EObject current=null]
 	)
 ;
 
-// Entry rule entryRuleReversableTypeReference
-entryRuleReversableTypeReference returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getReversableTypeReferenceRule()); }
-	iv_ruleReversableTypeReference=ruleReversableTypeReference
-	{ $current=$iv_ruleReversableTypeReference.current; }
+// Entry rule entryRuleReversableInterfaceReference
+entryRuleReversableInterfaceReference returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getReversableInterfaceReferenceRule()); }
+	iv_ruleReversableInterfaceReference=ruleReversableInterfaceReference
+	{ $current=$iv_ruleReversableInterfaceReference.current; }
 	EOF;
 
-// Rule ReversableTypeReference
-ruleReversableTypeReference returns [EObject current=null]
+// Rule ReversableInterfaceReference
+ruleReversableInterfaceReference returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -2893,11 +2893,11 @@ ruleReversableTypeReference returns [EObject current=null]
 			(
 				lv_reverse_0_0='reverse'
 				{
-					newLeafNode(lv_reverse_0_0, grammarAccess.getReversableTypeReferenceAccess().getReverseReverseKeyword_0_0());
+					newLeafNode(lv_reverse_0_0, grammarAccess.getReversableInterfaceReferenceAccess().getReverseReverseKeyword_0_0());
 				}
 				{
 					if ($current==null) {
-						$current = createModelElement(grammarAccess.getReversableTypeReferenceRule());
+						$current = createModelElement(grammarAccess.getReversableInterfaceReferenceRule());
 					}
 					setWithLastConsumed($current, "reverse", true, "reverse");
 				}
@@ -2907,11 +2907,11 @@ ruleReversableTypeReference returns [EObject current=null]
 			(
 				{
 					if ($current==null) {
-						$current = createModelElement(grammarAccess.getReversableTypeReferenceRule());
+						$current = createModelElement(grammarAccess.getReversableInterfaceReferenceRule());
 					}
 				}
 				{
-					newCompositeNode(grammarAccess.getReversableTypeReferenceAccess().getTypeTypeCrossReference_1_0());
+					newCompositeNode(grammarAccess.getReversableInterfaceReferenceAccess().getTypeComponentInterfaceCrossReference_1_0());
 				}
 				ruleQualifiedName
 				{
@@ -2919,19 +2919,6 @@ ruleReversableTypeReference returns [EObject current=null]
 				}
 			)
 		)
-		(
-			{
-				if ($current==null) {
-					$current = createModelElement(grammarAccess.getReversableTypeReferenceRule());
-				}
-				newCompositeNode(grammarAccess.getReversableTypeReferenceAccess().getConfigurationActualsParserRuleCall_2());
-			}
-			this_ConfigurationActuals_2=ruleConfigurationActuals[$current]
-			{
-				$current = $this_ConfigurationActuals_2.current;
-				afterParserOrEnumRuleCall();
-			}
-		)?
 	)
 ;
 
@@ -2980,6 +2967,39 @@ ruleTypeReference returns [EObject current=null]
 				afterParserOrEnumRuleCall();
 			}
 		)?
+	)
+;
+
+// Entry rule entryRuleImplementationReference
+entryRuleImplementationReference returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getImplementationReferenceRule()); }
+	iv_ruleImplementationReference=ruleImplementationReference
+	{ $current=$iv_ruleImplementationReference.current; }
+	EOF;
+
+// Rule ImplementationReference
+ruleImplementationReference returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getImplementationReferenceRule());
+				}
+			}
+			{
+				newCompositeNode(grammarAccess.getImplementationReferenceAccess().getTypeComponentImplementationCrossReference_0());
+			}
+			ruleQualifiedName
+			{
+				afterParserOrEnumRuleCall();
+			}
+		)
 	)
 ;
 
@@ -3203,6 +3223,63 @@ ruleClassifierExtensions[EObject in_current]  returns [EObject current=in_curren
 ;
 
 
+// Rule ImplementationExtensions
+ruleImplementationExtensions[EObject in_current]  returns [EObject current=in_current]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getImplementationExtensionsAccess().getSuperClassifiersImplementationReferenceParserRuleCall_0_0());
+				}
+				lv_superClassifiers_0_0=ruleImplementationReference
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getImplementationExtensionsRule());
+					}
+					add(
+						$current,
+						"superClassifiers",
+						lv_superClassifiers_0_0,
+						"org.osate.xtext.aadlv3.AadlV3.ImplementationReference");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		(
+			otherlv_1=','
+			{
+				newLeafNode(otherlv_1, grammarAccess.getImplementationExtensionsAccess().getCommaKeyword_1_0());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getImplementationExtensionsAccess().getSuperClassifiersImplementationReferenceParserRuleCall_1_1_0());
+					}
+					lv_superClassifiers_2_0=ruleImplementationReference
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getImplementationExtensionsRule());
+						}
+						add(
+							$current,
+							"superClassifiers",
+							lv_superClassifiers_2_0,
+							"org.osate.xtext.aadlv3.AadlV3.ImplementationReference");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)*
+	)
+;
+
+
 // Rule InterfaceExtensions
 ruleInterfaceExtensions[EObject in_current]  returns [EObject current=in_current]
 @init {
@@ -3215,9 +3292,9 @@ ruleInterfaceExtensions[EObject in_current]  returns [EObject current=in_current
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getInterfaceExtensionsAccess().getSuperClassifiersReversableTypeReferenceParserRuleCall_0_0());
+					newCompositeNode(grammarAccess.getInterfaceExtensionsAccess().getSuperClassifiersReversableInterfaceReferenceParserRuleCall_0_0());
 				}
-				lv_superClassifiers_0_0=ruleReversableTypeReference
+				lv_superClassifiers_0_0=ruleReversableInterfaceReference
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getInterfaceExtensionsRule());
@@ -3226,7 +3303,7 @@ ruleInterfaceExtensions[EObject in_current]  returns [EObject current=in_current
 						$current,
 						"superClassifiers",
 						lv_superClassifiers_0_0,
-						"org.osate.xtext.aadlv3.AadlV3.ReversableTypeReference");
+						"org.osate.xtext.aadlv3.AadlV3.ReversableInterfaceReference");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -3239,9 +3316,9 @@ ruleInterfaceExtensions[EObject in_current]  returns [EObject current=in_current
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInterfaceExtensionsAccess().getSuperClassifiersReversableTypeReferenceParserRuleCall_1_1_0());
+						newCompositeNode(grammarAccess.getInterfaceExtensionsAccess().getSuperClassifiersReversableInterfaceReferenceParserRuleCall_1_1_0());
 					}
-					lv_superClassifiers_2_0=ruleReversableTypeReference
+					lv_superClassifiers_2_0=ruleReversableInterfaceReference
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInterfaceExtensionsRule());
@@ -3250,7 +3327,7 @@ ruleInterfaceExtensions[EObject in_current]  returns [EObject current=in_current
 							$current,
 							"superClassifiers",
 							lv_superClassifiers_2_0,
-							"org.osate.xtext.aadlv3.AadlV3.ReversableTypeReference");
+							"org.osate.xtext.aadlv3.AadlV3.ReversableInterfaceReference");
 						afterParserOrEnumRuleCall();
 					}
 				)
@@ -3948,10 +4025,10 @@ ruleMappingType returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleTok
 @after {
 	leaveRule();
 }:
-	kw='mapping'
+	kw='map'
 	{
 		$current.merge(kw);
-		newLeafNode(kw, grammarAccess.getMappingTypeAccess().getMappingKeyword());
+		newLeafNode(kw, grammarAccess.getMappingTypeAccess().getMapKeyword());
 	}
 ;
 

@@ -1,7 +1,6 @@
-package PackP.Q 
-import bested.*;
+package PackP 
+import PackP.*;
 	type date ;
-	type signal;
 	package bested  
 		type signal ;
 	end ;
@@ -9,7 +8,7 @@ import bested.*;
 	signal: feature;
 	end;
 	interface main extends nnested is
-	p1: feature signal;
+	p1: feature Q.signal;
 	end;
 	
 end ;

@@ -1,0 +1,9 @@
+package PackF 
+import PackF.F.*;
+//	type date ;
+	
+	interface main is
+	p1: feature date;
+	end;
+	
+end ;

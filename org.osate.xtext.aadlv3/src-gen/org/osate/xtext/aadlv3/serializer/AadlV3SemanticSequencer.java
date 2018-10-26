@@ -93,7 +93,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 				sequence_ClassifierExtensions_ComponentConfiguration_ConfigurationElementBlock_Parameters(context, (ComponentConfiguration) semanticObject); 
 				return; 
 			case Aadlv3Package.COMPONENT_IMPLEMENTATION:
-				sequence_ClassifierExtensions_ComponentImplementation_ImplementationBody(context, (ComponentImplementation) semanticObject); 
+				sequence_ComponentImplementation_ImplementationBody_ImplementationExtensions(context, (ComponentImplementation) semanticObject); 
 				return; 
 			case Aadlv3Package.COMPONENT_INTERFACE:
 				sequence_ComponentInterface_InterfaceBody_InterfaceExtensions(context, (ComponentInterface) semanticObject); 
@@ -160,12 +160,16 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 				sequence_PropertyValue(context, (PropertyValue) semanticObject); 
 				return; 
 			case Aadlv3Package.TYPE_REFERENCE:
-				if (rule == grammarAccess.getReversableTypeReferenceRule()) {
-					sequence_ConfigurationActuals_ReversableTypeReference(context, (TypeReference) semanticObject); 
+				if (rule == grammarAccess.getTypeReferenceRule()) {
+					sequence_ConfigurationActuals_TypeReference(context, (TypeReference) semanticObject); 
 					return; 
 				}
-				else if (rule == grammarAccess.getTypeReferenceRule()) {
-					sequence_ConfigurationActuals_TypeReference(context, (TypeReference) semanticObject); 
+				else if (rule == grammarAccess.getImplementationReferenceRule()) {
+					sequence_ImplementationReference(context, (TypeReference) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getReversableInterfaceReferenceRule()) {
+					sequence_ReversableInterfaceReference(context, (TypeReference) semanticObject); 
 					return; 
 				}
 				else break;
@@ -203,7 +207,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     (
 	 *         category=ComponentCategory 
 	 *         name=QualifiedName 
-	 *         (superClassifiers+=TypeReference superClassifiers+=TypeReference*)? 
+	 *         (superClassifiers+=ImplementationReference superClassifiers+=ImplementationReference*)? 
 	 *         (
 	 *             connections+=Connection | 
 	 *             connections+=FeatureMapping | 
@@ -215,7 +219,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *         )*
 	 *     )
 	 */
-	protected void sequence_ClassifierExtensions_ComponentImplementation_ImplementationBody(ISerializationContext context, ComponentImplementation semanticObject) {
+	protected void sequence_ComponentImplementation_ImplementationBody_ImplementationExtensions(ISerializationContext context, ComponentImplementation semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -228,7 +232,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     (
 	 *         category=ComponentCategory? 
 	 *         name=ID 
-	 *         (superClassifiers+=ReversableTypeReference superClassifiers+=ReversableTypeReference*)? 
+	 *         (superClassifiers+=ReversableInterfaceReference superClassifiers+=ReversableInterfaceReference*)? 
 	 *         (features+=Feature | flows+=FlowPath | flows+=FlowSource | flows+=FlowSink | propertyAssociations+=PropertyAssociation)* 
 	 *         (useProperties+=[PropertySet|QualifiedName] useProperties+=[PropertySet|QualifiedName]*)?
 	 *     )
@@ -273,18 +277,6 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 		feeder.accept(grammarAccess.getConfigurationActualAccess().getParameterConfigurationParameterIDTerminalRuleCall_0_0_1(), semanticObject.eGet(Aadlv3Package.Literals.CONFIGURATION_ACTUAL__PARAMETER, false));
 		feeder.accept(grammarAccess.getConfigurationActualAccess().getValueTypeReferenceParserRuleCall_2_0(), semanticObject.getValue());
 		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     ReversableTypeReference returns TypeReference
-	 *
-	 * Constraint:
-	 *     (reverse?='reverse'? type=[Type|QualifiedName] (actuals+=ConfigurationActual actuals+=ConfigurationActual*)?)
-	 */
-	protected void sequence_ConfigurationActuals_ReversableTypeReference(ISerializationContext context, TypeReference semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -422,6 +414,24 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 */
 	protected void sequence_FlowSource_PropertiesBlock(ISerializationContext context, Association semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     ImplementationReference returns TypeReference
+	 *
+	 * Constraint:
+	 *     type=[ComponentImplementation|QualifiedName]
+	 */
+	protected void sequence_ImplementationReference(ISerializationContext context, TypeReference semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, Aadlv3Package.Literals.TYPE_REFERENCE__TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, Aadlv3Package.Literals.TYPE_REFERENCE__TYPE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getImplementationReferenceAccess().getTypeComponentImplementationQualifiedNameParserRuleCall_0_1(), semanticObject.eGet(Aadlv3Package.Literals.TYPE_REFERENCE__TYPE, false));
+		feeder.finish();
 	}
 	
 	
@@ -614,6 +624,18 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 		feeder.accept(grammarAccess.getPropertyAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
 		feeder.accept(grammarAccess.getPropertyAccess().getTypeTypeQualifiedNameParserRuleCall_2_0_1(), semanticObject.eGet(Aadlv3Package.Literals.PROPERTY__TYPE, false));
 		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     ReversableInterfaceReference returns TypeReference
+	 *
+	 * Constraint:
+	 *     (reverse?='reverse'? type=[ComponentInterface|QualifiedName])
+	 */
+	protected void sequence_ReversableInterfaceReference(ISerializationContext context, TypeReference semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

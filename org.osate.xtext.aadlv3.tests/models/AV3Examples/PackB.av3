@@ -5,6 +5,7 @@ package PackB
 	is
 		name : in feature PackA.person;
 		surname : in feature person ;
+		sig : in feature signal;
 	end ;
 	
 end ;

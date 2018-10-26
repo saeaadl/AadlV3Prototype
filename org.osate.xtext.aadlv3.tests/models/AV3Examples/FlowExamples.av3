@@ -17,12 +17,12 @@ package FlowExamples
 	
 	component sensor.i extends sensor is
 		sub1: thread sense;
-		upmap: mapping outp -> sub1.p1 ;
+		upmap: map outp -> sub1.p1 ;
 		reading => flow upmap -> sub1.reading;
 	end ;
 	component actuator.i extends actuator is
 		sub2: thread actuate;
-		downmap: mapping inp -> sub2.p1;
+		downmap: map inp -> sub2.p1;
 		action=> flow sub2.taction;
 	end ;
 	thread interface sense  is
@@ -43,9 +43,9 @@ package FlowExamples
 	process control.impl is
 		dofilter: thread filter;
 		docompute: thread compute;
-		extin: mapping insignal -> dofilter.insignal;
+		extin: map insignal -> dofilter.insignal;
 		ftoc: port dofilter.outsignal -> docompute.insignal;
-		extout: mapping outaction -> docompute.outsignal ;
+		extout: map outaction -> docompute.outsignal ;
 		processflow => flow dofilter.filterpath -> ftoc -> docompute.computepath ;
 	end;
 	
@@ -88,7 +88,7 @@ package FlowExamples
 	cpu: processor x86;
 	mybus: bus canbus;
 	busconn: bus cpu.canbusaccess -> mybus.canbusaccess;
-	extbusaccess: mapping canbusaccess -> mybus.canbusaccess;
+	extbusaccess: map canbusaccess -> mybus.canbusaccess;
 	end;
 	
 end;

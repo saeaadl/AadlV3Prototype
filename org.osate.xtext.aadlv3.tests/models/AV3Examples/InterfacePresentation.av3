@@ -100,8 +100,8 @@ system  sys2.i1 extends sys2
 	is
 	sub1 : system sub ;
   // single output to the two temperature is
-			conn1 : mapping L1.temperature ->sub1.outp  ;
-			conn2 : mapping L2.temperature -> sub1.outp ;
+			conn1 : map L1.temperature ->sub1.outp  ;
+			conn2 : map L2.temperature -> sub1.outp ;
 end ;
 system  sys2.i2 extends sys2
 	is
@@ -109,8 +109,8 @@ system  sys2.i2 extends sys2
 	sub2 : system sub ;
 	
   // different outputs to different temperature is
-	conn1 : mapping L1.temperature -> sub1.outp ;
-	conn2 : mapping L2.temperature -> sub2.outp ;
+	conn1 : map L1.temperature -> sub1.outp ;
+	conn2 : map L2.temperature -> sub2.outp ;
 end ;
 
 
@@ -120,7 +120,7 @@ system  sys3.i
 	is
 	sub1 : system sub ;
 	
-	conn1 : mapping speed -> sub1.outp ;
+	conn1 : map speed -> sub1.outp ;
 end ;
 
 
