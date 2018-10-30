@@ -37,6 +37,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 
 	public static val DUPLICATE_NAMES = 'DuplicateNames'
 	public static val ONLY_SUPER_INTERFACES = 'OnlySuperInterfaces'
+	public static val NO_SUPER_INTERFACES = 'NoSuperInterfaces'
 	public static val NO_SUPER_CONFIGURATIONS = 'NoSuperConfigurations'
 	public static val BAD_BINDING_POINT_DIRECTION = 'BadBindingPointDirection'
 	public static val BAD_BUS_ACCESS_DIRECTION = 'BadBusAccessDirection'
@@ -292,15 +293,21 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 
 
 	def checkComponentInterfaceExtensions(ComponentInterface cif) {
-		if (!cif.allComponentClassifiers.forall[scif|scif instanceof ComponentInterface]) {
+		val sif = cif.superClassifiers;
+		if (!cif.superClassifiers.forall[scif|scif.type instanceof ComponentInterface]) {
 			error('Interface extensions must be interfaces', cif,
 				Aadlv3Package.Literals.COMPONENT_CLASSIFIER__SUPER_CLASSIFIERS, ONLY_SUPER_INTERFACES)
 		}
 	}
 
 	def checkComponentImplementationExtensions(ComponentImplementation cim) {
-		if (cim.allComponentClassifiers.forall[scil|scil instanceof ComponentConfiguration]) {
-			error('Implementation extensions cannot be configurations', cim,
+		val allcl = cim.superClassifiers
+		if (allcl.exists[scil|scil.type instanceof ComponentInterface]) {
+			error('Implementations cannot extend interfaces', cim,
+				Aadlv3Package.Literals.COMPONENT_CLASSIFIER__SUPER_CLASSIFIERS, NO_SUPER_INTERFACES)
+		}
+		if (allcl.exists[scil|scil.type instanceof ComponentConfiguration]) {
+			error('Implementations cannot extend configurations', cim,
 				Aadlv3Package.Literals.COMPONENT_CLASSIFIER__SUPER_CLASSIFIERS, NO_SUPER_CONFIGURATIONS)
 		}
 	}
