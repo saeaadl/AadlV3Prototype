@@ -30,6 +30,7 @@
 'package'=32
 'path'=60
 'port'=24
+'private'=64
 'process'=18
 'processor'=19
 'properties'=35
@@ -38,8 +39,8 @@
 'read'=61
 'readwrite'=63
 'requires'=30
-'reverse'=65
-'sampled'=64
+'reverse'=66
+'sampled'=65
 'sink'=59
 'source'=58
 'subprogram'=22
@@ -115,3 +116,4 @@ T__62=62
 T__63=63
 T__64=64
 T__65=65
+T__66=66

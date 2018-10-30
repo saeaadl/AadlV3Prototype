@@ -3,6 +3,9 @@ package FlowExamples
 // shared data component
 
 	type systemstate;
+	type int;
+	property Period int;
+	property Size int;
 	
 	interface actuator is
 		inp: in port;
@@ -53,6 +56,7 @@ package FlowExamples
 	insignal : in port;
 	outsignal : out port;
 	filterpath: flow path insignal -> outsignal;
+	#Period => 20 ;
 	end;
 	
 	thread interface compute is

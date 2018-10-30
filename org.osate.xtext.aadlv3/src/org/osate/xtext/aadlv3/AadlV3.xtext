@@ -25,7 +25,7 @@ PrimitiveType returns av3::PrimitiveType:
 	'type' name=ID PropertiesBlock? SEMICOLON;
 
 ComponentInterface returns av3::ComponentInterface:
-	category=ComponentCategory? 'interface'  name=ID ('extends' (InterfaceExtensions)?)? 
+	private?='private' category=ComponentCategory? 'interface'  name=ID ('extends' (InterfaceExtensions)?)? 
 	 InterfaceBody?
 	('use''properties' useProperties += [av3::PropertySet|QualifiedName] (',' useProperties += [av3::PropertySet|QualifiedName])* SEMICOLON)?
 	'end' SEMICOLON;
@@ -35,7 +35,7 @@ fragment InterfaceBody*:
 ;
 
 ComponentImplementation returns av3::ComponentImplementation:
-	category=ComponentCategory name=QualifiedName 
+	private?='private' category=ComponentCategory name=QualifiedName 
 	('extends' (ImplementationExtensions)?)? 
 	 ImplementationBody? 
 	'end'  SEMICOLON;
@@ -45,7 +45,7 @@ fragment ImplementationBody*:
 ;
 
 ComponentConfiguration returns av3::ComponentConfiguration:
-	'configuration' name=QualifiedName  
+	private?='private' 'configuration' name=QualifiedName  
 	Parameters?
 	'extends' ClassifierExtensions ConfigurationElementBlock? 
 	'end'  SEMICOLON;

@@ -32,15 +32,15 @@ import org.osate.xtext.aadlv3.services.AadlV3GrammarAccess;
 public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected AadlV3GrammarAccess grammarAccess;
-	protected AbstractElementAlias match_ComponentImplementation_ExtendsKeyword_2_0_q;
-	protected AbstractElementAlias match_ComponentInterface_ExtendsKeyword_3_0_q;
+	protected AbstractElementAlias match_ComponentImplementation_ExtendsKeyword_3_0_q;
+	protected AbstractElementAlias match_ComponentInterface_ExtendsKeyword_4_0_q;
 	protected AbstractElementAlias match_Workingset_SEMICOLONParserRuleCall_5_q;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (AadlV3GrammarAccess) access;
-		match_ComponentImplementation_ExtendsKeyword_2_0_q = new TokenAlias(false, true, grammarAccess.getComponentImplementationAccess().getExtendsKeyword_2_0());
-		match_ComponentInterface_ExtendsKeyword_3_0_q = new TokenAlias(false, true, grammarAccess.getComponentInterfaceAccess().getExtendsKeyword_3_0());
+		match_ComponentImplementation_ExtendsKeyword_3_0_q = new TokenAlias(false, true, grammarAccess.getComponentImplementationAccess().getExtendsKeyword_3_0());
+		match_ComponentInterface_ExtendsKeyword_4_0_q = new TokenAlias(false, true, grammarAccess.getComponentInterfaceAccess().getExtendsKeyword_4_0());
 		match_Workingset_SEMICOLONParserRuleCall_5_q = new TokenAlias(false, true, grammarAccess.getWorkingsetAccess().getSEMICOLONParserRuleCall_5());
 	}
 	
@@ -78,10 +78,10 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if (match_ComponentImplementation_ExtendsKeyword_2_0_q.equals(syntax))
-				emit_ComponentImplementation_ExtendsKeyword_2_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_ComponentInterface_ExtendsKeyword_3_0_q.equals(syntax))
-				emit_ComponentInterface_ExtendsKeyword_3_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			if (match_ComponentImplementation_ExtendsKeyword_3_0_q.equals(syntax))
+				emit_ComponentImplementation_ExtendsKeyword_3_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_ComponentInterface_ExtendsKeyword_4_0_q.equals(syntax))
+				emit_ComponentInterface_ExtendsKeyword_4_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Workingset_SEMICOLONParserRuleCall_5_q.equals(syntax))
 				emit_Workingset_SEMICOLONParserRuleCall_5_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
@@ -101,7 +101,7 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     name=QualifiedName (ambiguity) 'is' paths+=Path
 	 *     name=QualifiedName (ambiguity) 'is' propertyAssociations+=PropertyAssociation
 	 */
-	protected void emit_ComponentImplementation_ExtendsKeyword_2_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_ComponentImplementation_ExtendsKeyword_3_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -116,7 +116,7 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     name=ID (ambiguity) 'is' flows+=FlowSource
 	 *     name=ID (ambiguity) 'is' propertyAssociations+=PropertyAssociation
 	 */
-	protected void emit_ComponentInterface_ExtendsKeyword_3_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_ComponentInterface_ExtendsKeyword_4_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

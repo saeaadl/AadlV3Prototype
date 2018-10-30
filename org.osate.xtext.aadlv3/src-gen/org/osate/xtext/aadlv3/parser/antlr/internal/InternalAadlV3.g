@@ -510,10 +510,24 @@ ruleComponentInterface returns [EObject current=null]
 	(
 		(
 			(
+				lv_private_0_0='private'
 				{
-					newCompositeNode(grammarAccess.getComponentInterfaceAccess().getCategoryComponentCategoryParserRuleCall_0_0());
+					newLeafNode(lv_private_0_0, grammarAccess.getComponentInterfaceAccess().getPrivatePrivateKeyword_0_0());
 				}
-				lv_category_0_0=ruleComponentCategory
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getComponentInterfaceRule());
+					}
+					setWithLastConsumed($current, "private", true, "private");
+				}
+			)
+		)
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getComponentInterfaceAccess().getCategoryComponentCategoryParserRuleCall_1_0());
+				}
+				lv_category_1_0=ruleComponentCategory
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getComponentInterfaceRule());
@@ -521,21 +535,21 @@ ruleComponentInterface returns [EObject current=null]
 					set(
 						$current,
 						"category",
-						lv_category_0_0,
+						lv_category_1_0,
 						"org.osate.xtext.aadlv3.AadlV3.ComponentCategory");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)?
-		otherlv_1='interface'
+		otherlv_2='interface'
 		{
-			newLeafNode(otherlv_1, grammarAccess.getComponentInterfaceAccess().getInterfaceKeyword_1());
+			newLeafNode(otherlv_2, grammarAccess.getComponentInterfaceAccess().getInterfaceKeyword_2());
 		}
 		(
 			(
-				lv_name_2_0=RULE_ID
+				lv_name_3_0=RULE_ID
 				{
-					newLeafNode(lv_name_2_0, grammarAccess.getComponentInterfaceAccess().getNameIDTerminalRuleCall_2_0());
+					newLeafNode(lv_name_3_0, grammarAccess.getComponentInterfaceAccess().getNameIDTerminalRuleCall_3_0());
 				}
 				{
 					if ($current==null) {
@@ -544,26 +558,26 @@ ruleComponentInterface returns [EObject current=null]
 					setWithLastConsumed(
 						$current,
 						"name",
-						lv_name_2_0,
+						lv_name_3_0,
 						"org.eclipse.xtext.common.Terminals.ID");
 				}
 			)
 		)
 		(
-			otherlv_3='extends'
+			otherlv_4='extends'
 			{
-				newLeafNode(otherlv_3, grammarAccess.getComponentInterfaceAccess().getExtendsKeyword_3_0());
+				newLeafNode(otherlv_4, grammarAccess.getComponentInterfaceAccess().getExtendsKeyword_4_0());
 			}
 			(
 				{
 					if ($current==null) {
 						$current = createModelElement(grammarAccess.getComponentInterfaceRule());
 					}
-					newCompositeNode(grammarAccess.getComponentInterfaceAccess().getInterfaceExtensionsParserRuleCall_3_1());
+					newCompositeNode(grammarAccess.getComponentInterfaceAccess().getInterfaceExtensionsParserRuleCall_4_1());
 				}
-				this_InterfaceExtensions_4=ruleInterfaceExtensions[$current]
+				this_InterfaceExtensions_5=ruleInterfaceExtensions[$current]
 				{
-					$current = $this_InterfaceExtensions_4.current;
+					$current = $this_InterfaceExtensions_5.current;
 					afterParserOrEnumRuleCall();
 				}
 			)?
@@ -573,22 +587,22 @@ ruleComponentInterface returns [EObject current=null]
 				if ($current==null) {
 					$current = createModelElement(grammarAccess.getComponentInterfaceRule());
 				}
-				newCompositeNode(grammarAccess.getComponentInterfaceAccess().getInterfaceBodyParserRuleCall_4());
+				newCompositeNode(grammarAccess.getComponentInterfaceAccess().getInterfaceBodyParserRuleCall_5());
 			}
-			this_InterfaceBody_5=ruleInterfaceBody[$current]
+			this_InterfaceBody_6=ruleInterfaceBody[$current]
 			{
-				$current = $this_InterfaceBody_5.current;
+				$current = $this_InterfaceBody_6.current;
 				afterParserOrEnumRuleCall();
 			}
 		)?
 		(
-			otherlv_6='use'
+			otherlv_7='use'
 			{
-				newLeafNode(otherlv_6, grammarAccess.getComponentInterfaceAccess().getUseKeyword_5_0());
+				newLeafNode(otherlv_7, grammarAccess.getComponentInterfaceAccess().getUseKeyword_6_0());
 			}
-			otherlv_7='properties'
+			otherlv_8='properties'
 			{
-				newLeafNode(otherlv_7, grammarAccess.getComponentInterfaceAccess().getPropertiesKeyword_5_1());
+				newLeafNode(otherlv_8, grammarAccess.getComponentInterfaceAccess().getPropertiesKeyword_6_1());
 			}
 			(
 				(
@@ -598,7 +612,7 @@ ruleComponentInterface returns [EObject current=null]
 						}
 					}
 					{
-						newCompositeNode(grammarAccess.getComponentInterfaceAccess().getUsePropertiesPropertySetCrossReference_5_2_0());
+						newCompositeNode(grammarAccess.getComponentInterfaceAccess().getUsePropertiesPropertySetCrossReference_6_2_0());
 					}
 					ruleQualifiedName
 					{
@@ -607,9 +621,9 @@ ruleComponentInterface returns [EObject current=null]
 				)
 			)
 			(
-				otherlv_9=','
+				otherlv_10=','
 				{
-					newLeafNode(otherlv_9, grammarAccess.getComponentInterfaceAccess().getCommaKeyword_5_3_0());
+					newLeafNode(otherlv_10, grammarAccess.getComponentInterfaceAccess().getCommaKeyword_6_3_0());
 				}
 				(
 					(
@@ -619,7 +633,7 @@ ruleComponentInterface returns [EObject current=null]
 							}
 						}
 						{
-							newCompositeNode(grammarAccess.getComponentInterfaceAccess().getUsePropertiesPropertySetCrossReference_5_3_1_0());
+							newCompositeNode(grammarAccess.getComponentInterfaceAccess().getUsePropertiesPropertySetCrossReference_6_3_1_0());
 						}
 						ruleQualifiedName
 						{
@@ -629,19 +643,19 @@ ruleComponentInterface returns [EObject current=null]
 				)
 			)*
 			{
-				newCompositeNode(grammarAccess.getComponentInterfaceAccess().getSEMICOLONParserRuleCall_5_4());
+				newCompositeNode(grammarAccess.getComponentInterfaceAccess().getSEMICOLONParserRuleCall_6_4());
 			}
 			ruleSEMICOLON
 			{
 				afterParserOrEnumRuleCall();
 			}
 		)?
-		otherlv_12='end'
+		otherlv_13='end'
 		{
-			newLeafNode(otherlv_12, grammarAccess.getComponentInterfaceAccess().getEndKeyword_6());
+			newLeafNode(otherlv_13, grammarAccess.getComponentInterfaceAccess().getEndKeyword_7());
 		}
 		{
-			newCompositeNode(grammarAccess.getComponentInterfaceAccess().getSEMICOLONParserRuleCall_7());
+			newCompositeNode(grammarAccess.getComponentInterfaceAccess().getSEMICOLONParserRuleCall_8());
 		}
 		ruleSEMICOLON
 		{
@@ -786,10 +800,24 @@ ruleComponentImplementation returns [EObject current=null]
 	(
 		(
 			(
+				lv_private_0_0='private'
 				{
-					newCompositeNode(grammarAccess.getComponentImplementationAccess().getCategoryComponentCategoryParserRuleCall_0_0());
+					newLeafNode(lv_private_0_0, grammarAccess.getComponentImplementationAccess().getPrivatePrivateKeyword_0_0());
 				}
-				lv_category_0_0=ruleComponentCategory
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getComponentImplementationRule());
+					}
+					setWithLastConsumed($current, "private", true, "private");
+				}
+			)
+		)
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getComponentImplementationAccess().getCategoryComponentCategoryParserRuleCall_1_0());
+				}
+				lv_category_1_0=ruleComponentCategory
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getComponentImplementationRule());
@@ -797,7 +825,7 @@ ruleComponentImplementation returns [EObject current=null]
 					set(
 						$current,
 						"category",
-						lv_category_0_0,
+						lv_category_1_0,
 						"org.osate.xtext.aadlv3.AadlV3.ComponentCategory");
 					afterParserOrEnumRuleCall();
 				}
@@ -806,9 +834,9 @@ ruleComponentImplementation returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getComponentImplementationAccess().getNameQualifiedNameParserRuleCall_1_0());
+					newCompositeNode(grammarAccess.getComponentImplementationAccess().getNameQualifiedNameParserRuleCall_2_0());
 				}
-				lv_name_1_0=ruleQualifiedName
+				lv_name_2_0=ruleQualifiedName
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getComponentImplementationRule());
@@ -816,27 +844,27 @@ ruleComponentImplementation returns [EObject current=null]
 					set(
 						$current,
 						"name",
-						lv_name_1_0,
+						lv_name_2_0,
 						"org.osate.xtext.aadlv3.AadlV3.QualifiedName");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)
 		(
-			otherlv_2='extends'
+			otherlv_3='extends'
 			{
-				newLeafNode(otherlv_2, grammarAccess.getComponentImplementationAccess().getExtendsKeyword_2_0());
+				newLeafNode(otherlv_3, grammarAccess.getComponentImplementationAccess().getExtendsKeyword_3_0());
 			}
 			(
 				{
 					if ($current==null) {
 						$current = createModelElement(grammarAccess.getComponentImplementationRule());
 					}
-					newCompositeNode(grammarAccess.getComponentImplementationAccess().getImplementationExtensionsParserRuleCall_2_1());
+					newCompositeNode(grammarAccess.getComponentImplementationAccess().getImplementationExtensionsParserRuleCall_3_1());
 				}
-				this_ImplementationExtensions_3=ruleImplementationExtensions[$current]
+				this_ImplementationExtensions_4=ruleImplementationExtensions[$current]
 				{
-					$current = $this_ImplementationExtensions_3.current;
+					$current = $this_ImplementationExtensions_4.current;
 					afterParserOrEnumRuleCall();
 				}
 			)?
@@ -846,20 +874,20 @@ ruleComponentImplementation returns [EObject current=null]
 				if ($current==null) {
 					$current = createModelElement(grammarAccess.getComponentImplementationRule());
 				}
-				newCompositeNode(grammarAccess.getComponentImplementationAccess().getImplementationBodyParserRuleCall_3());
+				newCompositeNode(grammarAccess.getComponentImplementationAccess().getImplementationBodyParserRuleCall_4());
 			}
-			this_ImplementationBody_4=ruleImplementationBody[$current]
+			this_ImplementationBody_5=ruleImplementationBody[$current]
 			{
-				$current = $this_ImplementationBody_4.current;
+				$current = $this_ImplementationBody_5.current;
 				afterParserOrEnumRuleCall();
 			}
 		)?
-		otherlv_5='end'
+		otherlv_6='end'
 		{
-			newLeafNode(otherlv_5, grammarAccess.getComponentImplementationAccess().getEndKeyword_4());
+			newLeafNode(otherlv_6, grammarAccess.getComponentImplementationAccess().getEndKeyword_5());
 		}
 		{
-			newCompositeNode(grammarAccess.getComponentImplementationAccess().getSEMICOLONParserRuleCall_5());
+			newCompositeNode(grammarAccess.getComponentImplementationAccess().getSEMICOLONParserRuleCall_6());
 		}
 		ruleSEMICOLON
 		{
@@ -1042,16 +1070,30 @@ ruleComponentConfiguration returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		otherlv_0='configuration'
+		(
+			(
+				lv_private_0_0='private'
+				{
+					newLeafNode(lv_private_0_0, grammarAccess.getComponentConfigurationAccess().getPrivatePrivateKeyword_0_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getComponentConfigurationRule());
+					}
+					setWithLastConsumed($current, "private", true, "private");
+				}
+			)
+		)
+		otherlv_1='configuration'
 		{
-			newLeafNode(otherlv_0, grammarAccess.getComponentConfigurationAccess().getConfigurationKeyword_0());
+			newLeafNode(otherlv_1, grammarAccess.getComponentConfigurationAccess().getConfigurationKeyword_1());
 		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getComponentConfigurationAccess().getNameQualifiedNameParserRuleCall_1_0());
+					newCompositeNode(grammarAccess.getComponentConfigurationAccess().getNameQualifiedNameParserRuleCall_2_0());
 				}
-				lv_name_1_0=ruleQualifiedName
+				lv_name_2_0=ruleQualifiedName
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getComponentConfigurationRule());
@@ -1059,7 +1101,7 @@ ruleComponentConfiguration returns [EObject current=null]
 					set(
 						$current,
 						"name",
-						lv_name_1_0,
+						lv_name_2_0,
 						"org.osate.xtext.aadlv3.AadlV3.QualifiedName");
 					afterParserOrEnumRuleCall();
 				}
@@ -1070,27 +1112,27 @@ ruleComponentConfiguration returns [EObject current=null]
 				if ($current==null) {
 					$current = createModelElement(grammarAccess.getComponentConfigurationRule());
 				}
-				newCompositeNode(grammarAccess.getComponentConfigurationAccess().getParametersParserRuleCall_2());
+				newCompositeNode(grammarAccess.getComponentConfigurationAccess().getParametersParserRuleCall_3());
 			}
-			this_Parameters_2=ruleParameters[$current]
+			this_Parameters_3=ruleParameters[$current]
 			{
-				$current = $this_Parameters_2.current;
+				$current = $this_Parameters_3.current;
 				afterParserOrEnumRuleCall();
 			}
 		)?
-		otherlv_3='extends'
+		otherlv_4='extends'
 		{
-			newLeafNode(otherlv_3, grammarAccess.getComponentConfigurationAccess().getExtendsKeyword_3());
+			newLeafNode(otherlv_4, grammarAccess.getComponentConfigurationAccess().getExtendsKeyword_4());
 		}
 		{
 			if ($current==null) {
 				$current = createModelElement(grammarAccess.getComponentConfigurationRule());
 			}
-			newCompositeNode(grammarAccess.getComponentConfigurationAccess().getClassifierExtensionsParserRuleCall_4());
+			newCompositeNode(grammarAccess.getComponentConfigurationAccess().getClassifierExtensionsParserRuleCall_5());
 		}
-		this_ClassifierExtensions_4=ruleClassifierExtensions[$current]
+		this_ClassifierExtensions_5=ruleClassifierExtensions[$current]
 		{
-			$current = $this_ClassifierExtensions_4.current;
+			$current = $this_ClassifierExtensions_5.current;
 			afterParserOrEnumRuleCall();
 		}
 		(
@@ -1098,20 +1140,20 @@ ruleComponentConfiguration returns [EObject current=null]
 				if ($current==null) {
 					$current = createModelElement(grammarAccess.getComponentConfigurationRule());
 				}
-				newCompositeNode(grammarAccess.getComponentConfigurationAccess().getConfigurationElementBlockParserRuleCall_5());
+				newCompositeNode(grammarAccess.getComponentConfigurationAccess().getConfigurationElementBlockParserRuleCall_6());
 			}
-			this_ConfigurationElementBlock_5=ruleConfigurationElementBlock[$current]
+			this_ConfigurationElementBlock_6=ruleConfigurationElementBlock[$current]
 			{
-				$current = $this_ConfigurationElementBlock_5.current;
+				$current = $this_ConfigurationElementBlock_6.current;
 				afterParserOrEnumRuleCall();
 			}
 		)?
-		otherlv_6='end'
+		otherlv_7='end'
 		{
-			newLeafNode(otherlv_6, grammarAccess.getComponentConfigurationAccess().getEndKeyword_6());
+			newLeafNode(otherlv_7, grammarAccess.getComponentConfigurationAccess().getEndKeyword_7());
 		}
 		{
-			newCompositeNode(grammarAccess.getComponentConfigurationAccess().getSEMICOLONParserRuleCall_7());
+			newCompositeNode(grammarAccess.getComponentConfigurationAccess().getSEMICOLONParserRuleCall_8());
 		}
 		ruleSEMICOLON
 		{

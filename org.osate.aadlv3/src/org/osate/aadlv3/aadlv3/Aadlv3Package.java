@@ -385,13 +385,22 @@ public interface Aadlv3Package extends EPackage {
 	int COMPONENT_CLASSIFIER__PROPERTY_ASSOCIATIONS = PACKAGE_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Private</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_CLASSIFIER__PRIVATE = PACKAGE_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Component Classifier</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_CLASSIFIER_FEATURE_COUNT = PACKAGE_ELEMENT_FEATURE_COUNT + 3;
+	int COMPONENT_CLASSIFIER_FEATURE_COUNT = PACKAGE_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.ComponentInterfaceImpl <em>Component Interface</em>}' class.
@@ -450,6 +459,15 @@ public interface Aadlv3Package extends EPackage {
 	int COMPONENT_REALIZATION__PROPERTY_ASSOCIATIONS = COMPONENT_CLASSIFIER__PROPERTY_ASSOCIATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Private</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_REALIZATION__PRIVATE = COMPONENT_CLASSIFIER__PRIVATE;
+
+	/**
 	 * The feature id for the '<em><b>Cached Interface Reference</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -502,6 +520,15 @@ public interface Aadlv3Package extends EPackage {
 	 * @ordered
 	 */
 	int COMPONENT_INTERFACE__PROPERTY_ASSOCIATIONS = COMPONENT_CLASSIFIER__PROPERTY_ASSOCIATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Private</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_INTERFACE__PRIVATE = COMPONENT_CLASSIFIER__PRIVATE;
 
 	/**
 	 * The feature id for the '<em><b>Features</b></em>' containment reference list.
@@ -584,6 +611,15 @@ public interface Aadlv3Package extends EPackage {
 	 * @ordered
 	 */
 	int COMPONENT_IMPLEMENTATION__PROPERTY_ASSOCIATIONS = COMPONENT_REALIZATION__PROPERTY_ASSOCIATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Private</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_IMPLEMENTATION__PRIVATE = COMPONENT_REALIZATION__PRIVATE;
 
 	/**
 	 * The feature id for the '<em><b>Cached Interface Reference</b></em>' reference.
@@ -693,6 +729,15 @@ public interface Aadlv3Package extends EPackage {
 	 * @ordered
 	 */
 	int COMPONENT_CONFIGURATION__PROPERTY_ASSOCIATIONS = COMPONENT_REALIZATION__PROPERTY_ASSOCIATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Private</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_CONFIGURATION__PRIVATE = COMPONENT_REALIZATION__PRIVATE;
 
 	/**
 	 * The feature id for the '<em><b>Cached Interface Reference</b></em>' reference.
@@ -1687,6 +1732,17 @@ public interface Aadlv3Package extends EPackage {
 	EReference getComponentClassifier_PropertyAssociations();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.osate.aadlv3.aadlv3.ComponentClassifier#isPrivate <em>Private</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Private</em>'.
+	 * @see org.osate.aadlv3.aadlv3.ComponentClassifier#isPrivate()
+	 * @see #getComponentClassifier()
+	 * @generated
+	 */
+	EAttribute getComponentClassifier_Private();
+
+	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.ComponentInterface <em>Component Interface</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2626,6 +2682,14 @@ public interface Aadlv3Package extends EPackage {
 		 */
 		EReference COMPONENT_CLASSIFIER__PROPERTY_ASSOCIATIONS = eINSTANCE
 				.getComponentClassifier_PropertyAssociations();
+
+		/**
+		 * The meta object literal for the '<em><b>Private</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COMPONENT_CLASSIFIER__PRIVATE = eINSTANCE.getComponentClassifier_Private();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.ComponentInterfaceImpl <em>Component Interface</em>}' class.

@@ -541,6 +541,16 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
+	public EAttribute getComponentClassifier_Private() {
+		return (EAttribute) componentClassifierEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getComponentInterface() {
 		return componentInterfaceEClass;
 	}
@@ -1292,6 +1302,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		createEAttribute(componentClassifierEClass, COMPONENT_CLASSIFIER__CATEGORY);
 		createEReference(componentClassifierEClass, COMPONENT_CLASSIFIER__SUPER_CLASSIFIERS);
 		createEReference(componentClassifierEClass, COMPONENT_CLASSIFIER__PROPERTY_ASSOCIATIONS);
+		createEAttribute(componentClassifierEClass, COMPONENT_CLASSIFIER__PRIVATE);
 
 		componentRealizationEClass = createEClass(COMPONENT_REALIZATION);
 		createEReference(componentRealizationEClass, COMPONENT_REALIZATION__CACHED_INTERFACE_REFERENCE);
@@ -1490,6 +1501,9 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		initEReference(getComponentClassifier_PropertyAssociations(), this.getPropertyAssociation(), null,
 				"propertyAssociations", null, 0, -1, ComponentClassifier.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getComponentClassifier_Private(), ecorePackage.getEBoolean(), "private", null, 0, 1,
+				ComponentClassifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(componentRealizationEClass, ComponentRealization.class, "ComponentRealization", IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

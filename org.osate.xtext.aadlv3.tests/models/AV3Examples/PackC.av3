@@ -1,18 +1,9 @@
-package PackC 
-import packcc.*;
-import packccc.*;
+package PackC2 
 	type tt;
-	package packcc 
-		type tt;
-	end;
-	package packccc 
-		type tt;
-	end;
-	interface mine
-	is
-		name : in feature PackP.Q.date;
-		surname : in feature tt ;
-		sig : in feature packcc.tt;
+	interface mine is
+		sig : in feature tt;
 	end ;
+	
+	bus interface canbus end;
 	
 end ;

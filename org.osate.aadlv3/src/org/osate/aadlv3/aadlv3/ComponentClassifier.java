@@ -29,6 +29,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.osate.aadlv3.aadlv3.ComponentClassifier#getCategory <em>Category</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.ComponentClassifier#getSuperClassifiers <em>Super Classifiers</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.ComponentClassifier#getPropertyAssociations <em>Property Associations</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.ComponentClassifier#isPrivate <em>Private</em>}</li>
  * </ul>
  *
  * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getComponentClassifier()
@@ -96,5 +97,31 @@ public interface ComponentClassifier extends PackageElement, Type {
 	 * @generated
 	 */
 	EList<PropertyAssociation> getPropertyAssociations();
+
+	/**
+	 * Returns the value of the '<em><b>Private</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Private</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Private</em>' attribute.
+	 * @see #setPrivate(boolean)
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getComponentClassifier_Private()
+	 * @model
+	 * @generated
+	 */
+	boolean isPrivate();
+
+	/**
+	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.ComponentClassifier#isPrivate <em>Private</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Private</em>' attribute.
+	 * @see #isPrivate()
+	 * @generated
+	 */
+	void setPrivate(boolean value);
 
 } // ComponentClassifier
