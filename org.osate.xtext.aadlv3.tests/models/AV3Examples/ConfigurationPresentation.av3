@@ -7,7 +7,7 @@ property Deadline int;
 
 system interface x end;
 
-system x.i extends x is
+system x.i  is
 	xsub1: process subsubsys;
  	xsub2: process subsubsys;
 end;

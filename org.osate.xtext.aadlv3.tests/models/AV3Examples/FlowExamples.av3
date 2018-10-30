@@ -15,12 +15,12 @@ package FlowExamples
 		reading: flow source outp;
 	end ;
 	
-	component sensor.i extends sensor is
+	component sensor.i  is
 		sub1: thread sense;
 		upmap: map outp -> sub1.p1 ;
 		reading => flow upmap -> sub1.reading;
 	end ;
-	component actuator.i extends actuator is
+	component actuator.i  is
 		sub2: thread actuate;
 		downmap: map inp -> sub2.p1;
 		action=> flow sub2.taction;

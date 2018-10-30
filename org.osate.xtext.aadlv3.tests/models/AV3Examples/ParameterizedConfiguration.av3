@@ -21,7 +21,7 @@ package ParameterizedConfiguration
 	interface sub  is
 		p1: in port ;
 	end ;
-	component sub.i extends sub is
+	component sub.i is
 		t1: component subsub;
 	end ;
 	interface subsub is

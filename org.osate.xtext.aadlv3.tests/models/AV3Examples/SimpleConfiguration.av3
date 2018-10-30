@@ -16,11 +16,11 @@ package SimpleConfiguration
 		outp: out port;
 	end ;
 
-	component sender.i extends sender  is
+	component sender.i is
 		sub1: component sub;
 	end ;
 
-	component sender.isubi extends sender  is
+	component sender.isubi is
 		sub1: component sub.i2t;
 	end ;
 
@@ -32,7 +32,7 @@ package SimpleConfiguration
 		sub1.p1#Size => 30;
 	end;
 
-	component receiver.i extends receiver  is
+	component receiver.i is
 		sub2: component sub;
 	end ;
 
@@ -43,7 +43,7 @@ package SimpleConfiguration
 	thread subsub.i
 	end;
 
-	component sub.i extends sub  is
+	component sub.i  is
 		t1: thread subsub;
 	end ;
 	

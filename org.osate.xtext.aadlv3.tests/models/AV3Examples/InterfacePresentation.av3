@@ -96,14 +96,14 @@ system interface sys2
 	 L1 : interface Logical1 ;
 	 L2 : interface Logical2 ;
 end ;
-system  sys2.i1 extends sys2
+system  sys2.i1 
 	is
 	sub1 : system sub ;
   // single output to the two temperature is
 			conn1 : map L1.temperature ->sub1.outp  ;
 			conn2 : map L2.temperature -> sub1.outp ;
 end ;
-system  sys2.i2 extends sys2
+system  sys2.i2 
 	is
 	sub1 : system sub ;
 	sub2 : system sub ;

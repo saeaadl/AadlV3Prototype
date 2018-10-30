@@ -15,12 +15,12 @@ package ConnectionExamples
 		fea: feature;
 	end ;
 	
-	component sensor.i extends sensor is
+	component sensor.i is
 		sub1: thread sense;
 		upmap: map outp -> sub1.p1 ;
 		stateaccess: map state -> sub1.state;
 	end ;
-	component actuator.i extends actuator is
+	component actuator.i  is
 		mystate: data systemstate { stateread : provides read access systemstate;
 			statewrite : provides write access systemstate;
 		};
@@ -29,10 +29,13 @@ package ConnectionExamples
 		stateread: map state -> mystate.stateread ;
 		statewrite: data sub2.state -> mystate.statewrite ;
 	end ;
+	
+	
 	thread interface sense  is
 		state: requires read access systemstate;
 		p1: out port ;
 	end ;
+	
 	thread interface actuate  is
 		p1: in port ;
 		state: requires write access systemstate;
