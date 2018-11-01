@@ -2831,7 +2831,7 @@ rule__ComponentInterface__Group__0__Impl
 :
 (
 	{ before(grammarAccess.getComponentInterfaceAccess().getPrivateAssignment_0()); }
-	(rule__ComponentInterface__PrivateAssignment_0)
+	(rule__ComponentInterface__PrivateAssignment_0)?
 	{ after(grammarAccess.getComponentInterfaceAccess().getPrivateAssignment_0()); }
 )
 ;
@@ -3371,7 +3371,7 @@ rule__ComponentImplementation__Group__0__Impl
 :
 (
 	{ before(grammarAccess.getComponentImplementationAccess().getPrivateAssignment_0()); }
-	(rule__ComponentImplementation__PrivateAssignment_0)
+	(rule__ComponentImplementation__PrivateAssignment_0)?
 	{ after(grammarAccess.getComponentImplementationAccess().getPrivateAssignment_0()); }
 )
 ;
@@ -3668,7 +3668,7 @@ rule__ComponentConfiguration__Group__0__Impl
 :
 (
 	{ before(grammarAccess.getComponentConfigurationAccess().getPrivateAssignment_0()); }
-	(rule__ComponentConfiguration__PrivateAssignment_0)
+	(rule__ComponentConfiguration__PrivateAssignment_0)?
 	{ after(grammarAccess.getComponentConfigurationAccess().getPrivateAssignment_0()); }
 )
 ;

@@ -187,7 +187,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *
 	 * Constraint:
 	 *     (
-	 *         private?='private' 
+	 *         private?='private'? 
 	 *         name=QualifiedName 
 	 *         (parameterized?='(' (parameters+=ConfigurationParameter parameters+=ConfigurationParameter*)?)? 
 	 *         superClassifiers+=TypeReference 
@@ -206,7 +206,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *
 	 * Constraint:
 	 *     (
-	 *         private?='private' 
+	 *         private?='private'? 
 	 *         category=ComponentCategory 
 	 *         name=QualifiedName 
 	 *         (superClassifiers+=ImplementationReference superClassifiers+=ImplementationReference*)? 
@@ -232,7 +232,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *
 	 * Constraint:
 	 *     (
-	 *         private?='private' 
+	 *         private?='private'? 
 	 *         category=ComponentCategory? 
 	 *         name=ID 
 	 *         (superClassifiers+=ReversableInterfaceReference superClassifiers+=ReversableInterfaceReference*)? 

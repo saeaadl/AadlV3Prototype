@@ -288,18 +288,18 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cSEMICOLONParserRuleCall_8 = (RuleCall)cGroup.eContents().get(8);
 		
 		//ComponentInterface av3::ComponentInterface:
-		//	private?='private' category=ComponentCategory? 'interface' name=ID ('extends' InterfaceExtensions?)?
+		//	private?='private'? category=ComponentCategory? 'interface' name=ID ('extends' InterfaceExtensions?)?
 		//	InterfaceBody? ('use' 'properties' useProperties+=[av3::PropertySet|QualifiedName] (','
 		//	useProperties+=[av3::PropertySet|QualifiedName])* SEMICOLON)?
 		//	'end' SEMICOLON;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//private?='private' category=ComponentCategory? 'interface' name=ID ('extends' InterfaceExtensions?)? InterfaceBody?
+		//private?='private'? category=ComponentCategory? 'interface' name=ID ('extends' InterfaceExtensions?)? InterfaceBody?
 		//('use' 'properties' useProperties+=[av3::PropertySet|QualifiedName] (','
 		//useProperties+=[av3::PropertySet|QualifiedName])* SEMICOLON)? 'end' SEMICOLON
 		public Group getGroup() { return cGroup; }
 		
-		//private?='private'
+		//private?='private'?
 		public Assignment getPrivateAssignment_0() { return cPrivateAssignment_0; }
 		
 		//'private'
@@ -453,16 +453,16 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cSEMICOLONParserRuleCall_6 = (RuleCall)cGroup.eContents().get(6);
 		
 		//ComponentImplementation av3::ComponentImplementation:
-		//	private?='private' category=ComponentCategory name=QualifiedName ('extends' ImplementationExtensions?)?
+		//	private?='private'? category=ComponentCategory name=QualifiedName ('extends' ImplementationExtensions?)?
 		//	ImplementationBody?
 		//	'end' SEMICOLON;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//private?='private' category=ComponentCategory name=QualifiedName ('extends' ImplementationExtensions?)?
+		//private?='private'? category=ComponentCategory name=QualifiedName ('extends' ImplementationExtensions?)?
 		//ImplementationBody? 'end' SEMICOLON
 		public Group getGroup() { return cGroup; }
 		
-		//private?='private'
+		//private?='private'?
 		public Assignment getPrivateAssignment_0() { return cPrivateAssignment_0; }
 		
 		//'private'
@@ -592,17 +592,17 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cSEMICOLONParserRuleCall_8 = (RuleCall)cGroup.eContents().get(8);
 		
 		//ComponentConfiguration av3::ComponentConfiguration:
-		//	private?='private' 'configuration' name=QualifiedName
+		//	private?='private'? 'configuration' name=QualifiedName
 		//	Parameters?
 		//	'extends' ClassifierExtensions ConfigurationElementBlock?
 		//	'end' SEMICOLON;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//private?='private' 'configuration' name=QualifiedName Parameters? 'extends' ClassifierExtensions
+		//private?='private'? 'configuration' name=QualifiedName Parameters? 'extends' ClassifierExtensions
 		//ConfigurationElementBlock? 'end' SEMICOLON
 		public Group getGroup() { return cGroup; }
 		
-		//private?='private'
+		//private?='private'?
 		public Assignment getPrivateAssignment_0() { return cPrivateAssignment_0; }
 		
 		//'private'
@@ -2937,7 +2937,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//ComponentInterface av3::ComponentInterface:
-	//	private?='private' category=ComponentCategory? 'interface' name=ID ('extends' InterfaceExtensions?)?
+	//	private?='private'? category=ComponentCategory? 'interface' name=ID ('extends' InterfaceExtensions?)?
 	//	InterfaceBody? ('use' 'properties' useProperties+=[av3::PropertySet|QualifiedName] (','
 	//	useProperties+=[av3::PropertySet|QualifiedName])* SEMICOLON)?
 	//	'end' SEMICOLON;
@@ -2961,7 +2961,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//ComponentImplementation av3::ComponentImplementation:
-	//	private?='private' category=ComponentCategory name=QualifiedName ('extends' ImplementationExtensions?)?
+	//	private?='private'? category=ComponentCategory name=QualifiedName ('extends' ImplementationExtensions?)?
 	//	ImplementationBody?
 	//	'end' SEMICOLON;
 	public ComponentImplementationElements getComponentImplementationAccess() {
@@ -2984,7 +2984,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//ComponentConfiguration av3::ComponentConfiguration:
-	//	private?='private' 'configuration' name=QualifiedName
+	//	private?='private'? 'configuration' name=QualifiedName
 	//	Parameters?
 	//	'extends' ClassifierExtensions ConfigurationElementBlock?
 	//	'end' SEMICOLON;

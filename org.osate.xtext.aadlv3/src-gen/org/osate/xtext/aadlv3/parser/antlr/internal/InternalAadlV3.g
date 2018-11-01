@@ -521,7 +521,7 @@ ruleComponentInterface returns [EObject current=null]
 					setWithLastConsumed($current, "private", true, "private");
 				}
 			)
-		)
+		)?
 		(
 			(
 				{
@@ -811,7 +811,7 @@ ruleComponentImplementation returns [EObject current=null]
 					setWithLastConsumed($current, "private", true, "private");
 				}
 			)
-		)
+		)?
 		(
 			(
 				{
@@ -1083,7 +1083,7 @@ ruleComponentConfiguration returns [EObject current=null]
 					setWithLastConsumed($current, "private", true, "private");
 				}
 			)
-		)
+		)?
 		otherlv_1='configuration'
 		{
 			newLeafNode(otherlv_1, grammarAccess.getComponentConfigurationAccess().getConfigurationKeyword_1());

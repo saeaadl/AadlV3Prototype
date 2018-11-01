@@ -321,7 +321,7 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
                 int alt3=2;
                 int LA3_0 = input.LA(1);
 
-                if ( (LA3_0==11||(LA3_0>=13 && LA3_0<=14)||(LA3_0>=16 && LA3_0<=17)||LA3_0==36) ) {
+                if ( (LA3_0==11||(LA3_0>=13 && LA3_0<=14)||(LA3_0>=16 && LA3_0<=18)||LA3_0==22||LA3_0==36||(LA3_0>=39 && LA3_0<=48)||LA3_0==58) ) {
                     alt3=1;
                 }
 
@@ -1247,7 +1247,7 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleComponentInterface"
-    // InternalAadlV3.g:503:1: ruleComponentInterface returns [EObject current=null] : ( ( (lv_private_0_0= 'private' ) ) ( (lv_category_1_0= ruleComponentCategory ) )? otherlv_2= 'interface' ( (lv_name_3_0= RULE_ID ) ) (otherlv_4= 'extends' (this_InterfaceExtensions_5= ruleInterfaceExtensions[$current] )? )? (this_InterfaceBody_6= ruleInterfaceBody[$current] )? (otherlv_7= 'use' otherlv_8= 'properties' ( ( ruleQualifiedName ) ) (otherlv_10= ',' ( ( ruleQualifiedName ) ) )* ruleSEMICOLON )? otherlv_13= 'end' ruleSEMICOLON ) ;
+    // InternalAadlV3.g:503:1: ruleComponentInterface returns [EObject current=null] : ( ( (lv_private_0_0= 'private' ) )? ( (lv_category_1_0= ruleComponentCategory ) )? otherlv_2= 'interface' ( (lv_name_3_0= RULE_ID ) ) (otherlv_4= 'extends' (this_InterfaceExtensions_5= ruleInterfaceExtensions[$current] )? )? (this_InterfaceBody_6= ruleInterfaceBody[$current] )? (otherlv_7= 'use' otherlv_8= 'properties' ( ( ruleQualifiedName ) ) (otherlv_10= ',' ( ( ruleQualifiedName ) ) )* ruleSEMICOLON )? otherlv_13= 'end' ruleSEMICOLON ) ;
     public final EObject ruleComponentInterface() throws RecognitionException {
         EObject current = null;
 
@@ -1270,46 +1270,57 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalAadlV3.g:509:2: ( ( ( (lv_private_0_0= 'private' ) ) ( (lv_category_1_0= ruleComponentCategory ) )? otherlv_2= 'interface' ( (lv_name_3_0= RULE_ID ) ) (otherlv_4= 'extends' (this_InterfaceExtensions_5= ruleInterfaceExtensions[$current] )? )? (this_InterfaceBody_6= ruleInterfaceBody[$current] )? (otherlv_7= 'use' otherlv_8= 'properties' ( ( ruleQualifiedName ) ) (otherlv_10= ',' ( ( ruleQualifiedName ) ) )* ruleSEMICOLON )? otherlv_13= 'end' ruleSEMICOLON ) )
-            // InternalAadlV3.g:510:2: ( ( (lv_private_0_0= 'private' ) ) ( (lv_category_1_0= ruleComponentCategory ) )? otherlv_2= 'interface' ( (lv_name_3_0= RULE_ID ) ) (otherlv_4= 'extends' (this_InterfaceExtensions_5= ruleInterfaceExtensions[$current] )? )? (this_InterfaceBody_6= ruleInterfaceBody[$current] )? (otherlv_7= 'use' otherlv_8= 'properties' ( ( ruleQualifiedName ) ) (otherlv_10= ',' ( ( ruleQualifiedName ) ) )* ruleSEMICOLON )? otherlv_13= 'end' ruleSEMICOLON )
+            // InternalAadlV3.g:509:2: ( ( ( (lv_private_0_0= 'private' ) )? ( (lv_category_1_0= ruleComponentCategory ) )? otherlv_2= 'interface' ( (lv_name_3_0= RULE_ID ) ) (otherlv_4= 'extends' (this_InterfaceExtensions_5= ruleInterfaceExtensions[$current] )? )? (this_InterfaceBody_6= ruleInterfaceBody[$current] )? (otherlv_7= 'use' otherlv_8= 'properties' ( ( ruleQualifiedName ) ) (otherlv_10= ',' ( ( ruleQualifiedName ) ) )* ruleSEMICOLON )? otherlv_13= 'end' ruleSEMICOLON ) )
+            // InternalAadlV3.g:510:2: ( ( (lv_private_0_0= 'private' ) )? ( (lv_category_1_0= ruleComponentCategory ) )? otherlv_2= 'interface' ( (lv_name_3_0= RULE_ID ) ) (otherlv_4= 'extends' (this_InterfaceExtensions_5= ruleInterfaceExtensions[$current] )? )? (this_InterfaceBody_6= ruleInterfaceBody[$current] )? (otherlv_7= 'use' otherlv_8= 'properties' ( ( ruleQualifiedName ) ) (otherlv_10= ',' ( ( ruleQualifiedName ) ) )* ruleSEMICOLON )? otherlv_13= 'end' ruleSEMICOLON )
             {
-            // InternalAadlV3.g:510:2: ( ( (lv_private_0_0= 'private' ) ) ( (lv_category_1_0= ruleComponentCategory ) )? otherlv_2= 'interface' ( (lv_name_3_0= RULE_ID ) ) (otherlv_4= 'extends' (this_InterfaceExtensions_5= ruleInterfaceExtensions[$current] )? )? (this_InterfaceBody_6= ruleInterfaceBody[$current] )? (otherlv_7= 'use' otherlv_8= 'properties' ( ( ruleQualifiedName ) ) (otherlv_10= ',' ( ( ruleQualifiedName ) ) )* ruleSEMICOLON )? otherlv_13= 'end' ruleSEMICOLON )
-            // InternalAadlV3.g:511:3: ( (lv_private_0_0= 'private' ) ) ( (lv_category_1_0= ruleComponentCategory ) )? otherlv_2= 'interface' ( (lv_name_3_0= RULE_ID ) ) (otherlv_4= 'extends' (this_InterfaceExtensions_5= ruleInterfaceExtensions[$current] )? )? (this_InterfaceBody_6= ruleInterfaceBody[$current] )? (otherlv_7= 'use' otherlv_8= 'properties' ( ( ruleQualifiedName ) ) (otherlv_10= ',' ( ( ruleQualifiedName ) ) )* ruleSEMICOLON )? otherlv_13= 'end' ruleSEMICOLON
+            // InternalAadlV3.g:510:2: ( ( (lv_private_0_0= 'private' ) )? ( (lv_category_1_0= ruleComponentCategory ) )? otherlv_2= 'interface' ( (lv_name_3_0= RULE_ID ) ) (otherlv_4= 'extends' (this_InterfaceExtensions_5= ruleInterfaceExtensions[$current] )? )? (this_InterfaceBody_6= ruleInterfaceBody[$current] )? (otherlv_7= 'use' otherlv_8= 'properties' ( ( ruleQualifiedName ) ) (otherlv_10= ',' ( ( ruleQualifiedName ) ) )* ruleSEMICOLON )? otherlv_13= 'end' ruleSEMICOLON )
+            // InternalAadlV3.g:511:3: ( (lv_private_0_0= 'private' ) )? ( (lv_category_1_0= ruleComponentCategory ) )? otherlv_2= 'interface' ( (lv_name_3_0= RULE_ID ) ) (otherlv_4= 'extends' (this_InterfaceExtensions_5= ruleInterfaceExtensions[$current] )? )? (this_InterfaceBody_6= ruleInterfaceBody[$current] )? (otherlv_7= 'use' otherlv_8= 'properties' ( ( ruleQualifiedName ) ) (otherlv_10= ',' ( ( ruleQualifiedName ) ) )* ruleSEMICOLON )? otherlv_13= 'end' ruleSEMICOLON
             {
-            // InternalAadlV3.g:511:3: ( (lv_private_0_0= 'private' ) )
-            // InternalAadlV3.g:512:4: (lv_private_0_0= 'private' )
-            {
-            // InternalAadlV3.g:512:4: (lv_private_0_0= 'private' )
-            // InternalAadlV3.g:513:5: lv_private_0_0= 'private'
-            {
-            lv_private_0_0=(Token)match(input,17,FOLLOW_9); if (state.failed) return current;
-            if ( state.backtracking==0 ) {
+            // InternalAadlV3.g:511:3: ( (lv_private_0_0= 'private' ) )?
+            int alt6=2;
+            int LA6_0 = input.LA(1);
 
-              					newLeafNode(lv_private_0_0, grammarAccess.getComponentInterfaceAccess().getPrivatePrivateKeyword_0_0());
-              				
+            if ( (LA6_0==17) ) {
+                alt6=1;
             }
-            if ( state.backtracking==0 ) {
+            switch (alt6) {
+                case 1 :
+                    // InternalAadlV3.g:512:4: (lv_private_0_0= 'private' )
+                    {
+                    // InternalAadlV3.g:512:4: (lv_private_0_0= 'private' )
+                    // InternalAadlV3.g:513:5: lv_private_0_0= 'private'
+                    {
+                    lv_private_0_0=(Token)match(input,17,FOLLOW_9); if (state.failed) return current;
+                    if ( state.backtracking==0 ) {
 
-              					if (current==null) {
-              						current = createModelElement(grammarAccess.getComponentInterfaceRule());
-              					}
-              					setWithLastConsumed(current, "private", true, "private");
-              				
-            }
+                      					newLeafNode(lv_private_0_0, grammarAccess.getComponentInterfaceAccess().getPrivatePrivateKeyword_0_0());
+                      				
+                    }
+                    if ( state.backtracking==0 ) {
 
-            }
+                      					if (current==null) {
+                      						current = createModelElement(grammarAccess.getComponentInterfaceRule());
+                      					}
+                      					setWithLastConsumed(current, "private", true, "private");
+                      				
+                    }
 
+                    }
+
+
+                    }
+                    break;
 
             }
 
             // InternalAadlV3.g:525:3: ( (lv_category_1_0= ruleComponentCategory ) )?
-            int alt6=2;
-            int LA6_0 = input.LA(1);
+            int alt7=2;
+            int LA7_0 = input.LA(1);
 
-            if ( ((LA6_0>=39 && LA6_0<=48)||LA6_0==58) ) {
-                alt6=1;
+            if ( ((LA7_0>=39 && LA7_0<=48)||LA7_0==58) ) {
+                alt7=1;
             }
-            switch (alt6) {
+            switch (alt7) {
                 case 1 :
                     // InternalAadlV3.g:526:4: (lv_category_1_0= ruleComponentCategory )
                     {
@@ -1385,13 +1396,13 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
             }
 
             // InternalAadlV3.g:566:3: (otherlv_4= 'extends' (this_InterfaceExtensions_5= ruleInterfaceExtensions[$current] )? )?
-            int alt8=2;
-            int LA8_0 = input.LA(1);
+            int alt9=2;
+            int LA9_0 = input.LA(1);
 
-            if ( (LA8_0==19) ) {
-                alt8=1;
+            if ( (LA9_0==19) ) {
+                alt9=1;
             }
-            switch (alt8) {
+            switch (alt9) {
                 case 1 :
                     // InternalAadlV3.g:567:4: otherlv_4= 'extends' (this_InterfaceExtensions_5= ruleInterfaceExtensions[$current] )?
                     {
@@ -1402,13 +1413,13 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
                       			
                     }
                     // InternalAadlV3.g:571:4: (this_InterfaceExtensions_5= ruleInterfaceExtensions[$current] )?
-                    int alt7=2;
-                    int LA7_0 = input.LA(1);
+                    int alt8=2;
+                    int LA8_0 = input.LA(1);
 
-                    if ( (LA7_0==RULE_ID||LA7_0==25) ) {
-                        alt7=1;
+                    if ( (LA8_0==RULE_ID||LA8_0==25) ) {
+                        alt8=1;
                     }
-                    switch (alt7) {
+                    switch (alt8) {
                         case 1 :
                             // InternalAadlV3.g:572:5: this_InterfaceExtensions_5= ruleInterfaceExtensions[$current]
                             {
@@ -1444,13 +1455,13 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
             }
 
             // InternalAadlV3.g:585:3: (this_InterfaceBody_6= ruleInterfaceBody[$current] )?
-            int alt9=2;
-            int LA9_0 = input.LA(1);
+            int alt10=2;
+            int LA10_0 = input.LA(1);
 
-            if ( (LA9_0==21) ) {
-                alt9=1;
+            if ( (LA10_0==21) ) {
+                alt10=1;
             }
-            switch (alt9) {
+            switch (alt10) {
                 case 1 :
                     // InternalAadlV3.g:586:4: this_InterfaceBody_6= ruleInterfaceBody[$current]
                     {
@@ -1480,13 +1491,13 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
             }
 
             // InternalAadlV3.g:598:3: (otherlv_7= 'use' otherlv_8= 'properties' ( ( ruleQualifiedName ) ) (otherlv_10= ',' ( ( ruleQualifiedName ) ) )* ruleSEMICOLON )?
-            int alt11=2;
-            int LA11_0 = input.LA(1);
+            int alt12=2;
+            int LA12_0 = input.LA(1);
 
-            if ( (LA11_0==20) ) {
-                alt11=1;
+            if ( (LA12_0==20) ) {
+                alt12=1;
             }
-            switch (alt11) {
+            switch (alt12) {
                 case 1 :
                     // InternalAadlV3.g:599:4: otherlv_7= 'use' otherlv_8= 'properties' ( ( ruleQualifiedName ) ) (otherlv_10= ',' ( ( ruleQualifiedName ) ) )* ruleSEMICOLON
                     {
@@ -1537,17 +1548,17 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
                     }
 
                     // InternalAadlV3.g:623:4: (otherlv_10= ',' ( ( ruleQualifiedName ) ) )*
-                    loop10:
+                    loop11:
                     do {
-                        int alt10=2;
-                        int LA10_0 = input.LA(1);
+                        int alt11=2;
+                        int LA11_0 = input.LA(1);
 
-                        if ( (LA10_0==15) ) {
-                            alt10=1;
+                        if ( (LA11_0==15) ) {
+                            alt11=1;
                         }
 
 
-                        switch (alt10) {
+                        switch (alt11) {
                     	case 1 :
                     	    // InternalAadlV3.g:624:5: otherlv_10= ',' ( ( ruleQualifiedName ) )
                     	    {
@@ -1596,7 +1607,7 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
                     	    break;
 
                     	default :
-                    	    break loop10;
+                    	    break loop11;
                         }
                     } while (true);
 
@@ -1700,11 +1711,11 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
               		
             }
             // InternalAadlV3.g:681:3: ( ( (lv_features_1_0= ruleFeature ) ) | ( (lv_flows_2_0= ruleFlowPath ) ) | ( (lv_flows_3_0= ruleFlowSource ) ) | ( (lv_flows_4_0= ruleFlowSink ) ) | ( (lv_propertyAssociations_5_0= rulePropertyAssociation ) ) )*
-            loop12:
+            loop13:
             do {
-                int alt12=6;
-                alt12 = dfa12.predict(input);
-                switch (alt12) {
+                int alt13=6;
+                alt13 = dfa13.predict(input);
+                switch (alt13) {
             	case 1 :
             	    // InternalAadlV3.g:682:4: ( (lv_features_1_0= ruleFeature ) )
             	    {
@@ -1912,7 +1923,7 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop12;
+            	    break loop13;
                 }
             } while (true);
 
@@ -1981,7 +1992,7 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleComponentImplementation"
-    // InternalAadlV3.g:793:1: ruleComponentImplementation returns [EObject current=null] : ( ( (lv_private_0_0= 'private' ) ) ( (lv_category_1_0= ruleComponentCategory ) ) ( (lv_name_2_0= ruleQualifiedName ) ) (otherlv_3= 'extends' (this_ImplementationExtensions_4= ruleImplementationExtensions[$current] )? )? (this_ImplementationBody_5= ruleImplementationBody[$current] )? otherlv_6= 'end' ruleSEMICOLON ) ;
+    // InternalAadlV3.g:793:1: ruleComponentImplementation returns [EObject current=null] : ( ( (lv_private_0_0= 'private' ) )? ( (lv_category_1_0= ruleComponentCategory ) ) ( (lv_name_2_0= ruleQualifiedName ) ) (otherlv_3= 'extends' (this_ImplementationExtensions_4= ruleImplementationExtensions[$current] )? )? (this_ImplementationBody_5= ruleImplementationBody[$current] )? otherlv_6= 'end' ruleSEMICOLON ) ;
     public final EObject ruleComponentImplementation() throws RecognitionException {
         EObject current = null;
 
@@ -2001,35 +2012,46 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalAadlV3.g:799:2: ( ( ( (lv_private_0_0= 'private' ) ) ( (lv_category_1_0= ruleComponentCategory ) ) ( (lv_name_2_0= ruleQualifiedName ) ) (otherlv_3= 'extends' (this_ImplementationExtensions_4= ruleImplementationExtensions[$current] )? )? (this_ImplementationBody_5= ruleImplementationBody[$current] )? otherlv_6= 'end' ruleSEMICOLON ) )
-            // InternalAadlV3.g:800:2: ( ( (lv_private_0_0= 'private' ) ) ( (lv_category_1_0= ruleComponentCategory ) ) ( (lv_name_2_0= ruleQualifiedName ) ) (otherlv_3= 'extends' (this_ImplementationExtensions_4= ruleImplementationExtensions[$current] )? )? (this_ImplementationBody_5= ruleImplementationBody[$current] )? otherlv_6= 'end' ruleSEMICOLON )
+            // InternalAadlV3.g:799:2: ( ( ( (lv_private_0_0= 'private' ) )? ( (lv_category_1_0= ruleComponentCategory ) ) ( (lv_name_2_0= ruleQualifiedName ) ) (otherlv_3= 'extends' (this_ImplementationExtensions_4= ruleImplementationExtensions[$current] )? )? (this_ImplementationBody_5= ruleImplementationBody[$current] )? otherlv_6= 'end' ruleSEMICOLON ) )
+            // InternalAadlV3.g:800:2: ( ( (lv_private_0_0= 'private' ) )? ( (lv_category_1_0= ruleComponentCategory ) ) ( (lv_name_2_0= ruleQualifiedName ) ) (otherlv_3= 'extends' (this_ImplementationExtensions_4= ruleImplementationExtensions[$current] )? )? (this_ImplementationBody_5= ruleImplementationBody[$current] )? otherlv_6= 'end' ruleSEMICOLON )
             {
-            // InternalAadlV3.g:800:2: ( ( (lv_private_0_0= 'private' ) ) ( (lv_category_1_0= ruleComponentCategory ) ) ( (lv_name_2_0= ruleQualifiedName ) ) (otherlv_3= 'extends' (this_ImplementationExtensions_4= ruleImplementationExtensions[$current] )? )? (this_ImplementationBody_5= ruleImplementationBody[$current] )? otherlv_6= 'end' ruleSEMICOLON )
-            // InternalAadlV3.g:801:3: ( (lv_private_0_0= 'private' ) ) ( (lv_category_1_0= ruleComponentCategory ) ) ( (lv_name_2_0= ruleQualifiedName ) ) (otherlv_3= 'extends' (this_ImplementationExtensions_4= ruleImplementationExtensions[$current] )? )? (this_ImplementationBody_5= ruleImplementationBody[$current] )? otherlv_6= 'end' ruleSEMICOLON
+            // InternalAadlV3.g:800:2: ( ( (lv_private_0_0= 'private' ) )? ( (lv_category_1_0= ruleComponentCategory ) ) ( (lv_name_2_0= ruleQualifiedName ) ) (otherlv_3= 'extends' (this_ImplementationExtensions_4= ruleImplementationExtensions[$current] )? )? (this_ImplementationBody_5= ruleImplementationBody[$current] )? otherlv_6= 'end' ruleSEMICOLON )
+            // InternalAadlV3.g:801:3: ( (lv_private_0_0= 'private' ) )? ( (lv_category_1_0= ruleComponentCategory ) ) ( (lv_name_2_0= ruleQualifiedName ) ) (otherlv_3= 'extends' (this_ImplementationExtensions_4= ruleImplementationExtensions[$current] )? )? (this_ImplementationBody_5= ruleImplementationBody[$current] )? otherlv_6= 'end' ruleSEMICOLON
             {
-            // InternalAadlV3.g:801:3: ( (lv_private_0_0= 'private' ) )
-            // InternalAadlV3.g:802:4: (lv_private_0_0= 'private' )
-            {
-            // InternalAadlV3.g:802:4: (lv_private_0_0= 'private' )
-            // InternalAadlV3.g:803:5: lv_private_0_0= 'private'
-            {
-            lv_private_0_0=(Token)match(input,17,FOLLOW_19); if (state.failed) return current;
-            if ( state.backtracking==0 ) {
+            // InternalAadlV3.g:801:3: ( (lv_private_0_0= 'private' ) )?
+            int alt14=2;
+            int LA14_0 = input.LA(1);
 
-              					newLeafNode(lv_private_0_0, grammarAccess.getComponentImplementationAccess().getPrivatePrivateKeyword_0_0());
-              				
+            if ( (LA14_0==17) ) {
+                alt14=1;
             }
-            if ( state.backtracking==0 ) {
+            switch (alt14) {
+                case 1 :
+                    // InternalAadlV3.g:802:4: (lv_private_0_0= 'private' )
+                    {
+                    // InternalAadlV3.g:802:4: (lv_private_0_0= 'private' )
+                    // InternalAadlV3.g:803:5: lv_private_0_0= 'private'
+                    {
+                    lv_private_0_0=(Token)match(input,17,FOLLOW_19); if (state.failed) return current;
+                    if ( state.backtracking==0 ) {
 
-              					if (current==null) {
-              						current = createModelElement(grammarAccess.getComponentImplementationRule());
-              					}
-              					setWithLastConsumed(current, "private", true, "private");
-              				
-            }
+                      					newLeafNode(lv_private_0_0, grammarAccess.getComponentImplementationAccess().getPrivatePrivateKeyword_0_0());
+                      				
+                    }
+                    if ( state.backtracking==0 ) {
 
-            }
+                      					if (current==null) {
+                      						current = createModelElement(grammarAccess.getComponentImplementationRule());
+                      					}
+                      					setWithLastConsumed(current, "private", true, "private");
+                      				
+                    }
 
+                    }
+
+
+                    }
+                    break;
 
             }
 
@@ -2104,13 +2126,13 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
             }
 
             // InternalAadlV3.g:853:3: (otherlv_3= 'extends' (this_ImplementationExtensions_4= ruleImplementationExtensions[$current] )? )?
-            int alt14=2;
-            int LA14_0 = input.LA(1);
+            int alt16=2;
+            int LA16_0 = input.LA(1);
 
-            if ( (LA14_0==19) ) {
-                alt14=1;
+            if ( (LA16_0==19) ) {
+                alt16=1;
             }
-            switch (alt14) {
+            switch (alt16) {
                 case 1 :
                     // InternalAadlV3.g:854:4: otherlv_3= 'extends' (this_ImplementationExtensions_4= ruleImplementationExtensions[$current] )?
                     {
@@ -2121,13 +2143,13 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
                       			
                     }
                     // InternalAadlV3.g:858:4: (this_ImplementationExtensions_4= ruleImplementationExtensions[$current] )?
-                    int alt13=2;
-                    int LA13_0 = input.LA(1);
+                    int alt15=2;
+                    int LA15_0 = input.LA(1);
 
-                    if ( (LA13_0==RULE_ID) ) {
-                        alt13=1;
+                    if ( (LA15_0==RULE_ID) ) {
+                        alt15=1;
                     }
-                    switch (alt13) {
+                    switch (alt15) {
                         case 1 :
                             // InternalAadlV3.g:859:5: this_ImplementationExtensions_4= ruleImplementationExtensions[$current]
                             {
@@ -2163,13 +2185,13 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
             }
 
             // InternalAadlV3.g:872:3: (this_ImplementationBody_5= ruleImplementationBody[$current] )?
-            int alt15=2;
-            int LA15_0 = input.LA(1);
+            int alt17=2;
+            int LA17_0 = input.LA(1);
 
-            if ( (LA15_0==21) ) {
-                alt15=1;
+            if ( (LA17_0==21) ) {
+                alt17=1;
             }
-            switch (alt15) {
+            switch (alt17) {
                 case 1 :
                     // InternalAadlV3.g:873:4: this_ImplementationBody_5= ruleImplementationBody[$current]
                     {
@@ -2281,11 +2303,11 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
               		
             }
             // InternalAadlV3.g:913:3: ( ( (lv_connections_1_0= ruleConnection ) ) | ( (lv_connections_2_0= ruleFeatureMapping ) ) | ( (lv_components_3_0= ruleComponent ) ) | ( (lv_paths_4_0= rulePath ) ) | ( (lv_flowAssignments_5_0= ruleFlowAssignment ) ) | ( (lv_assignments_6_0= ruleConfigurationAssignment ) ) | ( (lv_propertyAssociations_7_0= rulePropertyAssociation ) ) )*
-            loop16:
+            loop18:
             do {
-                int alt16=8;
-                alt16 = dfa16.predict(input);
-                switch (alt16) {
+                int alt18=8;
+                alt18 = dfa18.predict(input);
+                switch (alt18) {
             	case 1 :
             	    // InternalAadlV3.g:914:4: ( (lv_connections_1_0= ruleConnection ) )
             	    {
@@ -2575,7 +2597,7 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop16;
+            	    break loop18;
                 }
             } while (true);
 
@@ -2644,7 +2666,7 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleComponentConfiguration"
-    // InternalAadlV3.g:1065:1: ruleComponentConfiguration returns [EObject current=null] : ( ( (lv_private_0_0= 'private' ) ) otherlv_1= 'configuration' ( (lv_name_2_0= ruleQualifiedName ) ) (this_Parameters_3= ruleParameters[$current] )? otherlv_4= 'extends' this_ClassifierExtensions_5= ruleClassifierExtensions[$current] (this_ConfigurationElementBlock_6= ruleConfigurationElementBlock[$current] )? otherlv_7= 'end' ruleSEMICOLON ) ;
+    // InternalAadlV3.g:1065:1: ruleComponentConfiguration returns [EObject current=null] : ( ( (lv_private_0_0= 'private' ) )? otherlv_1= 'configuration' ( (lv_name_2_0= ruleQualifiedName ) ) (this_Parameters_3= ruleParameters[$current] )? otherlv_4= 'extends' this_ClassifierExtensions_5= ruleClassifierExtensions[$current] (this_ConfigurationElementBlock_6= ruleConfigurationElementBlock[$current] )? otherlv_7= 'end' ruleSEMICOLON ) ;
     public final EObject ruleComponentConfiguration() throws RecognitionException {
         EObject current = null;
 
@@ -2665,35 +2687,46 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalAadlV3.g:1071:2: ( ( ( (lv_private_0_0= 'private' ) ) otherlv_1= 'configuration' ( (lv_name_2_0= ruleQualifiedName ) ) (this_Parameters_3= ruleParameters[$current] )? otherlv_4= 'extends' this_ClassifierExtensions_5= ruleClassifierExtensions[$current] (this_ConfigurationElementBlock_6= ruleConfigurationElementBlock[$current] )? otherlv_7= 'end' ruleSEMICOLON ) )
-            // InternalAadlV3.g:1072:2: ( ( (lv_private_0_0= 'private' ) ) otherlv_1= 'configuration' ( (lv_name_2_0= ruleQualifiedName ) ) (this_Parameters_3= ruleParameters[$current] )? otherlv_4= 'extends' this_ClassifierExtensions_5= ruleClassifierExtensions[$current] (this_ConfigurationElementBlock_6= ruleConfigurationElementBlock[$current] )? otherlv_7= 'end' ruleSEMICOLON )
+            // InternalAadlV3.g:1071:2: ( ( ( (lv_private_0_0= 'private' ) )? otherlv_1= 'configuration' ( (lv_name_2_0= ruleQualifiedName ) ) (this_Parameters_3= ruleParameters[$current] )? otherlv_4= 'extends' this_ClassifierExtensions_5= ruleClassifierExtensions[$current] (this_ConfigurationElementBlock_6= ruleConfigurationElementBlock[$current] )? otherlv_7= 'end' ruleSEMICOLON ) )
+            // InternalAadlV3.g:1072:2: ( ( (lv_private_0_0= 'private' ) )? otherlv_1= 'configuration' ( (lv_name_2_0= ruleQualifiedName ) ) (this_Parameters_3= ruleParameters[$current] )? otherlv_4= 'extends' this_ClassifierExtensions_5= ruleClassifierExtensions[$current] (this_ConfigurationElementBlock_6= ruleConfigurationElementBlock[$current] )? otherlv_7= 'end' ruleSEMICOLON )
             {
-            // InternalAadlV3.g:1072:2: ( ( (lv_private_0_0= 'private' ) ) otherlv_1= 'configuration' ( (lv_name_2_0= ruleQualifiedName ) ) (this_Parameters_3= ruleParameters[$current] )? otherlv_4= 'extends' this_ClassifierExtensions_5= ruleClassifierExtensions[$current] (this_ConfigurationElementBlock_6= ruleConfigurationElementBlock[$current] )? otherlv_7= 'end' ruleSEMICOLON )
-            // InternalAadlV3.g:1073:3: ( (lv_private_0_0= 'private' ) ) otherlv_1= 'configuration' ( (lv_name_2_0= ruleQualifiedName ) ) (this_Parameters_3= ruleParameters[$current] )? otherlv_4= 'extends' this_ClassifierExtensions_5= ruleClassifierExtensions[$current] (this_ConfigurationElementBlock_6= ruleConfigurationElementBlock[$current] )? otherlv_7= 'end' ruleSEMICOLON
+            // InternalAadlV3.g:1072:2: ( ( (lv_private_0_0= 'private' ) )? otherlv_1= 'configuration' ( (lv_name_2_0= ruleQualifiedName ) ) (this_Parameters_3= ruleParameters[$current] )? otherlv_4= 'extends' this_ClassifierExtensions_5= ruleClassifierExtensions[$current] (this_ConfigurationElementBlock_6= ruleConfigurationElementBlock[$current] )? otherlv_7= 'end' ruleSEMICOLON )
+            // InternalAadlV3.g:1073:3: ( (lv_private_0_0= 'private' ) )? otherlv_1= 'configuration' ( (lv_name_2_0= ruleQualifiedName ) ) (this_Parameters_3= ruleParameters[$current] )? otherlv_4= 'extends' this_ClassifierExtensions_5= ruleClassifierExtensions[$current] (this_ConfigurationElementBlock_6= ruleConfigurationElementBlock[$current] )? otherlv_7= 'end' ruleSEMICOLON
             {
-            // InternalAadlV3.g:1073:3: ( (lv_private_0_0= 'private' ) )
-            // InternalAadlV3.g:1074:4: (lv_private_0_0= 'private' )
-            {
-            // InternalAadlV3.g:1074:4: (lv_private_0_0= 'private' )
-            // InternalAadlV3.g:1075:5: lv_private_0_0= 'private'
-            {
-            lv_private_0_0=(Token)match(input,17,FOLLOW_23); if (state.failed) return current;
-            if ( state.backtracking==0 ) {
+            // InternalAadlV3.g:1073:3: ( (lv_private_0_0= 'private' ) )?
+            int alt19=2;
+            int LA19_0 = input.LA(1);
 
-              					newLeafNode(lv_private_0_0, grammarAccess.getComponentConfigurationAccess().getPrivatePrivateKeyword_0_0());
-              				
+            if ( (LA19_0==17) ) {
+                alt19=1;
             }
-            if ( state.backtracking==0 ) {
+            switch (alt19) {
+                case 1 :
+                    // InternalAadlV3.g:1074:4: (lv_private_0_0= 'private' )
+                    {
+                    // InternalAadlV3.g:1074:4: (lv_private_0_0= 'private' )
+                    // InternalAadlV3.g:1075:5: lv_private_0_0= 'private'
+                    {
+                    lv_private_0_0=(Token)match(input,17,FOLLOW_23); if (state.failed) return current;
+                    if ( state.backtracking==0 ) {
 
-              					if (current==null) {
-              						current = createModelElement(grammarAccess.getComponentConfigurationRule());
-              					}
-              					setWithLastConsumed(current, "private", true, "private");
-              				
-            }
+                      					newLeafNode(lv_private_0_0, grammarAccess.getComponentConfigurationAccess().getPrivatePrivateKeyword_0_0());
+                      				
+                    }
+                    if ( state.backtracking==0 ) {
 
-            }
+                      					if (current==null) {
+                      						current = createModelElement(grammarAccess.getComponentConfigurationRule());
+                      					}
+                      					setWithLastConsumed(current, "private", true, "private");
+                      				
+                    }
 
+                    }
+
+
+                    }
+                    break;
 
             }
 
@@ -2739,13 +2772,13 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
             }
 
             // InternalAadlV3.g:1110:3: (this_Parameters_3= ruleParameters[$current] )?
-            int alt17=2;
-            int LA17_0 = input.LA(1);
+            int alt20=2;
+            int LA20_0 = input.LA(1);
 
-            if ( (LA17_0==34) ) {
-                alt17=1;
+            if ( (LA20_0==34) ) {
+                alt20=1;
             }
-            switch (alt17) {
+            switch (alt20) {
                 case 1 :
                     // InternalAadlV3.g:1111:4: this_Parameters_3= ruleParameters[$current]
                     {
@@ -2800,13 +2833,13 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
               		
             }
             // InternalAadlV3.g:1138:3: (this_ConfigurationElementBlock_6= ruleConfigurationElementBlock[$current] )?
-            int alt18=2;
-            int LA18_0 = input.LA(1);
+            int alt21=2;
+            int LA21_0 = input.LA(1);
 
-            if ( (LA18_0==21) ) {
-                alt18=1;
+            if ( (LA21_0==21) ) {
+                alt21=1;
             }
-            switch (alt18) {
+            switch (alt21) {
                 case 1 :
                     // InternalAadlV3.g:1139:4: this_ConfigurationElementBlock_6= ruleConfigurationElementBlock[$current]
                     {
@@ -2983,13 +3016,13 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
               		
             }
             // InternalAadlV3.g:1203:3: ( (lv_direction_2_0= ruleFeatureDirection ) )?
-            int alt19=2;
-            int LA19_0 = input.LA(1);
+            int alt22=2;
+            int LA22_0 = input.LA(1);
 
-            if ( ((LA19_0>=53 && LA19_0<=56)) ) {
-                alt19=1;
+            if ( ((LA22_0>=53 && LA22_0<=56)) ) {
+                alt22=1;
             }
-            switch (alt19) {
+            switch (alt22) {
                 case 1 :
                     // InternalAadlV3.g:1204:4: (lv_direction_2_0= ruleFeatureDirection )
                     {
@@ -3029,13 +3062,13 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
             }
 
             // InternalAadlV3.g:1222:3: ( (lv_sampled_3_0= 'sampled' ) )?
-            int alt20=2;
-            int LA20_0 = input.LA(1);
+            int alt23=2;
+            int LA23_0 = input.LA(1);
 
-            if ( (LA20_0==24) ) {
-                alt20=1;
+            if ( (LA23_0==24) ) {
+                alt23=1;
             }
-            switch (alt20) {
+            switch (alt23) {
                 case 1 :
                     // InternalAadlV3.g:1223:4: (lv_sampled_3_0= 'sampled' )
                     {
@@ -3101,13 +3134,13 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
             }
 
             // InternalAadlV3.g:1255:3: ( (lv_reverse_5_0= 'reverse' ) )?
-            int alt21=2;
-            int LA21_0 = input.LA(1);
+            int alt24=2;
+            int LA24_0 = input.LA(1);
 
-            if ( (LA21_0==25) ) {
-                alt21=1;
+            if ( (LA24_0==25) ) {
+                alt24=1;
             }
-            switch (alt21) {
+            switch (alt24) {
                 case 1 :
                     // InternalAadlV3.g:1256:4: (lv_reverse_5_0= 'reverse' )
                     {
@@ -3138,13 +3171,13 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
             }
 
             // InternalAadlV3.g:1269:3: ( ( ruleQualifiedName ) )?
-            int alt22=2;
-            int LA22_0 = input.LA(1);
+            int alt25=2;
+            int LA25_0 = input.LA(1);
 
-            if ( (LA22_0==RULE_ID) ) {
-                alt22=1;
+            if ( (LA25_0==RULE_ID) ) {
+                alt25=1;
             }
-            switch (alt22) {
+            switch (alt25) {
                 case 1 :
                     // InternalAadlV3.g:1270:4: ( ruleQualifiedName )
                     {
@@ -3183,13 +3216,13 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
             }
 
             // InternalAadlV3.g:1285:3: (this_PropertiesBlock_7= rulePropertiesBlock[$current] )?
-            int alt23=2;
-            int LA23_0 = input.LA(1);
+            int alt26=2;
+            int LA26_0 = input.LA(1);
 
-            if ( (LA23_0==32) ) {
-                alt23=1;
+            if ( (LA26_0==32) ) {
+                alt26=1;
             }
-            switch (alt23) {
+            switch (alt26) {
                 case 1 :
                     // InternalAadlV3.g:1286:4: this_PropertiesBlock_7= rulePropertiesBlock[$current]
                     {
@@ -3393,13 +3426,13 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
             }
 
             // InternalAadlV3.g:1365:3: ( (lv_typeReference_3_0= ruleTypeReference ) )?
-            int alt24=2;
-            int LA24_0 = input.LA(1);
+            int alt27=2;
+            int LA27_0 = input.LA(1);
 
-            if ( (LA24_0==RULE_ID) ) {
-                alt24=1;
+            if ( (LA27_0==RULE_ID) ) {
+                alt27=1;
             }
-            switch (alt24) {
+            switch (alt27) {
                 case 1 :
                     // InternalAadlV3.g:1366:4: (lv_typeReference_3_0= ruleTypeReference )
                     {
@@ -3439,13 +3472,13 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
             }
 
             // InternalAadlV3.g:1384:3: (this_NestedComponentImplementationBlock_4= ruleNestedComponentImplementationBlock[$current] )?
-            int alt25=2;
-            int LA25_0 = input.LA(1);
+            int alt28=2;
+            int LA28_0 = input.LA(1);
 
-            if ( (LA25_0==32) ) {
-                alt25=1;
+            if ( (LA28_0==32) ) {
+                alt28=1;
             }
-            switch (alt25) {
+            switch (alt28) {
                 case 1 :
                     // InternalAadlV3.g:1385:4: this_NestedComponentImplementationBlock_4= ruleNestedComponentImplementationBlock[$current]
                     {
@@ -3728,13 +3761,13 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
             }
 
             // InternalAadlV3.g:1506:3: (this_PropertiesBlock_6= rulePropertiesBlock[$current] )?
-            int alt26=2;
-            int LA26_0 = input.LA(1);
+            int alt29=2;
+            int LA29_0 = input.LA(1);
 
-            if ( (LA26_0==32) ) {
-                alt26=1;
+            if ( (LA29_0==32) ) {
+                alt29=1;
             }
-            switch (alt26) {
+            switch (alt29) {
                 case 1 :
                     // InternalAadlV3.g:1507:4: this_PropertiesBlock_6= rulePropertiesBlock[$current]
                     {
@@ -4017,13 +4050,13 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
             }
 
             // InternalAadlV3.g:1628:3: (this_PropertiesBlock_6= rulePropertiesBlock[$current] )?
-            int alt27=2;
-            int LA27_0 = input.LA(1);
+            int alt30=2;
+            int LA30_0 = input.LA(1);
 
-            if ( (LA27_0==32) ) {
-                alt27=1;
+            if ( (LA30_0==32) ) {
+                alt30=1;
             }
-            switch (alt27) {
+            switch (alt30) {
                 case 1 :
                     // InternalAadlV3.g:1629:4: this_PropertiesBlock_6= rulePropertiesBlock[$current]
                     {
@@ -4306,13 +4339,13 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
             }
 
             // InternalAadlV3.g:1750:3: (this_PropertiesBlock_6= rulePropertiesBlock[$current] )?
-            int alt28=2;
-            int LA28_0 = input.LA(1);
+            int alt31=2;
+            int LA31_0 = input.LA(1);
 
-            if ( (LA28_0==32) ) {
-                alt28=1;
+            if ( (LA31_0==32) ) {
+                alt31=1;
             }
-            switch (alt28) {
+            switch (alt31) {
                 case 1 :
                     // InternalAadlV3.g:1751:4: this_PropertiesBlock_6= rulePropertiesBlock[$current]
                     {
@@ -4551,13 +4584,13 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
             }
 
             // InternalAadlV3.g:1849:3: (this_PropertiesBlock_4= rulePropertiesBlock[$current] )?
-            int alt29=2;
-            int LA29_0 = input.LA(1);
+            int alt32=2;
+            int LA32_0 = input.LA(1);
 
-            if ( (LA29_0==32) ) {
-                alt29=1;
+            if ( (LA32_0==32) ) {
+                alt32=1;
             }
-            switch (alt29) {
+            switch (alt32) {
                 case 1 :
                     // InternalAadlV3.g:1850:4: this_PropertiesBlock_4= rulePropertiesBlock[$current]
                     {
@@ -4796,13 +4829,13 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
             }
 
             // InternalAadlV3.g:1948:3: (this_PropertiesBlock_4= rulePropertiesBlock[$current] )?
-            int alt30=2;
-            int LA30_0 = input.LA(1);
+            int alt33=2;
+            int LA33_0 = input.LA(1);
 
-            if ( (LA30_0==32) ) {
-                alt30=1;
+            if ( (LA33_0==32) ) {
+                alt33=1;
             }
-            switch (alt30) {
+            switch (alt33) {
                 case 1 :
                     // InternalAadlV3.g:1949:4: this_PropertiesBlock_4= rulePropertiesBlock[$current]
                     {
@@ -5022,18 +5055,18 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
             }
 
             // InternalAadlV3.g:2035:3: (otherlv_4= '->' ( (lv_elements_5_0= rulePathElement ) ) )+
-            int cnt31=0;
-            loop31:
+            int cnt34=0;
+            loop34:
             do {
-                int alt31=2;
-                int LA31_0 = input.LA(1);
+                int alt34=2;
+                int LA34_0 = input.LA(1);
 
-                if ( (LA31_0==26) ) {
-                    alt31=1;
+                if ( (LA34_0==26) ) {
+                    alt34=1;
                 }
 
 
-                switch (alt31) {
+                switch (alt34) {
             	case 1 :
             	    // InternalAadlV3.g:2036:4: otherlv_4= '->' ( (lv_elements_5_0= rulePathElement ) )
             	    {
@@ -5083,23 +5116,23 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    if ( cnt31 >= 1 ) break loop31;
+            	    if ( cnt34 >= 1 ) break loop34;
             	    if (state.backtracking>0) {state.failed=true; return current;}
                         EarlyExitException eee =
-                            new EarlyExitException(31, input);
+                            new EarlyExitException(34, input);
                         throw eee;
                 }
-                cnt31++;
+                cnt34++;
             } while (true);
 
             // InternalAadlV3.g:2060:3: (this_PropertiesBlock_6= rulePropertiesBlock[$current] )?
-            int alt32=2;
-            int LA32_0 = input.LA(1);
+            int alt35=2;
+            int LA35_0 = input.LA(1);
 
-            if ( (LA32_0==32) ) {
-                alt32=1;
+            if ( (LA35_0==32) ) {
+                alt35=1;
             }
-            switch (alt32) {
+            switch (alt35) {
                 case 1 :
                     // InternalAadlV3.g:2061:4: this_PropertiesBlock_6= rulePropertiesBlock[$current]
                     {
@@ -5252,17 +5285,17 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
             }
 
             // InternalAadlV3.g:2112:3: ( ( ( () '.' ( ( RULE_ID ) ) ) )=> ( () otherlv_2= '.' ( (otherlv_3= RULE_ID ) ) ) )*
-            loop33:
+            loop36:
             do {
-                int alt33=2;
-                int LA33_0 = input.LA(1);
+                int alt36=2;
+                int LA36_0 = input.LA(1);
 
-                if ( (LA33_0==27) && (synpred1_InternalAadlV3())) {
-                    alt33=1;
+                if ( (LA36_0==27) && (synpred1_InternalAadlV3())) {
+                    alt36=1;
                 }
 
 
-                switch (alt33) {
+                switch (alt36) {
             	case 1 :
             	    // InternalAadlV3.g:2113:4: ( ( () '.' ( ( RULE_ID ) ) ) )=> ( () otherlv_2= '.' ( (otherlv_3= RULE_ID ) ) )
             	    {
@@ -5321,7 +5354,7 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop33;
+            	    break loop36;
                 }
             } while (true);
 
@@ -5595,23 +5628,23 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
               		
             }
             // InternalAadlV3.g:2242:3: ( ( ( (lv_value_2_0= ruleTypeReference ) ) (this_CurlyConfigurationElementBlock_3= ruleCurlyConfigurationElementBlock[$current] )? ) | this_CurlyConfigurationElementBlock_4= ruleCurlyConfigurationElementBlock[$current] )
-            int alt35=2;
-            int LA35_0 = input.LA(1);
+            int alt38=2;
+            int LA38_0 = input.LA(1);
 
-            if ( (LA35_0==RULE_ID) ) {
-                alt35=1;
+            if ( (LA38_0==RULE_ID) ) {
+                alt38=1;
             }
-            else if ( (LA35_0==32) ) {
-                alt35=2;
+            else if ( (LA38_0==32) ) {
+                alt38=2;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 35, 0, input);
+                    new NoViableAltException("", 38, 0, input);
 
                 throw nvae;
             }
-            switch (alt35) {
+            switch (alt38) {
                 case 1 :
                     // InternalAadlV3.g:2243:4: ( ( (lv_value_2_0= ruleTypeReference ) ) (this_CurlyConfigurationElementBlock_3= ruleCurlyConfigurationElementBlock[$current] )? )
                     {
@@ -5654,13 +5687,13 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
                     }
 
                     // InternalAadlV3.g:2263:5: (this_CurlyConfigurationElementBlock_3= ruleCurlyConfigurationElementBlock[$current] )?
-                    int alt34=2;
-                    int LA34_0 = input.LA(1);
+                    int alt37=2;
+                    int LA37_0 = input.LA(1);
 
-                    if ( (LA34_0==32) ) {
-                        alt34=1;
+                    if ( (LA37_0==32) ) {
+                        alt37=1;
                     }
-                    switch (alt34) {
+                    switch (alt37) {
                         case 1 :
                             // InternalAadlV3.g:2264:6: this_CurlyConfigurationElementBlock_3= ruleCurlyConfigurationElementBlock[$current]
                             {
@@ -5910,17 +5943,17 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
             }
 
             // InternalAadlV3.g:2362:3: (otherlv_4= '->' ( (lv_elements_5_0= rulePathElement ) ) )*
-            loop36:
+            loop39:
             do {
-                int alt36=2;
-                int LA36_0 = input.LA(1);
+                int alt39=2;
+                int LA39_0 = input.LA(1);
 
-                if ( (LA36_0==26) ) {
-                    alt36=1;
+                if ( (LA39_0==26) ) {
+                    alt39=1;
                 }
 
 
-                switch (alt36) {
+                switch (alt39) {
             	case 1 :
             	    // InternalAadlV3.g:2363:4: otherlv_4= '->' ( (lv_elements_5_0= rulePathElement ) )
             	    {
@@ -5970,7 +6003,7 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop36;
+            	    break loop39;
                 }
             } while (true);
 
@@ -6379,17 +6412,17 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
             }
 
             // InternalAadlV3.g:2529:3: ( ( ( () '.' ( ( RULE_ID ) ) ) )=> ( () otherlv_2= '.' ( (otherlv_3= RULE_ID ) ) ) )*
-            loop37:
+            loop40:
             do {
-                int alt37=2;
-                int LA37_0 = input.LA(1);
+                int alt40=2;
+                int LA40_0 = input.LA(1);
 
-                if ( (LA37_0==27) && (synpred2_InternalAadlV3())) {
-                    alt37=1;
+                if ( (LA40_0==27) && (synpred2_InternalAadlV3())) {
+                    alt40=1;
                 }
 
 
-                switch (alt37) {
+                switch (alt40) {
             	case 1 :
             	    // InternalAadlV3.g:2530:4: ( ( () '.' ( ( RULE_ID ) ) ) )=> ( () otherlv_2= '.' ( (otherlv_3= RULE_ID ) ) )
             	    {
@@ -6448,7 +6481,7 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop37;
+            	    break loop40;
                 }
             } while (true);
 
@@ -6537,13 +6570,13 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
             // InternalAadlV3.g:2587:3: ( ( (otherlv_0= RULE_ID ) ) ( ( ( () '.' ( ( RULE_ID ) ) ) )=> ( () otherlv_2= '.' ( (otherlv_3= RULE_ID ) ) ) )* )? otherlv_4= '#' ( ( ruleQualifiedName ) )
             {
             // InternalAadlV3.g:2587:3: ( ( (otherlv_0= RULE_ID ) ) ( ( ( () '.' ( ( RULE_ID ) ) ) )=> ( () otherlv_2= '.' ( (otherlv_3= RULE_ID ) ) ) )* )?
-            int alt39=2;
-            int LA39_0 = input.LA(1);
+            int alt42=2;
+            int LA42_0 = input.LA(1);
 
-            if ( (LA39_0==RULE_ID) ) {
-                alt39=1;
+            if ( (LA42_0==RULE_ID) ) {
+                alt42=1;
             }
-            switch (alt39) {
+            switch (alt42) {
                 case 1 :
                     // InternalAadlV3.g:2588:4: ( (otherlv_0= RULE_ID ) ) ( ( ( () '.' ( ( RULE_ID ) ) ) )=> ( () otherlv_2= '.' ( (otherlv_3= RULE_ID ) ) ) )*
                     {
@@ -6573,17 +6606,17 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
                     }
 
                     // InternalAadlV3.g:2601:4: ( ( ( () '.' ( ( RULE_ID ) ) ) )=> ( () otherlv_2= '.' ( (otherlv_3= RULE_ID ) ) ) )*
-                    loop38:
+                    loop41:
                     do {
-                        int alt38=2;
-                        int LA38_0 = input.LA(1);
+                        int alt41=2;
+                        int LA41_0 = input.LA(1);
 
-                        if ( (LA38_0==27) && (synpred3_InternalAadlV3())) {
-                            alt38=1;
+                        if ( (LA41_0==27) && (synpred3_InternalAadlV3())) {
+                            alt41=1;
                         }
 
 
-                        switch (alt38) {
+                        switch (alt41) {
                     	case 1 :
                     	    // InternalAadlV3.g:2602:5: ( ( () '.' ( ( RULE_ID ) ) ) )=> ( () otherlv_2= '.' ( (otherlv_3= RULE_ID ) ) )
                     	    {
@@ -6642,7 +6675,7 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
                     	    break;
 
                     	default :
-                    	    break loop38;
+                    	    break loop41;
                         }
                     } while (true);
 
@@ -6744,12 +6777,12 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
               		
             }
             // InternalAadlV3.g:2678:3: ( ( (lv_propertyAssociations_1_0= rulePropertyAssociation ) ) | ( (lv_assignments_2_0= ruleConfigurationAssignment ) ) )+
-            int cnt40=0;
-            loop40:
+            int cnt43=0;
+            loop43:
             do {
-                int alt40=3;
-                alt40 = dfa40.predict(input);
-                switch (alt40) {
+                int alt43=3;
+                alt43 = dfa43.predict(input);
+                switch (alt43) {
             	case 1 :
             	    // InternalAadlV3.g:2679:4: ( (lv_propertyAssociations_1_0= rulePropertyAssociation ) )
             	    {
@@ -6834,13 +6867,13 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    if ( cnt40 >= 1 ) break loop40;
+            	    if ( cnt43 >= 1 ) break loop43;
             	    if (state.backtracking>0) {state.failed=true; return current;}
                         EarlyExitException eee =
-                            new EarlyExitException(40, input);
+                            new EarlyExitException(43, input);
                         throw eee;
                 }
-                cnt40++;
+                cnt43++;
             } while (true);
 
 
@@ -6896,11 +6929,11 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
               		
             }
             // InternalAadlV3.g:2736:3: ( ( (lv_propertyAssociations_1_0= rulePropertyAssociation ) ) | ( (lv_assignments_2_0= ruleConfigurationAssignment ) ) )*
-            loop41:
+            loop44:
             do {
-                int alt41=3;
-                alt41 = dfa41.predict(input);
-                switch (alt41) {
+                int alt44=3;
+                alt44 = dfa44.predict(input);
+                switch (alt44) {
             	case 1 :
             	    // InternalAadlV3.g:2737:4: ( (lv_propertyAssociations_1_0= rulePropertyAssociation ) )
             	    {
@@ -6985,7 +7018,7 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop41;
+            	    break loop44;
                 }
             } while (true);
 
@@ -7069,13 +7102,13 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
             }
 
             // InternalAadlV3.g:2808:3: ( ( (lv_parameters_1_0= ruleConfigurationParameter ) ) (otherlv_2= ',' ( (lv_parameters_3_0= ruleConfigurationParameter ) ) )* )?
-            int alt43=2;
-            int LA43_0 = input.LA(1);
+            int alt46=2;
+            int LA46_0 = input.LA(1);
 
-            if ( (LA43_0==RULE_ID) ) {
-                alt43=1;
+            if ( (LA46_0==RULE_ID) ) {
+                alt46=1;
             }
-            switch (alt43) {
+            switch (alt46) {
                 case 1 :
                     // InternalAadlV3.g:2809:4: ( (lv_parameters_1_0= ruleConfigurationParameter ) ) (otherlv_2= ',' ( (lv_parameters_3_0= ruleConfigurationParameter ) ) )*
                     {
@@ -7115,17 +7148,17 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
                     }
 
                     // InternalAadlV3.g:2828:4: (otherlv_2= ',' ( (lv_parameters_3_0= ruleConfigurationParameter ) ) )*
-                    loop42:
+                    loop45:
                     do {
-                        int alt42=2;
-                        int LA42_0 = input.LA(1);
+                        int alt45=2;
+                        int LA45_0 = input.LA(1);
 
-                        if ( (LA42_0==15) ) {
-                            alt42=1;
+                        if ( (LA45_0==15) ) {
+                            alt45=1;
                         }
 
 
-                        switch (alt42) {
+                        switch (alt45) {
                     	case 1 :
                     	    // InternalAadlV3.g:2829:5: otherlv_2= ',' ( (lv_parameters_3_0= ruleConfigurationParameter ) )
                     	    {
@@ -7175,7 +7208,7 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
                     	    break;
 
                     	default :
-                    	    break loop42;
+                    	    break loop45;
                         }
                     } while (true);
 
@@ -7425,13 +7458,13 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
             // InternalAadlV3.g:2934:3: ( (lv_reverse_0_0= 'reverse' ) )? ( ( ruleQualifiedName ) )
             {
             // InternalAadlV3.g:2934:3: ( (lv_reverse_0_0= 'reverse' ) )?
-            int alt44=2;
-            int LA44_0 = input.LA(1);
+            int alt47=2;
+            int LA47_0 = input.LA(1);
 
-            if ( (LA44_0==25) ) {
-                alt44=1;
+            if ( (LA47_0==25) ) {
+                alt47=1;
             }
-            switch (alt44) {
+            switch (alt47) {
                 case 1 :
                     // InternalAadlV3.g:2935:4: (lv_reverse_0_0= 'reverse' )
                     {
@@ -7612,13 +7645,13 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
             }
 
             // InternalAadlV3.g:2999:3: (this_ConfigurationActuals_1= ruleConfigurationActuals[$current] )?
-            int alt45=2;
-            int LA45_0 = input.LA(1);
+            int alt48=2;
+            int LA48_0 = input.LA(1);
 
-            if ( (LA45_0==34) ) {
-                alt45=1;
+            if ( (LA48_0==34) ) {
+                alt48=1;
             }
-            switch (alt45) {
+            switch (alt48) {
                 case 1 :
                     // InternalAadlV3.g:3000:4: this_ConfigurationActuals_1= ruleConfigurationActuals[$current]
                     {
@@ -7805,17 +7838,17 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
               		
             }
             // InternalAadlV3.g:3062:3: ( (lv_propertyAssociations_1_0= rulePropertyAssociation ) )*
-            loop46:
+            loop49:
             do {
-                int alt46=2;
-                int LA46_0 = input.LA(1);
+                int alt49=2;
+                int LA49_0 = input.LA(1);
 
-                if ( (LA46_0==RULE_ID||LA46_0==31) ) {
-                    alt46=1;
+                if ( (LA49_0==RULE_ID||LA49_0==31) ) {
+                    alt49=1;
                 }
 
 
-                switch (alt46) {
+                switch (alt49) {
             	case 1 :
             	    // InternalAadlV3.g:3063:4: (lv_propertyAssociations_1_0= rulePropertyAssociation )
             	    {
@@ -7853,7 +7886,7 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop46;
+            	    break loop49;
                 }
             } while (true);
 
@@ -7922,11 +7955,11 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
               		
             }
             // InternalAadlV3.g:3102:3: ( ( (lv_features_1_0= ruleFeature ) ) | ( (lv_connections_2_0= ruleConnection ) ) | ( (lv_connections_3_0= ruleFeatureMapping ) ) | ( (lv_components_4_0= ruleComponent ) ) | ( (lv_propertyAssociations_5_0= rulePropertyAssociation ) ) )*
-            loop47:
+            loop50:
             do {
-                int alt47=6;
-                alt47 = dfa47.predict(input);
-                switch (alt47) {
+                int alt50=6;
+                alt50 = dfa50.predict(input);
+                switch (alt50) {
             	case 1 :
             	    // InternalAadlV3.g:3103:4: ( (lv_features_1_0= ruleFeature ) )
             	    {
@@ -8134,7 +8167,7 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop47;
+            	    break loop50;
                 }
             } while (true);
 
@@ -8225,17 +8258,17 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
             }
 
             // InternalAadlV3.g:3239:3: (otherlv_1= ',' ( (lv_superClassifiers_2_0= ruleTypeReference ) ) )*
-            loop48:
+            loop51:
             do {
-                int alt48=2;
-                int LA48_0 = input.LA(1);
+                int alt51=2;
+                int LA51_0 = input.LA(1);
 
-                if ( (LA48_0==15) ) {
-                    alt48=1;
+                if ( (LA51_0==15) ) {
+                    alt51=1;
                 }
 
 
-                switch (alt48) {
+                switch (alt51) {
             	case 1 :
             	    // InternalAadlV3.g:3240:4: otherlv_1= ',' ( (lv_superClassifiers_2_0= ruleTypeReference ) )
             	    {
@@ -8285,7 +8318,7 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop48;
+            	    break loop51;
                 }
             } while (true);
 
@@ -8370,17 +8403,17 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
             }
 
             // InternalAadlV3.g:3296:3: (otherlv_1= ',' ( (lv_superClassifiers_2_0= ruleImplementationReference ) ) )*
-            loop49:
+            loop52:
             do {
-                int alt49=2;
-                int LA49_0 = input.LA(1);
+                int alt52=2;
+                int LA52_0 = input.LA(1);
 
-                if ( (LA49_0==15) ) {
-                    alt49=1;
+                if ( (LA52_0==15) ) {
+                    alt52=1;
                 }
 
 
-                switch (alt49) {
+                switch (alt52) {
             	case 1 :
             	    // InternalAadlV3.g:3297:4: otherlv_1= ',' ( (lv_superClassifiers_2_0= ruleImplementationReference ) )
             	    {
@@ -8430,7 +8463,7 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop49;
+            	    break loop52;
                 }
             } while (true);
 
@@ -8515,17 +8548,17 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
             }
 
             // InternalAadlV3.g:3353:3: (otherlv_1= ',' ( (lv_superClassifiers_2_0= ruleReversableInterfaceReference ) ) )*
-            loop50:
+            loop53:
             do {
-                int alt50=2;
-                int LA50_0 = input.LA(1);
+                int alt53=2;
+                int LA53_0 = input.LA(1);
 
-                if ( (LA50_0==15) ) {
-                    alt50=1;
+                if ( (LA53_0==15) ) {
+                    alt53=1;
                 }
 
 
-                switch (alt50) {
+                switch (alt53) {
             	case 1 :
             	    // InternalAadlV3.g:3354:4: otherlv_1= ',' ( (lv_superClassifiers_2_0= ruleReversableInterfaceReference ) )
             	    {
@@ -8575,7 +8608,7 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop50;
+            	    break loop53;
                 }
             } while (true);
 
@@ -8633,13 +8666,13 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
               		
             }
             // InternalAadlV3.g:3395:3: ( ( (lv_actuals_1_0= ruleConfigurationActual ) ) (otherlv_2= ',' ( (lv_actuals_3_0= ruleConfigurationActual ) ) )* )?
-            int alt52=2;
-            int LA52_0 = input.LA(1);
+            int alt55=2;
+            int LA55_0 = input.LA(1);
 
-            if ( (LA52_0==RULE_ID) ) {
-                alt52=1;
+            if ( (LA55_0==RULE_ID) ) {
+                alt55=1;
             }
-            switch (alt52) {
+            switch (alt55) {
                 case 1 :
                     // InternalAadlV3.g:3396:4: ( (lv_actuals_1_0= ruleConfigurationActual ) ) (otherlv_2= ',' ( (lv_actuals_3_0= ruleConfigurationActual ) ) )*
                     {
@@ -8679,17 +8712,17 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
                     }
 
                     // InternalAadlV3.g:3415:4: (otherlv_2= ',' ( (lv_actuals_3_0= ruleConfigurationActual ) ) )*
-                    loop51:
+                    loop54:
                     do {
-                        int alt51=2;
-                        int LA51_0 = input.LA(1);
+                        int alt54=2;
+                        int LA54_0 = input.LA(1);
 
-                        if ( (LA51_0==15) ) {
-                            alt51=1;
+                        if ( (LA54_0==15) ) {
+                            alt54=1;
                         }
 
 
-                        switch (alt51) {
+                        switch (alt54) {
                     	case 1 :
                     	    // InternalAadlV3.g:3416:5: otherlv_2= ',' ( (lv_actuals_3_0= ruleConfigurationActual ) )
                     	    {
@@ -8739,7 +8772,7 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
                     	    break;
 
                     	default :
-                    	    break loop51;
+                    	    break loop54;
                         }
                     } while (true);
 
@@ -9040,17 +9073,17 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
               		
             }
             // InternalAadlV3.g:3546:3: ( (lv_rootComponents_3_0= ruleComponent ) )*
-            loop53:
+            loop56:
             do {
-                int alt53=2;
-                int LA53_0 = input.LA(1);
+                int alt56=2;
+                int LA56_0 = input.LA(1);
 
-                if ( (LA53_0==RULE_ID) ) {
-                    alt53=1;
+                if ( (LA56_0==RULE_ID) ) {
+                    alt56=1;
                 }
 
 
-                switch (alt53) {
+                switch (alt56) {
             	case 1 :
             	    // InternalAadlV3.g:3547:4: (lv_rootComponents_3_0= ruleComponent )
             	    {
@@ -9088,7 +9121,7 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop53;
+            	    break loop56;
                 }
             } while (true);
 
@@ -9099,13 +9132,13 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
               		
             }
             // InternalAadlV3.g:3569:3: ( ruleSEMICOLON )?
-            int alt54=2;
-            int LA54_0 = input.LA(1);
+            int alt57=2;
+            int LA57_0 = input.LA(1);
 
-            if ( (LA54_0==38) ) {
-                alt54=1;
+            if ( (LA57_0==38) ) {
+                alt57=1;
             }
-            switch (alt54) {
+            switch (alt57) {
                 case 1 :
                     // InternalAadlV3.g:3570:4: ruleSEMICOLON
                     {
@@ -9234,13 +9267,13 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
               		
             }
             // InternalAadlV3.g:3607:3: (kw= '.*' )?
-            int alt55=2;
-            int LA55_0 = input.LA(1);
+            int alt58=2;
+            int LA58_0 = input.LA(1);
 
-            if ( (LA55_0==37) ) {
-                alt55=1;
+            if ( (LA58_0==37) ) {
+                alt58=1;
             }
-            switch (alt55) {
+            switch (alt58) {
                 case 1 :
                     // InternalAadlV3.g:3608:4: kw= '.*'
                     {
@@ -9352,17 +9385,17 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
               		
             }
             // InternalAadlV3.g:3640:3: (kw= '.' this_ID_2= RULE_ID )*
-            loop56:
+            loop59:
             do {
-                int alt56=2;
-                int LA56_0 = input.LA(1);
+                int alt59=2;
+                int LA59_0 = input.LA(1);
 
-                if ( (LA56_0==27) ) {
-                    alt56=1;
+                if ( (LA59_0==27) ) {
+                    alt59=1;
                 }
 
 
-                switch (alt56) {
+                switch (alt59) {
             	case 1 :
             	    // InternalAadlV3.g:3641:4: kw= '.' this_ID_2= RULE_ID
             	    {
@@ -9389,7 +9422,7 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop56;
+            	    break loop59;
                 }
             } while (true);
 
@@ -9566,9 +9599,9 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
             // InternalAadlV3.g:3694:2: (kw= 'component' | kw= 'bus' | kw= 'data' | kw= 'device' | kw= 'memory' | kw= 'process' | kw= 'processor' | kw= 'system' | kw= 'thread' | this_VirtualBusKeywords_9= ruleVirtualBusKeywords | this_VirtualProcessorKeywords_10= ruleVirtualProcessorKeywords | this_VirtualMemoryKeywords_11= ruleVirtualMemoryKeywords | this_VirtualDeviceKeywords_12= ruleVirtualDeviceKeywords | kw= 'subprogram' | this_SubprogramGroupKeywords_14= ruleSubprogramGroupKeywords | this_ThreadGroupKeywords_15= ruleThreadGroupKeywords )
             {
             // InternalAadlV3.g:3694:2: (kw= 'component' | kw= 'bus' | kw= 'data' | kw= 'device' | kw= 'memory' | kw= 'process' | kw= 'processor' | kw= 'system' | kw= 'thread' | this_VirtualBusKeywords_9= ruleVirtualBusKeywords | this_VirtualProcessorKeywords_10= ruleVirtualProcessorKeywords | this_VirtualMemoryKeywords_11= ruleVirtualMemoryKeywords | this_VirtualDeviceKeywords_12= ruleVirtualDeviceKeywords | kw= 'subprogram' | this_SubprogramGroupKeywords_14= ruleSubprogramGroupKeywords | this_ThreadGroupKeywords_15= ruleThreadGroupKeywords )
-            int alt57=16;
-            alt57 = dfa57.predict(input);
-            switch (alt57) {
+            int alt60=16;
+            alt60 = dfa60.predict(input);
+            switch (alt60) {
                 case 1 :
                     // InternalAadlV3.g:3695:3: kw= 'component'
                     {
@@ -9936,47 +9969,47 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
             // InternalAadlV3.g:3838:2: (kw= 'feature' | kw= 'port' | kw= 'access' | this_BusAccessKeywords_3= ruleBusAccessKeywords | kw= 'binding' | kw= 'interface' )
             {
             // InternalAadlV3.g:3838:2: (kw= 'feature' | kw= 'port' | kw= 'access' | this_BusAccessKeywords_3= ruleBusAccessKeywords | kw= 'binding' | kw= 'interface' )
-            int alt58=6;
+            int alt61=6;
             switch ( input.LA(1) ) {
             case 49:
                 {
-                alt58=1;
+                alt61=1;
                 }
                 break;
             case 50:
                 {
-                alt58=2;
+                alt61=2;
                 }
                 break;
             case 51:
                 {
-                alt58=3;
+                alt61=3;
                 }
                 break;
             case 40:
                 {
-                alt58=4;
+                alt61=4;
                 }
                 break;
             case 52:
                 {
-                alt58=5;
+                alt61=5;
                 }
                 break;
             case 18:
                 {
-                alt58=6;
+                alt61=6;
                 }
                 break;
             default:
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 58, 0, input);
+                    new NoViableAltException("", 61, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt58) {
+            switch (alt61) {
                 case 1 :
                     // InternalAadlV3.g:3839:3: kw= 'feature'
                     {
@@ -10161,9 +10194,9 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
             // InternalAadlV3.g:3897:2: (kw= 'in' | kw= 'out' | this_InOutKeywords_2= ruleInOutKeywords | kw= 'requires' | kw= 'provides' | this_ProvidesReadKeywords_5= ruleProvidesReadKeywords | this_RequiresReadKeywords_6= ruleRequiresReadKeywords | this_ProvidesWriteKeywords_7= ruleProvidesWriteKeywords | this_RequiresWriteKeywords_8= ruleRequiresWriteKeywords | this_ProvidesRWKeywords_9= ruleProvidesRWKeywords | this_RequiresRWKeywords_10= ruleRequiresRWKeywords )
             {
             // InternalAadlV3.g:3897:2: (kw= 'in' | kw= 'out' | this_InOutKeywords_2= ruleInOutKeywords | kw= 'requires' | kw= 'provides' | this_ProvidesReadKeywords_5= ruleProvidesReadKeywords | this_RequiresReadKeywords_6= ruleRequiresReadKeywords | this_ProvidesWriteKeywords_7= ruleProvidesWriteKeywords | this_RequiresWriteKeywords_8= ruleRequiresWriteKeywords | this_ProvidesRWKeywords_9= ruleProvidesRWKeywords | this_RequiresRWKeywords_10= ruleRequiresRWKeywords )
-            int alt59=11;
-            alt59 = dfa59.predict(input);
-            switch (alt59) {
+            int alt62=11;
+            alt62 = dfa62.predict(input);
+            switch (alt62) {
                 case 1 :
                     // InternalAadlV3.g:3898:3: kw= 'in'
                     {
@@ -10477,47 +10510,47 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
             // InternalAadlV3.g:4016:2: (kw= 'feature' | kw= 'bus' | kw= 'binding' | kw= 'interface' | kw= 'port' | kw= 'data' )
             {
             // InternalAadlV3.g:4016:2: (kw= 'feature' | kw= 'bus' | kw= 'binding' | kw= 'interface' | kw= 'port' | kw= 'data' )
-            int alt60=6;
+            int alt63=6;
             switch ( input.LA(1) ) {
             case 49:
                 {
-                alt60=1;
+                alt63=1;
                 }
                 break;
             case 40:
                 {
-                alt60=2;
+                alt63=2;
                 }
                 break;
             case 52:
                 {
-                alt60=3;
+                alt63=3;
                 }
                 break;
             case 18:
                 {
-                alt60=4;
+                alt63=4;
                 }
                 break;
             case 50:
                 {
-                alt60=5;
+                alt63=5;
                 }
                 break;
             case 41:
                 {
-                alt60=6;
+                alt63=6;
                 }
                 break;
             default:
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 60, 0, input);
+                    new NoViableAltException("", 63, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt60) {
+            switch (alt63) {
                 case 1 :
                     // InternalAadlV3.g:4017:3: kw= 'feature'
                     {
@@ -12865,46 +12898,46 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
 
 
     protected DFA2 dfa2 = new DFA2(this);
-    protected DFA12 dfa12 = new DFA12(this);
-    protected DFA16 dfa16 = new DFA16(this);
-    protected DFA40 dfa40 = new DFA40(this);
-    protected DFA41 dfa41 = new DFA41(this);
-    protected DFA47 dfa47 = new DFA47(this);
-    protected DFA57 dfa57 = new DFA57(this);
-    protected DFA59 dfa59 = new DFA59(this);
+    protected DFA13 dfa13 = new DFA13(this);
+    protected DFA18 dfa18 = new DFA18(this);
+    protected DFA43 dfa43 = new DFA43(this);
+    protected DFA44 dfa44 = new DFA44(this);
+    protected DFA50 dfa50 = new DFA50(this);
+    protected DFA60 dfa60 = new DFA60(this);
+    protected DFA62 dfa62 = new DFA62(this);
     static final String dfa_1s = "\33\uffff";
-    static final String dfa_2s = "\1\13\2\uffff\1\22\3\uffff\11\4\1\50\1\4\3\uffff\6\4";
-    static final String dfa_3s = "\1\44\2\uffff\1\72\3\uffff\10\22\1\73\1\55\1\73\3\uffff\6\22";
-    static final String dfa_4s = "\1\uffff\1\1\1\2\1\uffff\1\6\1\7\1\10\13\uffff\1\3\1\5\1\4\6\uffff";
+    static final String dfa_2s = "\1\13\2\uffff\1\22\11\4\1\50\1\4\6\uffff\6\4";
+    static final String dfa_3s = "\1\72\2\uffff\1\72\10\22\1\73\1\55\1\73\6\uffff\6\22";
+    static final String dfa_4s = "\1\uffff\1\1\1\2\14\uffff\1\3\1\5\1\6\1\7\1\10\1\4\6\uffff";
     static final String dfa_5s = "\33\uffff}>";
     static final String[] dfa_6s = {
-            "\1\1\1\uffff\1\4\1\5\1\uffff\1\2\1\3\22\uffff\1\6",
+            "\1\1\1\uffff\1\21\1\22\1\uffff\1\2\1\3\1\17\3\uffff\1\20\15\uffff\1\23\2\uffff\1\4\1\5\1\6\1\7\1\10\1\11\1\12\1\13\1\14\1\16\11\uffff\1\15",
             "",
             "",
-            "\1\22\3\uffff\1\23\20\uffff\1\7\1\10\1\11\1\12\1\13\1\14\1\15\1\16\1\17\1\21\11\uffff\1\20",
-            "",
-            "",
-            "",
-            "\1\24\15\uffff\1\22",
-            "\1\24\15\uffff\1\22",
-            "\1\24\15\uffff\1\22",
-            "\1\24\15\uffff\1\22",
-            "\1\24\15\uffff\1\22",
-            "\1\24\15\uffff\1\22",
-            "\1\24\15\uffff\1\22",
-            "\1\24\15\uffff\1\22",
-            "\1\24\15\uffff\1\22\50\uffff\1\25",
-            "\1\30\1\uffff\1\31\1\27\1\uffff\1\26",
-            "\1\24\15\uffff\1\22\50\uffff\1\32",
+            "\1\17\3\uffff\1\20\20\uffff\1\4\1\5\1\6\1\7\1\10\1\11\1\12\1\13\1\14\1\16\11\uffff\1\15",
+            "\1\24\15\uffff\1\17",
+            "\1\24\15\uffff\1\17",
+            "\1\24\15\uffff\1\17",
+            "\1\24\15\uffff\1\17",
+            "\1\24\15\uffff\1\17",
+            "\1\24\15\uffff\1\17",
+            "\1\24\15\uffff\1\17",
+            "\1\24\15\uffff\1\17",
+            "\1\24\15\uffff\1\17\50\uffff\1\25",
+            "\1\26\1\uffff\1\27\1\31\1\uffff\1\30",
+            "\1\24\15\uffff\1\17\50\uffff\1\32",
             "",
             "",
             "",
-            "\1\24\15\uffff\1\22",
-            "\1\24\15\uffff\1\22",
-            "\1\24\15\uffff\1\22",
-            "\1\24\15\uffff\1\22",
-            "\1\24\15\uffff\1\22",
-            "\1\24\15\uffff\1\22"
+            "",
+            "",
+            "",
+            "\1\24\15\uffff\1\17",
+            "\1\24\15\uffff\1\17",
+            "\1\24\15\uffff\1\17",
+            "\1\24\15\uffff\1\17",
+            "\1\24\15\uffff\1\17",
+            "\1\24\15\uffff\1\17"
     };
 
     static final short[] dfa_1 = DFA.unpackEncodedString(dfa_1s);
@@ -12934,7 +12967,7 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
     static final String dfa_7s = "\12\uffff";
     static final String dfa_8s = "\1\4\1\uffff\1\27\1\uffff\1\22\1\75\4\uffff";
     static final String dfa_9s = "\1\37\1\uffff\1\37\1\uffff\1\70\1\77\4\uffff";
-    static final String dfa_10s = "\1\uffff\1\6\1\uffff\1\5\2\uffff\1\1\1\4\1\3\1\2";
+    static final String dfa_10s = "\1\uffff\1\6\1\uffff\1\5\2\uffff\1\1\1\2\1\4\1\3";
     static final String dfa_11s = "\12\uffff}>";
     static final String[] dfa_12s = {
             "\1\2\7\uffff\1\1\7\uffff\1\1\12\uffff\1\3",
@@ -12942,7 +12975,7 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
             "\1\4\3\uffff\1\3\3\uffff\1\3",
             "",
             "\1\6\5\uffff\1\6\5\uffff\1\5\11\uffff\1\6\10\uffff\10\6",
-            "\1\10\1\7\1\11",
+            "\1\11\1\10\1\7",
             "",
             "",
             "",
@@ -12956,11 +12989,11 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
     static final short[] dfa_11 = DFA.unpackEncodedString(dfa_11s);
     static final short[][] dfa_12 = unpackEncodedStringArray(dfa_12s);
 
-    class DFA12 extends DFA {
+    class DFA13 extends DFA {
 
-        public DFA12(BaseRecognizer recognizer) {
+        public DFA13(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 12;
+            this.decisionNumber = 13;
             this.eot = dfa_7;
             this.eof = dfa_7;
             this.min = dfa_8;
@@ -12974,30 +13007,30 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
         }
     }
     static final String dfa_13s = "\23\uffff";
-    static final String dfa_14s = "\1\4\1\uffff\1\27\1\uffff\1\14\2\4\2\uffff\2\4\2\uffff\1\33\2\uffff\1\32\1\4\1\32";
-    static final String dfa_15s = "\1\37\1\uffff\1\37\1\uffff\1\72\1\4\1\40\2\uffff\2\46\2\uffff\1\37\2\uffff\1\46\1\4\1\46";
-    static final String dfa_16s = "\1\uffff\1\10\1\uffff\1\7\3\uffff\1\2\1\1\2\uffff\1\4\1\3\1\uffff\1\6\1\5\3\uffff";
+    static final String dfa_14s = "\1\4\1\uffff\1\27\1\uffff\1\4\1\14\1\4\1\33\2\uffff\2\4\4\uffff\1\32\1\4\1\32";
+    static final String dfa_15s = "\1\37\1\uffff\1\37\1\uffff\1\4\1\72\1\40\1\37\2\uffff\2\46\4\uffff\1\46\1\4\1\46";
+    static final String dfa_16s = "\1\uffff\1\10\1\uffff\1\7\4\uffff\1\4\1\3\2\uffff\1\2\1\1\1\6\1\5\3\uffff";
     static final String dfa_17s = "\23\uffff}>";
     static final String[] dfa_18s = {
             "\1\2\7\uffff\1\1\22\uffff\1\3",
             "",
-            "\1\4\3\uffff\1\5\1\uffff\1\6\1\uffff\1\3",
+            "\1\5\3\uffff\1\4\1\uffff\1\6\1\uffff\1\3",
             "",
-            "\1\13\5\uffff\1\10\24\uffff\1\14\1\11\1\12\7\14\2\10\1\uffff\1\10\4\uffff\1\7\1\14",
-            "\1\15",
+            "\1\7",
+            "\1\10\5\uffff\1\15\24\uffff\1\11\1\12\1\13\7\11\2\15\1\uffff\1\15\4\uffff\1\14\1\11",
             "\1\16\31\uffff\1\17\1\uffff\1\16",
+            "\1\4\1\uffff\1\6\1\uffff\1\3",
             "",
             "",
-            "\1\20\33\uffff\1\14\5\uffff\1\14",
-            "\1\20\33\uffff\1\14\5\uffff\1\14",
+            "\1\20\33\uffff\1\11\5\uffff\1\11",
+            "\1\20\33\uffff\1\11\5\uffff\1\11",
             "",
             "",
-            "\1\5\1\uffff\1\6\1\uffff\1\3",
             "",
             "",
-            "\1\10\1\21\4\uffff\1\14\1\uffff\1\14\3\uffff\1\14",
+            "\1\15\1\21\4\uffff\1\11\1\uffff\1\11\3\uffff\1\11",
             "\1\22",
-            "\1\10\1\21\4\uffff\1\14\1\uffff\1\14\3\uffff\1\14"
+            "\1\15\1\21\4\uffff\1\11\1\uffff\1\11\3\uffff\1\11"
     };
 
     static final short[] dfa_13 = DFA.unpackEncodedString(dfa_13s);
@@ -13007,11 +13040,11 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
     static final short[] dfa_17 = DFA.unpackEncodedString(dfa_17s);
     static final short[][] dfa_18 = unpackEncodedStringArray(dfa_18s);
 
-    class DFA16 extends DFA {
+    class DFA18 extends DFA {
 
-        public DFA16(BaseRecognizer recognizer) {
+        public DFA18(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 16;
+            this.decisionNumber = 18;
             this.eot = dfa_13;
             this.eof = dfa_13;
             this.min = dfa_14;
@@ -13046,11 +13079,11 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
     static final short[] dfa_23 = DFA.unpackEncodedString(dfa_23s);
     static final short[][] dfa_24 = unpackEncodedStringArray(dfa_24s);
 
-    class DFA40 extends DFA {
+    class DFA43 extends DFA {
 
-        public DFA40(BaseRecognizer recognizer) {
+        public DFA43(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 40;
+            this.decisionNumber = 43;
             this.eot = dfa_19;
             this.eof = dfa_19;
             this.min = dfa_20;
@@ -13076,11 +13109,11 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
     static final char[] dfa_25 = DFA.unpackEncodedStringToUnsignedChars(dfa_25s);
     static final short[][] dfa_26 = unpackEncodedStringArray(dfa_26s);
 
-    class DFA41 extends DFA {
+    class DFA44 extends DFA {
 
-        public DFA41(BaseRecognizer recognizer) {
+        public DFA44(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 41;
+            this.decisionNumber = 44;
             this.eot = dfa_19;
             this.eof = dfa_19;
             this.min = dfa_20;
@@ -13094,32 +13127,32 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
         }
     }
     static final String dfa_27s = "\25\uffff";
-    static final String dfa_28s = "\1\4\1\uffff\1\27\1\uffff\1\22\1\uffff\6\4\2\uffff\2\32\1\4\1\uffff\1\4\2\32";
-    static final String dfa_29s = "\1\41\1\uffff\1\37\1\uffff\1\72\1\uffff\2\46\1\63\3\46\2\uffff\2\46\1\4\1\uffff\1\4\2\46";
-    static final String dfa_30s = "\1\uffff\1\6\1\uffff\1\5\1\uffff\1\1\6\uffff\1\3\1\4\3\uffff\1\2\3\uffff";
+    static final String dfa_28s = "\1\4\1\uffff\1\27\1\uffff\1\22\1\uffff\2\4\1\uffff\4\4\1\uffff\2\32\1\4\1\uffff\1\4\2\32";
+    static final String dfa_29s = "\1\41\1\uffff\1\37\1\uffff\1\72\1\uffff\1\63\1\46\1\uffff\4\46\1\uffff\2\46\1\4\1\uffff\1\4\2\46";
+    static final String dfa_30s = "\1\uffff\1\6\1\uffff\1\5\1\uffff\1\4\2\uffff\1\1\4\uffff\1\3\3\uffff\1\2\3\uffff";
     static final String dfa_31s = "\25\uffff}>";
     static final String[] dfa_32s = {
             "\1\2\32\uffff\1\3\1\uffff\1\1",
             "",
             "\1\4\3\uffff\1\3\3\uffff\1\3",
             "",
-            "\1\12\5\uffff\1\5\16\uffff\1\15\1\10\1\13\7\15\1\6\1\7\1\5\1\11\4\5\1\14\1\15",
+            "\1\14\5\uffff\1\10\16\uffff\1\5\1\6\1\7\7\5\1\11\1\12\1\10\1\13\4\10\1\15\1\5",
             "",
-            "\1\16\24\uffff\1\5\6\uffff\1\5\5\uffff\1\5",
-            "\1\16\24\uffff\1\5\6\uffff\1\5\5\uffff\1\5",
-            "\1\17\33\uffff\1\15\5\uffff\1\15\14\uffff\1\5",
-            "\1\16\24\uffff\1\5\6\uffff\1\5\5\uffff\1\5",
-            "\1\16\24\uffff\1\5\6\uffff\1\5\5\uffff\1\5",
-            "\1\17\33\uffff\1\15\5\uffff\1\15",
+            "\1\16\33\uffff\1\5\5\uffff\1\5\14\uffff\1\10",
+            "\1\16\33\uffff\1\5\5\uffff\1\5",
             "",
+            "\1\17\24\uffff\1\10\6\uffff\1\10\5\uffff\1\10",
+            "\1\17\24\uffff\1\10\6\uffff\1\10\5\uffff\1\10",
+            "\1\17\24\uffff\1\10\6\uffff\1\10\5\uffff\1\10",
+            "\1\17\24\uffff\1\10\6\uffff\1\10\5\uffff\1\10",
             "",
-            "\1\21\1\20\4\uffff\1\5\5\uffff\1\5",
-            "\1\21\1\22\4\uffff\1\15\1\uffff\1\15\3\uffff\1\15",
+            "\1\21\1\20\4\uffff\1\5\1\uffff\1\5\3\uffff\1\5",
+            "\1\21\1\22\4\uffff\1\10\5\uffff\1\10",
             "\1\23",
             "",
             "\1\24",
-            "\1\21\1\20\4\uffff\1\5\5\uffff\1\5",
-            "\1\21\1\22\4\uffff\1\15\1\uffff\1\15\3\uffff\1\15"
+            "\1\21\1\20\4\uffff\1\5\1\uffff\1\5\3\uffff\1\5",
+            "\1\21\1\22\4\uffff\1\10\5\uffff\1\10"
     };
 
     static final short[] dfa_27 = DFA.unpackEncodedString(dfa_27s);
@@ -13129,11 +13162,11 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
     static final short[] dfa_31 = DFA.unpackEncodedString(dfa_31s);
     static final short[][] dfa_32 = unpackEncodedStringArray(dfa_32s);
 
-    class DFA47 extends DFA {
+    class DFA50 extends DFA {
 
-        public DFA47(BaseRecognizer recognizer) {
+        public DFA50(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 47;
+            this.decisionNumber = 50;
             this.eot = dfa_27;
             this.eof = dfa_27;
             this.min = dfa_28;
@@ -13147,10 +13180,10 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
         }
     }
     static final String dfa_33s = "\24\uffff";
-    static final String dfa_34s = "\11\uffff\1\14\1\uffff\1\23\10\uffff";
+    static final String dfa_34s = "\11\uffff\1\15\1\uffff\1\23\10\uffff";
     static final String dfa_35s = "\1\47\10\uffff\1\4\1\50\1\4\10\uffff";
     static final String dfa_36s = "\1\72\10\uffff\1\73\1\55\1\73\10\uffff";
-    static final String dfa_37s = "\1\uffff\1\1\1\2\1\3\1\4\1\5\1\6\1\7\1\10\3\uffff\1\11\1\20\1\15\1\13\1\14\1\12\1\17\1\16";
+    static final String dfa_37s = "\1\uffff\1\1\1\2\1\3\1\4\1\5\1\6\1\7\1\10\3\uffff\1\20\1\11\1\12\1\15\1\13\1\14\1\17\1\16";
     static final String dfa_38s = "\24\uffff}>";
     static final String[] dfa_39s = {
             "\1\1\1\2\1\3\1\4\1\5\1\6\1\7\1\10\1\11\1\13\11\uffff\1\12",
@@ -13162,8 +13195,8 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
             "",
             "",
             "",
-            "\1\14\15\uffff\1\14\15\uffff\1\14\5\uffff\1\14\24\uffff\1\15",
-            "\1\21\1\uffff\1\16\1\20\1\uffff\1\17",
+            "\1\15\15\uffff\1\15\15\uffff\1\15\5\uffff\1\15\24\uffff\1\14",
+            "\1\16\1\uffff\1\17\1\21\1\uffff\1\20",
             "\1\23\15\uffff\1\23\15\uffff\1\23\5\uffff\1\23\24\uffff\1\22",
             "",
             "",
@@ -13183,11 +13216,11 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
     static final short[] dfa_38 = DFA.unpackEncodedString(dfa_38s);
     static final short[][] dfa_39 = unpackEncodedStringArray(dfa_39s);
 
-    class DFA57 extends DFA {
+    class DFA60 extends DFA {
 
-        public DFA57(BaseRecognizer recognizer) {
+        public DFA60(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 57;
+            this.decisionNumber = 60;
             this.eot = dfa_33;
             this.eof = dfa_34;
             this.min = dfa_35;
@@ -13201,17 +13234,17 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
         }
     }
     static final String dfa_40s = "\17\uffff";
-    static final String dfa_41s = "\1\uffff\1\6\1\uffff\1\10\1\14\12\uffff";
+    static final String dfa_41s = "\1\uffff\1\6\1\uffff\1\11\1\15\12\uffff";
     static final String dfa_42s = "\1\65\1\22\1\uffff\2\22\12\uffff";
     static final String dfa_43s = "\1\70\1\66\1\uffff\2\102\12\uffff";
-    static final String dfa_44s = "\2\uffff\1\2\2\uffff\1\3\1\1\1\7\1\4\1\13\1\11\1\6\1\5\1\12\1\10";
+    static final String dfa_44s = "\2\uffff\1\2\2\uffff\1\3\1\1\1\13\1\11\1\4\1\7\1\12\1\10\1\5\1\6";
     static final String dfa_45s = "\17\uffff}>";
     static final String[] dfa_46s = {
             "\1\1\1\2\1\3\1\4",
             "\1\6\5\uffff\1\6\17\uffff\1\6\10\uffff\4\6\1\uffff\1\5",
             "",
-            "\1\10\5\uffff\1\10\17\uffff\1\10\10\uffff\4\10\13\uffff\1\7\1\12\1\11",
-            "\1\14\5\uffff\1\14\17\uffff\1\14\10\uffff\4\14\13\uffff\1\13\1\16\1\15",
+            "\1\11\5\uffff\1\11\17\uffff\1\11\10\uffff\4\11\13\uffff\1\12\1\10\1\7",
+            "\1\15\5\uffff\1\15\17\uffff\1\15\10\uffff\4\15\13\uffff\1\16\1\14\1\13",
             "",
             "",
             "",
@@ -13232,11 +13265,11 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
     static final short[] dfa_45 = DFA.unpackEncodedString(dfa_45s);
     static final short[][] dfa_46 = unpackEncodedStringArray(dfa_46s);
 
-    class DFA59 extends DFA {
+    class DFA62 extends DFA {
 
-        public DFA59(BaseRecognizer recognizer) {
+        public DFA62(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 59;
+            this.decisionNumber = 62;
             this.eot = dfa_40;
             this.eof = dfa_41;
             this.min = dfa_42;
@@ -13254,8 +13287,8 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_1 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_2 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_3 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_4 = new BitSet(new long[]{0x0000001010037800L});
-    public static final BitSet FOLLOW_5 = new BitSet(new long[]{0x0000001000037800L});
+    public static final BitSet FOLLOW_4 = new BitSet(new long[]{0x0401FF9010477800L});
+    public static final BitSet FOLLOW_5 = new BitSet(new long[]{0x0401FF9000477800L});
     public static final BitSet FOLLOW_6 = new BitSet(new long[]{0x0000004000000000L});
     public static final BitSet FOLLOW_7 = new BitSet(new long[]{0x0000000000009000L});
     public static final BitSet FOLLOW_8 = new BitSet(new long[]{0x0000004100000000L});
