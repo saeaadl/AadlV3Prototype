@@ -1,5 +1,5 @@
 package PackA 
-	import nested;
+	import PackA.nested.signal;
 	type date ;
 	type person ;
 	type int;
@@ -17,7 +17,7 @@ package PackA
 	
 	interface subsub 
 	is
-		p1 : in port nested.signal ;
+		p1 : in port signal ;
 		p2 : in port date { #Size => 3; };
 	
 		p1#Size => 3;

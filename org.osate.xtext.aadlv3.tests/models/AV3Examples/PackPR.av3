@@ -1,7 +1,7 @@
 package PackP.R 
-import PackP.*;
+import PackP.Q.*;
 	interface mine is
-	p1: in feature Q.date;
+	p1: in feature date;
 	p2: in feature Nested.signal;
 	end;
 	

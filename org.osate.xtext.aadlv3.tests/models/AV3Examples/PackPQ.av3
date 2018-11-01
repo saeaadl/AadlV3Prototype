@@ -1,10 +1,6 @@
 package PackP.Q 
-import bested.*;
 	type date ;
 	type signal;
-	package bested  
-		type signal ;
-	end ;
 	interface nnested is
 	signal: feature;
 	end;
