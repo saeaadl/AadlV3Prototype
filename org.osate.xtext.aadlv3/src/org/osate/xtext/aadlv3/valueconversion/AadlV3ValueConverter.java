@@ -67,24 +67,24 @@ public class AadlV3ValueConverter extends DefaultTerminalConverters {
 			}
 		};
 	}
-
-	@ValueConverter(rule = "ConnectionType")
-	public IValueConverter<AssociationType> ConnectionType() {
-		return new IValueConverter<AssociationType>() {
-			@Override
-			public AssociationType toValue(String string, INode node) {
-				if (string == null) {
-					return null;
-				}
-				return AssociationType.get(string.toLowerCase()+" connection");
-			}
-
-			@Override
-			public String toString(AssociationType value) {
-				return value.getName().replaceFirst(" connection", "");
-			}
-		};
-	}
+//
+//	@ValueConverter(rule = "ConnectionType")
+//	public IValueConverter<AssociationType> ConnectionType() {
+//		return new IValueConverter<AssociationType>() {
+//			@Override
+//			public AssociationType toValue(String string, INode node) {
+//				if (string == null) {
+//					return null;
+//				}
+//				return AssociationType.get(string.toLowerCase()+" connection");
+//			}
+//
+//			@Override
+//			public String toString(AssociationType value) {
+//				return value.getName().replaceFirst(" connection", "");
+//			}
+//		};
+//	}
 
 	@ValueConverter(rule = "MappingType")
 	public IValueConverter<AssociationType> MappingType() {
@@ -104,62 +104,62 @@ public class AadlV3ValueConverter extends DefaultTerminalConverters {
 		};
 	}
 
-
-	@ValueConverter(rule = "FlowPath")
-	public IValueConverter<AssociationType> FlowPath() {
-		return new IValueConverter<AssociationType>() {
-			@Override
-			public AssociationType toValue(String string, INode node) {
-				if (string == null) {
-					return null;
-				}
-				return AssociationType.get("flow "+string.toLowerCase());
-			}
-
-			@Override
-			public String toString(AssociationType value) {
-				return "path";//value.getName();
-			}
-		};
-	}
-
-
-	@ValueConverter(rule = "FlowSource")
-	public IValueConverter<AssociationType> FlowSource() {
-		return new IValueConverter<AssociationType>() {
-			@Override
-			public AssociationType toValue(String string, INode node) {
-				if (string == null) {
-					return null;
-				}
-				return AssociationType.get("flow "+string.toLowerCase());
-			}
-
-			@Override
-			public String toString(AssociationType value) {
-				return "source";//value.getName();
-			}
-		};
-	}
-
-
-	@ValueConverter(rule = "FlowSink")
-	public IValueConverter<AssociationType> FlowSink() {
-		return new IValueConverter<AssociationType>() {
-			@Override
-			public AssociationType toValue(String string, INode node) {
-				if (string == null) {
-					return null;
-				}
-				return AssociationType.get("flow "+string.toLowerCase());
-			}
-
-			@Override
-			public String toString(AssociationType value) {
-				return "sink";//value.getName();
-			}
-		};
-	}
+//
+//	@ValueConverter(rule = "FlowPath")
+//	public IValueConverter<AssociationType> FlowPath() {
+//		return new IValueConverter<AssociationType>() {
+//			@Override
+//			public AssociationType toValue(String string, INode node) {
+//				if (string == null) {
+//					return null;
+//				}
+//				return AssociationType.get("flow "+string.toLowerCase());
+//			}
+//
+//			@Override
+//			public String toString(AssociationType value) {
+//				return "path";//value.getName();
+//			}
+//		};
+//	}
+//
+//
+//	@ValueConverter(rule = "FlowSource")
+//	public IValueConverter<AssociationType> FlowSource() {
+//		return new IValueConverter<AssociationType>() {
+//			@Override
+//			public AssociationType toValue(String string, INode node) {
+//				if (string == null) {
+//					return null;
+//				}
+//				return AssociationType.get("flow "+string.toLowerCase());
+//			}
+//
+//			@Override
+//			public String toString(AssociationType value) {
+//				return "source";//value.getName();
+//			}
+//		};
+//	}
+//
+//
+//	@ValueConverter(rule = "FlowSink")
+//	public IValueConverter<AssociationType> FlowSink() {
+//		return new IValueConverter<AssociationType>() {
+//			@Override
+//			public AssociationType toValue(String string, INode node) {
+//				if (string == null) {
+//					return null;
+//				}
+//				return AssociationType.get("flow "+string.toLowerCase());
+//			}
+//
+//			@Override
+//			public String toString(AssociationType value) {
+//				return "sink";//value.getName();
+//			}
+//		};
+//	}
 
 	
 }

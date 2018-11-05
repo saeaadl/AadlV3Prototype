@@ -32,94 +32,23 @@ import org.eclipse.emf.common.util.Enumerator;
  */
 public enum AssociationType implements Enumerator {
 	/**
-	 * The '<em><b>Featureconnection</b></em>' literal object.
+	 * The '<em><b>Connection</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #FEATURECONNECTION_VALUE
+	 * @see #CONNECTION_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	FEATURECONNECTION(0, "featureconnection", "feature connection"),
-
-	/**
-	 * The '<em><b>Busconnection</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BUSCONNECTION_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	BUSCONNECTION(1, "busconnection", "bus connection"),
-
+	CONNECTION(0, "connection", "connection"),
 	/**
 	 * The '<em><b>Binding</b></em>' literal object.
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	* <!-- end-user-doc -->
 	 * @see #BINDING_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	BINDING(2, "binding", "binding"),
-
-	/**
-	 * The '<em><b>Interfaceconnection</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #INTERFACECONNECTION_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	INTERFACECONNECTION(3, "interfaceconnection", "interface connection"),
-
-	/**
-	 * The '<em><b>Portconnection</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PORTCONNECTION_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PORTCONNECTION(4, "portconnection", "port connection"),
-
-	/**
-	 * The '<em><b>Dataconnection</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DATACONNECTION_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DATACONNECTION(5, "dataconnection", "data connection"),
-
-	/**
-	 * The '<em><b>Flowpath</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FLOWPATH_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FLOWPATH(6, "flowpath", "flow path"),
-
-	/**
-	 * The '<em><b>Flowsource</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FLOWSOURCE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FLOWSOURCE(7, "flowsource", "flow source"),
-
-	/**
-	 * The '<em><b>Flowsink</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FLOWSINK_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FLOWSINK(8, "flowsink", "flow sink"),
+	BINDING(1, "binding", "binding"),
 
 	/**
 	 * The '<em><b>Featuremapping</b></em>' literal object.
@@ -129,37 +58,31 @@ public enum AssociationType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	FEATUREMAPPING(9, "featuremapping", "feature mapping");
-
+	FEATUREMAPPING(2, "featuremapping", "feature mapping"),
 	/**
-	 * The '<em><b>Featureconnection</b></em>' literal value.
+	 * The '<em><b>Flow</b></em>' literal object.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>Featureconnection</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #FEATURECONNECTION
-	 * @model name="featureconnection" literal="feature connection"
+	 * @see #FLOW_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FEATURECONNECTION_VALUE = 0;
+	FLOW(3, "flow", "flow");
 
 	/**
-	 * The '<em><b>Busconnection</b></em>' literal value.
+	 * The '<em><b>Connection</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Busconnection</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>Connection</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #BUSCONNECTION
-	 * @model name="busconnection" literal="bus connection"
+	 * @see #CONNECTION
+	 * @model name="connection"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int BUSCONNECTION_VALUE = 1;
+	public static final int CONNECTION_VALUE = 0;
 
 	/**
 	 * The '<em><b>Binding</b></em>' literal value.
@@ -174,97 +97,7 @@ public enum AssociationType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int BINDING_VALUE = 2;
-
-	/**
-	 * The '<em><b>Interfaceconnection</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>Interfaceconnection</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #INTERFACECONNECTION
-	 * @model name="interfaceconnection" literal="interface connection"
-	 * @generated
-	 * @ordered
-	 */
-	public static final int INTERFACECONNECTION_VALUE = 3;
-
-	/**
-	 * The '<em><b>Portconnection</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>Portconnection</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #PORTCONNECTION
-	 * @model name="portconnection" literal="port connection"
-	 * @generated
-	 * @ordered
-	 */
-	public static final int PORTCONNECTION_VALUE = 4;
-
-	/**
-	 * The '<em><b>Dataconnection</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>Dataconnection</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #DATACONNECTION
-	 * @model name="dataconnection" literal="data connection"
-	 * @generated
-	 * @ordered
-	 */
-	public static final int DATACONNECTION_VALUE = 5;
-
-	/**
-	 * The '<em><b>Flowpath</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>Flowpath</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #FLOWPATH
-	 * @model name="flowpath" literal="flow path"
-	 * @generated
-	 * @ordered
-	 */
-	public static final int FLOWPATH_VALUE = 6;
-
-	/**
-	 * The '<em><b>Flowsource</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>Flowsource</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #FLOWSOURCE
-	 * @model name="flowsource" literal="flow source"
-	 * @generated
-	 * @ordered
-	 */
-	public static final int FLOWSOURCE_VALUE = 7;
-
-	/**
-	 * The '<em><b>Flowsink</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>Flowsink</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #FLOWSINK
-	 * @model name="flowsink" literal="flow sink"
-	 * @generated
-	 * @ordered
-	 */
-	public static final int FLOWSINK_VALUE = 8;
+	public static final int BINDING_VALUE = 1;
 
 	/**
 	 * The '<em><b>Featuremapping</b></em>' literal value.
@@ -279,7 +112,22 @@ public enum AssociationType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FEATUREMAPPING_VALUE = 9;
+	public static final int FEATUREMAPPING_VALUE = 2;
+
+	/**
+	 * The '<em><b>Flow</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>Flow</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #FLOW
+	 * @model name="flow"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int FLOW_VALUE = 3;
 
 	/**
 	 * An array of all the '<em><b>Association Type</b></em>' enumerators.
@@ -287,9 +135,8 @@ public enum AssociationType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final AssociationType[] VALUES_ARRAY = new AssociationType[] { FEATURECONNECTION, BUSCONNECTION,
-			BINDING, INTERFACECONNECTION, PORTCONNECTION, DATACONNECTION, FLOWPATH, FLOWSOURCE, FLOWSINK,
-			FEATUREMAPPING, };
+	private static final AssociationType[] VALUES_ARRAY = new AssociationType[] { CONNECTION, BINDING, FEATUREMAPPING,
+			FLOW, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Association Type</b></em>' enumerators.
@@ -345,26 +192,14 @@ public enum AssociationType implements Enumerator {
 	 */
 	public static AssociationType get(int value) {
 		switch (value) {
-		case FEATURECONNECTION_VALUE:
-			return FEATURECONNECTION;
-		case BUSCONNECTION_VALUE:
-			return BUSCONNECTION;
+		case CONNECTION_VALUE:
+			return CONNECTION;
 		case BINDING_VALUE:
 			return BINDING;
-		case INTERFACECONNECTION_VALUE:
-			return INTERFACECONNECTION;
-		case PORTCONNECTION_VALUE:
-			return PORTCONNECTION;
-		case DATACONNECTION_VALUE:
-			return DATACONNECTION;
-		case FLOWPATH_VALUE:
-			return FLOWPATH;
-		case FLOWSOURCE_VALUE:
-			return FLOWSOURCE;
-		case FLOWSINK_VALUE:
-			return FLOWSINK;
 		case FEATUREMAPPING_VALUE:
 			return FEATUREMAPPING;
+		case FLOW_VALUE:
+			return FLOW;
 		}
 		return null;
 	}

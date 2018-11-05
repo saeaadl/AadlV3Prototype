@@ -1827,12 +1827,16 @@ ruleFlowSource returns [EObject current=null]
 				}
 			)
 		)
+		otherlv_3='->'
+		{
+			newLeafNode(otherlv_3, grammarAccess.getFlowSourceAccess().getHyphenMinusGreaterThanSignKeyword_3());
+		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getFlowSourceAccess().getDestinationModelElementReferenceParserRuleCall_3_0());
+					newCompositeNode(grammarAccess.getFlowSourceAccess().getDestinationModelElementReferenceParserRuleCall_4_0());
 				}
-				lv_destination_3_0=ruleModelElementReference
+				lv_destination_4_0=ruleModelElementReference
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getFlowSourceRule());
@@ -1840,7 +1844,7 @@ ruleFlowSource returns [EObject current=null]
 					set(
 						$current,
 						"destination",
-						lv_destination_3_0,
+						lv_destination_4_0,
 						"org.osate.xtext.aadlv3.AadlV3.ModelElementReference");
 					afterParserOrEnumRuleCall();
 				}
@@ -1851,16 +1855,16 @@ ruleFlowSource returns [EObject current=null]
 				if ($current==null) {
 					$current = createModelElement(grammarAccess.getFlowSourceRule());
 				}
-				newCompositeNode(grammarAccess.getFlowSourceAccess().getPropertiesBlockParserRuleCall_4());
+				newCompositeNode(grammarAccess.getFlowSourceAccess().getPropertiesBlockParserRuleCall_5());
 			}
-			this_PropertiesBlock_4=rulePropertiesBlock[$current]
+			this_PropertiesBlock_5=rulePropertiesBlock[$current]
 			{
-				$current = $this_PropertiesBlock_4.current;
+				$current = $this_PropertiesBlock_5.current;
 				afterParserOrEnumRuleCall();
 			}
 		)?
 		{
-			newCompositeNode(grammarAccess.getFlowSourceAccess().getSEMICOLONParserRuleCall_5());
+			newCompositeNode(grammarAccess.getFlowSourceAccess().getSEMICOLONParserRuleCall_6());
 		}
 		ruleSEMICOLON
 		{
@@ -1945,21 +1949,25 @@ ruleFlowSink returns [EObject current=null]
 				}
 			)
 		)
+		otherlv_4='->'
+		{
+			newLeafNode(otherlv_4, grammarAccess.getFlowSinkAccess().getHyphenMinusGreaterThanSignKeyword_4());
+		}
 		(
 			{
 				if ($current==null) {
 					$current = createModelElement(grammarAccess.getFlowSinkRule());
 				}
-				newCompositeNode(grammarAccess.getFlowSinkAccess().getPropertiesBlockParserRuleCall_4());
+				newCompositeNode(grammarAccess.getFlowSinkAccess().getPropertiesBlockParserRuleCall_5());
 			}
-			this_PropertiesBlock_4=rulePropertiesBlock[$current]
+			this_PropertiesBlock_5=rulePropertiesBlock[$current]
 			{
-				$current = $this_PropertiesBlock_4.current;
+				$current = $this_PropertiesBlock_5.current;
 				afterParserOrEnumRuleCall();
 			}
 		)?
 		{
-			newCompositeNode(grammarAccess.getFlowSinkAccess().getSEMICOLONParserRuleCall_5());
+			newCompositeNode(grammarAccess.getFlowSinkAccess().getSEMICOLONParserRuleCall_6());
 		}
 		ruleSEMICOLON
 		{
@@ -4014,40 +4022,16 @@ ruleConnectionType returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRule
 	leaveRule();
 }:
 	(
-		kw='feature'
+		kw='connection'
 		{
 			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getConnectionTypeAccess().getFeatureKeyword_0());
-		}
-		    |
-		kw='bus'
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getConnectionTypeAccess().getBusKeyword_1());
+			newLeafNode(kw, grammarAccess.getConnectionTypeAccess().getConnectionKeyword_0());
 		}
 		    |
 		kw='binding'
 		{
 			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getConnectionTypeAccess().getBindingKeyword_2());
-		}
-		    |
-		kw='interface'
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getConnectionTypeAccess().getInterfaceKeyword_3());
-		}
-		    |
-		kw='port'
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getConnectionTypeAccess().getPortKeyword_4());
-		}
-		    |
-		kw='data'
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getConnectionTypeAccess().getDataKeyword_5());
+			newLeafNode(kw, grammarAccess.getConnectionTypeAccess().getBindingKeyword_1());
 		}
 	)
 ;
@@ -4067,10 +4051,10 @@ ruleMappingType returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleTok
 @after {
 	leaveRule();
 }:
-	kw='map'
+	kw='mapping'
 	{
 		$current.merge(kw);
-		newLeafNode(kw, grammarAccess.getMappingTypeAccess().getMapKeyword());
+		newLeafNode(kw, grammarAccess.getMappingTypeAccess().getMappingKeyword());
 	}
 ;
 
@@ -4383,18 +4367,11 @@ ruleFlowSourceKeywords returns [AntlrDatatypeRuleToken current=new AntlrDatatype
 @after {
 	leaveRule();
 }:
-	(
-		kw='flow'
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getFlowSourceKeywordsAccess().getFlowKeyword_0());
-		}
-		kw='source'
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getFlowSourceKeywordsAccess().getSourceKeyword_1());
-		}
-	)
+	kw='flow'
+	{
+		$current.merge(kw);
+		newLeafNode(kw, grammarAccess.getFlowSourceKeywordsAccess().getFlowKeyword());
+	}
 ;
 
 // Entry rule entryRuleFlowSinkKeywords
@@ -4412,18 +4389,11 @@ ruleFlowSinkKeywords returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRu
 @after {
 	leaveRule();
 }:
-	(
-		kw='flow'
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getFlowSinkKeywordsAccess().getFlowKeyword_0());
-		}
-		kw='sink'
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getFlowSinkKeywordsAccess().getSinkKeyword_1());
-		}
-	)
+	kw='flow'
+	{
+		$current.merge(kw);
+		newLeafNode(kw, grammarAccess.getFlowSinkKeywordsAccess().getFlowKeyword());
+	}
 ;
 
 // Entry rule entryRuleFlowPathKeywords
@@ -4441,18 +4411,11 @@ ruleFlowPathKeywords returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRu
 @after {
 	leaveRule();
 }:
-	(
-		kw='flow'
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getFlowPathKeywordsAccess().getFlowKeyword_0());
-		}
-		kw='path'
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getFlowPathKeywordsAccess().getPathKeyword_1());
-		}
-	)
+	kw='flow'
+	{
+		$current.merge(kw);
+		newLeafNode(kw, grammarAccess.getFlowPathKeywordsAccess().getFlowKeyword());
+	}
 ;
 
 // Entry rule entryRuleInOutKeywords

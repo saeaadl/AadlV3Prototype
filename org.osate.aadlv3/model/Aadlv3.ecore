@@ -171,16 +171,10 @@
     <eLiterals name="PROVIDESREAD" value="11" literal="provides read"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="AssociationType">
-    <eLiterals name="featureconnection" literal="feature connection"/>
-    <eLiterals name="busconnection" value="1" literal="bus connection"/>
-    <eLiterals name="binding" value="2" literal="binding"/>
-    <eLiterals name="interfaceconnection" value="3" literal="interface connection"/>
-    <eLiterals name="portconnection" value="4" literal="port connection"/>
-    <eLiterals name="dataconnection" value="5" literal="data connection"/>
-    <eLiterals name="flowpath" value="6" literal="flow path"/>
-    <eLiterals name="flowsource" value="7" literal="flow source"/>
-    <eLiterals name="flowsink" value="8" literal="flow sink"/>
-    <eLiterals name="featuremapping" value="9" literal="feature mapping"/>
+    <eLiterals name="connection" literal="connection"/>
+    <eLiterals name="binding" value="1" literal="binding"/>
+    <eLiterals name="featuremapping" value="2" literal="feature mapping"/>
+    <eLiterals name="flow" value="3" literal="flow"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PropertyValue">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>

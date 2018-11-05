@@ -52,7 +52,7 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final AssociationType ASSOCIATION_TYPE_EDEFAULT = AssociationType.FEATURECONNECTION;
+	protected static final AssociationType ASSOCIATION_TYPE_EDEFAULT = AssociationType.CONNECTION;
 
 	/**
 	 * The cached value of the '{@link #getAssociationType() <em>Association Type</em>}' attribute.

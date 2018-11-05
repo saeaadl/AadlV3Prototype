@@ -830,15 +830,13 @@ class Aadlv3Util {
 	
 	// association is connection 
 	def static boolean isConnection(AssociationType connType){
-		connType == AssociationType.FEATURECONNECTION || connType == AssociationType.PORTCONNECTION ||connType == AssociationType.DATACONNECTION 
-		||connType == AssociationType.BUSCONNECTION  ||connType == AssociationType.INTERFACECONNECTION
+		connType == AssociationType.CONNECTION 
 	}
 
 	// association is connection 
 	def static boolean isConnection(Association assoc){
 		val connType = assoc.associationType
-		connType == AssociationType.FEATURECONNECTION || connType == AssociationType.PORTCONNECTION ||connType == AssociationType.DATACONNECTION 
-		||connType == AssociationType.BUSCONNECTION  ||connType == AssociationType.INTERFACECONNECTION
+		connType == AssociationType.CONNECTION 
 	}
 	
 	// mapping from an outer to an inner feature
@@ -853,7 +851,7 @@ class Aadlv3Util {
 	
 	// association represents a flow specification
 	def static boolean isFlowSpec(AssociationType connType){
-		connType == AssociationType.FLOWPATH || connType == AssociationType.FLOWSOURCE ||connType == AssociationType.FLOWSINK 
+		connType == AssociationType.FLOW 
 	}
 	// association represents a binding
 	def static boolean isBinding(AssociationType connType){
@@ -864,7 +862,7 @@ class Aadlv3Util {
 	// association represents a flow specification
 	def static boolean isFlowSpec(Association conn){
 		val connType = conn.associationType
-		connType == AssociationType.FLOWPATH || connType == AssociationType.FLOWSOURCE ||connType == AssociationType.FLOWSINK 
+		connType == AssociationType.FLOW 
 	}
 	
 	//-------------------------

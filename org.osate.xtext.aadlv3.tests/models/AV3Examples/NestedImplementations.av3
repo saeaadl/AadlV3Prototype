@@ -15,12 +15,12 @@ package NestedImplementations
 				inp : in port ;
 				outp : out port ;
 			} ;
-			filtercontrolconn : port filter.outp -> control.inp ;
+			filtercontrolconn : connection filter.outp -> control.inp ;
 		} ;
 		actuating : device { 
 			inp :  in port ;
 		} ;
-		sensefilterconn : port sensing.sensedata -> processing.filter.inp ;
-		controlactuateconn : port processing.control.outp -> actuating.inp;
+		sensefilterconn : connection sensing.sensedata -> processing.filter.inp ;
+		controlactuateconn : connection processing.control.outp -> actuating.inp;
 	end ;
 end ;

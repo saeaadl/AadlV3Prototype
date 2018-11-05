@@ -386,17 +386,14 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 			if (!(srcdir === dstdir)) {
 				error('Feature mapping directions must be same', assoc, null, SAME_DIRECTION)
 			}
-		} else if (assoc.associationType === AssociationType.FLOWPATH) {
-			if (!(srcdir?.incoming && dstdir?.outgoing)) {
+		} else if (assoc.associationType === AssociationType.FLOW) {
+			if (srcdir !== null && dstdir !== null && !(srcdir.incoming && dstdir.outgoing)) {
 				error('FLow path must be from incoming to outgoing', assoc, null, IN_TO_OUT)
 
-			}
-		} else if (assoc.associationType === AssociationType.FLOWSINK) {
-			if (!(srcdir?.incoming)) {
+			} else if (srcdir !== null && dstdir === null && !(srcdir.incoming)) {
 				error('Flow sink must be incoming', assoc, Aadlv3Package.Literals.ASSOCIATION__SOURCE, MUST_BE_IN)
-			}
-		} else if (assoc.associationType === AssociationType.FLOWSOURCE) {
-			if (!(dstdir?.outgoing)) {
+			} else 
+			if (srcdir === null && dstdir !== null &&!(dstdir.outgoing)) {
 				error('FLow source must be outgoing', assoc, Aadlv3Package.Literals.ASSOCIATION__DESTINATION,
 					MUST_BE_OUT)
 			}
@@ -443,19 +440,19 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 				assoc.destination.containedComponentModelElementReference)) {
 				error('Feature mapping must from feature to feature in subcomponent', assoc, null, ToSubcomponent)
 			}
-		} else if (assoc.associationType === AssociationType.FLOWPATH) {
-			if (!(!assoc.source.containedComponentModelElementReference &&
+		} else if (assoc.associationType === AssociationType.FLOW) {
+			if (assoc.source !== null && assoc.destination !== null && !(!assoc.source.containedComponentModelElementReference &&
 				!assoc.destination.containedComponentModelElementReference)) {
 				error('Flow path must not be between features of subcomponents', assoc, null, BetweenFeatures)
-			}
-		} else if (assoc.associationType === AssociationType.FLOWSINK) {
-			if (!(!assoc.source.containedComponentModelElementReference)) {
-				error('Flow source must not be a subcomponent feature', assoc,
-					Aadlv3Package.Literals.ASSOCIATION__SOURCE, NotSubcomponentFeature)
-			}
-		} else if (assoc.associationType === AssociationType.FLOWSOURCE) {
-			if (!(!assoc.destination.containedComponentModelElementReference)) {
+			} else 
+//		} else if (assoc.associationType === AssociationType.FLOWSINK) {
+			if (assoc.source !== null && assoc.destination === null && !(!assoc.source.containedComponentModelElementReference)) {
 				error('Flow sink must not be a subcomponent feature', assoc,
+					Aadlv3Package.Literals.ASSOCIATION__SOURCE, NotSubcomponentFeature)
+			} else
+//		} else if (assoc.associationType === AssociationType.FLOWSOURCE) {
+			if (assoc.source === null && assoc.destination !== null &&!(!assoc.destination.containedComponentModelElementReference)) {
+				error('Flow source must not be a subcomponent feature', assoc,
 					Aadlv3Package.Literals.ASSOCIATION__DESTINATION, NotSubcomponentFeature)
 			}
 		} else if (assoc.associationType.isBinding) {

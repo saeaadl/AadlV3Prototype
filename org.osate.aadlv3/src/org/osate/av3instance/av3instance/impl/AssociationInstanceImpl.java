@@ -64,7 +64,7 @@ public class AssociationInstanceImpl extends InstanceObjectImpl implements Assoc
 	 * @generated
 	 * @ordered
 	 */
-	protected static final AssociationType ASSOCIATION_TYPE_EDEFAULT = AssociationType.FEATURECONNECTION;
+	protected static final AssociationType ASSOCIATION_TYPE_EDEFAULT = AssociationType.CONNECTION;
 
 	/**
 	 * The cached value of the '{@link #getAssociationType() <em>Association Type</em>}' attribute.

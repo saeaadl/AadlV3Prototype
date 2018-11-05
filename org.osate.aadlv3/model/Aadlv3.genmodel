@@ -48,16 +48,10 @@
       <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//FeatureDirection/PROVIDESREAD"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Aadlv3.ecore#//AssociationType">
-      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//AssociationType/featureconnection"/>
-      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//AssociationType/busconnection"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//AssociationType/connection"/>
       <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//AssociationType/binding"/>
-      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//AssociationType/interfaceconnection"/>
-      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//AssociationType/portconnection"/>
-      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//AssociationType/dataconnection"/>
-      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//AssociationType/flowpath"/>
-      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//AssociationType/flowsource"/>
-      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//AssociationType/flowsink"/>
       <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//AssociationType/featuremapping"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//AssociationType/flow"/>
     </genEnums>
     <genClasses ecoreClass="Aadlv3.ecore#//PackageDeclaration">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//PackageDeclaration/imports"/>

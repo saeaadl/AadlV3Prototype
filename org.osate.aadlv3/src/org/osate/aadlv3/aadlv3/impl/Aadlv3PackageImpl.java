@@ -1737,16 +1737,10 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		addEEnumLiteral(featureDirectionEEnum, FeatureDirection.PROVIDESREAD);
 
 		initEEnum(associationTypeEEnum, AssociationType.class, "AssociationType");
-		addEEnumLiteral(associationTypeEEnum, AssociationType.FEATURECONNECTION);
-		addEEnumLiteral(associationTypeEEnum, AssociationType.BUSCONNECTION);
+		addEEnumLiteral(associationTypeEEnum, AssociationType.CONNECTION);
 		addEEnumLiteral(associationTypeEEnum, AssociationType.BINDING);
-		addEEnumLiteral(associationTypeEEnum, AssociationType.INTERFACECONNECTION);
-		addEEnumLiteral(associationTypeEEnum, AssociationType.PORTCONNECTION);
-		addEEnumLiteral(associationTypeEEnum, AssociationType.DATACONNECTION);
-		addEEnumLiteral(associationTypeEEnum, AssociationType.FLOWPATH);
-		addEEnumLiteral(associationTypeEEnum, AssociationType.FLOWSOURCE);
-		addEEnumLiteral(associationTypeEEnum, AssociationType.FLOWSINK);
 		addEEnumLiteral(associationTypeEEnum, AssociationType.FEATUREMAPPING);
+		addEEnumLiteral(associationTypeEEnum, AssociationType.FLOW);
 
 		// Create resource
 		createResource(eNS_URI);

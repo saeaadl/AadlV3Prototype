@@ -77,10 +77,10 @@ FlowPath returns av3::Association:
 	'->' destination=ModelElementReference PropertiesBlock? SEMICOLON;
 
 FlowSource returns av3::Association:
-	name=ID ':' associationType=FlowSourceType destination=ModelElementReference PropertiesBlock? SEMICOLON;
+	name=ID ':' associationType=FlowSourceType '->' destination=ModelElementReference  PropertiesBlock? SEMICOLON;
 
 FlowSink returns av3::Association:
-	name=ID ':' associationType=FlowSinkType source=ModelElementReference
+	name=ID ':' associationType=FlowSinkType  source=ModelElementReference '->'
 	 PropertiesBlock? SEMICOLON;
 
 
@@ -219,10 +219,10 @@ FeatureDirection returns av3::FeatureDirection:
 
 
 ConnectionType returns av3::AssociationType:
-	'feature'| 'bus' | 'binding' | 'interface'| 'port'| 'data' ;
+	'connection'| 'binding' ;
 
 MappingType returns av3::AssociationType:
-	'map' ;
+	'mapping' ;
 
 FlowPathType returns av3::AssociationType:
 	FlowPathKeywords ;
@@ -259,9 +259,9 @@ SubprogramGroupKeywords:
 ;
 
 EndToEndFlowKeywords: 'end''to''end''flow';
-FlowSourceKeywords: 'flow''source';
-FlowSinkKeywords: 'flow''sink';
-FlowPathKeywords: 'flow''path';
+FlowSourceKeywords: 'flow';//'source';
+FlowSinkKeywords: 'flow';//'sink';
+FlowPathKeywords: 'flow';//'path';
 
 InOutKeywords: 'in' 'out'; 
 BusAccessKeywords: 'bus''access' ; 

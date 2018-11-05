@@ -17,17 +17,17 @@ package ConnectionExamples
 	
 	component sensor.i is
 		sub1: thread sense;
-		upmap: map outp -> sub1.p1 ;
-		stateaccess: map state -> sub1.state;
+		upmap: mapping outp -> sub1.p1 ;
+		stateaccess: mapping state -> sub1.state;
 	end ;
 	component actuator.i  is
 		mystate: data systemstate { stateread : provides read access systemstate;
 			statewrite : provides write access systemstate;
 		};
 		sub2: thread actuate;
-		downmap: map inp -> sub2.p1;
-		stateread: map state -> mystate.stateread ;
-		statewrite: data sub2.state -> mystate.statewrite ;
+		downmap: mapping inp -> sub2.p1;
+		stateread: mapping state -> mystate.stateread ;
+		statewrite: connection sub2.state -> mystate.statewrite ;
 	end ;
 	
 	
@@ -46,10 +46,10 @@ package ConnectionExamples
 		sense: component sensor.i;
 		actuate: component actuator.i;
 		hw : system hardwareplatform.impl;
-		conn1: port sense.sub1.p1 -> actuate.sub2.p1;
-		conn2: port sense.outp -> actuate.inp;
-		stateaccess: data actuate.state ->sense.state;
-		fconn: feature sense.fea -> actuate.fea;
+		conn1: connection sense.sub1.p1 -> actuate.sub2.p1;
+		conn2: connection sense.outp -> actuate.inp;
+		stateaccess: connection actuate.state ->sense.state;
+		fconn: connection sense.fea -> actuate.fea;
 	end;
 	
 	bus interface canbus is
@@ -67,8 +67,8 @@ package ConnectionExamples
 	system hardwareplatform.impl is
 	cpu: processor x86;
 	mybus: bus canbus;
-	busconn: bus cpu.canbusaccess -> mybus.canbusaccess;
-	extbusaccess: map canbusaccess -> mybus.canbusaccess;
+	busconn: connection cpu.canbusaccess -> mybus.canbusaccess;
+	extbusaccess: mapping canbusaccess -> mybus.canbusaccess;
 	end;
 	
 end;

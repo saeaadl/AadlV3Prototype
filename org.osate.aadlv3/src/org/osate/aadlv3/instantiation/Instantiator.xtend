@@ -204,10 +204,10 @@ class Instantiator {
 	
 	def void instantiateFlowSpec(Association conn, ComponentInstance context){
 		val fsi = conn.createAssociationInstance
-		if (conn.associationType != AssociationType.FLOWSOURCE){
+		if (conn.source !== null){
 			fsi.source = context.getInstanceElement(conn.source) as FeatureInstance
 		}
-		if (conn.associationType != AssociationType.FLOWSINK){
+		if (conn.destination !== null){
 			fsi.destination = context.getInstanceElement(conn.destination) as FeatureInstance
 		}
 		for (pa : conn.propertyAssociations){
