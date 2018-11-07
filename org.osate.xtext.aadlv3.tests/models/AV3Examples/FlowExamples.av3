@@ -10,12 +10,12 @@ package FlowExamples
 	interface actuator is
 		inp: in port;
 		fea: feature;
-		action: flow  inp ->;
+		action: flow sink  inp ;
 	end;
 	interface sensor is
 		outp: out port;
 		fea: feature;
-		reading: flow -> outp;
+		reading: flow source outp;
 	end ;
 	
 	component sensor.i  is
@@ -30,17 +30,17 @@ package FlowExamples
 	end ;
 	thread interface sense  is
 		p1: out port ;
-		reading: flow  -> p1;
+		reading: flow  source p1;
 	end ;
 	thread interface actuate  is
 		p1: in port ;
-		taction: flow  p1->;
+		taction: flow  sink p1;
 	end ;
 	
 	interface control is
 	insignal: in port;
 	outaction: out port;
-	processflow: flow insignal -> outaction;
+	processflow: flow path insignal -> outaction;
 	end;
 	
 	process control.impl is
@@ -55,14 +55,14 @@ package FlowExamples
 	thread interface filter is
 	insignal : in port;
 	outsignal : out port;
-	filterpath: flow insignal -> outsignal;
+	filterpath: flow path insignal -> outsignal;
 	#Period => 20 ;
 	end;
 	
 	thread interface compute is
 	insignal : in port;
 	outsignal : out port;
-	computepath: flow insignal -> outsignal;
+	computepath: flow path insignal -> outsignal;
 	end;
 	
 	system interface conntop end;
