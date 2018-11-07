@@ -386,7 +386,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 			if (!(srcdir === dstdir)) {
 				error('Feature mapping directions must be same', assoc, null, SAME_DIRECTION)
 			}
-		} else if (assoc.associationType === AssociationType.FLOW) {
+		} else if (assoc.associationType.isFlowSpec) {
 			if (srcdir !== null && dstdir !== null && !(srcdir.incoming && dstdir.outgoing)) {
 				error('FLow path must be from incoming to outgoing', assoc, null, IN_TO_OUT)
 
@@ -440,7 +440,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 				assoc.destination.containedComponentModelElementReference)) {
 				error('Feature mapping must from feature to feature in subcomponent', assoc, null, ToSubcomponent)
 			}
-		} else if (assoc.associationType === AssociationType.FLOW) {
+		} else if (assoc.associationType.isFlowSpec) {
 			if (assoc.source !== null && assoc.destination !== null && !(!assoc.source.containedComponentModelElementReference &&
 				!assoc.destination.containedComponentModelElementReference)) {
 				error('Flow path must not be between features of subcomponents', assoc, null, BetweenFeatures)

@@ -51,7 +51,9 @@
       <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//AssociationType/connection"/>
       <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//AssociationType/binding"/>
       <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//AssociationType/featuremapping"/>
-      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//AssociationType/flow"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//AssociationType/flowpath"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//AssociationType/flowsource"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//AssociationType/flowsink"/>
     </genEnums>
     <genClasses ecoreClass="Aadlv3.ecore#//PackageDeclaration">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//PackageDeclaration/imports"/>

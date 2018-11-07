@@ -851,7 +851,9 @@ class Aadlv3Util {
 	
 	// association represents a flow specification
 	def static boolean isFlowSpec(AssociationType connType){
-		connType == AssociationType.FLOW 
+		connType == AssociationType.FLOWSINK ||
+		connType == AssociationType.FLOWSOURCE ||
+		connType == AssociationType.FLOWPATH 
 	}
 	// association represents a binding
 	def static boolean isBinding(AssociationType connType){
@@ -861,8 +863,7 @@ class Aadlv3Util {
 	
 	// association represents a flow specification
 	def static boolean isFlowSpec(Association conn){
-		val connType = conn.associationType
-		connType == AssociationType.FLOW 
+		isFlowSpec(conn.associationType) 
 	}
 	
 	//-------------------------

@@ -60,14 +60,32 @@ public enum AssociationType implements Enumerator {
 	 */
 	FEATUREMAPPING(2, "featuremapping", "feature mapping"),
 	/**
-	 * The '<em><b>Flow</b></em>' literal object.
+	 * The '<em><b>Flowpath</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #FLOW_VALUE
+	 * @see #FLOWPATH_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	FLOW(3, "flow", "flow");
+	FLOWPATH(3, "flowpath", "flow path"),
+	/**
+	* The '<em><b>Flowsource</b></em>' literal object.
+	* <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
+	* @see #FLOWSOURCE_VALUE
+	* @generated
+	* @ordered
+	*/
+	FLOWSOURCE(4, "flowsource", "flow source"),
+	/**
+	* The '<em><b>Flowsink</b></em>' literal object.
+	* <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
+	* @see #FLOWSINK_VALUE
+	* @generated
+	* @ordered
+	*/
+	FLOWSINK(5, "flowsink", "flow sink");
 
 	/**
 	 * The '<em><b>Connection</b></em>' literal value.
@@ -115,19 +133,49 @@ public enum AssociationType implements Enumerator {
 	public static final int FEATUREMAPPING_VALUE = 2;
 
 	/**
-	 * The '<em><b>Flow</b></em>' literal value.
+	 * The '<em><b>Flowpath</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Flow</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>Flowpath</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #FLOW
-	 * @model name="flow"
+	 * @see #FLOWPATH
+	 * @model name="flowpath" literal="flow path"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FLOW_VALUE = 3;
+	public static final int FLOWPATH_VALUE = 3;
+
+	/**
+	 * The '<em><b>Flowsource</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>Flowsource</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #FLOWSOURCE
+	 * @model name="flowsource" literal="flow source"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int FLOWSOURCE_VALUE = 4;
+
+	/**
+	 * The '<em><b>Flowsink</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>Flowsink</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #FLOWSINK
+	 * @model name="flowsink" literal="flow sink"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int FLOWSINK_VALUE = 5;
 
 	/**
 	 * An array of all the '<em><b>Association Type</b></em>' enumerators.
@@ -136,7 +184,7 @@ public enum AssociationType implements Enumerator {
 	 * @generated
 	 */
 	private static final AssociationType[] VALUES_ARRAY = new AssociationType[] { CONNECTION, BINDING, FEATUREMAPPING,
-			FLOW, };
+			FLOWPATH, FLOWSOURCE, FLOWSINK, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Association Type</b></em>' enumerators.
@@ -198,8 +246,12 @@ public enum AssociationType implements Enumerator {
 			return BINDING;
 		case FEATUREMAPPING_VALUE:
 			return FEATUREMAPPING;
-		case FLOW_VALUE:
-			return FLOW;
+		case FLOWPATH_VALUE:
+			return FLOWPATH;
+		case FLOWSOURCE_VALUE:
+			return FLOWSOURCE;
+		case FLOWSINK_VALUE:
+			return FLOWSINK;
 		}
 		return null;
 	}

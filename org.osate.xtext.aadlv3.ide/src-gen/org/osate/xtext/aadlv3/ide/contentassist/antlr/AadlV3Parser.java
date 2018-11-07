@@ -125,6 +125,9 @@ public class AadlV3Parser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getThreadGroupKeywordsAccess().getGroup(), "rule__ThreadGroupKeywords__Group__0");
 			builder.put(grammarAccess.getSubprogramGroupKeywordsAccess().getGroup(), "rule__SubprogramGroupKeywords__Group__0");
 			builder.put(grammarAccess.getEndToEndFlowKeywordsAccess().getGroup(), "rule__EndToEndFlowKeywords__Group__0");
+			builder.put(grammarAccess.getFlowSourceKeywordsAccess().getGroup(), "rule__FlowSourceKeywords__Group__0");
+			builder.put(grammarAccess.getFlowSinkKeywordsAccess().getGroup(), "rule__FlowSinkKeywords__Group__0");
+			builder.put(grammarAccess.getFlowPathKeywordsAccess().getGroup(), "rule__FlowPathKeywords__Group__0");
 			builder.put(grammarAccess.getInOutKeywordsAccess().getGroup(), "rule__InOutKeywords__Group__0");
 			builder.put(grammarAccess.getBusAccessKeywordsAccess().getGroup(), "rule__BusAccessKeywords__Group__0");
 			builder.put(grammarAccess.getProvidesReadKeywordsAccess().getGroup(), "rule__ProvidesReadKeywords__Group__0");
@@ -187,7 +190,7 @@ public class AadlV3Parser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getFlowPathAccess().getDestinationAssignment_5(), "rule__FlowPath__DestinationAssignment_5");
 			builder.put(grammarAccess.getFlowSourceAccess().getNameAssignment_0(), "rule__FlowSource__NameAssignment_0");
 			builder.put(grammarAccess.getFlowSourceAccess().getAssociationTypeAssignment_2(), "rule__FlowSource__AssociationTypeAssignment_2");
-			builder.put(grammarAccess.getFlowSourceAccess().getDestinationAssignment_4(), "rule__FlowSource__DestinationAssignment_4");
+			builder.put(grammarAccess.getFlowSourceAccess().getDestinationAssignment_3(), "rule__FlowSource__DestinationAssignment_3");
 			builder.put(grammarAccess.getFlowSinkAccess().getNameAssignment_0(), "rule__FlowSink__NameAssignment_0");
 			builder.put(grammarAccess.getFlowSinkAccess().getAssociationTypeAssignment_2(), "rule__FlowSink__AssociationTypeAssignment_2");
 			builder.put(grammarAccess.getFlowSinkAccess().getSourceAssignment_3(), "rule__FlowSink__SourceAssignment_3");
