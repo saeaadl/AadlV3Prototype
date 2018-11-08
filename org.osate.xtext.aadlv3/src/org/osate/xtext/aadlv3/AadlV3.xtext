@@ -8,7 +8,7 @@ import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 PackageDeclaration returns av3::PackageDeclaration:
 	'package' name=QualifiedName 
 	imports+=Import*
-	elements+=(PackageDeclaration | PrimitiveType | ComponentInterface | ComponentImplementation | ComponentConfiguration | Property | PropertySet | Workingset)*
+	elements+=(PackageDeclaration | DataType | ComponentInterface | ComponentImplementation | ComponentConfiguration | Property | PropertySet | Workingset)*
 	'end' SEMICOLON;
 
 
@@ -21,7 +21,7 @@ PropertySet returns av3::PropertySet:
 		'end' SEMICOLON
 ;
 
-PrimitiveType returns av3::PrimitiveType:
+DataType returns av3::DataType:
 	'type' name=ID PropertiesBlock? SEMICOLON;
 
 ComponentInterface returns av3::ComponentInterface:

@@ -76,8 +76,8 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 			return createProperty();
 		case Aadlv3Package.PROPERTY_SET:
 			return createPropertySet();
-		case Aadlv3Package.PRIMITIVE_TYPE:
-			return createPrimitiveType();
+		case Aadlv3Package.DATA_TYPE:
+			return createDataType();
 		case Aadlv3Package.COMPONENT_INTERFACE:
 			return createComponentInterface();
 		case Aadlv3Package.COMPONENT_IMPLEMENTATION:
@@ -198,9 +198,9 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 	 * @generated
 	 */
 	@Override
-	public PrimitiveType createPrimitiveType() {
-		PrimitiveTypeImpl primitiveType = new PrimitiveTypeImpl();
-		return primitiveType;
+	public DataType createDataType() {
+		DataTypeImpl dataType = new DataTypeImpl();
+		return dataType;
 	}
 
 	/**

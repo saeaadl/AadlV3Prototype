@@ -155,26 +155,26 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.PrimitiveType} instances.
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.DataType} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected PrimitiveTypeItemProvider primitiveTypeItemProvider;
+	protected DataTypeItemProvider dataTypeItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.PrimitiveType}.
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.DataType}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createPrimitiveTypeAdapter() {
-		if (primitiveTypeItemProvider == null) {
-			primitiveTypeItemProvider = new PrimitiveTypeItemProvider(this);
+	public Adapter createDataTypeAdapter() {
+		if (dataTypeItemProvider == null) {
+			dataTypeItemProvider = new DataTypeItemProvider(this);
 		}
 
-		return primitiveTypeItemProvider;
+		return dataTypeItemProvider;
 	}
 
 	/**
@@ -679,8 +679,8 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 			propertyItemProvider.dispose();
 		if (propertySetItemProvider != null)
 			propertySetItemProvider.dispose();
-		if (primitiveTypeItemProvider != null)
-			primitiveTypeItemProvider.dispose();
+		if (dataTypeItemProvider != null)
+			dataTypeItemProvider.dispose();
 		if (componentInterfaceItemProvider != null)
 			componentInterfaceItemProvider.dispose();
 		if (componentImplementationItemProvider != null)

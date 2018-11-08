@@ -69,22 +69,22 @@ public enum AssociationType implements Enumerator {
 	 */
 	FLOWPATH(3, "flowpath", "flow path"),
 	/**
-	* The '<em><b>Flowsource</b></em>' literal object.
-	* <!-- begin-user-doc -->
+	 * The '<em><b>Flowsource</b></em>' literal object.
+	 * <!-- begin-user-doc -->
 	* <!-- end-user-doc -->
-	* @see #FLOWSOURCE_VALUE
-	* @generated
-	* @ordered
-	*/
+	 * @see #FLOWSOURCE_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	FLOWSOURCE(4, "flowsource", "flow source"),
 	/**
-	* The '<em><b>Flowsink</b></em>' literal object.
-	* <!-- begin-user-doc -->
+	 * The '<em><b>Flowsink</b></em>' literal object.
+	 * <!-- begin-user-doc -->
 	* <!-- end-user-doc -->
-	* @see #FLOWSINK_VALUE
-	* @generated
-	* @ordered
-	*/
+	 * @see #FLOWSINK_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	FLOWSINK(5, "flowsink", "flow sink");
 
 	/**

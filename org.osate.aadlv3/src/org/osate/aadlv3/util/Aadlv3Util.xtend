@@ -19,7 +19,7 @@ import org.osate.aadlv3.aadlv3.FeatureCategory
 import org.osate.aadlv3.aadlv3.FeatureDirection
 import org.osate.aadlv3.aadlv3.ModelElement
 import org.osate.aadlv3.aadlv3.ModelElementReference
-import org.osate.aadlv3.aadlv3.PrimitiveType
+import org.osate.aadlv3.aadlv3.DataType
 import org.osate.aadlv3.aadlv3.PropertyAssociation
 import org.osate.aadlv3.aadlv3.Type
 import org.osate.aadlv3.aadlv3.TypeReference
@@ -475,7 +475,7 @@ class Aadlv3Util {
 		var ctyperef = match.typeReference
 		if (ctyperef === null) return null
 		val n = casscopes.size
-		if(n===0 || ctyperef.type instanceof PrimitiveType) return ctyperef 
+		if(n===0 || ctyperef.type instanceof DataType) return ctyperef 
 		// Also handle ConfigurationParameter
 		// We work from inner to outer CA scope reaching in
 		for (k : n - 1 .. 0) {

@@ -22,7 +22,7 @@ import org.osate.aadlv3.aadlv3.FeatureDirection
 import org.osate.aadlv3.aadlv3.ModelElement
 import org.osate.aadlv3.aadlv3.PathElement
 import org.osate.aadlv3.aadlv3.PathSequence
-import org.osate.aadlv3.aadlv3.PrimitiveType
+import org.osate.aadlv3.aadlv3.DataType
 
 import static extension org.osate.aadlv3.util.Aadlv3Util.*
 import static extension org.osate.aadlv3.util.Av3API.*
@@ -66,8 +66,8 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	public static val ToFlowSpec = 'ToFlowSpec'
 	public static val MissingOneType = 'MissingOneType'
 	public static val OnlyPropertyAssociations = 'OnlyPropertyAssociations'
-	public static val MustBePrimitiveType = 'MustBePrimitiveType'
-	public static val NoPrimitiveType = 'NoPrimitiveType'
+	public static val MustBeDataType = 'MustBeDataType'
+	public static val NoDataType = 'NoDataType'
 	public static val FormalActualMismatch = 'FormalActualMismatch'
 	public static val ParameterNotInterface = 'ParameterNotInterface'
 	public static val OverrideType = 'OverrideType'
@@ -135,14 +135,14 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 							comp.category + '\' of the component or must be "component"', ca, null,
 						MISMATCHED_COMPONENT_CATEGORY)
 				}
-			} else if (thetype instanceof PrimitiveType) {
+			} else if (thetype instanceof DataType) {
 				// primitive type
 				if (comp.category === ComponentCategory.DATA || comp.category === ComponentCategory.COMPONENT) {
 					if (comp.typeReference !== null) {
 						error('Assigned primitive type cannot override existing type', ca, null, OverrideType)
 					}
 				} else {
-					error('Configuration assignment expects component classifier', ca, null, NoPrimitiveType)
+					error('Configuration assignment expects component classifier', ca, null, NoDataType)
 				}
 			}
 		}
@@ -175,12 +175,12 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	@Check
 	def checkComponent(Component comp) {
 		if (comp.typeReference !== null) {
-			if (!(comp.typeReference.type instanceof PrimitiveType)) {
+			if (!(comp.typeReference.type instanceof DataType)) {
 				// we have a classifier reference
 				comp.checkComponentWithClassifier
 			} else {
 				// primitive type
-				comp.checkComponentWithPrimitiveType
+				comp.checkComponentWithDataType
 			}
 		}
 	}
@@ -490,11 +490,11 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 		// data component cannot have classifier, only primitive type
 		if (comp.category === ComponentCategory.DATA) {
 			error('Data component must have primitive type', comp, Aadlv3Package.Literals.COMPONENT__CATEGORY,
-				MustBePrimitiveType)
+				MustBeDataType)
 		}
 	}
 
-	def checkComponentWithPrimitiveType(Component comp) {
+	def checkComponentWithDataType(Component comp) {
 		// If primitive type features are ok in {} to allow access features on data components	
 		if (!(comp.connections.empty && comp.components.empty && comp.features.forall[f|f.dataAccessFeature])) {
 			error('Component with primitive type can only have property associations or data access features in {}',
@@ -502,7 +502,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 		}
 		if (!(comp.category === ComponentCategory.DATA || comp.category === ComponentCategory.COMPONENT)) {
 			error('Components other than "data" or "component" cannot have primitive type', comp,
-				Aadlv3Package.Literals.COMPONENT__CATEGORY, NoPrimitiveType)
+				Aadlv3Package.Literals.COMPONENT__CATEGORY, NoDataType)
 		}
 	}
 

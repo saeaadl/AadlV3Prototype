@@ -144,15 +144,15 @@ public class Aadlv3Switch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case Aadlv3Package.PRIMITIVE_TYPE: {
-			PrimitiveType primitiveType = (PrimitiveType) theEObject;
-			T result = casePrimitiveType(primitiveType);
+		case Aadlv3Package.DATA_TYPE: {
+			DataType dataType = (DataType) theEObject;
+			T result = caseDataType(dataType);
 			if (result == null)
-				result = casePackageElement(primitiveType);
+				result = casePackageElement(dataType);
 			if (result == null)
-				result = caseType(primitiveType);
+				result = caseType(dataType);
 			if (result == null)
-				result = caseNamedElement(primitiveType);
+				result = caseNamedElement(dataType);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -469,17 +469,17 @@ public class Aadlv3Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Primitive Type</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Data Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Primitive Type</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Data Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T casePrimitiveType(PrimitiveType object) {
+	public T caseDataType(DataType object) {
 		return null;
 	}
 

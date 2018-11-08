@@ -19,22 +19,21 @@ import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Primitive Type</b></em>'.
+ * A representation of the model object '<em><b>Data Type</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.osate.aadlv3.aadlv3.PrimitiveType#getPropertyAssociations <em>Property Associations</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.DataType#getPropertyAssociations <em>Property Associations</em>}</li>
  * </ul>
  *
- * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getPrimitiveType()
+ * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getDataType()
  * @model
  * @generated
  */
-public interface PrimitiveType extends PackageElement, Type {
-
+public interface DataType extends PackageElement, Type {
 	/**
 	 * Returns the value of the '<em><b>Property Associations</b></em>' containment reference list.
 	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.PropertyAssociation}.
@@ -45,9 +44,10 @@ public interface PrimitiveType extends PackageElement, Type {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Property Associations</em>' containment reference list.
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getPrimitiveType_PropertyAssociations()
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getDataType_PropertyAssociations()
 	 * @model containment="true"
 	 * @generated
 	 */
 	EList<PropertyAssociation> getPropertyAssociations();
-} // PrimitiveType
+
+} // DataType

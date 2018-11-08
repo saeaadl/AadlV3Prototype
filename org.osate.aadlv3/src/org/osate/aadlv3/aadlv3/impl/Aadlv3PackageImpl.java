@@ -37,6 +37,7 @@ import org.osate.aadlv3.aadlv3.ComponentRealization;
 import org.osate.aadlv3.aadlv3.ConfigurationActual;
 import org.osate.aadlv3.aadlv3.ConfigurationAssignment;
 import org.osate.aadlv3.aadlv3.ConfigurationParameter;
+import org.osate.aadlv3.aadlv3.DataType;
 import org.osate.aadlv3.aadlv3.Feature;
 import org.osate.aadlv3.aadlv3.FeatureCategory;
 import org.osate.aadlv3.aadlv3.FeatureDirection;
@@ -48,7 +49,6 @@ import org.osate.aadlv3.aadlv3.PackageDeclaration;
 import org.osate.aadlv3.aadlv3.PackageElement;
 import org.osate.aadlv3.aadlv3.PathElement;
 import org.osate.aadlv3.aadlv3.PathSequence;
-import org.osate.aadlv3.aadlv3.PrimitiveType;
 import org.osate.aadlv3.aadlv3.Property;
 import org.osate.aadlv3.aadlv3.PropertyAssociation;
 import org.osate.aadlv3.aadlv3.PropertySet;
@@ -118,7 +118,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass primitiveTypeEClass = null;
+	private EClass dataTypeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -481,8 +481,8 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EClass getPrimitiveType() {
-		return primitiveTypeEClass;
+	public EClass getDataType() {
+		return dataTypeEClass;
 	}
 
 	/**
@@ -491,8 +491,8 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getPrimitiveType_PropertyAssociations() {
-		return (EReference) primitiveTypeEClass.getEStructuralFeatures().get(0);
+	public EReference getDataType_PropertyAssociations() {
+		return (EReference) dataTypeEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1295,8 +1295,8 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 
 		typeEClass = createEClass(TYPE);
 
-		primitiveTypeEClass = createEClass(PRIMITIVE_TYPE);
-		createEReference(primitiveTypeEClass, PRIMITIVE_TYPE__PROPERTY_ASSOCIATIONS);
+		dataTypeEClass = createEClass(DATA_TYPE);
+		createEReference(dataTypeEClass, DATA_TYPE__PROPERTY_ASSOCIATIONS);
 
 		componentClassifierEClass = createEClass(COMPONENT_CLASSIFIER);
 		createEAttribute(componentClassifierEClass, COMPONENT_CLASSIFIER__CATEGORY);
@@ -1429,8 +1429,8 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		propertyEClass.getESuperTypes().add(this.getPackageElement());
 		propertySetEClass.getESuperTypes().add(this.getPackageElement());
 		modelElementEClass.getESuperTypes().add(this.getNamedElement());
-		primitiveTypeEClass.getESuperTypes().add(this.getPackageElement());
-		primitiveTypeEClass.getESuperTypes().add(this.getType());
+		dataTypeEClass.getESuperTypes().add(this.getPackageElement());
+		dataTypeEClass.getESuperTypes().add(this.getType());
 		componentClassifierEClass.getESuperTypes().add(this.getPackageElement());
 		componentClassifierEClass.getESuperTypes().add(this.getType());
 		componentRealizationEClass.getESuperTypes().add(this.getComponentClassifier());
@@ -1484,11 +1484,11 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 
 		initEClass(typeEClass, Type.class, "Type", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(primitiveTypeEClass, PrimitiveType.class, "PrimitiveType", !IS_ABSTRACT, !IS_INTERFACE,
+		initEClass(dataTypeEClass, DataType.class, "DataType", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPrimitiveType_PropertyAssociations(), this.getPropertyAssociation(), null,
-				"propertyAssociations", null, 0, -1, PrimitiveType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDataType_PropertyAssociations(), this.getPropertyAssociation(), null, "propertyAssociations",
+				null, 0, -1, DataType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(componentClassifierEClass, ComponentClassifier.class, "ComponentClassifier", IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

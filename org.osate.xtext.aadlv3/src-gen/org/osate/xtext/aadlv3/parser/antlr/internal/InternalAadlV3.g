@@ -150,9 +150,9 @@ rulePackageDeclaration returns [EObject current=null]
 					}
 					    |
 					{
-						newCompositeNode(grammarAccess.getPackageDeclarationAccess().getElementsPrimitiveTypeParserRuleCall_3_0_1());
+						newCompositeNode(grammarAccess.getPackageDeclarationAccess().getElementsDataTypeParserRuleCall_3_0_1());
 					}
-					lv_elements_3_2=rulePrimitiveType
+					lv_elements_3_2=ruleDataType
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getPackageDeclarationRule());
@@ -161,7 +161,7 @@ rulePackageDeclaration returns [EObject current=null]
 							$current,
 							"elements",
 							lv_elements_3_2,
-							"org.osate.xtext.aadlv3.AadlV3.PrimitiveType");
+							"org.osate.xtext.aadlv3.AadlV3.DataType");
 						afterParserOrEnumRuleCall();
 					}
 					    |
@@ -439,15 +439,15 @@ rulePropertySet returns [EObject current=null]
 	)
 ;
 
-// Entry rule entryRulePrimitiveType
-entryRulePrimitiveType returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getPrimitiveTypeRule()); }
-	iv_rulePrimitiveType=rulePrimitiveType
-	{ $current=$iv_rulePrimitiveType.current; }
+// Entry rule entryRuleDataType
+entryRuleDataType returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getDataTypeRule()); }
+	iv_ruleDataType=ruleDataType
+	{ $current=$iv_ruleDataType.current; }
 	EOF;
 
-// Rule PrimitiveType
-rulePrimitiveType returns [EObject current=null]
+// Rule DataType
+ruleDataType returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -457,17 +457,17 @@ rulePrimitiveType returns [EObject current=null]
 	(
 		otherlv_0='type'
 		{
-			newLeafNode(otherlv_0, grammarAccess.getPrimitiveTypeAccess().getTypeKeyword_0());
+			newLeafNode(otherlv_0, grammarAccess.getDataTypeAccess().getTypeKeyword_0());
 		}
 		(
 			(
 				lv_name_1_0=RULE_ID
 				{
-					newLeafNode(lv_name_1_0, grammarAccess.getPrimitiveTypeAccess().getNameIDTerminalRuleCall_1_0());
+					newLeafNode(lv_name_1_0, grammarAccess.getDataTypeAccess().getNameIDTerminalRuleCall_1_0());
 				}
 				{
 					if ($current==null) {
-						$current = createModelElement(grammarAccess.getPrimitiveTypeRule());
+						$current = createModelElement(grammarAccess.getDataTypeRule());
 					}
 					setWithLastConsumed(
 						$current,
@@ -480,9 +480,9 @@ rulePrimitiveType returns [EObject current=null]
 		(
 			{
 				if ($current==null) {
-					$current = createModelElement(grammarAccess.getPrimitiveTypeRule());
+					$current = createModelElement(grammarAccess.getDataTypeRule());
 				}
-				newCompositeNode(grammarAccess.getPrimitiveTypeAccess().getPropertiesBlockParserRuleCall_2());
+				newCompositeNode(grammarAccess.getDataTypeAccess().getPropertiesBlockParserRuleCall_2());
 			}
 			this_PropertiesBlock_2=rulePropertiesBlock[$current]
 			{
@@ -491,7 +491,7 @@ rulePrimitiveType returns [EObject current=null]
 			}
 		)?
 		{
-			newCompositeNode(grammarAccess.getPrimitiveTypeAccess().getSEMICOLONParserRuleCall_3());
+			newCompositeNode(grammarAccess.getDataTypeAccess().getSEMICOLONParserRuleCall_3());
 		}
 		ruleSEMICOLON
 		{

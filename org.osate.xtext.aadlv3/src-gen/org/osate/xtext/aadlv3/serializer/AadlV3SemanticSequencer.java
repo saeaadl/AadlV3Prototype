@@ -35,13 +35,13 @@ import org.osate.aadlv3.aadlv3.ComponentInterface;
 import org.osate.aadlv3.aadlv3.ConfigurationActual;
 import org.osate.aadlv3.aadlv3.ConfigurationAssignment;
 import org.osate.aadlv3.aadlv3.ConfigurationParameter;
+import org.osate.aadlv3.aadlv3.DataType;
 import org.osate.aadlv3.aadlv3.Feature;
 import org.osate.aadlv3.aadlv3.Import;
 import org.osate.aadlv3.aadlv3.ModelElementReference;
 import org.osate.aadlv3.aadlv3.PackageDeclaration;
 import org.osate.aadlv3.aadlv3.PathElement;
 import org.osate.aadlv3.aadlv3.PathSequence;
-import org.osate.aadlv3.aadlv3.PrimitiveType;
 import org.osate.aadlv3.aadlv3.Property;
 import org.osate.aadlv3.aadlv3.PropertyAssociation;
 import org.osate.aadlv3.aadlv3.PropertySet;
@@ -107,6 +107,9 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 			case Aadlv3Package.CONFIGURATION_PARAMETER:
 				sequence_ConfigurationParameter(context, (ConfigurationParameter) semanticObject); 
 				return; 
+			case Aadlv3Package.DATA_TYPE:
+				sequence_DataType_PropertiesBlock(context, (DataType) semanticObject); 
+				return; 
 			case Aadlv3Package.FEATURE:
 				sequence_Feature_PropertiesBlock(context, (Feature) semanticObject); 
 				return; 
@@ -144,9 +147,6 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 					return; 
 				}
 				else break;
-			case Aadlv3Package.PRIMITIVE_TYPE:
-				sequence_PrimitiveType_PropertiesBlock(context, (PrimitiveType) semanticObject); 
-				return; 
 			case Aadlv3Package.PROPERTY:
 				sequence_Property(context, (Property) semanticObject); 
 				return; 
@@ -358,6 +358,18 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
+	 *     DataType returns DataType
+	 *
+	 * Constraint:
+	 *     (name=ID propertyAssociations+=PropertyAssociation*)
+	 */
+	protected void sequence_DataType_PropertiesBlock(ISerializationContext context, DataType semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     FeatureMapping returns Association
 	 *
 	 * Constraint:
@@ -495,7 +507,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *         imports+=Import* 
 	 *         (
 	 *             elements+=PackageDeclaration | 
-	 *             elements+=PrimitiveType | 
+	 *             elements+=DataType | 
 	 *             elements+=ComponentInterface | 
 	 *             elements+=ComponentImplementation | 
 	 *             elements+=ComponentConfiguration | 
@@ -531,18 +543,6 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     (name=ID elements+=PathElement elements+=PathElement+ propertyAssociations+=PropertyAssociation*)
 	 */
 	protected void sequence_Path_PropertiesBlock(ISerializationContext context, PathSequence semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     PrimitiveType returns PrimitiveType
-	 *
-	 * Constraint:
-	 *     (name=ID propertyAssociations+=PropertyAssociation*)
-	 */
-	protected void sequence_PrimitiveType_PropertiesBlock(ISerializationContext context, PrimitiveType semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

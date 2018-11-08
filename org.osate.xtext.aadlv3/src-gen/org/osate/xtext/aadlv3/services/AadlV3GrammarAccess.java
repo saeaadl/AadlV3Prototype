@@ -47,7 +47,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cElementsAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final Alternatives cElementsAlternatives_3_0 = (Alternatives)cElementsAssignment_3.eContents().get(0);
 		private final RuleCall cElementsPackageDeclarationParserRuleCall_3_0_0 = (RuleCall)cElementsAlternatives_3_0.eContents().get(0);
-		private final RuleCall cElementsPrimitiveTypeParserRuleCall_3_0_1 = (RuleCall)cElementsAlternatives_3_0.eContents().get(1);
+		private final RuleCall cElementsDataTypeParserRuleCall_3_0_1 = (RuleCall)cElementsAlternatives_3_0.eContents().get(1);
 		private final RuleCall cElementsComponentInterfaceParserRuleCall_3_0_2 = (RuleCall)cElementsAlternatives_3_0.eContents().get(2);
 		private final RuleCall cElementsComponentImplementationParserRuleCall_3_0_3 = (RuleCall)cElementsAlternatives_3_0.eContents().get(3);
 		private final RuleCall cElementsComponentConfigurationParserRuleCall_3_0_4 = (RuleCall)cElementsAlternatives_3_0.eContents().get(4);
@@ -60,12 +60,12 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		//PackageDeclaration av3::PackageDeclaration:
 		//	'package' name=QualifiedName
 		//	imports+=Import*
-		//	elements+=(PackageDeclaration | PrimitiveType | ComponentInterface | ComponentImplementation | ComponentConfiguration
-		//	| Property | PropertySet | Workingset)*
+		//	elements+=(PackageDeclaration | DataType | ComponentInterface | ComponentImplementation | ComponentConfiguration |
+		//	Property | PropertySet | Workingset)*
 		//	'end' SEMICOLON;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'package' name=QualifiedName imports+=Import* elements+=(PackageDeclaration | PrimitiveType | ComponentInterface |
+		//'package' name=QualifiedName imports+=Import* elements+=(PackageDeclaration | DataType | ComponentInterface |
 		//ComponentImplementation | ComponentConfiguration | Property | PropertySet | Workingset)* 'end' SEMICOLON
 		public Group getGroup() { return cGroup; }
 		
@@ -84,19 +84,19 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		//Import
 		public RuleCall getImportsImportParserRuleCall_2_0() { return cImportsImportParserRuleCall_2_0; }
 		
-		//elements+=(PackageDeclaration | PrimitiveType | ComponentInterface | ComponentImplementation | ComponentConfiguration |
+		//elements+=(PackageDeclaration | DataType | ComponentInterface | ComponentImplementation | ComponentConfiguration |
 		//Property | PropertySet | Workingset)*
 		public Assignment getElementsAssignment_3() { return cElementsAssignment_3; }
 		
-		//(PackageDeclaration | PrimitiveType | ComponentInterface | ComponentImplementation | ComponentConfiguration | Property |
+		//(PackageDeclaration | DataType | ComponentInterface | ComponentImplementation | ComponentConfiguration | Property |
 		//PropertySet | Workingset)
 		public Alternatives getElementsAlternatives_3_0() { return cElementsAlternatives_3_0; }
 		
 		//PackageDeclaration
 		public RuleCall getElementsPackageDeclarationParserRuleCall_3_0_0() { return cElementsPackageDeclarationParserRuleCall_3_0_0; }
 		
-		//PrimitiveType
-		public RuleCall getElementsPrimitiveTypeParserRuleCall_3_0_1() { return cElementsPrimitiveTypeParserRuleCall_3_0_1; }
+		//DataType
+		public RuleCall getElementsDataTypeParserRuleCall_3_0_1() { return cElementsDataTypeParserRuleCall_3_0_1; }
 		
 		//ComponentInterface
 		public RuleCall getElementsComponentInterfaceParserRuleCall_3_0_2() { return cElementsComponentInterfaceParserRuleCall_3_0_2; }
@@ -235,8 +235,8 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		//SEMICOLON
 		public RuleCall getSEMICOLONParserRuleCall_6() { return cSEMICOLONParserRuleCall_6; }
 	}
-	public class PrimitiveTypeElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.osate.xtext.aadlv3.AadlV3.PrimitiveType");
+	public class DataTypeElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.osate.xtext.aadlv3.AadlV3.DataType");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cTypeKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
@@ -244,7 +244,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cPropertiesBlockParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
 		private final RuleCall cSEMICOLONParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
 		
-		//PrimitiveType av3::PrimitiveType:
+		//DataType av3::DataType:
 		//	'type' name=ID PropertiesBlock? SEMICOLON;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -2794,7 +2794,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	private final PackageDeclarationElements pPackageDeclaration;
 	private final PropertyElements pProperty;
 	private final PropertySetElements pPropertySet;
-	private final PrimitiveTypeElements pPrimitiveType;
+	private final DataTypeElements pDataType;
 	private final ComponentInterfaceElements pComponentInterface;
 	private final InterfaceBodyElements pInterfaceBody;
 	private final ComponentImplementationElements pComponentImplementation;
@@ -2878,7 +2878,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		this.pPackageDeclaration = new PackageDeclarationElements();
 		this.pProperty = new PropertyElements();
 		this.pPropertySet = new PropertySetElements();
-		this.pPrimitiveType = new PrimitiveTypeElements();
+		this.pDataType = new DataTypeElements();
 		this.pComponentInterface = new ComponentInterfaceElements();
 		this.pInterfaceBody = new InterfaceBodyElements();
 		this.pComponentImplementation = new ComponentImplementationElements();
@@ -2981,8 +2981,8 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	//PackageDeclaration av3::PackageDeclaration:
 	//	'package' name=QualifiedName
 	//	imports+=Import*
-	//	elements+=(PackageDeclaration | PrimitiveType | ComponentInterface | ComponentImplementation | ComponentConfiguration
-	//	| Property | PropertySet | Workingset)*
+	//	elements+=(PackageDeclaration | DataType | ComponentInterface | ComponentImplementation | ComponentConfiguration |
+	//	Property | PropertySet | Workingset)*
 	//	'end' SEMICOLON;
 	public PackageDeclarationElements getPackageDeclarationAccess() {
 		return pPackageDeclaration;
@@ -3014,14 +3014,14 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		return getPropertySetAccess().getRule();
 	}
 	
-	//PrimitiveType av3::PrimitiveType:
+	//DataType av3::DataType:
 	//	'type' name=ID PropertiesBlock? SEMICOLON;
-	public PrimitiveTypeElements getPrimitiveTypeAccess() {
-		return pPrimitiveType;
+	public DataTypeElements getDataTypeAccess() {
+		return pDataType;
 	}
 	
-	public ParserRule getPrimitiveTypeRule() {
-		return getPrimitiveTypeAccess().getRule();
+	public ParserRule getDataTypeRule() {
+		return getDataTypeAccess().getRule();
 	}
 	
 	//ComponentInterface av3::ComponentInterface:

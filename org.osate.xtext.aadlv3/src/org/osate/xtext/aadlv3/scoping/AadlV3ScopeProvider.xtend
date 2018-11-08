@@ -22,7 +22,7 @@ import org.osate.aadlv3.aadlv3.ConfigurationAssignment
 import org.osate.aadlv3.aadlv3.Feature
 import org.osate.aadlv3.aadlv3.ModelElementReference
 import org.osate.aadlv3.aadlv3.PathSequence
-import org.osate.aadlv3.aadlv3.PrimitiveType
+import org.osate.aadlv3.aadlv3.DataType
 import org.osate.aadlv3.aadlv3.PropertyAssociation
 import org.osate.aadlv3.aadlv3.Type
 import org.osate.aadlv3.aadlv3.TypeReference
@@ -123,7 +123,7 @@ class AadlV3ScopeProvider extends AbstractAadlV3ScopeProvider {
 									// we do have a classifier or primitive type
 									if ( previousElement.typeReference.type.eIsProxy){
 										Collections.EMPTY_LIST 
-									} else if (previousElement.typeReference.type instanceof PrimitiveType){
+									} else if (previousElement.typeReference.type instanceof DataType){
 										previousElement.features
 									} else {
 										// we have a classifier

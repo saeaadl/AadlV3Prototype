@@ -16,31 +16,35 @@
 package org.osate.aadlv3.aadlv3.impl;
 
 import java.util.Collection;
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
+
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
-import org.osate.aadlv3.aadlv3.PrimitiveType;
+import org.osate.aadlv3.aadlv3.DataType;
 import org.osate.aadlv3.aadlv3.PropertyAssociation;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Primitive Type</b></em>'.
+ * An implementation of the model object '<em><b>Data Type</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.PrimitiveTypeImpl#getPropertyAssociations <em>Property Associations</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.DataTypeImpl#getPropertyAssociations <em>Property Associations</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class PrimitiveTypeImpl extends PackageElementImpl implements PrimitiveType {
+public class DataTypeImpl extends PackageElementImpl implements DataType {
 	/**
 	 * The cached value of the '{@link #getPropertyAssociations() <em>Property Associations</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -56,7 +60,7 @@ public class PrimitiveTypeImpl extends PackageElementImpl implements PrimitiveTy
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected PrimitiveTypeImpl() {
+	protected DataTypeImpl() {
 		super();
 	}
 
@@ -67,7 +71,7 @@ public class PrimitiveTypeImpl extends PackageElementImpl implements PrimitiveTy
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return Aadlv3Package.Literals.PRIMITIVE_TYPE;
+		return Aadlv3Package.Literals.DATA_TYPE;
 	}
 
 	/**
@@ -79,7 +83,7 @@ public class PrimitiveTypeImpl extends PackageElementImpl implements PrimitiveTy
 	public EList<PropertyAssociation> getPropertyAssociations() {
 		if (propertyAssociations == null) {
 			propertyAssociations = new EObjectContainmentEList<PropertyAssociation>(PropertyAssociation.class, this,
-					Aadlv3Package.PRIMITIVE_TYPE__PROPERTY_ASSOCIATIONS);
+					Aadlv3Package.DATA_TYPE__PROPERTY_ASSOCIATIONS);
 		}
 		return propertyAssociations;
 	}
@@ -92,7 +96,7 @@ public class PrimitiveTypeImpl extends PackageElementImpl implements PrimitiveTy
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case Aadlv3Package.PRIMITIVE_TYPE__PROPERTY_ASSOCIATIONS:
+		case Aadlv3Package.DATA_TYPE__PROPERTY_ASSOCIATIONS:
 			return ((InternalEList<?>) getPropertyAssociations()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -106,7 +110,7 @@ public class PrimitiveTypeImpl extends PackageElementImpl implements PrimitiveTy
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case Aadlv3Package.PRIMITIVE_TYPE__PROPERTY_ASSOCIATIONS:
+		case Aadlv3Package.DATA_TYPE__PROPERTY_ASSOCIATIONS:
 			return getPropertyAssociations();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -121,7 +125,7 @@ public class PrimitiveTypeImpl extends PackageElementImpl implements PrimitiveTy
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case Aadlv3Package.PRIMITIVE_TYPE__PROPERTY_ASSOCIATIONS:
+		case Aadlv3Package.DATA_TYPE__PROPERTY_ASSOCIATIONS:
 			getPropertyAssociations().clear();
 			getPropertyAssociations().addAll((Collection<? extends PropertyAssociation>) newValue);
 			return;
@@ -137,7 +141,7 @@ public class PrimitiveTypeImpl extends PackageElementImpl implements PrimitiveTy
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case Aadlv3Package.PRIMITIVE_TYPE__PROPERTY_ASSOCIATIONS:
+		case Aadlv3Package.DATA_TYPE__PROPERTY_ASSOCIATIONS:
 			getPropertyAssociations().clear();
 			return;
 		}
@@ -152,10 +156,10 @@ public class PrimitiveTypeImpl extends PackageElementImpl implements PrimitiveTy
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case Aadlv3Package.PRIMITIVE_TYPE__PROPERTY_ASSOCIATIONS:
+		case Aadlv3Package.DATA_TYPE__PROPERTY_ASSOCIATIONS:
 			return propertyAssociations != null && !propertyAssociations.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //PrimitiveTypeImpl
+} //DataTypeImpl

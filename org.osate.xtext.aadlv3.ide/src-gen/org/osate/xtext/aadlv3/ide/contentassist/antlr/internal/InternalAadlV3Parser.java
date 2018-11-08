@@ -397,23 +397,23 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rulePropertySet"
 
 
-    // $ANTLR start "entryRulePrimitiveType"
-    // InternalAadlV3.g:141:1: entryRulePrimitiveType : rulePrimitiveType EOF ;
-    public final void entryRulePrimitiveType() throws RecognitionException {
+    // $ANTLR start "entryRuleDataType"
+    // InternalAadlV3.g:141:1: entryRuleDataType : ruleDataType EOF ;
+    public final void entryRuleDataType() throws RecognitionException {
         try {
-            // InternalAadlV3.g:142:1: ( rulePrimitiveType EOF )
-            // InternalAadlV3.g:143:1: rulePrimitiveType EOF
+            // InternalAadlV3.g:142:1: ( ruleDataType EOF )
+            // InternalAadlV3.g:143:1: ruleDataType EOF
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getPrimitiveTypeRule()); 
+               before(grammarAccess.getDataTypeRule()); 
             }
             pushFollow(FOLLOW_1);
-            rulePrimitiveType();
+            ruleDataType();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getPrimitiveTypeRule()); 
+               after(grammarAccess.getDataTypeRule()); 
             }
             match(input,EOF,FOLLOW_2); if (state.failed) return ;
 
@@ -428,30 +428,30 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "entryRulePrimitiveType"
+    // $ANTLR end "entryRuleDataType"
 
 
-    // $ANTLR start "rulePrimitiveType"
-    // InternalAadlV3.g:150:1: rulePrimitiveType : ( ( rule__PrimitiveType__Group__0 ) ) ;
-    public final void rulePrimitiveType() throws RecognitionException {
+    // $ANTLR start "ruleDataType"
+    // InternalAadlV3.g:150:1: ruleDataType : ( ( rule__DataType__Group__0 ) ) ;
+    public final void ruleDataType() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAadlV3.g:154:2: ( ( ( rule__PrimitiveType__Group__0 ) ) )
-            // InternalAadlV3.g:155:2: ( ( rule__PrimitiveType__Group__0 ) )
+            // InternalAadlV3.g:154:2: ( ( ( rule__DataType__Group__0 ) ) )
+            // InternalAadlV3.g:155:2: ( ( rule__DataType__Group__0 ) )
             {
-            // InternalAadlV3.g:155:2: ( ( rule__PrimitiveType__Group__0 ) )
-            // InternalAadlV3.g:156:3: ( rule__PrimitiveType__Group__0 )
+            // InternalAadlV3.g:155:2: ( ( rule__DataType__Group__0 ) )
+            // InternalAadlV3.g:156:3: ( rule__DataType__Group__0 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getPrimitiveTypeAccess().getGroup()); 
+               before(grammarAccess.getDataTypeAccess().getGroup()); 
             }
-            // InternalAadlV3.g:157:3: ( rule__PrimitiveType__Group__0 )
-            // InternalAadlV3.g:157:4: rule__PrimitiveType__Group__0
+            // InternalAadlV3.g:157:3: ( rule__DataType__Group__0 )
+            // InternalAadlV3.g:157:4: rule__DataType__Group__0
             {
             pushFollow(FOLLOW_2);
-            rule__PrimitiveType__Group__0();
+            rule__DataType__Group__0();
 
             state._fsp--;
             if (state.failed) return ;
@@ -459,7 +459,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getPrimitiveTypeAccess().getGroup()); 
+               after(grammarAccess.getDataTypeAccess().getGroup()); 
             }
 
             }
@@ -479,7 +479,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rulePrimitiveType"
+    // $ANTLR end "ruleDataType"
 
 
     // $ANTLR start "entryRuleComponentInterface"
@@ -6015,13 +6015,13 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PackageDeclaration__ElementsAlternatives_3_0"
-    // InternalAadlV3.g:1827:1: rule__PackageDeclaration__ElementsAlternatives_3_0 : ( ( rulePackageDeclaration ) | ( rulePrimitiveType ) | ( ruleComponentInterface ) | ( ruleComponentImplementation ) | ( ruleComponentConfiguration ) | ( ruleProperty ) | ( rulePropertySet ) | ( ruleWorkingset ) );
+    // InternalAadlV3.g:1827:1: rule__PackageDeclaration__ElementsAlternatives_3_0 : ( ( rulePackageDeclaration ) | ( ruleDataType ) | ( ruleComponentInterface ) | ( ruleComponentImplementation ) | ( ruleComponentConfiguration ) | ( ruleProperty ) | ( rulePropertySet ) | ( ruleWorkingset ) );
     public final void rule__PackageDeclaration__ElementsAlternatives_3_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAadlV3.g:1831:1: ( ( rulePackageDeclaration ) | ( rulePrimitiveType ) | ( ruleComponentInterface ) | ( ruleComponentImplementation ) | ( ruleComponentConfiguration ) | ( ruleProperty ) | ( rulePropertySet ) | ( ruleWorkingset ) )
+            // InternalAadlV3.g:1831:1: ( ( rulePackageDeclaration ) | ( ruleDataType ) | ( ruleComponentInterface ) | ( ruleComponentImplementation ) | ( ruleComponentConfiguration ) | ( ruleProperty ) | ( rulePropertySet ) | ( ruleWorkingset ) )
             int alt1=8;
             alt1 = dfa1.predict(input);
             switch (alt1) {
@@ -6049,21 +6049,21 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // InternalAadlV3.g:1838:2: ( rulePrimitiveType )
+                    // InternalAadlV3.g:1838:2: ( ruleDataType )
                     {
-                    // InternalAadlV3.g:1838:2: ( rulePrimitiveType )
-                    // InternalAadlV3.g:1839:3: rulePrimitiveType
+                    // InternalAadlV3.g:1838:2: ( ruleDataType )
+                    // InternalAadlV3.g:1839:3: ruleDataType
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getPackageDeclarationAccess().getElementsPrimitiveTypeParserRuleCall_3_0_1()); 
+                       before(grammarAccess.getPackageDeclarationAccess().getElementsDataTypeParserRuleCall_3_0_1()); 
                     }
                     pushFollow(FOLLOW_2);
-                    rulePrimitiveType();
+                    ruleDataType();
 
                     state._fsp--;
                     if (state.failed) return ;
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getPackageDeclarationAccess().getElementsPrimitiveTypeParserRuleCall_3_0_1()); 
+                       after(grammarAccess.getPackageDeclarationAccess().getElementsDataTypeParserRuleCall_3_0_1()); 
                     }
 
                     }
@@ -9735,23 +9735,23 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__PropertySet__Group_4__1__Impl"
 
 
-    // $ANTLR start "rule__PrimitiveType__Group__0"
-    // InternalAadlV3.g:2862:1: rule__PrimitiveType__Group__0 : rule__PrimitiveType__Group__0__Impl rule__PrimitiveType__Group__1 ;
-    public final void rule__PrimitiveType__Group__0() throws RecognitionException {
+    // $ANTLR start "rule__DataType__Group__0"
+    // InternalAadlV3.g:2862:1: rule__DataType__Group__0 : rule__DataType__Group__0__Impl rule__DataType__Group__1 ;
+    public final void rule__DataType__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAadlV3.g:2866:1: ( rule__PrimitiveType__Group__0__Impl rule__PrimitiveType__Group__1 )
-            // InternalAadlV3.g:2867:2: rule__PrimitiveType__Group__0__Impl rule__PrimitiveType__Group__1
+            // InternalAadlV3.g:2866:1: ( rule__DataType__Group__0__Impl rule__DataType__Group__1 )
+            // InternalAadlV3.g:2867:2: rule__DataType__Group__0__Impl rule__DataType__Group__1
             {
             pushFollow(FOLLOW_3);
-            rule__PrimitiveType__Group__0__Impl();
+            rule__DataType__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
             pushFollow(FOLLOW_2);
-            rule__PrimitiveType__Group__1();
+            rule__DataType__Group__1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -9770,12 +9770,12 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__PrimitiveType__Group__0"
+    // $ANTLR end "rule__DataType__Group__0"
 
 
-    // $ANTLR start "rule__PrimitiveType__Group__0__Impl"
-    // InternalAadlV3.g:2874:1: rule__PrimitiveType__Group__0__Impl : ( 'type' ) ;
-    public final void rule__PrimitiveType__Group__0__Impl() throws RecognitionException {
+    // $ANTLR start "rule__DataType__Group__0__Impl"
+    // InternalAadlV3.g:2874:1: rule__DataType__Group__0__Impl : ( 'type' ) ;
+    public final void rule__DataType__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -9787,11 +9787,11 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             // InternalAadlV3.g:2880:2: 'type'
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getPrimitiveTypeAccess().getTypeKeyword_0()); 
+               before(grammarAccess.getDataTypeAccess().getTypeKeyword_0()); 
             }
             match(input,40,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getPrimitiveTypeAccess().getTypeKeyword_0()); 
+               after(grammarAccess.getDataTypeAccess().getTypeKeyword_0()); 
             }
 
             }
@@ -9811,26 +9811,26 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__PrimitiveType__Group__0__Impl"
+    // $ANTLR end "rule__DataType__Group__0__Impl"
 
 
-    // $ANTLR start "rule__PrimitiveType__Group__1"
-    // InternalAadlV3.g:2889:1: rule__PrimitiveType__Group__1 : rule__PrimitiveType__Group__1__Impl rule__PrimitiveType__Group__2 ;
-    public final void rule__PrimitiveType__Group__1() throws RecognitionException {
+    // $ANTLR start "rule__DataType__Group__1"
+    // InternalAadlV3.g:2889:1: rule__DataType__Group__1 : rule__DataType__Group__1__Impl rule__DataType__Group__2 ;
+    public final void rule__DataType__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAadlV3.g:2893:1: ( rule__PrimitiveType__Group__1__Impl rule__PrimitiveType__Group__2 )
-            // InternalAadlV3.g:2894:2: rule__PrimitiveType__Group__1__Impl rule__PrimitiveType__Group__2
+            // InternalAadlV3.g:2893:1: ( rule__DataType__Group__1__Impl rule__DataType__Group__2 )
+            // InternalAadlV3.g:2894:2: rule__DataType__Group__1__Impl rule__DataType__Group__2
             {
             pushFollow(FOLLOW_12);
-            rule__PrimitiveType__Group__1__Impl();
+            rule__DataType__Group__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
             pushFollow(FOLLOW_2);
-            rule__PrimitiveType__Group__2();
+            rule__DataType__Group__2();
 
             state._fsp--;
             if (state.failed) return ;
@@ -9849,30 +9849,30 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__PrimitiveType__Group__1"
+    // $ANTLR end "rule__DataType__Group__1"
 
 
-    // $ANTLR start "rule__PrimitiveType__Group__1__Impl"
-    // InternalAadlV3.g:2901:1: rule__PrimitiveType__Group__1__Impl : ( ( rule__PrimitiveType__NameAssignment_1 ) ) ;
-    public final void rule__PrimitiveType__Group__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__DataType__Group__1__Impl"
+    // InternalAadlV3.g:2901:1: rule__DataType__Group__1__Impl : ( ( rule__DataType__NameAssignment_1 ) ) ;
+    public final void rule__DataType__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAadlV3.g:2905:1: ( ( ( rule__PrimitiveType__NameAssignment_1 ) ) )
-            // InternalAadlV3.g:2906:1: ( ( rule__PrimitiveType__NameAssignment_1 ) )
+            // InternalAadlV3.g:2905:1: ( ( ( rule__DataType__NameAssignment_1 ) ) )
+            // InternalAadlV3.g:2906:1: ( ( rule__DataType__NameAssignment_1 ) )
             {
-            // InternalAadlV3.g:2906:1: ( ( rule__PrimitiveType__NameAssignment_1 ) )
-            // InternalAadlV3.g:2907:2: ( rule__PrimitiveType__NameAssignment_1 )
+            // InternalAadlV3.g:2906:1: ( ( rule__DataType__NameAssignment_1 ) )
+            // InternalAadlV3.g:2907:2: ( rule__DataType__NameAssignment_1 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getPrimitiveTypeAccess().getNameAssignment_1()); 
+               before(grammarAccess.getDataTypeAccess().getNameAssignment_1()); 
             }
-            // InternalAadlV3.g:2908:2: ( rule__PrimitiveType__NameAssignment_1 )
-            // InternalAadlV3.g:2908:3: rule__PrimitiveType__NameAssignment_1
+            // InternalAadlV3.g:2908:2: ( rule__DataType__NameAssignment_1 )
+            // InternalAadlV3.g:2908:3: rule__DataType__NameAssignment_1
             {
             pushFollow(FOLLOW_2);
-            rule__PrimitiveType__NameAssignment_1();
+            rule__DataType__NameAssignment_1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -9880,7 +9880,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getPrimitiveTypeAccess().getNameAssignment_1()); 
+               after(grammarAccess.getDataTypeAccess().getNameAssignment_1()); 
             }
 
             }
@@ -9900,26 +9900,26 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__PrimitiveType__Group__1__Impl"
+    // $ANTLR end "rule__DataType__Group__1__Impl"
 
 
-    // $ANTLR start "rule__PrimitiveType__Group__2"
-    // InternalAadlV3.g:2916:1: rule__PrimitiveType__Group__2 : rule__PrimitiveType__Group__2__Impl rule__PrimitiveType__Group__3 ;
-    public final void rule__PrimitiveType__Group__2() throws RecognitionException {
+    // $ANTLR start "rule__DataType__Group__2"
+    // InternalAadlV3.g:2916:1: rule__DataType__Group__2 : rule__DataType__Group__2__Impl rule__DataType__Group__3 ;
+    public final void rule__DataType__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAadlV3.g:2920:1: ( rule__PrimitiveType__Group__2__Impl rule__PrimitiveType__Group__3 )
-            // InternalAadlV3.g:2921:2: rule__PrimitiveType__Group__2__Impl rule__PrimitiveType__Group__3
+            // InternalAadlV3.g:2920:1: ( rule__DataType__Group__2__Impl rule__DataType__Group__3 )
+            // InternalAadlV3.g:2921:2: rule__DataType__Group__2__Impl rule__DataType__Group__3
             {
             pushFollow(FOLLOW_12);
-            rule__PrimitiveType__Group__2__Impl();
+            rule__DataType__Group__2__Impl();
 
             state._fsp--;
             if (state.failed) return ;
             pushFollow(FOLLOW_2);
-            rule__PrimitiveType__Group__3();
+            rule__DataType__Group__3();
 
             state._fsp--;
             if (state.failed) return ;
@@ -9938,12 +9938,12 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__PrimitiveType__Group__2"
+    // $ANTLR end "rule__DataType__Group__2"
 
 
-    // $ANTLR start "rule__PrimitiveType__Group__2__Impl"
-    // InternalAadlV3.g:2928:1: rule__PrimitiveType__Group__2__Impl : ( ( rulePropertiesBlock )? ) ;
-    public final void rule__PrimitiveType__Group__2__Impl() throws RecognitionException {
+    // $ANTLR start "rule__DataType__Group__2__Impl"
+    // InternalAadlV3.g:2928:1: rule__DataType__Group__2__Impl : ( ( rulePropertiesBlock )? ) ;
+    public final void rule__DataType__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -9955,7 +9955,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             // InternalAadlV3.g:2934:2: ( rulePropertiesBlock )?
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getPrimitiveTypeAccess().getPropertiesBlockParserRuleCall_2()); 
+               before(grammarAccess.getDataTypeAccess().getPropertiesBlockParserRuleCall_2()); 
             }
             // InternalAadlV3.g:2935:2: ( rulePropertiesBlock )?
             int alt15=2;
@@ -9980,7 +9980,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getPrimitiveTypeAccess().getPropertiesBlockParserRuleCall_2()); 
+               after(grammarAccess.getDataTypeAccess().getPropertiesBlockParserRuleCall_2()); 
             }
 
             }
@@ -10000,21 +10000,21 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__PrimitiveType__Group__2__Impl"
+    // $ANTLR end "rule__DataType__Group__2__Impl"
 
 
-    // $ANTLR start "rule__PrimitiveType__Group__3"
-    // InternalAadlV3.g:2943:1: rule__PrimitiveType__Group__3 : rule__PrimitiveType__Group__3__Impl ;
-    public final void rule__PrimitiveType__Group__3() throws RecognitionException {
+    // $ANTLR start "rule__DataType__Group__3"
+    // InternalAadlV3.g:2943:1: rule__DataType__Group__3 : rule__DataType__Group__3__Impl ;
+    public final void rule__DataType__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAadlV3.g:2947:1: ( rule__PrimitiveType__Group__3__Impl )
-            // InternalAadlV3.g:2948:2: rule__PrimitiveType__Group__3__Impl
+            // InternalAadlV3.g:2947:1: ( rule__DataType__Group__3__Impl )
+            // InternalAadlV3.g:2948:2: rule__DataType__Group__3__Impl
             {
             pushFollow(FOLLOW_2);
-            rule__PrimitiveType__Group__3__Impl();
+            rule__DataType__Group__3__Impl();
 
             state._fsp--;
             if (state.failed) return ;
@@ -10033,12 +10033,12 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__PrimitiveType__Group__3"
+    // $ANTLR end "rule__DataType__Group__3"
 
 
-    // $ANTLR start "rule__PrimitiveType__Group__3__Impl"
-    // InternalAadlV3.g:2954:1: rule__PrimitiveType__Group__3__Impl : ( ruleSEMICOLON ) ;
-    public final void rule__PrimitiveType__Group__3__Impl() throws RecognitionException {
+    // $ANTLR start "rule__DataType__Group__3__Impl"
+    // InternalAadlV3.g:2954:1: rule__DataType__Group__3__Impl : ( ruleSEMICOLON ) ;
+    public final void rule__DataType__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -10050,7 +10050,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             // InternalAadlV3.g:2960:2: ruleSEMICOLON
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getPrimitiveTypeAccess().getSEMICOLONParserRuleCall_3()); 
+               before(grammarAccess.getDataTypeAccess().getSEMICOLONParserRuleCall_3()); 
             }
             pushFollow(FOLLOW_2);
             ruleSEMICOLON();
@@ -10058,7 +10058,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getPrimitiveTypeAccess().getSEMICOLONParserRuleCall_3()); 
+               after(grammarAccess.getDataTypeAccess().getSEMICOLONParserRuleCall_3()); 
             }
 
             }
@@ -10078,7 +10078,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__PrimitiveType__Group__3__Impl"
+    // $ANTLR end "rule__DataType__Group__3__Impl"
 
 
     // $ANTLR start "rule__ComponentInterface__Group__0"
@@ -32015,9 +32015,9 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__PropertySet__PropertiesAssignment_4_1"
 
 
-    // $ANTLR start "rule__PrimitiveType__NameAssignment_1"
-    // InternalAadlV3.g:9893:1: rule__PrimitiveType__NameAssignment_1 : ( RULE_ID ) ;
-    public final void rule__PrimitiveType__NameAssignment_1() throws RecognitionException {
+    // $ANTLR start "rule__DataType__NameAssignment_1"
+    // InternalAadlV3.g:9893:1: rule__DataType__NameAssignment_1 : ( RULE_ID ) ;
+    public final void rule__DataType__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -32029,11 +32029,11 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             // InternalAadlV3.g:9899:3: RULE_ID
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getPrimitiveTypeAccess().getNameIDTerminalRuleCall_1_0()); 
+               before(grammarAccess.getDataTypeAccess().getNameIDTerminalRuleCall_1_0()); 
             }
             match(input,RULE_ID,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getPrimitiveTypeAccess().getNameIDTerminalRuleCall_1_0()); 
+               after(grammarAccess.getDataTypeAccess().getNameIDTerminalRuleCall_1_0()); 
             }
 
             }
@@ -32053,7 +32053,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__PrimitiveType__NameAssignment_1"
+    // $ANTLR end "rule__DataType__NameAssignment_1"
 
 
     // $ANTLR start "rule__ComponentInterface__PrivateAssignment_0"
@@ -36797,7 +36797,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             this.transition = dfa_6;
         }
         public String getDescription() {
-            return "1827:1: rule__PackageDeclaration__ElementsAlternatives_3_0 : ( ( rulePackageDeclaration ) | ( rulePrimitiveType ) | ( ruleComponentInterface ) | ( ruleComponentImplementation ) | ( ruleComponentConfiguration ) | ( ruleProperty ) | ( rulePropertySet ) | ( ruleWorkingset ) );";
+            return "1827:1: rule__PackageDeclaration__ElementsAlternatives_3_0 : ( ( rulePackageDeclaration ) | ( ruleDataType ) | ( ruleComponentInterface ) | ( ruleComponentImplementation ) | ( ruleComponentConfiguration ) | ( ruleProperty ) | ( rulePropertySet ) | ( ruleWorkingset ) );";
         }
     }
     static final String dfa_7s = "\15\uffff";

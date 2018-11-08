@@ -22,27 +22,28 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
+import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
 import org.osate.aadlv3.aadlv3.Aadlv3Factory;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
-import org.osate.aadlv3.aadlv3.PrimitiveType;
+import org.osate.aadlv3.aadlv3.DataType;
 
 /**
- * This is the item provider adapter for a {@link org.osate.aadlv3.aadlv3.PrimitiveType} object.
+ * This is the item provider adapter for a {@link org.osate.aadlv3.aadlv3.DataType} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class PrimitiveTypeItemProvider extends PackageElementItemProvider {
+public class DataTypeItemProvider extends PackageElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PrimitiveTypeItemProvider(AdapterFactory adapterFactory) {
+	public DataTypeItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -73,7 +74,7 @@ public class PrimitiveTypeItemProvider extends PackageElementItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(Aadlv3Package.Literals.PRIMITIVE_TYPE__PROPERTY_ASSOCIATIONS);
+			childrenFeatures.add(Aadlv3Package.Literals.DATA_TYPE__PROPERTY_ASSOCIATIONS);
 		}
 		return childrenFeatures;
 	}
@@ -92,14 +93,14 @@ public class PrimitiveTypeItemProvider extends PackageElementItemProvider {
 	}
 
 	/**
-	 * This returns PrimitiveType.gif.
+	 * This returns DataType.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/PrimitiveType"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/DataType"));
 	}
 
 	/**
@@ -110,9 +111,9 @@ public class PrimitiveTypeItemProvider extends PackageElementItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((PrimitiveType) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_PrimitiveType_type")
-				: getString("_UI_PrimitiveType_type") + " " + label;
+		String label = ((DataType) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_DataType_type")
+				: getString("_UI_DataType_type") + " " + label;
 	}
 
 	/**
@@ -126,8 +127,8 @@ public class PrimitiveTypeItemProvider extends PackageElementItemProvider {
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(PrimitiveType.class)) {
-		case Aadlv3Package.PRIMITIVE_TYPE__PROPERTY_ASSOCIATIONS:
+		switch (notification.getFeatureID(DataType.class)) {
+		case Aadlv3Package.DATA_TYPE__PROPERTY_ASSOCIATIONS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -145,7 +146,7 @@ public class PrimitiveTypeItemProvider extends PackageElementItemProvider {
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PRIMITIVE_TYPE__PROPERTY_ASSOCIATIONS,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.DATA_TYPE__PROPERTY_ASSOCIATIONS,
 				Aadlv3Factory.eINSTANCE.createPropertyAssociation()));
 	}
 

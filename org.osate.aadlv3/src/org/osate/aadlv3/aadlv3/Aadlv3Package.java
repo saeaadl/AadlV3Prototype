@@ -302,14 +302,14 @@ public interface Aadlv3Package extends EPackage {
 	int TYPE_FEATURE_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.PrimitiveTypeImpl <em>Primitive Type</em>}' class.
+	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.DataTypeImpl <em>Data Type</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.osate.aadlv3.aadlv3.impl.PrimitiveTypeImpl
-	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getPrimitiveType()
+	 * @see org.osate.aadlv3.aadlv3.impl.DataTypeImpl
+	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getDataType()
 	 * @generated
 	 */
-	int PRIMITIVE_TYPE = 7;
+	int DATA_TYPE = 7;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -318,7 +318,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRIMITIVE_TYPE__NAME = PACKAGE_ELEMENT__NAME;
+	int DATA_TYPE__NAME = PACKAGE_ELEMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Property Associations</b></em>' containment reference list.
@@ -327,16 +327,16 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRIMITIVE_TYPE__PROPERTY_ASSOCIATIONS = PACKAGE_ELEMENT_FEATURE_COUNT + 0;
+	int DATA_TYPE__PROPERTY_ASSOCIATIONS = PACKAGE_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Primitive Type</em>' class.
+	 * The number of structural features of the '<em>Data Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRIMITIVE_TYPE_FEATURE_COUNT = PACKAGE_ELEMENT_FEATURE_COUNT + 1;
+	int DATA_TYPE_FEATURE_COUNT = PACKAGE_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.ComponentClassifierImpl <em>Component Classifier</em>}' class.
@@ -1668,25 +1668,25 @@ public interface Aadlv3Package extends EPackage {
 	EClass getType();
 
 	/**
-	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.PrimitiveType <em>Primitive Type</em>}'.
+	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.DataType <em>Data Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Primitive Type</em>'.
-	 * @see org.osate.aadlv3.aadlv3.PrimitiveType
+	 * @return the meta object for class '<em>Data Type</em>'.
+	 * @see org.osate.aadlv3.aadlv3.DataType
 	 * @generated
 	 */
-	EClass getPrimitiveType();
+	EClass getDataType();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.osate.aadlv3.aadlv3.PrimitiveType#getPropertyAssociations <em>Property Associations</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.osate.aadlv3.aadlv3.DataType#getPropertyAssociations <em>Property Associations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Property Associations</em>'.
-	 * @see org.osate.aadlv3.aadlv3.PrimitiveType#getPropertyAssociations()
-	 * @see #getPrimitiveType()
+	 * @see org.osate.aadlv3.aadlv3.DataType#getPropertyAssociations()
+	 * @see #getDataType()
 	 * @generated
 	 */
-	EReference getPrimitiveType_PropertyAssociations();
+	EReference getDataType_PropertyAssociations();
 
 	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.ComponentClassifier <em>Component Classifier</em>}'.
@@ -2631,14 +2631,14 @@ public interface Aadlv3Package extends EPackage {
 		EClass TYPE = eINSTANCE.getType();
 
 		/**
-		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.PrimitiveTypeImpl <em>Primitive Type</em>}' class.
+		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.DataTypeImpl <em>Data Type</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.osate.aadlv3.aadlv3.impl.PrimitiveTypeImpl
-		 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getPrimitiveType()
+		 * @see org.osate.aadlv3.aadlv3.impl.DataTypeImpl
+		 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getDataType()
 		 * @generated
 		 */
-		EClass PRIMITIVE_TYPE = eINSTANCE.getPrimitiveType();
+		EClass DATA_TYPE = eINSTANCE.getDataType();
 
 		/**
 		 * The meta object literal for the '<em><b>Property Associations</b></em>' containment reference list feature.
@@ -2646,7 +2646,7 @@ public interface Aadlv3Package extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PRIMITIVE_TYPE__PROPERTY_ASSOCIATIONS = eINSTANCE.getPrimitiveType_PropertyAssociations();
+		EReference DATA_TYPE__PROPERTY_ASSOCIATIONS = eINSTANCE.getDataType_PropertyAssociations();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.ComponentClassifierImpl <em>Component Classifier</em>}' class.

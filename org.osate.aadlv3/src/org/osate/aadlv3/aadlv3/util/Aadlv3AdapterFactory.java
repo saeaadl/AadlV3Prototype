@@ -115,8 +115,8 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter casePrimitiveType(PrimitiveType object) {
-			return createPrimitiveTypeAdapter();
+		public Adapter caseDataType(DataType object) {
+			return createDataTypeAdapter();
 		}
 
 		@Override
@@ -332,16 +332,16 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.PrimitiveType <em>Primitive Type</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.DataType <em>Data Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.osate.aadlv3.aadlv3.PrimitiveType
+	 * @see org.osate.aadlv3.aadlv3.DataType
 	 * @generated
 	 */
-	public Adapter createPrimitiveTypeAdapter() {
+	public Adapter createDataTypeAdapter() {
 		return null;
 	}
 
