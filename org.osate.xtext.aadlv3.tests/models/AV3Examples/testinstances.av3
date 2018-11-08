@@ -1,13 +1,13 @@
 package simpleinstances
 workingset simpleinstances is
-//	first : system configurationoverlap.top.overlap ;
+//	first : system configurationoverlap::top.overlap ;
 //	
-//	second: system configurationoverlap.top.config_Safety;
+//	second: system configurationoverlap::top.config_Safety;
 //	
-//	third : system configurationoverlap.top.doublesub;
+//	third : system configurationoverlap::top.doublesub;
 	
-//	fourth: system configurationoverlap.top.config_L22;
-	fifth: system configurationoverlap.top.config_L1Sub1;
+//	fourth: system configurationoverlap::top.config_L22;
+	fifth: system configurationoverlap::top.config_L1Sub1;
 	
 	
 end;

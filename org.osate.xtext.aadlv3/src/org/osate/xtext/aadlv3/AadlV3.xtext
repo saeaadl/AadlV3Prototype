@@ -13,11 +13,11 @@ PackageDeclaration returns av3::PackageDeclaration:
 
 
 Property returns av3::Property:
-	'property' name=ID type=[av3::Type|QualifiedName] SEMICOLON;
+	'property' name=ID ':' type=[av3::Type|QualifiedReference] SEMICOLON;
 
 PropertySet returns av3::PropertySet:
-	'properties' name=ID  
-		properties += [av3::Property|QualifiedName] (',' properties += [av3::Property|QualifiedName])*
+	'properties' name=ID  'is'
+		properties += [av3::Property|QualifiedReference] (',' properties += [av3::Property|QualifiedName])*
 		'end' SEMICOLON
 ;
 
@@ -35,7 +35,7 @@ fragment InterfaceBody*:
 ;
 
 ComponentImplementation returns av3::ComponentImplementation:
-	(private?='private')? category=ComponentCategory name=QualifiedName 
+	(private?='private')? category=ComponentCategory name=DottedName 
 	('extends' (ImplementationExtensions)?)? 
 	 ImplementationBody? 
 	'end'  SEMICOLON;
@@ -45,9 +45,9 @@ fragment ImplementationBody*:
 ;
 
 ComponentConfiguration returns av3::ComponentConfiguration:
-	(private?='private')? 'configuration' name=QualifiedName  
+	(private?='private')? 'configuration' name=DottedName  
 	Parameters?
-	'extends' ClassifierExtensions ConfigurationElementBlock? 
+	'extends' ConfigurationExtensions ConfigurationElementBlock? 
 	'end'  SEMICOLON;
 	
 
@@ -141,15 +141,20 @@ ConfigurationParameter returns av3::ConfigurationParameter:
 // reference objects for classifiers including configurations with parameter
 
 ReversableInterfaceReference returns av3::TypeReference:
-	reverse?='reverse'? type=[av3::ComponentInterface|QualifiedName] ;
+	reverse?='reverse'? type=[av3::ComponentInterface|QualifiedReference] ;
 
 TypeReference returns av3::TypeReference :  
-	 type=[av3::Type|QualifiedName]
+	 type=[av3::Type|QualifiedTypesReference]
+	  ConfigurationActuals?
+;
+
+RealizationReference returns av3::TypeReference :  
+	 type=[av3::ComponentRealization|QualifiedDottedReference]
 	  ConfigurationActuals?
 ;
 
 ImplementationReference returns av3::TypeReference :  
-	 type=[av3::ComponentImplementation|QualifiedName]
+	 type=[av3::ComponentImplementation|QualifiedDottedReference]
 ;
 
 fragment PropertiesBlock *:
@@ -159,16 +164,13 @@ fragment PropertiesBlock *:
 fragment NestedComponentImplementationBlock *:
 	 '{' (features+=Feature | connections+=Connection| connections+=FeatureMapping  | components+=Component |  propertyAssociations+=PropertyAssociation)* '}';
 
-
-
-fragment ClassifierExtensions *:
-	superClassifiers +=TypeReference
-	("," superClassifiers +=TypeReference)*;
+fragment ConfigurationExtensions *:
+	superClassifiers +=RealizationReference
+	("," superClassifiers +=RealizationReference)*;
 
 fragment ImplementationExtensions *:
 	superClassifiers +=ImplementationReference
 	("," superClassifiers +=ImplementationReference)*;
-
 
 fragment InterfaceExtensions *:
 	superClassifiers +=ReversableInterfaceReference
@@ -190,13 +192,22 @@ Workingset returns av3::Workingset:
 
 
 QualifiedNameWithWildcard:
-	QualifiedName '.*'?;
+	QualifiedName '::*'?;
 
 DottedName:
 	ID '.' ID;
 
 QualifiedName:
-	ID ('.' ID)*;
+	ID ('::' ID)*;
+
+QualifiedTypesReference:
+	QualifiedName ('.'ID)?;
+
+QualifiedReference:
+	QualifiedName;
+
+QualifiedDottedReference:
+	QualifiedName '.' ID;
 
 SEMICOLON:
 	';';

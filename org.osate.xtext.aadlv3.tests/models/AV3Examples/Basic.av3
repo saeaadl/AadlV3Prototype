@@ -1,11 +1,11 @@
 package Basic
 // example with nested packages, duplicate feature name in original and extension,
 // property associated with model element and as contained property in classifier
+
+import StandardProperties::*;
+
 	type date ;
 	type person ;
-	type int;
-	property Period int;
-	property Size int;
 
 	package nested  
 		type signal ;
@@ -16,8 +16,8 @@ package Basic
 	end ;
 	interface subsub is
 		p1 : in port date ;
-		p2 : in port date { #Size => 3; };
-		p1#Size => 3;
+		p2 : in port date { #DataSize => 3; };
+		p1#DataSize => 3;
 	end ;
 	system sub.impl is
 		s1 : process subsub ;

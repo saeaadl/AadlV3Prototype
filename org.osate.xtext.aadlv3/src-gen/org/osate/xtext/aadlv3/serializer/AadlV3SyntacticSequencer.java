@@ -93,13 +93,13 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'extends'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     name=QualifiedName (ambiguity) 'is' assignments+=ConfigurationAssignment
-	 *     name=QualifiedName (ambiguity) 'is' components+=Component
-	 *     name=QualifiedName (ambiguity) 'is' connections+=Connection
-	 *     name=QualifiedName (ambiguity) 'is' connections+=FeatureMapping
-	 *     name=QualifiedName (ambiguity) 'is' flowAssignments+=FlowAssignment
-	 *     name=QualifiedName (ambiguity) 'is' paths+=Path
-	 *     name=QualifiedName (ambiguity) 'is' propertyAssociations+=PropertyAssociation
+	 *     name=DottedName (ambiguity) 'is' assignments+=ConfigurationAssignment
+	 *     name=DottedName (ambiguity) 'is' components+=Component
+	 *     name=DottedName (ambiguity) 'is' connections+=Connection
+	 *     name=DottedName (ambiguity) 'is' connections+=FeatureMapping
+	 *     name=DottedName (ambiguity) 'is' flowAssignments+=FlowAssignment
+	 *     name=DottedName (ambiguity) 'is' paths+=Path
+	 *     name=DottedName (ambiguity) 'is' propertyAssociations+=PropertyAssociation
 	 */
 	protected void emit_ComponentImplementation_ExtendsKeyword_3_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

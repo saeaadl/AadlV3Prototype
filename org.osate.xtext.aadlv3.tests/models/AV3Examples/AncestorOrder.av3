@@ -1,10 +1,9 @@
 package AncestorOrder
-	import StandardProperties.*;
+	import StandardProperties::*;
 // two interface extensions based on a common interface
 // composed to implement a system
 
-	type int;
-	property DataSize int;
+import StandardProperties::*;
 
 	interface common 
 	is

@@ -3,7 +3,7 @@ package BaseInterfaces
 thread interface BaseThread
 is
 	ProcessorCycles: requires binding;
-use properties StandardProperties.ThreadProperties;
+use properties StandardProperties::ThreadProperties;
 end;
 
 processor interface BaseProcessor

@@ -1,4 +1,4 @@
-package PackP.Q 
+package PackP::Q 
 	type date ;
 	type signal;
 	interface nnested is

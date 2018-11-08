@@ -1,5 +1,5 @@
-package PackP.R 
-import PackP.Q.*;
+package PackP::R 
+import PackP::Q::*;
 	interface mine is
 	p1: in feature date;
 	p2: in feature signal;

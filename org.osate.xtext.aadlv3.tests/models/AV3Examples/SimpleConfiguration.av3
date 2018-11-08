@@ -1,9 +1,6 @@
 package SimpleConfiguration 
-	type int;
 
-	property Period int;
-
-	property Size int;
+import StandardProperties::*;
 
 	interface receiver  is
 		inp: in port;
@@ -29,7 +26,7 @@ package SimpleConfiguration
 		sub1 => sub.i {#Period => 23;
 			t1#Period => 30;
 		};
-		sub1.p1#Size => 30;
+		sub1.p1#DataSize => 30;
 	end;
 
 	component receiver.i is

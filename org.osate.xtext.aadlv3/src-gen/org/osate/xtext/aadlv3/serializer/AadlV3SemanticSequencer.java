@@ -90,7 +90,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 				sequence_Component_NestedComponentImplementationBlock(context, (Component) semanticObject); 
 				return; 
 			case Aadlv3Package.COMPONENT_CONFIGURATION:
-				sequence_ClassifierExtensions_ComponentConfiguration_ConfigurationElementBlock_Parameters(context, (ComponentConfiguration) semanticObject); 
+				sequence_ComponentConfiguration_ConfigurationElementBlock_ConfigurationExtensions_Parameters(context, (ComponentConfiguration) semanticObject); 
 				return; 
 			case Aadlv3Package.COMPONENT_IMPLEMENTATION:
 				sequence_ComponentImplementation_ImplementationBody_ImplementationExtensions(context, (ComponentImplementation) semanticObject); 
@@ -160,7 +160,11 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 				sequence_PropertyValue(context, (PropertyValue) semanticObject); 
 				return; 
 			case Aadlv3Package.TYPE_REFERENCE:
-				if (rule == grammarAccess.getTypeReferenceRule()) {
+				if (rule == grammarAccess.getRealizationReferenceRule()) {
+					sequence_ConfigurationActuals_RealizationReference(context, (TypeReference) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getTypeReferenceRule()) {
 					sequence_ConfigurationActuals_TypeReference(context, (TypeReference) semanticObject); 
 					return; 
 				}
@@ -188,14 +192,14 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 * Constraint:
 	 *     (
 	 *         private?='private'? 
-	 *         name=QualifiedName 
+	 *         name=DottedName 
 	 *         (parameterized?='(' (parameters+=ConfigurationParameter parameters+=ConfigurationParameter*)?)? 
-	 *         superClassifiers+=TypeReference 
-	 *         superClassifiers+=TypeReference* 
+	 *         superClassifiers+=RealizationReference 
+	 *         superClassifiers+=RealizationReference* 
 	 *         (propertyAssociations+=PropertyAssociation | assignments+=ConfigurationAssignment)*
 	 *     )
 	 */
-	protected void sequence_ClassifierExtensions_ComponentConfiguration_ConfigurationElementBlock_Parameters(ISerializationContext context, ComponentConfiguration semanticObject) {
+	protected void sequence_ComponentConfiguration_ConfigurationElementBlock_ConfigurationExtensions_Parameters(ISerializationContext context, ComponentConfiguration semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -208,7 +212,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     (
 	 *         private?='private'? 
 	 *         category=ComponentCategory 
-	 *         name=QualifiedName 
+	 *         name=DottedName 
 	 *         (superClassifiers+=ImplementationReference superClassifiers+=ImplementationReference*)? 
 	 *         (
 	 *             connections+=Connection | 
@@ -285,10 +289,22 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
+	 *     RealizationReference returns TypeReference
+	 *
+	 * Constraint:
+	 *     (type=[ComponentRealization|QualifiedDottedReference] (actuals+=ConfigurationActual actuals+=ConfigurationActual*)?)
+	 */
+	protected void sequence_ConfigurationActuals_RealizationReference(ISerializationContext context, TypeReference semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     TypeReference returns TypeReference
 	 *
 	 * Constraint:
-	 *     (type=[Type|QualifiedName] (actuals+=ConfigurationActual actuals+=ConfigurationActual*)?)
+	 *     (type=[Type|QualifiedTypesReference] (actuals+=ConfigurationActual actuals+=ConfigurationActual*)?)
 	 */
 	protected void sequence_ConfigurationActuals_TypeReference(ISerializationContext context, TypeReference semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -425,7 +441,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     ImplementationReference returns TypeReference
 	 *
 	 * Constraint:
-	 *     type=[ComponentImplementation|QualifiedName]
+	 *     type=[ComponentImplementation|QualifiedDottedReference]
 	 */
 	protected void sequence_ImplementationReference(ISerializationContext context, TypeReference semanticObject) {
 		if (errorAcceptor != null) {
@@ -433,7 +449,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, Aadlv3Package.Literals.TYPE_REFERENCE__TYPE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getImplementationReferenceAccess().getTypeComponentImplementationQualifiedNameParserRuleCall_0_1(), semanticObject.eGet(Aadlv3Package.Literals.TYPE_REFERENCE__TYPE, false));
+		feeder.accept(grammarAccess.getImplementationReferenceAccess().getTypeComponentImplementationQualifiedDottedReferenceParserRuleCall_0_1(), semanticObject.eGet(Aadlv3Package.Literals.TYPE_REFERENCE__TYPE, false));
 		feeder.finish();
 	}
 	
@@ -584,7 +600,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     PropertySet returns PropertySet
 	 *
 	 * Constraint:
-	 *     (name=ID properties+=[Property|QualifiedName] properties+=[Property|QualifiedName]*)
+	 *     (name=ID properties+=[Property|QualifiedReference] properties+=[Property|QualifiedName]*)
 	 */
 	protected void sequence_PropertySet(ISerializationContext context, PropertySet semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -614,7 +630,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     Property returns Property
 	 *
 	 * Constraint:
-	 *     (name=ID type=[Type|QualifiedName])
+	 *     (name=ID type=[Type|QualifiedReference])
 	 */
 	protected void sequence_Property(ISerializationContext context, Property semanticObject) {
 		if (errorAcceptor != null) {
@@ -625,7 +641,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getPropertyAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getPropertyAccess().getTypeTypeQualifiedNameParserRuleCall_2_0_1(), semanticObject.eGet(Aadlv3Package.Literals.PROPERTY__TYPE, false));
+		feeder.accept(grammarAccess.getPropertyAccess().getTypeTypeQualifiedReferenceParserRuleCall_3_0_1(), semanticObject.eGet(Aadlv3Package.Literals.PROPERTY__TYPE, false));
 		feeder.finish();
 	}
 	
@@ -635,7 +651,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     ReversableInterfaceReference returns TypeReference
 	 *
 	 * Constraint:
-	 *     (reverse?='reverse'? type=[ComponentInterface|QualifiedName])
+	 *     (reverse?='reverse'? type=[ComponentInterface|QualifiedReference])
 	 */
 	protected void sequence_ReversableInterfaceReference(ISerializationContext context, TypeReference semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
