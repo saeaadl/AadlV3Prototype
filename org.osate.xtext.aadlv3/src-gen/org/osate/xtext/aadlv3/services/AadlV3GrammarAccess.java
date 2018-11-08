@@ -834,7 +834,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cAssociationTypeMappingTypeParserRuleCall_2_0 = (RuleCall)cAssociationTypeAssignment_2.eContents().get(0);
 		private final Assignment cSourceAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cSourceModelElementReferenceParserRuleCall_3_0 = (RuleCall)cSourceAssignment_3.eContents().get(0);
-		private final Keyword cHyphenMinusGreaterThanSignKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Keyword cEqualsSignGreaterThanSignKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		private final Assignment cDestinationAssignment_5 = (Assignment)cGroup.eContents().get(5);
 		private final RuleCall cDestinationModelElementReferenceParserRuleCall_5_0 = (RuleCall)cDestinationAssignment_5.eContents().get(0);
 		private final RuleCall cPropertiesBlockParserRuleCall_6 = (RuleCall)cGroup.eContents().get(6);
@@ -842,10 +842,10 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		
 		//FeatureMapping av3::Association:
 		//	name=ID ':' associationType=MappingType source=ModelElementReference
-		//	'->' destination=ModelElementReference PropertiesBlock? SEMICOLON;
+		//	'=>' destination=ModelElementReference PropertiesBlock? SEMICOLON;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//name=ID ':' associationType=MappingType source=ModelElementReference '->' destination=ModelElementReference
+		//name=ID ':' associationType=MappingType source=ModelElementReference '=>' destination=ModelElementReference
 		//PropertiesBlock? SEMICOLON
 		public Group getGroup() { return cGroup; }
 		
@@ -870,8 +870,8 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		//ModelElementReference
 		public RuleCall getSourceModelElementReferenceParserRuleCall_3_0() { return cSourceModelElementReferenceParserRuleCall_3_0; }
 		
-		//'->'
-		public Keyword getHyphenMinusGreaterThanSignKeyword_4() { return cHyphenMinusGreaterThanSignKeyword_4; }
+		//'=>'
+		public Keyword getEqualsSignGreaterThanSignKeyword_4() { return cEqualsSignGreaterThanSignKeyword_4; }
 		
 		//destination=ModelElementReference
 		public Assignment getDestinationAssignment_5() { return cDestinationAssignment_5; }
@@ -3018,7 +3018,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	
 	//FeatureMapping av3::Association:
 	//	name=ID ':' associationType=MappingType source=ModelElementReference
-	//	'->' destination=ModelElementReference PropertiesBlock? SEMICOLON;
+	//	'=>' destination=ModelElementReference PropertiesBlock? SEMICOLON;
 	public FeatureMappingElements getFeatureMappingAccess() {
 		return pFeatureMapping;
 	}

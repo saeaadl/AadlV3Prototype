@@ -70,8 +70,8 @@ package SimpleConfiguration
 		actuate: component receiver; // subcomponent by interface
 		sense1#Period => 33;
 		sense2.sub1#Period => 44;
-		extconn1: mapping eextin -> sense.extin;
-		extconn2: mapping eextout -> actuate.extout;
+		extconn1: mapping eextin => sense.extin;
+		extconn2: mapping eextout => actuate.extout;
 	end ;
 
 	configuration top.topc extends top.i is

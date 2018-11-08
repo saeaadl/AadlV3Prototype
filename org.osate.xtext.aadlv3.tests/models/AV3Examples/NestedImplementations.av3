@@ -18,7 +18,7 @@ package NestedImplementations
 			} ;
 			filtercontrolconn : connection filter.outp -> control.inp ;
 			outp: out port;
-			outmap: mapping outp -> control.outp;
+			outmap: mapping outp => control.outp;
 		} ;
 		actuating : device { 
 			inp :  in port ;
