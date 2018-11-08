@@ -38,7 +38,7 @@ import java.util.HashMap;
 @SuppressWarnings("all")
 public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_INT", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "';'", "'mapping'", "'component'", "'bus'", "'data'", "'device'", "'memory'", "'process'", "'processor'", "'system'", "'thread'", "'subprogram'", "'feature'", "'port'", "'access'", "'binding'", "'interface'", "'in'", "'out'", "'requires'", "'provides'", "'connection'", "'package'", "'end'", "'property'", "':'", "'properties'", "'is'", "','", "'type'", "'extends'", "'use'", "'configuration'", "'->'", "'=>'", "'.'", "'import'", "'as'", "'flow'", "'#'", "'{'", "'}'", "')'", "'('", "'workingset'", "'::*'", "'::'", "'virtual'", "'group'", "'to'", "'source'", "'sink'", "'path'", "'read'", "'write'", "'readwrite'", "'private'", "'sampled'", "'reverse'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_INT", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "';'", "'mapping'", "'abstract'", "'bus'", "'data'", "'device'", "'memory'", "'process'", "'processor'", "'system'", "'thread'", "'subprogram'", "'feature'", "'port'", "'access'", "'binding'", "'interface'", "'in'", "'out'", "'requires'", "'provides'", "'connection'", "'package'", "'end'", "'property'", "':'", "'properties'", "'is'", "','", "'type'", "'extends'", "'use'", "'configuration'", "'->'", "'=>'", "'.'", "'import'", "'as'", "'flow'", "'#'", "'{'", "'}'", "')'", "'('", "'workingset'", "'::*'", "'::'", "'virtual'", "'group'", "'to'", "'source'", "'sink'", "'path'", "'read'", "'write'", "'readwrite'", "'private'", "'sampled'", "'reverse'"
     };
     public static final int T__50=50;
     public static final int T__19=19;
@@ -7222,28 +7222,28 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ComponentCategory__Alternatives"
-    // InternalAadlV3.g:2097:1: rule__ComponentCategory__Alternatives : ( ( 'component' ) | ( 'bus' ) | ( 'data' ) | ( 'device' ) | ( 'memory' ) | ( 'process' ) | ( 'processor' ) | ( 'system' ) | ( 'thread' ) | ( ruleVirtualBusKeywords ) | ( ruleVirtualProcessorKeywords ) | ( ruleVirtualMemoryKeywords ) | ( ruleVirtualDeviceKeywords ) | ( 'subprogram' ) | ( ruleSubprogramGroupKeywords ) | ( ruleThreadGroupKeywords ) );
+    // InternalAadlV3.g:2097:1: rule__ComponentCategory__Alternatives : ( ( 'abstract' ) | ( 'bus' ) | ( 'data' ) | ( 'device' ) | ( 'memory' ) | ( 'process' ) | ( 'processor' ) | ( 'system' ) | ( 'thread' ) | ( ruleVirtualBusKeywords ) | ( ruleVirtualProcessorKeywords ) | ( ruleVirtualMemoryKeywords ) | ( ruleVirtualDeviceKeywords ) | ( 'subprogram' ) | ( ruleSubprogramGroupKeywords ) | ( ruleThreadGroupKeywords ) );
     public final void rule__ComponentCategory__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAadlV3.g:2101:1: ( ( 'component' ) | ( 'bus' ) | ( 'data' ) | ( 'device' ) | ( 'memory' ) | ( 'process' ) | ( 'processor' ) | ( 'system' ) | ( 'thread' ) | ( ruleVirtualBusKeywords ) | ( ruleVirtualProcessorKeywords ) | ( ruleVirtualMemoryKeywords ) | ( ruleVirtualDeviceKeywords ) | ( 'subprogram' ) | ( ruleSubprogramGroupKeywords ) | ( ruleThreadGroupKeywords ) )
+            // InternalAadlV3.g:2101:1: ( ( 'abstract' ) | ( 'bus' ) | ( 'data' ) | ( 'device' ) | ( 'memory' ) | ( 'process' ) | ( 'processor' ) | ( 'system' ) | ( 'thread' ) | ( ruleVirtualBusKeywords ) | ( ruleVirtualProcessorKeywords ) | ( ruleVirtualMemoryKeywords ) | ( ruleVirtualDeviceKeywords ) | ( 'subprogram' ) | ( ruleSubprogramGroupKeywords ) | ( ruleThreadGroupKeywords ) )
             int alt9=16;
             alt9 = dfa9.predict(input);
             switch (alt9) {
                 case 1 :
-                    // InternalAadlV3.g:2102:2: ( 'component' )
+                    // InternalAadlV3.g:2102:2: ( 'abstract' )
                     {
-                    // InternalAadlV3.g:2102:2: ( 'component' )
-                    // InternalAadlV3.g:2103:3: 'component'
+                    // InternalAadlV3.g:2102:2: ( 'abstract' )
+                    // InternalAadlV3.g:2103:3: 'abstract'
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getComponentCategoryAccess().getComponentKeyword_0()); 
+                       before(grammarAccess.getComponentCategoryAccess().getAbstractKeyword_0()); 
                     }
                     match(input,13,FOLLOW_2); if (state.failed) return ;
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getComponentCategoryAccess().getComponentKeyword_0()); 
+                       after(grammarAccess.getComponentCategoryAccess().getAbstractKeyword_0()); 
                     }
 
                     }
@@ -37532,7 +37532,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             this.transition = dfa_35;
         }
         public String getDescription() {
-            return "2097:1: rule__ComponentCategory__Alternatives : ( ( 'component' ) | ( 'bus' ) | ( 'data' ) | ( 'device' ) | ( 'memory' ) | ( 'process' ) | ( 'processor' ) | ( 'system' ) | ( 'thread' ) | ( ruleVirtualBusKeywords ) | ( ruleVirtualProcessorKeywords ) | ( ruleVirtualMemoryKeywords ) | ( ruleVirtualDeviceKeywords ) | ( 'subprogram' ) | ( ruleSubprogramGroupKeywords ) | ( ruleThreadGroupKeywords ) );";
+            return "2097:1: rule__ComponentCategory__Alternatives : ( ( 'abstract' ) | ( 'bus' ) | ( 'data' ) | ( 'device' ) | ( 'memory' ) | ( 'process' ) | ( 'processor' ) | ( 'system' ) | ( 'thread' ) | ( ruleVirtualBusKeywords ) | ( ruleVirtualProcessorKeywords ) | ( ruleVirtualMemoryKeywords ) | ( ruleVirtualDeviceKeywords ) | ( 'subprogram' ) | ( ruleSubprogramGroupKeywords ) | ( ruleThreadGroupKeywords ) );";
         }
     }
     static final String dfa_36s = "\17\uffff";

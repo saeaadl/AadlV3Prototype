@@ -31,7 +31,7 @@ import org.osate.av3instance.av3instance.Av3instancePackage;
 import org.osate.av3instance.av3instance.FeatureInstance;
 
 /**
- * This is the item provider adapter for a {@link org.osate.aadlv3.av3instance.FeatureInstance} object.
+ * This is the item provider adapter for a {@link org.osate.av3instance.av3instance.FeatureInstance} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated

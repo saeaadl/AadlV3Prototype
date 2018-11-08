@@ -2100,9 +2100,9 @@ rule__ComponentCategory__Alternatives
 	}
 :
 	(
-		{ before(grammarAccess.getComponentCategoryAccess().getComponentKeyword_0()); }
-		'component'
-		{ after(grammarAccess.getComponentCategoryAccess().getComponentKeyword_0()); }
+		{ before(grammarAccess.getComponentCategoryAccess().getAbstractKeyword_0()); }
+		'abstract'
+		{ after(grammarAccess.getComponentCategoryAccess().getAbstractKeyword_0()); }
 	)
 	|
 	(

@@ -9,11 +9,11 @@
 '::*'=38
 ';'=40
 '=>'=27
+'abstract'=41
 'access'=53
 'as'=30
 'binding'=54
 'bus'=42
-'component'=41
 'configuration'=23
 'connection'=59
 'data'=43

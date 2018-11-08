@@ -8,7 +8,7 @@
   <genPackages prefix="Aadlv3" basePackage="org.osate.aadlv3" disposableProviderFactory="true"
       fileExtensions="axv3" ecorePackage="Aadlv3.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Aadlv3.ecore#//ComponentCategory">
-      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//ComponentCategory/component"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//ComponentCategory/abstract"/>
       <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//ComponentCategory/thread"/>
       <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//ComponentCategory/system"/>
       <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//ComponentCategory/process"/>

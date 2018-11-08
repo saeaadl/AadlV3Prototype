@@ -3943,10 +3943,10 @@ ruleComponentCategory returns [AntlrDatatypeRuleToken current=new AntlrDatatypeR
 	leaveRule();
 }:
 	(
-		kw='component'
+		kw='abstract'
 		{
 			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getComponentCategoryAccess().getComponentKeyword_0());
+			newLeafNode(kw, grammarAccess.getComponentCategoryAccess().getAbstractKeyword_0());
 		}
 		    |
 		kw='bus'

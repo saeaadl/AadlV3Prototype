@@ -31,7 +31,7 @@ import org.osate.av3instance.av3instance.Av3instancePackage;
 import org.osate.av3instance.av3instance.PropertyAssociationInstance;
 
 /**
- * This is the item provider adapter for a {@link org.osate.aadlv3.av3instance.PropertyAssociationInstance} object.
+ * This is the item provider adapter for a {@link org.osate.av3instance.av3instance.PropertyAssociationInstance} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated

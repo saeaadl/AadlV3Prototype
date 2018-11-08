@@ -2237,7 +2237,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	public class ComponentCategoryElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.osate.xtext.aadlv3.AadlV3.ComponentCategory");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Keyword cComponentKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
+		private final Keyword cAbstractKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
 		private final Keyword cBusKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
 		private final Keyword cDataKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
 		private final Keyword cDeviceKeyword_3 = (Keyword)cAlternatives.eContents().get(3);
@@ -2255,19 +2255,19 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cThreadGroupKeywordsParserRuleCall_15 = (RuleCall)cAlternatives.eContents().get(15);
 		
 		//ComponentCategory av3::ComponentCategory:
-		//	'component' | 'bus' | 'data'
+		//	'abstract' | 'bus' | 'data'
 		//	| 'device' | 'memory' | 'process' | 'processor' | 'system'
 		//	| 'thread' | VirtualBusKeywords | VirtualProcessorKeywords | VirtualMemoryKeywords | VirtualDeviceKeywords
 		//	| 'subprogram' | SubprogramGroupKeywords | ThreadGroupKeywords;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'component' | 'bus' | 'data' | 'device' | 'memory' | 'process' | 'processor' | 'system' | 'thread' | VirtualBusKeywords
-		//| VirtualProcessorKeywords | VirtualMemoryKeywords | VirtualDeviceKeywords | 'subprogram' | SubprogramGroupKeywords |
+		//'abstract' | 'bus' | 'data' | 'device' | 'memory' | 'process' | 'processor' | 'system' | 'thread' | VirtualBusKeywords |
+		//VirtualProcessorKeywords | VirtualMemoryKeywords | VirtualDeviceKeywords | 'subprogram' | SubprogramGroupKeywords |
 		//ThreadGroupKeywords
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//'component'
-		public Keyword getComponentKeyword_0() { return cComponentKeyword_0; }
+		//'abstract'
+		public Keyword getAbstractKeyword_0() { return cAbstractKeyword_0; }
 		
 		//'bus'
 		public Keyword getBusKeyword_1() { return cBusKeyword_1; }
@@ -3525,7 +3525,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//ComponentCategory av3::ComponentCategory:
-	//	'component' | 'bus' | 'data'
+	//	'abstract' | 'bus' | 'data'
 	//	| 'device' | 'memory' | 'process' | 'processor' | 'system'
 	//	| 'thread' | VirtualBusKeywords | VirtualProcessorKeywords | VirtualMemoryKeywords | VirtualDeviceKeywords
 	//	| 'subprogram' | SubprogramGroupKeywords | ThreadGroupKeywords;

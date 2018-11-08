@@ -216,7 +216,7 @@ SEMICOLON:
 	';';
 
 
-ComponentCategory returns av3::ComponentCategory: 'component' | 'bus'|'data'
+ComponentCategory returns av3::ComponentCategory: 'abstract' | 'bus'|'data'
 	| 'device' | 'memory' | 'process' | 'processor' | 'system' 
 	| 'thread' | VirtualBusKeywords | VirtualProcessorKeywords | VirtualMemoryKeywords | VirtualDeviceKeywords
 	| 'subprogram' | SubprogramGroupKeywords | ThreadGroupKeywords ;

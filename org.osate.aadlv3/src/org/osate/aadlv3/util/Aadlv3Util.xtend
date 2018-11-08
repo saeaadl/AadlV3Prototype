@@ -53,21 +53,21 @@ class Aadlv3Util {
 	
 	static def ComponentCategory getComponentCategory(Iterable<? extends ComponentClassifier> classifiers){
 		for (cl: classifiers){
-			if (cl.category != ComponentCategory.COMPONENT){
+			if (cl.category != ComponentCategory.ABSTRACT){
 				return cl.category
 			}
 		}
-		ComponentCategory.COMPONENT;
+		ComponentCategory.ABSTRACT;
 	}
 	
 	static def ComponentCategory getComponentCategory( ComponentClassifier classifier){
 		val classifiers = classifier.allComponentClassifiers
 		for (cl: classifiers){
-			if (cl.category != ComponentCategory.COMPONENT){
+			if (cl.category != ComponentCategory.ABSTRACT){
 				return cl.category
 			}
 		}
-		ComponentCategory.COMPONENT;
+		ComponentCategory.ABSTRACT;
 	}
 
 	static def HashSet<ComponentClassifier> getAllComponentClassifiers(ComponentClassifier cc) {
@@ -934,7 +934,7 @@ class Aadlv3Util {
 				}
 			case BUS: {
 			}
-			case COMPONENT: {
+			case ABSTRACT: {
 			}
 			case DATA: {
 			}

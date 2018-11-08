@@ -79,7 +79,7 @@ public class Services {
 	}
 
 	public boolean isAbstract(ComponentInstance eo) {
-		return (eo.getCategory() == ComponentCategory.COMPONENT);
+		return (eo.getCategory() == ComponentCategory.ABSTRACT);
 	}
 
 	public boolean isThreadGroup(ComponentInstance eo) {

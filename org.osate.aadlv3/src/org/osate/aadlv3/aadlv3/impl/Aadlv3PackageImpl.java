@@ -1710,7 +1710,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 
 		// Initialize enums and add enum literals
 		initEEnum(componentCategoryEEnum, ComponentCategory.class, "ComponentCategory");
-		addEEnumLiteral(componentCategoryEEnum, ComponentCategory.COMPONENT);
+		addEEnumLiteral(componentCategoryEEnum, ComponentCategory.ABSTRACT);
 		addEEnumLiteral(componentCategoryEEnum, ComponentCategory.THREAD);
 		addEEnumLiteral(componentCategoryEEnum, ComponentCategory.SYSTEM);
 		addEEnumLiteral(componentCategoryEEnum, ComponentCategory.PROCESS);

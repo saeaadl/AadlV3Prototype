@@ -86,7 +86,7 @@ public class Av3instanceItemProviderAdapterFactory extends Av3instanceAdapterFac
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.av3instance.FeatureInstance} instances.
+	 * This keeps track of the one adapter used for all {@link org.osate.av3instance.av3instance.FeatureInstance} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -94,7 +94,7 @@ public class Av3instanceItemProviderAdapterFactory extends Av3instanceAdapterFac
 	protected FeatureInstanceItemProvider featureInstanceItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.osate.aadlv3.av3instance.FeatureInstance}.
+	 * This creates an adapter for a {@link org.osate.av3instance.av3instance.FeatureInstance}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -109,7 +109,7 @@ public class Av3instanceItemProviderAdapterFactory extends Av3instanceAdapterFac
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.av3instance.ComponentInstance} instances.
+	 * This keeps track of the one adapter used for all {@link org.osate.av3instance.av3instance.ComponentInstance} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -117,7 +117,7 @@ public class Av3instanceItemProviderAdapterFactory extends Av3instanceAdapterFac
 	protected ComponentInstanceItemProvider componentInstanceItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.osate.aadlv3.av3instance.ComponentInstance}.
+	 * This creates an adapter for a {@link org.osate.av3instance.av3instance.ComponentInstance}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -132,7 +132,7 @@ public class Av3instanceItemProviderAdapterFactory extends Av3instanceAdapterFac
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.av3instance.AssociationInstance} instances.
+	 * This keeps track of the one adapter used for all {@link org.osate.av3instance.av3instance.AssociationInstance} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -140,7 +140,7 @@ public class Av3instanceItemProviderAdapterFactory extends Av3instanceAdapterFac
 	protected AssociationInstanceItemProvider associationInstanceItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.osate.aadlv3.av3instance.AssociationInstance}.
+	 * This creates an adapter for a {@link org.osate.av3instance.av3instance.AssociationInstance}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -155,7 +155,7 @@ public class Av3instanceItemProviderAdapterFactory extends Av3instanceAdapterFac
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.av3instance.PropertyAssociationInstance} instances.
+	 * This keeps track of the one adapter used for all {@link org.osate.av3instance.av3instance.PropertyAssociationInstance} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -163,7 +163,7 @@ public class Av3instanceItemProviderAdapterFactory extends Av3instanceAdapterFac
 	protected PropertyAssociationInstanceItemProvider propertyAssociationInstanceItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.osate.aadlv3.av3instance.PropertyAssociationInstance}.
+	 * This creates an adapter for a {@link org.osate.av3instance.av3instance.PropertyAssociationInstance}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -178,7 +178,7 @@ public class Av3instanceItemProviderAdapterFactory extends Av3instanceAdapterFac
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.av3instance.PathInstance} instances.
+	 * This keeps track of the one adapter used for all {@link org.osate.av3instance.av3instance.PathInstance} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -186,7 +186,7 @@ public class Av3instanceItemProviderAdapterFactory extends Av3instanceAdapterFac
 	protected PathInstanceItemProvider pathInstanceItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.osate.aadlv3.av3instance.PathInstance}.
+	 * This creates an adapter for a {@link org.osate.av3instance.av3instance.PathInstance}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated

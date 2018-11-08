@@ -132,7 +132,7 @@
         eType="#//Component" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="ComponentCategory">
-    <eLiterals name="component" literal="component"/>
+    <eLiterals name="abstract" literal="abstract"/>
     <eLiterals name="thread" value="1" literal="thread"/>
     <eLiterals name="system" value="2" literal="system"/>
     <eLiterals name="process" value="3" literal="process"/>

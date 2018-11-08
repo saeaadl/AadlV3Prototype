@@ -29,7 +29,7 @@ import org.osate.av3instance.av3instance.Av3instancePackage;
 import org.osate.av3instance.av3instance.PathInstance;
 
 /**
- * This is the item provider adapter for a {@link org.osate.aadlv3.av3instance.PathInstance} object.
+ * This is the item provider adapter for a {@link org.osate.av3instance.av3instance.PathInstance} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -93,13 +93,13 @@ public class PathInstanceItemProvider extends InstanceObjectItemProvider {
 	}
 
 	/**
-		 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-		 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-		 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-		 * <!-- begin-user-doc -->
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @generated
-		 */
+	 * @generated
+	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
@@ -121,7 +121,6 @@ public class PathInstanceItemProvider extends InstanceObjectItemProvider {
 
 		return super.getChildFeature(object, child);
 	}
-
 
 	/**
 	 * This returns PathInstance.gif.

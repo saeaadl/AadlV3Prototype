@@ -129,7 +129,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 			val thetype = if(assignedtype instanceof ConfigurationParameter) assignedtype.type else assignedtype
 			if (thetype instanceof ComponentClassifier) {
 				val clcat = thetype.componentCategory
-				if (!(comp.category === clcat || clcat === ComponentCategory.COMPONENT)) {
+				if (!(comp.category === clcat || clcat === ComponentCategory.ABSTRACT)) {
 					error(
 						'Category \'' + clcat + '\' of assigned classifier must be the same as the category \'' +
 							comp.category + '\' of the component or must be "component"', ca, null,
@@ -137,7 +137,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 				}
 			} else if (thetype instanceof DataType) {
 				// primitive type
-				if (comp.category === ComponentCategory.DATA || comp.category === ComponentCategory.COMPONENT) {
+				if (comp.category === ComponentCategory.DATA || comp.category === ComponentCategory.ABSTRACT) {
 					if (comp.typeReference !== null) {
 						error('Assigned primitive type cannot override existing type', ca, null, OverrideType)
 					}
@@ -366,7 +366,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 		for (matchcl : cls) {
 			if (matchcl !== cl) {
 				val matchcat = matchcl.componentCategory
-				if (matchcat != targetcat && matchcat != ComponentCategory.COMPONENT) {
+				if (matchcat != targetcat && matchcat != ComponentCategory.ABSTRACT) {
 					error('Extension category differs', matchcl,
 						Aadlv3Package.Literals.COMPONENT_CLASSIFIER__SUPER_CLASSIFIERS,
 						AadlV3Validator.MISMATCHED_COMPONENT_CATEGORY)
@@ -478,7 +478,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	def checkComponentWithClassifier(Component comp) {
 		// the categories must be consistent
 		val clcat = (comp.typeReference.type as ComponentClassifier).componentCategory
-		if (!(clcat === comp.category || clcat === ComponentCategory.COMPONENT)) {
+		if (!(clcat === comp.category || clcat === ComponentCategory.ABSTRACT)) {
 			error('Component category conflicts with classifier category', comp,
 				Aadlv3Package.Literals.COMPONENT__CATEGORY, MISMATCHED_COMPONENT_CATEGORY)
 		}
@@ -500,7 +500,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 			error('Component with primitive type can only have property associations or data access features in {}',
 				comp, null, OnlyPropertyAssociations)
 		}
-		if (!(comp.category === ComponentCategory.DATA || comp.category === ComponentCategory.COMPONENT)) {
+		if (!(comp.category === ComponentCategory.DATA || comp.category === ComponentCategory.ABSTRACT)) {
 			error('Components other than "data" or "component" cannot have primitive type', comp,
 				Aadlv3Package.Literals.COMPONENT__CATEGORY, NoDataType)
 		}
