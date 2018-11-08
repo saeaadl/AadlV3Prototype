@@ -37,7 +37,7 @@ import java.util.HashMap;
 @SuppressWarnings("all")
 public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_INT", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'package'", "'end'", "'property'", "':'", "'properties'", "'is'", "','", "'type'", "'interface'", "'extends'", "'use'", "'features'", "'flows'", "'.'", "'subcomponents'", "'connections'", "'configuration'", "'sampled'", "'reverse'", "'->'", "'=>'", "'import'", "'flow'", "'#'", "'{'", "'}'", "'('", "')'", "'workingset'", "'.*'", "'::'", "';'", "'component'", "'bus'", "'data'", "'device'", "'memory'", "'process'", "'processor'", "'system'", "'thread'", "'subprogram'", "'feature'", "'port'", "'access'", "'binding'", "'in'", "'out'", "'requires'", "'provides'", "'mapping'", "'virtual'", "'group'", "'to'", "'source'", "'sink'", "'path'", "'read'", "'write'", "'readwrite'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_INT", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'package'", "'end'", "'property'", "':'", "'properties'", "'is'", "','", "'type'", "'interface'", "'extends'", "'use'", "'features'", "'flows'", "'.'", "'subcomponents'", "'connections'", "'configuration'", "'sampled'", "'reverse'", "'->'", "'=>'", "'import'", "'flow'", "'#'", "'{'", "'}'", "'('", "')'", "'workingset'", "'::*'", "'::'", "';'", "'component'", "'bus'", "'data'", "'device'", "'memory'", "'process'", "'processor'", "'system'", "'thread'", "'subprogram'", "'feature'", "'port'", "'access'", "'binding'", "'in'", "'out'", "'requires'", "'provides'", "'mapping'", "'virtual'", "'group'", "'to'", "'source'", "'sink'", "'path'", "'read'", "'write'", "'readwrite'"
     };
     public static final int T__50=50;
     public static final int T__19=19;
@@ -10270,7 +10270,7 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleQualifiedNameWithWildcard"
-    // InternalAadlV3.g:3904:1: ruleQualifiedNameWithWildcard returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_QualifiedName_0= ruleQualifiedName (kw= '.*' )? ) ;
+    // InternalAadlV3.g:3904:1: ruleQualifiedNameWithWildcard returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_QualifiedName_0= ruleQualifiedName (kw= '::*' )? ) ;
     public final AntlrDatatypeRuleToken ruleQualifiedNameWithWildcard() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -10282,11 +10282,11 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalAadlV3.g:3910:2: ( (this_QualifiedName_0= ruleQualifiedName (kw= '.*' )? ) )
-            // InternalAadlV3.g:3911:2: (this_QualifiedName_0= ruleQualifiedName (kw= '.*' )? )
+            // InternalAadlV3.g:3910:2: ( (this_QualifiedName_0= ruleQualifiedName (kw= '::*' )? ) )
+            // InternalAadlV3.g:3911:2: (this_QualifiedName_0= ruleQualifiedName (kw= '::*' )? )
             {
-            // InternalAadlV3.g:3911:2: (this_QualifiedName_0= ruleQualifiedName (kw= '.*' )? )
-            // InternalAadlV3.g:3912:3: this_QualifiedName_0= ruleQualifiedName (kw= '.*' )?
+            // InternalAadlV3.g:3911:2: (this_QualifiedName_0= ruleQualifiedName (kw= '::*' )? )
+            // InternalAadlV3.g:3912:3: this_QualifiedName_0= ruleQualifiedName (kw= '::*' )?
             {
             if ( state.backtracking==0 ) {
 
@@ -10308,7 +10308,7 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
               			afterParserOrEnumRuleCall();
               		
             }
-            // InternalAadlV3.g:3922:3: (kw= '.*' )?
+            // InternalAadlV3.g:3922:3: (kw= '::*' )?
             int alt75=2;
             int LA75_0 = input.LA(1);
 
@@ -10317,13 +10317,13 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
             }
             switch (alt75) {
                 case 1 :
-                    // InternalAadlV3.g:3923:4: kw= '.*'
+                    // InternalAadlV3.g:3923:4: kw= '::*'
                     {
                     kw=(Token)match(input,40,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                       				current.merge(kw);
-                      				newLeafNode(kw, grammarAccess.getQualifiedNameWithWildcardAccess().getFullStopAsteriskKeyword_1());
+                      				newLeafNode(kw, grammarAccess.getQualifiedNameWithWildcardAccess().getColonColonAsteriskKeyword_1());
                       			
                     }
 

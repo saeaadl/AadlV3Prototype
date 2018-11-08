@@ -3920,10 +3920,10 @@ ruleQualifiedNameWithWildcard returns [AntlrDatatypeRuleToken current=new AntlrD
 			afterParserOrEnumRuleCall();
 		}
 		(
-			kw='.*'
+			kw='::*'
 			{
 				$current.merge(kw);
-				newLeafNode(kw, grammarAccess.getQualifiedNameWithWildcardAccess().getFullStopAsteriskKeyword_1());
+				newLeafNode(kw, grammarAccess.getQualifiedNameWithWildcardAccess().getColonColonAsteriskKeyword_1());
 			}
 		)?
 	)

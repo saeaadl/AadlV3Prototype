@@ -1,5 +1,5 @@
 package PackA 
-	import nested;
+	import PackA::nested.*;
 	type date ;
 	type person ;
 	type int;

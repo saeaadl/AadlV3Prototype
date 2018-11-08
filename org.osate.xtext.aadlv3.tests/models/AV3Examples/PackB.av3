@@ -1,5 +1,4 @@
 package PackB 
-	import PackA::nested.*;
 	import PackA.*;
 	interface mine
 	features

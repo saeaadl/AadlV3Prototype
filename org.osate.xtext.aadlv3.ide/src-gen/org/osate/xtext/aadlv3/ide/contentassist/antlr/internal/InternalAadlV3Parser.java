@@ -38,7 +38,7 @@ import java.util.HashMap;
 @SuppressWarnings("all")
 public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_INT", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "';'", "'mapping'", "'component'", "'bus'", "'data'", "'device'", "'memory'", "'process'", "'processor'", "'system'", "'thread'", "'subprogram'", "'feature'", "'port'", "'access'", "'binding'", "'interface'", "'in'", "'out'", "'requires'", "'provides'", "'package'", "'end'", "'property'", "':'", "'properties'", "'is'", "','", "'type'", "'extends'", "'use'", "'features'", "'flows'", "'.'", "'subcomponents'", "'connections'", "'configuration'", "'->'", "'=>'", "'import'", "'flow'", "'#'", "'{'", "'}'", "')'", "'('", "'workingset'", "'.*'", "'::'", "'virtual'", "'group'", "'to'", "'source'", "'sink'", "'path'", "'read'", "'write'", "'readwrite'", "'sampled'", "'reverse'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_INT", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "';'", "'mapping'", "'component'", "'bus'", "'data'", "'device'", "'memory'", "'process'", "'processor'", "'system'", "'thread'", "'subprogram'", "'feature'", "'port'", "'access'", "'binding'", "'interface'", "'in'", "'out'", "'requires'", "'provides'", "'package'", "'end'", "'property'", "':'", "'properties'", "'is'", "','", "'type'", "'extends'", "'use'", "'features'", "'flows'", "'.'", "'subcomponents'", "'connections'", "'configuration'", "'->'", "'=>'", "'import'", "'flow'", "'#'", "'{'", "'}'", "')'", "'('", "'workingset'", "'::*'", "'::'", "'virtual'", "'group'", "'to'", "'source'", "'sink'", "'path'", "'read'", "'write'", "'readwrite'", "'sampled'", "'reverse'"
     };
     public static final int T__50=50;
     public static final int T__19=19;
@@ -30387,22 +30387,22 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__QualifiedNameWithWildcard__Group__1__Impl"
-    // InternalAadlV3.g:9114:1: rule__QualifiedNameWithWildcard__Group__1__Impl : ( ( '.*' )? ) ;
+    // InternalAadlV3.g:9114:1: rule__QualifiedNameWithWildcard__Group__1__Impl : ( ( '::*' )? ) ;
     public final void rule__QualifiedNameWithWildcard__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAadlV3.g:9118:1: ( ( ( '.*' )? ) )
-            // InternalAadlV3.g:9119:1: ( ( '.*' )? )
+            // InternalAadlV3.g:9118:1: ( ( ( '::*' )? ) )
+            // InternalAadlV3.g:9119:1: ( ( '::*' )? )
             {
-            // InternalAadlV3.g:9119:1: ( ( '.*' )? )
-            // InternalAadlV3.g:9120:2: ( '.*' )?
+            // InternalAadlV3.g:9119:1: ( ( '::*' )? )
+            // InternalAadlV3.g:9120:2: ( '::*' )?
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getQualifiedNameWithWildcardAccess().getFullStopAsteriskKeyword_1()); 
+               before(grammarAccess.getQualifiedNameWithWildcardAccess().getColonColonAsteriskKeyword_1()); 
             }
-            // InternalAadlV3.g:9121:2: ( '.*' )?
+            // InternalAadlV3.g:9121:2: ( '::*' )?
             int alt87=2;
             int LA87_0 = input.LA(1);
 
@@ -30411,7 +30411,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             }
             switch (alt87) {
                 case 1 :
-                    // InternalAadlV3.g:9121:3: '.*'
+                    // InternalAadlV3.g:9121:3: '::*'
                     {
                     match(input,58,FOLLOW_2); if (state.failed) return ;
 
@@ -30421,7 +30421,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getQualifiedNameWithWildcardAccess().getFullStopAsteriskKeyword_1()); 
+               after(grammarAccess.getQualifiedNameWithWildcardAccess().getColonColonAsteriskKeyword_1()); 
             }
 
             }

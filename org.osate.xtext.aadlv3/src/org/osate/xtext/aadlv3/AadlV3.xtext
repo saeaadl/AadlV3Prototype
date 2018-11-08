@@ -203,7 +203,7 @@ Workingset returns av3::Workingset:
 
 
 QualifiedNameWithWildcard:
-	QualifiedName '.*'?;
+	QualifiedName '::*'?;
 
 DottedName:
 	ID '.' ID;
