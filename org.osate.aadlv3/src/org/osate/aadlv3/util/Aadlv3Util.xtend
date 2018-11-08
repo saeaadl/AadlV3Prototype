@@ -294,7 +294,8 @@ class Aadlv3Util {
 			if (mer.context === null || !(mer.context.element instanceof Feature)){
 				return fd
 			}
-			val cxtcl = (mer.context.element as Feature).type as ComponentClassifier
+			val cxtcl = (mer.context.element as Feature).type
+			if (cxtcl instanceof ComponentClassifier){
 			var doReverse = isReverseFeature(cxtcl, fea)
 			var pathelement = mer
 			doReverse = if (doReverse) !fea.reverse else fea.reverse 
@@ -304,6 +305,7 @@ class Aadlv3Util {
 				doReverse = if (doReverse) !nextfea.reverse else nextfea.reverse
 			}
 			return if (doReverse) reverseDirection(fd) else fd
+			}
 		}
 		FeatureDirection.NONE
 	}
