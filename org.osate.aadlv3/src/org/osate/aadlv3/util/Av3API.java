@@ -57,15 +57,15 @@ public class Av3API {
 
 
 	public static Collection<ComponentRealization> getComponentRealizations(ComponentInterface cinterface) {
-		return Aadlv3GlobalScopeUtil.getAll(cinterface, Aadlv3Package.eINSTANCE.getComponentRealization());
+		return Aadlv3GlobalScopeUtil.getAllInContext(cinterface, Aadlv3Package.eINSTANCE.getComponentRealization());
 	}
 
 	public static Collection<ComponentImplementation> getComponentImplementations(ComponentInterface cinterface) {
-		return Aadlv3GlobalScopeUtil.getAll(cinterface, Aadlv3Package.eINSTANCE.getComponentImplementation());
+		return Aadlv3GlobalScopeUtil.getAllInContext(cinterface, Aadlv3Package.eINSTANCE.getComponentImplementation());
 	}
 
 	public static Collection<ComponentConfiguration> getComponentConfigurations(ComponentInterface cinterface) {
-		return Aadlv3GlobalScopeUtil.getAll(cinterface, Aadlv3Package.eINSTANCE.getComponentConfiguration());
+		return Aadlv3GlobalScopeUtil.getAllInContext(cinterface, Aadlv3Package.eINSTANCE.getComponentConfiguration());
 	}
 	
 }

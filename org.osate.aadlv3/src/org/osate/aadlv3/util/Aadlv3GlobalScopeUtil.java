@@ -88,8 +88,40 @@ public class Aadlv3GlobalScopeUtil {
 		return result;
 	}
 
+
+	/**
+	 * Get all global definitions of a specified eClass
+	 * @param context used for determining a resoruceset for resolution
+	 * @param eClass
+	 * @return
+	 */
 	@SuppressWarnings("unchecked")
 	public static <T extends EObject> Collection<T> getAll(EObject context, EClass eClass) {
+		Collection<T> result = new ArrayList<T>();
+		final QualifiedName qn = qnameProvider.getFullyQualifiedName(context);
+		IScope scope = globalScope.getScope(context.eResource(), eClass);
+		for(IEObjectDescription desc: scope.getAllElements()) {
+			if (desc != null) {
+				EObject o = desc.getEObjectOrProxy();
+				if (o.eIsProxy()) {
+					o = EcoreUtil.resolve(o, context);
+				}
+				if (!o.eIsProxy()) result.add((T) o);
+			}
+		}
+		return result;
+	}
+
+	
+	/**
+	 * Get all global definitions in specified context.
+	 * Primarily used to get all implementations or configurations for a given interface
+	 * @param context the component interface (or other context object whose global content is to be returned
+	 * @param eClass
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public static <T extends EObject> Collection<T> getAllInContext(EObject context, EClass eClass) {
 		Collection<T> result = new ArrayList<T>();
 		final QualifiedName qn = qnameProvider.getFullyQualifiedName(context);
 		IScope scope = globalScope.getScope(context.eResource(), eClass,new Predicate<IEObjectDescription>() {
