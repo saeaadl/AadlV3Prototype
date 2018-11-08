@@ -4,8 +4,8 @@ package FlowExamples
 
 	type systemstate;
 	type int;
-	property Period int;
-	property Size int;
+	property Period: int;
+	property Size: int;
 	
 	interface actuator is
 		inp: in port;

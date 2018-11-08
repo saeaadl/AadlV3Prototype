@@ -1,5 +1,5 @@
 package PackP 
-import PackP.Q.*;
+import PackP::Q::*;
 	type date ;
 	package bested  
 		type signal ;

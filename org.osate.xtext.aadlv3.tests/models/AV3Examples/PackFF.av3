@@ -1,4 +1,4 @@
-package PackF.F 
+package PackF::F 
 	type date ;
 	
 	interface main is

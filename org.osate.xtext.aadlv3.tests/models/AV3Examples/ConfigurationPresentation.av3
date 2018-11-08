@@ -1,9 +1,8 @@
 package ConfigurationPresentation 
-type int;
-property SecurityLevel int ;
-property SafetyLevel int;
-property Period int;
-property Deadline int;
+import StandardProperties::*;
+
+property SecurityLevel: int ;
+property SafetyLevel: int;
 
 system interface x end;
 

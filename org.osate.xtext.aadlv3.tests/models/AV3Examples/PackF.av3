@@ -1,5 +1,5 @@
 package PackF 
-import PackF.F.*;
+import PackF::F::*;
 //	type date ;
 	
 	interface main is
