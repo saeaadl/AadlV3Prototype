@@ -2181,21 +2181,69 @@ ruleImport returns [EObject current=null]
 		}
 		(
 			(
-				{
-					newCompositeNode(grammarAccess.getImportAccess().getImportedNamespaceQualifiedNameWithWildcardParserRuleCall_1_0());
-				}
-				lv_importedNamespace_1_0=ruleQualifiedNameWithWildcard
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getImportRule());
+				(
+					{
+						newCompositeNode(grammarAccess.getImportAccess().getImportedNamespaceQualifiedNameWithWildcardParserRuleCall_1_0_0());
 					}
-					set(
-						$current,
-						"importedNamespace",
-						lv_importedNamespace_1_0,
-						"org.osate.xtext.aadlv3.AadlV3.QualifiedNameWithWildcard");
-					afterParserOrEnumRuleCall();
-				}
+					lv_importedNamespace_1_0=ruleQualifiedNameWithWildcard
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getImportRule());
+						}
+						set(
+							$current,
+							"importedNamespace",
+							lv_importedNamespace_1_0,
+							"org.osate.xtext.aadlv3.AadlV3.QualifiedNameWithWildcard");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+			    |
+			(
+				(
+					(
+						{
+							newCompositeNode(grammarAccess.getImportAccess().getImportedNamespaceQualifiedNameParserRuleCall_1_1_0_0());
+						}
+						lv_importedNamespace_2_0=ruleQualifiedName
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getImportRule());
+							}
+							set(
+								$current,
+								"importedNamespace",
+								lv_importedNamespace_2_0,
+								"org.osate.xtext.aadlv3.AadlV3.QualifiedName");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)
+				(
+					otherlv_3='as'
+					{
+						newLeafNode(otherlv_3, grammarAccess.getImportAccess().getAsKeyword_1_1_1_0());
+					}
+					(
+						(
+							lv_alias_4_0=RULE_ID
+							{
+								newLeafNode(lv_alias_4_0, grammarAccess.getImportAccess().getAliasIDTerminalRuleCall_1_1_1_1_0());
+							}
+							{
+								if ($current==null) {
+									$current = createModelElement(grammarAccess.getImportRule());
+								}
+								setWithLastConsumed(
+									$current,
+									"alias",
+									lv_alias_4_0,
+									"org.eclipse.xtext.common.Terminals.ID");
+							}
+						)
+					)
+				)?
 			)
 		)
 		{
@@ -3660,13 +3708,11 @@ ruleQualifiedNameWithWildcard returns [AntlrDatatypeRuleToken current=new AntlrD
 		{
 			afterParserOrEnumRuleCall();
 		}
-		(
-			kw='::*'
-			{
-				$current.merge(kw);
-				newLeafNode(kw, grammarAccess.getQualifiedNameWithWildcardAccess().getColonColonAsteriskKeyword_1());
-			}
-		)?
+		kw='::*'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getQualifiedNameWithWildcardAccess().getColonColonAsteriskKeyword_1());
+		}
 	)
 ;
 

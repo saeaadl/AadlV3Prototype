@@ -968,13 +968,22 @@ public interface Aadlv3Package extends EPackage {
 	int IMPORT__IMPORTED_NAMESPACE = 0;
 
 	/**
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMPORT__ALIAS = 1;
+
+	/**
 	 * The number of structural features of the '<em>Import</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IMPORT_FEATURE_COUNT = 1;
+	int IMPORT_FEATURE_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.AssociationImpl <em>Association</em>}' class.
@@ -2045,6 +2054,17 @@ public interface Aadlv3Package extends EPackage {
 	EAttribute getImport_ImportedNamespace();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.osate.aadlv3.aadlv3.Import#getAlias <em>Alias</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Alias</em>'.
+	 * @see org.osate.aadlv3.aadlv3.Import#getAlias()
+	 * @see #getImport()
+	 * @generated
+	 */
+	EAttribute getImport_Alias();
+
+	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.Association <em>Association</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2926,6 +2946,14 @@ public interface Aadlv3Package extends EPackage {
 		 * @generated
 		 */
 		EAttribute IMPORT__IMPORTED_NAMESPACE = eINSTANCE.getImport_ImportedNamespace();
+
+		/**
+		 * The meta object literal for the '<em><b>Alias</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute IMPORT__ALIAS = eINSTANCE.getImport_Alias();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.AssociationImpl <em>Association</em>}' class.

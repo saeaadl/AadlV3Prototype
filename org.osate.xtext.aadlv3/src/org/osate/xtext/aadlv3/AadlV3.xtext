@@ -94,7 +94,10 @@ PathElement returns av3::PathElement:
 
 
 Import returns av3::Import:
-	'import' importedNamespace=QualifiedNameWithWildcard SEMICOLON;
+	'import' (importedNamespace=QualifiedNameWithWildcard |
+		(importedNamespace=QualifiedName ('as' alias=ID)?)
+	) 
+	SEMICOLON;
 
 ConfigurationAssignment returns av3::ConfigurationAssignment:
 	target= ModelElementReference '=>' 
@@ -192,7 +195,7 @@ Workingset returns av3::Workingset:
 
 
 QualifiedNameWithWildcard:
-	QualifiedName '::*'?;
+	QualifiedName '::*';
 
 DottedName:
 	ID '.' ID;

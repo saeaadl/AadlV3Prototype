@@ -118,6 +118,7 @@
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//Import">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//Import/importedNamespace"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//Import/alias"/>
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//Association">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//Association/associationType"/>

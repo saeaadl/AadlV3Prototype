@@ -1164,25 +1164,57 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.osate.xtext.aadlv3.AadlV3.Import");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cImportKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cImportedNamespaceAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cImportedNamespaceQualifiedNameWithWildcardParserRuleCall_1_0 = (RuleCall)cImportedNamespaceAssignment_1.eContents().get(0);
+		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
+		private final Assignment cImportedNamespaceAssignment_1_0 = (Assignment)cAlternatives_1.eContents().get(0);
+		private final RuleCall cImportedNamespaceQualifiedNameWithWildcardParserRuleCall_1_0_0 = (RuleCall)cImportedNamespaceAssignment_1_0.eContents().get(0);
+		private final Group cGroup_1_1 = (Group)cAlternatives_1.eContents().get(1);
+		private final Assignment cImportedNamespaceAssignment_1_1_0 = (Assignment)cGroup_1_1.eContents().get(0);
+		private final RuleCall cImportedNamespaceQualifiedNameParserRuleCall_1_1_0_0 = (RuleCall)cImportedNamespaceAssignment_1_1_0.eContents().get(0);
+		private final Group cGroup_1_1_1 = (Group)cGroup_1_1.eContents().get(1);
+		private final Keyword cAsKeyword_1_1_1_0 = (Keyword)cGroup_1_1_1.eContents().get(0);
+		private final Assignment cAliasAssignment_1_1_1_1 = (Assignment)cGroup_1_1_1.eContents().get(1);
+		private final RuleCall cAliasIDTerminalRuleCall_1_1_1_1_0 = (RuleCall)cAliasAssignment_1_1_1_1.eContents().get(0);
 		private final RuleCall cSEMICOLONParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
 		
 		//Import av3::Import:
-		//	'import' importedNamespace=QualifiedNameWithWildcard SEMICOLON;
+		//	'import' (importedNamespace=QualifiedNameWithWildcard | importedNamespace=QualifiedName ('as' alias=ID)?) SEMICOLON;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'import' importedNamespace=QualifiedNameWithWildcard SEMICOLON
+		//'import' (importedNamespace=QualifiedNameWithWildcard | importedNamespace=QualifiedName ('as' alias=ID)?) SEMICOLON
 		public Group getGroup() { return cGroup; }
 		
 		//'import'
 		public Keyword getImportKeyword_0() { return cImportKeyword_0; }
 		
+		//importedNamespace=QualifiedNameWithWildcard | importedNamespace=QualifiedName ('as' alias=ID)?
+		public Alternatives getAlternatives_1() { return cAlternatives_1; }
+		
 		//importedNamespace=QualifiedNameWithWildcard
-		public Assignment getImportedNamespaceAssignment_1() { return cImportedNamespaceAssignment_1; }
+		public Assignment getImportedNamespaceAssignment_1_0() { return cImportedNamespaceAssignment_1_0; }
 		
 		//QualifiedNameWithWildcard
-		public RuleCall getImportedNamespaceQualifiedNameWithWildcardParserRuleCall_1_0() { return cImportedNamespaceQualifiedNameWithWildcardParserRuleCall_1_0; }
+		public RuleCall getImportedNamespaceQualifiedNameWithWildcardParserRuleCall_1_0_0() { return cImportedNamespaceQualifiedNameWithWildcardParserRuleCall_1_0_0; }
+		
+		//importedNamespace=QualifiedName ('as' alias=ID)?
+		public Group getGroup_1_1() { return cGroup_1_1; }
+		
+		//importedNamespace=QualifiedName
+		public Assignment getImportedNamespaceAssignment_1_1_0() { return cImportedNamespaceAssignment_1_1_0; }
+		
+		//QualifiedName
+		public RuleCall getImportedNamespaceQualifiedNameParserRuleCall_1_1_0_0() { return cImportedNamespaceQualifiedNameParserRuleCall_1_1_0_0; }
+		
+		//('as' alias=ID)?
+		public Group getGroup_1_1_1() { return cGroup_1_1_1; }
+		
+		//'as'
+		public Keyword getAsKeyword_1_1_1_0() { return cAsKeyword_1_1_1_0; }
+		
+		//alias=ID
+		public Assignment getAliasAssignment_1_1_1_1() { return cAliasAssignment_1_1_1_1; }
+		
+		//ID
+		public RuleCall getAliasIDTerminalRuleCall_1_1_1_1_0() { return cAliasIDTerminalRuleCall_1_1_1_1_0; }
 		
 		//SEMICOLON
 		public RuleCall getSEMICOLONParserRuleCall_2() { return cSEMICOLONParserRuleCall_2; }
@@ -2068,16 +2100,16 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cColonColonAsteriskKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		
 		//QualifiedNameWithWildcard:
-		//	QualifiedName '::*'?;
+		//	QualifiedName '::*';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//QualifiedName '::*'?
+		//QualifiedName '::*'
 		public Group getGroup() { return cGroup; }
 		
 		//QualifiedName
 		public RuleCall getQualifiedNameParserRuleCall_0() { return cQualifiedNameParserRuleCall_0; }
 		
-		//'::*'?
+		//'::*'
 		public Keyword getColonColonAsteriskKeyword_1() { return cColonColonAsteriskKeyword_1; }
 	}
 	public class DottedNameElements extends AbstractParserRuleElementFinder {
@@ -3185,7 +3217,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Import av3::Import:
-	//	'import' importedNamespace=QualifiedNameWithWildcard SEMICOLON;
+	//	'import' (importedNamespace=QualifiedNameWithWildcard | importedNamespace=QualifiedName ('as' alias=ID)?) SEMICOLON;
 	public ImportElements getImportAccess() {
 		return pImport;
 	}
@@ -3423,7 +3455,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//QualifiedNameWithWildcard:
-	//	QualifiedName '::*'?;
+	//	QualifiedName '::*';
 	public QualifiedNameWithWildcardElements getQualifiedNameWithWildcardAccess() {
 		return pQualifiedNameWithWildcard;
 	}

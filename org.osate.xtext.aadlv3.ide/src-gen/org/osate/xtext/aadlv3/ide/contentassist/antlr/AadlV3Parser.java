@@ -46,6 +46,7 @@ public class AadlV3Parser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getPackageDeclarationAccess().getElementsAlternatives_3_0(), "rule__PackageDeclaration__ElementsAlternatives_3_0");
 			builder.put(grammarAccess.getInterfaceBodyAccess().getAlternatives_1(), "rule__InterfaceBody__Alternatives_1");
 			builder.put(grammarAccess.getImplementationBodyAccess().getAlternatives_1(), "rule__ImplementationBody__Alternatives_1");
+			builder.put(grammarAccess.getImportAccess().getAlternatives_1(), "rule__Import__Alternatives_1");
 			builder.put(grammarAccess.getConfigurationAssignmentAccess().getAlternatives_2(), "rule__ConfigurationAssignment__Alternatives_2");
 			builder.put(grammarAccess.getConfigurationElementBlockAccess().getAlternatives_1(), "rule__ConfigurationElementBlock__Alternatives_1");
 			builder.put(grammarAccess.getCurlyConfigurationElementBlockAccess().getAlternatives_1(), "rule__CurlyConfigurationElementBlock__Alternatives_1");
@@ -81,6 +82,8 @@ public class AadlV3Parser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getPathElementAccess().getGroup_1(), "rule__PathElement__Group_1__0");
 			builder.put(grammarAccess.getPathElementAccess().getGroup_1_0(), "rule__PathElement__Group_1_0__0");
 			builder.put(grammarAccess.getImportAccess().getGroup(), "rule__Import__Group__0");
+			builder.put(grammarAccess.getImportAccess().getGroup_1_1(), "rule__Import__Group_1_1__0");
+			builder.put(grammarAccess.getImportAccess().getGroup_1_1_1(), "rule__Import__Group_1_1_1__0");
 			builder.put(grammarAccess.getConfigurationAssignmentAccess().getGroup(), "rule__ConfigurationAssignment__Group__0");
 			builder.put(grammarAccess.getConfigurationAssignmentAccess().getGroup_2_0(), "rule__ConfigurationAssignment__Group_2_0__0");
 			builder.put(grammarAccess.getFlowAssignmentAccess().getGroup(), "rule__FlowAssignment__Group__0");
@@ -203,7 +206,9 @@ public class AadlV3Parser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getPathAccess().getElementsAssignment_4_1(), "rule__Path__ElementsAssignment_4_1");
 			builder.put(grammarAccess.getPathElementAccess().getElementAssignment_0(), "rule__PathElement__ElementAssignment_0");
 			builder.put(grammarAccess.getPathElementAccess().getElementAssignment_1_0_2(), "rule__PathElement__ElementAssignment_1_0_2");
-			builder.put(grammarAccess.getImportAccess().getImportedNamespaceAssignment_1(), "rule__Import__ImportedNamespaceAssignment_1");
+			builder.put(grammarAccess.getImportAccess().getImportedNamespaceAssignment_1_0(), "rule__Import__ImportedNamespaceAssignment_1_0");
+			builder.put(grammarAccess.getImportAccess().getImportedNamespaceAssignment_1_1_0(), "rule__Import__ImportedNamespaceAssignment_1_1_0");
+			builder.put(grammarAccess.getImportAccess().getAliasAssignment_1_1_1_1(), "rule__Import__AliasAssignment_1_1_1_1");
 			builder.put(grammarAccess.getConfigurationAssignmentAccess().getTargetAssignment_0(), "rule__ConfigurationAssignment__TargetAssignment_0");
 			builder.put(grammarAccess.getConfigurationAssignmentAccess().getValueAssignment_2_0_0(), "rule__ConfigurationAssignment__ValueAssignment_2_0_0");
 			builder.put(grammarAccess.getFlowAssignmentAccess().getTargetAssignment_0(), "rule__FlowAssignment__TargetAssignment_0");

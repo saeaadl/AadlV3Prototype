@@ -471,16 +471,10 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     Import returns Import
 	 *
 	 * Constraint:
-	 *     importedNamespace=QualifiedNameWithWildcard
+	 *     (importedNamespace=QualifiedNameWithWildcard | (importedNamespace=QualifiedName alias=ID?))
 	 */
 	protected void sequence_Import(ISerializationContext context, Import semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, Aadlv3Package.Literals.IMPORT__IMPORTED_NAMESPACE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, Aadlv3Package.Literals.IMPORT__IMPORTED_NAMESPACE));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getImportAccess().getImportedNamespaceQualifiedNameWithWildcardParserRuleCall_1_0(), semanticObject.getImportedNamespace());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
