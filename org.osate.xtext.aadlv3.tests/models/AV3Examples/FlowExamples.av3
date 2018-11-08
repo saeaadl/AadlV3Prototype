@@ -18,12 +18,12 @@ package FlowExamples
 		reading: flow source outp;
 	end ;
 	
-	component sensor.i  is
+	abstract sensor.i  is
 		sub1: thread sense;
 		upmap: mapping outp => sub1.p1 ;
 		reading => flow upmap -> sub1.reading;
 	end ;
-	component actuator.i  is
+	abstract actuator.i  is
 		sub2: thread actuate;
 		downmap: mapping inp => sub2.p1;
 		action=> flow sub2.taction;
@@ -67,9 +67,9 @@ package FlowExamples
 	
 	system interface conntop end;
 	system conntop.i is
-		sense: component sensor.i;
+		sense: abstract sensor.i;
 		processing: process control.impl;
-		actuate: component actuator.i;
+		actuate: abstract actuator.i;
 		hw : system hardwareplatform.impl;
 		sensetocontrol: connection sense.sub1.p1 -> processing.insignal;
 		controltoactuate: connection processing.outaction -> actuate.inp;

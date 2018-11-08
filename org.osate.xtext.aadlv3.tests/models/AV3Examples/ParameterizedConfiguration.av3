@@ -6,23 +6,23 @@ package ParameterizedConfiguration
 		outp: out port;
 	end ;
 	
-	component sender.i is
-		sub1: component sub;
+	abstract sender.i is
+		sub1: abstract sub;
 	end ;
 	
 	configuration sender.sensetask extends sender.i  is
 		sub1 => sub.i;
 	end;
 	
-	component receiver.i  is
-		sub2: component sub;
+	abstract receiver.i  is
+		sub2: abstract sub;
 	end ;
 	
 	interface sub  is
 		p1: in port ;
 	end ;
-	component sub.i is
-		t1: component subsub;
+	abstract sub.i is
+		t1: abstract subsub;
 	end ;
 	interface subsub is
 		p1: in port ;
@@ -32,10 +32,10 @@ package ParameterizedConfiguration
 	end;
 	
 	system top.i  is
-		sense: component sender ;
-		sense1 : component sender.i;
-		sense2: component sender.i;
-		actuate: component receiver;
+		sense: abstract sender ;
+		sense1 : abstract sender.i;
+		sense2: abstract sender.i;
+		actuate: abstract receiver;
 	end ;
 	
 	configuration top.topc(p1: sender) extends top.i  is

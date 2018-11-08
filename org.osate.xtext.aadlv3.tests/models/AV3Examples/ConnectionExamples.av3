@@ -15,12 +15,12 @@ package ConnectionExamples
 		fea: feature;
 	end ;
 	
-	component sensor.i is
+	abstract sensor.i is
 		sub1: thread sense;
 		upmap: mapping outp => sub1.p1 ;
 		stateaccess: mapping state => sub1.state;
 	end ;
-	component actuator.i  is
+	abstract actuator.i  is
 		mystate: data systemstate { stateread : provides read access systemstate;
 			statewrite : provides write access systemstate;
 		};
@@ -43,8 +43,8 @@ package ConnectionExamples
 	
 	system interface conntop end;
 	system conntop.i is
-		sense: component sensor.i;
-		actuate: component actuator.i;
+		sense: abstract sensor.i;
+		actuate: abstract actuator.i;
 		hw : system hardwareplatform.impl;
 		conn1: connection sense.sub1.p1 -> actuate.sub2.p1;
 		conn2: connection sense.outp -> actuate.inp;

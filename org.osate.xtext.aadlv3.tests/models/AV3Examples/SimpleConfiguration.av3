@@ -13,12 +13,12 @@ import StandardProperties::*;
 		outp: out port;
 	end ;
 
-	component sender.i is
-		sub1: component sub;
+	abstract sender.i is
+		sub1: abstract sub;
 	end ;
 
-	component sender.isubi is
-		sub1: component sub.i2t;
+	abstract sender.isubi is
+		sub1: abstract sub.i2t;
 	end ;
 
 	configuration sender.sensorconf extends sender.i  
@@ -29,8 +29,8 @@ import StandardProperties::*;
 		sub1.p1#DataSize => 30;
 	end;
 
-	component receiver.i is
-		sub2: component sub;
+	abstract receiver.i is
+		sub2: abstract sub;
 	end ;
 
 	interface sub  is
@@ -40,11 +40,11 @@ import StandardProperties::*;
 	thread subsub.i
 	end;
 
-	component sub.i  is
+	abstract sub.i  is
 		t1: thread subsub;
 	end ;
 	
-	component sub.i2t extends sub.i is
+	abstract sub.i2t extends sub.i is
 		t2: thread subsub;
 		t1 => subsub.i; 
 	end;
@@ -59,12 +59,12 @@ import StandardProperties::*;
 	end;
 
 	system top.i  is
-		sense: component sender; // subcomponent by interface
-		sense1 : component sender.i; // subcomponent by implementation with a subcomponent by interface
-		sense2: component sender.i;
-		sense21: component sender.isubi;
-		sense3: component sender;
-		actuate: component receiver; // subcomponent by interface
+		sense: abstract sender; // subcomponent by interface
+		sense1 : abstract sender.i; // subcomponent by implementation with a subcomponent by interface
+		sense2: abstract sender.i;
+		sense21: abstract sender.isubi;
+		sense3: abstract sender;
+		actuate: abstract receiver; // subcomponent by interface
 		sense1#Period => 33;
 		sense2.sub1#Period => 44;
 		extconn1: mapping eextin => sense.extin;

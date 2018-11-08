@@ -20,9 +20,9 @@ end;
 
 interface subsubsys end;
 
-component subsubsys.i is t1: thread t.ii; end; 
+abstract subsubsys.i is t1: thread t.ii; end; 
 
-component subsubsys.i2 is t2: thread t.ii; end; 
+abstract subsubsys.i2 is t2: thread t.ii; end; 
 
 interface t end;
 thread t.ii end;
