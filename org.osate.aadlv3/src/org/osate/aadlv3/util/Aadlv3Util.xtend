@@ -40,6 +40,8 @@ import org.osate.av3instance.av3instance.PropertyAssociationInstance
 import java.util.LinkedHashSet
 
 import static extension org.osate.aadlv3.util.Av3API.*
+import org.osate.aadlv3.aadlv3.PackageDeclaration
+import org.osate.aadlv3.aadlv3.Import
 
 class Aadlv3Util {
 	
@@ -747,6 +749,23 @@ class Aadlv3Util {
 			}
 		}
 		false
+	}
+	
+	
+	// returns the enclosing component classifier. For a component configuration as 'elem' it is returned
+	def static Iterable<Import> getAliases(EObject elem) {
+		val pkg = elem.containingPackage
+		pkg.imports.filter[im|im.alias !== null]
+	}
+	
+
+	// returns the enclosing component classifier. For a component configuration as 'elem' it is returned
+	def static PackageDeclaration getContainingPackage(EObject elem) {
+		var cxt = elem
+		while (cxt !== null && !(cxt instanceof PackageDeclaration)) {
+			cxt = cxt.eContainer as EObject
+		}
+		return cxt as PackageDeclaration
 	}
 
 	// returns the enclosing component classifier. For a component configuration as 'elem' it is returned
