@@ -460,6 +460,11 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cEndKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		private final RuleCall cSEMICOLONParserRuleCall_6 = (RuleCall)cGroup.eContents().get(6);
 		
+		////fragment SectionsInterfaceBody*:
+		////	('features' features+=Feature+)?
+		////	&('flows' (flows+=FlowPath |  flows+=FlowSource |  flows+=FlowSink)+)?
+		//// 	&('properties' propertyAssociations+=PropertyAssociation+ )?
+		////;
 		//ComponentImplementation av3::ComponentImplementation:
 		//	private?='private'? category=ComponentCategory name=DottedName ('extends' ImplementationExtensions?)?
 		//	ImplementationBody?
@@ -599,6 +604,12 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cEndKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		private final RuleCall cSEMICOLONParserRuleCall_8 = (RuleCall)cGroup.eContents().get(8);
 		
+		////fragment SectionsImplementationBody*:
+		////	('subcomponents'(components+=Component|assignments+=ConfigurationAssignment)+ )?
+		//// 	&('connections' connections+=(Connection|FeatureMapping)+ )?
+		//// 	&('flows' (flowAssignments+=FlowAssignment| paths+= Path )+)?
+		//// 	&('properties' propertyAssociations+=PropertyAssociation+ )?
+		////;
 		//ComponentConfiguration av3::ComponentConfiguration:
 		//	private?='private'? 'configuration' name=DottedName
 		//	Parameters?
@@ -3080,6 +3091,11 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		return getInterfaceBodyAccess().getRule();
 	}
 	
+	////fragment SectionsInterfaceBody*:
+	////	('features' features+=Feature+)?
+	////	&('flows' (flows+=FlowPath |  flows+=FlowSource |  flows+=FlowSink)+)?
+	//// 	&('properties' propertyAssociations+=PropertyAssociation+ )?
+	////;
 	//ComponentImplementation av3::ComponentImplementation:
 	//	private?='private'? category=ComponentCategory name=DottedName ('extends' ImplementationExtensions?)?
 	//	ImplementationBody?
@@ -3103,6 +3119,12 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		return getImplementationBodyAccess().getRule();
 	}
 	
+	////fragment SectionsImplementationBody*:
+	////	('subcomponents'(components+=Component|assignments+=ConfigurationAssignment)+ )?
+	//// 	&('connections' connections+=(Connection|FeatureMapping)+ )?
+	//// 	&('flows' (flowAssignments+=FlowAssignment| paths+= Path )+)?
+	//// 	&('properties' propertyAssociations+=PropertyAssociation+ )?
+	////;
 	//ComponentConfiguration av3::ComponentConfiguration:
 	//	private?='private'? 'configuration' name=DottedName
 	//	Parameters?

@@ -33,6 +33,12 @@ ComponentInterface returns av3::ComponentInterface:
 fragment InterfaceBody*:
 	'is' (features+=Feature | flows+=FlowPath |  flows+=FlowSource |  flows+=FlowSink | propertyAssociations+=PropertyAssociation)*
 ;
+	
+//fragment SectionsInterfaceBody*:
+//	('features' features+=Feature+)?
+//	&('flows' (flows+=FlowPath |  flows+=FlowSource |  flows+=FlowSink)+)?
+// 	&('properties' propertyAssociations+=PropertyAssociation+ )?
+//;
 
 ComponentImplementation returns av3::ComponentImplementation:
 	(private?='private')? category=ComponentCategory name=DottedName 
@@ -43,6 +49,13 @@ ComponentImplementation returns av3::ComponentImplementation:
 fragment ImplementationBody*:
 	'is' (connections+=Connection |connections+=FeatureMapping | components+=Component | paths+= Path | flowAssignments+=FlowAssignment | assignments+=ConfigurationAssignment| propertyAssociations+=PropertyAssociation)*
 ;
+
+//fragment SectionsImplementationBody*:
+//	('subcomponents'(components+=Component|assignments+=ConfigurationAssignment)+ )?
+// 	&('connections' connections+=(Connection|FeatureMapping)+ )?
+// 	&('flows' (flowAssignments+=FlowAssignment| paths+= Path )+)?
+// 	&('properties' propertyAssociations+=PropertyAssociation+ )?
+//;
 
 ComponentConfiguration returns av3::ComponentConfiguration:
 	(private?='private')? 'configuration' name=DottedName  
