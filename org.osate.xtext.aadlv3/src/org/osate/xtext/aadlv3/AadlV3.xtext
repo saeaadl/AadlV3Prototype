@@ -16,9 +16,9 @@ Property returns av3::Property:
 	'property' name=ID ':' type=[av3::Type|QualifiedReference] SEMICOLON;
 
 PropertySet returns av3::PropertySet:
-	'properties' name=ID  'is'
-		properties += [av3::Property|QualifiedReference] (',' properties += [av3::Property|QualifiedName])*
-		'end' SEMICOLON
+	'properties' name=ID  ':'
+		'{' properties += [av3::Property|QualifiedReference] (',' properties += [av3::Property|QualifiedName])* '}'
+	SEMICOLON
 ;
 
 DataType returns av3::DataType:
@@ -26,12 +26,14 @@ DataType returns av3::DataType:
 
 ComponentInterface returns av3::ComponentInterface:
 	(private?='private')? category=ComponentCategory? 'interface'  name=ID ('extends' (InterfaceExtensions)?)? 
-	 InterfaceBody?
-	('use''properties' useProperties += [av3::PropertySet|QualifiedName] (',' useProperties += [av3::PropertySet|QualifiedName])* SEMICOLON)?
-	'end' SEMICOLON;
+	 InterfaceBody
+	SEMICOLON;
 
 fragment InterfaceBody*:
-	'is' (features+=Feature | flows+=FlowPath |  flows+=FlowSource |  flows+=FlowSink | propertyAssociations+=PropertyAssociation)*
+	('is' InterfaceElement (SEMICOLON InterfaceElement)* SEMICOLON? )? 'end'
+;
+fragment InterfaceElement*:
+	 features+=Feature | flows+=FlowPath |  flows+=FlowSource |  flows+=FlowSink | propertyAssociations+=PropertyAssociation | UseProps
 ;
 	
 //fragment SectionsInterfaceBody*:
@@ -43,11 +45,19 @@ fragment InterfaceBody*:
 ComponentImplementation returns av3::ComponentImplementation:
 	(private?='private')? category=ComponentCategory name=DottedName 
 	('extends' (ImplementationExtensions)?)? 
-	 ImplementationBody? 
-	'end'  SEMICOLON;
+	 ImplementationBody
+	  SEMICOLON;
 
 fragment ImplementationBody*:
-	'is' (connections+=Connection |connections+=FeatureMapping | components+=Component | paths+= Path | flowAssignments+=FlowAssignment | assignments+=ConfigurationAssignment| propertyAssociations+=PropertyAssociation)*
+	('is'
+		ImplementationElement (SEMICOLON ImplementationElement)* SEMICOLON? )? 
+	'end'
+;
+
+fragment ImplementationElement* :
+	connections+=Connection |connections+=FeatureMapping | components+=Component 
+		| paths+= Path | flowAssignments+=FlowAssignment | assignments+=ConfigurationAssignment
+		| propertyAssociations+=PropertyAssociation
 ;
 
 //fragment SectionsImplementationBody*:
@@ -60,46 +70,54 @@ fragment ImplementationBody*:
 ComponentConfiguration returns av3::ComponentConfiguration:
 	(private?='private')? 'configuration' name=DottedName  
 	Parameters?
-	'extends' ConfigurationExtensions ConfigurationElementBlock? 
-	'end'  SEMICOLON;
+	'extends' ConfigurationExtensions ConfigurationElementBlock 
+	 SEMICOLON;
 	
 
 // (Instance) model elements
 
 Feature returns av3::Feature:
-	name=ID ':' direction=FeatureDirection? sampled?='sampled'? category=FeatureCategory 
-	reverse?='reverse'? type=[av3::Type|QualifiedName]? PropertiesBlock?
-	SEMICOLON;
+	name=ID ':' direction=FeatureDirection? sampled?='sampled'? 
+	category=FeatureCategory 
+	(reverse?='reverse'? 
+	type=[av3::Type|QualifiedName] )?
+	PropertiesBlock?
+	;
 
 Component returns av3::Component:
 	name=ID ':' category=ComponentCategory
-	typeReference=TypeReference? NestedComponentImplementationBlock?
- SEMICOLON;
+	typeReference=TypeReference? 
+	NestedComponentImplementationBlock?
+ ;
 
 Connection returns av3::Association:
 	name=ID ':' associationType=ConnectionType source=ModelElementReference
-	'->' destination=ModelElementReference PropertiesBlock? SEMICOLON;
+	'->' destination=ModelElementReference PropertiesBlock? ;
 
 FeatureMapping returns av3::Association:
 	name=ID ':' associationType=MappingType source=ModelElementReference
-	'=>' destination=ModelElementReference PropertiesBlock? SEMICOLON;
+	'=>' destination=ModelElementReference PropertiesBlock? ;
 
 
 FlowPath returns av3::Association:
 	name=ID ':' associationType=FlowPathType source=ModelElementReference
-	'->' destination=ModelElementReference PropertiesBlock? SEMICOLON;
+	'->' destination=ModelElementReference PropertiesBlock? ;
 
 FlowSource returns av3::Association:
-	name=ID ':' associationType=FlowSourceType  destination=ModelElementReference  PropertiesBlock? SEMICOLON;
+	name=ID ':' associationType=FlowSourceType  destination=ModelElementReference  PropertiesBlock? ;
 
 FlowSink returns av3::Association:
 	name=ID ':' associationType=FlowSinkType  source=ModelElementReference 
-	 PropertiesBlock? SEMICOLON;
+	 PropertiesBlock? ;
+
+fragment UseProps*:	
+	'use''properties' useProperties += [av3::PropertySet|QualifiedName] (',' useProperties += [av3::PropertySet|QualifiedName])* 
+;
 
 
 Path returns av3::PathSequence:
 	name=ID ':' EndToEndFlowKeywords elements+=PathElement ('->' elements+=PathElement)+
-	 PropertiesBlock? SEMICOLON;
+	 PropertiesBlock? ;
 
 
 PathElement returns av3::PathElement:
@@ -116,18 +134,18 @@ ConfigurationAssignment returns av3::ConfigurationAssignment:
 	target= ModelElementReference '=>' 
 	((value=TypeReference (CurlyConfigurationElementBlock)?)
 	| CurlyConfigurationElementBlock)
-	SEMICOLON;
+	;
 
 
 FlowAssignment returns av3::PathSequence:
 	target= ModelElementReference '=>' 'flow'
 	elements+=PathElement ('->' elements+=PathElement)*
-	SEMICOLON;
+	;
 
 
 PropertyAssociation returns av3::PropertyAssociation:
 	target=PropertyReference  '=>' 
-	value=PropertyValue SEMICOLON;
+	value=PropertyValue ;
 
 PropertyValue returns av3::PropertyValue:
 	 value=INT
@@ -142,10 +160,14 @@ PropertyReference returns av3::ModelElementReference:
 		;
 
 fragment ConfigurationElementBlock *:
-	'is' ( propertyAssociations+=PropertyAssociation | assignments+=ConfigurationAssignment )+;
+	('is' ConfigurationElement (SEMICOLON ConfigurationElement )* SEMICOLON? )? 'end';
 
 fragment CurlyConfigurationElementBlock *:
-	'{' (propertyAssociations+=PropertyAssociation | assignments+=ConfigurationAssignment )* '}';
+	'{' ConfigurationElement (SEMICOLON ConfigurationElement )* SEMICOLON? '}';
+
+fragment ConfigurationElement*: 
+	propertyAssociations+=PropertyAssociation | assignments+=ConfigurationAssignment
+;
 
 fragment Parameters *:
 	parameterized?='(' (parameters+=ConfigurationParameter (',' parameters+=ConfigurationParameter)*)? ')';
@@ -178,7 +200,12 @@ fragment PropertiesBlock *:
 
 // to be used for inline nested component implementations 
 fragment NestedComponentImplementationBlock *:
-	 '{' (features+=Feature | connections+=Connection| connections+=FeatureMapping  | components+=Component |  propertyAssociations+=PropertyAssociation)* '}';
+	 '{' NestedImplementationElement (SEMICOLON NestedImplementationElement)* SEMICOLON?
+	 	'}';
+	 	
+fragment NestedImplementationElement*: 
+	features+=Feature | connections+=Connection| connections+=FeatureMapping  | components+=Component |  propertyAssociations+=PropertyAssociation
+;
 
 fragment ConfigurationExtensions *:
 	superClassifiers +=RealizationReference

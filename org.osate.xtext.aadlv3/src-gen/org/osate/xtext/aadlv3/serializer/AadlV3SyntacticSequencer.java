@@ -34,6 +34,11 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AadlV3GrammarAccess grammarAccess;
 	protected AbstractElementAlias match_ComponentImplementation_ExtendsKeyword_3_0_q;
 	protected AbstractElementAlias match_ComponentInterface_ExtendsKeyword_4_0_q;
+	protected AbstractElementAlias match_ConfigurationElementBlock_SEMICOLONParserRuleCall_0_3_q;
+	protected AbstractElementAlias match_CurlyConfigurationElementBlock_SEMICOLONParserRuleCall_3_q;
+	protected AbstractElementAlias match_ImplementationBody_SEMICOLONParserRuleCall_0_3_q;
+	protected AbstractElementAlias match_InterfaceBody_SEMICOLONParserRuleCall_0_3_q;
+	protected AbstractElementAlias match_NestedComponentImplementationBlock_SEMICOLONParserRuleCall_3_q;
 	protected AbstractElementAlias match_Workingset_SEMICOLONParserRuleCall_5_q;
 	
 	@Inject
@@ -41,6 +46,11 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 		grammarAccess = (AadlV3GrammarAccess) access;
 		match_ComponentImplementation_ExtendsKeyword_3_0_q = new TokenAlias(false, true, grammarAccess.getComponentImplementationAccess().getExtendsKeyword_3_0());
 		match_ComponentInterface_ExtendsKeyword_4_0_q = new TokenAlias(false, true, grammarAccess.getComponentInterfaceAccess().getExtendsKeyword_4_0());
+		match_ConfigurationElementBlock_SEMICOLONParserRuleCall_0_3_q = new TokenAlias(false, true, grammarAccess.getConfigurationElementBlockAccess().getSEMICOLONParserRuleCall_0_3());
+		match_CurlyConfigurationElementBlock_SEMICOLONParserRuleCall_3_q = new TokenAlias(false, true, grammarAccess.getCurlyConfigurationElementBlockAccess().getSEMICOLONParserRuleCall_3());
+		match_ImplementationBody_SEMICOLONParserRuleCall_0_3_q = new TokenAlias(false, true, grammarAccess.getImplementationBodyAccess().getSEMICOLONParserRuleCall_0_3());
+		match_InterfaceBody_SEMICOLONParserRuleCall_0_3_q = new TokenAlias(false, true, grammarAccess.getInterfaceBodyAccess().getSEMICOLONParserRuleCall_0_3());
+		match_NestedComponentImplementationBlock_SEMICOLONParserRuleCall_3_q = new TokenAlias(false, true, grammarAccess.getNestedComponentImplementationBlockAccess().getSEMICOLONParserRuleCall_3());
 		match_Workingset_SEMICOLONParserRuleCall_5_q = new TokenAlias(false, true, grammarAccess.getWorkingsetAccess().getSEMICOLONParserRuleCall_5());
 	}
 	
@@ -82,6 +92,16 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_ComponentImplementation_ExtendsKeyword_3_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_ComponentInterface_ExtendsKeyword_4_0_q.equals(syntax))
 				emit_ComponentInterface_ExtendsKeyword_4_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_ConfigurationElementBlock_SEMICOLONParserRuleCall_0_3_q.equals(syntax))
+				emit_ConfigurationElementBlock_SEMICOLONParserRuleCall_0_3_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_CurlyConfigurationElementBlock_SEMICOLONParserRuleCall_3_q.equals(syntax))
+				emit_CurlyConfigurationElementBlock_SEMICOLONParserRuleCall_3_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_ImplementationBody_SEMICOLONParserRuleCall_0_3_q.equals(syntax))
+				emit_ImplementationBody_SEMICOLONParserRuleCall_0_3_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_InterfaceBody_SEMICOLONParserRuleCall_0_3_q.equals(syntax))
+				emit_InterfaceBody_SEMICOLONParserRuleCall_0_3_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_NestedComponentImplementationBlock_SEMICOLONParserRuleCall_3_q.equals(syntax))
+				emit_NestedComponentImplementationBlock_SEMICOLONParserRuleCall_3_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Workingset_SEMICOLONParserRuleCall_5_q.equals(syntax))
 				emit_Workingset_SEMICOLONParserRuleCall_5_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
@@ -93,6 +113,7 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'extends'?
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     name=DottedName (ambiguity) 'end' SEMICOLON (rule end)
 	 *     name=DottedName (ambiguity) 'is' assignments+=ConfigurationAssignment
 	 *     name=DottedName (ambiguity) 'is' components+=Component
 	 *     name=DottedName (ambiguity) 'is' connections+=Connection
@@ -110,6 +131,8 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'extends'?
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     name=ID (ambiguity) 'end' SEMICOLON (rule end)
+	 *     name=ID (ambiguity) 'is' 'use' 'properties' useProperties+=[PropertySet|QualifiedName]
 	 *     name=ID (ambiguity) 'is' features+=Feature
 	 *     name=ID (ambiguity) 'is' flows+=FlowPath
 	 *     name=ID (ambiguity) 'is' flows+=FlowSink
@@ -117,6 +140,78 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     name=ID (ambiguity) 'is' propertyAssociations+=PropertyAssociation
 	 */
 	protected void emit_ComponentInterface_ExtendsKeyword_4_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     SEMICOLON?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     assignments+=ConfigurationAssignment (ambiguity) 'end' SEMICOLON (rule end)
+	 *     propertyAssociations+=PropertyAssociation (ambiguity) 'end' SEMICOLON (rule end)
+	 */
+	protected void emit_ConfigurationElementBlock_SEMICOLONParserRuleCall_0_3_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     SEMICOLON?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     assignments+=ConfigurationAssignment (ambiguity) '}' (rule end)
+	 *     propertyAssociations+=PropertyAssociation (ambiguity) '}' (rule end)
+	 */
+	protected void emit_CurlyConfigurationElementBlock_SEMICOLONParserRuleCall_3_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     SEMICOLON?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     assignments+=ConfigurationAssignment (ambiguity) 'end' SEMICOLON (rule end)
+	 *     components+=Component (ambiguity) 'end' SEMICOLON (rule end)
+	 *     connections+=Connection (ambiguity) 'end' SEMICOLON (rule end)
+	 *     connections+=FeatureMapping (ambiguity) 'end' SEMICOLON (rule end)
+	 *     flowAssignments+=FlowAssignment (ambiguity) 'end' SEMICOLON (rule end)
+	 *     paths+=Path (ambiguity) 'end' SEMICOLON (rule end)
+	 *     propertyAssociations+=PropertyAssociation (ambiguity) 'end' SEMICOLON (rule end)
+	 */
+	protected void emit_ImplementationBody_SEMICOLONParserRuleCall_0_3_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     SEMICOLON?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     features+=Feature (ambiguity) 'end' SEMICOLON (rule end)
+	 *     flows+=FlowPath (ambiguity) 'end' SEMICOLON (rule end)
+	 *     flows+=FlowSink (ambiguity) 'end' SEMICOLON (rule end)
+	 *     flows+=FlowSource (ambiguity) 'end' SEMICOLON (rule end)
+	 *     propertyAssociations+=PropertyAssociation (ambiguity) 'end' SEMICOLON (rule end)
+	 *     useProperties+=[PropertySet|QualifiedName] (ambiguity) 'end' SEMICOLON (rule end)
+	 */
+	protected void emit_InterfaceBody_SEMICOLONParserRuleCall_0_3_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     SEMICOLON?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     components+=Component (ambiguity) '}' (rule end)
+	 *     connections+=Connection (ambiguity) '}' (rule end)
+	 *     connections+=FeatureMapping (ambiguity) '}' (rule end)
+	 *     features+=Feature (ambiguity) '}' (rule end)
+	 *     propertyAssociations+=PropertyAssociation (ambiguity) '}' (rule end)
+	 */
+	protected void emit_NestedComponentImplementationBlock_SEMICOLONParserRuleCall_3_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

@@ -87,22 +87,22 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 				}
 				else break;
 			case Aadlv3Package.COMPONENT:
-				sequence_Component_NestedComponentImplementationBlock(context, (Component) semanticObject); 
+				sequence_Component_NestedImplementationElement(context, (Component) semanticObject); 
 				return; 
 			case Aadlv3Package.COMPONENT_CONFIGURATION:
-				sequence_ComponentConfiguration_ConfigurationElementBlock_ConfigurationExtensions_Parameters(context, (ComponentConfiguration) semanticObject); 
+				sequence_ComponentConfiguration_ConfigurationElement_ConfigurationExtensions_Parameters(context, (ComponentConfiguration) semanticObject); 
 				return; 
 			case Aadlv3Package.COMPONENT_IMPLEMENTATION:
-				sequence_ComponentImplementation_ImplementationBody_ImplementationExtensions(context, (ComponentImplementation) semanticObject); 
+				sequence_ComponentImplementation_ImplementationElement_ImplementationExtensions(context, (ComponentImplementation) semanticObject); 
 				return; 
 			case Aadlv3Package.COMPONENT_INTERFACE:
-				sequence_ComponentInterface_InterfaceBody_InterfaceExtensions(context, (ComponentInterface) semanticObject); 
+				sequence_ComponentInterface_InterfaceElement_InterfaceExtensions_UseProps(context, (ComponentInterface) semanticObject); 
 				return; 
 			case Aadlv3Package.CONFIGURATION_ACTUAL:
 				sequence_ConfigurationActual(context, (ConfigurationActual) semanticObject); 
 				return; 
 			case Aadlv3Package.CONFIGURATION_ASSIGNMENT:
-				sequence_ConfigurationAssignment_CurlyConfigurationElementBlock(context, (ConfigurationAssignment) semanticObject); 
+				sequence_ConfigurationAssignment_ConfigurationElement(context, (ConfigurationAssignment) semanticObject); 
 				return; 
 			case Aadlv3Package.CONFIGURATION_PARAMETER:
 				sequence_ConfigurationParameter(context, (ConfigurationParameter) semanticObject); 
@@ -199,7 +199,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *         (propertyAssociations+=PropertyAssociation | assignments+=ConfigurationAssignment)*
 	 *     )
 	 */
-	protected void sequence_ComponentConfiguration_ConfigurationElementBlock_ConfigurationExtensions_Parameters(ISerializationContext context, ComponentConfiguration semanticObject) {
+	protected void sequence_ComponentConfiguration_ConfigurationElement_ConfigurationExtensions_Parameters(ISerializationContext context, ComponentConfiguration semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -225,7 +225,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *         )*
 	 *     )
 	 */
-	protected void sequence_ComponentImplementation_ImplementationBody_ImplementationExtensions(ISerializationContext context, ComponentImplementation semanticObject) {
+	protected void sequence_ComponentImplementation_ImplementationElement_ImplementationExtensions(ISerializationContext context, ComponentImplementation semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -240,11 +240,13 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *         category=ComponentCategory? 
 	 *         name=ID 
 	 *         (superClassifiers+=ReversableInterfaceReference superClassifiers+=ReversableInterfaceReference*)? 
-	 *         (features+=Feature | flows+=FlowPath | flows+=FlowSource | flows+=FlowSink | propertyAssociations+=PropertyAssociation)* 
-	 *         (useProperties+=[PropertySet|QualifiedName] useProperties+=[PropertySet|QualifiedName]*)?
+	 *         (
+	 *             (features+=Feature | flows+=FlowPath | flows+=FlowSource | flows+=FlowSink | propertyAssociations+=PropertyAssociation)? 
+	 *             (useProperties+=[PropertySet|QualifiedName] useProperties+=[PropertySet|QualifiedName]*)?
+	 *         )+
 	 *     )
 	 */
-	protected void sequence_ComponentInterface_InterfaceBody_InterfaceExtensions(ISerializationContext context, ComponentInterface semanticObject) {
+	protected void sequence_ComponentInterface_InterfaceElement_InterfaceExtensions_UseProps(ISerializationContext context, ComponentInterface semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -261,7 +263,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *         (features+=Feature | connections+=Connection | connections+=FeatureMapping | components+=Component | propertyAssociations+=PropertyAssociation)*
 	 *     )
 	 */
-	protected void sequence_Component_NestedComponentImplementationBlock(ISerializationContext context, Component semanticObject) {
+	protected void sequence_Component_NestedImplementationElement(ISerializationContext context, Component semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -316,9 +318,12 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     ConfigurationAssignment returns ConfigurationAssignment
 	 *
 	 * Constraint:
-	 *     (target=ModelElementReference value=TypeReference? (propertyAssociations+=PropertyAssociation | assignments+=ConfigurationAssignment)*)
+	 *     (
+	 *         target=ModelElementReference 
+	 *         (value=TypeReference | (value=TypeReference (propertyAssociations+=PropertyAssociation | assignments+=ConfigurationAssignment)+))?
+	 *     )
 	 */
-	protected void sequence_ConfigurationAssignment_CurlyConfigurationElementBlock(ISerializationContext context, ConfigurationAssignment semanticObject) {
+	protected void sequence_ConfigurationAssignment_ConfigurationElement(ISerializationContext context, ConfigurationAssignment semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -390,8 +395,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *         direction=FeatureDirection? 
 	 *         sampled?='sampled'? 
 	 *         category=FeatureCategory 
-	 *         reverse?='reverse'? 
-	 *         type=[Type|QualifiedName]? 
+	 *         (reverse?='reverse'? type=[Type|QualifiedName])? 
 	 *         propertyAssociations+=PropertyAssociation*
 	 *     )
 	 */
