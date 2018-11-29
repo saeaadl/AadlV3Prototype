@@ -200,6 +200,9 @@ class AadlV3ScopeProvider extends AbstractAadlV3ScopeProvider {
 	def <T extends EObject> Iterable<IEObjectDescription> scopedElementsForImportAlias(Iterable<Import> elements) {
 		val transformed = Iterables.transform(elements, new Function<Import, IEObjectDescription>() {
 			override apply(Import from) {
+				if (from.alias === null){
+					return null;
+				}
 				val qualifiedName = qnameConverter.toQualifiedName(from.importedNamespace)
 				val target = Av3API.lookupComponentClassifier(from, from.importedNamespace)
 				if (qualifiedName !== null && target !== null)
@@ -207,7 +210,8 @@ class AadlV3ScopeProvider extends AbstractAadlV3ScopeProvider {
 				return null;
 			}
 		});
-		return Iterables.filter(transformed, Predicates.notNull());
+		val res = Iterables.filter(transformed, Predicates.notNull());
+		return res;
 	}
 
 }

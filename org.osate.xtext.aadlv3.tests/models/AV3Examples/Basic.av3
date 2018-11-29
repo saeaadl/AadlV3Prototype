@@ -37,6 +37,6 @@ import StandardProperties::*;
 	#Period => 20;
 	end;
 	
-	process LocatorProcess.impl is end;
+	process LocatorProcess.impl  end;
 	
 end ;
