@@ -1,13 +1,11 @@
 package PackP::Q 
-	import nested;
 	type date ;
-	type person ;
-	type int;
-	property Period int;
-	property Size int;
-
-	package nested  
-		type signal ;
-	end ;
+	type signal;
+	interface nnested is
+	signal: feature;
+	end;
+	interface main extends nnested is
+	p1: feature signal;
+	end;
 	
 end ;

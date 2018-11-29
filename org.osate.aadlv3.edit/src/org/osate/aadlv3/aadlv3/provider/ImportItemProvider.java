@@ -67,6 +67,7 @@ public class ImportItemProvider extends ItemProviderAdapter implements IEditingD
 			super.getPropertyDescriptors(object);
 
 			addImportedNamespacePropertyDescriptor(object);
+			addAliasPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -84,6 +85,21 @@ public class ImportItemProvider extends ItemProviderAdapter implements IEditingD
 						getString("_UI_PropertyDescriptor_description", "_UI_Import_importedNamespace_feature",
 								"_UI_Import_type"),
 						Aadlv3Package.Literals.IMPORT__IMPORTED_NAMESPACE, true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Alias feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addAliasPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_Import_alias_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_Import_alias_feature", "_UI_Import_type"),
+						Aadlv3Package.Literals.IMPORT__ALIAS, true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -124,6 +140,7 @@ public class ImportItemProvider extends ItemProviderAdapter implements IEditingD
 
 		switch (notification.getFeatureID(Import.class)) {
 		case Aadlv3Package.IMPORT__IMPORTED_NAMESPACE:
+		case Aadlv3Package.IMPORT__ALIAS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}

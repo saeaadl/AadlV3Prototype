@@ -19,7 +19,7 @@ import org.osate.aadlv3.aadlv3.FeatureCategory
 import org.osate.aadlv3.aadlv3.FeatureDirection
 import org.osate.aadlv3.aadlv3.ModelElement
 import org.osate.aadlv3.aadlv3.ModelElementReference
-import org.osate.aadlv3.aadlv3.PrimitiveType
+import org.osate.aadlv3.aadlv3.DataType
 import org.osate.aadlv3.aadlv3.PropertyAssociation
 import org.osate.aadlv3.aadlv3.Type
 import org.osate.aadlv3.aadlv3.TypeReference
@@ -39,33 +39,37 @@ import org.osate.av3instance.av3instance.AssociationInstance
 import org.osate.av3instance.av3instance.PropertyAssociationInstance
 import java.util.LinkedHashSet
 
+import static extension org.osate.aadlv3.util.Av3API.*
+import org.osate.aadlv3.aadlv3.PackageDeclaration
+import org.osate.aadlv3.aadlv3.Import
+
 class Aadlv3Util {
 	
 	static def String getFullName(ComponentClassifier cl){
 		switch (cl){
 			ComponentInterface: cl.name
-			ComponentImplementation: cl.interface.name+"."+cl.name
-			ComponentConfiguration: cl.interface.name+"."+cl.name
+			ComponentImplementation: cl.componentInterface.name+"."+cl.name
+			ComponentConfiguration: cl.componentInterface.name+"."+cl.name
 		}
 	}
 	
 	static def ComponentCategory getComponentCategory(Iterable<? extends ComponentClassifier> classifiers){
 		for (cl: classifiers){
-			if (cl.category != ComponentCategory.COMPONENT){
+			if (cl.category != ComponentCategory.ABSTRACT){
 				return cl.category
 			}
 		}
-		ComponentCategory.COMPONENT;
+		ComponentCategory.ABSTRACT;
 	}
 	
 	static def ComponentCategory getComponentCategory( ComponentClassifier classifier){
 		val classifiers = classifier.allComponentClassifiers
 		for (cl: classifiers){
-			if (cl.category != ComponentCategory.COMPONENT){
+			if (cl.category != ComponentCategory.ABSTRACT){
 				return cl.category
 			}
 		}
-		ComponentCategory.COMPONENT;
+		ComponentCategory.ABSTRACT;
 	}
 
 	static def HashSet<ComponentClassifier> getAllComponentClassifiers(ComponentClassifier cc) {
@@ -83,8 +87,10 @@ class Aadlv3Util {
 	private static def void addSuperComponentClassifiers(ComponentClassifier cl, HashSet<ComponentClassifier> set) {
 		if (cl instanceof ComponentImplementation){
 			if (cl.superClassifiers.empty){
-				set.add(cl.interface)
-				addSuperComponentClassifiers(cl.interface, set)
+				if (cl.componentInterface !== null) {
+					set.add(cl.componentInterface)
+					addSuperComponentClassifiers(cl.componentInterface, set)
+				}
 			}
 		}
 		if(cl.superClassifiers.empty) return
@@ -106,23 +112,25 @@ class Aadlv3Util {
 		val result = new LinkedHashSet<ComponentInterface>
 		val cif = switch cc {
 			ComponentInterface: cc
-			ComponentImplementation: cc.interface
-			ComponentConfiguration: cc.interface
+			ComponentImplementation: cc.componentInterface
+			ComponentConfiguration: cc.componentInterface
 		}
-		result.add(cif)
-		cif.addSuperComponentInterfaces(result)
+		if (cif !== null){
+			result.add(cif)
+			cif.addSuperComponentInterfaces(result)
+		}
 		return result
 	}
 
 	private static def void addSuperComponentInterfaces(ComponentInterface cl,
 		HashSet<ComponentInterface> set) {
 		if(cl.superClassifiers.empty) return
-		val supercls = cl.superClassifiers.map[scc|scc.type as ComponentInterface]
+		val supercls = cl.superClassifiers.map[scc|scc.type ]
 		supercls.forEach [ scl |
-			set.add(scl)
+			if (scl instanceof ComponentInterface) set.add(scl )
 		]
 		supercls.forEach [ scl |
-			addSuperComponentInterfaces(scl, set)
+			if (scl instanceof ComponentInterface) addSuperComponentInterfaces(scl, set)
 		]
 	}
 
@@ -141,7 +149,7 @@ class Aadlv3Util {
 	private static def void addSuperComponentImplementations(ComponentClassifier cl,
 		HashSet<ComponentImplementation> set) {
 		if(cl.superClassifiers.empty) return
-		val supercls = cl.superClassifiers.map[scc|scc.type as ComponentClassifier]
+		val supercls = cl.superClassifiers.map[scc|scc.type ]
 		supercls.forEach [ scl |
 			if(scl instanceof ComponentImplementation) {
 				set.add(scl)
@@ -149,7 +157,7 @@ class Aadlv3Util {
 		]
 		supercls.forEach [ scl |
 			if(scl instanceof ComponentImplementation || scl instanceof ComponentConfiguration) {
-				addSuperComponentImplementations(scl, set)
+				addSuperComponentImplementations(scl as ComponentClassifier, set)
 			}
 		]
 	}
@@ -246,9 +254,9 @@ class Aadlv3Util {
 		val cif = if (cc instanceof ComponentInterface) {
 			cc
 		} else if (cc instanceof ComponentImplementation){
-			cc.interface
+			cc.componentInterface
 		} else if (cc instanceof ComponentConfiguration){
-			cc.interface
+			cc.componentInterface
 		}
 		if (cif.features.contains(f)){
 			return false
@@ -288,7 +296,8 @@ class Aadlv3Util {
 			if (mer.context === null || !(mer.context.element instanceof Feature)){
 				return fd
 			}
-			val cxtcl = (mer.context.element as Feature).type as ComponentClassifier
+			val cxtcl = (mer.context.element as Feature).type
+			if (cxtcl instanceof ComponentClassifier){
 			var doReverse = isReverseFeature(cxtcl, fea)
 			var pathelement = mer
 			doReverse = if (doReverse) !fea.reverse else fea.reverse 
@@ -298,6 +307,7 @@ class Aadlv3Util {
 				doReverse = if (doReverse) !nextfea.reverse else nextfea.reverse
 			}
 			return if (doReverse) reverseDirection(fd) else fd
+			}
 		}
 		FeatureDirection.NONE
 	}
@@ -467,7 +477,7 @@ class Aadlv3Util {
 		var ctyperef = match.typeReference
 		if (ctyperef === null) return null
 		val n = casscopes.size
-		if(n===0 || ctyperef.type instanceof PrimitiveType) return ctyperef 
+		if(n===0 || ctyperef.type instanceof DataType) return ctyperef 
 		// Also handle ConfigurationParameter
 		// We work from inner to outer CA scope reaching in
 		for (k : n - 1 .. 0) {
@@ -700,9 +710,9 @@ class Aadlv3Util {
 		if( cl === null || superClassifier.eIsProxy || cl.eIsProxy) return false
 		if (superClassifier === null || superClassifier === cl) return true
 		val clinterface = if (cl instanceof ComponentImplementation){
-			cl.interface
+			cl.componentInterface
 		} else if (cl instanceof ComponentConfiguration){
-			cl.interface
+			cl.componentInterface
 		}
 		if (clinterface !== null){
 			if(clinterface == superClassifier) return true
@@ -739,6 +749,23 @@ class Aadlv3Util {
 			}
 		}
 		false
+	}
+	
+	
+	// returns the enclosing component classifier. For a component configuration as 'elem' it is returned
+	def static Iterable<Import> getAliases(EObject elem) {
+		val pkg = elem.containingPackage
+		pkg.imports.filter[im|im.alias !== null]
+	}
+	
+
+	// returns the enclosing component classifier. For a component configuration as 'elem' it is returned
+	def static PackageDeclaration getContainingPackage(EObject elem) {
+		var cxt = elem
+		while (cxt !== null && !(cxt instanceof PackageDeclaration)) {
+			cxt = cxt.eContainer as EObject
+		}
+		return cxt as PackageDeclaration
 	}
 
 	// returns the enclosing component classifier. For a component configuration as 'elem' it is returned
@@ -824,15 +851,13 @@ class Aadlv3Util {
 	
 	// association is connection 
 	def static boolean isConnection(AssociationType connType){
-		connType == AssociationType.FEATURECONNECTION || connType == AssociationType.PORTCONNECTION ||connType == AssociationType.DATACONNECTION 
-		||connType == AssociationType.BUSCONNECTION  ||connType == AssociationType.INTERFACECONNECTION
+		connType == AssociationType.CONNECTION 
 	}
 
 	// association is connection 
 	def static boolean isConnection(Association assoc){
 		val connType = assoc.associationType
-		connType == AssociationType.FEATURECONNECTION || connType == AssociationType.PORTCONNECTION ||connType == AssociationType.DATACONNECTION 
-		||connType == AssociationType.BUSCONNECTION  ||connType == AssociationType.INTERFACECONNECTION
+		connType == AssociationType.CONNECTION 
 	}
 	
 	// mapping from an outer to an inner feature
@@ -847,7 +872,9 @@ class Aadlv3Util {
 	
 	// association represents a flow specification
 	def static boolean isFlowSpec(AssociationType connType){
-		connType == AssociationType.FLOWPATH || connType == AssociationType.FLOWSOURCE ||connType == AssociationType.FLOWSINK 
+		connType == AssociationType.FLOWSINK ||
+		connType == AssociationType.FLOWSOURCE ||
+		connType == AssociationType.FLOWPATH 
 	}
 	// association represents a binding
 	def static boolean isBinding(AssociationType connType){
@@ -857,8 +884,7 @@ class Aadlv3Util {
 	
 	// association represents a flow specification
 	def static boolean isFlowSpec(Association conn){
-		val connType = conn.associationType
-		connType == AssociationType.FLOWPATH || connType == AssociationType.FLOWSOURCE ||connType == AssociationType.FLOWSINK 
+		isFlowSpec(conn.associationType) 
 	}
 	
 	//-------------------------
@@ -923,11 +949,11 @@ class Aadlv3Util {
 	def static ComponentInterface getBaseInterface(EObject context, ComponentCategory cat){
 		switch cat {
 			case ComponentCategory.THREAD: {
-				Av3API.lookupComponentInterface(context,"BaseInterfaces::BaseThread")
+				Av3API.lookupComponentClassifier(context,"BaseInterfaces.BaseThread") as ComponentInterface
 				}
 			case BUS: {
 			}
-			case COMPONENT: {
+			case ABSTRACT: {
 			}
 			case DATA: {
 			}
@@ -938,7 +964,7 @@ class Aadlv3Util {
 			case PROCESS: {
 			}
 			case PROCESSOR: {
-				Av3API.lookupComponentInterface(context,"BaseInterfaces::BaseProcessor")
+				Av3API.lookupComponentClassifier(context,"BaseInterfaces.BaseProcessor") as ComponentInterface
 			}
 			case SUBPROGRAM: {
 			}
@@ -1006,7 +1032,7 @@ class Aadlv3Util {
 		return pai
 	}
 
-	private static HashMap<ComponentInstance, TypeReference> configuredClassifierTypereferenceCache = new HashMap;
+	static HashMap<ComponentInstance, TypeReference> configuredClassifierTypereferenceCache = new HashMap;
 	
 	def static void resetComponentInstanceCache(){
 		configuredClassifierTypereferenceCache.clear

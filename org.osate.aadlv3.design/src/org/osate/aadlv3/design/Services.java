@@ -62,7 +62,7 @@ public class Services {
 	}
 
 	public boolean isHardwareComponent(ComponentInstance io) {
-		return (isProcessor(io) || isMemory(io) || isBus(io));
+		return (isProcessor(io) || isMemory(io) || isBus(io)|| isDevice(io));
 	}
 
 	public boolean isHardwareFeature(FeatureInstance io) {
@@ -70,7 +70,7 @@ public class Services {
 	}
 
 	public boolean isHardwareConnection(AssociationInstance io) {
-		return (io.getAssociationType() == AssociationType.BUSCONNECTION);
+		return (io.getAssociationType() == AssociationType.CONNECTION && isHardware(io.getDestination()));
 	}
 
 
@@ -79,7 +79,7 @@ public class Services {
 	}
 
 	public boolean isAbstract(ComponentInstance eo) {
-		return (eo.getCategory() == ComponentCategory.COMPONENT);
+		return (eo.getCategory() == ComponentCategory.ABSTRACT);
 	}
 
 	public boolean isThreadGroup(ComponentInstance eo) {

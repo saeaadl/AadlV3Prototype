@@ -1,13 +1,12 @@
 package ConfigurationPresentation 
-type int;
-property SecurityLevel int ;
-property SafetyLevel int;
-property Period int;
-property Deadline int;
+import StandardProperties::*;
+
+property SecurityLevel: int ;
+property SafetyLevel: int;
 
 system interface x end;
 
-system x.i extends x is
+system x.i  is
 	xsub1: process subsubsys;
  	xsub2: process subsubsys;
 end;
@@ -21,7 +20,7 @@ end;
 
 interface subsubsys end;
 
-component subsubsys.i end; 
+abstract subsubsys.i end; 
 
 system interface top end;
 

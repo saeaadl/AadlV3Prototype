@@ -59,41 +59,9 @@ public class ComponentInterfaceItemProvider extends ComponentClassifierItemProvi
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addImplementationsPropertyDescriptor(object);
-			addConfigurationsPropertyDescriptor(object);
 			addUsePropertiesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Implementations feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addImplementationsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_ComponentInterface_implementations_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_ComponentInterface_implementations_feature",
-						"_UI_ComponentInterface_type"),
-				Aadlv3Package.Literals.COMPONENT_INTERFACE__IMPLEMENTATIONS, true, false, true, null, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Configurations feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addConfigurationsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_ComponentInterface_configurations_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_ComponentInterface_configurations_feature",
-						"_UI_ComponentInterface_type"),
-				Aadlv3Package.Literals.COMPONENT_INTERFACE__CONFIGURATIONS, true, false, true, null, null, null));
 	}
 
 	/**

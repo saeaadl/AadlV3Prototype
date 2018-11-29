@@ -1,13 +1,16 @@
 package FlowExamples 
-// connections without and with reach down into subcomponents
+// connections without and with reach down into is
 // shared data component
 
 	type systemstate;
+	type int;
+	property Period: int;
+	property Size: int;
 	
 	interface actuator is
 		inp: in port;
 		fea: feature;
-		action: flow sink inp;
+		action: flow sink  inp ;
 	end;
 	interface sensor is
 		outp: out port;
@@ -15,23 +18,23 @@ package FlowExamples
 		reading: flow source outp;
 	end ;
 	
-	component sensor.i extends sensor is
+	abstract sensor.i  is
 		sub1: thread sense;
 		upmap: mapping outp => sub1.p1 ;
 		reading => flow upmap -> sub1.reading;
 	end ;
-	component actuator.i extends actuator is
+	abstract actuator.i  is
 		sub2: thread actuate;
 		downmap: mapping inp => sub2.p1;
 		action=> flow sub2.taction;
 	end ;
 	thread interface sense  is
 		p1: out port ;
-		reading: flow source p1;
+		reading: flow  source p1;
 	end ;
 	thread interface actuate  is
 		p1: in port ;
-		taction: flow sink p1;
+		taction: flow  sink p1;
 	end ;
 	
 	interface control is
@@ -44,7 +47,7 @@ package FlowExamples
 		dofilter: thread filter;
 		docompute: thread compute;
 		extin: mapping insignal => dofilter.insignal;
-		ftoc: port dofilter.outsignal -> docompute.insignal;
+		ftoc: connection dofilter.outsignal -> docompute.insignal;
 		extout: mapping outaction => docompute.outsignal ;
 		processflow => flow dofilter.filterpath -> ftoc -> docompute.computepath ;
 	end;
@@ -53,6 +56,7 @@ package FlowExamples
 	insignal : in port;
 	outsignal : out port;
 	filterpath: flow path insignal -> outsignal;
+	#Period => 20 ;
 	end;
 	
 	thread interface compute is
@@ -63,12 +67,12 @@ package FlowExamples
 	
 	system interface conntop end;
 	system conntop.i is
-		sense: component sensor.i;
+		sense: abstract sensor.i;
 		processing: process control.impl;
-		actuate: component actuator.i;
+		actuate: abstract actuator.i;
 		hw : system hardwareplatform.impl;
-		sensetocontrol: port sense.sub1.p1 -> processing.insignal;
-		controltoactuate: port processing.outaction -> actuate.inp;
+		sensetocontrol: connection sense.sub1.p1 -> processing.insignal;
+		controltoactuate: connection processing.outaction -> actuate.inp;
 		etef: end to end flow sense.sub1.reading -> sensetocontrol-> processing.processflow -> controltoactuate -> actuate.action;
 	end;
 	
@@ -87,7 +91,7 @@ package FlowExamples
 	system hardwareplatform.impl is
 	cpu: processor x86;
 	mybus: bus canbus;
-	busconn: bus cpu.canbusaccess -> mybus.canbusaccess;
+	busconn: connection cpu.canbusaccess -> mybus.canbusaccess;
 	extbusaccess: mapping canbusaccess => mybus.canbusaccess;
 	end;
 	

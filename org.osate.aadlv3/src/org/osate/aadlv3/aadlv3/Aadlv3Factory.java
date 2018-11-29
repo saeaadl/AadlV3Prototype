@@ -62,13 +62,13 @@ public interface Aadlv3Factory extends EFactory {
 	PropertySet createPropertySet();
 
 	/**
-	 * Returns a new object of class '<em>Primitive Type</em>'.
+	 * Returns a new object of class '<em>Data Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Primitive Type</em>'.
+	 * @return a new object of class '<em>Data Type</em>'.
 	 * @generated
 	 */
-	PrimitiveType createPrimitiveType();
+	DataType createDataType();
 
 	/**
 	 * Returns a new object of class '<em>Component Interface</em>'.

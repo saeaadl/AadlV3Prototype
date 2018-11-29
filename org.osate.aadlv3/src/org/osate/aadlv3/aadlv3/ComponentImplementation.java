@@ -29,7 +29,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.osate.aadlv3.aadlv3.ComponentImplementation#getComponents <em>Components</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.ComponentImplementation#getConnections <em>Connections</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.ComponentImplementation#getAssignments <em>Assignments</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.ComponentImplementation#getInterface <em>Interface</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.ComponentImplementation#getFlowAssignments <em>Flow Assignments</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.ComponentImplementation#getPaths <em>Paths</em>}</li>
  * </ul>
@@ -38,7 +37,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface ComponentImplementation extends ComponentClassifier {
+public interface ComponentImplementation extends ComponentRealization {
 	/**
 	 * Returns the value of the '<em><b>Components</b></em>' containment reference list.
 	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.Component}.
@@ -86,34 +85,6 @@ public interface ComponentImplementation extends ComponentClassifier {
 	 * @generated
 	 */
 	EList<ConfigurationAssignment> getAssignments();
-
-	/**
-	 * Returns the value of the '<em><b>Interface</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.osate.aadlv3.aadlv3.ComponentInterface#getImplementations <em>Implementations</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Interface</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Interface</em>' reference.
-	 * @see #setInterface(ComponentInterface)
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getComponentImplementation_Interface()
-	 * @see org.osate.aadlv3.aadlv3.ComponentInterface#getImplementations
-	 * @model opposite="implementations" resolveProxies="false" ordered="false"
-	 * @generated
-	 */
-	ComponentInterface getInterface();
-
-	/**
-	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.ComponentImplementation#getInterface <em>Interface</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Interface</em>' reference.
-	 * @see #getInterface()
-	 * @generated
-	 */
-	void setInterface(ComponentInterface value);
 
 	/**
 	 * Returns the value of the '<em><b>Flow Assignments</b></em>' containment reference list.

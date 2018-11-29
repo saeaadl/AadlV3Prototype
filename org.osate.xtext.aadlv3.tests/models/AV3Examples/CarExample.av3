@@ -2,10 +2,10 @@ package CarExample
 system interface car end;
 
 system car.design
-subcomponents
+is
   Powertrain:  system Powertrain.design ;
   EntertainmentSystem:  system EntertainmentSystem.basic;
-end car.design;
+end ;
 
 configuration car.configurable (gasengine: gasengine , speakers:  Speakers ) extends car.design is
 Powertrain.myengine => gasengine ;
@@ -15,23 +15,23 @@ end;
 
 configuration car.config extends car.configurable 
 ( gasengine => gasengine.v4 , speakers => Speakers.Bose)
-end car.config;
+end ;
 
 system interface EntertainmentSystem end;
 
 system EntertainmentSystem.basic 
-subcomponents  
+is  
   tuner:  system Tuner.Alpine;
   soundsystem: system MySoundSystem.Selectablespeakers;
-end EntertainmentSystem.basic;
+end ;
 
 system interface MySoundSystem end;
 
 system MySoundSystem.design 
-subcomponents
+is
   amplifier:  system Amplifier.Kenwood;
   speakers: system Speakers;
-end MySoundSystem.design;
+end ;
 
 configuration MySoundSystem.Selectablespeakers (speakers: Speakers) extends MySoundSystem.design
 is  speakers => speakers ;
@@ -62,9 +62,9 @@ system interface Powertrain
 end;
 
 system Powertrain.design
-subcomponents
+is
   myengine:  system gasengine;
-end Powertrain.design;
+end ;
 
 configuration Powertrain.gas (gasengine : gasengine) extends Powertrain.design
 is myengine => gasengine;

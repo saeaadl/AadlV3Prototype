@@ -41,7 +41,7 @@ import org.osate.av3instance.av3instance.InstanceObject;
 import org.osate.aadlv3.provider.AV3InstanceEditPlugin;
 
 /**
- * This is the item provider adapter for a {@link org.osate.aadlv3.av3instance.InstanceObject} object.
+ * This is the item provider adapter for a {@link org.osate.av3instance.av3instance.InstanceObject} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated

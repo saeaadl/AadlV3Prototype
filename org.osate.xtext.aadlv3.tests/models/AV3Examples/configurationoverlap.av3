@@ -1,13 +1,12 @@
 package configurationoverlap 
-type int;
-property SecurityLevel int ;
-property SafetyLevel int;
-property Period int;
-property Deadline int;
+import StandardProperties::*;
+
+property SecurityLevel: int ;
+property SafetyLevel: int;
 
 system interface x end;
 
-system x.i extends x is
+system x.i  is
 	xsub1: process subsubsys;
  	xsub2: process subsubsys;
 end;
@@ -21,9 +20,9 @@ end;
 
 interface subsubsys end;
 
-component subsubsys.i is t1: thread t.ii; end; 
+abstract subsubsys.i is t1: thread t.ii; end; 
 
-component subsubsys.i2 is t2: thread t.ii; end; 
+abstract subsubsys.i2 is t2: thread t.ii; end; 
 
 interface t end;
 thread t.ii end;

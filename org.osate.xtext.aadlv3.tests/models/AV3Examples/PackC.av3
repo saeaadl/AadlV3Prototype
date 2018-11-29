@@ -1,0 +1,9 @@
+package PackC2 
+	type tt;
+	interface mine is
+		sig : in feature tt;
+	end ;
+	
+	bus interface canbus end;
+	
+end ;

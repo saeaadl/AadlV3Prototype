@@ -1,5 +1,5 @@
 package ConnectionExamples 
-// connections without and with reach down into subcomponents
+// connections without and with reach down into is
 // shared data component
 
 	type systemstate;
@@ -15,24 +15,27 @@ package ConnectionExamples
 		fea: feature;
 	end ;
 	
-	component sensor.i extends sensor is
+	abstract sensor.i is
 		sub1: thread sense;
 		upmap: mapping outp => sub1.p1 ;
 		stateaccess: mapping state => sub1.state;
 	end ;
-	component actuator.i extends actuator is
+	abstract actuator.i  is
 		mystate: data systemstate { stateread : provides read access systemstate;
 			statewrite : provides write access systemstate;
 		};
 		sub2: thread actuate;
 		downmap: mapping inp => sub2.p1;
 		stateread: mapping state => mystate.stateread ;
-		statewrite: data sub2.state -> mystate.statewrite ;
+		statewrite: connection sub2.state -> mystate.statewrite ;
 	end ;
+	
+	
 	thread interface sense  is
 		state: requires read access systemstate;
 		p1: out port ;
 	end ;
+	
 	thread interface actuate  is
 		p1: in port ;
 		state: requires write access systemstate;
@@ -40,13 +43,13 @@ package ConnectionExamples
 	
 	system interface conntop end;
 	system conntop.i is
-		sense: component sensor.i;
-		actuate: component actuator.i;
+		sense: abstract sensor.i;
+		actuate: abstract actuator.i;
 		hw : system hardwareplatform.impl;
-		conn1: port sense.sub1.p1 -> actuate.sub2.p1;
-		conn2: port sense.outp -> actuate.inp;
-		stateaccess: data actuate.state ->sense.state;
-		fconn: feature sense.fea -> actuate.fea;
+		conn1: connection sense.sub1.p1 -> actuate.sub2.p1;
+		conn2: connection sense.outp -> actuate.inp;
+		stateaccess: connection actuate.state ->sense.state;
+		fconn: connection sense.fea -> actuate.fea;
 	end;
 	
 	bus interface canbus is
@@ -64,7 +67,7 @@ package ConnectionExamples
 	system hardwareplatform.impl is
 	cpu: processor x86;
 	mybus: bus canbus;
-	busconn: bus cpu.canbusaccess -> mybus.canbusaccess;
+	busconn: connection cpu.canbusaccess -> mybus.canbusaccess;
 	extbusaccess: mapping canbusaccess => mybus.canbusaccess;
 	end;
 	

@@ -11,7 +11,7 @@ import org.osate.aadlv3.aadlv3.ComponentInterface
 import org.osate.aadlv3.aadlv3.ConfigurationAssignment
 import org.osate.aadlv3.aadlv3.Feature
 import org.osate.aadlv3.aadlv3.FeatureCategory
-import org.osate.aadlv3.aadlv3.PrimitiveType
+import org.osate.aadlv3.aadlv3.DataType
 import org.osate.aadlv3.aadlv3.Workingset
 import org.osate.aadlv3.util.Aadlv3Util
 
@@ -113,7 +113,7 @@ class Instantiator {
 					comps.forEach[subc| subc.instantiateComponent(casscopes,ci)]
 					casscopes.pop
 				}
-				PrimitiveType: {
+				DataType: {
 					// access features in {}
 					comp.features.forEach[f| ci.features += f.instantiateFeature(false)]
 				}
@@ -204,10 +204,10 @@ class Instantiator {
 	
 	def void instantiateFlowSpec(Association conn, ComponentInstance context){
 		val fsi = conn.createAssociationInstance
-		if (conn.associationType != AssociationType.FLOWSOURCE){
+		if (conn.source !== null){
 			fsi.source = context.getInstanceElement(conn.source) as FeatureInstance
 		}
-		if (conn.associationType != AssociationType.FLOWSINK){
+		if (conn.destination !== null){
 			fsi.destination = context.getInstanceElement(conn.destination) as FeatureInstance
 		}
 		for (pa : conn.propertyAssociations){

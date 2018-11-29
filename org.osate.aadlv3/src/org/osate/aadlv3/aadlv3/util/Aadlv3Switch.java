@@ -144,15 +144,15 @@ public class Aadlv3Switch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case Aadlv3Package.PRIMITIVE_TYPE: {
-			PrimitiveType primitiveType = (PrimitiveType) theEObject;
-			T result = casePrimitiveType(primitiveType);
+		case Aadlv3Package.DATA_TYPE: {
+			DataType dataType = (DataType) theEObject;
+			T result = caseDataType(dataType);
 			if (result == null)
-				result = casePackageElement(primitiveType);
+				result = casePackageElement(dataType);
 			if (result == null)
-				result = caseType(primitiveType);
+				result = caseType(dataType);
 			if (result == null)
-				result = caseNamedElement(primitiveType);
+				result = caseNamedElement(dataType);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -166,6 +166,21 @@ public class Aadlv3Switch<T> extends Switch<T> {
 				result = caseType(componentClassifier);
 			if (result == null)
 				result = caseNamedElement(componentClassifier);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Aadlv3Package.COMPONENT_REALIZATION: {
+			ComponentRealization componentRealization = (ComponentRealization) theEObject;
+			T result = caseComponentRealization(componentRealization);
+			if (result == null)
+				result = caseComponentClassifier(componentRealization);
+			if (result == null)
+				result = casePackageElement(componentRealization);
+			if (result == null)
+				result = caseType(componentRealization);
+			if (result == null)
+				result = caseNamedElement(componentRealization);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -189,6 +204,8 @@ public class Aadlv3Switch<T> extends Switch<T> {
 			ComponentImplementation componentImplementation = (ComponentImplementation) theEObject;
 			T result = caseComponentImplementation(componentImplementation);
 			if (result == null)
+				result = caseComponentRealization(componentImplementation);
+			if (result == null)
 				result = caseComponentClassifier(componentImplementation);
 			if (result == null)
 				result = casePackageElement(componentImplementation);
@@ -203,6 +220,8 @@ public class Aadlv3Switch<T> extends Switch<T> {
 		case Aadlv3Package.COMPONENT_CONFIGURATION: {
 			ComponentConfiguration componentConfiguration = (ComponentConfiguration) theEObject;
 			T result = caseComponentConfiguration(componentConfiguration);
+			if (result == null)
+				result = caseComponentRealization(componentConfiguration);
 			if (result == null)
 				result = caseComponentClassifier(componentConfiguration);
 			if (result == null)
@@ -450,17 +469,17 @@ public class Aadlv3Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Primitive Type</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Data Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Primitive Type</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Data Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T casePrimitiveType(PrimitiveType object) {
+	public T caseDataType(DataType object) {
 		return null;
 	}
 
@@ -731,6 +750,21 @@ public class Aadlv3Switch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T casePathSequence(PathSequence object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Component Realization</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Component Realization</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseComponentRealization(ComponentRealization object) {
 		return null;
 	}
 

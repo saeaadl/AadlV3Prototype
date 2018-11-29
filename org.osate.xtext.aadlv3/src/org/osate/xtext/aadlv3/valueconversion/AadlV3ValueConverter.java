@@ -67,24 +67,24 @@ public class AadlV3ValueConverter extends DefaultTerminalConverters {
 			}
 		};
 	}
-
-	@ValueConverter(rule = "ConnectionType")
-	public IValueConverter<AssociationType> ConnectionType() {
-		return new IValueConverter<AssociationType>() {
-			@Override
-			public AssociationType toValue(String string, INode node) {
-				if (string == null) {
-					return null;
-				}
-				return AssociationType.get(string.toLowerCase()+" connection");
-			}
-
-			@Override
-			public String toString(AssociationType value) {
-				return value.getName().replaceFirst(" connection", "");
-			}
-		};
-	}
+//
+//	@ValueConverter(rule = "ConnectionType")
+//	public IValueConverter<AssociationType> ConnectionType() {
+//		return new IValueConverter<AssociationType>() {
+//			@Override
+//			public AssociationType toValue(String string, INode node) {
+//				if (string == null) {
+//					return null;
+//				}
+//				return AssociationType.get(string.toLowerCase()+" connection");
+//			}
+//
+//			@Override
+//			public String toString(AssociationType value) {
+//				return value.getName().replaceFirst(" connection", "");
+//			}
+//		};
+//	}
 
 	@ValueConverter(rule = "MappingType")
 	public IValueConverter<AssociationType> MappingType() {

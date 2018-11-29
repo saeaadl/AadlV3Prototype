@@ -71,7 +71,6 @@ public class TypeReferenceItemProvider extends ItemProviderAdapter implements IE
 
 			addReversePropertyDescriptor(object);
 			addTypePropertyDescriptor(object);
-			addComponentinterfacePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -105,22 +104,6 @@ public class TypeReferenceItemProvider extends ItemProviderAdapter implements IE
 						getString("_UI_PropertyDescriptor_description", "_UI_TypeReference_type_feature",
 								"_UI_TypeReference_type"),
 						Aadlv3Package.Literals.TYPE_REFERENCE__TYPE, true, false, true, null, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Componentinterface feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addComponentinterfacePropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_TypeReference_componentinterface_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_TypeReference_componentinterface_feature",
-								"_UI_TypeReference_type"),
-						Aadlv3Package.Literals.TYPE_REFERENCE__COMPONENTINTERFACE, true, false, true, null, null,
-						null));
 	}
 
 	/**

@@ -2,23 +2,23 @@ package InterfacePresentation
 
 // Slide 4
 interface Logical
-	features
+	is
 	temperature : out port ;
 		Speed : out port ;
 end ;
 interface Physical
-	features
+	is
 	Network : requires bus access CANBus;
 end ;
 interface s1 extends Logical
-	features
+	is
 	Onemore : out port ;
 end ;
 interface s2 extends Logical , Physical 
 end ;
 
 interface s3 extends Logical , Physical
-	features
+	is
 	Onemore : out port ;
 end ;
 
@@ -28,13 +28,13 @@ bus interface CANBus end;
 // Slide 8 Views
 
 interface Functional
-	features
+	is
 	temperature : out port ;
 	Speed : out port ;
 	Reset : in port ;
 end ;
 interface Admin
-	features
+	is
 		Status : out port ;
 //		Reset : port ;
 		Shutdown : in port ;
@@ -54,61 +54,61 @@ end ;
 
 // Slide 7 Composition of named interfaces
 system interface sif1
-	features 
+	is 
     IFlog : interface Logical;
 		IFphys : interface Physical ;
 end ;
 system interface voter
-	features
+	is
 	Source1 : interface reverse Logical ;
 	Source2 : interface reverse Logical ;
 end ;
 
 system interface MyTop end;
 system  MyTop.impl
-	subcomponents
+	is
 	Sub1 : system sif1 ;
 	Sub2 : system sif1 ;
 	Voter : system voter ;
-	connections
-	Conn1 : interface Sub1.IFlog -> Voter.Source1 ;
-	Conn2 : interface Sub2.IFlog.temperature -> Voter.Source2.temperature ;
+	
+//	Conn1 : interface Sub1.IFlog -> Voter.Source1 ;
+//	Conn2 : interface Sub2.IFlog.temperature -> Voter.Source2.temperature ;
 	end ;
 	
 // Slide 8 Composition of named interfaces	
 interface Logical1
-	features
+	is
 	temperature : out port ;
 	speed : out port ;
 end ;
 interface Logical2
-	features
+	is
 	temperature : out port ;
 	weight : out port ;
 end ;
+
 interface sub
-	features
+	is
 	outp : out port ;
 end ;
 system interface sys2
-	features
+	is
 	 L1 : interface Logical1 ;
 	 L2 : interface Logical2 ;
 end ;
-system  sys2.i1 extends sys2
-	subcomponents
+system  sys2.i1 
+	is
 	sub1 : system sub ;
-	connections
-  // single output to the two temperature features
+  // single output to the two temperature is
 			conn1 : mapping L1.temperature =>sub1.outp  ;
 			conn2 : mapping L2.temperature => sub1.outp ;
 end ;
-system  sys2.i2 extends sys2
-	subcomponents
+system  sys2.i2 
+	is
 	sub1 : system sub ;
 	sub2 : system sub ;
-	connections
-  // different outputs to different temperature features
+	
+  // different outputs to different temperature is
 	conn1 : mapping L1.temperature => sub1.outp ;
 	conn2 : mapping L2.temperature => sub2.outp ;
 end ;
@@ -117,25 +117,25 @@ end ;
 system interface sys3 extends Logical1, Logical2 end;
 
 system  sys3.i 
-	subcomponents
+	is
 	sub1 : system sub ;
-	connections
+	
 	conn1 : mapping speed => sub1.outp ;
 end ;
 
 
 interface composite
-	features
+	is
 	L1 : interface reverse Logical1 ;
 	PF : interface Physical ;
 end ;
 
 system interface Top
-	features
+	is
 	FG : interface composite ;
 	L2 : interface Logical2 ;
-	flows  // flows
-	conn1 : flow path FG.L1.temperature -> L2.temperature;
+	  // flows
+	flow1 : flow path FG.L1.temperature -> L2.temperature;
 end ;
 
 system Top.i

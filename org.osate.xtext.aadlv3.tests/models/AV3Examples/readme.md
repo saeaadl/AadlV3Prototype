@@ -9,7 +9,7 @@ Named interfaces: named interface declarations and connection referencing into t
 System configuration
 
 Configuration presentation: examples from presentation slides
-Simple configuration: Example of configuring in implementations and configurations of subcomponents
+Simple configuration: Example of configuring in implementations and configurations of is
 Parameterized configuration: Example of parameterized configuration with binding via subcomponent and via extension
 
 Misc

@@ -20,25 +20,25 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-
-import org.osate.aadlv3.aadlv3.PrimitiveType;
+import org.osate.aadlv3.aadlv3.Aadlv3Package;
+import org.osate.aadlv3.aadlv3.ComponentRealization;
 
 /**
- * This is the item provider adapter for a {@link org.osate.aadlv3.aadlv3.PrimitiveType} object.
+ * This is the item provider adapter for a {@link org.osate.aadlv3.aadlv3.ComponentRealization} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class PrimitiveTypeItemProvider extends PackageElementItemProvider {
+public class ComponentRealizationItemProvider extends ComponentClassifierItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PrimitiveTypeItemProvider(AdapterFactory adapterFactory) {
+	public ComponentRealizationItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -53,19 +53,25 @@ public class PrimitiveTypeItemProvider extends PackageElementItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addCachedInterfaceReferencePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This returns PrimitiveType.gif.
+	 * This adds a property descriptor for the Cached Interface Reference feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/PrimitiveType"));
+	protected void addCachedInterfaceReferencePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_ComponentRealization_cachedInterfaceReference_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_ComponentRealization_cachedInterfaceReference_feature", "_UI_ComponentRealization_type"),
+				Aadlv3Package.Literals.COMPONENT_REALIZATION__CACHED_INTERFACE_REFERENCE, true, false, true, null, null,
+				null));
 	}
 
 	/**
@@ -76,9 +82,9 @@ public class PrimitiveTypeItemProvider extends PackageElementItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((PrimitiveType) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_PrimitiveType_type")
-				: getString("_UI_PrimitiveType_type") + " " + label;
+		String label = ((ComponentRealization) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_ComponentRealization_type")
+				: getString("_UI_ComponentRealization_type") + " " + label;
 	}
 
 	/**

@@ -32,23 +32,22 @@ import org.eclipse.emf.common.util.Enumerator;
  */
 public enum ComponentCategory implements Enumerator {
 	/**
-	 * The '<em><b>Component</b></em>' literal object.
+	 * The '<em><b>Abstract</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #COMPONENT_VALUE
+	 * @see #ABSTRACT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	COMPONENT(0, "component", "component"),
-
+	ABSTRACT(0, "abstract", "abstract"),
 	/**
-	 * The '<em><b>Thread</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #THREAD_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	* The '<em><b>Thread</b></em>' literal object.
+	* <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
+	* @see #THREAD_VALUE
+	* @generated
+	* @ordered
+	*/
 	THREAD(1, "thread", "thread"),
 
 	/**
@@ -192,19 +191,19 @@ public enum ComponentCategory implements Enumerator {
 	DATA(14, "data", "data");
 
 	/**
-	 * The '<em><b>Component</b></em>' literal value.
+	 * The '<em><b>Abstract</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Component</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>Abstract</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #COMPONENT
-	 * @model name="component"
+	 * @see #ABSTRACT
+	 * @model name="abstract"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int COMPONENT_VALUE = 0;
+	public static final int ABSTRACT_VALUE = 0;
 
 	/**
 	 * The '<em><b>Thread</b></em>' literal value.
@@ -437,9 +436,9 @@ public enum ComponentCategory implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final ComponentCategory[] VALUES_ARRAY = new ComponentCategory[] { COMPONENT, THREAD, SYSTEM,
-			PROCESS, PROCESSOR, MEMORY, BUS, DEVICE, VIRTUALBUS, VIRTUALPROCESSOR, VIRTUALMEMORY, VIRTUALDEVICE,
-			SUBPROGRAM, SUBPROGRAMGROUP, THREADGROUP, DATA, };
+	private static final ComponentCategory[] VALUES_ARRAY = new ComponentCategory[] { ABSTRACT, THREAD, SYSTEM, PROCESS,
+			PROCESSOR, MEMORY, BUS, DEVICE, VIRTUALBUS, VIRTUALPROCESSOR, VIRTUALMEMORY, VIRTUALDEVICE, SUBPROGRAM,
+			SUBPROGRAMGROUP, THREADGROUP, DATA, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Component Category</b></em>' enumerators.
@@ -495,8 +494,8 @@ public enum ComponentCategory implements Enumerator {
 	 */
 	public static ComponentCategory get(int value) {
 		switch (value) {
-		case COMPONENT_VALUE:
-			return COMPONENT;
+		case ABSTRACT_VALUE:
+			return ABSTRACT;
 		case THREAD_VALUE:
 			return THREAD;
 		case SYSTEM_VALUE:

@@ -3,19 +3,19 @@ package NamedInterfaces
 	type person ;
 
 	interface sub 
-	features
+	is
 		name : feature person ;
 		p1: in port date;
 		p2: in port date;
 	end;
 	
 	interface mine 
-	features
+	is
 		name: feature person;
 	end;
 	
 	system interface subsub 
-	features 
+	is 
 		subi: interface sub;
 		minei: interface mine;
 //	flows

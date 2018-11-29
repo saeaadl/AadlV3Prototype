@@ -60,7 +60,7 @@ public class PathSequenceImpl extends ModelElementImpl implements PathSequence {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final AssociationType PATH_TYPE_EDEFAULT = AssociationType.FEATURECONNECTION;
+	protected static final AssociationType PATH_TYPE_EDEFAULT = AssociationType.CONNECTION;
 
 	/**
 	 * The cached value of the '{@link #getPathType() <em>Path Type</em>}' attribute.

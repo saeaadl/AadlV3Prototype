@@ -32,7 +32,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.ComponentConfiguration;
-import org.osate.aadlv3.aadlv3.ComponentInterface;
 import org.osate.aadlv3.aadlv3.ConfigurationAssignment;
 import org.osate.aadlv3.aadlv3.ConfigurationParameter;
 
@@ -47,12 +46,11 @@ import org.osate.aadlv3.aadlv3.ConfigurationParameter;
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentConfigurationImpl#getParameters <em>Parameters</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentConfigurationImpl#getAssignments <em>Assignments</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentConfigurationImpl#isParameterized <em>Parameterized</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentConfigurationImpl#getInterface <em>Interface</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ComponentConfigurationImpl extends ComponentClassifierImpl implements ComponentConfiguration {
+public class ComponentConfigurationImpl extends ComponentRealizationImpl implements ComponentConfiguration {
 	/**
 	 * The cached value of the '{@link #getParameters() <em>Parameters</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -92,16 +90,6 @@ public class ComponentConfigurationImpl extends ComponentClassifierImpl implemen
 	 * @ordered
 	 */
 	protected boolean parameterized = PARAMETERIZED_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getInterface() <em>Interface</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getInterface()
-	 * @generated
-	 * @ordered
-	 */
-	protected ComponentInterface interface_;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -180,83 +168,12 @@ public class ComponentConfigurationImpl extends ComponentClassifierImpl implemen
 	 * @generated
 	 */
 	@Override
-	public ComponentInterface getInterface() {
-		return interface_;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetInterface(ComponentInterface newInterface, NotificationChain msgs) {
-		ComponentInterface oldInterface = interface_;
-		interface_ = newInterface;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					Aadlv3Package.COMPONENT_CONFIGURATION__INTERFACE, oldInterface, newInterface);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setInterface(ComponentInterface newInterface) {
-		if (newInterface != interface_) {
-			NotificationChain msgs = null;
-			if (interface_ != null)
-				msgs = ((InternalEObject) interface_).eInverseRemove(this,
-						Aadlv3Package.COMPONENT_INTERFACE__CONFIGURATIONS, ComponentInterface.class, msgs);
-			if (newInterface != null)
-				msgs = ((InternalEObject) newInterface).eInverseAdd(this,
-						Aadlv3Package.COMPONENT_INTERFACE__CONFIGURATIONS, ComponentInterface.class, msgs);
-			msgs = basicSetInterface(newInterface, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.COMPONENT_CONFIGURATION__INTERFACE,
-					newInterface, newInterface));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-		case Aadlv3Package.COMPONENT_CONFIGURATION__INTERFACE:
-			if (interface_ != null)
-				msgs = ((InternalEObject) interface_).eInverseRemove(this,
-						Aadlv3Package.COMPONENT_INTERFACE__CONFIGURATIONS, ComponentInterface.class, msgs);
-			return basicSetInterface((ComponentInterface) otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case Aadlv3Package.COMPONENT_CONFIGURATION__PARAMETERS:
 			return ((InternalEList<?>) getParameters()).basicRemove(otherEnd, msgs);
 		case Aadlv3Package.COMPONENT_CONFIGURATION__ASSIGNMENTS:
 			return ((InternalEList<?>) getAssignments()).basicRemove(otherEnd, msgs);
-		case Aadlv3Package.COMPONENT_CONFIGURATION__INTERFACE:
-			return basicSetInterface(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -275,8 +192,6 @@ public class ComponentConfigurationImpl extends ComponentClassifierImpl implemen
 			return getAssignments();
 		case Aadlv3Package.COMPONENT_CONFIGURATION__PARAMETERIZED:
 			return isParameterized();
-		case Aadlv3Package.COMPONENT_CONFIGURATION__INTERFACE:
-			return getInterface();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -301,9 +216,6 @@ public class ComponentConfigurationImpl extends ComponentClassifierImpl implemen
 		case Aadlv3Package.COMPONENT_CONFIGURATION__PARAMETERIZED:
 			setParameterized((Boolean) newValue);
 			return;
-		case Aadlv3Package.COMPONENT_CONFIGURATION__INTERFACE:
-			setInterface((ComponentInterface) newValue);
-			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -325,9 +237,6 @@ public class ComponentConfigurationImpl extends ComponentClassifierImpl implemen
 		case Aadlv3Package.COMPONENT_CONFIGURATION__PARAMETERIZED:
 			setParameterized(PARAMETERIZED_EDEFAULT);
 			return;
-		case Aadlv3Package.COMPONENT_CONFIGURATION__INTERFACE:
-			setInterface((ComponentInterface) null);
-			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -346,8 +255,6 @@ public class ComponentConfigurationImpl extends ComponentClassifierImpl implemen
 			return assignments != null && !assignments.isEmpty();
 		case Aadlv3Package.COMPONENT_CONFIGURATION__PARAMETERIZED:
 			return parameterized != PARAMETERIZED_EDEFAULT;
-		case Aadlv3Package.COMPONENT_CONFIGURATION__INTERFACE:
-			return interface_ != null;
 		}
 		return super.eIsSet(featureID);
 	}

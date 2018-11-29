@@ -32,7 +32,7 @@ import org.osate.av3instance.av3instance.InstanceObject;
 import org.osate.aadlv3.util.Aadlv3Util;
 
 /**
- * This is the item provider adapter for a {@link org.osate.aadlv3.av3instance.AssociationInstance} object.
+ * This is the item provider adapter for a {@link org.osate.av3instance.av3instance.AssociationInstance} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated

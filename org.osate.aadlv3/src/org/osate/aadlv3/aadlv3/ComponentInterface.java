@@ -27,8 +27,6 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.ComponentInterface#getFeatures <em>Features</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.ComponentInterface#getImplementations <em>Implementations</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.ComponentInterface#getConfigurations <em>Configurations</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.ComponentInterface#getFlows <em>Flows</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.ComponentInterface#getUseProperties <em>Use Properties</em>}</li>
  * </ul>
@@ -53,42 +51,6 @@ public interface ComponentInterface extends ComponentClassifier {
 	 * @generated
 	 */
 	EList<Feature> getFeatures();
-
-	/**
-	 * Returns the value of the '<em><b>Implementations</b></em>' reference list.
-	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.ComponentImplementation}.
-	 * It is bidirectional and its opposite is '{@link org.osate.aadlv3.aadlv3.ComponentImplementation#getInterface <em>Interface</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Implementations</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Implementations</em>' reference list.
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getComponentInterface_Implementations()
-	 * @see org.osate.aadlv3.aadlv3.ComponentImplementation#getInterface
-	 * @model opposite="interface" transient="true" ordered="false"
-	 * @generated
-	 */
-	EList<ComponentImplementation> getImplementations();
-
-	/**
-	 * Returns the value of the '<em><b>Configurations</b></em>' reference list.
-	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.ComponentConfiguration}.
-	 * It is bidirectional and its opposite is '{@link org.osate.aadlv3.aadlv3.ComponentConfiguration#getInterface <em>Interface</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Configurations</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Configurations</em>' reference list.
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getComponentInterface_Configurations()
-	 * @see org.osate.aadlv3.aadlv3.ComponentConfiguration#getInterface
-	 * @model opposite="interface" resolveProxies="false" transient="true" ordered="false"
-	 * @generated
-	 */
-	EList<ComponentConfiguration> getConfigurations();
 
 	/**
 	 * Returns the value of the '<em><b>Flows</b></em>' containment reference list.
