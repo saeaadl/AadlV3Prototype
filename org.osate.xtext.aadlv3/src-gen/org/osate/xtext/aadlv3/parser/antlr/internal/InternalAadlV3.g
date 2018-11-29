@@ -3278,10 +3278,47 @@ rulePropertiesBlock[EObject in_current]  returns [EObject current=in_current]
 					afterParserOrEnumRuleCall();
 				}
 			)
+		)
+		(
+			{
+				newCompositeNode(grammarAccess.getPropertiesBlockAccess().getSEMICOLONParserRuleCall_2_0());
+			}
+			ruleSEMICOLON
+			{
+				afterParserOrEnumRuleCall();
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getPropertiesBlockAccess().getPropertyAssociationsPropertyAssociationParserRuleCall_2_1_0());
+					}
+					lv_propertyAssociations_3_0=rulePropertyAssociation
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getPropertiesBlockRule());
+						}
+						add(
+							$current,
+							"propertyAssociations",
+							lv_propertyAssociations_3_0,
+							"org.osate.xtext.aadlv3.AadlV3.PropertyAssociation");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
 		)*
-		otherlv_2='}'
+		(
+			{
+				newCompositeNode(grammarAccess.getPropertiesBlockAccess().getSEMICOLONParserRuleCall_3());
+			}
+			ruleSEMICOLON
+			{
+				afterParserOrEnumRuleCall();
+			}
+		)?
+		otherlv_5='}'
 		{
-			newLeafNode(otherlv_2, grammarAccess.getPropertiesBlockAccess().getRightCurlyBracketKeyword_2());
+			newLeafNode(otherlv_5, grammarAccess.getPropertiesBlockAccess().getRightCurlyBracketKeyword_4());
 		}
 	)
 ;
@@ -3813,11 +3850,35 @@ ruleWorkingset returns [EObject current=null]
 					afterParserOrEnumRuleCall();
 				}
 			)
+		)
+		(
+			{
+				newCompositeNode(grammarAccess.getWorkingsetAccess().getSEMICOLONParserRuleCall_4_0());
+			}
+			ruleSEMICOLON
+			{
+				afterParserOrEnumRuleCall();
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getWorkingsetAccess().getRootComponentsComponentParserRuleCall_4_1_0());
+					}
+					lv_rootComponents_5_0=ruleComponent
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getWorkingsetRule());
+						}
+						add(
+							$current,
+							"rootComponents",
+							lv_rootComponents_5_0,
+							"org.osate.xtext.aadlv3.AadlV3.Component");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
 		)*
-		otherlv_4='end'
-		{
-			newLeafNode(otherlv_4, grammarAccess.getWorkingsetAccess().getEndKeyword_4());
-		}
 		(
 			{
 				newCompositeNode(grammarAccess.getWorkingsetAccess().getSEMICOLONParserRuleCall_5());
@@ -3827,6 +3888,17 @@ ruleWorkingset returns [EObject current=null]
 				afterParserOrEnumRuleCall();
 			}
 		)?
+		otherlv_7='end'
+		{
+			newLeafNode(otherlv_7, grammarAccess.getWorkingsetAccess().getEndKeyword_6());
+		}
+		{
+			newCompositeNode(grammarAccess.getWorkingsetAccess().getSEMICOLONParserRuleCall_7());
+		}
+		ruleSEMICOLON
+		{
+			afterParserOrEnumRuleCall();
+		}
 	)
 ;
 

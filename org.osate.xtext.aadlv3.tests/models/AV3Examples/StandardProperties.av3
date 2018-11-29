@@ -7,5 +7,5 @@ package StandardProperties
 	property Deadline :time;
 	property DataSize :int;
 	
-	properties ThreadProperties is Period , Deadline, DataSize end;
+	properties ThreadProperties : { Period , Deadline, DataSize };
 end;

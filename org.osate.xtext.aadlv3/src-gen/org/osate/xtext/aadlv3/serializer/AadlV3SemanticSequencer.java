@@ -354,7 +354,13 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     Connection returns Association
 	 *
 	 * Constraint:
-	 *     (name=ID associationType=ConnectionType source=ModelElementReference destination=ModelElementReference propertyAssociations+=PropertyAssociation*)
+	 *     (
+	 *         name=ID 
+	 *         associationType=ConnectionType 
+	 *         source=ModelElementReference 
+	 *         destination=ModelElementReference 
+	 *         (propertyAssociations+=PropertyAssociation propertyAssociations+=PropertyAssociation*)?
+	 *     )
 	 */
 	protected void sequence_Connection_PropertiesBlock(ISerializationContext context, Association semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -366,7 +372,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     DataType returns DataType
 	 *
 	 * Constraint:
-	 *     (name=ID propertyAssociations+=PropertyAssociation*)
+	 *     (name=ID (propertyAssociations+=PropertyAssociation propertyAssociations+=PropertyAssociation*)?)
 	 */
 	protected void sequence_DataType_PropertiesBlock(ISerializationContext context, DataType semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -378,7 +384,13 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     FeatureMapping returns Association
 	 *
 	 * Constraint:
-	 *     (name=ID associationType=MappingType source=ModelElementReference destination=ModelElementReference propertyAssociations+=PropertyAssociation*)
+	 *     (
+	 *         name=ID 
+	 *         associationType=MappingType 
+	 *         source=ModelElementReference 
+	 *         destination=ModelElementReference 
+	 *         (propertyAssociations+=PropertyAssociation propertyAssociations+=PropertyAssociation*)?
+	 *     )
 	 */
 	protected void sequence_FeatureMapping_PropertiesBlock(ISerializationContext context, Association semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -396,7 +408,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *         sampled?='sampled'? 
 	 *         category=FeatureCategory 
 	 *         (reverse?='reverse'? type=[Type|QualifiedName])? 
-	 *         propertyAssociations+=PropertyAssociation*
+	 *         (propertyAssociations+=PropertyAssociation propertyAssociations+=PropertyAssociation*)?
 	 *     )
 	 */
 	protected void sequence_Feature_PropertiesBlock(ISerializationContext context, Feature semanticObject) {
@@ -421,7 +433,13 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     FlowPath returns Association
 	 *
 	 * Constraint:
-	 *     (name=ID associationType=FlowPathType source=ModelElementReference destination=ModelElementReference propertyAssociations+=PropertyAssociation*)
+	 *     (
+	 *         name=ID 
+	 *         associationType=FlowPathType 
+	 *         source=ModelElementReference 
+	 *         destination=ModelElementReference 
+	 *         (propertyAssociations+=PropertyAssociation propertyAssociations+=PropertyAssociation*)?
+	 *     )
 	 */
 	protected void sequence_FlowPath_PropertiesBlock(ISerializationContext context, Association semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -433,7 +451,12 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     FlowSink returns Association
 	 *
 	 * Constraint:
-	 *     (name=ID associationType=FlowSinkType source=ModelElementReference propertyAssociations+=PropertyAssociation*)
+	 *     (
+	 *         name=ID 
+	 *         associationType=FlowSinkType 
+	 *         source=ModelElementReference 
+	 *         (propertyAssociations+=PropertyAssociation propertyAssociations+=PropertyAssociation*)?
+	 *     )
 	 */
 	protected void sequence_FlowSink_PropertiesBlock(ISerializationContext context, Association semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -445,7 +468,12 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     FlowSource returns Association
 	 *
 	 * Constraint:
-	 *     (name=ID associationType=FlowSourceType destination=ModelElementReference propertyAssociations+=PropertyAssociation*)
+	 *     (
+	 *         name=ID 
+	 *         associationType=FlowSourceType 
+	 *         destination=ModelElementReference 
+	 *         (propertyAssociations+=PropertyAssociation propertyAssociations+=PropertyAssociation*)?
+	 *     )
 	 */
 	protected void sequence_FlowSource_PropertiesBlock(ISerializationContext context, Association semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -538,7 +566,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     Path returns PathSequence
 	 *
 	 * Constraint:
-	 *     (name=ID elements+=PathElement elements+=PathElement+ propertyAssociations+=PropertyAssociation*)
+	 *     (name=ID elements+=PathElement elements+=PathElement+ (propertyAssociations+=PropertyAssociation propertyAssociations+=PropertyAssociation*)?)
 	 */
 	protected void sequence_Path_PropertiesBlock(ISerializationContext context, PathSequence semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -661,7 +689,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     Workingset returns Workingset
 	 *
 	 * Constraint:
-	 *     (name=QualifiedName rootComponents+=Component*)
+	 *     (name=QualifiedName rootComponents+=Component rootComponents+=Component*)
 	 */
 	protected void sequence_Workingset(ISerializationContext context, Workingset semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

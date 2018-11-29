@@ -39,6 +39,7 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_ImplementationBody_SEMICOLONParserRuleCall_0_3_q;
 	protected AbstractElementAlias match_InterfaceBody_SEMICOLONParserRuleCall_0_3_q;
 	protected AbstractElementAlias match_NestedComponentImplementationBlock_SEMICOLONParserRuleCall_3_q;
+	protected AbstractElementAlias match_PropertiesBlock_SEMICOLONParserRuleCall_3_q;
 	protected AbstractElementAlias match_Workingset_SEMICOLONParserRuleCall_5_q;
 	
 	@Inject
@@ -51,6 +52,7 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 		match_ImplementationBody_SEMICOLONParserRuleCall_0_3_q = new TokenAlias(false, true, grammarAccess.getImplementationBodyAccess().getSEMICOLONParserRuleCall_0_3());
 		match_InterfaceBody_SEMICOLONParserRuleCall_0_3_q = new TokenAlias(false, true, grammarAccess.getInterfaceBodyAccess().getSEMICOLONParserRuleCall_0_3());
 		match_NestedComponentImplementationBlock_SEMICOLONParserRuleCall_3_q = new TokenAlias(false, true, grammarAccess.getNestedComponentImplementationBlockAccess().getSEMICOLONParserRuleCall_3());
+		match_PropertiesBlock_SEMICOLONParserRuleCall_3_q = new TokenAlias(false, true, grammarAccess.getPropertiesBlockAccess().getSEMICOLONParserRuleCall_3());
 		match_Workingset_SEMICOLONParserRuleCall_5_q = new TokenAlias(false, true, grammarAccess.getWorkingsetAccess().getSEMICOLONParserRuleCall_5());
 	}
 	
@@ -102,6 +104,8 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_InterfaceBody_SEMICOLONParserRuleCall_0_3_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_NestedComponentImplementationBlock_SEMICOLONParserRuleCall_3_q.equals(syntax))
 				emit_NestedComponentImplementationBlock_SEMICOLONParserRuleCall_3_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_PropertiesBlock_SEMICOLONParserRuleCall_3_q.equals(syntax))
+				emit_PropertiesBlock_SEMICOLONParserRuleCall_3_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Workingset_SEMICOLONParserRuleCall_5_q.equals(syntax))
 				emit_Workingset_SEMICOLONParserRuleCall_5_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
@@ -220,8 +224,19 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     SEMICOLON?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     name=QualifiedName 'is' 'end' (ambiguity) (rule end)
-	 *     rootComponents+=Component 'end' (ambiguity) (rule end)
+	 *     propertyAssociations+=PropertyAssociation (ambiguity) '}' (rule end)
+	 *     propertyAssociations+=PropertyAssociation (ambiguity) '}' SEMICOLON (rule end)
+	 */
+	protected void emit_PropertiesBlock_SEMICOLONParserRuleCall_3_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     SEMICOLON?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     rootComponents+=Component (ambiguity) 'end' SEMICOLON (rule end)
 	 */
 	protected void emit_Workingset_SEMICOLONParserRuleCall_5_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

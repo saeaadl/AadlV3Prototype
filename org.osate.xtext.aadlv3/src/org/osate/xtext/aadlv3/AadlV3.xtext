@@ -196,7 +196,7 @@ ImplementationReference returns av3::TypeReference :
 ;
 
 fragment PropertiesBlock *:
-	'{' propertyAssociations+=PropertyAssociation* '}';
+	'{' propertyAssociations+=PropertyAssociation (SEMICOLON propertyAssociations+=PropertyAssociation)* SEMICOLON? '}';
 
 // to be used for inline nested component implementations 
 fragment NestedComponentImplementationBlock *:
@@ -229,7 +229,7 @@ ConfigurationActual returns av3::ConfigurationActual:
 ;
 
 Workingset returns av3::Workingset: 
-	'workingset' name=QualifiedName 'is' rootComponents+=Component* 'end' SEMICOLON?
+	'workingset' name=QualifiedName 'is' rootComponents+=Component (SEMICOLON rootComponents+=Component)* SEMICOLON? 'end' SEMICOLON
 ;
 
 
