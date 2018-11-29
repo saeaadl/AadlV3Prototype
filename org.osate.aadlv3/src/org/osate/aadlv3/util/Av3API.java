@@ -47,7 +47,11 @@ public class Av3API {
 			return creal.getCachedInterfaceReference();
 		}
 		String iname = creal.getName();
-		String ifname = iname.substring(0,iname.lastIndexOf('.'));
+		String ifname = iname;
+		int idx = iname.lastIndexOf('.');
+		if (idx >= 0) {
+			ifname = iname.substring(0,idx);
+		}
 		 ComponentInterface cif = (ComponentInterface) Aadlv3GlobalScopeUtil.get(creal, Aadlv3Package.eINSTANCE.getComponentRealization_CachedInterfaceReference(), ifname);
 		 if (cif != null) {
 			 creal.setCachedInterfaceReference(cif);
