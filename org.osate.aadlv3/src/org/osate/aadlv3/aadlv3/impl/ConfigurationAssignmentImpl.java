@@ -47,7 +47,7 @@ import org.osate.aadlv3.aadlv3.TypeReference;
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ConfigurationAssignmentImpl#getTarget <em>Target</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ConfigurationAssignmentImpl#getAssignments <em>Assignments</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.ConfigurationAssignmentImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.ConfigurationAssignmentImpl#getAssignedClassifiers <em>Assigned Classifiers</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ConfigurationAssignmentImpl#getPropertyAssociations <em>Property Associations</em>}</li>
  * </ul>
  *
@@ -75,14 +75,14 @@ public class ConfigurationAssignmentImpl extends MinimalEObjectImpl.Container im
 	protected EList<ConfigurationAssignment> assignments;
 
 	/**
-	 * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
+	 * The cached value of the '{@link #getAssignedClassifiers() <em>Assigned Classifiers</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getValue()
+	 * @see #getAssignedClassifiers()
 	 * @generated
 	 * @ordered
 	 */
-	protected TypeReference value;
+	protected EList<TypeReference> assignedClassifiers;
 
 	/**
 	 * The cached value of the '{@link #getPropertyAssociations() <em>Property Associations</em>}' containment reference list.
@@ -185,50 +185,12 @@ public class ConfigurationAssignmentImpl extends MinimalEObjectImpl.Container im
 	 * @generated
 	 */
 	@Override
-	public TypeReference getValue() {
-		return value;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetValue(TypeReference newValue, NotificationChain msgs) {
-		TypeReference oldValue = value;
-		value = newValue;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					Aadlv3Package.CONFIGURATION_ASSIGNMENT__VALUE, oldValue, newValue);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
+	public EList<TypeReference> getAssignedClassifiers() {
+		if (assignedClassifiers == null) {
+			assignedClassifiers = new EObjectContainmentEList<TypeReference>(TypeReference.class, this,
+					Aadlv3Package.CONFIGURATION_ASSIGNMENT__ASSIGNED_CLASSIFIERS);
 		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setValue(TypeReference newValue) {
-		if (newValue != value) {
-			NotificationChain msgs = null;
-			if (value != null)
-				msgs = ((InternalEObject) value).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE - Aadlv3Package.CONFIGURATION_ASSIGNMENT__VALUE, null, msgs);
-			if (newValue != null)
-				msgs = ((InternalEObject) newValue).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE - Aadlv3Package.CONFIGURATION_ASSIGNMENT__VALUE, null, msgs);
-			msgs = basicSetValue(newValue, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.CONFIGURATION_ASSIGNMENT__VALUE,
-					newValue, newValue));
+		return assignedClassifiers;
 	}
 
 	/**
@@ -257,8 +219,8 @@ public class ConfigurationAssignmentImpl extends MinimalEObjectImpl.Container im
 			return basicSetTarget(null, msgs);
 		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__ASSIGNMENTS:
 			return ((InternalEList<?>) getAssignments()).basicRemove(otherEnd, msgs);
-		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__VALUE:
-			return basicSetValue(null, msgs);
+		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__ASSIGNED_CLASSIFIERS:
+			return ((InternalEList<?>) getAssignedClassifiers()).basicRemove(otherEnd, msgs);
 		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__PROPERTY_ASSOCIATIONS:
 			return ((InternalEList<?>) getPropertyAssociations()).basicRemove(otherEnd, msgs);
 		}
@@ -277,8 +239,8 @@ public class ConfigurationAssignmentImpl extends MinimalEObjectImpl.Container im
 			return getTarget();
 		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__ASSIGNMENTS:
 			return getAssignments();
-		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__VALUE:
-			return getValue();
+		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__ASSIGNED_CLASSIFIERS:
+			return getAssignedClassifiers();
 		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__PROPERTY_ASSOCIATIONS:
 			return getPropertyAssociations();
 		}
@@ -301,8 +263,9 @@ public class ConfigurationAssignmentImpl extends MinimalEObjectImpl.Container im
 			getAssignments().clear();
 			getAssignments().addAll((Collection<? extends ConfigurationAssignment>) newValue);
 			return;
-		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__VALUE:
-			setValue((TypeReference) newValue);
+		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__ASSIGNED_CLASSIFIERS:
+			getAssignedClassifiers().clear();
+			getAssignedClassifiers().addAll((Collection<? extends TypeReference>) newValue);
 			return;
 		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__PROPERTY_ASSOCIATIONS:
 			getPropertyAssociations().clear();
@@ -326,8 +289,8 @@ public class ConfigurationAssignmentImpl extends MinimalEObjectImpl.Container im
 		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__ASSIGNMENTS:
 			getAssignments().clear();
 			return;
-		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__VALUE:
-			setValue((TypeReference) null);
+		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__ASSIGNED_CLASSIFIERS:
+			getAssignedClassifiers().clear();
 			return;
 		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__PROPERTY_ASSOCIATIONS:
 			getPropertyAssociations().clear();
@@ -348,8 +311,8 @@ public class ConfigurationAssignmentImpl extends MinimalEObjectImpl.Container im
 			return target != null;
 		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__ASSIGNMENTS:
 			return assignments != null && !assignments.isEmpty();
-		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__VALUE:
-			return value != null;
+		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__ASSIGNED_CLASSIFIERS:
+			return assignedClassifiers != null && !assignedClassifiers.isEmpty();
 		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__PROPERTY_ASSOCIATIONS:
 			return propertyAssociations != null && !propertyAssociations.isEmpty();
 		}

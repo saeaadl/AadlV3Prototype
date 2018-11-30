@@ -41,13 +41,13 @@ public enum ComponentCategory implements Enumerator {
 	 */
 	ABSTRACT(0, "abstract", "abstract"),
 	/**
-	* The '<em><b>Thread</b></em>' literal object.
-	* <!-- begin-user-doc -->
+	 * The '<em><b>Thread</b></em>' literal object.
+	 * <!-- begin-user-doc -->
 	* <!-- end-user-doc -->
-	* @see #THREAD_VALUE
-	* @generated
-	* @ordered
-	*/
+	 * @see #THREAD_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	THREAD(1, "thread", "thread"),
 
 	/**

@@ -46,7 +46,7 @@ import org.osate.aadlv3.aadlv3.TypeReference;
  * </p>
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentImpl#getCategory <em>Category</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentImpl#getTypeReference <em>Type Reference</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentImpl#getTypeReferences <em>Type References</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentImpl#getComponents <em>Components</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentImpl#getConnections <em>Connections</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentImpl#getFeatures <em>Features</em>}</li>
@@ -76,14 +76,14 @@ public class ComponentImpl extends ModelElementImpl implements Component {
 	protected ComponentCategory category = CATEGORY_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getTypeReference() <em>Type Reference</em>}' containment reference.
+	 * The cached value of the '{@link #getTypeReferences() <em>Type References</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTypeReference()
+	 * @see #getTypeReferences()
 	 * @generated
 	 * @ordered
 	 */
-	protected TypeReference typeReference;
+	protected EList<TypeReference> typeReferences;
 
 	/**
 	 * The cached value of the '{@link #getComponents() <em>Components</em>}' containment reference list.
@@ -164,50 +164,12 @@ public class ComponentImpl extends ModelElementImpl implements Component {
 	 * @generated
 	 */
 	@Override
-	public TypeReference getTypeReference() {
-		return typeReference;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetTypeReference(TypeReference newTypeReference, NotificationChain msgs) {
-		TypeReference oldTypeReference = typeReference;
-		typeReference = newTypeReference;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					Aadlv3Package.COMPONENT__TYPE_REFERENCE, oldTypeReference, newTypeReference);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
+	public EList<TypeReference> getTypeReferences() {
+		if (typeReferences == null) {
+			typeReferences = new EObjectContainmentEList<TypeReference>(TypeReference.class, this,
+					Aadlv3Package.COMPONENT__TYPE_REFERENCES);
 		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setTypeReference(TypeReference newTypeReference) {
-		if (newTypeReference != typeReference) {
-			NotificationChain msgs = null;
-			if (typeReference != null)
-				msgs = ((InternalEObject) typeReference).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE - Aadlv3Package.COMPONENT__TYPE_REFERENCE, null, msgs);
-			if (newTypeReference != null)
-				msgs = ((InternalEObject) newTypeReference).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE - Aadlv3Package.COMPONENT__TYPE_REFERENCE, null, msgs);
-			msgs = basicSetTypeReference(newTypeReference, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.COMPONENT__TYPE_REFERENCE,
-					newTypeReference, newTypeReference));
+		return typeReferences;
 	}
 
 	/**
@@ -259,8 +221,8 @@ public class ComponentImpl extends ModelElementImpl implements Component {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case Aadlv3Package.COMPONENT__TYPE_REFERENCE:
-			return basicSetTypeReference(null, msgs);
+		case Aadlv3Package.COMPONENT__TYPE_REFERENCES:
+			return ((InternalEList<?>) getTypeReferences()).basicRemove(otherEnd, msgs);
 		case Aadlv3Package.COMPONENT__COMPONENTS:
 			return ((InternalEList<?>) getComponents()).basicRemove(otherEnd, msgs);
 		case Aadlv3Package.COMPONENT__CONNECTIONS:
@@ -281,8 +243,8 @@ public class ComponentImpl extends ModelElementImpl implements Component {
 		switch (featureID) {
 		case Aadlv3Package.COMPONENT__CATEGORY:
 			return getCategory();
-		case Aadlv3Package.COMPONENT__TYPE_REFERENCE:
-			return getTypeReference();
+		case Aadlv3Package.COMPONENT__TYPE_REFERENCES:
+			return getTypeReferences();
 		case Aadlv3Package.COMPONENT__COMPONENTS:
 			return getComponents();
 		case Aadlv3Package.COMPONENT__CONNECTIONS:
@@ -305,8 +267,9 @@ public class ComponentImpl extends ModelElementImpl implements Component {
 		case Aadlv3Package.COMPONENT__CATEGORY:
 			setCategory((ComponentCategory) newValue);
 			return;
-		case Aadlv3Package.COMPONENT__TYPE_REFERENCE:
-			setTypeReference((TypeReference) newValue);
+		case Aadlv3Package.COMPONENT__TYPE_REFERENCES:
+			getTypeReferences().clear();
+			getTypeReferences().addAll((Collection<? extends TypeReference>) newValue);
 			return;
 		case Aadlv3Package.COMPONENT__COMPONENTS:
 			getComponents().clear();
@@ -335,8 +298,8 @@ public class ComponentImpl extends ModelElementImpl implements Component {
 		case Aadlv3Package.COMPONENT__CATEGORY:
 			setCategory(CATEGORY_EDEFAULT);
 			return;
-		case Aadlv3Package.COMPONENT__TYPE_REFERENCE:
-			setTypeReference((TypeReference) null);
+		case Aadlv3Package.COMPONENT__TYPE_REFERENCES:
+			getTypeReferences().clear();
 			return;
 		case Aadlv3Package.COMPONENT__COMPONENTS:
 			getComponents().clear();
@@ -361,8 +324,8 @@ public class ComponentImpl extends ModelElementImpl implements Component {
 		switch (featureID) {
 		case Aadlv3Package.COMPONENT__CATEGORY:
 			return category != CATEGORY_EDEFAULT;
-		case Aadlv3Package.COMPONENT__TYPE_REFERENCE:
-			return typeReference != null;
+		case Aadlv3Package.COMPONENT__TYPE_REFERENCES:
+			return typeReferences != null && !typeReferences.isEmpty();
 		case Aadlv3Package.COMPONENT__COMPONENTS:
 			return components != null && !components.isEmpty();
 		case Aadlv3Package.COMPONENT__CONNECTIONS:

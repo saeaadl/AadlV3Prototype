@@ -759,17 +759,22 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cColonKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cCategoryAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cCategoryComponentCategoryParserRuleCall_2_0 = (RuleCall)cCategoryAssignment_2.eContents().get(0);
-		private final Assignment cTypeReferenceAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cTypeReferenceTypeReferenceParserRuleCall_3_0 = (RuleCall)cTypeReferenceAssignment_3.eContents().get(0);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Assignment cTypeReferencesAssignment_3_0 = (Assignment)cGroup_3.eContents().get(0);
+		private final RuleCall cTypeReferencesTypeReferenceParserRuleCall_3_0_0 = (RuleCall)cTypeReferencesAssignment_3_0.eContents().get(0);
+		private final Group cGroup_3_1 = (Group)cGroup_3.eContents().get(1);
+		private final Keyword cCommaKeyword_3_1_0 = (Keyword)cGroup_3_1.eContents().get(0);
+		private final Assignment cTypeReferencesAssignment_3_1_1 = (Assignment)cGroup_3_1.eContents().get(1);
+		private final RuleCall cTypeReferencesTypeReferenceParserRuleCall_3_1_1_0 = (RuleCall)cTypeReferencesAssignment_3_1_1.eContents().get(0);
 		private final RuleCall cNestedComponentImplementationBlockParserRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
 		
 		//Component av3::Component:
-		//	name=ID ':' category=ComponentCategory
-		//	typeReference=TypeReference?
+		//	name=ID ':' category=ComponentCategory (typeReferences+=TypeReference (',' typeReferences+=TypeReference?)*)?
 		//	NestedComponentImplementationBlock?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//name=ID ':' category=ComponentCategory typeReference=TypeReference? NestedComponentImplementationBlock?
+		//name=ID ':' category=ComponentCategory (typeReferences+=TypeReference (',' typeReferences+=TypeReference?)*)?
+		//NestedComponentImplementationBlock?
 		public Group getGroup() { return cGroup; }
 		
 		//name=ID
@@ -787,11 +792,26 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		//ComponentCategory
 		public RuleCall getCategoryComponentCategoryParserRuleCall_2_0() { return cCategoryComponentCategoryParserRuleCall_2_0; }
 		
-		//typeReference=TypeReference?
-		public Assignment getTypeReferenceAssignment_3() { return cTypeReferenceAssignment_3; }
+		//(typeReferences+=TypeReference (',' typeReferences+=TypeReference?)*)?
+		public Group getGroup_3() { return cGroup_3; }
+		
+		//typeReferences+=TypeReference
+		public Assignment getTypeReferencesAssignment_3_0() { return cTypeReferencesAssignment_3_0; }
 		
 		//TypeReference
-		public RuleCall getTypeReferenceTypeReferenceParserRuleCall_3_0() { return cTypeReferenceTypeReferenceParserRuleCall_3_0; }
+		public RuleCall getTypeReferencesTypeReferenceParserRuleCall_3_0_0() { return cTypeReferencesTypeReferenceParserRuleCall_3_0_0; }
+		
+		//(',' typeReferences+=TypeReference?)*
+		public Group getGroup_3_1() { return cGroup_3_1; }
+		
+		//','
+		public Keyword getCommaKeyword_3_1_0() { return cCommaKeyword_3_1_0; }
+		
+		//typeReferences+=TypeReference?
+		public Assignment getTypeReferencesAssignment_3_1_1() { return cTypeReferencesAssignment_3_1_1; }
+		
+		//TypeReference
+		public RuleCall getTypeReferencesTypeReferenceParserRuleCall_3_1_1_0() { return cTypeReferencesTypeReferenceParserRuleCall_3_1_1_0; }
 		
 		//NestedComponentImplementationBlock?
 		public RuleCall getNestedComponentImplementationBlockParserRuleCall_4() { return cNestedComponentImplementationBlockParserRuleCall_4; }
@@ -1281,17 +1301,22 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cEqualsSignGreaterThanSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
 		private final Group cGroup_2_0 = (Group)cAlternatives_2.eContents().get(0);
-		private final Assignment cValueAssignment_2_0_0 = (Assignment)cGroup_2_0.eContents().get(0);
-		private final RuleCall cValueTypeReferenceParserRuleCall_2_0_0_0 = (RuleCall)cValueAssignment_2_0_0.eContents().get(0);
-		private final RuleCall cCurlyConfigurationElementBlockParserRuleCall_2_0_1 = (RuleCall)cGroup_2_0.eContents().get(1);
+		private final Assignment cAssignedClassifiersAssignment_2_0_0 = (Assignment)cGroup_2_0.eContents().get(0);
+		private final RuleCall cAssignedClassifiersTypeReferenceParserRuleCall_2_0_0_0 = (RuleCall)cAssignedClassifiersAssignment_2_0_0.eContents().get(0);
+		private final Group cGroup_2_0_1 = (Group)cGroup_2_0.eContents().get(1);
+		private final Keyword cCommaKeyword_2_0_1_0 = (Keyword)cGroup_2_0_1.eContents().get(0);
+		private final Assignment cAssignedClassifiersAssignment_2_0_1_1 = (Assignment)cGroup_2_0_1.eContents().get(1);
+		private final RuleCall cAssignedClassifiersTypeReferenceParserRuleCall_2_0_1_1_0 = (RuleCall)cAssignedClassifiersAssignment_2_0_1_1.eContents().get(0);
+		private final RuleCall cCurlyConfigurationElementBlockParserRuleCall_2_0_2 = (RuleCall)cGroup_2_0.eContents().get(2);
 		private final RuleCall cCurlyConfigurationElementBlockParserRuleCall_2_1 = (RuleCall)cAlternatives_2.eContents().get(1);
 		
 		//ConfigurationAssignment av3::ConfigurationAssignment:
-		//	target=ModelElementReference '=>' (value=TypeReference CurlyConfigurationElementBlock? |
-		//	CurlyConfigurationElementBlock);
+		//	target=ModelElementReference '=>' (assignedClassifiers+=TypeReference (',' assignedClassifiers+=TypeReference)*
+		//	CurlyConfigurationElementBlock? | CurlyConfigurationElementBlock);
 		@Override public ParserRule getRule() { return rule; }
 		
-		//target=ModelElementReference '=>' (value=TypeReference CurlyConfigurationElementBlock? | CurlyConfigurationElementBlock)
+		//target=ModelElementReference '=>' (assignedClassifiers+=TypeReference (',' assignedClassifiers+=TypeReference)*
+		//CurlyConfigurationElementBlock? | CurlyConfigurationElementBlock)
 		public Group getGroup() { return cGroup; }
 		
 		//target=ModelElementReference
@@ -1303,20 +1328,33 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		//'=>'
 		public Keyword getEqualsSignGreaterThanSignKeyword_1() { return cEqualsSignGreaterThanSignKeyword_1; }
 		
-		//value=TypeReference CurlyConfigurationElementBlock? | CurlyConfigurationElementBlock
+		//assignedClassifiers+=TypeReference (',' assignedClassifiers+=TypeReference)* CurlyConfigurationElementBlock? |
+		//CurlyConfigurationElementBlock
 		public Alternatives getAlternatives_2() { return cAlternatives_2; }
 		
-		//value=TypeReference CurlyConfigurationElementBlock?
+		//assignedClassifiers+=TypeReference (',' assignedClassifiers+=TypeReference)* CurlyConfigurationElementBlock?
 		public Group getGroup_2_0() { return cGroup_2_0; }
 		
-		//value=TypeReference
-		public Assignment getValueAssignment_2_0_0() { return cValueAssignment_2_0_0; }
+		//assignedClassifiers+=TypeReference
+		public Assignment getAssignedClassifiersAssignment_2_0_0() { return cAssignedClassifiersAssignment_2_0_0; }
 		
 		//TypeReference
-		public RuleCall getValueTypeReferenceParserRuleCall_2_0_0_0() { return cValueTypeReferenceParserRuleCall_2_0_0_0; }
+		public RuleCall getAssignedClassifiersTypeReferenceParserRuleCall_2_0_0_0() { return cAssignedClassifiersTypeReferenceParserRuleCall_2_0_0_0; }
+		
+		//(',' assignedClassifiers+=TypeReference)*
+		public Group getGroup_2_0_1() { return cGroup_2_0_1; }
+		
+		//','
+		public Keyword getCommaKeyword_2_0_1_0() { return cCommaKeyword_2_0_1_0; }
+		
+		//assignedClassifiers+=TypeReference
+		public Assignment getAssignedClassifiersAssignment_2_0_1_1() { return cAssignedClassifiersAssignment_2_0_1_1; }
+		
+		//TypeReference
+		public RuleCall getAssignedClassifiersTypeReferenceParserRuleCall_2_0_1_1_0() { return cAssignedClassifiersTypeReferenceParserRuleCall_2_0_1_1_0; }
 		
 		//CurlyConfigurationElementBlock?
-		public RuleCall getCurlyConfigurationElementBlockParserRuleCall_2_0_1() { return cCurlyConfigurationElementBlockParserRuleCall_2_0_1; }
+		public RuleCall getCurlyConfigurationElementBlockParserRuleCall_2_0_2() { return cCurlyConfigurationElementBlockParserRuleCall_2_0_2; }
 		
 		//CurlyConfigurationElementBlock
 		public RuleCall getCurlyConfigurationElementBlockParserRuleCall_2_1() { return cCurlyConfigurationElementBlockParserRuleCall_2_1; }
@@ -3318,8 +3356,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Component av3::Component:
-	//	name=ID ':' category=ComponentCategory
-	//	typeReference=TypeReference?
+	//	name=ID ':' category=ComponentCategory (typeReferences+=TypeReference (',' typeReferences+=TypeReference?)*)?
 	//	NestedComponentImplementationBlock?;
 	public ComponentElements getComponentAccess() {
 		return pComponent;
@@ -3426,8 +3463,8 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//ConfigurationAssignment av3::ConfigurationAssignment:
-	//	target=ModelElementReference '=>' (value=TypeReference CurlyConfigurationElementBlock? |
-	//	CurlyConfigurationElementBlock);
+	//	target=ModelElementReference '=>' (assignedClassifiers+=TypeReference (',' assignedClassifiers+=TypeReference)*
+	//	CurlyConfigurationElementBlock? | CurlyConfigurationElementBlock);
 	public ConfigurationAssignmentElements getConfigurationAssignmentAccess() {
 		return pConfigurationAssignment;
 	}

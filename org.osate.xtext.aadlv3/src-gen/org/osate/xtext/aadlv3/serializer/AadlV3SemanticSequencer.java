@@ -259,7 +259,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     (
 	 *         name=ID 
 	 *         category=ComponentCategory 
-	 *         typeReference=TypeReference? 
+	 *         (typeReferences+=TypeReference typeReferences+=TypeReference*)? 
 	 *         (features+=Feature | connections+=Connection | connections+=FeatureMapping | components+=Component | propertyAssociations+=PropertyAssociation)*
 	 *     )
 	 */
@@ -320,7 +320,14 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 * Constraint:
 	 *     (
 	 *         target=ModelElementReference 
-	 *         (value=TypeReference | (value=TypeReference (propertyAssociations+=PropertyAssociation | assignments+=ConfigurationAssignment)+))?
+	 *         (
+	 *             (
+	 *                 assignedClassifiers+=TypeReference 
+	 *                 assignedClassifiers+=TypeReference* 
+	 *                 (propertyAssociations+=PropertyAssociation | assignments+=ConfigurationAssignment)+
+	 *             ) | 
+	 *             (propertyAssociations+=PropertyAssociation | assignments+=ConfigurationAssignment)+
+	 *         )?
 	 *     )
 	 */
 	protected void sequence_ConfigurationAssignment_ConfigurationElement(ISerializationContext context, ConfigurationAssignment semanticObject) {

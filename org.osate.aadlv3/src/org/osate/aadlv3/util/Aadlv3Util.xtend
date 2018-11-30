@@ -42,17 +42,13 @@ import java.util.LinkedHashSet
 import static extension org.osate.aadlv3.util.Av3API.*
 import org.osate.aadlv3.aadlv3.PackageDeclaration
 import org.osate.aadlv3.aadlv3.Import
+import org.osate.aadlv3.aadlv3.ComponentRealization
 
 class Aadlv3Util {
-	
-	static def String getFullName(ComponentClassifier cl){
-		switch (cl){
-			ComponentInterface: cl.name
-			ComponentImplementation: cl.componentInterface.name+"."+cl.name
-			ComponentConfiguration: cl.componentInterface.name+"."+cl.name
-		}
-	}
-	
+	/**
+	 * return category of classifier collection. Returns first assigned category or ABSTRACT.
+	 * Assumes All classifier categories are the same or ABSTRACT.
+	 */
 	static def ComponentCategory getComponentCategory(Iterable<? extends ComponentClassifier> classifiers){
 		for (cl: classifiers){
 			if (cl.category != ComponentCategory.ABSTRACT){
@@ -62,6 +58,11 @@ class Aadlv3Util {
 		ComponentCategory.ABSTRACT;
 	}
 	
+	/**
+	 * return category of classifier or its super classifiers. 
+	 * Returns first assigned category or ABSTRACT.
+	 * Assumes all categories are the same or ABSTRACT.
+	 */
 	static def ComponentCategory getComponentCategory( ComponentClassifier classifier){
 		val classifiers = classifier.allComponentClassifiers
 		for (cl: classifiers){
@@ -72,6 +73,11 @@ class Aadlv3Util {
 		ComponentCategory.ABSTRACT;
 	}
 
+	/**
+	 * returns an ordered set of component classifier.
+	 * The list consists of the classifier cc as well as all its super classifiers.
+	 * In addition, the BaseInterface classifier is added.
+	 */
 	static def HashSet<ComponentClassifier> getAllComponentClassifiers(ComponentClassifier cc) {
 		val result = new LinkedHashSet<ComponentClassifier>
 		if(cc === null || cc.eIsProxy) return result
@@ -84,6 +90,12 @@ class Aadlv3Util {
 		return result
 	}
 
+	/**
+	 * Add all super classifiers of a given classifier to the set.
+	 * First add the interface and its super interfaces
+	 * then add direct super implementations/configurations
+	 * finally add their super classifiers
+	 */
 	private static def void addSuperComponentClassifiers(ComponentClassifier cl, HashSet<ComponentClassifier> set) {
 		if (cl instanceof ComponentImplementation){
 			if (cl.superClassifiers.empty){
@@ -107,6 +119,10 @@ class Aadlv3Util {
 		]
 	}
 
+	/**
+	 * return ordered set of Interfaces starting with the given classifier.
+	 * First add the interface of cc, then all its super interfaces
+	 */
 	static def Iterable<? extends ComponentInterface> getAllComponentInterfaces(ComponentClassifier cc) {
 		if(cc === null || cc.eIsProxy) return Collections.EMPTY_LIST
 		val result = new LinkedHashSet<ComponentInterface>
@@ -121,7 +137,30 @@ class Aadlv3Util {
 		}
 		return result
 	}
+	/**
+	 * return ordered set of Interfaces starting with the given collection of classifiers.
+	 * For each classifier, First add its interface, then all its super interfaces
+	 */
+	static def Iterable<? extends ComponentInterface> getAllComponentInterfaces(Iterable<? extends ComponentClassifier> cifs) {
+		if(cifs.empty) return Collections.EMPTY_LIST
+		val result = new LinkedHashSet<ComponentInterface>
+		for (cc : cifs) {
+			val cif = switch cc {
+				ComponentInterface: cc
+				ComponentImplementation: cc.componentInterface
+				ComponentConfiguration: cc.componentInterface
+			}
+			if (cif !== null) {
+				result.add(cif)
+				cif.addSuperComponentInterfaces(result)
+			}
+		}
+		return result
+	}
 
+	/**
+	 * add super interfaces of given interface to set.
+	 */
 	private static def void addSuperComponentInterfaces(ComponentInterface cl,
 		HashSet<ComponentInterface> set) {
 		if(cl.superClassifiers.empty) return
@@ -134,6 +173,12 @@ class Aadlv3Util {
 		]
 	}
 
+	/**
+	 * return set of component implementations for a given classifier.
+	 * returns empty set for Interface
+	 * returns set of implementations incl. super implementations for configuration
+	 * returns implementation and super implementations for implementations
+	 */
 	static def Iterable<? extends ComponentImplementation> getAllComponentImplementations(ComponentClassifier cc) {
 		if(cc === null || cc.eIsProxy) return Collections.EMPTY_LIST
 		val result = new LinkedHashSet<ComponentImplementation>
@@ -146,6 +191,9 @@ class Aadlv3Util {
 		return result
 	}
 
+	/**
+	 * add super implementations to set.
+	 */
 	private static def void addSuperComponentImplementations(ComponentClassifier cl,
 		HashSet<ComponentImplementation> set) {
 		if(cl.superClassifiers.empty) return
@@ -162,23 +210,31 @@ class Aadlv3Util {
 		]
 	}
 	
-	static def ComponentImplementation getTopComponentImplementation(ComponentClassifier cl){
-		val impls = getAllComponentImplementations(cl)
-		var top = impls.head
-		for (impl : impls){
-			if(impl instanceof ComponentImplementation){
-				if (top.isSuperImplementationOf(impl)){
-					top = impl
+	
+	/**
+	 * returns implementation that is the extension of all other implementations
+	 */
+	static def DataType getTopDataType(Iterable<? extends TypeReference> trs){
+		var DataType top = null
+		for (tr : trs){
+			if (tr.type instanceof DataType){
+				val cl = tr.type as DataType
+				if (top.isSuperDataTypeOf(cl)){
+					top = cl
 				}
 			}
 		}
 		return top
 	}
 	
-	static def ComponentImplementation getTopComponentImplementation(Iterable<? extends ComponentClassifier> cls){
+	/**
+	 * returns implementation that is the extension of all other implementations
+	 */
+	static def ComponentImplementation getTopComponentImplementation(Iterable<? extends TypeReference> trs){
 		var ComponentImplementation top = null
-		for (cl : cls){
-			if (cl instanceof ComponentImplementation){
+		for (tr : trs){
+			if (tr.type instanceof ComponentImplementation){
+				val cl = tr.type as ComponentImplementation
 				if (top.isSuperImplementationOf(cl)){
 					top = cl
 				}
@@ -186,7 +242,34 @@ class Aadlv3Util {
 		}
 		return top
 	}
+	
+	/**
+	 * returns interface that is the extension of all other interfaces
+	 */
+	static def ComponentInterface getTopComponentInterface(Iterable<? extends TypeReference> trs){
+		var ComponentInterface top = null
+		for (tr : trs){
+			if (tr.type instanceof ComponentClassifier){
+				val cif = getComponentInterface(tr.type as ComponentClassifier)
+				if (top.isSuperInterfaceOf(cif)){
+					top = cif
+				}
+			}
+		}
+		return top
+	}
+	/**
+	 * returns implementation or interface that is the extension of all other implementations or interfaces
+	 */
+	static def ComponentClassifier getTopComponentClassifier(Iterable<? extends TypeReference> trs){
+		val res = trs.topComponentImplementation
+		if (res !== null) return res
+		return trs.topComponentInterface
+	}
 
+	/**
+	 * return set of component configurations of a given classifier
+	 */
 	static def Iterable<? extends ComponentConfiguration> getAllComponentConfigurations(ComponentClassifier cc) {
 		if(cc === null || cc.eIsProxy || !(cc instanceof ComponentConfiguration)) return Collections.EMPTY_LIST
 		val result = new LinkedHashSet<ComponentConfiguration>
@@ -195,6 +278,9 @@ class Aadlv3Util {
 		return result
 	}
 
+	/**
+	 * return set of all super configurations of a given classifier
+	 */
 	static def Iterable<? extends ComponentConfiguration> getAllSuperComponentConfigurations(ComponentClassifier cc) {
 		if(cc === null || cc.eIsProxy|| !(cc instanceof ComponentConfiguration)) return Collections.EMPTY_LIST
 		val result = new LinkedHashSet<ComponentConfiguration>
@@ -202,6 +288,9 @@ class Aadlv3Util {
 		return result
 	}
 
+	/**
+	 * add super configurations to set
+	 */
 	private static def void addSuperComponentConfigurations(ComponentClassifier cl,
 		HashSet<ComponentConfiguration> set) {
 		if(cl.superClassifiers.empty) return
@@ -219,18 +308,30 @@ class Aadlv3Util {
 	}
 
 
+	/**
+	 * return collection of flow specs for given classifier
+	 * TODO check whether the same flow spec is added more than once
+	 */
 	static def Iterable<? extends Association> getAllFlowSpecs(ComponentClassifier cc) {
 		if(cc === null || cc.eIsProxy) return Collections.EMPTY_LIST
 		val cls = cc.allComponentInterfaces
 		return cls.map[cl|cl.flows].flatten
 	}
 
+	/**
+	 * return collection of flow paths for given classifier
+	 * TODO check whether the same flow path is added more than once
+	 */
 	static def Iterable<? extends PathSequence> getAllPaths(ComponentClassifier cc) {
 		if(cc === null || cc.eIsProxy) return Collections.EMPTY_LIST
 		val cls = cc.allComponentImplementations
 		return cls.map[cl|cl.paths].flatten
 	}
 
+	/**
+	 * return collection of flow assignments for given classifier
+	 * TODO check whether the same flow assignment is added more than once
+	 */
 	static def Iterable<? extends PathSequence> getAllFlowAssignments(ComponentClassifier cc) {
 		if(cc === null || cc.eIsProxy) return Collections.EMPTY_LIST
 		val cimpls =cc.allComponentImplementations
@@ -238,15 +339,29 @@ class Aadlv3Util {
 		return cimpls.map[cl|cl.flowAssignments].flatten
 	}
 
+	/**
+	 * return collection of features for given classifier
+	 * TODO check whether the same feature is added more than once
+	 */
 	static def Iterable<? extends Feature> getAllClassifierFeatures(ComponentClassifier cc) {
 		if(cc === null || cc.eIsProxy) return Collections.EMPTY_LIST
 		val cls = cc.allComponentInterfaces
 		return cls.map[cl|cl.features].flatten
 	}
 
+	/**
+	 * return collection of features of a component.
+	 * These are features declared as part of the classifier or as part of the nested declaration
+	 */
 	static def Iterable<? extends Feature> getAllFeatures(Component comp) {
-		val contents = comp.allContents
-		return contents.filter[me|me instanceof Feature] as Iterable<? extends Feature>
+		if (comp.typeReferences.empty){
+			// features in nested declaration
+			return comp.features
+		} else {
+			// features from classifier
+			val topcif = getTopComponentInterface(comp.typeReferences)
+			return getAllClassifierFeatures(topcif)
+		}
 	}
 
 	static def boolean isReverseFeature(ComponentClassifier cc, Feature f) {
@@ -312,19 +427,54 @@ class Aadlv3Util {
 		FeatureDirection.NONE
 	}
 
-	static def Iterable<? extends Component> getAllComponents(ComponentClassifier cc) {
+	/**
+	 * return set of all subcomponents from implementation and super implementations
+	 */
+	static def Iterable<? extends Component> getAllClassifierComponents(ComponentClassifier cc) {
 		if(cc === null || cc.eIsProxy) return Collections.EMPTY_LIST
 		val cls = cc.allComponentImplementations
 		val res = cls.map[cl|cl.components].flatten
 		res
 	}
+	/**
+	 * return collection of sub-components of a component.
+	 * These are sub-components declared as part of the classifier or as part of the nested declaration
+	 */
+	static def Iterable<? extends Component> getAllSubcomponents(Component comp) {
+		if (comp.typeReferences.empty){
+			// subcomponents in nested declaration
+			return comp.components
+		} else {
+			// subcomponents from classifier
+			val topcimpl = getTopComponentImplementation(comp.typeReferences)
+			return getAllClassifierComponents(topcimpl)
+		}
+	}
 
-	static def Iterable<? extends Association> getAllConnections(ComponentClassifier cc) {
+	/**
+	 * return set of all connections from implementation and super implementations
+	 */
+	static def Iterable<? extends Association> getAllClassifierAssociations(ComponentClassifier cc) {
 		if(cc === null || cc.eIsProxy) return Collections.EMPTY_LIST
 		val cls = cc.allComponentImplementations
 		val res = cls.map[cl|cl.connections].flatten
 		res
 	}
+	/**
+	 * return collection of associations of a component.
+	 * These are associations declared as part of the classifier or as part of the nested declaration
+	 */
+	static def Iterable<? extends Association> getAllAssociations(Component comp) {
+		if (comp.typeReferences.empty){
+			// connections in nested declaration
+			return comp.connections
+		} else {
+			// connections from classifier
+			val topcimpl = getTopComponentImplementation(comp.typeReferences)
+			return getAllClassifierAssociations(topcimpl)
+		}
+	}
+
 
 	// return all configuration assignments including those of super configurations
 	// Those from super configurations may get overridden if they are for the same target
@@ -441,17 +591,17 @@ class Aadlv3Util {
 	// we have added only one scope as references are resolved relative to the enclosing model element reference
 	def static ComponentClassifier getConfiguredClassifier(Component match,
 		Stack<Iterable<ConfigurationAssignment>> casscopes) {
-		val ctype = match.typeReference?.type
+		val ctype = match.typeReferences?.topComponentClassifier
 		val n = casscopes.size
 		// component has no type or 
-		if(ctype === null || !(ctype instanceof ComponentClassifier) || ctype.isParameterizedConfiguration) return null
+		if(ctype === null || !(ctype instanceof ComponentClassifier) ) return null
 		// we have a component classifier
 		var ccl = ctype as ComponentClassifier
 		if(n == 0) return ccl
 		// we have configuration assignment scopes, find a matching assignment and use its vlaue
 		for (ca : casscopes.get(0)) {
 			if (ca.target.element === match) {
-				val actualClorP = ca.value?.type
+				val actualClorP = ca.assignedClassifiers.topComponentClassifier
 				if (actualClorP instanceof ComponentClassifier) {
 					if (ccl.isSuperClassifierOf(actualClorP)) {
 						ccl = actualClorP
@@ -474,8 +624,8 @@ class Aadlv3Util {
 	// TODO when we override we want to make sure it does not change the implementation
 	def static TypeReference getConfiguredTypeReference(Component match,
 		Stack<Iterable<ConfigurationAssignment>> casscopes, ComponentInstance context) {
-		var ctyperef = match.typeReference
-		if (ctyperef === null) return null
+		var ctyperefs = match.typeReferences
+		if (ctyperefs.empty) return null
 		val n = casscopes.size
 		if(n===0 || ctyperef.type instanceof DataType) return ctyperef 
 		// Also handle ConfigurationParameter
@@ -580,36 +730,50 @@ class Aadlv3Util {
 	}
 
 // methods used primarily by validator and scope provider
-	static def Iterable<? extends ModelElement> getAllModelElements(Iterable<? extends ComponentClassifier> cls) {
-		if(cls.empty) return Collections.EMPTY_LIST
-		val res = cls.map[cl|cl.eContents.typeSelect(ModelElement)].flatten
-		res
+	
+	static def Iterable<? extends ModelElement> getAllModelElements(ComponentClassifier cl) {
+		if(cl === null) return Collections.EMPTY_LIST
+		if (cl instanceof ComponentRealization){
+			 cl.allComponentImplementations.map[ci|ci.eContents.typeSelect(ModelElement)].flatten
+		}
+		cl.allComponentInterfaces.map[cif|cif.eContents.typeSelect(ModelElement)].flatten
 	}
 
-	static def Iterable<? extends ModelElement> myContents(ComponentClassifier co) {
-		co.eContents.typeSelect(ModelElement)
-	}
-
-	// handle component pointing to classifier
-	static def Iterable<? extends ModelElement> getAllContents(Component co) {
-		val ctype = co.typeReference?.type
-		if (ctype instanceof ComponentClassifier){
-			var cls = ctype.allComponentClassifiers
-			val cat = cls.componentCategory
-			if (co.category != cat){
-				val base = co.getBaseInterface(cat)
-				if (base !== null) cls += base
-			}
-			cls.allModelElements 
+	static def Iterable<? extends ModelElement> getAllModelElements(Iterable<TypeReference> trs) {
+		if (trs.empty){
+			// model elements in nested declaration
+			return Collections.EMPTY_LIST
 		} else {
-			myContents(co)
+			// features from classifier
+			val topcimpl = getTopComponentImplementation(trs)
+			if (topcimpl !== null){
+				return topcimpl.getAllComponentImplementations.map[cl|cl.eContents.typeSelect(ModelElement)].flatten
+			}
+			val topif = getTopComponentInterface(trs)
+			if (topif !== null){
+				return topif.allComponentInterfaces.map[cl|cl.eContents.typeSelect(ModelElement)].flatten
+			}
+			//DataType or configuration parameter
+			// TODO fields in data type
+			return Collections.EMPTY_LIST
 		}
 	}
 
-	// model elements of the component - dealing with nested component declarations
-	static def Iterable<? extends ModelElement> myContents(Component co) {
-		co.eContents.typeSelect(ModelElement)
+
+	/**
+	 * return collection of model elements of a component.
+	 * These are model elements declared as part of the classifier or as part of the nested declaration
+	 */
+	static def Iterable<? extends ModelElement> getAllModelElements(Component comp) {
+		if (comp.typeReferences.empty){
+			// model elements in nested declaration
+			return comp.eContents.typeSelect(ModelElement)
+		} else {
+			return getAllModelElements(comp.typeReferences)
+		}
 	}
+
+
 
 	def static String getNamePath(InstanceObject elem, InstanceObject context) {
 		var res = elem.name
@@ -750,7 +914,28 @@ class Aadlv3Util {
 		}
 		false
 	}
+	// superInterface has to be a direct or indirect super implementation, or the same
+	def static boolean isSuperInterfaceOf(ComponentInterface superInterface, ComponentInterface cinterface) {
+		if( cinterface === null || superInterface.eIsProxy || cinterface.eIsProxy) return false
+		if (superInterface === null || superInterface === cinterface) return true
+		var superclrefs = cinterface.superClassifiers
+		for (superclref : superclrefs) {
+			val stype = superclref.type
+			if (stype instanceof ComponentInterface){
+				if(stype == superInterface) return true
+				if(superInterface.isSuperInterfaceOf(stype)) return true
+			}
+		}
+		false
+	}
 	
+
+	// superImpl has to be a direct or indirect super implementation, or the same
+	def static boolean isSuperDataTypeOf(DataType superdt, DataType dt) {
+		if( dt === null || superdt.eIsProxy || dt.eIsProxy) return false
+		if (superdt === null || superdt === dt) return true
+		false
+	}
 	
 	// returns the enclosing component classifier. For a component configuration as 'elem' it is returned
 	def static Iterable<Import> getAliases(EObject elem) {
@@ -786,26 +971,6 @@ class Aadlv3Util {
 		return cxt as ComponentConfiguration
 	}
 
-	/** 
-	 * two model elements are the same if their eClass and name are the same
-	 * In addition for features the category, direction and type must match
-	 * For components the category and type must match
-	 */
-	def static isSame(ModelElement e1, ModelElement e2) {
-		if (e1.eClass == e2.eClass && e1.name == e2.name) {
-			switch e1 {
-				Feature: {
-					val ee2 = e2 as Feature;
-					return e1.category == ee2.category && e1.direction == ee2.direction && e1.type == ee2.type
-				}
-				Component: {
-					val ee2 = e2 as Component;
-					return e1.category == ee2.category && e1.typeReference?.type == ee2.typeReference?.type 
-				}
-			}
-		}
-		return false
-	}
 
 	
 	// mapping maps an outgoing feature, i.e., a source

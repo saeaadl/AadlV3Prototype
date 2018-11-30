@@ -42,23 +42,28 @@ public class Av3API {
 		return Aadlv3GlobalScopeUtil.get(context, Aadlv3Package.eINSTANCE.getWorkingset(), qpname);
 	}
 
-	public static ComponentInterface getComponentInterface(ComponentRealization creal) {
-		if (creal.getCachedInterfaceReference() != null) {
-			return creal.getCachedInterfaceReference();
+	public static ComponentInterface getComponentInterface(ComponentClassifier ccl) {
+		if (ccl instanceof ComponentRealization) {
+			ComponentRealization creal = (ComponentRealization) ccl;
+			if (creal.getCachedInterfaceReference() != null) {
+				return creal.getCachedInterfaceReference();
+			}
+			String iname = creal.getName();
+			String ifname = iname;
+			int idx = iname.lastIndexOf('.');
+			if (idx >= 0) {
+				ifname = iname.substring(0, idx);
+			}
+			ComponentInterface cif = (ComponentInterface) Aadlv3GlobalScopeUtil.get(creal,
+					Aadlv3Package.eINSTANCE.getComponentRealization_CachedInterfaceReference(), ifname);
+			if (cif != null) {
+				creal.setCachedInterfaceReference(cif);
+			}
+			return cif;
+		} else {
+			return (ComponentInterface) ccl;
 		}
-		String iname = creal.getName();
-		String ifname = iname;
-		int idx = iname.lastIndexOf('.');
-		if (idx >= 0) {
-			ifname = iname.substring(0,idx);
-		}
-		 ComponentInterface cif = (ComponentInterface) Aadlv3GlobalScopeUtil.get(creal, Aadlv3Package.eINSTANCE.getComponentRealization_CachedInterfaceReference(), ifname);
-		 if (cif != null) {
-			 creal.setCachedInterfaceReference(cif);
-		 }
-		 return cif;
 	}
-
 
 	public static Collection<ComponentRealization> getComponentRealizations(ComponentInterface cinterface) {
 		return Aadlv3GlobalScopeUtil.getAllInContext(cinterface, Aadlv3Package.eINSTANCE.getComponentRealization());

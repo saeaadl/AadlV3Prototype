@@ -27,7 +27,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.Component#getCategory <em>Category</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.Component#getTypeReference <em>Type Reference</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.Component#getTypeReferences <em>Type References</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.Component#getComponents <em>Components</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.Component#getConnections <em>Connections</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.Component#getFeatures <em>Features</em>}</li>
@@ -68,30 +68,20 @@ public interface Component extends ModelElement {
 	void setCategory(ComponentCategory value);
 
 	/**
-	 * Returns the value of the '<em><b>Type Reference</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Type References</b></em>' containment reference list.
+	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.TypeReference}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Type Reference</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Type References</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Type Reference</em>' containment reference.
-	 * @see #setTypeReference(TypeReference)
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getComponent_TypeReference()
+	 * @return the value of the '<em>Type References</em>' containment reference list.
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getComponent_TypeReferences()
 	 * @model containment="true"
 	 * @generated
 	 */
-	TypeReference getTypeReference();
-
-	/**
-	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.Component#getTypeReference <em>Type Reference</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Type Reference</em>' containment reference.
-	 * @see #getTypeReference()
-	 * @generated
-	 */
-	void setTypeReference(TypeReference value);
+	EList<TypeReference> getTypeReferences();
 
 	/**
 	 * Returns the value of the '<em><b>Components</b></em>' containment reference list.

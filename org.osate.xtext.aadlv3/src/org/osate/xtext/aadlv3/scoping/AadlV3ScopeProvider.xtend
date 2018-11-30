@@ -3,16 +3,24 @@
  */
 package org.osate.xtext.aadlv3.scoping
 
+import com.google.common.base.Function
+import com.google.common.base.Predicates
+import com.google.common.collect.Iterables
+import com.google.inject.Inject
 import java.util.Collections
 import java.util.Stack
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
+import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.eclipse.xtext.naming.QualifiedName
+import org.eclipse.xtext.resource.EObjectDescription
+import org.eclipse.xtext.resource.IEObjectDescription
 import org.eclipse.xtext.scoping.IScope
 import org.eclipse.xtext.scoping.Scopes
 import org.eclipse.xtext.scoping.impl.SimpleScope
 import org.eclipse.xtext.util.SimpleAttributeResolver
 import org.osate.aadlv3.aadlv3.Aadlv3Package
+import org.osate.aadlv3.aadlv3.Association
 import org.osate.aadlv3.aadlv3.Component
 import org.osate.aadlv3.aadlv3.ComponentClassifier
 import org.osate.aadlv3.aadlv3.ComponentConfiguration
@@ -20,24 +28,14 @@ import org.osate.aadlv3.aadlv3.ComponentInterface
 import org.osate.aadlv3.aadlv3.ConfigurationActual
 import org.osate.aadlv3.aadlv3.ConfigurationAssignment
 import org.osate.aadlv3.aadlv3.Feature
+import org.osate.aadlv3.aadlv3.Import
 import org.osate.aadlv3.aadlv3.ModelElementReference
 import org.osate.aadlv3.aadlv3.PathSequence
-import org.osate.aadlv3.aadlv3.DataType
 import org.osate.aadlv3.aadlv3.PropertyAssociation
-import org.osate.aadlv3.aadlv3.Type
 import org.osate.aadlv3.aadlv3.TypeReference
+import org.osate.aadlv3.util.Av3API
 
 import static extension org.osate.aadlv3.util.Aadlv3Util.*
-import org.osate.aadlv3.aadlv3.Association
-import com.google.common.collect.Iterables
-import com.google.common.base.Function
-import org.eclipse.xtext.resource.EObjectDescription
-import com.google.common.base.Predicates
-import org.eclipse.xtext.resource.IEObjectDescription
-import org.osate.aadlv3.aadlv3.Import
-import org.osate.aadlv3.util.Av3API
-import org.eclipse.xtext.naming.IQualifiedNameConverter
-import com.google.inject.Inject
 
 /**
  * This class contains custom scoping description.
@@ -63,10 +61,10 @@ class AadlV3ScopeProvider extends AbstractAadlV3ScopeProvider {
 						PathSequence: {
 							switch container : cc.eContainer {
 								ComponentClassifier: {
-									container.allComponentClassifiers.allModelElements ?: Collections.EMPTY_LIST
+									container.allModelElements ?: Collections.EMPTY_LIST
 								}
 								Component: {
-									container?.allContents ?: Collections.EMPTY_LIST
+									container?.allModelElements ?: Collections.EMPTY_LIST
 								}
 							}
 						}
@@ -74,16 +72,20 @@ class AadlV3ScopeProvider extends AbstractAadlV3ScopeProvider {
 						PropertyAssociation: {
 							switch ccc: cc.eContainer {
 								ComponentClassifier:
-									ccc.allComponentClassifiers.allModelElements
+									ccc.allModelElements
 								ConfigurationAssignment: {
 									// enclosing configuration assignment may configure a classifier or it may be empty, thus, we need to go to its target
 									// We only need to go to the enclosing configuration assignment as it acts as the root context for resolving the model element reference path
-									val ne = ccc.value?.type;
-									if (ne instanceof ComponentClassifier) {
-										ne.allComponentClassifiers.allModelElements
-									} else if (ne instanceof Type) {
-										// no contained model elements unless we access record fields (TODO)
-										Collections.EMPTY_LIST
+									if (!ccc.assignedClassifiers.empty) {
+										val topdt = ccc.assignedClassifiers.topDataType
+										if (topdt !== null){
+											Collections.EMPTY_LIST
+										} else{
+											val topimpl = ccc.assignedClassifiers.topComponentImplementation
+											if (topimpl !== null){
+												topimpl.allModelElements
+											}
+										}
 									} else {
 										// container is a configuration assignment with a configuration parameter reference on the right
 										// or without a value on the right
@@ -94,8 +96,7 @@ class AadlV3ScopeProvider extends AbstractAadlV3ScopeProvider {
 											casscopes.push(
 												context.containingComponentConfiguration.
 													allSuperConfigurationAssignments)
-											el.getConfiguredClassifier(casscopes)?.allComponentClassifiers.
-												allModelElements ?: Collections.EMPTY_LIST
+											el.getConfiguredClassifier(casscopes)?.allModelElements ?: Collections.EMPTY_LIST
 										} else if (el instanceof Feature) {
 											val ftype = el.type
 											if (ftype instanceof ComponentInterface) {
@@ -127,32 +128,18 @@ class AadlV3ScopeProvider extends AbstractAadlV3ScopeProvider {
 							val pcl = previousElement.getConfiguredClassifier(casscopes)
 							if (pcl !== null) {
 								if (!pcl.eIsProxy) {
-									pcl.allComponentClassifiers.allModelElements
+									pcl.allModelElements
 								} else {
 									Collections.EMPTY_LIST
 								}
 							} else {
-								if (previousElement.typeReference === null) {
-									// nested component without classifier or primitive type
-									previousElement.components + previousElement.features + previousElement.connections
-								} else {
-									// we do have a classifier or primitive type
-									if (previousElement.typeReference.type.eIsProxy) {
-										Collections.EMPTY_LIST
-									} else if (previousElement.typeReference.type instanceof DataType) {
-										previousElement.features
-									} else {
-										// we have a classifier
-										val prevcl = previousElement.typeReference.type as ComponentClassifier
-										prevcl?.allClassifierFeatures + prevcl?.allComponents
-									}
-								}
+								previousElement.allModelElements
 							}
 						}
 						Feature: {
 							val at = previousElement.type
 							if (at instanceof ComponentClassifier) {
-								at.allComponentClassifiers.allModelElements
+								at.allModelElements
 							}
 						}
 					}

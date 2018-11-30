@@ -77,8 +77,8 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Component" eSuperTypes="#//ModelElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="category" eType="#//ComponentCategory"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="typeReference" eType="#//TypeReference"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="typeReferences" upperBound="-1"
+        eType="#//TypeReference" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="components" upperBound="-1"
         eType="#//Component" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="connections" upperBound="-1"
@@ -102,8 +102,8 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="assignments" upperBound="-1"
         eType="#//ConfigurationAssignment" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//TypeReference"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="assignedClassifiers" upperBound="-1"
+        eType="#//TypeReference" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="propertyAssociations" upperBound="-1"
         eType="#//PropertyAssociation" containment="true"/>
   </eClassifiers>

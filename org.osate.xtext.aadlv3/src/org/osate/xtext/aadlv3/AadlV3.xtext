@@ -86,7 +86,7 @@ Feature returns av3::Feature:
 
 Component returns av3::Component:
 	name=ID ':' category=ComponentCategory
-	typeReference=TypeReference? 
+	(typeReferences+=TypeReference (',' typeReferences+=TypeReference?)*)?
 	NestedComponentImplementationBlock?
  ;
 
@@ -132,7 +132,7 @@ Import returns av3::Import:
 
 ConfigurationAssignment returns av3::ConfigurationAssignment:
 	target= ModelElementReference '=>' 
-	((value=TypeReference (CurlyConfigurationElementBlock)?)
+	((assignedClassifiers+=TypeReference (',' assignedClassifiers+=TypeReference)* (CurlyConfigurationElementBlock)?)
 	| CurlyConfigurationElementBlock)
 	;
 

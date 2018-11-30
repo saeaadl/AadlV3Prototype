@@ -93,7 +93,7 @@ public class ComponentItemProvider extends ModelElementItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(Aadlv3Package.Literals.COMPONENT__TYPE_REFERENCE);
+			childrenFeatures.add(Aadlv3Package.Literals.COMPONENT__TYPE_REFERENCES);
 			childrenFeatures.add(Aadlv3Package.Literals.COMPONENT__COMPONENTS);
 			childrenFeatures.add(Aadlv3Package.Literals.COMPONENT__CONNECTIONS);
 			childrenFeatures.add(Aadlv3Package.Literals.COMPONENT__FEATURES);
@@ -153,7 +153,7 @@ public class ComponentItemProvider extends ModelElementItemProvider {
 		case Aadlv3Package.COMPONENT__CATEGORY:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
-		case Aadlv3Package.COMPONENT__TYPE_REFERENCE:
+		case Aadlv3Package.COMPONENT__TYPE_REFERENCES:
 		case Aadlv3Package.COMPONENT__COMPONENTS:
 		case Aadlv3Package.COMPONENT__CONNECTIONS:
 		case Aadlv3Package.COMPONENT__FEATURES:
@@ -174,7 +174,7 @@ public class ComponentItemProvider extends ModelElementItemProvider {
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.COMPONENT__TYPE_REFERENCE,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.COMPONENT__TYPE_REFERENCES,
 				Aadlv3Factory.eINSTANCE.createTypeReference()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.COMPONENT__COMPONENTS,

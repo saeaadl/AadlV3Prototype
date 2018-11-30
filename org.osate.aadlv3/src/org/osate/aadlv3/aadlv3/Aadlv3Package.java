@@ -904,13 +904,13 @@ public interface Aadlv3Package extends EPackage {
 	int COMPONENT__CATEGORY = MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Type Reference</b></em>' containment reference.
+	 * The feature id for the '<em><b>Type References</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT__TYPE_REFERENCE = MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int COMPONENT__TYPE_REFERENCES = MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Components</b></em>' containment reference list.
@@ -1078,13 +1078,13 @@ public interface Aadlv3Package extends EPackage {
 	int CONFIGURATION_ASSIGNMENT__ASSIGNMENTS = 1;
 
 	/**
-	 * The feature id for the '<em><b>Value</b></em>' containment reference.
+	 * The feature id for the '<em><b>Assigned Classifiers</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONFIGURATION_ASSIGNMENT__VALUE = 2;
+	int CONFIGURATION_ASSIGNMENT__ASSIGNED_CLASSIFIERS = 2;
 
 	/**
 	 * The feature id for the '<em><b>Property Associations</b></em>' containment reference list.
@@ -1989,15 +1989,15 @@ public interface Aadlv3Package extends EPackage {
 	EAttribute getComponent_Category();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.osate.aadlv3.aadlv3.Component#getTypeReference <em>Type Reference</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.osate.aadlv3.aadlv3.Component#getTypeReferences <em>Type References</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Type Reference</em>'.
-	 * @see org.osate.aadlv3.aadlv3.Component#getTypeReference()
+	 * @return the meta object for the containment reference list '<em>Type References</em>'.
+	 * @see org.osate.aadlv3.aadlv3.Component#getTypeReferences()
 	 * @see #getComponent()
 	 * @generated
 	 */
-	EReference getComponent_TypeReference();
+	EReference getComponent_TypeReferences();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link org.osate.aadlv3.aadlv3.Component#getComponents <em>Components</em>}'.
@@ -2140,15 +2140,15 @@ public interface Aadlv3Package extends EPackage {
 	EReference getConfigurationAssignment_Assignments();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.osate.aadlv3.aadlv3.ConfigurationAssignment#getValue <em>Value</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.osate.aadlv3.aadlv3.ConfigurationAssignment#getAssignedClassifiers <em>Assigned Classifiers</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Value</em>'.
-	 * @see org.osate.aadlv3.aadlv3.ConfigurationAssignment#getValue()
+	 * @return the meta object for the containment reference list '<em>Assigned Classifiers</em>'.
+	 * @see org.osate.aadlv3.aadlv3.ConfigurationAssignment#getAssignedClassifiers()
 	 * @see #getConfigurationAssignment()
 	 * @generated
 	 */
-	EReference getConfigurationAssignment_Value();
+	EReference getConfigurationAssignment_AssignedClassifiers();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link org.osate.aadlv3.aadlv3.ConfigurationAssignment#getPropertyAssociations <em>Property Associations</em>}'.
@@ -2898,12 +2898,12 @@ public interface Aadlv3Package extends EPackage {
 		EAttribute COMPONENT__CATEGORY = eINSTANCE.getComponent_Category();
 
 		/**
-		 * The meta object literal for the '<em><b>Type Reference</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Type References</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference COMPONENT__TYPE_REFERENCE = eINSTANCE.getComponent_TypeReference();
+		EReference COMPONENT__TYPE_REFERENCES = eINSTANCE.getComponent_TypeReferences();
 
 		/**
 		 * The meta object literal for the '<em><b>Components</b></em>' containment reference list feature.
@@ -3016,12 +3016,13 @@ public interface Aadlv3Package extends EPackage {
 		EReference CONFIGURATION_ASSIGNMENT__ASSIGNMENTS = eINSTANCE.getConfigurationAssignment_Assignments();
 
 		/**
-		 * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Assigned Classifiers</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CONFIGURATION_ASSIGNMENT__VALUE = eINSTANCE.getConfigurationAssignment_Value();
+		EReference CONFIGURATION_ASSIGNMENT__ASSIGNED_CLASSIFIERS = eINSTANCE
+				.getConfigurationAssignment_AssignedClassifiers();
 
 		/**
 		 * The meta object literal for the '<em><b>Property Associations</b></em>' containment reference list feature.

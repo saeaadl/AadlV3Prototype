@@ -30,7 +30,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.ConfigurationAssignment#getTarget <em>Target</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.ConfigurationAssignment#getAssignments <em>Assignments</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.ConfigurationAssignment#getValue <em>Value</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.ConfigurationAssignment#getAssignedClassifiers <em>Assigned Classifiers</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.ConfigurationAssignment#getPropertyAssociations <em>Property Associations</em>}</li>
  * </ul>
  *
@@ -82,30 +82,20 @@ public interface ConfigurationAssignment extends EObject {
 	EList<ConfigurationAssignment> getAssignments();
 
 	/**
-	 * Returns the value of the '<em><b>Value</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Assigned Classifiers</b></em>' containment reference list.
+	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.TypeReference}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Value</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Assigned Classifiers</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Value</em>' containment reference.
-	 * @see #setValue(TypeReference)
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getConfigurationAssignment_Value()
+	 * @return the value of the '<em>Assigned Classifiers</em>' containment reference list.
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getConfigurationAssignment_AssignedClassifiers()
 	 * @model containment="true"
 	 * @generated
 	 */
-	TypeReference getValue();
-
-	/**
-	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.ConfigurationAssignment#getValue <em>Value</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Value</em>' containment reference.
-	 * @see #getValue()
-	 * @generated
-	 */
-	void setValue(TypeReference value);
+	EList<TypeReference> getAssignedClassifiers();
 
 	/**
 	 * Returns the value of the '<em><b>Property Associations</b></em>' containment reference list.

@@ -34,6 +34,8 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AadlV3GrammarAccess grammarAccess;
 	protected AbstractElementAlias match_ComponentImplementation_ExtendsKeyword_3_0_q;
 	protected AbstractElementAlias match_ComponentInterface_ExtendsKeyword_4_0_q;
+	protected AbstractElementAlias match_Component_CommaKeyword_3_1_0_a;
+	protected AbstractElementAlias match_Component_CommaKeyword_3_1_0_p;
 	protected AbstractElementAlias match_ConfigurationElementBlock_SEMICOLONParserRuleCall_0_3_q;
 	protected AbstractElementAlias match_CurlyConfigurationElementBlock_SEMICOLONParserRuleCall_3_q;
 	protected AbstractElementAlias match_ImplementationBody_SEMICOLONParserRuleCall_0_3_q;
@@ -47,6 +49,8 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 		grammarAccess = (AadlV3GrammarAccess) access;
 		match_ComponentImplementation_ExtendsKeyword_3_0_q = new TokenAlias(false, true, grammarAccess.getComponentImplementationAccess().getExtendsKeyword_3_0());
 		match_ComponentInterface_ExtendsKeyword_4_0_q = new TokenAlias(false, true, grammarAccess.getComponentInterfaceAccess().getExtendsKeyword_4_0());
+		match_Component_CommaKeyword_3_1_0_a = new TokenAlias(true, true, grammarAccess.getComponentAccess().getCommaKeyword_3_1_0());
+		match_Component_CommaKeyword_3_1_0_p = new TokenAlias(true, false, grammarAccess.getComponentAccess().getCommaKeyword_3_1_0());
 		match_ConfigurationElementBlock_SEMICOLONParserRuleCall_0_3_q = new TokenAlias(false, true, grammarAccess.getConfigurationElementBlockAccess().getSEMICOLONParserRuleCall_0_3());
 		match_CurlyConfigurationElementBlock_SEMICOLONParserRuleCall_3_q = new TokenAlias(false, true, grammarAccess.getCurlyConfigurationElementBlockAccess().getSEMICOLONParserRuleCall_3());
 		match_ImplementationBody_SEMICOLONParserRuleCall_0_3_q = new TokenAlias(false, true, grammarAccess.getImplementationBodyAccess().getSEMICOLONParserRuleCall_0_3());
@@ -94,6 +98,10 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_ComponentImplementation_ExtendsKeyword_3_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_ComponentInterface_ExtendsKeyword_4_0_q.equals(syntax))
 				emit_ComponentInterface_ExtendsKeyword_4_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Component_CommaKeyword_3_1_0_a.equals(syntax))
+				emit_Component_CommaKeyword_3_1_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Component_CommaKeyword_3_1_0_p.equals(syntax))
+				emit_Component_CommaKeyword_3_1_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_ConfigurationElementBlock_SEMICOLONParserRuleCall_0_3_q.equals(syntax))
 				emit_ConfigurationElementBlock_SEMICOLONParserRuleCall_0_3_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_CurlyConfigurationElementBlock_SEMICOLONParserRuleCall_3_q.equals(syntax))
@@ -144,6 +152,33 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     name=ID (ambiguity) 'is' propertyAssociations+=PropertyAssociation
 	 */
 	protected void emit_ComponentInterface_ExtendsKeyword_4_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     ','*
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     typeReferences+=TypeReference (ambiguity) '{' components+=Component
+	 *     typeReferences+=TypeReference (ambiguity) '{' connections+=Connection
+	 *     typeReferences+=TypeReference (ambiguity) '{' connections+=FeatureMapping
+	 *     typeReferences+=TypeReference (ambiguity) '{' features+=Feature
+	 *     typeReferences+=TypeReference (ambiguity) '{' propertyAssociations+=PropertyAssociation
+	 *     typeReferences+=TypeReference (ambiguity) (rule end)
+	 */
+	protected void emit_Component_CommaKeyword_3_1_0_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     ','+
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     typeReferences+=TypeReference (ambiguity) typeReferences+=TypeReference
+	 */
+	protected void emit_Component_CommaKeyword_3_1_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

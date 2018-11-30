@@ -6,27 +6,26 @@ package org.osate.xtext.aadlv3.validation
 import org.eclipse.xtext.validation.Check
 import org.osate.aadlv3.aadlv3.Aadlv3Package
 import org.osate.aadlv3.aadlv3.Association
-import org.osate.aadlv3.aadlv3.AssociationType
 import org.osate.aadlv3.aadlv3.Component
 import org.osate.aadlv3.aadlv3.ComponentCategory
 import org.osate.aadlv3.aadlv3.ComponentClassifier
 import org.osate.aadlv3.aadlv3.ComponentConfiguration
 import org.osate.aadlv3.aadlv3.ComponentImplementation
 import org.osate.aadlv3.aadlv3.ComponentInterface
+import org.osate.aadlv3.aadlv3.ComponentRealization
 import org.osate.aadlv3.aadlv3.ConfigurationActual
 import org.osate.aadlv3.aadlv3.ConfigurationAssignment
 import org.osate.aadlv3.aadlv3.ConfigurationParameter
+import org.osate.aadlv3.aadlv3.DataType
 import org.osate.aadlv3.aadlv3.Feature
 import org.osate.aadlv3.aadlv3.FeatureCategory
 import org.osate.aadlv3.aadlv3.FeatureDirection
 import org.osate.aadlv3.aadlv3.ModelElement
 import org.osate.aadlv3.aadlv3.PathElement
 import org.osate.aadlv3.aadlv3.PathSequence
-import org.osate.aadlv3.aadlv3.DataType
 
 import static extension org.osate.aadlv3.util.Aadlv3Util.*
 import static extension org.osate.aadlv3.util.Av3API.*
-import org.osate.aadlv3.aadlv3.ComponentRealization
 
 /**
  * This class contains custom validation rules. 
@@ -125,7 +124,8 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 				Aadlv3Package.Literals.CONFIGURATION_ASSIGNMENT__TARGET, ToSubcomponent)
 		} else {
 			val comp = ca.target.element as Component
-			val assignedtype = ca.value?.type
+			for (tr : ca.assignedClassifiers){
+			val assignedtype = tr.type
 			val thetype = if(assignedtype instanceof ConfigurationParameter) assignedtype.type else assignedtype
 			if (thetype instanceof ComponentClassifier) {
 				val clcat = thetype.componentCategory
@@ -138,12 +138,13 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 			} else if (thetype instanceof DataType) {
 				// primitive type
 				if (comp.category === ComponentCategory.DATA || comp.category === ComponentCategory.ABSTRACT) {
-					if (comp.typeReference !== null) {
+					if (!comp.typeReferences.empty) {
 						error('Assigned primitive type cannot override existing type', ca, null, OverrideType)
 					}
 				} else {
 					error('Configuration assignment expects component classifier', ca, null, NoDataType)
 				}
+			}
 			}
 		}
 	}
@@ -174,13 +175,15 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 
 	@Check
 	def checkComponent(Component comp) {
-		if (comp.typeReference !== null) {
-			if (!(comp.typeReference.type instanceof DataType)) {
-				// we have a classifier reference
-				comp.checkComponentWithClassifier
-			} else {
-				// primitive type
-				comp.checkComponentWithDataType
+		if (!comp.typeReferences.empty) {
+			for (typeReference : comp.typeReferences) {
+				if (!(typeReference.type instanceof DataType)) {
+					// we have a classifier reference
+					comp.checkComponentWithClassifier
+				} else {
+					// primitive type
+					comp.checkComponentWithDataType
+				}
 			}
 		}
 	}
@@ -200,27 +203,27 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 			val assignedtype = ca.value.type
 			if (assignedtype instanceof ComponentClassifier) {
 				if (!(cif.isSuperClassifierOf(assignedtype))) {
-					error('Configuration actual does not match component interface of configuration parameter', ca, null,
-						FormalActualMismatch)
+					error('Configuration actual does not match component interface of configuration parameter', ca,
+						null, FormalActualMismatch)
 				}
-			} else if (assignedtype instanceof ConfigurationParameter){
+			} else if (assignedtype instanceof ConfigurationParameter) {
 				val assignedcif = assignedtype.type
-				if (assignedcif instanceof ComponentClassifier){
-					if (!(cif.isSuperClassifierOf(assignedcif))){
-						error('Configuration actual does not match component interface of referenced configuration parameter', ca, null,
-							FormalActualMismatch)
+				if (assignedcif instanceof ComponentClassifier) {
+					if (!(cif.isSuperClassifierOf(assignedcif))) {
+						error(
+							'Configuration actual does not match component interface of referenced configuration parameter',
+							ca, null, FormalActualMismatch)
 					}
 				}
 			} else {
 				// should an assigned component classifier
-				error('Configuration actual is not a component classifier', ca, null,
-					FormalActualMismatch)
+				error('Configuration actual is not a component classifier', ca, null, FormalActualMismatch)
 			}
 		}
 	}
 
 	def checkUniqueModelElementNames(ComponentInterface cl) {
-		val mels = cl.allComponentInterfaces.allModelElements.toList
+		val mels = cl.allModelElements.toList
 		val max = mels.length
 		for (var firstidx = 0; firstidx < max - 1; firstidx++) {
 			val first = mels.get(firstidx)
@@ -233,18 +236,16 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 			}
 		}
 	}
-	
-	def checkInterface(ComponentRealization cimpl){
+
+	def checkInterface(ComponentRealization cimpl) {
 		val interface = getComponentInterface(cimpl);
-		if (interface === null){
-			error('Could not find Component Interface', cimpl, null,
-					FormalActualMismatch)
+		if (interface === null) {
+			error('Could not find Component Interface', cimpl, null, FormalActualMismatch)
 		}
 	}
-	
 
 	def checkUniqueModelElementNames(ComponentImplementation cl) {
-		val mels = cl.allComponentImplementations.allModelElements.toList
+		val mels = cl.allModelElements.toList
 		val maxmels = mels.length
 		for (var firstidx = 0; firstidx < maxmels - 1; firstidx++) {
 			val first = mels.get(firstidx)
@@ -258,8 +259,8 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 		}
 		// check whether duplicate names in interface elements and implementation elements
 		val cif = cl.componentInterface
-		if (cif === null) return
-		val ifmels = cif.allComponentInterfaces.allModelElements.toList
+		if(cif === null) return
+		val ifmels = cif.allModelElements.toList
 		val maxifmels = ifmels.length
 		for (var firstidx = 0; firstidx < maxifmels; firstidx++) {
 			val first = ifmels.get(firstidx)
@@ -291,9 +292,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 		}
 	}
 
-
 	def checkComponentInterfaceExtensions(ComponentInterface cif) {
-		val sif = cif.superClassifiers;
 		if (!cif.superClassifiers.forall[scif|scif.type instanceof ComponentInterface]) {
 			error('Interface extensions must be interfaces', cif,
 				Aadlv3Package.Literals.COMPONENT_CLASSIFIER__SUPER_CLASSIFIERS, ONLY_SUPER_INTERFACES)
@@ -392,8 +391,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 
 			} else if (srcdir !== null && dstdir === null && !(srcdir.incoming)) {
 				error('Flow sink must be incoming', assoc, Aadlv3Package.Literals.ASSOCIATION__SOURCE, MUST_BE_IN)
-			} else 
-			if (srcdir === null && dstdir !== null &&!(dstdir.outgoing)) {
+			} else if (srcdir === null && dstdir !== null && !(dstdir.outgoing)) {
 				error('FLow source must be outgoing', assoc, Aadlv3Package.Literals.ASSOCIATION__DESTINATION,
 					MUST_BE_OUT)
 			}
@@ -441,17 +439,18 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 				error('Feature mapping must from feature to feature in subcomponent', assoc, null, ToSubcomponent)
 			}
 		} else if (assoc.associationType.isFlowSpec) {
-			if (assoc.source !== null && assoc.destination !== null && !(!assoc.source.containedComponentModelElementReference &&
-				!assoc.destination.containedComponentModelElementReference)) {
+			if (assoc.source !== null && assoc.destination !== null &&
+				!(!assoc.source.containedComponentModelElementReference &&
+					!assoc.destination.containedComponentModelElementReference)) {
 				error('Flow path must not be between features of subcomponents', assoc, null, BetweenFeatures)
-			} else 
-//		} else if (assoc.associationType === AssociationType.FLOWSINK) {
-			if (assoc.source !== null && assoc.destination === null && !(!assoc.source.containedComponentModelElementReference)) {
-				error('Flow sink must not be a subcomponent feature', assoc,
-					Aadlv3Package.Literals.ASSOCIATION__SOURCE, NotSubcomponentFeature)
-			} else
-//		} else if (assoc.associationType === AssociationType.FLOWSOURCE) {
-			if (assoc.source === null && assoc.destination !== null &&!(!assoc.destination.containedComponentModelElementReference)) {
+			} else //		} else if (assoc.associationType === AssociationType.FLOWSINK) {
+			if (assoc.source !== null && assoc.destination === null &&
+				!(!assoc.source.containedComponentModelElementReference)) {
+				error('Flow sink must not be a subcomponent feature', assoc, Aadlv3Package.Literals.ASSOCIATION__SOURCE,
+					NotSubcomponentFeature)
+			} else //		} else if (assoc.associationType === AssociationType.FLOWSOURCE) {
+			if (assoc.source === null && assoc.destination !== null &&
+				!(!assoc.destination.containedComponentModelElementReference)) {
 				error('Flow source must not be a subcomponent feature', assoc,
 					Aadlv3Package.Literals.ASSOCIATION__DESTINATION, NotSubcomponentFeature)
 			}
@@ -477,10 +476,12 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 
 	def checkComponentWithClassifier(Component comp) {
 		// the categories must be consistent
-		val clcat = (comp.typeReference.type as ComponentClassifier).componentCategory
-		if (!(clcat === comp.category || clcat === ComponentCategory.ABSTRACT)) {
-			error('Component category conflicts with classifier category', comp,
-				Aadlv3Package.Literals.COMPONENT__CATEGORY, MISMATCHED_COMPONENT_CATEGORY)
+		for (tr : comp.typeReferences) {
+			val clcat = (tr.type as ComponentClassifier).componentCategory
+			if (!(clcat === comp.category || clcat === ComponentCategory.ABSTRACT)) {
+				error('Component category conflicts with classifier category', comp,
+					Aadlv3Package.Literals.COMPONENT__CATEGORY, MISMATCHED_COMPONENT_CATEGORY)
+			}
 		}
 		// if has classifier then {} can only contain property associations
 		if (!comp.features.empty || !comp.connections.empty || !comp.components.empty) {

@@ -97,9 +97,9 @@ class Instantiator {
 				ComponentConfiguration:{
 					cl.allClassifierFeatures.forEach[f| ci.features += f.instantiateFeature(cl.isReverseFeature(f))] 
 					cl.allFlowSpecs.forEach[fs| fs.instantiateFlowSpec(ci)]
-					val comps = cl.allComponents
+					val comps = cl.allClassifierComponents
 					val cas = cl.allConfigurationAssignments
-					System.out.println("cl "+cl.fullName)
+					System.out.println("cl "+cl.name)
 					cas.forEach[ca|System.out.println("ca "+ca.target.targetPath)]
 					casscopes.push(cas)
 					comps.forEach[subc| subc.instantiateComponent(casscopes,ci)]
@@ -108,7 +108,7 @@ class Instantiator {
 				ComponentImplementation: {
 					cl.allClassifierFeatures.forEach[f| ci.features += f.instantiateFeature(cl.isReverseFeature(f))] 
 					cl.allFlowSpecs.forEach[fs| fs.instantiateFlowSpec(ci)]
-					val comps = cl.allComponents
+					val comps = cl.allClassifierComponents
 					casscopes.push(Collections.EMPTY_LIST)
 					comps.forEach[subc| subc.instantiateComponent(casscopes,ci)]
 					casscopes.pop
@@ -122,17 +122,17 @@ class Instantiator {
 		// now we fill in connection instances
 		val cl = ci.configuredClassifier
 		if (cl !== null){
-			val actualConns = cl.allConnections.filter[conn|conn.associationType.isConnection]
+			val actualConns = cl.allClassifierAssociations.filter[conn|conn.associationType.isConnection]
 			for (conn: actualConns){
 				conn.instantiateConnection(ci)
 			}
 			if (isRoot){
 			// generate external connections - only for the root component
-				val incomingConns = cl.allConnections.filter[conn|conn.isIncomingFeatureMapping]
+				val incomingConns = cl.allClassifierAssociations.filter[conn|conn.isIncomingFeatureMapping]
 				for (conn : incomingConns){
 					conn.instantiateExternalIncomingConnection(ci)
 				}
-				val outgoingConns = cl.allConnections.filter[conn|conn.isOutgoingFeatureMapping]
+				val outgoingConns = cl.allClassifierAssociations.filter[conn|conn.isOutgoingFeatureMapping]
 				for (conn : outgoingConns){
 					conn.instantiateExternalOutgoingConnection(ci)
 				}
@@ -287,7 +287,7 @@ class Instantiator {
 		val srccxt = conni.source.containingComponentInstance
 		val srcconfcl = srccxt.configuredClassifier
 		if (srcconfcl === null) return
-		val srcmappings = srcconfcl.allConnections.filter[conn| conn.isSourceFeatureMapping(conni)]
+		val srcmappings = srcconfcl.allClassifierAssociations.filter[conn| conn.isSourceFeatureMapping(conni)]
 		if(srcmappings.size > 1){
 			// need to make a copy of conni
 			for (element : srcmappings) {
@@ -316,7 +316,7 @@ class Instantiator {
 		val dstcxt = conni.destination.containingComponentInstance
 		val dstconfcl = dstcxt.configuredClassifier
 		if (dstconfcl === null) return
-		val dstmappings = dstconfcl.allConnections.filter[conn| conn.isDestinationFeatureMapping(conni)]
+		val dstmappings = dstconfcl.allClassifierAssociations.filter[conn| conn.isDestinationFeatureMapping(conni)]
 		if(dstmappings.size > 1){
 			// need to make a copy of conni
 			for (element : dstmappings) {

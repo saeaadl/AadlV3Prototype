@@ -85,7 +85,7 @@ public class ConfigurationAssignmentItemProvider extends ItemProviderAdapter imp
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(Aadlv3Package.Literals.CONFIGURATION_ASSIGNMENT__TARGET);
 			childrenFeatures.add(Aadlv3Package.Literals.CONFIGURATION_ASSIGNMENT__ASSIGNMENTS);
-			childrenFeatures.add(Aadlv3Package.Literals.CONFIGURATION_ASSIGNMENT__VALUE);
+			childrenFeatures.add(Aadlv3Package.Literals.CONFIGURATION_ASSIGNMENT__ASSIGNED_CLASSIFIERS);
 			childrenFeatures.add(Aadlv3Package.Literals.CONFIGURATION_ASSIGNMENT__PROPERTY_ASSOCIATIONS);
 		}
 		return childrenFeatures;
@@ -140,7 +140,7 @@ public class ConfigurationAssignmentItemProvider extends ItemProviderAdapter imp
 		switch (notification.getFeatureID(ConfigurationAssignment.class)) {
 		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__TARGET:
 		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__ASSIGNMENTS:
-		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__VALUE:
+		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__ASSIGNED_CLASSIFIERS:
 		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__PROPERTY_ASSOCIATIONS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
@@ -168,8 +168,9 @@ public class ConfigurationAssignmentItemProvider extends ItemProviderAdapter imp
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONFIGURATION_ASSIGNMENT__ASSIGNMENTS,
 				Aadlv3Factory.eINSTANCE.createConfigurationAssignment()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONFIGURATION_ASSIGNMENT__VALUE,
-				Aadlv3Factory.eINSTANCE.createTypeReference()));
+		newChildDescriptors
+				.add(createChildParameter(Aadlv3Package.Literals.CONFIGURATION_ASSIGNMENT__ASSIGNED_CLASSIFIERS,
+						Aadlv3Factory.eINSTANCE.createTypeReference()));
 
 		newChildDescriptors
 				.add(createChildParameter(Aadlv3Package.Literals.CONFIGURATION_ASSIGNMENT__PROPERTY_ASSOCIATIONS,

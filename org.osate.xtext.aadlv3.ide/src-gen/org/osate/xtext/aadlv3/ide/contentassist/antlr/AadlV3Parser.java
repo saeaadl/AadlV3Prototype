@@ -73,6 +73,8 @@ public class AadlV3Parser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getFeatureAccess().getGroup(), "rule__Feature__Group__0");
 			builder.put(grammarAccess.getFeatureAccess().getGroup_5(), "rule__Feature__Group_5__0");
 			builder.put(grammarAccess.getComponentAccess().getGroup(), "rule__Component__Group__0");
+			builder.put(grammarAccess.getComponentAccess().getGroup_3(), "rule__Component__Group_3__0");
+			builder.put(grammarAccess.getComponentAccess().getGroup_3_1(), "rule__Component__Group_3_1__0");
 			builder.put(grammarAccess.getConnectionAccess().getGroup(), "rule__Connection__Group__0");
 			builder.put(grammarAccess.getFeatureMappingAccess().getGroup(), "rule__FeatureMapping__Group__0");
 			builder.put(grammarAccess.getFlowPathAccess().getGroup(), "rule__FlowPath__Group__0");
@@ -90,6 +92,7 @@ public class AadlV3Parser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getImportAccess().getGroup_1_1_1(), "rule__Import__Group_1_1_1__0");
 			builder.put(grammarAccess.getConfigurationAssignmentAccess().getGroup(), "rule__ConfigurationAssignment__Group__0");
 			builder.put(grammarAccess.getConfigurationAssignmentAccess().getGroup_2_0(), "rule__ConfigurationAssignment__Group_2_0__0");
+			builder.put(grammarAccess.getConfigurationAssignmentAccess().getGroup_2_0_1(), "rule__ConfigurationAssignment__Group_2_0_1__0");
 			builder.put(grammarAccess.getFlowAssignmentAccess().getGroup(), "rule__FlowAssignment__Group__0");
 			builder.put(grammarAccess.getFlowAssignmentAccess().getGroup_4(), "rule__FlowAssignment__Group_4__0");
 			builder.put(grammarAccess.getPropertyAssociationAccess().getGroup(), "rule__PropertyAssociation__Group__0");
@@ -190,7 +193,8 @@ public class AadlV3Parser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getFeatureAccess().getTypeAssignment_5_1(), "rule__Feature__TypeAssignment_5_1");
 			builder.put(grammarAccess.getComponentAccess().getNameAssignment_0(), "rule__Component__NameAssignment_0");
 			builder.put(grammarAccess.getComponentAccess().getCategoryAssignment_2(), "rule__Component__CategoryAssignment_2");
-			builder.put(grammarAccess.getComponentAccess().getTypeReferenceAssignment_3(), "rule__Component__TypeReferenceAssignment_3");
+			builder.put(grammarAccess.getComponentAccess().getTypeReferencesAssignment_3_0(), "rule__Component__TypeReferencesAssignment_3_0");
+			builder.put(grammarAccess.getComponentAccess().getTypeReferencesAssignment_3_1_1(), "rule__Component__TypeReferencesAssignment_3_1_1");
 			builder.put(grammarAccess.getConnectionAccess().getNameAssignment_0(), "rule__Connection__NameAssignment_0");
 			builder.put(grammarAccess.getConnectionAccess().getAssociationTypeAssignment_2(), "rule__Connection__AssociationTypeAssignment_2");
 			builder.put(grammarAccess.getConnectionAccess().getSourceAssignment_3(), "rule__Connection__SourceAssignment_3");
@@ -220,7 +224,8 @@ public class AadlV3Parser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getImportAccess().getImportedNamespaceAssignment_1_1_0(), "rule__Import__ImportedNamespaceAssignment_1_1_0");
 			builder.put(grammarAccess.getImportAccess().getAliasAssignment_1_1_1_1(), "rule__Import__AliasAssignment_1_1_1_1");
 			builder.put(grammarAccess.getConfigurationAssignmentAccess().getTargetAssignment_0(), "rule__ConfigurationAssignment__TargetAssignment_0");
-			builder.put(grammarAccess.getConfigurationAssignmentAccess().getValueAssignment_2_0_0(), "rule__ConfigurationAssignment__ValueAssignment_2_0_0");
+			builder.put(grammarAccess.getConfigurationAssignmentAccess().getAssignedClassifiersAssignment_2_0_0(), "rule__ConfigurationAssignment__AssignedClassifiersAssignment_2_0_0");
+			builder.put(grammarAccess.getConfigurationAssignmentAccess().getAssignedClassifiersAssignment_2_0_1_1(), "rule__ConfigurationAssignment__AssignedClassifiersAssignment_2_0_1_1");
 			builder.put(grammarAccess.getFlowAssignmentAccess().getTargetAssignment_0(), "rule__FlowAssignment__TargetAssignment_0");
 			builder.put(grammarAccess.getFlowAssignmentAccess().getElementsAssignment_3(), "rule__FlowAssignment__ElementsAssignment_3");
 			builder.put(grammarAccess.getFlowAssignmentAccess().getElementsAssignment_4_1(), "rule__FlowAssignment__ElementsAssignment_4_1");
