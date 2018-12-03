@@ -72,13 +72,37 @@ class Aadlv3Util {
 		}
 		ComponentCategory.ABSTRACT;
 	}
+	/**
+	 * returns an ordered set of component classifier.
+	 * The list consists of the classifier cc as well as all its super classifiers.
+	 * In addition, the BaseInterface classifier is added.
+	 */
+	static def Iterable<ComponentClassifier> getAllComponentClassifiers(Iterable<TypeReference> trs) {
+		val result = new LinkedHashSet<ComponentClassifier>
+		for (tr: trs){
+			val t = tr.type
+			switch (t){
+				ComponentClassifier: {
+					result.add(t)
+					t.addSuperComponentClassifiers(result)
+					val base = t.getBaseInterface(result.componentCategory)
+					if (base !== null) result += base
+				}
+				DataType: {
+				}
+				ConfigurationParameter: {
+				}
+			}
+		}
+		return result
+	}
 
 	/**
 	 * returns an ordered set of component classifier.
 	 * The list consists of the classifier cc as well as all its super classifiers.
 	 * In addition, the BaseInterface classifier is added.
 	 */
-	static def HashSet<ComponentClassifier> getAllComponentClassifiers(ComponentClassifier cc) {
+	static def Iterable<ComponentClassifier> getAllComponentClassifiers(ComponentClassifier cc) {
 		val result = new LinkedHashSet<ComponentClassifier>
 		if(cc === null || cc.eIsProxy) return result
 		if (cc instanceof ComponentClassifier) {
@@ -733,30 +757,11 @@ class Aadlv3Util {
 	
 	static def Iterable<? extends ModelElement> getAllModelElements(ComponentClassifier cl) {
 		if(cl === null) return Collections.EMPTY_LIST
-		if (cl instanceof ComponentRealization){
-			 cl.allComponentImplementations.map[ci|ci.eContents.typeSelect(ModelElement)].flatten
-		}
-		cl.allComponentInterfaces.map[cif|cif.eContents.typeSelect(ModelElement)].flatten
+		cl.allComponentClassifiers.map[cif|cif.eContents.typeSelect(ModelElement)].flatten
 	}
 
 	static def Iterable<? extends ModelElement> getAllModelElements(Iterable<TypeReference> trs) {
-		if (trs.empty){
-			// model elements in nested declaration
-			return Collections.EMPTY_LIST
-		} else {
-			// features from classifier
-			val topcimpl = getTopComponentImplementation(trs)
-			if (topcimpl !== null){
-				return topcimpl.getAllComponentImplementations.map[cl|cl.eContents.typeSelect(ModelElement)].flatten
-			}
-			val topif = getTopComponentInterface(trs)
-			if (topif !== null){
-				return topif.allComponentInterfaces.map[cl|cl.eContents.typeSelect(ModelElement)].flatten
-			}
-			//DataType or configuration parameter
-			// TODO fields in data type
-			return Collections.EMPTY_LIST
-		}
+		trs.allComponentClassifiers.map[cif|cif.eContents.typeSelect(ModelElement)].flatten
 	}
 
 
