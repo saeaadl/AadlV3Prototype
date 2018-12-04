@@ -15,15 +15,19 @@
  */
 package org.osate.aadlv3.aadlv3.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.ConfigurationActual;
 import org.osate.aadlv3.aadlv3.ConfigurationParameter;
@@ -38,7 +42,7 @@ import org.osate.aadlv3.aadlv3.TypeReference;
  * </p>
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ConfigurationActualImpl#getParameter <em>Parameter</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.ConfigurationActualImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.ConfigurationActualImpl#getAssignedClassifiers <em>Assigned Classifiers</em>}</li>
  * </ul>
  *
  * @generated
@@ -55,14 +59,14 @@ public class ConfigurationActualImpl extends MinimalEObjectImpl.Container implem
 	protected ConfigurationParameter parameter;
 
 	/**
-	 * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
+	 * The cached value of the '{@link #getAssignedClassifiers() <em>Assigned Classifiers</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getValue()
+	 * @see #getAssignedClassifiers()
 	 * @generated
 	 * @ordered
 	 */
-	protected TypeReference value;
+	protected EList<TypeReference> assignedClassifiers;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -131,50 +135,12 @@ public class ConfigurationActualImpl extends MinimalEObjectImpl.Container implem
 	 * @generated
 	 */
 	@Override
-	public TypeReference getValue() {
-		return value;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetValue(TypeReference newValue, NotificationChain msgs) {
-		TypeReference oldValue = value;
-		value = newValue;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					Aadlv3Package.CONFIGURATION_ACTUAL__VALUE, oldValue, newValue);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
+	public EList<TypeReference> getAssignedClassifiers() {
+		if (assignedClassifiers == null) {
+			assignedClassifiers = new EObjectContainmentEList<TypeReference>(TypeReference.class, this,
+					Aadlv3Package.CONFIGURATION_ACTUAL__ASSIGNED_CLASSIFIERS);
 		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setValue(TypeReference newValue) {
-		if (newValue != value) {
-			NotificationChain msgs = null;
-			if (value != null)
-				msgs = ((InternalEObject) value).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE - Aadlv3Package.CONFIGURATION_ACTUAL__VALUE, null, msgs);
-			if (newValue != null)
-				msgs = ((InternalEObject) newValue).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE - Aadlv3Package.CONFIGURATION_ACTUAL__VALUE, null, msgs);
-			msgs = basicSetValue(newValue, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.CONFIGURATION_ACTUAL__VALUE, newValue,
-					newValue));
+		return assignedClassifiers;
 	}
 
 	/**
@@ -185,8 +151,8 @@ public class ConfigurationActualImpl extends MinimalEObjectImpl.Container implem
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case Aadlv3Package.CONFIGURATION_ACTUAL__VALUE:
-			return basicSetValue(null, msgs);
+		case Aadlv3Package.CONFIGURATION_ACTUAL__ASSIGNED_CLASSIFIERS:
+			return ((InternalEList<?>) getAssignedClassifiers()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -203,8 +169,8 @@ public class ConfigurationActualImpl extends MinimalEObjectImpl.Container implem
 			if (resolve)
 				return getParameter();
 			return basicGetParameter();
-		case Aadlv3Package.CONFIGURATION_ACTUAL__VALUE:
-			return getValue();
+		case Aadlv3Package.CONFIGURATION_ACTUAL__ASSIGNED_CLASSIFIERS:
+			return getAssignedClassifiers();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -214,14 +180,16 @@ public class ConfigurationActualImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 		case Aadlv3Package.CONFIGURATION_ACTUAL__PARAMETER:
 			setParameter((ConfigurationParameter) newValue);
 			return;
-		case Aadlv3Package.CONFIGURATION_ACTUAL__VALUE:
-			setValue((TypeReference) newValue);
+		case Aadlv3Package.CONFIGURATION_ACTUAL__ASSIGNED_CLASSIFIERS:
+			getAssignedClassifiers().clear();
+			getAssignedClassifiers().addAll((Collection<? extends TypeReference>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -238,8 +206,8 @@ public class ConfigurationActualImpl extends MinimalEObjectImpl.Container implem
 		case Aadlv3Package.CONFIGURATION_ACTUAL__PARAMETER:
 			setParameter((ConfigurationParameter) null);
 			return;
-		case Aadlv3Package.CONFIGURATION_ACTUAL__VALUE:
-			setValue((TypeReference) null);
+		case Aadlv3Package.CONFIGURATION_ACTUAL__ASSIGNED_CLASSIFIERS:
+			getAssignedClassifiers().clear();
 			return;
 		}
 		super.eUnset(featureID);
@@ -255,8 +223,8 @@ public class ConfigurationActualImpl extends MinimalEObjectImpl.Container implem
 		switch (featureID) {
 		case Aadlv3Package.CONFIGURATION_ACTUAL__PARAMETER:
 			return parameter != null;
-		case Aadlv3Package.CONFIGURATION_ACTUAL__VALUE:
-			return value != null;
+		case Aadlv3Package.CONFIGURATION_ACTUAL__ASSIGNED_CLASSIFIERS:
+			return assignedClassifiers != null && !assignedClassifiers.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

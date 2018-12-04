@@ -28,7 +28,7 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.ComponentImplementation#getComponents <em>Components</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.ComponentImplementation#getConnections <em>Connections</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.ComponentImplementation#getAssignments <em>Assignments</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.ComponentImplementation#getConfigurationAssignments <em>Configuration Assignments</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.ComponentImplementation#getFlowAssignments <em>Flow Assignments</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.ComponentImplementation#getPaths <em>Paths</em>}</li>
  * </ul>
@@ -71,20 +71,20 @@ public interface ComponentImplementation extends ComponentRealization {
 	EList<Association> getConnections();
 
 	/**
-	 * Returns the value of the '<em><b>Assignments</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Configuration Assignments</b></em>' containment reference list.
 	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.ConfigurationAssignment}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Assignments</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Configuration Assignments</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Assignments</em>' containment reference list.
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getComponentImplementation_Assignments()
+	 * @return the value of the '<em>Configuration Assignments</em>' containment reference list.
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getComponentImplementation_ConfigurationAssignments()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<ConfigurationAssignment> getAssignments();
+	EList<ConfigurationAssignment> getConfigurationAssignments();
 
 	/**
 	 * Returns the value of the '<em><b>Flow Assignments</b></em>' containment reference list.

@@ -196,7 +196,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *         (parameterized?='(' (parameters+=ConfigurationParameter parameters+=ConfigurationParameter*)?)? 
 	 *         superClassifiers+=RealizationReference 
 	 *         superClassifiers+=RealizationReference* 
-	 *         (propertyAssociations+=PropertyAssociation | assignments+=ConfigurationAssignment)*
+	 *         (propertyAssociations+=PropertyAssociation | configurationAssignments+=ConfigurationAssignment)*
 	 *     )
 	 */
 	protected void sequence_ComponentConfiguration_ConfigurationElement_ConfigurationExtensions_Parameters(ISerializationContext context, ComponentConfiguration semanticObject) {
@@ -220,7 +220,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *             components+=Component | 
 	 *             paths+=Path | 
 	 *             flowAssignments+=FlowAssignment | 
-	 *             assignments+=ConfigurationAssignment | 
+	 *             configurationAssignments+=ConfigurationAssignment | 
 	 *             propertyAssociations+=PropertyAssociation
 	 *         )*
 	 *     )
@@ -273,19 +273,10 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     ConfigurationActual returns ConfigurationActual
 	 *
 	 * Constraint:
-	 *     (parameter=[ConfigurationParameter|ID] value=TypeReference)
+	 *     (parameter=[ConfigurationParameter|ID] assignedClassifiers+=TypeReference assignedClassifiers+=TypeReference*)
 	 */
 	protected void sequence_ConfigurationActual(ISerializationContext context, ConfigurationActual semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, Aadlv3Package.Literals.CONFIGURATION_ACTUAL__PARAMETER) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, Aadlv3Package.Literals.CONFIGURATION_ACTUAL__PARAMETER));
-			if (transientValues.isValueTransient(semanticObject, Aadlv3Package.Literals.CONFIGURATION_ACTUAL__VALUE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, Aadlv3Package.Literals.CONFIGURATION_ACTUAL__VALUE));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getConfigurationActualAccess().getParameterConfigurationParameterIDTerminalRuleCall_0_0_1(), semanticObject.eGet(Aadlv3Package.Literals.CONFIGURATION_ACTUAL__PARAMETER, false));
-		feeder.accept(grammarAccess.getConfigurationActualAccess().getValueTypeReferenceParserRuleCall_2_0(), semanticObject.getValue());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -324,9 +315,9 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *             (
 	 *                 assignedClassifiers+=TypeReference 
 	 *                 assignedClassifiers+=TypeReference* 
-	 *                 (propertyAssociations+=PropertyAssociation | assignments+=ConfigurationAssignment)+
+	 *                 (propertyAssociations+=PropertyAssociation | configurationAssignments+=ConfigurationAssignment)+
 	 *             ) | 
-	 *             (propertyAssociations+=PropertyAssociation | assignments+=ConfigurationAssignment)+
+	 *             (propertyAssociations+=PropertyAssociation | configurationAssignments+=ConfigurationAssignment)+
 	 *         )?
 	 *     )
 	 */

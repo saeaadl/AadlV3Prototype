@@ -102,7 +102,7 @@ public class InstanceObjectItemProvider extends ItemProviderAdapter implements I
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(Av3instancePackage.Literals.INSTANCE_OBJECT__PROPERTIES);
+			childrenFeatures.add(Av3instancePackage.Literals.INSTANCE_OBJECT__PROPERTY_ASSOCIATIONS);
 		}
 		return childrenFeatures;
 	}
@@ -158,7 +158,7 @@ public class InstanceObjectItemProvider extends ItemProviderAdapter implements I
 		case Av3instancePackage.INSTANCE_OBJECT__NAME:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
-		case Av3instancePackage.INSTANCE_OBJECT__PROPERTIES:
+		case Av3instancePackage.INSTANCE_OBJECT__PROPERTY_ASSOCIATIONS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}

@@ -108,7 +108,7 @@ public class ComponentInstanceItemProvider extends InstanceObjectItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(Av3instancePackage.Literals.COMPONENT_INSTANCE__SUBCOMPONENTS);
+			childrenFeatures.add(Av3instancePackage.Literals.COMPONENT_INSTANCE__COMPONENTS);
 			childrenFeatures.add(Av3instancePackage.Literals.COMPONENT_INSTANCE__CONNECTIONS);
 			childrenFeatures.add(Av3instancePackage.Literals.COMPONENT_INSTANCE__FEATURES);
 			childrenFeatures.add(Av3instancePackage.Literals.COMPONENT_INSTANCE__FLOWSPECS);
@@ -187,7 +187,7 @@ public class ComponentInstanceItemProvider extends InstanceObjectItemProvider {
 		case Av3instancePackage.COMPONENT_INSTANCE__CATEGORY:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
-		case Av3instancePackage.COMPONENT_INSTANCE__SUBCOMPONENTS:
+		case Av3instancePackage.COMPONENT_INSTANCE__COMPONENTS:
 		case Av3instancePackage.COMPONENT_INSTANCE__CONNECTIONS:
 		case Av3instancePackage.COMPONENT_INSTANCE__FEATURES:
 		case Av3instancePackage.COMPONENT_INSTANCE__FLOWSPECS:

@@ -94,7 +94,7 @@ public class ComponentConfigurationItemProvider extends ComponentRealizationItem
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(Aadlv3Package.Literals.COMPONENT_CONFIGURATION__PARAMETERS);
-			childrenFeatures.add(Aadlv3Package.Literals.COMPONENT_CONFIGURATION__ASSIGNMENTS);
+			childrenFeatures.add(Aadlv3Package.Literals.COMPONENT_CONFIGURATION__CONFIGURATION_ASSIGNMENTS);
 		}
 		return childrenFeatures;
 	}
@@ -152,7 +152,7 @@ public class ComponentConfigurationItemProvider extends ComponentRealizationItem
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		case Aadlv3Package.COMPONENT_CONFIGURATION__PARAMETERS:
-		case Aadlv3Package.COMPONENT_CONFIGURATION__ASSIGNMENTS:
+		case Aadlv3Package.COMPONENT_CONFIGURATION__CONFIGURATION_ASSIGNMENTS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -173,8 +173,9 @@ public class ComponentConfigurationItemProvider extends ComponentRealizationItem
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.COMPONENT_CONFIGURATION__PARAMETERS,
 				Aadlv3Factory.eINSTANCE.createConfigurationParameter()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.COMPONENT_CONFIGURATION__ASSIGNMENTS,
-				Aadlv3Factory.eINSTANCE.createConfigurationAssignment()));
+		newChildDescriptors
+				.add(createChildParameter(Aadlv3Package.Literals.COMPONENT_CONFIGURATION__CONFIGURATION_ASSIGNMENTS,
+						Aadlv3Factory.eINSTANCE.createConfigurationAssignment()));
 	}
 
 }

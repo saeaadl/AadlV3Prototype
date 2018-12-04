@@ -29,7 +29,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link org.osate.av3instance.av3instance.InstanceObject#getName <em>Name</em>}</li>
- *   <li>{@link org.osate.av3instance.av3instance.InstanceObject#getProperties <em>Properties</em>}</li>
+ *   <li>{@link org.osate.av3instance.av3instance.InstanceObject#getPropertyAssociations <em>Property Associations</em>}</li>
  * </ul>
  *
  * @see org.osate.av3instance.av3instance.Av3instancePackage#getInstanceObject()
@@ -64,19 +64,19 @@ public interface InstanceObject extends EObject {
 	void setName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Properties</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Property Associations</b></em>' containment reference list.
 	 * The list contents are of type {@link org.osate.av3instance.av3instance.PropertyAssociationInstance}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Properties</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Property Associations</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Properties</em>' containment reference list.
-	 * @see org.osate.av3instance.av3instance.Av3instancePackage#getInstanceObject_Properties()
+	 * @return the value of the '<em>Property Associations</em>' containment reference list.
+	 * @see org.osate.av3instance.av3instance.Av3instancePackage#getInstanceObject_PropertyAssociations()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<PropertyAssociationInstance> getProperties();
+	EList<PropertyAssociationInstance> getPropertyAssociations();
 
 } // InstanceObject

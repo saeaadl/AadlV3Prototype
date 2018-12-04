@@ -29,7 +29,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.ConfigurationAssignment#getTarget <em>Target</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.ConfigurationAssignment#getAssignments <em>Assignments</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.ConfigurationAssignment#getConfigurationAssignments <em>Configuration Assignments</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.ConfigurationAssignment#getAssignedClassifiers <em>Assigned Classifiers</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.ConfigurationAssignment#getPropertyAssociations <em>Property Associations</em>}</li>
  * </ul>
@@ -66,20 +66,20 @@ public interface ConfigurationAssignment extends EObject {
 	void setTarget(ModelElementReference value);
 
 	/**
-	 * Returns the value of the '<em><b>Assignments</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Configuration Assignments</b></em>' containment reference list.
 	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.ConfigurationAssignment}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Assignments</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Configuration Assignments</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Assignments</em>' containment reference list.
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getConfigurationAssignment_Assignments()
+	 * @return the value of the '<em>Configuration Assignments</em>' containment reference list.
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getConfigurationAssignment_ConfigurationAssignments()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<ConfigurationAssignment> getAssignments();
+	EList<ConfigurationAssignment> getConfigurationAssignments();
 
 	/**
 	 * Returns the value of the '<em><b>Assigned Classifiers</b></em>' containment reference list.

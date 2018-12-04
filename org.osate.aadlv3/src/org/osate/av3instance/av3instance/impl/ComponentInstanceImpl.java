@@ -48,7 +48,7 @@ import org.osate.av3instance.av3instance.PathInstance;
  * </p>
  * <ul>
  *   <li>{@link org.osate.av3instance.av3instance.impl.ComponentInstanceImpl#getCategory <em>Category</em>}</li>
- *   <li>{@link org.osate.av3instance.av3instance.impl.ComponentInstanceImpl#getSubcomponents <em>Subcomponents</em>}</li>
+ *   <li>{@link org.osate.av3instance.av3instance.impl.ComponentInstanceImpl#getComponents <em>Components</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.impl.ComponentInstanceImpl#getComponent <em>Component</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.impl.ComponentInstanceImpl#getConnections <em>Connections</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.impl.ComponentInstanceImpl#getFeatures <em>Features</em>}</li>
@@ -80,14 +80,14 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 	protected ComponentCategory category = CATEGORY_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getSubcomponents() <em>Subcomponents</em>}' containment reference list.
+	 * The cached value of the '{@link #getComponents() <em>Components</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSubcomponents()
+	 * @see #getComponents()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ComponentInstance> subcomponents;
+	protected EList<ComponentInstance> components;
 
 	/**
 	 * The cached value of the '{@link #getComponent() <em>Component</em>}' reference.
@@ -188,12 +188,12 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 	 * @generated
 	 */
 	@Override
-	public EList<ComponentInstance> getSubcomponents() {
-		if (subcomponents == null) {
-			subcomponents = new EObjectContainmentEList<ComponentInstance>(ComponentInstance.class, this,
-					Av3instancePackage.COMPONENT_INSTANCE__SUBCOMPONENTS);
+	public EList<ComponentInstance> getComponents() {
+		if (components == null) {
+			components = new EObjectContainmentEList<ComponentInstance>(ComponentInstance.class, this,
+					Av3instancePackage.COMPONENT_INSTANCE__COMPONENTS);
 		}
-		return subcomponents;
+		return components;
 	}
 
 	/**
@@ -302,8 +302,8 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case Av3instancePackage.COMPONENT_INSTANCE__SUBCOMPONENTS:
-			return ((InternalEList<?>) getSubcomponents()).basicRemove(otherEnd, msgs);
+		case Av3instancePackage.COMPONENT_INSTANCE__COMPONENTS:
+			return ((InternalEList<?>) getComponents()).basicRemove(otherEnd, msgs);
 		case Av3instancePackage.COMPONENT_INSTANCE__CONNECTIONS:
 			return ((InternalEList<?>) getConnections()).basicRemove(otherEnd, msgs);
 		case Av3instancePackage.COMPONENT_INSTANCE__FEATURES:
@@ -326,8 +326,8 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 		switch (featureID) {
 		case Av3instancePackage.COMPONENT_INSTANCE__CATEGORY:
 			return getCategory();
-		case Av3instancePackage.COMPONENT_INSTANCE__SUBCOMPONENTS:
-			return getSubcomponents();
+		case Av3instancePackage.COMPONENT_INSTANCE__COMPONENTS:
+			return getComponents();
 		case Av3instancePackage.COMPONENT_INSTANCE__COMPONENT:
 			if (resolve)
 				return getComponent();
@@ -356,9 +356,9 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 		case Av3instancePackage.COMPONENT_INSTANCE__CATEGORY:
 			setCategory((ComponentCategory) newValue);
 			return;
-		case Av3instancePackage.COMPONENT_INSTANCE__SUBCOMPONENTS:
-			getSubcomponents().clear();
-			getSubcomponents().addAll((Collection<? extends ComponentInstance>) newValue);
+		case Av3instancePackage.COMPONENT_INSTANCE__COMPONENTS:
+			getComponents().clear();
+			getComponents().addAll((Collection<? extends ComponentInstance>) newValue);
 			return;
 		case Av3instancePackage.COMPONENT_INSTANCE__COMPONENT:
 			setComponent((Component) newValue);
@@ -394,8 +394,8 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 		case Av3instancePackage.COMPONENT_INSTANCE__CATEGORY:
 			setCategory(CATEGORY_EDEFAULT);
 			return;
-		case Av3instancePackage.COMPONENT_INSTANCE__SUBCOMPONENTS:
-			getSubcomponents().clear();
+		case Av3instancePackage.COMPONENT_INSTANCE__COMPONENTS:
+			getComponents().clear();
 			return;
 		case Av3instancePackage.COMPONENT_INSTANCE__COMPONENT:
 			setComponent((Component) null);
@@ -426,8 +426,8 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 		switch (featureID) {
 		case Av3instancePackage.COMPONENT_INSTANCE__CATEGORY:
 			return category != CATEGORY_EDEFAULT;
-		case Av3instancePackage.COMPONENT_INSTANCE__SUBCOMPONENTS:
-			return subcomponents != null && !subcomponents.isEmpty();
+		case Av3instancePackage.COMPONENT_INSTANCE__COMPONENTS:
+			return components != null && !components.isEmpty();
 		case Av3instancePackage.COMPONENT_INSTANCE__COMPONENT:
 			return component != null;
 		case Av3instancePackage.COMPONENT_INSTANCE__CONNECTIONS:

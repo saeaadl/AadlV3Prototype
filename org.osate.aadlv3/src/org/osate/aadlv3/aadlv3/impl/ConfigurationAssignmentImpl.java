@@ -46,7 +46,7 @@ import org.osate.aadlv3.aadlv3.TypeReference;
  * </p>
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ConfigurationAssignmentImpl#getTarget <em>Target</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.ConfigurationAssignmentImpl#getAssignments <em>Assignments</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.ConfigurationAssignmentImpl#getConfigurationAssignments <em>Configuration Assignments</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ConfigurationAssignmentImpl#getAssignedClassifiers <em>Assigned Classifiers</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ConfigurationAssignmentImpl#getPropertyAssociations <em>Property Associations</em>}</li>
  * </ul>
@@ -65,14 +65,14 @@ public class ConfigurationAssignmentImpl extends MinimalEObjectImpl.Container im
 	protected ModelElementReference target;
 
 	/**
-	 * The cached value of the '{@link #getAssignments() <em>Assignments</em>}' containment reference list.
+	 * The cached value of the '{@link #getConfigurationAssignments() <em>Configuration Assignments</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAssignments()
+	 * @see #getConfigurationAssignments()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ConfigurationAssignment> assignments;
+	protected EList<ConfigurationAssignment> configurationAssignments;
 
 	/**
 	 * The cached value of the '{@link #getAssignedClassifiers() <em>Assigned Classifiers</em>}' containment reference list.
@@ -171,12 +171,13 @@ public class ConfigurationAssignmentImpl extends MinimalEObjectImpl.Container im
 	 * @generated
 	 */
 	@Override
-	public EList<ConfigurationAssignment> getAssignments() {
-		if (assignments == null) {
-			assignments = new EObjectContainmentEList<ConfigurationAssignment>(ConfigurationAssignment.class, this,
-					Aadlv3Package.CONFIGURATION_ASSIGNMENT__ASSIGNMENTS);
+	public EList<ConfigurationAssignment> getConfigurationAssignments() {
+		if (configurationAssignments == null) {
+			configurationAssignments = new EObjectContainmentEList<ConfigurationAssignment>(
+					ConfigurationAssignment.class, this,
+					Aadlv3Package.CONFIGURATION_ASSIGNMENT__CONFIGURATION_ASSIGNMENTS);
 		}
-		return assignments;
+		return configurationAssignments;
 	}
 
 	/**
@@ -217,8 +218,8 @@ public class ConfigurationAssignmentImpl extends MinimalEObjectImpl.Container im
 		switch (featureID) {
 		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__TARGET:
 			return basicSetTarget(null, msgs);
-		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__ASSIGNMENTS:
-			return ((InternalEList<?>) getAssignments()).basicRemove(otherEnd, msgs);
+		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__CONFIGURATION_ASSIGNMENTS:
+			return ((InternalEList<?>) getConfigurationAssignments()).basicRemove(otherEnd, msgs);
 		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__ASSIGNED_CLASSIFIERS:
 			return ((InternalEList<?>) getAssignedClassifiers()).basicRemove(otherEnd, msgs);
 		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__PROPERTY_ASSOCIATIONS:
@@ -237,8 +238,8 @@ public class ConfigurationAssignmentImpl extends MinimalEObjectImpl.Container im
 		switch (featureID) {
 		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__TARGET:
 			return getTarget();
-		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__ASSIGNMENTS:
-			return getAssignments();
+		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__CONFIGURATION_ASSIGNMENTS:
+			return getConfigurationAssignments();
 		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__ASSIGNED_CLASSIFIERS:
 			return getAssignedClassifiers();
 		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__PROPERTY_ASSOCIATIONS:
@@ -259,9 +260,9 @@ public class ConfigurationAssignmentImpl extends MinimalEObjectImpl.Container im
 		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__TARGET:
 			setTarget((ModelElementReference) newValue);
 			return;
-		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__ASSIGNMENTS:
-			getAssignments().clear();
-			getAssignments().addAll((Collection<? extends ConfigurationAssignment>) newValue);
+		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__CONFIGURATION_ASSIGNMENTS:
+			getConfigurationAssignments().clear();
+			getConfigurationAssignments().addAll((Collection<? extends ConfigurationAssignment>) newValue);
 			return;
 		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__ASSIGNED_CLASSIFIERS:
 			getAssignedClassifiers().clear();
@@ -286,8 +287,8 @@ public class ConfigurationAssignmentImpl extends MinimalEObjectImpl.Container im
 		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__TARGET:
 			setTarget((ModelElementReference) null);
 			return;
-		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__ASSIGNMENTS:
-			getAssignments().clear();
+		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__CONFIGURATION_ASSIGNMENTS:
+			getConfigurationAssignments().clear();
 			return;
 		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__ASSIGNED_CLASSIFIERS:
 			getAssignedClassifiers().clear();
@@ -309,8 +310,8 @@ public class ConfigurationAssignmentImpl extends MinimalEObjectImpl.Container im
 		switch (featureID) {
 		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__TARGET:
 			return target != null;
-		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__ASSIGNMENTS:
-			return assignments != null && !assignments.isEmpty();
+		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__CONFIGURATION_ASSIGNMENTS:
+			return configurationAssignments != null && !configurationAssignments.isEmpty();
 		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__ASSIGNED_CLASSIFIERS:
 			return assignedClassifiers != null && !assignedClassifiers.isEmpty();
 		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__PROPERTY_ASSOCIATIONS:

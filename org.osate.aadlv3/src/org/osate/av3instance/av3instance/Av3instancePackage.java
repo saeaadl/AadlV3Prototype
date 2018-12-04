@@ -89,13 +89,13 @@ public interface Av3instancePackage extends EPackage {
 	int INSTANCE_OBJECT__NAME = 0;
 
 	/**
-	 * The feature id for the '<em><b>Properties</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Property Associations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_OBJECT__PROPERTIES = 1;
+	int INSTANCE_OBJECT__PROPERTY_ASSOCIATIONS = 1;
 
 	/**
 	 * The number of structural features of the '<em>Instance Object</em>' class.
@@ -135,13 +135,13 @@ public interface Av3instancePackage extends EPackage {
 	int FEATURE_INSTANCE__NAME = INSTANCE_OBJECT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Properties</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Property Associations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_INSTANCE__PROPERTIES = INSTANCE_OBJECT__PROPERTIES;
+	int FEATURE_INSTANCE__PROPERTY_ASSOCIATIONS = INSTANCE_OBJECT__PROPERTY_ASSOCIATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference.
@@ -244,13 +244,13 @@ public interface Av3instancePackage extends EPackage {
 	int COMPONENT_INSTANCE__NAME = INSTANCE_OBJECT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Properties</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Property Associations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_INSTANCE__PROPERTIES = INSTANCE_OBJECT__PROPERTIES;
+	int COMPONENT_INSTANCE__PROPERTY_ASSOCIATIONS = INSTANCE_OBJECT__PROPERTY_ASSOCIATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Category</b></em>' attribute.
@@ -262,13 +262,13 @@ public interface Av3instancePackage extends EPackage {
 	int COMPONENT_INSTANCE__CATEGORY = INSTANCE_OBJECT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Subcomponents</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Components</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_INSTANCE__SUBCOMPONENTS = INSTANCE_OBJECT_FEATURE_COUNT + 1;
+	int COMPONENT_INSTANCE__COMPONENTS = INSTANCE_OBJECT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Component</b></em>' reference.
@@ -353,13 +353,13 @@ public interface Av3instancePackage extends EPackage {
 	int ASSOCIATION_INSTANCE__NAME = INSTANCE_OBJECT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Properties</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Property Associations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION_INSTANCE__PROPERTIES = INSTANCE_OBJECT__PROPERTIES;
+	int ASSOCIATION_INSTANCE__PROPERTY_ASSOCIATIONS = INSTANCE_OBJECT__PROPERTY_ASSOCIATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Association Type</b></em>' attribute.
@@ -462,13 +462,13 @@ public interface Av3instancePackage extends EPackage {
 	int PROPERTY_ASSOCIATION_INSTANCE__NAME = INSTANCE_OBJECT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Properties</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Property Associations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_ASSOCIATION_INSTANCE__PROPERTIES = INSTANCE_OBJECT__PROPERTIES;
+	int PROPERTY_ASSOCIATION_INSTANCE__PROPERTY_ASSOCIATIONS = INSTANCE_OBJECT__PROPERTY_ASSOCIATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Property</b></em>' reference.
@@ -535,13 +535,13 @@ public interface Av3instancePackage extends EPackage {
 	int PATH_INSTANCE__NAME = INSTANCE_OBJECT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Properties</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Property Associations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PATH_INSTANCE__PROPERTIES = INSTANCE_OBJECT__PROPERTIES;
+	int PATH_INSTANCE__PROPERTY_ASSOCIATIONS = INSTANCE_OBJECT__PROPERTY_ASSOCIATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Elements</b></em>' reference list.
@@ -601,15 +601,15 @@ public interface Av3instancePackage extends EPackage {
 	EAttribute getInstanceObject_Name();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.osate.av3instance.av3instance.InstanceObject#getProperties <em>Properties</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.osate.av3instance.av3instance.InstanceObject#getPropertyAssociations <em>Property Associations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Properties</em>'.
-	 * @see org.osate.av3instance.av3instance.InstanceObject#getProperties()
+	 * @return the meta object for the containment reference list '<em>Property Associations</em>'.
+	 * @see org.osate.av3instance.av3instance.InstanceObject#getPropertyAssociations()
 	 * @see #getInstanceObject()
 	 * @generated
 	 */
-	EReference getInstanceObject_Properties();
+	EReference getInstanceObject_PropertyAssociations();
 
 	/**
 	 * Returns the meta object for class '{@link org.osate.av3instance.av3instance.FeatureInstance <em>Feature Instance</em>}'.
@@ -720,15 +720,15 @@ public interface Av3instancePackage extends EPackage {
 	EAttribute getComponentInstance_Category();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.osate.av3instance.av3instance.ComponentInstance#getSubcomponents <em>Subcomponents</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.osate.av3instance.av3instance.ComponentInstance#getComponents <em>Components</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Subcomponents</em>'.
-	 * @see org.osate.av3instance.av3instance.ComponentInstance#getSubcomponents()
+	 * @return the meta object for the containment reference list '<em>Components</em>'.
+	 * @see org.osate.av3instance.av3instance.ComponentInstance#getComponents()
 	 * @see #getComponentInstance()
 	 * @generated
 	 */
-	EReference getComponentInstance_Subcomponents();
+	EReference getComponentInstance_Components();
 
 	/**
 	 * Returns the meta object for the reference '{@link org.osate.av3instance.av3instance.ComponentInstance#getComponent <em>Component</em>}'.
@@ -989,12 +989,12 @@ public interface Av3instancePackage extends EPackage {
 		EAttribute INSTANCE_OBJECT__NAME = eINSTANCE.getInstanceObject_Name();
 
 		/**
-		 * The meta object literal for the '<em><b>Properties</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Property Associations</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference INSTANCE_OBJECT__PROPERTIES = eINSTANCE.getInstanceObject_Properties();
+		EReference INSTANCE_OBJECT__PROPERTY_ASSOCIATIONS = eINSTANCE.getInstanceObject_PropertyAssociations();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.av3instance.av3instance.impl.FeatureInstanceImpl <em>Feature Instance</em>}' class.
@@ -1081,12 +1081,12 @@ public interface Av3instancePackage extends EPackage {
 		EAttribute COMPONENT_INSTANCE__CATEGORY = eINSTANCE.getComponentInstance_Category();
 
 		/**
-		 * The meta object literal for the '<em><b>Subcomponents</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Components</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference COMPONENT_INSTANCE__SUBCOMPONENTS = eINSTANCE.getComponentInstance_Subcomponents();
+		EReference COMPONENT_INSTANCE__COMPONENTS = eINSTANCE.getComponentInstance_Components();
 
 		/**
 		 * The meta object literal for the '<em><b>Component</b></em>' reference feature.

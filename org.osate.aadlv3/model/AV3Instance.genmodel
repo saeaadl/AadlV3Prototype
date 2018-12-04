@@ -16,7 +16,7 @@
       fileExtensions="aiv3" ecorePackage="AV3Instance.ecore#/">
     <genClasses image="false" ecoreClass="AV3Instance.ecore#//InstanceObject">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AV3Instance.ecore#//InstanceObject/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//InstanceObject/properties"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//InstanceObject/propertyAssociations"/>
     </genClasses>
     <genClasses ecoreClass="AV3Instance.ecore#//FeatureInstance">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//FeatureInstance/feature"/>
@@ -29,7 +29,7 @@
     </genClasses>
     <genClasses ecoreClass="AV3Instance.ecore#//ComponentInstance">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AV3Instance.ecore#//ComponentInstance/category"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//ComponentInstance/subcomponents"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//ComponentInstance/components"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//ComponentInstance/component"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//ComponentInstance/connections"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//ComponentInstance/features"/>

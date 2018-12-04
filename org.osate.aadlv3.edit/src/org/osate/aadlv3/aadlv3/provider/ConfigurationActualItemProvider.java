@@ -100,7 +100,7 @@ public class ConfigurationActualItemProvider extends ItemProviderAdapter impleme
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(Aadlv3Package.Literals.CONFIGURATION_ACTUAL__VALUE);
+			childrenFeatures.add(Aadlv3Package.Literals.CONFIGURATION_ACTUAL__ASSIGNED_CLASSIFIERS);
 		}
 		return childrenFeatures;
 	}
@@ -152,7 +152,7 @@ public class ConfigurationActualItemProvider extends ItemProviderAdapter impleme
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ConfigurationActual.class)) {
-		case Aadlv3Package.CONFIGURATION_ACTUAL__VALUE:
+		case Aadlv3Package.CONFIGURATION_ACTUAL__ASSIGNED_CLASSIFIERS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -170,7 +170,7 @@ public class ConfigurationActualItemProvider extends ItemProviderAdapter impleme
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONFIGURATION_ACTUAL__VALUE,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONFIGURATION_ACTUAL__ASSIGNED_CLASSIFIERS,
 				Aadlv3Factory.eINSTANCE.createTypeReference()));
 	}
 

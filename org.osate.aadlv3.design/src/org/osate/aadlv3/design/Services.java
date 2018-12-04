@@ -33,7 +33,7 @@ public class Services {
 
 
 	public boolean isLeafComponent(ComponentInstance ci) {
-		return ci.getSubcomponents().isEmpty();
+		return ci.getComponents().isEmpty();
 	}
 
 

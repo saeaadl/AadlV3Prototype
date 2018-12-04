@@ -124,27 +124,27 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 				Aadlv3Package.Literals.CONFIGURATION_ASSIGNMENT__TARGET, ToSubcomponent)
 		} else {
 			val comp = ca.target.element as Component
-			for (tr : ca.assignedClassifiers){
-			val assignedtype = tr.type
-			val thetype = if(assignedtype instanceof ConfigurationParameter) assignedtype.type else assignedtype
-			if (thetype instanceof ComponentClassifier) {
-				val clcat = thetype.componentCategory
-				if (!(comp.category === clcat || clcat === ComponentCategory.ABSTRACT)) {
-					error(
-						'Category \'' + clcat + '\' of assigned classifier must be the same as the category \'' +
-							comp.category + '\' of the component or must be "component"', ca, null,
-						MISMATCHED_COMPONENT_CATEGORY)
-				}
-			} else if (thetype instanceof DataType) {
-				// primitive type
-				if (comp.category === ComponentCategory.DATA || comp.category === ComponentCategory.ABSTRACT) {
-					if (!comp.typeReferences.empty) {
-						error('Assigned primitive type cannot override existing type', ca, null, OverrideType)
+			for (tr : ca.assignedClassifiers) {
+				val assignedtype = tr.type
+				val thetype = if(assignedtype instanceof ConfigurationParameter) assignedtype.type else assignedtype
+				if (thetype instanceof ComponentClassifier) {
+					val clcat = thetype.componentCategory
+					if (!(comp.category === clcat || clcat === ComponentCategory.ABSTRACT)) {
+						error(
+							'Category \'' + clcat + '\' of assigned classifier must be the same as the category \'' +
+								comp.category + '\' of the component or must be "component"', ca, null,
+							MISMATCHED_COMPONENT_CATEGORY)
 					}
-				} else {
-					error('Configuration assignment expects component classifier', ca, null, NoDataType)
+				} else if (thetype instanceof DataType) {
+					// primitive type
+					if (comp.category === ComponentCategory.DATA || comp.category === ComponentCategory.ABSTRACT) {
+						if (!comp.typeReferences.empty) {
+							error('Assigned primitive type cannot override existing type', ca, null, OverrideType)
+						}
+					} else {
+						error('Configuration assignment expects component classifier', ca, null, NoDataType)
+					}
 				}
-			}
 			}
 		}
 	}
@@ -175,16 +175,34 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 
 	@Check
 	def checkComponent(Component comp) {
-		if (!comp.typeReferences.empty) {
-			for (typeReference : comp.typeReferences) {
-				if (!(typeReference.type instanceof DataType)) {
-					// we have a classifier reference
-					comp.checkComponentWithClassifier
-				} else {
-					// primitive type
-					comp.checkComponentWithDataType
+		var topimpl = null;
+		for (tr : comp.typeReferences) {
+			val t = tr.type
+			if (t instanceof ComponentClassifier) {
+				// the categories must be consistent
+				val clcat = (tr.type as ComponentClassifier).componentCategory
+				if (!(clcat === comp.category || clcat === ComponentCategory.ABSTRACT)) {
+					error('Component category conflicts with classifier category', comp,
+						Aadlv3Package.Literals.COMPONENT__CATEGORY, MISMATCHED_COMPONENT_CATEGORY)
 				}
+				// data component cannot have classifier, only primitive type
+				if (comp.category === ComponentCategory.DATA) {
+					error('Data component must have data type', comp, Aadlv3Package.Literals.COMPONENT__CATEGORY,
+						MustBeDataType)
+				}
+			} else if (t instanceof DataType) {
+				if (!(comp.category === ComponentCategory.DATA || comp.category === ComponentCategory.ABSTRACT)) {
+					error('Components other than "data" or "component" cannot have primitive type', comp,
+						Aadlv3Package.Literals.COMPONENT__CATEGORY, NoDataType)
+				}
+			} else {
+				// configuration parameter
 			}
+		}
+		// if has type references then {} can only contain property associations
+		if (!comp.typeReferences.empty && !comp.features.empty || !comp.connections.empty || !comp.components.empty) {
+			error('Component with classifier can only have property associations in {}', comp, null,
+				OnlyPropertyAssociations)
 		}
 	}
 
@@ -199,25 +217,55 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	@Check
 	def checkConfigurationActual(ConfigurationActual ca) {
 		val cif = ca.parameter.type
-		if (cif instanceof ComponentInterface) {
-			val assignedtype = ca.value.type
-			if (assignedtype instanceof ComponentClassifier) {
-				if (!(cif.isSuperClassifierOf(assignedtype))) {
-					error('Configuration actual does not match component interface of configuration parameter', ca,
-						null, FormalActualMismatch)
-				}
-			} else if (assignedtype instanceof ConfigurationParameter) {
-				val assignedcif = assignedtype.type
-				if (assignedcif instanceof ComponentClassifier) {
-					if (!(cif.isSuperClassifierOf(assignedcif))) {
-						error(
-							'Configuration actual does not match component interface of referenced configuration parameter',
-							ca, null, FormalActualMismatch)
+		if (cif instanceof ComponentClassifier) {
+			val assignedtypes = ca.assignedClassifiers
+			for (assignedtyperef : assignedtypes) {
+				val assignedtype = assignedtyperef.type
+				if (assignedtype instanceof ComponentClassifier) {
+					if (!(cif.isSuperClassifierOf(assignedtype))) {
+						error('Configuration actual does not match component classifier of configuration parameter', ca,
+							null, FormalActualMismatch)
 					}
+				} else if (assignedtype instanceof DataType) {
+						error('Configuration actual (data type) does not match component classifier of configuration parameter', ca,
+							null, FormalActualMismatch)
+				} else if (assignedtype instanceof ConfigurationParameter) {
+					val assignedcif = assignedtype.type
+					if (assignedcif instanceof ComponentClassifier) {
+						if (!(cif.isSuperClassifierOf(assignedcif))) {
+							error(
+								'Configuration actual is not an extension of component classifier of referenced configuration parameter',
+								ca, null, FormalActualMismatch)
+						}
+					}
+				} else {
+					// should be an assigned component classifier
+					error('Configuration actual is not a component classifier', ca, null, FormalActualMismatch)
 				}
-			} else {
-				// should an assigned component classifier
-				error('Configuration actual is not a component classifier', ca, null, FormalActualMismatch)
+			}
+		} else if (cif instanceof DataType){
+			val assignedtypes = ca.assignedClassifiers
+			for (assignedtyperef : assignedtypes) {
+				val assignedtype = assignedtyperef.type
+				if (assignedtype instanceof ComponentClassifier) {
+						error('Configuration actual (component classifier) does not match configuration parameter data type', ca,
+							null, FormalActualMismatch)
+				} else if (assignedtype instanceof DataType) {
+					if (!(cif.isSuperDataTypeOf(assignedtype))) {
+						error('Configuration actual (data type) is not an extension of configuration parameter data type', ca,
+							null, FormalActualMismatch)
+					}
+				} else if (assignedtype instanceof ConfigurationParameter) {
+					val assignedcif = assignedtype.type
+					if (assignedcif instanceof ComponentClassifier) {
+							error(
+								'Configuration actual (component classifier) does not match referenced configuration parameter data type',
+								ca, null, FormalActualMismatch)
+					}
+				} else {
+					// should be an assigned component classifier
+					error('Configuration actual is not a component classifier', ca, null, FormalActualMismatch)
+				}
 			}
 		}
 	}
@@ -443,12 +491,12 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 				!(!assoc.source.containedComponentModelElementReference &&
 					!assoc.destination.containedComponentModelElementReference)) {
 				error('Flow path must not be between features of subcomponents', assoc, null, BetweenFeatures)
-			} else //		} else if (assoc.associationType === AssociationType.FLOWSINK) {
+			} else // } else if (assoc.associationType === AssociationType.FLOWSINK) {
 			if (assoc.source !== null && assoc.destination === null &&
 				!(!assoc.source.containedComponentModelElementReference)) {
 				error('Flow sink must not be a subcomponent feature', assoc, Aadlv3Package.Literals.ASSOCIATION__SOURCE,
 					NotSubcomponentFeature)
-			} else //		} else if (assoc.associationType === AssociationType.FLOWSOURCE) {
+			} else // } else if (assoc.associationType === AssociationType.FLOWSOURCE) {
 			if (assoc.source === null && assoc.destination !== null &&
 				!(!assoc.destination.containedComponentModelElementReference)) {
 				error('Flow source must not be a subcomponent feature', assoc,
@@ -471,39 +519,6 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 		}
 		if (src.type !== null && dst.type === null || src.type === null && dst.type !== null) {
 			warning('One association has a type, while the other does not', assoc, null, MissingOneType)
-		}
-	}
-
-	def checkComponentWithClassifier(Component comp) {
-		// the categories must be consistent
-		for (tr : comp.typeReferences) {
-			val clcat = (tr.type as ComponentClassifier).componentCategory
-			if (!(clcat === comp.category || clcat === ComponentCategory.ABSTRACT)) {
-				error('Component category conflicts with classifier category', comp,
-					Aadlv3Package.Literals.COMPONENT__CATEGORY, MISMATCHED_COMPONENT_CATEGORY)
-			}
-		}
-		// if has classifier then {} can only contain property associations
-		if (!comp.features.empty || !comp.connections.empty || !comp.components.empty) {
-			error('Component with classifier can only have property associations in {}', comp, null,
-				OnlyPropertyAssociations)
-		}
-		// data component cannot have classifier, only primitive type
-		if (comp.category === ComponentCategory.DATA) {
-			error('Data component must have primitive type', comp, Aadlv3Package.Literals.COMPONENT__CATEGORY,
-				MustBeDataType)
-		}
-	}
-
-	def checkComponentWithDataType(Component comp) {
-		// If primitive type features are ok in {} to allow access features on data components	
-		if (!(comp.connections.empty && comp.components.empty && comp.features.forall[f|f.dataAccessFeature])) {
-			error('Component with primitive type can only have property associations or data access features in {}',
-				comp, null, OnlyPropertyAssociations)
-		}
-		if (!(comp.category === ComponentCategory.DATA || comp.category === ComponentCategory.ABSTRACT)) {
-			error('Components other than "data" or "component" cannot have primitive type', comp,
-				Aadlv3Package.Literals.COMPONENT__CATEGORY, NoDataType)
 		}
 	}
 

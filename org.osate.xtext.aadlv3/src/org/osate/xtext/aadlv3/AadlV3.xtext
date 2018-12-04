@@ -56,7 +56,7 @@ fragment ImplementationBody*:
 
 fragment ImplementationElement* :
 	connections+=Connection |connections+=FeatureMapping | components+=Component 
-		| paths+= Path | flowAssignments+=FlowAssignment | assignments+=ConfigurationAssignment
+		| paths+= Path | flowAssignments+=FlowAssignment | configurationAssignments+=ConfigurationAssignment
 		| propertyAssociations+=PropertyAssociation
 ;
 
@@ -166,7 +166,7 @@ fragment CurlyConfigurationElementBlock *:
 	'{' ConfigurationElement (SEMICOLON ConfigurationElement )* SEMICOLON? '}';
 
 fragment ConfigurationElement*: 
-	propertyAssociations+=PropertyAssociation | assignments+=ConfigurationAssignment
+	propertyAssociations+=PropertyAssociation | configurationAssignments+=ConfigurationAssignment
 ;
 
 fragment Parameters *:
@@ -225,7 +225,7 @@ fragment ConfigurationActuals*:
 ;
 
 ConfigurationActual returns av3::ConfigurationActual:
-	parameter=[av3::ConfigurationParameter|ID] '=>' value=TypeReference
+	parameter=[av3::ConfigurationParameter|ID] '=>' assignedClassifiers+=TypeReference (',' assignedClassifiers+=TypeReference)*
 ;
 
 Workingset returns av3::Workingset: 

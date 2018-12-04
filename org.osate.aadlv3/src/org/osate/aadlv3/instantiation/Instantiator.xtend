@@ -78,7 +78,7 @@ class Instantiator {
 			tref = comp.getConfiguredTypeReference(casscopes, context)
 			// set component instance to configured classifier
 			val subci = comp.createComponentInstance(tref)
-			context.subcomponents += subci
+			context.components += subci
 			subci
 		}
 		if (tref === null) {
@@ -91,13 +91,13 @@ class Instantiator {
 			val cl = tref.type
 			switch cl  {
 				ComponentInterface: {
-					comp.allFeatures.forEach[f| ci.features +=f.instantiateFeature(cl.isReverseFeature(f))]
+					ci.allFeatures.forEach[f| ci.features +=f.instantiateFeature(cl.isReverseFeature(f))]
 					cl.allFlowSpecs.forEach[fs| fs.instantiateFlowSpec(ci)]
 				}
 				ComponentConfiguration:{
-					cl.allClassifierFeatures.forEach[f| ci.features += f.instantiateFeature(cl.isReverseFeature(f))] 
+					ci.allFeatures.forEach[f| ci.features += f.instantiateFeature(cl.isReverseFeature(f))] 
 					cl.allFlowSpecs.forEach[fs| fs.instantiateFlowSpec(ci)]
-					val comps = cl.allClassifierComponents
+					val comps = ci.allSubcomponents
 					val cas = cl.allConfigurationAssignments
 					System.out.println("cl "+cl.name)
 					cas.forEach[ca|System.out.println("ca "+ca.target.targetPath)]
@@ -106,9 +106,9 @@ class Instantiator {
 					casscopes.pop
 				}
 				ComponentImplementation: {
-					cl.allClassifierFeatures.forEach[f| ci.features += f.instantiateFeature(cl.isReverseFeature(f))] 
+					ci.allFeatures.forEach[f| ci.features += f.instantiateFeature(cl.isReverseFeature(f))] 
 					cl.allFlowSpecs.forEach[fs| fs.instantiateFlowSpec(ci)]
-					val comps = cl.allClassifierComponents
+					val comps = ci.allSubcomponents
 					casscopes.push(Collections.EMPTY_LIST)
 					comps.forEach[subc| subc.instantiateComponent(casscopes,ci)]
 					casscopes.pop
@@ -122,17 +122,18 @@ class Instantiator {
 		// now we fill in connection instances
 		val cl = ci.configuredClassifier
 		if (cl !== null){
-			val actualConns = cl.allClassifierAssociations.filter[conn|conn.associationType.isConnection]
+			val allassocs = ci.allAssociations
+			val actualConns = allassocs.filter[conn|conn.associationType.isConnection]
 			for (conn: actualConns){
 				conn.instantiateConnection(ci)
 			}
 			if (isRoot){
 			// generate external connections - only for the root component
-				val incomingConns = cl.allClassifierAssociations.filter[conn|conn.isIncomingFeatureMapping]
+				val incomingConns = allassocs.filter[conn|conn.isIncomingFeatureMapping]
 				for (conn : incomingConns){
 					conn.instantiateExternalIncomingConnection(ci)
 				}
-				val outgoingConns = cl.allClassifierAssociations.filter[conn|conn.isOutgoingFeatureMapping]
+				val outgoingConns = allassocs.filter[conn|conn.isOutgoingFeatureMapping]
 				for (conn : outgoingConns){
 					conn.instantiateExternalOutgoingConnection(ci)
 				}
@@ -178,7 +179,7 @@ class Instantiator {
 			val target = targetio.getInstanceElement(pa.target)
 			target.addPropertyAssociationInstance(createPropertyAssociationInstance(pa))
 		}
-		for (subca: ca.assignments){
+		for (subca: ca.configurationAssignments){
 			ca.processConfigurationAssignmentProperties(targetio)
 		}
 	}
@@ -188,7 +189,7 @@ class Instantiator {
 		if (f.category === FeatureCategory.INTERFACE ){
 			val cl = fi.feature.type 
 			if (cl instanceof ComponentInterface){
-				cl.allClassifierFeatures.forEach[subf| 
+				fi.allFeatures.forEach[subf| 
 					val doreverse = if (reverse) !cl.isReverseFeature(subf) else cl.isReverseFeature(subf)
 					fi.features += instantiateFeature(subf,doreverse)
 				]
@@ -287,7 +288,8 @@ class Instantiator {
 		val srccxt = conni.source.containingComponentInstance
 		val srcconfcl = srccxt.configuredClassifier
 		if (srcconfcl === null) return
-		val srcmappings = srcconfcl.allClassifierAssociations.filter[conn| conn.isSourceFeatureMapping(conni)]
+		// TODO handle expansion in nested declaraitons
+		val srcmappings = srccxt.allAssociations.filter[conn| conn.isSourceFeatureMapping(conni)]
 		if(srcmappings.size > 1){
 			// need to make a copy of conni
 			for (element : srcmappings) {
@@ -316,7 +318,7 @@ class Instantiator {
 		val dstcxt = conni.destination.containingComponentInstance
 		val dstconfcl = dstcxt.configuredClassifier
 		if (dstconfcl === null) return
-		val dstmappings = dstconfcl.allClassifierAssociations.filter[conn| conn.isDestinationFeatureMapping(conni)]
+		val dstmappings = dstcxt.allAssociations.filter[conn| conn.isDestinationFeatureMapping(conni)]
 		if(dstmappings.size > 1){
 			// need to make a copy of conni
 			for (element : dstmappings) {

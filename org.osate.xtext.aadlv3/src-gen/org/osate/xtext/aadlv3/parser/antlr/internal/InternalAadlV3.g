@@ -1086,17 +1086,17 @@ ruleImplementationElement[EObject in_current]  returns [EObject current=in_curre
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getImplementationElementAccess().getAssignmentsConfigurationAssignmentParserRuleCall_5_0());
+					newCompositeNode(grammarAccess.getImplementationElementAccess().getConfigurationAssignmentsConfigurationAssignmentParserRuleCall_5_0());
 				}
-				lv_assignments_5_0=ruleConfigurationAssignment
+				lv_configurationAssignments_5_0=ruleConfigurationAssignment
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getImplementationElementRule());
 					}
 					add(
 						$current,
-						"assignments",
-						lv_assignments_5_0,
+						"configurationAssignments",
+						lv_configurationAssignments_5_0,
 						"org.osate.xtext.aadlv3.AadlV3.ConfigurationAssignment");
 					afterParserOrEnumRuleCall();
 				}
@@ -2967,17 +2967,17 @@ ruleConfigurationElement[EObject in_current]  returns [EObject current=in_curren
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getConfigurationElementAccess().getAssignmentsConfigurationAssignmentParserRuleCall_1_0());
+					newCompositeNode(grammarAccess.getConfigurationElementAccess().getConfigurationAssignmentsConfigurationAssignmentParserRuleCall_1_0());
 				}
-				lv_assignments_1_0=ruleConfigurationAssignment
+				lv_configurationAssignments_1_0=ruleConfigurationAssignment
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getConfigurationElementRule());
 					}
 					add(
 						$current,
-						"assignments",
-						lv_assignments_1_0,
+						"configurationAssignments",
+						lv_configurationAssignments_1_0,
 						"org.osate.xtext.aadlv3.AadlV3.ConfigurationAssignment");
 					afterParserOrEnumRuleCall();
 				}
@@ -3822,22 +3822,47 @@ ruleConfigurationActual returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getConfigurationActualAccess().getValueTypeReferenceParserRuleCall_2_0());
+					newCompositeNode(grammarAccess.getConfigurationActualAccess().getAssignedClassifiersTypeReferenceParserRuleCall_2_0());
 				}
-				lv_value_2_0=ruleTypeReference
+				lv_assignedClassifiers_2_0=ruleTypeReference
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getConfigurationActualRule());
 					}
-					set(
+					add(
 						$current,
-						"value",
-						lv_value_2_0,
+						"assignedClassifiers",
+						lv_assignedClassifiers_2_0,
 						"org.osate.xtext.aadlv3.AadlV3.TypeReference");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)
+		(
+			otherlv_3=','
+			{
+				newLeafNode(otherlv_3, grammarAccess.getConfigurationActualAccess().getCommaKeyword_3_0());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getConfigurationActualAccess().getAssignedClassifiersTypeReferenceParserRuleCall_3_1_0());
+					}
+					lv_assignedClassifiers_4_0=ruleTypeReference
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getConfigurationActualRule());
+						}
+						add(
+							$current,
+							"assignedClassifiers",
+							lv_assignedClassifiers_4_0,
+							"org.osate.xtext.aadlv3.AadlV3.TypeReference");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)*
 	)
 ;
 

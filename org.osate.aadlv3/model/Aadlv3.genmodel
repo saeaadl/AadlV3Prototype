@@ -93,13 +93,13 @@
     <genClasses ecoreClass="Aadlv3.ecore#//ComponentImplementation">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ComponentImplementation/components"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ComponentImplementation/connections"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ComponentImplementation/assignments"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ComponentImplementation/configurationAssignments"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ComponentImplementation/flowAssignments"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ComponentImplementation/paths"/>
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//ComponentConfiguration">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ComponentConfiguration/parameters"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ComponentConfiguration/assignments"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ComponentConfiguration/configurationAssignments"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//ComponentConfiguration/parameterized"/>
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//Feature">
@@ -127,7 +127,7 @@
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//ConfigurationAssignment">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ConfigurationAssignment/target"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ConfigurationAssignment/assignments"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ConfigurationAssignment/configurationAssignments"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ConfigurationAssignment/assignedClassifiers"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ConfigurationAssignment/propertyAssociations"/>
     </genClasses>
@@ -146,7 +146,7 @@
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//ConfigurationActual">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ConfigurationActual/parameter"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ConfigurationActual/value"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ConfigurationActual/assignedClassifiers"/>
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//Workingset">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Workingset/rootComponents"/>

@@ -42,7 +42,7 @@ import org.osate.aadlv3.aadlv3.PathSequence;
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentImplementationImpl#getComponents <em>Components</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentImplementationImpl#getConnections <em>Connections</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentImplementationImpl#getAssignments <em>Assignments</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentImplementationImpl#getConfigurationAssignments <em>Configuration Assignments</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentImplementationImpl#getFlowAssignments <em>Flow Assignments</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentImplementationImpl#getPaths <em>Paths</em>}</li>
  * </ul>
@@ -71,14 +71,14 @@ public class ComponentImplementationImpl extends ComponentRealizationImpl implem
 	protected EList<Association> connections;
 
 	/**
-	 * The cached value of the '{@link #getAssignments() <em>Assignments</em>}' containment reference list.
+	 * The cached value of the '{@link #getConfigurationAssignments() <em>Configuration Assignments</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAssignments()
+	 * @see #getConfigurationAssignments()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ConfigurationAssignment> assignments;
+	protected EList<ConfigurationAssignment> configurationAssignments;
 
 	/**
 	 * The cached value of the '{@link #getFlowAssignments() <em>Flow Assignments</em>}' containment reference list.
@@ -153,12 +153,13 @@ public class ComponentImplementationImpl extends ComponentRealizationImpl implem
 	 * @generated
 	 */
 	@Override
-	public EList<ConfigurationAssignment> getAssignments() {
-		if (assignments == null) {
-			assignments = new EObjectContainmentEList<ConfigurationAssignment>(ConfigurationAssignment.class, this,
-					Aadlv3Package.COMPONENT_IMPLEMENTATION__ASSIGNMENTS);
+	public EList<ConfigurationAssignment> getConfigurationAssignments() {
+		if (configurationAssignments == null) {
+			configurationAssignments = new EObjectContainmentEList<ConfigurationAssignment>(
+					ConfigurationAssignment.class, this,
+					Aadlv3Package.COMPONENT_IMPLEMENTATION__CONFIGURATION_ASSIGNMENTS);
 		}
-		return assignments;
+		return configurationAssignments;
 	}
 
 	/**
@@ -201,8 +202,8 @@ public class ComponentImplementationImpl extends ComponentRealizationImpl implem
 			return ((InternalEList<?>) getComponents()).basicRemove(otherEnd, msgs);
 		case Aadlv3Package.COMPONENT_IMPLEMENTATION__CONNECTIONS:
 			return ((InternalEList<?>) getConnections()).basicRemove(otherEnd, msgs);
-		case Aadlv3Package.COMPONENT_IMPLEMENTATION__ASSIGNMENTS:
-			return ((InternalEList<?>) getAssignments()).basicRemove(otherEnd, msgs);
+		case Aadlv3Package.COMPONENT_IMPLEMENTATION__CONFIGURATION_ASSIGNMENTS:
+			return ((InternalEList<?>) getConfigurationAssignments()).basicRemove(otherEnd, msgs);
 		case Aadlv3Package.COMPONENT_IMPLEMENTATION__FLOW_ASSIGNMENTS:
 			return ((InternalEList<?>) getFlowAssignments()).basicRemove(otherEnd, msgs);
 		case Aadlv3Package.COMPONENT_IMPLEMENTATION__PATHS:
@@ -223,8 +224,8 @@ public class ComponentImplementationImpl extends ComponentRealizationImpl implem
 			return getComponents();
 		case Aadlv3Package.COMPONENT_IMPLEMENTATION__CONNECTIONS:
 			return getConnections();
-		case Aadlv3Package.COMPONENT_IMPLEMENTATION__ASSIGNMENTS:
-			return getAssignments();
+		case Aadlv3Package.COMPONENT_IMPLEMENTATION__CONFIGURATION_ASSIGNMENTS:
+			return getConfigurationAssignments();
 		case Aadlv3Package.COMPONENT_IMPLEMENTATION__FLOW_ASSIGNMENTS:
 			return getFlowAssignments();
 		case Aadlv3Package.COMPONENT_IMPLEMENTATION__PATHS:
@@ -250,9 +251,9 @@ public class ComponentImplementationImpl extends ComponentRealizationImpl implem
 			getConnections().clear();
 			getConnections().addAll((Collection<? extends Association>) newValue);
 			return;
-		case Aadlv3Package.COMPONENT_IMPLEMENTATION__ASSIGNMENTS:
-			getAssignments().clear();
-			getAssignments().addAll((Collection<? extends ConfigurationAssignment>) newValue);
+		case Aadlv3Package.COMPONENT_IMPLEMENTATION__CONFIGURATION_ASSIGNMENTS:
+			getConfigurationAssignments().clear();
+			getConfigurationAssignments().addAll((Collection<? extends ConfigurationAssignment>) newValue);
 			return;
 		case Aadlv3Package.COMPONENT_IMPLEMENTATION__FLOW_ASSIGNMENTS:
 			getFlowAssignments().clear();
@@ -280,8 +281,8 @@ public class ComponentImplementationImpl extends ComponentRealizationImpl implem
 		case Aadlv3Package.COMPONENT_IMPLEMENTATION__CONNECTIONS:
 			getConnections().clear();
 			return;
-		case Aadlv3Package.COMPONENT_IMPLEMENTATION__ASSIGNMENTS:
-			getAssignments().clear();
+		case Aadlv3Package.COMPONENT_IMPLEMENTATION__CONFIGURATION_ASSIGNMENTS:
+			getConfigurationAssignments().clear();
 			return;
 		case Aadlv3Package.COMPONENT_IMPLEMENTATION__FLOW_ASSIGNMENTS:
 			getFlowAssignments().clear();
@@ -305,8 +306,8 @@ public class ComponentImplementationImpl extends ComponentRealizationImpl implem
 			return components != null && !components.isEmpty();
 		case Aadlv3Package.COMPONENT_IMPLEMENTATION__CONNECTIONS:
 			return connections != null && !connections.isEmpty();
-		case Aadlv3Package.COMPONENT_IMPLEMENTATION__ASSIGNMENTS:
-			return assignments != null && !assignments.isEmpty();
+		case Aadlv3Package.COMPONENT_IMPLEMENTATION__CONFIGURATION_ASSIGNMENTS:
+			return configurationAssignments != null && !configurationAssignments.isEmpty();
 		case Aadlv3Package.COMPONENT_IMPLEMENTATION__FLOW_ASSIGNMENTS:
 			return flowAssignments != null && !flowAssignments.isEmpty();
 		case Aadlv3Package.COMPONENT_IMPLEMENTATION__PATHS:

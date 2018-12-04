@@ -44,7 +44,7 @@ import org.osate.av3instance.av3instance.PropertyAssociationInstance;
  * </p>
  * <ul>
  *   <li>{@link org.osate.av3instance.av3instance.impl.InstanceObjectImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.osate.av3instance.av3instance.impl.InstanceObjectImpl#getProperties <em>Properties</em>}</li>
+ *   <li>{@link org.osate.av3instance.av3instance.impl.InstanceObjectImpl#getPropertyAssociations <em>Property Associations</em>}</li>
  * </ul>
  *
  * @generated
@@ -71,14 +71,14 @@ public abstract class InstanceObjectImpl extends MinimalEObjectImpl.Container im
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getProperties() <em>Properties</em>}' containment reference list.
+	 * The cached value of the '{@link #getPropertyAssociations() <em>Property Associations</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getProperties()
+	 * @see #getPropertyAssociations()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<PropertyAssociationInstance> properties;
+	protected EList<PropertyAssociationInstance> propertyAssociations;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -129,12 +129,12 @@ public abstract class InstanceObjectImpl extends MinimalEObjectImpl.Container im
 	 * @generated
 	 */
 	@Override
-	public EList<PropertyAssociationInstance> getProperties() {
-		if (properties == null) {
-			properties = new EObjectContainmentEList<PropertyAssociationInstance>(PropertyAssociationInstance.class,
-					this, Av3instancePackage.INSTANCE_OBJECT__PROPERTIES);
+	public EList<PropertyAssociationInstance> getPropertyAssociations() {
+		if (propertyAssociations == null) {
+			propertyAssociations = new EObjectContainmentEList<PropertyAssociationInstance>(
+					PropertyAssociationInstance.class, this, Av3instancePackage.INSTANCE_OBJECT__PROPERTY_ASSOCIATIONS);
 		}
-		return properties;
+		return propertyAssociations;
 	}
 
 	/**
@@ -145,8 +145,8 @@ public abstract class InstanceObjectImpl extends MinimalEObjectImpl.Container im
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case Av3instancePackage.INSTANCE_OBJECT__PROPERTIES:
-			return ((InternalEList<?>) getProperties()).basicRemove(otherEnd, msgs);
+		case Av3instancePackage.INSTANCE_OBJECT__PROPERTY_ASSOCIATIONS:
+			return ((InternalEList<?>) getPropertyAssociations()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -161,8 +161,8 @@ public abstract class InstanceObjectImpl extends MinimalEObjectImpl.Container im
 		switch (featureID) {
 		case Av3instancePackage.INSTANCE_OBJECT__NAME:
 			return getName();
-		case Av3instancePackage.INSTANCE_OBJECT__PROPERTIES:
-			return getProperties();
+		case Av3instancePackage.INSTANCE_OBJECT__PROPERTY_ASSOCIATIONS:
+			return getPropertyAssociations();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -179,9 +179,9 @@ public abstract class InstanceObjectImpl extends MinimalEObjectImpl.Container im
 		case Av3instancePackage.INSTANCE_OBJECT__NAME:
 			setName((String) newValue);
 			return;
-		case Av3instancePackage.INSTANCE_OBJECT__PROPERTIES:
-			getProperties().clear();
-			getProperties().addAll((Collection<? extends PropertyAssociationInstance>) newValue);
+		case Av3instancePackage.INSTANCE_OBJECT__PROPERTY_ASSOCIATIONS:
+			getPropertyAssociations().clear();
+			getPropertyAssociations().addAll((Collection<? extends PropertyAssociationInstance>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -198,8 +198,8 @@ public abstract class InstanceObjectImpl extends MinimalEObjectImpl.Container im
 		case Av3instancePackage.INSTANCE_OBJECT__NAME:
 			setName(NAME_EDEFAULT);
 			return;
-		case Av3instancePackage.INSTANCE_OBJECT__PROPERTIES:
-			getProperties().clear();
+		case Av3instancePackage.INSTANCE_OBJECT__PROPERTY_ASSOCIATIONS:
+			getPropertyAssociations().clear();
 			return;
 		}
 		super.eUnset(featureID);
@@ -215,8 +215,8 @@ public abstract class InstanceObjectImpl extends MinimalEObjectImpl.Container im
 		switch (featureID) {
 		case Av3instancePackage.INSTANCE_OBJECT__NAME:
 			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-		case Av3instancePackage.INSTANCE_OBJECT__PROPERTIES:
-			return properties != null && !properties.isEmpty();
+		case Av3instancePackage.INSTANCE_OBJECT__PROPERTY_ASSOCIATIONS:
+			return propertyAssociations != null && !propertyAssociations.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

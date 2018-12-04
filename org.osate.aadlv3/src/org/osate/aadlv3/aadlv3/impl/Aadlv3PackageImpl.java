@@ -621,7 +621,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getComponentImplementation_Assignments() {
+	public EReference getComponentImplementation_ConfigurationAssignments() {
 		return (EReference) componentImplementationEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -671,7 +671,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getComponentConfiguration_Assignments() {
+	public EReference getComponentConfiguration_ConfigurationAssignments() {
 		return (EReference) componentConfigurationEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -901,7 +901,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getConfigurationAssignment_Assignments() {
+	public EReference getConfigurationAssignment_ConfigurationAssignments() {
 		return (EReference) configurationAssignmentEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -1051,7 +1051,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getConfigurationActual_Value() {
+	public EReference getConfigurationActual_AssignedClassifiers() {
 		return (EReference) configurationActualEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -1325,13 +1325,13 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		componentImplementationEClass = createEClass(COMPONENT_IMPLEMENTATION);
 		createEReference(componentImplementationEClass, COMPONENT_IMPLEMENTATION__COMPONENTS);
 		createEReference(componentImplementationEClass, COMPONENT_IMPLEMENTATION__CONNECTIONS);
-		createEReference(componentImplementationEClass, COMPONENT_IMPLEMENTATION__ASSIGNMENTS);
+		createEReference(componentImplementationEClass, COMPONENT_IMPLEMENTATION__CONFIGURATION_ASSIGNMENTS);
 		createEReference(componentImplementationEClass, COMPONENT_IMPLEMENTATION__FLOW_ASSIGNMENTS);
 		createEReference(componentImplementationEClass, COMPONENT_IMPLEMENTATION__PATHS);
 
 		componentConfigurationEClass = createEClass(COMPONENT_CONFIGURATION);
 		createEReference(componentConfigurationEClass, COMPONENT_CONFIGURATION__PARAMETERS);
-		createEReference(componentConfigurationEClass, COMPONENT_CONFIGURATION__ASSIGNMENTS);
+		createEReference(componentConfigurationEClass, COMPONENT_CONFIGURATION__CONFIGURATION_ASSIGNMENTS);
 		createEAttribute(componentConfigurationEClass, COMPONENT_CONFIGURATION__PARAMETERIZED);
 
 		featureEClass = createEClass(FEATURE);
@@ -1359,7 +1359,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 
 		configurationAssignmentEClass = createEClass(CONFIGURATION_ASSIGNMENT);
 		createEReference(configurationAssignmentEClass, CONFIGURATION_ASSIGNMENT__TARGET);
-		createEReference(configurationAssignmentEClass, CONFIGURATION_ASSIGNMENT__ASSIGNMENTS);
+		createEReference(configurationAssignmentEClass, CONFIGURATION_ASSIGNMENT__CONFIGURATION_ASSIGNMENTS);
 		createEReference(configurationAssignmentEClass, CONFIGURATION_ASSIGNMENT__ASSIGNED_CLASSIFIERS);
 		createEReference(configurationAssignmentEClass, CONFIGURATION_ASSIGNMENT__PROPERTY_ASSOCIATIONS);
 
@@ -1378,7 +1378,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 
 		configurationActualEClass = createEClass(CONFIGURATION_ACTUAL);
 		createEReference(configurationActualEClass, CONFIGURATION_ACTUAL__PARAMETER);
-		createEReference(configurationActualEClass, CONFIGURATION_ACTUAL__VALUE);
+		createEReference(configurationActualEClass, CONFIGURATION_ACTUAL__ASSIGNED_CLASSIFIERS);
 
 		workingsetEClass = createEClass(WORKINGSET);
 		createEReference(workingsetEClass, WORKINGSET__ROOT_COMPONENTS);
@@ -1542,9 +1542,9 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		initEReference(getComponentImplementation_Connections(), this.getAssociation(), null, "connections", null, 0,
 				-1, ComponentImplementation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getComponentImplementation_Assignments(), this.getConfigurationAssignment(), null, "assignments",
-				null, 0, -1, ComponentImplementation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getComponentImplementation_ConfigurationAssignments(), this.getConfigurationAssignment(), null,
+				"configurationAssignments", null, 0, -1, ComponentImplementation.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getComponentImplementation_FlowAssignments(), this.getPathSequence(), null, "flowAssignments",
 				null, 0, -1, ComponentImplementation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1557,9 +1557,9 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		initEReference(getComponentConfiguration_Parameters(), this.getConfigurationParameter(), null, "parameters",
 				null, 0, -1, ComponentConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getComponentConfiguration_Assignments(), this.getConfigurationAssignment(), null, "assignments",
-				null, 0, -1, ComponentConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getComponentConfiguration_ConfigurationAssignments(), this.getConfigurationAssignment(), null,
+				"configurationAssignments", null, 0, -1, ComponentConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getComponentConfiguration_Parameterized(), ecorePackage.getEBoolean(), "parameterized", null, 0,
 				1, ComponentConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1618,9 +1618,9 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		initEReference(getConfigurationAssignment_Target(), this.getModelElementReference(), null, "target", null, 0, 1,
 				ConfigurationAssignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getConfigurationAssignment_Assignments(), this.getConfigurationAssignment(), null, "assignments",
-				null, 0, -1, ConfigurationAssignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getConfigurationAssignment_ConfigurationAssignments(), this.getConfigurationAssignment(), null,
+				"configurationAssignments", null, 0, -1, ConfigurationAssignment.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getConfigurationAssignment_AssignedClassifiers(), this.getTypeReference(), null,
 				"assignedClassifiers", null, 0, -1, ConfigurationAssignment.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1663,9 +1663,9 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		initEReference(getConfigurationActual_Parameter(), this.getConfigurationParameter(), null, "parameter", null, 0,
 				1, ConfigurationActual.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getConfigurationActual_Value(), this.getTypeReference(), null, "value", null, 0, 1,
-				ConfigurationActual.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getConfigurationActual_AssignedClassifiers(), this.getTypeReference(), null,
+				"assignedClassifiers", null, 0, -1, ConfigurationActual.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(workingsetEClass, Workingset.class, "Workingset", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);

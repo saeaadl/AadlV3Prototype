@@ -59,7 +59,7 @@ class testinstance extends XtextTest{
 			// VA 1
 			[ assertEquals(root.getName(),"first")], 
 			// VA 2
-			[assertEquals(6,root.getSubcomponents().size())]
+			[assertEquals(6,root.getComponents().size())]
 		);
 	}
 	

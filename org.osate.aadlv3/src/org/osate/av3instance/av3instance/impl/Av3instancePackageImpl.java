@@ -175,7 +175,7 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 	 * @generated
 	 */
 	@Override
-	public EReference getInstanceObject_Properties() {
+	public EReference getInstanceObject_PropertyAssociations() {
 		return (EReference) instanceObjectEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -285,7 +285,7 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 	 * @generated
 	 */
 	@Override
-	public EReference getComponentInstance_Subcomponents() {
+	public EReference getComponentInstance_Components() {
 		return (EReference) componentInstanceEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -521,7 +521,7 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 		// Create classes and their features
 		instanceObjectEClass = createEClass(INSTANCE_OBJECT);
 		createEAttribute(instanceObjectEClass, INSTANCE_OBJECT__NAME);
-		createEReference(instanceObjectEClass, INSTANCE_OBJECT__PROPERTIES);
+		createEReference(instanceObjectEClass, INSTANCE_OBJECT__PROPERTY_ASSOCIATIONS);
 
 		featureInstanceEClass = createEClass(FEATURE_INSTANCE);
 		createEReference(featureInstanceEClass, FEATURE_INSTANCE__FEATURE);
@@ -534,7 +534,7 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 
 		componentInstanceEClass = createEClass(COMPONENT_INSTANCE);
 		createEAttribute(componentInstanceEClass, COMPONENT_INSTANCE__CATEGORY);
-		createEReference(componentInstanceEClass, COMPONENT_INSTANCE__SUBCOMPONENTS);
+		createEReference(componentInstanceEClass, COMPONENT_INSTANCE__COMPONENTS);
 		createEReference(componentInstanceEClass, COMPONENT_INSTANCE__COMPONENT);
 		createEReference(componentInstanceEClass, COMPONENT_INSTANCE__CONNECTIONS);
 		createEReference(componentInstanceEClass, COMPONENT_INSTANCE__FEATURES);
@@ -603,9 +603,9 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 				IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getInstanceObject_Name(), ecorePackage.getEString(), "name", null, 0, 1, InstanceObject.class, //$NON-NLS-1$
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getInstanceObject_Properties(), this.getPropertyAssociationInstance(), null, "properties", null, //$NON-NLS-1$
-				0, -1, InstanceObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getInstanceObject_PropertyAssociations(), this.getPropertyAssociationInstance(), null,
+				"propertyAssociations", null, 0, -1, InstanceObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, //$NON-NLS-1$
+				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(featureInstanceEClass, FeatureInstance.class, "FeatureInstance", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
 				IS_GENERATED_INSTANCE_CLASS);
@@ -638,9 +638,9 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 		initEAttribute(getComponentInstance_Category(), theAadlv3Package.getComponentCategory(), "category", null, 0, 1, //$NON-NLS-1$
 				ComponentInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
-		initEReference(getComponentInstance_Subcomponents(), this.getComponentInstance(), null, "subcomponents", null, //$NON-NLS-1$
-				0, -1, ComponentInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getComponentInstance_Components(), this.getComponentInstance(), null, "components", null, 0, -1, //$NON-NLS-1$
+				ComponentInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getComponentInstance_Component(), theAadlv3Package.getComponent(), null, "component", null, 0, 1, //$NON-NLS-1$
 				ComponentInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -30,7 +30,7 @@ import org.osate.aadlv3.aadlv3.ComponentCategory;
  * </p>
  * <ul>
  *   <li>{@link org.osate.av3instance.av3instance.ComponentInstance#getCategory <em>Category</em>}</li>
- *   <li>{@link org.osate.av3instance.av3instance.ComponentInstance#getSubcomponents <em>Subcomponents</em>}</li>
+ *   <li>{@link org.osate.av3instance.av3instance.ComponentInstance#getComponents <em>Components</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.ComponentInstance#getComponent <em>Component</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.ComponentInstance#getConnections <em>Connections</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.ComponentInstance#getFeatures <em>Features</em>}</li>
@@ -73,20 +73,20 @@ public interface ComponentInstance extends InstanceObject {
 	void setCategory(ComponentCategory value);
 
 	/**
-	 * Returns the value of the '<em><b>Subcomponents</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Components</b></em>' containment reference list.
 	 * The list contents are of type {@link org.osate.av3instance.av3instance.ComponentInstance}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Subcomponents</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Components</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Subcomponents</em>' containment reference list.
-	 * @see org.osate.av3instance.av3instance.Av3instancePackage#getComponentInstance_Subcomponents()
+	 * @return the value of the '<em>Components</em>' containment reference list.
+	 * @see org.osate.av3instance.av3instance.Av3instancePackage#getComponentInstance_Components()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<ComponentInstance> getSubcomponents();
+	EList<ComponentInstance> getComponents();
 
 	/**
 	 * Returns the value of the '<em><b>Component</b></em>' reference.

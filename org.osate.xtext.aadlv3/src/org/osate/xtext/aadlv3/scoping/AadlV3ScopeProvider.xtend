@@ -100,7 +100,7 @@ class AadlV3ScopeProvider extends AbstractAadlV3ScopeProvider {
 										} else if (el instanceof Feature) {
 											val ftype = el.type
 											if (ftype instanceof ComponentInterface) {
-												ftype.allClassifierFeatures
+												ftype.allFeatures
 											} else {
 												Collections.EMPTY_LIST
 											}

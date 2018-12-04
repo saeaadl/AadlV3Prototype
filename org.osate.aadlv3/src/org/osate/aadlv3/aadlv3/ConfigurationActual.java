@@ -15,6 +15,7 @@
  */
 package org.osate.aadlv3.aadlv3;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -27,7 +28,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.ConfigurationActual#getParameter <em>Parameter</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.ConfigurationActual#getValue <em>Value</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.ConfigurationActual#getAssignedClassifiers <em>Assigned Classifiers</em>}</li>
  * </ul>
  *
  * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getConfigurationActual()
@@ -62,29 +63,19 @@ public interface ConfigurationActual extends EObject {
 	void setParameter(ConfigurationParameter value);
 
 	/**
-	 * Returns the value of the '<em><b>Value</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Assigned Classifiers</b></em>' containment reference list.
+	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.TypeReference}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Value</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Assigned Classifiers</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Value</em>' containment reference.
-	 * @see #setValue(TypeReference)
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getConfigurationActual_Value()
+	 * @return the value of the '<em>Assigned Classifiers</em>' containment reference list.
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getConfigurationActual_AssignedClassifiers()
 	 * @model containment="true"
 	 * @generated
 	 */
-	TypeReference getValue();
-
-	/**
-	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.ConfigurationActual#getValue <em>Value</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Value</em>' containment reference.
-	 * @see #getValue()
-	 * @generated
-	 */
-	void setValue(TypeReference value);
+	EList<TypeReference> getAssignedClassifiers();
 
 } // ConfigurationActual

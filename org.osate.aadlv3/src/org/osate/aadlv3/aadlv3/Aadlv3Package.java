@@ -649,13 +649,13 @@ public interface Aadlv3Package extends EPackage {
 	int COMPONENT_IMPLEMENTATION__CONNECTIONS = COMPONENT_REALIZATION_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Assignments</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Configuration Assignments</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_IMPLEMENTATION__ASSIGNMENTS = COMPONENT_REALIZATION_FEATURE_COUNT + 2;
+	int COMPONENT_IMPLEMENTATION__CONFIGURATION_ASSIGNMENTS = COMPONENT_REALIZATION_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Flow Assignments</b></em>' containment reference list.
@@ -758,13 +758,13 @@ public interface Aadlv3Package extends EPackage {
 	int COMPONENT_CONFIGURATION__PARAMETERS = COMPONENT_REALIZATION_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Assignments</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Configuration Assignments</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_CONFIGURATION__ASSIGNMENTS = COMPONENT_REALIZATION_FEATURE_COUNT + 1;
+	int COMPONENT_CONFIGURATION__CONFIGURATION_ASSIGNMENTS = COMPONENT_REALIZATION_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Parameterized</b></em>' attribute.
@@ -1069,13 +1069,13 @@ public interface Aadlv3Package extends EPackage {
 	int CONFIGURATION_ASSIGNMENT__TARGET = 0;
 
 	/**
-	 * The feature id for the '<em><b>Assignments</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Configuration Assignments</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONFIGURATION_ASSIGNMENT__ASSIGNMENTS = 1;
+	int CONFIGURATION_ASSIGNMENT__CONFIGURATION_ASSIGNMENTS = 1;
 
 	/**
 	 * The feature id for the '<em><b>Assigned Classifiers</b></em>' containment reference list.
@@ -1253,13 +1253,13 @@ public interface Aadlv3Package extends EPackage {
 	int CONFIGURATION_ACTUAL__PARAMETER = 0;
 
 	/**
-	 * The feature id for the '<em><b>Value</b></em>' containment reference.
+	 * The feature id for the '<em><b>Assigned Classifiers</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONFIGURATION_ACTUAL__VALUE = 1;
+	int CONFIGURATION_ACTUAL__ASSIGNED_CLASSIFIERS = 1;
 
 	/**
 	 * The number of structural features of the '<em>Configuration Actual</em>' class.
@@ -1827,15 +1827,15 @@ public interface Aadlv3Package extends EPackage {
 	EReference getComponentImplementation_Connections();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.osate.aadlv3.aadlv3.ComponentImplementation#getAssignments <em>Assignments</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.osate.aadlv3.aadlv3.ComponentImplementation#getConfigurationAssignments <em>Configuration Assignments</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Assignments</em>'.
-	 * @see org.osate.aadlv3.aadlv3.ComponentImplementation#getAssignments()
+	 * @return the meta object for the containment reference list '<em>Configuration Assignments</em>'.
+	 * @see org.osate.aadlv3.aadlv3.ComponentImplementation#getConfigurationAssignments()
 	 * @see #getComponentImplementation()
 	 * @generated
 	 */
-	EReference getComponentImplementation_Assignments();
+	EReference getComponentImplementation_ConfigurationAssignments();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link org.osate.aadlv3.aadlv3.ComponentImplementation#getFlowAssignments <em>Flow Assignments</em>}'.
@@ -1881,15 +1881,15 @@ public interface Aadlv3Package extends EPackage {
 	EReference getComponentConfiguration_Parameters();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.osate.aadlv3.aadlv3.ComponentConfiguration#getAssignments <em>Assignments</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.osate.aadlv3.aadlv3.ComponentConfiguration#getConfigurationAssignments <em>Configuration Assignments</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Assignments</em>'.
-	 * @see org.osate.aadlv3.aadlv3.ComponentConfiguration#getAssignments()
+	 * @return the meta object for the containment reference list '<em>Configuration Assignments</em>'.
+	 * @see org.osate.aadlv3.aadlv3.ComponentConfiguration#getConfigurationAssignments()
 	 * @see #getComponentConfiguration()
 	 * @generated
 	 */
-	EReference getComponentConfiguration_Assignments();
+	EReference getComponentConfiguration_ConfigurationAssignments();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.osate.aadlv3.aadlv3.ComponentConfiguration#isParameterized <em>Parameterized</em>}'.
@@ -2129,15 +2129,15 @@ public interface Aadlv3Package extends EPackage {
 	EReference getConfigurationAssignment_Target();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.osate.aadlv3.aadlv3.ConfigurationAssignment#getAssignments <em>Assignments</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.osate.aadlv3.aadlv3.ConfigurationAssignment#getConfigurationAssignments <em>Configuration Assignments</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Assignments</em>'.
-	 * @see org.osate.aadlv3.aadlv3.ConfigurationAssignment#getAssignments()
+	 * @return the meta object for the containment reference list '<em>Configuration Assignments</em>'.
+	 * @see org.osate.aadlv3.aadlv3.ConfigurationAssignment#getConfigurationAssignments()
 	 * @see #getConfigurationAssignment()
 	 * @generated
 	 */
-	EReference getConfigurationAssignment_Assignments();
+	EReference getConfigurationAssignment_ConfigurationAssignments();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link org.osate.aadlv3.aadlv3.ConfigurationAssignment#getAssignedClassifiers <em>Assigned Classifiers</em>}'.
@@ -2290,15 +2290,15 @@ public interface Aadlv3Package extends EPackage {
 	EReference getConfigurationActual_Parameter();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.osate.aadlv3.aadlv3.ConfigurationActual#getValue <em>Value</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.osate.aadlv3.aadlv3.ConfigurationActual#getAssignedClassifiers <em>Assigned Classifiers</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Value</em>'.
-	 * @see org.osate.aadlv3.aadlv3.ConfigurationActual#getValue()
+	 * @return the meta object for the containment reference list '<em>Assigned Classifiers</em>'.
+	 * @see org.osate.aadlv3.aadlv3.ConfigurationActual#getAssignedClassifiers()
 	 * @see #getConfigurationActual()
 	 * @generated
 	 */
-	EReference getConfigurationActual_Value();
+	EReference getConfigurationActual_AssignedClassifiers();
 
 	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.Workingset <em>Workingset</em>}'.
@@ -2772,12 +2772,13 @@ public interface Aadlv3Package extends EPackage {
 		EReference COMPONENT_IMPLEMENTATION__CONNECTIONS = eINSTANCE.getComponentImplementation_Connections();
 
 		/**
-		 * The meta object literal for the '<em><b>Assignments</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Configuration Assignments</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference COMPONENT_IMPLEMENTATION__ASSIGNMENTS = eINSTANCE.getComponentImplementation_Assignments();
+		EReference COMPONENT_IMPLEMENTATION__CONFIGURATION_ASSIGNMENTS = eINSTANCE
+				.getComponentImplementation_ConfigurationAssignments();
 
 		/**
 		 * The meta object literal for the '<em><b>Flow Assignments</b></em>' containment reference list feature.
@@ -2814,12 +2815,13 @@ public interface Aadlv3Package extends EPackage {
 		EReference COMPONENT_CONFIGURATION__PARAMETERS = eINSTANCE.getComponentConfiguration_Parameters();
 
 		/**
-		 * The meta object literal for the '<em><b>Assignments</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Configuration Assignments</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference COMPONENT_CONFIGURATION__ASSIGNMENTS = eINSTANCE.getComponentConfiguration_Assignments();
+		EReference COMPONENT_CONFIGURATION__CONFIGURATION_ASSIGNMENTS = eINSTANCE
+				.getComponentConfiguration_ConfigurationAssignments();
 
 		/**
 		 * The meta object literal for the '<em><b>Parameterized</b></em>' attribute feature.
@@ -3008,12 +3010,13 @@ public interface Aadlv3Package extends EPackage {
 		EReference CONFIGURATION_ASSIGNMENT__TARGET = eINSTANCE.getConfigurationAssignment_Target();
 
 		/**
-		 * The meta object literal for the '<em><b>Assignments</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Configuration Assignments</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CONFIGURATION_ASSIGNMENT__ASSIGNMENTS = eINSTANCE.getConfigurationAssignment_Assignments();
+		EReference CONFIGURATION_ASSIGNMENT__CONFIGURATION_ASSIGNMENTS = eINSTANCE
+				.getConfigurationAssignment_ConfigurationAssignments();
 
 		/**
 		 * The meta object literal for the '<em><b>Assigned Classifiers</b></em>' containment reference list feature.
@@ -3138,12 +3141,12 @@ public interface Aadlv3Package extends EPackage {
 		EReference CONFIGURATION_ACTUAL__PARAMETER = eINSTANCE.getConfigurationActual_Parameter();
 
 		/**
-		 * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Assigned Classifiers</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CONFIGURATION_ACTUAL__VALUE = eINSTANCE.getConfigurationActual_Value();
+		EReference CONFIGURATION_ACTUAL__ASSIGNED_CLASSIFIERS = eINSTANCE.getConfigurationActual_AssignedClassifiers();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.WorkingsetImpl <em>Workingset</em>}' class.
