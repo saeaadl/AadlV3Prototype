@@ -61,10 +61,10 @@ class AadlV3ScopeProvider extends AbstractAadlV3ScopeProvider {
 						PathSequence: {
 							switch container : cc.eContainer {
 								ComponentClassifier: {
-									container.allModelElements ?: Collections.EMPTY_LIST
+									container.allModelElements 
 								}
 								Component: {
-									container?.allModelElements ?: Collections.EMPTY_LIST
+									container.allModelElements 
 								}
 							}
 						}
@@ -96,7 +96,7 @@ class AadlV3ScopeProvider extends AbstractAadlV3ScopeProvider {
 											casscopes.push(
 												context.containingComponentConfiguration.
 													allSuperConfigurationAssignments)
-											el.getConfiguredClassifier(casscopes)?.allModelElements ?: Collections.EMPTY_LIST
+											el.getConfiguredTypeReferences(casscopes).allModelElements 
 										} else if (el instanceof Feature) {
 											val ftype = el.type
 											if (ftype instanceof ComponentInterface) {
@@ -125,13 +125,9 @@ class AadlV3ScopeProvider extends AbstractAadlV3ScopeProvider {
 							// super classifier of containing classifier of configuration assignment may have configured the component
 							val casscopes = new Stack<Iterable<ConfigurationAssignment>>()
 							casscopes.push(context.containingComponentConfiguration.allSuperConfigurationAssignments)
-							val pcl = previousElement.getConfiguredClassifier(casscopes)
-							if (pcl !== null) {
-								if (!pcl.eIsProxy) {
-									pcl.allModelElements
-								} else {
-									Collections.EMPTY_LIST
-								}
+							val ptrs = previousElement.getConfiguredTypeReferences(casscopes)
+							if (!ptrs.empty && !ptrs.isDataType) {
+								ptrs.allModelElements
 							} else {
 								previousElement.allModelElements
 							}

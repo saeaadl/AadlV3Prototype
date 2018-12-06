@@ -22,7 +22,7 @@ package ConnectionExamples
 	end ;
 	abstract actuator.i  is
 		mystate: data systemstate { stateread : provides read access systemstate;
-			statewrite : provides write access systemstate;
+			statewrite : provides write access systemstate
 		};
 		sub2: thread actuate;
 		downmap: mapping inp => sub2.p1;

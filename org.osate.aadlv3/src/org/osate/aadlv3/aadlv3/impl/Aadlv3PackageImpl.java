@@ -1171,18 +1171,8 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getPathSequence_PathType() {
-		return (EAttribute) pathSequenceEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EReference getPathSequence_Target() {
-		return (EReference) pathSequenceEClass.getEStructuralFeatures().get(1);
+		return (EReference) pathSequenceEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1192,7 +1182,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 */
 	@Override
 	public EReference getPathSequence_Elements() {
-		return (EReference) pathSequenceEClass.getEStructuralFeatures().get(2);
+		return (EReference) pathSequenceEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1395,7 +1385,6 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		createEReference(pathElementEClass, PATH_ELEMENT__NEXT);
 
 		pathSequenceEClass = createEClass(PATH_SEQUENCE);
-		createEAttribute(pathSequenceEClass, PATH_SEQUENCE__PATH_TYPE);
 		createEReference(pathSequenceEClass, PATH_SEQUENCE__TARGET);
 		createEReference(pathSequenceEClass, PATH_SEQUENCE__ELEMENTS);
 
@@ -1698,9 +1687,6 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 
 		initEClass(pathSequenceEClass, PathSequence.class, "PathSequence", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getPathSequence_PathType(), this.getAssociationType(), "pathType", null, 0, 1,
-				PathSequence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
 		initEReference(getPathSequence_Target(), this.getModelElementReference(), null, "target", null, 0, 1,
 				PathSequence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

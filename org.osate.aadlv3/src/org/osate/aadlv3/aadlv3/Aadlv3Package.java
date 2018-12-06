@@ -1465,22 +1465,13 @@ public interface Aadlv3Package extends EPackage {
 	int PATH_SEQUENCE__PROPERTY_ASSOCIATIONS = MODEL_ELEMENT__PROPERTY_ASSOCIATIONS;
 
 	/**
-	 * The feature id for the '<em><b>Path Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PATH_SEQUENCE__PATH_TYPE = MODEL_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Target</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PATH_SEQUENCE__TARGET = MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int PATH_SEQUENCE__TARGET = MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Elements</b></em>' containment reference list.
@@ -1489,7 +1480,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PATH_SEQUENCE__ELEMENTS = MODEL_ELEMENT_FEATURE_COUNT + 2;
+	int PATH_SEQUENCE__ELEMENTS = MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Path Sequence</em>' class.
@@ -1498,7 +1489,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PATH_SEQUENCE_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 3;
+	int PATH_SEQUENCE_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.ComponentCategory <em>Component Category</em>}' enum.
@@ -2417,17 +2408,6 @@ public interface Aadlv3Package extends EPackage {
 	EClass getPathSequence();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.osate.aadlv3.aadlv3.PathSequence#getPathType <em>Path Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Path Type</em>'.
-	 * @see org.osate.aadlv3.aadlv3.PathSequence#getPathType()
-	 * @see #getPathSequence()
-	 * @generated
-	 */
-	EAttribute getPathSequence_PathType();
-
-	/**
 	 * Returns the meta object for the containment reference '{@link org.osate.aadlv3.aadlv3.PathSequence#getTarget <em>Target</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3245,14 +3225,6 @@ public interface Aadlv3Package extends EPackage {
 		 * @generated
 		 */
 		EClass PATH_SEQUENCE = eINSTANCE.getPathSequence();
-
-		/**
-		 * The meta object literal for the '<em><b>Path Type</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PATH_SEQUENCE__PATH_TYPE = eINSTANCE.getPathSequence_PathType();
 
 		/**
 		 * The meta object literal for the '<em><b>Target</b></em>' containment reference feature.

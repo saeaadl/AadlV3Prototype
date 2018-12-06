@@ -194,7 +194,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="next" upperBound="-1" eType="#//PathElement"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PathSequence" eSuperTypes="#//ModelElement">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="pathType" eType="#//AssociationType"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//ModelElementReference"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"

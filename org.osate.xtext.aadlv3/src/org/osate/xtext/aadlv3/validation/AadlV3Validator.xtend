@@ -199,8 +199,8 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 				// configuration parameter
 			}
 		}
-		// if has type references then {} can only contain property associations
-		if (!comp.typeReferences.empty && !comp.features.empty || !comp.connections.empty || !comp.components.empty) {
+		// if has type references that are not data type then {} can only contain property associations
+		if (!comp.typeReferences.empty && ! comp.typeReferences.isDataType && (!comp.features.empty || !comp.connections.empty || !comp.components.empty)) {
 			error('Component with classifier can only have property associations in {}', comp, null,
 				OnlyPropertyAssociations)
 		}
@@ -300,23 +300,11 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 			for (var secondidx = firstidx + 1; secondidx < maxmels; secondidx++) {
 				val second = mels.get(secondidx)
 				if (first !== second && first.name == second.name) {
-					reportDuplicateNames(first, cl)
-					reportDuplicateNames(second, cl)
-				}
-			}
-		}
-		// check whether duplicate names in interface elements and implementation elements
-		val cif = cl.componentInterface
-		if(cif === null) return
-		val ifmels = cif.allModelElements.toList
-		val maxifmels = ifmels.length
-		for (var firstidx = 0; firstidx < maxifmels; firstidx++) {
-			val first = ifmels.get(firstidx)
-			for (var secondidx = 0; secondidx < maxmels; secondidx++) {
-				val second = mels.get(secondidx)
-				if (first !== second && first.name == second.name) {
-					reportDuplicateNames(first, cl)
-					reportDuplicateNames(second, cl)
+					// do not report same name of model elements inherited from interface
+					if (first.containingComponentClassifier === cl || second.containingComponentClassifier === cl){
+						reportDuplicateNames(first, cl)
+						reportDuplicateNames(second, cl)
+					}
 				}
 			}
 		}

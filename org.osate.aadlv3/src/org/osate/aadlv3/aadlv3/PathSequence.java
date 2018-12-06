@@ -26,7 +26,6 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.osate.aadlv3.aadlv3.PathSequence#getPathType <em>Path Type</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.PathSequence#getTarget <em>Target</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.PathSequence#getElements <em>Elements</em>}</li>
  * </ul>
@@ -36,35 +35,6 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface PathSequence extends ModelElement {
-	/**
-	 * Returns the value of the '<em><b>Path Type</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.osate.aadlv3.aadlv3.AssociationType}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Path Type</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Path Type</em>' attribute.
-	 * @see org.osate.aadlv3.aadlv3.AssociationType
-	 * @see #setPathType(AssociationType)
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getPathSequence_PathType()
-	 * @model
-	 * @generated
-	 */
-	AssociationType getPathType();
-
-	/**
-	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.PathSequence#getPathType <em>Path Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Path Type</em>' attribute.
-	 * @see org.osate.aadlv3.aadlv3.AssociationType
-	 * @see #getPathType()
-	 * @generated
-	 */
-	void setPathType(AssociationType value);
-
 	/**
 	 * Returns the value of the '<em><b>Target</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

@@ -4,29 +4,28 @@ import java.util.ArrayList
 import java.util.Collection
 import java.util.Collections
 import java.util.Stack
+import org.osate.aadlv3.aadlv3.Association
 import org.osate.aadlv3.aadlv3.Component
 import org.osate.aadlv3.aadlv3.ComponentConfiguration
 import org.osate.aadlv3.aadlv3.ComponentImplementation
 import org.osate.aadlv3.aadlv3.ComponentInterface
 import org.osate.aadlv3.aadlv3.ConfigurationAssignment
+import org.osate.aadlv3.aadlv3.DataType
 import org.osate.aadlv3.aadlv3.Feature
 import org.osate.aadlv3.aadlv3.FeatureCategory
-import org.osate.aadlv3.aadlv3.DataType
+import org.osate.aadlv3.aadlv3.PathElement
+import org.osate.aadlv3.aadlv3.PathSequence
+import org.osate.aadlv3.aadlv3.TypeReference
 import org.osate.aadlv3.aadlv3.Workingset
 import org.osate.aadlv3.util.Aadlv3Util
+import org.osate.av3instance.av3instance.AssociationInstance
+import org.osate.av3instance.av3instance.ComponentInstance
+import org.osate.av3instance.av3instance.FeatureInstance
+import org.osate.av3instance.av3instance.InstanceObject
+import org.osate.av3instance.av3instance.PathInstance
 
 import static extension org.eclipse.emf.ecore.util.EcoreUtil.*
 import static extension org.osate.aadlv3.util.Aadlv3Util.*
-import org.osate.aadlv3.aadlv3.PathSequence
-import org.osate.aadlv3.aadlv3.PathElement
-import org.osate.aadlv3.aadlv3.AssociationType
-import org.osate.aadlv3.aadlv3.Association
-import org.osate.av3instance.av3instance.ComponentInstance
-import org.osate.av3instance.av3instance.FeatureInstance
-import org.osate.av3instance.av3instance.AssociationInstance
-import org.osate.av3instance.av3instance.PathInstance
-import org.osate.av3instance.av3instance.InstanceObject
-import org.osate.aadlv3.aadlv3.TypeReference
 
 class Instantiator {
 	def instantiate(Workingset ws) {
@@ -92,11 +91,11 @@ class Instantiator {
 			switch cl  {
 				ComponentInterface: {
 					ci.allFeatures.forEach[f| ci.features +=f.instantiateFeature(cl.isReverseFeature(f))]
-					cl.allFlowSpecs.forEach[fs| fs.instantiateFlowSpec(ci)]
+					ci.allFlowSpecs.forEach[fs| fs.instantiateFlowSpec(ci)]
 				}
 				ComponentConfiguration:{
 					ci.allFeatures.forEach[f| ci.features += f.instantiateFeature(cl.isReverseFeature(f))] 
-					cl.allFlowSpecs.forEach[fs| fs.instantiateFlowSpec(ci)]
+					ci.allFlowSpecs.forEach[fs| fs.instantiateFlowSpec(ci)]
 					val comps = ci.allSubcomponents
 					val cas = cl.allConfigurationAssignments
 					System.out.println("cl "+cl.name)
@@ -107,7 +106,7 @@ class Instantiator {
 				}
 				ComponentImplementation: {
 					ci.allFeatures.forEach[f| ci.features += f.instantiateFeature(cl.isReverseFeature(f))] 
-					cl.allFlowSpecs.forEach[fs| fs.instantiateFlowSpec(ci)]
+					ci.allFlowSpecs.forEach[fs| fs.instantiateFlowSpec(ci)]
 					val comps = ci.allSubcomponents
 					casscopes.push(Collections.EMPTY_LIST)
 					comps.forEach[subc| subc.instantiateComponent(casscopes,ci)]
@@ -139,7 +138,7 @@ class Instantiator {
 				}
 			}
 			// now generate all (end to end) flows
-			for (flow : cl.allPaths){
+			for (flow : ci.allPaths){
 				flow.instantiatePath(ci)
 			}
 			
@@ -401,8 +400,7 @@ class Instantiator {
 	def processFlowSpec(PathElement pe, PathInstance psi, ComponentInstance context){
 		val fscontext = context.getInstanceElement(pe.context)
 		if (fscontext instanceof ComponentInstance){
-			val cl = fscontext.configuredClassifier
-			for (fa : cl.allFlowAssignments) {
+			for (fa : fscontext.allFlowAssignments) {
 				if (fa.target.element == pe.element){
 					// recursively process the path
 					fa.processPath(psi,fscontext)

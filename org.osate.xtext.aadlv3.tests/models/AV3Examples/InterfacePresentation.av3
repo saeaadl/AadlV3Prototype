@@ -116,8 +116,7 @@ end ;
 
 system interface sys3 extends Logical1, Logical2 end;
 
-system  sys3.i 
-	is
+system  sys3.i is
 	sub1 : system sub ;
 	
 	conn1 : mapping speed => sub1.outp ;
