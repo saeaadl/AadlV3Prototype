@@ -197,6 +197,16 @@ class Aadlv3Util {
 		return false
 	}
 	
+	static def boolean isComponentClassifier(Iterable<? extends TypeReference> trs){
+		if (trs.empty) return true
+		for (tr : trs){
+			if (tr.type instanceof DataType){
+				return false
+			}
+		}
+		return true
+	}
+	
 	
 	/**
 	 * returns implementation that is the extension of all other implementations
@@ -359,46 +369,41 @@ class Aadlv3Util {
 		return cls.filter[ccl|ccl instanceof ComponentInterface].map[cif|cif.eContents.typeSelect(Feature)].flatten
 	}
 	
-	
-
-	static def boolean isReverseFeature(ComponentClassifier cc, Feature f) {
-		if(cc === null || cc.eIsProxy) return false
-		val cif = if (cc instanceof ComponentInterface) {
-			cc
-		} else if (cc instanceof ComponentImplementation){
-			cc.componentInterface
-		} else if (cc instanceof ComponentConfiguration){
-			cc.componentInterface
+	static def boolean contains(Iterable <? extends Feature> feas, Feature f){
+		for (fea : feas){
+			if (fea === f) return true
 		}
-		if (cif.features.contains(f)){
+		return false
+	}
+
+	static def boolean isReverseFeature(Iterable <TypeReference> trs, Feature f) {
+		if(trs.empty) return false
+		val features = trs.allFeatures
+		if (features.contains(f)){
 			return false
 		}
-		val res = Aadlv3Util.isReverseFeature(cc,f, false)
-		if (res === null) false else res.booleanValue
+		Aadlv3Util.isReverseFeature(features,f, false)
 	}
 	
-	private static def Boolean isReverseFeature(ComponentClassifier cc, Feature f, boolean reverse){
-		val superciftyperefs = cc.superClassifiers
-		for (sciftr : superciftyperefs) {
-			val typ = sciftr.type
+	static def boolean isReverseFeature(Iterable<? extends Feature> features, Feature f, boolean reverse){
+		for (fea : features) {
+			val typ = fea.type
 			if(typ instanceof ComponentInterface){
 				if (typ.features.contains(f)){
-					val doreverse = if (reverse) !sciftr.reverse else sciftr.reverse
-					return new Boolean(doreverse)
+					val doreverse = if (reverse) !fea.reverse else fea.reverse
+					return doreverse
 				}
 			}
 		}
-		for (sciftr : superciftyperefs) {
-			val typ = sciftr.type
-			if(typ instanceof ComponentInterface){
-				if (typ.features.contains(f)){
-					val res = Aadlv3Util.isReverseFeature(typ,f,reverse)
-					val doreverse = if (reverse) !res else res
-					return new Boolean(doreverse)
-				}
+		for (fea : features) {
+			val typ = fea.type
+			if (typ instanceof ComponentInterface) {
+				val res = Aadlv3Util.isReverseFeature(typ.features, f, reverse)
+				val doreverse = if(reverse) !res else res
+				return doreverse
 			}
 		}
-		null
+		false
 	}
 	
 	static def FeatureDirection getRealFeatureDirection(ModelElementReference mer){
@@ -410,7 +415,7 @@ class Aadlv3Util {
 			}
 			val cxtcl = (mer.context.element as Feature).type
 			if (cxtcl instanceof ComponentClassifier){
-			var doReverse = isReverseFeature(cxtcl, fea)
+			var doReverse = isReverseFeature(cxtcl.allFeatures, fea, false)
 			var pathelement = mer
 			doReverse = if (doReverse) !fea.reverse else fea.reverse 
 			while (pathelement.context !== null && pathelement.context.element instanceof Feature){
@@ -587,34 +592,37 @@ class Aadlv3Util {
 	// match can be a component or component instance
 	// TODO currently returns the last match - inner to outer
 	// TODO when we override we want to make sure it does not change the implementation
-	def static Component getConfiguredComponent(Component match,
+	def static Iterable<TypeReference> getConfiguredTypeReferences(Component match,
 		Stack<Iterable<ConfigurationAssignment>> casscopes, ComponentInstance context) {
 		val confcomp = match.copy
-		var ctyperefs = match.typeReferences
-		if (ctyperefs.empty) return confcomp
+		var ctyperefs = confcomp.typeReferences
+		if (ctyperefs.empty) {
+			return Collections.EMPTY_LIST
+			// TODO error message if ca tries to assign
+			}
 		val n = casscopes.size
-		if(n===0 ) return confcomp 
+		if(n===0 ) return ctyperefs 
 		// Also handle ConfigurationParameter
 		// We work from inner to outer CA scope reaching in
 		for (k : n - 1 .. 0) {
 			for (ca : casscopes.get(k)) {
 				if (ca.target.isSamePath(match, n - k, context)) {
-					val actualClorP = ca.value?.type
-					if (actualClorP instanceof ComponentClassifier) {
-						val ccl = ctyperef.type as ComponentClassifier
-						if (ccl.isSuperClassifierOf(actualClorP)) {
-							ctyperef = ca.value
-						}
-					} else if (actualClorP instanceof ConfigurationParameter) {
-						val ptyperef = actualClorP.resolveParameter(ca, context)
-						if (ptyperef !== null && ctyperef.isSuperClassifierOf(ptyperef)) {
-							ctyperef = ptyperef
+					val atrs = ca.assignedClassifiers
+					for (atr : atrs) {
+						val actualClorP = atr.type
+						if (actualClorP instanceof ComponentClassifier) {
+							ctyperefs.add(atr)
+						} else if (actualClorP instanceof ConfigurationParameter) {
+							val ptyperef = actualClorP.resolveParameter(ca, context)
+							if (ptyperef !== null) {
+								ctyperefs.addAll(ptyperef)
+							}
 						}
 					}
 				}
 			}
 		}
-		return ctyperef
+		return ctyperefs
 	}
 
 

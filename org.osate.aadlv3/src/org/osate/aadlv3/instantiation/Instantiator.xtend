@@ -56,7 +56,7 @@ class Instantiator {
 		instanceResource.contents.clear
 		
 		val casscopes = new Stack <Iterable<ConfigurationAssignment>>()
-		val tref = c.getConfiguredTypeReference(casscopes, null)
+		val tref = c.getConfiguredTypeReferences(casscopes, null)
 		// set component instance to configured classifier
 		val ci = c.createComponentInstance(tref)
 		instanceResource.contents.add(ci)
@@ -66,60 +66,38 @@ class Instantiator {
 
 	//  component to be instantiated using configured classifier confcl and set of configuration assignments
 	def void instantiateComponent(Component comp,  Stack<Iterable<ConfigurationAssignment>> casscopes, ComponentInstance context) {
-		var TypeReference tref = null
+		var Iterable<TypeReference> trefs = null
 		val isRoot = comp.eContainer instanceof Workingset
 		val ci = if (isRoot){
 			// root
-			tref = context.configuredTypeReference
+			trefs = context.configuredTypeReferences
 			context
 		} else {
 			// subcomponent
-			tref = comp.getConfiguredTypeReference(casscopes, context)
+			trefs = comp.getConfiguredTypeReferences(casscopes, context)
 			// set component instance to configured classifier
-			val subci = comp.createComponentInstance(tref)
+			val subci = comp.createComponentInstance(trefs)
 			context.components += subci
 			subci
 		}
-		if (tref === null) {
+		if (trefs === null) {
 			// inline subcomponents without explicit classifier
 			comp.features.forEach[f| ci.features += f.instantiateFeature(false)]
 			casscopes.push(Collections.EMPTY_LIST)
 			comp.components.forEach[subc|subc.instantiateComponent(casscopes,ci)]
 			casscopes.pop
 		} else {
-			val cl = tref.type
-			switch cl  {
-				ComponentInterface: {
-					ci.allFeatures.forEach[f| ci.features +=f.instantiateFeature(cl.isReverseFeature(f))]
-					ci.allFlowSpecs.forEach[fs| fs.instantiateFlowSpec(ci)]
-				}
-				ComponentConfiguration:{
-					ci.allFeatures.forEach[f| ci.features += f.instantiateFeature(cl.isReverseFeature(f))] 
-					ci.allFlowSpecs.forEach[fs| fs.instantiateFlowSpec(ci)]
-					val comps = ci.allSubcomponents
-					val cas = cl.allConfigurationAssignments
-					System.out.println("cl "+cl.name)
-					cas.forEach[ca|System.out.println("ca "+ca.target.targetPath)]
-					casscopes.push(cas)
-					comps.forEach[subc| subc.instantiateComponent(casscopes,ci)]
-					casscopes.pop
-				}
-				ComponentImplementation: {
-					ci.allFeatures.forEach[f| ci.features += f.instantiateFeature(cl.isReverseFeature(f))] 
-					ci.allFlowSpecs.forEach[fs| fs.instantiateFlowSpec(ci)]
-					val comps = ci.allSubcomponents
-					casscopes.push(Collections.EMPTY_LIST)
-					comps.forEach[subc| subc.instantiateComponent(casscopes,ci)]
-					casscopes.pop
-				}
-				DataType: {
-					// access features in {}
-					comp.features.forEach[f| ci.features += f.instantiateFeature(false)]
-				}
-			}
+			val trs = trefs
+			ci.allFeatures.forEach[f|ci.features += f.instantiateFeature(trs.isReverseFeature(f))]
+			ci.allFlowSpecs.forEach[fs|fs.instantiateFlowSpec(ci)]
+			val comps = ci.allSubcomponents
+			val cas = trefs.allConfigurationAssignments
+			casscopes.push(cas)
+			comps.forEach[subc|subc.instantiateComponent(casscopes, ci)]
+			casscopes.pop
 		}
 		// now we fill in connection instances
-		val cl = ci.configuredClassifier
+		val cl = ci.configuredTypeReferences
 		if (cl !== null){
 			val allassocs = ci.allAssociations
 			val actualConns = allassocs.filter[conn|conn.associationType.isConnection]
@@ -147,25 +125,25 @@ class Instantiator {
 			// in classifier order
 			// outer over inner
 			// currently we assign inner first
-			for (pa : cl.allPropertyAssociations){
-				val target = ci.getInstanceElement(pa.target)
-				val pai = createPropertyAssociationInstance(pa)
-				if (pai.containingComponentConfiguration !== null){
-					pai.final = true
-				}
-				target.addPropertyAssociationInstance(pai)
-			}
-			for (pa : comp.propertyAssociations){
-				val target = ci.getInstanceElement(pa.target)
-				target.addPropertyAssociationInstance(createPropertyAssociationInstance(pa))
-			}
-			if (cl instanceof ComponentConfiguration){
-				// process property associations contained in configuration assignments
-				val cas = cl.allConfigurationAssignments
-				for (ca : cas){
-					processConfigurationAssignmentProperties(ca, ci)
-				}
-			}
+//			for (pa : cl.allPropertyAssociations){
+//				val target = ci.getInstanceElement(pa.target)
+//				val pai = createPropertyAssociationInstance(pa)
+//				if (pai.containingComponentConfiguration !== null){
+//					pai.final = true
+//				}
+//				target.addPropertyAssociationInstance(pai)
+//			}
+//			for (pa : comp.propertyAssociations){
+//				val target = ci.getInstanceElement(pa.target)
+//				target.addPropertyAssociationInstance(createPropertyAssociationInstance(pa))
+//			}
+//			if (cl instanceof ComponentConfiguration){
+//				// process property associations contained in configuration assignments
+//				val cas = cl.allConfigurationAssignments
+//				for (ca : cas){
+//					processConfigurationAssignmentProperties(ca, ci)
+//				}
+//			}
 		}
 	}
 	
@@ -189,7 +167,7 @@ class Instantiator {
 			val cl = fi.feature.type 
 			if (cl instanceof ComponentInterface){
 				fi.allFeatures.forEach[subf| 
-					val doreverse = if (reverse) !cl.isReverseFeature(subf) else cl.isReverseFeature(subf)
+					val doreverse = cl.allFeatures.isReverseFeature(subf, reverse)
 					fi.features += instantiateFeature(subf,doreverse)
 				]
 			}
@@ -285,8 +263,8 @@ class Instantiator {
 	
 	def void expandSourceFeatureMappings(AssociationInstance conni, Collection<AssociationInstance> result){
 		val srccxt = conni.source.containingComponentInstance
-		val srcconfcl = srccxt.configuredClassifier
-		if (srcconfcl === null) return
+		val srcconftrs = srccxt.configuredTypeReferences
+		if (srcconftrs === null) return
 		// TODO handle expansion in nested declaraitons
 		val srcmappings = srccxt.allAssociations.filter[conn| conn.isSourceFeatureMapping(conni)]
 		if(srcmappings.size > 1){
@@ -315,8 +293,8 @@ class Instantiator {
 	
 	def void expandDestinationFeatureMappings(AssociationInstance conni, Collection<AssociationInstance> result){
 		val dstcxt = conni.destination.containingComponentInstance
-		val dstconfcl = dstcxt.configuredClassifier
-		if (dstconfcl === null) return
+		val dstconftrs = dstcxt.configuredTypeReferences
+		if (dstconftrs === null) return
 		val dstmappings = dstcxt.allAssociations.filter[conn| conn.isDestinationFeatureMapping(conni)]
 		if(dstmappings.size > 1){
 			// need to make a copy of conni

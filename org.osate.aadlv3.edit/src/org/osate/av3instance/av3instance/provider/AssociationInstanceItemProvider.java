@@ -221,9 +221,10 @@ public class AssociationInstanceItemProvider extends InstanceObjectItemProvider 
 		String srclabel = src == null ? "" : Aadlv3Util.getNamePath(src, conncontext);
 		String dstlabel = dst == null ? "" : Aadlv3Util.getNamePath(dst, conncontext);
 		String type = conni.getAssociationType().getLiteral();
+		String connsymbol = conni.getAssociationType() == AssociationType.FEATUREMAPPING ? " => " : " -> ";
 		type = type.substring(0, 1).toUpperCase() + type.substring(1);
 		return label == null || label.length() == 0 ? getString("_UI_AssociationInstance_type") : //$NON-NLS-1$
-				type + " " + label + ": " + srclabel + " -> " + dstlabel; //$NON-NLS-1$ //$NON-NLS-2$
+				type + " " + label + ": " + srclabel + connsymbol + dstlabel; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
