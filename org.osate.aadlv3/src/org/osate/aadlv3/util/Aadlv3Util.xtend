@@ -41,6 +41,8 @@ import org.osate.av3instance.av3instance.PropertyAssociationInstance
 import static extension org.eclipse.emf.ecore.util.EcoreUtil.*
 import static extension org.eclipse.xtext.EcoreUtil2.*
 import static extension org.osate.aadlv3.util.Av3API.*
+import org.eclipse.emf.common.util.EList
+import org.eclipse.emf.common.util.BasicEList
 
 class Aadlv3Util {
 	/**
@@ -152,24 +154,24 @@ class Aadlv3Util {
 	}
 
 
-	/**
-	 * return ordered set of Interfaces starting with the given classifier.
-	 * First add the interface of cc, then all its super interfaces
-	 */
-	static def Iterable<ComponentInterface> getAllComponentInterfaces(ComponentClassifier cc) {
-		return cc.allComponentClassifiers.filter[cl|cl instanceof ComponentInterface] as Iterable<ComponentInterface>
-	}
-
-
-	/**
-	 * return set of component implementations for a given classifier.
-	 * returns empty set for Interface
-	 * returns set of implementations incl. super implementations for configuration
-	 * returns implementation and super implementations for implementations
-	 */
-	static def Iterable<? extends ComponentImplementation> getAllComponentImplementations(ComponentClassifier cc) {
-		return cc.allComponentClassifiers.filter[cl|cl instanceof ComponentImplementation] as Iterable<ComponentImplementation>
-	}
+//	/**
+//	 * return ordered set of Interfaces starting with the given classifier.
+//	 * First add the interface of cc, then all its super interfaces
+//	 */
+//	static def Iterable<ComponentInterface> getAllComponentInterfaces(ComponentClassifier cc) {
+//		return cc.allComponentClassifiers.filter[cl|cl instanceof ComponentInterface] as Iterable<ComponentInterface>
+//	}
+//
+//
+//	/**
+//	 * return set of component implementations for a given classifier.
+//	 * returns empty set for Interface
+//	 * returns set of implementations incl. super implementations for configuration
+//	 * returns implementation and super implementations for implementations
+//	 */
+//	static def Iterable<? extends ComponentImplementation> getAllComponentImplementations(ComponentClassifier cc) {
+//		return cc.allComponentClassifiers.filter[cl|cl instanceof ComponentImplementation] as Iterable<ComponentImplementation>
+//	}
 
 	
 	/**
@@ -349,7 +351,7 @@ class Aadlv3Util {
 			// features in nested declaration
 			return ci.component.features
 		} else {
-			return conftrs.allFeatures
+			return conftrs.allFeatures+ci.component.features
 		}
 	}
 	static def Iterable<? extends Feature> getAllFeatures(FeatureInstance fi) {
@@ -594,12 +596,13 @@ class Aadlv3Util {
 	// TODO when we override we want to make sure it does not change the implementation
 	def static Iterable<TypeReference> getConfiguredTypeReferences(Component match,
 		Stack<Iterable<ConfigurationAssignment>> casscopes, ComponentInstance context) {
-		val confcomp = match.copy
-		var ctyperefs = confcomp.typeReferences
-		if (ctyperefs.empty) {
+		val mtyperefs = match.typeReferences
+		if (mtyperefs.empty) {
 			return Collections.EMPTY_LIST
 			// TODO error message if ca tries to assign
 			}
+		val EList<TypeReference> ctyperefs = new BasicEList<TypeReference>()
+		ctyperefs.addAll(mtyperefs)
 		val n = casscopes.size
 		if(n===0 ) return ctyperefs 
 		// Also handle ConfigurationParameter
@@ -613,10 +616,7 @@ class Aadlv3Util {
 						if (actualClorP instanceof ComponentClassifier) {
 							ctyperefs.add(atr)
 						} else if (actualClorP instanceof ConfigurationParameter) {
-							val ptyperef = actualClorP.resolveParameter(ca, context)
-							if (ptyperef !== null) {
-								ctyperefs.addAll(ptyperef)
-							}
+							actualClorP.resolveParameter(ca.containingComponentConfiguration, context,ctyperefs)
 						}
 					}
 				}
@@ -624,36 +624,67 @@ class Aadlv3Util {
 		}
 		return ctyperefs
 	}
+	
+//	def static resolveAllParameters(Iterable <TypeReference> trs, EList<TypeReference> ctyperefs, ComponentConfiguration config, ComponentInstance context){
+//					for (atr : trs) {
+//						val actualClorP = atr.type
+//						if (actualClorP instanceof ComponentClassifier) {
+//							ctyperefs.add(atr)
+//						} else if (actualClorP instanceof ConfigurationParameter) {
+//							val ptyperef = actualClorP.resolveParameter(config, context)
+//							resolveAllParameters(ptyperef, ctyperefs,config, context)
+//						}
+//					}
+//		
+//	}
 
 
 	// find the actual value assigned in an argument. 
 	// A parameter actual may be passed as parameter actual, thus, we need to recurse
-	def static Iterable <TypeReference> resolveParameter(ConfigurationParameter par, ConfigurationAssignment ca, ComponentInstance context) {
-		val cxtcomp = ca.getContainingComponentConfiguration
+	def static void resolveParameter(ConfigurationParameter par, ComponentConfiguration cxtconfig, ComponentInstance context,Collection<TypeReference> ctyperefs) {
 		var parent = context
-		while (parent !== null&& !cxtcomp.isSuperClassifierOf(parent.configuredClassifier) ){
+		var TypeReference found = null
+		while (parent !== null&& found===null) {
+			for (tr : parent.configuredTypeReferences){
+				val t = tr.type
+				if (t instanceof ComponentClassifier){
+					if (cxtconfig.isSuperClassifierOf(t)){
+						found = tr
+					}
+				}
+				
+			}
 			parent = parent.eContainer as ComponentInstance
 		}
-		if (parent === null) return null
-		val args = parent.actuals
+		if ( found === null) return 
+		val args = found.allActuals
 		for (arg : args) {
 			if (arg.parameter === par) {
-				return arg.assignedClassifiers
+				for (tr: arg.assignedClassifiers){
+					val actualClorP = tr.type
+						if (actualClorP instanceof ComponentClassifier) {
+							ctyperefs.add(tr)
+						} else if (actualClorP instanceof ConfigurationParameter) {
+							actualClorP.resolveParameter(arg.containingComponentConfiguration, parent,ctyperefs)
+						}
+				}
 			}
 		}
-		return null
+		return 
 	}
 
 	// get the arguments from the classifier reference or the first classifier being extended
-	def static Collection<ConfigurationActual> getActuals(ComponentInstance c) {
-		var clr = Aadlv3Util.configuredClassifierTypereferenceCache.get(c)
-		if (clr === null) return Collections.EMPTY_LIST
-		var cl = clr?.type as ComponentClassifier
-		while (clr !== null && cl !== null && !cl.eIsProxy) {
-			if (!clr.actuals.empty) {
-				return clr.actuals
+	// TODO handle configurations with partially bound parameters
+	def static Collection<ConfigurationActual> getAllActuals(TypeReference tr) {
+		if(!tr.actuals.empty) return tr.actuals
+		val cl = tr.type as ComponentClassifier
+		for (clr : cl.superClassifiers) {
+			if (!clr.eIsProxy) {
+				val act = clr.actuals
+				if (!act.empty) {
+					return act
+				}
 			}
-			clr = cl.superClassifiers.head
 		}
 		Collections.EMPTY_LIST
 	}

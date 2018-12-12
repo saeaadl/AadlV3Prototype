@@ -201,8 +201,8 @@ class Instantiator {
 		val conni = conn.createAssociationInstance
 		val srcinstance= context.getInstanceElement(conn.source)
 		val dstinstance = context.getInstanceElement(conn.destination)
-		conni.source = srcinstance as FeatureInstance
-		conni.destination = dstinstance as FeatureInstance
+		if (srcinstance instanceof FeatureInstance) conni.source = srcinstance as FeatureInstance
+		if (dstinstance instanceof FeatureInstance) conni.destination = dstinstance as FeatureInstance
 		val allconnis = expandFeatureMappings(conni, context)
 		context.connections += allconnis
 		for (finalconni : allconnis){
