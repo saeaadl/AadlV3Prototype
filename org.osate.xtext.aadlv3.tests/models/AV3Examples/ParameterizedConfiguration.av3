@@ -50,5 +50,15 @@ package ParameterizedConfiguration
 		tops: system top.topc(p1 => sender.sensetask);
 	end ;
 	
+	system supertop.i2  is
+		tops: system top;
+	end ;
+	
+	configuration supertop.pconf (p11 : sender) extends supertop.i2 is
+		tops => top.topc(p1=>p11);
+	end;
+	
 	configuration top.topcc extends  top.topc(p1=>sender.sensetask) end;
+
+	configuration supertop.topcc extends  supertop.pconf(p11=>sender.sensetask) end;
 end ;

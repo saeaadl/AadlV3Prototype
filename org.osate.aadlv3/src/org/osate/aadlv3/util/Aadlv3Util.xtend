@@ -625,19 +625,6 @@ class Aadlv3Util {
 		return ctyperefs
 	}
 	
-//	def static resolveAllParameters(Iterable <TypeReference> trs, EList<TypeReference> ctyperefs, ComponentConfiguration config, ComponentInstance context){
-//					for (atr : trs) {
-//						val actualClorP = atr.type
-//						if (actualClorP instanceof ComponentClassifier) {
-//							ctyperefs.add(atr)
-//						} else if (actualClorP instanceof ConfigurationParameter) {
-//							val ptyperef = actualClorP.resolveParameter(config, context)
-//							resolveAllParameters(ptyperef, ctyperefs,config, context)
-//						}
-//					}
-//		
-//	}
-
 
 	// find the actual value assigned in an argument. 
 	// A parameter actual may be passed as parameter actual, thus, we need to recurse
