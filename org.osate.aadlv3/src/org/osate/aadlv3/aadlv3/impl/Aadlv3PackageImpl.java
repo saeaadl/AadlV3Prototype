@@ -961,16 +961,6 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getModelElementReference_Property() {
-		return (EReference) modelElementReferenceEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getConfigurationParameter() {
 		return configurationParameterEClass;
 	}
@@ -1121,8 +1111,18 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getPropertyAssociation_Value() {
+	public EReference getPropertyAssociation_Property() {
 		return (EReference) propertyAssociationEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getPropertyAssociation_Value() {
+		return (EReference) propertyAssociationEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1356,7 +1356,6 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		modelElementReferenceEClass = createEClass(MODEL_ELEMENT_REFERENCE);
 		createEReference(modelElementReferenceEClass, MODEL_ELEMENT_REFERENCE__ELEMENT);
 		createEReference(modelElementReferenceEClass, MODEL_ELEMENT_REFERENCE__CONTEXT);
-		createEReference(modelElementReferenceEClass, MODEL_ELEMENT_REFERENCE__PROPERTY);
 
 		configurationParameterEClass = createEClass(CONFIGURATION_PARAMETER);
 		createEReference(configurationParameterEClass, CONFIGURATION_PARAMETER__TYPE);
@@ -1378,6 +1377,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 
 		propertyAssociationEClass = createEClass(PROPERTY_ASSOCIATION);
 		createEReference(propertyAssociationEClass, PROPERTY_ASSOCIATION__TARGET);
+		createEReference(propertyAssociationEClass, PROPERTY_ASSOCIATION__PROPERTY);
 		createEReference(propertyAssociationEClass, PROPERTY_ASSOCIATION__VALUE);
 
 		pathElementEClass = createEClass(PATH_ELEMENT);
@@ -1625,9 +1625,6 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		initEReference(getModelElementReference_Context(), this.getModelElementReference(), null, "context", null, 0, 1,
 				ModelElementReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getModelElementReference_Property(), this.getProperty(), null, "property", null, 0, 1,
-				ModelElementReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(configurationParameterEClass, ConfigurationParameter.class, "ConfigurationParameter", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1672,6 +1669,9 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		initEReference(getPropertyAssociation_Target(), this.getModelElementReference(), null, "target", null, 0, 1,
 				PropertyAssociation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPropertyAssociation_Property(), this.getProperty(), null, "property", null, 0, 1,
+				PropertyAssociation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPropertyAssociation_Value(), this.getPropertyValue(), null, "value", null, 0, 1,
 				PropertyAssociation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

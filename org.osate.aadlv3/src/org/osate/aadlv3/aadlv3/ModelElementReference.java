@@ -28,7 +28,6 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.ModelElementReference#getElement <em>Element</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.ModelElementReference#getContext <em>Context</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.ModelElementReference#getProperty <em>Property</em>}</li>
  * </ul>
  *
  * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getModelElementReference()
@@ -87,31 +86,5 @@ public interface ModelElementReference extends EObject {
 	 * @generated
 	 */
 	void setContext(ModelElementReference value);
-
-	/**
-	 * Returns the value of the '<em><b>Property</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Property</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Property</em>' reference.
-	 * @see #setProperty(Property)
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getModelElementReference_Property()
-	 * @model
-	 * @generated
-	 */
-	Property getProperty();
-
-	/**
-	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.ModelElementReference#getProperty <em>Property</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Property</em>' reference.
-	 * @see #getProperty()
-	 * @generated
-	 */
-	void setProperty(Property value);
 
 } // ModelElementReference

@@ -1133,22 +1133,13 @@ public interface Aadlv3Package extends EPackage {
 	int MODEL_ELEMENT_REFERENCE__CONTEXT = 1;
 
 	/**
-	 * The feature id for the '<em><b>Property</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ELEMENT_REFERENCE__PROPERTY = 2;
-
-	/**
 	 * The number of structural features of the '<em>Model Element Reference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_REFERENCE_FEATURE_COUNT = 3;
+	int MODEL_ELEMENT_REFERENCE_FEATURE_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.ConfigurationParameterImpl <em>Configuration Parameter</em>}' class.
@@ -1355,13 +1346,22 @@ public interface Aadlv3Package extends EPackage {
 	int PROPERTY_ASSOCIATION__TARGET = 0;
 
 	/**
+	 * The feature id for the '<em><b>Property</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_ASSOCIATION__PROPERTY = 1;
+
+	/**
 	 * The feature id for the '<em><b>Value</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_ASSOCIATION__VALUE = 1;
+	int PROPERTY_ASSOCIATION__VALUE = 2;
 
 	/**
 	 * The number of structural features of the '<em>Property Association</em>' class.
@@ -1370,7 +1370,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_ASSOCIATION_FEATURE_COUNT = 2;
+	int PROPERTY_ASSOCIATION_FEATURE_COUNT = 3;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.PathElementImpl <em>Path Element</em>}' class.
@@ -1399,15 +1399,6 @@ public interface Aadlv3Package extends EPackage {
 	 * @ordered
 	 */
 	int PATH_ELEMENT__CONTEXT = MODEL_ELEMENT_REFERENCE__CONTEXT;
-
-	/**
-	 * The feature id for the '<em><b>Property</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PATH_ELEMENT__PROPERTY = MODEL_ELEMENT_REFERENCE__PROPERTY;
 
 	/**
 	 * The feature id for the '<em><b>Previous</b></em>' reference list.
@@ -2185,17 +2176,6 @@ public interface Aadlv3Package extends EPackage {
 	EReference getModelElementReference_Context();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.osate.aadlv3.aadlv3.ModelElementReference#getProperty <em>Property</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Property</em>'.
-	 * @see org.osate.aadlv3.aadlv3.ModelElementReference#getProperty()
-	 * @see #getModelElementReference()
-	 * @generated
-	 */
-	EReference getModelElementReference_Property();
-
-	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.ConfigurationParameter <em>Configuration Parameter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2353,6 +2333,17 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 */
 	EReference getPropertyAssociation_Target();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.osate.aadlv3.aadlv3.PropertyAssociation#getProperty <em>Property</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Property</em>'.
+	 * @see org.osate.aadlv3.aadlv3.PropertyAssociation#getProperty()
+	 * @see #getPropertyAssociation()
+	 * @generated
+	 */
+	EReference getPropertyAssociation_Property();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link org.osate.aadlv3.aadlv3.PropertyAssociation#getValue <em>Value</em>}'.
@@ -3043,14 +3034,6 @@ public interface Aadlv3Package extends EPackage {
 		EReference MODEL_ELEMENT_REFERENCE__CONTEXT = eINSTANCE.getModelElementReference_Context();
 
 		/**
-		 * The meta object literal for the '<em><b>Property</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference MODEL_ELEMENT_REFERENCE__PROPERTY = eINSTANCE.getModelElementReference_Property();
-
-		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.ConfigurationParameterImpl <em>Configuration Parameter</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3181,6 +3164,14 @@ public interface Aadlv3Package extends EPackage {
 		 * @generated
 		 */
 		EReference PROPERTY_ASSOCIATION__TARGET = eINSTANCE.getPropertyAssociation_Target();
+
+		/**
+		 * The meta object literal for the '<em><b>Property</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PROPERTY_ASSOCIATION__PROPERTY = eINSTANCE.getPropertyAssociation_Property();
 
 		/**
 		 * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.

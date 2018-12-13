@@ -27,7 +27,6 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.ModelElement;
 import org.osate.aadlv3.aadlv3.ModelElementReference;
-import org.osate.aadlv3.aadlv3.Property;
 
 /**
  * <!-- begin-user-doc -->
@@ -39,7 +38,6 @@ import org.osate.aadlv3.aadlv3.Property;
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ModelElementReferenceImpl#getElement <em>Element</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ModelElementReferenceImpl#getContext <em>Context</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.ModelElementReferenceImpl#getProperty <em>Property</em>}</li>
  * </ul>
  *
  * @generated
@@ -64,16 +62,6 @@ public class ModelElementReferenceImpl extends MinimalEObjectImpl.Container impl
 	 * @ordered
 	 */
 	protected ModelElementReference context;
-
-	/**
-	 * The cached value of the '{@link #getProperty() <em>Property</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getProperty()
-	 * @generated
-	 * @ordered
-	 */
-	protected Property property;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -194,48 +182,6 @@ public class ModelElementReferenceImpl extends MinimalEObjectImpl.Container impl
 	 * @generated
 	 */
 	@Override
-	public Property getProperty() {
-		if (property != null && property.eIsProxy()) {
-			InternalEObject oldProperty = (InternalEObject) property;
-			property = (Property) eResolveProxy(oldProperty);
-			if (property != oldProperty) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							Aadlv3Package.MODEL_ELEMENT_REFERENCE__PROPERTY, oldProperty, property));
-			}
-		}
-		return property;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Property basicGetProperty() {
-		return property;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setProperty(Property newProperty) {
-		Property oldProperty = property;
-		property = newProperty;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.MODEL_ELEMENT_REFERENCE__PROPERTY,
-					oldProperty, property));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case Aadlv3Package.MODEL_ELEMENT_REFERENCE__CONTEXT:
@@ -258,10 +204,6 @@ public class ModelElementReferenceImpl extends MinimalEObjectImpl.Container impl
 			return basicGetElement();
 		case Aadlv3Package.MODEL_ELEMENT_REFERENCE__CONTEXT:
 			return getContext();
-		case Aadlv3Package.MODEL_ELEMENT_REFERENCE__PROPERTY:
-			if (resolve)
-				return getProperty();
-			return basicGetProperty();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -279,9 +221,6 @@ public class ModelElementReferenceImpl extends MinimalEObjectImpl.Container impl
 			return;
 		case Aadlv3Package.MODEL_ELEMENT_REFERENCE__CONTEXT:
 			setContext((ModelElementReference) newValue);
-			return;
-		case Aadlv3Package.MODEL_ELEMENT_REFERENCE__PROPERTY:
-			setProperty((Property) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -301,9 +240,6 @@ public class ModelElementReferenceImpl extends MinimalEObjectImpl.Container impl
 		case Aadlv3Package.MODEL_ELEMENT_REFERENCE__CONTEXT:
 			setContext((ModelElementReference) null);
 			return;
-		case Aadlv3Package.MODEL_ELEMENT_REFERENCE__PROPERTY:
-			setProperty((Property) null);
-			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -320,8 +256,6 @@ public class ModelElementReferenceImpl extends MinimalEObjectImpl.Container impl
 			return element != null;
 		case Aadlv3Package.MODEL_ELEMENT_REFERENCE__CONTEXT:
 			return context != null;
-		case Aadlv3Package.MODEL_ELEMENT_REFERENCE__PROPERTY:
-			return property != null;
 		}
 		return super.eIsSet(featureID);
 	}

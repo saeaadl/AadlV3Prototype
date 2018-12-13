@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.PropertyAssociation#getTarget <em>Target</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.PropertyAssociation#getProperty <em>Property</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.PropertyAssociation#getValue <em>Value</em>}</li>
  * </ul>
  *
@@ -60,6 +61,32 @@ public interface PropertyAssociation extends EObject {
 	 * @generated
 	 */
 	void setTarget(ModelElementReference value);
+
+	/**
+	 * Returns the value of the '<em><b>Property</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Property</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Property</em>' reference.
+	 * @see #setProperty(Property)
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getPropertyAssociation_Property()
+	 * @model
+	 * @generated
+	 */
+	Property getProperty();
+
+	/**
+	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.PropertyAssociation#getProperty <em>Property</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Property</em>' reference.
+	 * @see #getProperty()
+	 * @generated
+	 */
+	void setProperty(Property value);
 
 	/**
 	 * Returns the value of the '<em><b>Value</b></em>' containment reference.

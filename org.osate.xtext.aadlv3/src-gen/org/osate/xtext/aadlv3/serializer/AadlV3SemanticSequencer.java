@@ -117,20 +117,8 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 				sequence_Import(context, (Import) semanticObject); 
 				return; 
 			case Aadlv3Package.MODEL_ELEMENT_REFERENCE:
-				if (rule == grammarAccess.getModelElementReferenceRule()
-						|| action == grammarAccess.getModelElementReferenceAccess().getModelElementReferenceContextAction_1_0_0()) {
-					sequence_ModelElementReference(context, (ModelElementReference) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getPropertyReferenceRule()) {
-					sequence_PropertyReference(context, (ModelElementReference) semanticObject); 
-					return; 
-				}
-				else if (action == grammarAccess.getPropertyReferenceAccess().getModelElementReferenceContextAction_0_1_0_0()) {
-					sequence_PropertyReference_ModelElementReference_0_1_0_0(context, (ModelElementReference) semanticObject); 
-					return; 
-				}
-				else break;
+				sequence_ModelElementReference(context, (ModelElementReference) semanticObject); 
+				return; 
 			case Aadlv3Package.PACKAGE_DECLARATION:
 				sequence_PackageDeclaration(context, (PackageDeclaration) semanticObject); 
 				return; 
@@ -576,45 +564,9 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     PropertyAssociation returns PropertyAssociation
 	 *
 	 * Constraint:
-	 *     (target=PropertyReference value=PropertyValue)
+	 *     (target=ModelElementReference? property=[Property|QualifiedName] value=PropertyValue)
 	 */
 	protected void sequence_PropertyAssociation(ISerializationContext context, PropertyAssociation semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, Aadlv3Package.Literals.PROPERTY_ASSOCIATION__TARGET) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, Aadlv3Package.Literals.PROPERTY_ASSOCIATION__TARGET));
-			if (transientValues.isValueTransient(semanticObject, Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getPropertyAssociationAccess().getTargetPropertyReferenceParserRuleCall_0_0(), semanticObject.getTarget());
-		feeder.accept(grammarAccess.getPropertyAssociationAccess().getValuePropertyValueParserRuleCall_2_0(), semanticObject.getValue());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     PropertyReference returns ModelElementReference
-	 *
-	 * Constraint:
-	 *     (
-	 *         (element=[ModelElement|ID] | (context=PropertyReference_ModelElementReference_0_1_0_0 element=[ModelElement|ID]))? 
-	 *         property=[Property|QualifiedName]
-	 *     )
-	 */
-	protected void sequence_PropertyReference(ISerializationContext context, ModelElementReference semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     PropertyReference.ModelElementReference_0_1_0_0 returns ModelElementReference
-	 *
-	 * Constraint:
-	 *     (element=[ModelElement|ID] | (context=PropertyReference_ModelElementReference_0_1_0_0 element=[ModelElement|ID]))
-	 */
-	protected void sequence_PropertyReference_ModelElementReference_0_1_0_0(ISerializationContext context, ModelElementReference semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

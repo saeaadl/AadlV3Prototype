@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.ModelElementReference;
+import org.osate.aadlv3.aadlv3.Property;
 import org.osate.aadlv3.aadlv3.PropertyAssociation;
 import org.osate.aadlv3.aadlv3.PropertyValue;
 
@@ -38,6 +39,7 @@ import org.osate.aadlv3.aadlv3.PropertyValue;
  * </p>
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.PropertyAssociationImpl#getTarget <em>Target</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.PropertyAssociationImpl#getProperty <em>Property</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.PropertyAssociationImpl#getValue <em>Value</em>}</li>
  * </ul>
  *
@@ -53,6 +55,16 @@ public class PropertyAssociationImpl extends MinimalEObjectImpl.Container implem
 	 * @ordered
 	 */
 	protected ModelElementReference target;
+
+	/**
+	 * The cached value of the '{@link #getProperty() <em>Property</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getProperty()
+	 * @generated
+	 * @ordered
+	 */
+	protected Property property;
 
 	/**
 	 * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
@@ -141,6 +153,48 @@ public class PropertyAssociationImpl extends MinimalEObjectImpl.Container implem
 	 * @generated
 	 */
 	@Override
+	public Property getProperty() {
+		if (property != null && property.eIsProxy()) {
+			InternalEObject oldProperty = (InternalEObject) property;
+			property = (Property) eResolveProxy(oldProperty);
+			if (property != oldProperty) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							Aadlv3Package.PROPERTY_ASSOCIATION__PROPERTY, oldProperty, property));
+			}
+		}
+		return property;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Property basicGetProperty() {
+		return property;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setProperty(Property newProperty) {
+		Property oldProperty = property;
+		property = newProperty;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.PROPERTY_ASSOCIATION__PROPERTY,
+					oldProperty, property));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public PropertyValue getValue() {
 		return value;
 	}
@@ -213,6 +267,10 @@ public class PropertyAssociationImpl extends MinimalEObjectImpl.Container implem
 		switch (featureID) {
 		case Aadlv3Package.PROPERTY_ASSOCIATION__TARGET:
 			return getTarget();
+		case Aadlv3Package.PROPERTY_ASSOCIATION__PROPERTY:
+			if (resolve)
+				return getProperty();
+			return basicGetProperty();
 		case Aadlv3Package.PROPERTY_ASSOCIATION__VALUE:
 			return getValue();
 		}
@@ -229,6 +287,9 @@ public class PropertyAssociationImpl extends MinimalEObjectImpl.Container implem
 		switch (featureID) {
 		case Aadlv3Package.PROPERTY_ASSOCIATION__TARGET:
 			setTarget((ModelElementReference) newValue);
+			return;
+		case Aadlv3Package.PROPERTY_ASSOCIATION__PROPERTY:
+			setProperty((Property) newValue);
 			return;
 		case Aadlv3Package.PROPERTY_ASSOCIATION__VALUE:
 			setValue((PropertyValue) newValue);
@@ -248,6 +309,9 @@ public class PropertyAssociationImpl extends MinimalEObjectImpl.Container implem
 		case Aadlv3Package.PROPERTY_ASSOCIATION__TARGET:
 			setTarget((ModelElementReference) null);
 			return;
+		case Aadlv3Package.PROPERTY_ASSOCIATION__PROPERTY:
+			setProperty((Property) null);
+			return;
 		case Aadlv3Package.PROPERTY_ASSOCIATION__VALUE:
 			setValue((PropertyValue) null);
 			return;
@@ -265,6 +329,8 @@ public class PropertyAssociationImpl extends MinimalEObjectImpl.Container implem
 		switch (featureID) {
 		case Aadlv3Package.PROPERTY_ASSOCIATION__TARGET:
 			return target != null;
+		case Aadlv3Package.PROPERTY_ASSOCIATION__PROPERTY:
+			return property != null;
 		case Aadlv3Package.PROPERTY_ASSOCIATION__VALUE:
 			return value != null;
 		}

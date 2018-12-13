@@ -69,7 +69,6 @@ public class ModelElementReferenceItemProvider extends ItemProviderAdapter imple
 			super.getPropertyDescriptors(object);
 
 			addElementPropertyDescriptor(object);
-			addPropertyPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -87,21 +86,6 @@ public class ModelElementReferenceItemProvider extends ItemProviderAdapter imple
 						getString("_UI_PropertyDescriptor_description", "_UI_ModelElementReference_element_feature",
 								"_UI_ModelElementReference_type"),
 						Aadlv3Package.Literals.MODEL_ELEMENT_REFERENCE__ELEMENT, true, false, true, null, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Property feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addPropertyPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_ModelElementReference_property_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_ModelElementReference_property_feature",
-								"_UI_ModelElementReference_type"),
-						Aadlv3Package.Literals.MODEL_ELEMENT_REFERENCE__PROPERTY, true, false, true, null, null, null));
 	}
 
 	/**

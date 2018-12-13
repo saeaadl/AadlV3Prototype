@@ -2569,9 +2569,9 @@ rulePropertyAssociation returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getPropertyAssociationAccess().getTargetPropertyReferenceParserRuleCall_0_0());
+					newCompositeNode(grammarAccess.getPropertyAssociationAccess().getTargetModelElementReferenceParserRuleCall_0_0());
 				}
-				lv_target_0_0=rulePropertyReference
+				lv_target_0_0=ruleModelElementReference
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getPropertyAssociationRule());
@@ -2580,21 +2580,41 @@ rulePropertyAssociation returns [EObject current=null]
 						$current,
 						"target",
 						lv_target_0_0,
-						"org.osate.xtext.aadlv3.AadlV3.PropertyReference");
+						"org.osate.xtext.aadlv3.AadlV3.ModelElementReference");
 					afterParserOrEnumRuleCall();
 				}
 			)
-		)
-		otherlv_1='=>'
+		)?
+		otherlv_1='#'
 		{
-			newLeafNode(otherlv_1, grammarAccess.getPropertyAssociationAccess().getEqualsSignGreaterThanSignKeyword_1());
+			newLeafNode(otherlv_1, grammarAccess.getPropertyAssociationAccess().getNumberSignKeyword_1());
 		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getPropertyAssociationAccess().getValuePropertyValueParserRuleCall_2_0());
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getPropertyAssociationRule());
+					}
 				}
-				lv_value_2_0=rulePropertyValue
+				{
+					newCompositeNode(grammarAccess.getPropertyAssociationAccess().getPropertyPropertyCrossReference_2_0());
+				}
+				ruleQualifiedName
+				{
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		otherlv_3='=>'
+		{
+			newLeafNode(otherlv_3, grammarAccess.getPropertyAssociationAccess().getEqualsSignGreaterThanSignKeyword_3());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getPropertyAssociationAccess().getValuePropertyValueParserRuleCall_4_0());
+				}
+				lv_value_4_0=rulePropertyValue
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getPropertyAssociationRule());
@@ -2602,7 +2622,7 @@ rulePropertyAssociation returns [EObject current=null]
 					set(
 						$current,
 						"value",
-						lv_value_2_0,
+						lv_value_4_0,
 						"org.osate.xtext.aadlv3.AadlV3.PropertyValue");
 					afterParserOrEnumRuleCall();
 				}
@@ -2714,99 +2734,6 @@ ruleModelElementReference returns [EObject current=null]
 				)
 			)
 		)*
-	)
-;
-
-// Entry rule entryRulePropertyReference
-entryRulePropertyReference returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getPropertyReferenceRule()); }
-	iv_rulePropertyReference=rulePropertyReference
-	{ $current=$iv_rulePropertyReference.current; }
-	EOF;
-
-// Rule PropertyReference
-rulePropertyReference returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		(
-			(
-				(
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getPropertyReferenceRule());
-						}
-					}
-					otherlv_0=RULE_ID
-					{
-						newLeafNode(otherlv_0, grammarAccess.getPropertyReferenceAccess().getElementModelElementCrossReference_0_0_0());
-					}
-				)
-			)
-			(
-				((
-					(
-					)
-					'.'
-					(
-						(
-							RULE_ID
-						)
-					)
-				)
-				)=>
-				(
-					(
-						{
-							$current = forceCreateModelElementAndSet(
-								grammarAccess.getPropertyReferenceAccess().getModelElementReferenceContextAction_0_1_0_0(),
-								$current);
-						}
-					)
-					otherlv_2='.'
-					{
-						newLeafNode(otherlv_2, grammarAccess.getPropertyReferenceAccess().getFullStopKeyword_0_1_0_1());
-					}
-					(
-						(
-							{
-								if ($current==null) {
-									$current = createModelElement(grammarAccess.getPropertyReferenceRule());
-								}
-							}
-							otherlv_3=RULE_ID
-							{
-								newLeafNode(otherlv_3, grammarAccess.getPropertyReferenceAccess().getElementModelElementCrossReference_0_1_0_2_0());
-							}
-						)
-					)
-				)
-			)*
-		)?
-		otherlv_4='#'
-		{
-			newLeafNode(otherlv_4, grammarAccess.getPropertyReferenceAccess().getNumberSignKeyword_1());
-		}
-		(
-			(
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getPropertyReferenceRule());
-					}
-				}
-				{
-					newCompositeNode(grammarAccess.getPropertyReferenceAccess().getPropertyPropertyCrossReference_2_0());
-				}
-				ruleQualifiedName
-				{
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
 	)
 ;
 

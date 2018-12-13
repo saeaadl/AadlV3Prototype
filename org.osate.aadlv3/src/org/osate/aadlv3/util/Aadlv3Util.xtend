@@ -516,7 +516,7 @@ class Aadlv3Util {
 		return false
 	}
 
-	static def Iterable<? extends PropertyAssociation> getAllPropertyAssociations(Iterable<TypeReference> trs) {
+	static def Iterable<PropertyAssociation> getAllPropertyAssociations(Iterable<TypeReference> trs) {
 		if(trs.empty) return Collections.EMPTY_LIST
 		val cls = trs.allComponentClassifiers
 		val pas = cls.map[cl|cl.allOwnPropertyAssociations].flatten
@@ -542,11 +542,10 @@ class Aadlv3Util {
 	private static def PropertyAssociation fullTargetPath(PropertyAssociation pa, ModelElementReference contextpath){
 		val fullpa = pa.copy
 		val newcontextpath = contextpath.copy
-		val first = fullpa.target.firstModelElementReference
-		if (first !== null){
+		if (fullpa.target !== null){
+			val first = fullpa.target.firstModelElementReference
 			first.context = newcontextpath
 		} else {
-			newcontextpath.property = fullpa.target.property
 			fullpa.target = newcontextpath
 		}
 		return fullpa
@@ -1167,7 +1166,7 @@ class Aadlv3Util {
 	
 	def static createPropertyAssociationInstance(PropertyAssociation pa){
 		val pai = Av3instanceFactory.eINSTANCE.createPropertyAssociationInstance
-		pai.property = pa.target.property
+		pai.property = pa.property
 		pai.value = pa.value.copy
 		return pai
 	}

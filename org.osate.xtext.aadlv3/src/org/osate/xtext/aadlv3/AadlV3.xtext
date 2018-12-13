@@ -144,7 +144,7 @@ FlowAssignment returns av3::PathSequence:
 
 
 PropertyAssociation returns av3::PropertyAssociation:
-	target=PropertyReference  '=>' 
+	(target=ModelElementReference)? '#' property=[av3::Property|QualifiedName] '=>' 
 	value=PropertyValue ;
 
 PropertyValue returns av3::PropertyValue:
@@ -154,10 +154,6 @@ PropertyValue returns av3::PropertyValue:
 ModelElementReference returns av3::ModelElementReference:
 	element=[av3::ModelElement|ID] => ({av3::ModelElementReference.context=current} '.' element=[av3::ModelElement|ID])*;
 
-
-PropertyReference returns av3::ModelElementReference: 
-	(element=[av3::ModelElement|ID] => ({av3::ModelElementReference.context=current} '.' element=[av3::ModelElement|ID])*)? '#' property=[av3::Property|QualifiedName] 
-		;
 
 fragment ConfigurationElementBlock *:
 	('is' ConfigurationElement (SEMICOLON ConfigurationElement )* SEMICOLON? )? 'end';
