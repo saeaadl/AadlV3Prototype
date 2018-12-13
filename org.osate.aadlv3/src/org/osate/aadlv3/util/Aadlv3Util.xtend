@@ -1248,17 +1248,17 @@ class Aadlv3Util {
 	// return false if the property association or its value was not added  
 	def static boolean addPropertyAssociationInstance(InstanceObject io, PropertyAssociationInstance pai){
 		val pais = io.propertyAssociations
-//		for (epai : pais){
-//			if (epai.property == pai.property){
-//				if (!epai.final){
-//					epai.value = pai.value
-//					epai.final = pai.final
-//					return true
-//				} else {
-//					return false
-//				}
-//			}
-//		}
+		for (epai : pais){
+			if (epai.property == pai.property){
+				if (!epai.final){
+					epai.value = pai.value
+					epai.final = pai.final
+					return true
+				} else {
+					return false
+				}
+			}
+		}
 		pais += pai
 		true
 	}
