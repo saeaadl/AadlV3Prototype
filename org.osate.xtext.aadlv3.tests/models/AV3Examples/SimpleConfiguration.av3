@@ -60,24 +60,24 @@ import StandardProperties::*;
 
 	system top.i  is
 		sense: abstract sender; // subcomponent by interface
-		sense1 : abstract sender.i; // subcomponent by implementation with a subcomponent by interface
-		sense2: abstract sender.i;
-		sense21: abstract sender.isubi;
-		sense3: abstract sender;
-		actuate: abstract receiver; // subcomponent by interface
-		sense1#Period => 33;
-		sense2.sub1#Period => 44;
-		extconn1: mapping eextin => sense.extin;
-		extconn2: mapping eextout => actuate.extout;
+//		sense1 : abstract sender.i; // subcomponent by implementation with a subcomponent by interface
+//		sense2: abstract sender.i;
+//		sense21: abstract sender.isubi;
+//		sense3: abstract sender;
+		actuate: abstract receiver {#Period => 23}; // subcomponent by interface
+		sense#Period => 33;
+//		sense2.sub1#Period => 44;
+//		extconn1: mapping eextin => sense.extin;
+//		extconn2: mapping eextout => actuate.extout;
 	end ;
 
 	configuration top.topc extends top.i is
-		sense => sender.i  { sub1 => sub.i; } ; // configure in implementation and inline configure its subcomponent
-		actuate => receiver.i; // configure in implementation
-		sense1.sub1 => sub.i ; // Configure in subcomponent of implementation via reach down
-		sense21.sub1.t1 => subsub.i ; // Configure in subcomponent of implementation via reach down
-		sense2 =>  { sub1 => sub.i2t; }; // Configure in subcomponent of implementation via nesting
-		sense3 => sender.sensorconf; // Configure in configuration of implementation that contains configured subcomponent
+		sense => sender.i  { #Period => 34; sub1 => sub.i {#Period => 35; t1#Period => 36;} } ; // configure in implementation and inline configure its subcomponent
+		actuate => receiver.i{#Period => 38 }; // configure in implementation
+//		sense1.sub1 => sub.i ; // Configure in subcomponent of implementation via reach down
+//		sense21.sub1.t1 => subsub.i ; // Configure in subcomponent of implementation via reach down
+//		sense2 =>  { sub1 => sub.i2t; }; // Configure in subcomponent of implementation via nesting
+//		sense3 => sender.sensorconf; // Configure in configuration of implementation that contains configured subcomponent
 	end;
 
 end ;

@@ -245,7 +245,7 @@ class Aadlv3Util {
 	/**
 	 * returns implementation or interface that is the extension of all other implementations or interfaces
 	 */
-	static def ComponentClassifier getTopComponentClassifier(Iterable<? extends TypeReference> trs){
+	static def ComponentClassifier getTopComponentInterfaceOrImplementation(Iterable<? extends TypeReference> trs){
 		val res = trs.topComponentImplementation
 		if (res !== null) return res
 		return trs.topComponentInterface
@@ -516,18 +516,18 @@ class Aadlv3Util {
 		return false
 	}
 
-	static def Iterable<? extends PropertyAssociation> getAllPropertyAssociations(ComponentClassifier cc) {
-		if(cc === null || cc.eIsProxy) return Collections.EMPTY_LIST
-		val cls = cc.allComponentClassifiers
-		val clas = cls.map[cl|cl.propertyAssociations].flatten
-		clas
+	static def Iterable<? extends PropertyAssociation> getAllPropertyAssociations(Iterable<TypeReference> trs) {
+		if(trs.empty) return Collections.EMPTY_LIST
+		val cls = trs.allComponentClassifiers
+		val pas = cls.map[cl|cl.allOwnPropertyAssociations].flatten
+		pas
 	}
 
 	// return configuration assignments defined in configuration including those down the hierarchy
 	private static def Iterable<PropertyAssociation> getAllOwnPropertyAssociations(ComponentClassifier cc) {
 		val propassignments = cc.propertyAssociations
 		if (cc instanceof ComponentConfiguration){
-			return propassignments+ cc.configurationAssignments.map[subca|subca.nestedPropertyAssociations].flatten.filter[subpa|!propassignments.containsAdditionTarget(subpa)]
+			return propassignments+ cc.configurationAssignments.map[subca|subca.nestedPropertyAssociations].flatten//.filter[subpa|!propassignments.containsAdditionTarget(subpa)]
 		}
 		return propassignments
 	}
@@ -535,7 +535,7 @@ class Aadlv3Util {
 	// return property associations and any associations further down that are not overridden by the outer ones
 	private static def Iterable<PropertyAssociation> getNestedPropertyAssociations(ConfigurationAssignment ca) {
 		val pas = ca.propertyAssociations.map[pa| pa.fullTargetPath(ca.target)]
-		return pas+ca.configurationAssignments.map[subca|subca.nestedPropertyAssociations].flatten.filter[subpa|!pas.containsAdditionTarget(subpa)]
+		return pas+ca.configurationAssignments.map[subca|subca.nestedPropertyAssociations].flatten.map[pa| pa.fullTargetPath(ca.target)]//.filter[subpa|!pas.containsAdditionTarget(subpa)]
 	}
 	
 	
@@ -546,6 +546,7 @@ class Aadlv3Util {
 		if (first !== null){
 			first.context = newcontextpath
 		} else {
+			newcontextpath.property = fullpa.target.property
 			fullpa.target = newcontextpath
 		}
 		return fullpa
@@ -592,7 +593,6 @@ class Aadlv3Util {
 	// this method is used to determine the type for instantiation as component instance
 	// match is component in instance hierarchy with enclosing container a component rather than the original which may be the classifier
 	// match can be a component or component instance
-	// TODO currently returns the last match - inner to outer
 	// TODO when we override we want to make sure it does not change the implementation
 	def static Iterable<TypeReference> getConfiguredTypeReferences(Component match,
 		Stack<Iterable<ConfigurationAssignment>> casscopes, ComponentInstance context) {
@@ -1064,7 +1064,7 @@ class Aadlv3Util {
 	// returns the the Model Element Reference identifying the first element of the path
 	// this is the MER without a context reference
 	def static ModelElementReference getFirstModelElementReference(ModelElementReference mer) {
-		if(mer === null) return null
+		if(mer === null || mer.element === null) return null
 		var ModelElementReference cxt = mer
 		while (cxt.context !== null) {
 			cxt = cxt.context
@@ -1249,16 +1249,17 @@ class Aadlv3Util {
 	// return false if the property association or its value was not added  
 	def static boolean addPropertyAssociationInstance(InstanceObject io, PropertyAssociationInstance pai){
 		val pais = io.propertyAssociations
-		for (epai : pais){
-			if (epai.property == pai.property){
-				if (!epai.final){
-					epai.value = pai.value
-					return true
-				} else {
-					return false
-				}
-			}
-		}
+//		for (epai : pais){
+//			if (epai.property == pai.property){
+//				if (!epai.final){
+//					epai.value = pai.value
+//					epai.final = pai.final
+//					return true
+//				} else {
+//					return false
+//				}
+//			}
+//		}
 		pais += pai
 		true
 	}

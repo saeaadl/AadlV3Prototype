@@ -97,8 +97,8 @@ class Instantiator {
 			casscopes.pop
 		}
 		// now we fill in connection instances
-		val cl = ci.configuredTypeReferences
-		if (cl !== null){
+		val ctyperefs = ci.configuredTypeReferences
+		if (ctyperefs !== null){
 			val allassocs = ci.allAssociations
 			val actualConns = allassocs.filter[conn|conn.associationType.isConnection]
 			for (conn: actualConns){
@@ -125,21 +125,21 @@ class Instantiator {
 			// in classifier order
 			// outer over inner
 			// currently we assign inner first
-//			for (pa : cl.allPropertyAssociations){
-//				val target = ci.getInstanceElement(pa.target)
-//				val pai = createPropertyAssociationInstance(pa)
-//				if (pai.containingComponentConfiguration !== null){
-//					pai.final = true
-//				}
-//				target.addPropertyAssociationInstance(pai)
-//			}
-//			for (pa : comp.propertyAssociations){
-//				val target = ci.getInstanceElement(pa.target)
-//				target.addPropertyAssociationInstance(createPropertyAssociationInstance(pa))
-//			}
-//			if (cl instanceof ComponentConfiguration){
+			for (pa : ctyperefs.allPropertyAssociations){
+				val target = ci.getInstanceElement(pa.target)
+				val pai = createPropertyAssociationInstance(pa)
+				if (pa.containingComponentConfiguration !== null){
+					pai.final = true
+				}
+				target.addPropertyAssociationInstance(pai)
+			}
+			for (pa : comp.propertyAssociations){
+				val target = ci.getInstanceElement(pa.target)
+				target.addPropertyAssociationInstance(createPropertyAssociationInstance(pa))
+			}
+//			if (ctyperefs instanceof ComponentConfiguration){
 //				// process property associations contained in configuration assignments
-//				val cas = cl.allConfigurationAssignments
+//				val cas = ctyperefs.allConfigurationAssignments
 //				for (ca : cas){
 //					processConfigurationAssignmentProperties(ca, ci)
 //				}

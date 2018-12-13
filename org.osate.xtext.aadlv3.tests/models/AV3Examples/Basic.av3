@@ -32,6 +32,7 @@ import StandardProperties::*;
 	
 	system gps.i is
 		locator : process LocatorProcess.impl;
+		mysub: system sub.impl;
 	end ;
 	process interface LocatorProcess is
 	#Period => 20;
