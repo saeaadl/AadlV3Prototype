@@ -489,13 +489,13 @@ public interface Av3instancePackage extends EPackage {
 	int PROPERTY_ASSOCIATION_INSTANCE__VALUE = INSTANCE_OBJECT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Final</b></em>' attribute.
+	 * The feature id for the '<em><b>Property Association Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_ASSOCIATION_INSTANCE__FINAL = INSTANCE_OBJECT_FEATURE_COUNT + 2;
+	int PROPERTY_ASSOCIATION_INSTANCE__PROPERTY_ASSOCIATION_TYPE = INSTANCE_OBJECT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Property Association Instance</em>' class.
@@ -905,15 +905,15 @@ public interface Av3instancePackage extends EPackage {
 	EReference getPropertyAssociationInstance_Value();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.osate.av3instance.av3instance.PropertyAssociationInstance#isFinal <em>Final</em>}'.
+	 * Returns the meta object for the attribute '{@link org.osate.av3instance.av3instance.PropertyAssociationInstance#getPropertyAssociationType <em>Property Association Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Final</em>'.
-	 * @see org.osate.av3instance.av3instance.PropertyAssociationInstance#isFinal()
+	 * @return the meta object for the attribute '<em>Property Association Type</em>'.
+	 * @see org.osate.av3instance.av3instance.PropertyAssociationInstance#getPropertyAssociationType()
 	 * @see #getPropertyAssociationInstance()
 	 * @generated
 	 */
-	EAttribute getPropertyAssociationInstance_Final();
+	EAttribute getPropertyAssociationInstance_PropertyAssociationType();
 
 	/**
 	 * Returns the meta object for class '{@link org.osate.av3instance.av3instance.PathInstance <em>Path Instance</em>}'.
@@ -1221,12 +1221,13 @@ public interface Av3instancePackage extends EPackage {
 		EReference PROPERTY_ASSOCIATION_INSTANCE__VALUE = eINSTANCE.getPropertyAssociationInstance_Value();
 
 		/**
-		 * The meta object literal for the '<em><b>Final</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Property Association Type</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute PROPERTY_ASSOCIATION_INSTANCE__FINAL = eINSTANCE.getPropertyAssociationInstance_Final();
+		EAttribute PROPERTY_ASSOCIATION_INSTANCE__PROPERTY_ASSOCIATION_TYPE = eINSTANCE
+				.getPropertyAssociationInstance_PropertyAssociationType();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.av3instance.av3instance.impl.PathInstanceImpl <em>Path Instance</em>}' class.

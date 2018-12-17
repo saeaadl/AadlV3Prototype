@@ -165,6 +165,16 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter casePathSequence(PathSequence object) {
+			return createPathSequenceAdapter();
+		}
+
+		@Override
+		public Adapter casePathElement(PathElement object) {
+			return createPathElementAdapter();
+		}
+
+		@Override
 		public Adapter caseConfigurationAssignment(ConfigurationAssignment object) {
 			return createConfigurationAssignmentAdapter();
 		}
@@ -202,16 +212,6 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter casePropertyAssociation(PropertyAssociation object) {
 			return createPropertyAssociationAdapter();
-		}
-
-		@Override
-		public Adapter casePathElement(PathElement object) {
-			return createPathElementAdapter();
-		}
-
-		@Override
-		public Adapter casePathSequence(PathSequence object) {
-			return createPathSequenceAdapter();
 		}
 
 		@Override

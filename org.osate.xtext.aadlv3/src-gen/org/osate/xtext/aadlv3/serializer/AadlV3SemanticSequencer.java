@@ -564,7 +564,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     PropertyAssociation returns PropertyAssociation
 	 *
 	 * Constraint:
-	 *     (target=ModelElementReference? property=[Property|QualifiedName] value=PropertyValue)
+	 *     (target=ModelElementReference? property=[Property|QualifiedName] propertyAssociationType=PropertyAssociationType? value=PropertyValue)
 	 */
 	protected void sequence_PropertyAssociation(ISerializationContext context, PropertyAssociation semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

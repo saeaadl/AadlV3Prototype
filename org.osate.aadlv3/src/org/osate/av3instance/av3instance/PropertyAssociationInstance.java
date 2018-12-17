@@ -16,6 +16,7 @@
 package org.osate.av3instance.av3instance;
 
 import org.osate.aadlv3.aadlv3.Property;
+import org.osate.aadlv3.aadlv3.PropertyAssociationType;
 import org.osate.aadlv3.aadlv3.PropertyValue;
 
 /**
@@ -29,7 +30,7 @@ import org.osate.aadlv3.aadlv3.PropertyValue;
  * <ul>
  *   <li>{@link org.osate.av3instance.av3instance.PropertyAssociationInstance#getProperty <em>Property</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.PropertyAssociationInstance#getValue <em>Value</em>}</li>
- *   <li>{@link org.osate.av3instance.av3instance.PropertyAssociationInstance#isFinal <em>Final</em>}</li>
+ *   <li>{@link org.osate.av3instance.av3instance.PropertyAssociationInstance#getPropertyAssociationType <em>Property Association Type</em>}</li>
  * </ul>
  *
  * @see org.osate.av3instance.av3instance.Av3instancePackage#getPropertyAssociationInstance()
@@ -90,29 +91,33 @@ public interface PropertyAssociationInstance extends InstanceObject {
 	void setValue(PropertyValue value);
 
 	/**
-	 * Returns the value of the '<em><b>Final</b></em>' attribute.
+	 * Returns the value of the '<em><b>Property Association Type</b></em>' attribute.
+	 * The default value is <code>"FinalValue"</code>.
+	 * The literals are from the enumeration {@link org.osate.aadlv3.aadlv3.PropertyAssociationType}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Final</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Property Association Type</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Final</em>' attribute.
-	 * @see #setFinal(boolean)
-	 * @see org.osate.av3instance.av3instance.Av3instancePackage#getPropertyAssociationInstance_Final()
-	 * @model transient="true"
+	 * @return the value of the '<em>Property Association Type</em>' attribute.
+	 * @see org.osate.aadlv3.aadlv3.PropertyAssociationType
+	 * @see #setPropertyAssociationType(PropertyAssociationType)
+	 * @see org.osate.av3instance.av3instance.Av3instancePackage#getPropertyAssociationInstance_PropertyAssociationType()
+	 * @model default="FinalValue"
 	 * @generated
 	 */
-	boolean isFinal();
+	PropertyAssociationType getPropertyAssociationType();
 
 	/**
-	 * Sets the value of the '{@link org.osate.av3instance.av3instance.PropertyAssociationInstance#isFinal <em>Final</em>}' attribute.
+	 * Sets the value of the '{@link org.osate.av3instance.av3instance.PropertyAssociationInstance#getPropertyAssociationType <em>Property Association Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Final</em>' attribute.
-	 * @see #isFinal()
+	 * @param value the new value of the '<em>Property Association Type</em>' attribute.
+	 * @see org.osate.aadlv3.aadlv3.PropertyAssociationType
+	 * @see #getPropertyAssociationType()
 	 * @generated
 	 */
-	void setFinal(boolean value);
+	void setPropertyAssociationType(PropertyAssociationType value);
 
 } // PropertyAssociationInstance

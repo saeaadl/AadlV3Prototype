@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.osate.aadlv3.aadlv3.Property;
+import org.osate.aadlv3.aadlv3.PropertyAssociationType;
 import org.osate.aadlv3.aadlv3.PropertyValue;
 
 import org.osate.av3instance.av3instance.Av3instancePackage;
@@ -39,7 +40,7 @@ import org.osate.av3instance.av3instance.PropertyAssociationInstance;
  * <ul>
  *   <li>{@link org.osate.av3instance.av3instance.impl.PropertyAssociationInstanceImpl#getProperty <em>Property</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.impl.PropertyAssociationInstanceImpl#getValue <em>Value</em>}</li>
- *   <li>{@link org.osate.av3instance.av3instance.impl.PropertyAssociationInstanceImpl#isFinal <em>Final</em>}</li>
+ *   <li>{@link org.osate.av3instance.av3instance.impl.PropertyAssociationInstanceImpl#getPropertyAssociationType <em>Property Association Type</em>}</li>
  * </ul>
  *
  * @generated
@@ -66,24 +67,24 @@ public class PropertyAssociationInstanceImpl extends InstanceObjectImpl implemen
 	protected PropertyValue value;
 
 	/**
-	 * The default value of the '{@link #isFinal() <em>Final</em>}' attribute.
+	 * The default value of the '{@link #getPropertyAssociationType() <em>Property Association Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isFinal()
+	 * @see #getPropertyAssociationType()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean FINAL_EDEFAULT = false;
+	protected static final PropertyAssociationType PROPERTY_ASSOCIATION_TYPE_EDEFAULT = PropertyAssociationType.FINAL_VALUE;
 
 	/**
-	 * The cached value of the '{@link #isFinal() <em>Final</em>}' attribute.
+	 * The cached value of the '{@link #getPropertyAssociationType() <em>Property Association Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isFinal()
+	 * @see #getPropertyAssociationType()
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean final_ = FINAL_EDEFAULT;
+	protected PropertyAssociationType propertyAssociationType = PROPERTY_ASSOCIATION_TYPE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -204,8 +205,8 @@ public class PropertyAssociationInstanceImpl extends InstanceObjectImpl implemen
 	 * @generated
 	 */
 	@Override
-	public boolean isFinal() {
-		return final_;
+	public PropertyAssociationType getPropertyAssociationType() {
+		return propertyAssociationType;
 	}
 
 	/**
@@ -214,12 +215,14 @@ public class PropertyAssociationInstanceImpl extends InstanceObjectImpl implemen
 	 * @generated
 	 */
 	@Override
-	public void setFinal(boolean newFinal) {
-		boolean oldFinal = final_;
-		final_ = newFinal;
+	public void setPropertyAssociationType(PropertyAssociationType newPropertyAssociationType) {
+		PropertyAssociationType oldPropertyAssociationType = propertyAssociationType;
+		propertyAssociationType = newPropertyAssociationType == null ? PROPERTY_ASSOCIATION_TYPE_EDEFAULT
+				: newPropertyAssociationType;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-					Av3instancePackage.PROPERTY_ASSOCIATION_INSTANCE__FINAL, oldFinal, final_));
+					Av3instancePackage.PROPERTY_ASSOCIATION_INSTANCE__PROPERTY_ASSOCIATION_TYPE,
+					oldPropertyAssociationType, propertyAssociationType));
 	}
 
 	/**
@@ -250,8 +253,8 @@ public class PropertyAssociationInstanceImpl extends InstanceObjectImpl implemen
 			return basicGetProperty();
 		case Av3instancePackage.PROPERTY_ASSOCIATION_INSTANCE__VALUE:
 			return getValue();
-		case Av3instancePackage.PROPERTY_ASSOCIATION_INSTANCE__FINAL:
-			return isFinal();
+		case Av3instancePackage.PROPERTY_ASSOCIATION_INSTANCE__PROPERTY_ASSOCIATION_TYPE:
+			return getPropertyAssociationType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -270,8 +273,8 @@ public class PropertyAssociationInstanceImpl extends InstanceObjectImpl implemen
 		case Av3instancePackage.PROPERTY_ASSOCIATION_INSTANCE__VALUE:
 			setValue((PropertyValue) newValue);
 			return;
-		case Av3instancePackage.PROPERTY_ASSOCIATION_INSTANCE__FINAL:
-			setFinal((Boolean) newValue);
+		case Av3instancePackage.PROPERTY_ASSOCIATION_INSTANCE__PROPERTY_ASSOCIATION_TYPE:
+			setPropertyAssociationType((PropertyAssociationType) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -291,8 +294,8 @@ public class PropertyAssociationInstanceImpl extends InstanceObjectImpl implemen
 		case Av3instancePackage.PROPERTY_ASSOCIATION_INSTANCE__VALUE:
 			setValue((PropertyValue) null);
 			return;
-		case Av3instancePackage.PROPERTY_ASSOCIATION_INSTANCE__FINAL:
-			setFinal(FINAL_EDEFAULT);
+		case Av3instancePackage.PROPERTY_ASSOCIATION_INSTANCE__PROPERTY_ASSOCIATION_TYPE:
+			setPropertyAssociationType(PROPERTY_ASSOCIATION_TYPE_EDEFAULT);
 			return;
 		}
 		super.eUnset(featureID);
@@ -310,8 +313,8 @@ public class PropertyAssociationInstanceImpl extends InstanceObjectImpl implemen
 			return property != null;
 		case Av3instancePackage.PROPERTY_ASSOCIATION_INSTANCE__VALUE:
 			return value != null;
-		case Av3instancePackage.PROPERTY_ASSOCIATION_INSTANCE__FINAL:
-			return final_ != FINAL_EDEFAULT;
+		case Av3instancePackage.PROPERTY_ASSOCIATION_INSTANCE__PROPERTY_ASSOCIATION_TYPE:
+			return propertyAssociationType != PROPERTY_ASSOCIATION_TYPE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -327,8 +330,8 @@ public class PropertyAssociationInstanceImpl extends InstanceObjectImpl implemen
 			return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (final: "); //$NON-NLS-1$
-		result.append(final_);
+		result.append(" (propertyAssociationType: "); //$NON-NLS-1$
+		result.append(propertyAssociationType);
 		result.append(')');
 		return result.toString();
 	}

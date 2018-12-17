@@ -1434,6 +1434,31 @@ finally {
 	restoreStackSize(stackSize);
 }
 
+// Entry rule entryRulePropertyAssociationType
+entryRulePropertyAssociationType
+:
+{ before(grammarAccess.getPropertyAssociationTypeRule()); }
+	 rulePropertyAssociationType
+{ after(grammarAccess.getPropertyAssociationTypeRule()); } 
+	 EOF 
+;
+
+// Rule PropertyAssociationType
+rulePropertyAssociationType 
+	@init {
+		int stackSize = keepStackSize();
+	}
+	:
+	(
+		{ before(grammarAccess.getPropertyAssociationTypeAccess().getAlternatives()); }
+		(rule__PropertyAssociationType__Alternatives)
+		{ after(grammarAccess.getPropertyAssociationTypeAccess().getAlternatives()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
 // Entry rule entryRuleVirtualProcessorKeywords
 entryRuleVirtualProcessorKeywords
 :
@@ -2379,6 +2404,33 @@ rule__ConnectionType__Alternatives
 		{ before(grammarAccess.getConnectionTypeAccess().getBindingKeyword_1()); }
 		'binding'
 		{ after(grammarAccess.getConnectionTypeAccess().getBindingKeyword_1()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__PropertyAssociationType__Alternatives
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getPropertyAssociationTypeAccess().getFinalKeyword_0()); }
+		'final'
+		{ after(grammarAccess.getPropertyAssociationTypeAccess().getFinalKeyword_0()); }
+	)
+	|
+	(
+		{ before(grammarAccess.getPropertyAssociationTypeAccess().getDefaultKeyword_1()); }
+		'default'
+		{ after(grammarAccess.getPropertyAssociationTypeAccess().getDefaultKeyword_1()); }
+	)
+	|
+	(
+		{ before(grammarAccess.getPropertyAssociationTypeAccess().getOverrideKeyword_2()); }
+		'override'
+		{ after(grammarAccess.getPropertyAssociationTypeAccess().getOverrideKeyword_2()); }
 	)
 ;
 finally {
@@ -6730,9 +6782,9 @@ rule__PropertyAssociation__Group__3__Impl
 	}
 :
 (
-	{ before(grammarAccess.getPropertyAssociationAccess().getEqualsSignGreaterThanSignKeyword_3()); }
-	'=>'
-	{ after(grammarAccess.getPropertyAssociationAccess().getEqualsSignGreaterThanSignKeyword_3()); }
+	{ before(grammarAccess.getPropertyAssociationAccess().getPropertyAssociationTypeAssignment_3()); }
+	(rule__PropertyAssociation__PropertyAssociationTypeAssignment_3)?
+	{ after(grammarAccess.getPropertyAssociationAccess().getPropertyAssociationTypeAssignment_3()); }
 )
 ;
 finally {
@@ -6745,6 +6797,7 @@ rule__PropertyAssociation__Group__4
 	}
 :
 	rule__PropertyAssociation__Group__4__Impl
+	rule__PropertyAssociation__Group__5
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -6756,9 +6809,35 @@ rule__PropertyAssociation__Group__4__Impl
 	}
 :
 (
-	{ before(grammarAccess.getPropertyAssociationAccess().getValueAssignment_4()); }
-	(rule__PropertyAssociation__ValueAssignment_4)
-	{ after(grammarAccess.getPropertyAssociationAccess().getValueAssignment_4()); }
+	{ before(grammarAccess.getPropertyAssociationAccess().getEqualsSignGreaterThanSignKeyword_4()); }
+	'=>'
+	{ after(grammarAccess.getPropertyAssociationAccess().getEqualsSignGreaterThanSignKeyword_4()); }
+)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__PropertyAssociation__Group__5
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	rule__PropertyAssociation__Group__5__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__PropertyAssociation__Group__5__Impl
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+(
+	{ before(grammarAccess.getPropertyAssociationAccess().getValueAssignment_5()); }
+	(rule__PropertyAssociation__ValueAssignment_5)
+	{ after(grammarAccess.getPropertyAssociationAccess().getValueAssignment_5()); }
 )
 ;
 finally {
@@ -11727,15 +11806,30 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__PropertyAssociation__ValueAssignment_4
+rule__PropertyAssociation__PropertyAssociationTypeAssignment_3
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getPropertyAssociationAccess().getValuePropertyValueParserRuleCall_4_0()); }
+		{ before(grammarAccess.getPropertyAssociationAccess().getPropertyAssociationTypePropertyAssociationTypeParserRuleCall_3_0()); }
+		rulePropertyAssociationType
+		{ after(grammarAccess.getPropertyAssociationAccess().getPropertyAssociationTypePropertyAssociationTypeParserRuleCall_3_0()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__PropertyAssociation__ValueAssignment_5
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getPropertyAssociationAccess().getValuePropertyValueParserRuleCall_5_0()); }
 		rulePropertyValue
-		{ after(grammarAccess.getPropertyAssociationAccess().getValuePropertyValueParserRuleCall_4_0()); }
+		{ after(grammarAccess.getPropertyAssociationAccess().getValuePropertyValueParserRuleCall_5_0()); }
 	)
 ;
 finally {

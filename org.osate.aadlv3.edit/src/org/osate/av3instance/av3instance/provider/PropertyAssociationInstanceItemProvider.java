@@ -59,7 +59,7 @@ public class PropertyAssociationInstanceItemProvider extends InstanceObjectItemP
 			super.getPropertyDescriptors(object);
 
 			addPropertyPropertyDescriptor(object);
-			addFinalPropertyDescriptor(object);
+			addPropertyAssociationTypePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -81,19 +81,20 @@ public class PropertyAssociationInstanceItemProvider extends InstanceObjectItemP
 	}
 
 	/**
-	 * This adds a property descriptor for the Final feature.
+	 * This adds a property descriptor for the Property Association Type feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addFinalPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_PropertyAssociationInstance_final_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_PropertyAssociationInstance_final_feature", //$NON-NLS-1$//$NON-NLS-2$
-								"_UI_PropertyAssociationInstance_type"), //$NON-NLS-1$
-						Av3instancePackage.Literals.PROPERTY_ASSOCIATION_INSTANCE__FINAL, true, false, false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+	protected void addPropertyAssociationTypePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_PropertyAssociationInstance_propertyAssociationType_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", //$NON-NLS-1$
+						"_UI_PropertyAssociationInstance_propertyAssociationType_feature", //$NON-NLS-1$
+						"_UI_PropertyAssociationInstance_type"), //$NON-NLS-1$
+				Av3instancePackage.Literals.PROPERTY_ASSOCIATION_INSTANCE__PROPERTY_ASSOCIATION_TYPE, true, false,
+				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -173,7 +174,7 @@ public class PropertyAssociationInstanceItemProvider extends InstanceObjectItemP
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(PropertyAssociationInstance.class)) {
-		case Av3instancePackage.PROPERTY_ASSOCIATION_INSTANCE__FINAL:
+		case Av3instancePackage.PROPERTY_ASSOCIATION_INSTANCE__PROPERTY_ASSOCIATION_TYPE:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		case Av3instancePackage.PROPERTY_ASSOCIATION_INSTANCE__VALUE:

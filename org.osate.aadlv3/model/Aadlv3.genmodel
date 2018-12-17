@@ -55,6 +55,11 @@
       <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//AssociationType/flowsource"/>
       <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//AssociationType/flowsink"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Aadlv3.ecore#//PropertyAssociationType">
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//PropertyAssociationType/FinalValue"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//PropertyAssociationType/DefaultValue"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//PropertyAssociationType/OverrideValue"/>
+    </genEnums>
     <genClasses ecoreClass="Aadlv3.ecore#//PackageDeclaration">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//PackageDeclaration/imports"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//PackageDeclaration/elements"/>
@@ -125,6 +130,14 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Association/source"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Association/destination"/>
     </genClasses>
+    <genClasses ecoreClass="Aadlv3.ecore#//PathSequence">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//PathSequence/target"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//PathSequence/elements"/>
+    </genClasses>
+    <genClasses ecoreClass="Aadlv3.ecore#//PathElement">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//PathElement/previous"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//PathElement/next"/>
+    </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//ConfigurationAssignment">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ConfigurationAssignment/target"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ConfigurationAssignment/configurationAssignments"/>
@@ -157,14 +170,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//PropertyAssociation/target"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//PropertyAssociation/property"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//PropertyAssociation/value"/>
-    </genClasses>
-    <genClasses ecoreClass="Aadlv3.ecore#//PathElement">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//PathElement/previous"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//PathElement/next"/>
-    </genClasses>
-    <genClasses ecoreClass="Aadlv3.ecore#//PathSequence">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//PathSequence/target"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//PathSequence/elements"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//PropertyAssociation/propertyAssociationType"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

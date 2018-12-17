@@ -274,6 +274,26 @@ public class Aadlv3Switch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case Aadlv3Package.PATH_SEQUENCE: {
+			PathSequence pathSequence = (PathSequence) theEObject;
+			T result = casePathSequence(pathSequence);
+			if (result == null)
+				result = caseModelElement(pathSequence);
+			if (result == null)
+				result = caseNamedElement(pathSequence);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Aadlv3Package.PATH_ELEMENT: {
+			PathElement pathElement = (PathElement) theEObject;
+			T result = casePathElement(pathElement);
+			if (result == null)
+				result = caseModelElementReference(pathElement);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		case Aadlv3Package.CONFIGURATION_ASSIGNMENT: {
 			ConfigurationAssignment configurationAssignment = (ConfigurationAssignment) theEObject;
 			T result = caseConfigurationAssignment(configurationAssignment);
@@ -334,26 +354,6 @@ public class Aadlv3Switch<T> extends Switch<T> {
 		case Aadlv3Package.PROPERTY_ASSOCIATION: {
 			PropertyAssociation propertyAssociation = (PropertyAssociation) theEObject;
 			T result = casePropertyAssociation(propertyAssociation);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Aadlv3Package.PATH_ELEMENT: {
-			PathElement pathElement = (PathElement) theEObject;
-			T result = casePathElement(pathElement);
-			if (result == null)
-				result = caseModelElementReference(pathElement);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Aadlv3Package.PATH_SEQUENCE: {
-			PathSequence pathSequence = (PathSequence) theEObject;
-			T result = casePathSequence(pathSequence);
-			if (result == null)
-				result = caseModelElement(pathSequence);
-			if (result == null)
-				result = caseNamedElement(pathSequence);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;

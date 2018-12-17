@@ -28,6 +28,7 @@ import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.ModelElementReference;
 import org.osate.aadlv3.aadlv3.Property;
 import org.osate.aadlv3.aadlv3.PropertyAssociation;
+import org.osate.aadlv3.aadlv3.PropertyAssociationType;
 import org.osate.aadlv3.aadlv3.PropertyValue;
 
 /**
@@ -41,6 +42,7 @@ import org.osate.aadlv3.aadlv3.PropertyValue;
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.PropertyAssociationImpl#getTarget <em>Target</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.PropertyAssociationImpl#getProperty <em>Property</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.PropertyAssociationImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.PropertyAssociationImpl#getPropertyAssociationType <em>Property Association Type</em>}</li>
  * </ul>
  *
  * @generated
@@ -75,6 +77,26 @@ public class PropertyAssociationImpl extends MinimalEObjectImpl.Container implem
 	 * @ordered
 	 */
 	protected PropertyValue value;
+
+	/**
+	 * The default value of the '{@link #getPropertyAssociationType() <em>Property Association Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPropertyAssociationType()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final PropertyAssociationType PROPERTY_ASSOCIATION_TYPE_EDEFAULT = PropertyAssociationType.FINAL_VALUE;
+
+	/**
+	 * The cached value of the '{@link #getPropertyAssociationType() <em>Property Association Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPropertyAssociationType()
+	 * @generated
+	 * @ordered
+	 */
+	protected PropertyAssociationType propertyAssociationType = PROPERTY_ASSOCIATION_TYPE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -247,6 +269,32 @@ public class PropertyAssociationImpl extends MinimalEObjectImpl.Container implem
 	 * @generated
 	 */
 	@Override
+	public PropertyAssociationType getPropertyAssociationType() {
+		return propertyAssociationType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setPropertyAssociationType(PropertyAssociationType newPropertyAssociationType) {
+		PropertyAssociationType oldPropertyAssociationType = propertyAssociationType;
+		propertyAssociationType = newPropertyAssociationType == null ? PROPERTY_ASSOCIATION_TYPE_EDEFAULT
+				: newPropertyAssociationType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					Aadlv3Package.PROPERTY_ASSOCIATION__PROPERTY_ASSOCIATION_TYPE, oldPropertyAssociationType,
+					propertyAssociationType));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case Aadlv3Package.PROPERTY_ASSOCIATION__TARGET:
@@ -273,6 +321,8 @@ public class PropertyAssociationImpl extends MinimalEObjectImpl.Container implem
 			return basicGetProperty();
 		case Aadlv3Package.PROPERTY_ASSOCIATION__VALUE:
 			return getValue();
+		case Aadlv3Package.PROPERTY_ASSOCIATION__PROPERTY_ASSOCIATION_TYPE:
+			return getPropertyAssociationType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -293,6 +343,9 @@ public class PropertyAssociationImpl extends MinimalEObjectImpl.Container implem
 			return;
 		case Aadlv3Package.PROPERTY_ASSOCIATION__VALUE:
 			setValue((PropertyValue) newValue);
+			return;
+		case Aadlv3Package.PROPERTY_ASSOCIATION__PROPERTY_ASSOCIATION_TYPE:
+			setPropertyAssociationType((PropertyAssociationType) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -315,6 +368,9 @@ public class PropertyAssociationImpl extends MinimalEObjectImpl.Container implem
 		case Aadlv3Package.PROPERTY_ASSOCIATION__VALUE:
 			setValue((PropertyValue) null);
 			return;
+		case Aadlv3Package.PROPERTY_ASSOCIATION__PROPERTY_ASSOCIATION_TYPE:
+			setPropertyAssociationType(PROPERTY_ASSOCIATION_TYPE_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -333,8 +389,27 @@ public class PropertyAssociationImpl extends MinimalEObjectImpl.Container implem
 			return property != null;
 		case Aadlv3Package.PROPERTY_ASSOCIATION__VALUE:
 			return value != null;
+		case Aadlv3Package.PROPERTY_ASSOCIATION__PROPERTY_ASSOCIATION_TYPE:
+			return propertyAssociationType != PROPERTY_ASSOCIATION_TYPE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy())
+			return super.toString();
+
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (propertyAssociationType: ");
+		result.append(propertyAssociationType);
+		result.append(')');
+		return result.toString();
 	}
 
 } //PropertyAssociationImpl

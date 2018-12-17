@@ -455,7 +455,7 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 	 * @generated
 	 */
 	@Override
-	public EAttribute getPropertyAssociationInstance_Final() {
+	public EAttribute getPropertyAssociationInstance_PropertyAssociationType() {
 		return (EAttribute) propertyAssociationInstanceEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -553,7 +553,7 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 		propertyAssociationInstanceEClass = createEClass(PROPERTY_ASSOCIATION_INSTANCE);
 		createEReference(propertyAssociationInstanceEClass, PROPERTY_ASSOCIATION_INSTANCE__PROPERTY);
 		createEReference(propertyAssociationInstanceEClass, PROPERTY_ASSOCIATION_INSTANCE__VALUE);
-		createEAttribute(propertyAssociationInstanceEClass, PROPERTY_ASSOCIATION_INSTANCE__FINAL);
+		createEAttribute(propertyAssociationInstanceEClass, PROPERTY_ASSOCIATION_INSTANCE__PROPERTY_ASSOCIATION_TYPE);
 
 		pathInstanceEClass = createEClass(PATH_INSTANCE);
 		createEReference(pathInstanceEClass, PATH_INSTANCE__ELEMENTS);
@@ -691,8 +691,9 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 		initEReference(getPropertyAssociationInstance_Value(), theAadlv3Package.getPropertyValue(), null, "value", null, //$NON-NLS-1$
 				0, 1, PropertyAssociationInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getPropertyAssociationInstance_Final(), ecorePackage.getEBoolean(), "final", null, 0, 1, //$NON-NLS-1$
-				PropertyAssociationInstance.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+		initEAttribute(getPropertyAssociationInstance_PropertyAssociationType(),
+				theAadlv3Package.getPropertyAssociationType(), "propertyAssociationType", "FinalValue", 0, 1, //$NON-NLS-1$//$NON-NLS-2$
+				PropertyAssociationInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(pathInstanceEClass, PathInstance.class, "PathInstance", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$

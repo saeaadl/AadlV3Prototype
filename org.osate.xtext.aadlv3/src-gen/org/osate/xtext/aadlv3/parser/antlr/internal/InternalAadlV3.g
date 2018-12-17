@@ -2605,16 +2605,35 @@ rulePropertyAssociation returns [EObject current=null]
 				}
 			)
 		)
-		otherlv_3='=>'
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getPropertyAssociationAccess().getPropertyAssociationTypePropertyAssociationTypeParserRuleCall_3_0());
+				}
+				lv_propertyAssociationType_3_0=rulePropertyAssociationType
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getPropertyAssociationRule());
+					}
+					set(
+						$current,
+						"propertyAssociationType",
+						lv_propertyAssociationType_3_0,
+						"org.osate.xtext.aadlv3.AadlV3.PropertyAssociationType");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)?
+		otherlv_4='=>'
 		{
-			newLeafNode(otherlv_3, grammarAccess.getPropertyAssociationAccess().getEqualsSignGreaterThanSignKeyword_3());
+			newLeafNode(otherlv_4, grammarAccess.getPropertyAssociationAccess().getEqualsSignGreaterThanSignKeyword_4());
 		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getPropertyAssociationAccess().getValuePropertyValueParserRuleCall_4_0());
+					newCompositeNode(grammarAccess.getPropertyAssociationAccess().getValuePropertyValueParserRuleCall_5_0());
 				}
-				lv_value_4_0=rulePropertyValue
+				lv_value_5_0=rulePropertyValue
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getPropertyAssociationRule());
@@ -2622,7 +2641,7 @@ rulePropertyAssociation returns [EObject current=null]
 					set(
 						$current,
 						"value",
-						lv_value_4_0,
+						lv_value_5_0,
 						"org.osate.xtext.aadlv3.AadlV3.PropertyValue");
 					afterParserOrEnumRuleCall();
 				}
@@ -4604,6 +4623,42 @@ ruleFlowSinkType returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleTo
 	{
 		afterParserOrEnumRuleCall();
 	}
+;
+
+// Entry rule entryRulePropertyAssociationType
+entryRulePropertyAssociationType returns [String current=null]:
+	{ newCompositeNode(grammarAccess.getPropertyAssociationTypeRule()); }
+	iv_rulePropertyAssociationType=rulePropertyAssociationType
+	{ $current=$iv_rulePropertyAssociationType.current.getText(); }
+	EOF;
+
+// Rule PropertyAssociationType
+rulePropertyAssociationType returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		kw='final'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getPropertyAssociationTypeAccess().getFinalKeyword_0());
+		}
+		    |
+		kw='default'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getPropertyAssociationTypeAccess().getDefaultKeyword_1());
+		}
+		    |
+		kw='override'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getPropertyAssociationTypeAccess().getOverrideKeyword_2());
+		}
+	)
 ;
 
 // Entry rule entryRuleVirtualProcessorKeywords

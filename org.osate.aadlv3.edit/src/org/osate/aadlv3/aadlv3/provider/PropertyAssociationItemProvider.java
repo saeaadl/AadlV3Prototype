@@ -32,12 +32,14 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.osate.aadlv3.aadlv3.Aadlv3Factory;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.PropertyAssociation;
+import org.osate.aadlv3.aadlv3.PropertyAssociationType;
 
 /**
  * This is the item provider adapter for a {@link org.osate.aadlv3.aadlv3.PropertyAssociation} object.
@@ -69,6 +71,7 @@ public class PropertyAssociationItemProvider extends ItemProviderAdapter impleme
 			super.getPropertyDescriptors(object);
 
 			addPropertyPropertyDescriptor(object);
+			addPropertyAssociationTypePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -86,6 +89,22 @@ public class PropertyAssociationItemProvider extends ItemProviderAdapter impleme
 						getString("_UI_PropertyDescriptor_description", "_UI_PropertyAssociation_property_feature",
 								"_UI_PropertyAssociation_type"),
 						Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY, true, false, true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Property Association Type feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addPropertyAssociationTypePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_PropertyAssociation_propertyAssociationType_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_PropertyAssociation_propertyAssociationType_feature", "_UI_PropertyAssociation_type"),
+				Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY_ASSOCIATION_TYPE, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -138,7 +157,10 @@ public class PropertyAssociationItemProvider extends ItemProviderAdapter impleme
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_PropertyAssociation_type");
+		PropertyAssociationType labelValue = ((PropertyAssociation) object).getPropertyAssociationType();
+		String label = labelValue == null ? null : labelValue.toString();
+		return label == null || label.length() == 0 ? getString("_UI_PropertyAssociation_type")
+				: getString("_UI_PropertyAssociation_type") + " " + label;
 	}
 
 	/**
@@ -153,6 +175,9 @@ public class PropertyAssociationItemProvider extends ItemProviderAdapter impleme
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(PropertyAssociation.class)) {
+		case Aadlv3Package.PROPERTY_ASSOCIATION__PROPERTY_ASSOCIATION_TYPE:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
 		case Aadlv3Package.PROPERTY_ASSOCIATION__TARGET:
 		case Aadlv3Package.PROPERTY_ASSOCIATION__VALUE:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));

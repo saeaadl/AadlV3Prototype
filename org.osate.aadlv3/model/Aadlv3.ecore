@@ -97,6 +97,17 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="destination" eType="#//ModelElementReference"
         containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PathSequence" eSuperTypes="#//ModelElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//ModelElementReference"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
+        eType="#//PathElement" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PathElement" eSuperTypes="#//ModelElementReference">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="previous" upperBound="-1"
+        eType="#//PathElement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="next" upperBound="-1" eType="#//PathElement"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConfigurationAssignment">
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//ModelElementReference"
         containment="true"/>
@@ -187,16 +198,12 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="property" eType="#//Property"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//PropertyValue"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="propertyAssociationType"
+        eType="#//PropertyAssociationType" defaultValueLiteral="FinalValue"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PathElement" eSuperTypes="#//ModelElementReference">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="previous" upperBound="-1"
-        eType="#//PathElement"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="next" upperBound="-1" eType="#//PathElement"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PathSequence" eSuperTypes="#//ModelElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//ModelElementReference"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
-        eType="#//PathElement" containment="true"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="PropertyAssociationType">
+    <eLiterals name="FinalValue"/>
+    <eLiterals name="DefaultValue" value="1"/>
+    <eLiterals name="OverrideValue" value="2"/>
   </eClassifiers>
 </ecore:EPackage>

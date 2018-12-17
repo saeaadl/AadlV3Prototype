@@ -6,11 +6,8 @@ import java.util.Collections
 import java.util.Stack
 import org.osate.aadlv3.aadlv3.Association
 import org.osate.aadlv3.aadlv3.Component
-import org.osate.aadlv3.aadlv3.ComponentConfiguration
-import org.osate.aadlv3.aadlv3.ComponentImplementation
 import org.osate.aadlv3.aadlv3.ComponentInterface
 import org.osate.aadlv3.aadlv3.ConfigurationAssignment
-import org.osate.aadlv3.aadlv3.DataType
 import org.osate.aadlv3.aadlv3.Feature
 import org.osate.aadlv3.aadlv3.FeatureCategory
 import org.osate.aadlv3.aadlv3.PathElement
@@ -128,22 +125,12 @@ class Instantiator {
 			for (pa : ctyperefs.allPropertyAssociations){
 				val target = ci.getInstanceElement(pa.target)
 				val pai = createPropertyAssociationInstance(pa)
-				if (pa.containingComponentConfiguration !== null){
-					pai.final = true
-				}
 				target.addPropertyAssociationInstance(pai)
 			}
 			for (pa : comp.propertyAssociations){
 				val target = ci.getInstanceElement(pa.target)
 				target.addPropertyAssociationInstance(createPropertyAssociationInstance(pa))
 			}
-//			if (ctyperefs instanceof ComponentConfiguration){
-//				// process property associations contained in configuration assignments
-//				val cas = ctyperefs.allConfigurationAssignments
-//				for (ca : cas){
-//					processConfigurationAssignmentProperties(ca, ci)
-//				}
-//			}
 		}
 	}
 	

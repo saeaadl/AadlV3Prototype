@@ -52,8 +52,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="property" eType="ecore:EClass Aadlv3.ecore#//Property"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="ecore:EClass Aadlv3.ecore#//PropertyValue"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="final" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
-        transient="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="propertyAssociationType"
+        eType="ecore:EEnum Aadlv3.ecore#//PropertyAssociationType" defaultValueLiteral="FinalValue"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PathInstance" eSuperTypes="#//InstanceObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"

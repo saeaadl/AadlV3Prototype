@@ -92,6 +92,10 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 			return createImport();
 		case Aadlv3Package.ASSOCIATION:
 			return createAssociation();
+		case Aadlv3Package.PATH_SEQUENCE:
+			return createPathSequence();
+		case Aadlv3Package.PATH_ELEMENT:
+			return createPathElement();
 		case Aadlv3Package.CONFIGURATION_ASSIGNMENT:
 			return createConfigurationAssignment();
 		case Aadlv3Package.MODEL_ELEMENT_REFERENCE:
@@ -108,10 +112,6 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 			return createPropertyValue();
 		case Aadlv3Package.PROPERTY_ASSOCIATION:
 			return createPropertyAssociation();
-		case Aadlv3Package.PATH_ELEMENT:
-			return createPathElement();
-		case Aadlv3Package.PATH_SEQUENCE:
-			return createPathSequence();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -133,6 +133,8 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 			return createFeatureDirectionFromString(eDataType, initialValue);
 		case Aadlv3Package.ASSOCIATION_TYPE:
 			return createAssociationTypeFromString(eDataType, initialValue);
+		case Aadlv3Package.PROPERTY_ASSOCIATION_TYPE:
+			return createPropertyAssociationTypeFromString(eDataType, initialValue);
 		default:
 			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -154,6 +156,8 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 			return convertFeatureDirectionToString(eDataType, instanceValue);
 		case Aadlv3Package.ASSOCIATION_TYPE:
 			return convertAssociationTypeToString(eDataType, instanceValue);
+		case Aadlv3Package.PROPERTY_ASSOCIATION_TYPE:
+			return convertPropertyAssociationTypeToString(eDataType, instanceValue);
 		default:
 			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -475,6 +479,28 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 	 * @generated
 	 */
 	public String convertAssociationTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PropertyAssociationType createPropertyAssociationTypeFromString(EDataType eDataType, String initialValue) {
+		PropertyAssociationType result = PropertyAssociationType.get(initialValue);
+		if (result == null)
+			throw new IllegalArgumentException(
+					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertPropertyAssociationTypeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

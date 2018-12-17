@@ -695,6 +695,10 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 			importItemProvider.dispose();
 		if (associationItemProvider != null)
 			associationItemProvider.dispose();
+		if (pathSequenceItemProvider != null)
+			pathSequenceItemProvider.dispose();
+		if (pathElementItemProvider != null)
+			pathElementItemProvider.dispose();
 		if (configurationAssignmentItemProvider != null)
 			configurationAssignmentItemProvider.dispose();
 		if (modelElementReferenceItemProvider != null)
@@ -711,10 +715,6 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 			propertyValueItemProvider.dispose();
 		if (propertyAssociationItemProvider != null)
 			propertyAssociationItemProvider.dispose();
-		if (pathElementItemProvider != null)
-			pathElementItemProvider.dispose();
-		if (pathSequenceItemProvider != null)
-			pathSequenceItemProvider.dispose();
 	}
 
 }

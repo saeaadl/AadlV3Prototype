@@ -8,6 +8,7 @@ import org.osate.aadlv3.aadlv3.ComponentCategory;
 import org.osate.aadlv3.aadlv3.FeatureCategory;
 import org.osate.aadlv3.aadlv3.FeatureDirection;
 import org.osate.aadlv3.aadlv3.AssociationType;
+import org.osate.aadlv3.aadlv3.PropertyAssociationType;
 
 public class AadlV3ValueConverter extends DefaultTerminalConverters {
 
@@ -19,7 +20,7 @@ public class AadlV3ValueConverter extends DefaultTerminalConverters {
 				if (string == null) {
 					return null;
 				}
-				return ComponentCategory.get(string.toLowerCase());
+				return ComponentCategory.get(string);
 			}
 
 			@Override
@@ -37,9 +38,9 @@ public class AadlV3ValueConverter extends DefaultTerminalConverters {
 				if (string == null) {
 					return null;
 				}
-				if (string.equalsIgnoreCase("access")) return FeatureCategory.get("data access");
-				if (string.equalsIgnoreCase("binding")) return FeatureCategory.get("binding point");
-				return FeatureCategory.get(string.toLowerCase());
+				if (string.equals("access")) return FeatureCategory.DATAACCESS;
+				if (string.equals("binding")) return FeatureCategory.BINDINGPOINT;
+				return FeatureCategory.get(string);
 			}
 
 			@Override
@@ -58,7 +59,7 @@ public class AadlV3ValueConverter extends DefaultTerminalConverters {
 				if (string == null) {
 					return null;
 				}
-				return FeatureDirection.get(string.toLowerCase());
+				return FeatureDirection.get(string);
 			}
 
 			@Override
@@ -94,7 +95,7 @@ public class AadlV3ValueConverter extends DefaultTerminalConverters {
 				if (string == null) {
 					return null;
 				}
-				return AssociationType.get("feature mapping");
+				return AssociationType.FEATUREMAPPING;
 			}
 
 			@Override
@@ -113,12 +114,12 @@ public class AadlV3ValueConverter extends DefaultTerminalConverters {
 				if (string == null) {
 					return null;
 				}
-				return AssociationType.get("flow "+string.toLowerCase());
+				return AssociationType.FLOWPATH;
 			}
 
 			@Override
 			public String toString(AssociationType value) {
-				return "path";//value.getName();
+				return "path";
 			}
 		};
 	}
@@ -132,12 +133,12 @@ public class AadlV3ValueConverter extends DefaultTerminalConverters {
 				if (string == null) {
 					return null;
 				}
-				return AssociationType.get("flow "+string.toLowerCase());
+				return AssociationType.FLOWSOURCE;
 			}
 
 			@Override
 			public String toString(AssociationType value) {
-				return "source";//value.getName();
+				return "source";
 			}
 		};
 	}
@@ -151,12 +152,33 @@ public class AadlV3ValueConverter extends DefaultTerminalConverters {
 				if (string == null) {
 					return null;
 				}
-				return AssociationType.get("flow "+string.toLowerCase());
+				return AssociationType.FLOWSINK;
 			}
 
 			@Override
 			public String toString(AssociationType value) {
-				return "sink";//value.getName();
+				return "sink";
+			}
+		};
+	}
+	@ValueConverter(rule = "PropertyAssociationType")
+	public IValueConverter<PropertyAssociationType> PropertyAssociationType() {
+		return new IValueConverter<PropertyAssociationType>() {
+			@Override
+			public PropertyAssociationType toValue(String string, INode node) {
+				if (string == null) {
+					return null;
+				}
+				if (string.equals("final")) return PropertyAssociationType.FINAL_VALUE;
+				if (string.equals("default")) return PropertyAssociationType.DEFAULT_VALUE;
+				return PropertyAssociationType.OVERRIDE_VALUE;
+			}
+
+			@Override
+			public String toString(PropertyAssociationType value) {
+				if (value == PropertyAssociationType.FINAL_VALUE) return "final";
+				if (value == PropertyAssociationType.DEFAULT_VALUE) return "default";
+				return "override";
 			}
 		};
 	}

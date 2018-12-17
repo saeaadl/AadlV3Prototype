@@ -43,6 +43,7 @@ import static extension org.eclipse.xtext.EcoreUtil2.*
 import static extension org.osate.aadlv3.util.Av3API.*
 import org.eclipse.emf.common.util.EList
 import org.eclipse.emf.common.util.BasicEList
+import org.osate.aadlv3.aadlv3.PropertyAssociationType
 
 class Aadlv3Util {
 	/**
@@ -1167,6 +1168,7 @@ class Aadlv3Util {
 	def static createPropertyAssociationInstance(PropertyAssociation pa){
 		val pai = Av3instanceFactory.eINSTANCE.createPropertyAssociationInstance
 		pai.property = pa.property
+		pai.propertyAssociationType = pa.propertyAssociationType
 		pai.value = pa.value.copy
 		return pai
 	}
@@ -1248,14 +1250,30 @@ class Aadlv3Util {
 	// return false if the property association or its value was not added  
 	def static boolean addPropertyAssociationInstance(InstanceObject io, PropertyAssociationInstance pai){
 		val pais = io.propertyAssociations
-		for (epai : pais){
-			if (epai.property == pai.property){
-				if (!epai.final){
-					epai.value = pai.value
-					epai.final = pai.final
-					return true
-				} else {
-					return false
+		for (epai : pais) {
+			if (epai.property == pai.property) {
+				switch (epai.propertyAssociationType) {
+					case PropertyAssociationType.FINAL_VALUE: {
+						if (pai.propertyAssociationType == PropertyAssociationType.OVERRIDE_VALUE){
+							epai.value = pai.value
+							epai.propertyAssociationType = PropertyAssociationType.OVERRIDE_VALUE
+							return true
+						} else {
+							return false
+						}
+					}
+					case DEFAULT_VALUE: {
+						if (pai.propertyAssociationType != PropertyAssociationType.DEFAULT_VALUE){
+							epai.value = pai.value
+							epai.propertyAssociationType = pai.propertyAssociationType
+							return true
+						} else {
+							return false
+						}
+					}
+					case OVERRIDE_VALUE: {
+						return false
+					}
 				}
 			}
 		}

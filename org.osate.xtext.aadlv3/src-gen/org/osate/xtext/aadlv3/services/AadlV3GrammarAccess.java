@@ -1421,16 +1421,20 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cPropertyAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final CrossReference cPropertyPropertyCrossReference_2_0 = (CrossReference)cPropertyAssignment_2.eContents().get(0);
 		private final RuleCall cPropertyPropertyQualifiedNameParserRuleCall_2_0_1 = (RuleCall)cPropertyPropertyCrossReference_2_0.eContents().get(1);
-		private final Keyword cEqualsSignGreaterThanSignKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Assignment cValueAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cValuePropertyValueParserRuleCall_4_0 = (RuleCall)cValueAssignment_4.eContents().get(0);
+		private final Assignment cPropertyAssociationTypeAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cPropertyAssociationTypePropertyAssociationTypeParserRuleCall_3_0 = (RuleCall)cPropertyAssociationTypeAssignment_3.eContents().get(0);
+		private final Keyword cEqualsSignGreaterThanSignKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cValueAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cValuePropertyValueParserRuleCall_5_0 = (RuleCall)cValueAssignment_5.eContents().get(0);
 		
 		//PropertyAssociation av3::PropertyAssociation:
-		//	target=ModelElementReference? '#' property=[av3::Property|QualifiedName] '=>'
-		//	value=PropertyValue;
+		//	target=ModelElementReference? '#' property=[av3::Property|QualifiedName]
+		//	propertyAssociationType=PropertyAssociationType?
+		//	'=>' value=PropertyValue;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//target=ModelElementReference? '#' property=[av3::Property|QualifiedName] '=>' value=PropertyValue
+		//target=ModelElementReference? '#' property=[av3::Property|QualifiedName]
+		//propertyAssociationType=PropertyAssociationType? '=>' value=PropertyValue
 		public Group getGroup() { return cGroup; }
 		
 		//target=ModelElementReference?
@@ -1451,14 +1455,20 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		//QualifiedName
 		public RuleCall getPropertyPropertyQualifiedNameParserRuleCall_2_0_1() { return cPropertyPropertyQualifiedNameParserRuleCall_2_0_1; }
 		
+		//propertyAssociationType=PropertyAssociationType?
+		public Assignment getPropertyAssociationTypeAssignment_3() { return cPropertyAssociationTypeAssignment_3; }
+		
+		//PropertyAssociationType
+		public RuleCall getPropertyAssociationTypePropertyAssociationTypeParserRuleCall_3_0() { return cPropertyAssociationTypePropertyAssociationTypeParserRuleCall_3_0; }
+		
 		//'=>'
-		public Keyword getEqualsSignGreaterThanSignKeyword_3() { return cEqualsSignGreaterThanSignKeyword_3; }
+		public Keyword getEqualsSignGreaterThanSignKeyword_4() { return cEqualsSignGreaterThanSignKeyword_4; }
 		
 		//value=PropertyValue
-		public Assignment getValueAssignment_4() { return cValueAssignment_4; }
+		public Assignment getValueAssignment_5() { return cValueAssignment_5; }
 		
 		//PropertyValue
-		public RuleCall getValuePropertyValueParserRuleCall_4_0() { return cValuePropertyValueParserRuleCall_4_0; }
+		public RuleCall getValuePropertyValueParserRuleCall_5_0() { return cValuePropertyValueParserRuleCall_5_0; }
 	}
 	public class PropertyValueElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.osate.xtext.aadlv3.AadlV3.PropertyValue");
@@ -2615,6 +2625,29 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		//FlowSinkKeywords
 		public RuleCall getFlowSinkKeywordsParserRuleCall() { return cFlowSinkKeywordsParserRuleCall; }
 	}
+	public class PropertyAssociationTypeElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.osate.xtext.aadlv3.AadlV3.PropertyAssociationType");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Keyword cFinalKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
+		private final Keyword cDefaultKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
+		private final Keyword cOverrideKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
+		
+		//PropertyAssociationType av3::PropertyAssociationType:
+		//	'final' | 'default' | 'override';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'final' | 'default' | 'override'
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//'final'
+		public Keyword getFinalKeyword_0() { return cFinalKeyword_0; }
+		
+		//'default'
+		public Keyword getDefaultKeyword_1() { return cDefaultKeyword_1; }
+		
+		//'override'
+		public Keyword getOverrideKeyword_2() { return cOverrideKeyword_2; }
+	}
 	public class VirtualProcessorKeywordsElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.osate.xtext.aadlv3.AadlV3.VirtualProcessorKeywords");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -3027,6 +3060,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	private final FlowPathTypeElements pFlowPathType;
 	private final FlowSourceTypeElements pFlowSourceType;
 	private final FlowSinkTypeElements pFlowSinkType;
+	private final PropertyAssociationTypeElements pPropertyAssociationType;
 	private final VirtualProcessorKeywordsElements pVirtualProcessorKeywords;
 	private final VirtualBusKeywordsElements pVirtualBusKeywords;
 	private final VirtualMemoryKeywordsElements pVirtualMemoryKeywords;
@@ -3115,6 +3149,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		this.pFlowPathType = new FlowPathTypeElements();
 		this.pFlowSourceType = new FlowSourceTypeElements();
 		this.pFlowSinkType = new FlowSinkTypeElements();
+		this.pPropertyAssociationType = new PropertyAssociationTypeElements();
 		this.pVirtualProcessorKeywords = new VirtualProcessorKeywordsElements();
 		this.pVirtualBusKeywords = new VirtualBusKeywordsElements();
 		this.pVirtualMemoryKeywords = new VirtualMemoryKeywordsElements();
@@ -3445,8 +3480,9 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//PropertyAssociation av3::PropertyAssociation:
-	//	target=ModelElementReference? '#' property=[av3::Property|QualifiedName] '=>'
-	//	value=PropertyValue;
+	//	target=ModelElementReference? '#' property=[av3::Property|QualifiedName]
+	//	propertyAssociationType=PropertyAssociationType?
+	//	'=>' value=PropertyValue;
 	public PropertyAssociationElements getPropertyAssociationAccess() {
 		return pPropertyAssociation;
 	}
@@ -3815,6 +3851,16 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getFlowSinkTypeRule() {
 		return getFlowSinkTypeAccess().getRule();
+	}
+	
+	//PropertyAssociationType av3::PropertyAssociationType:
+	//	'final' | 'default' | 'override';
+	public PropertyAssociationTypeElements getPropertyAssociationTypeAccess() {
+		return pPropertyAssociationType;
+	}
+	
+	public ParserRule getPropertyAssociationTypeRule() {
+		return getPropertyAssociationTypeAccess().getRule();
 	}
 	
 	//VirtualProcessorKeywords:

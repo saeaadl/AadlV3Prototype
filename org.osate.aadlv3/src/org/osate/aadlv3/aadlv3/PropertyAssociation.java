@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.osate.aadlv3.aadlv3.PropertyAssociation#getTarget <em>Target</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.PropertyAssociation#getProperty <em>Property</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.PropertyAssociation#getValue <em>Value</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.PropertyAssociation#getPropertyAssociationType <em>Property Association Type</em>}</li>
  * </ul>
  *
  * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getPropertyAssociation()
@@ -113,5 +114,35 @@ public interface PropertyAssociation extends EObject {
 	 * @generated
 	 */
 	void setValue(PropertyValue value);
+
+	/**
+	 * Returns the value of the '<em><b>Property Association Type</b></em>' attribute.
+	 * The default value is <code>"FinalValue"</code>.
+	 * The literals are from the enumeration {@link org.osate.aadlv3.aadlv3.PropertyAssociationType}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Property Association Type</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Property Association Type</em>' attribute.
+	 * @see org.osate.aadlv3.aadlv3.PropertyAssociationType
+	 * @see #setPropertyAssociationType(PropertyAssociationType)
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getPropertyAssociation_PropertyAssociationType()
+	 * @model default="FinalValue"
+	 * @generated
+	 */
+	PropertyAssociationType getPropertyAssociationType();
+
+	/**
+	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.PropertyAssociation#getPropertyAssociationType <em>Property Association Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Property Association Type</em>' attribute.
+	 * @see org.osate.aadlv3.aadlv3.PropertyAssociationType
+	 * @see #getPropertyAssociationType()
+	 * @generated
+	 */
+	void setPropertyAssociationType(PropertyAssociationType value);
 
 } // PropertyAssociation

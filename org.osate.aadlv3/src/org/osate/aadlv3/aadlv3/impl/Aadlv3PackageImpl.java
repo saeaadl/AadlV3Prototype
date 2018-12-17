@@ -51,6 +51,7 @@ import org.osate.aadlv3.aadlv3.PathElement;
 import org.osate.aadlv3.aadlv3.PathSequence;
 import org.osate.aadlv3.aadlv3.Property;
 import org.osate.aadlv3.aadlv3.PropertyAssociation;
+import org.osate.aadlv3.aadlv3.PropertyAssociationType;
 import org.osate.aadlv3.aadlv3.PropertySet;
 import org.osate.aadlv3.aadlv3.PropertyValue;
 import org.osate.aadlv3.aadlv3.Type;
@@ -280,6 +281,13 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	private EEnum associationTypeEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum propertyAssociationTypeEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -1131,6 +1139,16 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
+	public EAttribute getPropertyAssociation_PropertyAssociationType() {
+		return (EAttribute) propertyAssociationEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getPathElement() {
 		return pathElementEClass;
 	}
@@ -1251,6 +1269,16 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
+	public EEnum getPropertyAssociationType() {
+		return propertyAssociationTypeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Aadlv3Factory getAadlv3Factory() {
 		return (Aadlv3Factory) getEFactoryInstance();
 	}
@@ -1347,6 +1375,14 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		createEReference(associationEClass, ASSOCIATION__SOURCE);
 		createEReference(associationEClass, ASSOCIATION__DESTINATION);
 
+		pathSequenceEClass = createEClass(PATH_SEQUENCE);
+		createEReference(pathSequenceEClass, PATH_SEQUENCE__TARGET);
+		createEReference(pathSequenceEClass, PATH_SEQUENCE__ELEMENTS);
+
+		pathElementEClass = createEClass(PATH_ELEMENT);
+		createEReference(pathElementEClass, PATH_ELEMENT__PREVIOUS);
+		createEReference(pathElementEClass, PATH_ELEMENT__NEXT);
+
 		configurationAssignmentEClass = createEClass(CONFIGURATION_ASSIGNMENT);
 		createEReference(configurationAssignmentEClass, CONFIGURATION_ASSIGNMENT__TARGET);
 		createEReference(configurationAssignmentEClass, CONFIGURATION_ASSIGNMENT__CONFIGURATION_ASSIGNMENTS);
@@ -1379,20 +1415,14 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		createEReference(propertyAssociationEClass, PROPERTY_ASSOCIATION__TARGET);
 		createEReference(propertyAssociationEClass, PROPERTY_ASSOCIATION__PROPERTY);
 		createEReference(propertyAssociationEClass, PROPERTY_ASSOCIATION__VALUE);
-
-		pathElementEClass = createEClass(PATH_ELEMENT);
-		createEReference(pathElementEClass, PATH_ELEMENT__PREVIOUS);
-		createEReference(pathElementEClass, PATH_ELEMENT__NEXT);
-
-		pathSequenceEClass = createEClass(PATH_SEQUENCE);
-		createEReference(pathSequenceEClass, PATH_SEQUENCE__TARGET);
-		createEReference(pathSequenceEClass, PATH_SEQUENCE__ELEMENTS);
+		createEAttribute(propertyAssociationEClass, PROPERTY_ASSOCIATION__PROPERTY_ASSOCIATION_TYPE);
 
 		// Create enums
 		componentCategoryEEnum = createEEnum(COMPONENT_CATEGORY);
 		featureCategoryEEnum = createEEnum(FEATURE_CATEGORY);
 		featureDirectionEEnum = createEEnum(FEATURE_DIRECTION);
 		associationTypeEEnum = createEEnum(ASSOCIATION_TYPE);
+		propertyAssociationTypeEEnum = createEEnum(PROPERTY_ASSOCIATION_TYPE);
 	}
 
 	/**
@@ -1440,11 +1470,11 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		featureEClass.getESuperTypes().add(this.getModelElement());
 		componentEClass.getESuperTypes().add(this.getModelElement());
 		associationEClass.getESuperTypes().add(this.getModelElement());
+		pathSequenceEClass.getESuperTypes().add(this.getModelElement());
+		pathElementEClass.getESuperTypes().add(this.getModelElementReference());
 		configurationParameterEClass.getESuperTypes().add(this.getNamedElement());
 		configurationParameterEClass.getESuperTypes().add(this.getType());
 		workingsetEClass.getESuperTypes().add(this.getPackageElement());
-		pathElementEClass.getESuperTypes().add(this.getModelElementReference());
-		pathSequenceEClass.getESuperTypes().add(this.getModelElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(packageDeclarationEClass, PackageDeclaration.class, "PackageDeclaration", !IS_ABSTRACT,
@@ -1602,6 +1632,24 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 				Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(pathSequenceEClass, PathSequence.class, "PathSequence", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPathSequence_Target(), this.getModelElementReference(), null, "target", null, 0, 1,
+				PathSequence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPathSequence_Elements(), this.getPathElement(), null, "elements", null, 0, -1,
+				PathSequence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(pathElementEClass, PathElement.class, "PathElement", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPathElement_Previous(), this.getPathElement(), null, "previous", null, 0, -1,
+				PathElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPathElement_Next(), this.getPathElement(), null, "next", null, 0, -1, PathElement.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		initEClass(configurationAssignmentEClass, ConfigurationAssignment.class, "ConfigurationAssignment",
 				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getConfigurationAssignment_Target(), this.getModelElementReference(), null, "target", null, 0, 1,
@@ -1675,24 +1723,9 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		initEReference(getPropertyAssociation_Value(), this.getPropertyValue(), null, "value", null, 0, 1,
 				PropertyAssociation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(pathElementEClass, PathElement.class, "PathElement", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPathElement_Previous(), this.getPathElement(), null, "previous", null, 0, -1,
-				PathElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getPathElement_Next(), this.getPathElement(), null, "next", null, 0, -1, PathElement.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
-				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(pathSequenceEClass, PathSequence.class, "PathSequence", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPathSequence_Target(), this.getModelElementReference(), null, "target", null, 0, 1,
-				PathSequence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getPathSequence_Elements(), this.getPathElement(), null, "elements", null, 0, -1,
-				PathSequence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPropertyAssociation_PropertyAssociationType(), this.getPropertyAssociationType(),
+				"propertyAssociationType", "FinalValue", 0, 1, PropertyAssociation.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(componentCategoryEEnum, ComponentCategory.class, "ComponentCategory");
@@ -1742,6 +1775,11 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		addEEnumLiteral(associationTypeEEnum, AssociationType.FLOWPATH);
 		addEEnumLiteral(associationTypeEEnum, AssociationType.FLOWSOURCE);
 		addEEnumLiteral(associationTypeEEnum, AssociationType.FLOWSINK);
+
+		initEEnum(propertyAssociationTypeEEnum, PropertyAssociationType.class, "PropertyAssociationType");
+		addEEnumLiteral(propertyAssociationTypeEEnum, PropertyAssociationType.FINAL_VALUE);
+		addEEnumLiteral(propertyAssociationTypeEEnum, PropertyAssociationType.DEFAULT_VALUE);
+		addEEnumLiteral(propertyAssociationTypeEEnum, PropertyAssociationType.OVERRIDE_VALUE);
 
 		// Create resource
 		createResource(eNS_URI);
