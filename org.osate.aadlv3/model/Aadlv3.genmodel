@@ -144,6 +144,9 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ConfigurationAssignment/assignedClassifiers"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ConfigurationAssignment/propertyAssociations"/>
     </genClasses>
+    <genClasses ecoreClass="Aadlv3.ecore#//ConfigurationAssignmentPattern">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ConfigurationAssignmentPattern/targetPattern"/>
+    </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//ModelElementReference">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ModelElementReference/element"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ModelElementReference/context"/>

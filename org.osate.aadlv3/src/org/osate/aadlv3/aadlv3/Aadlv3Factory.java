@@ -143,6 +143,15 @@ public interface Aadlv3Factory extends EFactory {
 	ConfigurationAssignment createConfigurationAssignment();
 
 	/**
+	 * Returns a new object of class '<em>Configuration Assignment Pattern</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Configuration Assignment Pattern</em>'.
+	 * @generated
+	 */
+	ConfigurationAssignmentPattern createConfigurationAssignmentPattern();
+
+	/**
 	 * Returns a new object of class '<em>Model Element Reference</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

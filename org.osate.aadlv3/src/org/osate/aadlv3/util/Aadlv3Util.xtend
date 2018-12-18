@@ -44,6 +44,7 @@ import static extension org.osate.aadlv3.util.Av3API.*
 import org.eclipse.emf.common.util.EList
 import org.eclipse.emf.common.util.BasicEList
 import org.osate.aadlv3.aadlv3.PropertyAssociationType
+import org.osate.aadlv3.aadlv3.ConfigurationAssignmentPattern
 
 class Aadlv3Util {
 	/**
@@ -155,24 +156,6 @@ class Aadlv3Util {
 	}
 
 
-//	/**
-//	 * return ordered set of Interfaces starting with the given classifier.
-//	 * First add the interface of cc, then all its super interfaces
-//	 */
-//	static def Iterable<ComponentInterface> getAllComponentInterfaces(ComponentClassifier cc) {
-//		return cc.allComponentClassifiers.filter[cl|cl instanceof ComponentInterface] as Iterable<ComponentInterface>
-//	}
-//
-//
-//	/**
-//	 * return set of component implementations for a given classifier.
-//	 * returns empty set for Interface
-//	 * returns set of implementations incl. super implementations for configuration
-//	 * returns implementation and super implementations for implementations
-//	 */
-//	static def Iterable<? extends ComponentImplementation> getAllComponentImplementations(ComponentClassifier cc) {
-//		return cc.allComponentClassifiers.filter[cl|cl instanceof ComponentImplementation] as Iterable<ComponentImplementation>
-//	}
 
 	
 	/**
@@ -510,7 +493,7 @@ class Aadlv3Util {
 	// the specified list contains a configuration assignment with the same target as the addition
 	static def boolean containsAdditionTarget(Iterable<ConfigurationAssignment> primary, ConfigurationAssignment addition){
 		for ( pca : primary){
-			if (pca.target.isSamePath(addition.target)){
+			if (pca.target.matchesTarget(addition.target)){
 				return true
 			}
 		}
@@ -554,7 +537,7 @@ class Aadlv3Util {
 	
 	static def boolean containsAdditionTarget(Iterable<PropertyAssociation> primary, PropertyAssociation addition){
 		for ( pca : primary){
-			if (pca.target.isSamePath(addition.target)){
+			if (pca.target.matchesTarget(addition.target)){
 				return true
 			}
 		}
@@ -609,7 +592,7 @@ class Aadlv3Util {
 		// We work from inner to outer CA scope reaching in
 		for (k : n - 1 .. 0) {
 			for (ca : casscopes.get(k)) {
-				if (ca.target.isSamePath(match, n - k, context)) {
+				if (ca.matchesTarget(match, n - k, context)) {
 					val atrs = ca.assignedClassifiers
 					for (atr : atrs) {
 						val actualClorP = atr.type
@@ -677,7 +660,7 @@ class Aadlv3Util {
 	}
 
 	// true of model element reference paths are the same, i.e., all referenced elements are the same
-	def static boolean isSamePath(ModelElementReference mer1, ModelElementReference mer2) {
+	def static boolean matchesTarget(ModelElementReference mer1, ModelElementReference mer2) {
 		var m1 = mer1
 		var m2 = mer2
 		while (m1?.element === m2.element){
@@ -696,21 +679,42 @@ class Aadlv3Util {
 
 
 	// depth indicates the target path length to be considered
-	def static boolean isSamePath(ModelElementReference mer, ModelElement match, int depth, ComponentInstance context) {
+	def static boolean matchesTarget(ConfigurationAssignment ca, ModelElement match, int depth, ComponentInstance context) {
+		if (ca instanceof ConfigurationAssignmentPattern){
+			return ca.matchesTargetPattern(match,context)
+		} else {
+			return ca.target?.matchesTarget(match, depth, context)
+		}
+	}
+	// depth indicates the target path length to be considered
+	private def static boolean matchesTarget(ModelElementReference mer, ModelElement match, int depth, ComponentInstance context) {
 		if(mer?.element.name != match.name) return false
 		if(depth == 1) return true // we found a match
 		if (context !== null) {
 			// there is an enclosing element in the model
 			if (mer.context !== null) {
 				// more elements in the path
-				return mer.context.isSamePath(context.component, depth - 1, context.eContainer as ComponentInstance)
+				return mer.context.matchesTarget(context.component, depth - 1, context.eContainer as ComponentInstance)
 			} else {
 				// end of path in mer path; check to see if there is an enclosing configuration assignment
 				val cxt = mer.modelElementReferenceContext?.eContainer
 				if (cxt instanceof ConfigurationAssignment) {
 					// look for enclosing configuration assignment
-					return cxt.target.isSamePath(context.component, depth - 1,context.eContainer as ComponentInstance)
+					return cxt.target?.matchesTarget(context.component, depth - 1,context.eContainer as ComponentInstance)
 				}
+			}
+		}
+		return false
+	}
+
+	// depth indicates the target path length to be considered
+	private def static boolean matchesTargetPattern(ConfigurationAssignment pat, ModelElement match, ComponentInstance context) {
+		if (pat instanceof ConfigurationAssignmentPattern){
+			val patternType = pat.targetPattern
+			if (match instanceof Component){
+				return patternType.isSuperTypeOf(match.typeReferences)
+			} else if (match instanceof Feature){
+				return patternType.isSuperTypeOf(match.type)
 			}
 		}
 		return false
@@ -865,6 +869,24 @@ class Aadlv3Util {
 	// returns true if superClassifierref is a super classifier of clref, i.e., clref is extended from super, or an implementation, or a configuration
 	def static boolean isSuperClassifierOf(TypeReference superClassifierref, TypeReference clref) {
 		(superClassifierref.type as ComponentClassifier).isSuperClassifierOf(clref.type as ComponentClassifier)
+	}
+	
+	
+	// returns true if superTyperef is a super type of any of type in trefs
+	def static boolean isSuperTypeOf(Type superType, Iterable<TypeReference> trefs) {
+		return trefs.exists[tref| superType.isSuperTypeOf(tref.type)]
+	
+	}
+
+	// returns true if if superType is a super type of type
+	def static boolean isSuperTypeOf(Type superType, Type type) {
+		if (superType instanceof DataType && type instanceof DataType){
+			return (superType as DataType).isSuperDataTypeOf(type as DataType)
+		}
+		if (superType instanceof ComponentClassifier && type instanceof ComponentClassifier){
+			return 	(superType as ComponentClassifier).isSuperClassifierOf(type as ComponentClassifier)
+		}
+		false
 	}
 
 

@@ -56,7 +56,7 @@ fragment ImplementationBody*:
 
 fragment ImplementationElement* :
 	connections+=Connection |connections+=FeatureMapping | components+=Component 
-		| paths+= Path | flowAssignments+=FlowAssignment | configurationAssignments+=ConfigurationAssignment
+		| paths+= Path | flowAssignments+=FlowAssignment | configurationAssignments+=ConfigurationAssignment | configurationAssignments+=ConfigurationAssignmentPattern
 		| propertyAssociations+=PropertyAssociation
 ;
 
@@ -136,6 +136,12 @@ ConfigurationAssignment returns av3::ConfigurationAssignment:
 	| CurlyConfigurationElementBlock)
 	;
 
+ConfigurationAssignmentPattern returns av3::ConfigurationAssignmentPattern:
+	targetPattern = [av3::Type|QualifiedTypesReference] '*=>' 
+	((assignedClassifiers+=TypeReference (',' assignedClassifiers+=TypeReference)* (CurlyConfigurationElementBlock)?)
+	| CurlyConfigurationElementBlock)
+	;
+
 
 FlowAssignment returns av3::PathSequence:
 	target= ModelElementReference '=>' 'flow'
@@ -163,7 +169,7 @@ fragment CurlyConfigurationElementBlock *:
 	'{' ConfigurationElement (SEMICOLON ConfigurationElement )* SEMICOLON? '}';
 
 fragment ConfigurationElement*: 
-	propertyAssociations+=PropertyAssociation | configurationAssignments+=ConfigurationAssignment
+	propertyAssociations+=PropertyAssociation | configurationAssignments+=ConfigurationAssignment | configurationAssignments+=ConfigurationAssignmentPattern
 ;
 
 fragment Parameters *:

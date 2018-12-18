@@ -170,6 +170,10 @@ public class ConfigurationAssignmentItemProvider extends ItemProviderAdapter imp
 						Aadlv3Factory.eINSTANCE.createConfigurationAssignment()));
 
 		newChildDescriptors
+				.add(createChildParameter(Aadlv3Package.Literals.CONFIGURATION_ASSIGNMENT__CONFIGURATION_ASSIGNMENTS,
+						Aadlv3Factory.eINSTANCE.createConfigurationAssignmentPattern()));
+
+		newChildDescriptors
 				.add(createChildParameter(Aadlv3Package.Literals.CONFIGURATION_ASSIGNMENT__ASSIGNED_CLASSIFIERS,
 						Aadlv3Factory.eINSTANCE.createTypeReference()));
 

@@ -362,6 +362,29 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.ConfigurationAssignmentPattern} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ConfigurationAssignmentPatternItemProvider configurationAssignmentPatternItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.ConfigurationAssignmentPattern}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createConfigurationAssignmentPatternAdapter() {
+		if (configurationAssignmentPatternItemProvider == null) {
+			configurationAssignmentPatternItemProvider = new ConfigurationAssignmentPatternItemProvider(this);
+		}
+
+		return configurationAssignmentPatternItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.ModelElementReference} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -701,6 +724,8 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 			pathElementItemProvider.dispose();
 		if (configurationAssignmentItemProvider != null)
 			configurationAssignmentItemProvider.dispose();
+		if (configurationAssignmentPatternItemProvider != null)
+			configurationAssignmentPatternItemProvider.dispose();
 		if (modelElementReferenceItemProvider != null)
 			modelElementReferenceItemProvider.dispose();
 		if (configurationParameterItemProvider != null)

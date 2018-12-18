@@ -1106,9 +1106,29 @@ ruleImplementationElement[EObject in_current]  returns [EObject current=in_curre
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getImplementationElementAccess().getPropertyAssociationsPropertyAssociationParserRuleCall_6_0());
+					newCompositeNode(grammarAccess.getImplementationElementAccess().getConfigurationAssignmentsConfigurationAssignmentPatternParserRuleCall_6_0());
 				}
-				lv_propertyAssociations_6_0=rulePropertyAssociation
+				lv_configurationAssignments_6_0=ruleConfigurationAssignmentPattern
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getImplementationElementRule());
+					}
+					add(
+						$current,
+						"configurationAssignments",
+						lv_configurationAssignments_6_0,
+						"org.osate.xtext.aadlv3.AadlV3.ConfigurationAssignmentPattern");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		    |
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getImplementationElementAccess().getPropertyAssociationsPropertyAssociationParserRuleCall_7_0());
+				}
+				lv_propertyAssociations_7_0=rulePropertyAssociation
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getImplementationElementRule());
@@ -1116,7 +1136,7 @@ ruleImplementationElement[EObject in_current]  returns [EObject current=in_curre
 					add(
 						$current,
 						"propertyAssociations",
-						lv_propertyAssociations_6_0,
+						lv_propertyAssociations_7_0,
 						"org.osate.xtext.aadlv3.AadlV3.PropertyAssociation");
 					afterParserOrEnumRuleCall();
 				}
@@ -2460,6 +2480,118 @@ ruleConfigurationAssignment returns [EObject current=null]
 	)
 ;
 
+// Entry rule entryRuleConfigurationAssignmentPattern
+entryRuleConfigurationAssignmentPattern returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getConfigurationAssignmentPatternRule()); }
+	iv_ruleConfigurationAssignmentPattern=ruleConfigurationAssignmentPattern
+	{ $current=$iv_ruleConfigurationAssignmentPattern.current; }
+	EOF;
+
+// Rule ConfigurationAssignmentPattern
+ruleConfigurationAssignmentPattern returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getConfigurationAssignmentPatternRule());
+					}
+				}
+				{
+					newCompositeNode(grammarAccess.getConfigurationAssignmentPatternAccess().getTargetPatternTypeCrossReference_0_0());
+				}
+				ruleQualifiedTypesReference
+				{
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		otherlv_1='*=>'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getConfigurationAssignmentPatternAccess().getAsteriskEqualsSignGreaterThanSignKeyword_1());
+		}
+		(
+			(
+				(
+					(
+						{
+							newCompositeNode(grammarAccess.getConfigurationAssignmentPatternAccess().getAssignedClassifiersTypeReferenceParserRuleCall_2_0_0_0());
+						}
+						lv_assignedClassifiers_2_0=ruleTypeReference
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getConfigurationAssignmentPatternRule());
+							}
+							add(
+								$current,
+								"assignedClassifiers",
+								lv_assignedClassifiers_2_0,
+								"org.osate.xtext.aadlv3.AadlV3.TypeReference");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)
+				(
+					otherlv_3=','
+					{
+						newLeafNode(otherlv_3, grammarAccess.getConfigurationAssignmentPatternAccess().getCommaKeyword_2_0_1_0());
+					}
+					(
+						(
+							{
+								newCompositeNode(grammarAccess.getConfigurationAssignmentPatternAccess().getAssignedClassifiersTypeReferenceParserRuleCall_2_0_1_1_0());
+							}
+							lv_assignedClassifiers_4_0=ruleTypeReference
+							{
+								if ($current==null) {
+									$current = createModelElementForParent(grammarAccess.getConfigurationAssignmentPatternRule());
+								}
+								add(
+									$current,
+									"assignedClassifiers",
+									lv_assignedClassifiers_4_0,
+									"org.osate.xtext.aadlv3.AadlV3.TypeReference");
+								afterParserOrEnumRuleCall();
+							}
+						)
+					)
+				)*
+				(
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getConfigurationAssignmentPatternRule());
+						}
+						newCompositeNode(grammarAccess.getConfigurationAssignmentPatternAccess().getCurlyConfigurationElementBlockParserRuleCall_2_0_2());
+					}
+					this_CurlyConfigurationElementBlock_5=ruleCurlyConfigurationElementBlock[$current]
+					{
+						$current = $this_CurlyConfigurationElementBlock_5.current;
+						afterParserOrEnumRuleCall();
+					}
+				)?
+			)
+			    |
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getConfigurationAssignmentPatternRule());
+				}
+				newCompositeNode(grammarAccess.getConfigurationAssignmentPatternAccess().getCurlyConfigurationElementBlockParserRuleCall_2_1());
+			}
+			this_CurlyConfigurationElementBlock_6=ruleCurlyConfigurationElementBlock[$current]
+			{
+				$current = $this_CurlyConfigurationElementBlock_6.current;
+				afterParserOrEnumRuleCall();
+			}
+		)
+	)
+;
+
 // Entry rule entryRuleFlowAssignment
 entryRuleFlowAssignment returns [EObject current=null]:
 	{ newCompositeNode(grammarAccess.getFlowAssignmentRule()); }
@@ -2925,6 +3057,26 @@ ruleConfigurationElement[EObject in_current]  returns [EObject current=in_curren
 						"configurationAssignments",
 						lv_configurationAssignments_1_0,
 						"org.osate.xtext.aadlv3.AadlV3.ConfigurationAssignment");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		    |
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getConfigurationElementAccess().getConfigurationAssignmentsConfigurationAssignmentPatternParserRuleCall_2_0());
+				}
+				lv_configurationAssignments_2_0=ruleConfigurationAssignmentPattern
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getConfigurationElementRule());
+					}
+					add(
+						$current,
+						"configurationAssignments",
+						lv_configurationAssignments_2_0,
+						"org.osate.xtext.aadlv3.AadlV3.ConfigurationAssignmentPattern");
 					afterParserOrEnumRuleCall();
 				}
 			)

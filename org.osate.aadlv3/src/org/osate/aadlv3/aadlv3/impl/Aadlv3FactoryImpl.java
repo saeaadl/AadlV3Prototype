@@ -98,6 +98,8 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 			return createPathElement();
 		case Aadlv3Package.CONFIGURATION_ASSIGNMENT:
 			return createConfigurationAssignment();
+		case Aadlv3Package.CONFIGURATION_ASSIGNMENT_PATTERN:
+			return createConfigurationAssignmentPattern();
 		case Aadlv3Package.MODEL_ELEMENT_REFERENCE:
 			return createModelElementReference();
 		case Aadlv3Package.CONFIGURATION_PARAMETER:
@@ -293,6 +295,17 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 	public ConfigurationAssignment createConfigurationAssignment() {
 		ConfigurationAssignmentImpl configurationAssignment = new ConfigurationAssignmentImpl();
 		return configurationAssignment;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ConfigurationAssignmentPattern createConfigurationAssignmentPattern() {
+		ConfigurationAssignmentPatternImpl configurationAssignmentPattern = new ConfigurationAssignmentPatternImpl();
+		return configurationAssignmentPattern;
 	}
 
 	/**

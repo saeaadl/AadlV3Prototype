@@ -555,18 +555,21 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cFlowAssignmentsFlowAssignmentParserRuleCall_4_0 = (RuleCall)cFlowAssignmentsAssignment_4.eContents().get(0);
 		private final Assignment cConfigurationAssignmentsAssignment_5 = (Assignment)cAlternatives.eContents().get(5);
 		private final RuleCall cConfigurationAssignmentsConfigurationAssignmentParserRuleCall_5_0 = (RuleCall)cConfigurationAssignmentsAssignment_5.eContents().get(0);
-		private final Assignment cPropertyAssociationsAssignment_6 = (Assignment)cAlternatives.eContents().get(6);
-		private final RuleCall cPropertyAssociationsPropertyAssociationParserRuleCall_6_0 = (RuleCall)cPropertyAssociationsAssignment_6.eContents().get(0);
+		private final Assignment cConfigurationAssignmentsAssignment_6 = (Assignment)cAlternatives.eContents().get(6);
+		private final RuleCall cConfigurationAssignmentsConfigurationAssignmentPatternParserRuleCall_6_0 = (RuleCall)cConfigurationAssignmentsAssignment_6.eContents().get(0);
+		private final Assignment cPropertyAssociationsAssignment_7 = (Assignment)cAlternatives.eContents().get(7);
+		private final RuleCall cPropertyAssociationsPropertyAssociationParserRuleCall_7_0 = (RuleCall)cPropertyAssociationsAssignment_7.eContents().get(0);
 		
 		//fragment ImplementationElement *:
 		//	connections+=Connection | connections+=FeatureMapping | components+=Component
-		//	| paths+=Path | flowAssignments+=FlowAssignment | configurationAssignments+=ConfigurationAssignment
+		//	| paths+=Path | flowAssignments+=FlowAssignment | configurationAssignments+=ConfigurationAssignment |
+		//	configurationAssignments+=ConfigurationAssignmentPattern
 		//	| propertyAssociations+=PropertyAssociation;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//connections+=Connection | connections+=FeatureMapping | components+=Component | paths+=Path |
 		//flowAssignments+=FlowAssignment | configurationAssignments+=ConfigurationAssignment |
-		//propertyAssociations+=PropertyAssociation
+		//configurationAssignments+=ConfigurationAssignmentPattern | propertyAssociations+=PropertyAssociation
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//connections+=Connection
@@ -605,11 +608,17 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		//ConfigurationAssignment
 		public RuleCall getConfigurationAssignmentsConfigurationAssignmentParserRuleCall_5_0() { return cConfigurationAssignmentsConfigurationAssignmentParserRuleCall_5_0; }
 		
+		//configurationAssignments+=ConfigurationAssignmentPattern
+		public Assignment getConfigurationAssignmentsAssignment_6() { return cConfigurationAssignmentsAssignment_6; }
+		
+		//ConfigurationAssignmentPattern
+		public RuleCall getConfigurationAssignmentsConfigurationAssignmentPatternParserRuleCall_6_0() { return cConfigurationAssignmentsConfigurationAssignmentPatternParserRuleCall_6_0; }
+		
 		//propertyAssociations+=PropertyAssociation
-		public Assignment getPropertyAssociationsAssignment_6() { return cPropertyAssociationsAssignment_6; }
+		public Assignment getPropertyAssociationsAssignment_7() { return cPropertyAssociationsAssignment_7; }
 		
 		//PropertyAssociation
-		public RuleCall getPropertyAssociationsPropertyAssociationParserRuleCall_6_0() { return cPropertyAssociationsPropertyAssociationParserRuleCall_6_0; }
+		public RuleCall getPropertyAssociationsPropertyAssociationParserRuleCall_7_0() { return cPropertyAssociationsPropertyAssociationParserRuleCall_7_0; }
 	}
 	public class ComponentConfigurationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.osate.xtext.aadlv3.AadlV3.ComponentConfiguration");
@@ -1360,6 +1369,76 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		//CurlyConfigurationElementBlock
 		public RuleCall getCurlyConfigurationElementBlockParserRuleCall_2_1() { return cCurlyConfigurationElementBlockParserRuleCall_2_1; }
 	}
+	public class ConfigurationAssignmentPatternElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.osate.xtext.aadlv3.AadlV3.ConfigurationAssignmentPattern");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cTargetPatternAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final CrossReference cTargetPatternTypeCrossReference_0_0 = (CrossReference)cTargetPatternAssignment_0.eContents().get(0);
+		private final RuleCall cTargetPatternTypeQualifiedTypesReferenceParserRuleCall_0_0_1 = (RuleCall)cTargetPatternTypeCrossReference_0_0.eContents().get(1);
+		private final Keyword cAsteriskEqualsSignGreaterThanSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
+		private final Group cGroup_2_0 = (Group)cAlternatives_2.eContents().get(0);
+		private final Assignment cAssignedClassifiersAssignment_2_0_0 = (Assignment)cGroup_2_0.eContents().get(0);
+		private final RuleCall cAssignedClassifiersTypeReferenceParserRuleCall_2_0_0_0 = (RuleCall)cAssignedClassifiersAssignment_2_0_0.eContents().get(0);
+		private final Group cGroup_2_0_1 = (Group)cGroup_2_0.eContents().get(1);
+		private final Keyword cCommaKeyword_2_0_1_0 = (Keyword)cGroup_2_0_1.eContents().get(0);
+		private final Assignment cAssignedClassifiersAssignment_2_0_1_1 = (Assignment)cGroup_2_0_1.eContents().get(1);
+		private final RuleCall cAssignedClassifiersTypeReferenceParserRuleCall_2_0_1_1_0 = (RuleCall)cAssignedClassifiersAssignment_2_0_1_1.eContents().get(0);
+		private final RuleCall cCurlyConfigurationElementBlockParserRuleCall_2_0_2 = (RuleCall)cGroup_2_0.eContents().get(2);
+		private final RuleCall cCurlyConfigurationElementBlockParserRuleCall_2_1 = (RuleCall)cAlternatives_2.eContents().get(1);
+		
+		//ConfigurationAssignmentPattern av3::ConfigurationAssignmentPattern:
+		//	targetPattern=[av3::Type|QualifiedTypesReference] '*=>' (assignedClassifiers+=TypeReference (','
+		//	assignedClassifiers+=TypeReference)* CurlyConfigurationElementBlock? | CurlyConfigurationElementBlock);
+		@Override public ParserRule getRule() { return rule; }
+		
+		//targetPattern=[av3::Type|QualifiedTypesReference] '*=>' (assignedClassifiers+=TypeReference (','
+		//assignedClassifiers+=TypeReference)* CurlyConfigurationElementBlock? | CurlyConfigurationElementBlock)
+		public Group getGroup() { return cGroup; }
+		
+		//targetPattern=[av3::Type|QualifiedTypesReference]
+		public Assignment getTargetPatternAssignment_0() { return cTargetPatternAssignment_0; }
+		
+		//[av3::Type|QualifiedTypesReference]
+		public CrossReference getTargetPatternTypeCrossReference_0_0() { return cTargetPatternTypeCrossReference_0_0; }
+		
+		//QualifiedTypesReference
+		public RuleCall getTargetPatternTypeQualifiedTypesReferenceParserRuleCall_0_0_1() { return cTargetPatternTypeQualifiedTypesReferenceParserRuleCall_0_0_1; }
+		
+		//'*=>'
+		public Keyword getAsteriskEqualsSignGreaterThanSignKeyword_1() { return cAsteriskEqualsSignGreaterThanSignKeyword_1; }
+		
+		//assignedClassifiers+=TypeReference (',' assignedClassifiers+=TypeReference)* CurlyConfigurationElementBlock? |
+		//CurlyConfigurationElementBlock
+		public Alternatives getAlternatives_2() { return cAlternatives_2; }
+		
+		//assignedClassifiers+=TypeReference (',' assignedClassifiers+=TypeReference)* CurlyConfigurationElementBlock?
+		public Group getGroup_2_0() { return cGroup_2_0; }
+		
+		//assignedClassifiers+=TypeReference
+		public Assignment getAssignedClassifiersAssignment_2_0_0() { return cAssignedClassifiersAssignment_2_0_0; }
+		
+		//TypeReference
+		public RuleCall getAssignedClassifiersTypeReferenceParserRuleCall_2_0_0_0() { return cAssignedClassifiersTypeReferenceParserRuleCall_2_0_0_0; }
+		
+		//(',' assignedClassifiers+=TypeReference)*
+		public Group getGroup_2_0_1() { return cGroup_2_0_1; }
+		
+		//','
+		public Keyword getCommaKeyword_2_0_1_0() { return cCommaKeyword_2_0_1_0; }
+		
+		//assignedClassifiers+=TypeReference
+		public Assignment getAssignedClassifiersAssignment_2_0_1_1() { return cAssignedClassifiersAssignment_2_0_1_1; }
+		
+		//TypeReference
+		public RuleCall getAssignedClassifiersTypeReferenceParserRuleCall_2_0_1_1_0() { return cAssignedClassifiersTypeReferenceParserRuleCall_2_0_1_1_0; }
+		
+		//CurlyConfigurationElementBlock?
+		public RuleCall getCurlyConfigurationElementBlockParserRuleCall_2_0_2() { return cCurlyConfigurationElementBlockParserRuleCall_2_0_2; }
+		
+		//CurlyConfigurationElementBlock
+		public RuleCall getCurlyConfigurationElementBlockParserRuleCall_2_1() { return cCurlyConfigurationElementBlockParserRuleCall_2_1; }
+	}
 	public class FlowAssignmentElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.osate.xtext.aadlv3.AadlV3.FlowAssignment");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -1625,12 +1704,16 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cPropertyAssociationsPropertyAssociationParserRuleCall_0_0 = (RuleCall)cPropertyAssociationsAssignment_0.eContents().get(0);
 		private final Assignment cConfigurationAssignmentsAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
 		private final RuleCall cConfigurationAssignmentsConfigurationAssignmentParserRuleCall_1_0 = (RuleCall)cConfigurationAssignmentsAssignment_1.eContents().get(0);
+		private final Assignment cConfigurationAssignmentsAssignment_2 = (Assignment)cAlternatives.eContents().get(2);
+		private final RuleCall cConfigurationAssignmentsConfigurationAssignmentPatternParserRuleCall_2_0 = (RuleCall)cConfigurationAssignmentsAssignment_2.eContents().get(0);
 		
 		//fragment ConfigurationElement *:
-		//	propertyAssociations+=PropertyAssociation | configurationAssignments+=ConfigurationAssignment;
+		//	propertyAssociations+=PropertyAssociation | configurationAssignments+=ConfigurationAssignment |
+		//	configurationAssignments+=ConfigurationAssignmentPattern;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//propertyAssociations+=PropertyAssociation | configurationAssignments+=ConfigurationAssignment
+		//propertyAssociations+=PropertyAssociation | configurationAssignments+=ConfigurationAssignment |
+		//configurationAssignments+=ConfigurationAssignmentPattern
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//propertyAssociations+=PropertyAssociation
@@ -1644,6 +1727,12 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		
 		//ConfigurationAssignment
 		public RuleCall getConfigurationAssignmentsConfigurationAssignmentParserRuleCall_1_0() { return cConfigurationAssignmentsConfigurationAssignmentParserRuleCall_1_0; }
+		
+		//configurationAssignments+=ConfigurationAssignmentPattern
+		public Assignment getConfigurationAssignmentsAssignment_2() { return cConfigurationAssignmentsAssignment_2; }
+		
+		//ConfigurationAssignmentPattern
+		public RuleCall getConfigurationAssignmentsConfigurationAssignmentPatternParserRuleCall_2_0() { return cConfigurationAssignmentsConfigurationAssignmentPatternParserRuleCall_2_0; }
 	}
 	public class ParametersElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.osate.xtext.aadlv3.AadlV3.Parameters");
@@ -3023,6 +3112,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	private final PathElementElements pPathElement;
 	private final ImportElements pImport;
 	private final ConfigurationAssignmentElements pConfigurationAssignment;
+	private final ConfigurationAssignmentPatternElements pConfigurationAssignmentPattern;
 	private final FlowAssignmentElements pFlowAssignment;
 	private final PropertyAssociationElements pPropertyAssociation;
 	private final PropertyValueElements pPropertyValue;
@@ -3112,6 +3202,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		this.pPathElement = new PathElementElements();
 		this.pImport = new ImportElements();
 		this.pConfigurationAssignment = new ConfigurationAssignmentElements();
+		this.pConfigurationAssignmentPattern = new ConfigurationAssignmentPatternElements();
 		this.pFlowAssignment = new FlowAssignmentElements();
 		this.pPropertyAssociation = new PropertyAssociationElements();
 		this.pPropertyValue = new PropertyValueElements();
@@ -3307,7 +3398,8 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	
 	//fragment ImplementationElement *:
 	//	connections+=Connection | connections+=FeatureMapping | components+=Component
-	//	| paths+=Path | flowAssignments+=FlowAssignment | configurationAssignments+=ConfigurationAssignment
+	//	| paths+=Path | flowAssignments+=FlowAssignment | configurationAssignments+=ConfigurationAssignment |
+	//	configurationAssignments+=ConfigurationAssignmentPattern
 	//	| propertyAssociations+=PropertyAssociation;
 	public ImplementationElementElements getImplementationElementAccess() {
 		return pImplementationElement;
@@ -3468,6 +3560,17 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		return getConfigurationAssignmentAccess().getRule();
 	}
 	
+	//ConfigurationAssignmentPattern av3::ConfigurationAssignmentPattern:
+	//	targetPattern=[av3::Type|QualifiedTypesReference] '*=>' (assignedClassifiers+=TypeReference (','
+	//	assignedClassifiers+=TypeReference)* CurlyConfigurationElementBlock? | CurlyConfigurationElementBlock);
+	public ConfigurationAssignmentPatternElements getConfigurationAssignmentPatternAccess() {
+		return pConfigurationAssignmentPattern;
+	}
+	
+	public ParserRule getConfigurationAssignmentPatternRule() {
+		return getConfigurationAssignmentPatternAccess().getRule();
+	}
+	
 	//FlowAssignment av3::PathSequence:
 	//	target=ModelElementReference '=>' 'flow'
 	//	elements+=PathElement ('->' elements+=PathElement)*;
@@ -3532,7 +3635,8 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//fragment ConfigurationElement *:
-	//	propertyAssociations+=PropertyAssociation | configurationAssignments+=ConfigurationAssignment;
+	//	propertyAssociations+=PropertyAssociation | configurationAssignments+=ConfigurationAssignment |
+	//	configurationAssignments+=ConfigurationAssignmentPattern;
 	public ConfigurationElementElements getConfigurationElementAccess() {
 		return pConfigurationElement;
 	}

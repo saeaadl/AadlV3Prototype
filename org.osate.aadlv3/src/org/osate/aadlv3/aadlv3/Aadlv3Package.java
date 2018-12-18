@@ -1067,7 +1067,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getModelElementReference()
 	 * @generated
 	 */
-	int MODEL_ELEMENT_REFERENCE = 20;
+	int MODEL_ELEMENT_REFERENCE = 21;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.ConfigurationParameterImpl <em>Configuration Parameter</em>}' class.
@@ -1077,7 +1077,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getConfigurationParameter()
 	 * @generated
 	 */
-	int CONFIGURATION_PARAMETER = 21;
+	int CONFIGURATION_PARAMETER = 22;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.TypeReferenceImpl <em>Type Reference</em>}' class.
@@ -1087,7 +1087,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getTypeReference()
 	 * @generated
 	 */
-	int TYPE_REFERENCE = 22;
+	int TYPE_REFERENCE = 23;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.ConfigurationActualImpl <em>Configuration Actual</em>}' class.
@@ -1097,7 +1097,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getConfigurationActual()
 	 * @generated
 	 */
-	int CONFIGURATION_ACTUAL = 23;
+	int CONFIGURATION_ACTUAL = 24;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.WorkingsetImpl <em>Workingset</em>}' class.
@@ -1107,7 +1107,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getWorkingset()
 	 * @generated
 	 */
-	int WORKINGSET = 24;
+	int WORKINGSET = 25;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.PropertyValueImpl <em>Property Value</em>}' class.
@@ -1117,7 +1117,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getPropertyValue()
 	 * @generated
 	 */
-	int PROPERTY_VALUE = 25;
+	int PROPERTY_VALUE = 26;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.PropertyAssociationImpl <em>Property Association</em>}' class.
@@ -1127,7 +1127,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getPropertyAssociation()
 	 * @generated
 	 */
-	int PROPERTY_ASSOCIATION = 26;
+	int PROPERTY_ASSOCIATION = 27;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.PathElementImpl <em>Path Element</em>}' class.
@@ -1310,6 +1310,70 @@ public interface Aadlv3Package extends EPackage {
 	 * @ordered
 	 */
 	int CONFIGURATION_ASSIGNMENT_FEATURE_COUNT = 4;
+
+	/**
+	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.ConfigurationAssignmentPatternImpl <em>Configuration Assignment Pattern</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.osate.aadlv3.aadlv3.impl.ConfigurationAssignmentPatternImpl
+	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getConfigurationAssignmentPattern()
+	 * @generated
+	 */
+	int CONFIGURATION_ASSIGNMENT_PATTERN = 20;
+
+	/**
+	 * The feature id for the '<em><b>Target</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONFIGURATION_ASSIGNMENT_PATTERN__TARGET = CONFIGURATION_ASSIGNMENT__TARGET;
+
+	/**
+	 * The feature id for the '<em><b>Configuration Assignments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONFIGURATION_ASSIGNMENT_PATTERN__CONFIGURATION_ASSIGNMENTS = CONFIGURATION_ASSIGNMENT__CONFIGURATION_ASSIGNMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Assigned Classifiers</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONFIGURATION_ASSIGNMENT_PATTERN__ASSIGNED_CLASSIFIERS = CONFIGURATION_ASSIGNMENT__ASSIGNED_CLASSIFIERS;
+
+	/**
+	 * The feature id for the '<em><b>Property Associations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONFIGURATION_ASSIGNMENT_PATTERN__PROPERTY_ASSOCIATIONS = CONFIGURATION_ASSIGNMENT__PROPERTY_ASSOCIATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Target Pattern</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONFIGURATION_ASSIGNMENT_PATTERN__TARGET_PATTERN = CONFIGURATION_ASSIGNMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Configuration Assignment Pattern</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONFIGURATION_ASSIGNMENT_PATTERN_FEATURE_COUNT = CONFIGURATION_ASSIGNMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1499,7 +1563,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getComponentCategory()
 	 * @generated
 	 */
-	int COMPONENT_CATEGORY = 27;
+	int COMPONENT_CATEGORY = 28;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.FeatureCategory <em>Feature Category</em>}' enum.
@@ -1509,7 +1573,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getFeatureCategory()
 	 * @generated
 	 */
-	int FEATURE_CATEGORY = 28;
+	int FEATURE_CATEGORY = 29;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.FeatureDirection <em>Feature Direction</em>}' enum.
@@ -1519,7 +1583,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getFeatureDirection()
 	 * @generated
 	 */
-	int FEATURE_DIRECTION = 29;
+	int FEATURE_DIRECTION = 30;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.AssociationType <em>Association Type</em>}' enum.
@@ -1529,7 +1593,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getAssociationType()
 	 * @generated
 	 */
-	int ASSOCIATION_TYPE = 30;
+	int ASSOCIATION_TYPE = 31;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.PropertyAssociationType <em>Property Association Type</em>}' enum.
@@ -1539,7 +1603,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getPropertyAssociationType()
 	 * @generated
 	 */
-	int PROPERTY_ASSOCIATION_TYPE = 31;
+	int PROPERTY_ASSOCIATION_TYPE = 32;
 
 	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.PackageDeclaration <em>Package Declaration</em>}'.
@@ -2161,6 +2225,27 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 */
 	EReference getConfigurationAssignment_PropertyAssociations();
+
+	/**
+	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.ConfigurationAssignmentPattern <em>Configuration Assignment Pattern</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Configuration Assignment Pattern</em>'.
+	 * @see org.osate.aadlv3.aadlv3.ConfigurationAssignmentPattern
+	 * @generated
+	 */
+	EClass getConfigurationAssignmentPattern();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.osate.aadlv3.aadlv3.ConfigurationAssignmentPattern#getTargetPattern <em>Target Pattern</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Target Pattern</em>'.
+	 * @see org.osate.aadlv3.aadlv3.ConfigurationAssignmentPattern#getTargetPattern()
+	 * @see #getConfigurationAssignmentPattern()
+	 * @generated
+	 */
+	EReference getConfigurationAssignmentPattern_TargetPattern();
 
 	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.ModelElementReference <em>Model Element Reference</em>}'.
@@ -3046,6 +3131,25 @@ public interface Aadlv3Package extends EPackage {
 		 */
 		EReference CONFIGURATION_ASSIGNMENT__PROPERTY_ASSOCIATIONS = eINSTANCE
 				.getConfigurationAssignment_PropertyAssociations();
+
+		/**
+		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.ConfigurationAssignmentPatternImpl <em>Configuration Assignment Pattern</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.osate.aadlv3.aadlv3.impl.ConfigurationAssignmentPatternImpl
+		 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getConfigurationAssignmentPattern()
+		 * @generated
+		 */
+		EClass CONFIGURATION_ASSIGNMENT_PATTERN = eINSTANCE.getConfigurationAssignmentPattern();
+
+		/**
+		 * The meta object literal for the '<em><b>Target Pattern</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONFIGURATION_ASSIGNMENT_PATTERN__TARGET_PATTERN = eINSTANCE
+				.getConfigurationAssignmentPattern_TargetPattern();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.ModelElementReferenceImpl <em>Model Element Reference</em>}' class.

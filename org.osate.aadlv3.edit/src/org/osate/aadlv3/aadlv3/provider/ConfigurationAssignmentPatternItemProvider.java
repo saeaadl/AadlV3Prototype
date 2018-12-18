@@ -23,29 +23,27 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.osate.aadlv3.aadlv3.Aadlv3Factory;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
-import org.osate.aadlv3.aadlv3.ComponentConfiguration;
+import org.osate.aadlv3.aadlv3.ConfigurationAssignmentPattern;
 
 /**
- * This is the item provider adapter for a {@link org.osate.aadlv3.aadlv3.ComponentConfiguration} object.
+ * This is the item provider adapter for a {@link org.osate.aadlv3.aadlv3.ConfigurationAssignmentPattern} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ComponentConfigurationItemProvider extends ComponentRealizationItemProvider {
+public class ConfigurationAssignmentPatternItemProvider extends ConfigurationAssignmentItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ComponentConfigurationItemProvider(AdapterFactory adapterFactory) {
+	public ConfigurationAssignmentPatternItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -60,25 +58,8 @@ public class ComponentConfigurationItemProvider extends ComponentRealizationItem
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addParameterizedPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Parameterized feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addParameterizedPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_ComponentConfiguration_parameterized_feature"),
-						getString("_UI_PropertyDescriptor_description",
-								"_UI_ComponentConfiguration_parameterized_feature", "_UI_ComponentConfiguration_type"),
-						Aadlv3Package.Literals.COMPONENT_CONFIGURATION__PARAMETERIZED, true, false, false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -93,8 +74,7 @@ public class ComponentConfigurationItemProvider extends ComponentRealizationItem
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(Aadlv3Package.Literals.COMPONENT_CONFIGURATION__PARAMETERS);
-			childrenFeatures.add(Aadlv3Package.Literals.COMPONENT_CONFIGURATION__CONFIGURATION_ASSIGNMENTS);
+			childrenFeatures.add(Aadlv3Package.Literals.CONFIGURATION_ASSIGNMENT_PATTERN__TARGET_PATTERN);
 		}
 		return childrenFeatures;
 	}
@@ -113,14 +93,14 @@ public class ComponentConfigurationItemProvider extends ComponentRealizationItem
 	}
 
 	/**
-	 * This returns ComponentConfiguration.gif.
+	 * This returns ConfigurationAssignmentPattern.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ComponentConfiguration"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ConfigurationAssignmentPattern"));
 	}
 
 	/**
@@ -131,9 +111,7 @@ public class ComponentConfigurationItemProvider extends ComponentRealizationItem
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ComponentConfiguration) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_ComponentConfiguration_type")
-				: getString("_UI_ComponentConfiguration_type") + " " + label;
+		return getString("_UI_ConfigurationAssignmentPattern_type");
 	}
 
 	/**
@@ -147,12 +125,8 @@ public class ComponentConfigurationItemProvider extends ComponentRealizationItem
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ComponentConfiguration.class)) {
-		case Aadlv3Package.COMPONENT_CONFIGURATION__PARAMETERIZED:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
-		case Aadlv3Package.COMPONENT_CONFIGURATION__PARAMETERS:
-		case Aadlv3Package.COMPONENT_CONFIGURATION__CONFIGURATION_ASSIGNMENTS:
+		switch (notification.getFeatureID(ConfigurationAssignmentPattern.class)) {
+		case Aadlv3Package.CONFIGURATION_ASSIGNMENT_PATTERN__TARGET_PATTERN:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -170,16 +144,25 @@ public class ComponentConfigurationItemProvider extends ComponentRealizationItem
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.COMPONENT_CONFIGURATION__PARAMETERS,
-				Aadlv3Factory.eINSTANCE.createConfigurationParameter()));
+		newChildDescriptors
+				.add(createChildParameter(Aadlv3Package.Literals.CONFIGURATION_ASSIGNMENT_PATTERN__TARGET_PATTERN,
+						Aadlv3Factory.eINSTANCE.createDataType()));
 
 		newChildDescriptors
-				.add(createChildParameter(Aadlv3Package.Literals.COMPONENT_CONFIGURATION__CONFIGURATION_ASSIGNMENTS,
-						Aadlv3Factory.eINSTANCE.createConfigurationAssignment()));
+				.add(createChildParameter(Aadlv3Package.Literals.CONFIGURATION_ASSIGNMENT_PATTERN__TARGET_PATTERN,
+						Aadlv3Factory.eINSTANCE.createComponentInterface()));
 
 		newChildDescriptors
-				.add(createChildParameter(Aadlv3Package.Literals.COMPONENT_CONFIGURATION__CONFIGURATION_ASSIGNMENTS,
-						Aadlv3Factory.eINSTANCE.createConfigurationAssignmentPattern()));
+				.add(createChildParameter(Aadlv3Package.Literals.CONFIGURATION_ASSIGNMENT_PATTERN__TARGET_PATTERN,
+						Aadlv3Factory.eINSTANCE.createComponentImplementation()));
+
+		newChildDescriptors
+				.add(createChildParameter(Aadlv3Package.Literals.CONFIGURATION_ASSIGNMENT_PATTERN__TARGET_PATTERN,
+						Aadlv3Factory.eINSTANCE.createComponentConfiguration()));
+
+		newChildDescriptors
+				.add(createChildParameter(Aadlv3Package.Literals.CONFIGURATION_ASSIGNMENT_PATTERN__TARGET_PATTERN,
+						Aadlv3Factory.eINSTANCE.createConfigurationParameter()));
 	}
 
 }

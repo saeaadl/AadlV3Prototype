@@ -301,6 +301,15 @@ public class Aadlv3Switch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case Aadlv3Package.CONFIGURATION_ASSIGNMENT_PATTERN: {
+			ConfigurationAssignmentPattern configurationAssignmentPattern = (ConfigurationAssignmentPattern) theEObject;
+			T result = caseConfigurationAssignmentPattern(configurationAssignmentPattern);
+			if (result == null)
+				result = caseConfigurationAssignment(configurationAssignmentPattern);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		case Aadlv3Package.MODEL_ELEMENT_REFERENCE: {
 			ModelElementReference modelElementReference = (ModelElementReference) theEObject;
 			T result = caseModelElementReference(modelElementReference);
@@ -615,6 +624,21 @@ public class Aadlv3Switch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseConfigurationAssignment(ConfigurationAssignment object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Configuration Assignment Pattern</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Configuration Assignment Pattern</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseConfigurationAssignmentPattern(ConfigurationAssignmentPattern object) {
 		return null;
 	}
 

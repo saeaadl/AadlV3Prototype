@@ -118,6 +118,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="propertyAssociations" upperBound="-1"
         eType="#//PropertyAssociation" containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConfigurationAssignmentPattern" eSuperTypes="#//ConfigurationAssignment">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="targetPattern" eType="#//Type"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ModelElementReference">
     <eStructuralFeatures xsi:type="ecore:EReference" name="element" eType="#//ModelElement"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="#//ModelElementReference"

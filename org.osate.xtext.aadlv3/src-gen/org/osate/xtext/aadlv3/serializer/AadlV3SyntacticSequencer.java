@@ -128,6 +128,7 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     name=DottedName (ambiguity) 'end' SEMICOLON (rule end)
 	 *     name=DottedName (ambiguity) 'is' components+=Component
 	 *     name=DottedName (ambiguity) 'is' configurationAssignments+=ConfigurationAssignment
+	 *     name=DottedName (ambiguity) 'is' configurationAssignments+=ConfigurationAssignmentPattern
 	 *     name=DottedName (ambiguity) 'is' connections+=Connection
 	 *     name=DottedName (ambiguity) 'is' connections+=FeatureMapping
 	 *     name=DottedName (ambiguity) 'is' flowAssignments+=FlowAssignment
@@ -188,6 +189,7 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     configurationAssignments+=ConfigurationAssignment (ambiguity) 'end' SEMICOLON (rule end)
+	 *     configurationAssignments+=ConfigurationAssignmentPattern (ambiguity) 'end' SEMICOLON (rule end)
 	 *     propertyAssociations+=PropertyAssociation (ambiguity) 'end' SEMICOLON (rule end)
 	 */
 	protected void emit_ConfigurationElementBlock_SEMICOLONParserRuleCall_0_3_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
@@ -200,6 +202,7 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     configurationAssignments+=ConfigurationAssignment (ambiguity) '}' (rule end)
+	 *     configurationAssignments+=ConfigurationAssignmentPattern (ambiguity) '}' (rule end)
 	 *     propertyAssociations+=PropertyAssociation (ambiguity) '}' (rule end)
 	 */
 	protected void emit_CurlyConfigurationElementBlock_SEMICOLONParserRuleCall_3_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
@@ -213,6 +216,7 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 	 * This ambiguous syntax occurs at:
 	 *     components+=Component (ambiguity) 'end' SEMICOLON (rule end)
 	 *     configurationAssignments+=ConfigurationAssignment (ambiguity) 'end' SEMICOLON (rule end)
+	 *     configurationAssignments+=ConfigurationAssignmentPattern (ambiguity) 'end' SEMICOLON (rule end)
 	 *     connections+=Connection (ambiguity) 'end' SEMICOLON (rule end)
 	 *     connections+=FeatureMapping (ambiguity) 'end' SEMICOLON (rule end)
 	 *     flowAssignments+=FlowAssignment (ambiguity) 'end' SEMICOLON (rule end)

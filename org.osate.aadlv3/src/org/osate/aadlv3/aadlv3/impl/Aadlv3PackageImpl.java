@@ -36,6 +36,7 @@ import org.osate.aadlv3.aadlv3.ComponentInterface;
 import org.osate.aadlv3.aadlv3.ComponentRealization;
 import org.osate.aadlv3.aadlv3.ConfigurationActual;
 import org.osate.aadlv3.aadlv3.ConfigurationAssignment;
+import org.osate.aadlv3.aadlv3.ConfigurationAssignmentPattern;
 import org.osate.aadlv3.aadlv3.ConfigurationParameter;
 import org.osate.aadlv3.aadlv3.DataType;
 import org.osate.aadlv3.aadlv3.Feature;
@@ -183,6 +184,13 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	private EClass configurationAssignmentEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass configurationAssignmentPatternEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -939,6 +947,26 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
+	public EClass getConfigurationAssignmentPattern() {
+		return configurationAssignmentPatternEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getConfigurationAssignmentPattern_TargetPattern() {
+		return (EReference) configurationAssignmentPatternEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getModelElementReference() {
 		return modelElementReferenceEClass;
 	}
@@ -1389,6 +1417,9 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		createEReference(configurationAssignmentEClass, CONFIGURATION_ASSIGNMENT__ASSIGNED_CLASSIFIERS);
 		createEReference(configurationAssignmentEClass, CONFIGURATION_ASSIGNMENT__PROPERTY_ASSOCIATIONS);
 
+		configurationAssignmentPatternEClass = createEClass(CONFIGURATION_ASSIGNMENT_PATTERN);
+		createEReference(configurationAssignmentPatternEClass, CONFIGURATION_ASSIGNMENT_PATTERN__TARGET_PATTERN);
+
 		modelElementReferenceEClass = createEClass(MODEL_ELEMENT_REFERENCE);
 		createEReference(modelElementReferenceEClass, MODEL_ELEMENT_REFERENCE__ELEMENT);
 		createEReference(modelElementReferenceEClass, MODEL_ELEMENT_REFERENCE__CONTEXT);
@@ -1472,6 +1503,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		associationEClass.getESuperTypes().add(this.getModelElement());
 		pathSequenceEClass.getESuperTypes().add(this.getModelElement());
 		pathElementEClass.getESuperTypes().add(this.getModelElementReference());
+		configurationAssignmentPatternEClass.getESuperTypes().add(this.getConfigurationAssignment());
 		configurationParameterEClass.getESuperTypes().add(this.getNamedElement());
 		configurationParameterEClass.getESuperTypes().add(this.getType());
 		workingsetEClass.getESuperTypes().add(this.getPackageElement());
@@ -1664,6 +1696,12 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		initEReference(getConfigurationAssignment_PropertyAssociations(), this.getPropertyAssociation(), null,
 				"propertyAssociations", null, 0, -1, ConfigurationAssignment.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(configurationAssignmentPatternEClass, ConfigurationAssignmentPattern.class,
+				"ConfigurationAssignmentPattern", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getConfigurationAssignmentPattern_TargetPattern(), this.getType(), null, "targetPattern", null,
+				0, 1, ConfigurationAssignmentPattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(modelElementReferenceEClass, ModelElementReference.class, "ModelElementReference", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

@@ -34,6 +34,7 @@ import org.osate.aadlv3.aadlv3.ComponentImplementation;
 import org.osate.aadlv3.aadlv3.ComponentInterface;
 import org.osate.aadlv3.aadlv3.ConfigurationActual;
 import org.osate.aadlv3.aadlv3.ConfigurationAssignment;
+import org.osate.aadlv3.aadlv3.ConfigurationAssignmentPattern;
 import org.osate.aadlv3.aadlv3.ConfigurationParameter;
 import org.osate.aadlv3.aadlv3.DataType;
 import org.osate.aadlv3.aadlv3.Feature;
@@ -103,6 +104,9 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 				return; 
 			case Aadlv3Package.CONFIGURATION_ASSIGNMENT:
 				sequence_ConfigurationAssignment_ConfigurationElement(context, (ConfigurationAssignment) semanticObject); 
+				return; 
+			case Aadlv3Package.CONFIGURATION_ASSIGNMENT_PATTERN:
+				sequence_ConfigurationAssignmentPattern_ConfigurationElement(context, (ConfigurationAssignmentPattern) semanticObject); 
 				return; 
 			case Aadlv3Package.CONFIGURATION_PARAMETER:
 				sequence_ConfigurationParameter(context, (ConfigurationParameter) semanticObject); 
@@ -184,7 +188,11 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *         (parameterized?='(' (parameters+=ConfigurationParameter parameters+=ConfigurationParameter*)?)? 
 	 *         superClassifiers+=RealizationReference 
 	 *         superClassifiers+=RealizationReference* 
-	 *         (propertyAssociations+=PropertyAssociation | configurationAssignments+=ConfigurationAssignment)*
+	 *         (
+	 *             propertyAssociations+=PropertyAssociation | 
+	 *             configurationAssignments+=ConfigurationAssignment | 
+	 *             configurationAssignments+=ConfigurationAssignmentPattern
+	 *         )*
 	 *     )
 	 */
 	protected void sequence_ComponentConfiguration_ConfigurationElement_ConfigurationExtensions_Parameters(ISerializationContext context, ComponentConfiguration semanticObject) {
@@ -209,6 +217,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *             paths+=Path | 
 	 *             flowAssignments+=FlowAssignment | 
 	 *             configurationAssignments+=ConfigurationAssignment | 
+	 *             configurationAssignments+=ConfigurationAssignmentPattern | 
 	 *             propertyAssociations+=PropertyAssociation
 	 *         )*
 	 *     )
@@ -294,18 +303,46 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
+	 *     ConfigurationAssignmentPattern returns ConfigurationAssignmentPattern
+	 *
+	 * Constraint:
+	 *     (
+	 *         targetPattern=[Type|QualifiedTypesReference] 
+	 *         (
+	 *             (assignedClassifiers+=TypeReference assignedClassifiers+=TypeReference*) | 
+	 *             (
+	 *                 (assignedClassifiers+=TypeReference assignedClassifiers+=TypeReference*) 
+	 *                 (
+	 *                     propertyAssociations+=PropertyAssociation | 
+	 *                     configurationAssignments+=ConfigurationAssignment | 
+	 *                     configurationAssignments+=ConfigurationAssignmentPattern
+	 *                 )+
+	 *             )
+	 *         )?
+	 *     )
+	 */
+	protected void sequence_ConfigurationAssignmentPattern_ConfigurationElement(ISerializationContext context, ConfigurationAssignmentPattern semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     ConfigurationAssignment returns ConfigurationAssignment
 	 *
 	 * Constraint:
 	 *     (
 	 *         target=ModelElementReference 
 	 *         (
+	 *             (assignedClassifiers+=TypeReference assignedClassifiers+=TypeReference*) | 
 	 *             (
-	 *                 assignedClassifiers+=TypeReference 
-	 *                 assignedClassifiers+=TypeReference* 
-	 *                 (propertyAssociations+=PropertyAssociation | configurationAssignments+=ConfigurationAssignment)+
-	 *             ) | 
-	 *             (propertyAssociations+=PropertyAssociation | configurationAssignments+=ConfigurationAssignment)+
+	 *                 (assignedClassifiers+=TypeReference assignedClassifiers+=TypeReference*) 
+	 *                 (
+	 *                     propertyAssociations+=PropertyAssociation | 
+	 *                     configurationAssignments+=ConfigurationAssignment | 
+	 *                     configurationAssignments+=ConfigurationAssignmentPattern
+	 *                 )+
+	 *             )
 	 *         )?
 	 *     )
 	 */

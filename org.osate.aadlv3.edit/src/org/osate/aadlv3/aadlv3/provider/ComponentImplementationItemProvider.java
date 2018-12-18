@@ -163,6 +163,10 @@ public class ComponentImplementationItemProvider extends ComponentRealizationIte
 				.add(createChildParameter(Aadlv3Package.Literals.COMPONENT_IMPLEMENTATION__CONFIGURATION_ASSIGNMENTS,
 						Aadlv3Factory.eINSTANCE.createConfigurationAssignment()));
 
+		newChildDescriptors
+				.add(createChildParameter(Aadlv3Package.Literals.COMPONENT_IMPLEMENTATION__CONFIGURATION_ASSIGNMENTS,
+						Aadlv3Factory.eINSTANCE.createConfigurationAssignmentPattern()));
+
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.COMPONENT_IMPLEMENTATION__FLOW_ASSIGNMENTS,
 				Aadlv3Factory.eINSTANCE.createPathSequence()));
 
