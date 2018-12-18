@@ -2,7 +2,8 @@ package simpleinstances
 workingset simpleinstances is
 //	basic: system Basic::gps.i;
 //	first : system SimpleConfiguration::top.i ;
-	second : system SimpleConfiguration::top.topc ;
+//	second : system SimpleConfiguration::top.topc ;
+	patt1 : system PatternConfiguration::top.topc ;
 	
 //	presL1: system ConfigurationPresentation::top.config_L1;
 //	pressec: system ConfigurationPresentation::top.config_Security;
