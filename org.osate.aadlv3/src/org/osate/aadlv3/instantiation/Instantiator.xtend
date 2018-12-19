@@ -23,9 +23,15 @@ import org.osate.av3instance.av3instance.PathInstance
 
 import static extension org.eclipse.emf.ecore.util.EcoreUtil.*
 import static extension org.osate.aadlv3.util.Aadlv3Util.*
+import org.osate.aadlv3.aadlv3.PropertyDefinition
 
 class Instantiator {
+	
+	static var Iterable<PropertyDefinition> expectedProperties = Collections.EMPTY_LIST
+	
+	
 	def instantiate(Workingset ws) {
+		expectedProperties = ws.expectedProperties
 		for (iroot : ws.rootComponents) {
 			val rootinstance = iroot.instantiateRoot
 			rootinstance.eResource.save(null)

@@ -47,6 +47,7 @@ import org.osate.aadlv3.aadlv3.PropertyAssociationType
 import org.osate.aadlv3.aadlv3.ConfigurationAssignmentPattern
 import org.osate.aadlv3.aadlv3.PropertyDefinition
 import org.osate.aadlv3.aadlv3.PropertySet
+import org.osate.aadlv3.aadlv3.Workingset
 
 class Aadlv3Util {
 	/**
@@ -1377,6 +1378,15 @@ class Aadlv3Util {
 		result.addAll(pds)
 		result
 	}
+	
+	def static Iterable<PropertyDefinition> getExpectedProperties(Workingset ws){
+		val pss = ws.useProperties
+		val pds = pss.map[ps|ps.properties].flatten
+		val result = new HashSet<PropertyDefinition>()
+		result.addAll(pds)
+		result
+	}
+	
 	
 	def static boolean appliesTo(PropertyDefinition pd, ComponentCategory ccat){
 		if (ccat === null){
