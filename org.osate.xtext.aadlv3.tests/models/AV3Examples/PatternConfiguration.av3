@@ -61,7 +61,7 @@ import StandardProperties::*;
 	system top.i  is
 		sense: abstract sender; // subcomponent by interface
 		sense3: abstract sender;
-		actuate: abstract receiver {#Period => 23}; // subcomponent by interface
+		actuate: process receiver {#Period => 23}; // subcomponent by interface
 	end ;
 
 	configuration top.topc extends top.i is

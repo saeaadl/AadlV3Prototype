@@ -20,7 +20,7 @@ end;
 
 interface subsubsys end;
 
-abstract subsubsys.i end; 
+process subsubsys.i end; 
 
 system interface top end;
 
