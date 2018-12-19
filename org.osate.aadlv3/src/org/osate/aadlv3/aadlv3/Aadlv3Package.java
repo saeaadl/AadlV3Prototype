@@ -172,14 +172,14 @@ public interface Aadlv3Package extends EPackage {
 	int PACKAGE_DECLARATION_FEATURE_COUNT = PACKAGE_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.PropertyImpl <em>Property</em>}' class.
+	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.PropertyDefinitionImpl <em>Property Definition</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.osate.aadlv3.aadlv3.impl.PropertyImpl
-	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getProperty()
+	 * @see org.osate.aadlv3.aadlv3.impl.PropertyDefinitionImpl
+	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getPropertyDefinition()
 	 * @generated
 	 */
-	int PROPERTY = 3;
+	int PROPERTY_DEFINITION = 3;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -188,7 +188,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__NAME = PACKAGE_ELEMENT__NAME;
+	int PROPERTY_DEFINITION__NAME = PACKAGE_ELEMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -197,16 +197,43 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__TYPE = PACKAGE_ELEMENT_FEATURE_COUNT + 0;
+	int PROPERTY_DEFINITION__TYPE = PACKAGE_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Property</em>' class.
+	 * The feature id for the '<em><b>Component Categories</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_FEATURE_COUNT = PACKAGE_ELEMENT_FEATURE_COUNT + 1;
+	int PROPERTY_DEFINITION__COMPONENT_CATEGORIES = PACKAGE_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Feature Categories</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_DEFINITION__FEATURE_CATEGORIES = PACKAGE_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Association Types</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_DEFINITION__ASSOCIATION_TYPES = PACKAGE_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of structural features of the '<em>Property Definition</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_DEFINITION_FEATURE_COUNT = PACKAGE_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.PropertySetImpl <em>Property Set</em>}' class.
@@ -1484,13 +1511,22 @@ public interface Aadlv3Package extends EPackage {
 	int WORKINGSET__ROOT_COMPONENTS = PACKAGE_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Use Properties</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKINGSET__USE_PROPERTIES = PACKAGE_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Workingset</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int WORKINGSET_FEATURE_COUNT = PACKAGE_ELEMENT_FEATURE_COUNT + 1;
+	int WORKINGSET_FEATURE_COUNT = PACKAGE_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1669,25 +1705,58 @@ public interface Aadlv3Package extends EPackage {
 	EClass getPackageElement();
 
 	/**
-	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.Property <em>Property</em>}'.
+	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.PropertyDefinition <em>Property Definition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Property</em>'.
-	 * @see org.osate.aadlv3.aadlv3.Property
+	 * @return the meta object for class '<em>Property Definition</em>'.
+	 * @see org.osate.aadlv3.aadlv3.PropertyDefinition
 	 * @generated
 	 */
-	EClass getProperty();
+	EClass getPropertyDefinition();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.osate.aadlv3.aadlv3.Property#getType <em>Type</em>}'.
+	 * Returns the meta object for the reference '{@link org.osate.aadlv3.aadlv3.PropertyDefinition#getType <em>Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Type</em>'.
-	 * @see org.osate.aadlv3.aadlv3.Property#getType()
-	 * @see #getProperty()
+	 * @see org.osate.aadlv3.aadlv3.PropertyDefinition#getType()
+	 * @see #getPropertyDefinition()
 	 * @generated
 	 */
-	EReference getProperty_Type();
+	EReference getPropertyDefinition_Type();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link org.osate.aadlv3.aadlv3.PropertyDefinition#getComponentCategories <em>Component Categories</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Component Categories</em>'.
+	 * @see org.osate.aadlv3.aadlv3.PropertyDefinition#getComponentCategories()
+	 * @see #getPropertyDefinition()
+	 * @generated
+	 */
+	EAttribute getPropertyDefinition_ComponentCategories();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link org.osate.aadlv3.aadlv3.PropertyDefinition#getFeatureCategories <em>Feature Categories</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Feature Categories</em>'.
+	 * @see org.osate.aadlv3.aadlv3.PropertyDefinition#getFeatureCategories()
+	 * @see #getPropertyDefinition()
+	 * @generated
+	 */
+	EAttribute getPropertyDefinition_FeatureCategories();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link org.osate.aadlv3.aadlv3.PropertyDefinition#getAssociationTypes <em>Association Types</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Association Types</em>'.
+	 * @see org.osate.aadlv3.aadlv3.PropertyDefinition#getAssociationTypes()
+	 * @see #getPropertyDefinition()
+	 * @generated
+	 */
+	EAttribute getPropertyDefinition_AssociationTypes();
 
 	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.PropertySet <em>Property Set</em>}'.
@@ -2397,6 +2466,17 @@ public interface Aadlv3Package extends EPackage {
 	EReference getWorkingset_RootComponents();
 
 	/**
+	 * Returns the meta object for the reference list '{@link org.osate.aadlv3.aadlv3.Workingset#getUseProperties <em>Use Properties</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Use Properties</em>'.
+	 * @see org.osate.aadlv3.aadlv3.Workingset#getUseProperties()
+	 * @see #getWorkingset()
+	 * @generated
+	 */
+	EReference getWorkingset_UseProperties();
+
+	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.PropertyValue <em>Property Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2683,14 +2763,14 @@ public interface Aadlv3Package extends EPackage {
 		EClass PACKAGE_ELEMENT = eINSTANCE.getPackageElement();
 
 		/**
-		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.PropertyImpl <em>Property</em>}' class.
+		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.PropertyDefinitionImpl <em>Property Definition</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.osate.aadlv3.aadlv3.impl.PropertyImpl
-		 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getProperty()
+		 * @see org.osate.aadlv3.aadlv3.impl.PropertyDefinitionImpl
+		 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getPropertyDefinition()
 		 * @generated
 		 */
-		EClass PROPERTY = eINSTANCE.getProperty();
+		EClass PROPERTY_DEFINITION = eINSTANCE.getPropertyDefinition();
 
 		/**
 		 * The meta object literal for the '<em><b>Type</b></em>' reference feature.
@@ -2698,7 +2778,31 @@ public interface Aadlv3Package extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PROPERTY__TYPE = eINSTANCE.getProperty_Type();
+		EReference PROPERTY_DEFINITION__TYPE = eINSTANCE.getPropertyDefinition_Type();
+
+		/**
+		 * The meta object literal for the '<em><b>Component Categories</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PROPERTY_DEFINITION__COMPONENT_CATEGORIES = eINSTANCE.getPropertyDefinition_ComponentCategories();
+
+		/**
+		 * The meta object literal for the '<em><b>Feature Categories</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PROPERTY_DEFINITION__FEATURE_CATEGORIES = eINSTANCE.getPropertyDefinition_FeatureCategories();
+
+		/**
+		 * The meta object literal for the '<em><b>Association Types</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PROPERTY_DEFINITION__ASSOCIATION_TYPES = eINSTANCE.getPropertyDefinition_AssociationTypes();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.PropertySetImpl <em>Property Set</em>}' class.
@@ -3272,6 +3376,14 @@ public interface Aadlv3Package extends EPackage {
 		 * @generated
 		 */
 		EReference WORKINGSET__ROOT_COMPONENTS = eINSTANCE.getWorkingset_RootComponents();
+
+		/**
+		 * The meta object literal for the '<em><b>Use Properties</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference WORKINGSET__USE_PROPERTIES = eINSTANCE.getWorkingset_UseProperties();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.PropertyValueImpl <em>Property Value</em>}' class.

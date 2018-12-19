@@ -95,8 +95,8 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseProperty(Property object) {
-			return createPropertyAdapter();
+		public Adapter casePropertyDefinition(PropertyDefinition object) {
+			return createPropertyDefinitionAdapter();
 		}
 
 		@Override
@@ -281,16 +281,16 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.Property <em>Property</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.PropertyDefinition <em>Property Definition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.osate.aadlv3.aadlv3.Property
+	 * @see org.osate.aadlv3.aadlv3.PropertyDefinition
 	 * @generated
 	 */
-	public Adapter createPropertyAdapter() {
+	public Adapter createPropertyDefinitionAdapter() {
 		return null;
 	}
 

@@ -2,13 +2,13 @@ package BaseInterfaces
 
 thread interface BaseThread
 is
-	ProcessorCycles: requires binding;
+	ProcessorCycles: requires binding point;
 use properties StandardProperties::ThreadProperties;
 end;
 
 processor interface BaseProcessor
 is
-	ProcessorCycles: provides binding;
+	ProcessorCycles: provides binding point;
 end;
 
 end ;

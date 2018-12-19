@@ -36,7 +36,7 @@ import org.eclipse.emf.common.util.EList;
 public interface PropertySet extends PackageElement {
 	/**
 	 * Returns the value of the '<em><b>Properties</b></em>' reference list.
-	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.Property}.
+	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.PropertyDefinition}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Properties</em>' reference list isn't clear,
@@ -48,6 +48,6 @@ public interface PropertySet extends PackageElement {
 	 * @model
 	 * @generated
 	 */
-	EList<Property> getProperties();
+	EList<PropertyDefinition> getProperties();
 
 } // PropertySet

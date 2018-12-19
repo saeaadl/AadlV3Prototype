@@ -15,8 +15,8 @@
  */
 package org.osate.av3instance.av3instance;
 
-import org.osate.aadlv3.aadlv3.Property;
 import org.osate.aadlv3.aadlv3.PropertyAssociationType;
+import org.osate.aadlv3.aadlv3.PropertyDefinition;
 import org.osate.aadlv3.aadlv3.PropertyValue;
 
 /**
@@ -47,12 +47,12 @@ public interface PropertyAssociationInstance extends InstanceObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Property</em>' reference.
-	 * @see #setProperty(Property)
+	 * @see #setProperty(PropertyDefinition)
 	 * @see org.osate.av3instance.av3instance.Av3instancePackage#getPropertyAssociationInstance_Property()
 	 * @model
 	 * @generated
 	 */
-	Property getProperty();
+	PropertyDefinition getProperty();
 
 	/**
 	 * Sets the value of the '{@link org.osate.av3instance.av3instance.PropertyAssociationInstance#getProperty <em>Property</em>}' reference.
@@ -62,7 +62,7 @@ public interface PropertyAssociationInstance extends InstanceObject {
 	 * @see #getProperty()
 	 * @generated
 	 */
-	void setProperty(Property value);
+	void setProperty(PropertyDefinition value);
 
 	/**
 	 * Returns the value of the '<em><b>Value</b></em>' containment reference.

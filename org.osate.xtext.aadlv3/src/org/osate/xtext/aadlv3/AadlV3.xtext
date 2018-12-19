@@ -8,16 +8,24 @@ import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 PackageDeclaration returns av3::PackageDeclaration:
 	'package' name=QualifiedName 
 	imports+=Import*
-	elements+=(PackageDeclaration | DataType | ComponentInterface | ComponentImplementation | ComponentConfiguration | Property | PropertySet | Workingset)*
+	elements+=(PackageDeclaration | DataType | ComponentInterface | ComponentImplementation | ComponentConfiguration | PropertyDefinition | PropertySet | Workingset)*
 	'end' SEMICOLON;
 
 
-Property returns av3::Property:
-	'property' name=ID ':' type=[av3::Type|QualifiedReference] SEMICOLON;
+PropertyDefinition returns av3::PropertyDefinition:
+	'property' name=ID ':' type=[av3::Type|QualifiedReference] 
+	('for' AppliesTo (',' AppliesTo)*)? 
+	SEMICOLON;
+
+fragment AppliesTo*:
+	componentCategories+=ComponentCategory | featureCategories+=FeatureCategory 
+		| associationTypes+=AssociationType
+	
+;
 
 PropertySet returns av3::PropertySet:
 	'properties' name=ID  ':'
-		'{' properties += [av3::Property|QualifiedReference] (',' properties += [av3::Property|QualifiedName])* '}'
+		'{' properties += [av3::PropertyDefinition|QualifiedReference] (',' properties += [av3::PropertyDefinition|QualifiedName])* '}'
 	SEMICOLON
 ;
 
@@ -150,7 +158,7 @@ FlowAssignment returns av3::PathSequence:
 
 
 PropertyAssociation returns av3::PropertyAssociation:
-	(target=ModelElementReference)? '#' property=[av3::Property|QualifiedName] 
+	(target=ModelElementReference)? '#' property=[av3::PropertyDefinition|QualifiedName] 
 	propertyAssociationType=PropertyAssociationType?
 	'=>' value=PropertyValue ;
 
@@ -232,7 +240,10 @@ ConfigurationActual returns av3::ConfigurationActual:
 ;
 
 Workingset returns av3::Workingset: 
-	'workingset' name=QualifiedName 'is' rootComponents+=Component (SEMICOLON rootComponents+=Component)* SEMICOLON? 'end' SEMICOLON
+	'workingset' name=QualifiedName 'is' 
+	UseProps?
+	rootComponents+=Component (SEMICOLON rootComponents+=Component)* SEMICOLON? 
+	'end' SEMICOLON
 ;
 
 
@@ -266,7 +277,8 @@ ComponentCategory returns av3::ComponentCategory: 'abstract' | 'bus'|'data'
 
 FeatureCategory returns av3::FeatureCategory:
 	'feature' | 'port' | 'access' 
-	|BusAccessKeywords | 'binding' | 'interface';
+	| BusAccessKeywords 
+	| BindingPointKeywords | 'interface';
 
 FeatureDirection returns av3::FeatureDirection:
 	'in' | 'out' 
@@ -274,6 +286,9 @@ FeatureDirection returns av3::FeatureDirection:
 	ProvidesReadKeywords | RequiresReadKeywords | ProvidesWriteKeywords | RequiresWriteKeywords | ProvidesRWKeywords | RequiresRWKeywords
 	;
 
+AssociationType returns  av3::AssociationType:
+	ConnectionType | MappingType |  FlowType
+;
 
 ConnectionType returns av3::AssociationType:
 	'connection'| 'binding' ;
@@ -289,6 +304,10 @@ FlowSourceType returns av3::AssociationType:
 
 FlowSinkType returns av3::AssociationType:
 	FlowSinkKeywords ;
+
+FlowType returns av3::AssociationType:
+	'flow' ;
+
 
 PropertyAssociationType returns av3::PropertyAssociationType:
 	'final' | 'default' | 'override'
@@ -325,6 +344,7 @@ FlowPathKeywords: 'flow''path';
 
 InOutKeywords: 'in' 'out'; 
 BusAccessKeywords: 'bus''access' ; 
+BindingPointKeywords: 'binding''point' ; 
 
 ProvidesReadKeywords: 'provides' 'read';
 RequiresReadKeywords: 'requires' 'read';

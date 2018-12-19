@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
-import org.osate.aadlv3.aadlv3.Property;
+import org.osate.aadlv3.aadlv3.PropertyDefinition;
 import org.osate.aadlv3.aadlv3.PropertySet;
 
 /**
@@ -49,7 +49,7 @@ public class PropertySetImpl extends PackageElementImpl implements PropertySet {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Property> properties;
+	protected EList<PropertyDefinition> properties;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -76,9 +76,9 @@ public class PropertySetImpl extends PackageElementImpl implements PropertySet {
 	 * @generated
 	 */
 	@Override
-	public EList<Property> getProperties() {
+	public EList<PropertyDefinition> getProperties() {
 		if (properties == null) {
-			properties = new EObjectResolvingEList<Property>(Property.class, this,
+			properties = new EObjectResolvingEList<PropertyDefinition>(PropertyDefinition.class, this,
 					Aadlv3Package.PROPERTY_SET__PROPERTIES);
 		}
 		return properties;
@@ -109,7 +109,7 @@ public class PropertySetImpl extends PackageElementImpl implements PropertySet {
 		switch (featureID) {
 		case Aadlv3Package.PROPERTY_SET__PROPERTIES:
 			getProperties().clear();
-			getProperties().addAll((Collection<? extends Property>) newValue);
+			getProperties().addAll((Collection<? extends PropertyDefinition>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);

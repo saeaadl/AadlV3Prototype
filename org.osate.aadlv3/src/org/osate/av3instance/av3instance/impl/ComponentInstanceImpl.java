@@ -67,7 +67,7 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 	 * @generated
 	 * @ordered
 	 */
-	protected static final ComponentCategory CATEGORY_EDEFAULT = ComponentCategory.ABSTRACT;
+	protected static final ComponentCategory CATEGORY_EDEFAULT = ComponentCategory.INTERFACE;
 
 	/**
 	 * The cached value of the '{@link #getCategory() <em>Category</em>}' attribute.

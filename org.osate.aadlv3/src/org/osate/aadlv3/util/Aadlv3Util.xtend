@@ -45,6 +45,8 @@ import org.eclipse.emf.common.util.EList
 import org.eclipse.emf.common.util.BasicEList
 import org.osate.aadlv3.aadlv3.PropertyAssociationType
 import org.osate.aadlv3.aadlv3.ConfigurationAssignmentPattern
+import org.osate.aadlv3.aadlv3.PropertyDefinition
+import org.osate.aadlv3.aadlv3.PropertySet
 
 class Aadlv3Util {
 	/**
@@ -60,14 +62,14 @@ class Aadlv3Util {
 			if (type instanceof DataType){
 				
 			} else if (type instanceof ComponentClassifier){
-				if (type.category != ComponentCategory.ABSTRACT){
+				if (type.category != ComponentCategory.INTERFACE){
 					return type.category
 				}
 			} else {
 				
 			}
 		}
-		ComponentCategory.ABSTRACT;
+		ComponentCategory.INTERFACE;
 	}
 	
 	/**
@@ -78,11 +80,11 @@ class Aadlv3Util {
 	static def ComponentCategory getComponentCategory( ComponentClassifier classifier){
 		val classifiers = classifier.allComponentClassifiers
 		for (cl: classifiers){
-			if (cl.category != ComponentCategory.ABSTRACT){
+			if (cl.category != ComponentCategory.INTERFACE){
 				return cl.category
 			}
 		}
-		ComponentCategory.ABSTRACT;
+		ComponentCategory.INTERFACE;
 	}
 	/**
 	 * returns an ordered set of component classifier.
@@ -503,8 +505,7 @@ class Aadlv3Util {
 	static def Iterable<PropertyAssociation> getAllPropertyAssociations(Iterable<TypeReference> trs) {
 		if(trs.empty) return Collections.EMPTY_LIST
 		val cls = trs.allComponentClassifiers
-		val pas = cls.map[cl|cl.allOwnPropertyAssociations].flatten
-		pas
+		cls.map[cl|cl.allOwnPropertyAssociations].flatten
 	}
 
 	// return configuration assignments defined in configuration including those down the hierarchy
@@ -1113,7 +1114,7 @@ class Aadlv3Util {
 	def static ComponentInterface getBaseInterface(EObject context, ComponentCategory cat){
 		switch cat {
 			case ComponentCategory.THREAD: {
-				Av3API.lookupComponentClassifier(context,"BaseInterfaces.BaseThread") as ComponentInterface
+				Av3API.lookupComponentClassifier(context,"BaseInterfaces::BaseThread") as ComponentInterface
 				}
 			case BUS: {
 			}
@@ -1128,7 +1129,7 @@ class Aadlv3Util {
 			case PROCESS: {
 			}
 			case PROCESSOR: {
-				Av3API.lookupComponentClassifier(context,"BaseInterfaces.BaseProcessor") as ComponentInterface
+				Av3API.lookupComponentClassifier(context,"BaseInterfaces::BaseProcessor") as ComponentInterface
 			}
 			case SUBPROGRAM: {
 			}
@@ -1303,6 +1304,11 @@ class Aadlv3Util {
 		true
 	}
 	
+	// instance object has property association
+	def static boolean hasPropertyAssociation(InstanceObject io, PropertyDefinition pd){
+		io.propertyAssociations.exists[pai|pai.property === pd]
+	}
+	
 		
 	// association instance represents a flow specification
 	def static boolean isFlowSpec(InstanceObject conn){
@@ -1358,5 +1364,40 @@ class Aadlv3Util {
 		return if (path.empty ) localname else path + "." + localname;
 	}
 	
+	
+	////////////////////////////////////////
+	// Property Definition / Set methods
+	///////////////////////////////////////
+	
+	def static Iterable<PropertyDefinition> getExpectedProperties(Iterable<TypeReference> trefs){
+		val cls = trefs.allComponentClassifiers
+		val pss = cls.filter[ccl|ccl instanceof ComponentInterface].map[cif|(cif as ComponentInterface).useProperties].flatten
+		val pds = pss.map[ps|ps.properties].flatten
+		val result = new HashSet<PropertyDefinition>()
+		result.addAll(pds)
+		result
+	}
+	
+	def static boolean appliesTo(PropertyDefinition pd, ComponentCategory ccat){
+		if (ccat === null){
+			return pd.appliesToAll || !pd.componentCategories.empty
+		}
+		if (ccat === ComponentCategory.INTERFACE){
+			return pd.appliesToAll || !pd.componentCategories.empty
+		}
+		pd.componentCategories.contains(ccat) || pd.appliesToAll
+	}
+	
+	def static boolean appliesTo(PropertyDefinition pd, FeatureCategory fcat){
+		pd.featureCategories.contains(fcat) || pd.appliesToAll
+	}
+	
+	def static boolean appliesTo(PropertyDefinition pd, AssociationType acat){
+		pd.associationTypes.contains(acat) || pd.appliesToAll
+	}
+	
+	def static boolean appliesToAll(PropertyDefinition pd){
+		pd.componentCategories.empty && pd.featureCategories.empty && pd.associationTypes.empty
+	}
 	
 }

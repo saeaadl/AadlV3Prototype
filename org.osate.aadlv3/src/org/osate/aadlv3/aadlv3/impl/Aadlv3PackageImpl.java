@@ -50,9 +50,9 @@ import org.osate.aadlv3.aadlv3.PackageDeclaration;
 import org.osate.aadlv3.aadlv3.PackageElement;
 import org.osate.aadlv3.aadlv3.PathElement;
 import org.osate.aadlv3.aadlv3.PathSequence;
-import org.osate.aadlv3.aadlv3.Property;
 import org.osate.aadlv3.aadlv3.PropertyAssociation;
 import org.osate.aadlv3.aadlv3.PropertyAssociationType;
+import org.osate.aadlv3.aadlv3.PropertyDefinition;
 import org.osate.aadlv3.aadlv3.PropertySet;
 import org.osate.aadlv3.aadlv3.PropertyValue;
 import org.osate.aadlv3.aadlv3.Type;
@@ -92,7 +92,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass propertyEClass = null;
+	private EClass propertyDefinitionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -427,8 +427,8 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EClass getProperty() {
-		return propertyEClass;
+	public EClass getPropertyDefinition() {
+		return propertyDefinitionEClass;
 	}
 
 	/**
@@ -437,8 +437,38 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getProperty_Type() {
-		return (EReference) propertyEClass.getEStructuralFeatures().get(0);
+	public EReference getPropertyDefinition_Type() {
+		return (EReference) propertyDefinitionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getPropertyDefinition_ComponentCategories() {
+		return (EAttribute) propertyDefinitionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getPropertyDefinition_FeatureCategories() {
+		return (EAttribute) propertyDefinitionEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getPropertyDefinition_AssociationTypes() {
+		return (EAttribute) propertyDefinitionEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -1107,6 +1137,16 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
+	public EReference getWorkingset_UseProperties() {
+		return (EReference) workingsetEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getPropertyValue() {
 		return propertyValueEClass;
 	}
@@ -1340,8 +1380,11 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 
 		packageElementEClass = createEClass(PACKAGE_ELEMENT);
 
-		propertyEClass = createEClass(PROPERTY);
-		createEReference(propertyEClass, PROPERTY__TYPE);
+		propertyDefinitionEClass = createEClass(PROPERTY_DEFINITION);
+		createEReference(propertyDefinitionEClass, PROPERTY_DEFINITION__TYPE);
+		createEAttribute(propertyDefinitionEClass, PROPERTY_DEFINITION__COMPONENT_CATEGORIES);
+		createEAttribute(propertyDefinitionEClass, PROPERTY_DEFINITION__FEATURE_CATEGORIES);
+		createEAttribute(propertyDefinitionEClass, PROPERTY_DEFINITION__ASSOCIATION_TYPES);
 
 		propertySetEClass = createEClass(PROPERTY_SET);
 		createEReference(propertySetEClass, PROPERTY_SET__PROPERTIES);
@@ -1438,6 +1481,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 
 		workingsetEClass = createEClass(WORKINGSET);
 		createEReference(workingsetEClass, WORKINGSET__ROOT_COMPONENTS);
+		createEReference(workingsetEClass, WORKINGSET__USE_PROPERTIES);
 
 		propertyValueEClass = createEClass(PROPERTY_VALUE);
 		createEAttribute(propertyValueEClass, PROPERTY_VALUE__VALUE);
@@ -1487,7 +1531,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		// Add supertypes to classes
 		packageDeclarationEClass.getESuperTypes().add(this.getPackageElement());
 		packageElementEClass.getESuperTypes().add(this.getNamedElement());
-		propertyEClass.getESuperTypes().add(this.getPackageElement());
+		propertyDefinitionEClass.getESuperTypes().add(this.getPackageElement());
 		propertySetEClass.getESuperTypes().add(this.getPackageElement());
 		modelElementEClass.getESuperTypes().add(this.getNamedElement());
 		dataTypeEClass.getESuperTypes().add(this.getPackageElement());
@@ -1526,15 +1570,24 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		initEClass(packageElementEClass, PackageElement.class, "PackageElement", IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(propertyEClass, Property.class, "Property", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getProperty_Type(), this.getType(), null, "type", null, 0, 1, Property.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
+		initEClass(propertyDefinitionEClass, PropertyDefinition.class, "PropertyDefinition", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPropertyDefinition_Type(), this.getType(), null, "type", null, 0, 1, PropertyDefinition.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPropertyDefinition_ComponentCategories(), this.getComponentCategory(), "componentCategories",
+				null, 0, -1, PropertyDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+				!IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPropertyDefinition_FeatureCategories(), this.getFeatureCategory(), "featureCategories", null,
+				0, -1, PropertyDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPropertyDefinition_AssociationTypes(), this.getAssociationType(), "associationTypes", null, 0,
+				-1, PropertyDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(propertySetEClass, PropertySet.class, "PropertySet", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPropertySet_Properties(), this.getProperty(), null, "properties", null, 0, -1,
+		initEReference(getPropertySet_Properties(), this.getPropertyDefinition(), null, "properties", null, 0, -1,
 				PropertySet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -1554,7 +1607,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 
 		initEClass(componentClassifierEClass, ComponentClassifier.class, "ComponentClassifier", IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getComponentClassifier_Category(), this.getComponentCategory(), "category", null, 0, 1,
+		initEAttribute(getComponentClassifier_Category(), this.getComponentCategory(), "category", "interface", 0, 1,
 				ComponentClassifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getComponentClassifier_SuperClassifiers(), this.getTypeReference(), null, "superClassifiers",
@@ -1744,6 +1797,9 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		initEReference(getWorkingset_RootComponents(), this.getComponent(), null, "rootComponents", null, 0, -1,
 				Workingset.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getWorkingset_UseProperties(), this.getPropertySet(), null, "useProperties", null, 0, -1,
+				Workingset.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(propertyValueEClass, PropertyValue.class, "PropertyValue", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
@@ -1755,7 +1811,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		initEReference(getPropertyAssociation_Target(), this.getModelElementReference(), null, "target", null, 0, 1,
 				PropertyAssociation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getPropertyAssociation_Property(), this.getProperty(), null, "property", null, 0, 1,
+		initEReference(getPropertyAssociation_Property(), this.getPropertyDefinition(), null, "property", null, 0, 1,
 				PropertyAssociation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPropertyAssociation_Value(), this.getPropertyValue(), null, "value", null, 0, 1,
@@ -1767,7 +1823,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 
 		// Initialize enums and add enum literals
 		initEEnum(componentCategoryEEnum, ComponentCategory.class, "ComponentCategory");
-		addEEnumLiteral(componentCategoryEEnum, ComponentCategory.ABSTRACT);
+		addEEnumLiteral(componentCategoryEEnum, ComponentCategory.INTERFACE);
 		addEEnumLiteral(componentCategoryEEnum, ComponentCategory.THREAD);
 		addEEnumLiteral(componentCategoryEEnum, ComponentCategory.SYSTEM);
 		addEEnumLiteral(componentCategoryEEnum, ComponentCategory.PROCESS);
@@ -1783,6 +1839,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		addEEnumLiteral(componentCategoryEEnum, ComponentCategory.SUBPROGRAMGROUP);
 		addEEnumLiteral(componentCategoryEEnum, ComponentCategory.THREADGROUP);
 		addEEnumLiteral(componentCategoryEEnum, ComponentCategory.DATA);
+		addEEnumLiteral(componentCategoryEEnum, ComponentCategory.ABSTRACT);
 
 		initEEnum(featureCategoryEEnum, FeatureCategory.class, "FeatureCategory");
 		addEEnumLiteral(featureCategoryEEnum, FeatureCategory.FEATURE);
@@ -1813,6 +1870,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		addEEnumLiteral(associationTypeEEnum, AssociationType.FLOWPATH);
 		addEEnumLiteral(associationTypeEEnum, AssociationType.FLOWSOURCE);
 		addEEnumLiteral(associationTypeEEnum, AssociationType.FLOWSINK);
+		addEEnumLiteral(associationTypeEEnum, AssociationType.FLOW);
 
 		initEEnum(propertyAssociationTypeEEnum, PropertyAssociationType.class, "PropertyAssociationType");
 		addEEnumLiteral(propertyAssociationTypeEEnum, PropertyAssociationType.FINAL_VALUE);

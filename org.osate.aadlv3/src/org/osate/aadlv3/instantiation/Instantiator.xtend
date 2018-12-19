@@ -118,10 +118,6 @@ class Instantiator {
 			}
 			
 			// finally we fill in property associations
-			// should do:
-			// in classifier order
-			// outer over inner
-			// currently we assign inner first
 			for (pa : ctyperefs.allPropertyAssociations){
 				val target = ci.getInstanceElement(pa.target)
 				val pai = createPropertyAssociationInstance(pa)
@@ -131,6 +127,7 @@ class Instantiator {
 				val target = ci.getInstanceElement(pa.target)
 				target.addPropertyAssociationInstance(createPropertyAssociationInstance(pa))
 			}
+			val expectedProps = ctyperefs.expectedProperties
 		}
 	}
 	

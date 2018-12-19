@@ -45,6 +45,7 @@ import org.osate.aadlv3.aadlv3.ComponentCategory;
 public interface ComponentInstance extends InstanceObject {
 	/**
 	 * Returns the value of the '<em><b>Category</b></em>' attribute.
+	 * The default value is <code>"interface"</code>.
 	 * The literals are from the enumeration {@link org.osate.aadlv3.aadlv3.ComponentCategory}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -56,7 +57,7 @@ public interface ComponentInstance extends InstanceObject {
 	 * @see org.osate.aadlv3.aadlv3.ComponentCategory
 	 * @see #setCategory(ComponentCategory)
 	 * @see org.osate.av3instance.av3instance.Av3instancePackage#getComponentInstance_Category()
-	 * @model
+	 * @model default="interface"
 	 * @generated
 	 */
 	ComponentCategory getCategory();

@@ -39,6 +39,7 @@ import org.eclipse.emf.common.util.EList;
 public interface ComponentClassifier extends PackageElement, Type {
 	/**
 	 * Returns the value of the '<em><b>Category</b></em>' attribute.
+	 * The default value is <code>"interface"</code>.
 	 * The literals are from the enumeration {@link org.osate.aadlv3.aadlv3.ComponentCategory}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -50,7 +51,7 @@ public interface ComponentClassifier extends PackageElement, Type {
 	 * @see org.osate.aadlv3.aadlv3.ComponentCategory
 	 * @see #setCategory(ComponentCategory)
 	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getComponentClassifier_Category()
-	 * @model
+	 * @model default="interface"
 	 * @generated
 	 */
 	ComponentCategory getCategory();

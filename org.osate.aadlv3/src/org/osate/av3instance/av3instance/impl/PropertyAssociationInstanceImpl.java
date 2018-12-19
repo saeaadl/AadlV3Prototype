@@ -22,9 +22,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.osate.aadlv3.aadlv3.Property;
 import org.osate.aadlv3.aadlv3.PropertyAssociationType;
+import org.osate.aadlv3.aadlv3.PropertyDefinition;
 import org.osate.aadlv3.aadlv3.PropertyValue;
 
 import org.osate.av3instance.av3instance.Av3instancePackage;
@@ -54,7 +53,7 @@ public class PropertyAssociationInstanceImpl extends InstanceObjectImpl implemen
 	 * @generated
 	 * @ordered
 	 */
-	protected Property property;
+	protected PropertyDefinition property;
 
 	/**
 	 * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
@@ -111,10 +110,10 @@ public class PropertyAssociationInstanceImpl extends InstanceObjectImpl implemen
 	 * @generated
 	 */
 	@Override
-	public Property getProperty() {
+	public PropertyDefinition getProperty() {
 		if (property != null && property.eIsProxy()) {
 			InternalEObject oldProperty = (InternalEObject) property;
-			property = (Property) eResolveProxy(oldProperty);
+			property = (PropertyDefinition) eResolveProxy(oldProperty);
 			if (property != oldProperty) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
@@ -129,7 +128,7 @@ public class PropertyAssociationInstanceImpl extends InstanceObjectImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Property basicGetProperty() {
+	public PropertyDefinition basicGetProperty() {
 		return property;
 	}
 
@@ -139,8 +138,8 @@ public class PropertyAssociationInstanceImpl extends InstanceObjectImpl implemen
 	 * @generated
 	 */
 	@Override
-	public void setProperty(Property newProperty) {
-		Property oldProperty = property;
+	public void setProperty(PropertyDefinition newProperty) {
+		PropertyDefinition oldProperty = property;
 		property = newProperty;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
@@ -268,7 +267,7 @@ public class PropertyAssociationInstanceImpl extends InstanceObjectImpl implemen
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 		case Av3instancePackage.PROPERTY_ASSOCIATION_INSTANCE__PROPERTY:
-			setProperty((Property) newValue);
+			setProperty((PropertyDefinition) newValue);
 			return;
 		case Av3instancePackage.PROPERTY_ASSOCIATION_INSTANCE__VALUE:
 			setValue((PropertyValue) newValue);
@@ -289,7 +288,7 @@ public class PropertyAssociationInstanceImpl extends InstanceObjectImpl implemen
 	public void eUnset(int featureID) {
 		switch (featureID) {
 		case Av3instancePackage.PROPERTY_ASSOCIATION_INSTANCE__PROPERTY:
-			setProperty((Property) null);
+			setProperty((PropertyDefinition) null);
 			return;
 		case Av3instancePackage.PROPERTY_ASSOCIATION_INSTANCE__VALUE:
 			setValue((PropertyValue) null);

@@ -11,15 +11,15 @@ import org.osate.aadlv3.aadlv3.ComponentInterface;
 import org.osate.aadlv3.aadlv3.ComponentRealization;
 import org.osate.aadlv3.aadlv3.PackageDeclaration;
 import org.osate.aadlv3.aadlv3.DataType;
-import org.osate.aadlv3.aadlv3.Property;
+import org.osate.aadlv3.aadlv3.PropertyDefinition;
 import org.osate.aadlv3.aadlv3.PropertySet;
 import org.osate.aadlv3.aadlv3.Workingset;
 
 public class Av3API {
 
 	
-	public static Property lookupProperty(EObject context, String qpname) {
-		return Aadlv3GlobalScopeUtil.get(context, Aadlv3Package.eINSTANCE.getProperty(), qpname);
+	public static PropertyDefinition lookupPropertyDefinition(EObject context, String qpname) {
+		return Aadlv3GlobalScopeUtil.get(context, Aadlv3Package.eINSTANCE.getPropertyDefinition(), qpname);
 	}
 	
 	public static PropertySet lookupPropertySet(EObject context, String qpname) {

@@ -635,9 +635,9 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 
 		initEClass(componentInstanceEClass, ComponentInstance.class, "ComponentInstance", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
 				IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getComponentInstance_Category(), theAadlv3Package.getComponentCategory(), "category", null, 0, 1, //$NON-NLS-1$
-				ComponentInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getComponentInstance_Category(), theAadlv3Package.getComponentCategory(), "category", //$NON-NLS-1$
+				"interface", 0, 1, ComponentInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, //$NON-NLS-1$
+				!IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getComponentInstance_Components(), this.getComponentInstance(), null, "components", null, 0, -1, //$NON-NLS-1$
 				ComponentInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -685,8 +685,8 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 
 		initEClass(propertyAssociationInstanceEClass, PropertyAssociationInstance.class, "PropertyAssociationInstance", //$NON-NLS-1$
 				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPropertyAssociationInstance_Property(), theAadlv3Package.getProperty(), null, "property", //$NON-NLS-1$
-				null, 0, 1, PropertyAssociationInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+		initEReference(getPropertyAssociationInstance_Property(), theAadlv3Package.getPropertyDefinition(), null,
+				"property", null, 0, 1, PropertyAssociationInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, //$NON-NLS-1$
 				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPropertyAssociationInstance_Value(), theAadlv3Package.getPropertyValue(), null, "value", null, //$NON-NLS-1$
 				0, 1, PropertyAssociationInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,

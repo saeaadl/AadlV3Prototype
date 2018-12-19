@@ -3,9 +3,9 @@ package StandardProperties
 	type real;
 	type time;
 	
-	property Period :time;
-	property Deadline :time;
-	property DataSize :int;
+	property Period :time for thread,process,abstract;
+	property Deadline :time for thread,abstract;
+	property DataSize :int for thread,data,process,port,abstract;
 	
 	properties ThreadProperties : { Period , Deadline, DataSize };
 end;

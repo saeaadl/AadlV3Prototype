@@ -72,8 +72,8 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 		switch (eClass.getClassifierID()) {
 		case Aadlv3Package.PACKAGE_DECLARATION:
 			return createPackageDeclaration();
-		case Aadlv3Package.PROPERTY:
-			return createProperty();
+		case Aadlv3Package.PROPERTY_DEFINITION:
+			return createPropertyDefinition();
 		case Aadlv3Package.PROPERTY_SET:
 			return createPropertySet();
 		case Aadlv3Package.DATA_TYPE:
@@ -182,9 +182,9 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 	 * @generated
 	 */
 	@Override
-	public Property createProperty() {
-		PropertyImpl property = new PropertyImpl();
-		return property;
+	public PropertyDefinition createPropertyDefinition() {
+		PropertyDefinitionImpl propertyDefinition = new PropertyDefinitionImpl();
+		return propertyDefinition;
 	}
 
 	/**

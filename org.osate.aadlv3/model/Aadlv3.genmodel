@@ -8,7 +8,7 @@
   <genPackages prefix="Aadlv3" basePackage="org.osate.aadlv3" disposableProviderFactory="true"
       fileExtensions="axv3" ecorePackage="Aadlv3.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Aadlv3.ecore#//ComponentCategory">
-      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//ComponentCategory/abstract"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//ComponentCategory/interface"/>
       <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//ComponentCategory/thread"/>
       <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//ComponentCategory/system"/>
       <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//ComponentCategory/process"/>
@@ -24,6 +24,7 @@
       <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//ComponentCategory/subprogramgroup"/>
       <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//ComponentCategory/threadgroup"/>
       <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//ComponentCategory/data"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//ComponentCategory/abstract"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Aadlv3.ecore#//FeatureCategory">
       <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//FeatureCategory/feature"/>
@@ -54,6 +55,7 @@
       <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//AssociationType/flowpath"/>
       <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//AssociationType/flowsource"/>
       <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//AssociationType/flowsink"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//AssociationType/flow"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Aadlv3.ecore#//PropertyAssociationType">
       <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//PropertyAssociationType/FinalValue"/>
@@ -68,8 +70,11 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//NamedElement/name"/>
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//PackageElement"/>
-    <genClasses ecoreClass="Aadlv3.ecore#//Property">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Property/type"/>
+    <genClasses ecoreClass="Aadlv3.ecore#//PropertyDefinition">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//PropertyDefinition/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//PropertyDefinition/componentCategories"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//PropertyDefinition/featureCategories"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//PropertyDefinition/associationTypes"/>
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//PropertySet">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//PropertySet/properties"/>
@@ -165,6 +170,7 @@
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//Workingset">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Workingset/rootComponents"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Workingset/useProperties"/>
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//PropertyValue">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//PropertyValue/value"/>

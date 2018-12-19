@@ -72,12 +72,12 @@ public interface PropertyAssociation extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Property</em>' reference.
-	 * @see #setProperty(Property)
+	 * @see #setProperty(PropertyDefinition)
 	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getPropertyAssociation_Property()
 	 * @model
 	 * @generated
 	 */
-	Property getProperty();
+	PropertyDefinition getProperty();
 
 	/**
 	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.PropertyAssociation#getProperty <em>Property</em>}' reference.
@@ -87,7 +87,7 @@ public interface PropertyAssociation extends EObject {
 	 * @see #getProperty()
 	 * @generated
 	 */
-	void setProperty(Property value);
+	void setProperty(PropertyDefinition value);
 
 	/**
 	 * Returns the value of the '<em><b>Value</b></em>' containment reference.

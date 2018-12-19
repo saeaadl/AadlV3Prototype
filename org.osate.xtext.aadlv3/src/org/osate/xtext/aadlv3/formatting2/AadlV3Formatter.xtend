@@ -12,7 +12,7 @@ import org.osate.aadlv3.aadlv3.ConfigurationAssignment
 import org.osate.aadlv3.aadlv3.Import
 import org.osate.aadlv3.aadlv3.ModelElement
 import org.osate.aadlv3.aadlv3.PackageDeclaration
-import org.osate.aadlv3.aadlv3.Property
+import org.osate.aadlv3.aadlv3.PropertyDefinition
 import org.osate.aadlv3.aadlv3.PropertyAssociation
 import org.osate.aadlv3.aadlv3.Type
 import org.osate.aadlv3.aadlv3.Workingset
@@ -65,7 +65,7 @@ class AadlV3Formatter extends AbstractFormatter2 {
 		impt.append[newLines = 2]
 	}
 
-	def dispatch void format(Property tp, extension IFormattableDocument document) {
+	def dispatch void format(PropertyDefinition tp, extension IFormattableDocument document) {
 		tp.append[newLines = 2]
 	}
 

@@ -26,6 +26,7 @@ import org.osate.aadlv3.aadlv3.PathSequence
 
 import static extension org.osate.aadlv3.util.Aadlv3Util.*
 import static extension org.osate.aadlv3.util.Av3API.*
+import org.osate.aadlv3.aadlv3.PropertyAssociation
 
 /**
  * This class contains custom validation rules. 
@@ -72,6 +73,8 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	public static val OverrideType = 'OverrideType'
 	public static val DifferentComponentInPath = 'DifferentComponentInPath'
 	public static val NoInterface = 'NoComponentInterface'
+	public static val DoesNotApply = 'DoesNotApply'
+	
 
 	@Check
 	def checkComponentClassifier(ComponentClassifier cl) {
@@ -129,15 +132,15 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 				val thetype = if(assignedtype instanceof ConfigurationParameter) assignedtype.type else assignedtype
 				if (thetype instanceof ComponentClassifier) {
 					val clcat = thetype.componentCategory
-					if (!(comp.category === clcat || clcat === ComponentCategory.ABSTRACT)) {
+					if (!(comp.category === clcat || clcat === ComponentCategory.INTERFACE)) {
 						error(
 							'Category \'' + clcat + '\' of assigned classifier must be the same as the category \'' +
-								comp.category + '\' of the component or must be "component"', ca, null,
+								comp.category + '\' of the component or must be "abstract"', ca, null,
 							MISMATCHED_COMPONENT_CATEGORY)
 					}
 				} else if (thetype instanceof DataType) {
 					// primitive type
-					if (comp.category === ComponentCategory.DATA || comp.category === ComponentCategory.ABSTRACT) {
+					if (comp.category === ComponentCategory.DATA || comp.category === ComponentCategory.INTERFACE) {
 						if (!comp.typeReferences.empty) {
 							error('Assigned primitive type cannot override existing type', ca, null, OverrideType)
 						}
@@ -181,7 +184,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 			if (t instanceof ComponentClassifier) {
 				// the categories must be consistent
 				val clcat = (tr.type as ComponentClassifier).componentCategory
-				if (!(clcat === comp.category || clcat === ComponentCategory.ABSTRACT)) {
+				if (!(clcat === comp.category || clcat === ComponentCategory.INTERFACE)) {
 					error('Component category conflicts with classifier category', comp,
 						Aadlv3Package.Literals.COMPONENT__CATEGORY, MISMATCHED_COMPONENT_CATEGORY)
 				}
@@ -191,7 +194,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 						MustBeDataType)
 				}
 			} else if (t instanceof DataType) {
-				if (!(comp.category === ComponentCategory.DATA || comp.category === ComponentCategory.ABSTRACT)) {
+				if (!(comp.category === ComponentCategory.DATA || comp.category === ComponentCategory.INTERFACE)) {
 					error('Components other than "data" or "component" cannot have primitive type', comp,
 						Aadlv3Package.Literals.COMPONENT__CATEGORY, NoDataType)
 				}
@@ -269,6 +272,65 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 			}
 		}
 	}
+
+
+
+	@Check
+	def checkPropertyAssociation(PropertyAssociation pa) {
+		if (pa.target !== null){
+			val targetme = pa.target.element
+			switch (targetme){
+				Component: {
+					if (!pa.property.appliesTo(targetme.category)) {
+						error('Property does not apply to '+targetme.category, pa,
+							Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY, DoesNotApply)
+					}
+				}
+				Feature: {
+					if (!pa.property.appliesTo(targetme.category)) {
+						error('Property does not apply to '+targetme.category, pa,
+							Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY, DoesNotApply)
+					}
+				}
+				Association: {
+					if (!pa.property.appliesTo(targetme.associationType)) {
+						error('Property does not apply to '+targetme.associationType, pa,
+							Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY, DoesNotApply)
+					}
+				}
+			}
+		} else {
+			// associated with containing element
+			val paTarget = pa.eContainer
+			switch (paTarget){
+				Component: {
+					if (!pa.property.appliesTo(paTarget.category)) {
+						error('Property does not apply to '+paTarget.category, pa,
+							Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY, DoesNotApply)
+					}
+				}
+				ComponentClassifier: {
+					if (!pa.property.appliesTo(paTarget.category)) {
+						error('Property does not apply to '+paTarget.category, pa,
+							Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY, DoesNotApply)
+					}
+				}
+				Feature: {
+					if (!pa.property.appliesTo(paTarget.category)) {
+						error('Property does not apply to '+paTarget.category, pa,
+							Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY, DoesNotApply)
+					}
+				}
+				Association: {
+					if (!pa.property.appliesTo(paTarget.associationType)) {
+						error('Property does not apply to '+paTarget.associationType, pa,
+							Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY, DoesNotApply)
+					}
+				}
+			}
+		}
+	}
+
 
 	def checkUniqueModelElementNames(ComponentInterface cl) {
 		val mels = cl.allModelElements.toList
@@ -401,7 +463,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 		for (matchcl : cls) {
 			if (matchcl !== cl) {
 				val matchcat = matchcl.componentCategory
-				if (matchcat != targetcat && matchcat != ComponentCategory.ABSTRACT) {
+				if (matchcat !== targetcat && matchcat !== ComponentCategory.INTERFACE && targetcat!== ComponentCategory.INTERFACE) {
 					error('Extension category differs', matchcl,
 						Aadlv3Package.Literals.COMPONENT_CLASSIFIER__SUPER_CLASSIFIERS,
 						AadlV3Validator.MISMATCHED_COMPONENT_CATEGORY)

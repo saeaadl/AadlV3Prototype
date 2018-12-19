@@ -1,19 +1,20 @@
 package simpleinstances
 workingset simpleinstances is
-//	basic: system Basic::gps.i;
-//	first : system SimpleConfiguration::top.i ;
-//	second : system SimpleConfiguration::top.topc ;
+	basic: system Basic::gps.i;
+	first : system SimpleConfiguration::top.i ;
+	second : system SimpleConfiguration::top.topc ;
 	patt1 : system PatternConfiguration::top.topc ;
+	useprop1 : system UseProps::gps.i ;
 	
-//	presL1: system ConfigurationPresentation::top.config_L1;
-//	pressec: system ConfigurationPresentation::top.config_Security;
-//	pres1: system ConfigurationPresentation::top.config_SafetySecurity;
-//	pres2: system ConfigurationPresentation::top.config_full ;
+	presL1: system ConfigurationPresentation::top.config_L1;
+	pressec: system ConfigurationPresentation::top.config_Security;
+	pres1: system ConfigurationPresentation::top.config_SafetySecurity;
+	pres2: system ConfigurationPresentation::top.config_full ;
 	
-//	nested: system NestedImplementations::ControlSystem.i;
-//	
-//	connex: system ConnectionExamples::conntop.i;
+	nested: system NestedImplementations::ControlSystem.i;
+	
+	connex: system ConnectionExamples::conntop.i;
 
-//  flowex: system FlowExamples::conntop.i;
+  flowex: system FlowExamples::conntop.i;
 end;
 end;

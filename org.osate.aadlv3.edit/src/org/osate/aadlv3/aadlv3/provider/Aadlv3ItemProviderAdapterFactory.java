@@ -109,26 +109,26 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.Property} instances.
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.PropertyDefinition} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected PropertyItemProvider propertyItemProvider;
+	protected PropertyDefinitionItemProvider propertyDefinitionItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.Property}.
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.PropertyDefinition}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createPropertyAdapter() {
-		if (propertyItemProvider == null) {
-			propertyItemProvider = new PropertyItemProvider(this);
+	public Adapter createPropertyDefinitionAdapter() {
+		if (propertyDefinitionItemProvider == null) {
+			propertyDefinitionItemProvider = new PropertyDefinitionItemProvider(this);
 		}
 
-		return propertyItemProvider;
+		return propertyDefinitionItemProvider;
 	}
 
 	/**
@@ -698,8 +698,8 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 	public void dispose() {
 		if (packageDeclarationItemProvider != null)
 			packageDeclarationItemProvider.dispose();
-		if (propertyItemProvider != null)
-			propertyItemProvider.dispose();
+		if (propertyDefinitionItemProvider != null)
+			propertyDefinitionItemProvider.dispose();
 		if (propertySetItemProvider != null)
 			propertySetItemProvider.dispose();
 		if (dataTypeItemProvider != null)

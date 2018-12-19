@@ -25,10 +25,12 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.Component;
+import org.osate.aadlv3.aadlv3.PropertySet;
 import org.osate.aadlv3.aadlv3.Workingset;
 
 /**
@@ -40,6 +42,7 @@ import org.osate.aadlv3.aadlv3.Workingset;
  * </p>
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.WorkingsetImpl#getRootComponents <em>Root Components</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.WorkingsetImpl#getUseProperties <em>Use Properties</em>}</li>
  * </ul>
  *
  * @generated
@@ -54,6 +57,16 @@ public class WorkingsetImpl extends PackageElementImpl implements Workingset {
 	 * @ordered
 	 */
 	protected EList<Component> rootComponents;
+
+	/**
+	 * The cached value of the '{@link #getUseProperties() <em>Use Properties</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUseProperties()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<PropertySet> useProperties;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -94,6 +107,20 @@ public class WorkingsetImpl extends PackageElementImpl implements Workingset {
 	 * @generated
 	 */
 	@Override
+	public EList<PropertySet> getUseProperties() {
+		if (useProperties == null) {
+			useProperties = new EObjectResolvingEList<PropertySet>(PropertySet.class, this,
+					Aadlv3Package.WORKINGSET__USE_PROPERTIES);
+		}
+		return useProperties;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case Aadlv3Package.WORKINGSET__ROOT_COMPONENTS:
@@ -112,6 +139,8 @@ public class WorkingsetImpl extends PackageElementImpl implements Workingset {
 		switch (featureID) {
 		case Aadlv3Package.WORKINGSET__ROOT_COMPONENTS:
 			return getRootComponents();
+		case Aadlv3Package.WORKINGSET__USE_PROPERTIES:
+			return getUseProperties();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -129,6 +158,10 @@ public class WorkingsetImpl extends PackageElementImpl implements Workingset {
 			getRootComponents().clear();
 			getRootComponents().addAll((Collection<? extends Component>) newValue);
 			return;
+		case Aadlv3Package.WORKINGSET__USE_PROPERTIES:
+			getUseProperties().clear();
+			getUseProperties().addAll((Collection<? extends PropertySet>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -144,6 +177,9 @@ public class WorkingsetImpl extends PackageElementImpl implements Workingset {
 		case Aadlv3Package.WORKINGSET__ROOT_COMPONENTS:
 			getRootComponents().clear();
 			return;
+		case Aadlv3Package.WORKINGSET__USE_PROPERTIES:
+			getUseProperties().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -158,6 +194,8 @@ public class WorkingsetImpl extends PackageElementImpl implements Workingset {
 		switch (featureID) {
 		case Aadlv3Package.WORKINGSET__ROOT_COMPONENTS:
 			return rootComponents != null && !rootComponents.isEmpty();
+		case Aadlv3Package.WORKINGSET__USE_PROPERTIES:
+			return useProperties != null && !useProperties.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

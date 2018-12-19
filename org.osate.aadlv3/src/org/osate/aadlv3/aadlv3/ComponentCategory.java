@@ -32,14 +32,14 @@ import org.eclipse.emf.common.util.Enumerator;
  */
 public enum ComponentCategory implements Enumerator {
 	/**
-	 * The '<em><b>Abstract</b></em>' literal object.
+	 * The '<em><b>Interface</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ABSTRACT_VALUE
+	 * @see #INTERFACE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ABSTRACT(0, "abstract", "abstract"),
+	INTERFACE(0, "interface", "interface"),
 	/**
 	 * The '<em><b>Thread</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -188,22 +188,31 @@ public enum ComponentCategory implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	DATA(14, "data", "data");
-
+	DATA(14, "data", "data"),
 	/**
-	 * The '<em><b>Abstract</b></em>' literal value.
+	 * The '<em><b>Abstract</b></em>' literal object.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>Abstract</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #ABSTRACT
-	 * @model name="abstract"
+	* <!-- end-user-doc -->
+	 * @see #ABSTRACT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ABSTRACT_VALUE = 0;
+	ABSTRACT(15, "abstract", "abstract");
+
+	/**
+	 * The '<em><b>Interface</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>Interface</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #INTERFACE
+	 * @model name="interface"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int INTERFACE_VALUE = 0;
 
 	/**
 	 * The '<em><b>Thread</b></em>' literal value.
@@ -431,14 +440,29 @@ public enum ComponentCategory implements Enumerator {
 	public static final int DATA_VALUE = 14;
 
 	/**
+	 * The '<em><b>Abstract</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>Abstract</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #ABSTRACT
+	 * @model name="abstract"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int ABSTRACT_VALUE = 15;
+
+	/**
 	 * An array of all the '<em><b>Component Category</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final ComponentCategory[] VALUES_ARRAY = new ComponentCategory[] { ABSTRACT, THREAD, SYSTEM, PROCESS,
-			PROCESSOR, MEMORY, BUS, DEVICE, VIRTUALBUS, VIRTUALPROCESSOR, VIRTUALMEMORY, VIRTUALDEVICE, SUBPROGRAM,
-			SUBPROGRAMGROUP, THREADGROUP, DATA, };
+	private static final ComponentCategory[] VALUES_ARRAY = new ComponentCategory[] { INTERFACE, THREAD, SYSTEM,
+			PROCESS, PROCESSOR, MEMORY, BUS, DEVICE, VIRTUALBUS, VIRTUALPROCESSOR, VIRTUALMEMORY, VIRTUALDEVICE,
+			SUBPROGRAM, SUBPROGRAMGROUP, THREADGROUP, DATA, ABSTRACT, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Component Category</b></em>' enumerators.
@@ -494,8 +518,8 @@ public enum ComponentCategory implements Enumerator {
 	 */
 	public static ComponentCategory get(int value) {
 		switch (value) {
-		case ABSTRACT_VALUE:
-			return ABSTRACT;
+		case INTERFACE_VALUE:
+			return INTERFACE;
 		case THREAD_VALUE:
 			return THREAD;
 		case SYSTEM_VALUE:
@@ -524,6 +548,8 @@ public enum ComponentCategory implements Enumerator {
 			return THREADGROUP;
 		case DATA_VALUE:
 			return DATA;
+		case ABSTRACT_VALUE:
+			return ABSTRACT;
 		}
 		return null;
 	}

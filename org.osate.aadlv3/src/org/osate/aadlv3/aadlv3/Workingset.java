@@ -27,6 +27,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.Workingset#getRootComponents <em>Root Components</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.Workingset#getUseProperties <em>Use Properties</em>}</li>
  * </ul>
  *
  * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getWorkingset()
@@ -49,5 +50,21 @@ public interface Workingset extends PackageElement {
 	 * @generated
 	 */
 	EList<Component> getRootComponents();
+
+	/**
+	 * Returns the value of the '<em><b>Use Properties</b></em>' reference list.
+	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.PropertySet}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Use Properties</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Use Properties</em>' reference list.
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getWorkingset_UseProperties()
+	 * @model
+	 * @generated
+	 */
+	EList<PropertySet> getUseProperties();
 
 } // Workingset

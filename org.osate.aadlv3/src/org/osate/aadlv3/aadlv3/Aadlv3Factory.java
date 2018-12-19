@@ -44,13 +44,13 @@ public interface Aadlv3Factory extends EFactory {
 	PackageDeclaration createPackageDeclaration();
 
 	/**
-	 * Returns a new object of class '<em>Property</em>'.
+	 * Returns a new object of class '<em>Property Definition</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Property</em>'.
+	 * @return a new object of class '<em>Property Definition</em>'.
 	 * @generated
 	 */
-	Property createProperty();
+	PropertyDefinition createPropertyDefinition();
 
 	/**
 	 * Returns a new object of class '<em>Property Set</em>'.

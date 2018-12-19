@@ -61,7 +61,7 @@ public abstract class ComponentClassifierImpl extends PackageElementImpl impleme
 	 * @generated
 	 * @ordered
 	 */
-	protected static final ComponentCategory CATEGORY_EDEFAULT = ComponentCategory.ABSTRACT;
+	protected static final ComponentCategory CATEGORY_EDEFAULT = ComponentCategory.INTERFACE;
 
 	/**
 	 * The cached value of the '{@link #getCategory() <em>Category</em>}' attribute.

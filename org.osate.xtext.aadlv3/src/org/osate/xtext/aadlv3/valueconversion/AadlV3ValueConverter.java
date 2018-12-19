@@ -39,14 +39,12 @@ public class AadlV3ValueConverter extends DefaultTerminalConverters {
 					return null;
 				}
 				if (string.equals("access")) return FeatureCategory.DATAACCESS;
-				if (string.equals("binding")) return FeatureCategory.BINDINGPOINT;
 				return FeatureCategory.get(string);
 			}
 
 			@Override
 			public String toString(FeatureCategory value) {
 				if (value == FeatureCategory.DATAACCESS) return "access";
-				if (value == FeatureCategory.BINDINGPOINT) return "binding";
 				return value.getName();
 			}
 		};
@@ -106,8 +104,8 @@ public class AadlV3ValueConverter extends DefaultTerminalConverters {
 	}
 
 
-	@ValueConverter(rule = "FlowPath")
-	public IValueConverter<AssociationType> FlowPath() {
+	@ValueConverter(rule = "FlowPathType")
+	public IValueConverter<AssociationType> FlowPathType() {
 		return new IValueConverter<AssociationType>() {
 			@Override
 			public AssociationType toValue(String string, INode node) {
@@ -125,8 +123,8 @@ public class AadlV3ValueConverter extends DefaultTerminalConverters {
 	}
 
 
-	@ValueConverter(rule = "FlowSource")
-	public IValueConverter<AssociationType> FlowSource() {
+	@ValueConverter(rule = "FlowSourceType")
+	public IValueConverter<AssociationType> FlowSourceType() {
 		return new IValueConverter<AssociationType>() {
 			@Override
 			public AssociationType toValue(String string, INode node) {
@@ -144,8 +142,8 @@ public class AadlV3ValueConverter extends DefaultTerminalConverters {
 	}
 
 
-	@ValueConverter(rule = "FlowSink")
-	public IValueConverter<AssociationType> FlowSink() {
+	@ValueConverter(rule = "FlowSinkType")
+	public IValueConverter<AssociationType> FlowSinkType() {
 		return new IValueConverter<AssociationType>() {
 			@Override
 			public AssociationType toValue(String string, INode node) {
@@ -161,6 +159,25 @@ public class AadlV3ValueConverter extends DefaultTerminalConverters {
 			}
 		};
 	}
+
+	@ValueConverter(rule = "FlowType")
+	public IValueConverter<AssociationType> FlowType() {
+		return new IValueConverter<AssociationType>() {
+			@Override
+			public AssociationType toValue(String string, INode node) {
+				if (string == null) {
+					return null;
+				}
+				return AssociationType.FLOW;
+			}
+
+			@Override
+			public String toString(AssociationType value) {
+				return "flow";
+			}
+		};
+	}
+
 	@ValueConverter(rule = "PropertyAssociationType")
 	public IValueConverter<PropertyAssociationType> PropertyAssociationType() {
 		return new IValueConverter<PropertyAssociationType>() {

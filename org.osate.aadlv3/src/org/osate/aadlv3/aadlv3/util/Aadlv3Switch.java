@@ -106,13 +106,13 @@ public class Aadlv3Switch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case Aadlv3Package.PROPERTY: {
-			Property property = (Property) theEObject;
-			T result = caseProperty(property);
+		case Aadlv3Package.PROPERTY_DEFINITION: {
+			PropertyDefinition propertyDefinition = (PropertyDefinition) theEObject;
+			T result = casePropertyDefinition(propertyDefinition);
 			if (result == null)
-				result = casePackageElement(property);
+				result = casePackageElement(propertyDefinition);
 			if (result == null)
-				result = caseNamedElement(property);
+				result = caseNamedElement(propertyDefinition);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -418,17 +418,17 @@ public class Aadlv3Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Property</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Property Definition</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Property</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Property Definition</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseProperty(Property object) {
+	public T casePropertyDefinition(PropertyDefinition object) {
 		return null;
 	}
 
