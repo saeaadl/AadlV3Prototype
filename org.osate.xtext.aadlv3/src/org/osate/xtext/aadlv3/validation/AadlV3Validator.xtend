@@ -27,6 +27,7 @@ import org.osate.aadlv3.aadlv3.PathSequence
 import static extension org.osate.aadlv3.util.Aadlv3Util.*
 import static extension org.osate.aadlv3.util.Av3API.*
 import org.osate.aadlv3.aadlv3.PropertyAssociation
+import org.osate.aadlv3.aadlv3.TypeReference
 
 /**
  * This class contains custom validation rules. 
@@ -74,6 +75,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	public static val DifferentComponentInPath = 'DifferentComponentInPath'
 	public static val NoInterface = 'NoComponentInterface'
 	public static val DoesNotApply = 'DoesNotApply'
+	public static val NoCommonImplementation = 'NoCommonImplementation'
 	
 
 	@Check
@@ -408,6 +410,26 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 				Aadlv3Package.Literals.COMPONENT_CLASSIFIER__SUPER_CLASSIFIERS, NO_SUPER_CONFIGURATIONS)
 		}
 	}
+	
+		/**
+	 * Checks that the top implementations are not parallel super branches
+	 */
+	def void checkCommonTopComponentImplementation(ComponentClassifier cl){
+		var ComponentImplementation top = null
+		val trs = cl.superClassifiers
+		for (tr : trs){
+			if (tr.type instanceof ComponentClassifier){
+				val topimpl = (tr.type as ComponentClassifier).topComponentImplementation
+				if (top === null || top.isSuperImplementationOf(topimpl)){
+					top = topimpl
+				} else if (!topimpl.isSuperImplementationOf(top)){
+					error('Implementation is parallel to top implementation '+top.name, cl,
+						Aadlv3Package.Literals.COMPONENT_CLASSIFIER__SUPER_CLASSIFIERS, trs.indexOf(tr),NoCommonImplementation)
+				}
+			}
+		}
+	}
+	
 
 	def checkFeatureDirection(Feature fea) {
 		switch (fea.category) {

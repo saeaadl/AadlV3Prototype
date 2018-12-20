@@ -164,7 +164,7 @@ class Aadlv3Util {
 	/**
 	 * returns implementation that is the extension of all other implementations
 	 */
-	static def DataType getTopDataType(Iterable<? extends TypeReference> trs){
+	static def DataType getTopDataType(Iterable<TypeReference> trs){
 		var DataType top = null
 		for (tr : trs){
 			if (tr.type instanceof DataType){
@@ -177,7 +177,7 @@ class Aadlv3Util {
 		return top
 	}
 	
-	static def boolean isDataType(Iterable<? extends TypeReference> trs){
+	static def boolean isDataType(Iterable<TypeReference> trs){
 		for (tr : trs){
 			if (tr.type instanceof DataType){
 				return true
@@ -186,7 +186,7 @@ class Aadlv3Util {
 		return false
 	}
 	
-	static def boolean isComponentClassifier(Iterable<? extends TypeReference> trs){
+	static def boolean isComponentClassifier(Iterable<TypeReference> trs){
 		if (trs.empty) return true
 		for (tr : trs){
 			if (tr.type instanceof DataType){
@@ -200,7 +200,7 @@ class Aadlv3Util {
 	/**
 	 * returns implementation that is the extension of all other implementations
 	 */
-	static def ComponentImplementation getTopComponentImplementation(Iterable<? extends TypeReference> trs){
+	static def ComponentImplementation getTopComponentImplementation(Iterable<TypeReference> trs){
 		var ComponentImplementation top = null
 		for (tr : trs){
 			if (tr.type instanceof ComponentImplementation){
@@ -213,11 +213,25 @@ class Aadlv3Util {
 		return top
 	}
 	
+	static def ComponentImplementation getTopComponentImplementation(ComponentClassifier cl){
+		var ComponentImplementation top = null
+		val cls = cl.allComponentClassifiers
+		for (scl : cls){
+			if (scl instanceof ComponentImplementation){
+				if (top === null || top.isSuperImplementationOf(scl)){
+					top = scl
+				}
+			}
+		}
+		return top
+	}
+	
+	
 	
 	/**
 	 * returns interface that is the extension of all other interfaces
 	 */
-	static def ComponentInterface getTopComponentInterface(Iterable<? extends TypeReference> trs){
+	static def ComponentInterface getTopComponentInterface(Iterable<TypeReference> trs){
 		var ComponentInterface top = null
 		for (tr : trs){
 			if (tr.type instanceof ComponentClassifier){
@@ -232,7 +246,7 @@ class Aadlv3Util {
 	/**
 	 * returns implementation or interface that is the extension of all other implementations or interfaces
 	 */
-	static def ComponentClassifier getTopComponentInterfaceOrImplementation(Iterable<? extends TypeReference> trs){
+	static def ComponentClassifier getTopComponentInterfaceOrImplementation(Iterable<TypeReference> trs){
 		val res = trs.topComponentImplementation
 		if (res !== null) return res
 		return trs.topComponentInterface
@@ -683,7 +697,7 @@ class Aadlv3Util {
 	// depth indicates the target path length to be considered
 	def static boolean matchesTarget(ConfigurationAssignment ca, ModelElement match, int depth, ComponentInstance context) {
 		if (ca instanceof ConfigurationAssignmentPattern){
-			return ca.matchesTargetPattern(match,context)
+			return ca.matchesTargetPattern(match)
 		} else {
 			return ca.target?.matchesTarget(match, depth, context)
 		}
@@ -710,7 +724,7 @@ class Aadlv3Util {
 	}
 
 	// depth indicates the target path length to be considered
-	private def static boolean matchesTargetPattern(ConfigurationAssignment pat, ModelElement match, ComponentInstance context) {
+	private def static boolean matchesTargetPattern(ConfigurationAssignment pat, ModelElement match) {
 		if (pat instanceof ConfigurationAssignmentPattern){
 			val patternType = pat.targetPattern
 			if (match instanceof Component){
