@@ -66,7 +66,7 @@ fragment ImplementationBody*:
 ;
 
 fragment ImplementationElement* :
-	connections+=Connection |connections+=FeatureMapping | components+=Component 
+	connections+=Connection |connections+=FeatureMapping | bindings+=Binding | components+=Component 
 		| paths+= Path | flowAssignments+=FlowAssignment | configurationAssignments+=ConfigurationAssignment | configurationAssignments+=ConfigurationAssignmentPattern
 		| propertyAssociations+=PropertyAssociation
 ;
@@ -108,6 +108,11 @@ Connection returns av3::Association:
 FeatureMapping returns av3::Association:
 	name=ID ':' associationType=MappingType source=ModelElementReference
 	'=>' destination=ModelElementReference PropertiesBlock? ;
+
+
+Binding returns av3::Association:
+	name=ID ':' associationType=BindingType source=ModelElementReference
+	'->' destination=ModelElementReference PropertiesBlock? ;
 
 
 FlowPath returns av3::Association:
@@ -180,7 +185,7 @@ fragment CurlyConfigurationElementBlock *:
 	'{' ConfigurationElement (SEMICOLON ConfigurationElement )* SEMICOLON? '}';
 
 fragment ConfigurationElement*: 
-	propertyAssociations+=PropertyAssociation | configurationAssignments+=ConfigurationAssignment | configurationAssignments+=ConfigurationAssignmentPattern
+	propertyAssociations+=PropertyAssociation | bindings+=Binding | configurationAssignments+=ConfigurationAssignment | configurationAssignments+=ConfigurationAssignmentPattern
 ;
 
 fragment Parameters *:
@@ -218,7 +223,7 @@ fragment NestedComponentImplementationBlock *:
 	 	'}';
 	 	
 fragment NestedImplementationElement*: 
-	features+=Feature | connections+=Connection| connections+=FeatureMapping  | components+=Component |  propertyAssociations+=PropertyAssociation
+	features+=Feature | connections+=Connection| connections+=FeatureMapping | bindings+=Binding | components+=Component |  propertyAssociations+=PropertyAssociation
 ;
 
 fragment ConfigurationExtensions *:
@@ -290,11 +295,14 @@ FeatureDirection returns av3::FeatureDirection:
 	;
 
 AssociationType returns  av3::AssociationType:
-	ConnectionType | MappingType |  FlowType
+	ConnectionType | BindingType | MappingType |  FlowType
 ;
 
 ConnectionType returns av3::AssociationType:
-	'connection'| 'binding' ;
+	'connection' ;
+
+BindingType returns av3::AssociationType:
+	'binding' ;
 
 MappingType returns av3::AssociationType:
 	'mapping' ;

@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.osate.aadlv3.aadlv3.ConfigurationAssignment#getConfigurationAssignments <em>Configuration Assignments</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.ConfigurationAssignment#getAssignedClassifiers <em>Assigned Classifiers</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.ConfigurationAssignment#getPropertyAssociations <em>Property Associations</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.ConfigurationAssignment#getBindings <em>Bindings</em>}</li>
  * </ul>
  *
  * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getConfigurationAssignment()
@@ -112,5 +113,21 @@ public interface ConfigurationAssignment extends EObject {
 	 * @generated
 	 */
 	EList<PropertyAssociation> getPropertyAssociations();
+
+	/**
+	 * Returns the value of the '<em><b>Bindings</b></em>' containment reference list.
+	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.Association}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Bindings</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Bindings</em>' containment reference list.
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getConfigurationAssignment_Bindings()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<Association> getBindings();
 
 } // ConfigurationAssignment

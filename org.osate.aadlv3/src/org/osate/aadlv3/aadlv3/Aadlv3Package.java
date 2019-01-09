@@ -757,13 +757,22 @@ public interface Aadlv3Package extends EPackage {
 	int COMPONENT_IMPLEMENTATION__PATHS = COMPONENT_REALIZATION_FEATURE_COUNT + 4;
 
 	/**
+	 * The feature id for the '<em><b>Bindings</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_IMPLEMENTATION__BINDINGS = COMPONENT_REALIZATION_FEATURE_COUNT + 5;
+
+	/**
 	 * The number of structural features of the '<em>Component Implementation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_IMPLEMENTATION_FEATURE_COUNT = COMPONENT_REALIZATION_FEATURE_COUNT + 5;
+	int COMPONENT_IMPLEMENTATION_FEATURE_COUNT = COMPONENT_REALIZATION_FEATURE_COUNT + 6;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.ComponentConfigurationImpl <em>Component Configuration</em>}' class.
@@ -857,13 +866,22 @@ public interface Aadlv3Package extends EPackage {
 	int COMPONENT_CONFIGURATION__PARAMETERIZED = COMPONENT_REALIZATION_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Bindings</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_CONFIGURATION__BINDINGS = COMPONENT_REALIZATION_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Component Configuration</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_CONFIGURATION_FEATURE_COUNT = COMPONENT_REALIZATION_FEATURE_COUNT + 3;
+	int COMPONENT_CONFIGURATION_FEATURE_COUNT = COMPONENT_REALIZATION_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.FeatureImpl <em>Feature</em>}' class.
@@ -1003,13 +1021,22 @@ public interface Aadlv3Package extends EPackage {
 	int COMPONENT__COMPONENTS = MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Bindings</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT__BINDINGS = MODEL_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
 	 * The feature id for the '<em><b>Connections</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT__CONNECTIONS = MODEL_ELEMENT_FEATURE_COUNT + 3;
+	int COMPONENT__CONNECTIONS = MODEL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Features</b></em>' containment reference list.
@@ -1018,7 +1045,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT__FEATURES = MODEL_ELEMENT_FEATURE_COUNT + 4;
+	int COMPONENT__FEATURES = MODEL_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>Component</em>' class.
@@ -1027,7 +1054,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 5;
+	int COMPONENT_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.ImportImpl <em>Import</em>}' class.
@@ -1384,13 +1411,22 @@ public interface Aadlv3Package extends EPackage {
 	int CONFIGURATION_ASSIGNMENT__PROPERTY_ASSOCIATIONS = 3;
 
 	/**
+	 * The feature id for the '<em><b>Bindings</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONFIGURATION_ASSIGNMENT__BINDINGS = 4;
+
+	/**
 	 * The number of structural features of the '<em>Configuration Assignment</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONFIGURATION_ASSIGNMENT_FEATURE_COUNT = 4;
+	int CONFIGURATION_ASSIGNMENT_FEATURE_COUNT = 5;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.ConfigurationAssignmentPatternImpl <em>Configuration Assignment Pattern</em>}' class.
@@ -1437,6 +1473,15 @@ public interface Aadlv3Package extends EPackage {
 	 * @ordered
 	 */
 	int CONFIGURATION_ASSIGNMENT_PATTERN__PROPERTY_ASSOCIATIONS = CONFIGURATION_ASSIGNMENT__PROPERTY_ASSOCIATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Bindings</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONFIGURATION_ASSIGNMENT_PATTERN__BINDINGS = CONFIGURATION_ASSIGNMENT__BINDINGS;
 
 	/**
 	 * The feature id for the '<em><b>Target Pattern</b></em>' reference.
@@ -2057,6 +2102,17 @@ public interface Aadlv3Package extends EPackage {
 	EReference getComponentImplementation_Paths();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link org.osate.aadlv3.aadlv3.ComponentImplementation#getBindings <em>Bindings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Bindings</em>'.
+	 * @see org.osate.aadlv3.aadlv3.ComponentImplementation#getBindings()
+	 * @see #getComponentImplementation()
+	 * @generated
+	 */
+	EReference getComponentImplementation_Bindings();
+
+	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.ComponentConfiguration <em>Component Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2098,6 +2154,17 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 */
 	EAttribute getComponentConfiguration_Parameterized();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.osate.aadlv3.aadlv3.ComponentConfiguration#getBindings <em>Bindings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Bindings</em>'.
+	 * @see org.osate.aadlv3.aadlv3.ComponentConfiguration#getBindings()
+	 * @see #getComponentConfiguration()
+	 * @generated
+	 */
+	EReference getComponentConfiguration_Bindings();
 
 	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.Feature <em>Feature</em>}'.
@@ -2206,6 +2273,17 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 */
 	EReference getComponent_Components();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.osate.aadlv3.aadlv3.Component#getBindings <em>Bindings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Bindings</em>'.
+	 * @see org.osate.aadlv3.aadlv3.Component#getBindings()
+	 * @see #getComponent()
+	 * @generated
+	 */
+	EReference getComponent_Bindings();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link org.osate.aadlv3.aadlv3.Component#getConnections <em>Connections</em>}'.
@@ -2357,6 +2435,17 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 */
 	EReference getConfigurationAssignment_PropertyAssociations();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.osate.aadlv3.aadlv3.ConfigurationAssignment#getBindings <em>Bindings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Bindings</em>'.
+	 * @see org.osate.aadlv3.aadlv3.ConfigurationAssignment#getBindings()
+	 * @see #getConfigurationAssignment()
+	 * @generated
+	 */
+	EReference getConfigurationAssignment_Bindings();
 
 	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.ConfigurationAssignmentPattern <em>Configuration Assignment Pattern</em>}'.
@@ -3060,6 +3149,14 @@ public interface Aadlv3Package extends EPackage {
 		EReference COMPONENT_IMPLEMENTATION__PATHS = eINSTANCE.getComponentImplementation_Paths();
 
 		/**
+		 * The meta object literal for the '<em><b>Bindings</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPONENT_IMPLEMENTATION__BINDINGS = eINSTANCE.getComponentImplementation_Bindings();
+
+		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.ComponentConfigurationImpl <em>Component Configuration</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3093,6 +3190,14 @@ public interface Aadlv3Package extends EPackage {
 		 * @generated
 		 */
 		EAttribute COMPONENT_CONFIGURATION__PARAMETERIZED = eINSTANCE.getComponentConfiguration_Parameterized();
+
+		/**
+		 * The meta object literal for the '<em><b>Bindings</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPONENT_CONFIGURATION__BINDINGS = eINSTANCE.getComponentConfiguration_Bindings();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.FeatureImpl <em>Feature</em>}' class.
@@ -3177,6 +3282,14 @@ public interface Aadlv3Package extends EPackage {
 		 * @generated
 		 */
 		EReference COMPONENT__COMPONENTS = eINSTANCE.getComponent_Components();
+
+		/**
+		 * The meta object literal for the '<em><b>Bindings</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPONENT__BINDINGS = eINSTANCE.getComponent_Bindings();
 
 		/**
 		 * The meta object literal for the '<em><b>Connections</b></em>' containment reference list feature.
@@ -3298,6 +3411,14 @@ public interface Aadlv3Package extends EPackage {
 		 */
 		EReference CONFIGURATION_ASSIGNMENT__PROPERTY_ASSOCIATIONS = eINSTANCE
 				.getConfigurationAssignment_PropertyAssociations();
+
+		/**
+		 * The meta object literal for the '<em><b>Bindings</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONFIGURATION_ASSIGNMENT__BINDINGS = eINSTANCE.getConfigurationAssignment_Bindings();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.ConfigurationAssignmentPatternImpl <em>Configuration Assignment Pattern</em>}' class.

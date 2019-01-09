@@ -45,6 +45,7 @@ import org.osate.aadlv3.aadlv3.PathSequence;
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentImplementationImpl#getConfigurationAssignments <em>Configuration Assignments</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentImplementationImpl#getFlowAssignments <em>Flow Assignments</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentImplementationImpl#getPaths <em>Paths</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentImplementationImpl#getBindings <em>Bindings</em>}</li>
  * </ul>
  *
  * @generated
@@ -99,6 +100,16 @@ public class ComponentImplementationImpl extends ComponentRealizationImpl implem
 	 * @ordered
 	 */
 	protected EList<PathSequence> paths;
+
+	/**
+	 * The cached value of the '{@link #getBindings() <em>Bindings</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBindings()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Association> bindings;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -196,6 +207,20 @@ public class ComponentImplementationImpl extends ComponentRealizationImpl implem
 	 * @generated
 	 */
 	@Override
+	public EList<Association> getBindings() {
+		if (bindings == null) {
+			bindings = new EObjectContainmentEList<Association>(Association.class, this,
+					Aadlv3Package.COMPONENT_IMPLEMENTATION__BINDINGS);
+		}
+		return bindings;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case Aadlv3Package.COMPONENT_IMPLEMENTATION__COMPONENTS:
@@ -208,6 +233,8 @@ public class ComponentImplementationImpl extends ComponentRealizationImpl implem
 			return ((InternalEList<?>) getFlowAssignments()).basicRemove(otherEnd, msgs);
 		case Aadlv3Package.COMPONENT_IMPLEMENTATION__PATHS:
 			return ((InternalEList<?>) getPaths()).basicRemove(otherEnd, msgs);
+		case Aadlv3Package.COMPONENT_IMPLEMENTATION__BINDINGS:
+			return ((InternalEList<?>) getBindings()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -230,6 +257,8 @@ public class ComponentImplementationImpl extends ComponentRealizationImpl implem
 			return getFlowAssignments();
 		case Aadlv3Package.COMPONENT_IMPLEMENTATION__PATHS:
 			return getPaths();
+		case Aadlv3Package.COMPONENT_IMPLEMENTATION__BINDINGS:
+			return getBindings();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -263,6 +292,10 @@ public class ComponentImplementationImpl extends ComponentRealizationImpl implem
 			getPaths().clear();
 			getPaths().addAll((Collection<? extends PathSequence>) newValue);
 			return;
+		case Aadlv3Package.COMPONENT_IMPLEMENTATION__BINDINGS:
+			getBindings().clear();
+			getBindings().addAll((Collection<? extends Association>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -290,6 +323,9 @@ public class ComponentImplementationImpl extends ComponentRealizationImpl implem
 		case Aadlv3Package.COMPONENT_IMPLEMENTATION__PATHS:
 			getPaths().clear();
 			return;
+		case Aadlv3Package.COMPONENT_IMPLEMENTATION__BINDINGS:
+			getBindings().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -312,6 +348,8 @@ public class ComponentImplementationImpl extends ComponentRealizationImpl implem
 			return flowAssignments != null && !flowAssignments.isEmpty();
 		case Aadlv3Package.COMPONENT_IMPLEMENTATION__PATHS:
 			return paths != null && !paths.isEmpty();
+		case Aadlv3Package.COMPONENT_IMPLEMENTATION__BINDINGS:
+			return bindings != null && !bindings.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

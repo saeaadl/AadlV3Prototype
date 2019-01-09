@@ -48,6 +48,7 @@ import org.osate.aadlv3.aadlv3.TypeReference;
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentImpl#getCategory <em>Category</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentImpl#getTypeReferences <em>Type References</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentImpl#getComponents <em>Components</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentImpl#getBindings <em>Bindings</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentImpl#getConnections <em>Connections</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentImpl#getFeatures <em>Features</em>}</li>
  * </ul>
@@ -94,6 +95,16 @@ public class ComponentImpl extends ModelElementImpl implements Component {
 	 * @ordered
 	 */
 	protected EList<Component> components;
+
+	/**
+	 * The cached value of the '{@link #getBindings() <em>Bindings</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBindings()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Association> bindings;
 
 	/**
 	 * The cached value of the '{@link #getConnections() <em>Connections</em>}' containment reference list.
@@ -192,6 +203,20 @@ public class ComponentImpl extends ModelElementImpl implements Component {
 	 * @generated
 	 */
 	@Override
+	public EList<Association> getBindings() {
+		if (bindings == null) {
+			bindings = new EObjectContainmentEList<Association>(Association.class, this,
+					Aadlv3Package.COMPONENT__BINDINGS);
+		}
+		return bindings;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EList<Association> getConnections() {
 		if (connections == null) {
 			connections = new EObjectContainmentEList<Association>(Association.class, this,
@@ -225,6 +250,8 @@ public class ComponentImpl extends ModelElementImpl implements Component {
 			return ((InternalEList<?>) getTypeReferences()).basicRemove(otherEnd, msgs);
 		case Aadlv3Package.COMPONENT__COMPONENTS:
 			return ((InternalEList<?>) getComponents()).basicRemove(otherEnd, msgs);
+		case Aadlv3Package.COMPONENT__BINDINGS:
+			return ((InternalEList<?>) getBindings()).basicRemove(otherEnd, msgs);
 		case Aadlv3Package.COMPONENT__CONNECTIONS:
 			return ((InternalEList<?>) getConnections()).basicRemove(otherEnd, msgs);
 		case Aadlv3Package.COMPONENT__FEATURES:
@@ -247,6 +274,8 @@ public class ComponentImpl extends ModelElementImpl implements Component {
 			return getTypeReferences();
 		case Aadlv3Package.COMPONENT__COMPONENTS:
 			return getComponents();
+		case Aadlv3Package.COMPONENT__BINDINGS:
+			return getBindings();
 		case Aadlv3Package.COMPONENT__CONNECTIONS:
 			return getConnections();
 		case Aadlv3Package.COMPONENT__FEATURES:
@@ -274,6 +303,10 @@ public class ComponentImpl extends ModelElementImpl implements Component {
 		case Aadlv3Package.COMPONENT__COMPONENTS:
 			getComponents().clear();
 			getComponents().addAll((Collection<? extends Component>) newValue);
+			return;
+		case Aadlv3Package.COMPONENT__BINDINGS:
+			getBindings().clear();
+			getBindings().addAll((Collection<? extends Association>) newValue);
 			return;
 		case Aadlv3Package.COMPONENT__CONNECTIONS:
 			getConnections().clear();
@@ -304,6 +337,9 @@ public class ComponentImpl extends ModelElementImpl implements Component {
 		case Aadlv3Package.COMPONENT__COMPONENTS:
 			getComponents().clear();
 			return;
+		case Aadlv3Package.COMPONENT__BINDINGS:
+			getBindings().clear();
+			return;
 		case Aadlv3Package.COMPONENT__CONNECTIONS:
 			getConnections().clear();
 			return;
@@ -328,6 +364,8 @@ public class ComponentImpl extends ModelElementImpl implements Component {
 			return typeReferences != null && !typeReferences.isEmpty();
 		case Aadlv3Package.COMPONENT__COMPONENTS:
 			return components != null && !components.isEmpty();
+		case Aadlv3Package.COMPONENT__BINDINGS:
+			return bindings != null && !bindings.isEmpty();
 		case Aadlv3Package.COMPONENT__CONNECTIONS:
 			return connections != null && !connections.isEmpty();
 		case Aadlv3Package.COMPONENT__FEATURES:

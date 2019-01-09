@@ -29,6 +29,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.osate.aadlv3.aadlv3.ComponentConfiguration#getParameters <em>Parameters</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.ComponentConfiguration#getConfigurationAssignments <em>Configuration Assignments</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.ComponentConfiguration#isParameterized <em>Parameterized</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.ComponentConfiguration#getBindings <em>Bindings</em>}</li>
  * </ul>
  *
  * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getComponentConfiguration()
@@ -93,5 +94,21 @@ public interface ComponentConfiguration extends ComponentRealization {
 	 * @generated
 	 */
 	void setParameterized(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Bindings</b></em>' containment reference list.
+	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.Association}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Bindings</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Bindings</em>' containment reference list.
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getComponentConfiguration_Bindings()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<Association> getBindings();
 
 } // ComponentConfiguration

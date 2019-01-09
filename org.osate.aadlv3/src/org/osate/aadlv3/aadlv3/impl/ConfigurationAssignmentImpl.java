@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
+import org.osate.aadlv3.aadlv3.Association;
 import org.osate.aadlv3.aadlv3.ConfigurationAssignment;
 import org.osate.aadlv3.aadlv3.ModelElementReference;
 import org.osate.aadlv3.aadlv3.PropertyAssociation;
@@ -49,6 +50,7 @@ import org.osate.aadlv3.aadlv3.TypeReference;
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ConfigurationAssignmentImpl#getConfigurationAssignments <em>Configuration Assignments</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ConfigurationAssignmentImpl#getAssignedClassifiers <em>Assigned Classifiers</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ConfigurationAssignmentImpl#getPropertyAssociations <em>Property Associations</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.ConfigurationAssignmentImpl#getBindings <em>Bindings</em>}</li>
  * </ul>
  *
  * @generated
@@ -93,6 +95,16 @@ public class ConfigurationAssignmentImpl extends MinimalEObjectImpl.Container im
 	 * @ordered
 	 */
 	protected EList<PropertyAssociation> propertyAssociations;
+
+	/**
+	 * The cached value of the '{@link #getBindings() <em>Bindings</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBindings()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Association> bindings;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -214,6 +226,20 @@ public class ConfigurationAssignmentImpl extends MinimalEObjectImpl.Container im
 	 * @generated
 	 */
 	@Override
+	public EList<Association> getBindings() {
+		if (bindings == null) {
+			bindings = new EObjectContainmentEList<Association>(Association.class, this,
+					Aadlv3Package.CONFIGURATION_ASSIGNMENT__BINDINGS);
+		}
+		return bindings;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__TARGET:
@@ -224,6 +250,8 @@ public class ConfigurationAssignmentImpl extends MinimalEObjectImpl.Container im
 			return ((InternalEList<?>) getAssignedClassifiers()).basicRemove(otherEnd, msgs);
 		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__PROPERTY_ASSOCIATIONS:
 			return ((InternalEList<?>) getPropertyAssociations()).basicRemove(otherEnd, msgs);
+		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__BINDINGS:
+			return ((InternalEList<?>) getBindings()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -244,6 +272,8 @@ public class ConfigurationAssignmentImpl extends MinimalEObjectImpl.Container im
 			return getAssignedClassifiers();
 		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__PROPERTY_ASSOCIATIONS:
 			return getPropertyAssociations();
+		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__BINDINGS:
+			return getBindings();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -272,6 +302,10 @@ public class ConfigurationAssignmentImpl extends MinimalEObjectImpl.Container im
 			getPropertyAssociations().clear();
 			getPropertyAssociations().addAll((Collection<? extends PropertyAssociation>) newValue);
 			return;
+		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__BINDINGS:
+			getBindings().clear();
+			getBindings().addAll((Collection<? extends Association>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -296,6 +330,9 @@ public class ConfigurationAssignmentImpl extends MinimalEObjectImpl.Container im
 		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__PROPERTY_ASSOCIATIONS:
 			getPropertyAssociations().clear();
 			return;
+		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__BINDINGS:
+			getBindings().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -316,6 +353,8 @@ public class ConfigurationAssignmentImpl extends MinimalEObjectImpl.Container im
 			return assignedClassifiers != null && !assignedClassifiers.isEmpty();
 		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__PROPERTY_ASSOCIATIONS:
 			return propertyAssociations != null && !propertyAssociations.isEmpty();
+		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__BINDINGS:
+			return bindings != null && !bindings.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

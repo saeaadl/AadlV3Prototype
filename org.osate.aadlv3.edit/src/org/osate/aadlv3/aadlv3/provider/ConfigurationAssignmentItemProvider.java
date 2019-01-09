@@ -87,6 +87,7 @@ public class ConfigurationAssignmentItemProvider extends ItemProviderAdapter imp
 			childrenFeatures.add(Aadlv3Package.Literals.CONFIGURATION_ASSIGNMENT__CONFIGURATION_ASSIGNMENTS);
 			childrenFeatures.add(Aadlv3Package.Literals.CONFIGURATION_ASSIGNMENT__ASSIGNED_CLASSIFIERS);
 			childrenFeatures.add(Aadlv3Package.Literals.CONFIGURATION_ASSIGNMENT__PROPERTY_ASSOCIATIONS);
+			childrenFeatures.add(Aadlv3Package.Literals.CONFIGURATION_ASSIGNMENT__BINDINGS);
 		}
 		return childrenFeatures;
 	}
@@ -142,6 +143,7 @@ public class ConfigurationAssignmentItemProvider extends ItemProviderAdapter imp
 		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__CONFIGURATION_ASSIGNMENTS:
 		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__ASSIGNED_CLASSIFIERS:
 		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__PROPERTY_ASSOCIATIONS:
+		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__BINDINGS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -180,6 +182,9 @@ public class ConfigurationAssignmentItemProvider extends ItemProviderAdapter imp
 		newChildDescriptors
 				.add(createChildParameter(Aadlv3Package.Literals.CONFIGURATION_ASSIGNMENT__PROPERTY_ASSOCIATIONS,
 						Aadlv3Factory.eINSTANCE.createPropertyAssociation()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONFIGURATION_ASSIGNMENT__BINDINGS,
+				Aadlv3Factory.eINSTANCE.createAssociation()));
 	}
 
 	/**

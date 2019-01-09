@@ -29,6 +29,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.osate.aadlv3.aadlv3.Component#getCategory <em>Category</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.Component#getTypeReferences <em>Type References</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.Component#getComponents <em>Components</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.Component#getBindings <em>Bindings</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.Component#getConnections <em>Connections</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.Component#getFeatures <em>Features</em>}</li>
  * </ul>
@@ -98,6 +99,22 @@ public interface Component extends ModelElement {
 	 * @generated
 	 */
 	EList<Component> getComponents();
+
+	/**
+	 * Returns the value of the '<em><b>Bindings</b></em>' containment reference list.
+	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.Association}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Bindings</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Bindings</em>' containment reference list.
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getComponent_Bindings()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<Association> getBindings();
 
 	/**
 	 * Returns the value of the '<em><b>Connections</b></em>' containment reference list.

@@ -78,6 +78,7 @@ public class ComponentImplementationItemProvider extends ComponentRealizationIte
 			childrenFeatures.add(Aadlv3Package.Literals.COMPONENT_IMPLEMENTATION__CONFIGURATION_ASSIGNMENTS);
 			childrenFeatures.add(Aadlv3Package.Literals.COMPONENT_IMPLEMENTATION__FLOW_ASSIGNMENTS);
 			childrenFeatures.add(Aadlv3Package.Literals.COMPONENT_IMPLEMENTATION__PATHS);
+			childrenFeatures.add(Aadlv3Package.Literals.COMPONENT_IMPLEMENTATION__BINDINGS);
 		}
 		return childrenFeatures;
 	}
@@ -136,6 +137,7 @@ public class ComponentImplementationItemProvider extends ComponentRealizationIte
 		case Aadlv3Package.COMPONENT_IMPLEMENTATION__CONFIGURATION_ASSIGNMENTS:
 		case Aadlv3Package.COMPONENT_IMPLEMENTATION__FLOW_ASSIGNMENTS:
 		case Aadlv3Package.COMPONENT_IMPLEMENTATION__PATHS:
+		case Aadlv3Package.COMPONENT_IMPLEMENTATION__BINDINGS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -172,6 +174,9 @@ public class ComponentImplementationItemProvider extends ComponentRealizationIte
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.COMPONENT_IMPLEMENTATION__PATHS,
 				Aadlv3Factory.eINSTANCE.createPathSequence()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.COMPONENT_IMPLEMENTATION__BINDINGS,
+				Aadlv3Factory.eINSTANCE.createAssociation()));
 	}
 
 	/**
@@ -185,7 +190,9 @@ public class ComponentImplementationItemProvider extends ComponentRealizationIte
 		Object childFeature = feature;
 		Object childObject = child;
 
-		boolean qualify = childFeature == Aadlv3Package.Literals.COMPONENT_IMPLEMENTATION__FLOW_ASSIGNMENTS
+		boolean qualify = childFeature == Aadlv3Package.Literals.COMPONENT_IMPLEMENTATION__CONNECTIONS
+				|| childFeature == Aadlv3Package.Literals.COMPONENT_IMPLEMENTATION__BINDINGS
+				|| childFeature == Aadlv3Package.Literals.COMPONENT_IMPLEMENTATION__FLOW_ASSIGNMENTS
 				|| childFeature == Aadlv3Package.Literals.COMPONENT_IMPLEMENTATION__PATHS;
 
 		if (qualify) {

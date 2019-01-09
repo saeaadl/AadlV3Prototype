@@ -95,6 +95,7 @@ public class ComponentItemProvider extends ModelElementItemProvider {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(Aadlv3Package.Literals.COMPONENT__TYPE_REFERENCES);
 			childrenFeatures.add(Aadlv3Package.Literals.COMPONENT__COMPONENTS);
+			childrenFeatures.add(Aadlv3Package.Literals.COMPONENT__BINDINGS);
 			childrenFeatures.add(Aadlv3Package.Literals.COMPONENT__CONNECTIONS);
 			childrenFeatures.add(Aadlv3Package.Literals.COMPONENT__FEATURES);
 		}
@@ -155,6 +156,7 @@ public class ComponentItemProvider extends ModelElementItemProvider {
 			return;
 		case Aadlv3Package.COMPONENT__TYPE_REFERENCES:
 		case Aadlv3Package.COMPONENT__COMPONENTS:
+		case Aadlv3Package.COMPONENT__BINDINGS:
 		case Aadlv3Package.COMPONENT__CONNECTIONS:
 		case Aadlv3Package.COMPONENT__FEATURES:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
@@ -180,11 +182,35 @@ public class ComponentItemProvider extends ModelElementItemProvider {
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.COMPONENT__COMPONENTS,
 				Aadlv3Factory.eINSTANCE.createComponent()));
 
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.COMPONENT__BINDINGS,
+				Aadlv3Factory.eINSTANCE.createAssociation()));
+
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.COMPONENT__CONNECTIONS,
 				Aadlv3Factory.eINSTANCE.createAssociation()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.COMPONENT__FEATURES,
 				Aadlv3Factory.eINSTANCE.createFeature()));
+	}
+
+	/**
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
+		Object childFeature = feature;
+		Object childObject = child;
+
+		boolean qualify = childFeature == Aadlv3Package.Literals.COMPONENT__BINDINGS
+				|| childFeature == Aadlv3Package.Literals.COMPONENT__CONNECTIONS;
+
+		if (qualify) {
+			return getString("_UI_CreateChild_text2",
+					new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+		}
+		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 }
