@@ -31,7 +31,7 @@ package org.osate.aadlv3.aadlv3;
  * @model
  * @generated
  */
-public interface ConfigurationParameter extends NamedElement, Type {
+public interface ConfigurationParameter extends Type {
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->

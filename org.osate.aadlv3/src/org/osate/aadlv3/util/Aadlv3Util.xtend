@@ -1,11 +1,15 @@
 package org.osate.aadlv3.util
 
+import com.google.common.collect.ArrayListMultimap
+import com.google.common.collect.Multimap
 import java.util.Collection
 import java.util.Collections
 import java.util.HashMap
 import java.util.HashSet
 import java.util.LinkedHashSet
 import java.util.Stack
+import org.eclipse.emf.common.util.BasicEList
+import org.eclipse.emf.common.util.EList
 import org.eclipse.emf.ecore.EObject
 import org.osate.aadlv3.aadlv3.Association
 import org.osate.aadlv3.aadlv3.AssociationType
@@ -17,6 +21,7 @@ import org.osate.aadlv3.aadlv3.ComponentImplementation
 import org.osate.aadlv3.aadlv3.ComponentInterface
 import org.osate.aadlv3.aadlv3.ConfigurationActual
 import org.osate.aadlv3.aadlv3.ConfigurationAssignment
+import org.osate.aadlv3.aadlv3.ConfigurationAssignmentPattern
 import org.osate.aadlv3.aadlv3.ConfigurationParameter
 import org.osate.aadlv3.aadlv3.DataType
 import org.osate.aadlv3.aadlv3.Feature
@@ -28,8 +33,11 @@ import org.osate.aadlv3.aadlv3.ModelElementReference
 import org.osate.aadlv3.aadlv3.PackageDeclaration
 import org.osate.aadlv3.aadlv3.PathSequence
 import org.osate.aadlv3.aadlv3.PropertyAssociation
+import org.osate.aadlv3.aadlv3.PropertyAssociationType
+import org.osate.aadlv3.aadlv3.PropertyDefinition
 import org.osate.aadlv3.aadlv3.Type
 import org.osate.aadlv3.aadlv3.TypeReference
+import org.osate.aadlv3.aadlv3.Workingset
 import org.osate.av3instance.av3instance.AssociationInstance
 import org.osate.av3instance.av3instance.Av3instanceFactory
 import org.osate.av3instance.av3instance.ComponentInstance
@@ -41,13 +49,8 @@ import org.osate.av3instance.av3instance.PropertyAssociationInstance
 import static extension org.eclipse.emf.ecore.util.EcoreUtil.*
 import static extension org.eclipse.xtext.EcoreUtil2.*
 import static extension org.osate.aadlv3.util.Av3API.*
-import org.eclipse.emf.common.util.EList
-import org.eclipse.emf.common.util.BasicEList
-import org.osate.aadlv3.aadlv3.PropertyAssociationType
-import org.osate.aadlv3.aadlv3.ConfigurationAssignmentPattern
-import org.osate.aadlv3.aadlv3.PropertyDefinition
-import org.osate.aadlv3.aadlv3.PropertySet
-import org.osate.aadlv3.aadlv3.Workingset
+import com.google.common.collect.HashMultimap
+import com.google.common.collect.SetMultimap
 
 class Aadlv3Util {
 	/**
@@ -196,15 +199,14 @@ class Aadlv3Util {
 		return true
 	}
 	
-	
 	/**
 	 * returns implementation that is the extension of all other implementations
 	 */
 	static def ComponentImplementation getTopComponentImplementation(Iterable<TypeReference> trs){
 		var ComponentImplementation top = null
 		for (tr : trs){
-			if (tr.type instanceof ComponentImplementation){
-				val cl = tr.type as ComponentImplementation
+			if (tr.type instanceof ComponentClassifier){
+				val cl = (tr.type as ComponentClassifier).getTopComponentImplementation
 				if (top === null || top.isSuperImplementationOf(cl)){
 					top = cl
 				}
@@ -255,7 +257,7 @@ class Aadlv3Util {
 	/**
 	 * return set of component configurations of a given classifier
 	 */
-	static def Iterable<? extends ComponentConfiguration> getAllComponentConfigurations(ComponentClassifier cc) {
+	static def Iterable<ComponentConfiguration> getAllComponentConfigurations(ComponentClassifier cc) {
 		if(cc === null || cc.eIsProxy || !(cc instanceof ComponentConfiguration)) return Collections.EMPTY_LIST
 		val result = new LinkedHashSet<ComponentConfiguration>
 		result.add(cc as ComponentConfiguration)
@@ -266,7 +268,7 @@ class Aadlv3Util {
 	/**
 	 * return set of all super configurations of a given classifier
 	 */
-	static def Iterable<? extends ComponentConfiguration> getAllSuperComponentConfigurations(ComponentClassifier cc) {
+	static def Iterable<ComponentConfiguration> getAllSuperComponentConfigurations(ComponentClassifier cc) {
 		if(cc === null || cc.eIsProxy|| !(cc instanceof ComponentConfiguration)) return Collections.EMPTY_LIST
 		val result = new LinkedHashSet<ComponentConfiguration>
 		cc.addSuperComponentConfigurations(result)
@@ -297,7 +299,7 @@ class Aadlv3Util {
 	 * return collection of flow specs for given classifier
 	 * TODO check whether the same flow spec is added more than once
 	 */
-	static def Iterable<? extends Association> getAllFlowSpecs(ComponentInstance ci) {
+	static def Iterable<Association> getAllFlowSpecs(ComponentInstance ci) {
 		val conftrs = ci.configuredTypeReferences
 		if (conftrs.empty){
 			// flow specs in nested declaration
@@ -313,7 +315,7 @@ class Aadlv3Util {
 	 * return collection of end to end flows for given classifier
 	 * TODO check whether the same flow path is added more than once
 	 */
-	static def Iterable<? extends PathSequence> getAllPaths(ComponentInstance ci) {
+	static def Iterable<PathSequence> getAllPaths(ComponentInstance ci) {
 		val conftrs = ci.configuredTypeReferences
 		if (conftrs.empty){
 			// flow paths in nested declaration
@@ -329,7 +331,7 @@ class Aadlv3Util {
 	 * return collection of flow assignments for given classifier
 	 * TODO check whether the same flow assignment is added more than once
 	 */
-	static def Iterable<? extends PathSequence> getAllFlowAssignments(ComponentInstance ci) {
+	static def Iterable<PathSequence> getAllFlowAssignments(ComponentInstance ci) {
 		val conftrs = ci.configuredTypeReferences
 		if (conftrs.empty){
 			// flow implementation in nested declaration
@@ -346,7 +348,7 @@ class Aadlv3Util {
 	 * return collection of features of a component.
 	 * These are features declared as part of the classifier or as part of the nested declaration
 	 */
-	static def Iterable<? extends Feature> getAllFeatures(ComponentInstance ci) {
+	static def Iterable<Feature> getAllFeatures(ComponentInstance ci) {
 		val conftrs = ci.configuredTypeReferences
 		if (conftrs.empty){
 			// features in nested declaration
@@ -355,24 +357,24 @@ class Aadlv3Util {
 			return conftrs.allFeatures+ci.component.features
 		}
 	}
-	static def Iterable<? extends Feature> getAllFeatures(FeatureInstance fi) {
+	static def Iterable<Feature> getAllFeatures(FeatureInstance fi) {
 		val fcl = fi.feature.type
 		if (fcl instanceof ComponentInterface){
 			return fcl.allFeatures
 		}
 	}
-	static def Iterable<? extends Feature> getAllFeatures(Iterable<TypeReference> trs) {
+	static def Iterable<Feature> getAllFeatures(Iterable<TypeReference> trs) {
 		// features from classifier
 		val cls = trs.allComponentClassifiers
 		return cls.filter[ccl|ccl instanceof ComponentInterface].map[cif|cif.eContents.typeSelect(Feature)].flatten
 	}
-	static def Iterable<? extends Feature> getAllFeatures(ComponentClassifier cl) {
+	static def Iterable<Feature> getAllFeatures(ComponentClassifier cl) {
 		// features from classifier
 		val cls = cl.allComponentClassifiers
 		return cls.filter[ccl|ccl instanceof ComponentInterface].map[cif|cif.eContents.typeSelect(Feature)].flatten
 	}
 	
-	static def boolean contains(Iterable <? extends Feature> feas, Feature f){
+	static def boolean contains(Iterable <Feature> feas, Feature f){
 		for (fea : feas){
 			if (fea === f) return true
 		}
@@ -388,7 +390,7 @@ class Aadlv3Util {
 		Aadlv3Util.isReverseFeature(features,f, false)
 	}
 	
-	static def boolean isReverseFeature(Iterable<? extends Feature> features, Feature f, boolean reverse){
+	static def boolean isReverseFeature(Iterable<Feature> features, Feature f, boolean reverse){
 		for (fea : features) {
 			val typ = fea.type
 			if(typ instanceof ComponentInterface){
@@ -436,7 +438,7 @@ class Aadlv3Util {
 	 * return collection of sub-components of a component.
 	 * These are sub-components declared as part of the classifier or as part of the nested declaration
 	 */
-	static def Iterable<? extends Component> getAllSubcomponents(ComponentInstance ci) {
+	static def Iterable<Component> getAllSubcomponents(ComponentInstance ci) {
 		val conftrs = ci.configuredTypeReferences
 		if (conftrs.empty){
 			// subcomponents in nested declaration
@@ -448,11 +450,31 @@ class Aadlv3Util {
 		}
 	}
 
+	static def Iterable<Component> getAllSubcomponents(ComponentClassifier cl) {
+		// features from classifier
+		val cls = cl.allComponentClassifiers
+		return cls.filter[ccl|ccl instanceof ComponentImplementation].map[cif|cif.eContents.typeSelect(Component)].flatten
+	}
+	
+	static def Iterable<Component> getAllSubcomponents(Iterable<TypeReference> trs, Component component) {
+		if (trs.empty){
+			// subcomponents in nested declaration
+			if (component === null){
+				return Collections.EMPTY_LIST
+			}
+			return component.components
+		} else {
+			// subcomponents from classifier
+			val cls = trs.allComponentClassifiers
+			return cls.map[cl|cl.eContents.typeSelect(Component)].flatten
+		}
+	}
+
 	/**
 	 * return collection of associations of a component instance.
 	 * These are associations declared as part of the classifier or as part of the nested declaration
 	 */
-	static def Iterable<? extends Association> getAllAssociations(ComponentInstance ci) {
+	static def Iterable<Association> getAllAssociations(ComponentInstance ci) {
 		val conftrs = ci.configuredTypeReferences
 		if (conftrs.empty){
 			// connections in nested declaration
@@ -465,14 +487,24 @@ class Aadlv3Util {
 
 
 	// return all configuration assignments including those of super configurations
-	// Those from super configurations may get overridden if they are for the same target
 	static def Iterable<ConfigurationAssignment> getAllConfigurationAssignments(Iterable<TypeReference> trs) {
 		if(trs.empty) return Collections.EMPTY_LIST
 		val cls = trs.allComponentClassifiers
 		if (cls.empty) return Collections.EMPTY_LIST
-		cls.map[cl|cl.allConfigurationAssignments].flatten
+		cls.map[cl|cl.getAllGivenClassifierConfigurationAssignments].flatten
 	}
-	static def Iterable<ConfigurationAssignment> getAllConfigurationAssignments(ComponentClassifier cl) {
+	
+	// return all configuration assignments including those of super configurations
+	static def Iterable<ConfigurationAssignment> getAllConfigurationAssignments(ComponentClassifier ccl) {
+		if(ccl === null || ccl.eIsProxy) return Collections.EMPTY_LIST
+		val cls = ccl.allComponentClassifiers
+		if (cls.empty) return Collections.EMPTY_LIST
+		cls.map[cl|cl.getAllGivenClassifierConfigurationAssignments].flatten
+	}
+	
+	// returns all configuration assignments for given classifier including nested configuration assignments
+	// does not process super classifiers
+	static def Iterable<ConfigurationAssignment> getAllGivenClassifierConfigurationAssignments(ComponentClassifier cl) {
 		if(cl === null || cl.eIsProxy) return Collections.EMPTY_LIST
 		val cas = cl.eContents.typeSelect(ConfigurationAssignment)
 		val nestedcas = cas.map[ca|ca.nestedConfigurationAssignments].flatten
@@ -480,12 +512,11 @@ class Aadlv3Util {
 	}
 
 	// returns configuration assignments from all super configurations
-	// if two super configurations contain the same configuration assignment target the first one is used
 	static def Iterable<ConfigurationAssignment> getAllSuperConfigurationAssignments(ComponentConfiguration cc) {
 		if(cc === null || cc.eIsProxy || cc.superClassifiers.isEmpty) return Collections.EMPTY_LIST
 		val supercls = cc.allSuperComponentConfigurations
 		if (supercls.empty) return Collections.EMPTY_LIST
-		 supercls.map[cl|cl.allConfigurationAssignments].flatten
+		 supercls.map[cl|cl.getAllGivenClassifierConfigurationAssignments].flatten
 	}
 
 	
@@ -623,7 +654,7 @@ class Aadlv3Util {
 		}
 		return ctyperefs
 	}
-	
+
 
 	// find the actual value assigned in an argument. 
 	// A parameter actual may be passed as parameter actual, thus, we need to recurse
@@ -735,15 +766,64 @@ class Aadlv3Util {
 		}
 		return false
 	}
+	
+		
+	/**
+	 * collect all configuration assignments to all subcomponents for a given classifier.
+	 * recursively handles configuration assignments contained in assigned configurations
+	 */
+	def static SetMultimap <String, TypeReference> cacheClassifierAssignments(ComponentClassifier cl) {
+		val SetMultimap <String, TypeReference> map = HashMultimap.create();
+		cl.processConfigurationAssignments(map,"")
+		// recurse on subcomponents to process their assigned configuration
+		val subs = cl.getAllSubcomponents
+		for (sub : subs) {
+			sub.processSubcomponentConfigurationAssignments(map, sub.name)
+		}
+		return map
+	}
+		
+	/**
+	 * add all configuration assignments of collection of type references and declared classifiers of assignment targets into cache
+	 */
+	def static void processSubcomponentConfigurationAssignments(Component sub, SetMultimap<String, TypeReference> cache, String targetpath) {
+		val Iterable<TypeReference> subtrs = sub.typeReferences + cache.get(targetpath)
+		val cls = subtrs.allComponentClassifiers
+		for (cl : cls){
+			cl.processConfigurationAssignments(cache,targetpath)
+		}
+		val subsubs = subtrs.getAllSubcomponents(sub)
+		for (subsub : subsubs){
+			subsub.processSubcomponentConfigurationAssignments(cache,targetpath+"."+subsub.name)
+		}
+	}
+		
+	/**
+	 * add all configuration assignments of classifier cl and declared classifiers of assignment targets into cache
+	 */
+	def static void processConfigurationAssignments(ComponentClassifier cl, SetMultimap<String, TypeReference> cache, String targetpathprefix) {
+		val cas = cl.allConfigurationAssignments
+		for (ca : cas){
+			val targetcomp = ca.target?.element
+			if (targetcomp instanceof Component){
+				val targettrs = targetcomp.typeReferences
+				val fulltrs = targettrs+ca.assignedClassifiers
+				// put in multi map
+				val fulltargetpath = if (targetpathprefix.empty)ca.targetPath else targetpathprefix+"."+ca.targetPath
+				cache.putAll(fulltargetpath,fulltrs)
+			}
+		}
+	}
+	
 
 // methods used primarily by validator and scope provider
 	
-	static def Iterable<? extends ModelElement> getAllModelElements(ComponentClassifier cl) {
+	static def Iterable<ModelElement> getAllModelElements(ComponentClassifier cl) {
 		if(cl === null) return Collections.EMPTY_LIST
 		cl.allComponentClassifiers.map[cif|cif.eContents.typeSelect(ModelElement)].flatten
 	}
 
-	static def Iterable<? extends ModelElement> getAllModelElements(Iterable<TypeReference> trs) {
+	static def Iterable<ModelElement> getAllModelElements(Iterable<TypeReference> trs) {
 		trs.allComponentClassifiers.map[cif|cif.eContents.typeSelect(ModelElement)].flatten
 	}
 
@@ -752,7 +832,7 @@ class Aadlv3Util {
 	 * return collection of model elements of a component.
 	 * These are model elements declared as part of the classifier or as part of the nested declaration
 	 */
-	static def Iterable<? extends ModelElement> getAllModelElements(Component comp) {
+	static def Iterable<ModelElement> getAllModelElements(Component comp) {
 		if (comp.typeReferences.empty || comp.typeReferences.isDataType){
 			// model elements in nested declaration
 			return comp.eContents.typeSelect(ModelElement)
@@ -978,6 +1058,23 @@ class Aadlv3Util {
 	}
 
 
+	// returns the enclosing component. 
+	def static Component getContainingSubcomponent(EObject elem) {
+		var cxt = elem
+		while (cxt !== null && !(cxt instanceof Component)) {
+			cxt = cxt.eContainer as EObject
+		}
+		return cxt as Component
+	}
+	// returns the enclosing component. 
+	def static ConfigurationAssignment getContainingConfigurationAssignment(EObject elem) {
+		var cxt = if (elem instanceof ConfigurationAssignment) elem.eContainer as EObject else elem
+		while (cxt !== null && !(cxt instanceof ConfigurationAssignment)) {
+			cxt = cxt.eContainer as EObject
+		}
+		return cxt as ConfigurationAssignment
+	}
+
 	
 	// mapping maps an outgoing feature, i.e., a source
 	def static boolean isOutgoingFeatureMapping(Association conn){
@@ -1109,6 +1206,18 @@ class Aadlv3Util {
 		}
 		cxt
 	}
+	
+	def static String getTargetPath(ConfigurationAssignment ca){
+		var res = ca.target.targetPath
+		var cxt = ca.containingConfigurationAssignment
+		while (cxt !== null){
+			res = cxt.target.targetPath + '.' + res
+			cxt = cxt.containingConfigurationAssignment
+		}
+		return res
+		
+	}
+
 	
 	def static String getTargetPath(ModelElementReference mer){
 		var res = mer.element.name

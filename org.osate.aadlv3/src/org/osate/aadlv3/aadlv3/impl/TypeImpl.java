@@ -16,9 +16,6 @@
 package org.osate.aadlv3.aadlv3.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.Type;
 
@@ -29,7 +26,7 @@ import org.osate.aadlv3.aadlv3.Type;
  *
  * @generated
  */
-public abstract class TypeImpl extends MinimalEObjectImpl.Container implements Type {
+public abstract class TypeImpl extends NamedElementImpl implements Type {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

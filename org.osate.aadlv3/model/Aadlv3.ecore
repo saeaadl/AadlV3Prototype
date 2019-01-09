@@ -28,7 +28,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="propertyAssociations" upperBound="-1"
         eType="#//PropertyAssociation" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Type" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Type" abstract="true" eSuperTypes="#//NamedElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="DataType" eSuperTypes="#//PackageElement #//Type">
     <eStructuralFeatures xsi:type="ecore:EReference" name="propertyAssociations" upperBound="-1"
         eType="#//PropertyAssociation" containment="true"/>
@@ -133,7 +133,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="#//ModelElementReference"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ConfigurationParameter" eSuperTypes="#//NamedElement #//Type">
+  <eClassifiers xsi:type="ecore:EClass" name="ConfigurationParameter" eSuperTypes="#//Type">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Type"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypeReference">

@@ -141,6 +141,8 @@ public class Aadlv3Switch<T> extends Switch<T> {
 			Type type = (Type) theEObject;
 			T result = caseType(type);
 			if (result == null)
+				result = caseNamedElement(type);
+			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -321,9 +323,9 @@ public class Aadlv3Switch<T> extends Switch<T> {
 			ConfigurationParameter configurationParameter = (ConfigurationParameter) theEObject;
 			T result = caseConfigurationParameter(configurationParameter);
 			if (result == null)
-				result = caseNamedElement(configurationParameter);
-			if (result == null)
 				result = caseType(configurationParameter);
+			if (result == null)
+				result = caseNamedElement(configurationParameter);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;

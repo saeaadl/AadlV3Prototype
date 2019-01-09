@@ -28,6 +28,8 @@ import static extension org.osate.aadlv3.util.Aadlv3Util.*
 import static extension org.osate.aadlv3.util.Av3API.*
 import org.osate.aadlv3.aadlv3.PropertyAssociation
 import org.osate.aadlv3.aadlv3.TypeReference
+import com.google.common.collect.Multimap
+import com.google.common.collect.SetMultimap
 
 /**
  * This class contains custom validation rules. 
@@ -81,6 +83,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	@Check
 	def checkComponentClassifier(ComponentClassifier cl) {
 		cl.checkConsistentCategory()
+		cl.checkCommonTopComponentImplementation
 	}
 
 	@Check
@@ -99,6 +102,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	@Check
 	def checkComponentConfiguration(ComponentConfiguration config) {
 		config.checkInterface()
+		config.checkConsistentTopImplementation
 	}
 
 	@Check
@@ -123,35 +127,8 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 
 	@Check
 	def checkConfigurationAssignment(ConfigurationAssignment ca) {
-		if (!(ca.target.element instanceof Component)) {
-			// TODO in the future we may configure features
-			error('Configuration assignment must be for subcomponent', ca,
-				Aadlv3Package.Literals.CONFIGURATION_ASSIGNMENT__TARGET, ToSubcomponent)
-		} else {
-			val comp = ca.target.element as Component
-			for (tr : ca.assignedClassifiers) {
-				val assignedtype = tr.type
-				val thetype = if(assignedtype instanceof ConfigurationParameter) assignedtype.type else assignedtype
-				if (thetype instanceof ComponentClassifier) {
-					val clcat = thetype.componentCategory
-					if (!(comp.category === clcat || clcat === ComponentCategory.INTERFACE)) {
-						error(
-							'Category \'' + clcat + '\' of assigned classifier must be the same as the category \'' +
-								comp.category + '\' of the component or must be "abstract"', ca, null,
-							MISMATCHED_COMPONENT_CATEGORY)
-					}
-				} else if (thetype instanceof DataType) {
-					// primitive type
-					if (comp.category === ComponentCategory.DATA || comp.category === ComponentCategory.INTERFACE) {
-						if (!comp.typeReferences.empty) {
-							error('Assigned primitive type cannot override existing type', ca, null, OverrideType)
-						}
-					} else {
-						error('Configuration assignment expects component classifier', ca, null, NoDataType)
-					}
-				}
-			}
-		}
+		ca.checkConfigurationAssignmentCategory
+		ca.checkCommonTopComponentImplementation
 	}
 
 	@Check
@@ -180,35 +157,8 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 
 	@Check
 	def checkComponent(Component comp) {
-		var topimpl = null;
-		for (tr : comp.typeReferences) {
-			val t = tr.type
-			if (t instanceof ComponentClassifier) {
-				// the categories must be consistent
-				val clcat = (tr.type as ComponentClassifier).componentCategory
-				if (!(clcat === comp.category || clcat === ComponentCategory.INTERFACE)) {
-					error('Component category conflicts with classifier category', comp,
-						Aadlv3Package.Literals.COMPONENT__CATEGORY, MISMATCHED_COMPONENT_CATEGORY)
-				}
-				// data component cannot have classifier, only primitive type
-				if (comp.category === ComponentCategory.DATA) {
-					error('Data component must have data type', comp, Aadlv3Package.Literals.COMPONENT__CATEGORY,
-						MustBeDataType)
-				}
-			} else if (t instanceof DataType) {
-				if (!(comp.category === ComponentCategory.DATA || comp.category === ComponentCategory.INTERFACE)) {
-					error('Components other than "data" or "component" cannot have primitive type', comp,
-						Aadlv3Package.Literals.COMPONENT__CATEGORY, NoDataType)
-				}
-			} else {
-				// configuration parameter
-			}
-		}
-		// if has type references that are not data type then {} can only contain property associations
-		if (!comp.typeReferences.empty && ! comp.typeReferences.isDataType && (!comp.features.empty || !comp.connections.empty || !comp.components.empty)) {
-			error('Component with classifier can only have property associations in {}', comp, null,
-				OnlyPropertyAssociations)
-		}
+		comp.checkConsistentCategory
+		comp.checkCommonTopComponentImplementation
 	}
 
 	@Check
@@ -423,13 +373,106 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 				if (top === null || top.isSuperImplementationOf(topimpl)){
 					top = topimpl
 				} else if (!topimpl.isSuperImplementationOf(top)){
-					error('Implementation is parallel to top implementation '+top.name, cl,
+					error('Implementation is conflict with implementation '+top.name, cl,
 						Aadlv3Package.Literals.COMPONENT_CLASSIFIER__SUPER_CLASSIFIERS, trs.indexOf(tr),NoCommonImplementation)
 				}
 			}
 		}
 	}
+
+		/**
+	 * Checks that the top implementations are not parallel super branches
+	 */
+	def void checkCommonTopComponentImplementation(Component sub){
+		var ComponentImplementation top = null
+		val trs = sub.typeReferences
+		for (tr : trs){
+			if (tr.type instanceof ComponentClassifier){
+				val topimpl = (tr.type as ComponentClassifier).topComponentImplementation
+				if (top === null || top.isSuperImplementationOf(topimpl)){
+					top = topimpl
+				} else if (!topimpl.isSuperImplementationOf(top)){
+					error('Implementation is parallel to top implementation '+top.name, sub,
+						Aadlv3Package.Literals.COMPONENT__TYPE_REFERENCES, trs.indexOf(tr),NoCommonImplementation)
+				}
+			}
+		}
+	}
 	
+	def void checkConsistentCategory(Component comp){
+		for (tr : comp.typeReferences) {
+			val t = tr.type
+			if (t instanceof ComponentClassifier) {
+				// the categories must be consistent
+				val clcat = (tr.type as ComponentClassifier).componentCategory
+				if (!(clcat === comp.category || clcat === ComponentCategory.INTERFACE)) {
+					error('Component category conflicts with classifier category', comp,
+						Aadlv3Package.Literals.COMPONENT__CATEGORY, MISMATCHED_COMPONENT_CATEGORY)
+				}
+				// data component cannot have classifier, only primitive type
+				if (comp.category === ComponentCategory.DATA) {
+					error('Data component must have data type', comp, Aadlv3Package.Literals.COMPONENT__CATEGORY,
+						MustBeDataType)
+				}
+			} else if (t instanceof DataType) {
+				if (!(comp.category === ComponentCategory.DATA || comp.category === ComponentCategory.INTERFACE)) {
+					error('Components other than "data" or "component" cannot have primitive type', comp,
+						Aadlv3Package.Literals.COMPONENT__CATEGORY, NoDataType)
+				}
+			} else {
+				// configuration parameter
+			}
+		}
+		// if has type references that are not data type then {} can only contain property associations
+		if (!comp.typeReferences.empty && ! comp.typeReferences.isDataType && (!comp.features.empty || !comp.connections.empty || !comp.components.empty)) {
+			error('Component with classifier can only have property associations in {}', comp, null,
+				OnlyPropertyAssociations)
+		}
+		
+	}
+
+	
+	def void checkConsistentTopImplementation(ComponentConfiguration cl){
+		val SetMultimap <String, TypeReference> map = cl.cacheClassifierAssignments
+		val keys = map.keySet
+		for ( key : keys){
+			val trs = map.get(key)
+			trs.consistentTopComponentImplementation
+		}
+	}
+		
+	
+	/**
+	 * returns implementation that is the extension of all other implementations
+	 */
+	 def void consistentTopComponentImplementation(Iterable<TypeReference> trs){
+		var ComponentImplementation top = null
+		var TypeReference toptr = null
+		for (tr : trs){
+			if (tr.type instanceof ComponentClassifier){
+				val cl = (tr.type as ComponentClassifier).getTopComponentImplementation
+				if (cl !== null) {
+					if (top === null || top.isSuperImplementationOf(cl)) {
+						top = cl
+						toptr = tr
+					} else if (!cl.isSuperImplementationOf(top)) {
+						val ca = tr.containingConfigurationAssignment
+						if (ca !== null){
+							val cc = ca.containingComponentConfiguration
+							val idx = cc.configurationAssignments.indexOf(ca)
+							val topca = toptr.containingConfigurationAssignment
+							val topsub = toptr.containingSubcomponent
+							val topcc = if (topca !== null) topca.containingComponentClassifier else topsub?.containingComponentClassifier
+							error('Assigned implementation is in conflict with '+top.name +' assigned in classifier '+topcc?.name, cc,
+							Aadlv3Package.Literals.COMPONENT_CONFIGURATION__CONFIGURATION_ASSIGNMENTS, idx,NoCommonImplementation)
+						}
+					}
+				}
+			}
+		}
+		return 
+	}
+
 
 	def checkFeatureDirection(Feature fea) {
 		switch (fea.category) {
@@ -493,6 +536,59 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 			}
 		}
 	}
+	
+	def checkConfigurationAssignmentCategory(ConfigurationAssignment ca) {
+		if (!(ca.target.element instanceof Component)) {
+			// TODO in the future we may configure features
+			error('Configuration assignment must be for subcomponent', ca,
+				Aadlv3Package.Literals.CONFIGURATION_ASSIGNMENT__TARGET, ToSubcomponent)
+		} else {
+			val comp = ca.target.element as Component
+			for (tr : ca.assignedClassifiers) {
+				val assignedtype = tr.type
+				val thetype = if(assignedtype instanceof ConfigurationParameter) assignedtype.type else assignedtype
+				if (thetype instanceof ComponentClassifier) {
+					val clcat = thetype.componentCategory
+					if (!(comp.category === clcat || clcat === ComponentCategory.INTERFACE)) {
+						error(
+							'Category \'' + clcat + '\' of assigned classifier must be the same as the category \'' +
+								comp.category + '\' of the component or must be "abstract"', ca, null,
+							MISMATCHED_COMPONENT_CATEGORY)
+					}
+				} else if (thetype instanceof DataType) {
+					// primitive type
+					if (comp.category === ComponentCategory.DATA || comp.category === ComponentCategory.INTERFACE) {
+						if (!comp.typeReferences.empty) {
+							error('Assigned primitive type cannot override existing type', ca, null, OverrideType)
+						}
+					} else {
+						error('Configuration assignment expects component classifier', ca, null, NoDataType)
+					}
+				}
+			}
+		}
+	}
+	
+			/**
+	 * Checks that the top implementations are not parallel super branches
+	 */
+	def void checkCommonTopComponentImplementation(ConfigurationAssignment ca){
+		var ComponentImplementation top = null
+		val trs = ca.assignedClassifiers
+		for (tr : trs){
+			if (tr.type instanceof ComponentClassifier){
+				val topimpl = (tr.type as ComponentClassifier).topComponentImplementation
+				if (top === null || top.isSuperImplementationOf(topimpl)){
+					top = topimpl
+				} else if (!topimpl.isSuperImplementationOf(top)){
+					error('Implementation is in conflict with implementation '+top.name, ca,
+						Aadlv3Package.Literals.CONFIGURATION_ASSIGNMENT__ASSIGNED_CLASSIFIERS, trs.indexOf(tr),NoCommonImplementation)
+				}
+			}
+		}
+	}
+	
+	
 
 	def checkConsistentDirection(Association assoc) {
 		val srcdir = assoc.source?.realFeatureDirection

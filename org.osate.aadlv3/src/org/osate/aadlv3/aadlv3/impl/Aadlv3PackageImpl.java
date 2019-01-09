@@ -1534,6 +1534,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		propertyDefinitionEClass.getESuperTypes().add(this.getPackageElement());
 		propertySetEClass.getESuperTypes().add(this.getPackageElement());
 		modelElementEClass.getESuperTypes().add(this.getNamedElement());
+		typeEClass.getESuperTypes().add(this.getNamedElement());
 		dataTypeEClass.getESuperTypes().add(this.getPackageElement());
 		dataTypeEClass.getESuperTypes().add(this.getType());
 		componentClassifierEClass.getESuperTypes().add(this.getPackageElement());
@@ -1548,7 +1549,6 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		pathSequenceEClass.getESuperTypes().add(this.getModelElement());
 		pathElementEClass.getESuperTypes().add(this.getModelElementReference());
 		configurationAssignmentPatternEClass.getESuperTypes().add(this.getConfigurationAssignment());
-		configurationParameterEClass.getESuperTypes().add(this.getNamedElement());
 		configurationParameterEClass.getESuperTypes().add(this.getType());
 		workingsetEClass.getESuperTypes().add(this.getPackageElement());
 

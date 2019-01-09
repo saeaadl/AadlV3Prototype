@@ -15,8 +15,6 @@
  */
 package org.osate.aadlv3.aadlv3;
 
-import org.eclipse.emf.ecore.EObject;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Type</b></em>'.
@@ -27,5 +25,5 @@ import org.eclipse.emf.ecore.EObject;
  * @model abstract="true"
  * @generated
  */
-public interface Type extends EObject {
+public interface Type extends NamedElement {
 } // Type

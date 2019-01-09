@@ -320,13 +320,22 @@ public interface Aadlv3Package extends EPackage {
 	int TYPE = 6;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE__NAME = NAMED_ELEMENT__NAME;
+
+	/**
 	 * The number of structural features of the '<em>Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_FEATURE_COUNT = 0;
+	int TYPE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.DataTypeImpl <em>Data Type</em>}' class.
@@ -1409,7 +1418,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONFIGURATION_PARAMETER__NAME = NAMED_ELEMENT__NAME;
+	int CONFIGURATION_PARAMETER__NAME = TYPE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -1418,7 +1427,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONFIGURATION_PARAMETER__TYPE = NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int CONFIGURATION_PARAMETER__TYPE = TYPE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Configuration Parameter</em>' class.
@@ -1427,7 +1436,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONFIGURATION_PARAMETER_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int CONFIGURATION_PARAMETER_FEATURE_COUNT = TYPE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Reverse</b></em>' attribute.

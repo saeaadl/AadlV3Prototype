@@ -1,0 +1,29 @@
+package configurationoverlap2 
+import StandardProperties::*;
+
+property SecurityLevel: int ;
+property SafetyLevel: int;
+
+system interface x end;
+
+system x.i  is 
+	xsub1: process subsubsys;
+ 	xsub2: process subsubsys.i , subsubsys.i2;
+end;
+
+process interface subsubsys
+end;
+
+process subsubsys.i end;
+
+process subsubsys.i2 end;
+
+
+ configuration x.config_L1 extends x.i is
+  xsub1 => subsubsys.i; 
+  xsub1 => subsubsys.i2 ;
+end;
+
+
+	
+end;

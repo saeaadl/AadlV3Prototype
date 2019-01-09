@@ -39,7 +39,7 @@ import org.osate.aadlv3.aadlv3.Type;
  *
  * @generated
  */
-public class ConfigurationParameterImpl extends NamedElementImpl implements ConfigurationParameter {
+public class ConfigurationParameterImpl extends TypeImpl implements ConfigurationParameter {
 	/**
 	 * The cached value of the '{@link #getType() <em>Type</em>}' reference.
 	 * <!-- begin-user-doc -->
