@@ -179,10 +179,12 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
+	 *     PackageElement returns PropertyDefinition
 	 *     PropertyDefinition returns PropertyDefinition
 	 *
 	 * Constraint:
 	 *     (
+	 *         private?='private'? 
 	 *         name=ID 
 	 *         type=[Type|QualifiedReference] 
 	 *         (componentCategories+=ComponentCategory | featureCategories+=FeatureCategory | associationTypes+=AssociationType)*
@@ -195,6 +197,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
+	 *     PackageElement returns ComponentConfiguration
 	 *     ComponentConfiguration returns ComponentConfiguration
 	 *
 	 * Constraint:
@@ -218,6 +221,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
+	 *     PackageElement returns ComponentImplementation
 	 *     ComponentImplementation returns ComponentImplementation
 	 *
 	 * Constraint:
@@ -245,6 +249,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
+	 *     PackageElement returns ComponentInterface
 	 *     ComponentInterface returns ComponentInterface
 	 *
 	 * Constraint:
@@ -408,10 +413,11 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
+	 *     PackageElement returns DataType
 	 *     DataType returns DataType
 	 *
 	 * Constraint:
-	 *     (name=ID (propertyAssociations+=PropertyAssociation propertyAssociations+=PropertyAssociation*)?)
+	 *     (private?='private'? name=ID (propertyAssociations+=PropertyAssociation propertyAssociations+=PropertyAssociation*)?)
 	 */
 	protected void sequence_DataType_PropertiesBlock(ISerializationContext context, DataType semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -565,22 +571,10 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	/**
 	 * Contexts:
 	 *     PackageDeclaration returns PackageDeclaration
+	 *     PackageElement returns PackageDeclaration
 	 *
 	 * Constraint:
-	 *     (
-	 *         name=QualifiedName 
-	 *         imports+=Import* 
-	 *         (
-	 *             elements+=PackageDeclaration | 
-	 *             elements+=DataType | 
-	 *             elements+=ComponentInterface | 
-	 *             elements+=ComponentImplementation | 
-	 *             elements+=ComponentConfiguration | 
-	 *             elements+=PropertyDefinition | 
-	 *             elements+=PropertySet | 
-	 *             elements+=Workingset
-	 *         )*
-	 *     )
+	 *     (private?='private'? name=QualifiedName (imports+=Import | elements+=PackageElement)*)
 	 */
 	protected void sequence_PackageDeclaration(ISerializationContext context, PackageDeclaration semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -626,10 +620,11 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
+	 *     PackageElement returns PropertySet
 	 *     PropertySet returns PropertySet
 	 *
 	 * Constraint:
-	 *     (name=ID properties+=[PropertyDefinition|QualifiedReference] properties+=[PropertyDefinition|QualifiedName]*)
+	 *     (private?='private'? name=ID properties+=[PropertyDefinition|QualifiedReference] properties+=[PropertyDefinition|QualifiedName]*)
 	 */
 	protected void sequence_PropertySet(ISerializationContext context, PropertySet semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -668,10 +663,12 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
+	 *     PackageElement returns Workingset
 	 *     Workingset returns Workingset
 	 *
 	 * Constraint:
 	 *     (
+	 *         private?='private'? 
 	 *         name=QualifiedName 
 	 *         (useProperties+=[PropertySet|QualifiedName] useProperties+=[PropertySet|QualifiedName]*)? 
 	 *         rootComponents+=Component 

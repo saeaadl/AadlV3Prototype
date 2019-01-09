@@ -117,13 +117,22 @@ public interface Aadlv3Package extends EPackage {
 	int PACKAGE_ELEMENT__NAME = NAMED_ELEMENT__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Private</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE_ELEMENT__PRIVATE = NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Package Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_ELEMENT_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int PACKAGE_ELEMENT_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.PackageDeclarationImpl <em>Package Declaration</em>}' class.
@@ -143,6 +152,15 @@ public interface Aadlv3Package extends EPackage {
 	 * @ordered
 	 */
 	int PACKAGE_DECLARATION__NAME = PACKAGE_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Private</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE_DECLARATION__PRIVATE = PACKAGE_ELEMENT__PRIVATE;
 
 	/**
 	 * The feature id for the '<em><b>Imports</b></em>' containment reference list.
@@ -189,6 +207,15 @@ public interface Aadlv3Package extends EPackage {
 	 * @ordered
 	 */
 	int PROPERTY_DEFINITION__NAME = PACKAGE_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Private</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_DEFINITION__PRIVATE = PACKAGE_ELEMENT__PRIVATE;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -253,6 +280,15 @@ public interface Aadlv3Package extends EPackage {
 	 * @ordered
 	 */
 	int PROPERTY_SET__NAME = PACKAGE_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Private</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_SET__PRIVATE = PACKAGE_ELEMENT__PRIVATE;
 
 	/**
 	 * The feature id for the '<em><b>Properties</b></em>' reference list.
@@ -357,6 +393,15 @@ public interface Aadlv3Package extends EPackage {
 	int DATA_TYPE__NAME = PACKAGE_ELEMENT__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Private</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_TYPE__PRIVATE = PACKAGE_ELEMENT__PRIVATE;
+
+	/**
 	 * The feature id for the '<em><b>Property Associations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -394,6 +439,15 @@ public interface Aadlv3Package extends EPackage {
 	int COMPONENT_CLASSIFIER__NAME = PACKAGE_ELEMENT__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Private</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_CLASSIFIER__PRIVATE = PACKAGE_ELEMENT__PRIVATE;
+
+	/**
 	 * The feature id for the '<em><b>Category</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -421,22 +475,13 @@ public interface Aadlv3Package extends EPackage {
 	int COMPONENT_CLASSIFIER__PROPERTY_ASSOCIATIONS = PACKAGE_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Private</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPONENT_CLASSIFIER__PRIVATE = PACKAGE_ELEMENT_FEATURE_COUNT + 3;
-
-	/**
 	 * The number of structural features of the '<em>Component Classifier</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_CLASSIFIER_FEATURE_COUNT = PACKAGE_ELEMENT_FEATURE_COUNT + 4;
+	int COMPONENT_CLASSIFIER_FEATURE_COUNT = PACKAGE_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.ComponentInterfaceImpl <em>Component Interface</em>}' class.
@@ -468,6 +513,15 @@ public interface Aadlv3Package extends EPackage {
 	int COMPONENT_REALIZATION__NAME = COMPONENT_CLASSIFIER__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Private</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_REALIZATION__PRIVATE = COMPONENT_CLASSIFIER__PRIVATE;
+
+	/**
 	 * The feature id for the '<em><b>Category</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -493,15 +547,6 @@ public interface Aadlv3Package extends EPackage {
 	 * @ordered
 	 */
 	int COMPONENT_REALIZATION__PROPERTY_ASSOCIATIONS = COMPONENT_CLASSIFIER__PROPERTY_ASSOCIATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Private</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPONENT_REALIZATION__PRIVATE = COMPONENT_CLASSIFIER__PRIVATE;
 
 	/**
 	 * The feature id for the '<em><b>Cached Interface Reference</b></em>' reference.
@@ -531,6 +576,15 @@ public interface Aadlv3Package extends EPackage {
 	int COMPONENT_INTERFACE__NAME = COMPONENT_CLASSIFIER__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Private</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_INTERFACE__PRIVATE = COMPONENT_CLASSIFIER__PRIVATE;
+
+	/**
 	 * The feature id for the '<em><b>Category</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -556,15 +610,6 @@ public interface Aadlv3Package extends EPackage {
 	 * @ordered
 	 */
 	int COMPONENT_INTERFACE__PROPERTY_ASSOCIATIONS = COMPONENT_CLASSIFIER__PROPERTY_ASSOCIATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Private</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPONENT_INTERFACE__PRIVATE = COMPONENT_CLASSIFIER__PRIVATE;
 
 	/**
 	 * The feature id for the '<em><b>Features</b></em>' containment reference list.
@@ -622,6 +667,15 @@ public interface Aadlv3Package extends EPackage {
 	int COMPONENT_IMPLEMENTATION__NAME = COMPONENT_REALIZATION__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Private</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_IMPLEMENTATION__PRIVATE = COMPONENT_REALIZATION__PRIVATE;
+
+	/**
 	 * The feature id for the '<em><b>Category</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -647,15 +701,6 @@ public interface Aadlv3Package extends EPackage {
 	 * @ordered
 	 */
 	int COMPONENT_IMPLEMENTATION__PROPERTY_ASSOCIATIONS = COMPONENT_REALIZATION__PROPERTY_ASSOCIATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Private</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPONENT_IMPLEMENTATION__PRIVATE = COMPONENT_REALIZATION__PRIVATE;
 
 	/**
 	 * The feature id for the '<em><b>Cached Interface Reference</b></em>' reference.
@@ -740,6 +785,15 @@ public interface Aadlv3Package extends EPackage {
 	int COMPONENT_CONFIGURATION__NAME = COMPONENT_REALIZATION__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Private</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_CONFIGURATION__PRIVATE = COMPONENT_REALIZATION__PRIVATE;
+
+	/**
 	 * The feature id for the '<em><b>Category</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -765,15 +819,6 @@ public interface Aadlv3Package extends EPackage {
 	 * @ordered
 	 */
 	int COMPONENT_CONFIGURATION__PROPERTY_ASSOCIATIONS = COMPONENT_REALIZATION__PROPERTY_ASSOCIATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Private</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPONENT_CONFIGURATION__PRIVATE = COMPONENT_REALIZATION__PRIVATE;
 
 	/**
 	 * The feature id for the '<em><b>Cached Interface Reference</b></em>' reference.
@@ -1511,6 +1556,15 @@ public interface Aadlv3Package extends EPackage {
 	int WORKINGSET__NAME = PACKAGE_ELEMENT__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Private</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKINGSET__PRIVATE = PACKAGE_ELEMENT__PRIVATE;
+
+	/**
 	 * The feature id for the '<em><b>Root Components</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1714,6 +1768,17 @@ public interface Aadlv3Package extends EPackage {
 	EClass getPackageElement();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.osate.aadlv3.aadlv3.PackageElement#isPrivate <em>Private</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Private</em>'.
+	 * @see org.osate.aadlv3.aadlv3.PackageElement#isPrivate()
+	 * @see #getPackageElement()
+	 * @generated
+	 */
+	EAttribute getPackageElement_Private();
+
+	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.PropertyDefinition <em>Property Definition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1882,17 +1947,6 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 */
 	EReference getComponentClassifier_PropertyAssociations();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.osate.aadlv3.aadlv3.ComponentClassifier#isPrivate <em>Private</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Private</em>'.
-	 * @see org.osate.aadlv3.aadlv3.ComponentClassifier#isPrivate()
-	 * @see #getComponentClassifier()
-	 * @generated
-	 */
-	EAttribute getComponentClassifier_Private();
 
 	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.ComponentInterface <em>Component Interface</em>}'.
@@ -2772,6 +2826,14 @@ public interface Aadlv3Package extends EPackage {
 		EClass PACKAGE_ELEMENT = eINSTANCE.getPackageElement();
 
 		/**
+		 * The meta object literal for the '<em><b>Private</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PACKAGE_ELEMENT__PRIVATE = eINSTANCE.getPackageElement_Private();
+
+		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.PropertyDefinitionImpl <em>Property Definition</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2911,14 +2973,6 @@ public interface Aadlv3Package extends EPackage {
 		 */
 		EReference COMPONENT_CLASSIFIER__PROPERTY_ASSOCIATIONS = eINSTANCE
 				.getComponentClassifier_PropertyAssociations();
-
-		/**
-		 * The meta object literal for the '<em><b>Private</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute COMPONENT_CLASSIFIER__PRIVATE = eINSTANCE.getComponentClassifier_Private();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.ComponentInterfaceImpl <em>Component Interface</em>}' class.

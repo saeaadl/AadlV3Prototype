@@ -39,82 +39,56 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	public class PackageDeclarationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.osate.xtext.aadlv3.AadlV3.PackageDeclaration");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cPackageKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameQualifiedNameParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Assignment cImportsAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cImportsImportParserRuleCall_2_0 = (RuleCall)cImportsAssignment_2.eContents().get(0);
-		private final Assignment cElementsAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final Alternatives cElementsAlternatives_3_0 = (Alternatives)cElementsAssignment_3.eContents().get(0);
-		private final RuleCall cElementsPackageDeclarationParserRuleCall_3_0_0 = (RuleCall)cElementsAlternatives_3_0.eContents().get(0);
-		private final RuleCall cElementsDataTypeParserRuleCall_3_0_1 = (RuleCall)cElementsAlternatives_3_0.eContents().get(1);
-		private final RuleCall cElementsComponentInterfaceParserRuleCall_3_0_2 = (RuleCall)cElementsAlternatives_3_0.eContents().get(2);
-		private final RuleCall cElementsComponentImplementationParserRuleCall_3_0_3 = (RuleCall)cElementsAlternatives_3_0.eContents().get(3);
-		private final RuleCall cElementsComponentConfigurationParserRuleCall_3_0_4 = (RuleCall)cElementsAlternatives_3_0.eContents().get(4);
-		private final RuleCall cElementsPropertyDefinitionParserRuleCall_3_0_5 = (RuleCall)cElementsAlternatives_3_0.eContents().get(5);
-		private final RuleCall cElementsPropertySetParserRuleCall_3_0_6 = (RuleCall)cElementsAlternatives_3_0.eContents().get(6);
-		private final RuleCall cElementsWorkingsetParserRuleCall_3_0_7 = (RuleCall)cElementsAlternatives_3_0.eContents().get(7);
+		private final Assignment cPrivateAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Keyword cPrivatePrivateKeyword_0_0 = (Keyword)cPrivateAssignment_0.eContents().get(0);
+		private final Keyword cPackageKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cNameQualifiedNameParserRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
+		private final Alternatives cAlternatives_3 = (Alternatives)cGroup.eContents().get(3);
+		private final Assignment cImportsAssignment_3_0 = (Assignment)cAlternatives_3.eContents().get(0);
+		private final RuleCall cImportsImportParserRuleCall_3_0_0 = (RuleCall)cImportsAssignment_3_0.eContents().get(0);
+		private final Assignment cElementsAssignment_3_1 = (Assignment)cAlternatives_3.eContents().get(1);
+		private final RuleCall cElementsPackageElementParserRuleCall_3_1_0 = (RuleCall)cElementsAssignment_3_1.eContents().get(0);
 		private final Keyword cEndKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		private final RuleCall cSEMICOLONParserRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
 		
 		//PackageDeclaration av3::PackageDeclaration:
-		//	'package' name=QualifiedName
-		//	imports+=Import*
-		//	elements+=(PackageDeclaration | DataType | ComponentInterface | ComponentImplementation | ComponentConfiguration |
-		//	PropertyDefinition | PropertySet | Workingset)*
+		//	private?='private'? 'package' name=QualifiedName (imports+=Import | elements+=PackageElement)*
 		//	'end' SEMICOLON;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'package' name=QualifiedName imports+=Import* elements+=(PackageDeclaration | DataType | ComponentInterface |
-		//ComponentImplementation | ComponentConfiguration | PropertyDefinition | PropertySet | Workingset)* 'end' SEMICOLON
+		//private?='private'? 'package' name=QualifiedName (imports+=Import | elements+=PackageElement)* 'end' SEMICOLON
 		public Group getGroup() { return cGroup; }
 		
+		//private?='private'?
+		public Assignment getPrivateAssignment_0() { return cPrivateAssignment_0; }
+		
+		//'private'
+		public Keyword getPrivatePrivateKeyword_0_0() { return cPrivatePrivateKeyword_0_0; }
+		
 		//'package'
-		public Keyword getPackageKeyword_0() { return cPackageKeyword_0; }
+		public Keyword getPackageKeyword_1() { return cPackageKeyword_1; }
 		
 		//name=QualifiedName
-		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
 		
 		//QualifiedName
-		public RuleCall getNameQualifiedNameParserRuleCall_1_0() { return cNameQualifiedNameParserRuleCall_1_0; }
+		public RuleCall getNameQualifiedNameParserRuleCall_2_0() { return cNameQualifiedNameParserRuleCall_2_0; }
 		
-		//imports+=Import*
-		public Assignment getImportsAssignment_2() { return cImportsAssignment_2; }
+		//(imports+=Import | elements+=PackageElement)*
+		public Alternatives getAlternatives_3() { return cAlternatives_3; }
+		
+		//imports+=Import
+		public Assignment getImportsAssignment_3_0() { return cImportsAssignment_3_0; }
 		
 		//Import
-		public RuleCall getImportsImportParserRuleCall_2_0() { return cImportsImportParserRuleCall_2_0; }
+		public RuleCall getImportsImportParserRuleCall_3_0_0() { return cImportsImportParserRuleCall_3_0_0; }
 		
-		//elements+=(PackageDeclaration | DataType | ComponentInterface | ComponentImplementation | ComponentConfiguration |
-		//PropertyDefinition | PropertySet | Workingset)*
-		public Assignment getElementsAssignment_3() { return cElementsAssignment_3; }
+		//elements+=PackageElement
+		public Assignment getElementsAssignment_3_1() { return cElementsAssignment_3_1; }
 		
-		//(PackageDeclaration | DataType | ComponentInterface | ComponentImplementation | ComponentConfiguration |
-		//PropertyDefinition | PropertySet | Workingset)
-		public Alternatives getElementsAlternatives_3_0() { return cElementsAlternatives_3_0; }
-		
-		//PackageDeclaration
-		public RuleCall getElementsPackageDeclarationParserRuleCall_3_0_0() { return cElementsPackageDeclarationParserRuleCall_3_0_0; }
-		
-		//DataType
-		public RuleCall getElementsDataTypeParserRuleCall_3_0_1() { return cElementsDataTypeParserRuleCall_3_0_1; }
-		
-		//ComponentInterface
-		public RuleCall getElementsComponentInterfaceParserRuleCall_3_0_2() { return cElementsComponentInterfaceParserRuleCall_3_0_2; }
-		
-		//ComponentImplementation
-		public RuleCall getElementsComponentImplementationParserRuleCall_3_0_3() { return cElementsComponentImplementationParserRuleCall_3_0_3; }
-		
-		//ComponentConfiguration
-		public RuleCall getElementsComponentConfigurationParserRuleCall_3_0_4() { return cElementsComponentConfigurationParserRuleCall_3_0_4; }
-		
-		//PropertyDefinition
-		public RuleCall getElementsPropertyDefinitionParserRuleCall_3_0_5() { return cElementsPropertyDefinitionParserRuleCall_3_0_5; }
-		
-		//PropertySet
-		public RuleCall getElementsPropertySetParserRuleCall_3_0_6() { return cElementsPropertySetParserRuleCall_3_0_6; }
-		
-		//Workingset
-		public RuleCall getElementsWorkingsetParserRuleCall_3_0_7() { return cElementsWorkingsetParserRuleCall_3_0_7; }
+		//PackageElement
+		public RuleCall getElementsPackageElementParserRuleCall_3_1_0() { return cElementsPackageElementParserRuleCall_3_1_0; }
 		
 		//'end'
 		public Keyword getEndKeyword_4() { return cEndKeyword_4; }
@@ -122,73 +96,127 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		//SEMICOLON
 		public RuleCall getSEMICOLONParserRuleCall_5() { return cSEMICOLONParserRuleCall_5; }
 	}
+	public class PackageElementElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.osate.xtext.aadlv3.AadlV3.PackageElement");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cPackageDeclarationParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cDataTypeParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cComponentInterfaceParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cComponentImplementationParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		private final RuleCall cComponentConfigurationParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
+		private final RuleCall cPropertyDefinitionParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
+		private final RuleCall cPropertySetParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
+		private final RuleCall cWorkingsetParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
+		
+		//PackageElement av3::PackageElement:
+		//	PackageDeclaration | DataType | ComponentInterface | ComponentImplementation | ComponentConfiguration |
+		//	PropertyDefinition | PropertySet | Workingset;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//PackageDeclaration | DataType | ComponentInterface | ComponentImplementation | ComponentConfiguration |
+		//PropertyDefinition | PropertySet | Workingset
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//PackageDeclaration
+		public RuleCall getPackageDeclarationParserRuleCall_0() { return cPackageDeclarationParserRuleCall_0; }
+		
+		//DataType
+		public RuleCall getDataTypeParserRuleCall_1() { return cDataTypeParserRuleCall_1; }
+		
+		//ComponentInterface
+		public RuleCall getComponentInterfaceParserRuleCall_2() { return cComponentInterfaceParserRuleCall_2; }
+		
+		//ComponentImplementation
+		public RuleCall getComponentImplementationParserRuleCall_3() { return cComponentImplementationParserRuleCall_3; }
+		
+		//ComponentConfiguration
+		public RuleCall getComponentConfigurationParserRuleCall_4() { return cComponentConfigurationParserRuleCall_4; }
+		
+		//PropertyDefinition
+		public RuleCall getPropertyDefinitionParserRuleCall_5() { return cPropertyDefinitionParserRuleCall_5; }
+		
+		//PropertySet
+		public RuleCall getPropertySetParserRuleCall_6() { return cPropertySetParserRuleCall_6; }
+		
+		//Workingset
+		public RuleCall getWorkingsetParserRuleCall_7() { return cWorkingsetParserRuleCall_7; }
+	}
 	public class PropertyDefinitionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.osate.xtext.aadlv3.AadlV3.PropertyDefinition");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cPropertyKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Keyword cColonKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cTypeAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final CrossReference cTypeTypeCrossReference_3_0 = (CrossReference)cTypeAssignment_3.eContents().get(0);
-		private final RuleCall cTypeTypeQualifiedReferenceParserRuleCall_3_0_1 = (RuleCall)cTypeTypeCrossReference_3_0.eContents().get(1);
-		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
-		private final Keyword cForKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
-		private final RuleCall cAppliesToParserRuleCall_4_1 = (RuleCall)cGroup_4.eContents().get(1);
-		private final Group cGroup_4_2 = (Group)cGroup_4.eContents().get(2);
-		private final Keyword cCommaKeyword_4_2_0 = (Keyword)cGroup_4_2.eContents().get(0);
-		private final RuleCall cAppliesToParserRuleCall_4_2_1 = (RuleCall)cGroup_4_2.eContents().get(1);
-		private final RuleCall cSEMICOLONParserRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
+		private final Assignment cPrivateAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Keyword cPrivatePrivateKeyword_0_0 = (Keyword)cPrivateAssignment_0.eContents().get(0);
+		private final Keyword cPropertyKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cNameIDTerminalRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
+		private final Keyword cColonKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cTypeAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final CrossReference cTypeTypeCrossReference_4_0 = (CrossReference)cTypeAssignment_4.eContents().get(0);
+		private final RuleCall cTypeTypeQualifiedReferenceParserRuleCall_4_0_1 = (RuleCall)cTypeTypeCrossReference_4_0.eContents().get(1);
+		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
+		private final Keyword cForKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
+		private final RuleCall cAppliesToParserRuleCall_5_1 = (RuleCall)cGroup_5.eContents().get(1);
+		private final Group cGroup_5_2 = (Group)cGroup_5.eContents().get(2);
+		private final Keyword cCommaKeyword_5_2_0 = (Keyword)cGroup_5_2.eContents().get(0);
+		private final RuleCall cAppliesToParserRuleCall_5_2_1 = (RuleCall)cGroup_5_2.eContents().get(1);
+		private final RuleCall cSEMICOLONParserRuleCall_6 = (RuleCall)cGroup.eContents().get(6);
 		
 		//PropertyDefinition av3::PropertyDefinition:
-		//	'property' name=ID ':' type=[av3::Type|QualifiedReference] ('for' AppliesTo (',' AppliesTo)*)?
+		//	private?='private'? 'property' name=ID ':' type=[av3::Type|QualifiedReference] ('for' AppliesTo (',' AppliesTo)*)?
 		//	SEMICOLON;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'property' name=ID ':' type=[av3::Type|QualifiedReference] ('for' AppliesTo (',' AppliesTo)*)? SEMICOLON
+		//private?='private'? 'property' name=ID ':' type=[av3::Type|QualifiedReference] ('for' AppliesTo (',' AppliesTo)*)?
+		//SEMICOLON
 		public Group getGroup() { return cGroup; }
 		
+		//private?='private'?
+		public Assignment getPrivateAssignment_0() { return cPrivateAssignment_0; }
+		
+		//'private'
+		public Keyword getPrivatePrivateKeyword_0_0() { return cPrivatePrivateKeyword_0_0; }
+		
 		//'property'
-		public Keyword getPropertyKeyword_0() { return cPropertyKeyword_0; }
+		public Keyword getPropertyKeyword_1() { return cPropertyKeyword_1; }
 		
 		//name=ID
-		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
 		
 		//ID
-		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+		public RuleCall getNameIDTerminalRuleCall_2_0() { return cNameIDTerminalRuleCall_2_0; }
 		
 		//':'
-		public Keyword getColonKeyword_2() { return cColonKeyword_2; }
+		public Keyword getColonKeyword_3() { return cColonKeyword_3; }
 		
 		//type=[av3::Type|QualifiedReference]
-		public Assignment getTypeAssignment_3() { return cTypeAssignment_3; }
+		public Assignment getTypeAssignment_4() { return cTypeAssignment_4; }
 		
 		//[av3::Type|QualifiedReference]
-		public CrossReference getTypeTypeCrossReference_3_0() { return cTypeTypeCrossReference_3_0; }
+		public CrossReference getTypeTypeCrossReference_4_0() { return cTypeTypeCrossReference_4_0; }
 		
 		//QualifiedReference
-		public RuleCall getTypeTypeQualifiedReferenceParserRuleCall_3_0_1() { return cTypeTypeQualifiedReferenceParserRuleCall_3_0_1; }
+		public RuleCall getTypeTypeQualifiedReferenceParserRuleCall_4_0_1() { return cTypeTypeQualifiedReferenceParserRuleCall_4_0_1; }
 		
 		//('for' AppliesTo (',' AppliesTo)*)?
-		public Group getGroup_4() { return cGroup_4; }
+		public Group getGroup_5() { return cGroup_5; }
 		
 		//'for'
-		public Keyword getForKeyword_4_0() { return cForKeyword_4_0; }
+		public Keyword getForKeyword_5_0() { return cForKeyword_5_0; }
 		
 		//AppliesTo
-		public RuleCall getAppliesToParserRuleCall_4_1() { return cAppliesToParserRuleCall_4_1; }
+		public RuleCall getAppliesToParserRuleCall_5_1() { return cAppliesToParserRuleCall_5_1; }
 		
 		//(',' AppliesTo)*
-		public Group getGroup_4_2() { return cGroup_4_2; }
+		public Group getGroup_5_2() { return cGroup_5_2; }
 		
 		//','
-		public Keyword getCommaKeyword_4_2_0() { return cCommaKeyword_4_2_0; }
+		public Keyword getCommaKeyword_5_2_0() { return cCommaKeyword_5_2_0; }
 		
 		//AppliesTo
-		public RuleCall getAppliesToParserRuleCall_4_2_1() { return cAppliesToParserRuleCall_4_2_1; }
+		public RuleCall getAppliesToParserRuleCall_5_2_1() { return cAppliesToParserRuleCall_5_2_1; }
 		
 		//SEMICOLON
-		public RuleCall getSEMICOLONParserRuleCall_5() { return cSEMICOLONParserRuleCall_5; }
+		public RuleCall getSEMICOLONParserRuleCall_6() { return cSEMICOLONParserRuleCall_6; }
 	}
 	public class AppliesToElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.osate.xtext.aadlv3.AadlV3.AppliesTo");
@@ -229,108 +257,124 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	public class PropertySetElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.osate.xtext.aadlv3.AadlV3.PropertySet");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cPropertiesKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Keyword cColonKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Keyword cLeftCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Assignment cPropertiesAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final CrossReference cPropertiesPropertyDefinitionCrossReference_4_0 = (CrossReference)cPropertiesAssignment_4.eContents().get(0);
-		private final RuleCall cPropertiesPropertyDefinitionQualifiedReferenceParserRuleCall_4_0_1 = (RuleCall)cPropertiesPropertyDefinitionCrossReference_4_0.eContents().get(1);
-		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
-		private final Keyword cCommaKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
-		private final Assignment cPropertiesAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
-		private final CrossReference cPropertiesPropertyDefinitionCrossReference_5_1_0 = (CrossReference)cPropertiesAssignment_5_1.eContents().get(0);
-		private final RuleCall cPropertiesPropertyDefinitionQualifiedNameParserRuleCall_5_1_0_1 = (RuleCall)cPropertiesPropertyDefinitionCrossReference_5_1_0.eContents().get(1);
-		private final Keyword cRightCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
-		private final RuleCall cSEMICOLONParserRuleCall_7 = (RuleCall)cGroup.eContents().get(7);
+		private final Assignment cPrivateAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Keyword cPrivatePrivateKeyword_0_0 = (Keyword)cPrivateAssignment_0.eContents().get(0);
+		private final Keyword cPropertiesKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cNameIDTerminalRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
+		private final Keyword cColonKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Keyword cLeftCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cPropertiesAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final CrossReference cPropertiesPropertyDefinitionCrossReference_5_0 = (CrossReference)cPropertiesAssignment_5.eContents().get(0);
+		private final RuleCall cPropertiesPropertyDefinitionQualifiedReferenceParserRuleCall_5_0_1 = (RuleCall)cPropertiesPropertyDefinitionCrossReference_5_0.eContents().get(1);
+		private final Group cGroup_6 = (Group)cGroup.eContents().get(6);
+		private final Keyword cCommaKeyword_6_0 = (Keyword)cGroup_6.eContents().get(0);
+		private final Assignment cPropertiesAssignment_6_1 = (Assignment)cGroup_6.eContents().get(1);
+		private final CrossReference cPropertiesPropertyDefinitionCrossReference_6_1_0 = (CrossReference)cPropertiesAssignment_6_1.eContents().get(0);
+		private final RuleCall cPropertiesPropertyDefinitionQualifiedNameParserRuleCall_6_1_0_1 = (RuleCall)cPropertiesPropertyDefinitionCrossReference_6_1_0.eContents().get(1);
+		private final Keyword cRightCurlyBracketKeyword_7 = (Keyword)cGroup.eContents().get(7);
+		private final RuleCall cSEMICOLONParserRuleCall_8 = (RuleCall)cGroup.eContents().get(8);
 		
 		//PropertySet av3::PropertySet:
-		//	'properties' name=ID ':'
+		//	private?='private'? 'properties' name=ID ':'
 		//	'{' properties+=[av3::PropertyDefinition|QualifiedReference] (','
 		//	properties+=[av3::PropertyDefinition|QualifiedName])* '}'
 		//	SEMICOLON;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'properties' name=ID ':' '{' properties+=[av3::PropertyDefinition|QualifiedReference] (','
+		//private?='private'? 'properties' name=ID ':' '{' properties+=[av3::PropertyDefinition|QualifiedReference] (','
 		//properties+=[av3::PropertyDefinition|QualifiedName])* '}' SEMICOLON
 		public Group getGroup() { return cGroup; }
 		
+		//private?='private'?
+		public Assignment getPrivateAssignment_0() { return cPrivateAssignment_0; }
+		
+		//'private'
+		public Keyword getPrivatePrivateKeyword_0_0() { return cPrivatePrivateKeyword_0_0; }
+		
 		//'properties'
-		public Keyword getPropertiesKeyword_0() { return cPropertiesKeyword_0; }
+		public Keyword getPropertiesKeyword_1() { return cPropertiesKeyword_1; }
 		
 		//name=ID
-		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
 		
 		//ID
-		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+		public RuleCall getNameIDTerminalRuleCall_2_0() { return cNameIDTerminalRuleCall_2_0; }
 		
 		//':'
-		public Keyword getColonKeyword_2() { return cColonKeyword_2; }
+		public Keyword getColonKeyword_3() { return cColonKeyword_3; }
 		
 		//'{'
-		public Keyword getLeftCurlyBracketKeyword_3() { return cLeftCurlyBracketKeyword_3; }
+		public Keyword getLeftCurlyBracketKeyword_4() { return cLeftCurlyBracketKeyword_4; }
 		
 		//properties+=[av3::PropertyDefinition|QualifiedReference]
-		public Assignment getPropertiesAssignment_4() { return cPropertiesAssignment_4; }
+		public Assignment getPropertiesAssignment_5() { return cPropertiesAssignment_5; }
 		
 		//[av3::PropertyDefinition|QualifiedReference]
-		public CrossReference getPropertiesPropertyDefinitionCrossReference_4_0() { return cPropertiesPropertyDefinitionCrossReference_4_0; }
+		public CrossReference getPropertiesPropertyDefinitionCrossReference_5_0() { return cPropertiesPropertyDefinitionCrossReference_5_0; }
 		
 		//QualifiedReference
-		public RuleCall getPropertiesPropertyDefinitionQualifiedReferenceParserRuleCall_4_0_1() { return cPropertiesPropertyDefinitionQualifiedReferenceParserRuleCall_4_0_1; }
+		public RuleCall getPropertiesPropertyDefinitionQualifiedReferenceParserRuleCall_5_0_1() { return cPropertiesPropertyDefinitionQualifiedReferenceParserRuleCall_5_0_1; }
 		
 		//(',' properties+=[av3::PropertyDefinition|QualifiedName])*
-		public Group getGroup_5() { return cGroup_5; }
+		public Group getGroup_6() { return cGroup_6; }
 		
 		//','
-		public Keyword getCommaKeyword_5_0() { return cCommaKeyword_5_0; }
+		public Keyword getCommaKeyword_6_0() { return cCommaKeyword_6_0; }
 		
 		//properties+=[av3::PropertyDefinition|QualifiedName]
-		public Assignment getPropertiesAssignment_5_1() { return cPropertiesAssignment_5_1; }
+		public Assignment getPropertiesAssignment_6_1() { return cPropertiesAssignment_6_1; }
 		
 		//[av3::PropertyDefinition|QualifiedName]
-		public CrossReference getPropertiesPropertyDefinitionCrossReference_5_1_0() { return cPropertiesPropertyDefinitionCrossReference_5_1_0; }
+		public CrossReference getPropertiesPropertyDefinitionCrossReference_6_1_0() { return cPropertiesPropertyDefinitionCrossReference_6_1_0; }
 		
 		//QualifiedName
-		public RuleCall getPropertiesPropertyDefinitionQualifiedNameParserRuleCall_5_1_0_1() { return cPropertiesPropertyDefinitionQualifiedNameParserRuleCall_5_1_0_1; }
+		public RuleCall getPropertiesPropertyDefinitionQualifiedNameParserRuleCall_6_1_0_1() { return cPropertiesPropertyDefinitionQualifiedNameParserRuleCall_6_1_0_1; }
 		
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_6() { return cRightCurlyBracketKeyword_6; }
+		public Keyword getRightCurlyBracketKeyword_7() { return cRightCurlyBracketKeyword_7; }
 		
 		//SEMICOLON
-		public RuleCall getSEMICOLONParserRuleCall_7() { return cSEMICOLONParserRuleCall_7; }
+		public RuleCall getSEMICOLONParserRuleCall_8() { return cSEMICOLONParserRuleCall_8; }
 	}
 	public class DataTypeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.osate.xtext.aadlv3.AadlV3.DataType");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cTypeKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final RuleCall cPropertiesBlockParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
-		private final RuleCall cSEMICOLONParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
+		private final Assignment cPrivateAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Keyword cPrivatePrivateKeyword_0_0 = (Keyword)cPrivateAssignment_0.eContents().get(0);
+		private final Keyword cTypeKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cNameIDTerminalRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
+		private final RuleCall cPropertiesBlockParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
+		private final RuleCall cSEMICOLONParserRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
 		
 		//DataType av3::DataType:
-		//	'type' name=ID PropertiesBlock? SEMICOLON;
+		//	private?='private'? 'type' name=ID PropertiesBlock? SEMICOLON;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'type' name=ID PropertiesBlock? SEMICOLON
+		//private?='private'? 'type' name=ID PropertiesBlock? SEMICOLON
 		public Group getGroup() { return cGroup; }
 		
+		//private?='private'?
+		public Assignment getPrivateAssignment_0() { return cPrivateAssignment_0; }
+		
+		//'private'
+		public Keyword getPrivatePrivateKeyword_0_0() { return cPrivatePrivateKeyword_0_0; }
+		
 		//'type'
-		public Keyword getTypeKeyword_0() { return cTypeKeyword_0; }
+		public Keyword getTypeKeyword_1() { return cTypeKeyword_1; }
 		
 		//name=ID
-		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
 		
 		//ID
-		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+		public RuleCall getNameIDTerminalRuleCall_2_0() { return cNameIDTerminalRuleCall_2_0; }
 		
 		//PropertiesBlock?
-		public RuleCall getPropertiesBlockParserRuleCall_2() { return cPropertiesBlockParserRuleCall_2; }
+		public RuleCall getPropertiesBlockParserRuleCall_3() { return cPropertiesBlockParserRuleCall_3; }
 		
 		//SEMICOLON
-		public RuleCall getSEMICOLONParserRuleCall_3() { return cSEMICOLONParserRuleCall_3; }
+		public RuleCall getSEMICOLONParserRuleCall_4() { return cSEMICOLONParserRuleCall_4; }
 	}
 	public class ComponentInterfaceElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.osate.xtext.aadlv3.AadlV3.ComponentInterface");
@@ -2336,73 +2380,81 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	public class WorkingsetElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.osate.xtext.aadlv3.AadlV3.Workingset");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cWorkingsetKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameQualifiedNameParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Keyword cIsKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final RuleCall cUsePropsParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
-		private final Assignment cRootComponentsAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cRootComponentsComponentParserRuleCall_4_0 = (RuleCall)cRootComponentsAssignment_4.eContents().get(0);
-		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
-		private final RuleCall cSEMICOLONParserRuleCall_5_0 = (RuleCall)cGroup_5.eContents().get(0);
-		private final Assignment cRootComponentsAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
-		private final RuleCall cRootComponentsComponentParserRuleCall_5_1_0 = (RuleCall)cRootComponentsAssignment_5_1.eContents().get(0);
-		private final RuleCall cSEMICOLONParserRuleCall_6 = (RuleCall)cGroup.eContents().get(6);
-		private final Keyword cEndKeyword_7 = (Keyword)cGroup.eContents().get(7);
-		private final RuleCall cSEMICOLONParserRuleCall_8 = (RuleCall)cGroup.eContents().get(8);
+		private final Assignment cPrivateAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Keyword cPrivatePrivateKeyword_0_0 = (Keyword)cPrivateAssignment_0.eContents().get(0);
+		private final Keyword cWorkingsetKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cNameQualifiedNameParserRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
+		private final Keyword cIsKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final RuleCall cUsePropsParserRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
+		private final Assignment cRootComponentsAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cRootComponentsComponentParserRuleCall_5_0 = (RuleCall)cRootComponentsAssignment_5.eContents().get(0);
+		private final Group cGroup_6 = (Group)cGroup.eContents().get(6);
+		private final RuleCall cSEMICOLONParserRuleCall_6_0 = (RuleCall)cGroup_6.eContents().get(0);
+		private final Assignment cRootComponentsAssignment_6_1 = (Assignment)cGroup_6.eContents().get(1);
+		private final RuleCall cRootComponentsComponentParserRuleCall_6_1_0 = (RuleCall)cRootComponentsAssignment_6_1.eContents().get(0);
+		private final RuleCall cSEMICOLONParserRuleCall_7 = (RuleCall)cGroup.eContents().get(7);
+		private final Keyword cEndKeyword_8 = (Keyword)cGroup.eContents().get(8);
+		private final RuleCall cSEMICOLONParserRuleCall_9 = (RuleCall)cGroup.eContents().get(9);
 		
 		//Workingset av3::Workingset:
-		//	'workingset' name=QualifiedName 'is'
+		//	private?='private'? 'workingset' name=QualifiedName 'is'
 		//	UseProps?
 		//	rootComponents+=Component (SEMICOLON rootComponents+=Component)* SEMICOLON?
 		//	'end' SEMICOLON;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'workingset' name=QualifiedName 'is' UseProps? rootComponents+=Component (SEMICOLON rootComponents+=Component)*
-		//SEMICOLON? 'end' SEMICOLON
+		//private?='private'? 'workingset' name=QualifiedName 'is' UseProps? rootComponents+=Component (SEMICOLON
+		//rootComponents+=Component)* SEMICOLON? 'end' SEMICOLON
 		public Group getGroup() { return cGroup; }
 		
+		//private?='private'?
+		public Assignment getPrivateAssignment_0() { return cPrivateAssignment_0; }
+		
+		//'private'
+		public Keyword getPrivatePrivateKeyword_0_0() { return cPrivatePrivateKeyword_0_0; }
+		
 		//'workingset'
-		public Keyword getWorkingsetKeyword_0() { return cWorkingsetKeyword_0; }
+		public Keyword getWorkingsetKeyword_1() { return cWorkingsetKeyword_1; }
 		
 		//name=QualifiedName
-		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
 		
 		//QualifiedName
-		public RuleCall getNameQualifiedNameParserRuleCall_1_0() { return cNameQualifiedNameParserRuleCall_1_0; }
+		public RuleCall getNameQualifiedNameParserRuleCall_2_0() { return cNameQualifiedNameParserRuleCall_2_0; }
 		
 		//'is'
-		public Keyword getIsKeyword_2() { return cIsKeyword_2; }
+		public Keyword getIsKeyword_3() { return cIsKeyword_3; }
 		
 		//UseProps?
-		public RuleCall getUsePropsParserRuleCall_3() { return cUsePropsParserRuleCall_3; }
+		public RuleCall getUsePropsParserRuleCall_4() { return cUsePropsParserRuleCall_4; }
 		
 		//rootComponents+=Component
-		public Assignment getRootComponentsAssignment_4() { return cRootComponentsAssignment_4; }
+		public Assignment getRootComponentsAssignment_5() { return cRootComponentsAssignment_5; }
 		
 		//Component
-		public RuleCall getRootComponentsComponentParserRuleCall_4_0() { return cRootComponentsComponentParserRuleCall_4_0; }
+		public RuleCall getRootComponentsComponentParserRuleCall_5_0() { return cRootComponentsComponentParserRuleCall_5_0; }
 		
 		//(SEMICOLON rootComponents+=Component)*
-		public Group getGroup_5() { return cGroup_5; }
+		public Group getGroup_6() { return cGroup_6; }
 		
 		//SEMICOLON
-		public RuleCall getSEMICOLONParserRuleCall_5_0() { return cSEMICOLONParserRuleCall_5_0; }
+		public RuleCall getSEMICOLONParserRuleCall_6_0() { return cSEMICOLONParserRuleCall_6_0; }
 		
 		//rootComponents+=Component
-		public Assignment getRootComponentsAssignment_5_1() { return cRootComponentsAssignment_5_1; }
+		public Assignment getRootComponentsAssignment_6_1() { return cRootComponentsAssignment_6_1; }
 		
 		//Component
-		public RuleCall getRootComponentsComponentParserRuleCall_5_1_0() { return cRootComponentsComponentParserRuleCall_5_1_0; }
+		public RuleCall getRootComponentsComponentParserRuleCall_6_1_0() { return cRootComponentsComponentParserRuleCall_6_1_0; }
 		
 		//SEMICOLON?
-		public RuleCall getSEMICOLONParserRuleCall_6() { return cSEMICOLONParserRuleCall_6; }
+		public RuleCall getSEMICOLONParserRuleCall_7() { return cSEMICOLONParserRuleCall_7; }
 		
 		//'end'
-		public Keyword getEndKeyword_7() { return cEndKeyword_7; }
+		public Keyword getEndKeyword_8() { return cEndKeyword_8; }
 		
 		//SEMICOLON
-		public RuleCall getSEMICOLONParserRuleCall_8() { return cSEMICOLONParserRuleCall_8; }
+		public RuleCall getSEMICOLONParserRuleCall_9() { return cSEMICOLONParserRuleCall_9; }
 	}
 	public class QualifiedNameWithWildcardElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.osate.xtext.aadlv3.AadlV3.QualifiedNameWithWildcard");
@@ -3212,6 +3264,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	
 	
 	private final PackageDeclarationElements pPackageDeclaration;
+	private final PackageElementElements pPackageElement;
 	private final PropertyDefinitionElements pPropertyDefinition;
 	private final AppliesToElements pAppliesTo;
 	private final PropertySetElements pPropertySet;
@@ -3306,6 +3359,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		this.grammar = internalFindGrammar(grammarProvider);
 		this.gaTerminals = gaTerminals;
 		this.pPackageDeclaration = new PackageDeclarationElements();
+		this.pPackageElement = new PackageElementElements();
 		this.pPropertyDefinition = new PropertyDefinitionElements();
 		this.pAppliesTo = new AppliesToElements();
 		this.pPropertySet = new PropertySetElements();
@@ -3419,10 +3473,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//PackageDeclaration av3::PackageDeclaration:
-	//	'package' name=QualifiedName
-	//	imports+=Import*
-	//	elements+=(PackageDeclaration | DataType | ComponentInterface | ComponentImplementation | ComponentConfiguration |
-	//	PropertyDefinition | PropertySet | Workingset)*
+	//	private?='private'? 'package' name=QualifiedName (imports+=Import | elements+=PackageElement)*
 	//	'end' SEMICOLON;
 	public PackageDeclarationElements getPackageDeclarationAccess() {
 		return pPackageDeclaration;
@@ -3432,8 +3483,19 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		return getPackageDeclarationAccess().getRule();
 	}
 	
+	//PackageElement av3::PackageElement:
+	//	PackageDeclaration | DataType | ComponentInterface | ComponentImplementation | ComponentConfiguration |
+	//	PropertyDefinition | PropertySet | Workingset;
+	public PackageElementElements getPackageElementAccess() {
+		return pPackageElement;
+	}
+	
+	public ParserRule getPackageElementRule() {
+		return getPackageElementAccess().getRule();
+	}
+	
 	//PropertyDefinition av3::PropertyDefinition:
-	//	'property' name=ID ':' type=[av3::Type|QualifiedReference] ('for' AppliesTo (',' AppliesTo)*)?
+	//	private?='private'? 'property' name=ID ':' type=[av3::Type|QualifiedReference] ('for' AppliesTo (',' AppliesTo)*)?
 	//	SEMICOLON;
 	public PropertyDefinitionElements getPropertyDefinitionAccess() {
 		return pPropertyDefinition;
@@ -3455,7 +3517,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//PropertySet av3::PropertySet:
-	//	'properties' name=ID ':'
+	//	private?='private'? 'properties' name=ID ':'
 	//	'{' properties+=[av3::PropertyDefinition|QualifiedReference] (','
 	//	properties+=[av3::PropertyDefinition|QualifiedName])* '}'
 	//	SEMICOLON;
@@ -3468,7 +3530,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//DataType av3::DataType:
-	//	'type' name=ID PropertiesBlock? SEMICOLON;
+	//	private?='private'? 'type' name=ID PropertiesBlock? SEMICOLON;
 	public DataTypeElements getDataTypeAccess() {
 		return pDataType;
 	}
@@ -3934,7 +3996,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Workingset av3::Workingset:
-	//	'workingset' name=QualifiedName 'is'
+	//	private?='private'? 'workingset' name=QualifiedName 'is'
 	//	UseProps?
 	//	rootComponents+=Component (SEMICOLON rootComponents+=Component)* SEMICOLON?
 	//	'end' SEMICOLON;

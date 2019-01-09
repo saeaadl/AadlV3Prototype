@@ -47,7 +47,6 @@ import org.osate.aadlv3.aadlv3.TypeReference;
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentClassifierImpl#getCategory <em>Category</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentClassifierImpl#getSuperClassifiers <em>Super Classifiers</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentClassifierImpl#getPropertyAssociations <em>Property Associations</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentClassifierImpl#isPrivate <em>Private</em>}</li>
  * </ul>
  *
  * @generated
@@ -92,26 +91,6 @@ public abstract class ComponentClassifierImpl extends PackageElementImpl impleme
 	 * @ordered
 	 */
 	protected EList<PropertyAssociation> propertyAssociations;
-
-	/**
-	 * The default value of the '{@link #isPrivate() <em>Private</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isPrivate()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean PRIVATE_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isPrivate() <em>Private</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isPrivate()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean private_ = PRIVATE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -190,30 +169,6 @@ public abstract class ComponentClassifierImpl extends PackageElementImpl impleme
 	 * @generated
 	 */
 	@Override
-	public boolean isPrivate() {
-		return private_;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setPrivate(boolean newPrivate) {
-		boolean oldPrivate = private_;
-		private_ = newPrivate;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.COMPONENT_CLASSIFIER__PRIVATE,
-					oldPrivate, private_));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case Aadlv3Package.COMPONENT_CLASSIFIER__SUPER_CLASSIFIERS:
@@ -238,8 +193,6 @@ public abstract class ComponentClassifierImpl extends PackageElementImpl impleme
 			return getSuperClassifiers();
 		case Aadlv3Package.COMPONENT_CLASSIFIER__PROPERTY_ASSOCIATIONS:
 			return getPropertyAssociations();
-		case Aadlv3Package.COMPONENT_CLASSIFIER__PRIVATE:
-			return isPrivate();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -264,9 +217,6 @@ public abstract class ComponentClassifierImpl extends PackageElementImpl impleme
 			getPropertyAssociations().clear();
 			getPropertyAssociations().addAll((Collection<? extends PropertyAssociation>) newValue);
 			return;
-		case Aadlv3Package.COMPONENT_CLASSIFIER__PRIVATE:
-			setPrivate((Boolean) newValue);
-			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -288,9 +238,6 @@ public abstract class ComponentClassifierImpl extends PackageElementImpl impleme
 		case Aadlv3Package.COMPONENT_CLASSIFIER__PROPERTY_ASSOCIATIONS:
 			getPropertyAssociations().clear();
 			return;
-		case Aadlv3Package.COMPONENT_CLASSIFIER__PRIVATE:
-			setPrivate(PRIVATE_EDEFAULT);
-			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -309,8 +256,6 @@ public abstract class ComponentClassifierImpl extends PackageElementImpl impleme
 			return superClassifiers != null && !superClassifiers.isEmpty();
 		case Aadlv3Package.COMPONENT_CLASSIFIER__PROPERTY_ASSOCIATIONS:
 			return propertyAssociations != null && !propertyAssociations.isEmpty();
-		case Aadlv3Package.COMPONENT_CLASSIFIER__PRIVATE:
-			return private_ != PRIVATE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -328,8 +273,6 @@ public abstract class ComponentClassifierImpl extends PackageElementImpl impleme
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (category: ");
 		result.append(category);
-		result.append(", private: ");
-		result.append(private_);
 		result.append(')');
 		return result.toString();
 	}
