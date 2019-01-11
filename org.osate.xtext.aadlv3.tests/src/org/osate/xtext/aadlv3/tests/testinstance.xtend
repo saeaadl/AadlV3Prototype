@@ -13,14 +13,14 @@ import org.junit.jupiter.api.^extension.ExtendWith
 import org.osate.aadlv3.aadlv3.PackageDeclaration
 import org.osate.aadlv3.aadlv3.Workingset
 import org.osate.aadlv3.instantiation.Instantiator
-import org.osate.aadlv3.util.TestHelper
 import org.osate.av3instance.av3instance.ComponentInstance
 
 import static extension org.junit.jupiter.api.Assertions.*
-import static extension org.osate.aadlv3.util.AssertHelper.assertError
+import static extension org.osate.xtext.aadlv3.tests.util.AssertHelper.*
 import com.itemis.xtext.testing.FluentIssueCollection
 import org.osate.aadlv3.aadlv3.ComponentInterface
 import org.junit.jupiter.api.DisplayName
+import org.osate.xtext.aadlv3.tests.util.TestHelper
 
 @ExtendWith(InjectionExtension)
 @InjectWith(AadlV3InjectorProvider)

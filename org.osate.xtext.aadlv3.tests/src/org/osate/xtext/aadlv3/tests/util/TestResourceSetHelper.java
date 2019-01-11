@@ -1,4 +1,4 @@
-package org.osate.aadlv3.util;
+package org.osate.xtext.aadlv3.tests.util;
 
 import java.util.List;
 import java.util.Map;

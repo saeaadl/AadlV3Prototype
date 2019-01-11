@@ -1,8 +1,7 @@
-package org.osate.aadlv3.util
+package org.osate.xtext.aadlv3.tests.util
 
 import com.google.inject.Inject
 import com.itemis.xtext.testing.FluentIssueCollection
-import java.util.Comparator
 import java.util.List
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
