@@ -26,7 +26,7 @@ import StandardProperties::*;
 		sub1 => sub.i {#Period => 23;
 			t1#Period => 30;
 		};
-		sub1.p1#DataSize => 30;
+		sub1.p1#Data_Size => 30;
 	end;
 
 	abstract receiver.i is

@@ -5,7 +5,7 @@ package StandardProperties
 	
 	property Period :time for thread,process,abstract;
 	property Deadline :time for thread,abstract;
-	property DataSize :int for thread,data,process,port,abstract;
+	property Data_Size :int for thread,data,process,port,abstract;
 	
-	properties ThreadProperties : { Period , Deadline, DataSize };
+	properties ThreadProperties : { Period , Deadline, Data_Size };
 end;

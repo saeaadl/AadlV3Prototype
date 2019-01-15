@@ -16,8 +16,8 @@ import StandardProperties::*;
 	end ;
 	interface subsub is
 		p1 : in port date ;
-		p2 : in port date { #DataSize => 3; };
-		p1#DataSize => 3;
+		p2 : in port date { #Data_Size => 3; };
+		p1#Data_Size => 3;
 	end ;
 	system sub.impl is
 		s1 : process subsub ;
