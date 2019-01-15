@@ -1646,13 +1646,22 @@ public interface Aadlv3Package extends EPackage {
 	int PROPERTY_VALUE__VALUE = 0;
 
 	/**
+	 * The feature id for the '<em><b>Unit</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_VALUE__UNIT = 1;
+
+	/**
 	 * The number of structural features of the '<em>Property Value</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_VALUE_FEATURE_COUNT = 1;
+	int PROPERTY_VALUE_FEATURE_COUNT = 2;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' containment reference.
@@ -2650,6 +2659,17 @@ public interface Aadlv3Package extends EPackage {
 	EAttribute getPropertyValue_Value();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.osate.aadlv3.aadlv3.PropertyValue#getUnit <em>Unit</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Unit</em>'.
+	 * @see org.osate.aadlv3.aadlv3.PropertyValue#getUnit()
+	 * @see #getPropertyValue()
+	 * @generated
+	 */
+	EAttribute getPropertyValue_Unit();
+
+	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.PropertyAssociation <em>Property Association</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3586,6 +3606,14 @@ public interface Aadlv3Package extends EPackage {
 		 * @generated
 		 */
 		EAttribute PROPERTY_VALUE__VALUE = eINSTANCE.getPropertyValue_Value();
+
+		/**
+		 * The meta object literal for the '<em><b>Unit</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PROPERTY_VALUE__UNIT = eINSTANCE.getPropertyValue_Unit();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.PropertyAssociationImpl <em>Property Association</em>}' class.

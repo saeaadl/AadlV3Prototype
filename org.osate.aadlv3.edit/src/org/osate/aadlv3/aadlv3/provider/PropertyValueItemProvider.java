@@ -67,6 +67,7 @@ public class PropertyValueItemProvider extends ItemProviderAdapter implements IE
 			super.getPropertyDescriptors(object);
 
 			addValuePropertyDescriptor(object);
+			addUnitPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -85,6 +86,22 @@ public class PropertyValueItemProvider extends ItemProviderAdapter implements IE
 								"_UI_PropertyValue_type"),
 						Aadlv3Package.Literals.PROPERTY_VALUE__VALUE, true, false, false,
 						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Unit feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addUnitPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_PropertyValue_unit_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_PropertyValue_unit_feature",
+								"_UI_PropertyValue_type"),
+						Aadlv3Package.Literals.PROPERTY_VALUE__UNIT, true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -123,6 +140,7 @@ public class PropertyValueItemProvider extends ItemProviderAdapter implements IE
 
 		switch (notification.getFeatureID(PropertyValue.class)) {
 		case Aadlv3Package.PROPERTY_VALUE__VALUE:
+		case Aadlv3Package.PROPERTY_VALUE__UNIT:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}

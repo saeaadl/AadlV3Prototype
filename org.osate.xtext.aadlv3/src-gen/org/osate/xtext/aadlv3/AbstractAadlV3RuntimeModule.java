@@ -58,7 +58,6 @@ import org.eclipse.xtext.serializer.sequencer.ISemanticSequencer;
 import org.eclipse.xtext.serializer.sequencer.ISyntacticSequencer;
 import org.eclipse.xtext.service.DefaultRuntimeModule;
 import org.eclipse.xtext.service.SingletonBinding;
-import org.eclipse.xtext.validation.ConfigurableIssueCodesProvider;
 import org.osate.xtext.aadlv3.formatting2.AadlV3Formatter;
 import org.osate.xtext.aadlv3.generator.AadlV3Generator;
 import org.osate.xtext.aadlv3.parser.antlr.AadlV3AntlrTokenFileProvider;
@@ -68,7 +67,6 @@ import org.osate.xtext.aadlv3.scoping.AadlV3ScopeProvider;
 import org.osate.xtext.aadlv3.serializer.AadlV3SemanticSequencer;
 import org.osate.xtext.aadlv3.serializer.AadlV3SyntacticSequencer;
 import org.osate.xtext.aadlv3.services.AadlV3GrammarAccess;
-import org.osate.xtext.aadlv3.validation.AadlV3ConfigurableIssueCodesProvider;
 import org.osate.xtext.aadlv3.validation.AadlV3Validator;
 
 /**
@@ -160,11 +158,6 @@ public abstract class AbstractAadlV3RuntimeModule extends DefaultRuntimeModule {
 	@SingletonBinding(eager=true)
 	public Class<? extends AadlV3Validator> bindAadlV3Validator() {
 		return AadlV3Validator.class;
-	}
-	
-	// contributed by org.eclipse.xtext.xtext.generator.validation.ValidatorFragment2
-	public Class<? extends ConfigurableIssueCodesProvider> bindConfigurableIssueCodesProvider() {
-		return AadlV3ConfigurableIssueCodesProvider.class;
 	}
 	
 	// contributed by org.eclipse.xtext.xtext.generator.builder.BuilderIntegrationFragment2

@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.PropertyValue#getValue <em>Value</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.PropertyValue#getUnit <em>Unit</em>}</li>
  * </ul>
  *
  * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getPropertyValue()
@@ -59,5 +60,31 @@ public interface PropertyValue extends EObject {
 	 * @generated
 	 */
 	void setValue(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Unit</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Unit</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Unit</em>' attribute.
+	 * @see #setUnit(String)
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getPropertyValue_Unit()
+	 * @model
+	 * @generated
+	 */
+	String getUnit();
+
+	/**
+	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.PropertyValue#getUnit <em>Unit</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Unit</em>' attribute.
+	 * @see #getUnit()
+	 * @generated
+	 */
+	void setUnit(String value);
 
 } // PropertyValue

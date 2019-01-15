@@ -126,6 +126,7 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     name=DottedName (ambiguity) 'end' SEMICOLON (rule end)
+	 *     name=DottedName (ambiguity) 'is' bindings+=Binding
 	 *     name=DottedName (ambiguity) 'is' components+=Component
 	 *     name=DottedName (ambiguity) 'is' configurationAssignments+=ConfigurationAssignment
 	 *     name=DottedName (ambiguity) 'is' configurationAssignments+=ConfigurationAssignmentPattern
@@ -161,6 +162,7 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ','*
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     typeReferences+=TypeReference (ambiguity) '{' bindings+=Binding
 	 *     typeReferences+=TypeReference (ambiguity) '{' components+=Component
 	 *     typeReferences+=TypeReference (ambiguity) '{' connections+=Connection
 	 *     typeReferences+=TypeReference (ambiguity) '{' connections+=FeatureMapping
@@ -188,6 +190,7 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     SEMICOLON?
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     bindings+=Binding (ambiguity) 'end' SEMICOLON (rule end)
 	 *     configurationAssignments+=ConfigurationAssignment (ambiguity) 'end' SEMICOLON (rule end)
 	 *     configurationAssignments+=ConfigurationAssignmentPattern (ambiguity) 'end' SEMICOLON (rule end)
 	 *     propertyAssociations+=PropertyAssociation (ambiguity) 'end' SEMICOLON (rule end)
@@ -201,6 +204,7 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     SEMICOLON?
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     bindings+=Binding (ambiguity) '}' (rule end)
 	 *     configurationAssignments+=ConfigurationAssignment (ambiguity) '}' (rule end)
 	 *     configurationAssignments+=ConfigurationAssignmentPattern (ambiguity) '}' (rule end)
 	 *     propertyAssociations+=PropertyAssociation (ambiguity) '}' (rule end)
@@ -214,6 +218,7 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     SEMICOLON?
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     bindings+=Binding (ambiguity) 'end' SEMICOLON (rule end)
 	 *     components+=Component (ambiguity) 'end' SEMICOLON (rule end)
 	 *     configurationAssignments+=ConfigurationAssignment (ambiguity) 'end' SEMICOLON (rule end)
 	 *     configurationAssignments+=ConfigurationAssignmentPattern (ambiguity) 'end' SEMICOLON (rule end)
@@ -248,6 +253,7 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     SEMICOLON?
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     bindings+=Binding (ambiguity) '}' (rule end)
 	 *     components+=Component (ambiguity) '}' (rule end)
 	 *     connections+=Connection (ambiguity) '}' (rule end)
 	 *     connections+=FeatureMapping (ambiguity) '}' (rule end)

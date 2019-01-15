@@ -82,7 +82,6 @@ import org.eclipse.xtext.ui.refactoring.ui.IRenameSupport;
 import org.eclipse.xtext.ui.refactoring.ui.RefactoringPreferences;
 import org.eclipse.xtext.ui.resource.ResourceServiceDescriptionLabelProvider;
 import org.eclipse.xtext.ui.shared.Access;
-import org.eclipse.xtext.ui.validation.AbstractValidatorConfigurationBlock;
 import org.osate.xtext.aadlv3.ide.contentassist.antlr.AadlV3Parser;
 import org.osate.xtext.aadlv3.ide.contentassist.antlr.PartialAadlV3ContentAssistParser;
 import org.osate.xtext.aadlv3.ide.contentassist.antlr.internal.InternalAadlV3Lexer;
@@ -91,7 +90,6 @@ import org.osate.xtext.aadlv3.ui.labeling.AadlV3DescriptionLabelProvider;
 import org.osate.xtext.aadlv3.ui.labeling.AadlV3LabelProvider;
 import org.osate.xtext.aadlv3.ui.outline.AadlV3OutlineTreeProvider;
 import org.osate.xtext.aadlv3.ui.quickfix.AadlV3QuickfixProvider;
-import org.osate.xtext.aadlv3.validation.AadlV3ValidatorConfigurationBlock;
 
 /**
  * Manual modifications go to {@link AadlV3UiModule}.
@@ -147,11 +145,6 @@ public abstract class AbstractAadlV3UiModule extends DefaultUiModule {
 	// contributed by org.eclipse.xtext.xtext.generator.parser.antlr.XtextAntlrGeneratorFragment2
 	public void configureContentAssistLexerProvider(Binder binder) {
 		binder.bind(InternalAadlV3Lexer.class).toProvider(LexerProvider.create(InternalAadlV3Lexer.class));
-	}
-	
-	// contributed by org.eclipse.xtext.xtext.generator.validation.ValidatorFragment2
-	public Class<? extends AbstractValidatorConfigurationBlock> bindAbstractValidatorConfigurationBlock() {
-		return AadlV3ValidatorConfigurationBlock.class;
 	}
 	
 	// contributed by org.eclipse.xtext.xtext.generator.builder.BuilderIntegrationFragment2

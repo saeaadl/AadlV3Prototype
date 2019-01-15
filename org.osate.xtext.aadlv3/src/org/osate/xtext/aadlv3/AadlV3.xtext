@@ -171,7 +171,7 @@ PropertyAssociation returns av3::PropertyAssociation:
 	'=>' value=PropertyValue ;
 
 PropertyValue returns av3::PropertyValue:
-	 value=INT
+	 value=INT unit=ID?
 ;
 
 ModelElementReference returns av3::ModelElementReference:

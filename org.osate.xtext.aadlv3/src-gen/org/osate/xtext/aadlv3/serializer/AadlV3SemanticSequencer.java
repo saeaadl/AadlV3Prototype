@@ -66,7 +66,11 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 		if (epackage == Aadlv3Package.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
 			case Aadlv3Package.ASSOCIATION:
-				if (rule == grammarAccess.getConnectionRule()) {
+				if (rule == grammarAccess.getBindingRule()) {
+					sequence_Binding_PropertiesBlock(context, (Association) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getConnectionRule()) {
 					sequence_Connection_PropertiesBlock(context, (Association) semanticObject); 
 					return; 
 				}
@@ -197,6 +201,24 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
+	 *     Binding returns Association
+	 *
+	 * Constraint:
+	 *     (
+	 *         name=ID 
+	 *         associationType=BindingType 
+	 *         source=ModelElementReference 
+	 *         destination=ModelElementReference 
+	 *         (propertyAssociations+=PropertyAssociation propertyAssociations+=PropertyAssociation*)?
+	 *     )
+	 */
+	protected void sequence_Binding_PropertiesBlock(ISerializationContext context, Association semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     PackageElement returns ComponentConfiguration
 	 *     ComponentConfiguration returns ComponentConfiguration
 	 *
@@ -209,6 +231,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *         superClassifiers+=RealizationReference* 
 	 *         (
 	 *             propertyAssociations+=PropertyAssociation | 
+	 *             bindings+=Binding | 
 	 *             configurationAssignments+=ConfigurationAssignment | 
 	 *             configurationAssignments+=ConfigurationAssignmentPattern
 	 *         )*
@@ -233,6 +256,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *         (
 	 *             connections+=Connection | 
 	 *             connections+=FeatureMapping | 
+	 *             bindings+=Binding | 
 	 *             components+=Component | 
 	 *             paths+=Path | 
 	 *             flowAssignments+=FlowAssignment | 
@@ -278,7 +302,14 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *         name=ID 
 	 *         category=ComponentCategory 
 	 *         (typeReferences+=TypeReference typeReferences+=TypeReference*)? 
-	 *         (features+=Feature | connections+=Connection | connections+=FeatureMapping | components+=Component | propertyAssociations+=PropertyAssociation)*
+	 *         (
+	 *             features+=Feature | 
+	 *             connections+=Connection | 
+	 *             connections+=FeatureMapping | 
+	 *             bindings+=Binding | 
+	 *             components+=Component | 
+	 *             propertyAssociations+=PropertyAssociation
+	 *         )*
 	 *     )
 	 */
 	protected void sequence_Component_NestedImplementationElement(ISerializationContext context, Component semanticObject) {
@@ -335,6 +366,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *                 (assignedClassifiers+=TypeReference assignedClassifiers+=TypeReference*) 
 	 *                 (
 	 *                     propertyAssociations+=PropertyAssociation | 
+	 *                     bindings+=Binding | 
 	 *                     configurationAssignments+=ConfigurationAssignment | 
 	 *                     configurationAssignments+=ConfigurationAssignmentPattern
 	 *                 )+
@@ -360,6 +392,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *                 (assignedClassifiers+=TypeReference assignedClassifiers+=TypeReference*) 
 	 *                 (
 	 *                     propertyAssociations+=PropertyAssociation | 
+	 *                     bindings+=Binding | 
 	 *                     configurationAssignments+=ConfigurationAssignment | 
 	 *                     configurationAssignments+=ConfigurationAssignmentPattern
 	 *                 )+
@@ -636,16 +669,10 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     PropertyValue returns PropertyValue
 	 *
 	 * Constraint:
-	 *     value=INT
+	 *     (value=INT unit=ID?)
 	 */
 	protected void sequence_PropertyValue(ISerializationContext context, PropertyValue semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, Aadlv3Package.Literals.PROPERTY_VALUE__VALUE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, Aadlv3Package.Literals.PROPERTY_VALUE__VALUE));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getPropertyValueAccess().getValueINTTerminalRuleCall_0(), semanticObject.getValue());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

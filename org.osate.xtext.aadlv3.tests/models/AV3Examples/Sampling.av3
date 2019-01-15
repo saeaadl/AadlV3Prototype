@@ -1,0 +1,8 @@
+package Sampling
+	import StandardProperties::*;
+
+ type Sample { #DataSize => 16 Bytes };
+
+ type Sample_Set { #DataSize => 1 MByte };
+
+ end ;

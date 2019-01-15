@@ -10,8 +10,7 @@ Require-Bundle: org.osate.xtext.aadlv3,
  org.osate.aadlv3,
  org.eclipse.xtext.ide,
  org.eclipse.xtext.xbase.ide,
- org.antlr.runtime
+ org.antlr.runtime;bundle-version="[3.2.0,3.2.1)"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: org.osate.xtext.aadlv3.ide.contentassist.antlr,
  org.osate.xtext.aadlv3.ide.contentassist.antlr.internal
-

@@ -249,15 +249,6 @@
 		<super type="org.eclipse.xtext.ui.check.expensive"/>
 		<persistent value="true"/>
 	</extension>
-	<extension point="org.eclipse.ui.preferencePages">
-		<page
-			category="org.osate.xtext.aadlv3.AadlV3"
-			class="org.osate.xtext.aadlv3.ui.AadlV3ExecutableExtensionFactory:org.eclipse.xtext.ui.validation.ValidatorPreferencePage"
-			id="org.osate.xtext.aadlv3.AadlV3.validator.preferencePage"
-			name="Errors/Warnings">
-			<keywordReference id="org.osate.xtext.aadlv3.ui.keyword_AadlV3"/>
-		</page>
-	</extension>
 	<extension point="org.eclipse.xtext.builder.participant">
 		<participant
 			class="org.osate.xtext.aadlv3.ui.AadlV3ExecutableExtensionFactory:org.eclipse.xtext.builder.IXtextBuilderParticipant"

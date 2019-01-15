@@ -34,6 +34,7 @@ import org.osate.aadlv3.aadlv3.PropertyValue;
  * </p>
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.PropertyValueImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.PropertyValueImpl#getUnit <em>Unit</em>}</li>
  * </ul>
  *
  * @generated
@@ -58,6 +59,26 @@ public class PropertyValueImpl extends MinimalEObjectImpl.Container implements P
 	 * @ordered
 	 */
 	protected int value = VALUE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getUnit() <em>Unit</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUnit()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String UNIT_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getUnit() <em>Unit</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUnit()
+	 * @generated
+	 * @ordered
+	 */
+	protected String unit = UNIT_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -108,10 +129,35 @@ public class PropertyValueImpl extends MinimalEObjectImpl.Container implements P
 	 * @generated
 	 */
 	@Override
+	public String getUnit() {
+		return unit;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setUnit(String newUnit) {
+		String oldUnit = unit;
+		unit = newUnit;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.PROPERTY_VALUE__UNIT, oldUnit, unit));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case Aadlv3Package.PROPERTY_VALUE__VALUE:
 			return getValue();
+		case Aadlv3Package.PROPERTY_VALUE__UNIT:
+			return getUnit();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -126,6 +172,9 @@ public class PropertyValueImpl extends MinimalEObjectImpl.Container implements P
 		switch (featureID) {
 		case Aadlv3Package.PROPERTY_VALUE__VALUE:
 			setValue((Integer) newValue);
+			return;
+		case Aadlv3Package.PROPERTY_VALUE__UNIT:
+			setUnit((String) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -142,6 +191,9 @@ public class PropertyValueImpl extends MinimalEObjectImpl.Container implements P
 		case Aadlv3Package.PROPERTY_VALUE__VALUE:
 			setValue(VALUE_EDEFAULT);
 			return;
+		case Aadlv3Package.PROPERTY_VALUE__UNIT:
+			setUnit(UNIT_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -156,6 +208,8 @@ public class PropertyValueImpl extends MinimalEObjectImpl.Container implements P
 		switch (featureID) {
 		case Aadlv3Package.PROPERTY_VALUE__VALUE:
 			return value != VALUE_EDEFAULT;
+		case Aadlv3Package.PROPERTY_VALUE__UNIT:
+			return UNIT_EDEFAULT == null ? unit != null : !UNIT_EDEFAULT.equals(unit);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -173,6 +227,8 @@ public class PropertyValueImpl extends MinimalEObjectImpl.Container implements P
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (value: ");
 		result.append(value);
+		result.append(", unit: ");
+		result.append(unit);
 		result.append(')');
 		return result.toString();
 	}
