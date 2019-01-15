@@ -882,8 +882,8 @@ class Aadlv3Util {
 	}
 	
 	def static boolean isOutgoingDataAccess(FeatureDirection fd){
-		fd == FeatureDirection.PROVIDESREAD || fd == FeatureDirection.PROVIDESREADWRITE 
-		|| fd == FeatureDirection.REQUIRESWRITE || fd == FeatureDirection.REQUIRESREADWRITE
+		fd == FeatureDirection.REQUIRESREAD || fd == FeatureDirection.REQUIRESREADWRITE 
+		|| fd == FeatureDirection.REQUIRESWRITE 
 	}
 	
 	def static boolean isOutgoingBusAccess(FeatureDirection fd){
@@ -907,8 +907,8 @@ class Aadlv3Util {
 	}
 	
 	def static boolean isIncomingDataAccess(FeatureDirection fd){
-		fd == FeatureDirection.PROVIDESWRITE || fd == FeatureDirection.PROVIDESREADWRITE 
-		|| fd == FeatureDirection.REQUIRESREAD || fd == FeatureDirection.REQUIRESREADWRITE
+		fd == FeatureDirection.PROVIDESWRITE  
+		|| fd == FeatureDirection.PROVIDESREAD || fd == FeatureDirection.PROVIDESREADWRITE
 	}
 	
 	def static boolean isIncomingBusAccess(FeatureDirection fd){

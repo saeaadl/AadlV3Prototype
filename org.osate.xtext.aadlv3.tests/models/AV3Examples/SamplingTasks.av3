@@ -29,11 +29,11 @@
      Collect_Samples: thread Collect_Samples;
      Distribute: thread Distribute_Samples;
      ISSSConn: connection Init_Samples.SampleSet -> Samples.rw ;
-     ISOSConn: mapping External_Samples -> Init_Samples.OrigSet;
+     ISOSConn: mapping External_Samples => Init_Samples.OrigSet; 
      CSSSConn: connection Collect_Samples.SampleSet -> Samples.rw;
-     CSISConn: mapping Input_Sample -> Collect_Samples.Input_Sample;
+     CSISConn: mapping Input_Sample => Collect_Samples.Input_Sample;
      DSSConn: connection Distribute.SampleSet -> Samples.rw ;
-     DUSConn: mapping Distribute.UpdatedSamples -> Result_Sample;
+     DUSConn: mapping Result_Sample => Distribute.UpdatedSamples ;
    end ;
 
  end ;

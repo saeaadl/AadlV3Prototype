@@ -591,8 +591,9 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	
 
 	def checkConsistentDirection(Association assoc) {
-		val srcdir = assoc.source?.realFeatureDirection
-		val dstdir = assoc.destination?.realFeatureDirection
+		if (assoc.source === null || assoc.destination === null) return
+		val srcdir = assoc.source.realFeatureDirection
+		val dstdir = assoc.destination.realFeatureDirection
 		if (assoc.associationType.isConnection) {
 			if (!(srcdir?.outgoing && dstdir?.incoming)) {
 				error('Connection source must be outgoing and destination must be incoming', assoc, null, OUT_TO_IN)
@@ -619,6 +620,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	}
 
 	def checkConsistentFeatureCategory(Association assoc) {
+		if (assoc.source === null || assoc.destination === null) return
 		val src = assoc.source?.element as Feature
 		val dst = assoc.destination?.element as Feature
 		if (assoc.associationType.isConnection) {
@@ -644,12 +646,14 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 
 	def checkConsistentTargets(Association assoc) {
 		if (assoc.associationType.isConnection) {
+			if (assoc.source === null || assoc.destination === null) return;
 			if (!(assoc.source.containedComponentModelElementReference &&
 				assoc.destination.containedComponentModelElementReference)) {
 				error('Connection must be between subcomponents', assoc, null, BetweenSubcomponents)
 			}
 		}
 		if (assoc.associationType.isFeatureMapping) {
+			if (assoc.source === null || assoc.destination === null) return;
 			if (!(!assoc.source.containedComponentModelElementReference &&
 				assoc.destination.containedComponentModelElementReference)) {
 				error('Feature mapping must from feature to feature in subcomponent', assoc, null, ToSubcomponent)
@@ -679,7 +683,8 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	}
 
 	def checkMatchingTypes(Association assoc) {
-		if(assoc.associationType.flowSpec) return
+		if(assoc.associationType.flowSpec) return;
+		if (assoc.source === null || assoc.destination === null) return;
 		val src = assoc.source.element as Feature
 		val dst = assoc.destination.element as Feature
 		if (src.type !== null && dst.type !== null && src.type !== dst.type) {
