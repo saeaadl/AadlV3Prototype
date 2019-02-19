@@ -4,86 +4,86 @@ import StandardProperties::*;
 property SecurityLevel: int ;
 property SafetyLevel: int;
 
-system interface x end;
+system interface x end
 
 system x.i  is 
 	xsub1: process subsubsys;
  	xsub2: process subsubsys;
-end;
+end
 
-interface y end;
+interface y end
 
 system y.i is
 	ysub1: process subsubsys;
  	ysub2: process subsubsys;
-end;
+end
 
-interface subsubsys end;
+interface subsubsys end
 
-process subsubsys.i is t1: thread t.ii; end; 
+process subsubsys.i is t1: thread t.ii; end 
 
-process subsubsys.i2 is t2: thread t.ii; end; 
+process subsubsys.i2 is t2: thread t.ii; end 
 
-interface t end;
-thread t.ii end;
+interface t end
+thread t.ii end
 
-system interface top end;
+system interface top end
 
 system  top.basic
  is
  	Sub1: system x;
  	Sub2: system y;
- end;
+ end
  
  configuration top.config_L1 extends top.basic
 is
 	Sub1 => x.i;
 	Sub2 => y.i;
-end;
+end
  configuration top.config_L1Sub1 extends top.basic
 is
 	Sub1 => x.i {
 		xsub1 => subsubsys.i; 
 	};
 //	Sub2 => y.i;
-end;
+end
 
 // slide 5
 
 configuration top.sub1impl extends top.basic
  is
  	Sub1 => x.i;
- end;
+ end
  
 system top.sub1impl2 
  is
  	Sub1 : system x.i;
  	Sub2: system y;
- end;
+ end
  
- configuration top.doublesub extends top.config_L1, top.sub1impl end;
+ configuration top.doublesub extends top.config_L1, top.sub1impl end
 
 configuration top.config_Sub1 extends top.sub1impl 
 is
   Sub1.xsub1 => subsubsys.i;
   Sub1.xsub2 => subsubsys.i;
-end;
+end
 
  // slide 6
  
  configuration x.config_L1 extends x.i is
   xsub1 => subsubsys.i ;
   xsub2 => subsubsys.i ;
-end;
+end
 configuration y.config_L1 extends y.i is
   ysub1 => subsubsys.i ;
   ysub2 => subsubsys.i;
-end;
+end
  
 configuration top.config_L2 extends top.basic is
   Sub1 => x.config_L1 ;
   Sub2 => y.config_L1;
-end;
+end
 
 // slide 7
 
@@ -93,21 +93,21 @@ configuration top.config_L22 extends top.config_L1 is
   Sub2 => { ysub1 => subsubsys.i2;
             ysub2 => subsubsys.i;
           };
-end;
+end
 
 configuration top.overlap extends top.config_L2, top.config_L22 
-end;
+end
 
 system  y.security extends y.i
  is
  	#SecurityLevel => 9;
- end;
+ end
 
 configuration top.config_Sub2 extends top.config_L1 
 is
   Sub1 => x.config_L1 ;
   Sub2 => y.security ;
-end;
+end
 
 // slide 8
 
@@ -117,32 +117,32 @@ is
   Sub1#SecurityLevel => 2;
   Sub1.xsub1#SecurityLevel => 0;
   Sub2#SecurityLevel => 1;
-end;
+end
 
 configuration top.config_Safety extends top.config_L1 
 is
   #SafetyLevel => 3; 
   Sub1#SafetyLevel => 2;
   Sub2 => {#SafetyLevel => 3;};
-end;
+end
 
 configuration x.config_Performance extends x.i 
 is
   xsub1 => subsubsys.i {
    #Period => 10; 
    #Deadline => 10; };
-end;
+end
 
 // slide 9
 
-configuration top.config_L211 extends  top.config_Sub1, top.config_Sub2 end;
-configuration top.config_L212 extends  top.config_Sub1, top.config_Sub2 end;
+configuration top.config_L211 extends  top.config_Sub1, top.config_Sub2 end
+configuration top.config_L212 extends  top.config_Sub1, top.config_Sub2 end
 
 configuration top.config_full extends top.config_L2, top.config_Safety, 
   top.config_Security
-end;
+end
 
-configuration top.config_SafetySecurity extends top.config_L1, top.config_Security, top.config_Safety end;
+configuration top.config_SafetySecurity extends top.config_L1, top.config_Security, top.config_Safety end
 
 	
-end;
+end

@@ -12,41 +12,41 @@ import StandardProperties::*;
 	is
 		name : in feature person;
 		surname : in feature person ;
-	end ;
+	end
 
 	package nested  
 		type signal ;
 
-	end ;
+	end
 
 	interface subsub
 	is
 		p1 : in port date ;
 		p2 : in port date { #Data_Size => 3; };
 		p1#Data_Size => 3;
-	end ;
+	end
 
 	system sub.impl 
 	is
 		s1 : process subsub ;
 		s2 : thread subsub { #Period => 20;
 		};
-	end ;
+	end
 
 	interface sub1 extends sub
 	is
 		name2 : in port date ;
-	end ;
+	end
 
-	system interface gps end;
+	system interface gps end
 	
 	system gps.i
 	is
 		locator : process LocatorProcess ;
-	end ;
+	end
 
 	process interface LocatorProcess
 	is 	#Period => 20;
-	end;
+	end
 
-end ;
+end

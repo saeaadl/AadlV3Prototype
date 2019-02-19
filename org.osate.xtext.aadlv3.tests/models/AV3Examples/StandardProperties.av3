@@ -8,4 +8,4 @@ package StandardProperties
 	property Data_Size :int for thread,data,process,port,abstract;
 	
 	properties ThreadProperties : { Period , Deadline, Data_Size };
-end;
+end

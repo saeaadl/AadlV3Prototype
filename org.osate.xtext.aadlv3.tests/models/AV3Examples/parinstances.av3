@@ -4,5 +4,5 @@ workingset parinstances is
 	second : system ParameterizedConfiguration::supertop.i ; 
 	third: system ParameterizedConfiguration::top.topc(p1=>ParameterizedConfiguration::sender.sensetask) ; 
 	fourth: system ParameterizedConfiguration::supertop.topcc
-end;
-end;
+end
+end

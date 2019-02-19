@@ -3,12 +3,12 @@ import PackP::Q::*;
 	type date ;
 	package bested  
 		type signal ;
-	end ;
+	end
 	interface nnested is
 	signal: feature;
-	end;
+	end
 	interface main extends nnested is
 	p1: feature signal;
-	end;
+	end
 	
-end ;
+end

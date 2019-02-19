@@ -5,4 +5,4 @@ package Sampling
 
  type Sample_Set { #Data_Size => 1 MByte };
 
- end ;
+ end

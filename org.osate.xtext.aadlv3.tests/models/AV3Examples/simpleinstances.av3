@@ -16,5 +16,5 @@ workingset simpleinstances is
 	connex: system ConnectionExamples::conntop.i;
 
   flowex: system FlowExamples::conntop.i;
-end;
-end;
+end
+end

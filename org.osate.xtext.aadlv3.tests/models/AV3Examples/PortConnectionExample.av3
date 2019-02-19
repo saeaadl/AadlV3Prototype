@@ -37,21 +37,6 @@ package FlowExamples
 		taction: flow  sink p1;
 	end
 	
-	interface control is
-	insignal: in port;
-	outaction: out port;
-	processflow: flow path insignal -> outaction;
-	end
-	
-	process control.impl is
-		dofilter: thread filter;
-		docompute: thread compute;
-		extin: mapping insignal => dofilter.insignal;
-		ftoc: connection dofilter.outsignal -> docompute.insignal;
-		extout: mapping outaction => docompute.outsignal ;
-		processflow => flow dofilter.filterpath -> ftoc -> docompute.computepath ;
-	end
-	
 	thread interface filter is
 	insignal : in port;
 	outsignal : out port;
@@ -65,21 +50,56 @@ package FlowExamples
 	computepath: flow path insignal -> outsignal;
 	end
 	
+	thread interface logger is
+	insignal : in port;
+	end
+	
+	interface control is
+	insignal: in port;
+	outaction: out port;
+	processflow: flow path insignal -> outaction;
+	end
+	
+	process interface controlProcess extends control //is
+//	controlIF: interface control;
+	end
+	
+	process controlProcess.impl is
+		dofilter: thread filter;
+		docompute: thread compute;
+		dolog: thread logger;
+		extin: mapping insignal => dofilter.insignal;
+		login: mapping insignal => dolog.insignal;
+		ftoc: connection dofilter.outsignal -> docompute.insignal;
+		extout: mapping outaction => docompute.outsignal ;
+	end
+	
 	system interface conntop end
+	
 	system conntop.i is
-		sense: abstract sensor.i;
-		processing: process control.impl;
-		actuate: abstract actuator.i;
-		hw : system hardwareplatform.impl;
+		sense: abstract sensor;
+		processing: process controlProcess;
+		actuate: abstract actuator;
+		hw : system hardwareplatform;
 		sensetocontrol: connection sense.outp -> processing.insignal;
 		controltoactuate: connection processing.outaction -> actuate.inp;
-		etef: end to end flow sense.reading -> sensetocontrol-> processing.processflow -> controltoactuate -> actuate.action;
 	end
+//	system conntop.i is
+//		sense: abstract sensor.i;
+//		processing: process controlProcess.impl;
+//		actuate: abstract actuator.i;
+//		hw : system hardwareplatform.impl;
+//		sensetocontrol: connection sense.outp -> processing.controlIF.insignal;
+//		controltoactuate: connection processing.controlIF.outaction -> actuate.inp;
+//	end
+
+configuration conntop.conf extends conntop.i is
+    processing => controlProcess.impl;
+end
 	
 	bus interface canbus is
 	canbusaccess: provides bus access;
 	end
-
 	
 	processor interface x86 is
 	canbusaccess: requires bus access;

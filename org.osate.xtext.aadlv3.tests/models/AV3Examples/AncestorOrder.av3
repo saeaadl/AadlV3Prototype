@@ -9,22 +9,22 @@ import StandardProperties::*;
 	is
 		inport : in port ;
 		#Data_Size => 0;
-	end ;
+	end
 	interface ext1 extends common 
 	is
 		e1port : in port ;
 		#Data_Size => 1;
-	end ;
+	end
 	interface ext2 extends common 
 	is
 		e2port : out port ;
 		#Data_Size => 2;
-	end ;
+	end
 	
-	system interface mine extends ext1 , ext2 end;
+	system interface mine extends ext1 , ext2 end
 	
 	system mine.i 
 	is
 		sub : thread common ;
-	end ;
-end ;
+	end
+end

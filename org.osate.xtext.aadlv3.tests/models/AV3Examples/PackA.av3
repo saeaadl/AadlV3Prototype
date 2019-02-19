@@ -8,12 +8,12 @@ package PackA
 
 	package nested  
 		type signal ;
-	end ;
+	end
 	interface sub
 	is
 		name : in feature person;
 		surname : in feature person ;
-	end ;
+	end
 	
 	interface subsub 
 	is
@@ -21,24 +21,24 @@ package PackA
 		p2 : in port date { #Size => 3; };
 	
 		p1#Size => 3;
-	end ;
+	end
 	system sub.impl 
 	is
 		s1 : process subsub ;
 		s2 : thread subsub { #Period => 20; };
-	end ;
+	end
 	
-	system interface gps end;
+	system interface gps end
 	
 	system gps.i
 	is
 		locator : process LocatorProcess.impl;
-	end ;
+	end
 	process interface LocatorProcess
 	is
 	#Period => 20;
-	end;
+	end
 	
-	process LocatorProcess.impl end;
+	process LocatorProcess.impl end
 	
-end ;
+end

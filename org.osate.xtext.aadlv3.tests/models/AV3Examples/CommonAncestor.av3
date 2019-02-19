@@ -4,20 +4,20 @@ package CommonAncestor
 	interface common 
 	is
 		inport : in port ;
-	end ;
+	end
 	interface ext1 extends common 
 	is
 		e1port : in port ;
-	end ;
+	end
 	interface ext2 extends common 
 	is
 		e2port : out port ;
-	end ;
+	end
 	
-	system interface mine extends ext1 , ext2 end;
+	system interface mine extends ext1 , ext2 end
 	
 	system mine.i 
 	is
 		sub : thread common ;
-	end ;
-end ;
+	end
+end

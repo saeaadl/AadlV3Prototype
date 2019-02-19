@@ -8,18 +8,18 @@ package ConnectionExamples
 		state: provides read access systemstate;
 		inp: in port;
 		fea: feature;
-	end;
+	end
 	interface sensor is
 		state: requires read access systemstate;
 		outp: out port;
 		fea: feature;
-	end ;
+	end
 	
 	abstract sensor.i is
 		sub1: thread sense;
 		upmap: mapping outp => sub1.p1 ;
 		stateaccess: mapping state => sub1.state;
-	end ;
+	end
 	abstract actuator.i  is
 		mystate: data systemstate { stateread : provides read access systemstate;
 			statewrite : provides write access systemstate
@@ -28,20 +28,20 @@ package ConnectionExamples
 		downmap: mapping inp => sub2.p1;
 		stateread: mapping state => mystate.stateread ;
 		statewrite: connection sub2.state -> mystate.statewrite ;
-	end ;
+	end
 	
 	
 	thread interface sense  is
 		state: requires read access systemstate;
 		p1: out port ;
-	end ;
+	end
 	
 	thread interface actuate  is
 		p1: in port ;
 		state: requires write access systemstate;
-	end ;
+	end
 	
-	system interface conntop end;
+	system interface conntop end
 	system conntop.i is
 		sense: abstract sensor.i;
 		actuate: abstract actuator.i;
@@ -50,25 +50,25 @@ package ConnectionExamples
 		conn2: connection sense.outp -> actuate.inp;
 		stateaccess: connection actuate.state ->sense.state;
 		fconn: connection sense.fea -> actuate.fea;
-	end;
+	end
 	
 	bus interface canbus is
 	canbusaccess: provides bus access;
-	end;
+	end
 	
 	processor interface x86 is
 	canbusaccess: requires bus access;
-	end;
+	end
 	
 	system interface hardwareplatform is
 		canbusaccess: provides bus access canbus;
-	end;
+	end
 	
 	system hardwareplatform.impl is
 	cpu: processor x86;
 	mybus: bus canbus;
 	busconn: connection cpu.canbusaccess -> mybus.canbusaccess;
 	extbusaccess: mapping canbusaccess => mybus.canbusaccess;
-	end;
+	end
 	
-end;
+end

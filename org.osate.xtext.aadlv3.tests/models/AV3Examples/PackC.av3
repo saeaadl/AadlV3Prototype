@@ -2,8 +2,8 @@ package PackC2
 	type tt;
 	interface mine is
 		sig : in feature tt;
-	end ;
+	end
 	
-	bus interface canbus end;
+	bus interface canbus end
 	
-end ;
+end

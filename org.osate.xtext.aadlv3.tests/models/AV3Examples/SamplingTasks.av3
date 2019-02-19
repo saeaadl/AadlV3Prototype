@@ -4,23 +4,23 @@
    thread interface  Init_Samples is
      OrigSet: requires read access Sample_Set;
      SampleSet: requires write access Sample_Set;
-   end ;
+   end
 
    thread interface  Collect_Samples is
      Input_Sample: in port Sample;
      SampleSet: requires write access Sample_Set;
-   end ;
+   end
 
    thread interface Distribute_Samples is
      SampleSet: requires read access Sample_Set;
      UpdatedSamples : out port Sample;
-   end ;
+   end
 
    process interface Sample_Manager is
      Input_Sample: in port Sample;
      External_Samples: requires read access Sample_Set;
      Result_Sample: out port Sample;
-   end ;
+   end
 
    process Sample_Manager.Slow_Update is
      Samples: data Sample_Set { rw: provides readwrite access Sample_Set};
@@ -34,6 +34,6 @@
      CSISConn: mapping Input_Sample => Collect_Samples.Input_Sample;
      DSSConn: connection Distribute.SampleSet -> Samples.rw ;
      DUSConn: mapping Result_Sample => Distribute.UpdatedSamples ;
-   end ;
+   end
 
- end ;
+ end
