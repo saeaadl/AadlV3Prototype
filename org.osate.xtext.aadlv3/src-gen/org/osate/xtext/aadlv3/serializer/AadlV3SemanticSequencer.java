@@ -301,7 +301,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     (
 	 *         name=ID 
 	 *         category=ComponentCategory 
-	 *         (typeReferences+=TypeReference typeReferences+=TypeReference*)? 
+	 *         typeReferences+=TypeReference? 
 	 *         (
 	 *             features+=Feature | 
 	 *             connections+=Connection | 
@@ -483,7 +483,6 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     (
 	 *         name=ID 
 	 *         direction=FeatureDirection? 
-	 *         sampled?='sampled'? 
 	 *         category=FeatureCategory 
 	 *         (reverse?='reverse'? type=[Type|QualifiedName])? 
 	 *         (propertyAssociations+=PropertyAssociation propertyAssociations+=PropertyAssociation*)?
@@ -581,7 +580,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     Import returns Import
 	 *
 	 * Constraint:
-	 *     (importedNamespace=QualifiedNameWithWildcard | (importedNamespace=QualifiedName alias=ID?))
+	 *     ((importedNamespace=QualifiedNameWithWildcard | importedNamespace=QualifiedName) alias=ID?)
 	 */
 	protected void sequence_Import(ISerializationContext context, Import semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

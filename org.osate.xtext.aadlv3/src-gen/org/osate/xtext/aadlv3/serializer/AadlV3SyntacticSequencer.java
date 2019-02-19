@@ -34,8 +34,6 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AadlV3GrammarAccess grammarAccess;
 	protected AbstractElementAlias match_ComponentImplementation_ExtendsKeyword_3_0_q;
 	protected AbstractElementAlias match_ComponentInterface_ExtendsKeyword_4_0_q;
-	protected AbstractElementAlias match_Component_CommaKeyword_3_1_0_a;
-	protected AbstractElementAlias match_Component_CommaKeyword_3_1_0_p;
 	protected AbstractElementAlias match_ConfigurationElementBlock_SEMICOLONParserRuleCall_0_3_q;
 	protected AbstractElementAlias match_CurlyConfigurationElementBlock_SEMICOLONParserRuleCall_3_q;
 	protected AbstractElementAlias match_ImplementationBody_SEMICOLONParserRuleCall_0_3_q;
@@ -49,8 +47,6 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 		grammarAccess = (AadlV3GrammarAccess) access;
 		match_ComponentImplementation_ExtendsKeyword_3_0_q = new TokenAlias(false, true, grammarAccess.getComponentImplementationAccess().getExtendsKeyword_3_0());
 		match_ComponentInterface_ExtendsKeyword_4_0_q = new TokenAlias(false, true, grammarAccess.getComponentInterfaceAccess().getExtendsKeyword_4_0());
-		match_Component_CommaKeyword_3_1_0_a = new TokenAlias(true, true, grammarAccess.getComponentAccess().getCommaKeyword_3_1_0());
-		match_Component_CommaKeyword_3_1_0_p = new TokenAlias(true, false, grammarAccess.getComponentAccess().getCommaKeyword_3_1_0());
 		match_ConfigurationElementBlock_SEMICOLONParserRuleCall_0_3_q = new TokenAlias(false, true, grammarAccess.getConfigurationElementBlockAccess().getSEMICOLONParserRuleCall_0_3());
 		match_CurlyConfigurationElementBlock_SEMICOLONParserRuleCall_3_q = new TokenAlias(false, true, grammarAccess.getCurlyConfigurationElementBlockAccess().getSEMICOLONParserRuleCall_3());
 		match_ImplementationBody_SEMICOLONParserRuleCall_0_3_q = new TokenAlias(false, true, grammarAccess.getImplementationBodyAccess().getSEMICOLONParserRuleCall_0_3());
@@ -98,10 +94,6 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_ComponentImplementation_ExtendsKeyword_3_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_ComponentInterface_ExtendsKeyword_4_0_q.equals(syntax))
 				emit_ComponentInterface_ExtendsKeyword_4_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_Component_CommaKeyword_3_1_0_a.equals(syntax))
-				emit_Component_CommaKeyword_3_1_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_Component_CommaKeyword_3_1_0_p.equals(syntax))
-				emit_Component_CommaKeyword_3_1_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_ConfigurationElementBlock_SEMICOLONParserRuleCall_0_3_q.equals(syntax))
 				emit_ConfigurationElementBlock_SEMICOLONParserRuleCall_0_3_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_CurlyConfigurationElementBlock_SEMICOLONParserRuleCall_3_q.equals(syntax))
@@ -125,7 +117,7 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'extends'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     name=DottedName (ambiguity) 'end' SEMICOLON (rule end)
+	 *     name=DottedName (ambiguity) 'end' (rule end)
 	 *     name=DottedName (ambiguity) 'is' bindings+=Binding
 	 *     name=DottedName (ambiguity) 'is' components+=Component
 	 *     name=DottedName (ambiguity) 'is' configurationAssignments+=ConfigurationAssignment
@@ -145,7 +137,7 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'extends'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     name=ID (ambiguity) 'end' SEMICOLON (rule end)
+	 *     name=ID (ambiguity) 'end' (rule end)
 	 *     name=ID (ambiguity) 'is' 'use' 'properties' useProperties+=[PropertySet|QualifiedName]
 	 *     name=ID (ambiguity) 'is' features+=Feature
 	 *     name=ID (ambiguity) 'is' flows+=FlowPath
@@ -159,41 +151,13 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	/**
 	 * Ambiguous syntax:
-	 *     ','*
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     typeReferences+=TypeReference (ambiguity) '{' bindings+=Binding
-	 *     typeReferences+=TypeReference (ambiguity) '{' components+=Component
-	 *     typeReferences+=TypeReference (ambiguity) '{' connections+=Connection
-	 *     typeReferences+=TypeReference (ambiguity) '{' connections+=FeatureMapping
-	 *     typeReferences+=TypeReference (ambiguity) '{' features+=Feature
-	 *     typeReferences+=TypeReference (ambiguity) '{' propertyAssociations+=PropertyAssociation
-	 *     typeReferences+=TypeReference (ambiguity) (rule end)
-	 */
-	protected void emit_Component_CommaKeyword_3_1_0_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Ambiguous syntax:
-	 *     ','+
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     typeReferences+=TypeReference (ambiguity) typeReferences+=TypeReference
-	 */
-	protected void emit_Component_CommaKeyword_3_1_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Ambiguous syntax:
 	 *     SEMICOLON?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     bindings+=Binding (ambiguity) 'end' SEMICOLON (rule end)
-	 *     configurationAssignments+=ConfigurationAssignment (ambiguity) 'end' SEMICOLON (rule end)
-	 *     configurationAssignments+=ConfigurationAssignmentPattern (ambiguity) 'end' SEMICOLON (rule end)
-	 *     propertyAssociations+=PropertyAssociation (ambiguity) 'end' SEMICOLON (rule end)
+	 *     bindings+=Binding (ambiguity) 'end' (rule end)
+	 *     configurationAssignments+=ConfigurationAssignment (ambiguity) 'end' (rule end)
+	 *     configurationAssignments+=ConfigurationAssignmentPattern (ambiguity) 'end' (rule end)
+	 *     propertyAssociations+=PropertyAssociation (ambiguity) 'end' (rule end)
 	 */
 	protected void emit_ConfigurationElementBlock_SEMICOLONParserRuleCall_0_3_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -218,15 +182,15 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     SEMICOLON?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     bindings+=Binding (ambiguity) 'end' SEMICOLON (rule end)
-	 *     components+=Component (ambiguity) 'end' SEMICOLON (rule end)
-	 *     configurationAssignments+=ConfigurationAssignment (ambiguity) 'end' SEMICOLON (rule end)
-	 *     configurationAssignments+=ConfigurationAssignmentPattern (ambiguity) 'end' SEMICOLON (rule end)
-	 *     connections+=Connection (ambiguity) 'end' SEMICOLON (rule end)
-	 *     connections+=FeatureMapping (ambiguity) 'end' SEMICOLON (rule end)
-	 *     flowAssignments+=FlowAssignment (ambiguity) 'end' SEMICOLON (rule end)
-	 *     paths+=Path (ambiguity) 'end' SEMICOLON (rule end)
-	 *     propertyAssociations+=PropertyAssociation (ambiguity) 'end' SEMICOLON (rule end)
+	 *     bindings+=Binding (ambiguity) 'end' (rule end)
+	 *     components+=Component (ambiguity) 'end' (rule end)
+	 *     configurationAssignments+=ConfigurationAssignment (ambiguity) 'end' (rule end)
+	 *     configurationAssignments+=ConfigurationAssignmentPattern (ambiguity) 'end' (rule end)
+	 *     connections+=Connection (ambiguity) 'end' (rule end)
+	 *     connections+=FeatureMapping (ambiguity) 'end' (rule end)
+	 *     flowAssignments+=FlowAssignment (ambiguity) 'end' (rule end)
+	 *     paths+=Path (ambiguity) 'end' (rule end)
+	 *     propertyAssociations+=PropertyAssociation (ambiguity) 'end' (rule end)
 	 */
 	protected void emit_ImplementationBody_SEMICOLONParserRuleCall_0_3_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -237,12 +201,12 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     SEMICOLON?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     features+=Feature (ambiguity) 'end' SEMICOLON (rule end)
-	 *     flows+=FlowPath (ambiguity) 'end' SEMICOLON (rule end)
-	 *     flows+=FlowSink (ambiguity) 'end' SEMICOLON (rule end)
-	 *     flows+=FlowSource (ambiguity) 'end' SEMICOLON (rule end)
-	 *     propertyAssociations+=PropertyAssociation (ambiguity) 'end' SEMICOLON (rule end)
-	 *     useProperties+=[PropertySet|QualifiedName] (ambiguity) 'end' SEMICOLON (rule end)
+	 *     features+=Feature (ambiguity) 'end' (rule end)
+	 *     flows+=FlowPath (ambiguity) 'end' (rule end)
+	 *     flows+=FlowSink (ambiguity) 'end' (rule end)
+	 *     flows+=FlowSource (ambiguity) 'end' (rule end)
+	 *     propertyAssociations+=PropertyAssociation (ambiguity) 'end' (rule end)
+	 *     useProperties+=[PropertySet|QualifiedName] (ambiguity) 'end' (rule end)
 	 */
 	protected void emit_InterfaceBody_SEMICOLONParserRuleCall_0_3_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -281,7 +245,7 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     SEMICOLON?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     rootComponents+=Component (ambiguity) 'end' SEMICOLON (rule end)
+	 *     rootComponents+=Component (ambiguity) 'end' (rule end)
 	 */
 	protected void emit_Workingset_SEMICOLONParserRuleCall_7_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

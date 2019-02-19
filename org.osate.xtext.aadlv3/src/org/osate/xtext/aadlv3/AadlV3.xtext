@@ -97,7 +97,9 @@ Feature returns av3::Feature:
 
 Component returns av3::Component:
 	name=ID ':' category=ComponentCategory
-	(typeReferences+=TypeReference (',' typeReferences+=TypeReference?)*)?
+	(typeReferences+=TypeReference 
+		//(',' typeReferences+=TypeReference?)*
+	)?
 	NestedComponentImplementationBlock?
  ;
 

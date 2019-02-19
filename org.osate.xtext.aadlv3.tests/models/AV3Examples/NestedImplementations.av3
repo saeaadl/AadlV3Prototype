@@ -24,6 +24,7 @@ package NestedImplementations
 			inp :  in port ;
 		} ;
 		sensefilterconn : connection sensing.sensedata -> processing.filter.inp ;
-		controlactuateconn : connection processing.control.outp -> actuating.inp;
+		controlactuateconn : connection processing.outp -> actuating.inp;
+		reachdowncontrolactuateconn : connection processing.control.outp -> actuating.inp;
 	end ;
 end ;

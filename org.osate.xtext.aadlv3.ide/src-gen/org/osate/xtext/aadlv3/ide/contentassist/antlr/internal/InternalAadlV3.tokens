@@ -48,8 +48,7 @@
 'read'=70
 'readwrite'=72
 'requires'=32
-'reverse'=75
-'sampled'=74
+'reverse'=74
 'sink'=67
 'source'=66
 'subprogram'=25
@@ -134,4 +133,3 @@ T__71=71
 T__72=72
 T__73=73
 T__74=74
-T__75=75
