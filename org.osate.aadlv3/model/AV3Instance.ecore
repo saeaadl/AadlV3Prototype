@@ -10,7 +10,6 @@
   <eClassifiers xsi:type="ecore:EClass" name="FeatureInstance" eSuperTypes="#//InstanceObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="feature" eType="ecore:EClass Aadlv3.ecore#//Feature"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="direction" eType="ecore:EEnum Aadlv3.ecore#//FeatureDirection"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sampled" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="category" eType="ecore:EEnum Aadlv3.ecore#//FeatureCategory"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="features" upperBound="-1"
         eType="#//FeatureInstance" containment="true"/>

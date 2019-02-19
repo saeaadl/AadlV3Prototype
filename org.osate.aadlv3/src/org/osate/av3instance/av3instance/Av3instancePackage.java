@@ -162,22 +162,13 @@ public interface Av3instancePackage extends EPackage {
 	int FEATURE_INSTANCE__DIRECTION = INSTANCE_OBJECT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Sampled</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_INSTANCE__SAMPLED = INSTANCE_OBJECT_FEATURE_COUNT + 2;
-
-	/**
 	 * The feature id for the '<em><b>Category</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_INSTANCE__CATEGORY = INSTANCE_OBJECT_FEATURE_COUNT + 3;
+	int FEATURE_INSTANCE__CATEGORY = INSTANCE_OBJECT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Features</b></em>' containment reference list.
@@ -186,7 +177,7 @@ public interface Av3instancePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_INSTANCE__FEATURES = INSTANCE_OBJECT_FEATURE_COUNT + 4;
+	int FEATURE_INSTANCE__FEATURES = INSTANCE_OBJECT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Outgoing Associations</b></em>' reference list.
@@ -195,7 +186,7 @@ public interface Av3instancePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_INSTANCE__OUTGOING_ASSOCIATIONS = INSTANCE_OBJECT_FEATURE_COUNT + 5;
+	int FEATURE_INSTANCE__OUTGOING_ASSOCIATIONS = INSTANCE_OBJECT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Associations</b></em>' reference list.
@@ -204,7 +195,7 @@ public interface Av3instancePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_INSTANCE__INCOMING_ASSOCIATIONS = INSTANCE_OBJECT_FEATURE_COUNT + 6;
+	int FEATURE_INSTANCE__INCOMING_ASSOCIATIONS = INSTANCE_OBJECT_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>Feature Instance</em>' class.
@@ -213,7 +204,7 @@ public interface Av3instancePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_INSTANCE_FEATURE_COUNT = INSTANCE_OBJECT_FEATURE_COUNT + 7;
+	int FEATURE_INSTANCE_FEATURE_COUNT = INSTANCE_OBJECT_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of operations of the '<em>Feature Instance</em>' class.
@@ -644,17 +635,6 @@ public interface Av3instancePackage extends EPackage {
 	EAttribute getFeatureInstance_Direction();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.osate.av3instance.av3instance.FeatureInstance#isSampled <em>Sampled</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Sampled</em>'.
-	 * @see org.osate.av3instance.av3instance.FeatureInstance#isSampled()
-	 * @see #getFeatureInstance()
-	 * @generated
-	 */
-	EAttribute getFeatureInstance_Sampled();
-
-	/**
 	 * Returns the meta object for the attribute '{@link org.osate.av3instance.av3instance.FeatureInstance#getCategory <em>Category</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1021,14 +1001,6 @@ public interface Av3instancePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute FEATURE_INSTANCE__DIRECTION = eINSTANCE.getFeatureInstance_Direction();
-
-		/**
-		 * The meta object literal for the '<em><b>Sampled</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute FEATURE_INSTANCE__SAMPLED = eINSTANCE.getFeatureInstance_Sampled();
 
 		/**
 		 * The meta object literal for the '<em><b>Category</b></em>' attribute feature.

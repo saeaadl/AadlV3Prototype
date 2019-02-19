@@ -32,7 +32,6 @@ import org.osate.aadlv3.aadlv3.FeatureDirection;
  * <ul>
  *   <li>{@link org.osate.av3instance.av3instance.FeatureInstance#getFeature <em>Feature</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.FeatureInstance#getDirection <em>Direction</em>}</li>
- *   <li>{@link org.osate.av3instance.av3instance.FeatureInstance#isSampled <em>Sampled</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.FeatureInstance#getCategory <em>Category</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.FeatureInstance#getFeatures <em>Features</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.FeatureInstance#getOutgoingAssociations <em>Outgoing Associations</em>}</li>
@@ -98,32 +97,6 @@ public interface FeatureInstance extends InstanceObject {
 	 * @generated
 	 */
 	void setDirection(FeatureDirection value);
-
-	/**
-	 * Returns the value of the '<em><b>Sampled</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Sampled</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Sampled</em>' attribute.
-	 * @see #setSampled(boolean)
-	 * @see org.osate.av3instance.av3instance.Av3instancePackage#getFeatureInstance_Sampled()
-	 * @model
-	 * @generated
-	 */
-	boolean isSampled();
-
-	/**
-	 * Sets the value of the '{@link org.osate.av3instance.av3instance.FeatureInstance#isSampled <em>Sampled</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Sampled</em>' attribute.
-	 * @see #isSampled()
-	 * @generated
-	 */
-	void setSampled(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Category</b></em>' attribute.

@@ -60,7 +60,6 @@ public class FeatureInstanceItemProvider extends InstanceObjectItemProvider {
 
 			addFeaturePropertyDescriptor(object);
 			addDirectionPropertyDescriptor(object);
-			addSampledPropertyDescriptor(object);
 			addCategoryPropertyDescriptor(object);
 			addOutgoingAssociationsPropertyDescriptor(object);
 			addIncomingAssociationsPropertyDescriptor(object);
@@ -97,22 +96,6 @@ public class FeatureInstanceItemProvider extends InstanceObjectItemProvider {
 								"_UI_FeatureInstance_type"), //$NON-NLS-1$
 						Av3instancePackage.Literals.FEATURE_INSTANCE__DIRECTION, true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Sampled feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addSampledPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_FeatureInstance_sampled_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_FeatureInstance_sampled_feature", //$NON-NLS-1$//$NON-NLS-2$
-								"_UI_FeatureInstance_type"), //$NON-NLS-1$
-						Av3instancePackage.Literals.FEATURE_INSTANCE__SAMPLED, true, false, false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -247,7 +230,6 @@ public class FeatureInstanceItemProvider extends InstanceObjectItemProvider {
 
 		switch (notification.getFeatureID(FeatureInstance.class)) {
 		case Av3instancePackage.FEATURE_INSTANCE__DIRECTION:
-		case Av3instancePackage.FEATURE_INSTANCE__SAMPLED:
 		case Av3instancePackage.FEATURE_INSTANCE__CATEGORY:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;

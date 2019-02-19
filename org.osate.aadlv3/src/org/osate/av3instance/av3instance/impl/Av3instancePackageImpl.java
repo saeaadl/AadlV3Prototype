@@ -215,7 +215,7 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 	 * @generated
 	 */
 	@Override
-	public EAttribute getFeatureInstance_Sampled() {
+	public EAttribute getFeatureInstance_Category() {
 		return (EAttribute) featureInstanceEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -225,18 +225,8 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 	 * @generated
 	 */
 	@Override
-	public EAttribute getFeatureInstance_Category() {
-		return (EAttribute) featureInstanceEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EReference getFeatureInstance_Features() {
-		return (EReference) featureInstanceEClass.getEStructuralFeatures().get(4);
+		return (EReference) featureInstanceEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -246,7 +236,7 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 	 */
 	@Override
 	public EReference getFeatureInstance_OutgoingAssociations() {
-		return (EReference) featureInstanceEClass.getEStructuralFeatures().get(5);
+		return (EReference) featureInstanceEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -256,7 +246,7 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 	 */
 	@Override
 	public EReference getFeatureInstance_IncomingAssociations() {
-		return (EReference) featureInstanceEClass.getEStructuralFeatures().get(6);
+		return (EReference) featureInstanceEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -526,7 +516,6 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 		featureInstanceEClass = createEClass(FEATURE_INSTANCE);
 		createEReference(featureInstanceEClass, FEATURE_INSTANCE__FEATURE);
 		createEAttribute(featureInstanceEClass, FEATURE_INSTANCE__DIRECTION);
-		createEAttribute(featureInstanceEClass, FEATURE_INSTANCE__SAMPLED);
 		createEAttribute(featureInstanceEClass, FEATURE_INSTANCE__CATEGORY);
 		createEReference(featureInstanceEClass, FEATURE_INSTANCE__FEATURES);
 		createEReference(featureInstanceEClass, FEATURE_INSTANCE__OUTGOING_ASSOCIATIONS);
@@ -613,9 +602,6 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 				FeatureInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFeatureInstance_Direction(), theAadlv3Package.getFeatureDirection(), "direction", null, 0, 1, //$NON-NLS-1$
-				FeatureInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getFeatureInstance_Sampled(), ecorePackage.getEBoolean(), "sampled", null, 0, 1, //$NON-NLS-1$
 				FeatureInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFeatureInstance_Category(), theAadlv3Package.getFeatureCategory(), "category", null, 0, 1, //$NON-NLS-1$

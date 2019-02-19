@@ -25,7 +25,6 @@ package org.osate.aadlv3.aadlv3;
  * </p>
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.Feature#getDirection <em>Direction</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.Feature#isSampled <em>Sampled</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.Feature#getCategory <em>Category</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.Feature#isReverse <em>Reverse</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.Feature#getType <em>Type</em>}</li>
@@ -64,32 +63,6 @@ public interface Feature extends ModelElement {
 	 * @generated
 	 */
 	void setDirection(FeatureDirection value);
-
-	/**
-	 * Returns the value of the '<em><b>Sampled</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Sampled</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Sampled</em>' attribute.
-	 * @see #setSampled(boolean)
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getFeature_Sampled()
-	 * @model
-	 * @generated
-	 */
-	boolean isSampled();
-
-	/**
-	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.Feature#isSampled <em>Sampled</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Sampled</em>' attribute.
-	 * @see #isSampled()
-	 * @generated
-	 */
-	void setSampled(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Category</b></em>' attribute.

@@ -21,7 +21,6 @@
     <genClasses ecoreClass="AV3Instance.ecore#//FeatureInstance">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//FeatureInstance/feature"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AV3Instance.ecore#//FeatureInstance/direction"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AV3Instance.ecore#//FeatureInstance/sampled"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AV3Instance.ecore#//FeatureInstance/category"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//FeatureInstance/features"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//FeatureInstance/outgoingAssociations"/>

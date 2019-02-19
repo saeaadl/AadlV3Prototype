@@ -777,7 +777,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getFeature_Sampled() {
+	public EAttribute getFeature_Category() {
 		return (EAttribute) featureEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -787,7 +787,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getFeature_Category() {
+	public EAttribute getFeature_Reverse() {
 		return (EAttribute) featureEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -797,18 +797,8 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getFeature_Reverse() {
-		return (EAttribute) featureEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EReference getFeature_Type() {
-		return (EReference) featureEClass.getEStructuralFeatures().get(4);
+		return (EReference) featureEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -1477,7 +1467,6 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 
 		featureEClass = createEClass(FEATURE);
 		createEAttribute(featureEClass, FEATURE__DIRECTION);
-		createEAttribute(featureEClass, FEATURE__SAMPLED);
 		createEAttribute(featureEClass, FEATURE__CATEGORY);
 		createEAttribute(featureEClass, FEATURE__REVERSE);
 		createEReference(featureEClass, FEATURE__TYPE);
@@ -1731,8 +1720,6 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 
 		initEClass(featureEClass, Feature.class, "Feature", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getFeature_Direction(), this.getFeatureDirection(), "direction", null, 0, 1, Feature.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getFeature_Sampled(), ecorePackage.getEBoolean(), "sampled", null, 0, 1, Feature.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFeature_Category(), this.getFeatureCategory(), "category", null, 0, 1, Feature.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

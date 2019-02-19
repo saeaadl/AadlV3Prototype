@@ -1284,7 +1284,6 @@ class Aadlv3Util {
 		featurei.direction = if (reverse) f.direction.reverseDirection else f.direction
 		featurei.feature = f
 		featurei.category = f.category
-		featurei.sampled = f.sampled
 		return featurei
 	}
 

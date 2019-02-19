@@ -37,7 +37,6 @@ import org.osate.aadlv3.aadlv3.Type;
  * </p>
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.FeatureImpl#getDirection <em>Direction</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.FeatureImpl#isSampled <em>Sampled</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.FeatureImpl#getCategory <em>Category</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.FeatureImpl#isReverse <em>Reverse</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.FeatureImpl#getType <em>Type</em>}</li>
@@ -65,26 +64,6 @@ public class FeatureImpl extends ModelElementImpl implements Feature {
 	 * @ordered
 	 */
 	protected FeatureDirection direction = DIRECTION_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #isSampled() <em>Sampled</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSampled()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean SAMPLED_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isSampled() <em>Sampled</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSampled()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean sampled = SAMPLED_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getCategory() <em>Category</em>}' attribute.
@@ -185,29 +164,6 @@ public class FeatureImpl extends ModelElementImpl implements Feature {
 	 * @generated
 	 */
 	@Override
-	public boolean isSampled() {
-		return sampled;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setSampled(boolean newSampled) {
-		boolean oldSampled = sampled;
-		sampled = newSampled;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.FEATURE__SAMPLED, oldSampled, sampled));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public FeatureCategory getCategory() {
 		return category;
 	}
@@ -300,8 +256,6 @@ public class FeatureImpl extends ModelElementImpl implements Feature {
 		switch (featureID) {
 		case Aadlv3Package.FEATURE__DIRECTION:
 			return getDirection();
-		case Aadlv3Package.FEATURE__SAMPLED:
-			return isSampled();
 		case Aadlv3Package.FEATURE__CATEGORY:
 			return getCategory();
 		case Aadlv3Package.FEATURE__REVERSE:
@@ -324,9 +278,6 @@ public class FeatureImpl extends ModelElementImpl implements Feature {
 		switch (featureID) {
 		case Aadlv3Package.FEATURE__DIRECTION:
 			setDirection((FeatureDirection) newValue);
-			return;
-		case Aadlv3Package.FEATURE__SAMPLED:
-			setSampled((Boolean) newValue);
 			return;
 		case Aadlv3Package.FEATURE__CATEGORY:
 			setCategory((FeatureCategory) newValue);
@@ -352,9 +303,6 @@ public class FeatureImpl extends ModelElementImpl implements Feature {
 		case Aadlv3Package.FEATURE__DIRECTION:
 			setDirection(DIRECTION_EDEFAULT);
 			return;
-		case Aadlv3Package.FEATURE__SAMPLED:
-			setSampled(SAMPLED_EDEFAULT);
-			return;
 		case Aadlv3Package.FEATURE__CATEGORY:
 			setCategory(CATEGORY_EDEFAULT);
 			return;
@@ -378,8 +326,6 @@ public class FeatureImpl extends ModelElementImpl implements Feature {
 		switch (featureID) {
 		case Aadlv3Package.FEATURE__DIRECTION:
 			return direction != DIRECTION_EDEFAULT;
-		case Aadlv3Package.FEATURE__SAMPLED:
-			return sampled != SAMPLED_EDEFAULT;
 		case Aadlv3Package.FEATURE__CATEGORY:
 			return category != CATEGORY_EDEFAULT;
 		case Aadlv3Package.FEATURE__REVERSE:
@@ -403,8 +349,6 @@ public class FeatureImpl extends ModelElementImpl implements Feature {
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (direction: ");
 		result.append(direction);
-		result.append(", sampled: ");
-		result.append(sampled);
 		result.append(", category: ");
 		result.append(category);
 		result.append(", reverse: ");

@@ -921,22 +921,13 @@ public interface Aadlv3Package extends EPackage {
 	int FEATURE__DIRECTION = MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Sampled</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE__SAMPLED = MODEL_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
 	 * The feature id for the '<em><b>Category</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__CATEGORY = MODEL_ELEMENT_FEATURE_COUNT + 2;
+	int FEATURE__CATEGORY = MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Reverse</b></em>' attribute.
@@ -945,7 +936,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__REVERSE = MODEL_ELEMENT_FEATURE_COUNT + 3;
+	int FEATURE__REVERSE = MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -954,7 +945,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__TYPE = MODEL_ELEMENT_FEATURE_COUNT + 4;
+	int FEATURE__TYPE = MODEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Feature</em>' class.
@@ -963,7 +954,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 5;
+	int FEATURE_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.ComponentImpl <em>Component</em>}' class.
@@ -2197,17 +2188,6 @@ public interface Aadlv3Package extends EPackage {
 	EAttribute getFeature_Direction();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.osate.aadlv3.aadlv3.Feature#isSampled <em>Sampled</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Sampled</em>'.
-	 * @see org.osate.aadlv3.aadlv3.Feature#isSampled()
-	 * @see #getFeature()
-	 * @generated
-	 */
-	EAttribute getFeature_Sampled();
-
-	/**
 	 * Returns the meta object for the attribute '{@link org.osate.aadlv3.aadlv3.Feature#getCategory <em>Category</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3236,14 +3216,6 @@ public interface Aadlv3Package extends EPackage {
 		 * @generated
 		 */
 		EAttribute FEATURE__DIRECTION = eINSTANCE.getFeature_Direction();
-
-		/**
-		 * The meta object literal for the '<em><b>Sampled</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute FEATURE__SAMPLED = eINSTANCE.getFeature_Sampled();
 
 		/**
 		 * The meta object literal for the '<em><b>Category</b></em>' attribute feature.

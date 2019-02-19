@@ -9,7 +9,7 @@ PackageDeclaration returns av3::PackageDeclaration:
 	(private?='private')? 'package' name=QualifiedName 
 	(imports+=Import |
 	elements+= PackageElement)*
-	'end' SEMICOLON;
+	'end' ;
 
 PackageElement returns av3::PackageElement:
 	PackageDeclaration | DataType | ComponentInterface | ComponentImplementation | ComponentConfiguration | PropertyDefinition | PropertySet | Workingset
@@ -38,7 +38,7 @@ DataType returns av3::DataType:
 ComponentInterface returns av3::ComponentInterface:
 	(private?='private')? category=ComponentCategory? 'interface'  name=ID ('extends' (InterfaceExtensions)?)? 
 	 InterfaceBody
-	SEMICOLON;
+	;
 
 fragment InterfaceBody*:
 	('is' InterfaceElement (SEMICOLON InterfaceElement)* SEMICOLON? )? 'end'
@@ -57,7 +57,7 @@ ComponentImplementation returns av3::ComponentImplementation:
 	(private?='private')? category=ComponentCategory name=DottedName 
 	('extends' (ImplementationExtensions)?)? 
 	 ImplementationBody
-	  SEMICOLON;
+	  ;
 
 fragment ImplementationBody*:
 	('is'
@@ -82,13 +82,13 @@ ComponentConfiguration returns av3::ComponentConfiguration:
 	(private?='private')? 'configuration' name=DottedName  
 	Parameters?
 	'extends' ConfigurationExtensions ConfigurationElementBlock 
-	 SEMICOLON;
+	 ;
 	
 
 // (Instance) model elements
 
 Feature returns av3::Feature:
-	name=ID ':' direction=FeatureDirection? sampled?='sampled'? 
+	name=ID ':' direction=FeatureDirection?  
 	category=FeatureCategory 
 	(reverse?='reverse'? 
 	type=[av3::Type|QualifiedName] )?
@@ -141,9 +141,8 @@ PathElement returns av3::PathElement:
 
 
 Import returns av3::Import:
-	'import' (importedNamespace=QualifiedNameWithWildcard |
-		(importedNamespace=QualifiedName ('as' alias=ID)?)
-	) 
+	'import' (importedNamespace=QualifiedNameWithWildcard | importedNamespace=QualifiedName)
+	('as' alias=ID)?
 	SEMICOLON;
 
 ConfigurationAssignment returns av3::ConfigurationAssignment:
@@ -251,7 +250,7 @@ Workingset returns av3::Workingset:
 	(private?='private')? 'workingset' name=QualifiedName 'is' 
 	UseProps?
 	rootComponents+=Component (SEMICOLON rootComponents+=Component)* SEMICOLON? 
-	'end' SEMICOLON
+	'end' 
 ;
 
 

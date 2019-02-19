@@ -48,7 +48,6 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	public static val BAD_PORT_DIRECTION = 'BadPortDirection'
 	public static val BAD_FEATURE_DIRECTION = 'BadFeatureDirection'
 	public static val BAD_INTERFACE_DIRECTION = 'BadInterfaceDirection'
-	public static val ONLY_PORTS_SAMPLE = 'OnlyPortsSample'
 	public static val ONLY_INTERFACES_REVERSE = 'OnlyInterfacesReverse'
 	public static val MISMATCHED_COMPONENT_CATEGORY = 'MismatchedCategory'
 	public static val IN_TO_OUT = 'InToOut'
@@ -108,9 +107,6 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	@Check
 	def checkFeature(Feature fea) {
 		fea.checkFeatureDirection()
-		if (fea.category != FeatureCategory.PORT && fea.isSampled) {
-			error('Only ports can be sampled', fea, Aadlv3Package.Literals.FEATURE__SAMPLED, ONLY_PORTS_SAMPLE)
-		}
 		if (fea.category != FeatureCategory.INTERFACE && fea.isReverse) {
 			error('Only interface features can reverse direction', fea, Aadlv3Package.Literals.FEATURE__REVERSE,
 				ONLY_INTERFACES_REVERSE)

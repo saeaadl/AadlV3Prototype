@@ -49,7 +49,6 @@ import org.osate.av3instance.av3instance.FeatureInstance;
  * <ul>
  *   <li>{@link org.osate.av3instance.av3instance.impl.FeatureInstanceImpl#getFeature <em>Feature</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.impl.FeatureInstanceImpl#getDirection <em>Direction</em>}</li>
- *   <li>{@link org.osate.av3instance.av3instance.impl.FeatureInstanceImpl#isSampled <em>Sampled</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.impl.FeatureInstanceImpl#getCategory <em>Category</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.impl.FeatureInstanceImpl#getFeatures <em>Features</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.impl.FeatureInstanceImpl#getOutgoingAssociations <em>Outgoing Associations</em>}</li>
@@ -88,26 +87,6 @@ public class FeatureInstanceImpl extends InstanceObjectImpl implements FeatureIn
 	 * @ordered
 	 */
 	protected FeatureDirection direction = DIRECTION_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #isSampled() <em>Sampled</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSampled()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean SAMPLED_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isSampled() <em>Sampled</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSampled()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean sampled = SAMPLED_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getCategory() <em>Category</em>}' attribute.
@@ -250,30 +229,6 @@ public class FeatureInstanceImpl extends InstanceObjectImpl implements FeatureIn
 	 * @generated
 	 */
 	@Override
-	public boolean isSampled() {
-		return sampled;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setSampled(boolean newSampled) {
-		boolean oldSampled = sampled;
-		sampled = newSampled;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Av3instancePackage.FEATURE_INSTANCE__SAMPLED,
-					oldSampled, sampled));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public FeatureCategory getCategory() {
 		return category;
 	}
@@ -387,8 +342,6 @@ public class FeatureInstanceImpl extends InstanceObjectImpl implements FeatureIn
 			return basicGetFeature();
 		case Av3instancePackage.FEATURE_INSTANCE__DIRECTION:
 			return getDirection();
-		case Av3instancePackage.FEATURE_INSTANCE__SAMPLED:
-			return isSampled();
 		case Av3instancePackage.FEATURE_INSTANCE__CATEGORY:
 			return getCategory();
 		case Av3instancePackage.FEATURE_INSTANCE__FEATURES:
@@ -415,9 +368,6 @@ public class FeatureInstanceImpl extends InstanceObjectImpl implements FeatureIn
 			return;
 		case Av3instancePackage.FEATURE_INSTANCE__DIRECTION:
 			setDirection((FeatureDirection) newValue);
-			return;
-		case Av3instancePackage.FEATURE_INSTANCE__SAMPLED:
-			setSampled((Boolean) newValue);
 			return;
 		case Av3instancePackage.FEATURE_INSTANCE__CATEGORY:
 			setCategory((FeatureCategory) newValue);
@@ -452,9 +402,6 @@ public class FeatureInstanceImpl extends InstanceObjectImpl implements FeatureIn
 		case Av3instancePackage.FEATURE_INSTANCE__DIRECTION:
 			setDirection(DIRECTION_EDEFAULT);
 			return;
-		case Av3instancePackage.FEATURE_INSTANCE__SAMPLED:
-			setSampled(SAMPLED_EDEFAULT);
-			return;
 		case Av3instancePackage.FEATURE_INSTANCE__CATEGORY:
 			setCategory(CATEGORY_EDEFAULT);
 			return;
@@ -483,8 +430,6 @@ public class FeatureInstanceImpl extends InstanceObjectImpl implements FeatureIn
 			return feature != null;
 		case Av3instancePackage.FEATURE_INSTANCE__DIRECTION:
 			return direction != DIRECTION_EDEFAULT;
-		case Av3instancePackage.FEATURE_INSTANCE__SAMPLED:
-			return sampled != SAMPLED_EDEFAULT;
 		case Av3instancePackage.FEATURE_INSTANCE__CATEGORY:
 			return category != CATEGORY_EDEFAULT;
 		case Av3instancePackage.FEATURE_INSTANCE__FEATURES:
@@ -510,8 +455,6 @@ public class FeatureInstanceImpl extends InstanceObjectImpl implements FeatureIn
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (direction: "); //$NON-NLS-1$
 		result.append(direction);
-		result.append(", sampled: "); //$NON-NLS-1$
-		result.append(sampled);
 		result.append(", category: "); //$NON-NLS-1$
 		result.append(category);
 		result.append(')');
