@@ -76,6 +76,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	public static val FormalActualMismatch = 'FormalActualMismatch'
 	public static val ParameterNotInterface = 'ParameterNotInterface'
 	public static val OverrideType = 'OverrideType'
+	public static val OneType = 'OneType'
 	public static val DifferentComponentInPath = 'DifferentComponentInPath'
 	public static val NoInterface = 'NoComponentInterface'
 	public static val DoesNotApply = 'DoesNotApply'
@@ -563,11 +564,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	}
 	
 	def checkConfigurationAssignmentCategory(ConfigurationAssignment ca) {
-		if (!(ca.target.element instanceof Component)) {
-			// TODO in the future we may configure features
-			error('Configuration assignment must be for subcomponent', ca,
-				Aadlv3Package.Literals.CONFIGURATION_ASSIGNMENT__TARGET, org.osate.xtext.aadlv3.validation.AadlV3Validator.FeatureAndSubcomponent)
-		} else {
+		if (ca.target.element instanceof Component) {
 			val comp = ca.target.element as Component
 			for (tr : ca.assignedClassifiers) {
 				val assignedtype = tr.type
@@ -591,6 +588,47 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 					}
 				}
 			}
+		} else if (ca.target.element instanceof Feature){
+			val fea = ca.target.element as Feature
+			if (ca.assignedClassifiers.size > 1){
+				error('Can only assign one type to feature', ca, null, OneType)
+			}
+			for (tr : ca.assignedClassifiers) {
+				val assignedtype = tr.type
+				val thetype = if(assignedtype instanceof ConfigurationParameter) assignedtype.type else assignedtype
+				if (thetype instanceof ComponentClassifier) {
+					val clcat = thetype.componentCategory
+					if (!((fea.category === FeatureCategory.BUSACCESS && clcat === ComponentCategory.BUS)|| 
+						(fea.category === FeatureCategory.SUBPROGRAMACCESS && clcat === ComponentCategory.SUBPROGRAM)||
+						(fea.category === FeatureCategory.SUBPROGRAMGROUPACCESS && clcat === ComponentCategory.SUBPROGRAMGROUP)||
+						(fea.category === FeatureCategory.VIRTUALBUSACCESS && clcat === ComponentCategory.VIRTUALBUS)
+						|| (fea.category === FeatureCategory.INTERFACE &&clcat === ComponentCategory.INTERFACE))) {
+						error(
+							'Category \'' + clcat + '\' of assigned classifier must be the same as the category \'' +
+								fea.category + '\' of the feature', ca, null,
+							MISMATCHED_COMPONENT_CATEGORY)
+					}
+					if (!(fea.category === FeatureCategory.INTERFACE &&clcat === ComponentCategory.INTERFACE) && tr.isReverse){
+						error(
+							'Only named interfaces can be \'reverse\'', ca, Aadlv3Package.Literals.CONFIGURATION_ASSIGNMENT__ASSIGNED_CLASSIFIERS,
+							ONLY_INTERFACES_REVERSE)
+					}
+				} else if (thetype instanceof DataType) {
+					// data type
+					if (fea.category === FeatureCategory.DATAACCESS || 
+						fea.category === FeatureCategory.PORT ||
+						fea.category === FeatureCategory.FEATURE ) {
+						if (fea.typeReference !== null) {
+							error('Assigned primitive type cannot override existing type', ca, null, OverrideType)
+						}
+					} else {
+						error('Configuration assignment expects component classifier', ca, null, NoDataType)
+					}
+				}
+			}
+		} else {
+			error('Configuration assignment must be for subcomponent or feature', ca,
+				Aadlv3Package.Literals.CONFIGURATION_ASSIGNMENT__TARGET, FeatureAndSubcomponent)
 		}
 	}
 	
