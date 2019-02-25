@@ -154,7 +154,7 @@ class Instantiator {
 	def FeatureInstance instantiateFeature(Feature f, boolean reverse){
 		val fi = f.createFeatureInstance(reverse)
 		if (f.category === FeatureCategory.INTERFACE ){
-			val cl = fi.feature.type 
+			val cl = fi.feature?.typeReference?.type 
 			if (cl instanceof ComponentInterface){
 				fi.allFeatures.forEach[subf| 
 					val doreverse = cl.allFeatures.isReverseFeature(subf, reverse)

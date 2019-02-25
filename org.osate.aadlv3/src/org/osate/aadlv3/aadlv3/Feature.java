@@ -26,8 +26,7 @@ package org.osate.aadlv3.aadlv3;
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.Feature#getDirection <em>Direction</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.Feature#getCategory <em>Category</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.Feature#isReverse <em>Reverse</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.Feature#getType <em>Type</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.Feature#getTypeReference <em>Type Reference</em>}</li>
  * </ul>
  *
  * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getFeature()
@@ -94,55 +93,29 @@ public interface Feature extends ModelElement {
 	void setCategory(FeatureCategory value);
 
 	/**
-	 * Returns the value of the '<em><b>Reverse</b></em>' attribute.
+	 * Returns the value of the '<em><b>Type Reference</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Reverse</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Type Reference</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Reverse</em>' attribute.
-	 * @see #setReverse(boolean)
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getFeature_Reverse()
-	 * @model
+	 * @return the value of the '<em>Type Reference</em>' containment reference.
+	 * @see #setTypeReference(TypeReference)
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getFeature_TypeReference()
+	 * @model containment="true"
 	 * @generated
 	 */
-	boolean isReverse();
+	TypeReference getTypeReference();
 
 	/**
-	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.Feature#isReverse <em>Reverse</em>}' attribute.
+	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.Feature#getTypeReference <em>Type Reference</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Reverse</em>' attribute.
-	 * @see #isReverse()
+	 * @param value the new value of the '<em>Type Reference</em>' containment reference.
+	 * @see #getTypeReference()
 	 * @generated
 	 */
-	void setReverse(boolean value);
-
-	/**
-	 * Returns the value of the '<em><b>Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Type</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Type</em>' reference.
-	 * @see #setType(Type)
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getFeature_Type()
-	 * @model
-	 * @generated
-	 */
-	Type getType();
-
-	/**
-	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.Feature#getType <em>Type</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Type</em>' reference.
-	 * @see #getType()
-	 * @generated
-	 */
-	void setType(Type value);
+	void setTypeReference(TypeReference value);
 
 } // Feature

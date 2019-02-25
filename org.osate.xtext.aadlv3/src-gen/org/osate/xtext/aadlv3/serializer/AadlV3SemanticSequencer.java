@@ -172,6 +172,10 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 					sequence_ReversableInterfaceReference(context, (TypeReference) semanticObject); 
 					return; 
 				}
+				else if (rule == grammarAccess.getReversableTypeReferenceRule()) {
+					sequence_ReversableTypeReference(context, (TypeReference) semanticObject); 
+					return; 
+				}
 				else break;
 			case Aadlv3Package.WORKINGSET:
 				sequence_UseProps_Workingset(context, (Workingset) semanticObject); 
@@ -486,7 +490,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *         name=ID 
 	 *         direction=FeatureDirection? 
 	 *         category=FeatureCategory 
-	 *         (reverse?='reverse'? type=[Type|QualifiedName])? 
+	 *         typeReference=ReversableTypeReference? 
 	 *         (propertyAssociations+=PropertyAssociation propertyAssociations+=PropertyAssociation*)?
 	 *     )
 	 */
@@ -685,6 +689,18 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     (reverse?='reverse'? type=[ComponentInterface|QualifiedReference])
 	 */
 	protected void sequence_ReversableInterfaceReference(ISerializationContext context, TypeReference semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     ReversableTypeReference returns TypeReference
+	 *
+	 * Constraint:
+	 *     (reverse?='reverse'? type=[Type|QualifiedReference])
+	 */
+	protected void sequence_ReversableTypeReference(ISerializationContext context, TypeReference semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

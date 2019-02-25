@@ -90,8 +90,7 @@ ComponentConfiguration returns av3::ComponentConfiguration:
 Feature returns av3::Feature:
 	name=ID ':' direction=FeatureDirection?  
 	category=FeatureCategory 
-	(reverse?='reverse'? 
-	type=[av3::Type|QualifiedName] )?
+	(typeReference=ReversableTypeReference )?
 	PropertiesBlock?
 	;
 

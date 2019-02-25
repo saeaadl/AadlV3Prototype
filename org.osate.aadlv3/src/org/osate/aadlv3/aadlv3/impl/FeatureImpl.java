@@ -17,6 +17,7 @@ package org.osate.aadlv3.aadlv3.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -26,7 +27,7 @@ import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.Feature;
 import org.osate.aadlv3.aadlv3.FeatureCategory;
 import org.osate.aadlv3.aadlv3.FeatureDirection;
-import org.osate.aadlv3.aadlv3.Type;
+import org.osate.aadlv3.aadlv3.TypeReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,8 +39,7 @@ import org.osate.aadlv3.aadlv3.Type;
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.FeatureImpl#getDirection <em>Direction</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.FeatureImpl#getCategory <em>Category</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.FeatureImpl#isReverse <em>Reverse</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.FeatureImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.FeatureImpl#getTypeReference <em>Type Reference</em>}</li>
  * </ul>
  *
  * @generated
@@ -86,34 +86,14 @@ public class FeatureImpl extends ModelElementImpl implements Feature {
 	protected FeatureCategory category = CATEGORY_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isReverse() <em>Reverse</em>}' attribute.
+	 * The cached value of the '{@link #getTypeReference() <em>Type Reference</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isReverse()
+	 * @see #getTypeReference()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean REVERSE_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isReverse() <em>Reverse</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isReverse()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean reverse = REVERSE_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getType() <em>Type</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getType()
-	 * @generated
-	 * @ordered
-	 */
-	protected Type type;
+	protected TypeReference typeReference;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -188,8 +168,8 @@ public class FeatureImpl extends ModelElementImpl implements Feature {
 	 * @generated
 	 */
 	@Override
-	public boolean isReverse() {
-		return reverse;
+	public TypeReference getTypeReference() {
+		return typeReference;
 	}
 
 	/**
@@ -197,40 +177,18 @@ public class FeatureImpl extends ModelElementImpl implements Feature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public void setReverse(boolean newReverse) {
-		boolean oldReverse = reverse;
-		reverse = newReverse;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.FEATURE__REVERSE, oldReverse, reverse));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Type getType() {
-		if (type != null && type.eIsProxy()) {
-			InternalEObject oldType = (InternalEObject) type;
-			type = (Type) eResolveProxy(oldType);
-			if (type != oldType) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Aadlv3Package.FEATURE__TYPE, oldType,
-							type));
-			}
+	public NotificationChain basicSetTypeReference(TypeReference newTypeReference, NotificationChain msgs) {
+		TypeReference oldTypeReference = typeReference;
+		typeReference = newTypeReference;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					Aadlv3Package.FEATURE__TYPE_REFERENCE, oldTypeReference, newTypeReference);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
-		return type;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Type basicGetType() {
-		return type;
+		return msgs;
 	}
 
 	/**
@@ -239,11 +197,35 @@ public class FeatureImpl extends ModelElementImpl implements Feature {
 	 * @generated
 	 */
 	@Override
-	public void setType(Type newType) {
-		Type oldType = type;
-		type = newType;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.FEATURE__TYPE, oldType, type));
+	public void setTypeReference(TypeReference newTypeReference) {
+		if (newTypeReference != typeReference) {
+			NotificationChain msgs = null;
+			if (typeReference != null)
+				msgs = ((InternalEObject) typeReference).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE - Aadlv3Package.FEATURE__TYPE_REFERENCE, null, msgs);
+			if (newTypeReference != null)
+				msgs = ((InternalEObject) newTypeReference).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE - Aadlv3Package.FEATURE__TYPE_REFERENCE, null, msgs);
+			msgs = basicSetTypeReference(newTypeReference, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.FEATURE__TYPE_REFERENCE,
+					newTypeReference, newTypeReference));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case Aadlv3Package.FEATURE__TYPE_REFERENCE:
+			return basicSetTypeReference(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -258,12 +240,8 @@ public class FeatureImpl extends ModelElementImpl implements Feature {
 			return getDirection();
 		case Aadlv3Package.FEATURE__CATEGORY:
 			return getCategory();
-		case Aadlv3Package.FEATURE__REVERSE:
-			return isReverse();
-		case Aadlv3Package.FEATURE__TYPE:
-			if (resolve)
-				return getType();
-			return basicGetType();
+		case Aadlv3Package.FEATURE__TYPE_REFERENCE:
+			return getTypeReference();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -282,11 +260,8 @@ public class FeatureImpl extends ModelElementImpl implements Feature {
 		case Aadlv3Package.FEATURE__CATEGORY:
 			setCategory((FeatureCategory) newValue);
 			return;
-		case Aadlv3Package.FEATURE__REVERSE:
-			setReverse((Boolean) newValue);
-			return;
-		case Aadlv3Package.FEATURE__TYPE:
-			setType((Type) newValue);
+		case Aadlv3Package.FEATURE__TYPE_REFERENCE:
+			setTypeReference((TypeReference) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -306,11 +281,8 @@ public class FeatureImpl extends ModelElementImpl implements Feature {
 		case Aadlv3Package.FEATURE__CATEGORY:
 			setCategory(CATEGORY_EDEFAULT);
 			return;
-		case Aadlv3Package.FEATURE__REVERSE:
-			setReverse(REVERSE_EDEFAULT);
-			return;
-		case Aadlv3Package.FEATURE__TYPE:
-			setType((Type) null);
+		case Aadlv3Package.FEATURE__TYPE_REFERENCE:
+			setTypeReference((TypeReference) null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -328,10 +300,8 @@ public class FeatureImpl extends ModelElementImpl implements Feature {
 			return direction != DIRECTION_EDEFAULT;
 		case Aadlv3Package.FEATURE__CATEGORY:
 			return category != CATEGORY_EDEFAULT;
-		case Aadlv3Package.FEATURE__REVERSE:
-			return reverse != REVERSE_EDEFAULT;
-		case Aadlv3Package.FEATURE__TYPE:
-			return type != null;
+		case Aadlv3Package.FEATURE__TYPE_REFERENCE:
+			return typeReference != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -351,8 +321,6 @@ public class FeatureImpl extends ModelElementImpl implements Feature {
 		result.append(direction);
 		result.append(", category: ");
 		result.append(category);
-		result.append(", reverse: ");
-		result.append(reverse);
 		result.append(')');
 		return result.toString();
 	}

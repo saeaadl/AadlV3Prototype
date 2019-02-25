@@ -1458,34 +1458,21 @@ ruleFeature returns [EObject current=null]
 		)
 		(
 			(
-				(
-					lv_reverse_4_0='reverse'
-					{
-						newLeafNode(lv_reverse_4_0, grammarAccess.getFeatureAccess().getReverseReverseKeyword_4_0_0());
+				{
+					newCompositeNode(grammarAccess.getFeatureAccess().getTypeReferenceReversableTypeReferenceParserRuleCall_4_0());
+				}
+				lv_typeReference_4_0=ruleReversableTypeReference
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getFeatureRule());
 					}
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getFeatureRule());
-						}
-						setWithLastConsumed($current, "reverse", true, "reverse");
-					}
-				)
-			)?
-			(
-				(
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getFeatureRule());
-						}
-					}
-					{
-						newCompositeNode(grammarAccess.getFeatureAccess().getTypeTypeCrossReference_4_1_0());
-					}
-					ruleQualifiedName
-					{
-						afterParserOrEnumRuleCall();
-					}
-				)
+					set(
+						$current,
+						"typeReference",
+						lv_typeReference_4_0,
+						"org.osate.xtext.aadlv3.AadlV3.ReversableTypeReference");
+					afterParserOrEnumRuleCall();
+				}
 			)
 		)?
 		(
@@ -1495,9 +1482,9 @@ ruleFeature returns [EObject current=null]
 				}
 				newCompositeNode(grammarAccess.getFeatureAccess().getPropertiesBlockParserRuleCall_5());
 			}
-			this_PropertiesBlock_6=rulePropertiesBlock[$current]
+			this_PropertiesBlock_5=rulePropertiesBlock[$current]
 			{
-				$current = $this_PropertiesBlock_6.current;
+				$current = $this_PropertiesBlock_5.current;
 				afterParserOrEnumRuleCall();
 			}
 		)?
@@ -3536,6 +3523,55 @@ ruleReversableInterfaceReference returns [EObject current=null]
 				}
 				{
 					newCompositeNode(grammarAccess.getReversableInterfaceReferenceAccess().getTypeComponentInterfaceCrossReference_1_0());
+				}
+				ruleQualifiedReference
+				{
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+	)
+;
+
+// Entry rule entryRuleReversableTypeReference
+entryRuleReversableTypeReference returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getReversableTypeReferenceRule()); }
+	iv_ruleReversableTypeReference=ruleReversableTypeReference
+	{ $current=$iv_ruleReversableTypeReference.current; }
+	EOF;
+
+// Rule ReversableTypeReference
+ruleReversableTypeReference returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				lv_reverse_0_0='reverse'
+				{
+					newLeafNode(lv_reverse_0_0, grammarAccess.getReversableTypeReferenceAccess().getReverseReverseKeyword_0_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getReversableTypeReferenceRule());
+					}
+					setWithLastConsumed($current, "reverse", true, "reverse");
+				}
+			)
+		)?
+		(
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getReversableTypeReferenceRule());
+					}
+				}
+				{
+					newCompositeNode(grammarAccess.getReversableTypeReferenceAccess().getTypeTypeCrossReference_1_0());
 				}
 				ruleQualifiedReference
 				{

@@ -98,7 +98,7 @@ class AadlV3ScopeProvider extends AbstractAadlV3ScopeProvider {
 													allSuperConfigurationAssignments)
 											el.getConfiguredTypeReferences(casscopes).allModelElements 
 										} else if (el instanceof Feature) {
-											val ftype = el.type
+											val ftype = el?.typeReference?.type
 											if (ftype instanceof ComponentInterface) {
 												ftype.allFeatures
 											} else {
@@ -133,7 +133,7 @@ class AadlV3ScopeProvider extends AbstractAadlV3ScopeProvider {
 							}
 						}
 						Feature: {
-							val at = previousElement.type
+							val at = previousElement?.typeReference?.type
 							if (at instanceof ComponentClassifier) {
 								at.allModelElements
 							}

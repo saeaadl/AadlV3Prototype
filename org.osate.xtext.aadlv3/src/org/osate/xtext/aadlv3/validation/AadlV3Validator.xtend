@@ -110,8 +110,8 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	@Check
 	def checkFeature(Feature fea) {
 		fea.checkFeatureDirection()
-		if (fea.category != FeatureCategory.INTERFACE && fea.isReverse) {
-			error('Only interface features can reverse direction', fea, Aadlv3Package.Literals.FEATURE__REVERSE,
+		if (fea.category != FeatureCategory.INTERFACE && fea?.typeReference?.isReverse) {
+			error('Only interface features can reverse direction', fea, Aadlv3Package.Literals.FEATURE__TYPE_REFERENCE,
 				ONLY_INTERFACES_REVERSE)
 		}
 	}
@@ -740,10 +740,10 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 		if (srcelem instanceof Feature && dstelem instanceof Feature){
 			val src = srcelem as Feature
 			val dst = dstelem as Feature
-			if (src.type !== null && dst.type !== null && src.type !== dst.type) {
+			if (src?.typeReference?.type !== null && dst?.typeReference?.type !== null && src?.typeReference?.type !== dst?.typeReference?.type) {
 				error('Association ends must have same type', assoc, null, MatchingTypes)
 			}
-			if (src.type !== null && dst.type === null || src.type === null && dst.type !== null) {
+			if (src?.typeReference?.type !== null && dst?.typeReference?.type === null || src?.typeReference?.type === null && dst?.typeReference?.type !== null) {
 				warning('One association has a type, while the other does not', assoc, null, MissingOneType)
 			}
 		}

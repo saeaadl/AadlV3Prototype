@@ -784,24 +784,19 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cDirectionFeatureDirectionParserRuleCall_2_0 = (RuleCall)cDirectionAssignment_2.eContents().get(0);
 		private final Assignment cCategoryAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cCategoryFeatureCategoryParserRuleCall_3_0 = (RuleCall)cCategoryAssignment_3.eContents().get(0);
-		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
-		private final Assignment cReverseAssignment_4_0 = (Assignment)cGroup_4.eContents().get(0);
-		private final Keyword cReverseReverseKeyword_4_0_0 = (Keyword)cReverseAssignment_4_0.eContents().get(0);
-		private final Assignment cTypeAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
-		private final CrossReference cTypeTypeCrossReference_4_1_0 = (CrossReference)cTypeAssignment_4_1.eContents().get(0);
-		private final RuleCall cTypeTypeQualifiedNameParserRuleCall_4_1_0_1 = (RuleCall)cTypeTypeCrossReference_4_1_0.eContents().get(1);
+		private final Assignment cTypeReferenceAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cTypeReferenceReversableTypeReferenceParserRuleCall_4_0 = (RuleCall)cTypeReferenceAssignment_4.eContents().get(0);
 		private final RuleCall cPropertiesBlockParserRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
 		
 		//// (Instance) model elements
 		//Feature av3::Feature:
 		//	name=ID ':' direction=FeatureDirection?
-		//	category=FeatureCategory (reverse?='reverse'?
-		//	type=[av3::Type|QualifiedName])?
+		//	category=FeatureCategory
+		//	typeReference=ReversableTypeReference?
 		//	PropertiesBlock?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//name=ID ':' direction=FeatureDirection? category=FeatureCategory (reverse?='reverse'? type=[av3::Type|QualifiedName])?
-		//PropertiesBlock?
+		//name=ID ':' direction=FeatureDirection? category=FeatureCategory typeReference=ReversableTypeReference? PropertiesBlock?
 		public Group getGroup() { return cGroup; }
 		
 		//name=ID
@@ -825,23 +820,11 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		//FeatureCategory
 		public RuleCall getCategoryFeatureCategoryParserRuleCall_3_0() { return cCategoryFeatureCategoryParserRuleCall_3_0; }
 		
-		//(reverse?='reverse'? type=[av3::Type|QualifiedName])?
-		public Group getGroup_4() { return cGroup_4; }
+		//typeReference=ReversableTypeReference?
+		public Assignment getTypeReferenceAssignment_4() { return cTypeReferenceAssignment_4; }
 		
-		//reverse?='reverse'?
-		public Assignment getReverseAssignment_4_0() { return cReverseAssignment_4_0; }
-		
-		//'reverse'
-		public Keyword getReverseReverseKeyword_4_0_0() { return cReverseReverseKeyword_4_0_0; }
-		
-		//type=[av3::Type|QualifiedName]
-		public Assignment getTypeAssignment_4_1() { return cTypeAssignment_4_1; }
-		
-		//[av3::Type|QualifiedName]
-		public CrossReference getTypeTypeCrossReference_4_1_0() { return cTypeTypeCrossReference_4_1_0; }
-		
-		//QualifiedName
-		public RuleCall getTypeTypeQualifiedNameParserRuleCall_4_1_0_1() { return cTypeTypeQualifiedNameParserRuleCall_4_1_0_1; }
+		//ReversableTypeReference
+		public RuleCall getTypeReferenceReversableTypeReferenceParserRuleCall_4_0() { return cTypeReferenceReversableTypeReferenceParserRuleCall_4_0; }
 		
 		//PropertiesBlock?
 		public RuleCall getPropertiesBlockParserRuleCall_5() { return cPropertiesBlockParserRuleCall_5; }
@@ -2018,6 +2001,37 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		
 		//QualifiedReference
 		public RuleCall getTypeComponentInterfaceQualifiedReferenceParserRuleCall_1_0_1() { return cTypeComponentInterfaceQualifiedReferenceParserRuleCall_1_0_1; }
+	}
+	public class ReversableTypeReferenceElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.osate.xtext.aadlv3.AadlV3.ReversableTypeReference");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cReverseAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Keyword cReverseReverseKeyword_0_0 = (Keyword)cReverseAssignment_0.eContents().get(0);
+		private final Assignment cTypeAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final CrossReference cTypeTypeCrossReference_1_0 = (CrossReference)cTypeAssignment_1.eContents().get(0);
+		private final RuleCall cTypeTypeQualifiedReferenceParserRuleCall_1_0_1 = (RuleCall)cTypeTypeCrossReference_1_0.eContents().get(1);
+		
+		//ReversableTypeReference av3::TypeReference:
+		//	reverse?='reverse'? type=[av3::Type|QualifiedReference];
+		@Override public ParserRule getRule() { return rule; }
+		
+		//reverse?='reverse'? type=[av3::Type|QualifiedReference]
+		public Group getGroup() { return cGroup; }
+		
+		//reverse?='reverse'?
+		public Assignment getReverseAssignment_0() { return cReverseAssignment_0; }
+		
+		//'reverse'
+		public Keyword getReverseReverseKeyword_0_0() { return cReverseReverseKeyword_0_0; }
+		
+		//type=[av3::Type|QualifiedReference]
+		public Assignment getTypeAssignment_1() { return cTypeAssignment_1; }
+		
+		//[av3::Type|QualifiedReference]
+		public CrossReference getTypeTypeCrossReference_1_0() { return cTypeTypeCrossReference_1_0; }
+		
+		//QualifiedReference
+		public RuleCall getTypeTypeQualifiedReferenceParserRuleCall_1_0_1() { return cTypeTypeQualifiedReferenceParserRuleCall_1_0_1; }
 	}
 	public class TypeReferenceElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.osate.xtext.aadlv3.AadlV3.TypeReference");
@@ -3477,6 +3491,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	private final ParametersElements pParameters;
 	private final ConfigurationParameterElements pConfigurationParameter;
 	private final ReversableInterfaceReferenceElements pReversableInterfaceReference;
+	private final ReversableTypeReferenceElements pReversableTypeReference;
 	private final TypeReferenceElements pTypeReference;
 	private final RealizationReferenceElements pRealizationReference;
 	private final ImplementationReferenceElements pImplementationReference;
@@ -3578,6 +3593,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		this.pParameters = new ParametersElements();
 		this.pConfigurationParameter = new ConfigurationParameterElements();
 		this.pReversableInterfaceReference = new ReversableInterfaceReferenceElements();
+		this.pReversableTypeReference = new ReversableTypeReferenceElements();
 		this.pTypeReference = new TypeReferenceElements();
 		this.pRealizationReference = new RealizationReferenceElements();
 		this.pImplementationReference = new ImplementationReferenceElements();
@@ -3822,8 +3838,8 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	//// (Instance) model elements
 	//Feature av3::Feature:
 	//	name=ID ':' direction=FeatureDirection?
-	//	category=FeatureCategory (reverse?='reverse'?
-	//	type=[av3::Type|QualifiedName])?
+	//	category=FeatureCategory
+	//	typeReference=ReversableTypeReference?
 	//	PropertiesBlock?;
 	public FeatureElements getFeatureAccess() {
 		return pFeature;
@@ -4080,6 +4096,16 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getReversableInterfaceReferenceRule() {
 		return getReversableInterfaceReferenceAccess().getRule();
+	}
+	
+	//ReversableTypeReference av3::TypeReference:
+	//	reverse?='reverse'? type=[av3::Type|QualifiedReference];
+	public ReversableTypeReferenceElements getReversableTypeReferenceAccess() {
+		return pReversableTypeReference;
+	}
+	
+	public ParserRule getReversableTypeReferenceRule() {
+		return getReversableTypeReferenceAccess().getRule();
 	}
 	
 	//TypeReference av3::TypeReference:

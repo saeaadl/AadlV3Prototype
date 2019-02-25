@@ -358,7 +358,7 @@ class Aadlv3Util {
 		}
 	}
 	static def Iterable<Feature> getAllFeatures(FeatureInstance fi) {
-		val fcl = fi.feature.type
+		val fcl = fi.feature?.typeReference?.type
 		if (fcl instanceof ComponentInterface){
 			return fcl.allFeatures
 		}
@@ -392,16 +392,16 @@ class Aadlv3Util {
 	
 	static def boolean isReverseFeature(Iterable<Feature> features, Feature f, boolean reverse){
 		for (fea : features) {
-			val typ = fea.type
+			val typ = fea?.typeReference?.type
 			if(typ instanceof ComponentInterface){
 				if (typ.features.contains(f)){
-					val doreverse = if (reverse) !fea.reverse else fea.reverse
+					val doreverse = if (reverse) !fea?.typeReference?.reverse else fea?.typeReference?.reverse
 					return doreverse
 				}
 			}
 		}
 		for (fea : features) {
-			val typ = fea.type
+			val typ = fea?.typeReference?.type
 			if (typ instanceof ComponentInterface) {
 				val res = Aadlv3Util.isReverseFeature(typ.features, f, reverse)
 				val doreverse = if(reverse) !res else res
@@ -418,15 +418,15 @@ class Aadlv3Util {
 			if (mer.context === null || !(mer.context.element instanceof Feature)){
 				return fd
 			}
-			val cxtcl = (mer.context.element as Feature).type
+			val cxtcl = (mer.context.element as Feature)?.typeReference?.type
 			if (cxtcl instanceof ComponentClassifier){
 				var doReverse = isReverseFeature(cxtcl.allFeatures, fea, false)
 				var pathelement = mer
-				doReverse = if (doReverse) !fea.reverse else fea.reverse 
+				doReverse = if (doReverse) !fea?.typeReference?.reverse else fea?.typeReference?.reverse 
 				while (pathelement.context !== null && pathelement.context.element instanceof Feature){
 					pathelement = pathelement.context
 					val nextfea = pathelement.element as Feature
-					doReverse = if (doReverse) !nextfea.reverse else nextfea.reverse
+					doReverse = if (doReverse) !nextfea?.typeReference?.reverse else nextfea?.typeReference?.reverse
 				}
 				return if (doReverse) reverseDirection(fd) else fd
 			}
@@ -761,7 +761,7 @@ class Aadlv3Util {
 			if (match instanceof Component){
 				return patternType.isSuperTypeOf(match.typeReferences)
 			} else if (match instanceof Feature){
-				return patternType.isSuperTypeOf(match.type)
+				return patternType.isSuperTypeOf(match?.typeReference?.type)
 			}
 		}
 		return false

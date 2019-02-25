@@ -930,22 +930,13 @@ public interface Aadlv3Package extends EPackage {
 	int FEATURE__CATEGORY = MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Reverse</b></em>' attribute.
+	 * The feature id for the '<em><b>Type Reference</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__REVERSE = MODEL_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE__TYPE = MODEL_ELEMENT_FEATURE_COUNT + 3;
+	int FEATURE__TYPE_REFERENCE = MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Feature</em>' class.
@@ -954,7 +945,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 4;
+	int FEATURE_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.ComponentImpl <em>Component</em>}' class.
@@ -2208,26 +2199,15 @@ public interface Aadlv3Package extends EPackage {
 	EAttribute getFeature_Category();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.osate.aadlv3.aadlv3.Feature#isReverse <em>Reverse</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.osate.aadlv3.aadlv3.Feature#getTypeReference <em>Type Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Reverse</em>'.
-	 * @see org.osate.aadlv3.aadlv3.Feature#isReverse()
+	 * @return the meta object for the containment reference '<em>Type Reference</em>'.
+	 * @see org.osate.aadlv3.aadlv3.Feature#getTypeReference()
 	 * @see #getFeature()
 	 * @generated
 	 */
-	EAttribute getFeature_Reverse();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.osate.aadlv3.aadlv3.Feature#getType <em>Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Type</em>'.
-	 * @see org.osate.aadlv3.aadlv3.Feature#getType()
-	 * @see #getFeature()
-	 * @generated
-	 */
-	EReference getFeature_Type();
+	EReference getFeature_TypeReference();
 
 	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.Component <em>Component</em>}'.
@@ -3246,20 +3226,12 @@ public interface Aadlv3Package extends EPackage {
 		EAttribute FEATURE__CATEGORY = eINSTANCE.getFeature_Category();
 
 		/**
-		 * The meta object literal for the '<em><b>Reverse</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Type Reference</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute FEATURE__REVERSE = eINSTANCE.getFeature_Reverse();
-
-		/**
-		 * The meta object literal for the '<em><b>Type</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference FEATURE__TYPE = eINSTANCE.getFeature_Type();
+		EReference FEATURE__TYPE_REFERENCE = eINSTANCE.getFeature_TypeReference();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.ComponentImpl <em>Component</em>}' class.
