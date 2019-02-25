@@ -27,6 +27,7 @@ package org.osate.aadlv3.aadlv3;
  *   <li>{@link org.osate.aadlv3.aadlv3.Association#getAssociationType <em>Association Type</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.Association#getSource <em>Source</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.Association#getDestination <em>Destination</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.Association#isDirectional <em>Directional</em>}</li>
  * </ul>
  *
  * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getAssociation()
@@ -114,5 +115,31 @@ public interface Association extends ModelElement {
 	 * @generated
 	 */
 	void setDestination(ModelElementReference value);
+
+	/**
+	 * Returns the value of the '<em><b>Directional</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Directional</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Directional</em>' attribute.
+	 * @see #setDirectional(boolean)
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getAssociation_Directional()
+	 * @model
+	 * @generated
+	 */
+	boolean isDirectional();
+
+	/**
+	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.Association#isDirectional <em>Directional</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Directional</em>' attribute.
+	 * @see #isDirectional()
+	 * @generated
+	 */
+	void setDirectional(boolean value);
 
 } // Association

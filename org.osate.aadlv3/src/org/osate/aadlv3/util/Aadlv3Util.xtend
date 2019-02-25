@@ -420,15 +420,15 @@ class Aadlv3Util {
 			}
 			val cxtcl = (mer.context.element as Feature).type
 			if (cxtcl instanceof ComponentClassifier){
-			var doReverse = isReverseFeature(cxtcl.allFeatures, fea, false)
-			var pathelement = mer
-			doReverse = if (doReverse) !fea.reverse else fea.reverse 
-			while (pathelement.context !== null && pathelement.context.element instanceof Feature){
-				pathelement = pathelement.context
-				val nextfea = pathelement.element as Feature
-				doReverse = if (doReverse) !nextfea.reverse else nextfea.reverse
-			}
-			return if (doReverse) reverseDirection(fd) else fd
+				var doReverse = isReverseFeature(cxtcl.allFeatures, fea, false)
+				var pathelement = mer
+				doReverse = if (doReverse) !fea.reverse else fea.reverse 
+				while (pathelement.context !== null && pathelement.context.element instanceof Feature){
+					pathelement = pathelement.context
+					val nextfea = pathelement.element as Feature
+					doReverse = if (doReverse) !nextfea.reverse else nextfea.reverse
+				}
+				return if (doReverse) reverseDirection(fd) else fd
 			}
 		}
 		FeatureDirection.NONE
@@ -869,8 +869,20 @@ class Aadlv3Util {
 		f.category == FeatureCategory.BINDINGPOINT
 	}
 	
+	def static boolean categoriesMatch(ComponentCategory ccat, FeatureCategory fcat){
+		return (ccat === ComponentCategory.DATA && fcat === FeatureCategory.DATAACCESS)
+		|| (ccat === ComponentCategory.BUS && fcat === FeatureCategory.BUSACCESS)
+		|| (ccat === ComponentCategory.VIRTUALBUS && fcat === FeatureCategory.VIRTUALBUSACCESS)
+		|| (ccat === ComponentCategory.SUBPROGRAM && fcat === FeatureCategory.SUBPROGRAMACCESS)
+		|| (ccat === ComponentCategory.SUBPROGRAMGROUP && fcat === FeatureCategory.SUBPROGRAMGROUPACCESS)
+	}
+	
+	def static boolean isBiDirectional(FeatureDirection fd){
+		fd == FeatureDirection.INOUT || fd == FeatureDirection.REQUIRESINOUT || fd == FeatureDirection.PROVIDESINOUT|| fd == FeatureDirection.NONE
+	}
+	
 	def static boolean isOutgoing(FeatureDirection fd){
-		fd.outgoingPort || fd.outgoingFeature || fd.outgoingBusAccess|| fd.outgoingBinding || fd.outgoingDataAccess
+		fd.outgoingPort || fd.outgoingFeature || fd.outgoingAccess|| fd.outgoingBinding || fd.outgoingDirectionalAccess
 	}
 	
 	def static boolean isOutgoingPort(FeatureDirection fd){
@@ -881,12 +893,12 @@ class Aadlv3Util {
 		fd == FeatureDirection.OUT || fd == FeatureDirection.NONE 
 	}
 	
-	def static boolean isOutgoingDataAccess(FeatureDirection fd){
-		fd == FeatureDirection.REQUIRESREAD || fd == FeatureDirection.REQUIRESREADWRITE 
-		|| fd == FeatureDirection.REQUIRESWRITE 
+	def static boolean isOutgoingDirectionalAccess(FeatureDirection fd){
+		fd == FeatureDirection.REQUIRESIN || fd == FeatureDirection.REQUIRESINOUT 
+		|| fd == FeatureDirection.REQUIRESOUT 
 	}
 	
-	def static boolean isOutgoingBusAccess(FeatureDirection fd){
+	def static boolean isOutgoingAccess(FeatureDirection fd){
 		fd == FeatureDirection.REQUIRES
 	}
 	
@@ -895,7 +907,7 @@ class Aadlv3Util {
 	}
 	
 	def static boolean isIncoming(FeatureDirection fd){
-		fd.incomingPort || fd.incomingFeature || fd.incomingBusAccess|| fd.incomingBinding || fd.incomingDataAccess 
+		fd.incomingPort || fd.incomingFeature || fd.incomingBusAccess|| fd.incomingBinding || fd.incomingDirectionalAccess 
 	}
 	
 	def static boolean isIncomingPort(FeatureDirection fd){
@@ -906,9 +918,9 @@ class Aadlv3Util {
 		fd == FeatureDirection.IN || fd == FeatureDirection.NONE 
 	}
 	
-	def static boolean isIncomingDataAccess(FeatureDirection fd){
-		fd == FeatureDirection.PROVIDESWRITE  
-		|| fd == FeatureDirection.PROVIDESREAD || fd == FeatureDirection.PROVIDESREADWRITE
+	def static boolean isIncomingDirectionalAccess(FeatureDirection fd){
+		fd == FeatureDirection.PROVIDESOUT  
+		|| fd == FeatureDirection.PROVIDESIN || fd == FeatureDirection.PROVIDESINOUT
 	}
 	
 	def static boolean isIncomingBusAccess(FeatureDirection fd){
@@ -925,12 +937,12 @@ class Aadlv3Util {
 			case FeatureDirection.OUT: FeatureDirection.IN
 			case FeatureDirection.PROVIDES: FeatureDirection.PROVIDES
 			case FeatureDirection.REQUIRES: FeatureDirection.PROVIDES
-			case FeatureDirection.PROVIDESREAD: FeatureDirection.REQUIRESREAD
-			case FeatureDirection.REQUIRESREAD: FeatureDirection.PROVIDESREAD
-			case FeatureDirection.PROVIDESWRITE: FeatureDirection.REQUIRESWRITE
-			case FeatureDirection.REQUIRESWRITE: FeatureDirection.PROVIDESWRITE
-			case FeatureDirection.PROVIDESREADWRITE: FeatureDirection.REQUIRESREADWRITE
-			case FeatureDirection.REQUIRESREADWRITE: FeatureDirection.PROVIDESREADWRITE
+			case FeatureDirection.PROVIDESIN: FeatureDirection.REQUIRESIN
+			case FeatureDirection.REQUIRESIN: FeatureDirection.PROVIDESIN
+			case FeatureDirection.PROVIDESOUT: FeatureDirection.REQUIRESOUT
+			case FeatureDirection.REQUIRESOUT: FeatureDirection.PROVIDESOUT
+			case FeatureDirection.PROVIDESINOUT: FeatureDirection.REQUIRESINOUT
+			case FeatureDirection.REQUIRESINOUT: FeatureDirection.PROVIDESINOUT
 			default: { fd
 			}
 		}
@@ -1078,7 +1090,7 @@ class Aadlv3Util {
 	
 	// mapping maps an outgoing feature, i.e., a source
 	def static boolean isOutgoingFeatureMapping(Association conn){
-		if (conn.associationType == AssociationType.FEATUREMAPPING ){
+		if (conn.associationType == AssociationType.FEATUREDELEGATE ){
 			val el = conn.source.element
 			if (el instanceof Feature){
 				return el.direction.outgoing
@@ -1089,7 +1101,7 @@ class Aadlv3Util {
 
 	// mapping maps an incoming features, i.e., a destination
 	def static boolean isIncomingFeatureMapping(Association conn){
-		if (conn.associationType == AssociationType.FEATUREMAPPING ){
+		if (conn.associationType == AssociationType.FEATUREDELEGATE ){
 			val el = conn.source.element
 			if (el instanceof Feature){
 				return el.direction.incoming
@@ -1100,21 +1112,28 @@ class Aadlv3Util {
 
 	
 	// source mapping takes into account element of feature group that matches one in the destination feature mappings
-	def static boolean isSourceFeatureMapping(Association conn, AssociationInstance conni ){
+	def static boolean isSourceFeatureDelegate(Association conn, AssociationInstance conni ){
 		val srcfi = conni.source
-		conn.associationType == AssociationType.FEATUREMAPPING &&
-		(conn.source.element == srcfi.feature || srcfi.features.exists[subfi|subfi.feature == conn.source.element])
+		if (srcfi instanceof FeatureInstance){
+			conn.associationType == AssociationType.FEATUREDELEGATE &&
+			(conn.source.element == srcfi.feature || srcfi.features.exists[subfi|subfi.feature == conn.source.element])
+		} else {
+			false
+		}
 	}
 	
 	// destination mapping takes into account element of feature group that matches one in the source feature mappings
-	def static boolean isDestinationFeatureMapping(Association conn, AssociationInstance conni){
+	def static boolean isDestinationFeatureDelegate(Association conn, AssociationInstance conni){
 		val dstfi = conni.destination
-		val srcmappings = conni.sourceMappings
-		conn.associationType == AssociationType.FEATUREMAPPING &&
-		(conn.source.element == dstfi.feature || dstfi.features.
-			exists[subfi|subfi.feature == conn.source.element && srcmappings.exists[srcconn|srcconn.source.element == conn.source.element]
-			
-		])
+		if (dstfi instanceof FeatureInstance){
+			val srcmappings = conni.sourceDelegates
+			conn.associationType == AssociationType.FEATUREDELEGATE &&
+			(conn.source.element == dstfi.feature || dstfi.features.
+				exists[subfi|subfi.feature == conn.source.element && srcmappings.exists[srcconn|srcconn.source.element == conn.source.element]
+			])
+		} else {
+			false
+		}
 	}
 	
 	// association is connection 
@@ -1129,13 +1148,13 @@ class Aadlv3Util {
 	}
 	
 	// mapping from an outer to an inner feature
-	def static boolean isFeatureMapping(Association conn){
-		conn.associationType === AssociationType.FEATUREMAPPING
+	def static boolean isFeatureDelegate(Association conn){
+		conn.associationType === AssociationType.FEATUREDELEGATE
 	}
 	
 	// mapping from an outer to an inner feature
-	def static boolean isFeatureMapping(AssociationType connType){
-		connType === AssociationType.FEATUREMAPPING
+	def static boolean isFeatureDelegate(AssociationType connType){
+		connType === AssociationType.FEATUREDELEGATE
 	}
 	
 	// association represents a flow specification
@@ -1169,15 +1188,18 @@ class Aadlv3Util {
 	//-------------------------
 
 	// model element reference reaches into a component, i.e., the first path element refers to a component
-	def static boolean isContainedComponentModelElementReference(ModelElementReference mer) {
-		mer.getReferencedContainingComponent !== null
+	def static boolean modelElementReferenceIncludesComponent(ModelElementReference mer) {
+		mer.getClosestReferencedComponent !== null
 	}
 	
 	/**
 	 * returns the closest component reference in the MER path
 	 */
-	def static Component getReferencedContainingComponent(ModelElementReference mer) {
+	def static Component getClosestReferencedComponent(ModelElementReference mer) {
 		var first = mer
+		if (first.element instanceof Component){
+			return first.element as Component
+		}
 		while (first.context !== null) {
 			first = first.context
 			if (first.element instanceof Component){
@@ -1453,7 +1475,7 @@ class Aadlv3Util {
 		} else false
 	}
 	
-	def static AssociationInstance findFlowSpecInstance(FeatureInstance infi, FeatureInstance outfi){
+	def static AssociationInstance findFlowSpecInstance(InstanceObject infi, InstanceObject outfi){
 		val ci = infi.containingComponentInstance
 		for (fsi : ci.flowspecs){
 			if (fsi.source === infi && fsi.destination === outfi){
@@ -1464,7 +1486,7 @@ class Aadlv3Util {
 	}
 
 	
-	def static AssociationInstance findAssociationInstance(FeatureInstance srcfi, FeatureInstance dstfi){
+	def static AssociationInstance findAssociationInstance(InstanceObject srcfi, InstanceObject dstfi){
 		var ci = srcfi.containingComponentInstance
 		while (ci !== null){
 			for (conni : ci.connections){

@@ -66,7 +66,7 @@ fragment ImplementationBody*:
 ;
 
 fragment ImplementationElement* :
-	connections+=Connection |connections+=FeatureMapping | bindings+=Binding | components+=Component 
+	connections+=Connection |connections+=FeatureDelegate | bindings+=Binding | components+=Component 
 		| paths+= Path | flowAssignments+=FlowAssignment | configurationAssignments+=ConfigurationAssignment | configurationAssignments+=ConfigurationAssignmentPattern
 		| propertyAssociations+=PropertyAssociation
 ;
@@ -105,11 +105,11 @@ Component returns av3::Component:
 
 Connection returns av3::Association:
 	name=ID ':' associationType=ConnectionType source=ModelElementReference
-	'->' destination=ModelElementReference PropertiesBlock? ;
+	(directional?='->'|'<->') destination=ModelElementReference PropertiesBlock? ;
 
-FeatureMapping returns av3::Association:
-	name=ID ':' associationType=MappingType source=ModelElementReference
-	'=>' destination=ModelElementReference PropertiesBlock? ;
+FeatureDelegate returns av3::Association:
+	name=ID ':' associationType=DelegateType source=ModelElementReference
+	(directional?='->'|'<->') destination=ModelElementReference PropertiesBlock? ;
 
 
 Binding returns av3::Association:
@@ -201,6 +201,9 @@ ConfigurationParameter returns av3::ConfigurationParameter:
 ReversableInterfaceReference returns av3::TypeReference:
 	reverse?='reverse'? type=[av3::ComponentInterface|QualifiedReference] ;
 
+ReversableTypeReference returns av3::TypeReference:
+	reverse?='reverse'? type=[av3::Type|QualifiedReference] ;
+
 TypeReference returns av3::TypeReference :  
 	 type=[av3::Type|QualifiedTypesReference]
 	  ConfigurationActuals?
@@ -224,7 +227,7 @@ fragment NestedComponentImplementationBlock *:
 	 	'}';
 	 	
 fragment NestedImplementationElement*: 
-	features+=Feature | connections+=Connection| connections+=FeatureMapping | bindings+=Binding | components+=Component |  propertyAssociations+=PropertyAssociation
+	features+=Feature | connections+=Connection| connections+=FeatureDelegate | bindings+=Binding | components+=Component |  propertyAssociations+=PropertyAssociation
 ;
 
 fragment ConfigurationExtensions *:
@@ -285,8 +288,8 @@ ComponentCategory returns av3::ComponentCategory: 'abstract' | 'bus'|'data'
 	| 'subprogram' | SubprogramGroupKeywords | ThreadGroupKeywords ;
 
 FeatureCategory returns av3::FeatureCategory:
-	'feature' | 'port' | 'access' 
-	| BusAccessKeywords 
+	'feature' | 'port' | DataAccessKeywords 
+	| BusAccessKeywords | VirtualBusAccessKeywords | SubprogramAccessKeywords | SubprogramGroupAccessKeywords
 	| BindingPointKeywords | 'interface';
 
 FeatureDirection returns av3::FeatureDirection:
@@ -296,7 +299,7 @@ FeatureDirection returns av3::FeatureDirection:
 	;
 
 AssociationType returns  av3::AssociationType:
-	ConnectionType | BindingType | MappingType |  FlowType
+	ConnectionType | BindingType | DelegateType |  FlowType
 ;
 
 ConnectionType returns av3::AssociationType:
@@ -305,8 +308,8 @@ ConnectionType returns av3::AssociationType:
 BindingType returns av3::AssociationType:
 	'binding' ;
 
-MappingType returns av3::AssociationType:
-	'mapping' ;
+DelegateType returns av3::AssociationType:
+	'delegate' ;
 
 FlowPathType returns av3::AssociationType:
 	FlowPathKeywords ;
@@ -354,14 +357,18 @@ FlowSourceKeywords: 'flow''source';
 FlowSinkKeywords: 'flow''sink';
 FlowPathKeywords: 'flow''path';
 
-InOutKeywords: 'in' 'out'; 
+InOutKeywords: 'in''out'; 
 BusAccessKeywords: 'bus''access' ; 
+VirtualBusAccessKeywords: 'virtual''bus''access' ; 
+DataAccessKeywords: 'data''access' ; 
+SubprogramAccessKeywords: 'subprogram''access' ; 
+SubprogramGroupAccessKeywords: 'subprogram''group''access' ; 
 BindingPointKeywords: 'binding''point' ; 
 
-ProvidesReadKeywords: 'provides' 'read';
-RequiresReadKeywords: 'requires' 'read';
-ProvidesWriteKeywords: 'provides' 'write';
-RequiresWriteKeywords: 'requires' 'write';
-ProvidesRWKeywords: 'provides' 'readwrite';
-RequiresRWKeywords: 'requires' 'readwrite';
+ProvidesReadKeywords: 'provides' 'in';
+RequiresReadKeywords: 'requires' 'in';
+ProvidesWriteKeywords: 'provides' 'out';
+RequiresWriteKeywords: 'requires' 'out';
+ProvidesRWKeywords: 'provides' 'in''out';
+RequiresRWKeywords: 'requires' 'in''out';
         

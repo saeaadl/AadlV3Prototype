@@ -29,8 +29,11 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectEList;
+import org.eclipse.emf.ecore.util.EObjectWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.osate.av3instance.av3instance.AssociationInstance;
 import org.osate.av3instance.av3instance.Av3instancePackage;
 import org.osate.av3instance.av3instance.InstanceObject;
 import org.osate.av3instance.av3instance.PropertyAssociationInstance;
@@ -45,6 +48,8 @@ import org.osate.av3instance.av3instance.PropertyAssociationInstance;
  * <ul>
  *   <li>{@link org.osate.av3instance.av3instance.impl.InstanceObjectImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.impl.InstanceObjectImpl#getPropertyAssociations <em>Property Associations</em>}</li>
+ *   <li>{@link org.osate.av3instance.av3instance.impl.InstanceObjectImpl#getIncomingAssociations <em>Incoming Associations</em>}</li>
+ *   <li>{@link org.osate.av3instance.av3instance.impl.InstanceObjectImpl#getOutgoingAssociations <em>Outgoing Associations</em>}</li>
  * </ul>
  *
  * @generated
@@ -79,6 +84,26 @@ public abstract class InstanceObjectImpl extends MinimalEObjectImpl.Container im
 	 * @ordered
 	 */
 	protected EList<PropertyAssociationInstance> propertyAssociations;
+
+	/**
+	 * The cached value of the '{@link #getIncomingAssociations() <em>Incoming Associations</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIncomingAssociations()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<AssociationInstance> incomingAssociations;
+
+	/**
+	 * The cached value of the '{@link #getOutgoingAssociations() <em>Outgoing Associations</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOutgoingAssociations()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<AssociationInstance> outgoingAssociations;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -143,10 +168,57 @@ public abstract class InstanceObjectImpl extends MinimalEObjectImpl.Container im
 	 * @generated
 	 */
 	@Override
+	public EList<AssociationInstance> getIncomingAssociations() {
+		if (incomingAssociations == null) {
+			incomingAssociations = new EObjectEList<AssociationInstance>(AssociationInstance.class, this,
+					Av3instancePackage.INSTANCE_OBJECT__INCOMING_ASSOCIATIONS);
+		}
+		return incomingAssociations;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<AssociationInstance> getOutgoingAssociations() {
+		if (outgoingAssociations == null) {
+			outgoingAssociations = new EObjectWithInverseEList<AssociationInstance>(AssociationInstance.class, this,
+					Av3instancePackage.INSTANCE_OBJECT__OUTGOING_ASSOCIATIONS,
+					Av3instancePackage.ASSOCIATION_INSTANCE__SOURCE);
+		}
+		return outgoingAssociations;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case Av3instancePackage.INSTANCE_OBJECT__OUTGOING_ASSOCIATIONS:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getOutgoingAssociations()).basicAdd(otherEnd,
+					msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case Av3instancePackage.INSTANCE_OBJECT__PROPERTY_ASSOCIATIONS:
 			return ((InternalEList<?>) getPropertyAssociations()).basicRemove(otherEnd, msgs);
+		case Av3instancePackage.INSTANCE_OBJECT__OUTGOING_ASSOCIATIONS:
+			return ((InternalEList<?>) getOutgoingAssociations()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -163,6 +235,10 @@ public abstract class InstanceObjectImpl extends MinimalEObjectImpl.Container im
 			return getName();
 		case Av3instancePackage.INSTANCE_OBJECT__PROPERTY_ASSOCIATIONS:
 			return getPropertyAssociations();
+		case Av3instancePackage.INSTANCE_OBJECT__INCOMING_ASSOCIATIONS:
+			return getIncomingAssociations();
+		case Av3instancePackage.INSTANCE_OBJECT__OUTGOING_ASSOCIATIONS:
+			return getOutgoingAssociations();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -183,6 +259,14 @@ public abstract class InstanceObjectImpl extends MinimalEObjectImpl.Container im
 			getPropertyAssociations().clear();
 			getPropertyAssociations().addAll((Collection<? extends PropertyAssociationInstance>) newValue);
 			return;
+		case Av3instancePackage.INSTANCE_OBJECT__INCOMING_ASSOCIATIONS:
+			getIncomingAssociations().clear();
+			getIncomingAssociations().addAll((Collection<? extends AssociationInstance>) newValue);
+			return;
+		case Av3instancePackage.INSTANCE_OBJECT__OUTGOING_ASSOCIATIONS:
+			getOutgoingAssociations().clear();
+			getOutgoingAssociations().addAll((Collection<? extends AssociationInstance>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -201,6 +285,12 @@ public abstract class InstanceObjectImpl extends MinimalEObjectImpl.Container im
 		case Av3instancePackage.INSTANCE_OBJECT__PROPERTY_ASSOCIATIONS:
 			getPropertyAssociations().clear();
 			return;
+		case Av3instancePackage.INSTANCE_OBJECT__INCOMING_ASSOCIATIONS:
+			getIncomingAssociations().clear();
+			return;
+		case Av3instancePackage.INSTANCE_OBJECT__OUTGOING_ASSOCIATIONS:
+			getOutgoingAssociations().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -217,6 +307,10 @@ public abstract class InstanceObjectImpl extends MinimalEObjectImpl.Container im
 			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		case Av3instancePackage.INSTANCE_OBJECT__PROPERTY_ASSOCIATIONS:
 			return propertyAssociations != null && !propertyAssociations.isEmpty();
+		case Av3instancePackage.INSTANCE_OBJECT__INCOMING_ASSOCIATIONS:
+			return incomingAssociations != null && !incomingAssociations.isEmpty();
+		case Av3instancePackage.INSTANCE_OBJECT__OUTGOING_ASSOCIATIONS:
+			return outgoingAssociations != null && !outgoingAssociations.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

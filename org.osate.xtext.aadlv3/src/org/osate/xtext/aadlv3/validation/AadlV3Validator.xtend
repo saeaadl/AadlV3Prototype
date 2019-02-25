@@ -3,6 +3,7 @@
  */
 package org.osate.xtext.aadlv3.validation
 
+import com.google.common.collect.SetMultimap
 import org.eclipse.xtext.validation.Check
 import org.osate.aadlv3.aadlv3.Aadlv3Package
 import org.osate.aadlv3.aadlv3.Association
@@ -23,13 +24,12 @@ import org.osate.aadlv3.aadlv3.FeatureDirection
 import org.osate.aadlv3.aadlv3.ModelElement
 import org.osate.aadlv3.aadlv3.PathElement
 import org.osate.aadlv3.aadlv3.PathSequence
-
-import static extension org.osate.aadlv3.util.Aadlv3Util.*
-import static extension org.osate.aadlv3.util.Av3API.*
 import org.osate.aadlv3.aadlv3.PropertyAssociation
 import org.osate.aadlv3.aadlv3.TypeReference
-import com.google.common.collect.Multimap
-import com.google.common.collect.SetMultimap
+
+import static org.osate.aadlv3.util.Av3API.*
+
+import static extension org.osate.aadlv3.util.Aadlv3Util.*
 
 /**
  * This class contains custom validation rules. 
@@ -44,6 +44,9 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	public static val NO_SUPER_CONFIGURATIONS = 'NoSuperConfigurations'
 	public static val BAD_BINDING_POINT_DIRECTION = 'BadBindingPointDirection'
 	public static val BAD_BUS_ACCESS_DIRECTION = 'BadBusAccessDirection'
+	public static val BAD_VIRTUAL_BUS_ACCESS_DIRECTION = 'BadVirtualBusAccessDirection'
+	public static val BAD_SUBPROGRAM_ACCESS_DIRECTION = 'BadSubprogramAccessDirection'
+	public static val BAD_SUBPROGRAM_GROUP_ACCESS_DIRECTION = 'BadSubprogramGroupAccessDirection'
 	public static val BAD_DATA_ACCESS_DIRECTION = 'BadDataAccessDirection'
 	public static val BAD_PORT_DIRECTION = 'BadPortDirection'
 	public static val BAD_FEATURE_DIRECTION = 'BadFeatureDirection'
@@ -61,7 +64,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	public static val NO_BINDING_POINT = 'NoBindingPoint'
 	public static val BetweenSubcomponents = 'BetweenSubcomponents'
 	public static val ToSubcomponents = 'ToSubcomponents'
-	public static val ToSubcomponent = 'ToSubcomponent'
+	public static val FeatureAndSubcomponent = 'FeatureAndSubcomponent'
 	public static val NotSubcomponentFeature = 'NotSubcomponentFeature'
 	public static val BetweenFeatures = 'BetweenFeatures'
 	public static val MatchingTypes = 'MatchingTypes'
@@ -146,7 +149,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	def checkPathElement(PathElement pe) {
 		if (!(pe.element instanceof Association &&
 			((pe.element as Association).isFlowSpec || (pe.element as Association).isConnection ||
-				(pe.element as Association).isFeatureMapping) || pe.element instanceof Component)) {
+				(pe.element as Association).isFeatureDelegate) || pe.element instanceof Component)) {
 			error('path element must reference a connection, flow spec, or component', pe, null, ToFlowSpec)
 		}
 	}
@@ -479,18 +482,22 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 				}
 			}
 			case BUSACCESS: {
-				if (!(fea.direction == FeatureDirection.PROVIDES || fea.direction == FeatureDirection.REQUIRES)) {
-					error('Bus access direction must be provides or requires', fea,
+				if (!(fea.direction == FeatureDirection.PROVIDESIN ||
+					fea.direction == FeatureDirection.REQUIRESIN || fea.direction == FeatureDirection.PROVIDESOUT ||
+					fea.direction == FeatureDirection.REQUIRESOUT ||
+					fea.direction == FeatureDirection.PROVIDES || fea.direction == FeatureDirection.REQUIRES
+				)) {
+					error('Bus access direction must be provides or requires and in or out', fea,
 						Aadlv3Package.Literals.FEATURE__DIRECTION, BAD_BUS_ACCESS_DIRECTION)
 				}
 			}
 			case DATAACCESS: {
-				if (!(fea.direction == FeatureDirection.PROVIDESREAD ||
-					fea.direction == FeatureDirection.REQUIRESREAD || fea.direction == FeatureDirection.PROVIDESWRITE ||
-					fea.direction == FeatureDirection.REQUIRESWRITE ||
-					fea.direction == FeatureDirection.PROVIDESREADWRITE || fea.direction == FeatureDirection.REQUIRESREADWRITE
+				if (!(fea.direction == FeatureDirection.PROVIDESIN ||
+					fea.direction == FeatureDirection.REQUIRESIN || fea.direction == FeatureDirection.PROVIDESOUT ||
+					fea.direction == FeatureDirection.REQUIRESOUT ||
+					fea.direction == FeatureDirection.PROVIDESINOUT || fea.direction == FeatureDirection.REQUIRESINOUT
 				)) {
-					error('Data access direction must be provides or requires', fea,
+					error('Data access direction must be provides or requires and in, out, or in out', fea,
 						Aadlv3Package.Literals.FEATURE__DIRECTION, BAD_DATA_ACCESS_DIRECTION)
 				}
 			}
@@ -515,6 +522,28 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 						BAD_FEATURE_DIRECTION)
 				}
 			}
+			case SUBPROGRAMACCESS: {
+				if (!(fea.direction == FeatureDirection.PROVIDES || fea.direction == FeatureDirection.REQUIRES	)) {
+					error('Subprogram access must be provides or requires', fea,
+						Aadlv3Package.Literals.FEATURE__DIRECTION, BAD_SUBPROGRAM_ACCESS_DIRECTION)
+				}
+			}
+			case SUBPROGRAMGROUPACCESS: {
+				if (!(fea.direction == FeatureDirection.PROVIDES || fea.direction == FeatureDirection.REQUIRES	)) {
+					error('Subprogram group access must be provides or requires', fea,
+						Aadlv3Package.Literals.FEATURE__DIRECTION, BAD_SUBPROGRAM_GROUP_ACCESS_DIRECTION)
+				}
+			}
+			case VIRTUALBUSACCESS: {
+				if (!(fea.direction == FeatureDirection.PROVIDESIN ||
+					fea.direction == FeatureDirection.REQUIRESIN || fea.direction == FeatureDirection.PROVIDESOUT ||
+					fea.direction == FeatureDirection.REQUIRESOUT ||
+					fea.direction == FeatureDirection.PROVIDESINOUT || fea.direction == FeatureDirection.REQUIRESINOUT
+				)) {
+					error('Virtual bus access direction must be provides or requires and in or out', fea,
+						Aadlv3Package.Literals.FEATURE__DIRECTION, BAD_VIRTUAL_BUS_ACCESS_DIRECTION)
+				}
+			}
 		}
 	}
 
@@ -537,7 +566,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 		if (!(ca.target.element instanceof Component)) {
 			// TODO in the future we may configure features
 			error('Configuration assignment must be for subcomponent', ca,
-				Aadlv3Package.Literals.CONFIGURATION_ASSIGNMENT__TARGET, ToSubcomponent)
+				Aadlv3Package.Literals.CONFIGURATION_ASSIGNMENT__TARGET, org.osate.xtext.aadlv3.validation.AadlV3Validator.FeatureAndSubcomponent)
 		} else {
 			val comp = ca.target.element as Component
 			for (tr : ca.assignedClassifiers) {
@@ -594,9 +623,9 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 			if (!(srcdir?.outgoing && dstdir?.incoming)) {
 				error('Connection source must be outgoing and destination must be incoming', assoc, null, OUT_TO_IN)
 			}
-		} else if (assoc.associationType.isFeatureMapping) {
-			if (!(srcdir === dstdir)) {
-				error('Feature mapping directions must be same', assoc, null, SAME_DIRECTION)
+		} else if (assoc.associationType.isFeatureDelegate) {
+			if (!(srcdir === dstdir || srcdir === FeatureDirection.NONE || dstdir === FeatureDirection.NONE)) {
+				error('Feature delegate directions must be same', assoc, null, SAME_DIRECTION)
 			}
 		} else if (assoc.associationType.isFlowSpec) {
 			if (srcdir !== null && dstdir !== null && !(srcdir.incoming && dstdir.outgoing)) {
@@ -617,62 +646,87 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 
 	def checkConsistentFeatureCategory(Association assoc) {
 		if (assoc.source === null || assoc.destination === null) return
-		val src = assoc.source?.element as Feature
-		val dst = assoc.destination?.element as Feature
-		if (assoc.associationType.isConnection) {
+		val srcelem = assoc.source?.element 
+		val dstelem = assoc.destination?.element 
+		if (assoc.associationType.isConnection || assoc.associationType.isFeatureDelegate) {
+		  if (srcelem instanceof Feature && dstelem instanceof Feature){
+			val src = srcelem as Feature
+			val dst = dstelem as Feature
 			if (!(src?.category === dst?.category)) {
-				error('Feature category of connection ends must match', assoc, null, MATCH_FEATURE_CATEGORY)
+				error('Feature category of connection/delegate ends must match', assoc, null, MATCH_FEATURE_CATEGORY)
 			}
-		} else if (assoc.associationType.isFeatureMapping) {
-			if (!(src?.category === dst?.category)) {
-				error('Feature category of connection ends must match', assoc, null, MATCH_FEATURE_CATEGORY)
+		  } else if (srcelem instanceof Component && dstelem instanceof Feature){
+			val srccat = (srcelem as Component).category
+			val dstcat = (dstelem as Feature).category
+			if (!categoriesMatch(srccat, dstcat)) {
+				error('Feature category of connection/delegate ends must match', assoc, null, MATCH_FEATURE_CATEGORY)
 			}
-		}
-		if (assoc.associationType.isBinding) {
+		  } else if (srcelem instanceof Feature && dstelem instanceof Component){
+			val srccat = (srcelem as Feature).category
+			val dstcat = (dstelem as Component).category
+			if (!categoriesMatch(dstcat, srccat)) {
+				error('Feature category of connection/delegate ends must match', assoc, null, MATCH_FEATURE_CATEGORY)
+			}
+		  }
+	   } else if (assoc.associationType.isBinding) {
+		  if (srcelem instanceof Feature && dstelem instanceof Feature){
+			val src = srcelem as Feature
+			val dst = dstelem as Feature
 			if (!(src?.isBindingPoint && dst?.isBindingPoint)) {
 				error('Binding must be between bindingpoints', assoc, null, MUST_BE_BINDING_POINT)
 			}
+		  }
 		} else {
 			// others should not have binding points
+		  if (srcelem instanceof Feature && dstelem instanceof Feature){
+			val src = srcelem as Feature
+			val dst = dstelem as Feature
 			if (src !== null && src.isBindingPoint || dst !== null && dst.isBindingPoint) {
 				error('Bindingpoints can only be in bindings', assoc, null, NO_BINDING_POINT)
 			}
+		  }
 		}
 	}
 
 	def checkConsistentTargets(Association assoc) {
 		if (assoc.associationType.isConnection) {
 			if (assoc.source === null || assoc.destination === null) return;
-			if (!(assoc.source.containedComponentModelElementReference &&
-				assoc.destination.containedComponentModelElementReference)) {
+			if (!(assoc.source.modelElementReferenceIncludesComponent &&
+				assoc.destination.modelElementReferenceIncludesComponent)) {
 				error('Connection must be between subcomponents', assoc, null, BetweenSubcomponents)
 			}
 		}
-		if (assoc.associationType.isFeatureMapping) {
+		if (assoc.associationType.isFeatureDelegate) {
 			if (assoc.source === null || assoc.destination === null) return;
-			if (!(!assoc.source.containedComponentModelElementReference &&
-				assoc.destination.containedComponentModelElementReference)) {
-				error('Feature mapping must from feature to feature in subcomponent', assoc, null, ToSubcomponent)
+			val srcdir = assoc.source.realFeatureDirection
+			if (srcdir?.outgoing) {
+				if (!(assoc.source.modelElementReferenceIncludesComponent && !assoc.destination.modelElementReferenceIncludesComponent)) {
+					error('Outgoing feature delegate must be from feature in subcomponent to feature', assoc, null, org.osate.xtext.aadlv3.validation.AadlV3Validator.FeatureAndSubcomponent)
+				}
+			} else {
+				if (!(!assoc.source.modelElementReferenceIncludesComponent && assoc.destination.modelElementReferenceIncludesComponent)) {
+					error('Feature delegate must be from feature to feature in subcomponent', assoc, null, org.osate.xtext.aadlv3.validation.AadlV3Validator.FeatureAndSubcomponent)
+				}
 			}
 		} else if (assoc.associationType.isFlowSpec) {
 			if (assoc.source !== null && assoc.destination !== null &&
-				!(!assoc.source.containedComponentModelElementReference &&
-					!assoc.destination.containedComponentModelElementReference)) {
+				!(!assoc.source.modelElementReferenceIncludesComponent &&
+					!assoc.destination.modelElementReferenceIncludesComponent)) {
 				error('Flow path must not be between features of subcomponents', assoc, null, BetweenFeatures)
 			} else // } else if (assoc.associationType === AssociationType.FLOWSINK) {
 			if (assoc.source !== null && assoc.destination === null &&
-				!(!assoc.source.containedComponentModelElementReference)) {
+				!(!assoc.source.modelElementReferenceIncludesComponent)) {
 				error('Flow sink must not be a subcomponent feature', assoc, Aadlv3Package.Literals.ASSOCIATION__SOURCE,
 					NotSubcomponentFeature)
 			} else // } else if (assoc.associationType === AssociationType.FLOWSOURCE) {
 			if (assoc.source === null && assoc.destination !== null &&
-				!(!assoc.destination.containedComponentModelElementReference)) {
+				!(!assoc.destination.modelElementReferenceIncludesComponent)) {
 				error('Flow source must not be a subcomponent feature', assoc,
 					Aadlv3Package.Literals.ASSOCIATION__DESTINATION, NotSubcomponentFeature)
 			}
 		} else if (assoc.associationType.isBinding) {
-			if (!(!assoc.source.containedComponentModelElementReference &&
-				!assoc.destination.containedComponentModelElementReference)) {
+			if (!(!assoc.source.modelElementReferenceIncludesComponent &&
+				!assoc.destination.modelElementReferenceIncludesComponent)) {
 				error('Binding must be between subcomponents', assoc, null, BetweenSubcomponents)
 			}
 		}
@@ -681,13 +735,17 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	def checkMatchingTypes(Association assoc) {
 		if(assoc.associationType.flowSpec) return;
 		if (assoc.source === null || assoc.destination === null) return;
-		val src = assoc.source.element as Feature
-		val dst = assoc.destination.element as Feature
-		if (src.type !== null && dst.type !== null && src.type !== dst.type) {
-			error('Association ends must have same type', assoc, null, MatchingTypes)
-		}
-		if (src.type !== null && dst.type === null || src.type === null && dst.type !== null) {
-			warning('One association has a type, while the other does not', assoc, null, MissingOneType)
+		val srcelem = assoc.source.element as Feature
+		val dstelem = assoc.destination.element as Feature
+		if (srcelem instanceof Feature && dstelem instanceof Feature){
+			val src = srcelem as Feature
+			val dst = dstelem as Feature
+			if (src.type !== null && dst.type !== null && src.type !== dst.type) {
+				error('Association ends must have same type', assoc, null, MatchingTypes)
+			}
+			if (src.type !== null && dst.type === null || src.type === null && dst.type !== null) {
+				warning('One association has a type, while the other does not', assoc, null, MissingOneType)
+			}
 		}
 	}
 
@@ -700,13 +758,13 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 			if (prevElement instanceof Association) {
 				if (prevElement.isFlowSpec) {
 					// previous flow spec
-					val prevdstcomp = prevPathElement.referencedContainingComponent
+					val prevdstcomp = prevPathElement.getClosestReferencedComponent
 					if (element instanceof Association) {
 						if (element.isFlowSpec) {
 							// there must be a connection between them
 						} else if (element.isConnection) {
 							// connection must start from prev flow spec component
-							val currentsrccomp = element.source.referencedContainingComponent
+							val currentsrccomp = element.source.getClosestReferencedComponent
 							if (prevdstcomp !== currentsrccomp) {
 								error(
 									'Connection source component differs from destination component of preceding flow spec',
@@ -723,10 +781,10 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 					}
 				} else if (prevElement.isConnection) {
 					// previous connection
-					val prevdstcomp = (prevElement as Association).destination.referencedContainingComponent
+					val prevdstcomp = (prevElement as Association).destination.getClosestReferencedComponent
 					if (element instanceof Association) {
 						if (element.isFlowSpec) {
-							val currentsrccomp = pathElement.referencedContainingComponent
+							val currentsrccomp = pathElement.getClosestReferencedComponent
 							if (prevdstcomp !== currentsrccomp) {
 								error(
 									'Component of flow spec differs from from destination component of preceding connection',
@@ -736,7 +794,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 						} else if (element.isConnection) {
 							// both are connection
 							// they must connect to the same component
-							val currentsrccomp = element.source.referencedContainingComponent
+							val currentsrccomp = element.source.getClosestReferencedComponent
 							if (prevdstcomp !== currentsrccomp) {
 								error(
 									'Connection source component differs from destination component of preceding connection',
@@ -760,7 +818,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 					} else if (element.isConnection) {
 						// element is a connection
 						// connection source must be same as prev component
-						val currentsrccomp = element.source.referencedContainingComponent
+						val currentsrccomp = element.source.getClosestReferencedComponent
 						if (prevElement !== currentsrccomp) {
 							error('Preceding component differs from source component of connection', path,
 								Aadlv3Package.Literals.PATH_SEQUENCE__ELEMENTS, elementidx, DifferentComponentInPath)

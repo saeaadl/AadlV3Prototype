@@ -33,6 +33,9 @@
       <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//FeatureCategory/busaccess"/>
       <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//FeatureCategory/bindingpoint"/>
       <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//FeatureCategory/interface"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//FeatureCategory/virtualbusaccess"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//FeatureCategory/subprogramaccess"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//FeatureCategory/subprogramgroupaccess"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Aadlv3.ecore#//FeatureDirection">
       <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//FeatureDirection/NONE"/>
@@ -41,17 +44,17 @@
       <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//FeatureDirection/INOUT"/>
       <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//FeatureDirection/REQUIRES"/>
       <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//FeatureDirection/PROVIDES"/>
-      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//FeatureDirection/REQUIRESWRITE"/>
-      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//FeatureDirection/REQUIRESREADWRITE"/>
-      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//FeatureDirection/REQUIRESREAD"/>
-      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//FeatureDirection/PROVIDESWRITE"/>
-      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//FeatureDirection/PROVIDESREADWRITE"/>
-      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//FeatureDirection/PROVIDESREAD"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//FeatureDirection/REQUIRESOUT"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//FeatureDirection/REQUIRESINOUT"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//FeatureDirection/REQUIRESIN"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//FeatureDirection/PROVIDESOUT"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//FeatureDirection/PROVIDESINOUT"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//FeatureDirection/PROVIDESIN"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Aadlv3.ecore#//AssociationType">
       <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//AssociationType/connection"/>
       <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//AssociationType/binding"/>
-      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//AssociationType/featuremapping"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//AssociationType/featuredelegate"/>
       <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//AssociationType/flowpath"/>
       <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//AssociationType/flowsource"/>
       <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//AssociationType/flowsink"/>
@@ -137,6 +140,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//Association/associationType"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Association/source"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Association/destination"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//Association/directional"/>
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//PathSequence">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//PathSequence/target"/>

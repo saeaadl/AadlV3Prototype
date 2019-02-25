@@ -123,7 +123,7 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     name=DottedName (ambiguity) 'is' configurationAssignments+=ConfigurationAssignment
 	 *     name=DottedName (ambiguity) 'is' configurationAssignments+=ConfigurationAssignmentPattern
 	 *     name=DottedName (ambiguity) 'is' connections+=Connection
-	 *     name=DottedName (ambiguity) 'is' connections+=FeatureMapping
+	 *     name=DottedName (ambiguity) 'is' connections+=FeatureDelegate
 	 *     name=DottedName (ambiguity) 'is' flowAssignments+=FlowAssignment
 	 *     name=DottedName (ambiguity) 'is' paths+=Path
 	 *     name=DottedName (ambiguity) 'is' propertyAssociations+=PropertyAssociation
@@ -187,7 +187,7 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     configurationAssignments+=ConfigurationAssignment (ambiguity) 'end' (rule end)
 	 *     configurationAssignments+=ConfigurationAssignmentPattern (ambiguity) 'end' (rule end)
 	 *     connections+=Connection (ambiguity) 'end' (rule end)
-	 *     connections+=FeatureMapping (ambiguity) 'end' (rule end)
+	 *     connections+=FeatureDelegate (ambiguity) 'end' (rule end)
 	 *     flowAssignments+=FlowAssignment (ambiguity) 'end' (rule end)
 	 *     paths+=Path (ambiguity) 'end' (rule end)
 	 *     propertyAssociations+=PropertyAssociation (ambiguity) 'end' (rule end)
@@ -220,7 +220,7 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     bindings+=Binding (ambiguity) '}' (rule end)
 	 *     components+=Component (ambiguity) '}' (rule end)
 	 *     connections+=Connection (ambiguity) '}' (rule end)
-	 *     connections+=FeatureMapping (ambiguity) '}' (rule end)
+	 *     connections+=FeatureDelegate (ambiguity) '}' (rule end)
 	 *     features+=Feature (ambiguity) '}' (rule end)
 	 *     propertyAssociations+=PropertyAssociation (ambiguity) '}' (rule end)
 	 */

@@ -20,12 +20,12 @@ package FlowExamples
 	
 	abstract sensor.i  is
 		sub1: thread sense;
-		upmap: mapping outp => sub1.p1 ;
+		upmap: delegate sub1.p1 -> outp;
 		reading => flow upmap -> sub1.reading;
 	end
 	abstract actuator.i  is
 		sub2: thread actuate;
-		downmap: mapping inp => sub2.p1;
+		downmap: delegate inp -> sub2.p1;
 		action=> flow sub2.taction;
 	end
 	thread interface sense  is
@@ -68,10 +68,10 @@ package FlowExamples
 		dofilter: thread filter;
 		docompute: thread compute;
 		dolog: thread logger;
-		extin: mapping insignal => dofilter.insignal;
-		login: mapping insignal => dolog.insignal;
+		extin: delegate insignal -> dofilter.insignal;
+		login: delegate insignal -> dolog.insignal;
 		ftoc: connection dofilter.outsignal -> docompute.insignal;
-		extout: mapping outaction => docompute.outsignal ;
+		extout: delegate docompute.outsignal -> outaction ;
 	end
 	
 	system interface conntop end
@@ -97,8 +97,7 @@ configuration conntop.conf extends conntop.i is
     processing => controlProcess.impl;
 end
 	
-	bus interface canbus is
-	canbusaccess: provides bus access;
+	bus interface canbus 
 	end
 	
 	processor interface x86 is
@@ -112,8 +111,8 @@ end
 	system hardwareplatform.impl is
 	cpu: processor x86;
 	mybus: bus canbus;
-	busconn: connection cpu.canbusaccess -> mybus.canbusaccess;
-	extbusaccess: mapping canbusaccess => mybus.canbusaccess;
+	busconn: connection cpu.canbusaccess -> mybus;
+	extbusaccess: delegate canbusaccess -> mybus;
 	end
 	
 end

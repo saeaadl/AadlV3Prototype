@@ -6,6 +6,11 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="propertyAssociations" upperBound="-1"
         eType="#//PropertyAssociationInstance" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="incomingAssociations" ordered="false"
+        upperBound="-1" eType="#//AssociationInstance" transient="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outgoingAssociations" ordered="false"
+        upperBound="-1" eType="#//AssociationInstance" transient="true" resolveProxies="false"
+        eOpposite="#//AssociationInstance/source"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FeatureInstance" eSuperTypes="#//InstanceObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="feature" eType="ecore:EClass Aadlv3.ecore#//Feature"/>
@@ -13,12 +18,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="category" eType="ecore:EEnum Aadlv3.ecore#//FeatureCategory"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="features" upperBound="-1"
         eType="#//FeatureInstance" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="outgoingAssociations" ordered="false"
-        upperBound="-1" eType="#//AssociationInstance" transient="true" resolveProxies="false"
-        eOpposite="#//AssociationInstance/source"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="incomingAssociations" ordered="false"
-        upperBound="-1" eType="#//AssociationInstance" transient="true" resolveProxies="false"
-        eOpposite="#//AssociationInstance/destination"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ComponentInstance" eSuperTypes="#//InstanceObject">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="category" eType="ecore:EEnum Aadlv3.ecore#//ComponentCategory"
@@ -39,12 +38,12 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="associationType" eType="ecore:EEnum Aadlv3.ecore#//AssociationType"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="association" eType="ecore:EClass Aadlv3.ecore#//Association"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="source" ordered="false"
-        eType="#//FeatureInstance" resolveProxies="false" eOpposite="#//FeatureInstance/outgoingAssociations"/>
+        eType="#//InstanceObject" resolveProxies="false" eOpposite="#//InstanceObject/outgoingAssociations"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="destination" ordered="false"
-        eType="#//FeatureInstance" resolveProxies="false" eOpposite="#//FeatureInstance/incomingAssociations"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceMappings" upperBound="-1"
+        eType="#//InstanceObject" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceDelegates" upperBound="-1"
         eType="ecore:EClass Aadlv3.ecore#//Association"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="destinationMappings" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="destinationDelegates" upperBound="-1"
         eType="ecore:EClass Aadlv3.ecore#//Association"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="external" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>

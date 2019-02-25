@@ -947,6 +947,16 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
+	public EAttribute getAssociation_Directional() {
+		return (EAttribute) associationEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getConfigurationAssignment() {
 		return configurationAssignmentEClass;
 	}
@@ -1487,6 +1497,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		createEAttribute(associationEClass, ASSOCIATION__ASSOCIATION_TYPE);
 		createEReference(associationEClass, ASSOCIATION__SOURCE);
 		createEReference(associationEClass, ASSOCIATION__DESTINATION);
+		createEAttribute(associationEClass, ASSOCIATION__DIRECTIONAL);
 
 		pathSequenceEClass = createEClass(PATH_SEQUENCE);
 		createEReference(pathSequenceEClass, PATH_SEQUENCE__TARGET);
@@ -1767,6 +1778,9 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		initEReference(getAssociation_Destination(), this.getModelElementReference(), null, "destination", null, 0, 1,
 				Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAssociation_Directional(), ecorePackage.getEBoolean(), "directional", null, 0, 1,
+				Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
 
 		initEClass(pathSequenceEClass, PathSequence.class, "PathSequence", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
@@ -1904,6 +1918,9 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		addEEnumLiteral(featureCategoryEEnum, FeatureCategory.BUSACCESS);
 		addEEnumLiteral(featureCategoryEEnum, FeatureCategory.BINDINGPOINT);
 		addEEnumLiteral(featureCategoryEEnum, FeatureCategory.INTERFACE);
+		addEEnumLiteral(featureCategoryEEnum, FeatureCategory.VIRTUALBUSACCESS);
+		addEEnumLiteral(featureCategoryEEnum, FeatureCategory.SUBPROGRAMACCESS);
+		addEEnumLiteral(featureCategoryEEnum, FeatureCategory.SUBPROGRAMGROUPACCESS);
 
 		initEEnum(featureDirectionEEnum, FeatureDirection.class, "FeatureDirection");
 		addEEnumLiteral(featureDirectionEEnum, FeatureDirection.NONE);
@@ -1912,17 +1929,17 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		addEEnumLiteral(featureDirectionEEnum, FeatureDirection.INOUT);
 		addEEnumLiteral(featureDirectionEEnum, FeatureDirection.REQUIRES);
 		addEEnumLiteral(featureDirectionEEnum, FeatureDirection.PROVIDES);
-		addEEnumLiteral(featureDirectionEEnum, FeatureDirection.REQUIRESWRITE);
-		addEEnumLiteral(featureDirectionEEnum, FeatureDirection.REQUIRESREADWRITE);
-		addEEnumLiteral(featureDirectionEEnum, FeatureDirection.REQUIRESREAD);
-		addEEnumLiteral(featureDirectionEEnum, FeatureDirection.PROVIDESWRITE);
-		addEEnumLiteral(featureDirectionEEnum, FeatureDirection.PROVIDESREADWRITE);
-		addEEnumLiteral(featureDirectionEEnum, FeatureDirection.PROVIDESREAD);
+		addEEnumLiteral(featureDirectionEEnum, FeatureDirection.REQUIRESOUT);
+		addEEnumLiteral(featureDirectionEEnum, FeatureDirection.REQUIRESINOUT);
+		addEEnumLiteral(featureDirectionEEnum, FeatureDirection.REQUIRESIN);
+		addEEnumLiteral(featureDirectionEEnum, FeatureDirection.PROVIDESOUT);
+		addEEnumLiteral(featureDirectionEEnum, FeatureDirection.PROVIDESINOUT);
+		addEEnumLiteral(featureDirectionEEnum, FeatureDirection.PROVIDESIN);
 
 		initEEnum(associationTypeEEnum, AssociationType.class, "AssociationType");
 		addEEnumLiteral(associationTypeEEnum, AssociationType.CONNECTION);
 		addEEnumLiteral(associationTypeEEnum, AssociationType.BINDING);
-		addEEnumLiteral(associationTypeEEnum, AssociationType.FEATUREMAPPING);
+		addEEnumLiteral(associationTypeEEnum, AssociationType.FEATUREDELEGATE);
 		addEEnumLiteral(associationTypeEEnum, AssociationType.FLOWPATH);
 		addEEnumLiteral(associationTypeEEnum, AssociationType.FLOWSOURCE);
 		addEEnumLiteral(associationTypeEEnum, AssociationType.FLOWSINK);

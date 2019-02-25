@@ -51,18 +51,18 @@ public enum AssociationType implements Enumerator {
 	BINDING(1, "binding", "binding"),
 
 	/**
-	 * The '<em><b>Featuremapping</b></em>' literal object.
+	 * The '<em><b>Featuredelegate</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #FEATUREMAPPING_VALUE
+	 * @see #FEATUREDELEGATE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	FEATUREMAPPING(2, "featuremapping", "feature mapping"),
+	FEATUREDELEGATE(2, "featuredelegate", "feature delegate"),
 	/**
 	 * The '<em><b>Flowpath</b></em>' literal object.
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	* <!-- end-user-doc -->
 	 * @see #FLOWPATH_VALUE
 	 * @generated
 	 * @ordered
@@ -127,19 +127,19 @@ public enum AssociationType implements Enumerator {
 	public static final int BINDING_VALUE = 1;
 
 	/**
-	 * The '<em><b>Featuremapping</b></em>' literal value.
+	 * The '<em><b>Featuredelegate</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Featuremapping</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>Featuredelegate</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #FEATUREMAPPING
-	 * @model name="featuremapping" literal="feature mapping"
+	 * @see #FEATUREDELEGATE
+	 * @model name="featuredelegate" literal="feature delegate"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FEATUREMAPPING_VALUE = 2;
+	public static final int FEATUREDELEGATE_VALUE = 2;
 
 	/**
 	 * The '<em><b>Flowpath</b></em>' literal value.
@@ -207,7 +207,7 @@ public enum AssociationType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final AssociationType[] VALUES_ARRAY = new AssociationType[] { CONNECTION, BINDING, FEATUREMAPPING,
+	private static final AssociationType[] VALUES_ARRAY = new AssociationType[] { CONNECTION, BINDING, FEATUREDELEGATE,
 			FLOWPATH, FLOWSOURCE, FLOWSINK, FLOW, };
 
 	/**
@@ -268,8 +268,8 @@ public enum AssociationType implements Enumerator {
 			return CONNECTION;
 		case BINDING_VALUE:
 			return BINDING;
-		case FEATUREMAPPING_VALUE:
-			return FEATUREMAPPING;
+		case FEATUREDELEGATE_VALUE:
+			return FEATUREDELEGATE;
 		case FLOWPATH_VALUE:
 			return FLOWPATH;
 		case FLOWSOURCE_VALUE:

@@ -70,6 +70,8 @@ public class InstanceObjectItemProvider extends ItemProviderAdapter implements I
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
+			addIncomingAssociationsPropertyDescriptor(object);
+			addOutgoingAssociationsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -88,6 +90,38 @@ public class InstanceObjectItemProvider extends ItemProviderAdapter implements I
 								"_UI_InstanceObject_type"), //$NON-NLS-1$
 						Av3instancePackage.Literals.INSTANCE_OBJECT__NAME, true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Incoming Associations feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addIncomingAssociationsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_InstanceObject_incomingAssociations_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", //$NON-NLS-1$
+								"_UI_InstanceObject_incomingAssociations_feature", "_UI_InstanceObject_type"), //$NON-NLS-1$ //$NON-NLS-2$
+						Av3instancePackage.Literals.INSTANCE_OBJECT__INCOMING_ASSOCIATIONS, true, false, true, null,
+						null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Outgoing Associations feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addOutgoingAssociationsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_InstanceObject_outgoingAssociations_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", //$NON-NLS-1$
+								"_UI_InstanceObject_outgoingAssociations_feature", "_UI_InstanceObject_type"), //$NON-NLS-1$ //$NON-NLS-2$
+						Av3instancePackage.Literals.INSTANCE_OBJECT__OUTGOING_ASSOCIATIONS, true, false, true, null,
+						null, null));
 	}
 
 	/**

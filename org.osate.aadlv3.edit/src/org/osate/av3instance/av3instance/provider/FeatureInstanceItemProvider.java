@@ -61,8 +61,6 @@ public class FeatureInstanceItemProvider extends InstanceObjectItemProvider {
 			addFeaturePropertyDescriptor(object);
 			addDirectionPropertyDescriptor(object);
 			addCategoryPropertyDescriptor(object);
-			addOutgoingAssociationsPropertyDescriptor(object);
-			addIncomingAssociationsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -112,38 +110,6 @@ public class FeatureInstanceItemProvider extends InstanceObjectItemProvider {
 								"_UI_FeatureInstance_type"), //$NON-NLS-1$
 						Av3instancePackage.Literals.FEATURE_INSTANCE__CATEGORY, true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Outgoing Associations feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addOutgoingAssociationsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_FeatureInstance_outgoingAssociations_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", //$NON-NLS-1$
-								"_UI_FeatureInstance_outgoingAssociations_feature", "_UI_FeatureInstance_type"), //$NON-NLS-1$ //$NON-NLS-2$
-						Av3instancePackage.Literals.FEATURE_INSTANCE__OUTGOING_ASSOCIATIONS, true, false, true, null,
-						null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Incoming Associations feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addIncomingAssociationsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_FeatureInstance_incomingAssociations_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", //$NON-NLS-1$
-								"_UI_FeatureInstance_incomingAssociations_feature", "_UI_FeatureInstance_type"), //$NON-NLS-1$ //$NON-NLS-2$
-						Av3instancePackage.Literals.FEATURE_INSTANCE__INCOMING_ASSOCIATIONS, true, false, true, null,
-						null, null));
 	}
 
 	/**

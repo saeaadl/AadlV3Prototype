@@ -30,6 +30,8 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link org.osate.av3instance.av3instance.InstanceObject#getName <em>Name</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.InstanceObject#getPropertyAssociations <em>Property Associations</em>}</li>
+ *   <li>{@link org.osate.av3instance.av3instance.InstanceObject#getIncomingAssociations <em>Incoming Associations</em>}</li>
+ *   <li>{@link org.osate.av3instance.av3instance.InstanceObject#getOutgoingAssociations <em>Outgoing Associations</em>}</li>
  * </ul>
  *
  * @see org.osate.av3instance.av3instance.Av3instancePackage#getInstanceObject()
@@ -78,5 +80,39 @@ public interface InstanceObject extends EObject {
 	 * @generated
 	 */
 	EList<PropertyAssociationInstance> getPropertyAssociations();
+
+	/**
+	 * Returns the value of the '<em><b>Incoming Associations</b></em>' reference list.
+	 * The list contents are of type {@link org.osate.av3instance.av3instance.AssociationInstance}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Incoming Associations</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Incoming Associations</em>' reference list.
+	 * @see org.osate.av3instance.av3instance.Av3instancePackage#getInstanceObject_IncomingAssociations()
+	 * @model resolveProxies="false" transient="true" ordered="false"
+	 * @generated
+	 */
+	EList<AssociationInstance> getIncomingAssociations();
+
+	/**
+	 * Returns the value of the '<em><b>Outgoing Associations</b></em>' reference list.
+	 * The list contents are of type {@link org.osate.av3instance.av3instance.AssociationInstance}.
+	 * It is bidirectional and its opposite is '{@link org.osate.av3instance.av3instance.AssociationInstance#getSource <em>Source</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Outgoing Associations</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Outgoing Associations</em>' reference list.
+	 * @see org.osate.av3instance.av3instance.Av3instancePackage#getInstanceObject_OutgoingAssociations()
+	 * @see org.osate.av3instance.av3instance.AssociationInstance#getSource
+	 * @model opposite="source" resolveProxies="false" transient="true" ordered="false"
+	 * @generated
+	 */
+	EList<AssociationInstance> getOutgoingAssociations();
 
 } // InstanceObject

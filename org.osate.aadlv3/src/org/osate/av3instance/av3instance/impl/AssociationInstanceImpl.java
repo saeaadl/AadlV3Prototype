@@ -34,7 +34,7 @@ import org.osate.aadlv3.aadlv3.AssociationType;
 
 import org.osate.av3instance.av3instance.AssociationInstance;
 import org.osate.av3instance.av3instance.Av3instancePackage;
-import org.osate.av3instance.av3instance.FeatureInstance;
+import org.osate.av3instance.av3instance.InstanceObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -48,8 +48,8 @@ import org.osate.av3instance.av3instance.FeatureInstance;
  *   <li>{@link org.osate.av3instance.av3instance.impl.AssociationInstanceImpl#getAssociation <em>Association</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.impl.AssociationInstanceImpl#getSource <em>Source</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.impl.AssociationInstanceImpl#getDestination <em>Destination</em>}</li>
- *   <li>{@link org.osate.av3instance.av3instance.impl.AssociationInstanceImpl#getSourceMappings <em>Source Mappings</em>}</li>
- *   <li>{@link org.osate.av3instance.av3instance.impl.AssociationInstanceImpl#getDestinationMappings <em>Destination Mappings</em>}</li>
+ *   <li>{@link org.osate.av3instance.av3instance.impl.AssociationInstanceImpl#getSourceDelegates <em>Source Delegates</em>}</li>
+ *   <li>{@link org.osate.av3instance.av3instance.impl.AssociationInstanceImpl#getDestinationDelegates <em>Destination Delegates</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.impl.AssociationInstanceImpl#isExternal <em>External</em>}</li>
  * </ul>
  *
@@ -94,7 +94,7 @@ public class AssociationInstanceImpl extends InstanceObjectImpl implements Assoc
 	 * @generated
 	 * @ordered
 	 */
-	protected FeatureInstance source;
+	protected InstanceObject source;
 
 	/**
 	 * The cached value of the '{@link #getDestination() <em>Destination</em>}' reference.
@@ -104,27 +104,27 @@ public class AssociationInstanceImpl extends InstanceObjectImpl implements Assoc
 	 * @generated
 	 * @ordered
 	 */
-	protected FeatureInstance destination;
+	protected InstanceObject destination;
 
 	/**
-	 * The cached value of the '{@link #getSourceMappings() <em>Source Mappings</em>}' reference list.
+	 * The cached value of the '{@link #getSourceDelegates() <em>Source Delegates</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSourceMappings()
+	 * @see #getSourceDelegates()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Association> sourceMappings;
+	protected EList<Association> sourceDelegates;
 
 	/**
-	 * The cached value of the '{@link #getDestinationMappings() <em>Destination Mappings</em>}' reference list.
+	 * The cached value of the '{@link #getDestinationDelegates() <em>Destination Delegates</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDestinationMappings()
+	 * @see #getDestinationDelegates()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Association> destinationMappings;
+	protected EList<Association> destinationDelegates;
 
 	/**
 	 * The default value of the '{@link #isExternal() <em>External</em>}' attribute.
@@ -237,7 +237,7 @@ public class AssociationInstanceImpl extends InstanceObjectImpl implements Assoc
 	 * @generated
 	 */
 	@Override
-	public FeatureInstance getSource() {
+	public InstanceObject getSource() {
 		return source;
 	}
 
@@ -246,8 +246,8 @@ public class AssociationInstanceImpl extends InstanceObjectImpl implements Assoc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetSource(FeatureInstance newSource, NotificationChain msgs) {
-		FeatureInstance oldSource = source;
+	public NotificationChain basicSetSource(InstanceObject newSource, NotificationChain msgs) {
+		InstanceObject oldSource = source;
 		source = newSource;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
@@ -266,15 +266,15 @@ public class AssociationInstanceImpl extends InstanceObjectImpl implements Assoc
 	 * @generated
 	 */
 	@Override
-	public void setSource(FeatureInstance newSource) {
+	public void setSource(InstanceObject newSource) {
 		if (newSource != source) {
 			NotificationChain msgs = null;
 			if (source != null)
 				msgs = ((InternalEObject) source).eInverseRemove(this,
-						Av3instancePackage.FEATURE_INSTANCE__OUTGOING_ASSOCIATIONS, FeatureInstance.class, msgs);
+						Av3instancePackage.INSTANCE_OBJECT__OUTGOING_ASSOCIATIONS, InstanceObject.class, msgs);
 			if (newSource != null)
 				msgs = ((InternalEObject) newSource).eInverseAdd(this,
-						Av3instancePackage.FEATURE_INSTANCE__OUTGOING_ASSOCIATIONS, FeatureInstance.class, msgs);
+						Av3instancePackage.INSTANCE_OBJECT__OUTGOING_ASSOCIATIONS, InstanceObject.class, msgs);
 			msgs = basicSetSource(newSource, msgs);
 			if (msgs != null)
 				msgs.dispatch();
@@ -289,7 +289,7 @@ public class AssociationInstanceImpl extends InstanceObjectImpl implements Assoc
 	 * @generated
 	 */
 	@Override
-	public FeatureInstance getDestination() {
+	public InstanceObject getDestination() {
 		return destination;
 	}
 
@@ -298,41 +298,13 @@ public class AssociationInstanceImpl extends InstanceObjectImpl implements Assoc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetDestination(FeatureInstance newDestination, NotificationChain msgs) {
-		FeatureInstance oldDestination = destination;
+	@Override
+	public void setDestination(InstanceObject newDestination) {
+		InstanceObject oldDestination = destination;
 		destination = newDestination;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					Av3instancePackage.ASSOCIATION_INSTANCE__DESTINATION, oldDestination, newDestination);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setDestination(FeatureInstance newDestination) {
-		if (newDestination != destination) {
-			NotificationChain msgs = null;
-			if (destination != null)
-				msgs = ((InternalEObject) destination).eInverseRemove(this,
-						Av3instancePackage.FEATURE_INSTANCE__INCOMING_ASSOCIATIONS, FeatureInstance.class, msgs);
-			if (newDestination != null)
-				msgs = ((InternalEObject) newDestination).eInverseAdd(this,
-						Av3instancePackage.FEATURE_INSTANCE__INCOMING_ASSOCIATIONS, FeatureInstance.class, msgs);
-			msgs = basicSetDestination(newDestination, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Av3instancePackage.ASSOCIATION_INSTANCE__DESTINATION,
-					newDestination, newDestination));
+					oldDestination, destination));
 	}
 
 	/**
@@ -341,12 +313,12 @@ public class AssociationInstanceImpl extends InstanceObjectImpl implements Assoc
 	 * @generated
 	 */
 	@Override
-	public EList<Association> getSourceMappings() {
-		if (sourceMappings == null) {
-			sourceMappings = new EObjectResolvingEList<Association>(Association.class, this,
-					Av3instancePackage.ASSOCIATION_INSTANCE__SOURCE_MAPPINGS);
+	public EList<Association> getSourceDelegates() {
+		if (sourceDelegates == null) {
+			sourceDelegates = new EObjectResolvingEList<Association>(Association.class, this,
+					Av3instancePackage.ASSOCIATION_INSTANCE__SOURCE_DELEGATES);
 		}
-		return sourceMappings;
+		return sourceDelegates;
 	}
 
 	/**
@@ -355,12 +327,12 @@ public class AssociationInstanceImpl extends InstanceObjectImpl implements Assoc
 	 * @generated
 	 */
 	@Override
-	public EList<Association> getDestinationMappings() {
-		if (destinationMappings == null) {
-			destinationMappings = new EObjectResolvingEList<Association>(Association.class, this,
-					Av3instancePackage.ASSOCIATION_INSTANCE__DESTINATION_MAPPINGS);
+	public EList<Association> getDestinationDelegates() {
+		if (destinationDelegates == null) {
+			destinationDelegates = new EObjectResolvingEList<Association>(Association.class, this,
+					Av3instancePackage.ASSOCIATION_INSTANCE__DESTINATION_DELEGATES);
 		}
-		return destinationMappings;
+		return destinationDelegates;
 	}
 
 	/**
@@ -398,13 +370,8 @@ public class AssociationInstanceImpl extends InstanceObjectImpl implements Assoc
 		case Av3instancePackage.ASSOCIATION_INSTANCE__SOURCE:
 			if (source != null)
 				msgs = ((InternalEObject) source).eInverseRemove(this,
-						Av3instancePackage.FEATURE_INSTANCE__OUTGOING_ASSOCIATIONS, FeatureInstance.class, msgs);
-			return basicSetSource((FeatureInstance) otherEnd, msgs);
-		case Av3instancePackage.ASSOCIATION_INSTANCE__DESTINATION:
-			if (destination != null)
-				msgs = ((InternalEObject) destination).eInverseRemove(this,
-						Av3instancePackage.FEATURE_INSTANCE__INCOMING_ASSOCIATIONS, FeatureInstance.class, msgs);
-			return basicSetDestination((FeatureInstance) otherEnd, msgs);
+						Av3instancePackage.INSTANCE_OBJECT__OUTGOING_ASSOCIATIONS, InstanceObject.class, msgs);
+			return basicSetSource((InstanceObject) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -419,8 +386,6 @@ public class AssociationInstanceImpl extends InstanceObjectImpl implements Assoc
 		switch (featureID) {
 		case Av3instancePackage.ASSOCIATION_INSTANCE__SOURCE:
 			return basicSetSource(null, msgs);
-		case Av3instancePackage.ASSOCIATION_INSTANCE__DESTINATION:
-			return basicSetDestination(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -443,10 +408,10 @@ public class AssociationInstanceImpl extends InstanceObjectImpl implements Assoc
 			return getSource();
 		case Av3instancePackage.ASSOCIATION_INSTANCE__DESTINATION:
 			return getDestination();
-		case Av3instancePackage.ASSOCIATION_INSTANCE__SOURCE_MAPPINGS:
-			return getSourceMappings();
-		case Av3instancePackage.ASSOCIATION_INSTANCE__DESTINATION_MAPPINGS:
-			return getDestinationMappings();
+		case Av3instancePackage.ASSOCIATION_INSTANCE__SOURCE_DELEGATES:
+			return getSourceDelegates();
+		case Av3instancePackage.ASSOCIATION_INSTANCE__DESTINATION_DELEGATES:
+			return getDestinationDelegates();
 		case Av3instancePackage.ASSOCIATION_INSTANCE__EXTERNAL:
 			return isExternal();
 		}
@@ -469,18 +434,18 @@ public class AssociationInstanceImpl extends InstanceObjectImpl implements Assoc
 			setAssociation((Association) newValue);
 			return;
 		case Av3instancePackage.ASSOCIATION_INSTANCE__SOURCE:
-			setSource((FeatureInstance) newValue);
+			setSource((InstanceObject) newValue);
 			return;
 		case Av3instancePackage.ASSOCIATION_INSTANCE__DESTINATION:
-			setDestination((FeatureInstance) newValue);
+			setDestination((InstanceObject) newValue);
 			return;
-		case Av3instancePackage.ASSOCIATION_INSTANCE__SOURCE_MAPPINGS:
-			getSourceMappings().clear();
-			getSourceMappings().addAll((Collection<? extends Association>) newValue);
+		case Av3instancePackage.ASSOCIATION_INSTANCE__SOURCE_DELEGATES:
+			getSourceDelegates().clear();
+			getSourceDelegates().addAll((Collection<? extends Association>) newValue);
 			return;
-		case Av3instancePackage.ASSOCIATION_INSTANCE__DESTINATION_MAPPINGS:
-			getDestinationMappings().clear();
-			getDestinationMappings().addAll((Collection<? extends Association>) newValue);
+		case Av3instancePackage.ASSOCIATION_INSTANCE__DESTINATION_DELEGATES:
+			getDestinationDelegates().clear();
+			getDestinationDelegates().addAll((Collection<? extends Association>) newValue);
 			return;
 		case Av3instancePackage.ASSOCIATION_INSTANCE__EXTERNAL:
 			setExternal((Boolean) newValue);
@@ -504,16 +469,16 @@ public class AssociationInstanceImpl extends InstanceObjectImpl implements Assoc
 			setAssociation((Association) null);
 			return;
 		case Av3instancePackage.ASSOCIATION_INSTANCE__SOURCE:
-			setSource((FeatureInstance) null);
+			setSource((InstanceObject) null);
 			return;
 		case Av3instancePackage.ASSOCIATION_INSTANCE__DESTINATION:
-			setDestination((FeatureInstance) null);
+			setDestination((InstanceObject) null);
 			return;
-		case Av3instancePackage.ASSOCIATION_INSTANCE__SOURCE_MAPPINGS:
-			getSourceMappings().clear();
+		case Av3instancePackage.ASSOCIATION_INSTANCE__SOURCE_DELEGATES:
+			getSourceDelegates().clear();
 			return;
-		case Av3instancePackage.ASSOCIATION_INSTANCE__DESTINATION_MAPPINGS:
-			getDestinationMappings().clear();
+		case Av3instancePackage.ASSOCIATION_INSTANCE__DESTINATION_DELEGATES:
+			getDestinationDelegates().clear();
 			return;
 		case Av3instancePackage.ASSOCIATION_INSTANCE__EXTERNAL:
 			setExternal(EXTERNAL_EDEFAULT);
@@ -538,10 +503,10 @@ public class AssociationInstanceImpl extends InstanceObjectImpl implements Assoc
 			return source != null;
 		case Av3instancePackage.ASSOCIATION_INSTANCE__DESTINATION:
 			return destination != null;
-		case Av3instancePackage.ASSOCIATION_INSTANCE__SOURCE_MAPPINGS:
-			return sourceMappings != null && !sourceMappings.isEmpty();
-		case Av3instancePackage.ASSOCIATION_INSTANCE__DESTINATION_MAPPINGS:
-			return destinationMappings != null && !destinationMappings.isEmpty();
+		case Av3instancePackage.ASSOCIATION_INSTANCE__SOURCE_DELEGATES:
+			return sourceDelegates != null && !sourceDelegates.isEmpty();
+		case Av3instancePackage.ASSOCIATION_INSTANCE__DESTINATION_DELEGATES:
+			return destinationDelegates != null && !destinationDelegates.isEmpty();
 		case Av3instancePackage.ASSOCIATION_INSTANCE__EXTERNAL:
 			return external != EXTERNAL_EDEFAULT;
 		}

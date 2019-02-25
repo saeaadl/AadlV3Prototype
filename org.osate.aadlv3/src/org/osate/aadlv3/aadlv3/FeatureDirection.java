@@ -92,64 +92,59 @@ public enum FeatureDirection implements Enumerator {
 	PROVIDES(5, "PROVIDES", "provides"),
 
 	/**
-	 * The '<em><b>REQUIRESWRITE</b></em>' literal object.
+	 * The '<em><b>REQUIRESOUT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #REQUIRESWRITE_VALUE
+	 * @see #REQUIRESOUT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	REQUIRESWRITE(6, "REQUIRESWRITE", "requires write"),
-
+	REQUIRESOUT(6, "REQUIRESOUT", "requires out"),
 	/**
-	 * The '<em><b>REQUIRESREADWRITE</b></em>' literal object.
+	 * The '<em><b>REQUIRESINOUT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #REQUIRESREADWRITE_VALUE
+	* <!-- end-user-doc -->
+	 * @see #REQUIRESINOUT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	REQUIRESREADWRITE(7, "REQUIRESREADWRITE", "requires readwrite"),
-
+	REQUIRESINOUT(7, "REQUIRESINOUT", "requires in out"),
 	/**
-	 * The '<em><b>REQUIRESREAD</b></em>' literal object.
+	 * The '<em><b>REQUIRESIN</b></em>' literal object.
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #REQUIRESREAD_VALUE
+	* <!-- end-user-doc -->
+	 * @see #REQUIRESIN_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	REQUIRESREAD(8, "REQUIRESREAD", "requires read"),
-
+	REQUIRESIN(8, "REQUIRESIN", "requires in"),
 	/**
-	 * The '<em><b>PROVIDESWRITE</b></em>' literal object.
+	 * The '<em><b>PROVIDESOUT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PROVIDESWRITE_VALUE
+	* <!-- end-user-doc -->
+	 * @see #PROVIDESOUT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	PROVIDESWRITE(9, "PROVIDESWRITE", "provides write"),
-
+	PROVIDESOUT(9, "PROVIDESOUT", "provides out"),
 	/**
-	 * The '<em><b>PROVIDESREADWRITE</b></em>' literal object.
+	 * The '<em><b>PROVIDESINOUT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PROVIDESREADWRITE_VALUE
+	* <!-- end-user-doc -->
+	 * @see #PROVIDESINOUT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	PROVIDESREADWRITE(10, "PROVIDESREADWRITE", "provides readwrite"),
-
+	PROVIDESINOUT(10, "PROVIDESINOUT", "provides in out"),
 	/**
-	 * The '<em><b>PROVIDESREAD</b></em>' literal object.
+	 * The '<em><b>PROVIDESIN</b></em>' literal object.
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PROVIDESREAD_VALUE
+	* <!-- end-user-doc -->
+	 * @see #PROVIDESIN_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	PROVIDESREAD(11, "PROVIDESREAD", "provides read");
+	PROVIDESIN(11, "PROVIDESIN", "provides in");
 
 	/**
 	 * The '<em><b>NONE</b></em>' literal value.
@@ -242,94 +237,94 @@ public enum FeatureDirection implements Enumerator {
 	public static final int PROVIDES_VALUE = 5;
 
 	/**
-	 * The '<em><b>REQUIRESWRITE</b></em>' literal value.
+	 * The '<em><b>REQUIRESOUT</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>REQUIRESWRITE</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>REQUIRESOUT</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #REQUIRESWRITE
-	 * @model literal="requires write"
+	 * @see #REQUIRESOUT
+	 * @model literal="requires out"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int REQUIRESWRITE_VALUE = 6;
+	public static final int REQUIRESOUT_VALUE = 6;
 
 	/**
-	 * The '<em><b>REQUIRESREADWRITE</b></em>' literal value.
+	 * The '<em><b>REQUIRESINOUT</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>REQUIRESREADWRITE</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>REQUIRESINOUT</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #REQUIRESREADWRITE
-	 * @model literal="requires readwrite"
+	 * @see #REQUIRESINOUT
+	 * @model literal="requires in out"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int REQUIRESREADWRITE_VALUE = 7;
+	public static final int REQUIRESINOUT_VALUE = 7;
 
 	/**
-	 * The '<em><b>REQUIRESREAD</b></em>' literal value.
+	 * The '<em><b>REQUIRESIN</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>REQUIRESREAD</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>REQUIRESIN</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #REQUIRESREAD
-	 * @model literal="requires read"
+	 * @see #REQUIRESIN
+	 * @model literal="requires in"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int REQUIRESREAD_VALUE = 8;
+	public static final int REQUIRESIN_VALUE = 8;
 
 	/**
-	 * The '<em><b>PROVIDESWRITE</b></em>' literal value.
+	 * The '<em><b>PROVIDESOUT</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>PROVIDESWRITE</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>PROVIDESOUT</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #PROVIDESWRITE
-	 * @model literal="provides write"
+	 * @see #PROVIDESOUT
+	 * @model literal="provides out"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PROVIDESWRITE_VALUE = 9;
+	public static final int PROVIDESOUT_VALUE = 9;
 
 	/**
-	 * The '<em><b>PROVIDESREADWRITE</b></em>' literal value.
+	 * The '<em><b>PROVIDESINOUT</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>PROVIDESREADWRITE</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>PROVIDESINOUT</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #PROVIDESREADWRITE
-	 * @model literal="provides readwrite"
+	 * @see #PROVIDESINOUT
+	 * @model literal="provides in out"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PROVIDESREADWRITE_VALUE = 10;
+	public static final int PROVIDESINOUT_VALUE = 10;
 
 	/**
-	 * The '<em><b>PROVIDESREAD</b></em>' literal value.
+	 * The '<em><b>PROVIDESIN</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>PROVIDESREAD</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>PROVIDESIN</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #PROVIDESREAD
-	 * @model literal="provides read"
+	 * @see #PROVIDESIN
+	 * @model literal="provides in"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PROVIDESREAD_VALUE = 11;
+	public static final int PROVIDESIN_VALUE = 11;
 
 	/**
 	 * An array of all the '<em><b>Feature Direction</b></em>' enumerators.
@@ -338,7 +333,7 @@ public enum FeatureDirection implements Enumerator {
 	 * @generated
 	 */
 	private static final FeatureDirection[] VALUES_ARRAY = new FeatureDirection[] { NONE, IN, OUT, INOUT, REQUIRES,
-			PROVIDES, REQUIRESWRITE, REQUIRESREADWRITE, REQUIRESREAD, PROVIDESWRITE, PROVIDESREADWRITE, PROVIDESREAD, };
+			PROVIDES, REQUIRESOUT, REQUIRESINOUT, REQUIRESIN, PROVIDESOUT, PROVIDESINOUT, PROVIDESIN, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Feature Direction</b></em>' enumerators.
@@ -406,18 +401,18 @@ public enum FeatureDirection implements Enumerator {
 			return REQUIRES;
 		case PROVIDES_VALUE:
 			return PROVIDES;
-		case REQUIRESWRITE_VALUE:
-			return REQUIRESWRITE;
-		case REQUIRESREADWRITE_VALUE:
-			return REQUIRESREADWRITE;
-		case REQUIRESREAD_VALUE:
-			return REQUIRESREAD;
-		case PROVIDESWRITE_VALUE:
-			return PROVIDESWRITE;
-		case PROVIDESREADWRITE_VALUE:
-			return PROVIDESREADWRITE;
-		case PROVIDESREAD_VALUE:
-			return PROVIDESREAD;
+		case REQUIRESOUT_VALUE:
+			return REQUIRESOUT;
+		case REQUIRESINOUT_VALUE:
+			return REQUIRESINOUT;
+		case REQUIRESIN_VALUE:
+			return REQUIRESIN;
+		case PROVIDESOUT_VALUE:
+			return PROVIDESOUT;
+		case PROVIDESINOUT_VALUE:
+			return PROVIDESINOUT;
+		case PROVIDESIN_VALUE:
+			return PROVIDESIN;
 		}
 		return null;
 	}

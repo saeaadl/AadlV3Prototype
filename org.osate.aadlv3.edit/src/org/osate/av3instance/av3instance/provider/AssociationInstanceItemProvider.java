@@ -27,7 +27,6 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.osate.aadlv3.aadlv3.AssociationType;
 import org.osate.av3instance.av3instance.AssociationInstance;
 import org.osate.av3instance.av3instance.Av3instancePackage;
-import org.osate.av3instance.av3instance.FeatureInstance;
 import org.osate.av3instance.av3instance.InstanceObject;
 import org.osate.aadlv3.util.Aadlv3Util;
 
@@ -63,8 +62,8 @@ public class AssociationInstanceItemProvider extends InstanceObjectItemProvider 
 			addAssociationPropertyDescriptor(object);
 			addSourcePropertyDescriptor(object);
 			addDestinationPropertyDescriptor(object);
-			addSourceMappingsPropertyDescriptor(object);
-			addDestinationMappingsPropertyDescriptor(object);
+			addSourceDelegatesPropertyDescriptor(object);
+			addDestinationDelegatesPropertyDescriptor(object);
 			addExternalPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -132,35 +131,35 @@ public class AssociationInstanceItemProvider extends InstanceObjectItemProvider 
 	}
 
 	/**
-	 * This adds a property descriptor for the Source Mappings feature.
+	 * This adds a property descriptor for the Source Delegates feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addSourceMappingsPropertyDescriptor(Object object) {
+	protected void addSourceDelegatesPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
 				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_AssociationInstance_sourceMappings_feature"), //$NON-NLS-1$
+						getResourceLocator(), getString("_UI_AssociationInstance_sourceDelegates_feature"), //$NON-NLS-1$
 						getString("_UI_PropertyDescriptor_description", //$NON-NLS-1$
-								"_UI_AssociationInstance_sourceMappings_feature", "_UI_AssociationInstance_type"), //$NON-NLS-1$ //$NON-NLS-2$
-						Av3instancePackage.Literals.ASSOCIATION_INSTANCE__SOURCE_MAPPINGS, true, false, true, null,
+								"_UI_AssociationInstance_sourceDelegates_feature", "_UI_AssociationInstance_type"), //$NON-NLS-1$ //$NON-NLS-2$
+						Av3instancePackage.Literals.ASSOCIATION_INSTANCE__SOURCE_DELEGATES, true, false, true, null,
 						null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Destination Mappings feature.
+	 * This adds a property descriptor for the Destination Delegates feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addDestinationMappingsPropertyDescriptor(Object object) {
+	protected void addDestinationDelegatesPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
 				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_AssociationInstance_destinationMappings_feature"), //$NON-NLS-1$
+						getResourceLocator(), getString("_UI_AssociationInstance_destinationDelegates_feature"), //$NON-NLS-1$
 						getString("_UI_PropertyDescriptor_description", //$NON-NLS-1$
-								"_UI_AssociationInstance_destinationMappings_feature", "_UI_AssociationInstance_type"), //$NON-NLS-1$ //$NON-NLS-2$
-						Av3instancePackage.Literals.ASSOCIATION_INSTANCE__DESTINATION_MAPPINGS, true, false, true, null,
-						null, null));
+								"_UI_AssociationInstance_destinationDelegates_feature", "_UI_AssociationInstance_type"), //$NON-NLS-1$ //$NON-NLS-2$
+						Av3instancePackage.Literals.ASSOCIATION_INSTANCE__DESTINATION_DELEGATES, true, false, true,
+						null, null, null));
 	}
 
 	/**
@@ -215,13 +214,13 @@ public class AssociationInstanceItemProvider extends InstanceObjectItemProvider 
 	public String getText(Object object) {
 		AssociationInstance conni = (AssociationInstance) object;
 		String label = conni.getName();
-		FeatureInstance src = conni.getSource();
-		FeatureInstance dst = conni.getDestination();
+		InstanceObject src = conni.getSource();
+		InstanceObject dst = conni.getDestination();
 		InstanceObject conncontext = (InstanceObject) conni.eContainer();
 		String srclabel = src == null ? "" : Aadlv3Util.getNamePath(src, conncontext);
 		String dstlabel = dst == null ? "" : Aadlv3Util.getNamePath(dst, conncontext);
 		String type = conni.getAssociationType().getLiteral();
-		String connsymbol = conni.getAssociationType() == AssociationType.FEATUREMAPPING ? " => " : " -> ";
+		String connsymbol = " -> ";
 		type = type.substring(0, 1).toUpperCase() + type.substring(1);
 		return label == null || label.length() == 0 ? getString("_UI_AssociationInstance_type") : //$NON-NLS-1$
 				type + " " + label + ": " + srclabel + connsymbol + dstlabel; //$NON-NLS-1$ //$NON-NLS-2$

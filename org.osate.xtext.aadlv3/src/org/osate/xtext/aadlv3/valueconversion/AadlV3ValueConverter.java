@@ -38,13 +38,11 @@ public class AadlV3ValueConverter extends DefaultTerminalConverters {
 				if (string == null) {
 					return null;
 				}
-				if (string.equals("access")) return FeatureCategory.DATAACCESS;
 				return FeatureCategory.get(string);
 			}
 
 			@Override
 			public String toString(FeatureCategory value) {
-				if (value == FeatureCategory.DATAACCESS) return "access";
 				return value.getName();
 			}
 		};
@@ -66,39 +64,21 @@ public class AadlV3ValueConverter extends DefaultTerminalConverters {
 			}
 		};
 	}
-//
-//	@ValueConverter(rule = "ConnectionType")
-//	public IValueConverter<AssociationType> ConnectionType() {
-//		return new IValueConverter<AssociationType>() {
-//			@Override
-//			public AssociationType toValue(String string, INode node) {
-//				if (string == null) {
-//					return null;
-//				}
-//				return AssociationType.get(string.toLowerCase()+" connection");
-//			}
-//
-//			@Override
-//			public String toString(AssociationType value) {
-//				return value.getName().replaceFirst(" connection", "");
-//			}
-//		};
-//	}
 
-	@ValueConverter(rule = "MappingType")
-	public IValueConverter<AssociationType> MappingType() {
+	@ValueConverter(rule = "DelegateType")
+	public IValueConverter<AssociationType> DelegateType() {
 		return new IValueConverter<AssociationType>() {
 			@Override
 			public AssociationType toValue(String string, INode node) {
 				if (string == null) {
 					return null;
 				}
-				return AssociationType.FEATUREMAPPING;
+				return AssociationType.FEATUREDELEGATE;
 			}
 
 			@Override
 			public String toString(AssociationType value) {
-				return "mapping";
+				return "delegate";
 			}
 		};
 	}

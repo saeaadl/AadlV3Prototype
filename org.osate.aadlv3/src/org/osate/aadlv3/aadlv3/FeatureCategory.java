@@ -89,7 +89,34 @@ public enum FeatureCategory implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	INTERFACE(5, "interface", "interface");
+	INTERFACE(5, "interface", "interface"),
+	/**
+	 * The '<em><b>Virtualbusaccess</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
+	 * @see #VIRTUALBUSACCESS_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	VIRTUALBUSACCESS(6, "virtualbusaccess", "virtual bus access"),
+	/**
+	 * The '<em><b>Subprogramaccess</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
+	 * @see #SUBPROGRAMACCESS_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	SUBPROGRAMACCESS(7, "subprogramaccess", "subprogram access"),
+	/**
+	 * The '<em><b>Subprogramgroupaccess</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
+	 * @see #SUBPROGRAMGROUPACCESS_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	SUBPROGRAMGROUPACCESS(8, "subprogramgroupaccess", "subprogram group access");
 
 	/**
 	 * The '<em><b>Feature</b></em>' literal value.
@@ -182,13 +209,58 @@ public enum FeatureCategory implements Enumerator {
 	public static final int INTERFACE_VALUE = 5;
 
 	/**
+	 * The '<em><b>Virtualbusaccess</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>Virtualbusaccess</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #VIRTUALBUSACCESS
+	 * @model name="virtualbusaccess" literal="virtual bus access"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int VIRTUALBUSACCESS_VALUE = 6;
+
+	/**
+	 * The '<em><b>Subprogramaccess</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>Subprogramaccess</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #SUBPROGRAMACCESS
+	 * @model name="subprogramaccess" literal="subprogram access"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SUBPROGRAMACCESS_VALUE = 7;
+
+	/**
+	 * The '<em><b>Subprogramgroupaccess</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>Subprogramgroupaccess</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #SUBPROGRAMGROUPACCESS
+	 * @model name="subprogramgroupaccess" literal="subprogram group access"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SUBPROGRAMGROUPACCESS_VALUE = 8;
+
+	/**
 	 * An array of all the '<em><b>Feature Category</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private static final FeatureCategory[] VALUES_ARRAY = new FeatureCategory[] { FEATURE, PORT, DATAACCESS, BUSACCESS,
-			BINDINGPOINT, INTERFACE, };
+			BINDINGPOINT, INTERFACE, VIRTUALBUSACCESS, SUBPROGRAMACCESS, SUBPROGRAMGROUPACCESS, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Feature Category</b></em>' enumerators.
@@ -256,6 +328,12 @@ public enum FeatureCategory implements Enumerator {
 			return BINDINGPOINT;
 		case INTERFACE_VALUE:
 			return INTERFACE;
+		case VIRTUALBUSACCESS_VALUE:
+			return VIRTUALBUSACCESS;
+		case SUBPROGRAMACCESS_VALUE:
+			return SUBPROGRAMACCESS;
+		case SUBPROGRAMGROUPACCESS_VALUE:
+			return SUBPROGRAMGROUPACCESS;
 		}
 		return null;
 	}

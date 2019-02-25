@@ -98,13 +98,31 @@ public interface Av3instancePackage extends EPackage {
 	int INSTANCE_OBJECT__PROPERTY_ASSOCIATIONS = 1;
 
 	/**
+	 * The feature id for the '<em><b>Incoming Associations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_OBJECT__INCOMING_ASSOCIATIONS = 2;
+
+	/**
+	 * The feature id for the '<em><b>Outgoing Associations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_OBJECT__OUTGOING_ASSOCIATIONS = 3;
+
+	/**
 	 * The number of structural features of the '<em>Instance Object</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_OBJECT_FEATURE_COUNT = 2;
+	int INSTANCE_OBJECT_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>Instance Object</em>' class.
@@ -144,6 +162,24 @@ public interface Av3instancePackage extends EPackage {
 	int FEATURE_INSTANCE__PROPERTY_ASSOCIATIONS = INSTANCE_OBJECT__PROPERTY_ASSOCIATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Incoming Associations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_INSTANCE__INCOMING_ASSOCIATIONS = INSTANCE_OBJECT__INCOMING_ASSOCIATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Outgoing Associations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_INSTANCE__OUTGOING_ASSOCIATIONS = INSTANCE_OBJECT__OUTGOING_ASSOCIATIONS;
+
+	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -180,31 +216,13 @@ public interface Av3instancePackage extends EPackage {
 	int FEATURE_INSTANCE__FEATURES = INSTANCE_OBJECT_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Outgoing Associations</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_INSTANCE__OUTGOING_ASSOCIATIONS = INSTANCE_OBJECT_FEATURE_COUNT + 4;
-
-	/**
-	 * The feature id for the '<em><b>Incoming Associations</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_INSTANCE__INCOMING_ASSOCIATIONS = INSTANCE_OBJECT_FEATURE_COUNT + 5;
-
-	/**
 	 * The number of structural features of the '<em>Feature Instance</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_INSTANCE_FEATURE_COUNT = INSTANCE_OBJECT_FEATURE_COUNT + 6;
+	int FEATURE_INSTANCE_FEATURE_COUNT = INSTANCE_OBJECT_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Feature Instance</em>' class.
@@ -242,6 +260,24 @@ public interface Av3instancePackage extends EPackage {
 	 * @ordered
 	 */
 	int COMPONENT_INSTANCE__PROPERTY_ASSOCIATIONS = INSTANCE_OBJECT__PROPERTY_ASSOCIATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Associations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_INSTANCE__INCOMING_ASSOCIATIONS = INSTANCE_OBJECT__INCOMING_ASSOCIATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Outgoing Associations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_INSTANCE__OUTGOING_ASSOCIATIONS = INSTANCE_OBJECT__OUTGOING_ASSOCIATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Category</b></em>' attribute.
@@ -353,6 +389,24 @@ public interface Av3instancePackage extends EPackage {
 	int ASSOCIATION_INSTANCE__PROPERTY_ASSOCIATIONS = INSTANCE_OBJECT__PROPERTY_ASSOCIATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Incoming Associations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION_INSTANCE__INCOMING_ASSOCIATIONS = INSTANCE_OBJECT__INCOMING_ASSOCIATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Outgoing Associations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION_INSTANCE__OUTGOING_ASSOCIATIONS = INSTANCE_OBJECT__OUTGOING_ASSOCIATIONS;
+
+	/**
 	 * The feature id for the '<em><b>Association Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -389,22 +443,22 @@ public interface Av3instancePackage extends EPackage {
 	int ASSOCIATION_INSTANCE__DESTINATION = INSTANCE_OBJECT_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Source Mappings</b></em>' reference list.
+	 * The feature id for the '<em><b>Source Delegates</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION_INSTANCE__SOURCE_MAPPINGS = INSTANCE_OBJECT_FEATURE_COUNT + 4;
+	int ASSOCIATION_INSTANCE__SOURCE_DELEGATES = INSTANCE_OBJECT_FEATURE_COUNT + 4;
 
 	/**
-	 * The feature id for the '<em><b>Destination Mappings</b></em>' reference list.
+	 * The feature id for the '<em><b>Destination Delegates</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION_INSTANCE__DESTINATION_MAPPINGS = INSTANCE_OBJECT_FEATURE_COUNT + 5;
+	int ASSOCIATION_INSTANCE__DESTINATION_DELEGATES = INSTANCE_OBJECT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>External</b></em>' attribute.
@@ -460,6 +514,24 @@ public interface Av3instancePackage extends EPackage {
 	 * @ordered
 	 */
 	int PROPERTY_ASSOCIATION_INSTANCE__PROPERTY_ASSOCIATIONS = INSTANCE_OBJECT__PROPERTY_ASSOCIATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Associations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_ASSOCIATION_INSTANCE__INCOMING_ASSOCIATIONS = INSTANCE_OBJECT__INCOMING_ASSOCIATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Outgoing Associations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_ASSOCIATION_INSTANCE__OUTGOING_ASSOCIATIONS = INSTANCE_OBJECT__OUTGOING_ASSOCIATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Property</b></em>' reference.
@@ -535,6 +607,24 @@ public interface Av3instancePackage extends EPackage {
 	int PATH_INSTANCE__PROPERTY_ASSOCIATIONS = INSTANCE_OBJECT__PROPERTY_ASSOCIATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Incoming Associations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATH_INSTANCE__INCOMING_ASSOCIATIONS = INSTANCE_OBJECT__INCOMING_ASSOCIATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Outgoing Associations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATH_INSTANCE__OUTGOING_ASSOCIATIONS = INSTANCE_OBJECT__OUTGOING_ASSOCIATIONS;
+
+	/**
 	 * The feature id for the '<em><b>Elements</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -603,6 +693,28 @@ public interface Av3instancePackage extends EPackage {
 	EReference getInstanceObject_PropertyAssociations();
 
 	/**
+	 * Returns the meta object for the reference list '{@link org.osate.av3instance.av3instance.InstanceObject#getIncomingAssociations <em>Incoming Associations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Incoming Associations</em>'.
+	 * @see org.osate.av3instance.av3instance.InstanceObject#getIncomingAssociations()
+	 * @see #getInstanceObject()
+	 * @generated
+	 */
+	EReference getInstanceObject_IncomingAssociations();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.osate.av3instance.av3instance.InstanceObject#getOutgoingAssociations <em>Outgoing Associations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Outgoing Associations</em>'.
+	 * @see org.osate.av3instance.av3instance.InstanceObject#getOutgoingAssociations()
+	 * @see #getInstanceObject()
+	 * @generated
+	 */
+	EReference getInstanceObject_OutgoingAssociations();
+
+	/**
 	 * Returns the meta object for class '{@link org.osate.av3instance.av3instance.FeatureInstance <em>Feature Instance</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -655,28 +767,6 @@ public interface Av3instancePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getFeatureInstance_Features();
-
-	/**
-	 * Returns the meta object for the reference list '{@link org.osate.av3instance.av3instance.FeatureInstance#getOutgoingAssociations <em>Outgoing Associations</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Outgoing Associations</em>'.
-	 * @see org.osate.av3instance.av3instance.FeatureInstance#getOutgoingAssociations()
-	 * @see #getFeatureInstance()
-	 * @generated
-	 */
-	EReference getFeatureInstance_OutgoingAssociations();
-
-	/**
-	 * Returns the meta object for the reference list '{@link org.osate.av3instance.av3instance.FeatureInstance#getIncomingAssociations <em>Incoming Associations</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Incoming Associations</em>'.
-	 * @see org.osate.av3instance.av3instance.FeatureInstance#getIncomingAssociations()
-	 * @see #getFeatureInstance()
-	 * @generated
-	 */
-	EReference getFeatureInstance_IncomingAssociations();
 
 	/**
 	 * Returns the meta object for class '{@link org.osate.av3instance.av3instance.ComponentInstance <em>Component Instance</em>}'.
@@ -820,26 +910,26 @@ public interface Av3instancePackage extends EPackage {
 	EReference getAssociationInstance_Destination();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.osate.av3instance.av3instance.AssociationInstance#getSourceMappings <em>Source Mappings</em>}'.
+	 * Returns the meta object for the reference list '{@link org.osate.av3instance.av3instance.AssociationInstance#getSourceDelegates <em>Source Delegates</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Source Mappings</em>'.
-	 * @see org.osate.av3instance.av3instance.AssociationInstance#getSourceMappings()
+	 * @return the meta object for the reference list '<em>Source Delegates</em>'.
+	 * @see org.osate.av3instance.av3instance.AssociationInstance#getSourceDelegates()
 	 * @see #getAssociationInstance()
 	 * @generated
 	 */
-	EReference getAssociationInstance_SourceMappings();
+	EReference getAssociationInstance_SourceDelegates();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.osate.av3instance.av3instance.AssociationInstance#getDestinationMappings <em>Destination Mappings</em>}'.
+	 * Returns the meta object for the reference list '{@link org.osate.av3instance.av3instance.AssociationInstance#getDestinationDelegates <em>Destination Delegates</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Destination Mappings</em>'.
-	 * @see org.osate.av3instance.av3instance.AssociationInstance#getDestinationMappings()
+	 * @return the meta object for the reference list '<em>Destination Delegates</em>'.
+	 * @see org.osate.av3instance.av3instance.AssociationInstance#getDestinationDelegates()
 	 * @see #getAssociationInstance()
 	 * @generated
 	 */
-	EReference getAssociationInstance_DestinationMappings();
+	EReference getAssociationInstance_DestinationDelegates();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.osate.av3instance.av3instance.AssociationInstance#isExternal <em>External</em>}'.
@@ -977,6 +1067,22 @@ public interface Av3instancePackage extends EPackage {
 		EReference INSTANCE_OBJECT__PROPERTY_ASSOCIATIONS = eINSTANCE.getInstanceObject_PropertyAssociations();
 
 		/**
+		 * The meta object literal for the '<em><b>Incoming Associations</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference INSTANCE_OBJECT__INCOMING_ASSOCIATIONS = eINSTANCE.getInstanceObject_IncomingAssociations();
+
+		/**
+		 * The meta object literal for the '<em><b>Outgoing Associations</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference INSTANCE_OBJECT__OUTGOING_ASSOCIATIONS = eINSTANCE.getInstanceObject_OutgoingAssociations();
+
+		/**
 		 * The meta object literal for the '{@link org.osate.av3instance.av3instance.impl.FeatureInstanceImpl <em>Feature Instance</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1017,22 +1123,6 @@ public interface Av3instancePackage extends EPackage {
 		 * @generated
 		 */
 		EReference FEATURE_INSTANCE__FEATURES = eINSTANCE.getFeatureInstance_Features();
-
-		/**
-		 * The meta object literal for the '<em><b>Outgoing Associations</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference FEATURE_INSTANCE__OUTGOING_ASSOCIATIONS = eINSTANCE.getFeatureInstance_OutgoingAssociations();
-
-		/**
-		 * The meta object literal for the '<em><b>Incoming Associations</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference FEATURE_INSTANCE__INCOMING_ASSOCIATIONS = eINSTANCE.getFeatureInstance_IncomingAssociations();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.av3instance.av3instance.impl.ComponentInstanceImpl <em>Component Instance</em>}' class.
@@ -1143,20 +1233,21 @@ public interface Av3instancePackage extends EPackage {
 		EReference ASSOCIATION_INSTANCE__DESTINATION = eINSTANCE.getAssociationInstance_Destination();
 
 		/**
-		 * The meta object literal for the '<em><b>Source Mappings</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Source Delegates</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ASSOCIATION_INSTANCE__SOURCE_MAPPINGS = eINSTANCE.getAssociationInstance_SourceMappings();
+		EReference ASSOCIATION_INSTANCE__SOURCE_DELEGATES = eINSTANCE.getAssociationInstance_SourceDelegates();
 
 		/**
-		 * The meta object literal for the '<em><b>Destination Mappings</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Destination Delegates</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ASSOCIATION_INSTANCE__DESTINATION_MAPPINGS = eINSTANCE.getAssociationInstance_DestinationMappings();
+		EReference ASSOCIATION_INSTANCE__DESTINATION_DELEGATES = eINSTANCE
+				.getAssociationInstance_DestinationDelegates();
 
 		/**
 		 * The meta object literal for the '<em><b>External</b></em>' attribute feature.

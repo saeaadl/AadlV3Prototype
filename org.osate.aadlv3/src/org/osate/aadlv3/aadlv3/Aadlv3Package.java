@@ -1140,13 +1140,22 @@ public interface Aadlv3Package extends EPackage {
 	int ASSOCIATION__DESTINATION = MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Directional</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION__DIRECTIONAL = MODEL_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Association</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 3;
+	int ASSOCIATION_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.ConfigurationAssignmentImpl <em>Configuration Assignment</em>}' class.
@@ -2372,6 +2381,17 @@ public interface Aadlv3Package extends EPackage {
 	EReference getAssociation_Destination();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.osate.aadlv3.aadlv3.Association#isDirectional <em>Directional</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Directional</em>'.
+	 * @see org.osate.aadlv3.aadlv3.Association#isDirectional()
+	 * @see #getAssociation()
+	 * @generated
+	 */
+	EAttribute getAssociation_Directional();
+
+	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.ConfigurationAssignment <em>Configuration Assignment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3358,6 +3378,14 @@ public interface Aadlv3Package extends EPackage {
 		 * @generated
 		 */
 		EReference ASSOCIATION__DESTINATION = eINSTANCE.getAssociation_Destination();
+
+		/**
+		 * The meta object literal for the '<em><b>Directional</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ASSOCIATION__DIRECTIONAL = eINSTANCE.getAssociation_Directional();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.ConfigurationAssignmentImpl <em>Configuration Assignment</em>}' class.

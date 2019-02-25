@@ -211,7 +211,7 @@ class Instantiator {
 		conni.source = srcinstance as FeatureInstance
 		conni.destination = dstinstance as FeatureInstance
 		val expandedSources = new ArrayList<AssociationInstance>()
-		expandSourceFeatureMappings(conni, expandedSources)
+		expandSourceFeatureDelegates(conni, expandedSources)
 		context.connections += expandedSources
 		for (finalconni : expandedSources){
 			finalconni.external = true
@@ -229,7 +229,7 @@ class Instantiator {
 		conni.source = srcinstance as FeatureInstance
 		conni.destination = dstinstance as FeatureInstance
 		val expandedDestinations = new ArrayList<AssociationInstance>()
-		expandDestinationFeatureMappings(conni, expandedDestinations)
+		expandDestinationFeatureDelegates(conni, expandedDestinations)
 		context.connections += expandedDestinations
 		for (finalconni : expandedDestinations){
 			finalconni.external = true
@@ -244,36 +244,36 @@ class Instantiator {
 	def Collection<AssociationInstance> expandFeatureMappings(AssociationInstance conni, ComponentInstance context){
 		val expandedSources = new ArrayList<AssociationInstance>()
 		val expandedDestinations = new ArrayList<AssociationInstance>()
-		expandSourceFeatureMappings(conni,expandedSources)
+		expandSourceFeatureDelegates(conni,expandedSources)
 		for(srcconni: expandedSources){
-			expandDestinationFeatureMappings(srcconni,expandedDestinations)
+			expandDestinationFeatureDelegates(srcconni,expandedDestinations)
 		}
 		expandedDestinations
 	}
 	
-	def void expandSourceFeatureMappings(AssociationInstance conni, Collection<AssociationInstance> result){
+	def void expandSourceFeatureDelegates(AssociationInstance conni, Collection<AssociationInstance> result){
 		val srccxt = conni.source.containingComponentInstance
 		val srcconftrs = srccxt.configuredTypeReferences
 		if (srcconftrs === null) return
-		// TODO handle expansion in nested declaraitons
-		val srcmappings = srccxt.allAssociations.filter[conn| conn.isSourceFeatureMapping(conni)]
+		// TODO handle expansion in nested declarations
+		val srcmappings = srccxt.allAssociations.filter[conn| conn.isSourceFeatureDelegate(conni)]
 		if(srcmappings.size > 1){
 			// need to make a copy of conni
 			for (element : srcmappings) {
 				val expconni = conni.copy
-				expconni.sourceMappings += element
+				expconni.sourceDelegates += element
 				expconni.source = srccxt.getInstanceElement(element.destination) as FeatureInstance
 				result += expconni
-				expconni.expandSourceFeatureMappings(result)
+				expconni.expandSourceFeatureDelegates(result)
 			}
 		} else if (srcmappings.size == 1){
 			val element = srcmappings.head
-			conni.sourceMappings += element
+			conni.sourceDelegates += element
 			conni.source = srccxt.getInstanceElement(element.destination) as FeatureInstance
 			if (!result.contains(conni)){
 				result += conni
 			}
-			conni.expandSourceFeatureMappings(result)
+			conni.expandSourceFeatureDelegates(result)
 		} else {
 			if (!result.contains(conni)){
 				result += conni
@@ -281,28 +281,28 @@ class Instantiator {
 		}
 	}
 	
-	def void expandDestinationFeatureMappings(AssociationInstance conni, Collection<AssociationInstance> result){
+	def void expandDestinationFeatureDelegates(AssociationInstance conni, Collection<AssociationInstance> result){
 		val dstcxt = conni.destination.containingComponentInstance
 		val dstconftrs = dstcxt.configuredTypeReferences
 		if (dstconftrs === null) return
-		val dstmappings = dstcxt.allAssociations.filter[conn| conn.isDestinationFeatureMapping(conni)]
+		val dstmappings = dstcxt.allAssociations.filter[conn| conn.isDestinationFeatureDelegate(conni)]
 		if(dstmappings.size > 1){
 			// need to make a copy of conni
 			for (element : dstmappings) {
 				val expconni = conni.copy
-				expconni.destinationMappings += element
+				expconni.destinationDelegates += element
 				expconni.destination = dstcxt.getInstanceElement(element.destination) as FeatureInstance
 				result += expconni
-				expconni.expandDestinationFeatureMappings(result)
+				expconni.expandDestinationFeatureDelegates(result)
 			}
 		} else if (dstmappings.size == 1){
 			val element = dstmappings.head
-			conni.destinationMappings += element
+			conni.destinationDelegates += element
 			conni.destination = dstcxt.getInstanceElement(element.destination) as FeatureInstance
 			if (!result.contains(conni)){
 				result += conni
 			}
-			conni.expandDestinationFeatureMappings(result)
+			conni.expandDestinationFeatureDelegates(result)
 		} else {
 			if (!result.contains(conni)){
 				result += conni

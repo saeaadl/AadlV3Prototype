@@ -109,6 +109,7 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="destination" eType="#//ModelElementReference"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="directional" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PathSequence" eSuperTypes="#//ModelElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//ModelElementReference"
@@ -187,6 +188,9 @@
     <eLiterals name="busaccess" value="3" literal="bus access"/>
     <eLiterals name="bindingpoint" value="4" literal="binding point"/>
     <eLiterals name="interface" value="5" literal="interface"/>
+    <eLiterals name="virtualbusaccess" value="6" literal="virtual bus access"/>
+    <eLiterals name="subprogramaccess" value="7" literal="subprogram access"/>
+    <eLiterals name="subprogramgroupaccess" value="8" literal="subprogram group access"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="FeatureDirection">
     <eLiterals name="NONE" literal="none"/>
@@ -195,17 +199,17 @@
     <eLiterals name="INOUT" value="3" literal="in out"/>
     <eLiterals name="REQUIRES" value="4" literal="requires"/>
     <eLiterals name="PROVIDES" value="5" literal="provides"/>
-    <eLiterals name="REQUIRESWRITE" value="6" literal="requires write"/>
-    <eLiterals name="REQUIRESREADWRITE" value="7" literal="requires readwrite"/>
-    <eLiterals name="REQUIRESREAD" value="8" literal="requires read"/>
-    <eLiterals name="PROVIDESWRITE" value="9" literal="provides write"/>
-    <eLiterals name="PROVIDESREADWRITE" value="10" literal="provides readwrite"/>
-    <eLiterals name="PROVIDESREAD" value="11" literal="provides read"/>
+    <eLiterals name="REQUIRESOUT" value="6" literal="requires out"/>
+    <eLiterals name="REQUIRESINOUT" value="7" literal="requires in out"/>
+    <eLiterals name="REQUIRESIN" value="8" literal="requires in"/>
+    <eLiterals name="PROVIDESOUT" value="9" literal="provides out"/>
+    <eLiterals name="PROVIDESINOUT" value="10" literal="provides in out"/>
+    <eLiterals name="PROVIDESIN" value="11" literal="provides in"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="AssociationType">
     <eLiterals name="connection" literal="connection"/>
     <eLiterals name="binding" value="1" literal="binding"/>
-    <eLiterals name="featuremapping" value="2" literal="feature mapping"/>
+    <eLiterals name="featuredelegate" value="2" literal="feature delegate"/>
     <eLiterals name="flowpath" value="3" literal="flow path"/>
     <eLiterals name="flowsource" value="4" literal="flow source"/>
     <eLiterals name="flowsink" value="5" literal="flow sink"/>

@@ -17,12 +17,10 @@ package org.osate.aadlv3.aadlv3.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.Association;
 import org.osate.aadlv3.aadlv3.AssociationType;
@@ -39,6 +37,7 @@ import org.osate.aadlv3.aadlv3.ModelElementReference;
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.AssociationImpl#getAssociationType <em>Association Type</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.AssociationImpl#getSource <em>Source</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.AssociationImpl#getDestination <em>Destination</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.AssociationImpl#isDirectional <em>Directional</em>}</li>
  * </ul>
  *
  * @generated
@@ -83,6 +82,26 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	 * @ordered
 	 */
 	protected ModelElementReference destination;
+
+	/**
+	 * The default value of the '{@link #isDirectional() <em>Directional</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isDirectional()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean DIRECTIONAL_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isDirectional() <em>Directional</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isDirectional()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean directional = DIRECTIONAL_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -237,6 +256,30 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	 * @generated
 	 */
 	@Override
+	public boolean isDirectional() {
+		return directional;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setDirectional(boolean newDirectional) {
+		boolean oldDirectional = directional;
+		directional = newDirectional;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.ASSOCIATION__DIRECTIONAL,
+					oldDirectional, directional));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case Aadlv3Package.ASSOCIATION__SOURCE:
@@ -261,6 +304,8 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 			return getSource();
 		case Aadlv3Package.ASSOCIATION__DESTINATION:
 			return getDestination();
+		case Aadlv3Package.ASSOCIATION__DIRECTIONAL:
+			return isDirectional();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -270,6 +315,7 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -281,6 +327,9 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 			return;
 		case Aadlv3Package.ASSOCIATION__DESTINATION:
 			setDestination((ModelElementReference) newValue);
+			return;
+		case Aadlv3Package.ASSOCIATION__DIRECTIONAL:
+			setDirectional((Boolean) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -303,6 +352,9 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 		case Aadlv3Package.ASSOCIATION__DESTINATION:
 			setDestination((ModelElementReference) null);
 			return;
+		case Aadlv3Package.ASSOCIATION__DIRECTIONAL:
+			setDirectional(DIRECTIONAL_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -321,6 +373,8 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 			return source != null;
 		case Aadlv3Package.ASSOCIATION__DESTINATION:
 			return destination != null;
+		case Aadlv3Package.ASSOCIATION__DIRECTIONAL:
+			return directional != DIRECTIONAL_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -338,6 +392,8 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (associationType: ");
 		result.append(associationType);
+		result.append(", directional: ");
+		result.append(directional);
 		result.append(')');
 		return result.toString();
 	}

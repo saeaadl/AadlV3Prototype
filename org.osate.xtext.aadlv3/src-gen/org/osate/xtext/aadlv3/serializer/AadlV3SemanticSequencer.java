@@ -74,8 +74,8 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 					sequence_Connection_PropertiesBlock(context, (Association) semanticObject); 
 					return; 
 				}
-				else if (rule == grammarAccess.getFeatureMappingRule()) {
-					sequence_FeatureMapping_PropertiesBlock(context, (Association) semanticObject); 
+				else if (rule == grammarAccess.getFeatureDelegateRule()) {
+					sequence_FeatureDelegate_PropertiesBlock(context, (Association) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getFlowPathRule()) {
@@ -255,7 +255,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *         (superClassifiers+=ImplementationReference superClassifiers+=ImplementationReference*)? 
 	 *         (
 	 *             connections+=Connection | 
-	 *             connections+=FeatureMapping | 
+	 *             connections+=FeatureDelegate | 
 	 *             bindings+=Binding | 
 	 *             components+=Component | 
 	 *             paths+=Path | 
@@ -305,7 +305,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *         (
 	 *             features+=Feature | 
 	 *             connections+=Connection | 
-	 *             connections+=FeatureMapping | 
+	 *             connections+=FeatureDelegate | 
 	 *             bindings+=Binding | 
 	 *             components+=Component | 
 	 *             propertyAssociations+=PropertyAssociation
@@ -435,6 +435,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *         name=ID 
 	 *         associationType=ConnectionType 
 	 *         source=ModelElementReference 
+	 *         directional?='->'? 
 	 *         destination=ModelElementReference 
 	 *         (propertyAssociations+=PropertyAssociation propertyAssociations+=PropertyAssociation*)?
 	 *     )
@@ -459,18 +460,19 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
-	 *     FeatureMapping returns Association
+	 *     FeatureDelegate returns Association
 	 *
 	 * Constraint:
 	 *     (
 	 *         name=ID 
-	 *         associationType=MappingType 
+	 *         associationType=DelegateType 
 	 *         source=ModelElementReference 
+	 *         directional?='->'? 
 	 *         destination=ModelElementReference 
 	 *         (propertyAssociations+=PropertyAssociation propertyAssociations+=PropertyAssociation*)?
 	 *     )
 	 */
-	protected void sequence_FeatureMapping_PropertiesBlock(ISerializationContext context, Association semanticObject) {
+	protected void sequence_FeatureDelegate_PropertiesBlock(ISerializationContext context, Association semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

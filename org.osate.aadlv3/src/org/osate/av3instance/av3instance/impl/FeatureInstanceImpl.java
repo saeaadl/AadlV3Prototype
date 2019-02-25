@@ -28,14 +28,11 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EObjectWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.osate.aadlv3.aadlv3.Feature;
 import org.osate.aadlv3.aadlv3.FeatureCategory;
 import org.osate.aadlv3.aadlv3.FeatureDirection;
-
-import org.osate.av3instance.av3instance.AssociationInstance;
 import org.osate.av3instance.av3instance.Av3instancePackage;
 import org.osate.av3instance.av3instance.FeatureInstance;
 
@@ -51,8 +48,6 @@ import org.osate.av3instance.av3instance.FeatureInstance;
  *   <li>{@link org.osate.av3instance.av3instance.impl.FeatureInstanceImpl#getDirection <em>Direction</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.impl.FeatureInstanceImpl#getCategory <em>Category</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.impl.FeatureInstanceImpl#getFeatures <em>Features</em>}</li>
- *   <li>{@link org.osate.av3instance.av3instance.impl.FeatureInstanceImpl#getOutgoingAssociations <em>Outgoing Associations</em>}</li>
- *   <li>{@link org.osate.av3instance.av3instance.impl.FeatureInstanceImpl#getIncomingAssociations <em>Incoming Associations</em>}</li>
  * </ul>
  *
  * @generated
@@ -117,26 +112,6 @@ public class FeatureInstanceImpl extends InstanceObjectImpl implements FeatureIn
 	 * @ordered
 	 */
 	protected EList<FeatureInstance> features;
-
-	/**
-	 * The cached value of the '{@link #getOutgoingAssociations() <em>Outgoing Associations</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOutgoingAssociations()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<AssociationInstance> outgoingAssociations;
-
-	/**
-	 * The cached value of the '{@link #getIncomingAssociations() <em>Incoming Associations</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getIncomingAssociations()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<AssociationInstance> incomingAssociations;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -267,63 +242,10 @@ public class FeatureInstanceImpl extends InstanceObjectImpl implements FeatureIn
 	 * @generated
 	 */
 	@Override
-	public EList<AssociationInstance> getOutgoingAssociations() {
-		if (outgoingAssociations == null) {
-			outgoingAssociations = new EObjectWithInverseEList<AssociationInstance>(AssociationInstance.class, this,
-					Av3instancePackage.FEATURE_INSTANCE__OUTGOING_ASSOCIATIONS,
-					Av3instancePackage.ASSOCIATION_INSTANCE__SOURCE);
-		}
-		return outgoingAssociations;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<AssociationInstance> getIncomingAssociations() {
-		if (incomingAssociations == null) {
-			incomingAssociations = new EObjectWithInverseEList<AssociationInstance>(AssociationInstance.class, this,
-					Av3instancePackage.FEATURE_INSTANCE__INCOMING_ASSOCIATIONS,
-					Av3instancePackage.ASSOCIATION_INSTANCE__DESTINATION);
-		}
-		return incomingAssociations;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-		case Av3instancePackage.FEATURE_INSTANCE__OUTGOING_ASSOCIATIONS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getOutgoingAssociations()).basicAdd(otherEnd,
-					msgs);
-		case Av3instancePackage.FEATURE_INSTANCE__INCOMING_ASSOCIATIONS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getIncomingAssociations()).basicAdd(otherEnd,
-					msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case Av3instancePackage.FEATURE_INSTANCE__FEATURES:
 			return ((InternalEList<?>) getFeatures()).basicRemove(otherEnd, msgs);
-		case Av3instancePackage.FEATURE_INSTANCE__OUTGOING_ASSOCIATIONS:
-			return ((InternalEList<?>) getOutgoingAssociations()).basicRemove(otherEnd, msgs);
-		case Av3instancePackage.FEATURE_INSTANCE__INCOMING_ASSOCIATIONS:
-			return ((InternalEList<?>) getIncomingAssociations()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -346,10 +268,6 @@ public class FeatureInstanceImpl extends InstanceObjectImpl implements FeatureIn
 			return getCategory();
 		case Av3instancePackage.FEATURE_INSTANCE__FEATURES:
 			return getFeatures();
-		case Av3instancePackage.FEATURE_INSTANCE__OUTGOING_ASSOCIATIONS:
-			return getOutgoingAssociations();
-		case Av3instancePackage.FEATURE_INSTANCE__INCOMING_ASSOCIATIONS:
-			return getIncomingAssociations();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -376,14 +294,6 @@ public class FeatureInstanceImpl extends InstanceObjectImpl implements FeatureIn
 			getFeatures().clear();
 			getFeatures().addAll((Collection<? extends FeatureInstance>) newValue);
 			return;
-		case Av3instancePackage.FEATURE_INSTANCE__OUTGOING_ASSOCIATIONS:
-			getOutgoingAssociations().clear();
-			getOutgoingAssociations().addAll((Collection<? extends AssociationInstance>) newValue);
-			return;
-		case Av3instancePackage.FEATURE_INSTANCE__INCOMING_ASSOCIATIONS:
-			getIncomingAssociations().clear();
-			getIncomingAssociations().addAll((Collection<? extends AssociationInstance>) newValue);
-			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -408,12 +318,6 @@ public class FeatureInstanceImpl extends InstanceObjectImpl implements FeatureIn
 		case Av3instancePackage.FEATURE_INSTANCE__FEATURES:
 			getFeatures().clear();
 			return;
-		case Av3instancePackage.FEATURE_INSTANCE__OUTGOING_ASSOCIATIONS:
-			getOutgoingAssociations().clear();
-			return;
-		case Av3instancePackage.FEATURE_INSTANCE__INCOMING_ASSOCIATIONS:
-			getIncomingAssociations().clear();
-			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -434,10 +338,6 @@ public class FeatureInstanceImpl extends InstanceObjectImpl implements FeatureIn
 			return category != CATEGORY_EDEFAULT;
 		case Av3instancePackage.FEATURE_INSTANCE__FEATURES:
 			return features != null && !features.isEmpty();
-		case Av3instancePackage.FEATURE_INSTANCE__OUTGOING_ASSOCIATIONS:
-			return outgoingAssociations != null && !outgoingAssociations.isEmpty();
-		case Av3instancePackage.FEATURE_INSTANCE__INCOMING_ASSOCIATIONS:
-			return incomingAssociations != null && !incomingAssociations.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

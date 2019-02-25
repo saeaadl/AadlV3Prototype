@@ -34,8 +34,6 @@ import org.osate.aadlv3.aadlv3.FeatureDirection;
  *   <li>{@link org.osate.av3instance.av3instance.FeatureInstance#getDirection <em>Direction</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.FeatureInstance#getCategory <em>Category</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.FeatureInstance#getFeatures <em>Features</em>}</li>
- *   <li>{@link org.osate.av3instance.av3instance.FeatureInstance#getOutgoingAssociations <em>Outgoing Associations</em>}</li>
- *   <li>{@link org.osate.av3instance.av3instance.FeatureInstance#getIncomingAssociations <em>Incoming Associations</em>}</li>
  * </ul>
  *
  * @see org.osate.av3instance.av3instance.Av3instancePackage#getFeatureInstance()
@@ -142,41 +140,5 @@ public interface FeatureInstance extends InstanceObject {
 	 * @generated
 	 */
 	EList<FeatureInstance> getFeatures();
-
-	/**
-	 * Returns the value of the '<em><b>Outgoing Associations</b></em>' reference list.
-	 * The list contents are of type {@link org.osate.av3instance.av3instance.AssociationInstance}.
-	 * It is bidirectional and its opposite is '{@link org.osate.av3instance.av3instance.AssociationInstance#getSource <em>Source</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Outgoing Associations</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Outgoing Associations</em>' reference list.
-	 * @see org.osate.av3instance.av3instance.Av3instancePackage#getFeatureInstance_OutgoingAssociations()
-	 * @see org.osate.av3instance.av3instance.AssociationInstance#getSource
-	 * @model opposite="source" resolveProxies="false" transient="true" ordered="false"
-	 * @generated
-	 */
-	EList<AssociationInstance> getOutgoingAssociations();
-
-	/**
-	 * Returns the value of the '<em><b>Incoming Associations</b></em>' reference list.
-	 * The list contents are of type {@link org.osate.av3instance.av3instance.AssociationInstance}.
-	 * It is bidirectional and its opposite is '{@link org.osate.av3instance.av3instance.AssociationInstance#getDestination <em>Destination</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Incoming Associations</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Incoming Associations</em>' reference list.
-	 * @see org.osate.av3instance.av3instance.Av3instancePackage#getFeatureInstance_IncomingAssociations()
-	 * @see org.osate.av3instance.av3instance.AssociationInstance#getDestination
-	 * @model opposite="destination" resolveProxies="false" transient="true" ordered="false"
-	 * @generated
-	 */
-	EList<AssociationInstance> getIncomingAssociations();
 
 } // FeatureInstance

@@ -33,8 +33,8 @@ import org.osate.aadlv3.aadlv3.AssociationType;
  *   <li>{@link org.osate.av3instance.av3instance.AssociationInstance#getAssociation <em>Association</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.AssociationInstance#getSource <em>Source</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.AssociationInstance#getDestination <em>Destination</em>}</li>
- *   <li>{@link org.osate.av3instance.av3instance.AssociationInstance#getSourceMappings <em>Source Mappings</em>}</li>
- *   <li>{@link org.osate.av3instance.av3instance.AssociationInstance#getDestinationMappings <em>Destination Mappings</em>}</li>
+ *   <li>{@link org.osate.av3instance.av3instance.AssociationInstance#getSourceDelegates <em>Source Delegates</em>}</li>
+ *   <li>{@link org.osate.av3instance.av3instance.AssociationInstance#getDestinationDelegates <em>Destination Delegates</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.AssociationInstance#isExternal <em>External</em>}</li>
  * </ul>
  *
@@ -100,7 +100,7 @@ public interface AssociationInstance extends InstanceObject {
 
 	/**
 	 * Returns the value of the '<em><b>Source</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.osate.av3instance.av3instance.FeatureInstance#getOutgoingAssociations <em>Outgoing Associations</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.osate.av3instance.av3instance.InstanceObject#getOutgoingAssociations <em>Outgoing Associations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Source</em>' reference isn't clear,
@@ -108,13 +108,13 @@ public interface AssociationInstance extends InstanceObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Source</em>' reference.
-	 * @see #setSource(FeatureInstance)
+	 * @see #setSource(InstanceObject)
 	 * @see org.osate.av3instance.av3instance.Av3instancePackage#getAssociationInstance_Source()
-	 * @see org.osate.av3instance.av3instance.FeatureInstance#getOutgoingAssociations
+	 * @see org.osate.av3instance.av3instance.InstanceObject#getOutgoingAssociations
 	 * @model opposite="outgoingAssociations" resolveProxies="false" ordered="false"
 	 * @generated
 	 */
-	FeatureInstance getSource();
+	InstanceObject getSource();
 
 	/**
 	 * Sets the value of the '{@link org.osate.av3instance.av3instance.AssociationInstance#getSource <em>Source</em>}' reference.
@@ -124,11 +124,10 @@ public interface AssociationInstance extends InstanceObject {
 	 * @see #getSource()
 	 * @generated
 	 */
-	void setSource(FeatureInstance value);
+	void setSource(InstanceObject value);
 
 	/**
 	 * Returns the value of the '<em><b>Destination</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.osate.av3instance.av3instance.FeatureInstance#getIncomingAssociations <em>Incoming Associations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Destination</em>' reference isn't clear,
@@ -136,13 +135,12 @@ public interface AssociationInstance extends InstanceObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Destination</em>' reference.
-	 * @see #setDestination(FeatureInstance)
+	 * @see #setDestination(InstanceObject)
 	 * @see org.osate.av3instance.av3instance.Av3instancePackage#getAssociationInstance_Destination()
-	 * @see org.osate.av3instance.av3instance.FeatureInstance#getIncomingAssociations
-	 * @model opposite="incomingAssociations" resolveProxies="false" ordered="false"
+	 * @model resolveProxies="false" ordered="false"
 	 * @generated
 	 */
-	FeatureInstance getDestination();
+	InstanceObject getDestination();
 
 	/**
 	 * Sets the value of the '{@link org.osate.av3instance.av3instance.AssociationInstance#getDestination <em>Destination</em>}' reference.
@@ -152,39 +150,39 @@ public interface AssociationInstance extends InstanceObject {
 	 * @see #getDestination()
 	 * @generated
 	 */
-	void setDestination(FeatureInstance value);
+	void setDestination(InstanceObject value);
 
 	/**
-	 * Returns the value of the '<em><b>Source Mappings</b></em>' reference list.
+	 * Returns the value of the '<em><b>Source Delegates</b></em>' reference list.
 	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.Association}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Source Mappings</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Source Delegates</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Source Mappings</em>' reference list.
-	 * @see org.osate.av3instance.av3instance.Av3instancePackage#getAssociationInstance_SourceMappings()
+	 * @return the value of the '<em>Source Delegates</em>' reference list.
+	 * @see org.osate.av3instance.av3instance.Av3instancePackage#getAssociationInstance_SourceDelegates()
 	 * @model
 	 * @generated
 	 */
-	EList<Association> getSourceMappings();
+	EList<Association> getSourceDelegates();
 
 	/**
-	 * Returns the value of the '<em><b>Destination Mappings</b></em>' reference list.
+	 * Returns the value of the '<em><b>Destination Delegates</b></em>' reference list.
 	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.Association}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Destination Mappings</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Destination Delegates</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Destination Mappings</em>' reference list.
-	 * @see org.osate.av3instance.av3instance.Av3instancePackage#getAssociationInstance_DestinationMappings()
+	 * @return the value of the '<em>Destination Delegates</em>' reference list.
+	 * @see org.osate.av3instance.av3instance.Av3instancePackage#getAssociationInstance_DestinationDelegates()
 	 * @model
 	 * @generated
 	 */
-	EList<Association> getDestinationMappings();
+	EList<Association> getDestinationDelegates();
 
 	/**
 	 * Returns the value of the '<em><b>External</b></em>' attribute.
