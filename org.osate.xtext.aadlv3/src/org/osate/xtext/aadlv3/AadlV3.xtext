@@ -81,7 +81,8 @@ fragment ImplementationElement* :
 ComponentConfiguration returns av3::ComponentConfiguration:
 	(private?='private')? 'configuration' name=DottedName  
 	Parameters?
-	'extends' ConfigurationExtensions ConfigurationElementBlock 
+	// optional extension. If no extends then we have a generic configuration with patterns
+	('extends' ConfigurationExtensions)? ConfigurationElementBlock 
 	 ;
 	
 

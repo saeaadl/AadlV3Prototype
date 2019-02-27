@@ -231,8 +231,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *         private?='private'? 
 	 *         name=DottedName 
 	 *         (parameterized?='(' (parameters+=ConfigurationParameter parameters+=ConfigurationParameter*)?)? 
-	 *         superClassifiers+=RealizationReference 
-	 *         superClassifiers+=RealizationReference* 
+	 *         (superClassifiers+=RealizationReference superClassifiers+=RealizationReference*)? 
 	 *         (
 	 *             propertyAssociations+=PropertyAssociation | 
 	 *             bindings+=Binding | 

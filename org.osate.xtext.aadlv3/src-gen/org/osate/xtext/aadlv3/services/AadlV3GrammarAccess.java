@@ -727,9 +727,10 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cNameDottedNameParserRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
 		private final RuleCall cParametersParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
-		private final Keyword cExtendsKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final RuleCall cConfigurationExtensionsParserRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
-		private final RuleCall cConfigurationElementBlockParserRuleCall_6 = (RuleCall)cGroup.eContents().get(6);
+		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
+		private final Keyword cExtendsKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
+		private final RuleCall cConfigurationExtensionsParserRuleCall_4_1 = (RuleCall)cGroup_4.eContents().get(1);
+		private final RuleCall cConfigurationElementBlockParserRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
 		
 		////fragment SectionsImplementationBody*:
 		////	('subcomponents'(components+=Component|assignments+=ConfigurationAssignment)+ )?
@@ -739,11 +740,10 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		////;
 		//ComponentConfiguration av3::ComponentConfiguration:
 		//	private?='private'? 'configuration' name=DottedName
-		//	Parameters?
-		//	'extends' ConfigurationExtensions ConfigurationElementBlock;
+		//	Parameters? ('extends' ConfigurationExtensions)? ConfigurationElementBlock;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//private?='private'? 'configuration' name=DottedName Parameters? 'extends' ConfigurationExtensions
+		//private?='private'? 'configuration' name=DottedName Parameters? ('extends' ConfigurationExtensions)?
 		//ConfigurationElementBlock
 		public Group getGroup() { return cGroup; }
 		
@@ -765,14 +765,17 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		//Parameters?
 		public RuleCall getParametersParserRuleCall_3() { return cParametersParserRuleCall_3; }
 		
+		//('extends' ConfigurationExtensions)?
+		public Group getGroup_4() { return cGroup_4; }
+		
 		//'extends'
-		public Keyword getExtendsKeyword_4() { return cExtendsKeyword_4; }
+		public Keyword getExtendsKeyword_4_0() { return cExtendsKeyword_4_0; }
 		
 		//ConfigurationExtensions
-		public RuleCall getConfigurationExtensionsParserRuleCall_5() { return cConfigurationExtensionsParserRuleCall_5; }
+		public RuleCall getConfigurationExtensionsParserRuleCall_4_1() { return cConfigurationExtensionsParserRuleCall_4_1; }
 		
 		//ConfigurationElementBlock
-		public RuleCall getConfigurationElementBlockParserRuleCall_6() { return cConfigurationElementBlockParserRuleCall_6; }
+		public RuleCall getConfigurationElementBlockParserRuleCall_5() { return cConfigurationElementBlockParserRuleCall_5; }
 	}
 	public class FeatureElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.osate.xtext.aadlv3.AadlV3.Feature");
@@ -3825,8 +3828,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	////;
 	//ComponentConfiguration av3::ComponentConfiguration:
 	//	private?='private'? 'configuration' name=DottedName
-	//	Parameters?
-	//	'extends' ConfigurationExtensions ConfigurationElementBlock;
+	//	Parameters? ('extends' ConfigurationExtensions)? ConfigurationElementBlock;
 	public ComponentConfigurationElements getComponentConfigurationAccess() {
 		return pComponentConfiguration;
 	}

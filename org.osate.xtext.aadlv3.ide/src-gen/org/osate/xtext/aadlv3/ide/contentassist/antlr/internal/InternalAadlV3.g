@@ -4779,9 +4779,9 @@ rule__ComponentConfiguration__Group__4__Impl
 	}
 :
 (
-	{ before(grammarAccess.getComponentConfigurationAccess().getExtendsKeyword_4()); }
-	'extends'
-	{ after(grammarAccess.getComponentConfigurationAccess().getExtendsKeyword_4()); }
+	{ before(grammarAccess.getComponentConfigurationAccess().getGroup_4()); }
+	(rule__ComponentConfiguration__Group_4__0)?
+	{ after(grammarAccess.getComponentConfigurationAccess().getGroup_4()); }
 )
 ;
 finally {
@@ -4794,7 +4794,6 @@ rule__ComponentConfiguration__Group__5
 	}
 :
 	rule__ComponentConfiguration__Group__5__Impl
-	rule__ComponentConfiguration__Group__6
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -4806,35 +4805,63 @@ rule__ComponentConfiguration__Group__5__Impl
 	}
 :
 (
-	{ before(grammarAccess.getComponentConfigurationAccess().getConfigurationExtensionsParserRuleCall_5()); }
-	ruleConfigurationExtensions
-	{ after(grammarAccess.getComponentConfigurationAccess().getConfigurationExtensionsParserRuleCall_5()); }
+	{ before(grammarAccess.getComponentConfigurationAccess().getConfigurationElementBlockParserRuleCall_5()); }
+	ruleConfigurationElementBlock
+	{ after(grammarAccess.getComponentConfigurationAccess().getConfigurationElementBlockParserRuleCall_5()); }
 )
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__ComponentConfiguration__Group__6
+
+rule__ComponentConfiguration__Group_4__0
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
-	rule__ComponentConfiguration__Group__6__Impl
+	rule__ComponentConfiguration__Group_4__0__Impl
+	rule__ComponentConfiguration__Group_4__1
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__ComponentConfiguration__Group__6__Impl
+rule__ComponentConfiguration__Group_4__0__Impl
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 (
-	{ before(grammarAccess.getComponentConfigurationAccess().getConfigurationElementBlockParserRuleCall_6()); }
-	ruleConfigurationElementBlock
-	{ after(grammarAccess.getComponentConfigurationAccess().getConfigurationElementBlockParserRuleCall_6()); }
+	{ before(grammarAccess.getComponentConfigurationAccess().getExtendsKeyword_4_0()); }
+	'extends'
+	{ after(grammarAccess.getComponentConfigurationAccess().getExtendsKeyword_4_0()); }
+)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__ComponentConfiguration__Group_4__1
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	rule__ComponentConfiguration__Group_4__1__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__ComponentConfiguration__Group_4__1__Impl
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+(
+	{ before(grammarAccess.getComponentConfigurationAccess().getConfigurationExtensionsParserRuleCall_4_1()); }
+	ruleConfigurationExtensions
+	{ after(grammarAccess.getComponentConfigurationAccess().getConfigurationExtensionsParserRuleCall_4_1()); }
 )
 ;
 finally {

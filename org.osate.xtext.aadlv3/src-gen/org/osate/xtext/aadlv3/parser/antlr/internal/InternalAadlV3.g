@@ -1351,26 +1351,28 @@ ruleComponentConfiguration returns [EObject current=null]
 				afterParserOrEnumRuleCall();
 			}
 		)?
-		otherlv_4='extends'
-		{
-			newLeafNode(otherlv_4, grammarAccess.getComponentConfigurationAccess().getExtendsKeyword_4());
-		}
+		(
+			otherlv_4='extends'
+			{
+				newLeafNode(otherlv_4, grammarAccess.getComponentConfigurationAccess().getExtendsKeyword_4_0());
+			}
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getComponentConfigurationRule());
+				}
+				newCompositeNode(grammarAccess.getComponentConfigurationAccess().getConfigurationExtensionsParserRuleCall_4_1());
+			}
+			this_ConfigurationExtensions_5=ruleConfigurationExtensions[$current]
+			{
+				$current = $this_ConfigurationExtensions_5.current;
+				afterParserOrEnumRuleCall();
+			}
+		)?
 		{
 			if ($current==null) {
 				$current = createModelElement(grammarAccess.getComponentConfigurationRule());
 			}
-			newCompositeNode(grammarAccess.getComponentConfigurationAccess().getConfigurationExtensionsParserRuleCall_5());
-		}
-		this_ConfigurationExtensions_5=ruleConfigurationExtensions[$current]
-		{
-			$current = $this_ConfigurationExtensions_5.current;
-			afterParserOrEnumRuleCall();
-		}
-		{
-			if ($current==null) {
-				$current = createModelElement(grammarAccess.getComponentConfigurationRule());
-			}
-			newCompositeNode(grammarAccess.getComponentConfigurationAccess().getConfigurationElementBlockParserRuleCall_6());
+			newCompositeNode(grammarAccess.getComponentConfigurationAccess().getConfigurationElementBlockParserRuleCall_5());
 		}
 		this_ConfigurationElementBlock_6=ruleConfigurationElementBlock[$current]
 		{

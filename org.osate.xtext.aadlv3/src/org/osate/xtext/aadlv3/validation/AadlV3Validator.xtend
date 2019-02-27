@@ -59,6 +59,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	public static val REQUIRES_TO_PROVIDES = 'RequiresToProvides'
 	public static val MUST_BE_OUT = 'MustBeOut'
 	public static val MUST_BE_IN = 'MustBeIn'
+	public static val MUST_BE_BI = 'MustBeBidirectional'
 	public static val MATCH_FEATURE_CATEGORY = 'MatchFeatureCategory'
 	public static val MUST_BE_BINDING_POINT = 'MustBeBindingPoint'
 	public static val NO_BINDING_POINT = 'NoBindingPoint'
@@ -74,6 +75,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	public static val MustBeDataType = 'MustBeDataType'
 	public static val NoDataType = 'NoDataType'
 	public static val FormalActualMismatch = 'FormalActualMismatch'
+	public static val ConfigurationPattern = 'ConfigurationPattern'
 	public static val ParameterNotInterface = 'ParameterNotInterface'
 	public static val OverrideType = 'OverrideType'
 	public static val OneType = 'OneType'
@@ -303,6 +305,13 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 		val interface = getComponentInterface(cimpl);
 		if (interface === null) {
 			error('Could not find Component Interface', cimpl, null, FormalActualMismatch)
+		}
+	}
+
+	def checkPattern(ComponentConfiguration config) {
+		if (config.superClassifiers.empty) {
+			if (!config.configurationAssignments.empty&& !config.bindings.empty)
+			error('Configurations without extend must only contain configuration assignment patterns', config, Aadlv3Package.Literals.COMPONENT_CONFIGURATION__CONFIGURATION_ASSIGNMENTS, ConfigurationPattern)
 		}
 	}
 
@@ -598,10 +607,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 				val thetype = if(assignedtype instanceof ConfigurationParameter) assignedtype.type else assignedtype
 				if (thetype instanceof ComponentClassifier) {
 					val clcat = thetype.componentCategory
-					if (!((fea.category === FeatureCategory.BUSACCESS && clcat === ComponentCategory.BUS)|| 
-						(fea.category === FeatureCategory.SUBPROGRAMACCESS && clcat === ComponentCategory.SUBPROGRAM)||
-						(fea.category === FeatureCategory.SUBPROGRAMGROUPACCESS && clcat === ComponentCategory.SUBPROGRAMGROUP)||
-						(fea.category === FeatureCategory.VIRTUALBUSACCESS && clcat === ComponentCategory.VIRTUALBUS)
+					if (!(categoriesMatch(clcat,fea.category)
 						|| (fea.category === FeatureCategory.INTERFACE &&clcat === ComponentCategory.INTERFACE))) {
 						error(
 							'Category \'' + clcat + '\' of assigned classifier must be the same as the category \'' +
@@ -658,12 +664,26 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 		val srcdir = assoc.source.realFeatureDirection
 		val dstdir = assoc.destination.realFeatureDirection
 		if (assoc.associationType.isConnection) {
-			if (!(srcdir?.outgoing && dstdir?.incoming)) {
-				error('Connection source must be outgoing and destination must be incoming', assoc, null, OUT_TO_IN)
+			if (assoc.isDirectional){
+				if (!(srcdir?.outgoing && dstdir?.incoming)) {
+					error('Connection source must be outgoing and destination must be incoming', assoc, null, OUT_TO_IN)
+				}
+			} else {
+				// bidirectional
+				if (!(srcdir?.biDirectional && dstdir?.biDirectional)) {
+					error('Connection source and destination must be bidirectional', assoc, null, MUST_BE_BI)
+				}
 			}
 		} else if (assoc.associationType.isFeatureDelegate) {
-			if (!(srcdir === dstdir || srcdir === FeatureDirection.NONE || dstdir === FeatureDirection.NONE)) {
-				error('Feature delegate directions must be same', assoc, null, SAME_DIRECTION)
+			if (assoc.isDirectional){
+				if (!(srcdir === dstdir || srcdir === FeatureDirection.NONE || dstdir === FeatureDirection.NONE)) {
+					error('Feature delegate directions must be same', assoc, null, SAME_DIRECTION)
+				}
+			} else {
+				// bidirectional
+				if (!(srcdir?.biDirectional && dstdir?.biDirectional)) {
+					error('Feature delegate source and destination must be bidirectional', assoc, null, MUST_BE_BI)
+				}
 			}
 		} else if (assoc.associationType.isFlowSpec) {
 			if (srcdir !== null && dstdir !== null && !(srcdir.incoming && dstdir.outgoing)) {
@@ -773,8 +793,8 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	def checkMatchingTypes(Association assoc) {
 		if(assoc.associationType.flowSpec) return;
 		if (assoc.source === null || assoc.destination === null) return;
-		val srcelem = assoc.source.element as Feature
-		val dstelem = assoc.destination.element as Feature
+		val srcelem = assoc.source.element 
+		val dstelem = assoc.destination.element 
 		if (srcelem instanceof Feature && dstelem instanceof Feature){
 			val src = srcelem as Feature
 			val dst = dstelem as Feature
@@ -782,7 +802,18 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 				error('Association ends must have same type', assoc, null, MatchingTypes)
 			}
 			if (src?.typeReference?.type !== null && dst?.typeReference?.type === null || src?.typeReference?.type === null && dst?.typeReference?.type !== null) {
-				warning('One association has a type, while the other does not', assoc, null, MissingOneType)
+				warning('One association end has a type, while the other does not', assoc, null, MissingOneType)
+			}
+		} else {
+			val comptype = if (srcelem instanceof Component) {srcelem.typeReferences.head} else if (dstelem instanceof Component) { dstelem.typeReferences.head} else {null}
+			val featype = if (srcelem instanceof Feature) {srcelem.typeReference} else if (dstelem instanceof Feature) { dstelem.typeReference} else {null}
+			if (comptype === null && featype === null) {
+				return;
+			}
+			if (comptype === null || featype === null) {
+				warning('One association end has a type, while the other does not', assoc, null, MissingOneType)
+			} else if (comptype.type !== featype.type){
+				error('Association ends must have same type', assoc, null, MatchingTypes)
 			}
 		}
 	}
