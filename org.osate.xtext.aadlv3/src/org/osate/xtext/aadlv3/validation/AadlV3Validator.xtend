@@ -679,6 +679,10 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 				if (!(srcdir === dstdir || srcdir === FeatureDirection.NONE || dstdir === FeatureDirection.NONE)) {
 					error('Feature delegate directions must be same', assoc, null, SAME_DIRECTION)
 				}
+				if (srcdir?.biDirectional && dstdir?.biDirectional) {
+					// delegate direction must be bidirectional but is directional
+					error('Feature delegate declaration must be bidirectional when source and destination are bidirectional', assoc, null, MUST_BE_BI)
+				}
 			} else {
 				// bidirectional
 				if (!(srcdir?.biDirectional && dstdir?.biDirectional)) {

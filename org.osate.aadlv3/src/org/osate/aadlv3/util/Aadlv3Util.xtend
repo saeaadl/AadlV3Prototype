@@ -878,7 +878,8 @@ class Aadlv3Util {
 	}
 	
 	def static boolean isBiDirectional(FeatureDirection fd){
-		fd == FeatureDirection.INOUT || fd == FeatureDirection.REQUIRESINOUT || fd == FeatureDirection.PROVIDESINOUT|| fd == FeatureDirection.NONE
+		fd == FeatureDirection.INOUT || fd == FeatureDirection.REQUIRESINOUT || fd == FeatureDirection.PROVIDESINOUT|| fd == FeatureDirection.NONE 
+		|| fd == FeatureDirection.PROVIDES || fd == FeatureDirection.REQUIRES
 	}
 	
 	def static boolean isOutgoing(FeatureDirection fd){
