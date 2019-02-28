@@ -29,7 +29,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -170,8 +169,9 @@ public abstract class InstanceObjectImpl extends MinimalEObjectImpl.Container im
 	@Override
 	public EList<AssociationInstance> getIncomingAssociations() {
 		if (incomingAssociations == null) {
-			incomingAssociations = new EObjectEList<AssociationInstance>(AssociationInstance.class, this,
-					Av3instancePackage.INSTANCE_OBJECT__INCOMING_ASSOCIATIONS);
+			incomingAssociations = new EObjectWithInverseEList<AssociationInstance>(AssociationInstance.class, this,
+					Av3instancePackage.INSTANCE_OBJECT__INCOMING_ASSOCIATIONS,
+					Av3instancePackage.ASSOCIATION_INSTANCE__DESTINATION);
 		}
 		return incomingAssociations;
 	}
@@ -200,6 +200,9 @@ public abstract class InstanceObjectImpl extends MinimalEObjectImpl.Container im
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+		case Av3instancePackage.INSTANCE_OBJECT__INCOMING_ASSOCIATIONS:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getIncomingAssociations()).basicAdd(otherEnd,
+					msgs);
 		case Av3instancePackage.INSTANCE_OBJECT__OUTGOING_ASSOCIATIONS:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getOutgoingAssociations()).basicAdd(otherEnd,
 					msgs);
@@ -217,6 +220,8 @@ public abstract class InstanceObjectImpl extends MinimalEObjectImpl.Container im
 		switch (featureID) {
 		case Av3instancePackage.INSTANCE_OBJECT__PROPERTY_ASSOCIATIONS:
 			return ((InternalEList<?>) getPropertyAssociations()).basicRemove(otherEnd, msgs);
+		case Av3instancePackage.INSTANCE_OBJECT__INCOMING_ASSOCIATIONS:
+			return ((InternalEList<?>) getIncomingAssociations()).basicRemove(otherEnd, msgs);
 		case Av3instancePackage.INSTANCE_OBJECT__OUTGOING_ASSOCIATIONS:
 			return ((InternalEList<?>) getOutgoingAssociations()).basicRemove(otherEnd, msgs);
 		}

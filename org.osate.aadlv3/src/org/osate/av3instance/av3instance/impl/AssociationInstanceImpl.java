@@ -298,13 +298,41 @@ public class AssociationInstanceImpl extends InstanceObjectImpl implements Assoc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public void setDestination(InstanceObject newDestination) {
+	public NotificationChain basicSetDestination(InstanceObject newDestination, NotificationChain msgs) {
 		InstanceObject oldDestination = destination;
 		destination = newDestination;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					Av3instancePackage.ASSOCIATION_INSTANCE__DESTINATION, oldDestination, newDestination);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setDestination(InstanceObject newDestination) {
+		if (newDestination != destination) {
+			NotificationChain msgs = null;
+			if (destination != null)
+				msgs = ((InternalEObject) destination).eInverseRemove(this,
+						Av3instancePackage.INSTANCE_OBJECT__INCOMING_ASSOCIATIONS, InstanceObject.class, msgs);
+			if (newDestination != null)
+				msgs = ((InternalEObject) newDestination).eInverseAdd(this,
+						Av3instancePackage.INSTANCE_OBJECT__INCOMING_ASSOCIATIONS, InstanceObject.class, msgs);
+			msgs = basicSetDestination(newDestination, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Av3instancePackage.ASSOCIATION_INSTANCE__DESTINATION,
-					oldDestination, destination));
+					newDestination, newDestination));
 	}
 
 	/**
@@ -372,6 +400,11 @@ public class AssociationInstanceImpl extends InstanceObjectImpl implements Assoc
 				msgs = ((InternalEObject) source).eInverseRemove(this,
 						Av3instancePackage.INSTANCE_OBJECT__OUTGOING_ASSOCIATIONS, InstanceObject.class, msgs);
 			return basicSetSource((InstanceObject) otherEnd, msgs);
+		case Av3instancePackage.ASSOCIATION_INSTANCE__DESTINATION:
+			if (destination != null)
+				msgs = ((InternalEObject) destination).eInverseRemove(this,
+						Av3instancePackage.INSTANCE_OBJECT__INCOMING_ASSOCIATIONS, InstanceObject.class, msgs);
+			return basicSetDestination((InstanceObject) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -386,6 +419,8 @@ public class AssociationInstanceImpl extends InstanceObjectImpl implements Assoc
 		switch (featureID) {
 		case Av3instancePackage.ASSOCIATION_INSTANCE__SOURCE:
 			return basicSetSource(null, msgs);
+		case Av3instancePackage.ASSOCIATION_INSTANCE__DESTINATION:
+			return basicSetDestination(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}

@@ -191,14 +191,28 @@ class Instantiator {
 		val conni = conn.createAssociationInstance
 		val srcinstance= context.getInstanceElement(conn.source)
 		val dstinstance = context.getInstanceElement(conn.destination)
-		if (srcinstance instanceof FeatureInstance) conni.source = srcinstance as FeatureInstance
-		if (dstinstance instanceof FeatureInstance) conni.destination = dstinstance as FeatureInstance
+		if (srcinstance instanceof FeatureInstance) conni.source = srcinstance 
+		if (dstinstance instanceof FeatureInstance) conni.destination = dstinstance 
 		val allconnis = expandFeatureMappings(conni, context)
 		context.connections += allconnis
 		for (finalconni : allconnis){
 			for (pa : conn.propertyAssociations){
 				val target = finalconni.getInstanceElement(pa.target)
 				target.addPropertyAssociationInstance(createPropertyAssociationInstance(pa))
+			}
+		}
+		// handle other direction
+		if (!conn.isDirectional){
+			val bconni = conn.createAssociationInstance
+			if (srcinstance instanceof FeatureInstance) bconni.source = srcinstance as FeatureInstance
+			if (dstinstance instanceof FeatureInstance) bconni.destination = dstinstance as FeatureInstance
+			val ballconnis = expandFeatureMappings(bconni, context)
+			context.connections += ballconnis
+			for (finalconni : allconnis){
+				for (pa : conn.propertyAssociations){
+					val target = finalconni.getInstanceElement(pa.target)
+					target.addPropertyAssociationInstance(createPropertyAssociationInstance(pa))
+				}
 			}
 		}
 	}
@@ -208,8 +222,8 @@ class Instantiator {
 		val conni = conn.createAssociationInstance
 		val dstinstance= context.getInstanceElement(conn.destination)
 		val srcinstance = dstinstance
-		conni.source = srcinstance as FeatureInstance
-		conni.destination = dstinstance as FeatureInstance
+		conni.source = srcinstance 
+		conni.destination = dstinstance 
 		val expandedSources = new ArrayList<AssociationInstance>()
 		expandSourceFeatureDelegates(conni, expandedSources)
 		context.connections += expandedSources
@@ -226,8 +240,8 @@ class Instantiator {
 		val conni = conn.createAssociationInstance
 		val srcinstance= context.getInstanceElement(conn.source)
 		val dstinstance = srcinstance
-		conni.source = srcinstance as FeatureInstance
-		conni.destination = dstinstance as FeatureInstance
+		conni.source = srcinstance 
+		conni.destination = dstinstance 
 		val expandedDestinations = new ArrayList<AssociationInstance>()
 		expandDestinationFeatureDelegates(conni, expandedDestinations)
 		context.connections += expandedDestinations
@@ -259,17 +273,25 @@ class Instantiator {
 		val srcmappings = srccxt.allAssociations.filter[conn| conn.isSourceFeatureDelegate(conni)]
 		if(srcmappings.size > 1){
 			// need to make a copy of conni
+			val last = srcmappings.last
 			for (element : srcmappings) {
-				val expconni = conni.copy
+				var expconni = conni
+				if (element !== last){
+					// copy for all but last
+					expconni = conni.copy
+					// copy since they are bi-directional references
+					expconni.source= conni.source
+					expconni.destination = conni.destination
+				}
 				expconni.sourceDelegates += element
-				expconni.source = srccxt.getInstanceElement(element.destination) as FeatureInstance
+				expconni.source = srccxt.getInstanceElement(element.destination) 
 				result += expconni
 				expconni.expandSourceFeatureDelegates(result)
 			}
 		} else if (srcmappings.size == 1){
 			val element = srcmappings.head
 			conni.sourceDelegates += element
-			conni.source = srccxt.getInstanceElement(element.destination) as FeatureInstance
+			conni.source = srccxt.getInstanceElement(element.delegateTarget) 
 			if (!result.contains(conni)){
 				result += conni
 			}
@@ -288,17 +310,25 @@ class Instantiator {
 		val dstmappings = dstcxt.allAssociations.filter[conn| conn.isDestinationFeatureDelegate(conni)]
 		if(dstmappings.size > 1){
 			// need to make a copy of conni
+			val last = dstmappings.last
 			for (element : dstmappings) {
-				val expconni = conni.copy
+				var expconni = conni
+				if (element !== last ){
+					// copy for all but last
+					expconni = conni.copy
+					// copy source and destination since they did not get copied due to bidirectional reference
+					expconni.source = conni.source
+					expconni.destination = conni.destination
+				}
 				expconni.destinationDelegates += element
-				expconni.destination = dstcxt.getInstanceElement(element.destination) as FeatureInstance
+				expconni.destination = dstcxt.getInstanceElement(element.delegateTarget) 
 				result += expconni
 				expconni.expandDestinationFeatureDelegates(result)
 			}
 		} else if (dstmappings.size == 1){
 			val element = dstmappings.head
 			conni.destinationDelegates += element
-			conni.destination = dstcxt.getInstanceElement(element.destination) as FeatureInstance
+			conni.destination = dstcxt.getInstanceElement(element.delegateTarget) 
 			if (!result.contains(conni)){
 				result += conni
 			}

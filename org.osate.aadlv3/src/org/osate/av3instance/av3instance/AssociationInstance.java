@@ -128,6 +128,7 @@ public interface AssociationInstance extends InstanceObject {
 
 	/**
 	 * Returns the value of the '<em><b>Destination</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.osate.av3instance.av3instance.InstanceObject#getIncomingAssociations <em>Incoming Associations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Destination</em>' reference isn't clear,
@@ -137,7 +138,8 @@ public interface AssociationInstance extends InstanceObject {
 	 * @return the value of the '<em>Destination</em>' reference.
 	 * @see #setDestination(InstanceObject)
 	 * @see org.osate.av3instance.av3instance.Av3instancePackage#getAssociationInstance_Destination()
-	 * @model resolveProxies="false" ordered="false"
+	 * @see org.osate.av3instance.av3instance.InstanceObject#getIncomingAssociations
+	 * @model opposite="incomingAssociations" resolveProxies="false" ordered="false"
 	 * @generated
 	 */
 	InstanceObject getDestination();

@@ -84,6 +84,7 @@ public interface InstanceObject extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Incoming Associations</b></em>' reference list.
 	 * The list contents are of type {@link org.osate.av3instance.av3instance.AssociationInstance}.
+	 * It is bidirectional and its opposite is '{@link org.osate.av3instance.av3instance.AssociationInstance#getDestination <em>Destination</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Incoming Associations</em>' reference list isn't clear,
@@ -92,7 +93,8 @@ public interface InstanceObject extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Incoming Associations</em>' reference list.
 	 * @see org.osate.av3instance.av3instance.Av3instancePackage#getInstanceObject_IncomingAssociations()
-	 * @model resolveProxies="false" transient="true" ordered="false"
+	 * @see org.osate.av3instance.av3instance.AssociationInstance#getDestination
+	 * @model opposite="destination" resolveProxies="false" transient="true" ordered="false"
 	 * @generated
 	 */
 	EList<AssociationInstance> getIncomingAssociations();

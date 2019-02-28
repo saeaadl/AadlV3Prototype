@@ -7,10 +7,11 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="propertyAssociations" upperBound="-1"
         eType="#//PropertyAssociationInstance" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="incomingAssociations" ordered="false"
-        upperBound="-1" eType="#//AssociationInstance" transient="true" resolveProxies="false"/>
+        upperBound="-1" eType="#//AssociationInstance" transient="true" derived="true"
+        resolveProxies="false" eOpposite="#//AssociationInstance/destination"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="outgoingAssociations" ordered="false"
-        upperBound="-1" eType="#//AssociationInstance" transient="true" resolveProxies="false"
-        eOpposite="#//AssociationInstance/source"/>
+        upperBound="-1" eType="#//AssociationInstance" transient="true" derived="true"
+        resolveProxies="false" eOpposite="#//AssociationInstance/source"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FeatureInstance" eSuperTypes="#//InstanceObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="feature" eType="ecore:EClass Aadlv3.ecore#//Feature"/>
@@ -40,7 +41,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="source" ordered="false"
         eType="#//InstanceObject" resolveProxies="false" eOpposite="#//InstanceObject/outgoingAssociations"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="destination" ordered="false"
-        eType="#//InstanceObject" resolveProxies="false"/>
+        eType="#//InstanceObject" resolveProxies="false" eOpposite="#//InstanceObject/incomingAssociations"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="sourceDelegates" upperBound="-1"
         eType="ecore:EClass Aadlv3.ecore#//Association"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="destinationDelegates" upperBound="-1"

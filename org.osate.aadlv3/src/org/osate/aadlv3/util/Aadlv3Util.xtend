@@ -1117,7 +1117,9 @@ class Aadlv3Util {
 		val srcfi = conni.source
 		if (srcfi instanceof FeatureInstance){
 			conn.associationType == AssociationType.FEATUREDELEGATE &&
-			(conn.source.element == srcfi.feature || srcfi.features.exists[subfi|subfi.feature == conn.source.element])
+			((conn.source.element == srcfi.feature || srcfi.features.exists[subfi|subfi.feature == conn.source.element])
+				|| (conn.destination.element == srcfi.feature || srcfi.features.exists[subfi|subfi.feature == conn.destination.element])
+			)
 		} else {
 			false
 		}
@@ -1129,9 +1131,15 @@ class Aadlv3Util {
 		if (dstfi instanceof FeatureInstance){
 			val srcmappings = conni.sourceDelegates
 			conn.associationType == AssociationType.FEATUREDELEGATE &&
-			(conn.source.element == dstfi.feature || dstfi.features.
-				exists[subfi|subfi.feature == conn.source.element && srcmappings.exists[srcconn|srcconn.source.element == conn.source.element]
-			])
+			((conn.source.element == dstfi.feature || dstfi.features.
+				exists[subfi|subfi.feature == conn.source.element && (srcmappings.exists[srcconn|srcconn.source.element == conn.source.element]
+					|| srcmappings.exists[srcconn|srcconn.source.element == conn.destination.element]
+				)])
+			|| ((conn.source.element == dstfi.feature || dstfi.features.
+				exists[subfi|subfi.feature == conn.destination.element && (srcmappings.exists[srcconn|srcconn.source.element == conn.destination.element]
+					|| srcmappings.exists[srcconn|srcconn.destination.element == conn.destination.element]
+				)])
+			))
 		} else {
 			false
 		}
@@ -1252,6 +1260,17 @@ class Aadlv3Util {
 		return res
 		
 	}
+	
+	/**
+	 * return the target of a feature delegate, i.e., the association end that is further down the hierarchy
+	 */
+	def static ModelElementReference getDelegateTarget(Association assoc){
+		if (assoc.source.modelElementReferenceIncludesComponent){
+			assoc.source
+		} else {
+			assoc.destination
+		}
+	}
 
 	
 	////////////////////////////////////
@@ -1293,6 +1312,8 @@ class Aadlv3Util {
 			case VIRTUALMEMORY: {
 			}
 			case VIRTUALPROCESSOR: {
+			}
+			case INTERFACE: {
 			}
 		}
 	}

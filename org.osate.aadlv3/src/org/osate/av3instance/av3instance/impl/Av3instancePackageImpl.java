@@ -595,9 +595,10 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 		initEReference(getInstanceObject_PropertyAssociations(), this.getPropertyAssociationInstance(), null,
 				"propertyAssociations", null, 0, -1, InstanceObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, //$NON-NLS-1$
 				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getInstanceObject_IncomingAssociations(), this.getAssociationInstance(), null,
-				"incomingAssociations", null, 0, -1, InstanceObject.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, //$NON-NLS-1$
-				!IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getInstanceObject_IncomingAssociations(), this.getAssociationInstance(),
+				this.getAssociationInstance_Destination(), "incomingAssociations", null, 0, -1, InstanceObject.class, //$NON-NLS-1$
+				IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getInstanceObject_OutgoingAssociations(), this.getAssociationInstance(),
 				this.getAssociationInstance_Source(), "outgoingAssociations", null, 0, -1, InstanceObject.class, //$NON-NLS-1$
 				IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
@@ -654,9 +655,10 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 				this.getInstanceObject_OutgoingAssociations(), "source", null, 0, 1, AssociationInstance.class, //$NON-NLS-1$
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 				IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getAssociationInstance_Destination(), this.getInstanceObject(), null, "destination", null, 0, 1, //$NON-NLS-1$
-				AssociationInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getAssociationInstance_Destination(), this.getInstanceObject(),
+				this.getInstanceObject_IncomingAssociations(), "destination", null, 0, 1, AssociationInstance.class, //$NON-NLS-1$
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getAssociationInstance_SourceDelegates(), theAadlv3Package.getAssociation(), null,
 				"sourceDelegates", null, 0, -1, AssociationInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, //$NON-NLS-1$
 				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
