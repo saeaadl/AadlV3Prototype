@@ -1,14 +1,10 @@
-package simpleinstances
-workingset simpleinstances is
-//	first : system configurationoverlap::top.overlap ;
-//	
-//	second: system configurationoverlap::top.config_Safety;
-//	
-//	third : system configurationoverlap::top.doublesub;
+package testinstances
+workingset testinstances is
 	
-//	fourth: system configurationoverlap::top.config_L22;
-	fifth: system configurationoverlap::top.config_L1Sub1;
-	
+	portex: system PortConnectionExample::conntop.conf;
+//	connex: system ConnectionExamples::conntop.i;
+
+//  flowex: system FlowExamples::conntop.i;
 	
 end
 end

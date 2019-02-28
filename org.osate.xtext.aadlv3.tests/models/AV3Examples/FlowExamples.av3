@@ -56,7 +56,7 @@ package FlowExamples
 	insignal : in port;
 	outsignal : out port;
 	filterpath: flow path insignal -> outsignal;
-	#Period => 20 ;
+	#Period => 20 
 	end
 	
 	thread interface compute is
@@ -91,8 +91,8 @@ package FlowExamples
 	system hardwareplatform.impl is
 	cpu: processor x86;
 	mybus: bus canbus;
-	busconn: connection cpu.canbusaccess -> mybus;
-	extbusaccess: delegate canbusaccess -> mybus;
+	busconn: connection cpu.canbusaccess <-> mybus;
+	extbusaccess: delegate canbusaccess <-> mybus;
 	end
 	
 end
