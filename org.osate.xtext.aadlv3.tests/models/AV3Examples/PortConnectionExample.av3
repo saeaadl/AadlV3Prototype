@@ -77,12 +77,12 @@ package PortConnectionExample
 	system interface conntop end
 	
 	system conntop.i is
-//		sense: abstract sensor.i;
-//		processing: process controlProcess.impl;
-//		actuate: abstract actuator.i;
+		sense: abstract sensor.i;
+		processing: process controlProcess.impl;
+		actuate: abstract actuator.i;
 		hw : system hardwareplatform.impl;
-//		sensetocontrol: connection sense.outp -> processing.insignal;
-//		controltoactuate: connection processing.outaction -> actuate.inp;
+		sensetocontrol: connection sense.outp -> processing.insignal;
+		controltoactuate: connection processing.outaction -> actuate.inp;
 	end
 	
 	bus interface canbus 

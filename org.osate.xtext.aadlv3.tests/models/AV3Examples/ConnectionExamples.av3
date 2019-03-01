@@ -45,7 +45,6 @@ package ConnectionExamples
 		actuate: abstract actuator.i;
 		hw : system hardwareplatform.impl;
 		conn1: connection sense.sub1.p1 -> actuate.sub2.p1;
-		conn2: connection sense.outp -> actuate.inp;
 		stateaccess: connection  actuate.state -> sense.state ;
 		fconn: connection sense.fea -> actuate.fea;
 	end

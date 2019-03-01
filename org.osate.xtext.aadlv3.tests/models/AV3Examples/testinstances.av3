@@ -1,8 +1,8 @@
 package testinstances
 workingset testinstances is
 	
-//	portex: system PortConnectionExample::conntop.i;
-//	connex: system ConnectionExamples::conntop.i;
+	portex: system PortConnectionExample::conntop.i;
+	connex: system ConnectionExamples::conntop.i;
 
   flowex: system FlowExamples::conntop.i;
 	
