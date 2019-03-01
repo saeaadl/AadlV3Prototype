@@ -1662,25 +1662,25 @@ ruleConnection returns [EObject current=null]
 			)
 		)
 		(
+			otherlv_4='->'
+			{
+				newLeafNode(otherlv_4, grammarAccess.getConnectionAccess().getHyphenMinusGreaterThanSignKeyword_4_0());
+			}
+			    |
 			(
 				(
-					lv_directional_4_0='->'
+					lv_bidirectional_5_0='<->'
 					{
-						newLeafNode(lv_directional_4_0, grammarAccess.getConnectionAccess().getDirectionalHyphenMinusGreaterThanSignKeyword_4_0_0());
+						newLeafNode(lv_bidirectional_5_0, grammarAccess.getConnectionAccess().getBidirectionalLessThanSignHyphenMinusGreaterThanSignKeyword_4_1_0());
 					}
 					{
 						if ($current==null) {
 							$current = createModelElement(grammarAccess.getConnectionRule());
 						}
-						setWithLastConsumed($current, "directional", true, "->");
+						setWithLastConsumed($current, "bidirectional", true, "<->");
 					}
 				)
 			)
-			    |
-			otherlv_5='<->'
-			{
-				newLeafNode(otherlv_5, grammarAccess.getConnectionAccess().getLessThanSignHyphenMinusGreaterThanSignKeyword_4_1());
-			}
 		)
 		(
 			(
@@ -1794,25 +1794,25 @@ ruleFeatureDelegate returns [EObject current=null]
 			)
 		)
 		(
+			otherlv_4='->'
+			{
+				newLeafNode(otherlv_4, grammarAccess.getFeatureDelegateAccess().getHyphenMinusGreaterThanSignKeyword_4_0());
+			}
+			    |
 			(
 				(
-					lv_directional_4_0='->'
+					lv_bidirectional_5_0='<->'
 					{
-						newLeafNode(lv_directional_4_0, grammarAccess.getFeatureDelegateAccess().getDirectionalHyphenMinusGreaterThanSignKeyword_4_0_0());
+						newLeafNode(lv_bidirectional_5_0, grammarAccess.getFeatureDelegateAccess().getBidirectionalLessThanSignHyphenMinusGreaterThanSignKeyword_4_1_0());
 					}
 					{
 						if ($current==null) {
 							$current = createModelElement(grammarAccess.getFeatureDelegateRule());
 						}
-						setWithLastConsumed($current, "directional", true, "->");
+						setWithLastConsumed($current, "bidirectional", true, "<->");
 					}
 				)
 			)
-			    |
-			otherlv_5='<->'
-			{
-				newLeafNode(otherlv_5, grammarAccess.getFeatureDelegateAccess().getLessThanSignHyphenMinusGreaterThanSignKeyword_4_1());
-			}
 		)
 		(
 			(

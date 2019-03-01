@@ -4167,14 +4167,14 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleConnection"
-    // InternalAadlV3.g:1596:1: ruleConnection returns [EObject current=null] : ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= ':' ( (lv_associationType_2_0= ruleConnectionType ) ) ( (lv_source_3_0= ruleModelElementReference ) ) ( ( (lv_directional_4_0= '->' ) ) | otherlv_5= '<->' ) ( (lv_destination_6_0= ruleModelElementReference ) ) (this_PropertiesBlock_7= rulePropertiesBlock[$current] )? ) ;
+    // InternalAadlV3.g:1596:1: ruleConnection returns [EObject current=null] : ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= ':' ( (lv_associationType_2_0= ruleConnectionType ) ) ( (lv_source_3_0= ruleModelElementReference ) ) (otherlv_4= '->' | ( (lv_bidirectional_5_0= '<->' ) ) ) ( (lv_destination_6_0= ruleModelElementReference ) ) (this_PropertiesBlock_7= rulePropertiesBlock[$current] )? ) ;
     public final EObject ruleConnection() throws RecognitionException {
         EObject current = null;
 
         Token lv_name_0_0=null;
         Token otherlv_1=null;
-        Token lv_directional_4_0=null;
-        Token otherlv_5=null;
+        Token otherlv_4=null;
+        Token lv_bidirectional_5_0=null;
         AntlrDatatypeRuleToken lv_associationType_2_0 = null;
 
         EObject lv_source_3_0 = null;
@@ -4188,11 +4188,11 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalAadlV3.g:1602:2: ( ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= ':' ( (lv_associationType_2_0= ruleConnectionType ) ) ( (lv_source_3_0= ruleModelElementReference ) ) ( ( (lv_directional_4_0= '->' ) ) | otherlv_5= '<->' ) ( (lv_destination_6_0= ruleModelElementReference ) ) (this_PropertiesBlock_7= rulePropertiesBlock[$current] )? ) )
-            // InternalAadlV3.g:1603:2: ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= ':' ( (lv_associationType_2_0= ruleConnectionType ) ) ( (lv_source_3_0= ruleModelElementReference ) ) ( ( (lv_directional_4_0= '->' ) ) | otherlv_5= '<->' ) ( (lv_destination_6_0= ruleModelElementReference ) ) (this_PropertiesBlock_7= rulePropertiesBlock[$current] )? )
+            // InternalAadlV3.g:1602:2: ( ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= ':' ( (lv_associationType_2_0= ruleConnectionType ) ) ( (lv_source_3_0= ruleModelElementReference ) ) (otherlv_4= '->' | ( (lv_bidirectional_5_0= '<->' ) ) ) ( (lv_destination_6_0= ruleModelElementReference ) ) (this_PropertiesBlock_7= rulePropertiesBlock[$current] )? ) )
+            // InternalAadlV3.g:1603:2: ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= ':' ( (lv_associationType_2_0= ruleConnectionType ) ) ( (lv_source_3_0= ruleModelElementReference ) ) (otherlv_4= '->' | ( (lv_bidirectional_5_0= '<->' ) ) ) ( (lv_destination_6_0= ruleModelElementReference ) ) (this_PropertiesBlock_7= rulePropertiesBlock[$current] )? )
             {
-            // InternalAadlV3.g:1603:2: ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= ':' ( (lv_associationType_2_0= ruleConnectionType ) ) ( (lv_source_3_0= ruleModelElementReference ) ) ( ( (lv_directional_4_0= '->' ) ) | otherlv_5= '<->' ) ( (lv_destination_6_0= ruleModelElementReference ) ) (this_PropertiesBlock_7= rulePropertiesBlock[$current] )? )
-            // InternalAadlV3.g:1604:3: ( (lv_name_0_0= RULE_ID ) ) otherlv_1= ':' ( (lv_associationType_2_0= ruleConnectionType ) ) ( (lv_source_3_0= ruleModelElementReference ) ) ( ( (lv_directional_4_0= '->' ) ) | otherlv_5= '<->' ) ( (lv_destination_6_0= ruleModelElementReference ) ) (this_PropertiesBlock_7= rulePropertiesBlock[$current] )?
+            // InternalAadlV3.g:1603:2: ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= ':' ( (lv_associationType_2_0= ruleConnectionType ) ) ( (lv_source_3_0= ruleModelElementReference ) ) (otherlv_4= '->' | ( (lv_bidirectional_5_0= '<->' ) ) ) ( (lv_destination_6_0= ruleModelElementReference ) ) (this_PropertiesBlock_7= rulePropertiesBlock[$current] )? )
+            // InternalAadlV3.g:1604:3: ( (lv_name_0_0= RULE_ID ) ) otherlv_1= ':' ( (lv_associationType_2_0= ruleConnectionType ) ) ( (lv_source_3_0= ruleModelElementReference ) ) (otherlv_4= '->' | ( (lv_bidirectional_5_0= '<->' ) ) ) ( (lv_destination_6_0= ruleModelElementReference ) ) (this_PropertiesBlock_7= rulePropertiesBlock[$current] )?
             {
             // InternalAadlV3.g:1604:3: ( (lv_name_0_0= RULE_ID ) )
             // InternalAadlV3.g:1605:4: (lv_name_0_0= RULE_ID )
@@ -4300,7 +4300,7 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalAadlV3.g:1664:3: ( ( (lv_directional_4_0= '->' ) ) | otherlv_5= '<->' )
+            // InternalAadlV3.g:1664:3: (otherlv_4= '->' | ( (lv_bidirectional_5_0= '<->' ) ) )
             int alt35=2;
             int LA35_0 = input.LA(1);
 
@@ -4319,18 +4319,30 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
             }
             switch (alt35) {
                 case 1 :
-                    // InternalAadlV3.g:1665:4: ( (lv_directional_4_0= '->' ) )
+                    // InternalAadlV3.g:1665:4: otherlv_4= '->'
                     {
-                    // InternalAadlV3.g:1665:4: ( (lv_directional_4_0= '->' ) )
-                    // InternalAadlV3.g:1666:5: (lv_directional_4_0= '->' )
-                    {
-                    // InternalAadlV3.g:1666:5: (lv_directional_4_0= '->' )
-                    // InternalAadlV3.g:1667:6: lv_directional_4_0= '->'
-                    {
-                    lv_directional_4_0=(Token)match(input,26,FOLLOW_4); if (state.failed) return current;
+                    otherlv_4=(Token)match(input,26,FOLLOW_4); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
-                      						newLeafNode(lv_directional_4_0, grammarAccess.getConnectionAccess().getDirectionalHyphenMinusGreaterThanSignKeyword_4_0_0());
+                      				newLeafNode(otherlv_4, grammarAccess.getConnectionAccess().getHyphenMinusGreaterThanSignKeyword_4_0());
+                      			
+                    }
+
+                    }
+                    break;
+                case 2 :
+                    // InternalAadlV3.g:1670:4: ( (lv_bidirectional_5_0= '<->' ) )
+                    {
+                    // InternalAadlV3.g:1670:4: ( (lv_bidirectional_5_0= '<->' ) )
+                    // InternalAadlV3.g:1671:5: (lv_bidirectional_5_0= '<->' )
+                    {
+                    // InternalAadlV3.g:1671:5: (lv_bidirectional_5_0= '<->' )
+                    // InternalAadlV3.g:1672:6: lv_bidirectional_5_0= '<->'
+                    {
+                    lv_bidirectional_5_0=(Token)match(input,27,FOLLOW_4); if (state.failed) return current;
+                    if ( state.backtracking==0 ) {
+
+                      						newLeafNode(lv_bidirectional_5_0, grammarAccess.getConnectionAccess().getBidirectionalLessThanSignHyphenMinusGreaterThanSignKeyword_4_1_0());
                       					
                     }
                     if ( state.backtracking==0 ) {
@@ -4338,7 +4350,7 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
                       						if (current==null) {
                       							current = createModelElement(grammarAccess.getConnectionRule());
                       						}
-                      						setWithLastConsumed(current, "directional", true, "->");
+                      						setWithLastConsumed(current, "bidirectional", true, "<->");
                       					
                     }
 
@@ -4347,18 +4359,6 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
 
                     }
 
-
-                    }
-                    break;
-                case 2 :
-                    // InternalAadlV3.g:1680:4: otherlv_5= '<->'
-                    {
-                    otherlv_5=(Token)match(input,27,FOLLOW_4); if (state.failed) return current;
-                    if ( state.backtracking==0 ) {
-
-                      				newLeafNode(otherlv_5, grammarAccess.getConnectionAccess().getLessThanSignHyphenMinusGreaterThanSignKeyword_4_1());
-                      			
-                    }
 
                     }
                     break;
@@ -4501,14 +4501,14 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleFeatureDelegate"
-    // InternalAadlV3.g:1728:1: ruleFeatureDelegate returns [EObject current=null] : ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= ':' ( (lv_associationType_2_0= ruleDelegateType ) ) ( (lv_source_3_0= ruleModelElementReference ) ) ( ( (lv_directional_4_0= '->' ) ) | otherlv_5= '<->' ) ( (lv_destination_6_0= ruleModelElementReference ) ) (this_PropertiesBlock_7= rulePropertiesBlock[$current] )? ) ;
+    // InternalAadlV3.g:1728:1: ruleFeatureDelegate returns [EObject current=null] : ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= ':' ( (lv_associationType_2_0= ruleDelegateType ) ) ( (lv_source_3_0= ruleModelElementReference ) ) (otherlv_4= '->' | ( (lv_bidirectional_5_0= '<->' ) ) ) ( (lv_destination_6_0= ruleModelElementReference ) ) (this_PropertiesBlock_7= rulePropertiesBlock[$current] )? ) ;
     public final EObject ruleFeatureDelegate() throws RecognitionException {
         EObject current = null;
 
         Token lv_name_0_0=null;
         Token otherlv_1=null;
-        Token lv_directional_4_0=null;
-        Token otherlv_5=null;
+        Token otherlv_4=null;
+        Token lv_bidirectional_5_0=null;
         AntlrDatatypeRuleToken lv_associationType_2_0 = null;
 
         EObject lv_source_3_0 = null;
@@ -4522,11 +4522,11 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalAadlV3.g:1734:2: ( ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= ':' ( (lv_associationType_2_0= ruleDelegateType ) ) ( (lv_source_3_0= ruleModelElementReference ) ) ( ( (lv_directional_4_0= '->' ) ) | otherlv_5= '<->' ) ( (lv_destination_6_0= ruleModelElementReference ) ) (this_PropertiesBlock_7= rulePropertiesBlock[$current] )? ) )
-            // InternalAadlV3.g:1735:2: ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= ':' ( (lv_associationType_2_0= ruleDelegateType ) ) ( (lv_source_3_0= ruleModelElementReference ) ) ( ( (lv_directional_4_0= '->' ) ) | otherlv_5= '<->' ) ( (lv_destination_6_0= ruleModelElementReference ) ) (this_PropertiesBlock_7= rulePropertiesBlock[$current] )? )
+            // InternalAadlV3.g:1734:2: ( ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= ':' ( (lv_associationType_2_0= ruleDelegateType ) ) ( (lv_source_3_0= ruleModelElementReference ) ) (otherlv_4= '->' | ( (lv_bidirectional_5_0= '<->' ) ) ) ( (lv_destination_6_0= ruleModelElementReference ) ) (this_PropertiesBlock_7= rulePropertiesBlock[$current] )? ) )
+            // InternalAadlV3.g:1735:2: ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= ':' ( (lv_associationType_2_0= ruleDelegateType ) ) ( (lv_source_3_0= ruleModelElementReference ) ) (otherlv_4= '->' | ( (lv_bidirectional_5_0= '<->' ) ) ) ( (lv_destination_6_0= ruleModelElementReference ) ) (this_PropertiesBlock_7= rulePropertiesBlock[$current] )? )
             {
-            // InternalAadlV3.g:1735:2: ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= ':' ( (lv_associationType_2_0= ruleDelegateType ) ) ( (lv_source_3_0= ruleModelElementReference ) ) ( ( (lv_directional_4_0= '->' ) ) | otherlv_5= '<->' ) ( (lv_destination_6_0= ruleModelElementReference ) ) (this_PropertiesBlock_7= rulePropertiesBlock[$current] )? )
-            // InternalAadlV3.g:1736:3: ( (lv_name_0_0= RULE_ID ) ) otherlv_1= ':' ( (lv_associationType_2_0= ruleDelegateType ) ) ( (lv_source_3_0= ruleModelElementReference ) ) ( ( (lv_directional_4_0= '->' ) ) | otherlv_5= '<->' ) ( (lv_destination_6_0= ruleModelElementReference ) ) (this_PropertiesBlock_7= rulePropertiesBlock[$current] )?
+            // InternalAadlV3.g:1735:2: ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= ':' ( (lv_associationType_2_0= ruleDelegateType ) ) ( (lv_source_3_0= ruleModelElementReference ) ) (otherlv_4= '->' | ( (lv_bidirectional_5_0= '<->' ) ) ) ( (lv_destination_6_0= ruleModelElementReference ) ) (this_PropertiesBlock_7= rulePropertiesBlock[$current] )? )
+            // InternalAadlV3.g:1736:3: ( (lv_name_0_0= RULE_ID ) ) otherlv_1= ':' ( (lv_associationType_2_0= ruleDelegateType ) ) ( (lv_source_3_0= ruleModelElementReference ) ) (otherlv_4= '->' | ( (lv_bidirectional_5_0= '<->' ) ) ) ( (lv_destination_6_0= ruleModelElementReference ) ) (this_PropertiesBlock_7= rulePropertiesBlock[$current] )?
             {
             // InternalAadlV3.g:1736:3: ( (lv_name_0_0= RULE_ID ) )
             // InternalAadlV3.g:1737:4: (lv_name_0_0= RULE_ID )
@@ -4634,7 +4634,7 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalAadlV3.g:1796:3: ( ( (lv_directional_4_0= '->' ) ) | otherlv_5= '<->' )
+            // InternalAadlV3.g:1796:3: (otherlv_4= '->' | ( (lv_bidirectional_5_0= '<->' ) ) )
             int alt37=2;
             int LA37_0 = input.LA(1);
 
@@ -4653,18 +4653,30 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
             }
             switch (alt37) {
                 case 1 :
-                    // InternalAadlV3.g:1797:4: ( (lv_directional_4_0= '->' ) )
+                    // InternalAadlV3.g:1797:4: otherlv_4= '->'
                     {
-                    // InternalAadlV3.g:1797:4: ( (lv_directional_4_0= '->' ) )
-                    // InternalAadlV3.g:1798:5: (lv_directional_4_0= '->' )
-                    {
-                    // InternalAadlV3.g:1798:5: (lv_directional_4_0= '->' )
-                    // InternalAadlV3.g:1799:6: lv_directional_4_0= '->'
-                    {
-                    lv_directional_4_0=(Token)match(input,26,FOLLOW_4); if (state.failed) return current;
+                    otherlv_4=(Token)match(input,26,FOLLOW_4); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
-                      						newLeafNode(lv_directional_4_0, grammarAccess.getFeatureDelegateAccess().getDirectionalHyphenMinusGreaterThanSignKeyword_4_0_0());
+                      				newLeafNode(otherlv_4, grammarAccess.getFeatureDelegateAccess().getHyphenMinusGreaterThanSignKeyword_4_0());
+                      			
+                    }
+
+                    }
+                    break;
+                case 2 :
+                    // InternalAadlV3.g:1802:4: ( (lv_bidirectional_5_0= '<->' ) )
+                    {
+                    // InternalAadlV3.g:1802:4: ( (lv_bidirectional_5_0= '<->' ) )
+                    // InternalAadlV3.g:1803:5: (lv_bidirectional_5_0= '<->' )
+                    {
+                    // InternalAadlV3.g:1803:5: (lv_bidirectional_5_0= '<->' )
+                    // InternalAadlV3.g:1804:6: lv_bidirectional_5_0= '<->'
+                    {
+                    lv_bidirectional_5_0=(Token)match(input,27,FOLLOW_4); if (state.failed) return current;
+                    if ( state.backtracking==0 ) {
+
+                      						newLeafNode(lv_bidirectional_5_0, grammarAccess.getFeatureDelegateAccess().getBidirectionalLessThanSignHyphenMinusGreaterThanSignKeyword_4_1_0());
                       					
                     }
                     if ( state.backtracking==0 ) {
@@ -4672,7 +4684,7 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
                       						if (current==null) {
                       							current = createModelElement(grammarAccess.getFeatureDelegateRule());
                       						}
-                      						setWithLastConsumed(current, "directional", true, "->");
+                      						setWithLastConsumed(current, "bidirectional", true, "<->");
                       					
                     }
 
@@ -4681,18 +4693,6 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
 
                     }
 
-
-                    }
-                    break;
-                case 2 :
-                    // InternalAadlV3.g:1812:4: otherlv_5= '<->'
-                    {
-                    otherlv_5=(Token)match(input,27,FOLLOW_4); if (state.failed) return current;
-                    if ( state.backtracking==0 ) {
-
-                      				newLeafNode(otherlv_5, grammarAccess.getFeatureDelegateAccess().getLessThanSignHyphenMinusGreaterThanSignKeyword_4_1());
-                      			
-                    }
 
                     }
                     break;

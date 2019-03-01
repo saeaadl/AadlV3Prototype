@@ -105,11 +105,11 @@ Component returns av3::Component:
 
 Connection returns av3::Association:
 	name=ID ':' associationType=ConnectionType source=ModelElementReference
-	(directional?='->'|'<->') destination=ModelElementReference PropertiesBlock? ;
+	('->'|bidirectional?='<->') destination=ModelElementReference PropertiesBlock? ;
 
 FeatureDelegate returns av3::Association:
 	name=ID ':' associationType=DelegateType source=ModelElementReference
-	(directional?='->'|'<->') destination=ModelElementReference PropertiesBlock? ;
+	('->'|bidirectional?='<->') destination=ModelElementReference PropertiesBlock? ;
 
 
 Binding returns av3::Association:

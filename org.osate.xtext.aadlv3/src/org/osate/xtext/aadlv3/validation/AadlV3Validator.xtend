@@ -664,7 +664,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 		val srcdir = assoc.source.realFeatureDirection
 		val dstdir = assoc.destination.realFeatureDirection
 		if (assoc.associationType.isConnection) {
-			if (assoc.isDirectional){
+			if (!assoc.isBidirectional){
 				if (!(srcdir?.outgoing && dstdir?.incoming)) {
 					error('Connection source must be outgoing and destination must be incoming', assoc, null, OUT_TO_IN)
 				}
@@ -675,7 +675,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 				}
 			}
 		} else if (assoc.associationType.isFeatureDelegate) {
-			if (assoc.isDirectional){
+			if (!assoc.isBidirectional){
 				if (!(srcdir === dstdir || srcdir === FeatureDirection.NONE || dstdir === FeatureDirection.NONE)) {
 					error('Feature delegate directions must be same', assoc, null, SAME_DIRECTION)
 				}

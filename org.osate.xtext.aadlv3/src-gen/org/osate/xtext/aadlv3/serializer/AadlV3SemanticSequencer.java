@@ -438,7 +438,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *         name=ID 
 	 *         associationType=ConnectionType 
 	 *         source=ModelElementReference 
-	 *         directional?='->'? 
+	 *         bidirectional?='<->'? 
 	 *         destination=ModelElementReference 
 	 *         (propertyAssociations+=PropertyAssociation propertyAssociations+=PropertyAssociation*)?
 	 *     )
@@ -470,7 +470,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *         name=ID 
 	 *         associationType=DelegateType 
 	 *         source=ModelElementReference 
-	 *         directional?='->'? 
+	 *         bidirectional?='<->'? 
 	 *         destination=ModelElementReference 
 	 *         (propertyAssociations+=PropertyAssociation propertyAssociations+=PropertyAssociation*)?
 	 *     )

@@ -1131,13 +1131,13 @@ public interface Aadlv3Package extends EPackage {
 	int ASSOCIATION__DESTINATION = MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Directional</b></em>' attribute.
+	 * The feature id for the '<em><b>Bidirectional</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__DIRECTIONAL = MODEL_ELEMENT_FEATURE_COUNT + 3;
+	int ASSOCIATION__BIDIRECTIONAL = MODEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Association</em>' class.
@@ -2361,15 +2361,15 @@ public interface Aadlv3Package extends EPackage {
 	EReference getAssociation_Destination();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.osate.aadlv3.aadlv3.Association#isDirectional <em>Directional</em>}'.
+	 * Returns the meta object for the attribute '{@link org.osate.aadlv3.aadlv3.Association#isBidirectional <em>Bidirectional</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Directional</em>'.
-	 * @see org.osate.aadlv3.aadlv3.Association#isDirectional()
+	 * @return the meta object for the attribute '<em>Bidirectional</em>'.
+	 * @see org.osate.aadlv3.aadlv3.Association#isBidirectional()
 	 * @see #getAssociation()
 	 * @generated
 	 */
-	EAttribute getAssociation_Directional();
+	EAttribute getAssociation_Bidirectional();
 
 	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.ConfigurationAssignment <em>Configuration Assignment</em>}'.
@@ -3352,12 +3352,12 @@ public interface Aadlv3Package extends EPackage {
 		EReference ASSOCIATION__DESTINATION = eINSTANCE.getAssociation_Destination();
 
 		/**
-		 * The meta object literal for the '<em><b>Directional</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Bidirectional</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ASSOCIATION__DIRECTIONAL = eINSTANCE.getAssociation_Directional();
+		EAttribute ASSOCIATION__BIDIRECTIONAL = eINSTANCE.getAssociation_Bidirectional();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.ConfigurationAssignmentImpl <em>Configuration Assignment</em>}' class.

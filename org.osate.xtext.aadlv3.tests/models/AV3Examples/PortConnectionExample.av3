@@ -77,25 +77,13 @@ package PortConnectionExample
 	system interface conntop end
 	
 	system conntop.i is
-		sense: abstract sensor;
-		processing: process controlProcess;
-		actuate: abstract actuator;
-		hw : system hardwareplatform;
-		sensetocontrol: connection sense.outp -> processing.insignal;
-		controltoactuate: connection processing.outaction -> actuate.inp;
-	end
-//	system conntop.i is
 //		sense: abstract sensor.i;
 //		processing: process controlProcess.impl;
 //		actuate: abstract actuator.i;
-//		hw : system hardwareplatform.impl;
-//		sensetocontrol: connection sense.outp -> processing.controlIF.insignal;
-//		controltoactuate: connection processing.controlIF.outaction -> actuate.inp;
-//	end
-
-configuration conntop.conf extends conntop.i is
-    processing => controlProcess.impl;
-end
+		hw : system hardwareplatform.impl;
+//		sensetocontrol: connection sense.outp -> processing.insignal;
+//		controltoactuate: connection processing.outaction -> actuate.inp;
+	end
 	
 	bus interface canbus 
 	end
@@ -112,7 +100,7 @@ end
 	cpu: processor x86;
 	mybus: bus canbus;
 	busconn: connection cpu.canbusaccess <-> mybus;
-	extbusaccess: delegate canbusaccess <-> mybus;
+//	extbusaccess: delegate canbusaccess <-> mybus;
 	end
 	
 end

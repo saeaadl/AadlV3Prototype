@@ -2445,15 +2445,15 @@ rule__Connection__Alternatives_4
 	}
 :
 	(
-		{ before(grammarAccess.getConnectionAccess().getDirectionalAssignment_4_0()); }
-		(rule__Connection__DirectionalAssignment_4_0)
-		{ after(grammarAccess.getConnectionAccess().getDirectionalAssignment_4_0()); }
+		{ before(grammarAccess.getConnectionAccess().getHyphenMinusGreaterThanSignKeyword_4_0()); }
+		'->'
+		{ after(grammarAccess.getConnectionAccess().getHyphenMinusGreaterThanSignKeyword_4_0()); }
 	)
 	|
 	(
-		{ before(grammarAccess.getConnectionAccess().getLessThanSignHyphenMinusGreaterThanSignKeyword_4_1()); }
-		'<->'
-		{ after(grammarAccess.getConnectionAccess().getLessThanSignHyphenMinusGreaterThanSignKeyword_4_1()); }
+		{ before(grammarAccess.getConnectionAccess().getBidirectionalAssignment_4_1()); }
+		(rule__Connection__BidirectionalAssignment_4_1)
+		{ after(grammarAccess.getConnectionAccess().getBidirectionalAssignment_4_1()); }
 	)
 ;
 finally {
@@ -2466,15 +2466,15 @@ rule__FeatureDelegate__Alternatives_4
 	}
 :
 	(
-		{ before(grammarAccess.getFeatureDelegateAccess().getDirectionalAssignment_4_0()); }
-		(rule__FeatureDelegate__DirectionalAssignment_4_0)
-		{ after(grammarAccess.getFeatureDelegateAccess().getDirectionalAssignment_4_0()); }
+		{ before(grammarAccess.getFeatureDelegateAccess().getHyphenMinusGreaterThanSignKeyword_4_0()); }
+		'->'
+		{ after(grammarAccess.getFeatureDelegateAccess().getHyphenMinusGreaterThanSignKeyword_4_0()); }
 	)
 	|
 	(
-		{ before(grammarAccess.getFeatureDelegateAccess().getLessThanSignHyphenMinusGreaterThanSignKeyword_4_1()); }
-		'<->'
-		{ after(grammarAccess.getFeatureDelegateAccess().getLessThanSignHyphenMinusGreaterThanSignKeyword_4_1()); }
+		{ before(grammarAccess.getFeatureDelegateAccess().getBidirectionalAssignment_4_1()); }
+		(rule__FeatureDelegate__BidirectionalAssignment_4_1)
+		{ after(grammarAccess.getFeatureDelegateAccess().getBidirectionalAssignment_4_1()); }
 	)
 ;
 finally {
@@ -12737,19 +12737,19 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Connection__DirectionalAssignment_4_0
+rule__Connection__BidirectionalAssignment_4_1
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getConnectionAccess().getDirectionalHyphenMinusGreaterThanSignKeyword_4_0_0()); }
+		{ before(grammarAccess.getConnectionAccess().getBidirectionalLessThanSignHyphenMinusGreaterThanSignKeyword_4_1_0()); }
 		(
-			{ before(grammarAccess.getConnectionAccess().getDirectionalHyphenMinusGreaterThanSignKeyword_4_0_0()); }
-			'->'
-			{ after(grammarAccess.getConnectionAccess().getDirectionalHyphenMinusGreaterThanSignKeyword_4_0_0()); }
+			{ before(grammarAccess.getConnectionAccess().getBidirectionalLessThanSignHyphenMinusGreaterThanSignKeyword_4_1_0()); }
+			'<->'
+			{ after(grammarAccess.getConnectionAccess().getBidirectionalLessThanSignHyphenMinusGreaterThanSignKeyword_4_1_0()); }
 		)
-		{ after(grammarAccess.getConnectionAccess().getDirectionalHyphenMinusGreaterThanSignKeyword_4_0_0()); }
+		{ after(grammarAccess.getConnectionAccess().getBidirectionalLessThanSignHyphenMinusGreaterThanSignKeyword_4_1_0()); }
 	)
 ;
 finally {
@@ -12816,19 +12816,19 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__FeatureDelegate__DirectionalAssignment_4_0
+rule__FeatureDelegate__BidirectionalAssignment_4_1
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getFeatureDelegateAccess().getDirectionalHyphenMinusGreaterThanSignKeyword_4_0_0()); }
+		{ before(grammarAccess.getFeatureDelegateAccess().getBidirectionalLessThanSignHyphenMinusGreaterThanSignKeyword_4_1_0()); }
 		(
-			{ before(grammarAccess.getFeatureDelegateAccess().getDirectionalHyphenMinusGreaterThanSignKeyword_4_0_0()); }
-			'->'
-			{ after(grammarAccess.getFeatureDelegateAccess().getDirectionalHyphenMinusGreaterThanSignKeyword_4_0_0()); }
+			{ before(grammarAccess.getFeatureDelegateAccess().getBidirectionalLessThanSignHyphenMinusGreaterThanSignKeyword_4_1_0()); }
+			'<->'
+			{ after(grammarAccess.getFeatureDelegateAccess().getBidirectionalLessThanSignHyphenMinusGreaterThanSignKeyword_4_1_0()); }
 		)
-		{ after(grammarAccess.getFeatureDelegateAccess().getDirectionalHyphenMinusGreaterThanSignKeyword_4_0_0()); }
+		{ after(grammarAccess.getFeatureDelegateAccess().getBidirectionalLessThanSignHyphenMinusGreaterThanSignKeyword_4_1_0()); }
 	)
 ;
 finally {

@@ -109,7 +109,7 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="destination" eType="#//ModelElementReference"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="directional" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="bidirectional" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PathSequence" eSuperTypes="#//ModelElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//ModelElementReference"

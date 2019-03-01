@@ -36,6 +36,7 @@ import org.osate.aadlv3.aadlv3.AssociationType;
  *   <li>{@link org.osate.av3instance.av3instance.AssociationInstance#getSourceDelegates <em>Source Delegates</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.AssociationInstance#getDestinationDelegates <em>Destination Delegates</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.AssociationInstance#isExternal <em>External</em>}</li>
+ *   <li>{@link org.osate.av3instance.av3instance.AssociationInstance#isBidirectional <em>Bidirectional</em>}</li>
  * </ul>
  *
  * @see org.osate.av3instance.av3instance.Av3instancePackage#getAssociationInstance()
@@ -185,6 +186,32 @@ public interface AssociationInstance extends InstanceObject {
 	 * @generated
 	 */
 	EList<Association> getDestinationDelegates();
+
+	/**
+	 * Returns the value of the '<em><b>Bidirectional</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Bidirectional</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Bidirectional</em>' attribute.
+	 * @see #setBidirectional(boolean)
+	 * @see org.osate.av3instance.av3instance.Av3instancePackage#getAssociationInstance_Bidirectional()
+	 * @model
+	 * @generated
+	 */
+	boolean isBidirectional();
+
+	/**
+	 * Sets the value of the '{@link org.osate.av3instance.av3instance.AssociationInstance#isBidirectional <em>Bidirectional</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Bidirectional</em>' attribute.
+	 * @see #isBidirectional()
+	 * @generated
+	 */
+	void setBidirectional(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>External</b></em>' attribute.

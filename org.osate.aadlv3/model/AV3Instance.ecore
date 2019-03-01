@@ -47,6 +47,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="destinationDelegates" upperBound="-1"
         eType="ecore:EClass Aadlv3.ecore#//Association"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="external" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="bidirectional" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PropertyAssociationInstance" eSuperTypes="#//InstanceObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="property" eType="ecore:EClass Aadlv3.ecore#//PropertyDefinition"/>

@@ -470,13 +470,22 @@ public interface Av3instancePackage extends EPackage {
 	int ASSOCIATION_INSTANCE__EXTERNAL = INSTANCE_OBJECT_FEATURE_COUNT + 6;
 
 	/**
+	 * The feature id for the '<em><b>Bidirectional</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION_INSTANCE__BIDIRECTIONAL = INSTANCE_OBJECT_FEATURE_COUNT + 7;
+
+	/**
 	 * The number of structural features of the '<em>Association Instance</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION_INSTANCE_FEATURE_COUNT = INSTANCE_OBJECT_FEATURE_COUNT + 7;
+	int ASSOCIATION_INSTANCE_FEATURE_COUNT = INSTANCE_OBJECT_FEATURE_COUNT + 8;
 
 	/**
 	 * The number of operations of the '<em>Association Instance</em>' class.
@@ -932,6 +941,17 @@ public interface Av3instancePackage extends EPackage {
 	EReference getAssociationInstance_DestinationDelegates();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.osate.av3instance.av3instance.AssociationInstance#isBidirectional <em>Bidirectional</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Bidirectional</em>'.
+	 * @see org.osate.av3instance.av3instance.AssociationInstance#isBidirectional()
+	 * @see #getAssociationInstance()
+	 * @generated
+	 */
+	EAttribute getAssociationInstance_Bidirectional();
+
+	/**
 	 * Returns the meta object for the attribute '{@link org.osate.av3instance.av3instance.AssociationInstance#isExternal <em>External</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1248,6 +1268,14 @@ public interface Av3instancePackage extends EPackage {
 		 */
 		EReference ASSOCIATION_INSTANCE__DESTINATION_DELEGATES = eINSTANCE
 				.getAssociationInstance_DestinationDelegates();
+
+		/**
+		 * The meta object literal for the '<em><b>Bidirectional</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ASSOCIATION_INSTANCE__BIDIRECTIONAL = eINSTANCE.getAssociationInstance_Bidirectional();
 
 		/**
 		 * The meta object literal for the '<em><b>External</b></em>' attribute feature.

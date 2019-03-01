@@ -187,32 +187,18 @@ class Instantiator {
 
 	
 	def void instantiateConnection(Association conn, ComponentInstance context){
-		if (conn.source.context === null || conn.destination.context === null) return
 		val conni = conn.createAssociationInstance
+		conni.bidirectional = conn.bidirectional
 		val srcinstance= context.getInstanceElement(conn.source)
 		val dstinstance = context.getInstanceElement(conn.destination)
-		if (srcinstance instanceof FeatureInstance) conni.source = srcinstance 
-		if (dstinstance instanceof FeatureInstance) conni.destination = dstinstance 
+		conni.source = srcinstance 
+		conni.destination = dstinstance 
 		val allconnis = expandFeatureMappings(conni, context)
 		context.connections += allconnis
 		for (finalconni : allconnis){
 			for (pa : conn.propertyAssociations){
 				val target = finalconni.getInstanceElement(pa.target)
 				target.addPropertyAssociationInstance(createPropertyAssociationInstance(pa))
-			}
-		}
-		// handle other direction
-		if (!conn.isDirectional){
-			val bconni = conn.createAssociationInstance
-			if (srcinstance instanceof FeatureInstance) bconni.source = srcinstance as FeatureInstance
-			if (dstinstance instanceof FeatureInstance) bconni.destination = dstinstance as FeatureInstance
-			val ballconnis = expandFeatureMappings(bconni, context)
-			context.connections += ballconnis
-			for (finalconni : allconnis){
-				for (pa : conn.propertyAssociations){
-					val target = finalconni.getInstanceElement(pa.target)
-					target.addPropertyAssociationInstance(createPropertyAssociationInstance(pa))
-				}
 			}
 		}
 	}

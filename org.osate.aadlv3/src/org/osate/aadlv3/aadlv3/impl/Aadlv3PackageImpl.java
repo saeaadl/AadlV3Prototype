@@ -937,7 +937,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getAssociation_Directional() {
+	public EAttribute getAssociation_Bidirectional() {
 		return (EAttribute) associationEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -1486,7 +1486,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		createEAttribute(associationEClass, ASSOCIATION__ASSOCIATION_TYPE);
 		createEReference(associationEClass, ASSOCIATION__SOURCE);
 		createEReference(associationEClass, ASSOCIATION__DESTINATION);
-		createEAttribute(associationEClass, ASSOCIATION__DIRECTIONAL);
+		createEAttribute(associationEClass, ASSOCIATION__BIDIRECTIONAL);
 
 		pathSequenceEClass = createEClass(PATH_SEQUENCE);
 		createEReference(pathSequenceEClass, PATH_SEQUENCE__TARGET);
@@ -1765,7 +1765,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		initEReference(getAssociation_Destination(), this.getModelElementReference(), null, "destination", null, 0, 1,
 				Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAssociation_Directional(), ecorePackage.getEBoolean(), "directional", null, 0, 1,
+		initEAttribute(getAssociation_Bidirectional(), ecorePackage.getEBoolean(), "bidirectional", null, 0, 1,
 				Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
 

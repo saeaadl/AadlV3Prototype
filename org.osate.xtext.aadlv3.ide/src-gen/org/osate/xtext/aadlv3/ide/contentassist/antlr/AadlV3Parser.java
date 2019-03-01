@@ -217,12 +217,12 @@ public class AadlV3Parser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getConnectionAccess().getNameAssignment_0(), "rule__Connection__NameAssignment_0");
 			builder.put(grammarAccess.getConnectionAccess().getAssociationTypeAssignment_2(), "rule__Connection__AssociationTypeAssignment_2");
 			builder.put(grammarAccess.getConnectionAccess().getSourceAssignment_3(), "rule__Connection__SourceAssignment_3");
-			builder.put(grammarAccess.getConnectionAccess().getDirectionalAssignment_4_0(), "rule__Connection__DirectionalAssignment_4_0");
+			builder.put(grammarAccess.getConnectionAccess().getBidirectionalAssignment_4_1(), "rule__Connection__BidirectionalAssignment_4_1");
 			builder.put(grammarAccess.getConnectionAccess().getDestinationAssignment_5(), "rule__Connection__DestinationAssignment_5");
 			builder.put(grammarAccess.getFeatureDelegateAccess().getNameAssignment_0(), "rule__FeatureDelegate__NameAssignment_0");
 			builder.put(grammarAccess.getFeatureDelegateAccess().getAssociationTypeAssignment_2(), "rule__FeatureDelegate__AssociationTypeAssignment_2");
 			builder.put(grammarAccess.getFeatureDelegateAccess().getSourceAssignment_3(), "rule__FeatureDelegate__SourceAssignment_3");
-			builder.put(grammarAccess.getFeatureDelegateAccess().getDirectionalAssignment_4_0(), "rule__FeatureDelegate__DirectionalAssignment_4_0");
+			builder.put(grammarAccess.getFeatureDelegateAccess().getBidirectionalAssignment_4_1(), "rule__FeatureDelegate__BidirectionalAssignment_4_1");
 			builder.put(grammarAccess.getFeatureDelegateAccess().getDestinationAssignment_5(), "rule__FeatureDelegate__DestinationAssignment_5");
 			builder.put(grammarAccess.getBindingAccess().getNameAssignment_0(), "rule__Binding__NameAssignment_0");
 			builder.put(grammarAccess.getBindingAccess().getAssociationTypeAssignment_2(), "rule__Binding__AssociationTypeAssignment_2");

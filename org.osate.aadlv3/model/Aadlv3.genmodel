@@ -139,7 +139,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//Association/associationType"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Association/source"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Association/destination"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//Association/directional"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//Association/bidirectional"/>
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//PathSequence">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//PathSequence/target"/>

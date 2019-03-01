@@ -94,7 +94,7 @@ public interface InstanceObject extends EObject {
 	 * @return the value of the '<em>Incoming Associations</em>' reference list.
 	 * @see org.osate.av3instance.av3instance.Av3instancePackage#getInstanceObject_IncomingAssociations()
 	 * @see org.osate.av3instance.av3instance.AssociationInstance#getDestination
-	 * @model opposite="destination" resolveProxies="false" transient="true" ordered="false"
+	 * @model opposite="destination" resolveProxies="false" transient="true" derived="true" ordered="false"
 	 * @generated
 	 */
 	EList<AssociationInstance> getIncomingAssociations();
@@ -112,7 +112,7 @@ public interface InstanceObject extends EObject {
 	 * @return the value of the '<em>Outgoing Associations</em>' reference list.
 	 * @see org.osate.av3instance.av3instance.Av3instancePackage#getInstanceObject_OutgoingAssociations()
 	 * @see org.osate.av3instance.av3instance.AssociationInstance#getSource
-	 * @model opposite="source" resolveProxies="false" transient="true" ordered="false"
+	 * @model opposite="source" resolveProxies="false" transient="true" derived="true" ordered="false"
 	 * @generated
 	 */
 	EList<AssociationInstance> getOutgoingAssociations();

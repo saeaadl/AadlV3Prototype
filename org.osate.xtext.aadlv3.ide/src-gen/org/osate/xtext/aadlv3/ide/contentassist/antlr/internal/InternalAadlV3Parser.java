@@ -38,7 +38,7 @@ import java.util.HashMap;
 @SuppressWarnings("all")
 public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_INT", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "';'", "'connection'", "'binding'", "'delegate'", "'flow'", "'<->'", "'abstract'", "'bus'", "'data'", "'device'", "'memory'", "'process'", "'processor'", "'system'", "'thread'", "'subprogram'", "'feature'", "'port'", "'interface'", "'in'", "'out'", "'requires'", "'provides'", "'final'", "'default'", "'override'", "'package'", "'end'", "'property'", "':'", "'for'", "','", "'properties'", "'{'", "'}'", "'type'", "'extends'", "'is'", "'configuration'", "'->'", "'use'", "'.'", "'import'", "'as'", "'=>'", "'*=>'", "'#'", "')'", "'('", "'workingset'", "'::*'", "'::'", "'virtual'", "'group'", "'to'", "'source'", "'sink'", "'path'", "'access'", "'point'", "'private'", "'reverse'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_INT", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "';'", "'connection'", "'binding'", "'delegate'", "'flow'", "'->'", "'abstract'", "'bus'", "'data'", "'device'", "'memory'", "'process'", "'processor'", "'system'", "'thread'", "'subprogram'", "'feature'", "'port'", "'interface'", "'in'", "'out'", "'requires'", "'provides'", "'final'", "'default'", "'override'", "'package'", "'end'", "'property'", "':'", "'for'", "','", "'properties'", "'{'", "'}'", "'type'", "'extends'", "'is'", "'configuration'", "'use'", "'.'", "'import'", "'as'", "'=>'", "'*=>'", "'#'", "')'", "'('", "'workingset'", "'::*'", "'::'", "'virtual'", "'group'", "'to'", "'source'", "'sink'", "'path'", "'access'", "'point'", "'private'", "'<->'", "'reverse'"
     };
     public static final int T__50=50;
     public static final int T__19=19;
@@ -7325,10 +7325,10 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             int alt1=2;
             int LA1_0 = input.LA(1);
 
-            if ( (LA1_0==53) ) {
+            if ( (LA1_0==52) ) {
                 alt1=1;
             }
-            else if ( ((LA1_0>=17 && LA1_0<=26)||LA1_0==29||LA1_0==37||LA1_0==39||LA1_0==43||LA1_0==46||LA1_0==49||LA1_0==60||LA1_0==63||LA1_0==71) ) {
+            else if ( ((LA1_0>=17 && LA1_0<=26)||LA1_0==29||LA1_0==37||LA1_0==39||LA1_0==43||LA1_0==46||LA1_0==49||LA1_0==59||LA1_0==62||LA1_0==70) ) {
                 alt1=2;
             }
             else {
@@ -8227,20 +8227,20 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Connection__Alternatives_4"
-    // InternalAadlV3.g:2442:1: rule__Connection__Alternatives_4 : ( ( ( rule__Connection__DirectionalAssignment_4_0 ) ) | ( '<->' ) );
+    // InternalAadlV3.g:2442:1: rule__Connection__Alternatives_4 : ( ( '->' ) | ( ( rule__Connection__BidirectionalAssignment_4_1 ) ) );
     public final void rule__Connection__Alternatives_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAadlV3.g:2446:1: ( ( ( rule__Connection__DirectionalAssignment_4_0 ) ) | ( '<->' ) )
+            // InternalAadlV3.g:2446:1: ( ( '->' ) | ( ( rule__Connection__BidirectionalAssignment_4_1 ) ) )
             int alt6=2;
             int LA6_0 = input.LA(1);
 
-            if ( (LA6_0==50) ) {
+            if ( (LA6_0==16) ) {
                 alt6=1;
             }
-            else if ( (LA6_0==16) ) {
+            else if ( (LA6_0==71) ) {
                 alt6=2;
             }
             else {
@@ -8252,27 +8252,17 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             }
             switch (alt6) {
                 case 1 :
-                    // InternalAadlV3.g:2447:2: ( ( rule__Connection__DirectionalAssignment_4_0 ) )
+                    // InternalAadlV3.g:2447:2: ( '->' )
                     {
-                    // InternalAadlV3.g:2447:2: ( ( rule__Connection__DirectionalAssignment_4_0 ) )
-                    // InternalAadlV3.g:2448:3: ( rule__Connection__DirectionalAssignment_4_0 )
+                    // InternalAadlV3.g:2447:2: ( '->' )
+                    // InternalAadlV3.g:2448:3: '->'
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getConnectionAccess().getDirectionalAssignment_4_0()); 
+                       before(grammarAccess.getConnectionAccess().getHyphenMinusGreaterThanSignKeyword_4_0()); 
                     }
-                    // InternalAadlV3.g:2449:3: ( rule__Connection__DirectionalAssignment_4_0 )
-                    // InternalAadlV3.g:2449:4: rule__Connection__DirectionalAssignment_4_0
-                    {
-                    pushFollow(FOLLOW_2);
-                    rule__Connection__DirectionalAssignment_4_0();
-
-                    state._fsp--;
-                    if (state.failed) return ;
-
-                    }
-
+                    match(input,16,FOLLOW_2); if (state.failed) return ;
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getConnectionAccess().getDirectionalAssignment_4_0()); 
+                       after(grammarAccess.getConnectionAccess().getHyphenMinusGreaterThanSignKeyword_4_0()); 
                     }
 
                     }
@@ -8281,17 +8271,27 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // InternalAadlV3.g:2453:2: ( '<->' )
+                    // InternalAadlV3.g:2453:2: ( ( rule__Connection__BidirectionalAssignment_4_1 ) )
                     {
-                    // InternalAadlV3.g:2453:2: ( '<->' )
-                    // InternalAadlV3.g:2454:3: '<->'
+                    // InternalAadlV3.g:2453:2: ( ( rule__Connection__BidirectionalAssignment_4_1 ) )
+                    // InternalAadlV3.g:2454:3: ( rule__Connection__BidirectionalAssignment_4_1 )
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getConnectionAccess().getLessThanSignHyphenMinusGreaterThanSignKeyword_4_1()); 
+                       before(grammarAccess.getConnectionAccess().getBidirectionalAssignment_4_1()); 
                     }
-                    match(input,16,FOLLOW_2); if (state.failed) return ;
+                    // InternalAadlV3.g:2455:3: ( rule__Connection__BidirectionalAssignment_4_1 )
+                    // InternalAadlV3.g:2455:4: rule__Connection__BidirectionalAssignment_4_1
+                    {
+                    pushFollow(FOLLOW_2);
+                    rule__Connection__BidirectionalAssignment_4_1();
+
+                    state._fsp--;
+                    if (state.failed) return ;
+
+                    }
+
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getConnectionAccess().getLessThanSignHyphenMinusGreaterThanSignKeyword_4_1()); 
+                       after(grammarAccess.getConnectionAccess().getBidirectionalAssignment_4_1()); 
                     }
 
                     }
@@ -8317,20 +8317,20 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FeatureDelegate__Alternatives_4"
-    // InternalAadlV3.g:2463:1: rule__FeatureDelegate__Alternatives_4 : ( ( ( rule__FeatureDelegate__DirectionalAssignment_4_0 ) ) | ( '<->' ) );
+    // InternalAadlV3.g:2463:1: rule__FeatureDelegate__Alternatives_4 : ( ( '->' ) | ( ( rule__FeatureDelegate__BidirectionalAssignment_4_1 ) ) );
     public final void rule__FeatureDelegate__Alternatives_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAadlV3.g:2467:1: ( ( ( rule__FeatureDelegate__DirectionalAssignment_4_0 ) ) | ( '<->' ) )
+            // InternalAadlV3.g:2467:1: ( ( '->' ) | ( ( rule__FeatureDelegate__BidirectionalAssignment_4_1 ) ) )
             int alt7=2;
             int LA7_0 = input.LA(1);
 
-            if ( (LA7_0==50) ) {
+            if ( (LA7_0==16) ) {
                 alt7=1;
             }
-            else if ( (LA7_0==16) ) {
+            else if ( (LA7_0==71) ) {
                 alt7=2;
             }
             else {
@@ -8342,27 +8342,17 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             }
             switch (alt7) {
                 case 1 :
-                    // InternalAadlV3.g:2468:2: ( ( rule__FeatureDelegate__DirectionalAssignment_4_0 ) )
+                    // InternalAadlV3.g:2468:2: ( '->' )
                     {
-                    // InternalAadlV3.g:2468:2: ( ( rule__FeatureDelegate__DirectionalAssignment_4_0 ) )
-                    // InternalAadlV3.g:2469:3: ( rule__FeatureDelegate__DirectionalAssignment_4_0 )
+                    // InternalAadlV3.g:2468:2: ( '->' )
+                    // InternalAadlV3.g:2469:3: '->'
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getFeatureDelegateAccess().getDirectionalAssignment_4_0()); 
+                       before(grammarAccess.getFeatureDelegateAccess().getHyphenMinusGreaterThanSignKeyword_4_0()); 
                     }
-                    // InternalAadlV3.g:2470:3: ( rule__FeatureDelegate__DirectionalAssignment_4_0 )
-                    // InternalAadlV3.g:2470:4: rule__FeatureDelegate__DirectionalAssignment_4_0
-                    {
-                    pushFollow(FOLLOW_2);
-                    rule__FeatureDelegate__DirectionalAssignment_4_0();
-
-                    state._fsp--;
-                    if (state.failed) return ;
-
-                    }
-
+                    match(input,16,FOLLOW_2); if (state.failed) return ;
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getFeatureDelegateAccess().getDirectionalAssignment_4_0()); 
+                       after(grammarAccess.getFeatureDelegateAccess().getHyphenMinusGreaterThanSignKeyword_4_0()); 
                     }
 
                     }
@@ -8371,17 +8361,27 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // InternalAadlV3.g:2474:2: ( '<->' )
+                    // InternalAadlV3.g:2474:2: ( ( rule__FeatureDelegate__BidirectionalAssignment_4_1 ) )
                     {
-                    // InternalAadlV3.g:2474:2: ( '<->' )
-                    // InternalAadlV3.g:2475:3: '<->'
+                    // InternalAadlV3.g:2474:2: ( ( rule__FeatureDelegate__BidirectionalAssignment_4_1 ) )
+                    // InternalAadlV3.g:2475:3: ( rule__FeatureDelegate__BidirectionalAssignment_4_1 )
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getFeatureDelegateAccess().getLessThanSignHyphenMinusGreaterThanSignKeyword_4_1()); 
+                       before(grammarAccess.getFeatureDelegateAccess().getBidirectionalAssignment_4_1()); 
                     }
-                    match(input,16,FOLLOW_2); if (state.failed) return ;
+                    // InternalAadlV3.g:2476:3: ( rule__FeatureDelegate__BidirectionalAssignment_4_1 )
+                    // InternalAadlV3.g:2476:4: rule__FeatureDelegate__BidirectionalAssignment_4_1
+                    {
+                    pushFollow(FOLLOW_2);
+                    rule__FeatureDelegate__BidirectionalAssignment_4_1();
+
+                    state._fsp--;
+                    if (state.failed) return ;
+
+                    }
+
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getFeatureDelegateAccess().getLessThanSignHyphenMinusGreaterThanSignKeyword_4_1()); 
+                       after(grammarAccess.getFeatureDelegateAccess().getBidirectionalAssignment_4_1()); 
                     }
 
                     }
@@ -10184,7 +10184,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             int alt18=2;
             int LA18_0 = input.LA(1);
 
-            if ( (LA18_0==71) ) {
+            if ( (LA18_0==70) ) {
                 alt18=1;
             }
             switch (alt18) {
@@ -10454,7 +10454,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
                 int alt19=2;
                 int LA19_0 = input.LA(1);
 
-                if ( ((LA19_0>=17 && LA19_0<=26)||LA19_0==29||LA19_0==37||LA19_0==39||LA19_0==43||LA19_0==46||LA19_0==49||LA19_0==53||LA19_0==60||LA19_0==63||LA19_0==71) ) {
+                if ( ((LA19_0>=17 && LA19_0<=26)||LA19_0==29||LA19_0==37||LA19_0==39||LA19_0==43||LA19_0==46||LA19_0==49||LA19_0==52||LA19_0==59||LA19_0==62||LA19_0==70) ) {
                     alt19=1;
                 }
 
@@ -10633,7 +10633,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             int alt20=2;
             int LA20_0 = input.LA(1);
 
-            if ( (LA20_0==71) ) {
+            if ( (LA20_0==70) ) {
                 alt20=1;
             }
             switch (alt20) {
@@ -11668,7 +11668,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             int alt23=2;
             int LA23_0 = input.LA(1);
 
-            if ( (LA23_0==71) ) {
+            if ( (LA23_0==70) ) {
                 alt23=1;
             }
             switch (alt23) {
@@ -12610,7 +12610,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             int alt25=2;
             int LA25_0 = input.LA(1);
 
-            if ( (LA25_0==71) ) {
+            if ( (LA25_0==70) ) {
                 alt25=1;
             }
             switch (alt25) {
@@ -13056,7 +13056,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             int alt27=2;
             int LA27_0 = input.LA(1);
 
-            if ( (LA27_0==71) ) {
+            if ( (LA27_0==70) ) {
                 alt27=1;
             }
             switch (alt27) {
@@ -13156,7 +13156,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             int alt28=2;
             int LA28_0 = input.LA(1);
 
-            if ( ((LA28_0>=17 && LA28_0<=26)||LA28_0==63) ) {
+            if ( ((LA28_0>=17 && LA28_0<=26)||LA28_0==62) ) {
                 alt28=1;
             }
             switch (alt28) {
@@ -14117,7 +14117,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
                 if ( (LA32_0==11) ) {
                     int LA32_1 = input.LA(2);
 
-                    if ( (LA32_1==RULE_ID||LA32_1==51||LA32_1==57) ) {
+                    if ( (LA32_1==RULE_ID||LA32_1==50||LA32_1==56) ) {
                         alt32=1;
                     }
 
@@ -14481,7 +14481,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             int alt34=2;
             int LA34_0 = input.LA(1);
 
-            if ( (LA34_0==71) ) {
+            if ( (LA34_0==70) ) {
                 alt34=1;
             }
             switch (alt34) {
@@ -15452,7 +15452,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
                 if ( (LA38_0==11) ) {
                     int LA38_1 = input.LA(2);
 
-                    if ( (LA38_1==RULE_ID||LA38_1==57) ) {
+                    if ( (LA38_1==RULE_ID||LA38_1==56) ) {
                         alt38=1;
                     }
 
@@ -15816,7 +15816,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             int alt40=2;
             int LA40_0 = input.LA(1);
 
-            if ( (LA40_0==71) ) {
+            if ( (LA40_0==70) ) {
                 alt40=1;
             }
             switch (alt40) {
@@ -16084,7 +16084,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             int alt41=2;
             int LA41_0 = input.LA(1);
 
-            if ( (LA41_0==59) ) {
+            if ( (LA41_0==58) ) {
                 alt41=1;
             }
             switch (alt41) {
@@ -19103,7 +19103,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getBindingAccess().getHyphenMinusGreaterThanSignKeyword_4()); 
             }
-            match(input,50,FOLLOW_2); if (state.failed) return ;
+            match(input,16,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getBindingAccess().getHyphenMinusGreaterThanSignKeyword_4()); 
             }
@@ -19712,7 +19712,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFlowPathAccess().getHyphenMinusGreaterThanSignKeyword_4()); 
             }
-            match(input,50,FOLLOW_2); if (state.failed) return ;
+            match(input,16,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getFlowPathAccess().getHyphenMinusGreaterThanSignKeyword_4()); 
             }
@@ -20857,7 +20857,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUsePropsAccess().getUseKeyword_0()); 
             }
-            match(input,51,FOLLOW_2); if (state.failed) return ;
+            match(input,50,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getUsePropsAccess().getUseKeyword_0()); 
             }
@@ -21741,7 +21741,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
                 int alt55=2;
                 int LA55_0 = input.LA(1);
 
-                if ( (LA55_0==50) ) {
+                if ( (LA55_0==16) ) {
                     alt55=1;
                 }
 
@@ -21940,7 +21940,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPathAccess().getHyphenMinusGreaterThanSignKeyword_4_0()); 
             }
-            match(input,50,FOLLOW_2); if (state.failed) return ;
+            match(input,16,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getPathAccess().getHyphenMinusGreaterThanSignKeyword_4_0()); 
             }
@@ -22193,7 +22193,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
                 int alt57=2;
                 int LA57_0 = input.LA(1);
 
-                if ( (LA57_0==52) ) {
+                if ( (LA57_0==51) ) {
                     alt57=1;
                 }
 
@@ -22457,7 +22457,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPathElementAccess().getFullStopKeyword_1_0_1()); 
             }
-            match(input,52,FOLLOW_2); if (state.failed) return ;
+            match(input,51,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getPathElementAccess().getFullStopKeyword_1_0_1()); 
             }
@@ -22620,7 +22620,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getImportAccess().getImportKeyword_0()); 
             }
-            match(input,53,FOLLOW_2); if (state.failed) return ;
+            match(input,52,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getImportAccess().getImportKeyword_0()); 
             }
@@ -22792,7 +22792,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             int alt58=2;
             int LA58_0 = input.LA(1);
 
-            if ( (LA58_0==54) ) {
+            if ( (LA58_0==53) ) {
                 alt58=1;
             }
             switch (alt58) {
@@ -22966,7 +22966,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getImportAccess().getAsKeyword_2_0()); 
             }
-            match(input,54,FOLLOW_2); if (state.failed) return ;
+            match(input,53,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getImportAccess().getAsKeyword_2_0()); 
             }
@@ -23218,7 +23218,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getConfigurationAssignmentAccess().getEqualsSignGreaterThanSignKeyword_1()); 
             }
-            match(input,55,FOLLOW_2); if (state.failed) return ;
+            match(input,54,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getConfigurationAssignmentAccess().getEqualsSignGreaterThanSignKeyword_1()); 
             }
@@ -23924,7 +23924,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getConfigurationAssignmentPatternAccess().getAsteriskEqualsSignGreaterThanSignKeyword_1()); 
             }
-            match(input,56,FOLLOW_2); if (state.failed) return ;
+            match(input,55,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getConfigurationAssignmentPatternAccess().getAsteriskEqualsSignGreaterThanSignKeyword_1()); 
             }
@@ -24630,7 +24630,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFlowAssignmentAccess().getEqualsSignGreaterThanSignKeyword_1()); 
             }
-            match(input,55,FOLLOW_2); if (state.failed) return ;
+            match(input,54,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getFlowAssignmentAccess().getEqualsSignGreaterThanSignKeyword_1()); 
             }
@@ -24878,7 +24878,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
                 int alt63=2;
                 int LA63_0 = input.LA(1);
 
-                if ( (LA63_0==50) ) {
+                if ( (LA63_0==16) ) {
                     alt63=1;
                 }
 
@@ -24979,7 +24979,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFlowAssignmentAccess().getHyphenMinusGreaterThanSignKeyword_4_0()); 
             }
-            match(input,50,FOLLOW_2); if (state.failed) return ;
+            match(input,16,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getFlowAssignmentAccess().getHyphenMinusGreaterThanSignKeyword_4_0()); 
             }
@@ -25242,7 +25242,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPropertyAssociationAccess().getNumberSignKeyword_1()); 
             }
-            match(input,57,FOLLOW_2); if (state.failed) return ;
+            match(input,56,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getPropertyAssociationAccess().getNumberSignKeyword_1()); 
             }
@@ -25510,7 +25510,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPropertyAssociationAccess().getEqualsSignGreaterThanSignKeyword_4()); 
             }
-            match(input,55,FOLLOW_2); if (state.failed) return ;
+            match(input,54,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getPropertyAssociationAccess().getEqualsSignGreaterThanSignKeyword_4()); 
             }
@@ -25947,7 +25947,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
                 int alt67=2;
                 int LA67_0 = input.LA(1);
 
-                if ( (LA67_0==52) ) {
+                if ( (LA67_0==51) ) {
                     alt67=1;
                 }
 
@@ -26211,7 +26211,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getModelElementReferenceAccess().getFullStopKeyword_1_0_1()); 
             }
-            match(input,52,FOLLOW_2); if (state.failed) return ;
+            match(input,51,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getModelElementReferenceAccess().getFullStopKeyword_1_0_1()); 
             }
@@ -26719,7 +26719,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
                 if ( (LA69_0==11) ) {
                     int LA69_1 = input.LA(2);
 
-                    if ( (LA69_1==RULE_ID||LA69_1==57) ) {
+                    if ( (LA69_1==RULE_ID||LA69_1==56) ) {
                         alt69=1;
                     }
 
@@ -27250,7 +27250,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
                 if ( (LA71_0==11) ) {
                     int LA71_1 = input.LA(2);
 
-                    if ( (LA71_1==RULE_ID||LA71_1==57) ) {
+                    if ( (LA71_1==RULE_ID||LA71_1==56) ) {
                         alt71=1;
                     }
 
@@ -27873,7 +27873,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getParametersAccess().getRightParenthesisKeyword_2()); 
             }
-            match(input,58,FOLLOW_2); if (state.failed) return ;
+            match(input,57,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getParametersAccess().getRightParenthesisKeyword_2()); 
             }
@@ -29014,7 +29014,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             int alt77=2;
             int LA77_0 = input.LA(1);
 
-            if ( (LA77_0==59) ) {
+            if ( (LA77_0==58) ) {
                 alt77=1;
             }
             switch (alt77) {
@@ -29198,7 +29198,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             int alt78=2;
             int LA78_0 = input.LA(1);
 
-            if ( (LA78_0==59) ) {
+            if ( (LA78_0==58) ) {
                 alt78=1;
             }
             switch (alt78) {
@@ -29471,7 +29471,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
                 if ( (LA79_0==11) ) {
                     int LA79_1 = input.LA(2);
 
-                    if ( (LA79_1==RULE_ID||LA79_1==57) ) {
+                    if ( (LA79_1==RULE_ID||LA79_1==56) ) {
                         alt79=1;
                     }
 
@@ -30087,7 +30087,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
                 if ( (LA81_0==11) ) {
                     int LA81_1 = input.LA(2);
 
-                    if ( (LA81_1==RULE_ID||LA81_1==57) ) {
+                    if ( (LA81_1==RULE_ID||LA81_1==56) ) {
                         alt81=1;
                     }
 
@@ -31588,7 +31588,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getConfigurationActualsAccess().getLeftParenthesisKeyword_0()); 
             }
-            match(input,59,FOLLOW_2); if (state.failed) return ;
+            match(input,58,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getConfigurationActualsAccess().getLeftParenthesisKeyword_0()); 
             }
@@ -31762,7 +31762,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getConfigurationActualsAccess().getRightParenthesisKeyword_2()); 
             }
-            match(input,58,FOLLOW_2); if (state.failed) return ;
+            match(input,57,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getConfigurationActualsAccess().getRightParenthesisKeyword_2()); 
             }
@@ -32284,7 +32284,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getConfigurationActualAccess().getEqualsSignGreaterThanSignKeyword_1()); 
             }
-            match(input,55,FOLLOW_2); if (state.failed) return ;
+            match(input,54,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getConfigurationActualAccess().getEqualsSignGreaterThanSignKeyword_1()); 
             }
@@ -32459,7 +32459,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
                     if ( (LA88_2==RULE_ID) ) {
                         int LA88_3 = input.LA(3);
 
-                        if ( (LA88_3==EOF||LA88_3==42||LA88_3==52||(LA88_3>=58 && LA88_3<=59)||LA88_3==62) ) {
+                        if ( (LA88_3==EOF||LA88_3==42||LA88_3==51||(LA88_3>=57 && LA88_3<=58)||LA88_3==61) ) {
                             alt88=1;
                         }
 
@@ -32733,7 +32733,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             int alt89=2;
             int LA89_0 = input.LA(1);
 
-            if ( (LA89_0==71) ) {
+            if ( (LA89_0==70) ) {
                 alt89=1;
             }
             switch (alt89) {
@@ -32829,7 +32829,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getWorkingsetAccess().getWorkingsetKeyword_1()); 
             }
-            match(input,60,FOLLOW_2); if (state.failed) return ;
+            match(input,59,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getWorkingsetAccess().getWorkingsetKeyword_1()); 
             }
@@ -33080,7 +33080,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             int alt90=2;
             int LA90_0 = input.LA(1);
 
-            if ( (LA90_0==51) ) {
+            if ( (LA90_0==50) ) {
                 alt90=1;
             }
             switch (alt90) {
@@ -33797,7 +33797,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getQualifiedNameWithWildcardAccess().getColonColonAsteriskKeyword_1()); 
             }
-            match(input,61,FOLLOW_2); if (state.failed) return ;
+            match(input,60,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getQualifiedNameWithWildcardAccess().getColonColonAsteriskKeyword_1()); 
             }
@@ -33955,7 +33955,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getDottedNameAccess().getFullStopKeyword_1()); 
             }
-            match(input,52,FOLLOW_2); if (state.failed) return ;
+            match(input,51,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getDottedNameAccess().getFullStopKeyword_1()); 
             }
@@ -34188,7 +34188,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
                 int alt93=2;
                 int LA93_0 = input.LA(1);
 
-                if ( (LA93_0==62) ) {
+                if ( (LA93_0==61) ) {
                     alt93=1;
                 }
 
@@ -34289,7 +34289,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getQualifiedNameAccess().getColonColonKeyword_1_0()); 
             }
-            match(input,62,FOLLOW_2); if (state.failed) return ;
+            match(input,61,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getQualifiedNameAccess().getColonColonKeyword_1_0()); 
             }
@@ -34524,7 +34524,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             int alt94=2;
             int LA94_0 = input.LA(1);
 
-            if ( (LA94_0==52) ) {
+            if ( (LA94_0==51) ) {
                 alt94=1;
             }
             switch (alt94) {
@@ -34620,7 +34620,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getQualifiedTypesReferenceAccess().getFullStopKeyword_1_0()); 
             }
-            match(input,52,FOLLOW_2); if (state.failed) return ;
+            match(input,51,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getQualifiedTypesReferenceAccess().getFullStopKeyword_1_0()); 
             }
@@ -34856,7 +34856,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getQualifiedDottedReferenceAccess().getFullStopKeyword_1()); 
             }
-            match(input,52,FOLLOW_2); if (state.failed) return ;
+            match(input,51,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getQualifiedDottedReferenceAccess().getFullStopKeyword_1()); 
             }
@@ -35009,7 +35009,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getVirtualProcessorKeywordsAccess().getVirtualKeyword_0()); 
             }
-            match(input,63,FOLLOW_2); if (state.failed) return ;
+            match(input,62,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getVirtualProcessorKeywordsAccess().getVirtualKeyword_0()); 
             }
@@ -35162,7 +35162,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getVirtualBusKeywordsAccess().getVirtualKeyword_0()); 
             }
-            match(input,63,FOLLOW_2); if (state.failed) return ;
+            match(input,62,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getVirtualBusKeywordsAccess().getVirtualKeyword_0()); 
             }
@@ -35315,7 +35315,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getVirtualMemoryKeywordsAccess().getVirtualKeyword_0()); 
             }
-            match(input,63,FOLLOW_2); if (state.failed) return ;
+            match(input,62,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getVirtualMemoryKeywordsAccess().getVirtualKeyword_0()); 
             }
@@ -35468,7 +35468,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getVirtualDeviceKeywordsAccess().getVirtualKeyword_0()); 
             }
-            match(input,63,FOLLOW_2); if (state.failed) return ;
+            match(input,62,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getVirtualDeviceKeywordsAccess().getVirtualKeyword_0()); 
             }
@@ -35695,7 +35695,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getThreadGroupKeywordsAccess().getGroupKeyword_1()); 
             }
-            match(input,64,FOLLOW_2); if (state.failed) return ;
+            match(input,63,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getThreadGroupKeywordsAccess().getGroupKeyword_1()); 
             }
@@ -35848,7 +35848,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getSubprogramGroupKeywordsAccess().getGroupKeyword_1()); 
             }
-            match(input,64,FOLLOW_2); if (state.failed) return ;
+            match(input,63,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getSubprogramGroupKeywordsAccess().getGroupKeyword_1()); 
             }
@@ -36006,7 +36006,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getEndToEndFlowKeywordsAccess().getToKeyword_1()); 
             }
-            match(input,65,FOLLOW_2); if (state.failed) return ;
+            match(input,64,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getEndToEndFlowKeywordsAccess().getToKeyword_1()); 
             }
@@ -36312,7 +36312,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFlowSourceKeywordsAccess().getSourceKeyword_1()); 
             }
-            match(input,66,FOLLOW_2); if (state.failed) return ;
+            match(input,65,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getFlowSourceKeywordsAccess().getSourceKeyword_1()); 
             }
@@ -36465,7 +36465,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFlowSinkKeywordsAccess().getSinkKeyword_1()); 
             }
-            match(input,67,FOLLOW_2); if (state.failed) return ;
+            match(input,66,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getFlowSinkKeywordsAccess().getSinkKeyword_1()); 
             }
@@ -36618,7 +36618,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFlowPathKeywordsAccess().getPathKeyword_1()); 
             }
-            match(input,68,FOLLOW_2); if (state.failed) return ;
+            match(input,67,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getFlowPathKeywordsAccess().getPathKeyword_1()); 
             }
@@ -36924,7 +36924,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getBusAccessKeywordsAccess().getAccessKeyword_1()); 
             }
-            match(input,69,FOLLOW_2); if (state.failed) return ;
+            match(input,68,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getBusAccessKeywordsAccess().getAccessKeyword_1()); 
             }
@@ -37003,7 +37003,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getVirtualBusAccessKeywordsAccess().getVirtualKeyword_0()); 
             }
-            match(input,63,FOLLOW_2); if (state.failed) return ;
+            match(input,62,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getVirtualBusAccessKeywordsAccess().getVirtualKeyword_0()); 
             }
@@ -37156,7 +37156,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getVirtualBusAccessKeywordsAccess().getAccessKeyword_2()); 
             }
-            match(input,69,FOLLOW_2); if (state.failed) return ;
+            match(input,68,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getVirtualBusAccessKeywordsAccess().getAccessKeyword_2()); 
             }
@@ -37309,7 +37309,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getDataAccessKeywordsAccess().getAccessKeyword_1()); 
             }
-            match(input,69,FOLLOW_2); if (state.failed) return ;
+            match(input,68,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getDataAccessKeywordsAccess().getAccessKeyword_1()); 
             }
@@ -37462,7 +37462,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getSubprogramAccessKeywordsAccess().getAccessKeyword_1()); 
             }
-            match(input,69,FOLLOW_2); if (state.failed) return ;
+            match(input,68,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getSubprogramAccessKeywordsAccess().getAccessKeyword_1()); 
             }
@@ -37620,7 +37620,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getSubprogramGroupAccessKeywordsAccess().getGroupKeyword_1()); 
             }
-            match(input,64,FOLLOW_2); if (state.failed) return ;
+            match(input,63,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getSubprogramGroupAccessKeywordsAccess().getGroupKeyword_1()); 
             }
@@ -37694,7 +37694,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getSubprogramGroupAccessKeywordsAccess().getAccessKeyword_2()); 
             }
-            match(input,69,FOLLOW_2); if (state.failed) return ;
+            match(input,68,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getSubprogramGroupAccessKeywordsAccess().getAccessKeyword_2()); 
             }
@@ -37847,7 +37847,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getBindingPointKeywordsAccess().getPointKeyword_1()); 
             }
-            match(input,70,FOLLOW_2); if (state.failed) return ;
+            match(input,69,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getBindingPointKeywordsAccess().getPointKeyword_1()); 
             }
@@ -38970,7 +38970,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPackageDeclarationAccess().getPrivatePrivateKeyword_0_0()); 
             }
-            match(input,71,FOLLOW_2); if (state.failed) return ;
+            match(input,70,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getPackageDeclarationAccess().getPrivatePrivateKeyword_0_0()); 
             }
@@ -39158,7 +39158,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPropertyDefinitionAccess().getPrivatePrivateKeyword_0_0()); 
             }
-            match(input,71,FOLLOW_2); if (state.failed) return ;
+            match(input,70,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getPropertyDefinitionAccess().getPrivatePrivateKeyword_0_0()); 
             }
@@ -39444,7 +39444,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPropertySetAccess().getPrivatePrivateKeyword_0_0()); 
             }
-            match(input,71,FOLLOW_2); if (state.failed) return ;
+            match(input,70,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getPropertySetAccess().getPrivatePrivateKeyword_0_0()); 
             }
@@ -39652,7 +39652,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getDataTypeAccess().getPrivatePrivateKeyword_0_0()); 
             }
-            match(input,71,FOLLOW_2); if (state.failed) return ;
+            match(input,70,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getDataTypeAccess().getPrivatePrivateKeyword_0_0()); 
             }
@@ -39746,7 +39746,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getComponentInterfaceAccess().getPrivatePrivateKeyword_0_0()); 
             }
-            match(input,71,FOLLOW_2); if (state.failed) return ;
+            match(input,70,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getComponentInterfaceAccess().getPrivatePrivateKeyword_0_0()); 
             }
@@ -40110,7 +40110,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getComponentImplementationAccess().getPrivatePrivateKeyword_0_0()); 
             }
-            match(input,71,FOLLOW_2); if (state.failed) return ;
+            match(input,70,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getComponentImplementationAccess().getPrivatePrivateKeyword_0_0()); 
             }
@@ -40658,7 +40658,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getComponentConfigurationAccess().getPrivatePrivateKeyword_0_0()); 
             }
-            match(input,71,FOLLOW_2); if (state.failed) return ;
+            match(input,70,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getComponentConfigurationAccess().getPrivatePrivateKeyword_0_0()); 
             }
@@ -41172,37 +41172,37 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__Connection__SourceAssignment_3"
 
 
-    // $ANTLR start "rule__Connection__DirectionalAssignment_4_0"
-    // InternalAadlV3.g:12740:1: rule__Connection__DirectionalAssignment_4_0 : ( ( '->' ) ) ;
-    public final void rule__Connection__DirectionalAssignment_4_0() throws RecognitionException {
+    // $ANTLR start "rule__Connection__BidirectionalAssignment_4_1"
+    // InternalAadlV3.g:12740:1: rule__Connection__BidirectionalAssignment_4_1 : ( ( '<->' ) ) ;
+    public final void rule__Connection__BidirectionalAssignment_4_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAadlV3.g:12744:1: ( ( ( '->' ) ) )
-            // InternalAadlV3.g:12745:2: ( ( '->' ) )
+            // InternalAadlV3.g:12744:1: ( ( ( '<->' ) ) )
+            // InternalAadlV3.g:12745:2: ( ( '<->' ) )
             {
-            // InternalAadlV3.g:12745:2: ( ( '->' ) )
-            // InternalAadlV3.g:12746:3: ( '->' )
+            // InternalAadlV3.g:12745:2: ( ( '<->' ) )
+            // InternalAadlV3.g:12746:3: ( '<->' )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getConnectionAccess().getDirectionalHyphenMinusGreaterThanSignKeyword_4_0_0()); 
+               before(grammarAccess.getConnectionAccess().getBidirectionalLessThanSignHyphenMinusGreaterThanSignKeyword_4_1_0()); 
             }
-            // InternalAadlV3.g:12747:3: ( '->' )
-            // InternalAadlV3.g:12748:4: '->'
+            // InternalAadlV3.g:12747:3: ( '<->' )
+            // InternalAadlV3.g:12748:4: '<->'
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getConnectionAccess().getDirectionalHyphenMinusGreaterThanSignKeyword_4_0_0()); 
+               before(grammarAccess.getConnectionAccess().getBidirectionalLessThanSignHyphenMinusGreaterThanSignKeyword_4_1_0()); 
             }
-            match(input,50,FOLLOW_2); if (state.failed) return ;
+            match(input,71,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getConnectionAccess().getDirectionalHyphenMinusGreaterThanSignKeyword_4_0_0()); 
+               after(grammarAccess.getConnectionAccess().getBidirectionalLessThanSignHyphenMinusGreaterThanSignKeyword_4_1_0()); 
             }
 
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getConnectionAccess().getDirectionalHyphenMinusGreaterThanSignKeyword_4_0_0()); 
+               after(grammarAccess.getConnectionAccess().getBidirectionalLessThanSignHyphenMinusGreaterThanSignKeyword_4_1_0()); 
             }
 
             }
@@ -41222,7 +41222,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Connection__DirectionalAssignment_4_0"
+    // $ANTLR end "rule__Connection__BidirectionalAssignment_4_1"
 
 
     // $ANTLR start "rule__Connection__DestinationAssignment_5"
@@ -41401,37 +41401,37 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__FeatureDelegate__SourceAssignment_3"
 
 
-    // $ANTLR start "rule__FeatureDelegate__DirectionalAssignment_4_0"
-    // InternalAadlV3.g:12819:1: rule__FeatureDelegate__DirectionalAssignment_4_0 : ( ( '->' ) ) ;
-    public final void rule__FeatureDelegate__DirectionalAssignment_4_0() throws RecognitionException {
+    // $ANTLR start "rule__FeatureDelegate__BidirectionalAssignment_4_1"
+    // InternalAadlV3.g:12819:1: rule__FeatureDelegate__BidirectionalAssignment_4_1 : ( ( '<->' ) ) ;
+    public final void rule__FeatureDelegate__BidirectionalAssignment_4_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAadlV3.g:12823:1: ( ( ( '->' ) ) )
-            // InternalAadlV3.g:12824:2: ( ( '->' ) )
+            // InternalAadlV3.g:12823:1: ( ( ( '<->' ) ) )
+            // InternalAadlV3.g:12824:2: ( ( '<->' ) )
             {
-            // InternalAadlV3.g:12824:2: ( ( '->' ) )
-            // InternalAadlV3.g:12825:3: ( '->' )
+            // InternalAadlV3.g:12824:2: ( ( '<->' ) )
+            // InternalAadlV3.g:12825:3: ( '<->' )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFeatureDelegateAccess().getDirectionalHyphenMinusGreaterThanSignKeyword_4_0_0()); 
+               before(grammarAccess.getFeatureDelegateAccess().getBidirectionalLessThanSignHyphenMinusGreaterThanSignKeyword_4_1_0()); 
             }
-            // InternalAadlV3.g:12826:3: ( '->' )
-            // InternalAadlV3.g:12827:4: '->'
+            // InternalAadlV3.g:12826:3: ( '<->' )
+            // InternalAadlV3.g:12827:4: '<->'
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFeatureDelegateAccess().getDirectionalHyphenMinusGreaterThanSignKeyword_4_0_0()); 
+               before(grammarAccess.getFeatureDelegateAccess().getBidirectionalLessThanSignHyphenMinusGreaterThanSignKeyword_4_1_0()); 
             }
-            match(input,50,FOLLOW_2); if (state.failed) return ;
+            match(input,71,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFeatureDelegateAccess().getDirectionalHyphenMinusGreaterThanSignKeyword_4_0_0()); 
+               after(grammarAccess.getFeatureDelegateAccess().getBidirectionalLessThanSignHyphenMinusGreaterThanSignKeyword_4_1_0()); 
             }
 
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFeatureDelegateAccess().getDirectionalHyphenMinusGreaterThanSignKeyword_4_0_0()); 
+               after(grammarAccess.getFeatureDelegateAccess().getBidirectionalLessThanSignHyphenMinusGreaterThanSignKeyword_4_1_0()); 
             }
 
             }
@@ -41451,7 +41451,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__FeatureDelegate__DirectionalAssignment_4_0"
+    // $ANTLR end "rule__FeatureDelegate__BidirectionalAssignment_4_1"
 
 
     // $ANTLR start "rule__FeatureDelegate__DestinationAssignment_5"
@@ -43594,7 +43594,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getParametersAccess().getParameterizedLeftParenthesisKeyword_0_0()); 
             }
-            match(input,59,FOLLOW_2); if (state.failed) return ;
+            match(input,58,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getParametersAccess().getParameterizedLeftParenthesisKeyword_0_0()); 
             }
@@ -45089,7 +45089,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getWorkingsetAccess().getPrivatePrivateKeyword_0_0()); 
             }
-            match(input,71,FOLLOW_2); if (state.failed) return ;
+            match(input,70,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getWorkingsetAccess().getPrivatePrivateKeyword_0_0()); 
             }
@@ -45269,12 +45269,12 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
     protected DFA15 dfa15 = new DFA15(this);
     static final String dfa_1s = "\33\uffff";
     static final String dfa_2s = "\2\21\2\uffff\11\4\1\22\1\4\6\uffff\6\4";
-    static final String dfa_3s = "\1\107\1\77\2\uffff\10\35\1\100\1\27\1\100\6\uffff\6\35";
+    static final String dfa_3s = "\1\106\1\76\2\uffff\10\35\1\77\1\27\1\77\6\uffff\6\35";
     static final String dfa_4s = "\2\uffff\1\1\1\2\13\uffff\1\3\1\5\1\6\1\7\1\10\1\4\6\uffff";
     static final String dfa_5s = "\33\uffff}>";
     static final String[] dfa_6s = {
-            "\1\4\1\5\1\6\1\7\1\10\1\11\1\12\1\13\1\14\1\16\2\uffff\1\17\7\uffff\1\2\1\uffff\1\21\3\uffff\1\22\2\uffff\1\3\2\uffff\1\20\12\uffff\1\23\2\uffff\1\15\7\uffff\1\1",
-            "\1\4\1\5\1\6\1\7\1\10\1\11\1\12\1\13\1\14\1\16\2\uffff\1\17\7\uffff\1\2\1\uffff\1\21\3\uffff\1\22\2\uffff\1\3\2\uffff\1\20\12\uffff\1\23\2\uffff\1\15",
+            "\1\4\1\5\1\6\1\7\1\10\1\11\1\12\1\13\1\14\1\16\2\uffff\1\17\7\uffff\1\2\1\uffff\1\21\3\uffff\1\22\2\uffff\1\3\2\uffff\1\20\11\uffff\1\23\2\uffff\1\15\7\uffff\1\1",
+            "\1\4\1\5\1\6\1\7\1\10\1\11\1\12\1\13\1\14\1\16\2\uffff\1\17\7\uffff\1\2\1\uffff\1\21\3\uffff\1\22\2\uffff\1\3\2\uffff\1\20\11\uffff\1\23\2\uffff\1\15",
             "",
             "",
             "\1\24\30\uffff\1\17",
@@ -45285,9 +45285,9 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             "\1\24\30\uffff\1\17",
             "\1\24\30\uffff\1\17",
             "\1\24\30\uffff\1\17",
-            "\1\24\30\uffff\1\17\42\uffff\1\25",
+            "\1\24\30\uffff\1\17\41\uffff\1\25",
             "\1\27\1\uffff\1\30\1\31\1\uffff\1\26",
-            "\1\24\30\uffff\1\17\42\uffff\1\32",
+            "\1\24\30\uffff\1\17\41\uffff\1\32",
             "",
             "",
             "",
@@ -45329,21 +45329,21 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
     static final String dfa_7s = "\13\uffff";
     static final String dfa_8s = "\2\uffff\2\1\1\uffff\1\1\1\uffff\1\10\1\uffff\2\1";
     static final String dfa_9s = "\1\14\1\uffff\2\13\1\22\1\13\1\uffff\1\13\1\uffff\2\13";
-    static final String dfa_10s = "\1\77\1\uffff\2\105\1\27\1\105\1\uffff\1\106\1\uffff\2\105";
+    static final String dfa_10s = "\1\76\1\uffff\2\104\1\27\1\104\1\uffff\1\105\1\uffff\2\104";
     static final String dfa_11s = "\1\uffff\1\1\4\uffff\1\2\1\uffff\1\3\2\uffff";
     static final String dfa_12s = "\13\uffff}>";
     static final String[] dfa_13s = {
-            "\1\10\1\7\2\10\1\uffff\1\1\1\2\1\3\6\1\1\5\3\6\41\uffff\1\4",
+            "\1\10\1\7\2\10\1\uffff\1\1\1\2\1\3\6\1\1\5\3\6\40\uffff\1\4",
             "",
-            "\1\1\36\uffff\1\1\32\uffff\1\6",
-            "\1\1\36\uffff\1\1\32\uffff\1\6",
+            "\1\1\36\uffff\1\1\31\uffff\1\6",
+            "\1\1\36\uffff\1\1\31\uffff\1\6",
             "\1\11\1\uffff\2\1\1\uffff\1\1",
-            "\1\1\36\uffff\1\1\25\uffff\1\12\4\uffff\1\6",
+            "\1\1\36\uffff\1\1\24\uffff\1\12\4\uffff\1\6",
             "",
-            "\1\10\36\uffff\1\10\33\uffff\1\6",
+            "\1\10\36\uffff\1\10\32\uffff\1\6",
             "",
-            "\1\1\36\uffff\1\1\32\uffff\1\6",
-            "\1\1\36\uffff\1\1\32\uffff\1\6"
+            "\1\1\36\uffff\1\1\31\uffff\1\6",
+            "\1\1\36\uffff\1\1\31\uffff\1\6"
     };
 
     static final short[] dfa_7 = DFA.unpackEncodedString(dfa_7s);
@@ -45372,16 +45372,16 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
         }
     }
     static final String dfa_14s = "\12\uffff";
-    static final String dfa_15s = "\1\4\1\50\2\uffff\1\15\1\102\4\uffff";
-    static final String dfa_16s = "\2\71\2\uffff\1\77\1\104\4\uffff";
+    static final String dfa_15s = "\1\4\1\50\2\uffff\1\15\1\101\4\uffff";
+    static final String dfa_16s = "\2\70\2\uffff\1\76\1\103\4\uffff";
     static final String dfa_17s = "\2\uffff\1\5\1\6\2\uffff\1\1\1\4\1\2\1\3";
     static final String dfa_18s = "\12\uffff}>";
     static final String[] dfa_19s = {
-            "\1\1\56\uffff\1\3\5\uffff\1\2",
-            "\1\4\13\uffff\1\2\4\uffff\1\2",
+            "\1\1\55\uffff\1\3\5\uffff\1\2",
+            "\1\4\12\uffff\1\2\4\uffff\1\2",
             "",
             "",
-            "\1\6\1\uffff\1\5\2\uffff\2\6\6\uffff\10\6\35\uffff\1\6",
+            "\1\6\1\uffff\1\5\2\uffff\2\6\6\uffff\10\6\34\uffff\1\6",
             "\1\11\1\7\1\10",
             "",
             "",
@@ -45414,15 +45414,15 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
         }
     }
     static final String dfa_20s = "\21\uffff";
-    static final String dfa_21s = "\1\4\1\50\1\uffff\1\14\1\4\1\uffff\1\4\5\uffff\1\64\2\uffff\1\4\1\64";
-    static final String dfa_22s = "\1\71\1\76\1\uffff\1\77\1\4\1\uffff\1\54\5\uffff\1\71\2\uffff\1\4\1\71";
+    static final String dfa_21s = "\1\4\1\50\1\uffff\1\14\1\4\1\uffff\1\4\5\uffff\1\63\2\uffff\1\4\1\63";
+    static final String dfa_22s = "\1\70\1\75\1\uffff\1\76\1\4\1\uffff\1\54\5\uffff\1\70\2\uffff\1\4\1\70";
     static final String dfa_23s = "\2\uffff\1\11\2\uffff\1\10\1\uffff\1\1\1\2\1\3\1\5\1\4\1\uffff\1\6\1\7\2\uffff";
     static final String dfa_24s = "\21\uffff}>";
     static final String[] dfa_25s = {
-            "\1\1\64\uffff\1\2",
-            "\1\3\13\uffff\1\4\2\uffff\1\6\1\5\1\2\4\uffff\1\5",
+            "\1\1\63\uffff\1\2",
+            "\1\3\12\uffff\1\4\2\uffff\1\6\1\5\1\2\4\uffff\1\5",
             "",
-            "\1\7\1\11\1\10\2\uffff\12\13\13\uffff\1\12\30\uffff\1\13",
+            "\1\7\1\11\1\10\2\uffff\12\13\13\uffff\1\12\27\uffff\1\13",
             "\1\14",
             "",
             "\1\16\12\uffff\1\15\34\uffff\1\16",
@@ -45464,16 +45464,16 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
     }
     static final String dfa_26s = "\6\uffff";
     static final String dfa_27s = "\1\4\1\13\1\4\2\uffff\1\13";
-    static final String dfa_28s = "\1\4\1\76\1\4\2\uffff\1\76";
+    static final String dfa_28s = "\1\4\1\75\1\4\2\uffff\1\75";
     static final String dfa_29s = "\3\uffff\1\1\1\2\1\uffff";
     static final String dfa_30s = "\6\uffff}>";
     static final String[] dfa_31s = {
             "\1\1",
-            "\1\4\52\uffff\1\4\6\uffff\1\3\1\2",
+            "\1\4\51\uffff\1\4\6\uffff\1\3\1\2",
             "\1\5",
             "",
             "",
-            "\1\4\52\uffff\1\4\6\uffff\1\3\1\2"
+            "\1\4\51\uffff\1\4\6\uffff\1\3\1\2"
     };
 
     static final short[] dfa_26 = DFA.unpackEncodedString(dfa_26s);
@@ -45500,12 +45500,12 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             return "2484:1: rule__Import__Alternatives_1 : ( ( ( rule__Import__ImportedNamespaceAssignment_1_0 ) ) | ( ( rule__Import__ImportedNamespaceAssignment_1_1 ) ) );";
         }
     }
-    static final String dfa_32s = "\1\4\1\50\2\uffff\1\4\2\uffff\1\64\1\4\1\64";
-    static final String dfa_33s = "\1\71\1\76\2\uffff\1\4\2\uffff\1\71\1\4\1\71";
+    static final String dfa_32s = "\1\4\1\50\2\uffff\1\4\2\uffff\1\63\1\4\1\63";
+    static final String dfa_33s = "\1\70\1\75\2\uffff\1\4\2\uffff\1\70\1\4\1\70";
     static final String dfa_34s = "\2\uffff\1\1\1\2\1\uffff\1\3\1\4\3\uffff";
     static final String[] dfa_35s = {
-            "\1\1\64\uffff\1\2",
-            "\1\3\13\uffff\1\4\2\uffff\1\5\1\6\1\2\4\uffff\1\6",
+            "\1\1\63\uffff\1\2",
+            "\1\3\12\uffff\1\4\2\uffff\1\5\1\6\1\2\4\uffff\1\6",
             "",
             "",
             "\1\7",
@@ -45540,25 +45540,25 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
     static final String dfa_36s = "\20\uffff";
     static final String dfa_37s = "\5\uffff\2\14\1\uffff\1\14\4\uffff\2\14\1\uffff";
     static final String dfa_38s = "\1\4\1\50\1\uffff\1\14\1\uffff\2\4\1\22\2\4\3\uffff\2\4\1\uffff";
-    static final String dfa_39s = "\2\71\1\uffff\1\77\1\uffff\2\105\1\27\1\105\1\106\3\uffff\2\105\1\uffff";
+    static final String dfa_39s = "\2\70\1\uffff\1\76\1\uffff\2\104\1\27\1\104\1\105\3\uffff\2\104\1\uffff";
     static final String dfa_40s = "\2\uffff\1\6\1\uffff\1\1\5\uffff\1\2\1\3\1\5\2\uffff\1\4";
     static final String dfa_41s = "\20\uffff}>";
     static final String[] dfa_42s = {
-            "\1\1\64\uffff\1\2",
-            "\1\3\13\uffff\1\2\4\uffff\1\2",
+            "\1\1\63\uffff\1\2",
+            "\1\3\12\uffff\1\2\4\uffff\1\2",
             "",
-            "\1\12\1\11\1\13\2\uffff\1\14\1\6\1\5\6\14\1\10\7\4\35\uffff\1\7",
+            "\1\12\1\11\1\13\2\uffff\1\14\1\6\1\5\6\14\1\10\7\4\34\uffff\1\7",
             "",
-            "\1\14\6\uffff\1\14\40\uffff\2\14\27\uffff\1\4",
-            "\1\14\6\uffff\1\14\40\uffff\2\14\27\uffff\1\4",
+            "\1\14\6\uffff\1\14\40\uffff\2\14\26\uffff\1\4",
+            "\1\14\6\uffff\1\14\40\uffff\2\14\26\uffff\1\4",
             "\1\15\1\uffff\2\14\1\uffff\1\14",
-            "\1\14\6\uffff\1\14\40\uffff\2\14\22\uffff\1\16\4\uffff\1\4",
-            "\1\17\101\uffff\1\4",
+            "\1\14\6\uffff\1\14\40\uffff\2\14\21\uffff\1\16\4\uffff\1\4",
+            "\1\17\100\uffff\1\4",
             "",
             "",
             "",
-            "\1\14\6\uffff\1\14\40\uffff\2\14\27\uffff\1\4",
-            "\1\14\6\uffff\1\14\40\uffff\2\14\27\uffff\1\4",
+            "\1\14\6\uffff\1\14\40\uffff\2\14\26\uffff\1\4",
+            "\1\14\6\uffff\1\14\40\uffff\2\14\26\uffff\1\4",
             ""
     };
 
@@ -45590,11 +45590,11 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
     static final String dfa_43s = "\24\uffff";
     static final String dfa_44s = "\11\uffff\1\15\1\uffff\1\22\10\uffff";
     static final String dfa_45s = "\1\21\10\uffff\1\4\1\22\1\4\10\uffff";
-    static final String dfa_46s = "\1\77\10\uffff\1\100\1\27\1\100\10\uffff";
+    static final String dfa_46s = "\1\76\10\uffff\1\77\1\27\1\77\10\uffff";
     static final String dfa_47s = "\1\uffff\1\1\1\2\1\3\1\4\1\5\1\6\1\7\1\10\3\uffff\1\20\1\11\1\12\1\15\1\14\1\13\1\16\1\17";
     static final String dfa_48s = "\24\uffff}>";
     static final String[] dfa_49s = {
-            "\1\1\1\2\1\3\1\4\1\5\1\6\1\7\1\10\1\11\1\13\44\uffff\1\12",
+            "\1\1\1\2\1\3\1\4\1\5\1\6\1\7\1\10\1\11\1\13\43\uffff\1\12",
             "",
             "",
             "",
@@ -45603,9 +45603,9 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             "",
             "",
             "",
-            "\1\15\6\uffff\1\15\21\uffff\1\15\10\uffff\1\15\3\uffff\1\15\1\uffff\2\15\22\uffff\1\14",
+            "\1\15\6\uffff\1\15\21\uffff\1\15\10\uffff\1\15\3\uffff\1\15\1\uffff\2\15\21\uffff\1\14",
             "\1\16\1\uffff\1\17\1\20\1\uffff\1\21",
-            "\1\22\6\uffff\1\22\21\uffff\1\22\10\uffff\1\22\3\uffff\1\22\1\uffff\2\22\22\uffff\1\23",
+            "\1\22\6\uffff\1\22\21\uffff\1\22\10\uffff\1\22\3\uffff\1\22\1\uffff\2\22\21\uffff\1\23",
             "",
             "",
             "",
@@ -45641,11 +45641,11 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             return "2625:1: rule__ComponentCategory__Alternatives : ( ( 'abstract' ) | ( 'bus' ) | ( 'data' ) | ( 'device' ) | ( 'memory' ) | ( 'process' ) | ( 'processor' ) | ( 'system' ) | ( 'thread' ) | ( ruleVirtualBusKeywords ) | ( ruleVirtualProcessorKeywords ) | ( ruleVirtualMemoryKeywords ) | ( ruleVirtualDeviceKeywords ) | ( 'subprogram' ) | ( ruleSubprogramGroupKeywords ) | ( ruleThreadGroupKeywords ) );";
         }
     }
-    static final String dfa_50s = "\1\15\5\uffff\1\100\4\uffff";
-    static final String dfa_51s = "\1\77\5\uffff\1\105\4\uffff";
+    static final String dfa_50s = "\1\15\5\uffff\1\77\4\uffff";
+    static final String dfa_51s = "\1\76\5\uffff\1\104\4\uffff";
     static final String dfa_52s = "\1\uffff\1\1\1\2\1\3\1\4\1\5\1\uffff\1\10\1\11\1\7\1\6";
     static final String[] dfa_53s = {
-            "\1\7\4\uffff\1\4\1\3\6\uffff\1\6\1\1\1\2\1\10\41\uffff\1\5",
+            "\1\7\4\uffff\1\4\1\3\6\uffff\1\6\1\1\1\2\1\10\40\uffff\1\5",
             "",
             "",
             "",
@@ -45681,22 +45681,22 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
     }
     static final String dfa_54s = "\1\uffff\1\6\1\uffff\1\11\1\13\3\uffff\1\15\3\uffff\1\20\4\uffff";
     static final String dfa_55s = "\1\36\1\15\1\uffff\2\15\3\uffff\1\15\3\uffff\1\15\4\uffff";
-    static final String dfa_56s = "\1\41\1\77\1\uffff\2\77\3\uffff\1\77\3\uffff\1\77\4\uffff";
+    static final String dfa_56s = "\1\41\1\76\1\uffff\2\76\3\uffff\1\76\3\uffff\1\76\4\uffff";
     static final String dfa_57s = "\2\uffff\1\2\2\uffff\1\3\1\1\1\11\1\uffff\1\4\1\10\1\5\1\uffff\1\7\1\13\1\12\1\6";
     static final String[] dfa_58s = {
             "\1\1\1\2\1\3\1\4",
-            "\1\6\4\uffff\2\6\6\uffff\4\6\1\uffff\1\5\37\uffff\1\6",
+            "\1\6\4\uffff\2\6\6\uffff\4\6\1\uffff\1\5\36\uffff\1\6",
             "",
-            "\1\11\4\uffff\2\11\6\uffff\4\11\1\10\1\7\37\uffff\1\11",
-            "\1\13\4\uffff\2\13\6\uffff\4\13\1\14\1\12\37\uffff\1\13",
-            "",
-            "",
-            "",
-            "\1\15\4\uffff\2\15\6\uffff\4\15\1\uffff\1\16\37\uffff\1\15",
+            "\1\11\4\uffff\2\11\6\uffff\4\11\1\10\1\7\36\uffff\1\11",
+            "\1\13\4\uffff\2\13\6\uffff\4\13\1\14\1\12\36\uffff\1\13",
             "",
             "",
             "",
-            "\1\20\4\uffff\2\20\6\uffff\4\20\1\uffff\1\17\37\uffff\1\20",
+            "\1\15\4\uffff\2\15\6\uffff\4\15\1\uffff\1\16\36\uffff\1\15",
+            "",
+            "",
+            "",
+            "\1\20\4\uffff\2\20\6\uffff\4\20\1\uffff\1\17\36\uffff\1\20",
             "",
             "",
             "",
@@ -45731,70 +45731,70 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_2 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_3 = new BitSet(new long[]{0x0000002000000000L});
     public static final BitSet FOLLOW_4 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_5 = new BitSet(new long[]{0x902248E027FE0000L,0x0000000000000080L});
-    public static final BitSet FOLLOW_6 = new BitSet(new long[]{0x902248A027FE0002L,0x0000000000000080L});
-    public static final BitSet FOLLOW_7 = new BitSet(new long[]{0x0000008000000000L,0x0000000000000080L});
+    public static final BitSet FOLLOW_5 = new BitSet(new long[]{0x481248E027FE0000L,0x0000000000000040L});
+    public static final BitSet FOLLOW_6 = new BitSet(new long[]{0x481248A027FE0002L,0x0000000000000040L});
+    public static final BitSet FOLLOW_7 = new BitSet(new long[]{0x0000008000000000L,0x0000000000000040L});
     public static final BitSet FOLLOW_8 = new BitSet(new long[]{0x0000010000000000L});
     public static final BitSet FOLLOW_9 = new BitSet(new long[]{0x0000020000000800L});
-    public static final BitSet FOLLOW_10 = new BitSet(new long[]{0x800000003FFEF000L});
+    public static final BitSet FOLLOW_10 = new BitSet(new long[]{0x400000003FFEF000L});
     public static final BitSet FOLLOW_11 = new BitSet(new long[]{0x0000040000000000L});
     public static final BitSet FOLLOW_12 = new BitSet(new long[]{0x0000040000000002L});
-    public static final BitSet FOLLOW_13 = new BitSet(new long[]{0x0000080000000000L,0x0000000000000080L});
+    public static final BitSet FOLLOW_13 = new BitSet(new long[]{0x0000080000000000L,0x0000000000000040L});
     public static final BitSet FOLLOW_14 = new BitSet(new long[]{0x0000100000000000L});
     public static final BitSet FOLLOW_15 = new BitSet(new long[]{0x0000240000000000L});
-    public static final BitSet FOLLOW_16 = new BitSet(new long[]{0x0000400000000000L,0x0000000000000080L});
+    public static final BitSet FOLLOW_16 = new BitSet(new long[]{0x0000400000000000L,0x0000000000000040L});
     public static final BitSet FOLLOW_17 = new BitSet(new long[]{0x0000120000000800L});
-    public static final BitSet FOLLOW_18 = new BitSet(new long[]{0x8000000027FE0000L,0x0000000000000080L});
+    public static final BitSet FOLLOW_18 = new BitSet(new long[]{0x4000000027FE0000L,0x0000000000000040L});
     public static final BitSet FOLLOW_19 = new BitSet(new long[]{0x0001804000000000L});
     public static final BitSet FOLLOW_20 = new BitSet(new long[]{0x0000000000000010L,0x0000000000000100L});
-    public static final BitSet FOLLOW_21 = new BitSet(new long[]{0x0208000000000010L});
+    public static final BitSet FOLLOW_21 = new BitSet(new long[]{0x0104000000000010L});
     public static final BitSet FOLLOW_22 = new BitSet(new long[]{0x0000020000000802L});
-    public static final BitSet FOLLOW_23 = new BitSet(new long[]{0x8000000007FE0000L,0x0000000000000080L});
-    public static final BitSet FOLLOW_24 = new BitSet(new long[]{0x0200000000000010L});
-    public static final BitSet FOLLOW_25 = new BitSet(new long[]{0x0002000000000000L,0x0000000000000080L});
-    public static final BitSet FOLLOW_26 = new BitSet(new long[]{0x0801804000000000L});
-    public static final BitSet FOLLOW_27 = new BitSet(new long[]{0x80000003FC0C2000L});
+    public static final BitSet FOLLOW_23 = new BitSet(new long[]{0x4000000007FE0000L,0x0000000000000040L});
+    public static final BitSet FOLLOW_24 = new BitSet(new long[]{0x0100000000000010L});
+    public static final BitSet FOLLOW_25 = new BitSet(new long[]{0x0002000000000000L,0x0000000000000040L});
+    public static final BitSet FOLLOW_26 = new BitSet(new long[]{0x0401804000000000L});
+    public static final BitSet FOLLOW_27 = new BitSet(new long[]{0x40000003FC0C2000L});
     public static final BitSet FOLLOW_28 = new BitSet(new long[]{0x0000100000000010L,0x0000000000000100L});
-    public static final BitSet FOLLOW_29 = new BitSet(new long[]{0x8000000007FE0000L});
+    public static final BitSet FOLLOW_29 = new BitSet(new long[]{0x4000000007FE0000L});
     public static final BitSet FOLLOW_30 = new BitSet(new long[]{0x0000100000000010L});
     public static final BitSet FOLLOW_31 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_32 = new BitSet(new long[]{0x0004000000010000L});
+    public static final BitSet FOLLOW_32 = new BitSet(new long[]{0x0000000000010000L,0x0000000000000080L});
     public static final BitSet FOLLOW_33 = new BitSet(new long[]{0x0000000000004000L});
     public static final BitSet FOLLOW_34 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_35 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_35 = new BitSet(new long[]{0x0000000000010000L});
     public static final BitSet FOLLOW_36 = new BitSet(new long[]{0x0000000000008000L});
     public static final BitSet FOLLOW_37 = new BitSet(new long[]{0x0000080000000000L});
     public static final BitSet FOLLOW_38 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_39 = new BitSet(new long[]{0x0004000000000002L});
-    public static final BitSet FOLLOW_40 = new BitSet(new long[]{0x0010000000000000L});
-    public static final BitSet FOLLOW_41 = new BitSet(new long[]{0x0010000000000002L});
-    public static final BitSet FOLLOW_42 = new BitSet(new long[]{0x0040020000000800L});
-    public static final BitSet FOLLOW_43 = new BitSet(new long[]{0x0080000000000000L});
+    public static final BitSet FOLLOW_39 = new BitSet(new long[]{0x0000000000010002L});
+    public static final BitSet FOLLOW_40 = new BitSet(new long[]{0x0008000000000000L});
+    public static final BitSet FOLLOW_41 = new BitSet(new long[]{0x0008000000000002L});
+    public static final BitSet FOLLOW_42 = new BitSet(new long[]{0x0020020000000800L});
+    public static final BitSet FOLLOW_43 = new BitSet(new long[]{0x0040000000000000L});
     public static final BitSet FOLLOW_44 = new BitSet(new long[]{0x0000140000000010L});
-    public static final BitSet FOLLOW_45 = new BitSet(new long[]{0x0100000000000000L});
-    public static final BitSet FOLLOW_46 = new BitSet(new long[]{0x0080001C00000000L});
+    public static final BitSet FOLLOW_45 = new BitSet(new long[]{0x0080000000000000L});
+    public static final BitSet FOLLOW_46 = new BitSet(new long[]{0x0040001C00000000L});
     public static final BitSet FOLLOW_47 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_48 = new BitSet(new long[]{0x0000220000000800L});
-    public static final BitSet FOLLOW_49 = new BitSet(new long[]{0x0400000000000010L});
-    public static final BitSet FOLLOW_50 = new BitSet(new long[]{0x0800000000000000L});
-    public static final BitSet FOLLOW_51 = new BitSet(new long[]{0x902248A027FE0000L,0x0000000000000080L});
+    public static final BitSet FOLLOW_49 = new BitSet(new long[]{0x0200000000000010L});
+    public static final BitSet FOLLOW_50 = new BitSet(new long[]{0x0400000000000000L});
+    public static final BitSet FOLLOW_51 = new BitSet(new long[]{0x481248A027FE0000L,0x0000000000000040L});
     public static final BitSet FOLLOW_52 = new BitSet(new long[]{0x0001000000000000L});
     public static final BitSet FOLLOW_53 = new BitSet(new long[]{0x0000024000000800L});
-    public static final BitSet FOLLOW_54 = new BitSet(new long[]{0x2000000000000000L});
-    public static final BitSet FOLLOW_55 = new BitSet(new long[]{0x4000000000000000L});
-    public static final BitSet FOLLOW_56 = new BitSet(new long[]{0x4000000000000002L});
+    public static final BitSet FOLLOW_54 = new BitSet(new long[]{0x1000000000000000L});
+    public static final BitSet FOLLOW_55 = new BitSet(new long[]{0x2000000000000000L});
+    public static final BitSet FOLLOW_56 = new BitSet(new long[]{0x2000000000000002L});
     public static final BitSet FOLLOW_57 = new BitSet(new long[]{0x0000000000800000L});
     public static final BitSet FOLLOW_58 = new BitSet(new long[]{0x0000000000040000L});
     public static final BitSet FOLLOW_59 = new BitSet(new long[]{0x0000000000200000L});
     public static final BitSet FOLLOW_60 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_61 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_62 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000002L});
-    public static final BitSet FOLLOW_63 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000004L});
-    public static final BitSet FOLLOW_64 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
-    public static final BitSet FOLLOW_65 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000010L});
+    public static final BitSet FOLLOW_61 = new BitSet(new long[]{0x8000000000000000L});
+    public static final BitSet FOLLOW_62 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_63 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000002L});
+    public static final BitSet FOLLOW_64 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000004L});
+    public static final BitSet FOLLOW_65 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
     public static final BitSet FOLLOW_66 = new BitSet(new long[]{0x0000000080000000L});
-    public static final BitSet FOLLOW_67 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
-    public static final BitSet FOLLOW_68 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000040L});
+    public static final BitSet FOLLOW_67 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000010L});
+    public static final BitSet FOLLOW_68 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
     public static final BitSet FOLLOW_69 = new BitSet(new long[]{0x0000000040000000L});
 
 }

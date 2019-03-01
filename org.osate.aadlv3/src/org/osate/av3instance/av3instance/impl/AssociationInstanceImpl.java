@@ -51,6 +51,7 @@ import org.osate.av3instance.av3instance.InstanceObject;
  *   <li>{@link org.osate.av3instance.av3instance.impl.AssociationInstanceImpl#getSourceDelegates <em>Source Delegates</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.impl.AssociationInstanceImpl#getDestinationDelegates <em>Destination Delegates</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.impl.AssociationInstanceImpl#isExternal <em>External</em>}</li>
+ *   <li>{@link org.osate.av3instance.av3instance.impl.AssociationInstanceImpl#isBidirectional <em>Bidirectional</em>}</li>
  * </ul>
  *
  * @generated
@@ -145,6 +146,26 @@ public class AssociationInstanceImpl extends InstanceObjectImpl implements Assoc
 	 * @ordered
 	 */
 	protected boolean external = EXTERNAL_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isBidirectional() <em>Bidirectional</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isBidirectional()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean BIDIRECTIONAL_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isBidirectional() <em>Bidirectional</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isBidirectional()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean bidirectional = BIDIRECTIONAL_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -369,6 +390,30 @@ public class AssociationInstanceImpl extends InstanceObjectImpl implements Assoc
 	 * @generated
 	 */
 	@Override
+	public boolean isBidirectional() {
+		return bidirectional;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setBidirectional(boolean newBidirectional) {
+		boolean oldBidirectional = bidirectional;
+		bidirectional = newBidirectional;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					Av3instancePackage.ASSOCIATION_INSTANCE__BIDIRECTIONAL, oldBidirectional, bidirectional));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public boolean isExternal() {
 		return external;
 	}
@@ -449,6 +494,8 @@ public class AssociationInstanceImpl extends InstanceObjectImpl implements Assoc
 			return getDestinationDelegates();
 		case Av3instancePackage.ASSOCIATION_INSTANCE__EXTERNAL:
 			return isExternal();
+		case Av3instancePackage.ASSOCIATION_INSTANCE__BIDIRECTIONAL:
+			return isBidirectional();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -485,6 +532,9 @@ public class AssociationInstanceImpl extends InstanceObjectImpl implements Assoc
 		case Av3instancePackage.ASSOCIATION_INSTANCE__EXTERNAL:
 			setExternal((Boolean) newValue);
 			return;
+		case Av3instancePackage.ASSOCIATION_INSTANCE__BIDIRECTIONAL:
+			setBidirectional((Boolean) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -518,6 +568,9 @@ public class AssociationInstanceImpl extends InstanceObjectImpl implements Assoc
 		case Av3instancePackage.ASSOCIATION_INSTANCE__EXTERNAL:
 			setExternal(EXTERNAL_EDEFAULT);
 			return;
+		case Av3instancePackage.ASSOCIATION_INSTANCE__BIDIRECTIONAL:
+			setBidirectional(BIDIRECTIONAL_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -544,6 +597,8 @@ public class AssociationInstanceImpl extends InstanceObjectImpl implements Assoc
 			return destinationDelegates != null && !destinationDelegates.isEmpty();
 		case Av3instancePackage.ASSOCIATION_INSTANCE__EXTERNAL:
 			return external != EXTERNAL_EDEFAULT;
+		case Av3instancePackage.ASSOCIATION_INSTANCE__BIDIRECTIONAL:
+			return bidirectional != BIDIRECTIONAL_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -563,6 +618,8 @@ public class AssociationInstanceImpl extends InstanceObjectImpl implements Assoc
 		result.append(associationType);
 		result.append(", external: "); //$NON-NLS-1$
 		result.append(external);
+		result.append(", bidirectional: "); //$NON-NLS-1$
+		result.append(bidirectional);
 		result.append(')');
 		return result.toString();
 	}

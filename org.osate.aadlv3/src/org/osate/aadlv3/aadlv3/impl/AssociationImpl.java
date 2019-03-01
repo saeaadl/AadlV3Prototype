@@ -37,7 +37,7 @@ import org.osate.aadlv3.aadlv3.ModelElementReference;
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.AssociationImpl#getAssociationType <em>Association Type</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.AssociationImpl#getSource <em>Source</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.AssociationImpl#getDestination <em>Destination</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.AssociationImpl#isDirectional <em>Directional</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.AssociationImpl#isBidirectional <em>Bidirectional</em>}</li>
  * </ul>
  *
  * @generated
@@ -84,24 +84,24 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	protected ModelElementReference destination;
 
 	/**
-	 * The default value of the '{@link #isDirectional() <em>Directional</em>}' attribute.
+	 * The default value of the '{@link #isBidirectional() <em>Bidirectional</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isDirectional()
+	 * @see #isBidirectional()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean DIRECTIONAL_EDEFAULT = false;
+	protected static final boolean BIDIRECTIONAL_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isDirectional() <em>Directional</em>}' attribute.
+	 * The cached value of the '{@link #isBidirectional() <em>Bidirectional</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isDirectional()
+	 * @see #isBidirectional()
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean directional = DIRECTIONAL_EDEFAULT;
+	protected boolean bidirectional = BIDIRECTIONAL_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -256,8 +256,8 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	 * @generated
 	 */
 	@Override
-	public boolean isDirectional() {
-		return directional;
+	public boolean isBidirectional() {
+		return bidirectional;
 	}
 
 	/**
@@ -266,12 +266,12 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	 * @generated
 	 */
 	@Override
-	public void setDirectional(boolean newDirectional) {
-		boolean oldDirectional = directional;
-		directional = newDirectional;
+	public void setBidirectional(boolean newBidirectional) {
+		boolean oldBidirectional = bidirectional;
+		bidirectional = newBidirectional;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.ASSOCIATION__DIRECTIONAL,
-					oldDirectional, directional));
+			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.ASSOCIATION__BIDIRECTIONAL,
+					oldBidirectional, bidirectional));
 	}
 
 	/**
@@ -304,8 +304,8 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 			return getSource();
 		case Aadlv3Package.ASSOCIATION__DESTINATION:
 			return getDestination();
-		case Aadlv3Package.ASSOCIATION__DIRECTIONAL:
-			return isDirectional();
+		case Aadlv3Package.ASSOCIATION__BIDIRECTIONAL:
+			return isBidirectional();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -328,8 +328,8 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 		case Aadlv3Package.ASSOCIATION__DESTINATION:
 			setDestination((ModelElementReference) newValue);
 			return;
-		case Aadlv3Package.ASSOCIATION__DIRECTIONAL:
-			setDirectional((Boolean) newValue);
+		case Aadlv3Package.ASSOCIATION__BIDIRECTIONAL:
+			setBidirectional((Boolean) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -352,8 +352,8 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 		case Aadlv3Package.ASSOCIATION__DESTINATION:
 			setDestination((ModelElementReference) null);
 			return;
-		case Aadlv3Package.ASSOCIATION__DIRECTIONAL:
-			setDirectional(DIRECTIONAL_EDEFAULT);
+		case Aadlv3Package.ASSOCIATION__BIDIRECTIONAL:
+			setBidirectional(BIDIRECTIONAL_EDEFAULT);
 			return;
 		}
 		super.eUnset(featureID);
@@ -373,8 +373,8 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 			return source != null;
 		case Aadlv3Package.ASSOCIATION__DESTINATION:
 			return destination != null;
-		case Aadlv3Package.ASSOCIATION__DIRECTIONAL:
-			return directional != DIRECTIONAL_EDEFAULT;
+		case Aadlv3Package.ASSOCIATION__BIDIRECTIONAL:
+			return bidirectional != BIDIRECTIONAL_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -392,8 +392,8 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (associationType: ");
 		result.append(associationType);
-		result.append(", directional: ");
-		result.append(directional);
+		result.append(", bidirectional: ");
+		result.append(bidirectional);
 		result.append(')');
 		return result.toString();
 	}

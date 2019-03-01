@@ -43,6 +43,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//AssociationInstance/sourceDelegates"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//AssociationInstance/destinationDelegates"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AV3Instance.ecore#//AssociationInstance/external"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AV3Instance.ecore#//AssociationInstance/bidirectional"/>
     </genClasses>
     <genClasses ecoreClass="AV3Instance.ecore#//PropertyAssociationInstance">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//PropertyAssociationInstance/property"/>

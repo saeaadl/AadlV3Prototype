@@ -892,19 +892,19 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cSourceAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cSourceModelElementReferenceParserRuleCall_3_0 = (RuleCall)cSourceAssignment_3.eContents().get(0);
 		private final Alternatives cAlternatives_4 = (Alternatives)cGroup.eContents().get(4);
-		private final Assignment cDirectionalAssignment_4_0 = (Assignment)cAlternatives_4.eContents().get(0);
-		private final Keyword cDirectionalHyphenMinusGreaterThanSignKeyword_4_0_0 = (Keyword)cDirectionalAssignment_4_0.eContents().get(0);
-		private final Keyword cLessThanSignHyphenMinusGreaterThanSignKeyword_4_1 = (Keyword)cAlternatives_4.eContents().get(1);
+		private final Keyword cHyphenMinusGreaterThanSignKeyword_4_0 = (Keyword)cAlternatives_4.eContents().get(0);
+		private final Assignment cBidirectionalAssignment_4_1 = (Assignment)cAlternatives_4.eContents().get(1);
+		private final Keyword cBidirectionalLessThanSignHyphenMinusGreaterThanSignKeyword_4_1_0 = (Keyword)cBidirectionalAssignment_4_1.eContents().get(0);
 		private final Assignment cDestinationAssignment_5 = (Assignment)cGroup.eContents().get(5);
 		private final RuleCall cDestinationModelElementReferenceParserRuleCall_5_0 = (RuleCall)cDestinationAssignment_5.eContents().get(0);
 		private final RuleCall cPropertiesBlockParserRuleCall_6 = (RuleCall)cGroup.eContents().get(6);
 		
 		//Connection av3::Association:
-		//	name=ID ':' associationType=ConnectionType source=ModelElementReference (directional?='->' | '<->')
+		//	name=ID ':' associationType=ConnectionType source=ModelElementReference ('->' | bidirectional?='<->')
 		//	destination=ModelElementReference PropertiesBlock?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//name=ID ':' associationType=ConnectionType source=ModelElementReference (directional?='->' | '<->')
+		//name=ID ':' associationType=ConnectionType source=ModelElementReference ('->' | bidirectional?='<->')
 		//destination=ModelElementReference PropertiesBlock?
 		public Group getGroup() { return cGroup; }
 		
@@ -929,17 +929,17 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		//ModelElementReference
 		public RuleCall getSourceModelElementReferenceParserRuleCall_3_0() { return cSourceModelElementReferenceParserRuleCall_3_0; }
 		
-		//directional?='->' | '<->'
+		//'->' | bidirectional?='<->'
 		public Alternatives getAlternatives_4() { return cAlternatives_4; }
 		
-		//directional?='->'
-		public Assignment getDirectionalAssignment_4_0() { return cDirectionalAssignment_4_0; }
-		
 		//'->'
-		public Keyword getDirectionalHyphenMinusGreaterThanSignKeyword_4_0_0() { return cDirectionalHyphenMinusGreaterThanSignKeyword_4_0_0; }
+		public Keyword getHyphenMinusGreaterThanSignKeyword_4_0() { return cHyphenMinusGreaterThanSignKeyword_4_0; }
+		
+		//bidirectional?='<->'
+		public Assignment getBidirectionalAssignment_4_1() { return cBidirectionalAssignment_4_1; }
 		
 		//'<->'
-		public Keyword getLessThanSignHyphenMinusGreaterThanSignKeyword_4_1() { return cLessThanSignHyphenMinusGreaterThanSignKeyword_4_1; }
+		public Keyword getBidirectionalLessThanSignHyphenMinusGreaterThanSignKeyword_4_1_0() { return cBidirectionalLessThanSignHyphenMinusGreaterThanSignKeyword_4_1_0; }
 		
 		//destination=ModelElementReference
 		public Assignment getDestinationAssignment_5() { return cDestinationAssignment_5; }
@@ -961,19 +961,19 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cSourceAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cSourceModelElementReferenceParserRuleCall_3_0 = (RuleCall)cSourceAssignment_3.eContents().get(0);
 		private final Alternatives cAlternatives_4 = (Alternatives)cGroup.eContents().get(4);
-		private final Assignment cDirectionalAssignment_4_0 = (Assignment)cAlternatives_4.eContents().get(0);
-		private final Keyword cDirectionalHyphenMinusGreaterThanSignKeyword_4_0_0 = (Keyword)cDirectionalAssignment_4_0.eContents().get(0);
-		private final Keyword cLessThanSignHyphenMinusGreaterThanSignKeyword_4_1 = (Keyword)cAlternatives_4.eContents().get(1);
+		private final Keyword cHyphenMinusGreaterThanSignKeyword_4_0 = (Keyword)cAlternatives_4.eContents().get(0);
+		private final Assignment cBidirectionalAssignment_4_1 = (Assignment)cAlternatives_4.eContents().get(1);
+		private final Keyword cBidirectionalLessThanSignHyphenMinusGreaterThanSignKeyword_4_1_0 = (Keyword)cBidirectionalAssignment_4_1.eContents().get(0);
 		private final Assignment cDestinationAssignment_5 = (Assignment)cGroup.eContents().get(5);
 		private final RuleCall cDestinationModelElementReferenceParserRuleCall_5_0 = (RuleCall)cDestinationAssignment_5.eContents().get(0);
 		private final RuleCall cPropertiesBlockParserRuleCall_6 = (RuleCall)cGroup.eContents().get(6);
 		
 		//FeatureDelegate av3::Association:
-		//	name=ID ':' associationType=DelegateType source=ModelElementReference (directional?='->' | '<->')
+		//	name=ID ':' associationType=DelegateType source=ModelElementReference ('->' | bidirectional?='<->')
 		//	destination=ModelElementReference PropertiesBlock?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//name=ID ':' associationType=DelegateType source=ModelElementReference (directional?='->' | '<->')
+		//name=ID ':' associationType=DelegateType source=ModelElementReference ('->' | bidirectional?='<->')
 		//destination=ModelElementReference PropertiesBlock?
 		public Group getGroup() { return cGroup; }
 		
@@ -998,17 +998,17 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		//ModelElementReference
 		public RuleCall getSourceModelElementReferenceParserRuleCall_3_0() { return cSourceModelElementReferenceParserRuleCall_3_0; }
 		
-		//directional?='->' | '<->'
+		//'->' | bidirectional?='<->'
 		public Alternatives getAlternatives_4() { return cAlternatives_4; }
 		
-		//directional?='->'
-		public Assignment getDirectionalAssignment_4_0() { return cDirectionalAssignment_4_0; }
-		
 		//'->'
-		public Keyword getDirectionalHyphenMinusGreaterThanSignKeyword_4_0_0() { return cDirectionalHyphenMinusGreaterThanSignKeyword_4_0_0; }
+		public Keyword getHyphenMinusGreaterThanSignKeyword_4_0() { return cHyphenMinusGreaterThanSignKeyword_4_0; }
+		
+		//bidirectional?='<->'
+		public Assignment getBidirectionalAssignment_4_1() { return cBidirectionalAssignment_4_1; }
 		
 		//'<->'
-		public Keyword getLessThanSignHyphenMinusGreaterThanSignKeyword_4_1() { return cLessThanSignHyphenMinusGreaterThanSignKeyword_4_1; }
+		public Keyword getBidirectionalLessThanSignHyphenMinusGreaterThanSignKeyword_4_1_0() { return cBidirectionalLessThanSignHyphenMinusGreaterThanSignKeyword_4_1_0; }
 		
 		//destination=ModelElementReference
 		public Assignment getDestinationAssignment_5() { return cDestinationAssignment_5; }
@@ -3866,7 +3866,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Connection av3::Association:
-	//	name=ID ':' associationType=ConnectionType source=ModelElementReference (directional?='->' | '<->')
+	//	name=ID ':' associationType=ConnectionType source=ModelElementReference ('->' | bidirectional?='<->')
 	//	destination=ModelElementReference PropertiesBlock?;
 	public ConnectionElements getConnectionAccess() {
 		return pConnection;
@@ -3877,7 +3877,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//FeatureDelegate av3::Association:
-	//	name=ID ':' associationType=DelegateType source=ModelElementReference (directional?='->' | '<->')
+	//	name=ID ':' associationType=DelegateType source=ModelElementReference ('->' | bidirectional?='<->')
 	//	destination=ModelElementReference PropertiesBlock?;
 	public FeatureDelegateElements getFeatureDelegateAccess() {
 		return pFeatureDelegate;

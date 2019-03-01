@@ -65,6 +65,7 @@ public class AssociationInstanceItemProvider extends InstanceObjectItemProvider 
 			addSourceDelegatesPropertyDescriptor(object);
 			addDestinationDelegatesPropertyDescriptor(object);
 			addExternalPropertyDescriptor(object);
+			addBidirectionalPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -163,6 +164,22 @@ public class AssociationInstanceItemProvider extends InstanceObjectItemProvider 
 	}
 
 	/**
+	 * This adds a property descriptor for the Bidirectional feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addBidirectionalPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_AssociationInstance_bidirectional_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_AssociationInstance_bidirectional_feature", //$NON-NLS-1$//$NON-NLS-2$
+								"_UI_AssociationInstance_type"), //$NON-NLS-1$
+						Av3instancePackage.Literals.ASSOCIATION_INSTANCE__BIDIRECTIONAL, true, false, false,
+						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+	}
+
+	/**
 	 * This adds a property descriptor for the External feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -220,7 +237,7 @@ public class AssociationInstanceItemProvider extends InstanceObjectItemProvider 
 		String srclabel = src == null ? "" : Aadlv3Util.getNamePath(src, conncontext);
 		String dstlabel = dst == null ? "" : Aadlv3Util.getNamePath(dst, conncontext);
 		String type = conni.getAssociationType().getLiteral();
-		String connsymbol = " -> ";
+		String connsymbol = conni.isBidirectional()?" <-> ":"->";
 		type = type.substring(0, 1).toUpperCase() + type.substring(1);
 		return label == null || label.length() == 0 ? getString("_UI_AssociationInstance_type") : //$NON-NLS-1$
 				type + " " + label + ": " + srclabel + connsymbol + dstlabel; //$NON-NLS-1$ //$NON-NLS-2$
@@ -240,6 +257,7 @@ public class AssociationInstanceItemProvider extends InstanceObjectItemProvider 
 		switch (notification.getFeatureID(AssociationInstance.class)) {
 		case Av3instancePackage.ASSOCIATION_INSTANCE__ASSOCIATION_TYPE:
 		case Av3instancePackage.ASSOCIATION_INSTANCE__EXTERNAL:
+		case Av3instancePackage.ASSOCIATION_INSTANCE__BIDIRECTIONAL:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}
