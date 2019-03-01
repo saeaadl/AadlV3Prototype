@@ -18,13 +18,13 @@ package ConnectionExamples
 	abstract sensor.i is
 		sub1: thread sense;
 		upmap: delegate sub1.p1 -> outp ;
-		stateaccess: delegate sub1.state ->state ;
+		stateaccess: delegate state -> sub1.state;
 	end
 	abstract actuator.i  is
 		mystate: data systemstate ;
 		sub2: thread actuate;
 		downmap: delegate inp -> sub2.p1;
-		stateread: delegate state -> mystate; 
+		stateread: delegate  mystate -> state ; 
 		statewrite: connection sub2.state -> mystate ;
 	end
 	
@@ -46,7 +46,7 @@ package ConnectionExamples
 		hw : system hardwareplatform.impl;
 		conn1: connection sense.sub1.p1 -> actuate.sub2.p1;
 		conn2: connection sense.outp -> actuate.inp;
-		stateaccess: connection sense.state -> actuate.state ;
+		stateaccess: connection  actuate.state -> sense.state ;
 		fconn: connection sense.fea -> actuate.fea;
 	end
 	
