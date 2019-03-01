@@ -30,12 +30,14 @@ import org.osate.aadlv3.aadlv3.ConfigurationAssignment
 import org.osate.aadlv3.aadlv3.Feature
 import org.osate.aadlv3.aadlv3.Import
 import org.osate.aadlv3.aadlv3.ModelElementReference
+import org.osate.aadlv3.aadlv3.PackageElement
 import org.osate.aadlv3.aadlv3.PathSequence
 import org.osate.aadlv3.aadlv3.PropertyAssociation
 import org.osate.aadlv3.aadlv3.TypeReference
 import org.osate.aadlv3.util.Av3API
 
 import static extension org.osate.aadlv3.util.Aadlv3Util.*
+import org.osate.xtext.aadlv3.naming.AadlV3QualifiedNameConverter
 
 /**
  * This class contains custom scoping description.
@@ -45,8 +47,7 @@ import static extension org.osate.aadlv3.util.Aadlv3Util.*
  */
 class AadlV3ScopeProvider extends AbstractAadlV3ScopeProvider {
 
-	@Inject
-	static IQualifiedNameConverter qnameConverter;
+	static IQualifiedNameConverter qnameConverter = new AadlV3QualifiedNameConverter;
 
 	override getScope(EObject context, EReference reference) {
 		// We want to define the Scope for the Element's superElement cross-reference
@@ -186,14 +187,37 @@ class AadlV3ScopeProvider extends AbstractAadlV3ScopeProvider {
 				if (from.alias === null){
 					return null;
 				}
-				val qualifiedName = qnameConverter.toQualifiedName(from.importedNamespace)
-				val target = Av3API.lookupComponentClassifier(from, from.importedNamespace)
-				if (qualifiedName !== null && target !== null)
-					return new EObjectDescription(qualifiedName, target, null);
+				val importedname = from.importedNamespace
+				if (!importedname.endsWith("::*")){
+					val qualifiedName = qnameConverter.toQualifiedName(from.alias)
+					val target = Av3API.lookupPackageElement(from, importedname)
+					if (qualifiedName !== null && target !== null){
+						return new EObjectDescription(qualifiedName, target, null)
+					}
+				}
 				return null;
 			}
 		});
-		val res = Iterables.filter(transformed, Predicates.notNull());
+		var res = Iterables.filter(transformed, Predicates.notNull());
+		for (import : elements) {
+			if (import.alias !== null){
+				val importedname = import.importedNamespace
+				if (importedname.endsWith("::*") && import.alias !== null){
+					val packagename = importedname.substring(0,importedname.length-3)
+					val pkg = Av3API.lookupPackage(import, packagename)
+					if (pkg !== null){
+						val content = pkg.elements
+						val pkgres = Iterables.transform(content, new Function<PackageElement, IEObjectDescription>(){
+							override apply(PackageElement elem){
+								val qualifiedName = qnameConverter.toQualifiedName(import.alias).append(elem.name)
+								return new EObjectDescription(qualifiedName, elem, null);
+							}
+						})
+						res = res + pkgres
+					}
+				}
+			}
+		}
 		return res;
 	}
 

@@ -1,10 +1,11 @@
 package PackB 
-	import PackA::nested::*;
-	import PackA::*;
+	import PackA::person as PP;
+	import PackA::nested::signal;
+	import PackA::* as AA;
 	interface mine
 	is
-		name : in feature PackA::person;
-		surname : in feature person ;
+		name : in feature AA::date;
+		surname : in feature PP ;
 		sig : in feature signal;
 	end
 	
