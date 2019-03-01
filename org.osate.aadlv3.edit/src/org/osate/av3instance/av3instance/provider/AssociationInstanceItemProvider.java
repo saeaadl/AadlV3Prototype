@@ -204,9 +204,10 @@ public class AssociationInstanceItemProvider extends InstanceObjectItemProvider 
 	@Override
 	public Object getImage(Object object) {
 		AssociationType cat = ((AssociationInstance) object).getAssociationType();
-		String name = "featureconnection";
+		String prefix = (cat == AssociationType.CONNECTION || cat == AssociationType.FEATUREDELEGATE)?(((AssociationInstance) object).isBidirectional()?"bi":"dir"):"";
+		String name = "bifeatureconnection";
 		if (cat != null) {
-			name = cat.getLiteral().replaceAll(" ", "") + ".gif";
+			name = prefix+cat.getLiteral().replaceAll(" ", "") + ".gif";
 		}
 		return overlayImage(object, getResourceLocator().getImage("full/obj16/" + name)); //$NON-NLS-1$
 	}

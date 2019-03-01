@@ -895,7 +895,7 @@ class Aadlv3Util {
 	}
 	
 	def static boolean isOutgoingDirectionalAccess(FeatureDirection fd){
-		fd == FeatureDirection.REQUIRESIN || fd == FeatureDirection.REQUIRESINOUT 
+		fd == FeatureDirection.PROVIDESIN || fd == FeatureDirection.REQUIRESINOUT 
 		|| fd == FeatureDirection.REQUIRESOUT 
 	}
 	
@@ -921,7 +921,7 @@ class Aadlv3Util {
 	
 	def static boolean isIncomingDirectionalAccess(FeatureDirection fd){
 		fd == FeatureDirection.PROVIDESOUT  
-		|| fd == FeatureDirection.PROVIDESIN || fd == FeatureDirection.PROVIDESINOUT
+		|| fd == FeatureDirection.REQUIRESIN || fd == FeatureDirection.PROVIDESINOUT
 	}
 	
 	def static boolean isIncomingBusAccess(FeatureDirection fd){
