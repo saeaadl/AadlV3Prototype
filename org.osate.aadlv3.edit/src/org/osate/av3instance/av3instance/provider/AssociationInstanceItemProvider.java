@@ -204,10 +204,12 @@ public class AssociationInstanceItemProvider extends InstanceObjectItemProvider 
 	@Override
 	public Object getImage(Object object) {
 		AssociationType cat = ((AssociationInstance) object).getAssociationType();
-		String prefix = (cat == AssociationType.CONNECTION || cat == AssociationType.FEATUREDELEGATE)?(((AssociationInstance) object).isBidirectional()?"bi":"dir"):"";
+		String prefix = (cat == AssociationType.CONNECTION || cat == AssociationType.FEATUREDELEGATE)
+				? (((AssociationInstance) object).isBidirectional() ? "bi" : "dir")
+				: "";
 		String name = "bifeatureconnection";
 		if (cat != null) {
-			name = prefix+cat.getLiteral().replaceAll(" ", "") + ".gif";
+			name = prefix + cat.getLiteral().replaceAll(" ", "") + ".gif";
 		}
 		return overlayImage(object, getResourceLocator().getImage("full/obj16/" + name)); //$NON-NLS-1$
 	}
@@ -238,7 +240,7 @@ public class AssociationInstanceItemProvider extends InstanceObjectItemProvider 
 		String srclabel = src == null ? "" : Aadlv3Util.getNamePath(src, conncontext);
 		String dstlabel = dst == null ? "" : Aadlv3Util.getNamePath(dst, conncontext);
 		String type = conni.getAssociationType().getLiteral();
-		String connsymbol = conni.isBidirectional()?" <-> ":"->";
+		String connsymbol = conni.isBidirectional() ? " <-> " : "->";
 		type = type.substring(0, 1).toUpperCase() + type.substring(1);
 		return label == null || label.length() == 0 ? getString("_UI_AssociationInstance_type") : //$NON-NLS-1$
 				type + " " + label + ": " + srclabel + connsymbol + dstlabel; //$NON-NLS-1$ //$NON-NLS-2$

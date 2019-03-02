@@ -101,15 +101,8 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 				sequence_ComponentImplementation_ImplementationElement_ImplementationExtensions(context, (ComponentImplementation) semanticObject); 
 				return; 
 			case Aadlv3Package.COMPONENT_INTERFACE:
-				if (rule == grammarAccess.getPackageElementRule()) {
-					sequence_ComponentInterface_InterfaceElement_InterfaceExtensions_UseProps(context, (ComponentInterface) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getComponentInterfaceRule()) {
-					sequence_ComponentInterface_InterfaceElement_InterfaceExtensions_UseProps(context, (ComponentInterface) semanticObject); 
-					return; 
-				}
-				else break;
+				sequence_ComponentInterface_InterfaceElement_InterfaceExtensions_UseProps(context, (ComponentInterface) semanticObject); 
+				return; 
 			case Aadlv3Package.CONFIGURATION_ACTUAL:
 				sequence_ConfigurationActual(context, (ConfigurationActual) semanticObject); 
 				return; 
@@ -278,6 +271,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	/**
 	 * Contexts:
 	 *     PackageElement returns ComponentInterface
+	 *     ComponentInterface returns ComponentInterface
 	 *
 	 * Constraint:
 	 *     (
@@ -287,7 +281,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *         (superClassifiers+=ReversableInterfaceReference superClassifiers+=ReversableInterfaceReference*)? 
 	 *         (
 	 *             (features+=Feature | flows+=FlowPath | flows+=FlowSource | flows+=FlowSink | propertyAssociations+=PropertyAssociation)? 
-	 *             (useProperties+=[PropertySet|QualifiedName] useProperties+=[PropertySet|QualifiedName]?)?
+	 *             (useProperties+=[PropertySet|QualifiedName] useProperties+=[PropertySet|QualifiedName]*)?
 	 *         )+
 	 *     )
 	 */
@@ -295,27 +289,6 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
-	
-	// This method is commented out because it has the same signature as another method in this class.
-	// This is probably a bug in Xtext's serializer, please report it here: 
-	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
-	//
-	// Contexts:
-	//     ComponentInterface returns ComponentInterface
-	//
-	// Constraint:
-	//     (
-	//         private?='private'? 
-	//         category=ComponentCategory? 
-	//         name=ID 
-	//         (superClassifiers+=ReversableInterfaceReference superClassifiers+=ReversableInterfaceReference*)? 
-	//         (
-	//             (features+=Feature | flows+=FlowPath | flows+=FlowSource | flows+=FlowSink | propertyAssociations+=PropertyAssociation)? 
-	//             (useProperties+=[PropertySet|QualifiedName] useProperties+=[PropertySet|QualifiedName]*)?
-	//         )+
-	//     )
-	//
-	// protected void sequence_ComponentInterface_InterfaceElement_InterfaceExtensions_UseProps(ISerializationContext context, ComponentInterface semanticObject) { }
 	
 	/**
 	 * Contexts:

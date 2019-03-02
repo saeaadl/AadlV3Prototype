@@ -15,6 +15,7 @@
  */
 package org.osate.av3instance.av3instance;
 
+import org.osate.aadlv3.aadlv3.PropertyAssociation;
 import org.osate.aadlv3.aadlv3.PropertyAssociationType;
 import org.osate.aadlv3.aadlv3.PropertyDefinition;
 import org.osate.aadlv3.aadlv3.PropertyValue;
@@ -31,6 +32,7 @@ import org.osate.aadlv3.aadlv3.PropertyValue;
  *   <li>{@link org.osate.av3instance.av3instance.PropertyAssociationInstance#getProperty <em>Property</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.PropertyAssociationInstance#getValue <em>Value</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.PropertyAssociationInstance#getPropertyAssociationType <em>Property Association Type</em>}</li>
+ *   <li>{@link org.osate.av3instance.av3instance.PropertyAssociationInstance#getPropertyAssociation <em>Property Association</em>}</li>
  * </ul>
  *
  * @see org.osate.av3instance.av3instance.Av3instancePackage#getPropertyAssociationInstance()
@@ -119,5 +121,31 @@ public interface PropertyAssociationInstance extends InstanceObject {
 	 * @generated
 	 */
 	void setPropertyAssociationType(PropertyAssociationType value);
+
+	/**
+	 * Returns the value of the '<em><b>Property Association</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Property Association</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Property Association</em>' reference.
+	 * @see #setPropertyAssociation(PropertyAssociation)
+	 * @see org.osate.av3instance.av3instance.Av3instancePackage#getPropertyAssociationInstance_PropertyAssociation()
+	 * @model
+	 * @generated
+	 */
+	PropertyAssociation getPropertyAssociation();
+
+	/**
+	 * Sets the value of the '{@link org.osate.av3instance.av3instance.PropertyAssociationInstance#getPropertyAssociation <em>Property Association</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Property Association</em>' reference.
+	 * @see #getPropertyAssociation()
+	 * @generated
+	 */
+	void setPropertyAssociation(PropertyAssociation value);
 
 } // PropertyAssociationInstance

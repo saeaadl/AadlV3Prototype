@@ -1423,6 +1423,30 @@ class Aadlv3Util {
 		context
 	}
 	
+	/**
+	 * get the model element the instance object is based on
+	 */
+	def static EObject getInstanceOrigin(InstanceObject io){
+		switch (io){
+			ComponentInstance: {
+				io.component
+			}
+			FeatureInstance: {
+				io.feature
+			}
+			AssociationInstance: {
+				io.association
+			}
+			PathInstance: {
+				io.path
+			}
+			PropertyAssociationInstance: {
+				io.propertyAssociation
+			}
+			default: { io}
+		}
+	}
+	
 	// return containing component instance 
 	// for component instance as input return it
 	def static containingComponentInstance(InstanceObject io){

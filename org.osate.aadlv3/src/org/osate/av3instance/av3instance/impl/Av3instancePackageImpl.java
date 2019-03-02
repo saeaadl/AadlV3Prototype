@@ -465,6 +465,16 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 	 * @generated
 	 */
 	@Override
+	public EReference getPropertyAssociationInstance_PropertyAssociation() {
+		return (EReference) propertyAssociationInstanceEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getPathInstance() {
 		return pathInstanceEClass;
 	}
@@ -554,6 +564,7 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 		createEReference(propertyAssociationInstanceEClass, PROPERTY_ASSOCIATION_INSTANCE__PROPERTY);
 		createEReference(propertyAssociationInstanceEClass, PROPERTY_ASSOCIATION_INSTANCE__VALUE);
 		createEAttribute(propertyAssociationInstanceEClass, PROPERTY_ASSOCIATION_INSTANCE__PROPERTY_ASSOCIATION_TYPE);
+		createEReference(propertyAssociationInstanceEClass, PROPERTY_ASSOCIATION_INSTANCE__PROPERTY_ASSOCIATION);
 
 		pathInstanceEClass = createEClass(PATH_INSTANCE);
 		createEReference(pathInstanceEClass, PATH_INSTANCE__ELEMENTS);
@@ -695,6 +706,9 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 				theAadlv3Package.getPropertyAssociationType(), "propertyAssociationType", "FinalValue", 0, 1, //$NON-NLS-1$//$NON-NLS-2$
 				PropertyAssociationInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPropertyAssociationInstance_PropertyAssociation(), theAadlv3Package.getPropertyAssociation(),
+				null, "propertyAssociation", null, 0, 1, PropertyAssociationInstance.class, !IS_TRANSIENT, !IS_VOLATILE, //$NON-NLS-1$
+				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(pathInstanceEClass, PathInstance.class, "PathInstance", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
 				IS_GENERATED_INSTANCE_CLASS);

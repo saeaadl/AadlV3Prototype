@@ -152,8 +152,8 @@ public class PathInstanceItemProvider extends InstanceObjectItemProvider {
 	@Override
 	public String getText(Object object) {
 		String label = ((PathInstance) object).getName();
-		return label == null || label.length() == 0 ? "Path sequence" : //$NON-NLS-1$
-				"End to end flow " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		return label == null || label.length() == 0 ? getString("_UI_PathInstance_type") : //$NON-NLS-1$
+				getString("_UI_PathInstance_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**

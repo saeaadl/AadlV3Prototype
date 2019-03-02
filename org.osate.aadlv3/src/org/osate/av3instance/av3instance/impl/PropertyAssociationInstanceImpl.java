@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.osate.aadlv3.aadlv3.PropertyAssociation;
 import org.osate.aadlv3.aadlv3.PropertyAssociationType;
 import org.osate.aadlv3.aadlv3.PropertyDefinition;
 import org.osate.aadlv3.aadlv3.PropertyValue;
@@ -40,6 +41,7 @@ import org.osate.av3instance.av3instance.PropertyAssociationInstance;
  *   <li>{@link org.osate.av3instance.av3instance.impl.PropertyAssociationInstanceImpl#getProperty <em>Property</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.impl.PropertyAssociationInstanceImpl#getValue <em>Value</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.impl.PropertyAssociationInstanceImpl#getPropertyAssociationType <em>Property Association Type</em>}</li>
+ *   <li>{@link org.osate.av3instance.av3instance.impl.PropertyAssociationInstanceImpl#getPropertyAssociation <em>Property Association</em>}</li>
  * </ul>
  *
  * @generated
@@ -84,6 +86,16 @@ public class PropertyAssociationInstanceImpl extends InstanceObjectImpl implemen
 	 * @ordered
 	 */
 	protected PropertyAssociationType propertyAssociationType = PROPERTY_ASSOCIATION_TYPE_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getPropertyAssociation() <em>Property Association</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPropertyAssociation()
+	 * @generated
+	 * @ordered
+	 */
+	protected PropertyAssociation propertyAssociation;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -230,6 +242,50 @@ public class PropertyAssociationInstanceImpl extends InstanceObjectImpl implemen
 	 * @generated
 	 */
 	@Override
+	public PropertyAssociation getPropertyAssociation() {
+		if (propertyAssociation != null && propertyAssociation.eIsProxy()) {
+			InternalEObject oldPropertyAssociation = (InternalEObject) propertyAssociation;
+			propertyAssociation = (PropertyAssociation) eResolveProxy(oldPropertyAssociation);
+			if (propertyAssociation != oldPropertyAssociation) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							Av3instancePackage.PROPERTY_ASSOCIATION_INSTANCE__PROPERTY_ASSOCIATION,
+							oldPropertyAssociation, propertyAssociation));
+			}
+		}
+		return propertyAssociation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PropertyAssociation basicGetPropertyAssociation() {
+		return propertyAssociation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setPropertyAssociation(PropertyAssociation newPropertyAssociation) {
+		PropertyAssociation oldPropertyAssociation = propertyAssociation;
+		propertyAssociation = newPropertyAssociation;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					Av3instancePackage.PROPERTY_ASSOCIATION_INSTANCE__PROPERTY_ASSOCIATION, oldPropertyAssociation,
+					propertyAssociation));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case Av3instancePackage.PROPERTY_ASSOCIATION_INSTANCE__VALUE:
@@ -254,6 +310,10 @@ public class PropertyAssociationInstanceImpl extends InstanceObjectImpl implemen
 			return getValue();
 		case Av3instancePackage.PROPERTY_ASSOCIATION_INSTANCE__PROPERTY_ASSOCIATION_TYPE:
 			return getPropertyAssociationType();
+		case Av3instancePackage.PROPERTY_ASSOCIATION_INSTANCE__PROPERTY_ASSOCIATION:
+			if (resolve)
+				return getPropertyAssociation();
+			return basicGetPropertyAssociation();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -274,6 +334,9 @@ public class PropertyAssociationInstanceImpl extends InstanceObjectImpl implemen
 			return;
 		case Av3instancePackage.PROPERTY_ASSOCIATION_INSTANCE__PROPERTY_ASSOCIATION_TYPE:
 			setPropertyAssociationType((PropertyAssociationType) newValue);
+			return;
+		case Av3instancePackage.PROPERTY_ASSOCIATION_INSTANCE__PROPERTY_ASSOCIATION:
+			setPropertyAssociation((PropertyAssociation) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -296,6 +359,9 @@ public class PropertyAssociationInstanceImpl extends InstanceObjectImpl implemen
 		case Av3instancePackage.PROPERTY_ASSOCIATION_INSTANCE__PROPERTY_ASSOCIATION_TYPE:
 			setPropertyAssociationType(PROPERTY_ASSOCIATION_TYPE_EDEFAULT);
 			return;
+		case Av3instancePackage.PROPERTY_ASSOCIATION_INSTANCE__PROPERTY_ASSOCIATION:
+			setPropertyAssociation((PropertyAssociation) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -314,6 +380,8 @@ public class PropertyAssociationInstanceImpl extends InstanceObjectImpl implemen
 			return value != null;
 		case Av3instancePackage.PROPERTY_ASSOCIATION_INSTANCE__PROPERTY_ASSOCIATION_TYPE:
 			return propertyAssociationType != PROPERTY_ASSOCIATION_TYPE_EDEFAULT;
+		case Av3instancePackage.PROPERTY_ASSOCIATION_INSTANCE__PROPERTY_ASSOCIATION:
+			return propertyAssociation != null;
 		}
 		return super.eIsSet(featureID);
 	}

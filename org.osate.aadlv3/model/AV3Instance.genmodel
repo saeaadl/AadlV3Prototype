@@ -49,6 +49,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//PropertyAssociationInstance/property"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//PropertyAssociationInstance/value"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AV3Instance.ecore#//PropertyAssociationInstance/propertyAssociationType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//PropertyAssociationInstance/propertyAssociation"/>
     </genClasses>
     <genClasses ecoreClass="AV3Instance.ecore#//PathInstance">
       <genFeatures children="true" createChild="false" propertySortChoices="true"

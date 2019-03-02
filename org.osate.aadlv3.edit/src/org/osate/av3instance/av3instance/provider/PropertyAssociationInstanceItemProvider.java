@@ -178,6 +178,7 @@ public class PropertyAssociationInstanceItemProvider extends InstanceObjectItemP
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		case Av3instancePackage.PROPERTY_ASSOCIATION_INSTANCE__VALUE:
+		case Av3instancePackage.PROPERTY_ASSOCIATION_INSTANCE__PROPERTY_ASSOCIATION:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}

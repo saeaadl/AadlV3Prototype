@@ -16,6 +16,13 @@
     </extension>
    <extension
          point="org.eclipse.sirius.externalJavaAction">
+      <javaActions
+            actionClass="org.osate.aadlv3.design.OpenInstanceAction"
+            id="org.osate.aadlv3.design.OpenInstanceAction">
+      </javaActions>
+    </extension>
+   <extension
+         point="org.eclipse.sirius.externalJavaAction">
        <javaActions
             actionClass="org.osate.aadlv3.design.DoubleClickSelectAction"
             id="org.osate.aadlv3.design.DoubleClickSelectAction">

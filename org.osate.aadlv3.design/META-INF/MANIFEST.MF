@@ -13,7 +13,9 @@ Require-Bundle: org.eclipse.ui,
  org.osate.aadlv3,
  org.eclipse.emf.transaction;bundle-version="1.9.1",
  org.eclipse.xtext;bundle-version="2.14.0",
- org.eclipse.sirius.diagram;bundle-version="6.1.2"
+ org.eclipse.sirius.diagram;bundle-version="6.1.2",
+ org.eclipse.xtext.ui,
+ org.eclipse.ui.ide
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-Vendor: %providerName

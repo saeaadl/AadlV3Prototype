@@ -15,7 +15,7 @@ public class AadlInstanceAction extends AbstractExternalJavaAction {
 	@Override
 	public boolean canExecute(Collection<? extends EObject> arg0) {
 		for (EObject eo : arg0) {
-			EObject target = null;
+			EObject target = eo;
 			if (eo instanceof DNodeSpec) {
 				DNodeSpec ds = (DNodeSpec) eo;
 				target = ds.getTarget();
@@ -35,7 +35,7 @@ public class AadlInstanceAction extends AbstractExternalJavaAction {
 	@Override
 	public void execute(Collection<? extends EObject> arg0, Map<String, Object> arg1) {
 		for (EObject eo : arg0) {
-			EObject target = null;
+			EObject target = eo;
 			if (eo instanceof DNodeSpec) {
 				DNodeSpec ds = (DNodeSpec) eo;
 				target = ds.getTarget();

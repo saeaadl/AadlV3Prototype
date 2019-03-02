@@ -55,6 +55,7 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="propertyAssociationType"
         eType="ecore:EEnum Aadlv3.ecore#//PropertyAssociationType" defaultValueLiteral="FinalValue"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="propertyAssociation" eType="ecore:EClass Aadlv3.ecore#//PropertyAssociation"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PathInstance" eSuperTypes="#//InstanceObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"

@@ -570,13 +570,22 @@ public interface Av3instancePackage extends EPackage {
 	int PROPERTY_ASSOCIATION_INSTANCE__PROPERTY_ASSOCIATION_TYPE = INSTANCE_OBJECT_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Property Association</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_ASSOCIATION_INSTANCE__PROPERTY_ASSOCIATION = INSTANCE_OBJECT_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Property Association Instance</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_ASSOCIATION_INSTANCE_FEATURE_COUNT = INSTANCE_OBJECT_FEATURE_COUNT + 3;
+	int PROPERTY_ASSOCIATION_INSTANCE_FEATURE_COUNT = INSTANCE_OBJECT_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Property Association Instance</em>' class.
@@ -1006,6 +1015,17 @@ public interface Av3instancePackage extends EPackage {
 	EAttribute getPropertyAssociationInstance_PropertyAssociationType();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.osate.av3instance.av3instance.PropertyAssociationInstance#getPropertyAssociation <em>Property Association</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Property Association</em>'.
+	 * @see org.osate.av3instance.av3instance.PropertyAssociationInstance#getPropertyAssociation()
+	 * @see #getPropertyAssociationInstance()
+	 * @generated
+	 */
+	EReference getPropertyAssociationInstance_PropertyAssociation();
+
+	/**
 	 * Returns the meta object for class '{@link org.osate.av3instance.av3instance.PathInstance <em>Path Instance</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1319,6 +1339,15 @@ public interface Av3instancePackage extends EPackage {
 		 */
 		EAttribute PROPERTY_ASSOCIATION_INSTANCE__PROPERTY_ASSOCIATION_TYPE = eINSTANCE
 				.getPropertyAssociationInstance_PropertyAssociationType();
+
+		/**
+		 * The meta object literal for the '<em><b>Property Association</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PROPERTY_ASSOCIATION_INSTANCE__PROPERTY_ASSOCIATION = eINSTANCE
+				.getPropertyAssociationInstance_PropertyAssociation();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.av3instance.av3instance.impl.PathInstanceImpl <em>Path Instance</em>}' class.
