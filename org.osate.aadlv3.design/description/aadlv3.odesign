@@ -66,10 +66,20 @@
             </centerLabelStyleDescription>
           </style>
         </edgeMappings>
+        <toolSections name="ETEFTools">
+          <ownedTools xsi:type="tool_1:DoubleClickDescription" name="DoubleClickMe" mappings="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='LeafTopology']/@additionalLayers[name='EndToEndFlows']/@containerMappings[name='ETEFContainer']/@subNodeMappings[name='ETEFInstance']">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:ExternalJavaAction" name="DoubleClickSelect" id="org.osate.aadlv3.design.DoubleClickSelectAction"/>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:ExternalJavaAction" name="OpenSource" id="org.osate.aadlv3.design.OpenInstanceSoureAction"/>
+        </toolSections>
       </defaultLayer>
       <additionalLayers name="EndToEndFlows">
         <containerMappings name="ETEFContainer" semanticCandidatesExpression="aql:self" domainClass="av3instance::ComponentInstance">
-          <subNodeMappings name="ETEFInstance" semanticCandidatesExpression="feature:eAllContents" domainClass="av3instance::PathInstance">
+          <subNodeMappings name="ETEFInstance" semanticCandidatesExpression="feature:eAllContents" doubleClickDescription="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='LeafTopology']/@defaultLayer/@toolSections.0/@ownedTools[name='DoubleClickMe']" domainClass="av3instance::PathInstance">
             <style xsi:type="style:SquareDescription" tooltipExpression="aql:'End To End Flow '+self.name" sizeComputationExpression="" labelPosition="node" resizeKind="NSEW" width="30" height="3" color="//@userColorsPalettes[name='Aadl%20Color%20Palette']/@entries[name='ETEFColor']">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
@@ -82,15 +92,6 @@
             <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
           </style>
         </containerMappings>
-        <toolSections name="ETEFTools">
-          <ownedTools xsi:type="tool_1:DoubleClickDescription">
-            <element name="element"/>
-            <elementView name="elementView"/>
-            <initialOperation>
-              <firstModelOperations xsi:type="tool:ExternalJavaAction" name="DoubleClickSelect" id="org.osate.aadlv3.design.DoubleClickSelectAction"/>
-            </initialOperation>
-          </ownedTools>
-        </toolSections>
         <customization>
           <vsmElementCustomizations xsi:type="description:VSMElementCustomization" predicateExpression="service:isETEFElement()">
             <featureCustomizations xsi:type="description:EAttributeCustomization" appliedOn="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='ComponentHierarchy']/@defaultLayer/@nodeMappings[name='ComponentInstanceMap']/@style" attributeName="labelFormat" value="bold"/>
@@ -101,6 +102,9 @@
               <value href="environment:/viewpoint#//@systemColors/@entries[name='orange']"/>
             </featureCustomizations>
           </vsmElementCustomizations>
+          <vsmElementCustomizations xsi:type="description:VSMElementCustomization" predicateExpression="service:isSelection()">
+            <featureCustomizations xsi:type="description:EReferenceCustomization" appliedOn="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='LeafTopology']/@additionalLayers[name='EndToEndFlows']/@containerMappings[name='ETEFContainer']/@subNodeMappings[name='ETEFInstance']/@style" referenceName="color" value="//@userColorsPalettes[name='Aadl%20Color%20Palette']/@entries[name='ETEFSelectedColor']"/>
+          </vsmElementCustomizations>
         </customization>
       </additionalLayers>
     </ownedRepresentations>
@@ -109,5 +113,6 @@
   <userColorsPalettes name="Aadl Color Palette">
     <entries xsi:type="description:UserFixedColor" red="238" green="255" blue="208" name="ETEFColor"/>
     <entries xsi:type="description:UserFixedColor" red="200" green="254" blue="255" name="ThreadColor"/>
+    <entries xsi:type="description:UserFixedColor" red="136" green="255" blue="136" name="ETEFSelectedColor"/>
   </userColorsPalettes>
 </description:Group>
