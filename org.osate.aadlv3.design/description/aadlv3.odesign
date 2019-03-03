@@ -129,6 +129,7 @@
       </additionalLayers>
     </ownedRepresentations>
     <ownedJavaExtensions qualifiedClassName="org.osate.aadlv3.design.Services"/>
+    <ownedJavaExtensions qualifiedClassName="org.osate.aadlv3.util.AIv3API"/>
   </ownedViewpoints>
   <userColorsPalettes name="Aadl Color Palette">
     <entries xsi:type="description:UserFixedColor" red="238" green="255" blue="208" name="ETEFColor"/>

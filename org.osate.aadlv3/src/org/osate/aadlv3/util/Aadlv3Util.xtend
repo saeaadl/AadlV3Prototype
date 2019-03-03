@@ -303,7 +303,7 @@ class Aadlv3Util {
 		val conftrs = ci.configuredTypeReferences
 		if (conftrs.empty){
 			// flow specs in nested declaration
-			return Collections.EMPTY_LIST//ci.component.flows
+			return Collections.EMPTY_LIST //ci.component.flows
 		} else {
 			// flow specs from classifier
 			val cls = conftrs.allComponentClassifiers
@@ -319,7 +319,7 @@ class Aadlv3Util {
 		val conftrs = ci.configuredTypeReferences
 		if (conftrs.empty){
 			// flow paths in nested declaration
-			return Collections.EMPTY_LIST//ci.component.paths
+			return Collections.EMPTY_LIST //ci.component.paths
 		} else {
 			// flow paths from classifier
 			val cls = conftrs.allComponentClassifiers
@@ -335,7 +335,7 @@ class Aadlv3Util {
 		val conftrs = ci.configuredTypeReferences
 		if (conftrs.empty){
 			// flow implementation in nested declaration
-			return Collections.EMPTY_LIST//ci.component.flowassignments
+			return Collections.EMPTY_LIST //ci.component.flowassignments
 		} else {
 			// flow implementation from classifier
 			val cls = conftrs.allComponentClassifiers
@@ -558,7 +558,7 @@ class Aadlv3Util {
 	private static def Iterable<PropertyAssociation> getAllOwnPropertyAssociations(ComponentClassifier cc) {
 		val propassignments = cc.propertyAssociations
 		if (cc instanceof ComponentConfiguration){
-			return propassignments+ cc.configurationAssignments.map[subca|subca.nestedPropertyAssociations].flatten//.filter[subpa|!propassignments.containsAdditionTarget(subpa)]
+			return propassignments+ cc.configurationAssignments.map[subca|subca.nestedPropertyAssociations].flatten //.filter[subpa|!propassignments.containsAdditionTarget(subpa)]
 		}
 		return propassignments
 	}
@@ -566,7 +566,7 @@ class Aadlv3Util {
 	// return property associations and any associations further down that are not overridden by the outer ones
 	private static def Iterable<PropertyAssociation> getNestedPropertyAssociations(ConfigurationAssignment ca) {
 		val pas = ca.propertyAssociations.map[pa| pa.fullTargetPath(ca.target)]
-		return pas+ca.configurationAssignments.map[subca|subca.nestedPropertyAssociations].flatten.map[pa| pa.fullTargetPath(ca.target)]//.filter[subpa|!pas.containsAdditionTarget(subpa)]
+		return pas+ca.configurationAssignments.map[subca|subca.nestedPropertyAssociations].flatten.map[pa| pa.fullTargetPath(ca.target)] //.filter[subpa|!pas.containsAdditionTarget(subpa)]
 	}
 	
 	
@@ -1358,6 +1358,7 @@ class Aadlv3Util {
 	def static createPropertyAssociationInstance(PropertyAssociation pa){
 		val pai = Av3instanceFactory.eINSTANCE.createPropertyAssociationInstance
 		pai.property = pa.property
+		pai.propertyAssociation = pa
 		pai.propertyAssociationType = pa.propertyAssociationType
 		pai.value = pa.value.copy
 		return pai
@@ -1371,6 +1372,10 @@ class Aadlv3Util {
 	
 	def static getConfiguredTypeReferences(ComponentInstance ci){
 		configuredClassifierTypereferenceCache.get(ci)
+	}
+
+	def static void putConfiguredTypeReferences(ComponentInstance ci,Iterable<TypeReference> configuredtypereferences){
+		configuredClassifierTypereferenceCache.put(ci,configuredtypereferences)
 	}
 
 	/**
