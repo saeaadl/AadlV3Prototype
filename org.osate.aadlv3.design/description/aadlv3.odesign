@@ -31,6 +31,20 @@
             </centerLabelStyleDescription>
           </style>
         </edgeMappings>
+        <customization>
+          <vsmElementCustomizations xsi:type="description:VSMElementCustomization" predicateExpression="isThread()">
+            <featureCustomizations xsi:type="description:EReferenceCustomization" appliedOn="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='ComponentHierarchy']/@defaultLayer/@nodeMappings[name='ComponentInstanceMap']/@style" referenceName="color" value="//@userColorsPalettes[name='Aadl%20Color%20Palette']/@entries[name='ThreadColor']"/>
+          </vsmElementCustomizations>
+          <vsmElementCustomizations xsi:type="description:VSMElementCustomization" predicateExpression="isProcess()">
+            <featureCustomizations xsi:type="description:EReferenceCustomization" appliedOn="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='ComponentHierarchy']/@defaultLayer/@nodeMappings[name='ComponentInstanceMap']/@style" referenceName="color" value="//@userColorsPalettes[name='Aadl%20Color%20Palette']/@entries[name='ProcessColor']"/>
+          </vsmElementCustomizations>
+          <vsmElementCustomizations xsi:type="description:VSMElementCustomization" predicateExpression="isDevice()">
+            <featureCustomizations xsi:type="description:EReferenceCustomization" appliedOn="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='ComponentHierarchy']/@defaultLayer/@nodeMappings[name='ComponentInstanceMap']/@style" referenceName="color" value="//@userColorsPalettes[name='Aadl%20Color%20Palette']/@entries[name='DeviceColor']"/>
+          </vsmElementCustomizations>
+          <vsmElementCustomizations xsi:type="description:VSMElementCustomization" predicateExpression="isSystem()">
+            <featureCustomizations xsi:type="description:EReferenceCustomization" appliedOn="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='ComponentHierarchy']/@defaultLayer/@nodeMappings[name='ComponentInstanceMap']/@style" referenceName="color" value="//@userColorsPalettes[name='Aadl%20Color%20Palette']/@entries[name='SystemColor']"/>
+          </vsmElementCustomizations>
+        </customization>
       </defaultLayer>
     </ownedRepresentations>
     <ownedRepresentations xsi:type="description_2:TreeDescription" name="ContainmentHierarchyTree" titleExpression="aql:'Component Hierarchy Tree of '+self.name" domainClass="av3instance::ComponentInstance">
@@ -160,5 +174,8 @@
     <entries xsi:type="description:UserFixedColor" red="238" green="255" blue="208" name="ETEFColor"/>
     <entries xsi:type="description:UserFixedColor" red="200" green="254" blue="255" name="ThreadColor"/>
     <entries xsi:type="description:UserFixedColor" red="136" green="255" blue="136" name="ETEFSelectedColor"/>
+    <entries xsi:type="description:UserFixedColor" red="255" green="183" blue="219" name="ProcessColor"/>
+    <entries xsi:type="description:UserFixedColor" red="187" green="187" blue="221" name="SystemColor"/>
+    <entries xsi:type="description:UserFixedColor" red="255" green="202" blue="149" name="DeviceColor"/>
   </userColorsPalettes>
 </description:Group>

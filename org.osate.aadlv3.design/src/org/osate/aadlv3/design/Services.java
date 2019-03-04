@@ -1,8 +1,8 @@
 package org.osate.aadlv3.design;
 
-import static org.osate.aadlv3.util.Aadlv3Util.containingComponentInstance;
-import static org.osate.aadlv3.util.Aadlv3Util.getInstanceObjectPath;
-import static org.osate.aadlv3.util.Aadlv3Util.isFlowSpec;
+import static org.osate.aadlv3.util.AIv3API.containingComponentInstance;
+import static org.osate.aadlv3.util.AIv3API.getInstanceObjectPath;
+import static org.osate.aadlv3.util.AIv3API.isFlowSpec;
 
 import java.util.ArrayList;
 import java.util.Collection;
