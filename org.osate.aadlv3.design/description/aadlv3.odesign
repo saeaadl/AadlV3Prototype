@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:description_2="http://www.eclipse.org/sirius/tree/description/1.0.0" xmlns:filter="http://www.eclipse.org/sirius/diagram/description/filter/1.1.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:tool="http://www.eclipse.org/sirius/description/tool/1.1.0" xmlns:tool_1="http://www.eclipse.org/sirius/diagram/description/tool/1.1.0" name="aadlv3" version="12.0.0.2017041100">
   <ownedViewpoints name="Av3InstanceViewpoint" modelFileExtension="aiv3">
-    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="ComponentHierarchy" titleExpression="aql:'Component Hierarchy of '+self.name" domainClass="av3instance::ComponentInstance" rootExpression="[self/]" enablePopupBars="true">
+    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="ComponentHierarchy" titleExpression="aql:'Component Hierarchy of '+self.name" domainClass="av3instance::ComponentInstance" rootExpression="aql:self" enablePopupBars="true">
       <metamodel href="../../org.osate.aadlv3/model/AV3Instance.ecore#/"/>
       <layout xsi:type="description_1:OrderedTreeLayout" childrenExpression="feature:components" nodeMapping="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='ComponentHierarchy']/@defaultLayer/@nodeMappings[name='ComponentInstanceMap']"/>
       <diagramInitialisation>
@@ -64,7 +64,7 @@
     </ownedRepresentations>
     <ownedRepresentations xsi:type="description_1:DiagramDescription" name="LeafTopology" titleExpression="aql:'Topology of '+self.name" domainClass="av3instance::ComponentInstance" enablePopupBars="true">
       <filters xsi:type="filter:CompositeFilterDescription" name="Nohardware">
-        <filters xsi:type="filter:MappingFilter" mappings="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='ComponentHierarchy']/@defaultLayer/@nodeMappings[name='ComponentInstanceMap']/@borderedNodeMappings[name='FeatureInstanceMap'] //@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='LeafTopology']/@defaultLayer/@edgeMappings[name='ConnectionMap'] //@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='LeafTopology']/@defaultLayer/@nodeMappings[name='LeafComponentMap']" semanticConditionExpression="service:noHardwware()"/>
+        <filters xsi:type="filter:MappingFilter" mappings="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='ComponentHierarchy']/@defaultLayer/@nodeMappings[name='ComponentInstanceMap']/@borderedNodeMappings[name='FeatureInstanceMap'] //@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='LeafTopology']/@defaultLayer/@edgeMappings[name='ConnectionMap'] //@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='LeafTopology']/@defaultLayer/@nodeMappings[name='LeafComponentMap']" semanticConditionExpression="service:noHardware()"/>
       </filters>
       <layout xsi:type="description_1:CompositeLayout"/>
       <diagramInitialisation>
@@ -149,7 +149,7 @@
       </diagramInitialisation>
       <defaultLayer name="Default">
         <nodeMappings xsi:type="description_1:NodeMappingImport" name="NeighborComponents" semanticCandidatesExpression="service:getNeighbors()" domainClass="av3instance::ComponentInstance" reusedBorderedNodeMappings="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='ComponentHierarchy']/@defaultLayer/@nodeMappings[name='ComponentInstanceMap']/@borderedNodeMappings[name='FeatureInstanceMap']" importedMapping="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='ComponentHierarchy']/@defaultLayer/@nodeMappings[name='ComponentInstanceMap']"/>
-        <nodeMappings xsi:type="description_1:NodeMappingImport" name="NeighborRoot" semanticCandidatesExpression="[self/]" domainClass="av3instance::ComponentInstance" reusedBorderedNodeMappings="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='ComponentHierarchy']/@defaultLayer/@nodeMappings[name='ComponentInstanceMap']/@borderedNodeMappings[name='FeatureInstanceMap']" importedMapping="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='ComponentHierarchy']/@defaultLayer/@nodeMappings[name='ComponentInstanceMap']">
+        <nodeMappings xsi:type="description_1:NodeMappingImport" name="NeighborRoot" semanticCandidatesExpression="aql:self" domainClass="av3instance::ComponentInstance" reusedBorderedNodeMappings="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='ComponentHierarchy']/@defaultLayer/@nodeMappings[name='ComponentInstanceMap']/@borderedNodeMappings[name='FeatureInstanceMap']" importedMapping="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='ComponentHierarchy']/@defaultLayer/@nodeMappings[name='ComponentInstanceMap']">
           <style xsi:type="style:SquareDescription" sizeComputationExpression="-1" resizeKind="NSEW" width="10" height="3">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelFormat>bold</labelFormat>
@@ -159,7 +159,7 @@
         </nodeMappings>
         <edgeMappingImports name="NeighborConnection" importedMapping="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='LeafTopology']/@defaultLayer/@edgeMappings[name='ConnectionMap']"/>
         <customization>
-          <vsmElementCustomizations xsi:type="description:VSMElementCustomization" predicateExpression="[self == thisEObject/]">
+          <vsmElementCustomizations xsi:type="description:VSMElementCustomization" predicateExpression=" aql:self == thisEObject">
             <featureCustomizations xsi:type="description:EReferenceCustomization" appliedOn="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='ComponentHierarchy']/@defaultLayer/@nodeMappings[name='ComponentInstanceMap']/@style" referenceName="color">
               <value href="environment:/viewpoint#//@systemColors/@entries[name='blue']"/>
             </featureCustomizations>

@@ -304,7 +304,7 @@ class AIv3API {
 		return top;
 	}
 
-	def static boolean noHardwware(InstanceObject io) {
+	def static boolean noHardware(InstanceObject io) {
 		return !isHardware(io);
 	}
 
