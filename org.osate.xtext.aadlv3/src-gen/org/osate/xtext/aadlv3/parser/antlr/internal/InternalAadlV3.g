@@ -3060,10 +3060,25 @@ rulePropertyAssociation returns [EObject current=null]
 				}
 			)
 		)
-		otherlv_3='=>'
-		{
-			newLeafNode(otherlv_3, grammarAccess.getPropertyAssociationAccess().getEqualsSignGreaterThanSignKeyword_3());
-		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getPropertyAssociationAccess().getPropertyAssociationTypePropertyAssociationTypeParserRuleCall_3_0());
+				}
+				lv_propertyAssociationType_3_0=rulePropertyAssociationType
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getPropertyAssociationRule());
+					}
+					set(
+						$current,
+						"propertyAssociationType",
+						lv_propertyAssociationType_3_0,
+						"org.osate.xtext.aadlv3.AadlV3.PropertyAssociationType");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
 		(
 			(
 				{
@@ -5262,6 +5277,42 @@ ruleFlowType returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken(
 		$current.merge(kw);
 		newLeafNode(kw, grammarAccess.getFlowTypeAccess().getFlowKeyword());
 	}
+;
+
+// Entry rule entryRulePropertyAssociationType
+entryRulePropertyAssociationType returns [String current=null]:
+	{ newCompositeNode(grammarAccess.getPropertyAssociationTypeRule()); }
+	iv_rulePropertyAssociationType=rulePropertyAssociationType
+	{ $current=$iv_rulePropertyAssociationType.current.getText(); }
+	EOF;
+
+// Rule PropertyAssociationType
+rulePropertyAssociationType returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		kw='=>'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getPropertyAssociationTypeAccess().getEqualsSignGreaterThanSignKeyword_0());
+		}
+		    |
+		kw='*=>'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getPropertyAssociationTypeAccess().getAsteriskEqualsSignGreaterThanSignKeyword_1());
+		}
+		    |
+		kw='>=>'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getPropertyAssociationTypeAccess().getGreaterThanSignEqualsSignGreaterThanSignKeyword_2());
+		}
+	)
 ;
 
 // Entry rule entryRuleVirtualProcessorKeywords

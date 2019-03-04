@@ -160,8 +160,7 @@ FlowAssignment returns av3::PathSequence:
 PropertyAssociation returns av3::PropertyAssociation:
 	 ( target=ModelElementReference)? 
 	 '#' property=[av3::PropertyDefinition|QualifiedName] 
-//	propertyAssociationType=PropertyAssociationType?
-	'=>' value=PropertyValue ;
+	propertyAssociationType=PropertyAssociationType value=PropertyValue ;
 
 PropertyValue returns av3::PropertyValue:
 	 value=INT unit=ID?
@@ -316,7 +315,7 @@ FlowType returns av3::AssociationType:
 
 
 PropertyAssociationType returns av3::PropertyAssociationType:
-	'final' | 'default' | 'override'
+	'=>' | '*=>' | '>=>'
 ;
 
 VirtualProcessorKeywords:

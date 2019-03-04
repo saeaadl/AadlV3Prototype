@@ -1605,19 +1605,19 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cPropertyAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final CrossReference cPropertyPropertyDefinitionCrossReference_2_0 = (CrossReference)cPropertyAssignment_2.eContents().get(0);
 		private final RuleCall cPropertyPropertyDefinitionQualifiedNameParserRuleCall_2_0_1 = (RuleCall)cPropertyPropertyDefinitionCrossReference_2_0.eContents().get(1);
-		private final Keyword cEqualsSignGreaterThanSignKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cPropertyAssociationTypeAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cPropertyAssociationTypePropertyAssociationTypeParserRuleCall_3_0 = (RuleCall)cPropertyAssociationTypeAssignment_3.eContents().get(0);
 		private final Assignment cValueAssignment_4 = (Assignment)cGroup.eContents().get(4);
 		private final RuleCall cValuePropertyValueParserRuleCall_4_0 = (RuleCall)cValueAssignment_4.eContents().get(0);
 		
 		//PropertyAssociation av3::PropertyAssociation:
 		//	target=ModelElementReference?
-		//	'#' property=[av3::PropertyDefinition|QualifiedName]
-		//	//	propertyAssociationType=PropertyAssociationType?
-		//	'=>' value=PropertyValue;
+		//	'#' property=[av3::PropertyDefinition|QualifiedName] propertyAssociationType=PropertyAssociationType
+		//	value=PropertyValue;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//target=ModelElementReference? '#' property=[av3::PropertyDefinition|QualifiedName] //	propertyAssociationType=PropertyAssociationType?
-		//'=>' value=PropertyValue
+		//target=ModelElementReference? '#' property=[av3::PropertyDefinition|QualifiedName]
+		//propertyAssociationType=PropertyAssociationType value=PropertyValue
 		public Group getGroup() { return cGroup; }
 		
 		//target=ModelElementReference?
@@ -1638,9 +1638,11 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		//QualifiedName
 		public RuleCall getPropertyPropertyDefinitionQualifiedNameParserRuleCall_2_0_1() { return cPropertyPropertyDefinitionQualifiedNameParserRuleCall_2_0_1; }
 		
-		////	propertyAssociationType=PropertyAssociationType?
-		//'=>'
-		public Keyword getEqualsSignGreaterThanSignKeyword_3() { return cEqualsSignGreaterThanSignKeyword_3; }
+		//propertyAssociationType=PropertyAssociationType
+		public Assignment getPropertyAssociationTypeAssignment_3() { return cPropertyAssociationTypeAssignment_3; }
+		
+		//PropertyAssociationType
+		public RuleCall getPropertyAssociationTypePropertyAssociationTypeParserRuleCall_3_0() { return cPropertyAssociationTypePropertyAssociationTypeParserRuleCall_3_0; }
 		
 		//value=PropertyValue
 		public Assignment getValueAssignment_4() { return cValueAssignment_4; }
@@ -2889,25 +2891,25 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	public class PropertyAssociationTypeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.osate.xtext.aadlv3.AadlV3.PropertyAssociationType");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Keyword cFinalKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
-		private final Keyword cDefaultKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
-		private final Keyword cOverrideKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
+		private final Keyword cEqualsSignGreaterThanSignKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
+		private final Keyword cAsteriskEqualsSignGreaterThanSignKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
+		private final Keyword cGreaterThanSignEqualsSignGreaterThanSignKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
 		
 		//PropertyAssociationType av3::PropertyAssociationType:
-		//	'final' | 'default' | 'override';
+		//	'=>' | '*=>' | '>=>';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'final' | 'default' | 'override'
+		//'=>' | '*=>' | '>=>'
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//'final'
-		public Keyword getFinalKeyword_0() { return cFinalKeyword_0; }
+		//'=>'
+		public Keyword getEqualsSignGreaterThanSignKeyword_0() { return cEqualsSignGreaterThanSignKeyword_0; }
 		
-		//'default'
-		public Keyword getDefaultKeyword_1() { return cDefaultKeyword_1; }
+		//'*=>'
+		public Keyword getAsteriskEqualsSignGreaterThanSignKeyword_1() { return cAsteriskEqualsSignGreaterThanSignKeyword_1; }
 		
-		//'override'
-		public Keyword getOverrideKeyword_2() { return cOverrideKeyword_2; }
+		//'>=>'
+		public Keyword getGreaterThanSignEqualsSignGreaterThanSignKeyword_2() { return cGreaterThanSignEqualsSignGreaterThanSignKeyword_2; }
 	}
 	public class VirtualProcessorKeywordsElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.osate.xtext.aadlv3.AadlV3.VirtualProcessorKeywords");
@@ -3910,9 +3912,8 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	
 	//PropertyAssociation av3::PropertyAssociation:
 	//	target=ModelElementReference?
-	//	'#' property=[av3::PropertyDefinition|QualifiedName]
-	//	//	propertyAssociationType=PropertyAssociationType?
-	//	'=>' value=PropertyValue;
+	//	'#' property=[av3::PropertyDefinition|QualifiedName] propertyAssociationType=PropertyAssociationType
+	//	value=PropertyValue;
 	public PropertyAssociationElements getPropertyAssociationAccess() {
 		return pPropertyAssociation;
 	}
@@ -4317,7 +4318,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//PropertyAssociationType av3::PropertyAssociationType:
-	//	'final' | 'default' | 'override';
+	//	'=>' | '*=>' | '>=>';
 	public PropertyAssociationTypeElements getPropertyAssociationTypeAccess() {
 		return pPropertyAssociationType;
 	}

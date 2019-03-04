@@ -166,16 +166,16 @@ public class AadlV3ValueConverter extends DefaultTerminalConverters {
 				if (string == null) {
 					return null;
 				}
-				if (string.equals("final")) return PropertyAssociationType.FINAL_VALUE;
-				if (string.equals("default")) return PropertyAssociationType.DEFAULT_VALUE;
+				if (string.equals("=>")) return PropertyAssociationType.FINAL_VALUE;
+				if (string.equals("*=>")) return PropertyAssociationType.DEFAULT_VALUE;
 				return PropertyAssociationType.OVERRIDE_VALUE;
 			}
 
 			@Override
 			public String toString(PropertyAssociationType value) {
-				if (value == PropertyAssociationType.FINAL_VALUE) return "final";
-				if (value == PropertyAssociationType.DEFAULT_VALUE) return "default";
-				return "override";
+				if (value == PropertyAssociationType.FINAL_VALUE) return "=>";
+				if (value == PropertyAssociationType.DEFAULT_VALUE) return "*=>";
+				return ">=>";
 			}
 		};
 	}
