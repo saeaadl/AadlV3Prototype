@@ -158,13 +158,6 @@
           </style>
         </nodeMappings>
         <edgeMappingImports name="NeighborConnection" importedMapping="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='LeafTopology']/@defaultLayer/@edgeMappings[name='ConnectionMap']"/>
-        <customization>
-          <vsmElementCustomizations xsi:type="description:VSMElementCustomization" predicateExpression=" aql:self == thisEObject">
-            <featureCustomizations xsi:type="description:EReferenceCustomization" appliedOn="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='ComponentHierarchy']/@defaultLayer/@nodeMappings[name='ComponentInstanceMap']/@style" referenceName="color">
-              <value href="environment:/viewpoint#//@systemColors/@entries[name='blue']"/>
-            </featureCustomizations>
-          </vsmElementCustomizations>
-        </customization>
       </defaultLayer>
     </ownedRepresentations>
     <ownedJavaExtensions qualifiedClassName="org.osate.aadlv3.design.Services"/>
