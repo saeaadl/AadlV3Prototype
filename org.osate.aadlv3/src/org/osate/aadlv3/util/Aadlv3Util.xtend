@@ -1321,48 +1321,48 @@ class Aadlv3Util {
 	////////////////////////////////////////
 	// Instance Model methods
 	///////////////////////////////////////
-
-	def static FeatureInstance createFeatureInstance(Feature f, boolean reverse) {
-		val featurei = Av3instanceFactory.eINSTANCE.createFeatureInstance
-		featurei.name = f.name
-		featurei.direction = if (reverse) f.direction.reverseDirection else f.direction
-		featurei.feature = f
-		featurei.category = f.category
-		return featurei
-	}
-
-	def static PathInstance createPathSequenceInstance(PathSequence ps) {
-		val psi = Av3instanceFactory.eINSTANCE.createPathInstance
-		psi.name = ps.name
-		psi.path = ps
-		return psi
-	}
-
-	def static AssociationInstance createAssociationInstance(Association assoc) {
-		val associ = Av3instanceFactory.eINSTANCE.createAssociationInstance
-		associ.name = assoc.name
-		associ.association = assoc
-		associ.associationType = assoc.associationType
-		return associ
-	}
-
-	def static ComponentInstance createComponentInstance(Component c, Iterable<TypeReference> configuredtypereferences) {
-		val compi = Av3instanceFactory.eINSTANCE.createComponentInstance
-		compi.name = c.name
-		compi.category = c.category
-		compi.component = c
-		Aadlv3Util.configuredClassifierTypereferenceCache.put(compi, configuredtypereferences)
-		return compi
-	}
-	
-	def static createPropertyAssociationInstance(PropertyAssociation pa){
-		val pai = Av3instanceFactory.eINSTANCE.createPropertyAssociationInstance
-		pai.property = pa.property
-		pai.propertyAssociation = pa
-		pai.propertyAssociationType = pa.propertyAssociationType
-		pai.value = pa.value.copy
-		return pai
-	}
+//
+//	def static FeatureInstance createFeatureInstance(Feature f, boolean reverse) {
+//		val featurei = Av3instanceFactory.eINSTANCE.createFeatureInstance
+//		featurei.name = f.name
+//		featurei.direction = if (reverse) f.direction.reverseDirection else f.direction
+//		featurei.feature = f
+//		featurei.category = f.category
+//		return featurei
+//	}
+//
+//	def static PathInstance createPathSequenceInstance(PathSequence ps) {
+//		val psi = Av3instanceFactory.eINSTANCE.createPathInstance
+//		psi.name = ps.name
+//		psi.path = ps
+//		return psi
+//	}
+//
+//	def static AssociationInstance createAssociationInstance(Association assoc) {
+//		val associ = Av3instanceFactory.eINSTANCE.createAssociationInstance
+//		associ.name = assoc.name
+//		associ.association = assoc
+//		associ.associationType = assoc.associationType
+//		return associ
+//	}
+//
+//	def static ComponentInstance createComponentInstance(Component c, Iterable<TypeReference> configuredtypereferences) {
+//		val compi = Av3instanceFactory.eINSTANCE.createComponentInstance
+//		compi.name = c.name
+//		compi.category = c.category
+//		compi.component = c
+//		Aadlv3Util.configuredClassifierTypereferenceCache.put(compi, configuredtypereferences)
+//		return compi
+//	}
+//	
+//	def static createPropertyAssociationInstance(PropertyAssociation pa){
+//		val pai = Av3instanceFactory.eINSTANCE.createPropertyAssociationInstance
+//		pai.property = pa.property
+//		pai.propertyAssociation = pa
+//		pai.propertyAssociationType = pa.propertyAssociationType
+//		pai.value = pa.value.copy
+//		return pai
+//	}
 
 	static HashMap<ComponentInstance, Iterable<TypeReference>> configuredClassifierTypereferenceCache = new HashMap;
 	
@@ -1378,187 +1378,6 @@ class Aadlv3Util {
 		configuredClassifierTypereferenceCache.put(ci,configuredtypereferences)
 	}
 
-	/**
-	 * get the instance object pointed to my model element reference using the instance object context as root of the path
-	 */
-	def static InstanceObject getInstanceElement(InstanceObject context, ModelElementReference mer){
-		if (mer === null || mer.element === null) return context
-		val cxt = if(mer.context !== null) getInstanceElement(context, mer.context) else context
-		cxt.getInstanceElement(mer.element)
-	}
-	
-	/**
-	 * get the instance object representing the model element. It is directly contained in the context object
-	 */
-	def static InstanceObject getInstanceElement(InstanceObject context, ModelElement me){
-		switch (context){
-			ComponentInstance: {
-				switch (me) {
-					Component: {
-						for (compi : context.components) {
-							if (compi.component == me) return compi
-						}
-					}
-					Feature: {
-						for (fi : context.features) {
-							if (fi.feature == me) return fi
-						}
-					}
-					Association: {
-						for (conni : context.connections) {
-							if (conni.association == me) return conni
-						}
-						for (fsi : context.flowspecs) {
-							if (fsi.association == me) return fsi
-						}
-					}
-					PathSequence: {
-						for (pi : context.paths) {
-							if (pi.path == me) return pi
-						}
-					}
-				}
-			}
-			FeatureInstance: {
-				for (fi : context.features) {
-					if (fi.feature == me) return fi
-				}
-			}
-		}
-		context
-	}
-	
-	/**
-	 * get the model element the instance object is based on
-	 */
-	def static EObject getInstanceOrigin(InstanceObject io){
-		switch (io){
-			ComponentInstance: {
-				io.component
-			}
-			FeatureInstance: {
-				io.feature
-			}
-			AssociationInstance: {
-				io.association
-			}
-			PathInstance: {
-				io.path
-			}
-			PropertyAssociationInstance: {
-				io.propertyAssociation
-			}
-			default: { io}
-		}
-	}
-	
-	// return containing component instance 
-	// for component instance as input return it
-	def static containingComponentInstance(InstanceObject io){
-		var res = io
-		while (!(res instanceof ComponentInstance) && res.eContainer !== null){
-			res = res.eContainer as InstanceObject
-		}
-		res as ComponentInstance
-	}
-
-	
-	// add property association instance
-	// check if instance already exists.
-	// If yes override its value if the existing association is not final
-	// return false if the property association or its value was not added  
-	def static boolean addPropertyAssociationInstance(InstanceObject io, PropertyAssociationInstance pai){
-		val pais = io.propertyAssociations
-		for (epai : pais) {
-			if (epai.property == pai.property) {
-				switch (epai.propertyAssociationType) {
-					case PropertyAssociationType.FINAL_VALUE: {
-						if (pai.propertyAssociationType == PropertyAssociationType.OVERRIDE_VALUE){
-							epai.value = pai.value
-							epai.propertyAssociationType = PropertyAssociationType.OVERRIDE_VALUE
-							return true
-						} else {
-							return false
-						}
-					}
-					case DEFAULT_VALUE: {
-						if (pai.propertyAssociationType != PropertyAssociationType.DEFAULT_VALUE){
-							epai.value = pai.value
-							epai.propertyAssociationType = pai.propertyAssociationType
-							return true
-						} else {
-							return false
-						}
-					}
-					case OVERRIDE_VALUE: {
-						return false
-					}
-				}
-			}
-		}
-		pais += pai
-		true
-	}
-	
-	// instance object has property association
-	def static boolean hasPropertyAssociation(InstanceObject io, PropertyDefinition pd){
-		io.propertyAssociations.exists[pai|pai.property === pd]
-	}
-	
-		
-	// association instance represents a flow specification
-	def static boolean isFlowSpec(InstanceObject conn){
-		if (conn instanceof AssociationInstance){
-		   conn.association.associationType.isFlowSpec 
-		} else false
-	}
-
-	// association instance represents a connection
-	def static boolean isConnection(InstanceObject conn){
-		if (conn instanceof AssociationInstance){
-		   conn.associationType.isConnection 
-		} else false
-	}
-	// association instance represents a connection
-	def static boolean isBinding(InstanceObject conn){
-		if (conn instanceof AssociationInstance){
-		   conn.associationType == AssociationType.BINDING 
-		} else false
-	}
-	
-	def static AssociationInstance findFlowSpecInstance(InstanceObject infi, InstanceObject outfi){
-		val ci = infi.containingComponentInstance
-		for (fsi : ci.flowspecs){
-			if (fsi.source === infi && fsi.destination === outfi){
-				return fsi
-			}
-		}
-		null
-	}
-
-	
-	def static AssociationInstance findAssociationInstance(InstanceObject srcfi, InstanceObject dstfi){
-		var ci = srcfi.containingComponentInstance
-		while (ci !== null){
-			for (conni : ci.connections){
-				if (conni.source === srcfi && conni.destination === dstfi){
-					return conni
-				}
-			}
-			ci = ci.eContainer as ComponentInstance
-		}
-		null
-	}
-
-	def static String getInstanceObjectPath(InstanceObject io) {
-		if (io.eContainer === null) {
-			return io.getName();
-		}
-		val path = (io.eContainer as InstanceObject).getInstanceObjectPath();
-		val localname = io.getName();
-
-		return if (path.empty ) localname else path + "." + localname;
-	}
 	
 	
 	////////////////////////////////////////

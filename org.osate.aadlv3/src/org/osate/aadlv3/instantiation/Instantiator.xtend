@@ -23,6 +23,7 @@ import org.osate.av3instance.av3instance.PathInstance
 
 import static extension org.eclipse.emf.ecore.util.EcoreUtil.*
 import static extension org.osate.aadlv3.util.Aadlv3Util.*
+import static extension org.osate.aadlv3.util.AIv3API.*
 import org.osate.aadlv3.aadlv3.PropertyDefinition
 
 class Instantiator {

@@ -386,26 +386,4 @@ class AIv3API {
 		return (eo.getCategory() == FeatureCategory.BUSACCESS);
 	}
 	
-	////////////////////////////////////////
-	// Property Definition / Set methods
-	///////////////////////////////////////
-	
-	def static Iterable<PropertyDefinition> getExpectedProperties(Iterable<TypeReference> trefs){
-		val cls = trefs.allComponentClassifiers
-		val pss = cls.filter[ccl|ccl instanceof ComponentInterface].map[cif|(cif as ComponentInterface).useProperties].flatten
-		val pds = pss.map[ps|ps.properties].flatten
-		val result = new HashSet<PropertyDefinition>()
-		result.addAll(pds)
-		result
-	}
-	
-	def static Iterable<PropertyDefinition> getExpectedProperties(Workingset ws){
-		val pss = ws.useProperties
-		val pds = pss.map[ps|ps.properties].flatten
-		val result = new HashSet<PropertyDefinition>()
-		result.addAll(pds)
-		result
-	}
-	
-	
 }
