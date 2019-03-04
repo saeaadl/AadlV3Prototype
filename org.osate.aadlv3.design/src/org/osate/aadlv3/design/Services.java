@@ -72,6 +72,7 @@ public class Services {
 		 ComponentInstance root = AIv3API.getRoot(ci);
 		 List<AssociationInstance> connis = AIv3API.getAllConnections(root);
 		 Collection<ComponentInstance> neighbors = new ArrayList<ComponentInstance>();
+		 neighbors.add(ci);
 		 for (AssociationInstance conni : connis) {
 				ComponentInstance srcci = containingComponentInstance(conni.getSource());
 				ComponentInstance dstci = containingComponentInstance(conni.getDestination());

@@ -10,10 +10,10 @@
       <defaultLayer name="Default">
         <nodeMappings name="ComponentInstanceMap" semanticCandidatesExpression="service:getAllComponents()" doubleClickDescription="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='LeafTopology']/@defaultLayer/@toolSections.0/@ownedTools[name='DoubleClickOpenSource']" domainClass="av3instance::ComponentInstance">
           <borderedNodeMappings name="FeatureInstanceMap" semanticCandidatesExpression="feature:features" domainClass="av3instance::FeatureInstance">
-            <style xsi:type="style:BundledImageDescription" sizeComputationExpression="1" resizeKind="NSEW" shape="triangle">
+            <style xsi:type="style:BundledImageDescription" sizeComputationExpression="1" resizeKind="NSEW" shape="dot">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='green']"/>
+              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             </style>
           </borderedNodeMappings>
           <style xsi:type="style:SquareDescription" sizeComputationExpression="-1" resizeKind="NSEW" width="10" height="3">
@@ -60,7 +60,7 @@
         <nodeMappings xsi:type="description_1:NodeMappingImport" name="LeafComponentMap" preconditionExpression="service:isLeafComponent()" semanticCandidatesExpression="service:getAllComponents()" doubleClickDescription="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='LeafTopology']/@defaultLayer/@toolSections.0/@ownedTools[name='DoubleClickOpenSource']" domainClass="av3instance::ComponentInstance" reusedBorderedNodeMappings="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='ComponentHierarchy']/@defaultLayer/@nodeMappings[name='ComponentInstanceMap']/@borderedNodeMappings[name='FeatureInstanceMap']" importedMapping="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='ComponentHierarchy']/@defaultLayer/@nodeMappings[name='ComponentInstanceMap']"/>
         <edgeMappings name="ConnectionMap" semanticCandidatesExpression="service:getAllConnections()" sourceMapping="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='ComponentHierarchy']/@defaultLayer/@nodeMappings[name='ComponentInstanceMap']/@borderedNodeMappings[name='FeatureInstanceMap'] //@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='ComponentHierarchy']/@defaultLayer/@nodeMappings[name='ComponentInstanceMap']" targetMapping="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='ComponentHierarchy']/@defaultLayer/@nodeMappings[name='ComponentInstanceMap']/@borderedNodeMappings[name='FeatureInstanceMap'] //@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='ComponentHierarchy']/@defaultLayer/@nodeMappings[name='ComponentInstanceMap']" targetFinderExpression="feature:destination" sourceFinderExpression="feature:source" domainClass="av3instance::AssociationInstance" useDomainElement="true">
           <style sizeComputationExpression="2">
-            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='dark_gray']"/>
             <centerLabelStyleDescription>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             </centerLabelStyleDescription>
@@ -127,6 +127,31 @@
           </vsmElementCustomizations>
         </customization>
       </additionalLayers>
+    </ownedRepresentations>
+    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="ConnectedNeighbors" titleExpression="aql:'Neighbors of '+self.name" domainClass="av3instance::ComponentInstance">
+      <layout xsi:type="description_1:CompositeLayout"/>
+      <diagramInitialisation>
+        <firstModelOperations xsi:type="tool:ChangeContext"/>
+      </diagramInitialisation>
+      <defaultLayer name="Default">
+        <nodeMappings xsi:type="description_1:NodeMappingImport" name="NeighborComponents" semanticCandidatesExpression="service:getNeighbors()" domainClass="av3instance::ComponentInstance" reusedBorderedNodeMappings="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='ComponentHierarchy']/@defaultLayer/@nodeMappings[name='ComponentInstanceMap']/@borderedNodeMappings[name='FeatureInstanceMap']" importedMapping="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='ComponentHierarchy']/@defaultLayer/@nodeMappings[name='ComponentInstanceMap']"/>
+        <nodeMappings xsi:type="description_1:NodeMappingImport" name="NeighborRoot" semanticCandidatesExpression="[self/]" domainClass="av3instance::ComponentInstance" reusedBorderedNodeMappings="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='ComponentHierarchy']/@defaultLayer/@nodeMappings[name='ComponentInstanceMap']/@borderedNodeMappings[name='FeatureInstanceMap']" importedMapping="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='ComponentHierarchy']/@defaultLayer/@nodeMappings[name='ComponentInstanceMap']">
+          <style xsi:type="style:SquareDescription" sizeComputationExpression="-1" resizeKind="NSEW" width="10" height="3">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelFormat>bold</labelFormat>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='blue']"/>
+          </style>
+        </nodeMappings>
+        <edgeMappingImports name="NeighborConnection" importedMapping="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='LeafTopology']/@defaultLayer/@edgeMappings[name='ConnectionMap']"/>
+        <customization>
+          <vsmElementCustomizations xsi:type="description:VSMElementCustomization" predicateExpression="[self == thisEObject/]">
+            <featureCustomizations xsi:type="description:EReferenceCustomization" appliedOn="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='ComponentHierarchy']/@defaultLayer/@nodeMappings[name='ComponentInstanceMap']/@style" referenceName="color">
+              <value href="environment:/viewpoint#//@systemColors/@entries[name='blue']"/>
+            </featureCustomizations>
+          </vsmElementCustomizations>
+        </customization>
+      </defaultLayer>
     </ownedRepresentations>
     <ownedJavaExtensions qualifiedClassName="org.osate.aadlv3.design.Services"/>
     <ownedJavaExtensions qualifiedClassName="org.osate.aadlv3.util.AIv3API"/>

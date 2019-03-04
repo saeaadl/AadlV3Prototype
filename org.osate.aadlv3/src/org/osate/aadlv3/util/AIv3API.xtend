@@ -272,7 +272,19 @@ class AIv3API {
 	}
 
 
-	def static List<AssociationInstance> getAllConnections(ComponentInstance root) {
+	def static List<AssociationInstance> getAllConnections(ComponentInstance ci) {
+		val root = ci.root
+		val assis = EcoreUtil2.eAllOfType(root, AssociationInstance);
+		val conns = new ArrayList<AssociationInstance>();
+		for (AssociationInstance ai : assis) {
+			if (ai.getAssociationType() == AssociationType.CONNECTION) {
+				conns.add(ai);
+			}
+		}
+		return conns;
+	}
+
+	def static List<AssociationInstance> getContainedAllConnections(ComponentInstance root) {
 		val assis = EcoreUtil2.eAllOfType(root, AssociationInstance);
 		val conns = new ArrayList<AssociationInstance>();
 		for (AssociationInstance ai : assis) {
