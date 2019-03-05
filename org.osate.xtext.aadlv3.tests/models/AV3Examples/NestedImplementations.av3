@@ -1,4 +1,7 @@
 package NestedImplementations 
+
+	import StandardProperties::*;
+
 	system interface ControlSystem end
 	
 	system ControlSystem.i
@@ -12,13 +15,15 @@ package NestedImplementations
 				inp : in port ;
 				outp : out port ;
 			} ; 
-			control : thread {
+			control : thread { #Period => 22ms ;
 				inp : in port ;
 				outp : out port ;
+				inp#Data_Size => 45; 
 			} ;
 			filtercontrolconn : connection filter.outp -> control.inp ;
 			outp: out port;
 			outmap: delegate control.outp -> outp ;
+			outp#Data_Size => 45;
 		} ;
 		actuating : device { 
 			inp :  in port ;

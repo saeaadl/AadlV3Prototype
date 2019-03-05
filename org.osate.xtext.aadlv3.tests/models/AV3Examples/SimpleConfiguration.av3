@@ -5,7 +5,7 @@ import StandardProperties::*;
 	interface receiver  is
 		inp: in port ;
 		extout: out feature;
-		#Period => 20 ms;
+		#Period *=> 20 ms;
 	end
 
 	interface sender  is

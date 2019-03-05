@@ -1,4 +1,4 @@
-package FlowExamples 
+package PropertyAssociationExample 
 // connections without and with reach down into is
 // shared data component
 	import StandardProperties::*;
@@ -10,7 +10,9 @@ package FlowExamples
 		inp: in port;
 		fea: feature;
 		action: flow sink  inp ;
+		#Period *=> 20 ms
 	end
+	
 	interface sensor is
 		outp: out port;
 		fea: feature;
@@ -19,13 +21,14 @@ package FlowExamples
 	
 	abstract sensor.i  is
 		sub1: thread sense;
-		upmap: delegate sub1.p1 -> outp ;
+		upmap: delegate sub1.p1 -> outp;
 		reading => flow upmap -> sub1.reading;
 	end
 	abstract actuator.i  is
 		sub2: thread actuate;
 		downmap: delegate inp -> sub2.p1;
 		action=> flow sub2.taction;
+		#Period *=> 35 ms;
 	end
 	thread interface sense  is
 		p1: out port ;
@@ -36,26 +39,11 @@ package FlowExamples
 		taction: flow  sink p1;
 	end
 	
-	interface control is
-	insignal: in port;
-	outaction: out port;
-	processflow: flow path insignal -> outaction;
-	end
-	
-	process control.impl is
-		dofilter: thread filter;
-		docompute: thread compute;
-		extin: delegate insignal -> dofilter.insignal;
-		ftoc: connection dofilter.outsignal -> docompute.insignal;
-		extout: delegate docompute.outsignal -> outaction ;
-		processflow => flow dofilter.filterpath -> ftoc -> docompute.computepath ;
-	end
-	
 	thread interface filter is
 	insignal : in port;
 	outsignal : out port;
 	filterpath: flow path insignal -> outsignal;
-	#Period => 20 
+	#Period => 20 ;
 	end
 	
 	thread interface compute is
@@ -64,23 +52,47 @@ package FlowExamples
 	computepath: flow path insignal -> outsignal;
 	end
 	
+	thread interface logger is
+	insignal : in port;
+	end
+	
+	interface control is
+	insignal: in port;
+	outaction: out port;
+	processflow: flow path insignal -> outaction;
+	end
+	
+	process interface controlProcess extends control //is
+//	controlIF: interface control;
+	end
+	
+	process controlProcess.impl is
+		dofilter: thread filter;
+		docompute: thread compute;
+		dolog: thread logger;
+		extin: delegate insignal -> dofilter.insignal;
+		login: delegate insignal -> dolog.insignal;
+		ftoc: connection dofilter.outsignal -> docompute.insignal;
+		extout: delegate docompute.outsignal -> outaction ;
+	end
+	
 	system interface conntop end
+	
 	system conntop.i is
 		sense: abstract sensor.i;
-		processing: process control.impl;
+		processing: process controlProcess.impl;
 		actuate: abstract actuator.i;
 		hw : system hardwareplatform.impl;
 		sensetocontrol: connection sense.outp -> processing.insignal;
 		controltoactuate: connection processing.outaction -> actuate.inp;
-		etef: end to end flow sense.reading -> sensetocontrol-> processing.processflow -> controltoactuate -> actuate.action;
+		actuate#Period => 34 ms 
 	end
 	
 	bus interface canbus 
 	end
-
 	
 	processor interface x86 is
-	canbusaccess: requires bus access;
+	canbusaccess: requires bus access canbus;
 	end
 	
 	system interface hardwareplatform is
@@ -91,7 +103,7 @@ package FlowExamples
 	cpu: processor x86;
 	mybus: bus canbus;
 	busconn: connection cpu.canbusaccess <-> mybus;
-	extbusaccess: delegate canbusaccess <-> mybus;
+//	extbusaccess: delegate canbusaccess <-> mybus;
 	end
 	
 end

@@ -1,11 +1,10 @@
 package PortConnectionExample 
 // connections without and with reach down into is
 // shared data component
+	import StandardProperties::*;
 
 	type systemstate;
 	type int;
-	property Period: int;
-	property Size: int;
 	
 	interface actuator is
 		inp: in port;
