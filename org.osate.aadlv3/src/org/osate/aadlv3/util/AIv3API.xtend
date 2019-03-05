@@ -30,6 +30,8 @@ import org.osate.av3instance.av3instance.PropertyAssociationInstance
 
 import static extension org.eclipse.emf.ecore.util.EcoreUtil.*
 import static extension org.osate.aadlv3.util.Aadlv3Util.*
+import org.osate.aadlv3.aadlv3.ComponentClassifier
+import org.osate.aadlv3.aadlv3.ComponentConfiguration
 
 class AIv3API {
 	
@@ -70,7 +72,7 @@ class AIv3API {
 		return compi
 	}
 	
-	def static createPropertyAssociationInstance(PropertyAssociation pa){
+	private def static createPropertyAssociationInstance(PropertyAssociation pa){
 		val pai = Av3instanceFactory.eINSTANCE.createPropertyAssociationInstance
 		pai.property = pa.property
 		pai.propertyAssociation = pa
@@ -168,37 +170,75 @@ class AIv3API {
 	// check if instance already exists.
 	// If yes override its value if the existing association is not final
 	// return false if the property association or its value was not added  
-	def static boolean addPropertyAssociationInstance(InstanceObject io, PropertyAssociationInstance pai){
-		val pais = io.propertyAssociations
+	def static boolean addPropertyAssociationInstance(InstanceObject target, PropertyAssociation pa){
+		val pais = target.propertyAssociations
 		for (epai : pais) {
-			if (epai.property == pai.property) {
-				switch (epai.propertyAssociationType) {
-					case PropertyAssociationType.FINAL_VALUE: {
-						if (pai.propertyAssociationType == PropertyAssociationType.OVERRIDE_VALUE){
-							epai.value = pai.value
-							epai.propertyAssociationType = PropertyAssociationType.OVERRIDE_VALUE
-							return true
-						} else {
-							return false
+			if (epai.property == pa.property) {
+				if (target instanceof ComponentInstance){
+					// check extends inheritance of property assignments
+					if (pa.eContainer instanceof ComponentClassifier && epai.propertyAssociation.eContainer instanceof ComponentClassifier){
+						val tcl = pa.eContainer as ComponentClassifier
+						val ecl = epai.propertyAssociation.eContainer as ComponentClassifier
+						var res = false
+						if (tcl.isSuperClassifierOf(ecl)){
+							// should use new value
+							res = overridePropertyValue(epai, pa)
 						}
-					}
-					case DEFAULT_VALUE: {
-						if (pai.propertyAssociationType != PropertyAssociationType.DEFAULT_VALUE){
-							epai.value = pai.value
-							epai.propertyAssociationType = pai.propertyAssociationType
-							return true
-						} else {
-							return false
-						}
-					}
-					case OVERRIDE_VALUE: {
+						return res
+					} else if (pa.eContainer instanceof ComponentClassifier && !(epai.propertyAssociation.eContainer instanceof ComponentClassifier)){
+						// existing assignment came from reach down
+						return false
+					} else if (!(pa.eContainer instanceof ComponentClassifier) && epai.propertyAssociation.eContainer instanceof ComponentClassifier){
+						// new is reach down to override existing from classifier
+						return overridePropertyValue(epai, pa)
+					} else if (!(pa.eContainer instanceof ComponentClassifier) && !(epai.propertyAssociation.eContainer instanceof ComponentClassifier)){
+						// both reach downs 
 						return false
 					}
+					return overridePropertyValue(epai, pa)
+				} else {
+					// target is everything but a component
+					return overridePropertyValue(epai, pa)
 				}
 			}
 		}
-		pais += pai
+		pais += createPropertyAssociationInstance(pa)
 		true
+	}
+	
+	/**
+	 * override existing property value with return value true indicating that is was overridden
+	 * True if existing value is constant and new is override, existing value was default.
+	 * False if existing final and new is not override, existing is default in implementation and new is in configuration, existing is override
+	 * epai existing property association instance
+	 * npa new property association
+	 */
+	def static boolean overridePropertyValue(PropertyAssociationInstance epai, PropertyAssociation npa) {
+		switch (epai.propertyAssociationType) {
+			case PropertyAssociationType.FINAL_VALUE: {
+				if (npa.propertyAssociationType == PropertyAssociationType.OVERRIDE_VALUE) {
+					epai.value = npa.value
+					epai.propertyAssociationType = PropertyAssociationType.OVERRIDE_VALUE
+					return true
+				} else {
+					return false
+				}
+			}
+			case DEFAULT_VALUE: {
+				if (npa.propertyAssociationType === PropertyAssociationType.DEFAULT_VALUE &&
+					(npa.target.closestReferencedComponent !== null || npa.containingComponentClassifier instanceof ComponentConfiguration)
+				) {
+					return false
+				}
+				epai.value = npa.value
+				epai.propertyAssociationType = npa.propertyAssociationType
+				return true
+			}
+			case OVERRIDE_VALUE: {
+				return false
+			}
+		}
+
 	}
 	
 	// instance object has property association

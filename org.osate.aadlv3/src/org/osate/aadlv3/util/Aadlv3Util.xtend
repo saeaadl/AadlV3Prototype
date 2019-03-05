@@ -1205,14 +1205,14 @@ class Aadlv3Util {
 	 * returns the closest component reference in the MER path
 	 */
 	def static Component getClosestReferencedComponent(ModelElementReference mer) {
-		var first = mer
-		if (first.element instanceof Component){
-			return first.element as Component
+		var closest = mer
+		if (closest.element instanceof Component){
+			return closest.element as Component
 		}
-		while (first.context !== null) {
-			first = first.context
-			if (first.element instanceof Component){
-				return first.element as Component
+		while (closest.context !== null) {
+			closest = closest.context
+			if (closest.element instanceof Component){
+				return closest.element as Component
 			}
 		}
 		null

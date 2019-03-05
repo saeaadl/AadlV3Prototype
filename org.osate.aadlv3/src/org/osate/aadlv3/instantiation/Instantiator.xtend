@@ -127,12 +127,11 @@ class Instantiator {
 			// finally we fill in property associations
 			for (pa : ctyperefs.allPropertyAssociations){
 				val target = ci.getInstanceElement(pa.target)
-				val pai = createPropertyAssociationInstance(pa)
-				target.addPropertyAssociationInstance(pai)
+				target.addPropertyAssociationInstance(pa)
 			}
 			for (pa : comp.propertyAssociations){
 				val target = ci.getInstanceElement(pa.target)
-				target.addPropertyAssociationInstance(createPropertyAssociationInstance(pa))
+				target.addPropertyAssociationInstance(pa)
 			}
 			val expectedProps = ctyperefs.expectedProperties
 		}
@@ -145,7 +144,7 @@ class Instantiator {
 		val targetio = context.getInstanceElement(ca.target)
 		for (pa: ca.propertyAssociations){
 			val target = targetio.getInstanceElement(pa.target)
-			target.addPropertyAssociationInstance(createPropertyAssociationInstance(pa))
+			target.addPropertyAssociationInstance(pa)
 		}
 		for (subca: ca.configurationAssignments){
 			ca.processConfigurationAssignmentProperties(targetio)
@@ -165,7 +164,7 @@ class Instantiator {
 		}
 		for (pa : f.propertyAssociations){
 			val target = fi.getInstanceElement(pa.target)
-			target.addPropertyAssociationInstance(createPropertyAssociationInstance(pa))
+			target.addPropertyAssociationInstance(pa)
 		}
 		fi
 	}
@@ -181,7 +180,7 @@ class Instantiator {
 		}
 		for (pa : conn.propertyAssociations){
 			val target = fsi.getInstanceElement(pa.target)
-			target.addPropertyAssociationInstance(createPropertyAssociationInstance(pa))
+			target.addPropertyAssociationInstance(pa)
 		}
 		context.flowspecs += fsi
 	}
@@ -199,7 +198,7 @@ class Instantiator {
 		for (finalconni : allconnis){
 			for (pa : conn.propertyAssociations){
 				val target = finalconni.getInstanceElement(pa.target)
-				target.addPropertyAssociationInstance(createPropertyAssociationInstance(pa))
+				target.addPropertyAssociationInstance(pa)
 			}
 		}
 	}
@@ -218,7 +217,7 @@ class Instantiator {
 			finalconni.external = true
 			for (pa : conn.propertyAssociations){
 				val target = finalconni.getInstanceElement(pa.target)
-				target.addPropertyAssociationInstance(createPropertyAssociationInstance(pa))
+				target.addPropertyAssociationInstance(pa)
 			}
 		}
 	}
@@ -236,7 +235,7 @@ class Instantiator {
 			finalconni.external = true
 			for (pa : conn.propertyAssociations){
 				val target = finalconni.getInstanceElement(pa.target)
-				target.addPropertyAssociationInstance(createPropertyAssociationInstance(pa))
+				target.addPropertyAssociationInstance(pa)
 			}
 		}
 	}
@@ -333,7 +332,7 @@ class Instantiator {
 		ps.processPath(psi,context)
 		for (pa : ps.propertyAssociations){
 			val target = psi.getInstanceElement(pa.target)
-			target.addPropertyAssociationInstance(createPropertyAssociationInstance(pa))
+			target.addPropertyAssociationInstance(pa)
 		}
 	}
 	
