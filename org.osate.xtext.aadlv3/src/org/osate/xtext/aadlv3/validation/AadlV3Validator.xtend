@@ -30,6 +30,7 @@ import org.osate.aadlv3.aadlv3.TypeReference
 import static org.osate.aadlv3.util.Av3API.*
 
 import static extension org.osate.aadlv3.util.Aadlv3Util.*
+import org.osate.aadlv3.aadlv3.PropertyAssociationType
 
 /**
  * This class contains custom validation rules. 
@@ -82,6 +83,9 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	public static val DifferentComponentInPath = 'DifferentComponentInPath'
 	public static val NoInterface = 'NoComponentInterface'
 	public static val DoesNotApply = 'DoesNotApply'
+	public static val NoOverride = 'NoOverride'
+	public static val NoDoubleAssignment = 'NoDoubleAssignment'
+	public static val NoFinalChange = 'NoFinalChange'
 	public static val NoCommonImplementation = 'NoCommonImplementation'
 	
 
@@ -89,6 +93,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	def checkComponentClassifier(ComponentClassifier cl) {
 		cl.checkConsistentCategory()
 		cl.checkCommonTopComponentImplementation
+		cl.checkDuplicatePropertyAssociations
 	}
 
 	@Check
@@ -231,6 +236,11 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 
 	@Check
 	def checkPropertyAssociation(PropertyAssociation pa) {
+		pa.checkPropertyAssociationAppliesto
+		pa.checkPropertyAssociationType
+	}
+	
+	def checkPropertyAssociationAppliesto(PropertyAssociation pa) {
 		if (pa.target !== null){
 			val targetme = pa.target.element
 			switch (targetme){
@@ -280,6 +290,125 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 						error('Property does not apply to '+paTarget.associationType, pa,
 							Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY, DoesNotApply)
 					}
+				}
+			}
+		}
+	}
+	
+	def checkPropertyAssociationType(PropertyAssociation pa) {
+		if (pa.target !== null){
+			val targetme = pa.target.element
+			// override only in component configurations
+			if (pa.containingComponentConfiguration === null) {
+				switch (targetme) {
+					Component: {
+						if (pa.propertyAssociationType === PropertyAssociationType.OVERRIDE_VALUE) {
+							error('Property association on component cannot override value', pa,
+								Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY_ASSOCIATION_TYPE, NoOverride)
+						}
+					}
+					Feature: {
+						if (pa.propertyAssociationType === PropertyAssociationType.OVERRIDE_VALUE) {
+							error('Property association on feature cannot override value', pa,
+								Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY_ASSOCIATION_TYPE, NoOverride)
+						}
+					}
+					Association: {
+						if (pa.propertyAssociationType === PropertyAssociationType.OVERRIDE_VALUE) {
+							error('Property association on association cannot override value', pa,
+								Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY_ASSOCIATION_TYPE, NoOverride)
+						}
+					}
+				}
+			}
+			if (targetme instanceof Component) {
+				// for all property assignments to components, if the component classifier already has a local assignment that is final
+				val tpas = targetme.typeReferences.allPropertyAssociations
+				for (tpa : tpas) {
+					if (tpa.target === null && sameProperty(tpa.property, pa.property) &&
+						tpa.propertyAssociationType === PropertyAssociationType.FINAL_VALUE) {
+						error('Property association cannot change previously assigned final value', pa,
+							Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY_ASSOCIATION_TYPE, NoFinalChange)
+					}
+				}
+			}
+			
+			// local target model element also has {} property assignment 
+			val tpas = targetme.propertyAssociations
+			for (tpa : tpas) {
+				if (tpa.target === null && sameProperty(tpa.property, pa.property)){
+					error('Cannot assign property value twice in classifier context', pa,
+						Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY, NoDoubleAssignment)
+				}
+			}
+		} else {
+			// associated with containing element
+			val paTarget = pa.eContainer
+			switch (paTarget){
+				Component: {
+					if (pa.propertyAssociationType === PropertyAssociationType.OVERRIDE_VALUE) {
+						error('Property association on component cannot override value', pa,
+							Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY_ASSOCIATION_TYPE, NoOverride)
+					}
+					val tpas = paTarget.typeReferences.allPropertyAssociations
+					for (tpa : tpas) {
+						if (tpa.target === null && sameProperty(tpa.property, pa.property) &&
+							tpa.propertyAssociationType === PropertyAssociationType.FINAL_VALUE) {
+							error('Property association cannot change previously assigned final value', pa,
+								Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY_ASSOCIATION_TYPE, NoFinalChange)
+						}
+					}
+				}
+				ComponentClassifier: {
+					// check extends override
+					val supercls = paTarget.allSuperComponentClassifiers
+					for (supercl : supercls) {
+						val spas = supercl.propertyAssociations
+						for (spa : spas) {
+							if (spa.target === null && sameProperty(spa.property, pa.property) &&
+								spa.propertyAssociationType === PropertyAssociationType.FINAL_VALUE) {
+								error('Property association cannot change previously assigned final value', pa,
+									Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY_ASSOCIATION_TYPE,
+									NoFinalChange)
+							}
+						}
+					}
+					// check no override if classifier is interface or implementation
+					if (!(paTarget instanceof ComponentConfiguration)) {
+						if (pa.propertyAssociationType === PropertyAssociationType.OVERRIDE_VALUE) {
+							error('Property association on component cannot override value', pa,
+								Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY_ASSOCIATION_TYPE, NoOverride)
+						}
+					}
+				}
+				Feature: {
+					if (pa.propertyAssociationType === PropertyAssociationType.OVERRIDE_VALUE) {
+						error('Property association on feature cannot override value', pa,
+							Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY_ASSOCIATION_TYPE, NoOverride)
+					}
+				}
+				Association: {
+					if (pa.propertyAssociationType === PropertyAssociationType.OVERRIDE_VALUE) {
+						error('Property association on association cannot override value', pa,
+							Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY_ASSOCIATION_TYPE, NoOverride)
+					}
+				}
+			}
+		}
+	}
+
+	def checkDuplicatePropertyAssociations(ComponentClassifier cl) {
+		val pas = cl.propertyAssociations
+		val maxpas = pas.length
+		for (var firstidx = 0; firstidx < maxpas - 1; firstidx++) {
+			val first = pas.get(firstidx)
+			for (var secondidx = firstidx + 1; secondidx < maxpas; secondidx++) {
+				val second = pas.get(secondidx)
+				if (first !== second && sameProperty(first.property,second.property) && first.target?.targetPath == second.target?.targetPath) {
+			error('Duplicate property association ' + first.property.name, cl,
+				Aadlv3Package.Literals.COMPONENT_CLASSIFIER__PROPERTY_ASSOCIATIONS, secondidx, NoDoubleAssignment)
+			error('Duplicate property association ' + second.property.name, cl,
+				Aadlv3Package.Literals.COMPONENT_CLASSIFIER__PROPERTY_ASSOCIATIONS, firstidx, NoDoubleAssignment)
 				}
 			}
 		}

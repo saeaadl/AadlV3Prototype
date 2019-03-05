@@ -133,6 +133,20 @@ class Aadlv3Util {
 	}
 
 	/**
+	 * returns an ordered set of component classifier.
+	 * The list consists of all its super classifiers.
+	 * In addition, the BaseInterface classifier is added.
+	 */
+	static def Iterable<ComponentClassifier> getAllSuperComponentClassifiers(ComponentClassifier cc) {
+		val result = new LinkedHashSet<ComponentClassifier>
+		if(cc === null || cc.eIsProxy) return result
+		cc.addSuperComponentClassifiers(result)
+		val base = cc.getBaseInterface(result.componentCategory)
+		if (base !== null) result += base
+		return result
+	}
+
+	/**
 	 * Add all super classifiers of a given classifier to the set.
 	 * First add the interface and its super interfaces
 	 * then add direct super implementations/configurations
@@ -1422,6 +1436,10 @@ class Aadlv3Util {
 	
 	def static boolean appliesToAll(PropertyDefinition pd){
 		pd.componentCategories.empty && pd.featureCategories.empty && pd.associationTypes.empty
+	}
+	
+	def static boolean sameProperty(PropertyDefinition first, PropertyDefinition second){
+		return first.name == second.name
 	}
 	
 }

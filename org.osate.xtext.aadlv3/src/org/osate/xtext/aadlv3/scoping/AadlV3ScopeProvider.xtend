@@ -74,6 +74,9 @@ class AadlV3ScopeProvider extends AbstractAadlV3ScopeProvider {
 							switch ccc: cc.eContainer {
 								ComponentClassifier:
 									ccc.allModelElements
+								Component: {
+									ccc.allModelElements 
+								}
 								ConfigurationAssignment: {
 									// enclosing configuration assignment may configure a classifier or it may be empty, thus, we need to go to its target
 									// We only need to go to the enclosing configuration assignment as it acts as the root context for resolving the model element reference path
@@ -141,7 +144,7 @@ class AadlV3ScopeProvider extends AbstractAadlV3ScopeProvider {
 						}
 					}
 				}
-			if (modelElements === null) {
+			if (modelElements === null || modelElements.empty) {
 				return IScope::NULLSCOPE
 			}
 			return new SimpleScope(IScope::NULLSCOPE, Scopes::scopedElementsFor(modelElements,

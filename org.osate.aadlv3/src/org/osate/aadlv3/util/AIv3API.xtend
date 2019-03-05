@@ -173,7 +173,7 @@ class AIv3API {
 	def static boolean addPropertyAssociationInstance(InstanceObject target, PropertyAssociation pa){
 		val pais = target.propertyAssociations
 		for (epai : pais) {
-			if (epai.property == pa.property) {
+			if (sameProperty(epai.property, pa.property)) {
 				if (target instanceof ComponentInstance){
 					// check extends inheritance of property assignments
 					if (pa.eContainer instanceof ComponentClassifier && epai.propertyAssociation.eContainer instanceof ComponentClassifier){
@@ -243,7 +243,7 @@ class AIv3API {
 	
 	// instance object has property association
 	def static boolean hasPropertyAssociation(InstanceObject io, PropertyDefinition pd){
-		io.propertyAssociations.exists[pai|pai.property === pd]
+		io.propertyAssociations.exists[pai|sameProperty(pai.property, pd)]
 	}
 	
 		
