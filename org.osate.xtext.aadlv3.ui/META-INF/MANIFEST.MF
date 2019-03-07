@@ -20,7 +20,11 @@ Require-Bundle: org.osate.xtext.aadlv3,
  org.eclipse.xtext.xbase.lib;bundle-version="2.14.0",
  org.eclipse.xtend.lib;bundle-version="2.14.0";resolution:=optional,
  org.eclipse.ui.workbench,
- org.eclipse.emf.ecore
+ org.eclipse.emf.ecore,
+ org.eclipse.sirius;bundle-version="6.1.2",
+ org.eclipse.emf.transaction;bundle-version="1.9.1",
+ org.eclipse.sirius.ui;bundle-version="6.1.2",
+ org.eclipse.sirius.ext.base;bundle-version="6.1.2"
 Import-Package: org.apache.log4j
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: org.osate.xtext.aadlv3.ui.internal,

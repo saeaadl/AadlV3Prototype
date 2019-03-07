@@ -63,6 +63,7 @@
       </subItemMappings>
     </ownedRepresentations>
     <ownedRepresentations xsi:type="description_1:DiagramDescription" name="LeafTopology" titleExpression="aql:'Topology of '+self.name" domainClass="av3instance::ComponentInstance" enablePopupBars="true">
+      <metamodel href="../../org.osate.aadlv3/model/AV3Instance.ecore#/"/>
       <filters xsi:type="filter:CompositeFilterDescription" name="Nohardware">
         <filters xsi:type="filter:MappingFilter" mappings="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='ComponentHierarchy']/@defaultLayer/@nodeMappings[name='ComponentInstanceMap']/@borderedNodeMappings[name='FeatureInstanceMap'] //@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='LeafTopology']/@defaultLayer/@edgeMappings[name='ConnectionMap'] //@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='LeafTopology']/@defaultLayer/@nodeMappings[name='LeafComponentMap']" semanticConditionExpression="service:noHardware()"/>
       </filters>
@@ -143,21 +144,22 @@
       </additionalLayers>
     </ownedRepresentations>
     <ownedRepresentations xsi:type="description_1:DiagramDescription" name="ConnectedNeighbors" titleExpression="aql:'Neighbors of '+self.name" domainClass="av3instance::ComponentInstance">
+      <metamodel href="../../org.osate.aadlv3/model/AV3Instance.ecore#/"/>
+      <metamodel href="http://www.eclipse.org/sirius/1.1.0#/"/>
       <layout xsi:type="description_1:CompositeLayout"/>
       <diagramInitialisation>
         <firstModelOperations xsi:type="tool:ChangeContext"/>
       </diagramInitialisation>
       <defaultLayer name="Default">
         <nodeMappings xsi:type="description_1:NodeMappingImport" name="NeighborComponents" semanticCandidatesExpression="service:getNeighbors()" domainClass="av3instance::ComponentInstance" reusedBorderedNodeMappings="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='ComponentHierarchy']/@defaultLayer/@nodeMappings[name='ComponentInstanceMap']/@borderedNodeMappings[name='FeatureInstanceMap']" importedMapping="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='ComponentHierarchy']/@defaultLayer/@nodeMappings[name='ComponentInstanceMap']"/>
-        <nodeMappings xsi:type="description_1:NodeMappingImport" name="NeighborRoot" semanticCandidatesExpression="aql:self" domainClass="av3instance::ComponentInstance" reusedBorderedNodeMappings="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='ComponentHierarchy']/@defaultLayer/@nodeMappings[name='ComponentInstanceMap']/@borderedNodeMappings[name='FeatureInstanceMap']" importedMapping="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='ComponentHierarchy']/@defaultLayer/@nodeMappings[name='ComponentInstanceMap']">
-          <style xsi:type="style:SquareDescription" sizeComputationExpression="-1" resizeKind="NSEW" width="10" height="3">
-            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            <labelFormat>bold</labelFormat>
-            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='blue']"/>
-          </style>
-        </nodeMappings>
         <edgeMappingImports name="NeighborConnection" importedMapping="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='LeafTopology']/@defaultLayer/@edgeMappings[name='ConnectionMap']"/>
+        <customization>
+          <vsmElementCustomizations xsi:type="description:VSMElementCustomization" predicateExpression="aql:container.equals(self)">
+            <featureCustomizations xsi:type="description:EReferenceCustomization" appliedOn="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='ComponentHierarchy']/@defaultLayer/@nodeMappings[name='ComponentInstanceMap']/@style" referenceName="color">
+              <value href="environment:/viewpoint#//@systemColors/@entries[name='light_orange']"/>
+            </featureCustomizations>
+          </vsmElementCustomizations>
+        </customization>
       </defaultLayer>
     </ownedRepresentations>
     <ownedJavaExtensions qualifiedClassName="org.osate.aadlv3.design.Services"/>

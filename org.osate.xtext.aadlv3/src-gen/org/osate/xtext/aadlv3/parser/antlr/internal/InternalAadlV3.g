@@ -5301,16 +5301,22 @@ rulePropertyAssociationType returns [AntlrDatatypeRuleToken current=new AntlrDat
 			newLeafNode(kw, grammarAccess.getPropertyAssociationTypeAccess().getEqualsSignGreaterThanSignKeyword_0());
 		}
 		    |
+		kw=':='
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getPropertyAssociationTypeAccess().getColonEqualsSignKeyword_1());
+		}
+		    |
 		kw='*=>'
 		{
 			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getPropertyAssociationTypeAccess().getAsteriskEqualsSignGreaterThanSignKeyword_1());
+			newLeafNode(kw, grammarAccess.getPropertyAssociationTypeAccess().getAsteriskEqualsSignGreaterThanSignKeyword_2());
 		}
 		    |
-		kw='>=>'
+		kw='=>>'
 		{
 			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getPropertyAssociationTypeAccess().getGreaterThanSignEqualsSignGreaterThanSignKeyword_2());
+			newLeafNode(kw, grammarAccess.getPropertyAssociationTypeAccess().getEqualsSignGreaterThanSignGreaterThanSignKeyword_3());
 		}
 	)
 ;

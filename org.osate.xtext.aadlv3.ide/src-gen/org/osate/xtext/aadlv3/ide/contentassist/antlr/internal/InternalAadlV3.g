@@ -2885,15 +2885,21 @@ rule__PropertyAssociationType__Alternatives
 	)
 	|
 	(
-		{ before(grammarAccess.getPropertyAssociationTypeAccess().getAsteriskEqualsSignGreaterThanSignKeyword_1()); }
-		'*=>'
-		{ after(grammarAccess.getPropertyAssociationTypeAccess().getAsteriskEqualsSignGreaterThanSignKeyword_1()); }
+		{ before(grammarAccess.getPropertyAssociationTypeAccess().getColonEqualsSignKeyword_1()); }
+		':='
+		{ after(grammarAccess.getPropertyAssociationTypeAccess().getColonEqualsSignKeyword_1()); }
 	)
 	|
 	(
-		{ before(grammarAccess.getPropertyAssociationTypeAccess().getGreaterThanSignEqualsSignGreaterThanSignKeyword_2()); }
-		'>=>'
-		{ after(grammarAccess.getPropertyAssociationTypeAccess().getGreaterThanSignEqualsSignGreaterThanSignKeyword_2()); }
+		{ before(grammarAccess.getPropertyAssociationTypeAccess().getAsteriskEqualsSignGreaterThanSignKeyword_2()); }
+		'*=>'
+		{ after(grammarAccess.getPropertyAssociationTypeAccess().getAsteriskEqualsSignGreaterThanSignKeyword_2()); }
+	)
+	|
+	(
+		{ before(grammarAccess.getPropertyAssociationTypeAccess().getEqualsSignGreaterThanSignGreaterThanSignKeyword_3()); }
+		'=>>'
+		{ after(grammarAccess.getPropertyAssociationTypeAccess().getEqualsSignGreaterThanSignGreaterThanSignKeyword_3()); }
 	)
 ;
 finally {

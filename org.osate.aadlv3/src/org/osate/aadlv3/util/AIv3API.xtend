@@ -180,7 +180,7 @@ class AIv3API {
 						val tcl = pa.eContainer as ComponentClassifier
 						val ecl = epai.propertyAssociation.eContainer as ComponentClassifier
 						var res = false
-						if (tcl.isSuperClassifierOf(ecl)){
+						if (pa.target !== null || tcl.isSuperClassifierOf(ecl)){
 							// should use new value
 							res = overridePropertyValue(epai, pa)
 						}
@@ -224,9 +224,10 @@ class AIv3API {
 					return false
 				}
 			}
-			case DEFAULT_VALUE: {
-				if (npa.propertyAssociationType === PropertyAssociationType.DEFAULT_VALUE &&
-					(npa.target.closestReferencedComponent !== null || npa.containingComponentClassifier instanceof ComponentConfiguration)
+			case VARIABLE_VALUE: {
+				if (npa.propertyAssociationType === PropertyAssociationType.DEFAULT_VALUE 
+					// configurations and reachdown assignments should not assign default values. TODO Validation.
+					&&(npa.target?.closestReferencedComponent !== null || npa.containingComponentClassifier instanceof ComponentConfiguration)
 				) {
 					return false
 				}
@@ -235,6 +236,9 @@ class AIv3API {
 				return true
 			}
 			case OVERRIDE_VALUE: {
+				return false
+			}
+			case DEFAULT_VALUE: {
 				return false
 			}
 		}

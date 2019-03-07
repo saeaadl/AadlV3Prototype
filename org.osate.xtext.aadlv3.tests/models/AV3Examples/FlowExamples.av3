@@ -80,7 +80,7 @@ package FlowExamples
 
 	
 	processor interface x86 is
-	canbusaccess: requires bus access;
+	canbusaccess: requires bus access canbus;
 	end
 	
 	system interface hardwareplatform is

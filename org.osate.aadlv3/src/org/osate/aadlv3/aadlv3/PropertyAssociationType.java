@@ -42,24 +42,32 @@ public enum PropertyAssociationType implements Enumerator {
 	FINAL_VALUE(0, "FinalValue", "FinalValue"),
 
 	/**
-	 * The '<em><b>Default Value</b></em>' literal object.
+	 * The '<em><b>Variable Value</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #DEFAULT_VALUE_VALUE
+	 * @see #VARIABLE_VALUE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	DEFAULT_VALUE(1, "DefaultValue", "DefaultValue"),
-
+	VARIABLE_VALUE(1, "VariableValue", "VariableValue"),
 	/**
-	 * The '<em><b>Override Value</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #OVERRIDE_VALUE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	OVERRIDE_VALUE(2, "OverrideValue", "OverrideValue");
+	* The '<em><b>Override Value</b></em>' literal object.
+	* <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
+	* @see #OVERRIDE_VALUE_VALUE
+	* @generated
+	* @ordered
+	*/
+	OVERRIDE_VALUE(2, "OverrideValue", "OverrideValue"),
+	/**
+	* The '<em><b>Default Value</b></em>' literal object.
+	* <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
+	* @see #DEFAULT_VALUE_VALUE
+	* @generated
+	* @ordered
+	*/
+	DEFAULT_VALUE(3, "DefaultValue", "DefaultValue");
 
 	/**
 	 * The '<em><b>Final Value</b></em>' literal value.
@@ -77,19 +85,19 @@ public enum PropertyAssociationType implements Enumerator {
 	public static final int FINAL_VALUE_VALUE = 0;
 
 	/**
-	 * The '<em><b>Default Value</b></em>' literal value.
+	 * The '<em><b>Variable Value</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Default Value</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>Variable Value</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #DEFAULT_VALUE
-	 * @model name="DefaultValue"
+	 * @see #VARIABLE_VALUE
+	 * @model name="VariableValue"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DEFAULT_VALUE_VALUE = 1;
+	public static final int VARIABLE_VALUE_VALUE = 1;
 
 	/**
 	 * The '<em><b>Override Value</b></em>' literal value.
@@ -107,13 +115,28 @@ public enum PropertyAssociationType implements Enumerator {
 	public static final int OVERRIDE_VALUE_VALUE = 2;
 
 	/**
+	 * The '<em><b>Default Value</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>Default Value</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #DEFAULT_VALUE
+	 * @model name="DefaultValue"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int DEFAULT_VALUE_VALUE = 3;
+
+	/**
 	 * An array of all the '<em><b>Property Association Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private static final PropertyAssociationType[] VALUES_ARRAY = new PropertyAssociationType[] { FINAL_VALUE,
-			DEFAULT_VALUE, OVERRIDE_VALUE, };
+			VARIABLE_VALUE, OVERRIDE_VALUE, DEFAULT_VALUE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Property Association Type</b></em>' enumerators.
@@ -172,10 +195,12 @@ public enum PropertyAssociationType implements Enumerator {
 		switch (value) {
 		case FINAL_VALUE_VALUE:
 			return FINAL_VALUE;
-		case DEFAULT_VALUE_VALUE:
-			return DEFAULT_VALUE;
+		case VARIABLE_VALUE_VALUE:
+			return VARIABLE_VALUE;
 		case OVERRIDE_VALUE_VALUE:
 			return OVERRIDE_VALUE;
+		case DEFAULT_VALUE_VALUE:
+			return DEFAULT_VALUE;
 		}
 		return null;
 	}
