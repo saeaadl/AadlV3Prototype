@@ -1,7 +1,7 @@
 package testinstances
 workingset testinstances is
 	
-	paex: system PropertyAssociationExample::conntop.i;
+	paex: system PropertyAssociationExample::conntop.c1;
 //	portex: system PortConnectionExample::conntop.i;
 //	connex: system ConnectionExamples::conntop.i;
 //
