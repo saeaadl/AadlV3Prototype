@@ -217,7 +217,7 @@ class AIv3API {
 		switch (epai.propertyAssociationType) {
 			case PropertyAssociationType.FINAL_VALUE: {
 				if (npa.propertyAssociationType == PropertyAssociationType.OVERRIDE_VALUE) {
-					epai.value = npa.value
+					epai.value = npa.value.copy
 					epai.propertyAssociationType = PropertyAssociationType.OVERRIDE_VALUE
 					return true
 				} else {
@@ -225,13 +225,13 @@ class AIv3API {
 				}
 			}
 			case VARIABLE_VALUE: {
-				if (npa.propertyAssociationType === PropertyAssociationType.DEFAULT_VALUE 
+				if (npa.propertyAssociationType === PropertyAssociationType.VARIABLE_VALUE 
 					// configurations and reachdown assignments should not assign default values. TODO Validation.
 					&&(npa.target?.closestReferencedComponent !== null || npa.containingComponentClassifier instanceof ComponentConfiguration)
 				) {
 					return false
 				}
-				epai.value = npa.value
+				epai.value = npa.value.copy
 				epai.propertyAssociationType = npa.propertyAssociationType
 				return true
 			}
