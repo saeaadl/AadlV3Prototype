@@ -302,22 +302,10 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 			if (pa.containingComponentConfiguration === null) {
 				switch (targetme) {
 					Component: {
-						if (pa.propertyAssociationType === PropertyAssociationType.OVERRIDE_VALUE) {
-							error('Property association on component cannot override value', pa,
-								Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY_ASSOCIATION_TYPE, NoOverride)
-						}
 					}
 					Feature: {
-						if (pa.propertyAssociationType === PropertyAssociationType.OVERRIDE_VALUE) {
-							error('Property association on feature cannot override value', pa,
-								Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY_ASSOCIATION_TYPE, NoOverride)
-						}
 					}
 					Association: {
-						if (pa.propertyAssociationType === PropertyAssociationType.OVERRIDE_VALUE) {
-							error('Property association on association cannot override value', pa,
-								Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY_ASSOCIATION_TYPE, NoOverride)
-						}
 					}
 				}
 			}
@@ -342,14 +330,10 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 				}
 			}
 		} else {
-			// associated with containing element
+			// associated with containing element. target is null
 			val paTarget = pa.eContainer
 			switch (paTarget){
 				Component: {
-					if (pa.propertyAssociationType === PropertyAssociationType.OVERRIDE_VALUE) {
-						error('Property association on component cannot override value', pa,
-							Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY_ASSOCIATION_TYPE, NoOverride)
-					}
 					val tpas = paTarget.typeReferences.allPropertyAssociations
 					for (tpa : tpas) {
 						if (tpa.target === null && sameProperty(tpa.property, pa.property) &&
@@ -375,23 +359,11 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 					}
 					// check no override if classifier is interface or implementation
 					if (!(paTarget instanceof ComponentConfiguration)) {
-						if (pa.propertyAssociationType === PropertyAssociationType.OVERRIDE_VALUE) {
-							error('Property association on component cannot override value', pa,
-								Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY_ASSOCIATION_TYPE, NoOverride)
-						}
 					}
 				}
 				Feature: {
-					if (pa.propertyAssociationType === PropertyAssociationType.OVERRIDE_VALUE) {
-						error('Property association on feature cannot override value', pa,
-							Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY_ASSOCIATION_TYPE, NoOverride)
-					}
 				}
 				Association: {
-					if (pa.propertyAssociationType === PropertyAssociationType.OVERRIDE_VALUE) {
-						error('Property association on association cannot override value', pa,
-							Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY_ASSOCIATION_TYPE, NoOverride)
-					}
 				}
 			}
 		}

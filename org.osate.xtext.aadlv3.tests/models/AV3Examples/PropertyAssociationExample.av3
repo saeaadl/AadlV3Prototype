@@ -10,7 +10,7 @@ package PropertyAssociationExample
 		inp: in port;
 		fea: feature;
 		action: flow sink  inp ;
-//		#Period => 20 ms
+		#Period => 20 ms
 	end
 	
 	interface sensor is
@@ -28,7 +28,7 @@ package PropertyAssociationExample
 		sub2: thread actuate;
 		downmap: delegate inp -> sub2.p1;
 		action=> flow sub2.taction;
-//		#Period => 35 ms;
+		#Period => 35 ms;
 	end
 	
 	configuration actuator.c1 extends actuator.i
@@ -55,7 +55,7 @@ package PropertyAssociationExample
 	insignal : in port;
 	outsignal : out port;
 	filterpath: flow path insignal -> outsignal;
-//	#Period => 20 ;
+	#Period => 20 ;
 	end
 	
 	thread interface compute is
@@ -96,7 +96,7 @@ package PropertyAssociationExample
 		hw : system hardwareplatform.impl;
 		sensetocontrol: connection sense.outp -> processing.insignal;
 		controltoactuate: connection processing.outaction -> actuate.inp;
-//		actuate#Period => 34 ms 
+		actuate#Period => 34 ms 
 		actuate.sub2#Period := 55ms;
 	end
 	

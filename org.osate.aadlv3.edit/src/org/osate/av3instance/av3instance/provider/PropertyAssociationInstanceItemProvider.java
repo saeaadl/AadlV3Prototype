@@ -158,8 +158,8 @@ public class PropertyAssociationInstanceItemProvider extends InstanceObjectItemP
 	@Override
 	public String getText(Object object) {
 		String label = ((PropertyAssociationInstance) object).getProperty().getName();
-		 PropertyValue pvalue = ((PropertyAssociationInstance) object).getValue();
-		int value = pvalue != null? pvalue.getValue():0;
+		PropertyValue pvalue = ((PropertyAssociationInstance) object).getValue();
+		int value = pvalue != null ? pvalue.getValue() : 0;
 		return label == null || label.length() == 0 ? getString("_UI_PropertyAssociationInstance_type") : //$NON-NLS-1$
 				label + " => " + value; //$NON-NLS-1$ 
 	}

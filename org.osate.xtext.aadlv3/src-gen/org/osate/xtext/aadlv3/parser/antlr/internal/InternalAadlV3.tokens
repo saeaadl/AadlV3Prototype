@@ -12,9 +12,8 @@
 ';'=18
 '<->'=28
 '=>'=33
-'=>>'=63
 'abstract'=43
-'access'=70
+'access'=69
 'as'=32
 'binding'=60
 'bus'=44
@@ -28,7 +27,7 @@
 'feature'=53
 'flow'=35
 'for'=16
-'group'=65
+'group'=64
 'import'=31
 'in'=55
 'interface'=23
@@ -36,8 +35,8 @@
 'memory'=47
 'out'=56
 'package'=12
-'path'=69
-'point'=71
+'path'=68
+'point'=70
 'port'=54
 'private'=11
 'process'=48
@@ -47,15 +46,15 @@
 'provides'=58
 'requires'=57
 'reverse'=39
-'sink'=68
-'source'=67
+'sink'=67
+'source'=66
 'subprogram'=52
 'system'=50
 'thread'=51
-'to'=66
+'to'=65
 'type'=22
 'use'=29
-'virtual'=64
+'virtual'=63
 'workingset'=40
 '{'=20
 '}'=21
@@ -126,4 +125,3 @@ T__67=67
 T__68=68
 T__69=69
 T__70=70
-T__71=71

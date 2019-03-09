@@ -1935,7 +1935,6 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		initEEnum(propertyAssociationTypeEEnum, PropertyAssociationType.class, "PropertyAssociationType");
 		addEEnumLiteral(propertyAssociationTypeEEnum, PropertyAssociationType.FINAL_VALUE);
 		addEEnumLiteral(propertyAssociationTypeEEnum, PropertyAssociationType.VARIABLE_VALUE);
-		addEEnumLiteral(propertyAssociationTypeEEnum, PropertyAssociationType.OVERRIDE_VALUE);
 		addEEnumLiteral(propertyAssociationTypeEEnum, PropertyAssociationType.DEFAULT_VALUE);
 
 		// Create resource

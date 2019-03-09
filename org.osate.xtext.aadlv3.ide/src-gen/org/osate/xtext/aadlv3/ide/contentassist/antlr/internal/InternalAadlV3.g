@@ -2895,12 +2895,6 @@ rule__PropertyAssociationType__Alternatives
 		'*=>'
 		{ after(grammarAccess.getPropertyAssociationTypeAccess().getAsteriskEqualsSignGreaterThanSignKeyword_2()); }
 	)
-	|
-	(
-		{ before(grammarAccess.getPropertyAssociationTypeAccess().getEqualsSignGreaterThanSignGreaterThanSignKeyword_3()); }
-		'=>>'
-		{ after(grammarAccess.getPropertyAssociationTypeAccess().getEqualsSignGreaterThanSignGreaterThanSignKeyword_3()); }
-	)
 ;
 finally {
 	restoreStackSize(stackSize);

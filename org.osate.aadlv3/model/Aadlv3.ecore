@@ -231,7 +231,6 @@
   <eClassifiers xsi:type="ecore:EEnum" name="PropertyAssociationType">
     <eLiterals name="FinalValue"/>
     <eLiterals name="VariableValue" value="1"/>
-    <eLiterals name="OverrideValue" value="2"/>
-    <eLiterals name="DefaultValue" value="3"/>
+    <eLiterals name="DefaultValue" value="2"/>
   </eClassifiers>
 </ecore:EPackage>

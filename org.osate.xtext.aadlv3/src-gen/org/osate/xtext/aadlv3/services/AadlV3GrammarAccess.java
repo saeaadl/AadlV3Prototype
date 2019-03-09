@@ -2894,13 +2894,12 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cEqualsSignGreaterThanSignKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
 		private final Keyword cColonEqualsSignKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
 		private final Keyword cAsteriskEqualsSignGreaterThanSignKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
-		private final Keyword cEqualsSignGreaterThanSignGreaterThanSignKeyword_3 = (Keyword)cAlternatives.eContents().get(3);
 		
 		//PropertyAssociationType av3::PropertyAssociationType:
-		//	'=>' | ':=' | '*=>' | '=>>';
+		//	'=>' | ':=' | '*=>';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'=>' | ':=' | '*=>' | '=>>'
+		//'=>' | ':=' | '*=>'
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//'=>'
@@ -2911,9 +2910,6 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		
 		//'*=>'
 		public Keyword getAsteriskEqualsSignGreaterThanSignKeyword_2() { return cAsteriskEqualsSignGreaterThanSignKeyword_2; }
-		
-		//'=>>'
-		public Keyword getEqualsSignGreaterThanSignGreaterThanSignKeyword_3() { return cEqualsSignGreaterThanSignGreaterThanSignKeyword_3; }
 	}
 	public class VirtualProcessorKeywordsElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.osate.xtext.aadlv3.AadlV3.VirtualProcessorKeywords");
@@ -4322,7 +4318,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//PropertyAssociationType av3::PropertyAssociationType:
-	//	'=>' | ':=' | '*=>' | '=>>';
+	//	'=>' | ':=' | '*=>';
 	public PropertyAssociationTypeElements getPropertyAssociationTypeAccess() {
 		return pPropertyAssociationType;
 	}

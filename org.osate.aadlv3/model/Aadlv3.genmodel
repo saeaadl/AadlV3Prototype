@@ -63,7 +63,6 @@
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Aadlv3.ecore#//PropertyAssociationType">
       <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//PropertyAssociationType/FinalValue"/>
       <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//PropertyAssociationType/VariableValue"/>
-      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//PropertyAssociationType/OverrideValue"/>
       <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//PropertyAssociationType/DefaultValue"/>
     </genEnums>
     <genClasses ecoreClass="Aadlv3.ecore#//PackageDeclaration">

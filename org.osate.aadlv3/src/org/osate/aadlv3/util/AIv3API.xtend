@@ -196,85 +196,78 @@ class AIv3API {
 	def static void overridePropertyValue(PropertyAssociationInstance epai, PropertyAssociation npa) {
 		switch (epai.propertyAssociationType) {
 			case PropertyAssociationType.FINAL_VALUE: {
-				if (npa.propertyAssociationType == PropertyAssociationType.OVERRIDE_VALUE) {
-					epai.assignNewValue(npa)
-				} else {
-					//
-					if (epai.propertyAssociation.eContainer instanceof ComponentClassifier) {
-						val ecl = epai.propertyAssociation.eContainer as ComponentClassifier
-						if (npa.eContainer instanceof ComponentClassifier) {
-							val tcl = npa.eContainer as ComponentClassifier
-							if (npa.target.modelElementReferenceIncludesComponent) {
-								// reachdown assignment to subcomponent (should be final)
-								// in implementation vs configuration
-								if (tcl.isSuperClassifierOf(ecl)) {
-									if (npa.propertyAssociationType == PropertyAssociationType.FINAL_VALUE){
-										// earlier final value assignment
-										epai.assignNewValue(npa)
-										// WARNING
-									} else {
-										// WARNING DEFAULT or VARIABLE trying to override FINAL
-									}
-								} else if (ecl.isSuperClassifierOf(tcl)) {
-									// WARNING FINAL, VARIABLE or DEFAULT trying to override FINAL
+				if (epai.propertyAssociation.eContainer instanceof ComponentClassifier) {
+					val ecl = epai.propertyAssociation.eContainer as ComponentClassifier
+					if (npa.eContainer instanceof ComponentClassifier) {
+						val tcl = npa.eContainer as ComponentClassifier
+						if (npa.target.modelElementReferenceIncludesComponent) {
+							// reachdown assignment to subcomponent (should be final)
+							// in implementation vs configuration
+							if (tcl.isSuperClassifierOf(ecl)) {
+								if (npa.propertyAssociationType == PropertyAssociationType.FINAL_VALUE) {
+									// earlier final value assignment
+									epai.assignNewValue(npa)
+								// WARNING
 								} else {
-									// ERROR independent classifiers
+									// WARNING DEFAULT or VARIABLE trying to override FINAL
 								}
-								
+							} else if (ecl.isSuperClassifierOf(tcl)) {
+								// WARNING FINAL, VARIABLE or DEFAULT trying to override FINAL
 							} else {
-								// existing and new are assignment to component of classifier or model element other than subcomponent
-								if (tcl.isSuperClassifierOf(ecl)) {
-									if (npa.propertyAssociationType == PropertyAssociationType.FINAL_VALUE){
-										// earlier final value assignment
-										epai.assignNewValue(npa)
-										// WARNING
-									} else {
-										// WARNING DEFAULT or VARIABLE trying to override FINAL
-									}
-								} else if (ecl.isSuperClassifierOf(tcl)) {
-									// WARNING FINAL, VARIABLE or DEFAULT trying to override FINAL
-								} else {
-									// ERROR independent classifiers
-								}
+								// ERROR independent classifiers
 							}
+
 						} else {
-							// existing one is in classifier and final
-							// new one is not directly in classifier. Either local or CA -> ERROR
+							// existing and new are assignment to component of classifier or model element other than subcomponent
+							if (tcl.isSuperClassifierOf(ecl)) {
+								if (npa.propertyAssociationType == PropertyAssociationType.FINAL_VALUE) {
+									// earlier final value assignment
+									epai.assignNewValue(npa)
+								// WARNING
+								} else {
+									// WARNING DEFAULT or VARIABLE trying to override FINAL
+								}
+							} else if (ecl.isSuperClassifierOf(tcl)) {
+								// WARNING FINAL, VARIABLE or DEFAULT trying to override FINAL
+							} else {
+								// ERROR independent classifiers
+							}
 						}
 					} else {
-						// existing is not in classifier
-						// if existing in configuration assignment
-						if (epai.propertyAssociation.eContainer instanceof ConfigurationAssignment){
-							if (!(npa.eContainer instanceof ConfigurationAssignment)){
-							//   if new in classifier or local then new value and ERROR
-								epai.assignNewValue(npa)
-							} else {
-							//   if new configuration assignment then ERROR (conflicting values)
-							}
+						// existing one is in classifier and final
+						// new one is not directly in classifier. Either local or CA -> ERROR
+					}
+				} else {
+					// existing is not in classifier
+					// if existing in configuration assignment
+					if (epai.propertyAssociation.eContainer instanceof ConfigurationAssignment) {
+						if (!(npa.eContainer instanceof ConfigurationAssignment)) {
+							// if new in classifier or local then new value and ERROR
+							epai.assignNewValue(npa)
 						} else {
-							// existing is local assignment
-							if (npa.eContainer instanceof ComponentClassifier && npa.propertyAssociationType === PropertyAssociationType.FINAL_VALUE){
+							// if new configuration assignment then ERROR (conflicting values)
+						}
+					} else {
+						// existing is local assignment
+						if (npa.eContainer instanceof ComponentClassifier &&
+							npa.propertyAssociationType === PropertyAssociationType.FINAL_VALUE) {
 							// if new classifier use new value if FINAL and ERROR
-								epai.assignNewValue(npa)
-							} else if (npa.eContainer instanceof ConfigurationAssignment){
+							epai.assignNewValue(npa)
+						} else if (npa.eContainer instanceof ConfigurationAssignment) {
 							// ERROR local was already final
-							} else {
-								// npa is local ERROR should not have occurred
-							}
+						} else {
+							// npa is local ERROR should not have occurred
 						}
 					}
 				}
 			}
 			case VARIABLE_VALUE: {
-				if (npa.propertyAssociationType === PropertyAssociationType.DEFAULT_VALUE ) {
+				if (npa.propertyAssociationType === PropertyAssociationType.DEFAULT_VALUE) {
 					// ERROR should not assign default value
 				} else {
 					epai.assignNewValue(npa)
-					// new in ca or in configuration WARNING it should not be VARIABLE
+				// new in ca or in configuration WARNING it should not be VARIABLE
 				}
-			}
-			case OVERRIDE_VALUE: {
-				// ERROR no two OVERRIDE
 			}
 			case DEFAULT_VALUE: {
 				// ERROR should not reassign to default value

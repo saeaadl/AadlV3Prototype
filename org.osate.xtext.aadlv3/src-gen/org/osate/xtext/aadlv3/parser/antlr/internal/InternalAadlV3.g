@@ -5312,12 +5312,6 @@ rulePropertyAssociationType returns [AntlrDatatypeRuleToken current=new AntlrDat
 			$current.merge(kw);
 			newLeafNode(kw, grammarAccess.getPropertyAssociationTypeAccess().getAsteriskEqualsSignGreaterThanSignKeyword_2());
 		}
-		    |
-		kw='=>>'
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getPropertyAssociationTypeAccess().getEqualsSignGreaterThanSignGreaterThanSignKeyword_3());
-		}
 	)
 ;
 
