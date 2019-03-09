@@ -32,6 +32,7 @@ import static extension org.eclipse.emf.ecore.util.EcoreUtil.*
 import static extension org.osate.aadlv3.util.Aadlv3Util.*
 import org.osate.aadlv3.aadlv3.ComponentClassifier
 import org.osate.aadlv3.aadlv3.ComponentConfiguration
+import org.osate.aadlv3.aadlv3.ConfigurationAssignment
 
 class AIv3API {
 	
@@ -170,40 +171,19 @@ class AIv3API {
 	// check if instance already exists.
 	// If yes override its value if the existing association is not final
 	// return false if the property association or its value was not added  
-	def static boolean addPropertyAssociationInstance(InstanceObject target, PropertyAssociation pa){
+	def static void addPropertyAssociationInstance(InstanceObject context, PropertyAssociation pa){
+		val target = context.getInstanceElement(pa.target)
 		val pais = target.propertyAssociations
+		var found = false
 		for (epai : pais) {
 			if (sameProperty(epai.property, pa.property)) {
-				if (target instanceof ComponentInstance){
-					// check extends inheritance of property assignments
-					if (pa.eContainer instanceof ComponentClassifier && epai.propertyAssociation.eContainer instanceof ComponentClassifier){
-						val tcl = pa.eContainer as ComponentClassifier
-						val ecl = epai.propertyAssociation.eContainer as ComponentClassifier
-						var res = false
-						if (pa.target !== null || tcl.isSuperClassifierOf(ecl)){
-							// should use new value
-							res = overridePropertyValue(epai, pa)
-						}
-						return res
-					} else if (pa.eContainer instanceof ComponentClassifier && !(epai.propertyAssociation.eContainer instanceof ComponentClassifier)){
-						// existing assignment came from reach down
-						return false
-					} else if (!(pa.eContainer instanceof ComponentClassifier) && epai.propertyAssociation.eContainer instanceof ComponentClassifier){
-						// new is reach down to override existing from classifier
-						return overridePropertyValue(epai, pa)
-					} else if (!(pa.eContainer instanceof ComponentClassifier) && !(epai.propertyAssociation.eContainer instanceof ComponentClassifier)){
-						// both reach downs 
-						return false
-					}
-					return overridePropertyValue(epai, pa)
-				} else {
-					// target is everything but a component
-					return overridePropertyValue(epai, pa)
-				}
+				overridePropertyValue(epai, pa)
+				found = true
 			}
 		}
-		pais += createPropertyAssociationInstance(pa)
-		true
+		if (!found){
+			pais += createPropertyAssociationInstance(pa)
+		}
 	}
 	
 	/**
@@ -213,36 +193,100 @@ class AIv3API {
 	 * epai existing property association instance
 	 * npa new property association
 	 */
-	def static boolean overridePropertyValue(PropertyAssociationInstance epai, PropertyAssociation npa) {
+	def static void overridePropertyValue(PropertyAssociationInstance epai, PropertyAssociation npa) {
 		switch (epai.propertyAssociationType) {
 			case PropertyAssociationType.FINAL_VALUE: {
 				if (npa.propertyAssociationType == PropertyAssociationType.OVERRIDE_VALUE) {
-					epai.value = npa.value.copy
-					epai.propertyAssociationType = PropertyAssociationType.OVERRIDE_VALUE
-					return true
+					epai.assignNewValue(npa)
 				} else {
-					return false
+					//
+					if (epai.propertyAssociation.eContainer instanceof ComponentClassifier) {
+						val ecl = epai.propertyAssociation.eContainer as ComponentClassifier
+						if (npa.eContainer instanceof ComponentClassifier) {
+							val tcl = npa.eContainer as ComponentClassifier
+							if (npa.target.modelElementReferenceIncludesComponent) {
+								// reachdown assignment to subcomponent (should be final)
+								// in implementation vs configuration
+								if (tcl.isSuperClassifierOf(ecl)) {
+									if (npa.propertyAssociationType == PropertyAssociationType.FINAL_VALUE){
+										// earlier final value assignment
+										epai.assignNewValue(npa)
+										// WARNING
+									} else {
+										// WARNING DEFAULT or VARIABLE trying to override FINAL
+									}
+								} else if (ecl.isSuperClassifierOf(tcl)) {
+									// WARNING FINAL, VARIABLE or DEFAULT trying to override FINAL
+								} else {
+									// ERROR independent classifiers
+								}
+								
+							} else {
+								// existing and new are assignment to component of classifier or model element other than subcomponent
+								if (tcl.isSuperClassifierOf(ecl)) {
+									if (npa.propertyAssociationType == PropertyAssociationType.FINAL_VALUE){
+										// earlier final value assignment
+										epai.assignNewValue(npa)
+										// WARNING
+									} else {
+										// WARNING DEFAULT or VARIABLE trying to override FINAL
+									}
+								} else if (ecl.isSuperClassifierOf(tcl)) {
+									// WARNING FINAL, VARIABLE or DEFAULT trying to override FINAL
+								} else {
+									// ERROR independent classifiers
+								}
+							}
+						} else {
+							// existing one is in classifier and final
+							// new one is not directly in classifier. Either local or CA -> ERROR
+						}
+					} else {
+						// existing is not in classifier
+						// if existing in configuration assignment
+						if (epai.propertyAssociation.eContainer instanceof ConfigurationAssignment){
+							if (!(npa.eContainer instanceof ConfigurationAssignment)){
+							//   if new in classifier or local then new value and ERROR
+								epai.assignNewValue(npa)
+							} else {
+							//   if new configuration assignment then ERROR (conflicting values)
+							}
+						} else {
+							// existing is local assignment
+							if (npa.eContainer instanceof ComponentClassifier && npa.propertyAssociationType === PropertyAssociationType.FINAL_VALUE){
+							// if new classifier use new value if FINAL and ERROR
+								epai.assignNewValue(npa)
+							} else if (npa.eContainer instanceof ConfigurationAssignment){
+							// ERROR local was already final
+							} else {
+								// npa is local ERROR should not have occurred
+							}
+						}
+					}
 				}
 			}
 			case VARIABLE_VALUE: {
-				if (npa.propertyAssociationType === PropertyAssociationType.VARIABLE_VALUE 
-					// configurations and reachdown assignments should not assign default values. TODO Validation.
-					&&(npa.target?.closestReferencedComponent !== null || npa.containingComponentClassifier instanceof ComponentConfiguration)
-				) {
-					return false
+				if (npa.propertyAssociationType === PropertyAssociationType.DEFAULT_VALUE ) {
+					// ERROR should not assign default value
+				} else {
+					epai.assignNewValue(npa)
+					// new in ca or in configuration WARNING it should not be VARIABLE
 				}
-				epai.value = npa.value.copy
-				epai.propertyAssociationType = npa.propertyAssociationType
-				return true
 			}
 			case OVERRIDE_VALUE: {
-				return false
+				// ERROR no two OVERRIDE
 			}
 			case DEFAULT_VALUE: {
-				return false
+				// ERROR should not reassign to default value
 			}
 		}
 
+	}
+	
+	def static void assignNewValue(PropertyAssociationInstance epai, PropertyAssociation npa) {
+		epai.value = npa.value.copy
+		epai.propertyAssociation = npa
+		epai.propertyAssociationType = npa.propertyAssociationType
 	}
 	
 	// instance object has property association

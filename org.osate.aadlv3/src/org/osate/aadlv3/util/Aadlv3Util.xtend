@@ -1,7 +1,7 @@
 package org.osate.aadlv3.util
 
-import com.google.common.collect.ArrayListMultimap
-import com.google.common.collect.Multimap
+import com.google.common.collect.HashMultimap
+import com.google.common.collect.SetMultimap
 import java.util.Collection
 import java.util.Collections
 import java.util.HashMap
@@ -33,24 +33,18 @@ import org.osate.aadlv3.aadlv3.ModelElementReference
 import org.osate.aadlv3.aadlv3.PackageDeclaration
 import org.osate.aadlv3.aadlv3.PathSequence
 import org.osate.aadlv3.aadlv3.PropertyAssociation
-import org.osate.aadlv3.aadlv3.PropertyAssociationType
 import org.osate.aadlv3.aadlv3.PropertyDefinition
 import org.osate.aadlv3.aadlv3.Type
 import org.osate.aadlv3.aadlv3.TypeReference
 import org.osate.aadlv3.aadlv3.Workingset
 import org.osate.av3instance.av3instance.AssociationInstance
-import org.osate.av3instance.av3instance.Av3instanceFactory
 import org.osate.av3instance.av3instance.ComponentInstance
 import org.osate.av3instance.av3instance.FeatureInstance
 import org.osate.av3instance.av3instance.InstanceObject
-import org.osate.av3instance.av3instance.PathInstance
-import org.osate.av3instance.av3instance.PropertyAssociationInstance
 
 import static extension org.eclipse.emf.ecore.util.EcoreUtil.*
 import static extension org.eclipse.xtext.EcoreUtil2.*
 import static extension org.osate.aadlv3.util.Av3API.*
-import com.google.common.collect.HashMultimap
-import com.google.common.collect.SetMultimap
 
 class Aadlv3Util {
 	/**
@@ -551,6 +545,13 @@ class Aadlv3Util {
 		}
 		return fullca
 	}
+
+	static def Iterable<PropertyAssociation> getAllPropertyAssociations(Iterable<TypeReference> trs) {
+		if(trs.empty) return Collections.EMPTY_LIST
+		val cls = trs.allComponentClassifiers
+		cls.map[cl|cl.propertyAssociations].flatten
+	}
+	
 	
 	// the specified list contains a configuration assignment with the same target as the addition
 	static def boolean containsAdditionTarget(Iterable<ConfigurationAssignment> primary, ConfigurationAssignment addition){
@@ -561,41 +562,6 @@ class Aadlv3Util {
 		}
 		return false
 	}
-
-	static def Iterable<PropertyAssociation> getAllPropertyAssociations(Iterable<TypeReference> trs) {
-		if(trs.empty) return Collections.EMPTY_LIST
-		val cls = trs.allComponentClassifiers
-		cls.map[cl|cl.allOwnPropertyAssociations].flatten
-	}
-
-	// return configuration assignments defined in configuration including those down the hierarchy
-	private static def Iterable<PropertyAssociation> getAllOwnPropertyAssociations(ComponentClassifier cc) {
-		val propassignments = cc.propertyAssociations
-		if (cc instanceof ComponentConfiguration){
-			return propassignments+ cc.configurationAssignments.map[subca|subca.nestedPropertyAssociations].flatten //.filter[subpa|!propassignments.containsAdditionTarget(subpa)]
-		}
-		return propassignments
-	}
-	
-	// return property associations and any associations further down that are not overridden by the outer ones
-	private static def Iterable<PropertyAssociation> getNestedPropertyAssociations(ConfigurationAssignment ca) {
-		val pas = ca.propertyAssociations.map[pa| pa.fullTargetPath(ca.target)]
-		return pas+ca.configurationAssignments.map[subca|subca.nestedPropertyAssociations].flatten.map[pa| pa.fullTargetPath(ca.target)] //.filter[subpa|!pas.containsAdditionTarget(subpa)]
-	}
-	
-	
-	private static def PropertyAssociation fullTargetPath(PropertyAssociation pa, ModelElementReference contextpath){
-		val fullpa = pa.copy
-		val newcontextpath = contextpath.copy
-		if (fullpa.target !== null){
-			val first = fullpa.target.firstModelElementReference
-			first.context = newcontextpath
-		} else {
-			fullpa.target = newcontextpath
-		}
-		return fullpa
-	}
-	
 	static def boolean containsAdditionTarget(Iterable<PropertyAssociation> primary, PropertyAssociation addition){
 		for ( pca : primary){
 			if (pca.target.matchesTarget(addition.target)){

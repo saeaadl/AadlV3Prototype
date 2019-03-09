@@ -124,31 +124,23 @@ class Instantiator {
 				flow.instantiatePath(ci)
 			}
 			
-			// finally we fill in property associations
+			// finally we fill in property assignments found in list of classifiers for component
+			// this includes property associations from configurations and configuration assignments
+			// NOTE: we to this for contained components. Outer components may still configure us.
 			for (pa : ctyperefs.allPropertyAssociations){
-				val target = ci.getInstanceElement(pa.target)
-				target.addPropertyAssociationInstance(pa)
+				ci.addPropertyAssociationInstance(pa)
 			}
-			for (pa : comp.propertyAssociations){
-				val target = ci.getInstanceElement(pa.target)
-				target.addPropertyAssociationInstance(pa)
+			for (ca : ctyperefs.allConfigurationAssignments){
+				ci.processConfigurationAssignmentPropertyAssociations(ca)
 			}
-			val expectedProps = ctyperefs.expectedProperties
 		}
-	}
-	
-	def void processConfigurationAssignmentProperties(ConfigurationAssignment ca, InstanceObject context){
-		if (ca.propertyAssociations.empty){
-			return
+		// handle property assignments attached to (sub)component
+		// This is done for nested subcomponent declarations as well
+		for (pa : comp.propertyAssociations) {
+			ci.addPropertyAssociationInstance(pa)
 		}
-		val targetio = context.getInstanceElement(ca.target)
-		for (pa: ca.propertyAssociations){
-			val target = targetio.getInstanceElement(pa.target)
-			target.addPropertyAssociationInstance(pa)
-		}
-		for (subca: ca.configurationAssignments){
-			ca.processConfigurationAssignmentProperties(targetio)
-		}
+		// fill in default properties for all expected properties that do not have an explicitly assigned value
+		val expectedProps = ctyperefs.expectedProperties
 	}
 	
 	def FeatureInstance instantiateFeature(Feature f, boolean reverse){
@@ -163,8 +155,7 @@ class Instantiator {
 			}
 		}
 		for (pa : f.propertyAssociations){
-			val target = fi.getInstanceElement(pa.target)
-			target.addPropertyAssociationInstance(pa)
+			fi.addPropertyAssociationInstance(pa)
 		}
 		fi
 	}
@@ -179,8 +170,7 @@ class Instantiator {
 			fsi.destination = context.getInstanceElement(conn.destination) as FeatureInstance
 		}
 		for (pa : conn.propertyAssociations){
-			val target = fsi.getInstanceElement(pa.target)
-			target.addPropertyAssociationInstance(pa)
+			fsi.addPropertyAssociationInstance(pa)
 		}
 		context.flowspecs += fsi
 	}
@@ -196,9 +186,9 @@ class Instantiator {
 		val allconnis = expandFeatureMappings(conni, context)
 		context.connections += allconnis
 		for (finalconni : allconnis){
+			// add in local property assignment
 			for (pa : conn.propertyAssociations){
-				val target = finalconni.getInstanceElement(pa.target)
-				target.addPropertyAssociationInstance(pa)
+				finalconni.addPropertyAssociationInstance(pa)
 			}
 		}
 	}
@@ -216,8 +206,7 @@ class Instantiator {
 		for (finalconni : expandedSources){
 			finalconni.external = true
 			for (pa : conn.propertyAssociations){
-				val target = finalconni.getInstanceElement(pa.target)
-				target.addPropertyAssociationInstance(pa)
+				finalconni.addPropertyAssociationInstance(pa)
 			}
 		}
 	}
@@ -234,8 +223,7 @@ class Instantiator {
 		for (finalconni : expandedDestinations){
 			finalconni.external = true
 			for (pa : conn.propertyAssociations){
-				val target = finalconni.getInstanceElement(pa.target)
-				target.addPropertyAssociationInstance(pa)
+				finalconni.addPropertyAssociationInstance(pa)
 			}
 		}
 	}
@@ -331,8 +319,8 @@ class Instantiator {
 		context.paths += psi
 		ps.processPath(psi,context)
 		for (pa : ps.propertyAssociations){
-			val target = psi.getInstanceElement(pa.target)
-			target.addPropertyAssociationInstance(pa)
+			// local property assignment
+			psi.addPropertyAssociationInstance(pa)
 		}
 	}
 	
@@ -393,6 +381,16 @@ class Instantiator {
 			}
 		}
 		psi.elements += context.getInstanceElement(pe)
+	}
+	
+	def void processConfigurationAssignmentPropertyAssociations(InstanceObject context, ConfigurationAssignment ca){
+		val target = context.getInstanceElement(ca.target)
+		for (pa : ca.propertyAssociations){
+			target.addPropertyAssociationInstance(pa)
+		}
+		for (subca : ca.configurationAssignments){
+			target.processConfigurationAssignmentPropertyAssociations(subca)
+		}
 	}
 
 }
