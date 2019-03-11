@@ -430,6 +430,13 @@ class Instantiator {
 		}
 	}
 	
+	def static void addDefaultPropertyAssociationInstance(InstanceObject context, PropertyAssociation pa){
+		val target = context.getInstanceElement(pa.target)
+		val pais = target.propertyAssociations
+		pais += createPropertyAssociationInstance(pa)
+	}
+	
+	
 	/**
 	 * override existing property value with return value true indicating that is was overridden
 	 * True if existing value is constant and new is override, existing value was default.
@@ -531,7 +538,7 @@ class Instantiator {
 			if (!io.hasPropertyAssociation(pd)){
 				val defaultpa = findDefaultPropertyValue(io,pd)
 				if (defaultpa !== null){
-					addPropertyAssociationInstance(io, defaultpa)
+					addDefaultPropertyAssociationInstance(io, defaultpa)
 				}
 			}
 		}

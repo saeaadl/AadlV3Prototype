@@ -101,6 +101,8 @@ package PropertyAssociationExample
 	end
 	
 	configuration conntop.c1 extends conntop.i is
+	#Period *=> 99 ms;
+	#Data_Size *=> 88 bytes;
 		actuate => actuator.c1 , actuator.c2
 	end
 	

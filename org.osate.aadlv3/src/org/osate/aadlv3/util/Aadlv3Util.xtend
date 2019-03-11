@@ -1385,17 +1385,21 @@ class Aadlv3Util {
 	/** 
 	 * return list of property definitions based on category of EObject
 	 */
-	def static Iterable<PropertyDefinition> getAllowedProperties(EObject target){
+	def static Iterable<PropertyDefinition> getAllowedProperties(InstanceObject target){
 		val pds = target.getAllPropertyDefinitions()
 		switch (target){
-			Component: {
-				pds.filter[pd|pd.appliesTo(target.category)]+target.typeReferences.allowedUseProperties
+			ComponentInstance: {
+				val targetcomp = target.component
+				pds.filter[pd|pd.appliesTo(target.category)]+targetcomp.typeReferences.allowedUseProperties
 			}
-			Feature: {
+			FeatureInstance: {
 				pds.filter[pd|pd.appliesTo(target.category)]
 			}
-			Association: {
+			AssociationInstance: {
 				pds.filter[pd|pd.appliesTo(target.associationType)]
+			}
+			default: {
+				Collections.EMPTY_LIST
 			}
 		}
 	}
