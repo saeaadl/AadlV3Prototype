@@ -10,10 +10,11 @@
 '::*'=58
 ':='=34
 ';'=40
-'<->'=69
+'<->'=70
 '=>'=33
 'abstract'=16
 'access'=66
+'all'=69
 'as'=53
 'binding'=12
 'bus'=17
@@ -45,7 +46,7 @@
 'property'=38
 'provides'=32
 'requires'=31
-'reverse'=70
+'reverse'=71
 'sink'=64
 'source'=63
 'subprogram'=25
@@ -125,3 +126,4 @@ T__67=67
 T__68=68
 T__69=69
 T__70=70
+T__71=71

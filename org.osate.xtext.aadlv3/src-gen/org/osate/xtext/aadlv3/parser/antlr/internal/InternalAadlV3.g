@@ -373,45 +373,64 @@ rulePropertyDefinition returns [EObject current=null]
 			{
 				newLeafNode(otherlv_5, grammarAccess.getPropertyDefinitionAccess().getForKeyword_5_0());
 			}
-			{
-				/* */
-			}
-			{
-				if ($current==null) {
-					$current = createModelElement(grammarAccess.getPropertyDefinitionRule());
-				}
-				newCompositeNode(grammarAccess.getPropertyDefinitionAccess().getAppliesToParserRuleCall_5_1());
-			}
-			this_AppliesTo_6=ruleAppliesTo[$current]
-			{
-				$current = $this_AppliesTo_6.current;
-				afterParserOrEnumRuleCall();
-			}
 			(
-				otherlv_7=','
-				{
-					newLeafNode(otherlv_7, grammarAccess.getPropertyDefinitionAccess().getCommaKeyword_5_2_0());
-				}
-				{
-					/* */
-				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getPropertyDefinitionRule());
+				(
+					(
+						lv_forAll_6_0='all'
+						{
+							newLeafNode(lv_forAll_6_0, grammarAccess.getPropertyDefinitionAccess().getForAllAllKeyword_5_1_0_0());
+						}
+						{
+							if ($current==null) {
+								$current = createModelElement(grammarAccess.getPropertyDefinitionRule());
+							}
+							setWithLastConsumed($current, "forAll", true, "all");
+						}
+					)
+				)
+				    |
+				(
+					{
+						/* */
 					}
-					newCompositeNode(grammarAccess.getPropertyDefinitionAccess().getAppliesToParserRuleCall_5_2_1());
-				}
-				this_AppliesTo_8=ruleAppliesTo[$current]
-				{
-					$current = $this_AppliesTo_8.current;
-					afterParserOrEnumRuleCall();
-				}
-			)*
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getPropertyDefinitionRule());
+						}
+						newCompositeNode(grammarAccess.getPropertyDefinitionAccess().getAppliesToParserRuleCall_5_1_1_0());
+					}
+					this_AppliesTo_7=ruleAppliesTo[$current]
+					{
+						$current = $this_AppliesTo_7.current;
+						afterParserOrEnumRuleCall();
+					}
+					(
+						otherlv_8=','
+						{
+							newLeafNode(otherlv_8, grammarAccess.getPropertyDefinitionAccess().getCommaKeyword_5_1_1_1_0());
+						}
+						{
+							/* */
+						}
+						{
+							if ($current==null) {
+								$current = createModelElement(grammarAccess.getPropertyDefinitionRule());
+							}
+							newCompositeNode(grammarAccess.getPropertyDefinitionAccess().getAppliesToParserRuleCall_5_1_1_1_1());
+						}
+						this_AppliesTo_9=ruleAppliesTo[$current]
+						{
+							$current = $this_AppliesTo_9.current;
+							afterParserOrEnumRuleCall();
+						}
+					)*
+				)
+			)
 		)?
 		(
-			otherlv_9=';'
+			otherlv_10=';'
 			{
-				newLeafNode(otherlv_9, grammarAccess.getPropertyDefinitionAccess().getSemicolonKeyword_6());
+				newLeafNode(otherlv_10, grammarAccess.getPropertyDefinitionAccess().getSemicolonKeyword_6());
 			}
 		)?
 	)

@@ -23,6 +23,10 @@ public class Av3API {
 		return Aadlv3GlobalScopeUtil.get(context, Aadlv3Package.eINSTANCE.getPropertyDefinition(), qpname);
 	}
 	
+	public static Collection<PropertyDefinition> getAllPropertyDefinitions(EObject context) {
+		return Aadlv3GlobalScopeUtil.getAll(context, Aadlv3Package.eINSTANCE.getPropertyDefinition());
+	}
+	
 	public static PropertySet lookupPropertySet(EObject context, String qpname) {
 		return Aadlv3GlobalScopeUtil.get(context, Aadlv3Package.eINSTANCE.getPropertySet(), qpname);
 	}

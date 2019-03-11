@@ -202,7 +202,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *         private?='private'? 
 	 *         name=ID 
 	 *         type=[Type|QualifiedReference] 
-	 *         (componentCategories+=ComponentCategory | featureCategories+=FeatureCategory | associationTypes+=AssociationType)*
+	 *         (forAll?='all' | (componentCategories+=ComponentCategory | featureCategories+=FeatureCategory | associationTypes+=AssociationType)+)?
 	 *     )
 	 */
 	protected void sequence_AppliesTo_PropertyDefinition(ISerializationContext context, PropertyDefinition semanticObject) {

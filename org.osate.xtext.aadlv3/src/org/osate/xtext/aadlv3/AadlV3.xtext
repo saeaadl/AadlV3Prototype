@@ -17,12 +17,12 @@ PackageElement returns av3::PackageElement:
 
 PropertyDefinition returns av3::PropertyDefinition:
 	(private?='private')? 'property' name=ID ':' type=[av3::Type|QualifiedReference] 
-	('for' AppliesTo (',' AppliesTo)*)? 
+	('for' ( forAll?='all' | (AppliesTo (',' AppliesTo)*)))? 
 	';'? ;
 
 fragment AppliesTo*:
 	componentCategories+=ComponentCategory | featureCategories+=FeatureCategory 
-		| associationTypes+=AssociationType
+		| associationTypes+=AssociationType 
 	
 ;
 

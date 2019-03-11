@@ -44,6 +44,7 @@ import org.osate.aadlv3.aadlv3.Type;
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.PropertyDefinitionImpl#getComponentCategories <em>Component Categories</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.PropertyDefinitionImpl#getFeatureCategories <em>Feature Categories</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.PropertyDefinitionImpl#getAssociationTypes <em>Association Types</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.PropertyDefinitionImpl#isForAll <em>For All</em>}</li>
  * </ul>
  *
  * @generated
@@ -86,6 +87,26 @@ public class PropertyDefinitionImpl extends PackageElementImpl implements Proper
 	 * @ordered
 	 */
 	protected EList<AssociationType> associationTypes;
+
+	/**
+	 * The default value of the '{@link #isForAll() <em>For All</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isForAll()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean FOR_ALL_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isForAll() <em>For All</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isForAll()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean forAll = FOR_ALL_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -196,6 +217,30 @@ public class PropertyDefinitionImpl extends PackageElementImpl implements Proper
 	 * @generated
 	 */
 	@Override
+	public boolean isForAll() {
+		return forAll;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setForAll(boolean newForAll) {
+		boolean oldForAll = forAll;
+		forAll = newForAll;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.PROPERTY_DEFINITION__FOR_ALL, oldForAll,
+					forAll));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case Aadlv3Package.PROPERTY_DEFINITION__TYPE:
@@ -208,6 +253,8 @@ public class PropertyDefinitionImpl extends PackageElementImpl implements Proper
 			return getFeatureCategories();
 		case Aadlv3Package.PROPERTY_DEFINITION__ASSOCIATION_TYPES:
 			return getAssociationTypes();
+		case Aadlv3Package.PROPERTY_DEFINITION__FOR_ALL:
+			return isForAll();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -236,6 +283,9 @@ public class PropertyDefinitionImpl extends PackageElementImpl implements Proper
 			getAssociationTypes().clear();
 			getAssociationTypes().addAll((Collection<? extends AssociationType>) newValue);
 			return;
+		case Aadlv3Package.PROPERTY_DEFINITION__FOR_ALL:
+			setForAll((Boolean) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -260,6 +310,9 @@ public class PropertyDefinitionImpl extends PackageElementImpl implements Proper
 		case Aadlv3Package.PROPERTY_DEFINITION__ASSOCIATION_TYPES:
 			getAssociationTypes().clear();
 			return;
+		case Aadlv3Package.PROPERTY_DEFINITION__FOR_ALL:
+			setForAll(FOR_ALL_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -280,6 +333,8 @@ public class PropertyDefinitionImpl extends PackageElementImpl implements Proper
 			return featureCategories != null && !featureCategories.isEmpty();
 		case Aadlv3Package.PROPERTY_DEFINITION__ASSOCIATION_TYPES:
 			return associationTypes != null && !associationTypes.isEmpty();
+		case Aadlv3Package.PROPERTY_DEFINITION__FOR_ALL:
+			return forAll != FOR_ALL_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -301,6 +356,8 @@ public class PropertyDefinitionImpl extends PackageElementImpl implements Proper
 		result.append(featureCategories);
 		result.append(", associationTypes: ");
 		result.append(associationTypes);
+		result.append(", forAll: ");
+		result.append(forAll);
 		result.append(')');
 		return result.toString();
 	}

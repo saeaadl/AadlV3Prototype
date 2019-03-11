@@ -25,6 +25,10 @@ import static extension org.eclipse.emf.ecore.util.EcoreUtil.*
 import static extension org.osate.aadlv3.util.Aadlv3Util.*
 import static extension org.osate.aadlv3.util.AIv3API.*
 import org.osate.aadlv3.aadlv3.PropertyDefinition
+import org.osate.av3instance.av3instance.PropertyAssociationInstance
+import org.osate.aadlv3.aadlv3.PropertyAssociation
+import org.osate.aadlv3.aadlv3.PropertyAssociationType
+import org.osate.aadlv3.aadlv3.ComponentClassifier
 
 class Instantiator {
 	
@@ -140,7 +144,20 @@ class Instantiator {
 			ci.addPropertyAssociationInstance(pa)
 		}
 		// fill in default properties for all expected properties that do not have an explicitly assigned value
-		val expectedProps = ctyperefs.expectedProperties
+		if (expectedProperties.empty){
+			// fill in default for all allowed properties
+			val allowedProperties = ci.allowedProperties
+			ci.addDefaultPropertyValues(allowedProperties)
+			for (fi : ci.features) {
+				fi.addDefaultPropertyValues(fi.allowedProperties)
+			}
+			for (conni : ci.allConnections) {
+				conni.addDefaultPropertyValues(conni.allowedProperties)
+			}
+		} else {
+			// fill in default for all expected properties
+			ci.addDefaultPropertyValues(expectedProperties)
+		}
 	}
 	
 	def FeatureInstance instantiateFeature(Feature f, boolean reverse){
@@ -392,5 +409,147 @@ class Instantiator {
 			target.processConfigurationAssignmentPropertyAssociations(subca)
 		}
 	}
+	
+		
+	// add property association instance
+	// check if instance already exists.
+	// If yes override its value if the existing association is not final
+	// return false if the property association or its value was not added  
+	def static void addPropertyAssociationInstance(InstanceObject context, PropertyAssociation pa){
+		val target = context.getInstanceElement(pa.target)
+		val pais = target.propertyAssociations
+		var found = false
+		for (epai : pais) {
+			if (sameProperty(epai.property, pa.property)) {
+				overridePropertyValue(epai, pa)
+				found = true
+			}
+		}
+		if (!found && pa.propertyAssociationType !== PropertyAssociationType.DEFAULT_VALUE){
+			pais += createPropertyAssociationInstance(pa)
+		}
+	}
+	
+	/**
+	 * override existing property value with return value true indicating that is was overridden
+	 * True if existing value is constant and new is override, existing value was default.
+	 * False if existing final and new is not override, existing is default in implementation and new is in configuration, existing is override
+	 * epai existing property association instance
+	 * npa new property association
+	 */
+	def static void overridePropertyValue(PropertyAssociationInstance epai, PropertyAssociation npa) {
+		switch (epai.propertyAssociationType) {
+			case PropertyAssociationType.FINAL_VALUE: {
+				if (epai.propertyAssociation.eContainer instanceof ComponentClassifier) {
+					val ecl = epai.propertyAssociation.eContainer as ComponentClassifier
+					if (npa.eContainer instanceof ComponentClassifier) {
+						val tcl = npa.eContainer as ComponentClassifier
+						if (npa.target.modelElementReferenceIncludesComponent) {
+							// reachdown assignment to subcomponent (should be final)
+							// in implementation vs configuration
+							if (tcl.isSuperClassifierOf(ecl)) {
+								if (npa.propertyAssociationType == PropertyAssociationType.FINAL_VALUE) {
+									// earlier final value assignment
+									epai.assignNewValue(npa)
+								// WARNING
+								} else {
+									// WARNING DEFAULT or VARIABLE trying to override FINAL
+								}
+							} else if (ecl.isSuperClassifierOf(tcl)) {
+								// WARNING FINAL, VARIABLE or DEFAULT trying to override FINAL
+							} else {
+								// ERROR independent classifiers
+							}
+
+						} else {
+							// existing and new are assignment to component of classifier or model element other than subcomponent
+							if (tcl.isSuperClassifierOf(ecl)) {
+								if (npa.propertyAssociationType == PropertyAssociationType.FINAL_VALUE) {
+									// earlier final value assignment
+									epai.assignNewValue(npa)
+								// WARNING
+								} else {
+									// WARNING DEFAULT or VARIABLE trying to override FINAL
+								}
+							} else if (ecl.isSuperClassifierOf(tcl)) {
+								// WARNING FINAL, VARIABLE or DEFAULT trying to override FINAL
+							} else {
+								// ERROR independent classifiers
+							}
+						}
+					} else {
+						// existing one is in classifier and final
+						// new one is not directly in classifier. Either local or CA -> ERROR
+					}
+				} else {
+					// existing is not in classifier
+					// if existing in configuration assignment
+					if (epai.propertyAssociation.eContainer instanceof ConfigurationAssignment) {
+						if (!(npa.eContainer instanceof ConfigurationAssignment)) {
+							// if new in classifier or local then new value and ERROR
+							epai.assignNewValue(npa)
+						} else {
+							// if new configuration assignment then ERROR (conflicting values)
+						}
+					} else {
+						// existing is local assignment
+						if (npa.eContainer instanceof ComponentClassifier &&
+							npa.propertyAssociationType === PropertyAssociationType.FINAL_VALUE) {
+							// if new classifier use new value if FINAL and ERROR
+							epai.assignNewValue(npa)
+						} else if (npa.eContainer instanceof ConfigurationAssignment) {
+							// ERROR local was already final
+						} else {
+							// npa is local ERROR should not have occurred
+						}
+					}
+				}
+			}
+			case VARIABLE_VALUE: {
+				if (npa.propertyAssociationType === PropertyAssociationType.DEFAULT_VALUE) {
+					// ERROR should not assign default value
+				} else {
+					epai.assignNewValue(npa)
+				// new in ca or in configuration WARNING it should not be VARIABLE
+				}
+			}
+			case DEFAULT_VALUE: {
+				// ERROR should not reassign to default value
+			}
+		}
+
+	}
+	
+	def static void assignNewValue(PropertyAssociationInstance epai, PropertyAssociation npa) {
+		epai.value = npa.value.copy
+		epai.propertyAssociation = npa
+		epai.propertyAssociationType = npa.propertyAssociationType
+	}
+	
+	def static void addDefaultPropertyValues(InstanceObject io, Iterable<PropertyDefinition> pds){
+		for (pd : pds) {
+			if (!io.hasPropertyAssociation(pd)){
+				val defaultpa = findDefaultPropertyValue(io,pd)
+				if (defaultpa !== null){
+					addPropertyAssociationInstance(io, defaultpa)
+				}
+			}
+		}
+	}
+	
+	def static PropertyAssociation findDefaultPropertyValue(InstanceObject io, PropertyDefinition pd){
+		var ci = io.containingComponentInstance
+		while (ci !== null) {
+			for (pa : ci.configuredTypeReferences.allPropertyAssociations) {
+				if (pa.propertyAssociationType === PropertyAssociationType.DEFAULT_VALUE &&
+					sameProperty(pd, pa.property)) {
+					return pa
+				}
+			}
+			ci = ci.eContainer as ComponentInstance
+		}
+		return null
+	}
+	
 
 }

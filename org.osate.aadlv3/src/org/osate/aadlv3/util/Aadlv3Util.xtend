@@ -1364,21 +1364,40 @@ class Aadlv3Util {
 	// Property Definition / Set methods
 	///////////////////////////////////////
 	
-	def static Iterable<PropertyDefinition> getExpectedProperties(Iterable<TypeReference> trefs){
+	/**
+	 * return all property definitions specified in use properties declarations of component interfaces
+	 */
+	def static Iterable<PropertyDefinition> getAllowedUseProperties(Iterable<TypeReference> trefs){
 		val cls = trefs.allComponentClassifiers
 		val pss = cls.filter[ccl|ccl instanceof ComponentInterface].map[cif|(cif as ComponentInterface).useProperties].flatten
-		val pds = pss.map[ps|ps.properties].flatten
-		val result = new HashSet<PropertyDefinition>()
-		result.addAll(pds)
-		result
+		pss.map[ps|ps.properties].flatten
 	}
 	
+
+	/** 
+	 * return list of property definitions listed in use properties statement of workingset
+	 */
 	def static Iterable<PropertyDefinition> getExpectedProperties(Workingset ws){
 		val pss = ws.useProperties
-		val pds = pss.map[ps|ps.properties].flatten
-		val result = new HashSet<PropertyDefinition>()
-		result.addAll(pds)
-		result
+		pss.map[ps|ps.properties].flatten
+	}
+	
+	/** 
+	 * return list of property definitions based on category of EObject
+	 */
+	def static Iterable<PropertyDefinition> getAllowedProperties(EObject target){
+		val pds = target.getAllPropertyDefinitions()
+		switch (target){
+			Component: {
+				pds.filter[pd|pd.appliesTo(target.category)]+target.typeReferences.allowedUseProperties
+			}
+			Feature: {
+				pds.filter[pd|pd.appliesTo(target.category)]
+			}
+			Association: {
+				pds.filter[pd|pd.appliesTo(target.associationType)]
+			}
+		}
 	}
 	
 	
@@ -1401,7 +1420,8 @@ class Aadlv3Util {
 	}
 	
 	def static boolean appliesToAll(PropertyDefinition pd){
-		pd.componentCategories.empty && pd.featureCategories.empty && pd.associationTypes.empty
+		pd.forAll
+//		pd.componentCategories.empty && pd.featureCategories.empty && pd.associationTypes.empty
 	}
 	
 	def static boolean sameProperty(PropertyDefinition first, PropertyDefinition second){

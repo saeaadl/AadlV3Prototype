@@ -31,6 +31,8 @@ import static org.osate.aadlv3.util.Av3API.*
 
 import static extension org.osate.aadlv3.util.Aadlv3Util.*
 import org.osate.aadlv3.aadlv3.PropertyAssociationType
+import java.util.Collections
+import java.util.Stack
 
 /**
  * This class contains custom validation rules. 
@@ -243,11 +245,19 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	def checkPropertyAssociationAppliesto(PropertyAssociation pa) {
 		if (pa.target !== null){
 			val targetme = pa.target.element
-			switch (targetme){
+			switch (targetme) {
 				Component: {
 					if (!pa.property.appliesTo(targetme.category)) {
-						error('Property does not apply to '+targetme.category, pa,
-							Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY, DoesNotApply)
+					val expectedP = targetme.typeReferences.allowedUseProperties
+						if (expectedP.empty) {
+							error('Property does not apply to ' + targetme.category, pa,
+								Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY, DoesNotApply)
+						} else {
+							if (!expectedP.exists[pd|sameProperty(pd, pa.property)]) {
+								error('Property does not apply to subcomponent ' + targetme.name, pa,
+									Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY, DoesNotApply)
+							}
+						}
 					}
 				}
 				Feature: {
@@ -1006,5 +1016,25 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 			prevPathElement = pathElement
 		}
 	}
+	
+		//  TODO component to be instantiated using configured classifier confcl and set of configuration assignments
+	def void populateClassifierCache(Component comp,  Stack<Iterable<ConfigurationAssignment>> casscopes) {
+		var Iterable<TypeReference> trefs = null
+			// subcomponent
+			trefs = comp.getConfiguredTypeReferences(casscopes)
+		if (trefs === null) {
+			// inline subcomponents without explicit classifier
+			casscopes.push(Collections.EMPTY_LIST)
+			comp.components.forEach[subc|subc.populateClassifierCache(casscopes)]
+			casscopes.pop
+		} else {
+			val comps = trefs.getAllSubcomponents(comp)
+			val cas = trefs.allConfigurationAssignments
+			casscopes.push(cas)
+			comps.forEach[subc|subc.populateClassifierCache(casscopes)]
+			casscopes.pop
+		}
+	}
+	
 
 }

@@ -151,18 +151,24 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cTypeTypeQualifiedReferenceParserRuleCall_4_0_1 = (RuleCall)cTypeTypeCrossReference_4_0.eContents().get(1);
 		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
 		private final Keyword cForKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
-		private final RuleCall cAppliesToParserRuleCall_5_1 = (RuleCall)cGroup_5.eContents().get(1);
-		private final Group cGroup_5_2 = (Group)cGroup_5.eContents().get(2);
-		private final Keyword cCommaKeyword_5_2_0 = (Keyword)cGroup_5_2.eContents().get(0);
-		private final RuleCall cAppliesToParserRuleCall_5_2_1 = (RuleCall)cGroup_5_2.eContents().get(1);
+		private final Alternatives cAlternatives_5_1 = (Alternatives)cGroup_5.eContents().get(1);
+		private final Assignment cForAllAssignment_5_1_0 = (Assignment)cAlternatives_5_1.eContents().get(0);
+		private final Keyword cForAllAllKeyword_5_1_0_0 = (Keyword)cForAllAssignment_5_1_0.eContents().get(0);
+		private final Group cGroup_5_1_1 = (Group)cAlternatives_5_1.eContents().get(1);
+		private final RuleCall cAppliesToParserRuleCall_5_1_1_0 = (RuleCall)cGroup_5_1_1.eContents().get(0);
+		private final Group cGroup_5_1_1_1 = (Group)cGroup_5_1_1.eContents().get(1);
+		private final Keyword cCommaKeyword_5_1_1_1_0 = (Keyword)cGroup_5_1_1_1.eContents().get(0);
+		private final RuleCall cAppliesToParserRuleCall_5_1_1_1_1 = (RuleCall)cGroup_5_1_1_1.eContents().get(1);
 		private final Keyword cSemicolonKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
 		//PropertyDefinition av3::PropertyDefinition:
-		//	private?='private'? 'property' name=ID ':' type=[av3::Type|QualifiedReference] ('for' AppliesTo (',' AppliesTo)*)?
+		//	private?='private'? 'property' name=ID ':' type=[av3::Type|QualifiedReference] ('for' (forAll?='all' | AppliesTo (','
+		//	AppliesTo)*))?
 		//	';'?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//private?='private'? 'property' name=ID ':' type=[av3::Type|QualifiedReference] ('for' AppliesTo (',' AppliesTo)*)? ';'?
+		//private?='private'? 'property' name=ID ':' type=[av3::Type|QualifiedReference] ('for' (forAll?='all' | AppliesTo (','
+		//AppliesTo)*))? ';'?
 		public Group getGroup() { return cGroup; }
 		
 		//private?='private'?
@@ -192,23 +198,35 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		//QualifiedReference
 		public RuleCall getTypeTypeQualifiedReferenceParserRuleCall_4_0_1() { return cTypeTypeQualifiedReferenceParserRuleCall_4_0_1; }
 		
-		//('for' AppliesTo (',' AppliesTo)*)?
+		//('for' (forAll?='all' | AppliesTo (',' AppliesTo)*))?
 		public Group getGroup_5() { return cGroup_5; }
 		
 		//'for'
 		public Keyword getForKeyword_5_0() { return cForKeyword_5_0; }
 		
+		//forAll?='all' | AppliesTo (',' AppliesTo)*
+		public Alternatives getAlternatives_5_1() { return cAlternatives_5_1; }
+		
+		//forAll?='all'
+		public Assignment getForAllAssignment_5_1_0() { return cForAllAssignment_5_1_0; }
+		
+		//'all'
+		public Keyword getForAllAllKeyword_5_1_0_0() { return cForAllAllKeyword_5_1_0_0; }
+		
+		//AppliesTo (',' AppliesTo)*
+		public Group getGroup_5_1_1() { return cGroup_5_1_1; }
+		
 		//AppliesTo
-		public RuleCall getAppliesToParserRuleCall_5_1() { return cAppliesToParserRuleCall_5_1; }
+		public RuleCall getAppliesToParserRuleCall_5_1_1_0() { return cAppliesToParserRuleCall_5_1_1_0; }
 		
 		//(',' AppliesTo)*
-		public Group getGroup_5_2() { return cGroup_5_2; }
+		public Group getGroup_5_1_1_1() { return cGroup_5_1_1_1; }
 		
 		//','
-		public Keyword getCommaKeyword_5_2_0() { return cCommaKeyword_5_2_0; }
+		public Keyword getCommaKeyword_5_1_1_1_0() { return cCommaKeyword_5_1_1_1_0; }
 		
 		//AppliesTo
-		public RuleCall getAppliesToParserRuleCall_5_2_1() { return cAppliesToParserRuleCall_5_2_1; }
+		public RuleCall getAppliesToParserRuleCall_5_1_1_1_1() { return cAppliesToParserRuleCall_5_1_1_1_1; }
 		
 		//';'?
 		public Keyword getSemicolonKeyword_6() { return cSemicolonKeyword_6; }
@@ -3618,7 +3636,8 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//PropertyDefinition av3::PropertyDefinition:
-	//	private?='private'? 'property' name=ID ':' type=[av3::Type|QualifiedReference] ('for' AppliesTo (',' AppliesTo)*)?
+	//	private?='private'? 'property' name=ID ':' type=[av3::Type|QualifiedReference] ('for' (forAll?='all' | AppliesTo (','
+	//	AppliesTo)*))?
 	//	';'?;
 	public PropertyDefinitionElements getPropertyDefinitionAccess() {
 		return pPropertyDefinition;

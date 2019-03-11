@@ -61,6 +61,7 @@ public class PropertyDefinitionItemProvider extends PackageElementItemProvider {
 			addComponentCategoriesPropertyDescriptor(object);
 			addFeatureCategoriesPropertyDescriptor(object);
 			addAssociationTypesPropertyDescriptor(object);
+			addForAllPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -129,6 +130,22 @@ public class PropertyDefinitionItemProvider extends PackageElementItemProvider {
 	}
 
 	/**
+	 * This adds a property descriptor for the For All feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addForAllPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_PropertyDefinition_forAll_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_PropertyDefinition_forAll_feature",
+								"_UI_PropertyDefinition_type"),
+						Aadlv3Package.Literals.PROPERTY_DEFINITION__FOR_ALL, true, false, false,
+						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+	}
+
+	/**
 	 * This returns PropertyDefinition.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -167,6 +184,7 @@ public class PropertyDefinitionItemProvider extends PackageElementItemProvider {
 		case Aadlv3Package.PROPERTY_DEFINITION__COMPONENT_CATEGORIES:
 		case Aadlv3Package.PROPERTY_DEFINITION__FEATURE_CATEGORIES:
 		case Aadlv3Package.PROPERTY_DEFINITION__ASSOCIATION_TYPES:
+		case Aadlv3Package.PROPERTY_DEFINITION__FOR_ALL:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}

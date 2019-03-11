@@ -30,6 +30,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.osate.aadlv3.aadlv3.PropertyDefinition#getComponentCategories <em>Component Categories</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.PropertyDefinition#getFeatureCategories <em>Feature Categories</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.PropertyDefinition#getAssociationTypes <em>Association Types</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.PropertyDefinition#isForAll <em>For All</em>}</li>
  * </ul>
  *
  * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getPropertyDefinition()
@@ -116,5 +117,31 @@ public interface PropertyDefinition extends PackageElement {
 	 * @generated
 	 */
 	EList<AssociationType> getAssociationTypes();
+
+	/**
+	 * Returns the value of the '<em><b>For All</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>For All</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>For All</em>' attribute.
+	 * @see #setForAll(boolean)
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getPropertyDefinition_ForAll()
+	 * @model
+	 * @generated
+	 */
+	boolean isForAll();
+
+	/**
+	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.PropertyDefinition#isForAll <em>For All</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>For All</em>' attribute.
+	 * @see #isForAll()
+	 * @generated
+	 */
+	void setForAll(boolean value);
 
 } // PropertyDefinition

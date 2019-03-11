@@ -21,6 +21,7 @@
         eType="#//FeatureCategory"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="associationTypes" upperBound="-1"
         eType="#//AssociationType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="forAll" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PropertySet" eSuperTypes="#//PackageElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"

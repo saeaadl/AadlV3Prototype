@@ -447,6 +447,7 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     associationTypes+=AssociationType (ambiguity) (rule end)
 	 *     componentCategories+=ComponentCategory (ambiguity) (rule end)
 	 *     featureCategories+=FeatureCategory (ambiguity) (rule end)
+	 *     forAll?='all' (ambiguity) (rule end)
 	 *     type=[Type|QualifiedReference] (ambiguity) (rule end)
 	 */
 	protected void emit_PropertyDefinition_SemicolonKeyword_6_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
