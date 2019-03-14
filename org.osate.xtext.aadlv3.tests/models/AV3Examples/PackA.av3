@@ -1,10 +1,10 @@
 package PackA 
 	import PackA::nested::signal;
+	import StandardProperties::*;
 	type date ;
 	type person ;
 	type int;
-	property Period: int;
-	property Size: int;
+	property Size: int for port;
 
 	package nested  
 		type signal ;

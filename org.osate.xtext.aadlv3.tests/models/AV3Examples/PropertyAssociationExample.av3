@@ -11,6 +11,7 @@ package PropertyAssociationExample
 		fea: feature;
 		action: flow sink  inp ;
 		#Period => 20 ms
+		inp#Data_Size := 20 b
 	end
 	
 	interface sensor is
@@ -38,7 +39,7 @@ package PropertyAssociationExample
 	
 	configuration actuator.c2 extends actuator.i
 	is 
-		sub2#Period => 72ms
+		sub2#Period := 72ms
 	end
 	
 	thread interface sense  is
@@ -96,7 +97,7 @@ package PropertyAssociationExample
 		hw : system hardwareplatform.impl;
 		sensetocontrol: connection sense.outp -> processing.insignal;
 		controltoactuate: connection processing.outaction -> actuate.inp;
-		actuate#Period => 34 ms 
+		actuate#Period := 34 ms 
 		actuate.sub2#Period := 55ms;
 	end
 	
@@ -121,7 +122,7 @@ package PropertyAssociationExample
 	cpu: processor x86;
 	mybus: bus canbus;
 	busconn: connection cpu.canbusaccess <-> mybus;
-//	extbusaccess: delegate canbusaccess <-> mybus;
+	extbusaccess: delegate canbusaccess <-> mybus;
 	end
 	
 end

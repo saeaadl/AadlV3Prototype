@@ -1,8 +1,8 @@
 package configurationoverlap2 
 import StandardProperties::*;
 
-property SecurityLevel: int ;
-property SafetyLevel: int;
+property SecurityLevel: int for all;
+property SafetyLevel: int for all;
 
 system interface x end
 

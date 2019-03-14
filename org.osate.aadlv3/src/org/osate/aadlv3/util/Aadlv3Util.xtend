@@ -554,7 +554,7 @@ class Aadlv3Util {
 	
 	
 	// the specified list contains a configuration assignment with the same target as the addition
-	static def boolean containsAdditionTarget(Iterable<ConfigurationAssignment> primary, ConfigurationAssignment addition){
+	static def boolean hasAdditionTarget(Iterable<ConfigurationAssignment> primary, ConfigurationAssignment addition){
 		for ( pca : primary){
 			if (pca.target.matchesTarget(addition.target)){
 				return true
@@ -562,7 +562,7 @@ class Aadlv3Util {
 		}
 		return false
 	}
-	static def boolean containsAdditionTarget(Iterable<PropertyAssociation> primary, PropertyAssociation addition){
+	static def boolean hasAdditionTarget(Iterable<PropertyAssociation> primary, PropertyAssociation addition){
 		for ( pca : primary){
 			if (pca.target.matchesTarget(addition.target)){
 				return true
@@ -747,7 +747,6 @@ class Aadlv3Util {
 		return false
 	}
 	
-		
 	/**
 	 * collect all configuration assignments to all subcomponents for a given classifier.
 	 * recursively handles configuration assignments contained in assigned configurations
@@ -792,6 +791,25 @@ class Aadlv3Util {
 				val fulltargetpath = if (targetpathprefix.empty)ca.targetPath else targetpathprefix+"."+ca.targetPath
 				cache.putAll(fulltargetpath,fulltrs)
 			}
+		}
+	}
+
+		//  TODO component to be instantiated using configured classifier confcl and set of configuration assignments
+	def void populateClassifierCache(Component comp,  Stack<Iterable<ConfigurationAssignment>> casscopes) {
+		var Iterable<TypeReference> trefs = null
+			// subcomponent
+			trefs = comp.getConfiguredTypeReferences(casscopes)
+		if (trefs === null) {
+			// inline subcomponents without explicit classifier
+			casscopes.push(Collections.EMPTY_LIST)
+			comp.components.forEach[subc|subc.populateClassifierCache(casscopes)]
+			casscopes.pop
+		} else {
+			val comps = trefs.getAllSubcomponents(comp)
+			val cas = trefs.allConfigurationAssignments
+			casscopes.push(cas)
+			comps.forEach[subc|subc.populateClassifierCache(casscopes)]
+			casscopes.pop
 		}
 	}
 	
@@ -1176,9 +1194,15 @@ class Aadlv3Util {
 	// ModelElementReference methods
 	//-------------------------
 
-	// model element reference reaches into a component, i.e., the first path element refers to a component
+	// model element reference reaches into a component
 	def static boolean modelElementReferenceIncludesComponent(ModelElementReference mer) {
 		mer.getClosestReferencedComponent !== null
+	}
+	// model element reference reaches into a component
+	def static boolean modelElementReferenceReachDown(ModelElementReference mer) {
+		val firstcomp = mer.getClosestReferencedComponent
+		firstcomp !== null // reachdown
+		&& !(firstcomp === mer.element && mer.context === null) // not the only element in mer
 	}
 	
 	/**
@@ -1242,7 +1266,7 @@ class Aadlv3Util {
 	}
 	
 	/**
-	 * return the target of a feature delegate, i.e., the association end that is further down the hierarchy
+	 * return the target of a feature delegate, i.e., the association end that includes a (sub)component or tis feature
 	 */
 	def static ModelElementReference getDelegateTarget(Association assoc){
 		if (assoc.source.modelElementReferenceIncludesComponent){
@@ -1390,22 +1414,38 @@ class Aadlv3Util {
 		switch (target){
 			ComponentInstance: {
 				val targetcomp = target.component
-				pds.filter[pd|pd.appliesTo(target.category)]+targetcomp.typeReferences.allowedUseProperties
+				pds.filter[pd|pd.appliesToCategory(target.category)]+targetcomp.typeReferences.allowedUseProperties
 			}
 			FeatureInstance: {
-				pds.filter[pd|pd.appliesTo(target.category)]
+				pds.filter[pd|pd.appliesToCategory(target.category)]
 			}
 			AssociationInstance: {
-				pds.filter[pd|pd.appliesTo(target.associationType)]
+				pds.filter[pd|pd.appliesToCategory(target.associationType)]
 			}
 			default: {
 				Collections.EMPTY_LIST
 			}
 		}
 	}
+
+	
+	def static boolean appliesTo(PropertyDefinition pd, InstanceObject io){
+		switch(io){
+			ComponentInstance: {
+				appliesToCategory(pd,io.category) || io.component?.typeReferences.allowedUseProperties.exists[iopd|sameProperty(iopd, pd)]
+			}
+			FeatureInstance: {
+				appliesToCategory(pd,io.category)
+			}
+			AssociationInstance: {
+				appliesToCategory(pd,io.associationType)
+			}
+		}
+		false
+	}
 	
 	
-	def static boolean appliesTo(PropertyDefinition pd, ComponentCategory ccat){
+	def static boolean appliesToCategory(PropertyDefinition pd, ComponentCategory ccat){
 		if (ccat === null){
 			return pd.appliesToAll || !pd.componentCategories.empty
 		}
@@ -1415,11 +1455,11 @@ class Aadlv3Util {
 		pd.componentCategories.contains(ccat) || pd.appliesToAll
 	}
 	
-	def static boolean appliesTo(PropertyDefinition pd, FeatureCategory fcat){
+	def static boolean appliesToCategory(PropertyDefinition pd, FeatureCategory fcat){
 		pd.featureCategories.contains(fcat) || pd.appliesToAll
 	}
 	
-	def static boolean appliesTo(PropertyDefinition pd, AssociationType acat){
+	def static boolean appliesToCategory(PropertyDefinition pd, AssociationType acat){
 		pd.associationTypes.contains(acat) || pd.appliesToAll
 	}
 	

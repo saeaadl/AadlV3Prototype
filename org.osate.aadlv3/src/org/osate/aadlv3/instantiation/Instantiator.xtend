@@ -4,31 +4,34 @@ import java.util.ArrayList
 import java.util.Collection
 import java.util.Collections
 import java.util.Stack
+import org.eclipse.xtext.EcoreUtil2
 import org.osate.aadlv3.aadlv3.Association
 import org.osate.aadlv3.aadlv3.Component
+import org.osate.aadlv3.aadlv3.ComponentClassifier
 import org.osate.aadlv3.aadlv3.ComponentInterface
 import org.osate.aadlv3.aadlv3.ConfigurationAssignment
 import org.osate.aadlv3.aadlv3.Feature
 import org.osate.aadlv3.aadlv3.FeatureCategory
 import org.osate.aadlv3.aadlv3.PathElement
 import org.osate.aadlv3.aadlv3.PathSequence
+import org.osate.aadlv3.aadlv3.PropertyAssociation
+import org.osate.aadlv3.aadlv3.PropertyAssociationType
+import org.osate.aadlv3.aadlv3.PropertyDefinition
 import org.osate.aadlv3.aadlv3.TypeReference
 import org.osate.aadlv3.aadlv3.Workingset
 import org.osate.aadlv3.util.Aadlv3Util
+import org.osate.aadlv3.util.Diagnostic
+import org.osate.aadlv3.util.DiagnosticUtil
 import org.osate.av3instance.av3instance.AssociationInstance
 import org.osate.av3instance.av3instance.ComponentInstance
 import org.osate.av3instance.av3instance.FeatureInstance
 import org.osate.av3instance.av3instance.InstanceObject
 import org.osate.av3instance.av3instance.PathInstance
+import org.osate.av3instance.av3instance.PropertyAssociationInstance
 
 import static extension org.eclipse.emf.ecore.util.EcoreUtil.*
-import static extension org.osate.aadlv3.util.Aadlv3Util.*
 import static extension org.osate.aadlv3.util.AIv3API.*
-import org.osate.aadlv3.aadlv3.PropertyDefinition
-import org.osate.av3instance.av3instance.PropertyAssociationInstance
-import org.osate.aadlv3.aadlv3.PropertyAssociation
-import org.osate.aadlv3.aadlv3.PropertyAssociationType
-import org.osate.aadlv3.aadlv3.ComponentClassifier
+import static extension org.osate.aadlv3.util.Aadlv3Util.*
 
 class Instantiator {
 	
@@ -40,6 +43,8 @@ class Instantiator {
 		for (iroot : ws.rootComponents) {
 			val rootinstance = iroot.instantiateRoot
 			rootinstance.eResource.save(null)
+		//  check whether all expected properties have been set
+		//	val issues = validateExpectedPropertyValues(rootinstance,expectedProperties)
 		}
 	}
 	
@@ -430,12 +435,6 @@ class Instantiator {
 		}
 	}
 	
-	def static void addDefaultPropertyAssociationInstance(InstanceObject context, PropertyAssociation pa){
-		val target = context.getInstanceElement(pa.target)
-		val pais = target.propertyAssociations
-		pais += createPropertyAssociationInstance(pa)
-	}
-	
 	
 	/**
 	 * override existing property value with return value true indicating that is was overridden
@@ -451,7 +450,7 @@ class Instantiator {
 					val ecl = epai.propertyAssociation.eContainer as ComponentClassifier
 					if (npa.eContainer instanceof ComponentClassifier) {
 						val tcl = npa.eContainer as ComponentClassifier
-						if (npa.target.modelElementReferenceIncludesComponent) {
+						if (npa.target.modelElementReferenceReachDown) {
 							// reachdown assignment to subcomponent (should be final)
 							// in implementation vs configuration
 							if (tcl.isSuperClassifierOf(ecl)) {
@@ -544,12 +543,18 @@ class Instantiator {
 		}
 	}
 	
+	def static void addDefaultPropertyAssociationInstance(InstanceObject context, PropertyAssociation pa){
+		val target = context.getInstanceElement(pa.target)
+		val pais = target.propertyAssociations
+		pais += createPropertyAssociationInstance(pa)
+	}
+	
 	def static PropertyAssociation findDefaultPropertyValue(InstanceObject io, PropertyDefinition pd){
 		var ci = io.containingComponentInstance
 		while (ci !== null) {
 			for (pa : ci.configuredTypeReferences.allPropertyAssociations) {
 				if (pa.propertyAssociationType === PropertyAssociationType.DEFAULT_VALUE &&
-					sameProperty(pd, pa.property)) {
+					sameProperty(pd, pa.property) && appliesTo(pd,io)) {
 					return pa
 				}
 			}
@@ -558,5 +563,17 @@ class Instantiator {
 		return null
 	}
 	
+	def static Collection<Diagnostic> validateExpectedPropertyValues(ComponentInstance root, Iterable<PropertyDefinition> pds){
+		val issues = new ArrayList<Diagnostic>
+		val ios = EcoreUtil2.getAllContentsOfType(root, ComponentInstance)+EcoreUtil2.getAllContentsOfType(root, FeatureInstance)+EcoreUtil2.getAllContentsOfType(root, AssociationInstance)
+		for (io : ios) {
+			for (pd : pds) {
+				if (!io.hasPropertyAssociation(pd)) {
+					issues.add(DiagnosticUtil.createError(io, "Missing property value "+pd.name))
+				}
+			}
+		}
+		issues
+	}
 
 }

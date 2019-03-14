@@ -1,8 +1,8 @@
 package configurationoverlap 
 import StandardProperties::*;
 
-property SecurityLevel: int ;
-property SafetyLevel: int;
+property SecurityLevel: int for all
+property SafetyLevel: int for all
 
 system interface x end
 
@@ -113,7 +113,7 @@ end
 
 configuration top.config_Security extends top.config_L2 
 is
-  #SecurityLevel => 1;
+  #SecurityLevel := 1;
   Sub1#SecurityLevel => 2;
   Sub1.xsub1#SecurityLevel => 0;
   Sub2#SecurityLevel => 1;
