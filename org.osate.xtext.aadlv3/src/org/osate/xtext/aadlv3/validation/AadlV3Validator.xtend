@@ -36,6 +36,9 @@ import java.util.Stack
 import org.osate.aadlv3.aadlv3.NamedElement
 import org.osate.aadlv3.aadlv3.PropertyDefinition
 import org.eclipse.emf.ecore.EObject
+import org.osate.aadlv3.aadlv3.ModelElementReference
+import org.osate.aadlv3.aadlv3.Aadlv3Factory
+import org.eclipse.emf.ecore.EStructuralFeature
 
 /**
  * This class contains custom validation rules. 
@@ -101,7 +104,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 		cl.checkConsistentCategory()
 		cl.checkCommonTopComponentImplementation
 		cl.checkDuplicatePropertyAssociations
-		cl.checkCompositePropertyAssociationTypeConsistency
+		cl.checkCompositePropertyAssociationFinalConflict
 	}
 
 	@Check
@@ -121,11 +124,13 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	def checkComponentConfiguration(ComponentConfiguration config) {
 		config.checkInterface()
 		config.checkConsistentTopImplementation
+		config.checkCompositeConfigurationAssignmentFinalPropertyAssociationConsistency
 	}
 
 	@Check
 	def checkFeature(Feature fea) {
 		fea.checkFeatureDirection()
+		fea.checkDuplicatePropertyAssociations
 		if (fea.category != FeatureCategory.INTERFACE && fea?.typeReference?.isReverse) {
 			error('Only interface features can reverse direction', fea, Aadlv3Package.Literals.FEATURE__TYPE_REFERENCE,
 				ONLY_INTERFACES_REVERSE)
@@ -138,6 +143,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 		assoc.checkConsistentFeatureCategory
 		assoc.checkConsistentTargets
 		assoc.checkMatchingTypes
+		assoc.checkDuplicatePropertyAssociations
 	}
 
 	@Check
@@ -145,7 +151,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 		ca.checkConfigurationAssignmentCategory
 		ca.checkCommonTopComponentImplementation
 		ca.checkDuplicatePropertyAssociations
-		ca.checkCompositePropertyAssociationTypeConsistency
+		ca.checkCompositePropertyAssociationFinalConflict
 	}
 
 	@Check
@@ -161,6 +167,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 		}
 		// for both the sequence has to be consistent
 		flowa.checkPathSequenceConsistency
+		flowa.checkDuplicatePropertyAssociations
 	}
 
 	@Check
@@ -247,11 +254,17 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 
 	@Check
 	def checkPropertyAssociation(PropertyAssociation pa) {
+		pa.checkDuplicatePropertyAssociationForModelElementTarget
 		pa.checkPropertyAssociationAppliesto
-		pa.checkLocalPropertyAssociationType
-		pa.checkPropertyAssociationFinal
+		pa.checkPropertyAssociationMustBeFinal
+		pa.checkLocalComponentPropertyAssociationFinal
+		pa.checkLocalSuperClassifierFinal
+		pa.checkFinalPropertyAssociationConflictsLocalFinal
 	}
 	
+	/**
+	 * check that it is assigned to a model element that can accept the property
+	 */
 	def checkPropertyAssociationAppliesto(PropertyAssociation pa) {
 		if (pa.target !== null){
 			val targetme = pa.target.element
@@ -315,202 +328,210 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 		}
 	}
 	
-	def checkPropertyAssociationFinal(PropertyAssociation pa) {
+	/**
+	 * check the PA is FINAL when in configuration, CA, or reachdown
+	 */
+	def checkPropertyAssociationMustBeFinal(PropertyAssociation pa) {
 		if (pa.eContainer instanceof ConfigurationAssignment){
 			if (pa.propertyAssociationType !== PropertyAssociationType.FINAL_VALUE){
 				error('Property assignment in configuration assignment must be \':=\'', pa,
 					Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY_ASSOCIATION_TYPE, MustBeFinal)
-			}
-			if (pa.target.element.hasLocalFinalPropertyAssociationLocalFinal(pa.property)){
-				error('Locally assigned property value is already \':=\'', pa,
-					Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY_ASSOCIATION_TYPE, NoFinalChange)
 			}
 		} else if (pa.eContainer instanceof ComponentConfiguration){
 			if (pa.propertyAssociationType === PropertyAssociationType.VARIABLE_VALUE){//&& !(pa.eContainer as ComponentConfiguration).superClassifiers.empty){
 				error('Property assignment in configuration must be \':=\'', pa,
 					Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY_ASSOCIATION_TYPE, MustBeFinal)
 			}
-//			if (pa.propertyAssociationType !== PropertyAssociationType.DEFAULT_VALUE && (pa.eContainer as ComponentConfiguration).superClassifiers.empty){
-//				error('Property assignment in reusable configuration must be \'*=>\'', pa,
-//					Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY_ASSOCIATION_TYPE, MustBeFinal)
-//			}
-			if (pa.target.element.hasLocalFinalPropertyAssociationLocalFinal(pa.property)){
-				error('Locally assigned property value is already \':=\'', pa,
-					Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY_ASSOCIATION_TYPE, NoFinalChange)
-			}
-		} else if (pa.target !== null && pa.target.modelElementReferenceReachDown){
-			if (pa.propertyAssociationType !== PropertyAssociationType.FINAL_VALUE && !(pa.eContainer as ComponentConfiguration).superClassifiers.empty){
+		} else if (pa.target !== null &&pa.target.modelElementReferenceReachDown){
+			if (pa.propertyAssociationType !== PropertyAssociationType.FINAL_VALUE && !(pa.eContainer as ComponentClassifier).superClassifiers.empty){
 				error('Reach down property assignment must be \':=\'', pa,
 					Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY_ASSOCIATION_TYPE, MustBeFinal)
 			}
-			if (pa.target.element.hasLocalFinalPropertyAssociationLocalFinal(pa.property)){
-				error('Locally assigned property value is already \':=\'', pa,
+		}
+	}
+
+	/**
+	 * Check whether target model element has a locally assigned FINAL value
+	 * Locally assigned is by PA in classifier without target or model element of classifier other than component by {} or MER
+	 */
+	def checkFinalPropertyAssociationConflictsLocalFinal(PropertyAssociation pa) {
+		if (pa.propertyAssociationType !== PropertyAssociationType.FINAL_VALUE) return;
+		if (pa.eContainer instanceof ConfigurationAssignment){
+			if (pa.target !== null && pa.target.element.hasLocalFinalPropertyAssociation(pa.property)){
+				error('Locally assigned property value is already final', pa,
+					Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY_ASSOCIATION_TYPE, NoFinalChange)
+			}
+		} else if (pa.eContainer instanceof ComponentConfiguration){
+			if (pa.target !== null && pa.target.element.hasLocalFinalPropertyAssociation(pa.property)){
+				error('Locally assigned property value is already final', pa,
+					Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY_ASSOCIATION_TYPE, NoFinalChange)
+			}
+		} else if (pa.target !== null &&pa.target.modelElementReferenceReachDown){
+			if (pa.target.element.hasLocalFinalPropertyAssociation(pa.property)){
+				error('Locally assigned property value is already final', pa,
 					Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY_ASSOCIATION_TYPE, NoFinalChange)
 			}
 		}
 	}
 	
 		
-	def hasLocalFinalPropertyAssociationLocalFinal(ModelElement ne, PropertyDefinition pd) {
+	def hasLocalFinalPropertyAssociation(ModelElement ne, PropertyDefinition pd) {
 		if (ne instanceof Component){
+			// all PA in classifiers listed in component & PA in {} of component
 			val pas = ne.typeReferences.allPropertyAssociations+ne.propertyAssociations
+			// PA with PD exists and does not have a target, i.e., is for the component and is FINAL
 			pas.exists[pa|sameProperty(pa.property, pd)&& pa.propertyAssociationType === PropertyAssociationType.FINAL_VALUE && pa.target === null]
 		} else {
-			ne.propertyAssociations.exists[pa|sameProperty(pa.property, pd)&& pa.propertyAssociationType === PropertyAssociationType.FINAL_VALUE&& pa.target === null]
+			// PA in {} & PA in enclosing classifier with ne as target
+			val clpas = ne.containingComponentClassifier.allPropertyAssociations 
+			val mepas = ne.propertyAssociations
+			clpas.exists[pa|sameProperty(pa.property, pd)&& pa.propertyAssociationType === PropertyAssociationType.FINAL_VALUE&& pa.target === ne]
+			|| mepas.exists[pa|sameProperty(pa.property, pd)&& pa.propertyAssociationType === PropertyAssociationType.FINAL_VALUE&& pa.target === null]
 		}
 		return false
 	}
 	
 
 	/**
-	 * check property association 
+	 * check FINAL override by classifiers for Component PAs 
 	 */
-	def checkLocalPropertyAssociationType(PropertyAssociation pa) {
-		if (pa.target !== null){
-			val targetme = pa.target.element
-			if (targetme instanceof Component) {
-				// for all property assignments to components, if the component classifier already has a local assignment that is final
-				val tpas = targetme.typeReferences.allPropertyAssociations
-				for (tpa : tpas) {
-					if (tpa.target === null && sameProperty(tpa.property, pa.property) &&
-						tpa.propertyAssociationType === PropertyAssociationType.FINAL_VALUE) {
-						error('Property association cannot change previously assigned final value', pa,
-							Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY_ASSOCIATION_TYPE, NoFinalChange)
-					}
+	def checkLocalComponentPropertyAssociationFinal(PropertyAssociation pa) {
+		if (pa.target !== null && pa.target.element instanceof Component) {
+			// PA points to component
+			val targetme = pa.target.element as Component
+			// for all property assignments to components, if the declared component classifier(s) already has a local assignment that is final
+			val tpas = targetme.typeReferences.allPropertyAssociations
+			for (tpa : tpas) {
+				if (tpa.target === null && sameProperty(tpa.property, pa.property) &&
+					tpa.propertyAssociationType === PropertyAssociationType.FINAL_VALUE) {
+					error(
+						'Property association cannot change final value assigned via classifier ' +
+							tpa.containingComponentClassifier.name, pa,
+						Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY_ASSOCIATION_TYPE, NoFinalChange)
 				}
 			}
+		}
+		if (pa.target === null && pa.eContainer instanceof Component) {
+			// associated with containing element. target is null
+			val paTarget = pa.eContainer as Component
+			val tpas = paTarget.typeReferences.allPropertyAssociations 
+			for (tpa : tpas) {
+				if (tpa.target === null && sameProperty(tpa.property, pa.property) &&
+					tpa.propertyAssociationType === PropertyAssociationType.FINAL_VALUE) {
+					error(
+						'Property association cannot change final value assigned via classifier ' +
+							tpa.containingComponentClassifier.name + ' of enclosing component ' + paTarget.name, pa,
+						Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY_ASSOCIATION_TYPE, NoFinalChange)
+				}
+			}
+		}
+	}
+	
+	/**
+	 * check whether super classifier already assigns final value
+	 */
+	def checkLocalSuperClassifierFinal(PropertyAssociation pa) {
+		// for all model elements the enclosing classifier's super classifiers can have assigned a FINAL value
+		if ( pa.target?.modelElementReferenceReachDown) return
+		// target is null or to a local ME
+		val me = pa.target?.element
+		val supercls = pa.containingComponentClassifier.allSuperComponentClassifiers
+		for (supercl : supercls) {
+			val spas = supercl.propertyAssociations
+			for (spa : spas) {
+				if (spa.target === me && sameProperty(spa.property, pa.property) &&
+					spa.propertyAssociationType === PropertyAssociationType.FINAL_VALUE) {
+					error('Property association cannot change final value assigned in ' + supercl.name, pa,
+						Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY_ASSOCIATION_TYPE, NoFinalChange)
+				}
+			}
+		}
+	}
+	
+	/**
+	 * check duplicate PA via {} and local enclosing PA 
+	 */
+	def checkDuplicatePropertyAssociationForModelElementTarget(PropertyAssociation pa) {
+		if (pa.target !== null && !pa.target.modelElementReferenceReachDown){
+			val targetme = pa.target.element
 			// local target model element also has {} property assignment 
 			val tpas = targetme.propertyAssociations
 			for (tpa : tpas) {
 				if (tpa.target === null && sameProperty(tpa.property, pa.property)) {
-					error('Cannot assign property value twice in classifier context', pa,
+					error('Property value also assigned in {}', pa,
 						Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY, NoDoubleAssignment)
 				}
 			}
-		} else {
-			// associated with containing element. target is null
-			val paTarget = pa.eContainer
-			switch (paTarget){
-				Component: {
-					val tpas = paTarget.typeReferences.allPropertyAssociations + paTarget.propertyAssociations // PA in classifier and {} of feature
-					for (tpa : tpas) {
-						if (tpa.target === null && sameProperty(tpa.property, pa.property) &&
-							tpa.propertyAssociationType === PropertyAssociationType.FINAL_VALUE) {
-							error('Property association cannot change previously assigned final value', pa,
-								Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY_ASSOCIATION_TYPE, NoFinalChange)
-						}
-					}
-				}
-				ComponentClassifier: {
-					// check extends override
-					val supercls = paTarget.allSuperComponentClassifiers
-					for (supercl : supercls) {
-						val spas = supercl.propertyAssociations
-						for (spa : spas) {
-							if (spa.target === null && sameProperty(spa.property, pa.property) &&
-								spa.propertyAssociationType === PropertyAssociationType.FINAL_VALUE) {
-								error('Property association cannot change previously assigned final value', pa,
-									Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY_ASSOCIATION_TYPE,
-									NoFinalChange)
-							}
-						}
-					}
-				}
-				Feature: {
-					val tpas = paTarget.propertyAssociations  // PA in {} of feature
-					for (tpa : tpas) {
-						if (tpa.target === null && sameProperty(tpa.property, pa.property) &&
-							tpa.propertyAssociationType === PropertyAssociationType.FINAL_VALUE) {
-							error('Property association cannot change previously assigned final value', pa,
-								Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY_ASSOCIATION_TYPE, NoFinalChange)
-						}
-					}
-				}
-				Association: {
-					val tpas = paTarget.propertyAssociations // PA in {} of feature
-					for (tpa : tpas) {
-						if (tpa.target === null && sameProperty(tpa.property, pa.property) &&
-							tpa.propertyAssociationType === PropertyAssociationType.FINAL_VALUE) {
-							error('Property association cannot change previously assigned final value', pa,
-								Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY_ASSOCIATION_TYPE, NoFinalChange)
-						}
-					}
-				}
-			}
 		}
 	}
-
+	
+	/**
+	 * check duplicate PA in classifier
+	 */
 	def checkDuplicatePropertyAssociations(ComponentClassifier cl) {
-		val pas = cl.propertyAssociations
-		val maxpas = pas.length
-		for (var firstidx = 0; firstidx < maxpas - 1; firstidx++) {
-			val first = pas.get(firstidx)
-			for (var secondidx = firstidx + 1; secondidx < maxpas; secondidx++) {
-				val second = pas.get(secondidx)
-				if (first !== second && sameProperty(first.property,second.property) && first.target?.targetPath == second.target?.targetPath) {
-			error('Duplicate property association ' + first.property.name, cl,
-				Aadlv3Package.Literals.COMPONENT_CLASSIFIER__PROPERTY_ASSOCIATIONS, secondidx, NoDoubleAssignment)
-			error('Duplicate property association ' + second.property.name, cl,
-				Aadlv3Package.Literals.COMPONENT_CLASSIFIER__PROPERTY_ASSOCIATIONS, firstidx, NoDoubleAssignment)
-				}
-			}
-		}
+		checkDuplicatePropertyAssociations( cl.propertyAssociations, cl,
+				Aadlv3Package.Literals.COMPONENT_CLASSIFIER__PROPERTY_ASSOCIATIONS)
 	}
 
+	/**
+	 * check duplicate PA in CA
+	 */
 	def checkDuplicatePropertyAssociations(ConfigurationAssignment ca) {
-		val pas = ca.propertyAssociations
-		val maxpas = pas.length
-		for (var firstidx = 0; firstidx < maxpas - 1; firstidx++) {
-			val first = pas.get(firstidx)
-			for (var secondidx = firstidx + 1; secondidx < maxpas; secondidx++) {
-				val second = pas.get(secondidx)
-				if (first !== second && sameProperty(first.property,second.property) && first.target?.targetPath == second.target?.targetPath) {
-			error('Duplicate property association ' + first.property.name, ca,
-				Aadlv3Package.Literals.COMPONENT_CLASSIFIER__PROPERTY_ASSOCIATIONS, secondidx, NoDoubleAssignment)
-			error('Duplicate property association ' + second.property.name, ca,
-				Aadlv3Package.Literals.COMPONENT_CLASSIFIER__PROPERTY_ASSOCIATIONS, firstidx, NoDoubleAssignment)
-				}
-			}
-		}
+		checkDuplicatePropertyAssociations( ca.propertyAssociations, ca,
+				Aadlv3Package.Literals.CONFIGURATION_ASSIGNMENT__PROPERTY_ASSOCIATIONS)
 	}
 
-	def checkDuplicatePropertyAssociations(Component comp) {
-		val pas = comp.propertyAssociations
+	/**
+	 * check duplicate PA in Model Element
+	 */
+	def checkDuplicatePropertyAssociations(ModelElement me) {
+		checkDuplicatePropertyAssociations(me.propertyAssociations,  me,
+				Aadlv3Package.Literals.MODEL_ELEMENT__PROPERTY_ASSOCIATIONS)
+	}
+
+	def checkDuplicatePropertyAssociations(Iterable<PropertyAssociation> pas, EObject target, EStructuralFeature structuralfeature) {
 		val maxpas = pas.length
 		for (var firstidx = 0; firstidx < maxpas - 1; firstidx++) {
 			val first = pas.get(firstidx)
 			for (var secondidx = firstidx + 1; secondidx < maxpas; secondidx++) {
 				val second = pas.get(secondidx)
 				if (first !== second && sameProperty(first.property,second.property) && first.target?.targetPath == second.target?.targetPath) {
-			error('Duplicate property association ' + first.property.name, comp,
-				Aadlv3Package.Literals.COMPONENT_CLASSIFIER__PROPERTY_ASSOCIATIONS, secondidx, NoDoubleAssignment)
-			error('Duplicate property association ' + second.property.name, comp,
-				Aadlv3Package.Literals.COMPONENT_CLASSIFIER__PROPERTY_ASSOCIATIONS, firstidx, NoDoubleAssignment)
+			error('Duplicate property association ' + first.property.name, target,
+				structuralfeature, secondidx, NoDoubleAssignment)
+			error('Duplicate property association ' + second.property.name, target,
+				structuralfeature, firstidx, NoDoubleAssignment)
 				}
 			}
 		}
 	}
 	
-	def checkCompositePropertyAssociationTypeConsistency(ComponentClassifier cl){
-		val pas= cl.superClassifiers.allPropertyAssociations
+	/**
+	 * conflicting PA in super classifiers of given classifier. 
+	 */
+	def checkCompositePropertyAssociationFinalConflict(ComponentClassifier cl) {
+		val pas = cl.superClassifiers.allPropertyAssociations
 		val maxpas = pas.length
 		for (var firstidx = 0; firstidx < maxpas - 1; firstidx++) {
 			val first = pas.get(firstidx)
 			for (var secondidx = firstidx + 1; secondidx < maxpas; secondidx++) {
 				val second = pas.get(secondidx)
-				if (first !== second && sameProperty(first.property,second.property) && first.target?.targetPath == second.target?.targetPath
-					&& first.propertyAssociationType === PropertyAssociationType.FINAL_VALUE&& second.propertyAssociationType === PropertyAssociationType.FINAL_VALUE
-				) {
-			error('Conflicting \':=\' property association ' + first.target.targetPath+'#'+first.property.name, cl,
-				Aadlv3Package.Literals.COMPONENT_CLASSIFIER__SUPER_CLASSIFIERS, cl.superClassifiers.indexOf(first.eContainer), ConflictingFinal)
-			error('Conflicting \':=\' property association ' + second.target.targetPath+'#'+second.property.name, cl,
-				Aadlv3Package.Literals.COMPONENT_CLASSIFIER__PROPERTY_ASSOCIATIONS, cl.superClassifiers.indexOf(second.eContainer), ConflictingFinal)
+				if (first !== second && sameProperty(first.property, second.property) && first.target?.targetPath == second.target?.targetPath 
+					&& first.propertyAssociationType === PropertyAssociationType.FINAL_VALUE && second.propertyAssociationType === PropertyAssociationType.FINAL_VALUE
+					) {
+					error(
+						'Property association ' + first.property.name + ' conflicts with ' +(second.eContainer as ComponentClassifier).name +'::'+ second.target.targetPath +
+							'#' + first.property.name, cl,
+						Aadlv3Package.Literals.COMPONENT_CLASSIFIER__SUPER_CLASSIFIERS,
+						cl.superClassifiers.indexOf(first.eContainer), ConflictingFinal)
 				}
 			}
 		}
 	}
 	
-	def checkCompositePropertyAssociationTypeConsistency(ConfigurationAssignment ca){
+	/**
+	 * conflicting PA in assigned classifiers of CA
+	 */
+	def checkCompositePropertyAssociationFinalConflict(ConfigurationAssignment ca){
 		val pas= ca.assignedClassifiers.allPropertyAssociations
 		val maxpas = pas.length
 		for (var firstidx = 0; firstidx < maxpas - 1; firstidx++) {
@@ -520,9 +541,9 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 				if (first !== second && sameProperty(first.property,second.property) && first.target?.targetPath == second.target?.targetPath
 					&& first.propertyAssociationType === PropertyAssociationType.FINAL_VALUE&& second.propertyAssociationType === PropertyAssociationType.FINAL_VALUE
 				) {
-			error('Conflicting \':=\' property association ' + first.target.targetPath+'#'+first.property.name, ca,
-				Aadlv3Package.Literals.CONFIGURATION_ASSIGNMENT__ASSIGNED_CLASSIFIERS, ca.assignedClassifiers.getIndex(first.eContainer), ConflictingFinal)
-			error('Conflicting \':=\' property association ' + second.target.targetPath+'#'+second.property.name, ca,
+			error('Property association ' + second.target.targetPath +
+							'#' + second.property.name + ' conflicts with ' +(first.eContainer as ComponentClassifier).name +'::' + first.target.targetPath +
+							'#' + first.property.name, ca,
 				Aadlv3Package.Literals.CONFIGURATION_ASSIGNMENT__ASSIGNED_CLASSIFIERS, ca.assignedClassifiers.getIndex(second.eContainer), ConflictingFinal)
 				}
 			}
@@ -540,14 +561,73 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 
 		
 	def void checkCompositeConfigurationAssignmentFinalPropertyAssociationConsistency(ComponentConfiguration cl){
-		val SetMultimap <String, TypeReference> map = cl.cacheClassifierAssignments
-		val keys = map.keySet
-		for ( key : keys){
-			val trs = map.get(key)
-			trs.consistentTopComponentImplementation
+		val subs = cl.allSubcomponents
+		val casscopes = new Stack<Iterable<ConfigurationAssignment>>()
+		casscopes.push(cl.allConfigurationAssignments)
+		val reachdownPAS = new Stack<Iterable<PropertyAssociation>>()
+		reachdownPAS.push(cl.allPropertyAssociations.filter[pa|pa.target?.modelElementReferenceReachDown])
+		for (sub: subs){
+			val rootmer = Aadlv3Factory.eINSTANCE.createModelElementReference
+			rootmer.element = sub
+			checkNestedPAS( rootmer, casscopes, reachdownPAS,cl)
+		}
+	}
+
+	def void checkNestedPAS(ModelElementReference context,  Stack<Iterable<ConfigurationAssignment>> casscopes, Stack<Iterable<PropertyAssociation>> reachdownPAS, ComponentClassifier rootcl) {
+		val comp = context.element as Component
+		var Iterable<TypeReference> trefs = null
+		// subcomponent
+		trefs = comp.getConfiguredTypeReferences(casscopes)
+		if (trefs === null) {
+			// inline subcomponents without explicit classifier
+			casscopes.push(Collections.EMPTY_LIST)
+			reachdownPAS.push(comp.propertyAssociations.filter[pa|pa.target?.modelElementReferenceReachDown])
+			comp.components.forEach[subc|context.addComponent(subc).checkNestedPAS(casscopes,reachdownPAS,rootcl)]
+			casscopes.pop
+			reachdownPAS.pop
+		} else {
+			val pas = trefs.allPropertyAssociations
+			matchpas(reachdownPAS, context, pas,rootcl)
+			val comps = trefs.getAllSubcomponents(comp)
+			val cas = trefs.allConfigurationAssignments
+			casscopes.push(cas)
+			reachdownPAS.push(pas.filter[pa|pa.target?.modelElementReferenceReachDown])
+			comps.forEach[subc|context.addComponent(subc).checkNestedPAS(casscopes,reachdownPAS,rootcl)]
+			casscopes.pop
+			reachdownPAS.pop
 		}
 	}
 	
+	def void matchpas(Stack<Iterable<PropertyAssociation>> reachdownPAS, ModelElementReference context, Iterable<PropertyAssociation> localPAS, ComponentClassifier rootcl)
+	{
+		val n = reachdownPAS.size
+		if (n ===0) return;
+		for (k: n-1 .. 0){
+			for (rdPA: reachdownPAS.get(k)){
+				for (localPA: localPAS){
+					if (matchesReachDown(rdPA.target, localPA.target, n-k, context)){
+					// error
+						val cont = localPA.eContainer
+						if (cont instanceof ComponentClassifier) {
+							error(
+								'xxConflicting final property association ' +cont.name+ '::' + '#' +
+									localPA.property.name, cont,
+								Aadlv3Package.Literals.COMPONENT_CLASSIFIER__PROPERTY_ASSOCIATIONS,
+								cont.propertyAssociations.indexOf(localPA), ConflictingFinal)
+						}
+						val rd = rdPA.eContainer
+						if (rd instanceof ComponentClassifier) {
+							error(
+								'xxConflicting final property association ' +rd.name+ '::' + rdPA.target.targetPath + '#' +
+									rdPA.property.name, rd,
+								Aadlv3Package.Literals.COMPONENT_CLASSIFIER__PROPERTY_ASSOCIATIONS,
+								rd.propertyAssociations.indexOf(rdPA), ConflictingFinal)
+						}
+					}
+				}
+			}
+		}
+	}
 
 
 	def checkUniqueModelElementNames(ComponentInterface cl) {
@@ -837,6 +917,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	}
 	
 	def checkConfigurationAssignmentCategory(ConfigurationAssignment ca) {
+		if (ca.target === null) return;
 		if (ca.target.element instanceof Component) {
 			val comp = ca.target.element as Component
 			for (tr : ca.assignedClassifiers) {

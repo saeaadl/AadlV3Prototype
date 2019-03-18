@@ -7,11 +7,10 @@ package PropertyAssociationExample
 	type int;
 	
 	interface actuator is
-		inp: in port;
+		inp: in port {#Data_Size => 20 b}; 
 		fea: feature;
 		action: flow sink  inp ;
 		#Period => 20 ms
-		inp#Data_Size := 20 b
 	end
 	
 	interface sensor is
@@ -97,14 +96,14 @@ package PropertyAssociationExample
 		hw : system hardwareplatform.impl;
 		sensetocontrol: connection sense.outp -> processing.insignal;
 		controltoactuate: connection processing.outaction -> actuate.inp;
-		actuate#Period := 34 ms 
-		actuate.sub2#Period := 55ms;
+		actuate#Period => 34 ms
+		actuate.sub2#Period => 55ms;
 	end
 	
 	configuration conntop.c1 extends conntop.i is
 	#Period *=> 99 ms;
 	#Data_Size *=> 88 bytes;
-		actuate => actuator.c1 , actuator.c2
+		actuate => actuator.c1 , actuator.c2 
 	end
 	
 	bus interface canbus 

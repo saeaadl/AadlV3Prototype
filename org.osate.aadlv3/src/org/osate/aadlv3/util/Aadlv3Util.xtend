@@ -45,6 +45,7 @@ import org.osate.av3instance.av3instance.InstanceObject
 import static extension org.eclipse.emf.ecore.util.EcoreUtil.*
 import static extension org.eclipse.xtext.EcoreUtil2.*
 import static extension org.osate.aadlv3.util.Av3API.*
+import org.osate.aadlv3.aadlv3.Aadlv3Factory
 
 class Aadlv3Util {
 	/**
@@ -514,7 +515,7 @@ class Aadlv3Util {
 	// does not process super classifiers
 	static def Iterable<ConfigurationAssignment> getAllGivenClassifierConfigurationAssignments(ComponentClassifier cl) {
 		if(cl === null || cl.eIsProxy) return Collections.EMPTY_LIST
-		val cas = cl.eContents.typeSelect(ConfigurationAssignment)
+		val Iterable<ConfigurationAssignment> cas = if (cl instanceof ComponentConfiguration) cl.configurationAssignments else if (cl instanceof ComponentImplementation) cl.configurationAssignments else Collections.EMPTY_LIST
 		val nestedcas = cas.map[ca|ca.nestedConfigurationAssignments].flatten
 		cas+nestedcas
 	}
@@ -530,7 +531,8 @@ class Aadlv3Util {
 	
 	// return configuration assignments that are contained in the specified configuration assignment
 	private static def Iterable<ConfigurationAssignment> getNestedConfigurationAssignments(ConfigurationAssignment ca) {
-		return ca.configurationAssignments+ca.configurationAssignments.map[subca| subca.fullTargetPath(ca.target)].map[subca|subca.nestedConfigurationAssignments].flatten
+		val subcas = ca.configurationAssignments.map[subca| subca.fullTargetPath(ca.target)]
+		return subcas+subcas.map[subca|subca.nestedConfigurationAssignments].flatten
 	}
 	
 	// makes a copy of the configuration assignment with the target path expanded
@@ -550,6 +552,11 @@ class Aadlv3Util {
 		if(trs.empty) return Collections.EMPTY_LIST
 		val cls = trs.allComponentClassifiers
 		cls.map[cl|cl.propertyAssociations].flatten
+	}
+
+	static def Iterable<PropertyAssociation> getAllPropertyAssociations(ComponentClassifier cl) {
+		val cls = cl.allComponentClassifiers
+		cls.map[acl|acl.propertyAssociations].flatten
 	}
 	
 	
@@ -591,7 +598,7 @@ class Aadlv3Util {
 		var res = ctyperefs as Iterable<TypeReference>
 		for (typeref : ctyperefs) {
 			for (ca : casscopes.get(0)) {
-				if (ca.target.element === match) {
+				if (ca.target?.element === match) {
 					val trscl = ca.assignedClassifiers.filter[tr|tr.type instanceof ComponentClassifier ]
 					res = res + trscl
 				}
@@ -713,6 +720,7 @@ class Aadlv3Util {
 			return ca.target?.matchesTarget(match, depth, context)
 		}
 	}
+
 	// depth indicates the target path length to be considered
 	private def static boolean matchesTarget(ModelElementReference mer, ModelElement match, int depth, ComponentInstance context) {
 		if(mer?.element.name != match.name) return false
@@ -791,25 +799,6 @@ class Aadlv3Util {
 				val fulltargetpath = if (targetpathprefix.empty)ca.targetPath else targetpathprefix+"."+ca.targetPath
 				cache.putAll(fulltargetpath,fulltrs)
 			}
-		}
-	}
-
-		//  TODO component to be instantiated using configured classifier confcl and set of configuration assignments
-	def void populateClassifierCache(Component comp,  Stack<Iterable<ConfigurationAssignment>> casscopes) {
-		var Iterable<TypeReference> trefs = null
-			// subcomponent
-			trefs = comp.getConfiguredTypeReferences(casscopes)
-		if (trefs === null) {
-			// inline subcomponents without explicit classifier
-			casscopes.push(Collections.EMPTY_LIST)
-			comp.components.forEach[subc|subc.populateClassifierCache(casscopes)]
-			casscopes.pop
-		} else {
-			val comps = trefs.getAllSubcomponents(comp)
-			val cas = trefs.allConfigurationAssignments
-			casscopes.push(cas)
-			comps.forEach[subc|subc.populateClassifierCache(casscopes)]
-			casscopes.pop
 		}
 	}
 	
@@ -1194,10 +1183,26 @@ class Aadlv3Util {
 	// ModelElementReference methods
 	//-------------------------
 
+	// add component to MER
+	def static ModelElementReference addComponent(ModelElementReference path, Component comp){
+		val cref = Aadlv3Factory.eINSTANCE.createModelElementReference
+		cref.element = comp
+		cref.context=path
+		cref
+	}
+	
+	// trim MER by one element
+	def static ModelElementReference removeComponent(ModelElementReference path){
+		val res = path.context
+		path.context=null
+		res
+	}
+
 	// model element reference reaches into a component
 	def static boolean modelElementReferenceIncludesComponent(ModelElementReference mer) {
 		mer.getClosestReferencedComponent !== null
 	}
+	
 	// model element reference reaches into a component
 	def static boolean modelElementReferenceReachDown(ModelElementReference mer) {
 		val firstcomp = mer.getClosestReferencedComponent
@@ -1275,6 +1280,32 @@ class Aadlv3Util {
 			assoc.destination
 		}
 	}
+	
+	
+	// depth indicates the target path length to be considered
+	def static boolean matchesReachDown(ModelElementReference reachdown, ModelElementReference target, int depth, ModelElementReference context) {
+		var trgt = target
+		var rd = reachdown
+		while (trgt !== null && rd !== null){
+			if (trgt.element !== rd.element){
+				return false
+			}
+			trgt = trgt.context
+			rd = rd.context
+		}
+		var cxt = context
+		var countdown = depth
+		while (cxt !== null && rd !== null && countdown > 0){
+			if (cxt.element !== rd.element){
+				return false
+			}
+			cxt = cxt.context
+			rd = rd.context
+			countdown--
+		}
+		return true
+	}
+	
 
 	
 	////////////////////////////////////

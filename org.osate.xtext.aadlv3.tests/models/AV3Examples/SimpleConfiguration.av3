@@ -23,18 +23,18 @@ import StandardProperties::*;
 
 	configuration sender.sensorconf extends sender.i  
 	is
-		sub1 => sub.i {#Period => 23;
-			t1#Period => 30;
+		sub1 => sub.i {#Period := 23;
+			t1#Period := 30;
 		};
-		sub1.p1#Data_Size => 30;
-	end
-
+		sub1.p1#Data_Size := 30;
+	end 
+ 
 	abstract receiver.i is
 		sub2: abstract sub;
 	end
 
 	interface sub  is
-		p1: in port ;
+		p1: in port;
 	end
 
 	thread subsub.i
@@ -72,8 +72,8 @@ import StandardProperties::*;
 	end
 
 	configuration top.topc extends top.i is
-		sense => sender.i  { #Period => 34; sub1 => sub.i {#Period => 35; t1#Period => 36;} } ; // configure in implementation and inline configure its subcomponent
-		actuate => receiver.i{#Period => 38 }; // configure in implementation
+		sense => sender.i  { #Period := 34; sub1 => sub.i {#Period := 35; t1#Period := 36;} } ; // configure in implementation and inline configure its subcomponent
+		actuate => receiver.i{#Period := 38 }; // configure in implementation
 		sense1.sub1 => sub.i ; // Configure in subcomponent of implementation via reach down
 		sense21.sub1.t1 => subsub.i ; // Configure in subcomponent of implementation via reach down
 		sense2 =>  { sub1 => sub.i2t; }; // Configure in subcomponent of implementation via nesting

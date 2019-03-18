@@ -96,24 +96,24 @@ end
 
 configuration top.config_Security extends top.config_L2 
 is
-  #SecurityLevel => 1;
-  Sub1#SecurityLevel => 2;
-  Sub1.xsub1#SecurityLevel => 0;
-  Sub2#SecurityLevel => 1;
+  #SecurityLevel := 1;
+  Sub1#SecurityLevel := 2;
+  Sub1.xsub1#SecurityLevel := 0;
+  Sub2#SecurityLevel := 1;
 end
 
 configuration top.config_Safety extends top.config_L1 
 is
-  #SafetyLevel => 3; 
-  Sub1#SafetyLevel => 2;
-  Sub2 => {#SafetyLevel => 3;};
+  #SafetyLevel := 3; 
+  Sub1#SafetyLevel := 2;
+  Sub2 => {#SafetyLevel := 3;};
 end
 
 configuration x.config_Performance extends x.i 
 is
   xsub1 => subsubsys.i {
-   #Period => 10; 
-   #Deadline => 10; };
+   #Period := 10; 
+   #Deadline := 10; };
 end
 
 // slide 9
