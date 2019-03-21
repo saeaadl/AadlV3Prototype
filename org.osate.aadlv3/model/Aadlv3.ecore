@@ -49,6 +49,8 @@
       eSuperTypes="#//ComponentClassifier">
     <eStructuralFeatures xsi:type="ecore:EReference" name="cachedInterfaceReference"
         ordered="false" eType="#//ComponentInterface" transient="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="configurationAssignments"
+        upperBound="-1" eType="#//ConfigurationAssignment" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ComponentInterface" eSuperTypes="#//ComponentClassifier">
     <eStructuralFeatures xsi:type="ecore:EReference" name="features" upperBound="-1"
@@ -63,8 +65,6 @@
         eType="#//Component" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="connections" upperBound="-1"
         eType="#//Association" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="configurationAssignments"
-        upperBound="-1" eType="#//ConfigurationAssignment" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="flowAssignments" upperBound="-1"
         eType="#//PathSequence" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="paths" upperBound="-1"
@@ -75,8 +75,6 @@
   <eClassifiers xsi:type="ecore:EClass" name="ComponentConfiguration" eSuperTypes="#//ComponentRealization">
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
         eType="#//ConfigurationParameter" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="configurationAssignments"
-        upperBound="-1" eType="#//ConfigurationAssignment" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="parameterized" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="bindings" upperBound="-1"
         eType="#//Association" containment="true"/>

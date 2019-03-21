@@ -33,7 +33,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.Association;
 import org.osate.aadlv3.aadlv3.ComponentConfiguration;
-import org.osate.aadlv3.aadlv3.ConfigurationAssignment;
 import org.osate.aadlv3.aadlv3.ConfigurationParameter;
 
 /**
@@ -45,7 +44,6 @@ import org.osate.aadlv3.aadlv3.ConfigurationParameter;
  * </p>
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentConfigurationImpl#getParameters <em>Parameters</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentConfigurationImpl#getConfigurationAssignments <em>Configuration Assignments</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentConfigurationImpl#isParameterized <em>Parameterized</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentConfigurationImpl#getBindings <em>Bindings</em>}</li>
  * </ul>
@@ -62,16 +60,6 @@ public class ComponentConfigurationImpl extends ComponentRealizationImpl impleme
 	 * @ordered
 	 */
 	protected EList<ConfigurationParameter> parameters;
-
-	/**
-	 * The cached value of the '{@link #getConfigurationAssignments() <em>Configuration Assignments</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getConfigurationAssignments()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<ConfigurationAssignment> configurationAssignments;
 
 	/**
 	 * The default value of the '{@link #isParameterized() <em>Parameterized</em>}' attribute.
@@ -142,21 +130,6 @@ public class ComponentConfigurationImpl extends ComponentRealizationImpl impleme
 	 * @generated
 	 */
 	@Override
-	public EList<ConfigurationAssignment> getConfigurationAssignments() {
-		if (configurationAssignments == null) {
-			configurationAssignments = new EObjectContainmentEList<ConfigurationAssignment>(
-					ConfigurationAssignment.class, this,
-					Aadlv3Package.COMPONENT_CONFIGURATION__CONFIGURATION_ASSIGNMENTS);
-		}
-		return configurationAssignments;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public boolean isParameterized() {
 		return parameterized;
 	}
@@ -199,8 +172,6 @@ public class ComponentConfigurationImpl extends ComponentRealizationImpl impleme
 		switch (featureID) {
 		case Aadlv3Package.COMPONENT_CONFIGURATION__PARAMETERS:
 			return ((InternalEList<?>) getParameters()).basicRemove(otherEnd, msgs);
-		case Aadlv3Package.COMPONENT_CONFIGURATION__CONFIGURATION_ASSIGNMENTS:
-			return ((InternalEList<?>) getConfigurationAssignments()).basicRemove(otherEnd, msgs);
 		case Aadlv3Package.COMPONENT_CONFIGURATION__BINDINGS:
 			return ((InternalEList<?>) getBindings()).basicRemove(otherEnd, msgs);
 		}
@@ -217,8 +188,6 @@ public class ComponentConfigurationImpl extends ComponentRealizationImpl impleme
 		switch (featureID) {
 		case Aadlv3Package.COMPONENT_CONFIGURATION__PARAMETERS:
 			return getParameters();
-		case Aadlv3Package.COMPONENT_CONFIGURATION__CONFIGURATION_ASSIGNMENTS:
-			return getConfigurationAssignments();
 		case Aadlv3Package.COMPONENT_CONFIGURATION__PARAMETERIZED:
 			return isParameterized();
 		case Aadlv3Package.COMPONENT_CONFIGURATION__BINDINGS:
@@ -239,10 +208,6 @@ public class ComponentConfigurationImpl extends ComponentRealizationImpl impleme
 		case Aadlv3Package.COMPONENT_CONFIGURATION__PARAMETERS:
 			getParameters().clear();
 			getParameters().addAll((Collection<? extends ConfigurationParameter>) newValue);
-			return;
-		case Aadlv3Package.COMPONENT_CONFIGURATION__CONFIGURATION_ASSIGNMENTS:
-			getConfigurationAssignments().clear();
-			getConfigurationAssignments().addAll((Collection<? extends ConfigurationAssignment>) newValue);
 			return;
 		case Aadlv3Package.COMPONENT_CONFIGURATION__PARAMETERIZED:
 			setParameterized((Boolean) newValue);
@@ -266,9 +231,6 @@ public class ComponentConfigurationImpl extends ComponentRealizationImpl impleme
 		case Aadlv3Package.COMPONENT_CONFIGURATION__PARAMETERS:
 			getParameters().clear();
 			return;
-		case Aadlv3Package.COMPONENT_CONFIGURATION__CONFIGURATION_ASSIGNMENTS:
-			getConfigurationAssignments().clear();
-			return;
 		case Aadlv3Package.COMPONENT_CONFIGURATION__PARAMETERIZED:
 			setParameterized(PARAMETERIZED_EDEFAULT);
 			return;
@@ -289,8 +251,6 @@ public class ComponentConfigurationImpl extends ComponentRealizationImpl impleme
 		switch (featureID) {
 		case Aadlv3Package.COMPONENT_CONFIGURATION__PARAMETERS:
 			return parameters != null && !parameters.isEmpty();
-		case Aadlv3Package.COMPONENT_CONFIGURATION__CONFIGURATION_ASSIGNMENTS:
-			return configurationAssignments != null && !configurationAssignments.isEmpty();
 		case Aadlv3Package.COMPONENT_CONFIGURATION__PARAMETERIZED:
 			return parameterized != PARAMETERIZED_EDEFAULT;
 		case Aadlv3Package.COMPONENT_CONFIGURATION__BINDINGS:

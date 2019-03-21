@@ -25,20 +25,20 @@ package PropertyAssociationExample
 		reading => flow upmap -> sub1.reading;
 	end
 	abstract actuator.i  is
-		sub2: thread actuate;
-		downmap: delegate inp -> sub2.p1;
-		action=> flow sub2.taction;
+		actuateThread: thread actuate;
+		downmap: delegate inp -> actuateThread.p1;
+		action=> flow actuateThread.taction;
 		#Period => 35 ms;
 	end
 	
 	configuration actuator.c1 extends actuator.i
 	is 
-		sub2#Period := 71ms
+		actuateThread#Period := 71ms 
 	end
 	
 	configuration actuator.c2 extends actuator.i
 	is 
-		sub2#Period := 72ms
+		actuateThread#Period := 72ms 
 	end
 	
 	thread interface sense  is
@@ -92,18 +92,19 @@ package PropertyAssociationExample
 	system conntop.i is
 		sense: abstract sensor.i;
 		processing: process controlProcess.impl;
-		actuate: abstract actuator.i;
+		actuate: abstract actuator.i; 
 		hw : system hardwareplatform.impl;
 		sensetocontrol: connection sense.outp -> processing.insignal;
 		controltoactuate: connection processing.outaction -> actuate.inp;
 		actuate#Period => 34 ms
-		actuate.sub2#Period => 55ms;
+		actuate.actuateThread#Period := 55ms; 
 	end
 	
 	configuration conntop.c1 extends conntop.i is
 	#Period *=> 99 ms;
 	#Data_Size *=> 88 bytes;
-		actuate => actuator.c1 , actuator.c2 
+		actuate => actuator.c1 , actuator.c2 {actuateThread#Period := 73ms}
+		actuate => {actuateThread#Period := 74ms}
 	end
 	
 	bus interface canbus 

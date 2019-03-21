@@ -75,7 +75,6 @@ public class ComponentImplementationItemProvider extends ComponentRealizationIte
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(Aadlv3Package.Literals.COMPONENT_IMPLEMENTATION__COMPONENTS);
 			childrenFeatures.add(Aadlv3Package.Literals.COMPONENT_IMPLEMENTATION__CONNECTIONS);
-			childrenFeatures.add(Aadlv3Package.Literals.COMPONENT_IMPLEMENTATION__CONFIGURATION_ASSIGNMENTS);
 			childrenFeatures.add(Aadlv3Package.Literals.COMPONENT_IMPLEMENTATION__FLOW_ASSIGNMENTS);
 			childrenFeatures.add(Aadlv3Package.Literals.COMPONENT_IMPLEMENTATION__PATHS);
 			childrenFeatures.add(Aadlv3Package.Literals.COMPONENT_IMPLEMENTATION__BINDINGS);
@@ -134,7 +133,6 @@ public class ComponentImplementationItemProvider extends ComponentRealizationIte
 		switch (notification.getFeatureID(ComponentImplementation.class)) {
 		case Aadlv3Package.COMPONENT_IMPLEMENTATION__COMPONENTS:
 		case Aadlv3Package.COMPONENT_IMPLEMENTATION__CONNECTIONS:
-		case Aadlv3Package.COMPONENT_IMPLEMENTATION__CONFIGURATION_ASSIGNMENTS:
 		case Aadlv3Package.COMPONENT_IMPLEMENTATION__FLOW_ASSIGNMENTS:
 		case Aadlv3Package.COMPONENT_IMPLEMENTATION__PATHS:
 		case Aadlv3Package.COMPONENT_IMPLEMENTATION__BINDINGS:
@@ -160,14 +158,6 @@ public class ComponentImplementationItemProvider extends ComponentRealizationIte
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.COMPONENT_IMPLEMENTATION__CONNECTIONS,
 				Aadlv3Factory.eINSTANCE.createAssociation()));
-
-		newChildDescriptors
-				.add(createChildParameter(Aadlv3Package.Literals.COMPONENT_IMPLEMENTATION__CONFIGURATION_ASSIGNMENTS,
-						Aadlv3Factory.eINSTANCE.createConfigurationAssignment()));
-
-		newChildDescriptors
-				.add(createChildParameter(Aadlv3Package.Literals.COMPONENT_IMPLEMENTATION__CONFIGURATION_ASSIGNMENTS,
-						Aadlv3Factory.eINSTANCE.createConfigurationAssignmentPattern()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.COMPONENT_IMPLEMENTATION__FLOW_ASSIGNMENTS,
 				Aadlv3Factory.eINSTANCE.createPathSequence()));

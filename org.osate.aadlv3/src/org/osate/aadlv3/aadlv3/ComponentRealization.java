@@ -15,6 +15,8 @@
  */
 package org.osate.aadlv3.aadlv3;
 
+import org.eclipse.emf.common.util.EList;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Component Realization</b></em>'.
@@ -25,6 +27,7 @@ package org.osate.aadlv3.aadlv3;
  * </p>
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.ComponentRealization#getCachedInterfaceReference <em>Cached Interface Reference</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.ComponentRealization#getConfigurationAssignments <em>Configuration Assignments</em>}</li>
  * </ul>
  *
  * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getComponentRealization()
@@ -58,4 +61,20 @@ public interface ComponentRealization extends ComponentClassifier {
 	 * @generated
 	 */
 	void setCachedInterfaceReference(ComponentInterface value);
+
+	/**
+	 * Returns the value of the '<em><b>Configuration Assignments</b></em>' containment reference list.
+	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.ConfigurationAssignment}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Configuration Assignments</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Configuration Assignments</em>' containment reference list.
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getComponentRealization_ConfigurationAssignments()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<ConfigurationAssignment> getConfigurationAssignments();
 } // ComponentRealization
