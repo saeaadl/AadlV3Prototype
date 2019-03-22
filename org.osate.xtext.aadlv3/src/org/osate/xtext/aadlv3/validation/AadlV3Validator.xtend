@@ -974,36 +974,39 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 		val keys = map.keySet
 		for (key : keys) {
 			val trs = map.get(key)
-			trs.consistentTopComponentImplementation
+			trs.consistentTopComponentImplementation(cl,key)
 		}
 	}
 
 	/**
 	 * returns implementation that is the extension of all other implementations
 	 */
-	def void consistentTopComponentImplementation(Iterable<TypeReference> trs) {
-		var ComponentImplementation top = null
-		var TypeReference toptr = null
+	def void consistentTopComponentImplementation(Iterable<TypeReference> trs,ComponentConfiguration cc,String key) {
+ 		var ComponentImplementation topimpl = null
+		var ConfigurationAssignment topca = null
 		for (tr : trs) {
 			if (tr.type instanceof ComponentClassifier) {
-				val cl = (tr.type as ComponentClassifier).getTopComponentImplementation
-				if (cl !== null) {
-					if (top === null || top.isSuperImplementationOf(cl)) {
-						top = cl
-						toptr = tr
-					} else if (!cl.isSuperImplementationOf(top)) {
+				val cl = tr.type as ComponentClassifier
+				val impl = cl.getTopComponentImplementation
+				if (impl !== null) {
+					if (topimpl === null || topimpl.isSuperImplementationOf(impl)) {
+						topimpl = impl
+						topca = tr.containingConfigurationAssignment
+					} else if (!impl.isSuperImplementationOf(topimpl)) {
 						val ca = tr.containingConfigurationAssignment
 						if (ca !== null) {
-							val cc = ca.containingComponentConfiguration
-							val idx = cc.configurationAssignments.indexOf(ca)
-							val topca = toptr.containingConfigurationAssignment
-							val topsub = toptr.containingSubcomponent
-							val topcc = if(topca !== null) topca.containingComponentClassifier else topsub?.
-									containingComponentClassifier
+							val caconf = ca.containingComponentClassifier
+							val topconf = topca.containingComponentClassifier
+							val idx = if (caconf !== null) {
+									cc.superClassifiers.getIndex(caconf)
+								} else {
+									cc.superClassifiers.getIndex(topconf)
+								}
+
 							error(
-								'Assigned implementation is in conflict with ' + top.name + ' assigned in classifier ' +
-									topcc?.name, cc,
-								Aadlv3Package.Literals.COMPONENT_REALIZATION__CONFIGURATION_ASSIGNMENTS, idx,
+								'Implementation ' + impl.name + ' assigned to ' + key +
+									' is not in extends lineage of ' + topimpl.name , cc,
+								Aadlv3Package.Literals.COMPONENT_CLASSIFIER__SUPER_CLASSIFIERS, idx,
 								NoCommonImplementation)
 						}
 					}

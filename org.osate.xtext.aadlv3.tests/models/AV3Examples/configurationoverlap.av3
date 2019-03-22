@@ -76,7 +76,7 @@ end
   xsub2 => subsubsys.i ;
 end
 configuration y.config_L1 extends y.i is
-  ysub1 => subsubsys.i ;
+  ysub1 => subsubsys.i ; 
   ysub2 => subsubsys.i;
 end
  
