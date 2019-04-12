@@ -1,0 +1,27 @@
+grammar org.osate.xtext.emv3.Emv3 with org.eclipse.xtext.common.Terminals
+
+generate emv3 "http://www.osate.org/xtext/emv3/Emv3"
+
+import "http://www.osate.org/aadlv3/Aadlv3" as av3
+
+
+PackageEMV3 returns av3::PackageDeclaration:
+	'package' name=QualifiedName 
+	'emv3' ((elements+=Subclause)+ | (elements+=ErrorType)+);
+	
+ErrorType returns av3::PackageElement:
+	{ErrorType} 'Type' name=ID ;
+	
+Subclause returns av3::PackageElement:
+	{Emv3Subclause} 'for' name=ClassifierName '{'
+		emv3statement+=ErrorPropagation
+	'}';
+ErrorPropagation:
+	name=ID 'propagation' type=[ErrorType|ID]
+;
+
+QualifiedName:
+	ID ('::' ID)*;
+
+ClassifierName:
+	ID ('.' ID)?;

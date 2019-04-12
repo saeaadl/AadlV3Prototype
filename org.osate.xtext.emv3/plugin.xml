@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+	<extension point="org.eclipse.emf.ecore.generated_package">
+		<package 
+			uri = "http://www.osate.org/xtext/emv3/Emv3"
+			class = "org.osate.xtext.emv3.emv3.Emv3Package"
+			genModel = "model/generated/Emv3.genmodel" />
+	</extension>
+</plugin>

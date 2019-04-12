@@ -1,0 +1,43 @@
+/**
+ * Copyright Text	Copyright 2018 Carnegie Mellon University. All Rights Reserved....
+ */
+package org.osate.emv3.emv3;
+
+import org.eclipse.emf.common.util.EList;
+
+import org.osate.aadlv3.aadlv3.NamedElement;
+
+/**
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>Repair Event</b></em>'.
+ * <!-- end-user-doc -->
+ *
+ * <p>
+ * The following features are supported:
+ * </p>
+ * <ul>
+ *   <li>{@link org.osate.emv3.emv3.RepairEvent#getEventInitiator <em>Event Initiator</em>}</li>
+ * </ul>
+ *
+ * @see org.osate.emv3.emv3.Emv3Package#getRepairEvent()
+ * @model
+ * @generated
+ */
+public interface RepairEvent extends ErrorBehaviorEvent {
+	/**
+	 * Returns the value of the '<em><b>Event Initiator</b></em>' reference list.
+	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.NamedElement}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Event Initiator</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Event Initiator</em>' reference list.
+	 * @see org.osate.emv3.emv3.Emv3Package#getRepairEvent_EventInitiator()
+	 * @model
+	 * @generated
+	 */
+	EList<NamedElement> getEventInitiator();
+
+} // RepairEvent
