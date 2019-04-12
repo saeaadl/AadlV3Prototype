@@ -546,6 +546,75 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.Mode} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ModeItemProvider modeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.Mode}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createModeAdapter() {
+		if (modeItemProvider == null) {
+			modeItemProvider = new ModeItemProvider(this);
+		}
+
+		return modeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.ModeTransition} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ModeTransitionItemProvider modeTransitionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.ModeTransition}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createModeTransitionAdapter() {
+		if (modeTransitionItemProvider == null) {
+			modeTransitionItemProvider = new ModeTransitionItemProvider(this);
+		}
+
+		return modeTransitionItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.ModeStateMachine} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ModeStateMachineItemProvider modeStateMachineItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.ModeStateMachine}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createModeStateMachineAdapter() {
+		if (modeStateMachineItemProvider == null) {
+			modeStateMachineItemProvider = new ModeStateMachineItemProvider(this);
+		}
+
+		return modeStateMachineItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.PathElement} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -740,6 +809,12 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 			propertyValueItemProvider.dispose();
 		if (propertyAssociationItemProvider != null)
 			propertyAssociationItemProvider.dispose();
+		if (modeItemProvider != null)
+			modeItemProvider.dispose();
+		if (modeTransitionItemProvider != null)
+			modeTransitionItemProvider.dispose();
+		if (modeStateMachineItemProvider != null)
+			modeStateMachineItemProvider.dispose();
 	}
 
 }

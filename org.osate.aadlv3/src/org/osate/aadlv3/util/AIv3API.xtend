@@ -1,7 +1,6 @@
 package org.osate.aadlv3.util
 
 import java.util.ArrayList
-import java.util.HashSet
 import java.util.List
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.xtext.EcoreUtil2
@@ -9,17 +8,14 @@ import org.osate.aadlv3.aadlv3.Association
 import org.osate.aadlv3.aadlv3.AssociationType
 import org.osate.aadlv3.aadlv3.Component
 import org.osate.aadlv3.aadlv3.ComponentCategory
-import org.osate.aadlv3.aadlv3.ComponentInterface
 import org.osate.aadlv3.aadlv3.Feature
 import org.osate.aadlv3.aadlv3.FeatureCategory
 import org.osate.aadlv3.aadlv3.ModelElement
 import org.osate.aadlv3.aadlv3.ModelElementReference
 import org.osate.aadlv3.aadlv3.PathSequence
 import org.osate.aadlv3.aadlv3.PropertyAssociation
-import org.osate.aadlv3.aadlv3.PropertyAssociationType
 import org.osate.aadlv3.aadlv3.PropertyDefinition
 import org.osate.aadlv3.aadlv3.TypeReference
-import org.osate.aadlv3.aadlv3.Workingset
 import org.osate.av3instance.av3instance.AssociationInstance
 import org.osate.av3instance.av3instance.Av3instanceFactory
 import org.osate.av3instance.av3instance.ComponentInstance
@@ -30,9 +26,6 @@ import org.osate.av3instance.av3instance.PropertyAssociationInstance
 
 import static extension org.eclipse.emf.ecore.util.EcoreUtil.*
 import static extension org.osate.aadlv3.util.Aadlv3Util.*
-import org.osate.aadlv3.aadlv3.ComponentClassifier
-import org.osate.aadlv3.aadlv3.ComponentConfiguration
-import org.osate.aadlv3.aadlv3.ConfigurationAssignment
 
 class AIv3API {
 	

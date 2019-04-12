@@ -62,6 +62,8 @@ public class ComponentClassifierItemProvider extends PackageElementItemProvider 
 
 			addCategoryPropertyDescriptor(object);
 			addSuperClassifiersPropertyDescriptor(object);
+			addUseModesPropertyDescriptor(object);
+			addRequiresModesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -95,6 +97,37 @@ public class ComponentClassifierItemProvider extends PackageElementItemProvider 
 				getString("_UI_PropertyDescriptor_description", "_UI_ComponentClassifier_superClassifiers_feature",
 						"_UI_ComponentClassifier_type"),
 				Aadlv3Package.Literals.COMPONENT_CLASSIFIER__SUPER_CLASSIFIERS, true, false, true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Use Modes feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addUseModesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_ComponentClassifier_useModes_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_ComponentClassifier_useModes_feature",
+								"_UI_ComponentClassifier_type"),
+						Aadlv3Package.Literals.COMPONENT_CLASSIFIER__USE_MODES, true, false, true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Requires Modes feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addRequiresModesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_ComponentClassifier_requiresModes_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_ComponentClassifier_requiresModes_feature",
+						"_UI_ComponentClassifier_type"),
+				Aadlv3Package.Literals.COMPONENT_CLASSIFIER__REQUIRES_MODES, true, false, false,
+				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -165,6 +198,7 @@ public class ComponentClassifierItemProvider extends PackageElementItemProvider 
 
 		switch (notification.getFeatureID(ComponentClassifier.class)) {
 		case Aadlv3Package.COMPONENT_CLASSIFIER__CATEGORY:
+		case Aadlv3Package.COMPONENT_CLASSIFIER__REQUIRES_MODES:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		case Aadlv3Package.COMPONENT_CLASSIFIER__SUPER_CLASSIFIERS:

@@ -22,27 +22,28 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.osate.aadlv3.aadlv3.Aadlv3Factory;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
-import org.osate.aadlv3.aadlv3.PackageDeclaration;
+import org.osate.aadlv3.aadlv3.ModeStateMachine;
 
 /**
- * This is the item provider adapter for a {@link org.osate.aadlv3.aadlv3.PackageDeclaration} object.
+ * This is the item provider adapter for a {@link org.osate.aadlv3.aadlv3.ModeStateMachine} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class PackageDeclarationItemProvider extends PackageElementItemProvider {
+public class ModeStateMachineItemProvider extends PackageElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PackageDeclarationItemProvider(AdapterFactory adapterFactory) {
+	public ModeStateMachineItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -73,8 +74,8 @@ public class PackageDeclarationItemProvider extends PackageElementItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(Aadlv3Package.Literals.PACKAGE_DECLARATION__IMPORTS);
-			childrenFeatures.add(Aadlv3Package.Literals.PACKAGE_DECLARATION__ELEMENTS);
+			childrenFeatures.add(Aadlv3Package.Literals.MODE_STATE_MACHINE__MODES);
+			childrenFeatures.add(Aadlv3Package.Literals.MODE_STATE_MACHINE__TRANSITIONS);
 		}
 		return childrenFeatures;
 	}
@@ -93,14 +94,14 @@ public class PackageDeclarationItemProvider extends PackageElementItemProvider {
 	}
 
 	/**
-	 * This returns PackageDeclaration.gif.
+	 * This returns ModeStateMachine.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/PackageDeclaration"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ModeStateMachine"));
 	}
 
 	/**
@@ -111,9 +112,9 @@ public class PackageDeclarationItemProvider extends PackageElementItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((PackageDeclaration) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_PackageDeclaration_type")
-				: getString("_UI_PackageDeclaration_type") + " " + label;
+		String label = ((ModeStateMachine) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_ModeStateMachine_type")
+				: getString("_UI_ModeStateMachine_type") + " " + label;
 	}
 
 	/**
@@ -127,9 +128,9 @@ public class PackageDeclarationItemProvider extends PackageElementItemProvider {
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(PackageDeclaration.class)) {
-		case Aadlv3Package.PACKAGE_DECLARATION__IMPORTS:
-		case Aadlv3Package.PACKAGE_DECLARATION__ELEMENTS:
+		switch (notification.getFeatureID(ModeStateMachine.class)) {
+		case Aadlv3Package.MODE_STATE_MACHINE__MODES:
+		case Aadlv3Package.MODE_STATE_MACHINE__TRANSITIONS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -147,35 +148,11 @@ public class PackageDeclarationItemProvider extends PackageElementItemProvider {
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PACKAGE_DECLARATION__IMPORTS,
-				Aadlv3Factory.eINSTANCE.createImport()));
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.MODE_STATE_MACHINE__MODES,
+				Aadlv3Factory.eINSTANCE.createMode()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PACKAGE_DECLARATION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createPackageDeclaration()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PACKAGE_DECLARATION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createPropertyDefinition()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PACKAGE_DECLARATION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createPropertySet()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PACKAGE_DECLARATION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createDataType()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PACKAGE_DECLARATION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createComponentInterface()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PACKAGE_DECLARATION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createComponentImplementation()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PACKAGE_DECLARATION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createComponentConfiguration()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PACKAGE_DECLARATION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createWorkingset()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PACKAGE_DECLARATION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createModeStateMachine()));
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.MODE_STATE_MACHINE__TRANSITIONS,
+				Aadlv3Factory.eINSTANCE.createModeTransition()));
 	}
 
 }

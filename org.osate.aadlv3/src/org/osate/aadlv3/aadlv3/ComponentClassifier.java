@@ -29,6 +29,8 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.osate.aadlv3.aadlv3.ComponentClassifier#getCategory <em>Category</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.ComponentClassifier#getSuperClassifiers <em>Super Classifiers</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.ComponentClassifier#getPropertyAssociations <em>Property Associations</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.ComponentClassifier#getUseModes <em>Use Modes</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.ComponentClassifier#isRequiresModes <em>Requires Modes</em>}</li>
  * </ul>
  *
  * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getComponentClassifier()
@@ -97,5 +99,57 @@ public interface ComponentClassifier extends PackageElement, Type {
 	 * @generated
 	 */
 	EList<PropertyAssociation> getPropertyAssociations();
+
+	/**
+	 * Returns the value of the '<em><b>Use Modes</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Use Modes</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Use Modes</em>' reference.
+	 * @see #setUseModes(ModeStateMachine)
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getComponentClassifier_UseModes()
+	 * @model
+	 * @generated
+	 */
+	ModeStateMachine getUseModes();
+
+	/**
+	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.ComponentClassifier#getUseModes <em>Use Modes</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Use Modes</em>' reference.
+	 * @see #getUseModes()
+	 * @generated
+	 */
+	void setUseModes(ModeStateMachine value);
+
+	/**
+	 * Returns the value of the '<em><b>Requires Modes</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Requires Modes</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Requires Modes</em>' attribute.
+	 * @see #setRequiresModes(boolean)
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getComponentClassifier_RequiresModes()
+	 * @model
+	 * @generated
+	 */
+	boolean isRequiresModes();
+
+	/**
+	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.ComponentClassifier#isRequiresModes <em>Requires Modes</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Requires Modes</em>' attribute.
+	 * @see #isRequiresModes()
+	 * @generated
+	 */
+	void setRequiresModes(boolean value);
 
 } // ComponentClassifier

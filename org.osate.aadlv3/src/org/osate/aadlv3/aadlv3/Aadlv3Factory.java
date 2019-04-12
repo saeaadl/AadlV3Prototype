@@ -215,6 +215,33 @@ public interface Aadlv3Factory extends EFactory {
 	PropertyAssociation createPropertyAssociation();
 
 	/**
+	 * Returns a new object of class '<em>Mode</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Mode</em>'.
+	 * @generated
+	 */
+	Mode createMode();
+
+	/**
+	 * Returns a new object of class '<em>Mode Transition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Mode Transition</em>'.
+	 * @generated
+	 */
+	ModeTransition createModeTransition();
+
+	/**
+	 * Returns a new object of class '<em>Mode State Machine</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Mode State Machine</em>'.
+	 * @generated
+	 */
+	ModeStateMachine createModeStateMachine();
+
+	/**
 	 * Returns a new object of class '<em>Path Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -114,6 +114,12 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 			return createPropertyValue();
 		case Aadlv3Package.PROPERTY_ASSOCIATION:
 			return createPropertyAssociation();
+		case Aadlv3Package.MODE:
+			return createMode();
+		case Aadlv3Package.MODE_TRANSITION:
+			return createModeTransition();
+		case Aadlv3Package.MODE_STATE_MACHINE:
+			return createModeStateMachine();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -383,6 +389,39 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 	public PropertyAssociation createPropertyAssociation() {
 		PropertyAssociationImpl propertyAssociation = new PropertyAssociationImpl();
 		return propertyAssociation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Mode createMode() {
+		ModeImpl mode = new ModeImpl();
+		return mode;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ModeTransition createModeTransition() {
+		ModeTransitionImpl modeTransition = new ModeTransitionImpl();
+		return modeTransition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ModeStateMachine createModeStateMachine() {
+		ModeStateMachineImpl modeStateMachine = new ModeStateMachineImpl();
+		return modeStateMachine;
 	}
 
 	/**

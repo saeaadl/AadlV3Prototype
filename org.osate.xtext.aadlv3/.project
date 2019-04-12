@@ -3,6 +3,7 @@
 	<name>org.osate.xtext.aadlv3</name>
 	<comment></comment>
 	<projects>
+		<project>org.osate.aadlv3</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

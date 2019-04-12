@@ -30,6 +30,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="ModelElement" abstract="true" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="propertyAssociations" upperBound="-1"
         eType="#//PropertyAssociation" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inModes" upperBound="-1"
+        eType="#//Mode"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Type" abstract="true" eSuperTypes="#//NamedElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="DataType" eSuperTypes="#//PackageElement #//Type">
@@ -44,6 +46,8 @@
         eType="#//TypeReference" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="propertyAssociations" upperBound="-1"
         eType="#//PropertyAssociation" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="useModes" eType="#//ModeStateMachine"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="inheritsModes" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ComponentRealization" abstract="true"
       eSuperTypes="#//ComponentClassifier">
@@ -231,5 +235,33 @@
     <eLiterals name="FinalValue"/>
     <eLiterals name="VariableValue" value="1"/>
     <eLiterals name="DefaultValue" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Mode" eSuperTypes="#//ModelElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="initial" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ModeTransition" eSuperTypes="#//ModelElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//Mode"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//Mode"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="triggers" upperBound="-1"
+        eType="#//ModeTransitionTrigger" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ModeTransitionTrigger">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="#//ModelElement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="trigger" eType="#//ModelElement"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ModeTransitionTriggerAssignment">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="triggers" upperBound="-1"
+        eType="#//ModeTransitionTrigger" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="transition" eType="#//ModeTransition"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ModeAssignment">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="members" upperBound="-1"
+        eType="#//ModelElement"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ModeStateMachine" eSuperTypes="#//PackageElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="modes" upperBound="-1"
+        eType="#//Mode" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="transitions" upperBound="-1"
+        eType="#//ModeTransition" containment="true"/>
   </eClassifiers>
 </ecore:EPackage>
