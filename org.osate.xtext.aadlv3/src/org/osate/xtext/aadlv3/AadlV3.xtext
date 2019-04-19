@@ -36,7 +36,7 @@ DataType returns av3::DataType:
 	(private?='private')? 'type' name=ID PropertiesBlock? ';'?;
 
 ComponentInterface returns av3::ComponentInterface:
-	(private?='private')? category=ComponentCategory? 'interface'  name=ID ('extends' (InterfaceExtensions)?)? 
+	(private?='private')? category=ComponentCategory? 'interface'  name=ID ('extends' InterfaceExtensions)? 
 	 InterfaceBody
 	;
 
@@ -52,7 +52,7 @@ fragment InterfaceElement*:
 
 ComponentImplementation returns av3::ComponentImplementation:
 	(private?='private')? category=ComponentCategory name=DottedName 
-	('extends' (ImplementationExtensions)?)? 
+	('extends' ImplementationExtensions)? 
 	 ImplementationBody
 	  ;
 

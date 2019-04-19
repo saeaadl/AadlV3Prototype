@@ -4046,7 +4046,7 @@ rule__ComponentInterface__Group_4__1__Impl
 :
 (
 	{ before(grammarAccess.getComponentInterfaceAccess().getInterfaceExtensionsParserRuleCall_4_1()); }
-	(ruleInterfaceExtensions)?
+	ruleInterfaceExtensions
 	{ after(grammarAccess.getComponentInterfaceAccess().getInterfaceExtensionsParserRuleCall_4_1()); }
 )
 ;
@@ -4404,7 +4404,7 @@ rule__ComponentImplementation__Group_3__1__Impl
 :
 (
 	{ before(grammarAccess.getComponentImplementationAccess().getImplementationExtensionsParserRuleCall_3_1()); }
-	(ruleImplementationExtensions)?
+	ruleImplementationExtensions
 	{ after(grammarAccess.getComponentImplementationAccess().getImplementationExtensionsParserRuleCall_3_1()); }
 )
 ;

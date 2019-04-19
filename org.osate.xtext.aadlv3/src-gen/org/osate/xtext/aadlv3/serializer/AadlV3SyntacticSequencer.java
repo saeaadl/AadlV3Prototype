@@ -32,8 +32,6 @@ import org.osate.xtext.aadlv3.services.AadlV3GrammarAccess;
 public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected AadlV3GrammarAccess grammarAccess;
-	protected AbstractElementAlias match_ComponentImplementation_ExtendsKeyword_3_0_q;
-	protected AbstractElementAlias match_ComponentInterface_ExtendsKeyword_4_0_q;
 	protected AbstractElementAlias match_ConfigurationElementBlock_SemicolonKeyword_0_1_1_q;
 	protected AbstractElementAlias match_CurlyConfigurationElementBlock_SemicolonKeyword_3_q;
 	protected AbstractElementAlias match_DataType_SemicolonKeyword_4_q;
@@ -49,8 +47,6 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (AadlV3GrammarAccess) access;
-		match_ComponentImplementation_ExtendsKeyword_3_0_q = new TokenAlias(false, true, grammarAccess.getComponentImplementationAccess().getExtendsKeyword_3_0());
-		match_ComponentInterface_ExtendsKeyword_4_0_q = new TokenAlias(false, true, grammarAccess.getComponentInterfaceAccess().getExtendsKeyword_4_0());
 		match_ConfigurationElementBlock_SemicolonKeyword_0_1_1_q = new TokenAlias(false, true, grammarAccess.getConfigurationElementBlockAccess().getSemicolonKeyword_0_1_1());
 		match_CurlyConfigurationElementBlock_SemicolonKeyword_3_q = new TokenAlias(false, true, grammarAccess.getCurlyConfigurationElementBlockAccess().getSemicolonKeyword_3());
 		match_DataType_SemicolonKeyword_4_q = new TokenAlias(false, true, grammarAccess.getDataTypeAccess().getSemicolonKeyword_4());
@@ -86,11 +82,7 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if (match_ComponentImplementation_ExtendsKeyword_3_0_q.equals(syntax))
-				emit_ComponentImplementation_ExtendsKeyword_3_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_ComponentInterface_ExtendsKeyword_4_0_q.equals(syntax))
-				emit_ComponentInterface_ExtendsKeyword_4_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_ConfigurationElementBlock_SemicolonKeyword_0_1_1_q.equals(syntax))
+			if (match_ConfigurationElementBlock_SemicolonKeyword_0_1_1_q.equals(syntax))
 				emit_ConfigurationElementBlock_SemicolonKeyword_0_1_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_CurlyConfigurationElementBlock_SemicolonKeyword_3_q.equals(syntax))
 				emit_CurlyConfigurationElementBlock_SemicolonKeyword_3_q(semanticObject, getLastNavigableState(), syntaxNodes);
@@ -116,43 +108,6 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 		}
 	}
 
-	/**
-	 * Ambiguous syntax:
-	 *     'extends'?
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     name=DottedName (ambiguity) 'end' (rule end)
-	 *     name=DottedName (ambiguity) 'is' bindings+=Binding
-	 *     name=DottedName (ambiguity) 'is' components+=Component
-	 *     name=DottedName (ambiguity) 'is' configurationAssignments+=ConfigurationAssignment
-	 *     name=DottedName (ambiguity) 'is' configurationAssignments+=ConfigurationAssignmentPattern
-	 *     name=DottedName (ambiguity) 'is' connections+=Connection
-	 *     name=DottedName (ambiguity) 'is' connections+=FeatureDelegate
-	 *     name=DottedName (ambiguity) 'is' flowAssignments+=FlowAssignment
-	 *     name=DottedName (ambiguity) 'is' paths+=Path
-	 *     name=DottedName (ambiguity) 'is' propertyAssociations+=PropertyAssociation
-	 */
-	protected void emit_ComponentImplementation_ExtendsKeyword_3_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Ambiguous syntax:
-	 *     'extends'?
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     name=ID (ambiguity) 'end' (rule end)
-	 *     name=ID (ambiguity) 'is' 'use' 'properties' useProperties+=[PropertySet|QualifiedName]
-	 *     name=ID (ambiguity) 'is' features+=Feature
-	 *     name=ID (ambiguity) 'is' flows+=FlowPath
-	 *     name=ID (ambiguity) 'is' flows+=FlowSink
-	 *     name=ID (ambiguity) 'is' flows+=FlowSource
-	 *     name=ID (ambiguity) 'is' propertyAssociations+=PropertyAssociation
-	 */
-	protected void emit_ComponentInterface_ExtendsKeyword_4_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
 	/**
 	 * Ambiguous syntax:
 	 *     ';'?

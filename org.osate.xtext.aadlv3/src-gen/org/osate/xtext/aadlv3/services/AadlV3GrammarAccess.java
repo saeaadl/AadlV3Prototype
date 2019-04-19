@@ -52,8 +52,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cEndKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//PackageDeclaration av3::PackageDeclaration:
-		//	private?='private'? 'package' name=QualifiedName (imports+=Import | elements+=PackageElement)*
-		//	'end';
+		//	private?='private'? 'package' name=QualifiedName (imports+=Import | elements+=PackageElement)* 'end';
 		@Override public ParserRule getRule() { return rule; }
 		
 		//private?='private'? 'package' name=QualifiedName (imports+=Import | elements+=PackageElement)* 'end'
@@ -163,8 +162,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		
 		//PropertyDefinition av3::PropertyDefinition:
 		//	private?='private'? 'property' name=ID ':' type=[av3::Type|QualifiedReference] ('for' (forAll?='all' | AppliesTo (','
-		//	AppliesTo)*))?
-		//	';'?;
+		//	AppliesTo)*))? ';'?;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//private?='private'? 'property' name=ID ':' type=[av3::Type|QualifiedReference] ('for' (forAll?='all' | AppliesTo (','
@@ -242,8 +240,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cAssociationTypesAssociationTypeParserRuleCall_2_0 = (RuleCall)cAssociationTypesAssignment_2.eContents().get(0);
 		
 		//fragment AppliesTo *:
-		//	componentCategories+=ComponentCategory | featureCategories+=FeatureCategory
-		//	| associationTypes+=AssociationType;
+		//	componentCategories+=ComponentCategory | featureCategories+=FeatureCategory | associationTypes+=AssociationType;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//componentCategories+=ComponentCategory | featureCategories+=FeatureCategory | associationTypes+=AssociationType
@@ -289,10 +286,8 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_8 = (Keyword)cGroup.eContents().get(8);
 		
 		//PropertySet av3::PropertySet:
-		//	private?='private'? 'properties' name=ID ':'
-		//	'{' properties+=[av3::PropertyDefinition|QualifiedReference] (','
-		//	properties+=[av3::PropertyDefinition|QualifiedName])* '}'
-		//	';'?;
+		//	private?='private'? 'properties' name=ID ':' '{' properties+=[av3::PropertyDefinition|QualifiedReference] (','
+		//	properties+=[av3::PropertyDefinition|QualifiedName])* '}' ';'?;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//private?='private'? 'properties' name=ID ':' '{' properties+=[av3::PropertyDefinition|QualifiedReference] (','
@@ -405,11 +400,10 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cInterfaceBodyParserRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
 		
 		//ComponentInterface av3::ComponentInterface:
-		//	private?='private'? category=ComponentCategory? 'interface' name=ID ('extends' InterfaceExtensions?)?
-		//	InterfaceBody;
+		//	private?='private'? category=ComponentCategory? 'interface' name=ID ('extends' InterfaceExtensions)? InterfaceBody;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//private?='private'? category=ComponentCategory? 'interface' name=ID ('extends' InterfaceExtensions?)? InterfaceBody
+		//private?='private'? category=ComponentCategory? 'interface' name=ID ('extends' InterfaceExtensions)? InterfaceBody
 		public Group getGroup() { return cGroup; }
 		
 		//private?='private'?
@@ -433,13 +427,13 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_3_0() { return cNameIDTerminalRuleCall_3_0; }
 		
-		//('extends' InterfaceExtensions?)?
+		//('extends' InterfaceExtensions)?
 		public Group getGroup_4() { return cGroup_4; }
 		
 		//'extends'
 		public Keyword getExtendsKeyword_4_0() { return cExtendsKeyword_4_0; }
 		
-		//InterfaceExtensions?
+		//InterfaceExtensions
 		public RuleCall getInterfaceExtensionsParserRuleCall_4_1() { return cInterfaceExtensionsParserRuleCall_4_1; }
 		
 		//InterfaceBody
@@ -496,9 +490,8 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cPropertyAssociationsPropertyAssociationParserRuleCall_5_0 = (RuleCall)cPropertyAssociationsAssignment_5.eContents().get(0);
 		
 		//fragment InterfaceElement *:
-		//	features+=Feature
-		//	| flows+=FlowPath | flows+=FlowSource | flows+=FlowSink
-		//	| UseProps | propertyAssociations+=PropertyAssociation;
+		//	features+=Feature | flows+=FlowPath | flows+=FlowSource | flows+=FlowSink | UseProps |
+		//	propertyAssociations+=PropertyAssociation;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//features+=Feature | flows+=FlowPath | flows+=FlowSource | flows+=FlowSink | UseProps |
@@ -553,11 +546,11 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cImplementationBodyParserRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
 		
 		//ComponentImplementation av3::ComponentImplementation:
-		//	private?='private'? category=ComponentCategory name=DottedName ('extends' ImplementationExtensions?)?
+		//	private?='private'? category=ComponentCategory name=DottedName ('extends' ImplementationExtensions)?
 		//	ImplementationBody;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//private?='private'? category=ComponentCategory name=DottedName ('extends' ImplementationExtensions?)? ImplementationBody
+		//private?='private'? category=ComponentCategory name=DottedName ('extends' ImplementationExtensions)? ImplementationBody
 		public Group getGroup() { return cGroup; }
 		
 		//private?='private'?
@@ -578,13 +571,13 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		//DottedName
 		public RuleCall getNameDottedNameParserRuleCall_2_0() { return cNameDottedNameParserRuleCall_2_0; }
 		
-		//('extends' ImplementationExtensions?)?
+		//('extends' ImplementationExtensions)?
 		public Group getGroup_3() { return cGroup_3; }
 		
 		//'extends'
 		public Keyword getExtendsKeyword_3_0() { return cExtendsKeyword_3_0; }
 		
-		//ImplementationExtensions?
+		//ImplementationExtensions
 		public RuleCall getImplementationExtensionsParserRuleCall_3_1() { return cImplementationExtensionsParserRuleCall_3_1; }
 		
 		//ImplementationBody
@@ -601,8 +594,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cEndKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		
 		//fragment ImplementationBody *:
-		//	('is' (ImplementationElement ';'?)+)?
-		//	'end';
+		//	('is' (ImplementationElement ';'?)+)? 'end';
 		@Override public ParserRule getRule() { return rule; }
 		
 		//('is' (ImplementationElement ';'?)+)? 'end'
@@ -649,10 +641,9 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cPropertyAssociationsPropertyAssociationParserRuleCall_8_0 = (RuleCall)cPropertyAssociationsAssignment_8.eContents().get(0);
 		
 		//fragment ImplementationElement *:
-		//	connections+=Connection | connections+=FeatureDelegate | bindings+=Binding | components+=Component
-		//	| paths+=Path | flowAssignments+=FlowAssignment | configurationAssignments+=ConfigurationAssignment |
-		//	configurationAssignments+=ConfigurationAssignmentPattern
-		//	| propertyAssociations+=PropertyAssociation;
+		//	connections+=Connection | connections+=FeatureDelegate | bindings+=Binding | components+=Component | paths+=Path |
+		//	flowAssignments+=FlowAssignment | configurationAssignments+=ConfigurationAssignment |
+		//	configurationAssignments+=ConfigurationAssignmentPattern | propertyAssociations+=PropertyAssociation;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//connections+=Connection | connections+=FeatureDelegate | bindings+=Binding | components+=Component | paths+=Path |
@@ -729,8 +720,8 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cConfigurationElementBlockParserRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
 		
 		//ComponentConfiguration av3::ComponentConfiguration:
-		//	private?='private'? 'configuration' name=DottedName
-		//	Parameters? ('extends' ConfigurationExtensions)? ConfigurationElementBlock;
+		//	private?='private'? 'configuration' name=DottedName Parameters? ('extends' ConfigurationExtensions)?
+		//	ConfigurationElementBlock;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//private?='private'? 'configuration' name=DottedName Parameters? ('extends' ConfigurationExtensions)?
@@ -782,10 +773,8 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cPropertiesBlockParserRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
 		
 		//// (Instance) model elements
-		//Feature av3::Feature:
-		//	name=ID ':' direction=FeatureDirection?
-		//	category=FeatureCategory
-		//	typeReference=ReversableTypeReference?
+		// Feature av3::Feature:
+		//	name=ID ':' direction=FeatureDirection? category=FeatureCategory typeReference=ReversableTypeReference?
 		//	PropertiesBlock?;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -835,15 +824,14 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cNestedComponentImplementationBlockParserRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
 		
 		//Component av3::Component:
-		//	name=ID ':' category=ComponentCategory
-		//	typeReferences+=TypeReference
-		//	//(',' typeReferences+=TypeReference?)*
+		//	name=ID ':' category=ComponentCategory typeReferences+=TypeReference //(',' typeReferences+=TypeReference?)*
 		//?
 		//	NestedComponentImplementationBlock?;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//name=ID ':' category=ComponentCategory typeReferences+=TypeReference //(',' typeReferences+=TypeReference?)*
-		//? NestedComponentImplementationBlock?
+		//?
+		//NestedComponentImplementationBlock?
 		public Group getGroup() { return cGroup; }
 		
 		//name=ID
@@ -1025,8 +1013,8 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cPropertiesBlockParserRuleCall_6 = (RuleCall)cGroup.eContents().get(6);
 		
 		//Binding av3::Association:
-		//	name=ID ':' associationType=BindingType source=ModelElementReference
-		//	'->' destination=ModelElementReference PropertiesBlock?;
+		//	name=ID ':' associationType=BindingType source=ModelElementReference '->' destination=ModelElementReference
+		//	PropertiesBlock?;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//name=ID ':' associationType=BindingType source=ModelElementReference '->' destination=ModelElementReference
@@ -1082,8 +1070,8 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cPropertiesBlockParserRuleCall_6 = (RuleCall)cGroup.eContents().get(6);
 		
 		//FlowPath av3::Association:
-		//	name=ID ':' associationType=FlowPathType source=ModelElementReference
-		//	'->' destination=ModelElementReference PropertiesBlock?;
+		//	name=ID ':' associationType=FlowPathType source=ModelElementReference '->' destination=ModelElementReference
+		//	PropertiesBlock?;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//name=ID ':' associationType=FlowPathType source=ModelElementReference '->' destination=ModelElementReference
@@ -1179,8 +1167,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cPropertiesBlockParserRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
 		
 		//FlowSink av3::Association:
-		//	name=ID ':' associationType=FlowSinkType source=ModelElementReference
-		//	PropertiesBlock?;
+		//	name=ID ':' associationType=FlowSinkType source=ModelElementReference PropertiesBlock?;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//name=ID ':' associationType=FlowSinkType source=ModelElementReference PropertiesBlock?
@@ -1279,8 +1266,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cPropertiesBlockParserRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
 		
 		//Path av3::PathSequence:
-		//	name=ID ':' EndToEndFlowKeywords elements+=PathElement ('->' elements+=PathElement)+
-		//	PropertiesBlock?;
+		//	name=ID ':' EndToEndFlowKeywords elements+=PathElement ('->' elements+=PathElement)+ PropertiesBlock?;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//name=ID ':' EndToEndFlowKeywords elements+=PathElement ('->' elements+=PathElement)+ PropertiesBlock?
@@ -1386,8 +1372,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//Import av3::Import:
-		//	'import' (importedNamespace=QualifiedNameWithWildcard | importedNamespace=QualifiedName) ('as' alias=ID)?
-		//	';'?;
+		//	'import' (importedNamespace=QualifiedNameWithWildcard | importedNamespace=QualifiedName) ('as' alias=ID)? ';'?;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'import' (importedNamespace=QualifiedNameWithWildcard | importedNamespace=QualifiedName) ('as' alias=ID)? ';'?
@@ -1577,8 +1562,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cElementsPathElementParserRuleCall_4_1_0 = (RuleCall)cElementsAssignment_4_1.eContents().get(0);
 		
 		//FlowAssignment av3::PathSequence:
-		//	target=ModelElementReference '=>' 'flow'
-		//	elements+=PathElement ('->' elements+=PathElement)*;
+		//	target=ModelElementReference '=>' 'flow' elements+=PathElement ('->' elements+=PathElement)*;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//target=ModelElementReference '=>' 'flow' elements+=PathElement ('->' elements+=PathElement)*
@@ -1629,9 +1613,8 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cValuePropertyValueParserRuleCall_4_0 = (RuleCall)cValueAssignment_4.eContents().get(0);
 		
 		//PropertyAssociation av3::PropertyAssociation:
-		//	target=ModelElementReference?
-		//	'#' property=[av3::PropertyDefinition|QualifiedName] propertyAssociationType=PropertyAssociationType
-		//	value=PropertyValue;
+		//	target=ModelElementReference? '#' property=[av3::PropertyDefinition|QualifiedName]
+		//	propertyAssociationType=PropertyAssociationType value=PropertyValue;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//target=ModelElementReference? '#' property=[av3::PropertyDefinition|QualifiedName]
@@ -1714,11 +1697,12 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		@Override public ParserRule getRule() { return rule; }
 		
 		//// => or -> both work
-		//element=[av3::ModelElement] -> ({av3::ModelElementReference.context=current} '.' element=[av3::ModelElement])*
+		// element=[av3::ModelElement] -> ({av3::ModelElementReference.context=current} '.'
+		//element=[av3::ModelElement])*
 		public Group getGroup() { return cGroup; }
 		
 		//// => or -> both work
-		//element=[av3::ModelElement]
+		// element=[av3::ModelElement]
 		public Assignment getElementAssignment_0() { return cElementAssignment_0; }
 		
 		//[av3::ModelElement]
@@ -1963,7 +1947,8 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cTypeComponentInterfaceQualifiedReferenceParserRuleCall_1_0_1 = (RuleCall)cTypeComponentInterfaceCrossReference_1_0.eContents().get(1);
 		
 		//// reference objects for classifiers including configurations with parameter
-		//ReversableInterfaceReference av3::TypeReference:
+		// ReversableInterfaceReference
+		//av3::TypeReference:
 		//	reverse?='reverse'? type=[av3::ComponentInterface|QualifiedReference];
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -2134,9 +2119,8 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		
 		//// to be used for inline nested component implementations 
-		//fragment NestedComponentImplementationBlock *:
-		//	'{' (NestedImplementationElement ';'?)+
-		//	'}';
+		// fragment NestedComponentImplementationBlock *:
+		//	'{' (NestedImplementationElement ';'?)+ '}';
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'{' (NestedImplementationElement ';'?)+ '}'
@@ -2440,9 +2424,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cEndKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
 		//Workingset av3::Workingset:
-		//	private?='private'? 'workingset' name=QualifiedName 'is'
-		//	UseProps? (rootComponents+=Component ';'?)*
-		//	'end';
+		//	private?='private'? 'workingset' name=QualifiedName 'is' UseProps? (rootComponents+=Component ';'?)* 'end';
 		@Override public ParserRule getRule() { return rule; }
 		
 		//private?='private'? 'workingset' name=QualifiedName 'is' UseProps? (rootComponents+=Component ';'?)* 'end'
@@ -2635,10 +2617,9 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cThreadGroupKeywordsParserRuleCall_15 = (RuleCall)cAlternatives.eContents().get(15);
 		
 		//ComponentCategory av3::ComponentCategory:
-		//	'abstract' | 'bus' | 'data'
-		//	| 'device' | 'memory' | 'process' | 'processor' | 'system'
-		//	| 'thread' | VirtualBusKeywords | VirtualProcessorKeywords | VirtualMemoryKeywords | VirtualDeviceKeywords
-		//	| 'subprogram' | SubprogramGroupKeywords | ThreadGroupKeywords;
+		//	'abstract' | 'bus' | 'data' | 'device' | 'memory' | 'process' | 'processor' | 'system' | 'thread' |
+		//	VirtualBusKeywords | VirtualProcessorKeywords | VirtualMemoryKeywords | VirtualDeviceKeywords | 'subprogram' |
+		//	SubprogramGroupKeywords | ThreadGroupKeywords;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'abstract' | 'bus' | 'data' | 'device' | 'memory' | 'process' | 'processor' | 'system' | 'thread' | VirtualBusKeywords |
@@ -2708,9 +2689,8 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cInterfaceKeyword_8 = (Keyword)cAlternatives.eContents().get(8);
 		
 		//FeatureCategory av3::FeatureCategory:
-		//	'feature' | 'port' | DataAccessKeywords
-		//	| BusAccessKeywords | VirtualBusAccessKeywords | SubprogramAccessKeywords | SubprogramGroupAccessKeywords
-		//	| BindingPointKeywords | 'interface';
+		//	'feature' | 'port' | DataAccessKeywords | BusAccessKeywords | VirtualBusAccessKeywords | SubprogramAccessKeywords |
+		//	SubprogramGroupAccessKeywords | BindingPointKeywords | 'interface';
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'feature' | 'port' | DataAccessKeywords | BusAccessKeywords | VirtualBusAccessKeywords | SubprogramAccessKeywords |
@@ -2760,9 +2740,8 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cRequiresRWKeywordsParserRuleCall_10 = (RuleCall)cAlternatives.eContents().get(10);
 		
 		//FeatureDirection av3::FeatureDirection:
-		//	'in' | 'out'
-		//	| InOutKeywords | 'requires' | 'provides' | ProvidesReadKeywords | RequiresReadKeywords | ProvidesWriteKeywords |
-		//	RequiresWriteKeywords | ProvidesRWKeywords | RequiresRWKeywords;
+		//	'in' | 'out' | InOutKeywords | 'requires' | 'provides' | ProvidesReadKeywords | RequiresReadKeywords |
+		//	ProvidesWriteKeywords | RequiresWriteKeywords | ProvidesRWKeywords | RequiresRWKeywords;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'in' | 'out' | InOutKeywords | 'requires' | 'provides' | ProvidesReadKeywords | RequiresReadKeywords |
@@ -3614,8 +3593,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//PackageDeclaration av3::PackageDeclaration:
-	//	private?='private'? 'package' name=QualifiedName (imports+=Import | elements+=PackageElement)*
-	//	'end';
+	//	private?='private'? 'package' name=QualifiedName (imports+=Import | elements+=PackageElement)* 'end';
 	public PackageDeclarationElements getPackageDeclarationAccess() {
 		return pPackageDeclaration;
 	}
@@ -3637,8 +3615,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	
 	//PropertyDefinition av3::PropertyDefinition:
 	//	private?='private'? 'property' name=ID ':' type=[av3::Type|QualifiedReference] ('for' (forAll?='all' | AppliesTo (','
-	//	AppliesTo)*))?
-	//	';'?;
+	//	AppliesTo)*))? ';'?;
 	public PropertyDefinitionElements getPropertyDefinitionAccess() {
 		return pPropertyDefinition;
 	}
@@ -3648,8 +3625,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//fragment AppliesTo *:
-	//	componentCategories+=ComponentCategory | featureCategories+=FeatureCategory
-	//	| associationTypes+=AssociationType;
+	//	componentCategories+=ComponentCategory | featureCategories+=FeatureCategory | associationTypes+=AssociationType;
 	public AppliesToElements getAppliesToAccess() {
 		return pAppliesTo;
 	}
@@ -3659,10 +3635,8 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//PropertySet av3::PropertySet:
-	//	private?='private'? 'properties' name=ID ':'
-	//	'{' properties+=[av3::PropertyDefinition|QualifiedReference] (','
-	//	properties+=[av3::PropertyDefinition|QualifiedName])* '}'
-	//	';'?;
+	//	private?='private'? 'properties' name=ID ':' '{' properties+=[av3::PropertyDefinition|QualifiedReference] (','
+	//	properties+=[av3::PropertyDefinition|QualifiedName])* '}' ';'?;
 	public PropertySetElements getPropertySetAccess() {
 		return pPropertySet;
 	}
@@ -3682,8 +3656,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//ComponentInterface av3::ComponentInterface:
-	//	private?='private'? category=ComponentCategory? 'interface' name=ID ('extends' InterfaceExtensions?)?
-	//	InterfaceBody;
+	//	private?='private'? category=ComponentCategory? 'interface' name=ID ('extends' InterfaceExtensions)? InterfaceBody;
 	public ComponentInterfaceElements getComponentInterfaceAccess() {
 		return pComponentInterface;
 	}
@@ -3703,9 +3676,8 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//fragment InterfaceElement *:
-	//	features+=Feature
-	//	| flows+=FlowPath | flows+=FlowSource | flows+=FlowSink
-	//	| UseProps | propertyAssociations+=PropertyAssociation;
+	//	features+=Feature | flows+=FlowPath | flows+=FlowSource | flows+=FlowSink | UseProps |
+	//	propertyAssociations+=PropertyAssociation;
 	public InterfaceElementElements getInterfaceElementAccess() {
 		return pInterfaceElement;
 	}
@@ -3715,7 +3687,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//ComponentImplementation av3::ComponentImplementation:
-	//	private?='private'? category=ComponentCategory name=DottedName ('extends' ImplementationExtensions?)?
+	//	private?='private'? category=ComponentCategory name=DottedName ('extends' ImplementationExtensions)?
 	//	ImplementationBody;
 	public ComponentImplementationElements getComponentImplementationAccess() {
 		return pComponentImplementation;
@@ -3726,8 +3698,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//fragment ImplementationBody *:
-	//	('is' (ImplementationElement ';'?)+)?
-	//	'end';
+	//	('is' (ImplementationElement ';'?)+)? 'end';
 	public ImplementationBodyElements getImplementationBodyAccess() {
 		return pImplementationBody;
 	}
@@ -3737,10 +3708,9 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//fragment ImplementationElement *:
-	//	connections+=Connection | connections+=FeatureDelegate | bindings+=Binding | components+=Component
-	//	| paths+=Path | flowAssignments+=FlowAssignment | configurationAssignments+=ConfigurationAssignment |
-	//	configurationAssignments+=ConfigurationAssignmentPattern
-	//	| propertyAssociations+=PropertyAssociation;
+	//	connections+=Connection | connections+=FeatureDelegate | bindings+=Binding | components+=Component | paths+=Path |
+	//	flowAssignments+=FlowAssignment | configurationAssignments+=ConfigurationAssignment |
+	//	configurationAssignments+=ConfigurationAssignmentPattern | propertyAssociations+=PropertyAssociation;
 	public ImplementationElementElements getImplementationElementAccess() {
 		return pImplementationElement;
 	}
@@ -3750,8 +3720,8 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//ComponentConfiguration av3::ComponentConfiguration:
-	//	private?='private'? 'configuration' name=DottedName
-	//	Parameters? ('extends' ConfigurationExtensions)? ConfigurationElementBlock;
+	//	private?='private'? 'configuration' name=DottedName Parameters? ('extends' ConfigurationExtensions)?
+	//	ConfigurationElementBlock;
 	public ComponentConfigurationElements getComponentConfigurationAccess() {
 		return pComponentConfiguration;
 	}
@@ -3761,10 +3731,8 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//// (Instance) model elements
-	//Feature av3::Feature:
-	//	name=ID ':' direction=FeatureDirection?
-	//	category=FeatureCategory
-	//	typeReference=ReversableTypeReference?
+	// Feature av3::Feature:
+	//	name=ID ':' direction=FeatureDirection? category=FeatureCategory typeReference=ReversableTypeReference?
 	//	PropertiesBlock?;
 	public FeatureElements getFeatureAccess() {
 		return pFeature;
@@ -3775,9 +3743,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Component av3::Component:
-	//	name=ID ':' category=ComponentCategory
-	//	typeReferences+=TypeReference
-	//	//(',' typeReferences+=TypeReference?)*
+	//	name=ID ':' category=ComponentCategory typeReferences+=TypeReference //(',' typeReferences+=TypeReference?)*
 	//?
 	//	NestedComponentImplementationBlock?;
 	public ComponentElements getComponentAccess() {
@@ -3811,8 +3777,8 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Binding av3::Association:
-	//	name=ID ':' associationType=BindingType source=ModelElementReference
-	//	'->' destination=ModelElementReference PropertiesBlock?;
+	//	name=ID ':' associationType=BindingType source=ModelElementReference '->' destination=ModelElementReference
+	//	PropertiesBlock?;
 	public BindingElements getBindingAccess() {
 		return pBinding;
 	}
@@ -3822,8 +3788,8 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//FlowPath av3::Association:
-	//	name=ID ':' associationType=FlowPathType source=ModelElementReference
-	//	'->' destination=ModelElementReference PropertiesBlock?;
+	//	name=ID ':' associationType=FlowPathType source=ModelElementReference '->' destination=ModelElementReference
+	//	PropertiesBlock?;
 	public FlowPathElements getFlowPathAccess() {
 		return pFlowPath;
 	}
@@ -3843,8 +3809,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//FlowSink av3::Association:
-	//	name=ID ':' associationType=FlowSinkType source=ModelElementReference
-	//	PropertiesBlock?;
+	//	name=ID ':' associationType=FlowSinkType source=ModelElementReference PropertiesBlock?;
 	public FlowSinkElements getFlowSinkAccess() {
 		return pFlowSink;
 	}
@@ -3865,8 +3830,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Path av3::PathSequence:
-	//	name=ID ':' EndToEndFlowKeywords elements+=PathElement ('->' elements+=PathElement)+
-	//	PropertiesBlock?;
+	//	name=ID ':' EndToEndFlowKeywords elements+=PathElement ('->' elements+=PathElement)+ PropertiesBlock?;
 	public PathElements getPathAccess() {
 		return pPath;
 	}
@@ -3886,8 +3850,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Import av3::Import:
-	//	'import' (importedNamespace=QualifiedNameWithWildcard | importedNamespace=QualifiedName) ('as' alias=ID)?
-	//	';'?;
+	//	'import' (importedNamespace=QualifiedNameWithWildcard | importedNamespace=QualifiedName) ('as' alias=ID)? ';'?;
 	public ImportElements getImportAccess() {
 		return pImport;
 	}
@@ -3919,8 +3882,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//FlowAssignment av3::PathSequence:
-	//	target=ModelElementReference '=>' 'flow'
-	//	elements+=PathElement ('->' elements+=PathElement)*;
+	//	target=ModelElementReference '=>' 'flow' elements+=PathElement ('->' elements+=PathElement)*;
 	public FlowAssignmentElements getFlowAssignmentAccess() {
 		return pFlowAssignment;
 	}
@@ -3930,9 +3892,8 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//PropertyAssociation av3::PropertyAssociation:
-	//	target=ModelElementReference?
-	//	'#' property=[av3::PropertyDefinition|QualifiedName] propertyAssociationType=PropertyAssociationType
-	//	value=PropertyValue;
+	//	target=ModelElementReference? '#' property=[av3::PropertyDefinition|QualifiedName]
+	//	propertyAssociationType=PropertyAssociationType value=PropertyValue;
 	public PropertyAssociationElements getPropertyAssociationAccess() {
 		return pPropertyAssociation;
 	}
@@ -4013,7 +3974,8 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//// reference objects for classifiers including configurations with parameter
-	//ReversableInterfaceReference av3::TypeReference:
+	// ReversableInterfaceReference
+	//av3::TypeReference:
 	//	reverse?='reverse'? type=[av3::ComponentInterface|QualifiedReference];
 	public ReversableInterfaceReferenceElements getReversableInterfaceReferenceAccess() {
 		return pReversableInterfaceReference;
@@ -4074,9 +4036,8 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//// to be used for inline nested component implementations 
-	//fragment NestedComponentImplementationBlock *:
-	//	'{' (NestedImplementationElement ';'?)+
-	//	'}';
+	// fragment NestedComponentImplementationBlock *:
+	//	'{' (NestedImplementationElement ';'?)+ '}';
 	public NestedComponentImplementationBlockElements getNestedComponentImplementationBlockAccess() {
 		return pNestedComponentImplementationBlock;
 	}
@@ -4148,9 +4109,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Workingset av3::Workingset:
-	//	private?='private'? 'workingset' name=QualifiedName 'is'
-	//	UseProps? (rootComponents+=Component ';'?)*
-	//	'end';
+	//	private?='private'? 'workingset' name=QualifiedName 'is' UseProps? (rootComponents+=Component ';'?)* 'end';
 	public WorkingsetElements getWorkingsetAccess() {
 		return pWorkingset;
 	}
@@ -4220,10 +4179,9 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//ComponentCategory av3::ComponentCategory:
-	//	'abstract' | 'bus' | 'data'
-	//	| 'device' | 'memory' | 'process' | 'processor' | 'system'
-	//	| 'thread' | VirtualBusKeywords | VirtualProcessorKeywords | VirtualMemoryKeywords | VirtualDeviceKeywords
-	//	| 'subprogram' | SubprogramGroupKeywords | ThreadGroupKeywords;
+	//	'abstract' | 'bus' | 'data' | 'device' | 'memory' | 'process' | 'processor' | 'system' | 'thread' |
+	//	VirtualBusKeywords | VirtualProcessorKeywords | VirtualMemoryKeywords | VirtualDeviceKeywords | 'subprogram' |
+	//	SubprogramGroupKeywords | ThreadGroupKeywords;
 	public ComponentCategoryElements getComponentCategoryAccess() {
 		return pComponentCategory;
 	}
@@ -4233,9 +4191,8 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//FeatureCategory av3::FeatureCategory:
-	//	'feature' | 'port' | DataAccessKeywords
-	//	| BusAccessKeywords | VirtualBusAccessKeywords | SubprogramAccessKeywords | SubprogramGroupAccessKeywords
-	//	| BindingPointKeywords | 'interface';
+	//	'feature' | 'port' | DataAccessKeywords | BusAccessKeywords | VirtualBusAccessKeywords | SubprogramAccessKeywords |
+	//	SubprogramGroupAccessKeywords | BindingPointKeywords | 'interface';
 	public FeatureCategoryElements getFeatureCategoryAccess() {
 		return pFeatureCategory;
 	}
@@ -4245,9 +4202,8 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//FeatureDirection av3::FeatureDirection:
-	//	'in' | 'out'
-	//	| InOutKeywords | 'requires' | 'provides' | ProvidesReadKeywords | RequiresReadKeywords | ProvidesWriteKeywords |
-	//	RequiresWriteKeywords | ProvidesRWKeywords | RequiresRWKeywords;
+	//	'in' | 'out' | InOutKeywords | 'requires' | 'provides' | ProvidesReadKeywords | RequiresReadKeywords |
+	//	ProvidesWriteKeywords | RequiresWriteKeywords | ProvidesRWKeywords | RequiresRWKeywords;
 	public FeatureDirectionElements getFeatureDirectionAccess() {
 		return pFeatureDirection;
 	}

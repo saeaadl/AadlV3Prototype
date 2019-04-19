@@ -99,6 +99,9 @@ is
   #SecurityLevel := 1;
   Sub1#SecurityLevel := 2;
   Sub1.xsub1#SecurityLevel := 0;
+  Sub1 => { #SecurityLevel := 2;
+  	xsub1 => {#SecurityLevel := 2}
+  }
   Sub2#SecurityLevel := 1;
 end
 

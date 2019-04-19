@@ -778,22 +778,20 @@ ruleComponentInterface returns [EObject current=null]
 			{
 				newLeafNode(otherlv_4, grammarAccess.getComponentInterfaceAccess().getExtendsKeyword_4_0());
 			}
-			(
-				{
-					/* */
+			{
+				/* */
+			}
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getComponentInterfaceRule());
 				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getComponentInterfaceRule());
-					}
-					newCompositeNode(grammarAccess.getComponentInterfaceAccess().getInterfaceExtensionsParserRuleCall_4_1());
-				}
-				this_InterfaceExtensions_5=ruleInterfaceExtensions[$current]
-				{
-					$current = $this_InterfaceExtensions_5.current;
-					afterParserOrEnumRuleCall();
-				}
-			)?
+				newCompositeNode(grammarAccess.getComponentInterfaceAccess().getInterfaceExtensionsParserRuleCall_4_1());
+			}
+			this_InterfaceExtensions_5=ruleInterfaceExtensions[$current]
+			{
+				$current = $this_InterfaceExtensions_5.current;
+				afterParserOrEnumRuleCall();
+			}
 		)?
 		{
 			/* */
@@ -1057,22 +1055,20 @@ ruleComponentImplementation returns [EObject current=null]
 			{
 				newLeafNode(otherlv_3, grammarAccess.getComponentImplementationAccess().getExtendsKeyword_3_0());
 			}
-			(
-				{
-					/* */
+			{
+				/* */
+			}
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getComponentImplementationRule());
 				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getComponentImplementationRule());
-					}
-					newCompositeNode(grammarAccess.getComponentImplementationAccess().getImplementationExtensionsParserRuleCall_3_1());
-				}
-				this_ImplementationExtensions_4=ruleImplementationExtensions[$current]
-				{
-					$current = $this_ImplementationExtensions_4.current;
-					afterParserOrEnumRuleCall();
-				}
-			)?
+				newCompositeNode(grammarAccess.getComponentImplementationAccess().getImplementationExtensionsParserRuleCall_3_1());
+			}
+			this_ImplementationExtensions_4=ruleImplementationExtensions[$current]
+			{
+				$current = $this_ImplementationExtensions_4.current;
+				afterParserOrEnumRuleCall();
+			}
 		)?
 		{
 			/* */
