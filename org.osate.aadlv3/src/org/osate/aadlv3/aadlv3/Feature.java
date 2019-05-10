@@ -27,6 +27,7 @@ package org.osate.aadlv3.aadlv3;
  *   <li>{@link org.osate.aadlv3.aadlv3.Feature#getDirection <em>Direction</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.Feature#getCategory <em>Category</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.Feature#getTypeReference <em>Type Reference</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.Feature#isEvent <em>Event</em>}</li>
  * </ul>
  *
  * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getFeature()
@@ -117,5 +118,27 @@ public interface Feature extends ModelElement {
 	 * @generated
 	 */
 	void setTypeReference(TypeReference value);
+
+	/**
+	 * Returns the value of the '<em><b>Event</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Event</em>' attribute.
+	 * @see #setEvent(boolean)
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getFeature_Event()
+	 * @model
+	 * @generated
+	 */
+	boolean isEvent();
+
+	/**
+	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.Feature#isEvent <em>Event</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Event</em>' attribute.
+	 * @see #isEvent()
+	 * @generated
+	 */
+	void setEvent(boolean value);
 
 } // Feature

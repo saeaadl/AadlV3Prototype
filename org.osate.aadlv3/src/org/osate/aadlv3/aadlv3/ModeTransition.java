@@ -15,6 +15,8 @@
  */
 package org.osate.aadlv3.aadlv3;
 
+import org.eclipse.emf.common.util.EList;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Mode Transition</b></em>'.
@@ -26,6 +28,7 @@ package org.osate.aadlv3.aadlv3;
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.ModeTransition#getSource <em>Source</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.ModeTransition#getTarget <em>Target</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.ModeTransition#getTriggers <em>Triggers</em>}</li>
  * </ul>
  *
  * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getModeTransition()
@@ -84,5 +87,17 @@ public interface ModeTransition extends ModelElement {
 	 * @generated
 	 */
 	void setTarget(Mode value);
+
+	/**
+	 * Returns the value of the '<em><b>Triggers</b></em>' containment reference list.
+	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.ModeTransitionTrigger}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Triggers</em>' containment reference list.
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getModeTransition_Triggers()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<ModeTransitionTrigger> getTriggers();
 
 } // ModeTransition

@@ -44,8 +44,11 @@ import org.osate.aadlv3.aadlv3.FeatureCategory;
 import org.osate.aadlv3.aadlv3.FeatureDirection;
 import org.osate.aadlv3.aadlv3.Import;
 import org.osate.aadlv3.aadlv3.Mode;
+import org.osate.aadlv3.aadlv3.ModeAssignment;
 import org.osate.aadlv3.aadlv3.ModeStateMachine;
 import org.osate.aadlv3.aadlv3.ModeTransition;
+import org.osate.aadlv3.aadlv3.ModeTransitionTrigger;
+import org.osate.aadlv3.aadlv3.ModeTransitionTriggerAssignment;
 import org.osate.aadlv3.aadlv3.ModelElement;
 import org.osate.aadlv3.aadlv3.ModelElementReference;
 import org.osate.aadlv3.aadlv3.NamedElement;
@@ -257,6 +260,27 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	private EClass modeTransitionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass modeTransitionTriggerEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass modeTransitionTriggerAssignmentEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass modeAssignmentEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -561,6 +585,16 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
+	public EReference getModelElement_InModes() {
+		return (EReference) modelElementEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getType() {
 		return typeEClass;
 	}
@@ -641,7 +675,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getComponentClassifier_RequiresModes() {
+	public EAttribute getComponentClassifier_InheritsModes() {
 		return (EAttribute) componentClassifierEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -823,6 +857,16 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	@Override
 	public EReference getFeature_TypeReference() {
 		return (EReference) featureEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getFeature_Event() {
+		return (EAttribute) featureEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -1341,6 +1385,96 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
+	public EReference getModeTransition_Triggers() {
+		return (EReference) modeTransitionEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getModeTransitionTrigger() {
+		return modeTransitionTriggerEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getModeTransitionTrigger_Context() {
+		return (EReference) modeTransitionTriggerEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getModeTransitionTrigger_Trigger() {
+		return (EReference) modeTransitionTriggerEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getModeTransitionTriggerAssignment() {
+		return modeTransitionTriggerAssignmentEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getModeTransitionTriggerAssignment_Triggers() {
+		return (EReference) modeTransitionTriggerAssignmentEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getModeTransitionTriggerAssignment_Transition() {
+		return (EReference) modeTransitionTriggerAssignmentEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getModeAssignment() {
+		return modeAssignmentEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getModeAssignment_Members() {
+		return (EReference) modeAssignmentEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getModeStateMachine() {
 		return modeStateMachineEClass;
 	}
@@ -1557,6 +1691,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 
 		modelElementEClass = createEClass(MODEL_ELEMENT);
 		createEReference(modelElementEClass, MODEL_ELEMENT__PROPERTY_ASSOCIATIONS);
+		createEReference(modelElementEClass, MODEL_ELEMENT__IN_MODES);
 
 		typeEClass = createEClass(TYPE);
 
@@ -1568,7 +1703,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		createEReference(componentClassifierEClass, COMPONENT_CLASSIFIER__SUPER_CLASSIFIERS);
 		createEReference(componentClassifierEClass, COMPONENT_CLASSIFIER__PROPERTY_ASSOCIATIONS);
 		createEReference(componentClassifierEClass, COMPONENT_CLASSIFIER__USE_MODES);
-		createEAttribute(componentClassifierEClass, COMPONENT_CLASSIFIER__REQUIRES_MODES);
+		createEAttribute(componentClassifierEClass, COMPONENT_CLASSIFIER__INHERITS_MODES);
 
 		componentRealizationEClass = createEClass(COMPONENT_REALIZATION);
 		createEReference(componentRealizationEClass, COMPONENT_REALIZATION__CACHED_INTERFACE_REFERENCE);
@@ -1595,6 +1730,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		createEAttribute(featureEClass, FEATURE__DIRECTION);
 		createEAttribute(featureEClass, FEATURE__CATEGORY);
 		createEReference(featureEClass, FEATURE__TYPE_REFERENCE);
+		createEAttribute(featureEClass, FEATURE__EVENT);
 
 		componentEClass = createEClass(COMPONENT);
 		createEAttribute(componentEClass, COMPONENT__CATEGORY);
@@ -1668,6 +1804,18 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		modeTransitionEClass = createEClass(MODE_TRANSITION);
 		createEReference(modeTransitionEClass, MODE_TRANSITION__SOURCE);
 		createEReference(modeTransitionEClass, MODE_TRANSITION__TARGET);
+		createEReference(modeTransitionEClass, MODE_TRANSITION__TRIGGERS);
+
+		modeTransitionTriggerEClass = createEClass(MODE_TRANSITION_TRIGGER);
+		createEReference(modeTransitionTriggerEClass, MODE_TRANSITION_TRIGGER__CONTEXT);
+		createEReference(modeTransitionTriggerEClass, MODE_TRANSITION_TRIGGER__TRIGGER);
+
+		modeTransitionTriggerAssignmentEClass = createEClass(MODE_TRANSITION_TRIGGER_ASSIGNMENT);
+		createEReference(modeTransitionTriggerAssignmentEClass, MODE_TRANSITION_TRIGGER_ASSIGNMENT__TRIGGERS);
+		createEReference(modeTransitionTriggerAssignmentEClass, MODE_TRANSITION_TRIGGER_ASSIGNMENT__TRANSITION);
+
+		modeAssignmentEClass = createEClass(MODE_ASSIGNMENT);
+		createEReference(modeAssignmentEClass, MODE_ASSIGNMENT__MEMBERS);
 
 		modeStateMachineEClass = createEClass(MODE_STATE_MACHINE);
 		createEReference(modeStateMachineEClass, MODE_STATE_MACHINE__MODES);
@@ -1786,6 +1934,9 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		initEReference(getModelElement_PropertyAssociations(), this.getPropertyAssociation(), null,
 				"propertyAssociations", null, 0, -1, ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getModelElement_InModes(), this.getMode(), null, "inModes", null, 0, -1, ModelElement.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(typeEClass, Type.class, "Type", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1809,7 +1960,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		initEReference(getComponentClassifier_UseModes(), this.getModeStateMachine(), null, "useModes", null, 0, 1,
 				ComponentClassifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getComponentClassifier_RequiresModes(), ecorePackage.getEBoolean(), "requiresModes", null, 0, 1,
+		initEAttribute(getComponentClassifier_InheritsModes(), ecorePackage.getEBoolean(), "inheritsModes", null, 0, 1,
 				ComponentClassifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -1872,6 +2023,8 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		initEReference(getFeature_TypeReference(), this.getTypeReference(), null, "typeReference", null, 0, 1,
 				Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFeature_Event(), ecorePackage.getEBoolean(), "event", null, 0, 1, Feature.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(componentEClass, Component.class, "Component", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
@@ -2036,6 +2189,33 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		initEReference(getModeTransition_Target(), this.getMode(), null, "target", null, 0, 1, ModeTransition.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getModeTransition_Triggers(), this.getModeTransitionTrigger(), null, "triggers", null, 0, -1,
+				ModeTransition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(modeTransitionTriggerEClass, ModeTransitionTrigger.class, "ModeTransitionTrigger", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getModeTransitionTrigger_Context(), this.getModelElement(), null, "context", null, 0, 1,
+				ModeTransitionTrigger.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getModeTransitionTrigger_Trigger(), this.getModelElement(), null, "trigger", null, 0, 1,
+				ModeTransitionTrigger.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(modeTransitionTriggerAssignmentEClass, ModeTransitionTriggerAssignment.class,
+				"ModeTransitionTriggerAssignment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getModeTransitionTriggerAssignment_Triggers(), this.getModeTransitionTrigger(), null, "triggers",
+				null, 0, -1, ModeTransitionTriggerAssignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getModeTransitionTriggerAssignment_Transition(), this.getModeTransition(), null, "transition",
+				null, 0, 1, ModeTransitionTriggerAssignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(modeAssignmentEClass, ModeAssignment.class, "ModeAssignment", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getModeAssignment_Members(), this.getModelElement(), null, "members", null, 0, -1,
+				ModeAssignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(modeStateMachineEClass, ModeStateMachine.class, "ModeStateMachine", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
@@ -2076,6 +2256,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		addEEnumLiteral(featureCategoryEEnum, FeatureCategory.VIRTUALBUSACCESS);
 		addEEnumLiteral(featureCategoryEEnum, FeatureCategory.SUBPROGRAMACCESS);
 		addEEnumLiteral(featureCategoryEEnum, FeatureCategory.SUBPROGRAMGROUPACCESS);
+		addEEnumLiteral(featureCategoryEEnum, FeatureCategory.PARAMETER);
 
 		initEEnum(featureDirectionEEnum, FeatureDirection.class, "FeatureDirection");
 		addEEnumLiteral(featureDirectionEEnum, FeatureDirection.NONE);
@@ -2107,6 +2288,21 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 
 		// Create resource
 		createResource(eNS_URI);
+
+		// Create annotations
+		// null
+		createNullAnnotations();
+	}
+
+	/**
+	 * Initializes the annotations for <b>null</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createNullAnnotations() {
+		String source = null;
+		addAnnotation(featureCategoryEEnum, source, new String[] {});
 	}
 
 } //Aadlv3PackageImpl

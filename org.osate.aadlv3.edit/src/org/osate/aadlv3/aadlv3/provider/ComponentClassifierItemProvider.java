@@ -63,7 +63,7 @@ public class ComponentClassifierItemProvider extends PackageElementItemProvider 
 			addCategoryPropertyDescriptor(object);
 			addSuperClassifiersPropertyDescriptor(object);
 			addUseModesPropertyDescriptor(object);
-			addRequiresModesPropertyDescriptor(object);
+			addInheritsModesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -115,18 +115,18 @@ public class ComponentClassifierItemProvider extends PackageElementItemProvider 
 	}
 
 	/**
-	 * This adds a property descriptor for the Requires Modes feature.
+	 * This adds a property descriptor for the Inherits Modes feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addRequiresModesPropertyDescriptor(Object object) {
+	protected void addInheritsModesPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
 				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_ComponentClassifier_requiresModes_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_ComponentClassifier_requiresModes_feature",
+				getString("_UI_ComponentClassifier_inheritsModes_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_ComponentClassifier_inheritsModes_feature",
 						"_UI_ComponentClassifier_type"),
-				Aadlv3Package.Literals.COMPONENT_CLASSIFIER__REQUIRES_MODES, true, false, false,
+				Aadlv3Package.Literals.COMPONENT_CLASSIFIER__INHERITS_MODES, true, false, false,
 				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
@@ -198,7 +198,7 @@ public class ComponentClassifierItemProvider extends PackageElementItemProvider 
 
 		switch (notification.getFeatureID(ComponentClassifier.class)) {
 		case Aadlv3Package.COMPONENT_CLASSIFIER__CATEGORY:
-		case Aadlv3Package.COMPONENT_CLASSIFIER__REQUIRES_MODES:
+		case Aadlv3Package.COMPONENT_CLASSIFIER__INHERITS_MODES:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		case Aadlv3Package.COMPONENT_CLASSIFIER__SUPER_CLASSIFIERS:

@@ -15,16 +15,22 @@
  */
 package org.osate.aadlv3.aadlv3.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.Mode;
 import org.osate.aadlv3.aadlv3.ModeTransition;
+import org.osate.aadlv3.aadlv3.ModeTransitionTrigger;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,6 +42,7 @@ import org.osate.aadlv3.aadlv3.ModeTransition;
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ModeTransitionImpl#getSource <em>Source</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ModeTransitionImpl#getTarget <em>Target</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.ModeTransitionImpl#getTriggers <em>Triggers</em>}</li>
  * </ul>
  *
  * @generated
@@ -60,6 +67,16 @@ public class ModeTransitionImpl extends ModelElementImpl implements ModeTransiti
 	 * @ordered
 	 */
 	protected Mode target;
+
+	/**
+	 * The cached value of the '{@link #getTriggers() <em>Triggers</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTriggers()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ModeTransitionTrigger> triggers;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -170,6 +187,34 @@ public class ModeTransitionImpl extends ModelElementImpl implements ModeTransiti
 	 * @generated
 	 */
 	@Override
+	public EList<ModeTransitionTrigger> getTriggers() {
+		if (triggers == null) {
+			triggers = new EObjectContainmentEList<ModeTransitionTrigger>(ModeTransitionTrigger.class, this,
+					Aadlv3Package.MODE_TRANSITION__TRIGGERS);
+		}
+		return triggers;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case Aadlv3Package.MODE_TRANSITION__TRIGGERS:
+			return ((InternalEList<?>) getTriggers()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case Aadlv3Package.MODE_TRANSITION__SOURCE:
@@ -180,6 +225,8 @@ public class ModeTransitionImpl extends ModelElementImpl implements ModeTransiti
 			if (resolve)
 				return getTarget();
 			return basicGetTarget();
+		case Aadlv3Package.MODE_TRANSITION__TRIGGERS:
+			return getTriggers();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -189,6 +236,7 @@ public class ModeTransitionImpl extends ModelElementImpl implements ModeTransiti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -197,6 +245,10 @@ public class ModeTransitionImpl extends ModelElementImpl implements ModeTransiti
 			return;
 		case Aadlv3Package.MODE_TRANSITION__TARGET:
 			setTarget((Mode) newValue);
+			return;
+		case Aadlv3Package.MODE_TRANSITION__TRIGGERS:
+			getTriggers().clear();
+			getTriggers().addAll((Collection<? extends ModeTransitionTrigger>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -216,6 +268,9 @@ public class ModeTransitionImpl extends ModelElementImpl implements ModeTransiti
 		case Aadlv3Package.MODE_TRANSITION__TARGET:
 			setTarget((Mode) null);
 			return;
+		case Aadlv3Package.MODE_TRANSITION__TRIGGERS:
+			getTriggers().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -232,6 +287,8 @@ public class ModeTransitionImpl extends ModelElementImpl implements ModeTransiti
 			return source != null;
 		case Aadlv3Package.MODE_TRANSITION__TARGET:
 			return target != null;
+		case Aadlv3Package.MODE_TRANSITION__TRIGGERS:
+			return triggers != null && !triggers.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

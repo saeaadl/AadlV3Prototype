@@ -391,6 +391,27 @@ public class Aadlv3Switch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case Aadlv3Package.MODE_TRANSITION_TRIGGER: {
+			ModeTransitionTrigger modeTransitionTrigger = (ModeTransitionTrigger) theEObject;
+			T result = caseModeTransitionTrigger(modeTransitionTrigger);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Aadlv3Package.MODE_TRANSITION_TRIGGER_ASSIGNMENT: {
+			ModeTransitionTriggerAssignment modeTransitionTriggerAssignment = (ModeTransitionTriggerAssignment) theEObject;
+			T result = caseModeTransitionTriggerAssignment(modeTransitionTriggerAssignment);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Aadlv3Package.MODE_ASSIGNMENT: {
+			ModeAssignment modeAssignment = (ModeAssignment) theEObject;
+			T result = caseModeAssignment(modeAssignment);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		case Aadlv3Package.MODE_STATE_MACHINE: {
 			ModeStateMachine modeStateMachine = (ModeStateMachine) theEObject;
 			T result = caseModeStateMachine(modeStateMachine);
@@ -809,6 +830,51 @@ public class Aadlv3Switch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseModeTransition(ModeTransition object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Mode Transition Trigger</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Mode Transition Trigger</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseModeTransitionTrigger(ModeTransitionTrigger object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Mode Transition Trigger Assignment</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Mode Transition Trigger Assignment</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseModeTransitionTriggerAssignment(ModeTransitionTriggerAssignment object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Mode Assignment</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Mode Assignment</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseModeAssignment(ModeAssignment object) {
 		return null;
 	}
 

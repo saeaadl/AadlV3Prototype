@@ -116,7 +116,16 @@ public enum FeatureCategory implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	SUBPROGRAMGROUPACCESS(8, "subprogramgroupaccess", "subprogram group access");
+	SUBPROGRAMGROUPACCESS(8, "subprogramgroupaccess", "subprogram group access"),
+	/**
+	* The '<em><b>Parameter</b></em>' literal object.
+	* <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
+	* @see #PARAMETER_VALUE
+	* @generated
+	* @ordered
+	*/
+	PARAMETER(9, "parameter", "parameter");
 
 	/**
 	 * The '<em><b>Feature</b></em>' literal value.
@@ -254,13 +263,24 @@ public enum FeatureCategory implements Enumerator {
 	public static final int SUBPROGRAMGROUPACCESS_VALUE = 8;
 
 	/**
+	 * The '<em><b>Parameter</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #PARAMETER
+	 * @model name="parameter"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int PARAMETER_VALUE = 9;
+
+	/**
 	 * An array of all the '<em><b>Feature Category</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private static final FeatureCategory[] VALUES_ARRAY = new FeatureCategory[] { FEATURE, PORT, DATAACCESS, BUSACCESS,
-			BINDINGPOINT, INTERFACE, VIRTUALBUSACCESS, SUBPROGRAMACCESS, SUBPROGRAMGROUPACCESS, };
+			BINDINGPOINT, INTERFACE, VIRTUALBUSACCESS, SUBPROGRAMACCESS, SUBPROGRAMGROUPACCESS, PARAMETER, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Feature Category</b></em>' enumerators.
@@ -334,6 +354,8 @@ public enum FeatureCategory implements Enumerator {
 			return SUBPROGRAMACCESS;
 		case SUBPROGRAMGROUPACCESS_VALUE:
 			return SUBPROGRAMGROUPACCESS;
+		case PARAMETER_VALUE:
+			return PARAMETER;
 		}
 		return null;
 	}

@@ -118,6 +118,12 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 			return createMode();
 		case Aadlv3Package.MODE_TRANSITION:
 			return createModeTransition();
+		case Aadlv3Package.MODE_TRANSITION_TRIGGER:
+			return createModeTransitionTrigger();
+		case Aadlv3Package.MODE_TRANSITION_TRIGGER_ASSIGNMENT:
+			return createModeTransitionTriggerAssignment();
+		case Aadlv3Package.MODE_ASSIGNMENT:
+			return createModeAssignment();
 		case Aadlv3Package.MODE_STATE_MACHINE:
 			return createModeStateMachine();
 		default:
@@ -411,6 +417,39 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 	public ModeTransition createModeTransition() {
 		ModeTransitionImpl modeTransition = new ModeTransitionImpl();
 		return modeTransition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ModeTransitionTrigger createModeTransitionTrigger() {
+		ModeTransitionTriggerImpl modeTransitionTrigger = new ModeTransitionTriggerImpl();
+		return modeTransitionTrigger;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ModeTransitionTriggerAssignment createModeTransitionTriggerAssignment() {
+		ModeTransitionTriggerAssignmentImpl modeTransitionTriggerAssignment = new ModeTransitionTriggerAssignmentImpl();
+		return modeTransitionTriggerAssignment;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ModeAssignment createModeAssignment() {
+		ModeAssignmentImpl modeAssignment = new ModeAssignmentImpl();
+		return modeAssignment;
 	}
 
 	/**

@@ -61,6 +61,7 @@ public class FeatureItemProvider extends ModelElementItemProvider {
 
 			addDirectionPropertyDescriptor(object);
 			addCategoryPropertyDescriptor(object);
+			addEventPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -95,6 +96,22 @@ public class FeatureItemProvider extends ModelElementItemProvider {
 								"_UI_Feature_type"),
 						Aadlv3Package.Literals.FEATURE__CATEGORY, true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Event feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addEventPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_Feature_event_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_Feature_event_feature",
+								"_UI_Feature_type"),
+						Aadlv3Package.Literals.FEATURE__EVENT, true, false, false,
+						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -165,6 +182,7 @@ public class FeatureItemProvider extends ModelElementItemProvider {
 		switch (notification.getFeatureID(Feature.class)) {
 		case Aadlv3Package.FEATURE__DIRECTION:
 		case Aadlv3Package.FEATURE__CATEGORY:
+		case Aadlv3Package.FEATURE__EVENT:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		case Aadlv3Package.FEATURE__TYPE_REFERENCE:

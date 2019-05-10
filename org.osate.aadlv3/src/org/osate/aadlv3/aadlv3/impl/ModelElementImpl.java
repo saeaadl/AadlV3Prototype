@@ -25,9 +25,11 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
+import org.osate.aadlv3.aadlv3.Mode;
 import org.osate.aadlv3.aadlv3.ModelElement;
 import org.osate.aadlv3.aadlv3.PropertyAssociation;
 
@@ -40,6 +42,7 @@ import org.osate.aadlv3.aadlv3.PropertyAssociation;
  * </p>
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ModelElementImpl#getPropertyAssociations <em>Property Associations</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.ModelElementImpl#getInModes <em>In Modes</em>}</li>
  * </ul>
  *
  * @generated
@@ -54,6 +57,16 @@ public abstract class ModelElementImpl extends NamedElementImpl implements Model
 	 * @ordered
 	 */
 	protected EList<PropertyAssociation> propertyAssociations;
+
+	/**
+	 * The cached value of the '{@link #getInModes() <em>In Modes</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInModes()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Mode> inModes;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -94,6 +107,19 @@ public abstract class ModelElementImpl extends NamedElementImpl implements Model
 	 * @generated
 	 */
 	@Override
+	public EList<Mode> getInModes() {
+		if (inModes == null) {
+			inModes = new EObjectResolvingEList<Mode>(Mode.class, this, Aadlv3Package.MODEL_ELEMENT__IN_MODES);
+		}
+		return inModes;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case Aadlv3Package.MODEL_ELEMENT__PROPERTY_ASSOCIATIONS:
@@ -112,6 +138,8 @@ public abstract class ModelElementImpl extends NamedElementImpl implements Model
 		switch (featureID) {
 		case Aadlv3Package.MODEL_ELEMENT__PROPERTY_ASSOCIATIONS:
 			return getPropertyAssociations();
+		case Aadlv3Package.MODEL_ELEMENT__IN_MODES:
+			return getInModes();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -129,6 +157,10 @@ public abstract class ModelElementImpl extends NamedElementImpl implements Model
 			getPropertyAssociations().clear();
 			getPropertyAssociations().addAll((Collection<? extends PropertyAssociation>) newValue);
 			return;
+		case Aadlv3Package.MODEL_ELEMENT__IN_MODES:
+			getInModes().clear();
+			getInModes().addAll((Collection<? extends Mode>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -144,6 +176,9 @@ public abstract class ModelElementImpl extends NamedElementImpl implements Model
 		case Aadlv3Package.MODEL_ELEMENT__PROPERTY_ASSOCIATIONS:
 			getPropertyAssociations().clear();
 			return;
+		case Aadlv3Package.MODEL_ELEMENT__IN_MODES:
+			getInModes().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -158,6 +193,8 @@ public abstract class ModelElementImpl extends NamedElementImpl implements Model
 		switch (featureID) {
 		case Aadlv3Package.MODEL_ELEMENT__PROPERTY_ASSOCIATIONS:
 			return propertyAssociations != null && !propertyAssociations.isEmpty();
+		case Aadlv3Package.MODEL_ELEMENT__IN_MODES:
+			return inModes != null && !inModes.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

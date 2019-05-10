@@ -97,6 +97,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	public static val ConflictingFinal = 'ConflictingFinal'
 	public static val MustBeFinal = 'MustBeFinal'
 	public static val NoCommonImplementation = 'NoCommonImplementation'
+	public static val NoEvent = 'NoEvent'
 
 	@Check
 	def checkComponentClassifier(ComponentClassifier cl) {
@@ -130,6 +131,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	@Check
 	def checkFeature(Feature fea) {
 		fea.checkFeatureDirection()
+		fea.checkFeatureEvent()
 		fea.checkDuplicatePropertyAssociations
 		if (fea.category != FeatureCategory.INTERFACE && fea?.typeReference?.isReverse) {
 			error('Only interface features can reverse direction', fea, Aadlv3Package.Literals.FEATURE__TYPE_REFERENCE,
@@ -1063,6 +1065,13 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 						BAD_FEATURE_DIRECTION)
 				}
 			}
+			case PARAMETER: {
+				if (!(fea.direction == FeatureDirection.IN || fea.direction == FeatureDirection.OUT ||
+					fea.direction == FeatureDirection.INOUT)) {
+					error('Parameter direction must be in, out, or in out', fea, Aadlv3Package.Literals.FEATURE__DIRECTION,
+						BAD_FEATURE_DIRECTION)
+				}
+			}
 			case SUBPROGRAMACCESS: {
 				if (!(fea.direction == FeatureDirection.PROVIDES || fea.direction == FeatureDirection.REQUIRES	)) {
 					error('Subprogram access must be provides or requires', fea,
@@ -1083,6 +1092,15 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 					error('Virtual bus access direction must be provides or requires and in or out', fea,
 						Aadlv3Package.Literals.FEATURE__DIRECTION, BAD_VIRTUAL_BUS_ACCESS_DIRECTION)
 				}
+			}
+		}
+	}
+	
+	def checkFeatureEvent(Feature fea){
+		if (fea.event){
+			if (!(fea.category == FeatureCategory.PORT && fea.direction.incomingPort)){
+				error('Event trigger can only be specified for incoming ports', fea,
+					Aadlv3Package.Literals.FEATURE__EVENT, NoEvent)
 			}
 		}
 	}

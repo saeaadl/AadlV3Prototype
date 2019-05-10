@@ -27,6 +27,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.ModelElement#getPropertyAssociations <em>Property Associations</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.ModelElement#getInModes <em>In Modes</em>}</li>
  * </ul>
  *
  * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getModelElement()
@@ -49,5 +50,17 @@ public interface ModelElement extends NamedElement {
 	 * @generated
 	 */
 	EList<PropertyAssociation> getPropertyAssociations();
+
+	/**
+	 * Returns the value of the '<em><b>In Modes</b></em>' reference list.
+	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.Mode}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>In Modes</em>' reference list.
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getModelElement_InModes()
+	 * @model
+	 * @generated
+	 */
+	EList<Mode> getInModes();
 
 } // ModelElement

@@ -506,7 +506,14 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     Feature returns Feature
 	 *
 	 * Constraint:
-	 *     (name=ID direction=FeatureDirection? category=FeatureCategory typeReference=ReversableTypeReference? propertyAssociations+=PropertyAssociation*)
+	 *     (
+	 *         name=ID 
+	 *         direction=FeatureDirection? 
+	 *         event?='event'? 
+	 *         category=FeatureCategory 
+	 *         typeReference=ReversableTypeReference? 
+	 *         propertyAssociations+=PropertyAssociation*
+	 *     )
 	 */
 	protected void sequence_Feature_PropertiesBlock(ISerializationContext context, Feature semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

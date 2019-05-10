@@ -115,7 +115,7 @@ public class AadlV3Parser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getConfigurationElementBlockAccess().getGroup_0(), "rule__ConfigurationElementBlock__Group_0__0");
 			builder.put(grammarAccess.getConfigurationElementBlockAccess().getGroup_0_1(), "rule__ConfigurationElementBlock__Group_0_1__0");
 			builder.put(grammarAccess.getCurlyConfigurationElementBlockAccess().getGroup(), "rule__CurlyConfigurationElementBlock__Group__0");
-			builder.put(grammarAccess.getCurlyConfigurationElementBlockAccess().getGroup_2(), "rule__CurlyConfigurationElementBlock__Group_2__0");
+			builder.put(grammarAccess.getCurlyConfigurationElementBlockAccess().getGroup_1(), "rule__CurlyConfigurationElementBlock__Group_1__0");
 			builder.put(grammarAccess.getParametersAccess().getGroup(), "rule__Parameters__Group__0");
 			builder.put(grammarAccess.getParametersAccess().getGroup_1(), "rule__Parameters__Group_1__0");
 			builder.put(grammarAccess.getParametersAccess().getGroup_1_1(), "rule__Parameters__Group_1_1__0");
@@ -212,8 +212,9 @@ public class AadlV3Parser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getComponentConfigurationAccess().getNameAssignment_2(), "rule__ComponentConfiguration__NameAssignment_2");
 			builder.put(grammarAccess.getFeatureAccess().getNameAssignment_0(), "rule__Feature__NameAssignment_0");
 			builder.put(grammarAccess.getFeatureAccess().getDirectionAssignment_2(), "rule__Feature__DirectionAssignment_2");
-			builder.put(grammarAccess.getFeatureAccess().getCategoryAssignment_3(), "rule__Feature__CategoryAssignment_3");
-			builder.put(grammarAccess.getFeatureAccess().getTypeReferenceAssignment_4(), "rule__Feature__TypeReferenceAssignment_4");
+			builder.put(grammarAccess.getFeatureAccess().getEventAssignment_3(), "rule__Feature__EventAssignment_3");
+			builder.put(grammarAccess.getFeatureAccess().getCategoryAssignment_4(), "rule__Feature__CategoryAssignment_4");
+			builder.put(grammarAccess.getFeatureAccess().getTypeReferenceAssignment_5(), "rule__Feature__TypeReferenceAssignment_5");
 			builder.put(grammarAccess.getComponentAccess().getNameAssignment_0(), "rule__Component__NameAssignment_0");
 			builder.put(grammarAccess.getComponentAccess().getCategoryAssignment_2(), "rule__Component__CategoryAssignment_2");
 			builder.put(grammarAccess.getComponentAccess().getTypeReferencesAssignment_3(), "rule__Component__TypeReferencesAssignment_3");

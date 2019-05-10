@@ -6,16 +6,23 @@ import "http://www.osate.org/aadlv3/Aadlv3" as av3
 
 
 PackageEMV3 returns av3::PackageDeclaration:
-	'package' name=QualifiedName 
-	'emv3' ((elements+=Subclause)+ | (elements+=ErrorType)+);
+	'annex' 'emv3' 'package' name=QualifiedName 
+	 ((elements+=Subclause)+ | (elements+=ErrorType)+);
 	
 ErrorType returns av3::PackageElement:
-	{ErrorType} 'Type' name=ID ;
+	{ErrorType} 'Type' name=ID ';'? ;
 	
 Subclause returns av3::PackageElement:
-	{Emv3Subclause} 'for' name=ClassifierName '{'
+	{Emv3Subclause} name=ClassifierName '{**'
 		emv3statement+=ErrorPropagation
-	'}';
+	'**}';
+
+InlineSubclause returns av3::ModelElement:
+	{Emv3Subclause} 'annex' name=ID '{**'
+		emv3statement+=ErrorPropagation
+	'**}';
+
+
 ErrorPropagation:
 	name=ID 'propagation' type=[ErrorType|ID]
 ;

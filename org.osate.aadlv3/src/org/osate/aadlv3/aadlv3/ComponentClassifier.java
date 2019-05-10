@@ -30,7 +30,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.osate.aadlv3.aadlv3.ComponentClassifier#getSuperClassifiers <em>Super Classifiers</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.ComponentClassifier#getPropertyAssociations <em>Property Associations</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.ComponentClassifier#getUseModes <em>Use Modes</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.ComponentClassifier#isRequiresModes <em>Requires Modes</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.ComponentClassifier#isInheritsModes <em>Inherits Modes</em>}</li>
  * </ul>
  *
  * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getComponentClassifier()
@@ -127,29 +127,25 @@ public interface ComponentClassifier extends PackageElement, Type {
 	void setUseModes(ModeStateMachine value);
 
 	/**
-	 * Returns the value of the '<em><b>Requires Modes</b></em>' attribute.
+	 * Returns the value of the '<em><b>Inherits Modes</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Requires Modes</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Requires Modes</em>' attribute.
-	 * @see #setRequiresModes(boolean)
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getComponentClassifier_RequiresModes()
+	 * @return the value of the '<em>Inherits Modes</em>' attribute.
+	 * @see #setInheritsModes(boolean)
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getComponentClassifier_InheritsModes()
 	 * @model
 	 * @generated
 	 */
-	boolean isRequiresModes();
+	boolean isInheritsModes();
 
 	/**
-	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.ComponentClassifier#isRequiresModes <em>Requires Modes</em>}' attribute.
+	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.ComponentClassifier#isInheritsModes <em>Inherits Modes</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Requires Modes</em>' attribute.
-	 * @see #isRequiresModes()
+	 * @param value the new value of the '<em>Inherits Modes</em>' attribute.
+	 * @see #isInheritsModes()
 	 * @generated
 	 */
-	void setRequiresModes(boolean value);
+	void setInheritsModes(boolean value);
 
 } // ComponentClassifier

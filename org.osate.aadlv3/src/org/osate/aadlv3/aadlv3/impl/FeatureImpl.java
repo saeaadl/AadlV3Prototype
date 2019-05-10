@@ -40,6 +40,7 @@ import org.osate.aadlv3.aadlv3.TypeReference;
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.FeatureImpl#getDirection <em>Direction</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.FeatureImpl#getCategory <em>Category</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.FeatureImpl#getTypeReference <em>Type Reference</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.FeatureImpl#isEvent <em>Event</em>}</li>
  * </ul>
  *
  * @generated
@@ -94,6 +95,26 @@ public class FeatureImpl extends ModelElementImpl implements Feature {
 	 * @ordered
 	 */
 	protected TypeReference typeReference;
+
+	/**
+	 * The default value of the '{@link #isEvent() <em>Event</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isEvent()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean EVENT_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isEvent() <em>Event</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isEvent()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean event = EVENT_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -220,6 +241,29 @@ public class FeatureImpl extends ModelElementImpl implements Feature {
 	 * @generated
 	 */
 	@Override
+	public boolean isEvent() {
+		return event;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setEvent(boolean newEvent) {
+		boolean oldEvent = event;
+		event = newEvent;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.FEATURE__EVENT, oldEvent, event));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case Aadlv3Package.FEATURE__TYPE_REFERENCE:
@@ -242,6 +286,8 @@ public class FeatureImpl extends ModelElementImpl implements Feature {
 			return getCategory();
 		case Aadlv3Package.FEATURE__TYPE_REFERENCE:
 			return getTypeReference();
+		case Aadlv3Package.FEATURE__EVENT:
+			return isEvent();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -262,6 +308,9 @@ public class FeatureImpl extends ModelElementImpl implements Feature {
 			return;
 		case Aadlv3Package.FEATURE__TYPE_REFERENCE:
 			setTypeReference((TypeReference) newValue);
+			return;
+		case Aadlv3Package.FEATURE__EVENT:
+			setEvent((Boolean) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -284,6 +333,9 @@ public class FeatureImpl extends ModelElementImpl implements Feature {
 		case Aadlv3Package.FEATURE__TYPE_REFERENCE:
 			setTypeReference((TypeReference) null);
 			return;
+		case Aadlv3Package.FEATURE__EVENT:
+			setEvent(EVENT_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -302,6 +354,8 @@ public class FeatureImpl extends ModelElementImpl implements Feature {
 			return category != CATEGORY_EDEFAULT;
 		case Aadlv3Package.FEATURE__TYPE_REFERENCE:
 			return typeReference != null;
+		case Aadlv3Package.FEATURE__EVENT:
+			return event != EVENT_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -321,6 +375,8 @@ public class FeatureImpl extends ModelElementImpl implements Feature {
 		result.append(direction);
 		result.append(", category: ");
 		result.append(category);
+		result.append(", event: ");
+		result.append(event);
 		result.append(')');
 		return result.toString();
 	}

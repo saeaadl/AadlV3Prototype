@@ -81,7 +81,7 @@ ComponentConfiguration returns av3::ComponentConfiguration:
 
 Feature returns av3::Feature:
 	name=ID ':' direction=FeatureDirection?  
-	category=FeatureCategory 
+	event?='event'? category=FeatureCategory 
 	(typeReference=ReversableTypeReference )?
 	PropertiesBlock?
 	;
@@ -175,7 +175,7 @@ fragment ConfigurationElementBlock *:
 	('is' (ConfigurationElement ';'? )+ )? 'end';
 
 fragment CurlyConfigurationElementBlock *:
-	'{' ConfigurationElement (';' ConfigurationElement )* ';'? '}';
+	'{' (ConfigurationElement ';'? )+ '}'; //ConfigurationElement (';' ConfigurationElement )* ';'? '}';
 
 fragment ConfigurationElement*: 
 	propertyAssociations+=PropertyAssociation | 
@@ -278,7 +278,7 @@ ComponentCategory returns av3::ComponentCategory: 'abstract' | 'bus'|'data'
 	| 'subprogram' | SubprogramGroupKeywords | ThreadGroupKeywords ;
 
 FeatureCategory returns av3::FeatureCategory:
-	'feature' | 'port' | DataAccessKeywords 
+	'feature' | 'port' | 'parameter' | DataAccessKeywords 
 	| BusAccessKeywords | VirtualBusAccessKeywords | SubprogramAccessKeywords | SubprogramGroupAccessKeywords
 	| BindingPointKeywords | 'interface';
 

@@ -33,7 +33,7 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected AadlV3GrammarAccess grammarAccess;
 	protected AbstractElementAlias match_ConfigurationElementBlock_SemicolonKeyword_0_1_1_q;
-	protected AbstractElementAlias match_CurlyConfigurationElementBlock_SemicolonKeyword_3_q;
+	protected AbstractElementAlias match_CurlyConfigurationElementBlock_SemicolonKeyword_1_1_q;
 	protected AbstractElementAlias match_DataType_SemicolonKeyword_4_q;
 	protected AbstractElementAlias match_ImplementationBody_SemicolonKeyword_0_1_1_q;
 	protected AbstractElementAlias match_Import_SemicolonKeyword_3_q;
@@ -48,7 +48,7 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (AadlV3GrammarAccess) access;
 		match_ConfigurationElementBlock_SemicolonKeyword_0_1_1_q = new TokenAlias(false, true, grammarAccess.getConfigurationElementBlockAccess().getSemicolonKeyword_0_1_1());
-		match_CurlyConfigurationElementBlock_SemicolonKeyword_3_q = new TokenAlias(false, true, grammarAccess.getCurlyConfigurationElementBlockAccess().getSemicolonKeyword_3());
+		match_CurlyConfigurationElementBlock_SemicolonKeyword_1_1_q = new TokenAlias(false, true, grammarAccess.getCurlyConfigurationElementBlockAccess().getSemicolonKeyword_1_1());
 		match_DataType_SemicolonKeyword_4_q = new TokenAlias(false, true, grammarAccess.getDataTypeAccess().getSemicolonKeyword_4());
 		match_ImplementationBody_SemicolonKeyword_0_1_1_q = new TokenAlias(false, true, grammarAccess.getImplementationBodyAccess().getSemicolonKeyword_0_1_1());
 		match_Import_SemicolonKeyword_3_q = new TokenAlias(false, true, grammarAccess.getImportAccess().getSemicolonKeyword_3());
@@ -84,8 +84,8 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
 			if (match_ConfigurationElementBlock_SemicolonKeyword_0_1_1_q.equals(syntax))
 				emit_ConfigurationElementBlock_SemicolonKeyword_0_1_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_CurlyConfigurationElementBlock_SemicolonKeyword_3_q.equals(syntax))
-				emit_CurlyConfigurationElementBlock_SemicolonKeyword_3_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_CurlyConfigurationElementBlock_SemicolonKeyword_1_1_q.equals(syntax))
+				emit_CurlyConfigurationElementBlock_SemicolonKeyword_1_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_DataType_SemicolonKeyword_4_q.equals(syntax))
 				emit_DataType_SemicolonKeyword_4_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_ImplementationBody_SemicolonKeyword_0_1_1_q.equals(syntax))
@@ -144,11 +144,27 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     bindings+=Binding (ambiguity) '}' (rule end)
+	 *     bindings+=Binding (ambiguity) bindings+=Binding
+	 *     bindings+=Binding (ambiguity) configurationAssignments+=ConfigurationAssignment
+	 *     bindings+=Binding (ambiguity) configurationAssignments+=ConfigurationAssignmentPattern
+	 *     bindings+=Binding (ambiguity) propertyAssociations+=PropertyAssociation
 	 *     configurationAssignments+=ConfigurationAssignment (ambiguity) '}' (rule end)
+	 *     configurationAssignments+=ConfigurationAssignment (ambiguity) bindings+=Binding
+	 *     configurationAssignments+=ConfigurationAssignment (ambiguity) configurationAssignments+=ConfigurationAssignment
+	 *     configurationAssignments+=ConfigurationAssignment (ambiguity) configurationAssignments+=ConfigurationAssignmentPattern
+	 *     configurationAssignments+=ConfigurationAssignment (ambiguity) propertyAssociations+=PropertyAssociation
 	 *     configurationAssignments+=ConfigurationAssignmentPattern (ambiguity) '}' (rule end)
+	 *     configurationAssignments+=ConfigurationAssignmentPattern (ambiguity) bindings+=Binding
+	 *     configurationAssignments+=ConfigurationAssignmentPattern (ambiguity) configurationAssignments+=ConfigurationAssignment
+	 *     configurationAssignments+=ConfigurationAssignmentPattern (ambiguity) configurationAssignments+=ConfigurationAssignmentPattern
+	 *     configurationAssignments+=ConfigurationAssignmentPattern (ambiguity) propertyAssociations+=PropertyAssociation
 	 *     propertyAssociations+=PropertyAssociation (ambiguity) '}' (rule end)
+	 *     propertyAssociations+=PropertyAssociation (ambiguity) bindings+=Binding
+	 *     propertyAssociations+=PropertyAssociation (ambiguity) configurationAssignments+=ConfigurationAssignment
+	 *     propertyAssociations+=PropertyAssociation (ambiguity) configurationAssignments+=ConfigurationAssignmentPattern
+	 *     propertyAssociations+=PropertyAssociation (ambiguity) propertyAssociations+=PropertyAssociation
 	 */
-	protected void emit_CurlyConfigurationElementBlock_SemicolonKeyword_3_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_CurlyConfigurationElementBlock_SemicolonKeyword_1_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

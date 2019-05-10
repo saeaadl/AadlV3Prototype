@@ -230,6 +230,21 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseModeTransitionTrigger(ModeTransitionTrigger object) {
+			return createModeTransitionTriggerAdapter();
+		}
+
+		@Override
+		public Adapter caseModeTransitionTriggerAssignment(ModeTransitionTriggerAssignment object) {
+			return createModeTransitionTriggerAssignmentAdapter();
+		}
+
+		@Override
+		public Adapter caseModeAssignment(ModeAssignment object) {
+			return createModeAssignmentAdapter();
+		}
+
+		@Override
 		public Adapter caseModeStateMachine(ModeStateMachine object) {
 			return createModeStateMachineAdapter();
 		}
@@ -628,6 +643,48 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createModeTransitionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.ModeTransitionTrigger <em>Mode Transition Trigger</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.osate.aadlv3.aadlv3.ModeTransitionTrigger
+	 * @generated
+	 */
+	public Adapter createModeTransitionTriggerAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.ModeTransitionTriggerAssignment <em>Mode Transition Trigger Assignment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.osate.aadlv3.aadlv3.ModeTransitionTriggerAssignment
+	 * @generated
+	 */
+	public Adapter createModeTransitionTriggerAssignmentAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.ModeAssignment <em>Mode Assignment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.osate.aadlv3.aadlv3.ModeAssignment
+	 * @generated
+	 */
+	public Adapter createModeAssignmentAdapter() {
 		return null;
 	}
 

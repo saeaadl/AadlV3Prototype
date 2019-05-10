@@ -233,6 +233,33 @@ public interface Aadlv3Factory extends EFactory {
 	ModeTransition createModeTransition();
 
 	/**
+	 * Returns a new object of class '<em>Mode Transition Trigger</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Mode Transition Trigger</em>'.
+	 * @generated
+	 */
+	ModeTransitionTrigger createModeTransitionTrigger();
+
+	/**
+	 * Returns a new object of class '<em>Mode Transition Trigger Assignment</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Mode Transition Trigger Assignment</em>'.
+	 * @generated
+	 */
+	ModeTransitionTriggerAssignment createModeTransitionTriggerAssignment();
+
+	/**
+	 * Returns a new object of class '<em>Mode Assignment</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Mode Assignment</em>'.
+	 * @generated
+	 */
+	ModeAssignment createModeAssignment();
+
+	/**
 	 * Returns a new object of class '<em>Mode State Machine</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

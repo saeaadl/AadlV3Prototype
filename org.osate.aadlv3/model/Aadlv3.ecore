@@ -88,6 +88,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="category" eType="#//FeatureCategory"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="typeReference" eType="#//TypeReference"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="event" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Component" eSuperTypes="#//ModelElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="category" eType="#//ComponentCategory"/>
@@ -185,6 +186,7 @@
     <eLiterals name="abstract" value="15" literal="abstract"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="FeatureCategory">
+    <eAnnotations/>
     <eLiterals name="feature" literal="feature"/>
     <eLiterals name="port" value="1" literal="port"/>
     <eLiterals name="dataaccess" value="2" literal="data access"/>
@@ -194,6 +196,7 @@
     <eLiterals name="virtualbusaccess" value="6" literal="virtual bus access"/>
     <eLiterals name="subprogramaccess" value="7" literal="subprogram access"/>
     <eLiterals name="subprogramgroupaccess" value="8" literal="subprogram group access"/>
+    <eLiterals name="parameter" value="9" literal="parameter"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="FeatureDirection">
     <eLiterals name="NONE" literal="none"/>

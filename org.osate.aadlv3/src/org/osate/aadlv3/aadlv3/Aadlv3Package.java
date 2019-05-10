@@ -346,13 +346,22 @@ public interface Aadlv3Package extends EPackage {
 	int MODEL_ELEMENT__PROPERTY_ASSOCIATIONS = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>In Modes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT__IN_MODES = NAMED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Model Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int MODEL_ELEMENT_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.TypeImpl <em>Type</em>}' class.
@@ -493,13 +502,13 @@ public interface Aadlv3Package extends EPackage {
 	int COMPONENT_CLASSIFIER__USE_MODES = PACKAGE_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Requires Modes</b></em>' attribute.
+	 * The feature id for the '<em><b>Inherits Modes</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_CLASSIFIER__REQUIRES_MODES = PACKAGE_ELEMENT_FEATURE_COUNT + 4;
+	int COMPONENT_CLASSIFIER__INHERITS_MODES = PACKAGE_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Component Classifier</em>' class.
@@ -585,13 +594,13 @@ public interface Aadlv3Package extends EPackage {
 	int COMPONENT_REALIZATION__USE_MODES = COMPONENT_CLASSIFIER__USE_MODES;
 
 	/**
-	 * The feature id for the '<em><b>Requires Modes</b></em>' attribute.
+	 * The feature id for the '<em><b>Inherits Modes</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_REALIZATION__REQUIRES_MODES = COMPONENT_CLASSIFIER__REQUIRES_MODES;
+	int COMPONENT_REALIZATION__INHERITS_MODES = COMPONENT_CLASSIFIER__INHERITS_MODES;
 
 	/**
 	 * The feature id for the '<em><b>Cached Interface Reference</b></em>' reference.
@@ -675,13 +684,13 @@ public interface Aadlv3Package extends EPackage {
 	int COMPONENT_INTERFACE__USE_MODES = COMPONENT_CLASSIFIER__USE_MODES;
 
 	/**
-	 * The feature id for the '<em><b>Requires Modes</b></em>' attribute.
+	 * The feature id for the '<em><b>Inherits Modes</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_INTERFACE__REQUIRES_MODES = COMPONENT_CLASSIFIER__REQUIRES_MODES;
+	int COMPONENT_INTERFACE__INHERITS_MODES = COMPONENT_CLASSIFIER__INHERITS_MODES;
 
 	/**
 	 * The feature id for the '<em><b>Features</b></em>' containment reference list.
@@ -784,13 +793,13 @@ public interface Aadlv3Package extends EPackage {
 	int COMPONENT_IMPLEMENTATION__USE_MODES = COMPONENT_REALIZATION__USE_MODES;
 
 	/**
-	 * The feature id for the '<em><b>Requires Modes</b></em>' attribute.
+	 * The feature id for the '<em><b>Inherits Modes</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_IMPLEMENTATION__REQUIRES_MODES = COMPONENT_REALIZATION__REQUIRES_MODES;
+	int COMPONENT_IMPLEMENTATION__INHERITS_MODES = COMPONENT_REALIZATION__INHERITS_MODES;
 
 	/**
 	 * The feature id for the '<em><b>Cached Interface Reference</b></em>' reference.
@@ -929,13 +938,13 @@ public interface Aadlv3Package extends EPackage {
 	int COMPONENT_CONFIGURATION__USE_MODES = COMPONENT_REALIZATION__USE_MODES;
 
 	/**
-	 * The feature id for the '<em><b>Requires Modes</b></em>' attribute.
+	 * The feature id for the '<em><b>Inherits Modes</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_CONFIGURATION__REQUIRES_MODES = COMPONENT_REALIZATION__REQUIRES_MODES;
+	int COMPONENT_CONFIGURATION__INHERITS_MODES = COMPONENT_REALIZATION__INHERITS_MODES;
 
 	/**
 	 * The feature id for the '<em><b>Cached Interface Reference</b></em>' reference.
@@ -1020,6 +1029,15 @@ public interface Aadlv3Package extends EPackage {
 	int FEATURE__PROPERTY_ASSOCIATIONS = MODEL_ELEMENT__PROPERTY_ASSOCIATIONS;
 
 	/**
+	 * The feature id for the '<em><b>In Modes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__IN_MODES = MODEL_ELEMENT__IN_MODES;
+
+	/**
 	 * The feature id for the '<em><b>Direction</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1047,13 +1065,22 @@ public interface Aadlv3Package extends EPackage {
 	int FEATURE__TYPE_REFERENCE = MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Event</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__EVENT = MODEL_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Feature</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 3;
+	int FEATURE_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.ComponentImpl <em>Component</em>}' class.
@@ -1082,6 +1109,15 @@ public interface Aadlv3Package extends EPackage {
 	 * @ordered
 	 */
 	int COMPONENT__PROPERTY_ASSOCIATIONS = MODEL_ELEMENT__PROPERTY_ASSOCIATIONS;
+
+	/**
+	 * The feature id for the '<em><b>In Modes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT__IN_MODES = MODEL_ELEMENT__IN_MODES;
 
 	/**
 	 * The feature id for the '<em><b>Category</b></em>' attribute.
@@ -1210,6 +1246,15 @@ public interface Aadlv3Package extends EPackage {
 	 * @ordered
 	 */
 	int ASSOCIATION__PROPERTY_ASSOCIATIONS = MODEL_ELEMENT__PROPERTY_ASSOCIATIONS;
+
+	/**
+	 * The feature id for the '<em><b>In Modes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION__IN_MODES = MODEL_ELEMENT__IN_MODES;
 
 	/**
 	 * The feature id for the '<em><b>Association Type</b></em>' attribute.
@@ -1373,6 +1418,15 @@ public interface Aadlv3Package extends EPackage {
 	 * @ordered
 	 */
 	int PATH_SEQUENCE__PROPERTY_ASSOCIATIONS = MODEL_ELEMENT__PROPERTY_ASSOCIATIONS;
+
+	/**
+	 * The feature id for the '<em><b>In Modes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATH_SEQUENCE__IN_MODES = MODEL_ELEMENT__IN_MODES;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' containment reference.
@@ -1836,6 +1890,15 @@ public interface Aadlv3Package extends EPackage {
 	int MODE__PROPERTY_ASSOCIATIONS = MODEL_ELEMENT__PROPERTY_ASSOCIATIONS;
 
 	/**
+	 * The feature id for the '<em><b>In Modes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODE__IN_MODES = MODEL_ELEMENT__IN_MODES;
+
+	/**
 	 * The feature id for the '<em><b>Initial</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1882,6 +1945,15 @@ public interface Aadlv3Package extends EPackage {
 	int MODE_TRANSITION__PROPERTY_ASSOCIATIONS = MODEL_ELEMENT__PROPERTY_ASSOCIATIONS;
 
 	/**
+	 * The feature id for the '<em><b>In Modes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODE_TRANSITION__IN_MODES = MODEL_ELEMENT__IN_MODES;
+
+	/**
 	 * The feature id for the '<em><b>Source</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1900,13 +1972,124 @@ public interface Aadlv3Package extends EPackage {
 	int MODE_TRANSITION__TARGET = MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Triggers</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODE_TRANSITION__TRIGGERS = MODEL_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Mode Transition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODE_TRANSITION_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 2;
+	int MODE_TRANSITION_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.ModeTransitionTriggerImpl <em>Mode Transition Trigger</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.osate.aadlv3.aadlv3.impl.ModeTransitionTriggerImpl
+	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getModeTransitionTrigger()
+	 * @generated
+	 */
+	int MODE_TRANSITION_TRIGGER = 30;
+
+	/**
+	 * The feature id for the '<em><b>Context</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODE_TRANSITION_TRIGGER__CONTEXT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Trigger</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODE_TRANSITION_TRIGGER__TRIGGER = 1;
+
+	/**
+	 * The number of structural features of the '<em>Mode Transition Trigger</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODE_TRANSITION_TRIGGER_FEATURE_COUNT = 2;
+
+	/**
+	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.ModeTransitionTriggerAssignmentImpl <em>Mode Transition Trigger Assignment</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.osate.aadlv3.aadlv3.impl.ModeTransitionTriggerAssignmentImpl
+	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getModeTransitionTriggerAssignment()
+	 * @generated
+	 */
+	int MODE_TRANSITION_TRIGGER_ASSIGNMENT = 31;
+
+	/**
+	 * The feature id for the '<em><b>Triggers</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODE_TRANSITION_TRIGGER_ASSIGNMENT__TRIGGERS = 0;
+
+	/**
+	 * The feature id for the '<em><b>Transition</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODE_TRANSITION_TRIGGER_ASSIGNMENT__TRANSITION = 1;
+
+	/**
+	 * The number of structural features of the '<em>Mode Transition Trigger Assignment</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODE_TRANSITION_TRIGGER_ASSIGNMENT_FEATURE_COUNT = 2;
+
+	/**
+	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.ModeAssignmentImpl <em>Mode Assignment</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.osate.aadlv3.aadlv3.impl.ModeAssignmentImpl
+	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getModeAssignment()
+	 * @generated
+	 */
+	int MODE_ASSIGNMENT = 32;
+
+	/**
+	 * The feature id for the '<em><b>Members</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODE_ASSIGNMENT__MEMBERS = 0;
+
+	/**
+	 * The number of structural features of the '<em>Mode Assignment</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODE_ASSIGNMENT_FEATURE_COUNT = 1;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.ModeStateMachineImpl <em>Mode State Machine</em>}' class.
@@ -1916,7 +2099,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getModeStateMachine()
 	 * @generated
 	 */
-	int MODE_STATE_MACHINE = 30;
+	int MODE_STATE_MACHINE = 33;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1971,7 +2154,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getComponentCategory()
 	 * @generated
 	 */
-	int COMPONENT_CATEGORY = 31;
+	int COMPONENT_CATEGORY = 34;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.FeatureCategory <em>Feature Category</em>}' enum.
@@ -1981,7 +2164,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getFeatureCategory()
 	 * @generated
 	 */
-	int FEATURE_CATEGORY = 32;
+	int FEATURE_CATEGORY = 35;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.FeatureDirection <em>Feature Direction</em>}' enum.
@@ -1991,7 +2174,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getFeatureDirection()
 	 * @generated
 	 */
-	int FEATURE_DIRECTION = 33;
+	int FEATURE_DIRECTION = 36;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.AssociationType <em>Association Type</em>}' enum.
@@ -2001,7 +2184,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getAssociationType()
 	 * @generated
 	 */
-	int ASSOCIATION_TYPE = 34;
+	int ASSOCIATION_TYPE = 37;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.PropertyAssociationType <em>Property Association Type</em>}' enum.
@@ -2011,7 +2194,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getPropertyAssociationType()
 	 * @generated
 	 */
-	int PROPERTY_ASSOCIATION_TYPE = 35;
+	int PROPERTY_ASSOCIATION_TYPE = 38;
 
 	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.PackageDeclaration <em>Package Declaration</em>}'.
@@ -2195,6 +2378,17 @@ public interface Aadlv3Package extends EPackage {
 	EReference getModelElement_PropertyAssociations();
 
 	/**
+	 * Returns the meta object for the reference list '{@link org.osate.aadlv3.aadlv3.ModelElement#getInModes <em>In Modes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>In Modes</em>'.
+	 * @see org.osate.aadlv3.aadlv3.ModelElement#getInModes()
+	 * @see #getModelElement()
+	 * @generated
+	 */
+	EReference getModelElement_InModes();
+
+	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.Type <em>Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2280,15 +2474,15 @@ public interface Aadlv3Package extends EPackage {
 	EReference getComponentClassifier_UseModes();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.osate.aadlv3.aadlv3.ComponentClassifier#isRequiresModes <em>Requires Modes</em>}'.
+	 * Returns the meta object for the attribute '{@link org.osate.aadlv3.aadlv3.ComponentClassifier#isInheritsModes <em>Inherits Modes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Requires Modes</em>'.
-	 * @see org.osate.aadlv3.aadlv3.ComponentClassifier#isRequiresModes()
+	 * @return the meta object for the attribute '<em>Inherits Modes</em>'.
+	 * @see org.osate.aadlv3.aadlv3.ComponentClassifier#isInheritsModes()
 	 * @see #getComponentClassifier()
 	 * @generated
 	 */
-	EAttribute getComponentClassifier_RequiresModes();
+	EAttribute getComponentClassifier_InheritsModes();
 
 	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.ComponentInterface <em>Component Interface</em>}'.
@@ -2483,6 +2677,17 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 */
 	EReference getFeature_TypeReference();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.osate.aadlv3.aadlv3.Feature#isEvent <em>Event</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Event</em>'.
+	 * @see org.osate.aadlv3.aadlv3.Feature#isEvent()
+	 * @see #getFeature()
+	 * @generated
+	 */
+	EAttribute getFeature_Event();
 
 	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.Component <em>Component</em>}'.
@@ -3032,6 +3237,102 @@ public interface Aadlv3Package extends EPackage {
 	EReference getModeTransition_Target();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link org.osate.aadlv3.aadlv3.ModeTransition#getTriggers <em>Triggers</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Triggers</em>'.
+	 * @see org.osate.aadlv3.aadlv3.ModeTransition#getTriggers()
+	 * @see #getModeTransition()
+	 * @generated
+	 */
+	EReference getModeTransition_Triggers();
+
+	/**
+	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.ModeTransitionTrigger <em>Mode Transition Trigger</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Mode Transition Trigger</em>'.
+	 * @see org.osate.aadlv3.aadlv3.ModeTransitionTrigger
+	 * @generated
+	 */
+	EClass getModeTransitionTrigger();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.osate.aadlv3.aadlv3.ModeTransitionTrigger#getContext <em>Context</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Context</em>'.
+	 * @see org.osate.aadlv3.aadlv3.ModeTransitionTrigger#getContext()
+	 * @see #getModeTransitionTrigger()
+	 * @generated
+	 */
+	EReference getModeTransitionTrigger_Context();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.osate.aadlv3.aadlv3.ModeTransitionTrigger#getTrigger <em>Trigger</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Trigger</em>'.
+	 * @see org.osate.aadlv3.aadlv3.ModeTransitionTrigger#getTrigger()
+	 * @see #getModeTransitionTrigger()
+	 * @generated
+	 */
+	EReference getModeTransitionTrigger_Trigger();
+
+	/**
+	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.ModeTransitionTriggerAssignment <em>Mode Transition Trigger Assignment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Mode Transition Trigger Assignment</em>'.
+	 * @see org.osate.aadlv3.aadlv3.ModeTransitionTriggerAssignment
+	 * @generated
+	 */
+	EClass getModeTransitionTriggerAssignment();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.osate.aadlv3.aadlv3.ModeTransitionTriggerAssignment#getTriggers <em>Triggers</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Triggers</em>'.
+	 * @see org.osate.aadlv3.aadlv3.ModeTransitionTriggerAssignment#getTriggers()
+	 * @see #getModeTransitionTriggerAssignment()
+	 * @generated
+	 */
+	EReference getModeTransitionTriggerAssignment_Triggers();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.osate.aadlv3.aadlv3.ModeTransitionTriggerAssignment#getTransition <em>Transition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Transition</em>'.
+	 * @see org.osate.aadlv3.aadlv3.ModeTransitionTriggerAssignment#getTransition()
+	 * @see #getModeTransitionTriggerAssignment()
+	 * @generated
+	 */
+	EReference getModeTransitionTriggerAssignment_Transition();
+
+	/**
+	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.ModeAssignment <em>Mode Assignment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Mode Assignment</em>'.
+	 * @see org.osate.aadlv3.aadlv3.ModeAssignment
+	 * @generated
+	 */
+	EClass getModeAssignment();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.osate.aadlv3.aadlv3.ModeAssignment#getMembers <em>Members</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Members</em>'.
+	 * @see org.osate.aadlv3.aadlv3.ModeAssignment#getMembers()
+	 * @see #getModeAssignment()
+	 * @generated
+	 */
+	EReference getModeAssignment_Members();
+
+	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.ModeStateMachine <em>Mode State Machine</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3380,6 +3681,14 @@ public interface Aadlv3Package extends EPackage {
 		EReference MODEL_ELEMENT__PROPERTY_ASSOCIATIONS = eINSTANCE.getModelElement_PropertyAssociations();
 
 		/**
+		 * The meta object literal for the '<em><b>In Modes</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MODEL_ELEMENT__IN_MODES = eINSTANCE.getModelElement_InModes();
+
+		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.TypeImpl <em>Type</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3451,12 +3760,12 @@ public interface Aadlv3Package extends EPackage {
 		EReference COMPONENT_CLASSIFIER__USE_MODES = eINSTANCE.getComponentClassifier_UseModes();
 
 		/**
-		 * The meta object literal for the '<em><b>Requires Modes</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Inherits Modes</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute COMPONENT_CLASSIFIER__REQUIRES_MODES = eINSTANCE.getComponentClassifier_RequiresModes();
+		EAttribute COMPONENT_CLASSIFIER__INHERITS_MODES = eINSTANCE.getComponentClassifier_InheritsModes();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.ComponentInterfaceImpl <em>Component Interface</em>}' class.
@@ -3609,6 +3918,14 @@ public interface Aadlv3Package extends EPackage {
 		 * @generated
 		 */
 		EReference FEATURE__TYPE_REFERENCE = eINSTANCE.getFeature_TypeReference();
+
+		/**
+		 * The meta object literal for the '<em><b>Event</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FEATURE__EVENT = eINSTANCE.getFeature_Event();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.ComponentImpl <em>Component</em>}' class.
@@ -4050,6 +4367,86 @@ public interface Aadlv3Package extends EPackage {
 		 * @generated
 		 */
 		EReference MODE_TRANSITION__TARGET = eINSTANCE.getModeTransition_Target();
+
+		/**
+		 * The meta object literal for the '<em><b>Triggers</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MODE_TRANSITION__TRIGGERS = eINSTANCE.getModeTransition_Triggers();
+
+		/**
+		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.ModeTransitionTriggerImpl <em>Mode Transition Trigger</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.osate.aadlv3.aadlv3.impl.ModeTransitionTriggerImpl
+		 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getModeTransitionTrigger()
+		 * @generated
+		 */
+		EClass MODE_TRANSITION_TRIGGER = eINSTANCE.getModeTransitionTrigger();
+
+		/**
+		 * The meta object literal for the '<em><b>Context</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MODE_TRANSITION_TRIGGER__CONTEXT = eINSTANCE.getModeTransitionTrigger_Context();
+
+		/**
+		 * The meta object literal for the '<em><b>Trigger</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MODE_TRANSITION_TRIGGER__TRIGGER = eINSTANCE.getModeTransitionTrigger_Trigger();
+
+		/**
+		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.ModeTransitionTriggerAssignmentImpl <em>Mode Transition Trigger Assignment</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.osate.aadlv3.aadlv3.impl.ModeTransitionTriggerAssignmentImpl
+		 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getModeTransitionTriggerAssignment()
+		 * @generated
+		 */
+		EClass MODE_TRANSITION_TRIGGER_ASSIGNMENT = eINSTANCE.getModeTransitionTriggerAssignment();
+
+		/**
+		 * The meta object literal for the '<em><b>Triggers</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MODE_TRANSITION_TRIGGER_ASSIGNMENT__TRIGGERS = eINSTANCE
+				.getModeTransitionTriggerAssignment_Triggers();
+
+		/**
+		 * The meta object literal for the '<em><b>Transition</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MODE_TRANSITION_TRIGGER_ASSIGNMENT__TRANSITION = eINSTANCE
+				.getModeTransitionTriggerAssignment_Transition();
+
+		/**
+		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.ModeAssignmentImpl <em>Mode Assignment</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.osate.aadlv3.aadlv3.impl.ModeAssignmentImpl
+		 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getModeAssignment()
+		 * @generated
+		 */
+		EClass MODE_ASSIGNMENT = eINSTANCE.getModeAssignment();
+
+		/**
+		 * The meta object literal for the '<em><b>Members</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MODE_ASSIGNMENT__MEMBERS = eINSTANCE.getModeAssignment_Members();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.ModeStateMachineImpl <em>Mode State Machine</em>}' class.

@@ -49,7 +49,7 @@ import org.osate.aadlv3.aadlv3.TypeReference;
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentClassifierImpl#getSuperClassifiers <em>Super Classifiers</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentClassifierImpl#getPropertyAssociations <em>Property Associations</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentClassifierImpl#getUseModes <em>Use Modes</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentClassifierImpl#isRequiresModes <em>Requires Modes</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentClassifierImpl#isInheritsModes <em>Inherits Modes</em>}</li>
  * </ul>
  *
  * @generated
@@ -106,24 +106,24 @@ public abstract class ComponentClassifierImpl extends PackageElementImpl impleme
 	protected ModeStateMachine useModes;
 
 	/**
-	 * The default value of the '{@link #isRequiresModes() <em>Requires Modes</em>}' attribute.
+	 * The default value of the '{@link #isInheritsModes() <em>Inherits Modes</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isRequiresModes()
+	 * @see #isInheritsModes()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean REQUIRES_MODES_EDEFAULT = false;
+	protected static final boolean INHERITS_MODES_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isRequiresModes() <em>Requires Modes</em>}' attribute.
+	 * The cached value of the '{@link #isInheritsModes() <em>Inherits Modes</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isRequiresModes()
+	 * @see #isInheritsModes()
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean requiresModes = REQUIRES_MODES_EDEFAULT;
+	protected boolean inheritsModes = INHERITS_MODES_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -244,8 +244,8 @@ public abstract class ComponentClassifierImpl extends PackageElementImpl impleme
 	 * @generated
 	 */
 	@Override
-	public boolean isRequiresModes() {
-		return requiresModes;
+	public boolean isInheritsModes() {
+		return inheritsModes;
 	}
 
 	/**
@@ -254,12 +254,12 @@ public abstract class ComponentClassifierImpl extends PackageElementImpl impleme
 	 * @generated
 	 */
 	@Override
-	public void setRequiresModes(boolean newRequiresModes) {
-		boolean oldRequiresModes = requiresModes;
-		requiresModes = newRequiresModes;
+	public void setInheritsModes(boolean newInheritsModes) {
+		boolean oldInheritsModes = inheritsModes;
+		inheritsModes = newInheritsModes;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.COMPONENT_CLASSIFIER__REQUIRES_MODES,
-					oldRequiresModes, requiresModes));
+			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.COMPONENT_CLASSIFIER__INHERITS_MODES,
+					oldInheritsModes, inheritsModes));
 	}
 
 	/**
@@ -296,8 +296,8 @@ public abstract class ComponentClassifierImpl extends PackageElementImpl impleme
 			if (resolve)
 				return getUseModes();
 			return basicGetUseModes();
-		case Aadlv3Package.COMPONENT_CLASSIFIER__REQUIRES_MODES:
-			return isRequiresModes();
+		case Aadlv3Package.COMPONENT_CLASSIFIER__INHERITS_MODES:
+			return isInheritsModes();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -325,8 +325,8 @@ public abstract class ComponentClassifierImpl extends PackageElementImpl impleme
 		case Aadlv3Package.COMPONENT_CLASSIFIER__USE_MODES:
 			setUseModes((ModeStateMachine) newValue);
 			return;
-		case Aadlv3Package.COMPONENT_CLASSIFIER__REQUIRES_MODES:
-			setRequiresModes((Boolean) newValue);
+		case Aadlv3Package.COMPONENT_CLASSIFIER__INHERITS_MODES:
+			setInheritsModes((Boolean) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -352,8 +352,8 @@ public abstract class ComponentClassifierImpl extends PackageElementImpl impleme
 		case Aadlv3Package.COMPONENT_CLASSIFIER__USE_MODES:
 			setUseModes((ModeStateMachine) null);
 			return;
-		case Aadlv3Package.COMPONENT_CLASSIFIER__REQUIRES_MODES:
-			setRequiresModes(REQUIRES_MODES_EDEFAULT);
+		case Aadlv3Package.COMPONENT_CLASSIFIER__INHERITS_MODES:
+			setInheritsModes(INHERITS_MODES_EDEFAULT);
 			return;
 		}
 		super.eUnset(featureID);
@@ -375,8 +375,8 @@ public abstract class ComponentClassifierImpl extends PackageElementImpl impleme
 			return propertyAssociations != null && !propertyAssociations.isEmpty();
 		case Aadlv3Package.COMPONENT_CLASSIFIER__USE_MODES:
 			return useModes != null;
-		case Aadlv3Package.COMPONENT_CLASSIFIER__REQUIRES_MODES:
-			return requiresModes != REQUIRES_MODES_EDEFAULT;
+		case Aadlv3Package.COMPONENT_CLASSIFIER__INHERITS_MODES:
+			return inheritsModes != INHERITS_MODES_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -394,8 +394,8 @@ public abstract class ComponentClassifierImpl extends PackageElementImpl impleme
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (category: ");
 		result.append(category);
-		result.append(", requiresModes: ");
-		result.append(requiresModes);
+		result.append(", inheritsModes: ");
+		result.append(inheritsModes);
 		result.append(')');
 		return result.toString();
 	}

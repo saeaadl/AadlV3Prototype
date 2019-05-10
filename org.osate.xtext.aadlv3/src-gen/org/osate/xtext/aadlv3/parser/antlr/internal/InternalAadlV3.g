@@ -1489,10 +1489,24 @@ ruleFeature returns [EObject current=null]
 		)?
 		(
 			(
+				lv_event_3_0='event'
 				{
-					newCompositeNode(grammarAccess.getFeatureAccess().getCategoryFeatureCategoryParserRuleCall_3_0());
+					newLeafNode(lv_event_3_0, grammarAccess.getFeatureAccess().getEventEventKeyword_3_0());
 				}
-				lv_category_3_0=ruleFeatureCategory
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getFeatureRule());
+					}
+					setWithLastConsumed($current, "event", true, "event");
+				}
+			)
+		)?
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getFeatureAccess().getCategoryFeatureCategoryParserRuleCall_4_0());
+				}
+				lv_category_4_0=ruleFeatureCategory
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getFeatureRule());
@@ -1500,7 +1514,7 @@ ruleFeature returns [EObject current=null]
 					set(
 						$current,
 						"category",
-						lv_category_3_0,
+						lv_category_4_0,
 						"org.osate.xtext.aadlv3.AadlV3.FeatureCategory");
 					afterParserOrEnumRuleCall();
 				}
@@ -1509,9 +1523,9 @@ ruleFeature returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getFeatureAccess().getTypeReferenceReversableTypeReferenceParserRuleCall_4_0());
+					newCompositeNode(grammarAccess.getFeatureAccess().getTypeReferenceReversableTypeReferenceParserRuleCall_5_0());
 				}
-				lv_typeReference_4_0=ruleReversableTypeReference
+				lv_typeReference_5_0=ruleReversableTypeReference
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getFeatureRule());
@@ -1519,7 +1533,7 @@ ruleFeature returns [EObject current=null]
 					set(
 						$current,
 						"typeReference",
-						lv_typeReference_4_0,
+						lv_typeReference_5_0,
 						"org.osate.xtext.aadlv3.AadlV3.ReversableTypeReference");
 					afterParserOrEnumRuleCall();
 				}
@@ -1533,11 +1547,11 @@ ruleFeature returns [EObject current=null]
 				if ($current==null) {
 					$current = createModelElement(grammarAccess.getFeatureRule());
 				}
-				newCompositeNode(grammarAccess.getFeatureAccess().getPropertiesBlockParserRuleCall_5());
+				newCompositeNode(grammarAccess.getFeatureAccess().getPropertiesBlockParserRuleCall_6());
 			}
-			this_PropertiesBlock_5=rulePropertiesBlock[$current]
+			this_PropertiesBlock_6=rulePropertiesBlock[$current]
 			{
-				$current = $this_PropertiesBlock_5.current;
+				$current = $this_PropertiesBlock_6.current;
 				afterParserOrEnumRuleCall();
 			}
 		)?
@@ -3300,25 +3314,7 @@ ruleCurlyConfigurationElementBlock[EObject in_current]  returns [EObject current
 		{
 			newLeafNode(otherlv_0, grammarAccess.getCurlyConfigurationElementBlockAccess().getLeftCurlyBracketKeyword_0());
 		}
-		{
-			/* */
-		}
-		{
-			if ($current==null) {
-				$current = createModelElement(grammarAccess.getCurlyConfigurationElementBlockRule());
-			}
-			newCompositeNode(grammarAccess.getCurlyConfigurationElementBlockAccess().getConfigurationElementParserRuleCall_1());
-		}
-		this_ConfigurationElement_1=ruleConfigurationElement[$current]
-		{
-			$current = $this_ConfigurationElement_1.current;
-			afterParserOrEnumRuleCall();
-		}
 		(
-			otherlv_2=';'
-			{
-				newLeafNode(otherlv_2, grammarAccess.getCurlyConfigurationElementBlockAccess().getSemicolonKeyword_2_0());
-			}
 			{
 				/* */
 			}
@@ -3326,23 +3322,23 @@ ruleCurlyConfigurationElementBlock[EObject in_current]  returns [EObject current
 				if ($current==null) {
 					$current = createModelElement(grammarAccess.getCurlyConfigurationElementBlockRule());
 				}
-				newCompositeNode(grammarAccess.getCurlyConfigurationElementBlockAccess().getConfigurationElementParserRuleCall_2_1());
+				newCompositeNode(grammarAccess.getCurlyConfigurationElementBlockAccess().getConfigurationElementParserRuleCall_1_0());
 			}
-			this_ConfigurationElement_3=ruleConfigurationElement[$current]
+			this_ConfigurationElement_1=ruleConfigurationElement[$current]
 			{
-				$current = $this_ConfigurationElement_3.current;
+				$current = $this_ConfigurationElement_1.current;
 				afterParserOrEnumRuleCall();
 			}
-		)*
-		(
-			otherlv_4=';'
-			{
-				newLeafNode(otherlv_4, grammarAccess.getCurlyConfigurationElementBlockAccess().getSemicolonKeyword_3());
-			}
-		)?
-		otherlv_5='}'
+			(
+				otherlv_2=';'
+				{
+					newLeafNode(otherlv_2, grammarAccess.getCurlyConfigurationElementBlockAccess().getSemicolonKeyword_1_1());
+				}
+			)?
+		)+
+		otherlv_3='}'
 		{
-			newLeafNode(otherlv_5, grammarAccess.getCurlyConfigurationElementBlockAccess().getRightCurlyBracketKeyword_4());
+			newLeafNode(otherlv_3, grammarAccess.getCurlyConfigurationElementBlockAccess().getRightCurlyBracketKeyword_2());
 		}
 	)
 ;
@@ -4870,67 +4866,73 @@ ruleFeatureCategory returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRul
 			newLeafNode(kw, grammarAccess.getFeatureCategoryAccess().getPortKeyword_1());
 		}
 		    |
+		kw='parameter'
 		{
-			newCompositeNode(grammarAccess.getFeatureCategoryAccess().getDataAccessKeywordsParserRuleCall_2());
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getFeatureCategoryAccess().getParameterKeyword_2());
 		}
-		this_DataAccessKeywords_2=ruleDataAccessKeywords
+		    |
 		{
-			$current.merge(this_DataAccessKeywords_2);
+			newCompositeNode(grammarAccess.getFeatureCategoryAccess().getDataAccessKeywordsParserRuleCall_3());
+		}
+		this_DataAccessKeywords_3=ruleDataAccessKeywords
+		{
+			$current.merge(this_DataAccessKeywords_3);
 		}
 		{
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getFeatureCategoryAccess().getBusAccessKeywordsParserRuleCall_3());
+			newCompositeNode(grammarAccess.getFeatureCategoryAccess().getBusAccessKeywordsParserRuleCall_4());
 		}
-		this_BusAccessKeywords_3=ruleBusAccessKeywords
+		this_BusAccessKeywords_4=ruleBusAccessKeywords
 		{
-			$current.merge(this_BusAccessKeywords_3);
-		}
-		{
-			afterParserOrEnumRuleCall();
-		}
-		    |
-		{
-			newCompositeNode(grammarAccess.getFeatureCategoryAccess().getVirtualBusAccessKeywordsParserRuleCall_4());
-		}
-		this_VirtualBusAccessKeywords_4=ruleVirtualBusAccessKeywords
-		{
-			$current.merge(this_VirtualBusAccessKeywords_4);
+			$current.merge(this_BusAccessKeywords_4);
 		}
 		{
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getFeatureCategoryAccess().getSubprogramAccessKeywordsParserRuleCall_5());
+			newCompositeNode(grammarAccess.getFeatureCategoryAccess().getVirtualBusAccessKeywordsParserRuleCall_5());
 		}
-		this_SubprogramAccessKeywords_5=ruleSubprogramAccessKeywords
+		this_VirtualBusAccessKeywords_5=ruleVirtualBusAccessKeywords
 		{
-			$current.merge(this_SubprogramAccessKeywords_5);
-		}
-		{
-			afterParserOrEnumRuleCall();
-		}
-		    |
-		{
-			newCompositeNode(grammarAccess.getFeatureCategoryAccess().getSubprogramGroupAccessKeywordsParserRuleCall_6());
-		}
-		this_SubprogramGroupAccessKeywords_6=ruleSubprogramGroupAccessKeywords
-		{
-			$current.merge(this_SubprogramGroupAccessKeywords_6);
+			$current.merge(this_VirtualBusAccessKeywords_5);
 		}
 		{
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getFeatureCategoryAccess().getBindingPointKeywordsParserRuleCall_7());
+			newCompositeNode(grammarAccess.getFeatureCategoryAccess().getSubprogramAccessKeywordsParserRuleCall_6());
 		}
-		this_BindingPointKeywords_7=ruleBindingPointKeywords
+		this_SubprogramAccessKeywords_6=ruleSubprogramAccessKeywords
 		{
-			$current.merge(this_BindingPointKeywords_7);
+			$current.merge(this_SubprogramAccessKeywords_6);
+		}
+		{
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getFeatureCategoryAccess().getSubprogramGroupAccessKeywordsParserRuleCall_7());
+		}
+		this_SubprogramGroupAccessKeywords_7=ruleSubprogramGroupAccessKeywords
+		{
+			$current.merge(this_SubprogramGroupAccessKeywords_7);
+		}
+		{
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getFeatureCategoryAccess().getBindingPointKeywordsParserRuleCall_8());
+		}
+		this_BindingPointKeywords_8=ruleBindingPointKeywords
+		{
+			$current.merge(this_BindingPointKeywords_8);
 		}
 		{
 			afterParserOrEnumRuleCall();
@@ -4939,7 +4941,7 @@ ruleFeatureCategory returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRul
 		kw='interface'
 		{
 			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getFeatureCategoryAccess().getInterfaceKeyword_8());
+			newLeafNode(kw, grammarAccess.getFeatureCategoryAccess().getInterfaceKeyword_9());
 		}
 	)
 ;
