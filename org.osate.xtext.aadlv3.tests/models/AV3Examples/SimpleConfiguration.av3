@@ -67,8 +67,8 @@ import StandardProperties::*;
 		actuate: abstract receiver {#Period => 23}; // subcomponent by interface
 		sense#Period => 33;
 		sense2.sub1#Period := 44;
-		extconn1: delegate eextin -> sense.extin;
-		extconn2: delegate actuate.extout -> eextout ;
+		extconn1: connection eextin -> sense.extin;
+		extconn2: connection actuate.extout -> eextout ;
 	end
 
 	configuration top.topc extends top.i is

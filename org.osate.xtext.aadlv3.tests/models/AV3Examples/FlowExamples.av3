@@ -19,12 +19,12 @@ package FlowExamples
 	
 	abstract sensor.i  is
 		sub1: thread sense;
-		upmap: delegate sub1.p1 -> outp ;
+		upmap: connection sub1.p1 -> outp ;
 		reading => flow upmap -> sub1.reading;
 	end
 	abstract actuator.i  is
 		sub2: thread actuate;
-		downmap: delegate inp -> sub2.p1;
+		downmap: connection inp -> sub2.p1;
 		action=> flow sub2.taction;
 	end
 	thread interface sense  is
@@ -45,9 +45,9 @@ package FlowExamples
 	process control.impl is
 		dofilter: thread filter;
 		docompute: thread compute;
-		extin: delegate insignal -> dofilter.insignal;
+		extin: connection insignal -> dofilter.insignal;
 		ftoc: connection dofilter.outsignal -> docompute.insignal;
-		extout: delegate docompute.outsignal -> outaction ;
+		extout: connection docompute.outsignal -> outaction ;
 		processflow => flow dofilter.filterpath -> ftoc -> docompute.computepath ;
 	end
 	
@@ -91,7 +91,7 @@ package FlowExamples
 	cpu: processor x86;
 	mybus: bus canbus;
 	busconn: connection cpu.canbusaccess <-> mybus;
-	extbusaccess: delegate canbusaccess <-> mybus;
+	extbusaccess: connection canbusaccess <-> mybus;
 	end
 	
 end

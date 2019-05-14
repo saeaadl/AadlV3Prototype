@@ -21,12 +21,12 @@ package PropertyAssociationExample
 	
 	abstract sensor.i  is
 		sub1: thread sense;
-		upmap: delegate sub1.p1 -> outp;
+		upmap: connection sub1.p1 -> outp;
 		reading => flow upmap -> sub1.reading;
 	end
 	abstract actuator.i  is
 		actuateThread: thread actuate;
-		downmap: delegate inp -> actuateThread.p1;
+		downmap: connection inp -> actuateThread.p1;
 		action=> flow actuateThread.taction;
 		#Period => 35 ms;
 	end
@@ -81,10 +81,10 @@ package PropertyAssociationExample
 		dofilter: thread filter;
 		docompute: thread compute;
 		dolog: thread logger;
-		extin: delegate insignal -> dofilter.insignal;
-		login: delegate insignal -> dolog.insignal;
+		extin: connection insignal -> dofilter.insignal;
+		login: connection insignal -> dolog.insignal;
 		ftoc: connection dofilter.outsignal -> docompute.insignal;
-		extout: delegate docompute.outsignal -> outaction ;
+		extout: connection docompute.outsignal -> outaction ;
 	end
 	
 	system interface conntop end
@@ -122,7 +122,7 @@ package PropertyAssociationExample
 	cpu: processor x86;
 	mybus: bus canbus;
 	busconn: connection cpu.canbusaccess <-> mybus;
-	extbusaccess: delegate canbusaccess <-> mybus;
+	extbusaccess: connection canbusaccess <-> mybus;
 	end
 	
 end

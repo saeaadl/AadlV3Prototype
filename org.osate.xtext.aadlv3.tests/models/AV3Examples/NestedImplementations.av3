@@ -22,7 +22,7 @@ package NestedImplementations
 			} ;
 			filtercontrolconn : connection filter.outp -> control.inp ;
 			outp: out port;
-			outmap: delegate control.outp -> outp ;
+			outmap: connection control.outp -> outp ;
 			outp#Data_Size => 45;
 		} ;
 		actuating : device { 
