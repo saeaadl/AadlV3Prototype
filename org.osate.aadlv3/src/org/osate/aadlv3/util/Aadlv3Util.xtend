@@ -1077,8 +1077,8 @@ class Aadlv3Util {
 
 	
 	// mapping maps an outgoing feature, i.e., a source
-	def static boolean isOutgoingFeatureMapping(Association conn){
-		if (conn.associationType == AssociationType.FEATUREDELEGATE ){
+	def static boolean isOutgoingFeatureDelegation(Association conn){
+		if (conn.associationType == AssociationType.CONNECTION ){
 			val el = conn.source.element
 			if (el instanceof Feature){
 				return el.direction.outgoing
@@ -1088,8 +1088,8 @@ class Aadlv3Util {
 	}
 
 	// mapping maps an incoming features, i.e., a destination
-	def static boolean isIncomingFeatureMapping(Association conn){
-		if (conn.associationType == AssociationType.FEATUREDELEGATE ){
+	def static boolean isIncomingFeatureDelegation(Association conn){
+		if (conn.associationType == AssociationType.CONNECTION ){
 			val el = conn.source.element
 			if (el instanceof Feature){
 				return el.direction.incoming
@@ -1100,10 +1100,10 @@ class Aadlv3Util {
 
 	
 	// source mapping takes into account element of feature group that matches one in the destination feature mappings
-	def static boolean isSourceFeatureDelegate(Association conn, AssociationInstance conni ){
+	def static boolean isSourceFeatureDelegation(Association conn, AssociationInstance conni ){
 		val srcfi = conni.source
 		if (srcfi instanceof FeatureInstance){
-			conn.associationType == AssociationType.FEATUREDELEGATE &&
+			conn.associationType == AssociationType.CONNECTION &&
 			((conn.source.element == srcfi.feature || srcfi.features.exists[subfi|subfi.feature == conn.source.element])
 				|| (conn.destination.element == srcfi.feature || srcfi.features.exists[subfi|subfi.feature == conn.destination.element])
 			)
@@ -1113,11 +1113,11 @@ class Aadlv3Util {
 	}
 	
 	// destination mapping takes into account element of feature group that matches one in the source feature mappings
-	def static boolean isDestinationFeatureDelegate(Association conn, AssociationInstance conni){
+	def static boolean isDestinationFeatureDelegation(Association conn, AssociationInstance conni){
 		val dstfi = conni.destination
 		if (dstfi instanceof FeatureInstance){
 			val srcmappings = conni.sourceDelegates
-			conn.associationType == AssociationType.FEATUREDELEGATE &&
+			conn.associationType == AssociationType.CONNECTION &&
 			((conn.source.element == dstfi.feature || dstfi.features.
 				exists[subfi|subfi.feature == conn.source.element && (srcmappings.exists[srcconn|srcconn.source.element == conn.source.element]
 					|| srcmappings.exists[srcconn|srcconn.source.element == conn.destination.element]
@@ -1133,25 +1133,18 @@ class Aadlv3Util {
 	}
 	
 	// association is connection 
-	def static boolean isConnection(AssociationType connType){
-		connType == AssociationType.CONNECTION 
-	}
-
-	// association is connection 
 	def static boolean isConnection(Association assoc){
 		val connType = assoc.associationType
-		connType == AssociationType.CONNECTION 
+		connType == AssociationType.CONNECTION &&(assoc.source.firstModelElement instanceof Component && assoc.destination.firstModelElement instanceof Component)
+		 
 	}
 	
 	// mapping from an outer to an inner feature
-	def static boolean isFeatureDelegate(Association conn){
-		conn.associationType === AssociationType.FEATUREDELEGATE
+	def static boolean isFeatureDelegation(Association conn){
+		conn.associationType === AssociationType.CONNECTION &&
+		(conn.source.firstModelElement instanceof Feature || conn.destination.firstModelElement instanceof Feature)
 	}
 	
-	// mapping from an outer to an inner feature
-	def static boolean isFeatureDelegate(AssociationType connType){
-		connType === AssociationType.FEATUREDELEGATE
-	}
 	
 	// association represents a flow specification
 	def static boolean isFlowSpec(AssociationType connType){
@@ -1246,6 +1239,17 @@ class Aadlv3Util {
 		}
 		cxt
 	}
+
+	// returns the first element of the path
+	// this is the MER without a context reference
+	def static ModelElement getFirstModelElement(ModelElementReference mer) {
+		if(mer === null || mer.element === null) return null
+		var ModelElementReference cxt = mer
+		while (cxt.context !== null) {
+			cxt = cxt.context
+		}
+		cxt.element
+	}
 	
 	def static String getTargetPath(ConfigurationAssignment ca){
 		var res = ca.target.targetPath
@@ -1273,7 +1277,7 @@ class Aadlv3Util {
 	/**
 	 * return the target of a feature delegate, i.e., the association end that includes a (sub)component or tis feature
 	 */
-	def static ModelElementReference getDelegateTarget(Association assoc){
+	def static ModelElementReference getDelegationTarget(Association assoc){
 		if (assoc.source.modelElementReferenceIncludesComponent){
 			assoc.source
 		} else {

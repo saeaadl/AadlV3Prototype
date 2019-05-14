@@ -191,7 +191,6 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     bindings+=Binding (ambiguity) configurationAssignments+=ConfigurationAssignment
 	 *     bindings+=Binding (ambiguity) configurationAssignments+=ConfigurationAssignmentPattern
 	 *     bindings+=Binding (ambiguity) connections+=Connection
-	 *     bindings+=Binding (ambiguity) connections+=FeatureDelegate
 	 *     bindings+=Binding (ambiguity) flowAssignments+=FlowAssignment
 	 *     bindings+=Binding (ambiguity) paths+=Path
 	 *     bindings+=Binding (ambiguity) propertyAssociations+=PropertyAssociation
@@ -201,7 +200,6 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     components+=Component (ambiguity) configurationAssignments+=ConfigurationAssignment
 	 *     components+=Component (ambiguity) configurationAssignments+=ConfigurationAssignmentPattern
 	 *     components+=Component (ambiguity) connections+=Connection
-	 *     components+=Component (ambiguity) connections+=FeatureDelegate
 	 *     components+=Component (ambiguity) flowAssignments+=FlowAssignment
 	 *     components+=Component (ambiguity) paths+=Path
 	 *     components+=Component (ambiguity) propertyAssociations+=PropertyAssociation
@@ -211,7 +209,6 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     configurationAssignments+=ConfigurationAssignment (ambiguity) configurationAssignments+=ConfigurationAssignment
 	 *     configurationAssignments+=ConfigurationAssignment (ambiguity) configurationAssignments+=ConfigurationAssignmentPattern
 	 *     configurationAssignments+=ConfigurationAssignment (ambiguity) connections+=Connection
-	 *     configurationAssignments+=ConfigurationAssignment (ambiguity) connections+=FeatureDelegate
 	 *     configurationAssignments+=ConfigurationAssignment (ambiguity) flowAssignments+=FlowAssignment
 	 *     configurationAssignments+=ConfigurationAssignment (ambiguity) paths+=Path
 	 *     configurationAssignments+=ConfigurationAssignment (ambiguity) propertyAssociations+=PropertyAssociation
@@ -221,7 +218,6 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     configurationAssignments+=ConfigurationAssignmentPattern (ambiguity) configurationAssignments+=ConfigurationAssignment
 	 *     configurationAssignments+=ConfigurationAssignmentPattern (ambiguity) configurationAssignments+=ConfigurationAssignmentPattern
 	 *     configurationAssignments+=ConfigurationAssignmentPattern (ambiguity) connections+=Connection
-	 *     configurationAssignments+=ConfigurationAssignmentPattern (ambiguity) connections+=FeatureDelegate
 	 *     configurationAssignments+=ConfigurationAssignmentPattern (ambiguity) flowAssignments+=FlowAssignment
 	 *     configurationAssignments+=ConfigurationAssignmentPattern (ambiguity) paths+=Path
 	 *     configurationAssignments+=ConfigurationAssignmentPattern (ambiguity) propertyAssociations+=PropertyAssociation
@@ -231,27 +227,15 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     connections+=Connection (ambiguity) configurationAssignments+=ConfigurationAssignment
 	 *     connections+=Connection (ambiguity) configurationAssignments+=ConfigurationAssignmentPattern
 	 *     connections+=Connection (ambiguity) connections+=Connection
-	 *     connections+=Connection (ambiguity) connections+=FeatureDelegate
 	 *     connections+=Connection (ambiguity) flowAssignments+=FlowAssignment
 	 *     connections+=Connection (ambiguity) paths+=Path
 	 *     connections+=Connection (ambiguity) propertyAssociations+=PropertyAssociation
-	 *     connections+=FeatureDelegate (ambiguity) 'end' (rule end)
-	 *     connections+=FeatureDelegate (ambiguity) bindings+=Binding
-	 *     connections+=FeatureDelegate (ambiguity) components+=Component
-	 *     connections+=FeatureDelegate (ambiguity) configurationAssignments+=ConfigurationAssignment
-	 *     connections+=FeatureDelegate (ambiguity) configurationAssignments+=ConfigurationAssignmentPattern
-	 *     connections+=FeatureDelegate (ambiguity) connections+=Connection
-	 *     connections+=FeatureDelegate (ambiguity) connections+=FeatureDelegate
-	 *     connections+=FeatureDelegate (ambiguity) flowAssignments+=FlowAssignment
-	 *     connections+=FeatureDelegate (ambiguity) paths+=Path
-	 *     connections+=FeatureDelegate (ambiguity) propertyAssociations+=PropertyAssociation
 	 *     flowAssignments+=FlowAssignment (ambiguity) 'end' (rule end)
 	 *     flowAssignments+=FlowAssignment (ambiguity) bindings+=Binding
 	 *     flowAssignments+=FlowAssignment (ambiguity) components+=Component
 	 *     flowAssignments+=FlowAssignment (ambiguity) configurationAssignments+=ConfigurationAssignment
 	 *     flowAssignments+=FlowAssignment (ambiguity) configurationAssignments+=ConfigurationAssignmentPattern
 	 *     flowAssignments+=FlowAssignment (ambiguity) connections+=Connection
-	 *     flowAssignments+=FlowAssignment (ambiguity) connections+=FeatureDelegate
 	 *     flowAssignments+=FlowAssignment (ambiguity) flowAssignments+=FlowAssignment
 	 *     flowAssignments+=FlowAssignment (ambiguity) paths+=Path
 	 *     flowAssignments+=FlowAssignment (ambiguity) propertyAssociations+=PropertyAssociation
@@ -261,7 +245,6 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     paths+=Path (ambiguity) configurationAssignments+=ConfigurationAssignment
 	 *     paths+=Path (ambiguity) configurationAssignments+=ConfigurationAssignmentPattern
 	 *     paths+=Path (ambiguity) connections+=Connection
-	 *     paths+=Path (ambiguity) connections+=FeatureDelegate
 	 *     paths+=Path (ambiguity) flowAssignments+=FlowAssignment
 	 *     paths+=Path (ambiguity) paths+=Path
 	 *     paths+=Path (ambiguity) propertyAssociations+=PropertyAssociation
@@ -271,7 +254,6 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     propertyAssociations+=PropertyAssociation (ambiguity) configurationAssignments+=ConfigurationAssignment
 	 *     propertyAssociations+=PropertyAssociation (ambiguity) configurationAssignments+=ConfigurationAssignmentPattern
 	 *     propertyAssociations+=PropertyAssociation (ambiguity) connections+=Connection
-	 *     propertyAssociations+=PropertyAssociation (ambiguity) connections+=FeatureDelegate
 	 *     propertyAssociations+=PropertyAssociation (ambiguity) flowAssignments+=FlowAssignment
 	 *     propertyAssociations+=PropertyAssociation (ambiguity) paths+=Path
 	 *     propertyAssociations+=PropertyAssociation (ambiguity) propertyAssociations+=PropertyAssociation
@@ -354,42 +336,30 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     bindings+=Binding (ambiguity) bindings+=Binding
 	 *     bindings+=Binding (ambiguity) components+=Component
 	 *     bindings+=Binding (ambiguity) connections+=Connection
-	 *     bindings+=Binding (ambiguity) connections+=FeatureDelegate
 	 *     bindings+=Binding (ambiguity) features+=Feature
 	 *     bindings+=Binding (ambiguity) propertyAssociations+=PropertyAssociation
 	 *     components+=Component (ambiguity) '}' (rule end)
 	 *     components+=Component (ambiguity) bindings+=Binding
 	 *     components+=Component (ambiguity) components+=Component
 	 *     components+=Component (ambiguity) connections+=Connection
-	 *     components+=Component (ambiguity) connections+=FeatureDelegate
 	 *     components+=Component (ambiguity) features+=Feature
 	 *     components+=Component (ambiguity) propertyAssociations+=PropertyAssociation
 	 *     connections+=Connection (ambiguity) '}' (rule end)
 	 *     connections+=Connection (ambiguity) bindings+=Binding
 	 *     connections+=Connection (ambiguity) components+=Component
 	 *     connections+=Connection (ambiguity) connections+=Connection
-	 *     connections+=Connection (ambiguity) connections+=FeatureDelegate
 	 *     connections+=Connection (ambiguity) features+=Feature
 	 *     connections+=Connection (ambiguity) propertyAssociations+=PropertyAssociation
-	 *     connections+=FeatureDelegate (ambiguity) '}' (rule end)
-	 *     connections+=FeatureDelegate (ambiguity) bindings+=Binding
-	 *     connections+=FeatureDelegate (ambiguity) components+=Component
-	 *     connections+=FeatureDelegate (ambiguity) connections+=Connection
-	 *     connections+=FeatureDelegate (ambiguity) connections+=FeatureDelegate
-	 *     connections+=FeatureDelegate (ambiguity) features+=Feature
-	 *     connections+=FeatureDelegate (ambiguity) propertyAssociations+=PropertyAssociation
 	 *     features+=Feature (ambiguity) '}' (rule end)
 	 *     features+=Feature (ambiguity) bindings+=Binding
 	 *     features+=Feature (ambiguity) components+=Component
 	 *     features+=Feature (ambiguity) connections+=Connection
-	 *     features+=Feature (ambiguity) connections+=FeatureDelegate
 	 *     features+=Feature (ambiguity) features+=Feature
 	 *     features+=Feature (ambiguity) propertyAssociations+=PropertyAssociation
 	 *     propertyAssociations+=PropertyAssociation (ambiguity) '}' (rule end)
 	 *     propertyAssociations+=PropertyAssociation (ambiguity) bindings+=Binding
 	 *     propertyAssociations+=PropertyAssociation (ambiguity) components+=Component
 	 *     propertyAssociations+=PropertyAssociation (ambiguity) connections+=Connection
-	 *     propertyAssociations+=PropertyAssociation (ambiguity) connections+=FeatureDelegate
 	 *     propertyAssociations+=PropertyAssociation (ambiguity) features+=Feature
 	 *     propertyAssociations+=PropertyAssociation (ambiguity) propertyAssociations+=PropertyAssociation
 	 */

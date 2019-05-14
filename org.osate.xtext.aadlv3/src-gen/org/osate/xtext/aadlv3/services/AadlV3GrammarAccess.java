@@ -623,32 +623,30 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(0);
 		private final Assignment cConnectionsAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
 		private final RuleCall cConnectionsConnectionParserRuleCall_0_0 = (RuleCall)cConnectionsAssignment_0.eContents().get(0);
-		private final Assignment cConnectionsAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
-		private final RuleCall cConnectionsFeatureDelegateParserRuleCall_1_0 = (RuleCall)cConnectionsAssignment_1.eContents().get(0);
-		private final Assignment cBindingsAssignment_2 = (Assignment)cAlternatives.eContents().get(2);
-		private final RuleCall cBindingsBindingParserRuleCall_2_0 = (RuleCall)cBindingsAssignment_2.eContents().get(0);
-		private final Assignment cComponentsAssignment_3 = (Assignment)cAlternatives.eContents().get(3);
-		private final RuleCall cComponentsComponentParserRuleCall_3_0 = (RuleCall)cComponentsAssignment_3.eContents().get(0);
-		private final Assignment cPathsAssignment_4 = (Assignment)cAlternatives.eContents().get(4);
-		private final RuleCall cPathsPathParserRuleCall_4_0 = (RuleCall)cPathsAssignment_4.eContents().get(0);
-		private final Assignment cFlowAssignmentsAssignment_5 = (Assignment)cAlternatives.eContents().get(5);
-		private final RuleCall cFlowAssignmentsFlowAssignmentParserRuleCall_5_0 = (RuleCall)cFlowAssignmentsAssignment_5.eContents().get(0);
+		private final Assignment cBindingsAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
+		private final RuleCall cBindingsBindingParserRuleCall_1_0 = (RuleCall)cBindingsAssignment_1.eContents().get(0);
+		private final Assignment cComponentsAssignment_2 = (Assignment)cAlternatives.eContents().get(2);
+		private final RuleCall cComponentsComponentParserRuleCall_2_0 = (RuleCall)cComponentsAssignment_2.eContents().get(0);
+		private final Assignment cPathsAssignment_3 = (Assignment)cAlternatives.eContents().get(3);
+		private final RuleCall cPathsPathParserRuleCall_3_0 = (RuleCall)cPathsAssignment_3.eContents().get(0);
+		private final Assignment cFlowAssignmentsAssignment_4 = (Assignment)cAlternatives.eContents().get(4);
+		private final RuleCall cFlowAssignmentsFlowAssignmentParserRuleCall_4_0 = (RuleCall)cFlowAssignmentsAssignment_4.eContents().get(0);
+		private final Assignment cConfigurationAssignmentsAssignment_5 = (Assignment)cAlternatives.eContents().get(5);
+		private final RuleCall cConfigurationAssignmentsConfigurationAssignmentParserRuleCall_5_0 = (RuleCall)cConfigurationAssignmentsAssignment_5.eContents().get(0);
 		private final Assignment cConfigurationAssignmentsAssignment_6 = (Assignment)cAlternatives.eContents().get(6);
-		private final RuleCall cConfigurationAssignmentsConfigurationAssignmentParserRuleCall_6_0 = (RuleCall)cConfigurationAssignmentsAssignment_6.eContents().get(0);
-		private final Assignment cConfigurationAssignmentsAssignment_7 = (Assignment)cAlternatives.eContents().get(7);
-		private final RuleCall cConfigurationAssignmentsConfigurationAssignmentPatternParserRuleCall_7_0 = (RuleCall)cConfigurationAssignmentsAssignment_7.eContents().get(0);
-		private final Assignment cPropertyAssociationsAssignment_8 = (Assignment)cAlternatives.eContents().get(8);
-		private final RuleCall cPropertyAssociationsPropertyAssociationParserRuleCall_8_0 = (RuleCall)cPropertyAssociationsAssignment_8.eContents().get(0);
+		private final RuleCall cConfigurationAssignmentsConfigurationAssignmentPatternParserRuleCall_6_0 = (RuleCall)cConfigurationAssignmentsAssignment_6.eContents().get(0);
+		private final Assignment cPropertyAssociationsAssignment_7 = (Assignment)cAlternatives.eContents().get(7);
+		private final RuleCall cPropertyAssociationsPropertyAssociationParserRuleCall_7_0 = (RuleCall)cPropertyAssociationsAssignment_7.eContents().get(0);
 		
 		//fragment ImplementationElement *:
-		//	connections+=Connection | connections+=FeatureDelegate | bindings+=Binding | components+=Component | paths+=Path |
-		//	flowAssignments+=FlowAssignment | configurationAssignments+=ConfigurationAssignment |
-		//	configurationAssignments+=ConfigurationAssignmentPattern | propertyAssociations+=PropertyAssociation;
+		//	connections+=Connection | bindings+=Binding | components+=Component | paths+=Path | flowAssignments+=FlowAssignment |
+		//	configurationAssignments+=ConfigurationAssignment | configurationAssignments+=ConfigurationAssignmentPattern |
+		//	propertyAssociations+=PropertyAssociation;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//connections+=Connection | connections+=FeatureDelegate | bindings+=Binding | components+=Component | paths+=Path |
-		//flowAssignments+=FlowAssignment | configurationAssignments+=ConfigurationAssignment |
-		//configurationAssignments+=ConfigurationAssignmentPattern | propertyAssociations+=PropertyAssociation
+		//connections+=Connection | bindings+=Binding | components+=Component | paths+=Path | flowAssignments+=FlowAssignment |
+		//configurationAssignments+=ConfigurationAssignment | configurationAssignments+=ConfigurationAssignmentPattern |
+		//propertyAssociations+=PropertyAssociation
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//connections+=Connection
@@ -657,53 +655,47 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		//Connection
 		public RuleCall getConnectionsConnectionParserRuleCall_0_0() { return cConnectionsConnectionParserRuleCall_0_0; }
 		
-		//connections+=FeatureDelegate
-		public Assignment getConnectionsAssignment_1() { return cConnectionsAssignment_1; }
-		
-		//FeatureDelegate
-		public RuleCall getConnectionsFeatureDelegateParserRuleCall_1_0() { return cConnectionsFeatureDelegateParserRuleCall_1_0; }
-		
 		//bindings+=Binding
-		public Assignment getBindingsAssignment_2() { return cBindingsAssignment_2; }
+		public Assignment getBindingsAssignment_1() { return cBindingsAssignment_1; }
 		
 		//Binding
-		public RuleCall getBindingsBindingParserRuleCall_2_0() { return cBindingsBindingParserRuleCall_2_0; }
+		public RuleCall getBindingsBindingParserRuleCall_1_0() { return cBindingsBindingParserRuleCall_1_0; }
 		
 		//components+=Component
-		public Assignment getComponentsAssignment_3() { return cComponentsAssignment_3; }
+		public Assignment getComponentsAssignment_2() { return cComponentsAssignment_2; }
 		
 		//Component
-		public RuleCall getComponentsComponentParserRuleCall_3_0() { return cComponentsComponentParserRuleCall_3_0; }
+		public RuleCall getComponentsComponentParserRuleCall_2_0() { return cComponentsComponentParserRuleCall_2_0; }
 		
 		//paths+=Path
-		public Assignment getPathsAssignment_4() { return cPathsAssignment_4; }
+		public Assignment getPathsAssignment_3() { return cPathsAssignment_3; }
 		
 		//Path
-		public RuleCall getPathsPathParserRuleCall_4_0() { return cPathsPathParserRuleCall_4_0; }
+		public RuleCall getPathsPathParserRuleCall_3_0() { return cPathsPathParserRuleCall_3_0; }
 		
 		//flowAssignments+=FlowAssignment
-		public Assignment getFlowAssignmentsAssignment_5() { return cFlowAssignmentsAssignment_5; }
+		public Assignment getFlowAssignmentsAssignment_4() { return cFlowAssignmentsAssignment_4; }
 		
 		//FlowAssignment
-		public RuleCall getFlowAssignmentsFlowAssignmentParserRuleCall_5_0() { return cFlowAssignmentsFlowAssignmentParserRuleCall_5_0; }
+		public RuleCall getFlowAssignmentsFlowAssignmentParserRuleCall_4_0() { return cFlowAssignmentsFlowAssignmentParserRuleCall_4_0; }
 		
 		//configurationAssignments+=ConfigurationAssignment
-		public Assignment getConfigurationAssignmentsAssignment_6() { return cConfigurationAssignmentsAssignment_6; }
+		public Assignment getConfigurationAssignmentsAssignment_5() { return cConfigurationAssignmentsAssignment_5; }
 		
 		//ConfigurationAssignment
-		public RuleCall getConfigurationAssignmentsConfigurationAssignmentParserRuleCall_6_0() { return cConfigurationAssignmentsConfigurationAssignmentParserRuleCall_6_0; }
+		public RuleCall getConfigurationAssignmentsConfigurationAssignmentParserRuleCall_5_0() { return cConfigurationAssignmentsConfigurationAssignmentParserRuleCall_5_0; }
 		
 		//configurationAssignments+=ConfigurationAssignmentPattern
-		public Assignment getConfigurationAssignmentsAssignment_7() { return cConfigurationAssignmentsAssignment_7; }
+		public Assignment getConfigurationAssignmentsAssignment_6() { return cConfigurationAssignmentsAssignment_6; }
 		
 		//ConfigurationAssignmentPattern
-		public RuleCall getConfigurationAssignmentsConfigurationAssignmentPatternParserRuleCall_7_0() { return cConfigurationAssignmentsConfigurationAssignmentPatternParserRuleCall_7_0; }
+		public RuleCall getConfigurationAssignmentsConfigurationAssignmentPatternParserRuleCall_6_0() { return cConfigurationAssignmentsConfigurationAssignmentPatternParserRuleCall_6_0; }
 		
 		//propertyAssociations+=PropertyAssociation
-		public Assignment getPropertyAssociationsAssignment_8() { return cPropertyAssociationsAssignment_8; }
+		public Assignment getPropertyAssociationsAssignment_7() { return cPropertyAssociationsAssignment_7; }
 		
 		//PropertyAssociation
-		public RuleCall getPropertyAssociationsPropertyAssociationParserRuleCall_8_0() { return cPropertyAssociationsPropertyAssociationParserRuleCall_8_0; }
+		public RuleCall getPropertyAssociationsPropertyAssociationParserRuleCall_7_0() { return cPropertyAssociationsPropertyAssociationParserRuleCall_7_0; }
 	}
 	public class ComponentConfigurationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.osate.xtext.aadlv3.AadlV3.ComponentConfiguration");
@@ -909,75 +901,6 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		
 		//ConnectionType
 		public RuleCall getAssociationTypeConnectionTypeParserRuleCall_2_0() { return cAssociationTypeConnectionTypeParserRuleCall_2_0; }
-		
-		//source=ModelElementReference
-		public Assignment getSourceAssignment_3() { return cSourceAssignment_3; }
-		
-		//ModelElementReference
-		public RuleCall getSourceModelElementReferenceParserRuleCall_3_0() { return cSourceModelElementReferenceParserRuleCall_3_0; }
-		
-		//'->' | bidirectional?='<->'
-		public Alternatives getAlternatives_4() { return cAlternatives_4; }
-		
-		//'->'
-		public Keyword getHyphenMinusGreaterThanSignKeyword_4_0() { return cHyphenMinusGreaterThanSignKeyword_4_0; }
-		
-		//bidirectional?='<->'
-		public Assignment getBidirectionalAssignment_4_1() { return cBidirectionalAssignment_4_1; }
-		
-		//'<->'
-		public Keyword getBidirectionalLessThanSignHyphenMinusGreaterThanSignKeyword_4_1_0() { return cBidirectionalLessThanSignHyphenMinusGreaterThanSignKeyword_4_1_0; }
-		
-		//destination=ModelElementReference
-		public Assignment getDestinationAssignment_5() { return cDestinationAssignment_5; }
-		
-		//ModelElementReference
-		public RuleCall getDestinationModelElementReferenceParserRuleCall_5_0() { return cDestinationModelElementReferenceParserRuleCall_5_0; }
-		
-		//PropertiesBlock?
-		public RuleCall getPropertiesBlockParserRuleCall_6() { return cPropertiesBlockParserRuleCall_6; }
-	}
-	public class FeatureDelegateElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.osate.xtext.aadlv3.AadlV3.FeatureDelegate");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cNameIDTerminalRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
-		private final Keyword cColonKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cAssociationTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cAssociationTypeDelegateTypeParserRuleCall_2_0 = (RuleCall)cAssociationTypeAssignment_2.eContents().get(0);
-		private final Assignment cSourceAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cSourceModelElementReferenceParserRuleCall_3_0 = (RuleCall)cSourceAssignment_3.eContents().get(0);
-		private final Alternatives cAlternatives_4 = (Alternatives)cGroup.eContents().get(4);
-		private final Keyword cHyphenMinusGreaterThanSignKeyword_4_0 = (Keyword)cAlternatives_4.eContents().get(0);
-		private final Assignment cBidirectionalAssignment_4_1 = (Assignment)cAlternatives_4.eContents().get(1);
-		private final Keyword cBidirectionalLessThanSignHyphenMinusGreaterThanSignKeyword_4_1_0 = (Keyword)cBidirectionalAssignment_4_1.eContents().get(0);
-		private final Assignment cDestinationAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cDestinationModelElementReferenceParserRuleCall_5_0 = (RuleCall)cDestinationAssignment_5.eContents().get(0);
-		private final RuleCall cPropertiesBlockParserRuleCall_6 = (RuleCall)cGroup.eContents().get(6);
-		
-		//FeatureDelegate av3::Association:
-		//	name=ID ':' associationType=DelegateType source=ModelElementReference ('->' | bidirectional?='<->')
-		//	destination=ModelElementReference PropertiesBlock?;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//name=ID ':' associationType=DelegateType source=ModelElementReference ('->' | bidirectional?='<->')
-		//destination=ModelElementReference PropertiesBlock?
-		public Group getGroup() { return cGroup; }
-		
-		//name=ID
-		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
-		
-		//ID
-		public RuleCall getNameIDTerminalRuleCall_0_0() { return cNameIDTerminalRuleCall_0_0; }
-		
-		//':'
-		public Keyword getColonKeyword_1() { return cColonKeyword_1; }
-		
-		//associationType=DelegateType
-		public Assignment getAssociationTypeAssignment_2() { return cAssociationTypeAssignment_2; }
-		
-		//DelegateType
-		public RuleCall getAssociationTypeDelegateTypeParserRuleCall_2_0() { return cAssociationTypeDelegateTypeParserRuleCall_2_0; }
 		
 		//source=ModelElementReference
 		public Assignment getSourceAssignment_3() { return cSourceAssignment_3; }
@@ -1819,8 +1742,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cConfigurationAssignmentsAssignment_3 = (Assignment)cAlternatives.eContents().get(3);
 		private final RuleCall cConfigurationAssignmentsConfigurationAssignmentPatternParserRuleCall_3_0 = (RuleCall)cConfigurationAssignmentsAssignment_3.eContents().get(0);
 		
-		////ConfigurationElement (';' ConfigurationElement )* ';'? '}';
-		// fragment ConfigurationElement *:
+		//fragment ConfigurationElement *:
 		//	propertyAssociations+=PropertyAssociation | bindings+=Binding | configurationAssignments+=ConfigurationAssignment |
 		//	configurationAssignments+=ConfigurationAssignmentPattern;
 		@Override public ParserRule getRule() { return rule; }
@@ -2150,21 +2072,19 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cFeaturesFeatureParserRuleCall_0_0 = (RuleCall)cFeaturesAssignment_0.eContents().get(0);
 		private final Assignment cConnectionsAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
 		private final RuleCall cConnectionsConnectionParserRuleCall_1_0 = (RuleCall)cConnectionsAssignment_1.eContents().get(0);
-		private final Assignment cConnectionsAssignment_2 = (Assignment)cAlternatives.eContents().get(2);
-		private final RuleCall cConnectionsFeatureDelegateParserRuleCall_2_0 = (RuleCall)cConnectionsAssignment_2.eContents().get(0);
-		private final Assignment cBindingsAssignment_3 = (Assignment)cAlternatives.eContents().get(3);
-		private final RuleCall cBindingsBindingParserRuleCall_3_0 = (RuleCall)cBindingsAssignment_3.eContents().get(0);
-		private final Assignment cComponentsAssignment_4 = (Assignment)cAlternatives.eContents().get(4);
-		private final RuleCall cComponentsComponentParserRuleCall_4_0 = (RuleCall)cComponentsAssignment_4.eContents().get(0);
-		private final Assignment cPropertyAssociationsAssignment_5 = (Assignment)cAlternatives.eContents().get(5);
-		private final RuleCall cPropertyAssociationsPropertyAssociationParserRuleCall_5_0 = (RuleCall)cPropertyAssociationsAssignment_5.eContents().get(0);
+		private final Assignment cBindingsAssignment_2 = (Assignment)cAlternatives.eContents().get(2);
+		private final RuleCall cBindingsBindingParserRuleCall_2_0 = (RuleCall)cBindingsAssignment_2.eContents().get(0);
+		private final Assignment cComponentsAssignment_3 = (Assignment)cAlternatives.eContents().get(3);
+		private final RuleCall cComponentsComponentParserRuleCall_3_0 = (RuleCall)cComponentsAssignment_3.eContents().get(0);
+		private final Assignment cPropertyAssociationsAssignment_4 = (Assignment)cAlternatives.eContents().get(4);
+		private final RuleCall cPropertyAssociationsPropertyAssociationParserRuleCall_4_0 = (RuleCall)cPropertyAssociationsAssignment_4.eContents().get(0);
 		
 		//fragment NestedImplementationElement *:
-		//	features+=Feature | connections+=Connection | connections+=FeatureDelegate | bindings+=Binding |
-		//	components+=Component | propertyAssociations+=PropertyAssociation;
+		//	features+=Feature | connections+=Connection | bindings+=Binding | components+=Component |
+		//	propertyAssociations+=PropertyAssociation;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//features+=Feature | connections+=Connection | connections+=FeatureDelegate | bindings+=Binding | components+=Component |
+		//features+=Feature | connections+=Connection | bindings+=Binding | components+=Component |
 		//propertyAssociations+=PropertyAssociation
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
@@ -2180,29 +2100,23 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		//Connection
 		public RuleCall getConnectionsConnectionParserRuleCall_1_0() { return cConnectionsConnectionParserRuleCall_1_0; }
 		
-		//connections+=FeatureDelegate
-		public Assignment getConnectionsAssignment_2() { return cConnectionsAssignment_2; }
-		
-		//FeatureDelegate
-		public RuleCall getConnectionsFeatureDelegateParserRuleCall_2_0() { return cConnectionsFeatureDelegateParserRuleCall_2_0; }
-		
 		//bindings+=Binding
-		public Assignment getBindingsAssignment_3() { return cBindingsAssignment_3; }
+		public Assignment getBindingsAssignment_2() { return cBindingsAssignment_2; }
 		
 		//Binding
-		public RuleCall getBindingsBindingParserRuleCall_3_0() { return cBindingsBindingParserRuleCall_3_0; }
+		public RuleCall getBindingsBindingParserRuleCall_2_0() { return cBindingsBindingParserRuleCall_2_0; }
 		
 		//components+=Component
-		public Assignment getComponentsAssignment_4() { return cComponentsAssignment_4; }
+		public Assignment getComponentsAssignment_3() { return cComponentsAssignment_3; }
 		
 		//Component
-		public RuleCall getComponentsComponentParserRuleCall_4_0() { return cComponentsComponentParserRuleCall_4_0; }
+		public RuleCall getComponentsComponentParserRuleCall_3_0() { return cComponentsComponentParserRuleCall_3_0; }
 		
 		//propertyAssociations+=PropertyAssociation
-		public Assignment getPropertyAssociationsAssignment_5() { return cPropertyAssociationsAssignment_5; }
+		public Assignment getPropertyAssociationsAssignment_4() { return cPropertyAssociationsAssignment_4; }
 		
 		//PropertyAssociation
-		public RuleCall getPropertyAssociationsPropertyAssociationParserRuleCall_5_0() { return cPropertyAssociationsPropertyAssociationParserRuleCall_5_0; }
+		public RuleCall getPropertyAssociationsPropertyAssociationParserRuleCall_4_0() { return cPropertyAssociationsPropertyAssociationParserRuleCall_4_0; }
 	}
 	public class ConfigurationExtensionsElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.osate.xtext.aadlv3.AadlV3.ConfigurationExtensions");
@@ -2792,14 +2706,13 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cConnectionTypeParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cBindingTypeParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cDelegateTypeParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
-		private final RuleCall cFlowTypeParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		private final RuleCall cFlowTypeParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		
 		//AssociationType av3::AssociationType:
-		//	ConnectionType | BindingType | DelegateType | FlowType;
+		//	ConnectionType | BindingType | FlowType;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//ConnectionType | BindingType | DelegateType | FlowType
+		//ConnectionType | BindingType | FlowType
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//ConnectionType
@@ -2808,11 +2721,8 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		//BindingType
 		public RuleCall getBindingTypeParserRuleCall_1() { return cBindingTypeParserRuleCall_1; }
 		
-		//DelegateType
-		public RuleCall getDelegateTypeParserRuleCall_2() { return cDelegateTypeParserRuleCall_2; }
-		
 		//FlowType
-		public RuleCall getFlowTypeParserRuleCall_3() { return cFlowTypeParserRuleCall_3; }
+		public RuleCall getFlowTypeParserRuleCall_2() { return cFlowTypeParserRuleCall_2; }
 	}
 	public class ConnectionTypeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.osate.xtext.aadlv3.AadlV3.ConnectionType");
@@ -2835,17 +2745,6 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		
 		//'binding'
 		public Keyword getBindingKeyword() { return cBindingKeyword; }
-	}
-	public class DelegateTypeElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.osate.xtext.aadlv3.AadlV3.DelegateType");
-		private final Keyword cDelegateKeyword = (Keyword)rule.eContents().get(1);
-		
-		//DelegateType av3::AssociationType:
-		//	'delegate';
-		@Override public ParserRule getRule() { return rule; }
-		
-		//'delegate'
-		public Keyword getDelegateKeyword() { return cDelegateKeyword; }
 	}
 	public class FlowPathTypeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.osate.xtext.aadlv3.AadlV3.FlowPathType");
@@ -3393,7 +3292,6 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	private final FeatureElements pFeature;
 	private final ComponentElements pComponent;
 	private final ConnectionElements pConnection;
-	private final FeatureDelegateElements pFeatureDelegate;
 	private final BindingElements pBinding;
 	private final FlowPathElements pFlowPath;
 	private final FlowSourceElements pFlowSource;
@@ -3439,7 +3337,6 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	private final AssociationTypeElements pAssociationType;
 	private final ConnectionTypeElements pConnectionType;
 	private final BindingTypeElements pBindingType;
-	private final DelegateTypeElements pDelegateType;
 	private final FlowPathTypeElements pFlowPathType;
 	private final FlowSourceTypeElements pFlowSourceType;
 	private final FlowSinkTypeElements pFlowSinkType;
@@ -3494,7 +3391,6 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		this.pFeature = new FeatureElements();
 		this.pComponent = new ComponentElements();
 		this.pConnection = new ConnectionElements();
-		this.pFeatureDelegate = new FeatureDelegateElements();
 		this.pBinding = new BindingElements();
 		this.pFlowPath = new FlowPathElements();
 		this.pFlowSource = new FlowSourceElements();
@@ -3540,7 +3436,6 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		this.pAssociationType = new AssociationTypeElements();
 		this.pConnectionType = new ConnectionTypeElements();
 		this.pBindingType = new BindingTypeElements();
-		this.pDelegateType = new DelegateTypeElements();
 		this.pFlowPathType = new FlowPathTypeElements();
 		this.pFlowSourceType = new FlowSourceTypeElements();
 		this.pFlowSinkType = new FlowSinkTypeElements();
@@ -3714,9 +3609,9 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//fragment ImplementationElement *:
-	//	connections+=Connection | connections+=FeatureDelegate | bindings+=Binding | components+=Component | paths+=Path |
-	//	flowAssignments+=FlowAssignment | configurationAssignments+=ConfigurationAssignment |
-	//	configurationAssignments+=ConfigurationAssignmentPattern | propertyAssociations+=PropertyAssociation;
+	//	connections+=Connection | bindings+=Binding | components+=Component | paths+=Path | flowAssignments+=FlowAssignment |
+	//	configurationAssignments+=ConfigurationAssignment | configurationAssignments+=ConfigurationAssignmentPattern |
+	//	propertyAssociations+=PropertyAssociation;
 	public ImplementationElementElements getImplementationElementAccess() {
 		return pImplementationElement;
 	}
@@ -3769,17 +3664,6 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getConnectionRule() {
 		return getConnectionAccess().getRule();
-	}
-	
-	//FeatureDelegate av3::Association:
-	//	name=ID ':' associationType=DelegateType source=ModelElementReference ('->' | bidirectional?='<->')
-	//	destination=ModelElementReference PropertiesBlock?;
-	public FeatureDelegateElements getFeatureDelegateAccess() {
-		return pFeatureDelegate;
-	}
-	
-	public ParserRule getFeatureDelegateRule() {
-		return getFeatureDelegateAccess().getRule();
 	}
 	
 	//Binding av3::Association:
@@ -3948,8 +3832,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		return getCurlyConfigurationElementBlockAccess().getRule();
 	}
 	
-	////ConfigurationElement (';' ConfigurationElement )* ';'? '}';
-	// fragment ConfigurationElement *:
+	//fragment ConfigurationElement *:
 	//	propertyAssociations+=PropertyAssociation | bindings+=Binding | configurationAssignments+=ConfigurationAssignment |
 	//	configurationAssignments+=ConfigurationAssignmentPattern;
 	public ConfigurationElementElements getConfigurationElementAccess() {
@@ -4054,8 +3937,8 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//fragment NestedImplementationElement *:
-	//	features+=Feature | connections+=Connection | connections+=FeatureDelegate | bindings+=Binding |
-	//	components+=Component | propertyAssociations+=PropertyAssociation;
+	//	features+=Feature | connections+=Connection | bindings+=Binding | components+=Component |
+	//	propertyAssociations+=PropertyAssociation;
 	public NestedImplementationElementElements getNestedImplementationElementAccess() {
 		return pNestedImplementationElement;
 	}
@@ -4220,7 +4103,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//AssociationType av3::AssociationType:
-	//	ConnectionType | BindingType | DelegateType | FlowType;
+	//	ConnectionType | BindingType | FlowType;
 	public AssociationTypeElements getAssociationTypeAccess() {
 		return pAssociationType;
 	}
@@ -4247,16 +4130,6 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getBindingTypeRule() {
 		return getBindingTypeAccess().getRule();
-	}
-	
-	//DelegateType av3::AssociationType:
-	//	'delegate';
-	public DelegateTypeElements getDelegateTypeAccess() {
-		return pDelegateType;
-	}
-	
-	public ParserRule getDelegateTypeRule() {
-		return getDelegateTypeAccess().getRule();
 	}
 	
 	//FlowPathType av3::AssociationType:

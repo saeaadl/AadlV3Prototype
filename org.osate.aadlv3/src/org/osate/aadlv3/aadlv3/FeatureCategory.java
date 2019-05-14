@@ -118,13 +118,13 @@ public enum FeatureCategory implements Enumerator {
 	 */
 	SUBPROGRAMGROUPACCESS(8, "subprogramgroupaccess", "subprogram group access"),
 	/**
-	* The '<em><b>Parameter</b></em>' literal object.
-	* <!-- begin-user-doc -->
+	 * The '<em><b>Parameter</b></em>' literal object.
+	 * <!-- begin-user-doc -->
 	* <!-- end-user-doc -->
-	* @see #PARAMETER_VALUE
-	* @generated
-	* @ordered
-	*/
+	 * @see #PARAMETER_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	PARAMETER(9, "parameter", "parameter");
 
 	/**

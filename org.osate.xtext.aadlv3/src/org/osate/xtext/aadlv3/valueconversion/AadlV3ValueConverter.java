@@ -65,24 +65,6 @@ public class AadlV3ValueConverter extends DefaultTerminalConverters {
 		};
 	}
 
-	@ValueConverter(rule = "DelegateType")
-	public IValueConverter<AssociationType> DelegateType() {
-		return new IValueConverter<AssociationType>() {
-			@Override
-			public AssociationType toValue(String string, INode node) {
-				if (string == null) {
-					return null;
-				}
-				return AssociationType.FEATUREDELEGATE;
-			}
-
-			@Override
-			public String toString(AssociationType value) {
-				return "delegate";
-			}
-		};
-	}
-
 
 	@ValueConverter(rule = "FlowPathType")
 	public IValueConverter<AssociationType> FlowPathType() {

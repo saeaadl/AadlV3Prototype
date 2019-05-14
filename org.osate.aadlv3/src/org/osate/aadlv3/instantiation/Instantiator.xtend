@@ -113,17 +113,17 @@ class Instantiator {
 		val ctyperefs = ci.configuredTypeReferences
 		if (ctyperefs !== null){
 			val allassocs = ci.allAssociations
-			val actualConns = allassocs.filter[conn|conn.associationType.isConnection]
+			val actualConns = allassocs.filter[conn|conn.isConnection]
 			for (conn: actualConns){
 				conn.instantiateConnection(ci)
 			}
 			if (isRoot){
 			// generate external connections - only for the root component
-				val incomingConns = allassocs.filter[conn|conn.isIncomingFeatureMapping]
+				val incomingConns = allassocs.filter[conn|conn.isIncomingFeatureDelegation]
 				for (conn : incomingConns){
 					conn.instantiateExternalIncomingConnection(ci)
 				}
-				val outgoingConns = allassocs.filter[conn|conn.isOutgoingFeatureMapping]
+				val outgoingConns = allassocs.filter[conn|conn.isOutgoingFeatureDelegation]
 				for (conn : outgoingConns){
 					conn.instantiateExternalOutgoingConnection(ci)
 				}
@@ -266,7 +266,7 @@ class Instantiator {
 		val srcconftrs = srccxt.configuredTypeReferences
 		if (srcconftrs === null) return
 		// TODO handle expansion in nested declarations
-		val srcmappings = srccxt.allAssociations.filter[conn| conn.isSourceFeatureDelegate(conni)]
+		val srcmappings = srccxt.allAssociations.filter[conn| conn.isSourceFeatureDelegation(conni)]
 		if(srcmappings.size > 1){
 			// need to make a copy of conni
 			val last = srcmappings.last
@@ -287,7 +287,7 @@ class Instantiator {
 		} else if (srcmappings.size == 1){
 			val element = srcmappings.head
 			conni.sourceDelegates += element
-			conni.source = srccxt.getInstanceElement(element.delegateTarget) 
+			conni.source = srccxt.getInstanceElement(element.delegationTarget) 
 			if (!result.contains(conni)){
 				result += conni
 			}
@@ -303,7 +303,7 @@ class Instantiator {
 		val dstcxt = conni.destination.containingComponentInstance
 		val dstconftrs = dstcxt.configuredTypeReferences
 		if (dstconftrs === null) return
-		val dstmappings = dstcxt.allAssociations.filter[conn| conn.isDestinationFeatureDelegate(conni)]
+		val dstmappings = dstcxt.allAssociations.filter[conn| conn.isDestinationFeatureDelegation(conni)]
 		if(dstmappings.size > 1){
 			// need to make a copy of conni
 			val last = dstmappings.last
@@ -317,14 +317,14 @@ class Instantiator {
 					expconni.destination = conni.destination
 				}
 				expconni.destinationDelegates += element
-				expconni.destination = dstcxt.getInstanceElement(element.delegateTarget) 
+				expconni.destination = dstcxt.getInstanceElement(element.delegationTarget) 
 				result += expconni
 				expconni.expandDestinationFeatureDelegates(result)
 			}
 		} else if (dstmappings.size == 1){
 			val element = dstmappings.head
 			conni.destinationDelegates += element
-			conni.destination = dstcxt.getInstanceElement(element.delegateTarget) 
+			conni.destination = dstcxt.getInstanceElement(element.delegationTarget) 
 			if (!result.contains(conni)){
 				result += conni
 			}
@@ -370,7 +370,7 @@ class Instantiator {
 				// find component instance
 				val ci = context.getInstanceElement(pe)
 				psi.elements += ci
- 			} else if (flowelement instanceof Association && (flowelement as Association).associationType.isConnection){
+ 			} else if (flowelement instanceof Association && (flowelement as Association).isConnection){
  				// find connection instance
 				// skips feature mappings, such as the (optional) first and last element of a flow implementation
  				val conni = context.getInstanceElement(pe)

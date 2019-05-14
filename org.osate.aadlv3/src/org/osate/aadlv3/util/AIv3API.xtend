@@ -176,7 +176,7 @@ class AIv3API {
 	// association instance represents a connection
 	def static boolean isConnection(InstanceObject conn){
 		if (conn instanceof AssociationInstance){
-		   conn.associationType.isConnection 
+		   conn.association.isConnection 
 		} else false
 	}
 	// association instance represents a connection

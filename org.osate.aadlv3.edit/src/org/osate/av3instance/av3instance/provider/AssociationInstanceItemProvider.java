@@ -204,7 +204,7 @@ public class AssociationInstanceItemProvider extends InstanceObjectItemProvider 
 	@Override
 	public Object getImage(Object object) {
 		AssociationType cat = ((AssociationInstance) object).getAssociationType();
-		String prefix = (cat == AssociationType.CONNECTION || cat == AssociationType.FEATUREDELEGATE)
+		String prefix = (cat == AssociationType.CONNECTION )
 				? (((AssociationInstance) object).isBidirectional() ? "bi" : "dir")
 				: "";
 		String name = "bifeatureconnection";

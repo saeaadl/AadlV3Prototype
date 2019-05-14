@@ -55,11 +55,10 @@
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Aadlv3.ecore#//AssociationType">
       <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//AssociationType/connection"/>
       <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//AssociationType/binding"/>
-      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//AssociationType/featuredelegate"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//AssociationType/flow"/>
       <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//AssociationType/flowpath"/>
       <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//AssociationType/flowsource"/>
       <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//AssociationType/flowsink"/>
-      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//AssociationType/flow"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Aadlv3.ecore#//PropertyAssociationType">
       <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//PropertyAssociationType/FinalValue"/>

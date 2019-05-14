@@ -8,12 +8,12 @@
 ':'=15
 '::'=44
 '::*'=43
-':='=65
+':='=64
 ';'=19
 '<->'=30
 '=>'=35
 'abstract'=45
-'access'=72
+'access'=71
 'all'=17
 'as'=34
 'binding'=63
@@ -21,7 +21,6 @@
 'configuration'=27
 'connection'=62
 'data'=47
-'delegate'=64
 'device'=48
 'end'=13
 'event'=28
@@ -29,7 +28,7 @@
 'feature'=55
 'flow'=37
 'for'=16
-'group'=67
+'group'=66
 'import'=33
 'in'=58
 'interface'=24
@@ -38,8 +37,8 @@
 'out'=59
 'package'=12
 'parameter'=57
-'path'=71
-'point'=73
+'path'=70
+'point'=72
 'port'=56
 'private'=11
 'process'=50
@@ -49,15 +48,15 @@
 'provides'=61
 'requires'=60
 'reverse'=41
-'sink'=70
-'source'=69
+'sink'=69
+'source'=68
 'subprogram'=54
 'system'=52
 'thread'=53
-'to'=68
+'to'=67
 'type'=23
 'use'=31
-'virtual'=66
+'virtual'=65
 'workingset'=42
 '{'=21
 '}'=22
@@ -130,4 +129,3 @@ T__69=69
 T__70=70
 T__71=71
 T__72=72
-T__73=73

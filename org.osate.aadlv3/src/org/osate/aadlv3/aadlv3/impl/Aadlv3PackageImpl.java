@@ -2275,11 +2275,10 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		initEEnum(associationTypeEEnum, AssociationType.class, "AssociationType");
 		addEEnumLiteral(associationTypeEEnum, AssociationType.CONNECTION);
 		addEEnumLiteral(associationTypeEEnum, AssociationType.BINDING);
-		addEEnumLiteral(associationTypeEEnum, AssociationType.FEATUREDELEGATE);
+		addEEnumLiteral(associationTypeEEnum, AssociationType.FLOW);
 		addEEnumLiteral(associationTypeEEnum, AssociationType.FLOWPATH);
 		addEEnumLiteral(associationTypeEEnum, AssociationType.FLOWSOURCE);
 		addEEnumLiteral(associationTypeEEnum, AssociationType.FLOWSINK);
-		addEEnumLiteral(associationTypeEEnum, AssociationType.FLOW);
 
 		initEEnum(propertyAssociationTypeEEnum, PropertyAssociationType.class, "PropertyAssociationType");
 		addEEnumLiteral(propertyAssociationTypeEEnum, PropertyAssociationType.FINAL_VALUE);

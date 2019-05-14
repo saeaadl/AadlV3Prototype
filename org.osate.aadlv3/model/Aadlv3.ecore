@@ -215,11 +215,10 @@
   <eClassifiers xsi:type="ecore:EEnum" name="AssociationType">
     <eLiterals name="connection" literal="connection"/>
     <eLiterals name="binding" value="1" literal="binding"/>
-    <eLiterals name="featuredelegate" value="2" literal="feature delegate"/>
+    <eLiterals name="flow" value="2" literal="flow"/>
     <eLiterals name="flowpath" value="3" literal="flow path"/>
     <eLiterals name="flowsource" value="4" literal="flow source"/>
     <eLiterals name="flowsink" value="5" literal="flow sink"/>
-    <eLiterals name="flow" value="6" literal="flow"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PropertyValue">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>

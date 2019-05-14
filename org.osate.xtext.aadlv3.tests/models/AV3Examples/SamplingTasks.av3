@@ -28,12 +28,12 @@
      // the required access is resolved to a subcomponent declaration
      Collect_Samples: thread Collect_Samples;
      Distribute: thread Distribute_Samples;
-     ISSSConn: connection Init_Samples.SampleSet -> Samples ;
-     ISOSConn: delegate   External_Samples -> Init_Samples.OrigSet ; 
+     ISSSConn: connection Init_Samples.SampleSet -> Samples;
+     ISOSConn: connection  External_Samples -> Init_Samples.OrigSet ; 
      CSSSConn: connection Collect_Samples.SampleSet -> Samples;
-     CSISConn: delegate Input_Sample -> Collect_Samples.Input_Sample;
+     CSISConn: connection Input_Sample -> Collect_Samples.Input_Sample;
      DSSConn: connection  Samples -> Distribute.SampleSet ;
-     DUSConn: delegate Distribute.UpdatedSamples -> Result_Sample ;
+     DUSConn: connection Distribute.UpdatedSamples -> Result_Sample ;
    end
 
  end

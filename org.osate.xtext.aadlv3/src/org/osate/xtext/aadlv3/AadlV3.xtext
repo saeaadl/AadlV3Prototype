@@ -64,7 +64,8 @@ fragment ImplementationBody*:
 ;
 
 fragment ImplementationElement* :
-	connections+=Connection |connections+=FeatureDelegate | bindings+=Binding | components+=Component 
+	connections+=Connection |
+	 bindings+=Binding | components+=Component 
 		| paths+= Path | flowAssignments+=FlowAssignment | configurationAssignments+=ConfigurationAssignment | configurationAssignments+=ConfigurationAssignmentPattern
 		| propertyAssociations+=PropertyAssociation
 ;
@@ -96,10 +97,6 @@ Component returns av3::Component:
 
 Connection returns av3::Association:
 	name=ID ':' associationType=ConnectionType source=ModelElementReference
-	('->'|bidirectional?='<->') destination=ModelElementReference PropertiesBlock? ;
-
-FeatureDelegate returns av3::Association:
-	name=ID ':' associationType=DelegateType source=ModelElementReference
 	('->'|bidirectional?='<->') destination=ModelElementReference PropertiesBlock? ;
 
 
@@ -175,7 +172,7 @@ fragment ConfigurationElementBlock *:
 	('is' (ConfigurationElement ';'? )+ )? 'end';
 
 fragment CurlyConfigurationElementBlock *:
-	'{' (ConfigurationElement ';'? )+ '}'; //ConfigurationElement (';' ConfigurationElement )* ';'? '}';
+	'{' (ConfigurationElement ';'? )+ '}'; 
 
 fragment ConfigurationElement*: 
 	propertyAssociations+=PropertyAssociation | 
@@ -220,7 +217,7 @@ fragment NestedComponentImplementationBlock *:
 	 	'}';
 	 	
 fragment NestedImplementationElement*: 
-	features+=Feature | connections+=Connection| connections+=FeatureDelegate | bindings+=Binding | components+=Component |  propertyAssociations+=PropertyAssociation
+	features+=Feature | connections+=Connection | bindings+=Binding | components+=Component |  propertyAssociations+=PropertyAssociation
 ;
 
 fragment ConfigurationExtensions *:
@@ -289,7 +286,7 @@ FeatureDirection returns av3::FeatureDirection:
 	;
 
 AssociationType returns  av3::AssociationType:
-	ConnectionType | BindingType | DelegateType |  FlowType
+	ConnectionType | BindingType | FlowType 
 ;
 
 ConnectionType returns av3::AssociationType:
@@ -297,9 +294,6 @@ ConnectionType returns av3::AssociationType:
 
 BindingType returns av3::AssociationType:
 	'binding' ;
-
-DelegateType returns av3::AssociationType:
-	'delegate' ;
 
 FlowPathType returns av3::AssociationType:
 	FlowPathKeywords ;

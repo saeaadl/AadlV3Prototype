@@ -176,7 +176,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	def checkPathElement(PathElement pe) {
 		if (!(pe.element instanceof Association &&
 			((pe.element as Association).isFlowSpec || (pe.element as Association).isConnection ||
-				(pe.element as Association).isFeatureDelegate) || pe.element instanceof Component)) {
+				(pe.element as Association).isFeatureDelegation) || pe.element instanceof Component)) {
 			error('Path element must reference a connection, flow spec, or component', pe, null, ToFlowSpec)
 		}
 	}
@@ -1211,7 +1211,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 		if(assoc.source === null || assoc.destination === null) return
 		val srcdir = assoc.source.realFeatureDirection
 		val dstdir = assoc.destination.realFeatureDirection
-		if (assoc.associationType.isConnection) {
+		if (assoc.isConnection) {
 			if (!assoc.isBidirectional) {
 				if (!(srcdir?.outgoing && dstdir?.incoming)) {
 					error('Connection source must be outgoing and destination must be incoming', assoc, null, OUT_TO_IN)
@@ -1222,10 +1222,10 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 					error('Connection source and destination must be bidirectional', assoc, null, MUST_BE_BI)
 				}
 			}
-		} else if (assoc.associationType.isFeatureDelegate) {
+		} else if (assoc.isFeatureDelegation) {
 			if (!assoc.isBidirectional) {
 				if (!(srcdir === dstdir || srcdir === FeatureDirection.NONE || dstdir === FeatureDirection.NONE)) {
-					error('Feature delegate directions must be same', assoc, null, SAME_DIRECTION)
+					error('Feature delegation directions must be same', assoc, null, SAME_DIRECTION)
 				}
 				if (srcdir?.biDirectional && dstdir?.biDirectional) {
 					// delegate direction must be bidirectional but is directional
@@ -1236,7 +1236,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 			} else {
 				// bidirectional
 				if (!(srcdir?.biDirectional && dstdir?.biDirectional)) {
-					error('Feature delegate source and destination must be bidirectional', assoc, null, MUST_BE_BI)
+					error('Feature delegation source and destination must be bidirectional', assoc, null, MUST_BE_BI)
 				}
 			}
 		} else if (assoc.associationType.isFlowSpec) {
@@ -1260,7 +1260,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 		if(assoc.source === null || assoc.destination === null) return
 		val srcelem = assoc.source?.element
 		val dstelem = assoc.destination?.element
-		if (assoc.associationType.isConnection || assoc.associationType.isFeatureDelegate) {
+		if (assoc.isConnection || assoc.isFeatureDelegation) {
 			if (srcelem instanceof Feature && dstelem instanceof Feature) {
 				val src = srcelem as Feature
 				val dst = dstelem as Feature
@@ -1304,26 +1304,26 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	}
 
 	def checkConsistentTargets(Association assoc) {
-		if (assoc.associationType.isConnection) {
+		if (assoc.isConnection) {
 			if(assoc.source === null || assoc.destination === null) return;
 			if (!(assoc.source.modelElementReferenceIncludesComponent &&
 				assoc.destination.modelElementReferenceIncludesComponent)) {
 				error('Connection must be between subcomponents', assoc, null, BetweenSubcomponents)
 			}
 		}
-		if (assoc.associationType.isFeatureDelegate) {
+		if (assoc.isFeatureDelegation) {
 			if(assoc.source === null || assoc.destination === null) return;
 			val srcdir = assoc.source.realFeatureDirection
 			if (srcdir?.outgoing) {
 				if (!(assoc.source.modelElementReferenceIncludesComponent &&
 					!assoc.destination.modelElementReferenceIncludesComponent)) {
-					error('Outgoing feature delegate must be from feature in subcomponent to feature', assoc, null,
+					error('Outgoing feature delegation must be from feature in subcomponent to feature', assoc, null,
 						org.osate.xtext.aadlv3.validation.AadlV3Validator.FeatureAndSubcomponent)
 				}
 			} else {
 				if (!(!assoc.source.modelElementReferenceIncludesComponent &&
 					assoc.destination.modelElementReferenceIncludesComponent)) {
-					error('Feature delegate must be from feature to feature in subcomponent', assoc, null,
+					error('Feature delegation must be from feature to feature in subcomponent', assoc, null,
 						org.osate.xtext.aadlv3.validation.AadlV3Validator.FeatureAndSubcomponent)
 				}
 			}

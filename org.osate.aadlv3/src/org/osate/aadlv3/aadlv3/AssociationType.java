@@ -51,42 +51,6 @@ public enum AssociationType implements Enumerator {
 	BINDING(1, "binding", "binding"),
 
 	/**
-	 * The '<em><b>Featuredelegate</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FEATUREDELEGATE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FEATUREDELEGATE(2, "featuredelegate", "feature delegate"),
-	/**
-	 * The '<em><b>Flowpath</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	* <!-- end-user-doc -->
-	 * @see #FLOWPATH_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FLOWPATH(3, "flowpath", "flow path"),
-	/**
-	 * The '<em><b>Flowsource</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	* <!-- end-user-doc -->
-	 * @see #FLOWSOURCE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FLOWSOURCE(4, "flowsource", "flow source"),
-	/**
-	 * The '<em><b>Flowsink</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	* <!-- end-user-doc -->
-	 * @see #FLOWSINK_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FLOWSINK(5, "flowsink", "flow sink"),
-	/**
 	 * The '<em><b>Flow</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -94,7 +58,34 @@ public enum AssociationType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	FLOW(6, "flow", "flow");
+	FLOW(2, "flow", "flow"),
+	/**
+	* The '<em><b>Flowpath</b></em>' literal object.
+	* <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
+	* @see #FLOWPATH_VALUE
+	* @generated
+	* @ordered
+	*/
+	FLOWPATH(3, "flowpath", "flow path"),
+	/**
+	* The '<em><b>Flowsource</b></em>' literal object.
+	* <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
+	* @see #FLOWSOURCE_VALUE
+	* @generated
+	* @ordered
+	*/
+	FLOWSOURCE(4, "flowsource", "flow source"),
+	/**
+	* The '<em><b>Flowsink</b></em>' literal object.
+	* <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
+	* @see #FLOWSINK_VALUE
+	* @generated
+	* @ordered
+	*/
+	FLOWSINK(5, "flowsink", "flow sink");
 
 	/**
 	 * The '<em><b>Connection</b></em>' literal value.
@@ -127,19 +118,19 @@ public enum AssociationType implements Enumerator {
 	public static final int BINDING_VALUE = 1;
 
 	/**
-	 * The '<em><b>Featuredelegate</b></em>' literal value.
+	 * The '<em><b>Flow</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Featuredelegate</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>Flow</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #FEATUREDELEGATE
-	 * @model name="featuredelegate" literal="feature delegate"
+	 * @see #FLOW
+	 * @model name="flow"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FEATUREDELEGATE_VALUE = 2;
+	public static final int FLOW_VALUE = 2;
 
 	/**
 	 * The '<em><b>Flowpath</b></em>' literal value.
@@ -187,28 +178,13 @@ public enum AssociationType implements Enumerator {
 	public static final int FLOWSINK_VALUE = 5;
 
 	/**
-	 * The '<em><b>Flow</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>Flow</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #FLOW
-	 * @model name="flow"
-	 * @generated
-	 * @ordered
-	 */
-	public static final int FLOW_VALUE = 6;
-
-	/**
 	 * An array of all the '<em><b>Association Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final AssociationType[] VALUES_ARRAY = new AssociationType[] { CONNECTION, BINDING, FEATUREDELEGATE,
-			FLOWPATH, FLOWSOURCE, FLOWSINK, FLOW, };
+	private static final AssociationType[] VALUES_ARRAY = new AssociationType[] { CONNECTION, BINDING, FLOW, FLOWPATH,
+			FLOWSOURCE, FLOWSINK, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Association Type</b></em>' enumerators.
@@ -268,16 +244,14 @@ public enum AssociationType implements Enumerator {
 			return CONNECTION;
 		case BINDING_VALUE:
 			return BINDING;
-		case FEATUREDELEGATE_VALUE:
-			return FEATUREDELEGATE;
+		case FLOW_VALUE:
+			return FLOW;
 		case FLOWPATH_VALUE:
 			return FLOWPATH;
 		case FLOWSOURCE_VALUE:
 			return FLOWSOURCE;
 		case FLOWSINK_VALUE:
 			return FLOWSINK;
-		case FLOW_VALUE:
-			return FLOW;
 		}
 		return null;
 	}
