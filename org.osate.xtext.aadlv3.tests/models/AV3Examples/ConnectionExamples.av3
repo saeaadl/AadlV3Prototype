@@ -1,4 +1,4 @@
-package ConnectionExamples 
+package ConnectionExamples is
 // connections without and with reach down into is
 // shared data component
 
@@ -8,38 +8,38 @@ package ConnectionExamples
 		state: provides in data access systemstate;
 		inp: in port;
 		fea: feature;
-	end
+	end;
 	interface sensor is
 		state: requires in data access systemstate;
 		outp: out port;
 		fea: feature;
-	end
+	end;
 	
 	abstract sensor.i is
 		sub1: thread sense;
 		upmap: connection sub1.p1 -> outp ;
 		stateaccess: connection state -> sub1.state;
-	end
+	end;
 	abstract actuator.i  is
 		mystate: data systemstate ;
 		sub2: thread actuate;
 		downmap: connection inp -> sub2.p1;
 		stateread: connection  mystate -> state ; 
 		statewrite: connection sub2.state -> mystate ;
-	end
+	end;
 	
 	
 	thread interface sense  is
 		state: requires in data access systemstate;
 		p1: out port ;
-	end
+	end;
 	
 	thread interface actuate  is
 		p1: in port ;
 		state: requires out data access systemstate;
-	end
+	end;
 	
-	system interface conntop end
+	system interface conntop is end;
 	system conntop.i is
 		sense: abstract sensor.i;
 		actuate: abstract actuator.i;
@@ -47,25 +47,25 @@ package ConnectionExamples
 		conn1: connection sense.sub1.p1 -> actuate.sub2.p1;
 		stateaccess: connection  actuate.state -> sense.state ;
 		fconn: connection sense.fea -> actuate.fea;
-	end
+	end;
 	
 	bus interface canbus is
 	canbusaccess: provides bus access canbus;
-	end
+	end;
 	
 	processor interface x86 is
 	canbusaccess: requires bus access canbus;
-	end
+	end;
 	
 	system interface hardwareplatform is
 		canbusaccess: provides bus access canbus;
-	end
+	end;
 	
 	system hardwareplatform.impl is
 	cpu: processor x86;
 	mybus: bus canbus;
 	busconn: connection cpu.canbusaccess <-> mybus.canbusaccess;
 	extbusaccess: connection canbusaccess <-> mybus.canbusaccess; 
-	end
+	end;
 	
-end
+end;

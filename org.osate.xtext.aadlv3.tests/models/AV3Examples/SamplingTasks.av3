@@ -1,26 +1,26 @@
- package SamplingTasks
+ package SamplingTasks is
    import Sampling::*;
 
    thread interface  Init_Samples is
      OrigSet: requires in data access Sample_Set;
      SampleSet: requires out data access Sample_Set;
-   end
+   end;
 
    thread interface  Collect_Samples is
      Input_Sample: in port Sample;
      SampleSet: requires out data access Sample_Set;
-   end
+   end;
 
    thread interface Distribute_Samples is
      SampleSet: requires in data access Sample_Set;
      UpdatedSamples : out port Sample;
-   end
+   end;
 
    process interface Sample_Manager is
      Input_Sample: in port Sample;
      External_Samples: requires in data access Sample_Set;
      Result_Sample: out port Sample;
-   end
+   end;
 
    process Sample_Manager.Slow_Update is
      Samples: data Sample_Set;
@@ -34,6 +34,6 @@
      CSISConn: connection Input_Sample -> Collect_Samples.Input_Sample;
      DSSConn: connection  Samples -> Distribute.SampleSet ;
      DUSConn: connection Distribute.UpdatedSamples -> Result_Sample ;
-   end
+   end;
 
- end
+ end;

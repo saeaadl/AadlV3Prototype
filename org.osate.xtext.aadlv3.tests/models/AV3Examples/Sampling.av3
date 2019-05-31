@@ -1,8 +1,8 @@
-package Sampling
+package Sampling is
 	import StandardProperties::*;
 
- type Sample { #Data_Size => 16 Bytes  };
+ type Sample { #Data_Size => 16 Bytes ; };
 
- type Sample_Set { #Data_Size => 1 MByte };
+ type Sample_Set { #Data_Size => 1 MByte ;};
 
- end
+ end;

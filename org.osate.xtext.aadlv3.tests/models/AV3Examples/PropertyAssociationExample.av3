@@ -1,4 +1,4 @@
-package PropertyAssociationExample 
+package PropertyAssociationExample is
 // connections without and with reach down into is
 // shared data component
 	import StandardProperties::*;
@@ -7,75 +7,75 @@ package PropertyAssociationExample
 	type int;
 	
 	interface actuator is
-		inp: in port {#Data_Size => 20 b}; 
+		inp: in port {#Data_Size => 20 b;}; 
 		fea: feature;
 		action: flow sink  inp ;
-		#Period => 20 ms
-	end
+		#Period => 20 ms;
+	end;
 	
 	interface sensor is
 		outp: out port;
 		fea: feature;
 		reading: flow source outp;
-	end
+	end;
 	
 	abstract sensor.i  is
 		sub1: thread sense;
 		upmap: connection sub1.p1 -> outp;
 		reading => flow upmap -> sub1.reading;
-	end
+	end;
 	abstract actuator.i  is
 		actuateThread: thread actuate;
 		downmap: connection inp -> actuateThread.p1;
 		action=> flow actuateThread.taction;
 		#Period => 35 ms;
-	end
+	end;
 	
 	configuration actuator.c1 extends actuator.i
 	is 
-		actuateThread#Period := 71ms 
-	end
+		actuateThread#Period := 71ms ;
+	end;
 	
 	configuration actuator.c2 extends actuator.i
 	is 
-		actuateThread#Period := 72ms 
-	end
+		actuateThread#Period := 72ms ;
+	end;
 	
 	thread interface sense  is
 		p1: out port ;
 		reading: flow  source p1;
-	end
+	end;
 	thread interface actuate  is
 		p1: in port ;
 		taction: flow  sink p1;
 		#Period => 20 ;
-	end
+	end;
 	
 	thread interface filter is
 	insignal : in port;
 	outsignal : out port;
 	filterpath: flow path insignal -> outsignal;
 	#Period => 20 ;
-	end
+	end;
 	
 	thread interface compute is
 	insignal : in port;
 	outsignal : out port;
 	computepath: flow path insignal -> outsignal;
-	end
+	end;
 	
 	thread interface logger is
 	insignal : in port;
-	end
+	end;
 	
 	interface control is
 	insignal: in port;
 	outaction: out port;
 	processflow: flow path insignal -> outaction;
-	end
+	end;
 	
 	process interface controlProcess extends control 
-	end
+	is end;
 	
 	process controlProcess.impl is
 		dofilter: thread filter;
@@ -85,9 +85,9 @@ package PropertyAssociationExample
 		login: connection insignal -> dolog.insignal;
 		ftoc: connection dofilter.outsignal -> docompute.insignal;
 		extout: connection docompute.outsignal -> outaction ;
-	end
+	end;
 	
-	system interface conntop end
+	system interface conntop is end;
 	
 	system conntop.i is
 		sense: abstract sensor.i;
@@ -96,33 +96,33 @@ package PropertyAssociationExample
 		hw : system hardwareplatform.impl;
 		sensetocontrol: connection sense.outp -> processing.insignal;
 		controltoactuate: connection processing.outaction -> actuate.inp;
-		actuate#Period => 34 ms
+		actuate#Period => 34 ms;
 		actuate.actuateThread#Period := 55ms; 
-	end
+	end;
 	
 	configuration conntop.c1 extends conntop.i is
 	#Period *=> 99 ms;
 	#Data_Size *=> 88 bytes;
-		actuate => actuator.c1 , actuator.c2 {actuateThread#Period := 73ms}
-		actuate => {actuateThread#Period := 74ms}
-	end
+		actuate => actuator.c1 , actuator.c2 {actuateThread#Period := 73ms;}
+		actuate => {actuateThread#Period := 74ms;};
+	end;
 	
 	bus interface canbus 
-	end
+	is end;
 	
 	processor interface x86 is
 	canbusaccess: requires bus access canbus;
-	end
+	end;
 	
 	system interface hardwareplatform is
 		canbusaccess: provides bus access canbus;
-	end
+	end;
 	
 	system hardwareplatform.impl is
 	cpu: processor x86;
 	mybus: bus canbus;
 	busconn: connection cpu.canbusaccess <-> mybus;
 	extbusaccess: connection canbusaccess <-> mybus;
-	end
+	end;
 	
-end
+end;

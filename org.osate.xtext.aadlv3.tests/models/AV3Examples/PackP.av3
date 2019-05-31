@@ -1,14 +1,14 @@
-package PackP 
+package PackP is
 import PackP::Q::*;
 	type date ;
-	package bested  
+	package bested  is
 		type signal ;
-	end
+	end;
 	interface nnested is
 	signal: feature;
-	end
+	end;
 	interface main extends nnested is
 	p1: feature signal;
-	end
+	end;
 	
-end
+end;

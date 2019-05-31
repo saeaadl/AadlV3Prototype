@@ -1,8 +1,8 @@
-package NestedImplementations 
+package NestedImplementations is
 
 	import StandardProperties::*;
 
-	system interface ControlSystem end
+	system interface ControlSystem is end;
 	
 	system ControlSystem.i
 	is
@@ -31,5 +31,5 @@ package NestedImplementations
 		sensefilterconn : connection sensing.sensedata -> processing.filter.inp ;
 		controlactuateconn : connection processing.outp -> actuating.inp;
 		reachdowncontrolactuateconn : connection processing.control.outp -> actuating.inp;
-	end
-end
+	end;
+end;

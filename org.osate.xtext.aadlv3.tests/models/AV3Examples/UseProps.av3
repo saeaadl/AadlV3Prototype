@@ -1,4 +1,4 @@
-package UseProps
+package UseProps is
 
 import StandardProperties::*;
 
@@ -8,21 +8,21 @@ import StandardProperties::*;
 	
 	properties MyProperties : { Period };
 	
-	system interface gps end
+	system interface gps is end;
 	
 	system gps.i is
 		locator : process LocatorProcess.impl;
-	end
+	end;
 	process interface LocatorProcess is
 	#Period => 20;
-	end
+	end;
 	
 	thread interface t is
 	use properties MyProperties;
-	end
+	end;
 	
 	process LocatorProcess.impl is
 	t1: thread t;
-	end
+	end;
 	
-end
+end;

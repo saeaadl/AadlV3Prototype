@@ -1,4 +1,4 @@
-package NamedInterfaces 
+package NamedInterfaces is
 	type date; 
 	type person ;
 
@@ -7,12 +7,12 @@ package NamedInterfaces
 		name : feature person ;
 		p1: in port date;
 		p2: in port date;
-	end
+	end;
 	
 	interface mine 
 	is
 		name: feature person;
-	end
+	end;
 	
 	system interface subsub 
 	is 
@@ -20,5 +20,5 @@ package NamedInterfaces
 		minei: interface mine;
 //	flows
 //		c1: port subi.p1 -> minei.name; 
-	end
-end
+	end;
+end;

@@ -1,4 +1,4 @@
-package simpleinstances
+package simpleinstances is
 workingset simpleinstances is
 //	basic: system Basic::gps.i;
 //	first : system SimpleConfiguration::top.i ;
@@ -16,5 +16,5 @@ workingset simpleinstances is
 //	connex: system ConnectionExamples::conntop.i;
 //
 //  flowex: system FlowExamples::conntop.i;
-end
-end
+end ;
+end;

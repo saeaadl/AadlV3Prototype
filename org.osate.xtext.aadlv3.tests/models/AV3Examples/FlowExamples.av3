@@ -1,4 +1,4 @@
-package FlowExamples 
+package FlowExamples is
 // connections without and with reach down into is
 // shared data component
 	import StandardProperties::*;
@@ -10,37 +10,37 @@ package FlowExamples
 		inp: in port;
 		fea: feature;
 		action: flow sink  inp ;
-	end
+	end;
 	interface sensor is
 		outp: out port;
 		fea: feature;
 		reading: flow source outp;
-	end
+	end;
 	
 	abstract sensor.i  is
 		sub1: thread sense;
 		upmap: connection sub1.p1 -> outp ;
 		reading => flow upmap -> sub1.reading;
-	end
+	end;
 	abstract actuator.i  is
 		sub2: thread actuate;
 		downmap: connection inp -> sub2.p1;
 		action=> flow sub2.taction;
-	end
+	end;
 	thread interface sense  is
 		p1: out port ;
 		reading: flow  source p1;
-	end
+	end;
 	thread interface actuate  is
 		p1: in port ;
 		taction: flow  sink p1;
-	end
+	end;
 	
 	interface control is
 	insignal: in port;
 	outaction: out port;
 	processflow: flow path insignal -> outaction;
-	end
+	end;
 	
 	process control.impl is
 		dofilter: thread filter;
@@ -49,22 +49,22 @@ package FlowExamples
 		ftoc: connection dofilter.outsignal -> docompute.insignal;
 		extout: connection docompute.outsignal -> outaction ;
 		processflow => flow dofilter.filterpath -> ftoc -> docompute.computepath ;
-	end
+	end;
 	
 	thread interface filter is
 	insignal : in port;
 	outsignal : out port;
 	filterpath: flow path insignal -> outsignal;
-	#Period => 20 
-	end
+	#Period => 20 ;
+	end;
 	
 	thread interface compute is
 	insignal : in port;
 	outsignal : out port;
 	computepath: flow path insignal -> outsignal;
-	end
+	end;
 	
-	system interface conntop end
+	system interface conntop is end;
 	system conntop.i is
 		sense: abstract sensor.i;
 		processing: process control.impl;
@@ -73,25 +73,25 @@ package FlowExamples
 		sensetocontrol: connection sense.outp -> processing.insignal;
 		controltoactuate: connection processing.outaction -> actuate.inp;
 		etef: end to end flow sense.reading -> sensetocontrol-> processing.processflow -> controltoactuate -> actuate.action;
-	end
+	end;
 	
 	bus interface canbus 
-	end
+	is end;
 
 	
 	processor interface x86 is
 	canbusaccess: requires bus access canbus;
-	end
+	end;
 	
 	system interface hardwareplatform is
 		canbusaccess: provides bus access canbus;
-	end
+	end;
 	
 	system hardwareplatform.impl is
 	cpu: processor x86;
 	mybus: bus canbus;
 	busconn: connection cpu.canbusaccess <-> mybus;
 	extbusaccess: connection canbusaccess <-> mybus;
-	end
+	end;
 	
-end
+end;

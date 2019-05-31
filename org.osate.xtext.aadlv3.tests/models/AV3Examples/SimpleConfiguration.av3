@@ -1,4 +1,4 @@
-package SimpleConfiguration 
+package SimpleConfiguration is
 
 import StandardProperties::*;
 
@@ -6,20 +6,20 @@ import StandardProperties::*;
 		inp: in port ;
 		extout: out feature;
 		#Period *=> 20 ms;
-	end
+	end;
 
 	interface sender  is
 		extin: in feature;
 		outp: out port;
-	end
+	end;
 
 	abstract sender.i is
 		sub1: abstract sub;
-	end
+	end;
 
 	abstract sender.isubi is
 		sub1: abstract sub.i2t;
-	end
+	end;
 
 	configuration sender.sensorconf extends sender.i  
 	is
@@ -27,36 +27,36 @@ import StandardProperties::*;
 			t1#Period := 30;
 		};
 		sub1.p1#Data_Size := 30;
-	end 
+	end ;
  
 	abstract receiver.i is
 		sub2: abstract sub;
-	end
+	end;
 
 	interface sub  is
 		p1: in port;
-	end
+	end;
 
 	thread subsub.i
-	end
+	is end;
 
 	abstract sub.i  is
 		t1: thread subsub;
-	end
+	end;
 	
 	abstract sub.i2t extends sub.i is
 		t2: thread subsub;
 		t1 => subsub.i; 
-	end
+	end;
 
 	thread interface subsub  is
 		p1: in port ;
-	end
+	end;
 
 	system interface top is
 		eextin : in feature;
 		eextout: out feature;
-	end
+	end;
 
 	system top.i  is
 		sense: abstract sender; // subcomponent by interface
@@ -64,20 +64,20 @@ import StandardProperties::*;
 		sense2: abstract sender.i;
 		sense21: abstract sender.isubi;
 		sense3: abstract sender;
-		actuate: abstract receiver {#Period => 23}; // subcomponent by interface
+		actuate: abstract receiver {#Period => 23;}; // subcomponent by interface
 		sense#Period => 33;
 		sense2.sub1#Period := 44;
 		extconn1: connection eextin -> sense.extin;
 		extconn2: connection actuate.extout -> eextout ;
-	end
+	end;
 
 	configuration top.topc extends top.i is
-		sense => sender.i  { #Period := 34; sub1 => sub.i {#Period := 35; t1#Period := 36;} } ; // configure in implementation and inline configure its subcomponent
-		actuate => receiver.i{#Period := 38 }; // configure in implementation
+		sense => sender.i  { #Period := 34; sub1 => sub.i {#Period := 35; t1#Period := 36;}; } ; // configure in implementation and inline configure its subcomponent
+		actuate => receiver.i{#Period := 38 ;}; // configure in implementation
 		sense1.sub1 => sub.i ; // Configure in subcomponent of implementation via reach down
 		sense21.sub1.t1 => subsub.i ; // Configure in subcomponent of implementation via reach down
 		sense2 =>  { sub1 => sub.i2t; }; // Configure in subcomponent of implementation via nesting
 		sense3 => sender.sensorconf; // Configure in configuration of implementation that contains configured subcomponent
-	end
+	end;
 
-end
+end;

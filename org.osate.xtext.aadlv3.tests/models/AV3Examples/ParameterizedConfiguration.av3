@@ -1,64 +1,64 @@
-package ParameterizedConfiguration 
+package ParameterizedConfiguration is
 	interface receiver  is
 		inp: in port;
-	end
+	end;
 	interface sender is
 		outp: out port;
-	end
+	end;
 	
 	abstract sender.i is
 		sub1: abstract sub;
-	end
+	end;
 	
 	configuration sender.sensetask extends sender.i  is
 		sub1 => sub.i;
-	end
+	end;
 	
 	abstract receiver.i  is
 		sub2: abstract sub;
-	end
+	end;
 	
 	interface sub  is
 		p1: in port ;
-	end
+	end;
 	abstract sub.i is
 		t1: abstract subsub;
-	end
+	end;
 	interface subsub is
 		p1: in port ;
-	end
+	end;
 	
 	system interface top
-	end
+	is end;
 	
 	system top.i  is
 		sense: abstract sender ;
 		sense1 : abstract sender.i;
 		sense2: abstract sender.i;
 		actuate: abstract receiver;
-	end
+	end;
 	
 	configuration top.topc(p1: sender) extends top.i  is
 		sense => p1;
 //		sense1 => { sub1 => p1;};
-	end
+	end;
 	
 	system interface supertop 
-	end
+	is end;
 	
 	system supertop.i  is
 		tops: system top.topc(p1 => sender.sensetask);
-	end
+	end;
 	
 	system supertop.i2  is
 		tops: system top;
-	end
+	end;
 	
 	configuration supertop.pconf (p11 : sender) extends supertop.i2 is
 		tops => top.topc(p1=>p11);
-	end
+	end;
 	
-	configuration top.topcc extends  top.topc(p1=>sender.sensetask) end
+	configuration top.topcc extends  top.topc(p1=>sender.sensetask) is end;
 
-	configuration supertop.topcc extends  supertop.pconf(p11=>sender.sensetask) end
-end
+	configuration supertop.topcc extends  supertop.pconf(p11=>sender.sensetask) is end;
+end;

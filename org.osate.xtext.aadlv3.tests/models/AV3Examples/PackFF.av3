@@ -1,8 +1,8 @@
-package PackF::F 
+package PackF::F is
 	type date ;
 	
 	interface main is
 	p1: feature date;
-	end
+	end;
 	
-end
+end;

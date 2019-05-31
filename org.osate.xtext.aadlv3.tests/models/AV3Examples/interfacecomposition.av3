@@ -1,4 +1,4 @@
-package interfacecomposition 
+package interfacecomposition is
 // interface composition with name conflict between composed interfaces
 	type date ;
 	type person ;
@@ -7,13 +7,13 @@ package interfacecomposition
 		name : feature person;
 		p1: feature date;
 		p2: in port date; 
-	end
+	end;
 	
 	interface mine is
 		name: feature person;
-	end
+	end;
 	
 	system interface subsub extends sub, mine
 	// should have error message about duplicate names coming from the two extends elements
-	end
-end
+	is end;
+end;

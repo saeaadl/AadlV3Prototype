@@ -1,4 +1,4 @@
-package testinstances
+package testinstances is
 workingset testinstances is
 	
 	paex: system PropertyAssociationExample::conntop.c1;
@@ -7,5 +7,5 @@ workingset testinstances is
 //
 //  flowex: system FlowExamples::conntop.i;
 	
-end
-end
+end ;
+end;

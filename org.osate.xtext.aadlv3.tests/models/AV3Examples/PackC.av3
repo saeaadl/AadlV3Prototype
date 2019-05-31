@@ -1,9 +1,9 @@
-package PackC2 
+package PackC2 is
 	type tt;
 	interface mine is
 		sig : in feature tt;
-	end
+	end;
 	
-	bus interface canbus end
+	bus interface canbus is end;
 	
-end
+end;
