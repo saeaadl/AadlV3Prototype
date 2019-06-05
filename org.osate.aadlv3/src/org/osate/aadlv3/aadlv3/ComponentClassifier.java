@@ -31,6 +31,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.osate.aadlv3.aadlv3.ComponentClassifier#getPropertyAssociations <em>Property Associations</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.ComponentClassifier#getUseModes <em>Use Modes</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.ComponentClassifier#isInheritsModes <em>Inherits Modes</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.ComponentClassifier#getAnnexSubclause <em>Annex Subclause</em>}</li>
  * </ul>
  *
  * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getComponentClassifier()
@@ -147,5 +148,17 @@ public interface ComponentClassifier extends PackageElement, Type {
 	 * @generated
 	 */
 	void setInheritsModes(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Annex Subclause</b></em>' containment reference list.
+	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.AnnexSubclause}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Annex Subclause</em>' containment reference list.
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getComponentClassifier_AnnexSubclause()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<AnnexSubclause> getAnnexSubclause();
 
 } // ComponentClassifier

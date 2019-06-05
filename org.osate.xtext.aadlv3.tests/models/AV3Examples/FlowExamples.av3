@@ -36,7 +36,20 @@ package FlowExamples is
 		taction: flow  sink p1;
 	end;
 	
-	interface control is
+	thread interface filter is
+	insignal : in port;
+	outsignal : out port;
+	filterpath: flow path insignal -> outsignal;
+	#Period => 20 ;
+	end;
+	
+	thread interface compute is
+	insignal : in port;
+	outsignal : out port;
+	computepath: flow path insignal -> outsignal;
+	end;
+	
+	process interface control is
 	insignal: in port;
 	outaction: out port;
 	processflow: flow path insignal -> outaction;
@@ -49,19 +62,6 @@ package FlowExamples is
 		ftoc: connection dofilter.outsignal -> docompute.insignal;
 		extout: connection docompute.outsignal -> outaction ;
 		processflow => flow dofilter.filterpath -> ftoc -> docompute.computepath ;
-	end;
-	
-	thread interface filter is
-	insignal : in port;
-	outsignal : out port;
-	filterpath: flow path insignal -> outsignal;
-	#Period => 20 ;
-	end;
-	
-	thread interface compute is
-	insignal : in port;
-	outsignal : out port;
-	computepath: flow path insignal -> outsignal;
 	end;
 	
 	system interface conntop is end;

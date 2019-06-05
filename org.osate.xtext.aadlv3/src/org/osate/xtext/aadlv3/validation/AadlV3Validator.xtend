@@ -1020,7 +1020,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 
 	def checkFeatureDirection(Feature fea) {
 		switch (fea.category) {
-			case FeatureCategory.BINDINGPOINT: {
+			case FeatureCategory.BINDING: {
 				if (!(fea.direction == FeatureDirection.PROVIDES || fea.direction == FeatureDirection.REQUIRES)) {
 					error('Binding point direction must be provides or requires', fea,
 						Aadlv3Package.Literals.FEATURE__DIRECTION, BAD_BINDING_POINT_DIRECTION)

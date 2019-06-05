@@ -48,6 +48,8 @@
         eType="#//PropertyAssociation" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="useModes" eType="#//ModeStateMachine"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="inheritsModes" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="annexSubclause" upperBound="-1"
+        eType="#//AnnexSubclause" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ComponentRealization" abstract="true"
       eSuperTypes="#//ComponentClassifier">
@@ -89,6 +91,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="typeReference" eType="#//TypeReference"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="event" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="annexSubclause" upperBound="-1"
+        eType="#//AnnexSubclause" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Component" eSuperTypes="#//ModelElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="category" eType="#//ComponentCategory"/>
@@ -109,11 +113,14 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Association" eSuperTypes="#//ModelElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="associationType" eType="#//AssociationType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bindingType" eType="#//DataType"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//ModelElementReference"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="destination" eType="#//ModelElementReference"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="bidirectional" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="annexSubclause" upperBound="-1"
+        eType="#//AnnexSubclause"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PathSequence" eSuperTypes="#//ModelElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//ModelElementReference"
@@ -137,6 +144,8 @@
         eType="#//PropertyAssociation" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="bindings" upperBound="-1"
         eType="#//Association" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="annexSubclause" upperBound="-1"
+        eType="#//AnnexSubclause" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConfigurationAssignmentPattern" eSuperTypes="#//ConfigurationAssignment">
     <eStructuralFeatures xsi:type="ecore:EReference" name="targetPattern" eType="#//Type"/>
@@ -191,7 +200,7 @@
     <eLiterals name="port" value="1" literal="port"/>
     <eLiterals name="dataaccess" value="2" literal="data access"/>
     <eLiterals name="busaccess" value="3" literal="bus access"/>
-    <eLiterals name="bindingpoint" value="4" literal="binding point"/>
+    <eLiterals name="binding" value="4" literal="binding"/>
     <eLiterals name="interface" value="5" literal="interface"/>
     <eLiterals name="virtualbusaccess" value="6" literal="virtual bus access"/>
     <eLiterals name="subprogramaccess" value="7" literal="subprogram access"/>
@@ -245,15 +254,11 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//Mode"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//Mode"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="triggers" upperBound="-1"
-        eType="#//ModeTransitionTrigger" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ModeTransitionTrigger">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="#//ModelElement"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="trigger" eType="#//ModelElement"/>
+        eType="#//ModelElementReference" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ModeTransitionTriggerAssignment">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="triggers" upperBound="-1"
-        eType="#//ModeTransitionTrigger" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="triggers" ordered="false"
+        upperBound="-1" eType="#//ModelElementReference" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="transition" eType="#//ModeTransition"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ModeAssignment">
@@ -266,4 +271,5 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="transitions" upperBound="-1"
         eType="#//ModeTransition" containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AnnexSubclause" eSuperTypes="#//ModelElement"/>
 </ecore:EPackage>

@@ -46,7 +46,7 @@ fragment InterfaceBody*:
 fragment InterfaceElement*:
 	 features+=Feature 
 	 | flows+=FlowPath |  flows+=FlowSource |  flows+=FlowSink  
-	 | UseProps | propertyAssociations+=PropertyAssociation
+	  | propertyAssociations+=PropertyAssociation | annexSubclause+=AnnexSubclause
 ;
 	
 
@@ -64,7 +64,7 @@ fragment ImplementationElement* :
 	connections+=Connection |
 	 bindings+=Binding | components+=Component 
 		| paths+= Path | flowAssignments+=FlowAssignment | configurationAssignments+=ConfigurationAssignment | configurationAssignments+=ConfigurationAssignmentPattern
-		| propertyAssociations+=PropertyAssociation
+		| propertyAssociations+=PropertyAssociation | annexSubclause+=AnnexSubclause
 ;
 
 ComponentConfiguration returns av3::ComponentConfiguration:
@@ -81,6 +81,7 @@ Feature returns av3::Feature:
 	name=ID ':' direction=FeatureDirection?  
 	event?='event'? category=FeatureCategory 
 	(typeReference=ReversableTypeReference )?
+	annexSubclause+=AnnexSubclause?
 	PropertiesBlock? ';'
 	;
 
@@ -93,24 +94,25 @@ Component returns av3::Component:
  ;
 
 Connection returns av3::Association:
-	name=ID ':' associationType=ConnectionType source=ModelElementReference
+	name=ID ':' associationType=IsConnection source=ModelElementReference
 	('->'|bidirectional?='<->') destination=ModelElementReference PropertiesBlock? ';';
 
 
 Binding returns av3::Association:
-	name=ID ':' associationType=BindingType source=ModelElementReference
+	name=ID ':' bindingType=[av3::DataType|QualifiedName]? associationType=IsBinding 
+	source=ModelElementReference
 	'->' destination=ModelElementReference PropertiesBlock? ';';
 
 
 FlowPath returns av3::Association:
-	name=ID ':' associationType=FlowPathType source=ModelElementReference
+	name=ID ':' associationType=IsFlowPath source=ModelElementReference
 	'->' destination=ModelElementReference PropertiesBlock? ';';
 
 FlowSource returns av3::Association:
-	name=ID ':' associationType=FlowSourceType  destination=ModelElementReference  PropertiesBlock? ';' ;
+	name=ID ':' associationType=IsFlowSource  destination=ModelElementReference  PropertiesBlock? ';' ;
 
 FlowSink returns av3::Association:
-	name=ID ':' associationType=FlowSinkType  source=ModelElementReference 
+	name=ID ':' associationType=IsFlowSink  source=ModelElementReference 
 	 PropertiesBlock? ';';
 
 fragment UseProps*:	
@@ -179,7 +181,7 @@ fragment CurlyConfigurationElementBlock *:
 
 fragment ConfigurationElement*: 
 	propertyAssociations+=PropertyAssociation | 
-	bindings+=Binding | configurationAssignments+=ConfigurationAssignment | configurationAssignments+=ConfigurationAssignmentPattern
+	bindings+=Binding | configurationAssignments+=ConfigurationAssignment | configurationAssignments+=ConfigurationAssignmentPattern | annexSubclause+=AnnexSubclause
 ;
 
 fragment Parameters *:
@@ -209,6 +211,10 @@ RealizationReference returns av3::TypeReference :
 
 ImplementationReference returns av3::TypeReference :  
 	 type=[av3::ComponentImplementation|QualifiedDottedReference]
+;
+
+AnnexSubclause returns av3::AnnexSubclause :
+	'@' name=ID '{*' '*}'
 ;
 
 fragment PropertiesBlock *:
@@ -280,7 +286,7 @@ ComponentCategory returns av3::ComponentCategory: 'abstract' | 'bus'|'data'
 FeatureCategory returns av3::FeatureCategory:
 	'feature' | 'port' | 'parameter' | DataAccessKeywords 
 	| BusAccessKeywords | VirtualBusAccessKeywords | SubprogramAccessKeywords | SubprogramGroupAccessKeywords
-	| BindingPointKeywords | 'interface';
+	| 'binding' | 'interface';
 
 FeatureDirection returns av3::FeatureDirection:
 	'in' | 'out' 
@@ -289,25 +295,25 @@ FeatureDirection returns av3::FeatureDirection:
 	;
 
 AssociationType returns  av3::AssociationType:
-	ConnectionType | BindingType | FlowType 
+	IsConnection | IsBinding | IsFlow 
 ;
 
-ConnectionType returns av3::AssociationType:
+IsConnection returns av3::AssociationType:
 	'connection' ;
 
-BindingType returns av3::AssociationType:
+IsBinding returns av3::AssociationType:
 	'binding' ;
 
-FlowPathType returns av3::AssociationType:
+IsFlowPath returns av3::AssociationType:
 	FlowPathKeywords ;
 
-FlowSourceType returns av3::AssociationType:
+IsFlowSource returns av3::AssociationType:
 	FlowSourceKeywords ;
 
-FlowSinkType returns av3::AssociationType:
+IsFlowSink returns av3::AssociationType:
 	FlowSinkKeywords ;
 
-FlowType returns av3::AssociationType:
+IsFlow returns av3::AssociationType:
 	'flow' ;
 
 
@@ -350,7 +356,6 @@ VirtualBusAccessKeywords: 'virtual''bus''access' ;
 DataAccessKeywords: 'data''access' ; 
 SubprogramAccessKeywords: 'subprogram''access' ; 
 SubprogramGroupAccessKeywords: 'subprogram''group''access' ; 
-BindingPointKeywords: 'binding''point' ; 
 
 ProvidesReadKeywords: 'provides' 'in';
 RequiresReadKeywords: 'requires' 'in';

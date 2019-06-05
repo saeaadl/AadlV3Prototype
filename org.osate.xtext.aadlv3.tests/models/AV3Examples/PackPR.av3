@@ -1,8 +1,8 @@
-package PackP::R 
+package PackP::R is
 import PackP::Q::*;
 	interface mine is
 	p1: in feature date;
 	p2: in feature signal;
-	end
+	end;
 	
-end
+end;

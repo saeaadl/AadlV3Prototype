@@ -5,9 +5,6 @@ import StandardProperties::*;
 	type date ;
 	type person ;
 
-	
-	properties MyProperties : { Period };
-	
 	system interface gps is end;
 	
 	system gps.i is
@@ -18,7 +15,6 @@ import StandardProperties::*;
 	end;
 	
 	thread interface t is
-	use properties MyProperties;
 	end;
 	
 	process LocatorProcess.impl is

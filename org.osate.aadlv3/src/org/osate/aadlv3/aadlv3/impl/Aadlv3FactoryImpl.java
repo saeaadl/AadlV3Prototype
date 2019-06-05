@@ -118,14 +118,14 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 			return createMode();
 		case Aadlv3Package.MODE_TRANSITION:
 			return createModeTransition();
-		case Aadlv3Package.MODE_TRANSITION_TRIGGER:
-			return createModeTransitionTrigger();
 		case Aadlv3Package.MODE_TRANSITION_TRIGGER_ASSIGNMENT:
 			return createModeTransitionTriggerAssignment();
 		case Aadlv3Package.MODE_ASSIGNMENT:
 			return createModeAssignment();
 		case Aadlv3Package.MODE_STATE_MACHINE:
 			return createModeStateMachine();
+		case Aadlv3Package.ANNEX_SUBCLAUSE:
+			return createAnnexSubclause();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -425,17 +425,6 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 	 * @generated
 	 */
 	@Override
-	public ModeTransitionTrigger createModeTransitionTrigger() {
-		ModeTransitionTriggerImpl modeTransitionTrigger = new ModeTransitionTriggerImpl();
-		return modeTransitionTrigger;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public ModeTransitionTriggerAssignment createModeTransitionTriggerAssignment() {
 		ModeTransitionTriggerAssignmentImpl modeTransitionTriggerAssignment = new ModeTransitionTriggerAssignmentImpl();
 		return modeTransitionTriggerAssignment;
@@ -461,6 +450,17 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 	public ModeStateMachine createModeStateMachine() {
 		ModeStateMachineImpl modeStateMachine = new ModeStateMachineImpl();
 		return modeStateMachine;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public AnnexSubclause createAnnexSubclause() {
+		AnnexSubclauseImpl annexSubclause = new AnnexSubclauseImpl();
+		return annexSubclause;
 	}
 
 	/**

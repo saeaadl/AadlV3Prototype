@@ -39,15 +39,15 @@ import org.eclipse.emf.ecore.EObject;
 public interface ModeTransitionTriggerAssignment extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Triggers</b></em>' containment reference list.
-	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.ModeTransitionTrigger}.
+	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.ModelElementReference}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Triggers</em>' containment reference list.
 	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getModeTransitionTriggerAssignment_Triggers()
-	 * @model containment="true"
+	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
-	EList<ModeTransitionTrigger> getTriggers();
+	EList<ModelElementReference> getTriggers();
 
 	/**
 	 * Returns the value of the '<em><b>Transition</b></em>' reference.

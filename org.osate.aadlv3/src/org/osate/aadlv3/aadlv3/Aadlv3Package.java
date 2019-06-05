@@ -511,13 +511,22 @@ public interface Aadlv3Package extends EPackage {
 	int COMPONENT_CLASSIFIER__INHERITS_MODES = PACKAGE_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
+	 * The feature id for the '<em><b>Annex Subclause</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_CLASSIFIER__ANNEX_SUBCLAUSE = PACKAGE_ELEMENT_FEATURE_COUNT + 5;
+
+	/**
 	 * The number of structural features of the '<em>Component Classifier</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_CLASSIFIER_FEATURE_COUNT = PACKAGE_ELEMENT_FEATURE_COUNT + 5;
+	int COMPONENT_CLASSIFIER_FEATURE_COUNT = PACKAGE_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.ComponentInterfaceImpl <em>Component Interface</em>}' class.
@@ -601,6 +610,15 @@ public interface Aadlv3Package extends EPackage {
 	 * @ordered
 	 */
 	int COMPONENT_REALIZATION__INHERITS_MODES = COMPONENT_CLASSIFIER__INHERITS_MODES;
+
+	/**
+	 * The feature id for the '<em><b>Annex Subclause</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_REALIZATION__ANNEX_SUBCLAUSE = COMPONENT_CLASSIFIER__ANNEX_SUBCLAUSE;
 
 	/**
 	 * The feature id for the '<em><b>Cached Interface Reference</b></em>' reference.
@@ -691,6 +709,15 @@ public interface Aadlv3Package extends EPackage {
 	 * @ordered
 	 */
 	int COMPONENT_INTERFACE__INHERITS_MODES = COMPONENT_CLASSIFIER__INHERITS_MODES;
+
+	/**
+	 * The feature id for the '<em><b>Annex Subclause</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_INTERFACE__ANNEX_SUBCLAUSE = COMPONENT_CLASSIFIER__ANNEX_SUBCLAUSE;
 
 	/**
 	 * The feature id for the '<em><b>Features</b></em>' containment reference list.
@@ -800,6 +827,15 @@ public interface Aadlv3Package extends EPackage {
 	 * @ordered
 	 */
 	int COMPONENT_IMPLEMENTATION__INHERITS_MODES = COMPONENT_REALIZATION__INHERITS_MODES;
+
+	/**
+	 * The feature id for the '<em><b>Annex Subclause</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_IMPLEMENTATION__ANNEX_SUBCLAUSE = COMPONENT_REALIZATION__ANNEX_SUBCLAUSE;
 
 	/**
 	 * The feature id for the '<em><b>Cached Interface Reference</b></em>' reference.
@@ -947,6 +983,15 @@ public interface Aadlv3Package extends EPackage {
 	int COMPONENT_CONFIGURATION__INHERITS_MODES = COMPONENT_REALIZATION__INHERITS_MODES;
 
 	/**
+	 * The feature id for the '<em><b>Annex Subclause</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_CONFIGURATION__ANNEX_SUBCLAUSE = COMPONENT_REALIZATION__ANNEX_SUBCLAUSE;
+
+	/**
 	 * The feature id for the '<em><b>Cached Interface Reference</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1074,13 +1119,22 @@ public interface Aadlv3Package extends EPackage {
 	int FEATURE__EVENT = MODEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Annex Subclause</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__ANNEX_SUBCLAUSE = MODEL_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
 	 * The number of structural features of the '<em>Feature</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 4;
+	int FEATURE_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.ComponentImpl <em>Component</em>}' class.
@@ -1266,13 +1320,22 @@ public interface Aadlv3Package extends EPackage {
 	int ASSOCIATION__ASSOCIATION_TYPE = MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Binding Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION__BINDING_TYPE = MODEL_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
 	 * The feature id for the '<em><b>Source</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__SOURCE = MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int ASSOCIATION__SOURCE = MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Destination</b></em>' containment reference.
@@ -1281,7 +1344,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__DESTINATION = MODEL_ELEMENT_FEATURE_COUNT + 2;
+	int ASSOCIATION__DESTINATION = MODEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Bidirectional</b></em>' attribute.
@@ -1290,7 +1353,16 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__BIDIRECTIONAL = MODEL_ELEMENT_FEATURE_COUNT + 3;
+	int ASSOCIATION__BIDIRECTIONAL = MODEL_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Annex Subclause</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION__ANNEX_SUBCLAUSE = MODEL_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>Association</em>' class.
@@ -1299,7 +1371,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 4;
+	int ASSOCIATION_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.ConfigurationAssignmentImpl <em>Configuration Assignment</em>}' class.
@@ -1573,13 +1645,22 @@ public interface Aadlv3Package extends EPackage {
 	int CONFIGURATION_ASSIGNMENT__BINDINGS = 4;
 
 	/**
+	 * The feature id for the '<em><b>Annex Subclause</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONFIGURATION_ASSIGNMENT__ANNEX_SUBCLAUSE = 5;
+
+	/**
 	 * The number of structural features of the '<em>Configuration Assignment</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONFIGURATION_ASSIGNMENT_FEATURE_COUNT = 5;
+	int CONFIGURATION_ASSIGNMENT_FEATURE_COUNT = 6;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.ConfigurationAssignmentPatternImpl <em>Configuration Assignment Pattern</em>}' class.
@@ -1635,6 +1716,15 @@ public interface Aadlv3Package extends EPackage {
 	 * @ordered
 	 */
 	int CONFIGURATION_ASSIGNMENT_PATTERN__BINDINGS = CONFIGURATION_ASSIGNMENT__BINDINGS;
+
+	/**
+	 * The feature id for the '<em><b>Annex Subclause</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONFIGURATION_ASSIGNMENT_PATTERN__ANNEX_SUBCLAUSE = CONFIGURATION_ASSIGNMENT__ANNEX_SUBCLAUSE;
 
 	/**
 	 * The feature id for the '<em><b>Target Pattern</b></em>' reference.
@@ -1990,43 +2080,6 @@ public interface Aadlv3Package extends EPackage {
 	int MODE_TRANSITION_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
-	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.ModeTransitionTriggerImpl <em>Mode Transition Trigger</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.osate.aadlv3.aadlv3.impl.ModeTransitionTriggerImpl
-	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getModeTransitionTrigger()
-	 * @generated
-	 */
-	int MODE_TRANSITION_TRIGGER = 30;
-
-	/**
-	 * The feature id for the '<em><b>Context</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODE_TRANSITION_TRIGGER__CONTEXT = 0;
-
-	/**
-	 * The feature id for the '<em><b>Trigger</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODE_TRANSITION_TRIGGER__TRIGGER = 1;
-
-	/**
-	 * The number of structural features of the '<em>Mode Transition Trigger</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODE_TRANSITION_TRIGGER_FEATURE_COUNT = 2;
-
-	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.ModeTransitionTriggerAssignmentImpl <em>Mode Transition Trigger Assignment</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2034,7 +2087,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getModeTransitionTriggerAssignment()
 	 * @generated
 	 */
-	int MODE_TRANSITION_TRIGGER_ASSIGNMENT = 31;
+	int MODE_TRANSITION_TRIGGER_ASSIGNMENT = 30;
 
 	/**
 	 * The feature id for the '<em><b>Triggers</b></em>' containment reference list.
@@ -2071,7 +2124,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getModeAssignment()
 	 * @generated
 	 */
-	int MODE_ASSIGNMENT = 32;
+	int MODE_ASSIGNMENT = 31;
 
 	/**
 	 * The feature id for the '<em><b>Members</b></em>' reference list.
@@ -2099,7 +2152,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getModeStateMachine()
 	 * @generated
 	 */
-	int MODE_STATE_MACHINE = 33;
+	int MODE_STATE_MACHINE = 32;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2145,6 +2198,52 @@ public interface Aadlv3Package extends EPackage {
 	 * @ordered
 	 */
 	int MODE_STATE_MACHINE_FEATURE_COUNT = PACKAGE_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.AnnexSubclauseImpl <em>Annex Subclause</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.osate.aadlv3.aadlv3.impl.AnnexSubclauseImpl
+	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getAnnexSubclause()
+	 * @generated
+	 */
+	int ANNEX_SUBCLAUSE = 33;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNEX_SUBCLAUSE__NAME = MODEL_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Property Associations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNEX_SUBCLAUSE__PROPERTY_ASSOCIATIONS = MODEL_ELEMENT__PROPERTY_ASSOCIATIONS;
+
+	/**
+	 * The feature id for the '<em><b>In Modes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNEX_SUBCLAUSE__IN_MODES = MODEL_ELEMENT__IN_MODES;
+
+	/**
+	 * The number of structural features of the '<em>Annex Subclause</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNEX_SUBCLAUSE_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.ComponentCategory <em>Component Category</em>}' enum.
@@ -2485,6 +2584,17 @@ public interface Aadlv3Package extends EPackage {
 	EAttribute getComponentClassifier_InheritsModes();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link org.osate.aadlv3.aadlv3.ComponentClassifier#getAnnexSubclause <em>Annex Subclause</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Annex Subclause</em>'.
+	 * @see org.osate.aadlv3.aadlv3.ComponentClassifier#getAnnexSubclause()
+	 * @see #getComponentClassifier()
+	 * @generated
+	 */
+	EReference getComponentClassifier_AnnexSubclause();
+
+	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.ComponentInterface <em>Component Interface</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2690,6 +2800,17 @@ public interface Aadlv3Package extends EPackage {
 	EAttribute getFeature_Event();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link org.osate.aadlv3.aadlv3.Feature#getAnnexSubclause <em>Annex Subclause</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Annex Subclause</em>'.
+	 * @see org.osate.aadlv3.aadlv3.Feature#getAnnexSubclause()
+	 * @see #getFeature()
+	 * @generated
+	 */
+	EReference getFeature_AnnexSubclause();
+
+	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.Component <em>Component</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2819,6 +2940,17 @@ public interface Aadlv3Package extends EPackage {
 	EAttribute getAssociation_AssociationType();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.osate.aadlv3.aadlv3.Association#getBindingType <em>Binding Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Binding Type</em>'.
+	 * @see org.osate.aadlv3.aadlv3.Association#getBindingType()
+	 * @see #getAssociation()
+	 * @generated
+	 */
+	EReference getAssociation_BindingType();
+
+	/**
 	 * Returns the meta object for the containment reference '{@link org.osate.aadlv3.aadlv3.Association#getSource <em>Source</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2850,6 +2982,17 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 */
 	EAttribute getAssociation_Bidirectional();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.osate.aadlv3.aadlv3.Association#getAnnexSubclause <em>Annex Subclause</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Annex Subclause</em>'.
+	 * @see org.osate.aadlv3.aadlv3.Association#getAnnexSubclause()
+	 * @see #getAssociation()
+	 * @generated
+	 */
+	EReference getAssociation_AnnexSubclause();
 
 	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.ConfigurationAssignment <em>Configuration Assignment</em>}'.
@@ -2915,6 +3058,17 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 */
 	EReference getConfigurationAssignment_Bindings();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.osate.aadlv3.aadlv3.ConfigurationAssignment#getAnnexSubclause <em>Annex Subclause</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Annex Subclause</em>'.
+	 * @see org.osate.aadlv3.aadlv3.ConfigurationAssignment#getAnnexSubclause()
+	 * @see #getConfigurationAssignment()
+	 * @generated
+	 */
+	EReference getConfigurationAssignment_AnnexSubclause();
 
 	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.ConfigurationAssignmentPattern <em>Configuration Assignment Pattern</em>}'.
@@ -3248,38 +3402,6 @@ public interface Aadlv3Package extends EPackage {
 	EReference getModeTransition_Triggers();
 
 	/**
-	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.ModeTransitionTrigger <em>Mode Transition Trigger</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Mode Transition Trigger</em>'.
-	 * @see org.osate.aadlv3.aadlv3.ModeTransitionTrigger
-	 * @generated
-	 */
-	EClass getModeTransitionTrigger();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.osate.aadlv3.aadlv3.ModeTransitionTrigger#getContext <em>Context</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Context</em>'.
-	 * @see org.osate.aadlv3.aadlv3.ModeTransitionTrigger#getContext()
-	 * @see #getModeTransitionTrigger()
-	 * @generated
-	 */
-	EReference getModeTransitionTrigger_Context();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.osate.aadlv3.aadlv3.ModeTransitionTrigger#getTrigger <em>Trigger</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Trigger</em>'.
-	 * @see org.osate.aadlv3.aadlv3.ModeTransitionTrigger#getTrigger()
-	 * @see #getModeTransitionTrigger()
-	 * @generated
-	 */
-	EReference getModeTransitionTrigger_Trigger();
-
-	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.ModeTransitionTriggerAssignment <em>Mode Transition Trigger Assignment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3363,6 +3485,16 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 */
 	EReference getModeStateMachine_Transitions();
+
+	/**
+	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.AnnexSubclause <em>Annex Subclause</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Annex Subclause</em>'.
+	 * @see org.osate.aadlv3.aadlv3.AnnexSubclause
+	 * @generated
+	 */
+	EClass getAnnexSubclause();
 
 	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.PathElement <em>Path Element</em>}'.
@@ -3768,6 +3900,14 @@ public interface Aadlv3Package extends EPackage {
 		EAttribute COMPONENT_CLASSIFIER__INHERITS_MODES = eINSTANCE.getComponentClassifier_InheritsModes();
 
 		/**
+		 * The meta object literal for the '<em><b>Annex Subclause</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPONENT_CLASSIFIER__ANNEX_SUBCLAUSE = eINSTANCE.getComponentClassifier_AnnexSubclause();
+
+		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.ComponentInterfaceImpl <em>Component Interface</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3928,6 +4068,14 @@ public interface Aadlv3Package extends EPackage {
 		EAttribute FEATURE__EVENT = eINSTANCE.getFeature_Event();
 
 		/**
+		 * The meta object literal for the '<em><b>Annex Subclause</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FEATURE__ANNEX_SUBCLAUSE = eINSTANCE.getFeature_AnnexSubclause();
+
+		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.ComponentImpl <em>Component</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -4030,6 +4178,14 @@ public interface Aadlv3Package extends EPackage {
 		EAttribute ASSOCIATION__ASSOCIATION_TYPE = eINSTANCE.getAssociation_AssociationType();
 
 		/**
+		 * The meta object literal for the '<em><b>Binding Type</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ASSOCIATION__BINDING_TYPE = eINSTANCE.getAssociation_BindingType();
+
+		/**
 		 * The meta object literal for the '<em><b>Source</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -4052,6 +4208,14 @@ public interface Aadlv3Package extends EPackage {
 		 * @generated
 		 */
 		EAttribute ASSOCIATION__BIDIRECTIONAL = eINSTANCE.getAssociation_Bidirectional();
+
+		/**
+		 * The meta object literal for the '<em><b>Annex Subclause</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ASSOCIATION__ANNEX_SUBCLAUSE = eINSTANCE.getAssociation_AnnexSubclause();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.ConfigurationAssignmentImpl <em>Configuration Assignment</em>}' class.
@@ -4105,6 +4269,14 @@ public interface Aadlv3Package extends EPackage {
 		 * @generated
 		 */
 		EReference CONFIGURATION_ASSIGNMENT__BINDINGS = eINSTANCE.getConfigurationAssignment_Bindings();
+
+		/**
+		 * The meta object literal for the '<em><b>Annex Subclause</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONFIGURATION_ASSIGNMENT__ANNEX_SUBCLAUSE = eINSTANCE.getConfigurationAssignment_AnnexSubclause();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.ConfigurationAssignmentPatternImpl <em>Configuration Assignment Pattern</em>}' class.
@@ -4377,32 +4549,6 @@ public interface Aadlv3Package extends EPackage {
 		EReference MODE_TRANSITION__TRIGGERS = eINSTANCE.getModeTransition_Triggers();
 
 		/**
-		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.ModeTransitionTriggerImpl <em>Mode Transition Trigger</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.osate.aadlv3.aadlv3.impl.ModeTransitionTriggerImpl
-		 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getModeTransitionTrigger()
-		 * @generated
-		 */
-		EClass MODE_TRANSITION_TRIGGER = eINSTANCE.getModeTransitionTrigger();
-
-		/**
-		 * The meta object literal for the '<em><b>Context</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference MODE_TRANSITION_TRIGGER__CONTEXT = eINSTANCE.getModeTransitionTrigger_Context();
-
-		/**
-		 * The meta object literal for the '<em><b>Trigger</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference MODE_TRANSITION_TRIGGER__TRIGGER = eINSTANCE.getModeTransitionTrigger_Trigger();
-
-		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.ModeTransitionTriggerAssignmentImpl <em>Mode Transition Trigger Assignment</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -4473,6 +4619,16 @@ public interface Aadlv3Package extends EPackage {
 		 * @generated
 		 */
 		EReference MODE_STATE_MACHINE__TRANSITIONS = eINSTANCE.getModeStateMachine_Transitions();
+
+		/**
+		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.AnnexSubclauseImpl <em>Annex Subclause</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.osate.aadlv3.aadlv3.impl.AnnexSubclauseImpl
+		 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getAnnexSubclause()
+		 * @generated
+		 */
+		EClass ANNEX_SUBCLAUSE = eINSTANCE.getAnnexSubclause();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.PathElementImpl <em>Path Element</em>}' class.

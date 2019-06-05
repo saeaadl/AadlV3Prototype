@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
+import org.osate.aadlv3.aadlv3.AnnexSubclause;
 import org.osate.aadlv3.aadlv3.ComponentCategory;
 import org.osate.aadlv3.aadlv3.ComponentClassifier;
 import org.osate.aadlv3.aadlv3.ModeStateMachine;
@@ -50,6 +51,7 @@ import org.osate.aadlv3.aadlv3.TypeReference;
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentClassifierImpl#getPropertyAssociations <em>Property Associations</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentClassifierImpl#getUseModes <em>Use Modes</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentClassifierImpl#isInheritsModes <em>Inherits Modes</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentClassifierImpl#getAnnexSubclause <em>Annex Subclause</em>}</li>
  * </ul>
  *
  * @generated
@@ -124,6 +126,16 @@ public abstract class ComponentClassifierImpl extends PackageElementImpl impleme
 	 * @ordered
 	 */
 	protected boolean inheritsModes = INHERITS_MODES_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getAnnexSubclause() <em>Annex Subclause</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAnnexSubclause()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<AnnexSubclause> annexSubclause;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -268,12 +280,28 @@ public abstract class ComponentClassifierImpl extends PackageElementImpl impleme
 	 * @generated
 	 */
 	@Override
+	public EList<AnnexSubclause> getAnnexSubclause() {
+		if (annexSubclause == null) {
+			annexSubclause = new EObjectContainmentEList<AnnexSubclause>(AnnexSubclause.class, this,
+					Aadlv3Package.COMPONENT_CLASSIFIER__ANNEX_SUBCLAUSE);
+		}
+		return annexSubclause;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case Aadlv3Package.COMPONENT_CLASSIFIER__SUPER_CLASSIFIERS:
 			return ((InternalEList<?>) getSuperClassifiers()).basicRemove(otherEnd, msgs);
 		case Aadlv3Package.COMPONENT_CLASSIFIER__PROPERTY_ASSOCIATIONS:
 			return ((InternalEList<?>) getPropertyAssociations()).basicRemove(otherEnd, msgs);
+		case Aadlv3Package.COMPONENT_CLASSIFIER__ANNEX_SUBCLAUSE:
+			return ((InternalEList<?>) getAnnexSubclause()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -298,6 +326,8 @@ public abstract class ComponentClassifierImpl extends PackageElementImpl impleme
 			return basicGetUseModes();
 		case Aadlv3Package.COMPONENT_CLASSIFIER__INHERITS_MODES:
 			return isInheritsModes();
+		case Aadlv3Package.COMPONENT_CLASSIFIER__ANNEX_SUBCLAUSE:
+			return getAnnexSubclause();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -328,6 +358,10 @@ public abstract class ComponentClassifierImpl extends PackageElementImpl impleme
 		case Aadlv3Package.COMPONENT_CLASSIFIER__INHERITS_MODES:
 			setInheritsModes((Boolean) newValue);
 			return;
+		case Aadlv3Package.COMPONENT_CLASSIFIER__ANNEX_SUBCLAUSE:
+			getAnnexSubclause().clear();
+			getAnnexSubclause().addAll((Collection<? extends AnnexSubclause>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -355,6 +389,9 @@ public abstract class ComponentClassifierImpl extends PackageElementImpl impleme
 		case Aadlv3Package.COMPONENT_CLASSIFIER__INHERITS_MODES:
 			setInheritsModes(INHERITS_MODES_EDEFAULT);
 			return;
+		case Aadlv3Package.COMPONENT_CLASSIFIER__ANNEX_SUBCLAUSE:
+			getAnnexSubclause().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -377,6 +414,8 @@ public abstract class ComponentClassifierImpl extends PackageElementImpl impleme
 			return useModes != null;
 		case Aadlv3Package.COMPONENT_CLASSIFIER__INHERITS_MODES:
 			return inheritsModes != INHERITS_MODES_EDEFAULT;
+		case Aadlv3Package.COMPONENT_CLASSIFIER__ANNEX_SUBCLAUSE:
+			return annexSubclause != null && !annexSubclause.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

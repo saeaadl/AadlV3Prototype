@@ -853,7 +853,7 @@ class Aadlv3Util {
 	}
 
 	def static boolean isBindingPoint(Feature f) {
-		f.category == FeatureCategory.BINDINGPOINT
+		f.category == FeatureCategory.BINDING
 	}
 	
 	def static boolean categoriesMatch(ComponentCategory ccat, FeatureCategory fcat){

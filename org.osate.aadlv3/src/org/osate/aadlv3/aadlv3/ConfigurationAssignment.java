@@ -33,6 +33,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.osate.aadlv3.aadlv3.ConfigurationAssignment#getAssignedClassifiers <em>Assigned Classifiers</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.ConfigurationAssignment#getPropertyAssociations <em>Property Associations</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.ConfigurationAssignment#getBindings <em>Bindings</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.ConfigurationAssignment#getAnnexSubclause <em>Annex Subclause</em>}</li>
  * </ul>
  *
  * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getConfigurationAssignment()
@@ -129,5 +130,17 @@ public interface ConfigurationAssignment extends EObject {
 	 * @generated
 	 */
 	EList<Association> getBindings();
+
+	/**
+	 * Returns the value of the '<em><b>Annex Subclause</b></em>' containment reference list.
+	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.AnnexSubclause}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Annex Subclause</em>' containment reference list.
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getConfigurationAssignment_AnnexSubclause()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<AnnexSubclause> getAnnexSubclause();
 
 } // ConfigurationAssignment

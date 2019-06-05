@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.osate.aadlv3.aadlv3.Aadlv3Factory;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
+import org.osate.aadlv3.aadlv3.AnnexSubclause;
 import org.osate.aadlv3.aadlv3.Association;
 import org.osate.aadlv3.aadlv3.AssociationType;
 import org.osate.aadlv3.aadlv3.Component;
@@ -47,7 +48,6 @@ import org.osate.aadlv3.aadlv3.Mode;
 import org.osate.aadlv3.aadlv3.ModeAssignment;
 import org.osate.aadlv3.aadlv3.ModeStateMachine;
 import org.osate.aadlv3.aadlv3.ModeTransition;
-import org.osate.aadlv3.aadlv3.ModeTransitionTrigger;
 import org.osate.aadlv3.aadlv3.ModeTransitionTriggerAssignment;
 import org.osate.aadlv3.aadlv3.ModelElement;
 import org.osate.aadlv3.aadlv3.ModelElementReference;
@@ -266,13 +266,6 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass modeTransitionTriggerEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass modeTransitionTriggerAssignmentEClass = null;
 
 	/**
@@ -288,6 +281,13 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	private EClass modeStateMachineEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass annexSubclauseEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -685,6 +685,16 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
+	public EReference getComponentClassifier_AnnexSubclause() {
+		return (EReference) componentClassifierEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getComponentInterface() {
 		return componentInterfaceEClass;
 	}
@@ -875,6 +885,16 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
+	public EReference getFeature_AnnexSubclause() {
+		return (EReference) featureEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getComponent() {
 		return componentEClass;
 	}
@@ -995,7 +1015,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getAssociation_Source() {
+	public EReference getAssociation_BindingType() {
 		return (EReference) associationEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -1005,7 +1025,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getAssociation_Destination() {
+	public EReference getAssociation_Source() {
 		return (EReference) associationEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -1015,8 +1035,28 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
+	public EReference getAssociation_Destination() {
+		return (EReference) associationEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EAttribute getAssociation_Bidirectional() {
-		return (EAttribute) associationEClass.getEStructuralFeatures().get(3);
+		return (EAttribute) associationEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getAssociation_AnnexSubclause() {
+		return (EReference) associationEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -1077,6 +1117,16 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	@Override
 	public EReference getConfigurationAssignment_Bindings() {
 		return (EReference) configurationAssignmentEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getConfigurationAssignment_AnnexSubclause() {
+		return (EReference) configurationAssignmentEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -1395,36 +1445,6 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EClass getModeTransitionTrigger() {
-		return modeTransitionTriggerEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getModeTransitionTrigger_Context() {
-		return (EReference) modeTransitionTriggerEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getModeTransitionTrigger_Trigger() {
-		return (EReference) modeTransitionTriggerEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getModeTransitionTriggerAssignment() {
 		return modeTransitionTriggerAssignmentEClass;
 	}
@@ -1497,6 +1517,16 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	@Override
 	public EReference getModeStateMachine_Transitions() {
 		return (EReference) modeStateMachineEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getAnnexSubclause() {
+		return annexSubclauseEClass;
 	}
 
 	/**
@@ -1704,6 +1734,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		createEReference(componentClassifierEClass, COMPONENT_CLASSIFIER__PROPERTY_ASSOCIATIONS);
 		createEReference(componentClassifierEClass, COMPONENT_CLASSIFIER__USE_MODES);
 		createEAttribute(componentClassifierEClass, COMPONENT_CLASSIFIER__INHERITS_MODES);
+		createEReference(componentClassifierEClass, COMPONENT_CLASSIFIER__ANNEX_SUBCLAUSE);
 
 		componentRealizationEClass = createEClass(COMPONENT_REALIZATION);
 		createEReference(componentRealizationEClass, COMPONENT_REALIZATION__CACHED_INTERFACE_REFERENCE);
@@ -1731,6 +1762,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		createEAttribute(featureEClass, FEATURE__CATEGORY);
 		createEReference(featureEClass, FEATURE__TYPE_REFERENCE);
 		createEAttribute(featureEClass, FEATURE__EVENT);
+		createEReference(featureEClass, FEATURE__ANNEX_SUBCLAUSE);
 
 		componentEClass = createEClass(COMPONENT);
 		createEAttribute(componentEClass, COMPONENT__CATEGORY);
@@ -1746,9 +1778,11 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 
 		associationEClass = createEClass(ASSOCIATION);
 		createEAttribute(associationEClass, ASSOCIATION__ASSOCIATION_TYPE);
+		createEReference(associationEClass, ASSOCIATION__BINDING_TYPE);
 		createEReference(associationEClass, ASSOCIATION__SOURCE);
 		createEReference(associationEClass, ASSOCIATION__DESTINATION);
 		createEAttribute(associationEClass, ASSOCIATION__BIDIRECTIONAL);
+		createEReference(associationEClass, ASSOCIATION__ANNEX_SUBCLAUSE);
 
 		pathSequenceEClass = createEClass(PATH_SEQUENCE);
 		createEReference(pathSequenceEClass, PATH_SEQUENCE__TARGET);
@@ -1764,6 +1798,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		createEReference(configurationAssignmentEClass, CONFIGURATION_ASSIGNMENT__ASSIGNED_CLASSIFIERS);
 		createEReference(configurationAssignmentEClass, CONFIGURATION_ASSIGNMENT__PROPERTY_ASSOCIATIONS);
 		createEReference(configurationAssignmentEClass, CONFIGURATION_ASSIGNMENT__BINDINGS);
+		createEReference(configurationAssignmentEClass, CONFIGURATION_ASSIGNMENT__ANNEX_SUBCLAUSE);
 
 		configurationAssignmentPatternEClass = createEClass(CONFIGURATION_ASSIGNMENT_PATTERN);
 		createEReference(configurationAssignmentPatternEClass, CONFIGURATION_ASSIGNMENT_PATTERN__TARGET_PATTERN);
@@ -1806,10 +1841,6 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		createEReference(modeTransitionEClass, MODE_TRANSITION__TARGET);
 		createEReference(modeTransitionEClass, MODE_TRANSITION__TRIGGERS);
 
-		modeTransitionTriggerEClass = createEClass(MODE_TRANSITION_TRIGGER);
-		createEReference(modeTransitionTriggerEClass, MODE_TRANSITION_TRIGGER__CONTEXT);
-		createEReference(modeTransitionTriggerEClass, MODE_TRANSITION_TRIGGER__TRIGGER);
-
 		modeTransitionTriggerAssignmentEClass = createEClass(MODE_TRANSITION_TRIGGER_ASSIGNMENT);
 		createEReference(modeTransitionTriggerAssignmentEClass, MODE_TRANSITION_TRIGGER_ASSIGNMENT__TRIGGERS);
 		createEReference(modeTransitionTriggerAssignmentEClass, MODE_TRANSITION_TRIGGER_ASSIGNMENT__TRANSITION);
@@ -1820,6 +1851,8 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		modeStateMachineEClass = createEClass(MODE_STATE_MACHINE);
 		createEReference(modeStateMachineEClass, MODE_STATE_MACHINE__MODES);
 		createEReference(modeStateMachineEClass, MODE_STATE_MACHINE__TRANSITIONS);
+
+		annexSubclauseEClass = createEClass(ANNEX_SUBCLAUSE);
 
 		// Create enums
 		componentCategoryEEnum = createEEnum(COMPONENT_CATEGORY);
@@ -1883,6 +1916,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		modeEClass.getESuperTypes().add(this.getModelElement());
 		modeTransitionEClass.getESuperTypes().add(this.getModelElement());
 		modeStateMachineEClass.getESuperTypes().add(this.getPackageElement());
+		annexSubclauseEClass.getESuperTypes().add(this.getModelElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(packageDeclarationEClass, PackageDeclaration.class, "PackageDeclaration", !IS_ABSTRACT,
@@ -1963,6 +1997,9 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		initEAttribute(getComponentClassifier_InheritsModes(), ecorePackage.getEBoolean(), "inheritsModes", null, 0, 1,
 				ComponentClassifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getComponentClassifier_AnnexSubclause(), this.getAnnexSubclause(), null, "annexSubclause", null,
+				0, -1, ComponentClassifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(componentRealizationEClass, ComponentRealization.class, "ComponentRealization", IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2025,6 +2062,9 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFeature_Event(), ecorePackage.getEBoolean(), "event", null, 0, 1, Feature.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFeature_AnnexSubclause(), this.getAnnexSubclause(), null, "annexSubclause", null, 0, -1,
+				Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(componentEClass, Component.class, "Component", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
@@ -2058,6 +2098,9 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		initEAttribute(getAssociation_AssociationType(), this.getAssociationType(), "associationType", null, 0, 1,
 				Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
+		initEReference(getAssociation_BindingType(), this.getDataType(), null, "bindingType", null, 0, 1,
+				Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAssociation_Source(), this.getModelElementReference(), null, "source", null, 0, 1,
 				Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2067,6 +2110,9 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		initEAttribute(getAssociation_Bidirectional(), ecorePackage.getEBoolean(), "bidirectional", null, 0, 1,
 				Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
+		initEReference(getAssociation_AnnexSubclause(), this.getAnnexSubclause(), null, "annexSubclause", null, 0, -1,
+				Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(pathSequenceEClass, PathSequence.class, "PathSequence", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
@@ -2102,6 +2148,9 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getConfigurationAssignment_Bindings(), this.getAssociation(), null, "bindings", null, 0, -1,
 				ConfigurationAssignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getConfigurationAssignment_AnnexSubclause(), this.getAnnexSubclause(), null, "annexSubclause",
+				null, 0, -1, ConfigurationAssignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(configurationAssignmentPatternEClass, ConfigurationAssignmentPattern.class,
@@ -2189,24 +2238,15 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		initEReference(getModeTransition_Target(), this.getMode(), null, "target", null, 0, 1, ModeTransition.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getModeTransition_Triggers(), this.getModeTransitionTrigger(), null, "triggers", null, 0, -1,
+		initEReference(getModeTransition_Triggers(), this.getModelElementReference(), null, "triggers", null, 0, -1,
 				ModeTransition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(modeTransitionTriggerEClass, ModeTransitionTrigger.class, "ModeTransitionTrigger", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getModeTransitionTrigger_Context(), this.getModelElement(), null, "context", null, 0, 1,
-				ModeTransitionTrigger.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getModeTransitionTrigger_Trigger(), this.getModelElement(), null, "trigger", null, 0, 1,
-				ModeTransitionTrigger.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
 		initEClass(modeTransitionTriggerAssignmentEClass, ModeTransitionTriggerAssignment.class,
 				"ModeTransitionTriggerAssignment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getModeTransitionTriggerAssignment_Triggers(), this.getModeTransitionTrigger(), null, "triggers",
+		initEReference(getModeTransitionTriggerAssignment_Triggers(), this.getModelElementReference(), null, "triggers",
 				null, 0, -1, ModeTransitionTriggerAssignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getModeTransitionTriggerAssignment_Transition(), this.getModeTransition(), null, "transition",
 				null, 0, 1, ModeTransitionTriggerAssignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2225,6 +2265,9 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		initEReference(getModeStateMachine_Transitions(), this.getModeTransition(), null, "transitions", null, 0, -1,
 				ModeStateMachine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(annexSubclauseEClass, AnnexSubclause.class, "AnnexSubclause", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
 
 		// Initialize enums and add enum literals
 		initEEnum(componentCategoryEEnum, ComponentCategory.class, "ComponentCategory");
@@ -2251,7 +2294,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		addEEnumLiteral(featureCategoryEEnum, FeatureCategory.PORT);
 		addEEnumLiteral(featureCategoryEEnum, FeatureCategory.DATAACCESS);
 		addEEnumLiteral(featureCategoryEEnum, FeatureCategory.BUSACCESS);
-		addEEnumLiteral(featureCategoryEEnum, FeatureCategory.BINDINGPOINT);
+		addEEnumLiteral(featureCategoryEEnum, FeatureCategory.BINDING);
 		addEEnumLiteral(featureCategoryEEnum, FeatureCategory.INTERFACE);
 		addEEnumLiteral(featureCategoryEEnum, FeatureCategory.VIRTUALBUSACCESS);
 		addEEnumLiteral(featureCategoryEEnum, FeatureCategory.SUBPROGRAMACCESS);

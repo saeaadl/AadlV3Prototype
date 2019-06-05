@@ -72,23 +72,22 @@ public enum FeatureCategory implements Enumerator {
 	BUSACCESS(3, "busaccess", "bus access"),
 
 	/**
-	 * The '<em><b>Bindingpoint</b></em>' literal object.
+	 * The '<em><b>Binding</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #BINDINGPOINT_VALUE
+	 * @see #BINDING_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	BINDINGPOINT(4, "bindingpoint", "binding point"),
-
+	BINDING(4, "binding", "binding"),
 	/**
-	 * The '<em><b>Interface</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #INTERFACE_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	* The '<em><b>Interface</b></em>' literal object.
+	* <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
+	* @see #INTERFACE_VALUE
+	* @generated
+	* @ordered
+	*/
 	INTERFACE(5, "interface", "interface"),
 	/**
 	 * The '<em><b>Virtualbusaccess</b></em>' literal object.
@@ -188,19 +187,15 @@ public enum FeatureCategory implements Enumerator {
 	public static final int BUSACCESS_VALUE = 3;
 
 	/**
-	 * The '<em><b>Bindingpoint</b></em>' literal value.
+	 * The '<em><b>Binding</b></em>' literal value.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>Bindingpoint</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #BINDINGPOINT
-	 * @model name="bindingpoint" literal="binding point"
+	 * @see #BINDING
+	 * @model name="binding"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int BINDINGPOINT_VALUE = 4;
+	public static final int BINDING_VALUE = 4;
 
 	/**
 	 * The '<em><b>Interface</b></em>' literal value.
@@ -280,7 +275,7 @@ public enum FeatureCategory implements Enumerator {
 	 * @generated
 	 */
 	private static final FeatureCategory[] VALUES_ARRAY = new FeatureCategory[] { FEATURE, PORT, DATAACCESS, BUSACCESS,
-			BINDINGPOINT, INTERFACE, VIRTUALBUSACCESS, SUBPROGRAMACCESS, SUBPROGRAMGROUPACCESS, PARAMETER, };
+			BINDING, INTERFACE, VIRTUALBUSACCESS, SUBPROGRAMACCESS, SUBPROGRAMGROUPACCESS, PARAMETER, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Feature Category</b></em>' enumerators.
@@ -344,8 +339,8 @@ public enum FeatureCategory implements Enumerator {
 			return DATAACCESS;
 		case BUSACCESS_VALUE:
 			return BUSACCESS;
-		case BINDINGPOINT_VALUE:
-			return BINDINGPOINT;
+		case BINDING_VALUE:
+			return BINDING;
 		case INTERFACE_VALUE:
 			return INTERFACE;
 		case VIRTUALBUSACCESS_VALUE:

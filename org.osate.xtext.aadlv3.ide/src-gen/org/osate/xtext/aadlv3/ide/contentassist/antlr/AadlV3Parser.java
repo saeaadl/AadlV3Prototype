@@ -115,6 +115,7 @@ public class AadlV3Parser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getReversableTypeReferenceAccess().getGroup(), "rule__ReversableTypeReference__Group__0");
 			builder.put(grammarAccess.getTypeReferenceAccess().getGroup(), "rule__TypeReference__Group__0");
 			builder.put(grammarAccess.getRealizationReferenceAccess().getGroup(), "rule__RealizationReference__Group__0");
+			builder.put(grammarAccess.getAnnexSubclauseAccess().getGroup(), "rule__AnnexSubclause__Group__0");
 			builder.put(grammarAccess.getPropertiesBlockAccess().getGroup(), "rule__PropertiesBlock__Group__0");
 			builder.put(grammarAccess.getNestedComponentImplementationBlockAccess().getGroup(), "rule__NestedComponentImplementationBlock__Group__0");
 			builder.put(grammarAccess.getConfigurationExtensionsAccess().getGroup(), "rule__ConfigurationExtensions__Group__0");
@@ -152,7 +153,6 @@ public class AadlV3Parser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getDataAccessKeywordsAccess().getGroup(), "rule__DataAccessKeywords__Group__0");
 			builder.put(grammarAccess.getSubprogramAccessKeywordsAccess().getGroup(), "rule__SubprogramAccessKeywords__Group__0");
 			builder.put(grammarAccess.getSubprogramGroupAccessKeywordsAccess().getGroup(), "rule__SubprogramGroupAccessKeywords__Group__0");
-			builder.put(grammarAccess.getBindingPointKeywordsAccess().getGroup(), "rule__BindingPointKeywords__Group__0");
 			builder.put(grammarAccess.getProvidesReadKeywordsAccess().getGroup(), "rule__ProvidesReadKeywords__Group__0");
 			builder.put(grammarAccess.getRequiresReadKeywordsAccess().getGroup(), "rule__RequiresReadKeywords__Group__0");
 			builder.put(grammarAccess.getProvidesWriteKeywordsAccess().getGroup(), "rule__ProvidesWriteKeywords__Group__0");
@@ -183,7 +183,8 @@ public class AadlV3Parser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getInterfaceElementAccess().getFlowsAssignment_1(), "rule__InterfaceElement__FlowsAssignment_1");
 			builder.put(grammarAccess.getInterfaceElementAccess().getFlowsAssignment_2(), "rule__InterfaceElement__FlowsAssignment_2");
 			builder.put(grammarAccess.getInterfaceElementAccess().getFlowsAssignment_3(), "rule__InterfaceElement__FlowsAssignment_3");
-			builder.put(grammarAccess.getInterfaceElementAccess().getPropertyAssociationsAssignment_5(), "rule__InterfaceElement__PropertyAssociationsAssignment_5");
+			builder.put(grammarAccess.getInterfaceElementAccess().getPropertyAssociationsAssignment_4(), "rule__InterfaceElement__PropertyAssociationsAssignment_4");
+			builder.put(grammarAccess.getInterfaceElementAccess().getAnnexSubclauseAssignment_5(), "rule__InterfaceElement__AnnexSubclauseAssignment_5");
 			builder.put(grammarAccess.getComponentImplementationAccess().getPrivateAssignment_0(), "rule__ComponentImplementation__PrivateAssignment_0");
 			builder.put(grammarAccess.getComponentImplementationAccess().getCategoryAssignment_1(), "rule__ComponentImplementation__CategoryAssignment_1");
 			builder.put(grammarAccess.getComponentImplementationAccess().getNameAssignment_2(), "rule__ComponentImplementation__NameAssignment_2");
@@ -195,6 +196,7 @@ public class AadlV3Parser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getImplementationElementAccess().getConfigurationAssignmentsAssignment_5(), "rule__ImplementationElement__ConfigurationAssignmentsAssignment_5");
 			builder.put(grammarAccess.getImplementationElementAccess().getConfigurationAssignmentsAssignment_6(), "rule__ImplementationElement__ConfigurationAssignmentsAssignment_6");
 			builder.put(grammarAccess.getImplementationElementAccess().getPropertyAssociationsAssignment_7(), "rule__ImplementationElement__PropertyAssociationsAssignment_7");
+			builder.put(grammarAccess.getImplementationElementAccess().getAnnexSubclauseAssignment_8(), "rule__ImplementationElement__AnnexSubclauseAssignment_8");
 			builder.put(grammarAccess.getComponentConfigurationAccess().getPrivateAssignment_0(), "rule__ComponentConfiguration__PrivateAssignment_0");
 			builder.put(grammarAccess.getComponentConfigurationAccess().getNameAssignment_2(), "rule__ComponentConfiguration__NameAssignment_2");
 			builder.put(grammarAccess.getFeatureAccess().getNameAssignment_0(), "rule__Feature__NameAssignment_0");
@@ -202,6 +204,7 @@ public class AadlV3Parser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getFeatureAccess().getEventAssignment_3(), "rule__Feature__EventAssignment_3");
 			builder.put(grammarAccess.getFeatureAccess().getCategoryAssignment_4(), "rule__Feature__CategoryAssignment_4");
 			builder.put(grammarAccess.getFeatureAccess().getTypeReferenceAssignment_5(), "rule__Feature__TypeReferenceAssignment_5");
+			builder.put(grammarAccess.getFeatureAccess().getAnnexSubclauseAssignment_6(), "rule__Feature__AnnexSubclauseAssignment_6");
 			builder.put(grammarAccess.getComponentAccess().getNameAssignment_0(), "rule__Component__NameAssignment_0");
 			builder.put(grammarAccess.getComponentAccess().getCategoryAssignment_2(), "rule__Component__CategoryAssignment_2");
 			builder.put(grammarAccess.getComponentAccess().getTypeReferencesAssignment_3(), "rule__Component__TypeReferencesAssignment_3");
@@ -211,9 +214,10 @@ public class AadlV3Parser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getConnectionAccess().getBidirectionalAssignment_4_1(), "rule__Connection__BidirectionalAssignment_4_1");
 			builder.put(grammarAccess.getConnectionAccess().getDestinationAssignment_5(), "rule__Connection__DestinationAssignment_5");
 			builder.put(grammarAccess.getBindingAccess().getNameAssignment_0(), "rule__Binding__NameAssignment_0");
-			builder.put(grammarAccess.getBindingAccess().getAssociationTypeAssignment_2(), "rule__Binding__AssociationTypeAssignment_2");
-			builder.put(grammarAccess.getBindingAccess().getSourceAssignment_3(), "rule__Binding__SourceAssignment_3");
-			builder.put(grammarAccess.getBindingAccess().getDestinationAssignment_5(), "rule__Binding__DestinationAssignment_5");
+			builder.put(grammarAccess.getBindingAccess().getBindingTypeAssignment_2(), "rule__Binding__BindingTypeAssignment_2");
+			builder.put(grammarAccess.getBindingAccess().getAssociationTypeAssignment_3(), "rule__Binding__AssociationTypeAssignment_3");
+			builder.put(grammarAccess.getBindingAccess().getSourceAssignment_4(), "rule__Binding__SourceAssignment_4");
+			builder.put(grammarAccess.getBindingAccess().getDestinationAssignment_6(), "rule__Binding__DestinationAssignment_6");
 			builder.put(grammarAccess.getFlowPathAccess().getNameAssignment_0(), "rule__FlowPath__NameAssignment_0");
 			builder.put(grammarAccess.getFlowPathAccess().getAssociationTypeAssignment_2(), "rule__FlowPath__AssociationTypeAssignment_2");
 			builder.put(grammarAccess.getFlowPathAccess().getSourceAssignment_3(), "rule__FlowPath__SourceAssignment_3");
@@ -255,6 +259,7 @@ public class AadlV3Parser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getConfigurationElementAccess().getBindingsAssignment_1(), "rule__ConfigurationElement__BindingsAssignment_1");
 			builder.put(grammarAccess.getConfigurationElementAccess().getConfigurationAssignmentsAssignment_2(), "rule__ConfigurationElement__ConfigurationAssignmentsAssignment_2");
 			builder.put(grammarAccess.getConfigurationElementAccess().getConfigurationAssignmentsAssignment_3(), "rule__ConfigurationElement__ConfigurationAssignmentsAssignment_3");
+			builder.put(grammarAccess.getConfigurationElementAccess().getAnnexSubclauseAssignment_4(), "rule__ConfigurationElement__AnnexSubclauseAssignment_4");
 			builder.put(grammarAccess.getParametersAccess().getParameterizedAssignment_0(), "rule__Parameters__ParameterizedAssignment_0");
 			builder.put(grammarAccess.getParametersAccess().getParametersAssignment_1_0(), "rule__Parameters__ParametersAssignment_1_0");
 			builder.put(grammarAccess.getParametersAccess().getParametersAssignment_1_1_1(), "rule__Parameters__ParametersAssignment_1_1_1");
@@ -267,6 +272,7 @@ public class AadlV3Parser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getTypeReferenceAccess().getTypeAssignment_0(), "rule__TypeReference__TypeAssignment_0");
 			builder.put(grammarAccess.getRealizationReferenceAccess().getTypeAssignment_0(), "rule__RealizationReference__TypeAssignment_0");
 			builder.put(grammarAccess.getImplementationReferenceAccess().getTypeAssignment(), "rule__ImplementationReference__TypeAssignment");
+			builder.put(grammarAccess.getAnnexSubclauseAccess().getNameAssignment_1(), "rule__AnnexSubclause__NameAssignment_1");
 			builder.put(grammarAccess.getPropertiesBlockAccess().getPropertyAssociationsAssignment_1(), "rule__PropertiesBlock__PropertyAssociationsAssignment_1");
 			builder.put(grammarAccess.getNestedImplementationElementAccess().getFeaturesAssignment_0(), "rule__NestedImplementationElement__FeaturesAssignment_0");
 			builder.put(grammarAccess.getNestedImplementationElementAccess().getConnectionsAssignment_1(), "rule__NestedImplementationElement__ConnectionsAssignment_1");

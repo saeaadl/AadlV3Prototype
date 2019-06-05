@@ -27,6 +27,7 @@ import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
 import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequencer;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
+import org.osate.aadlv3.aadlv3.AnnexSubclause;
 import org.osate.aadlv3.aadlv3.Association;
 import org.osate.aadlv3.aadlv3.Component;
 import org.osate.aadlv3.aadlv3.ComponentConfiguration;
@@ -65,6 +66,9 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 		Set<Parameter> parameters = context.getEnabledBooleanParameters();
 		if (epackage == Aadlv3Package.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
+			case Aadlv3Package.ANNEX_SUBCLAUSE:
+				sequence_AnnexSubclause(context, (AnnexSubclause) semanticObject); 
+				return; 
 			case Aadlv3Package.ASSOCIATION:
 				if (rule == grammarAccess.getBindingRule()) {
 					sequence_Binding_PropertiesBlock(context, (Association) semanticObject); 
@@ -97,7 +101,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 				sequence_ComponentImplementation_ImplementationElement_ImplementationExtensions(context, (ComponentImplementation) semanticObject); 
 				return; 
 			case Aadlv3Package.COMPONENT_INTERFACE:
-				sequence_ComponentInterface_InterfaceElement_InterfaceExtensions_UseProps(context, (ComponentInterface) semanticObject); 
+				sequence_ComponentInterface_InterfaceElement_InterfaceExtensions(context, (ComponentInterface) semanticObject); 
 				return; 
 			case Aadlv3Package.CONFIGURATION_ACTUAL:
 				sequence_ConfigurationActual(context, (ConfigurationActual) semanticObject); 
@@ -183,6 +187,24 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
+	 *     AnnexSubclause returns AnnexSubclause
+	 *
+	 * Constraint:
+	 *     name=ID
+	 */
+	protected void sequence_AnnexSubclause(ISerializationContext context, AnnexSubclause semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, Aadlv3Package.Literals.NAMED_ELEMENT__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, Aadlv3Package.Literals.NAMED_ELEMENT__NAME));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getAnnexSubclauseAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     PackageElement returns PropertyDefinition
 	 *     PropertyDefinition returns PropertyDefinition
 	 *
@@ -204,7 +226,14 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     Binding returns Association
 	 *
 	 * Constraint:
-	 *     (name=ID associationType=BindingType source=ModelElementReference destination=ModelElementReference propertyAssociations+=PropertyAssociation*)
+	 *     (
+	 *         name=ID 
+	 *         bindingType=[DataType|QualifiedName]? 
+	 *         associationType=IsBinding 
+	 *         source=ModelElementReference 
+	 *         destination=ModelElementReference 
+	 *         propertyAssociations+=PropertyAssociation*
+	 *     )
 	 */
 	protected void sequence_Binding_PropertiesBlock(ISerializationContext context, Association semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -226,7 +255,8 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *             propertyAssociations+=PropertyAssociation | 
 	 *             bindings+=Binding | 
 	 *             configurationAssignments+=ConfigurationAssignment | 
-	 *             configurationAssignments+=ConfigurationAssignmentPattern
+	 *             configurationAssignments+=ConfigurationAssignmentPattern | 
+	 *             annexSubclause+=AnnexSubclause
 	 *         )*
 	 *     )
 	 */
@@ -254,7 +284,8 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *             flowAssignments+=FlowAssignment | 
 	 *             configurationAssignments+=ConfigurationAssignment | 
 	 *             configurationAssignments+=ConfigurationAssignmentPattern | 
-	 *             propertyAssociations+=PropertyAssociation
+	 *             propertyAssociations+=PropertyAssociation | 
+	 *             annexSubclause+=AnnexSubclause
 	 *         )*
 	 *     )
 	 */
@@ -275,12 +306,16 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *         name=ID 
 	 *         (superClassifiers+=ReversableInterfaceReference superClassifiers+=ReversableInterfaceReference*)? 
 	 *         (
-	 *             (features+=Feature | flows+=FlowPath | flows+=FlowSource | flows+=FlowSink | propertyAssociations+=PropertyAssociation)? 
-	 *             (useProperties+=[PropertySet|QualifiedName] useProperties+=[PropertySet|QualifiedName]*)?
-	 *         )+
+	 *             features+=Feature | 
+	 *             flows+=FlowPath | 
+	 *             flows+=FlowSource | 
+	 *             flows+=FlowSink | 
+	 *             propertyAssociations+=PropertyAssociation | 
+	 *             annexSubclause+=AnnexSubclause
+	 *         )*
 	 *     )
 	 */
-	protected void sequence_ComponentInterface_InterfaceElement_InterfaceExtensions_UseProps(ISerializationContext context, ComponentInterface semanticObject) {
+	protected void sequence_ComponentInterface_InterfaceElement_InterfaceExtensions(ISerializationContext context, ComponentInterface semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -353,7 +388,8 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *                     propertyAssociations+=PropertyAssociation | 
 	 *                     bindings+=Binding | 
 	 *                     configurationAssignments+=ConfigurationAssignment | 
-	 *                     configurationAssignments+=ConfigurationAssignmentPattern
+	 *                     configurationAssignments+=ConfigurationAssignmentPattern | 
+	 *                     annexSubclause+=AnnexSubclause
 	 *                 )+
 	 *             )
 	 *         )?
@@ -379,7 +415,8 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *                     propertyAssociations+=PropertyAssociation | 
 	 *                     bindings+=Binding | 
 	 *                     configurationAssignments+=ConfigurationAssignment | 
-	 *                     configurationAssignments+=ConfigurationAssignmentPattern
+	 *                     configurationAssignments+=ConfigurationAssignmentPattern | 
+	 *                     annexSubclause+=AnnexSubclause
 	 *                 )+
 	 *             )
 	 *         )?
@@ -418,7 +455,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 * Constraint:
 	 *     (
 	 *         name=ID 
-	 *         associationType=ConnectionType 
+	 *         associationType=IsConnection 
 	 *         source=ModelElementReference 
 	 *         bidirectional?='<->'? 
 	 *         destination=ModelElementReference 
@@ -454,6 +491,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *         event?='event'? 
 	 *         category=FeatureCategory 
 	 *         typeReference=ReversableTypeReference? 
+	 *         annexSubclause+=AnnexSubclause? 
 	 *         propertyAssociations+=PropertyAssociation*
 	 *     )
 	 */
@@ -479,7 +517,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     FlowPath returns Association
 	 *
 	 * Constraint:
-	 *     (name=ID associationType=FlowPathType source=ModelElementReference destination=ModelElementReference propertyAssociations+=PropertyAssociation*)
+	 *     (name=ID associationType=IsFlowPath source=ModelElementReference destination=ModelElementReference propertyAssociations+=PropertyAssociation*)
 	 */
 	protected void sequence_FlowPath_PropertiesBlock(ISerializationContext context, Association semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -491,7 +529,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     FlowSink returns Association
 	 *
 	 * Constraint:
-	 *     (name=ID associationType=FlowSinkType source=ModelElementReference propertyAssociations+=PropertyAssociation*)
+	 *     (name=ID associationType=IsFlowSink source=ModelElementReference propertyAssociations+=PropertyAssociation*)
 	 */
 	protected void sequence_FlowSink_PropertiesBlock(ISerializationContext context, Association semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -503,7 +541,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     FlowSource returns Association
 	 *
 	 * Constraint:
-	 *     (name=ID associationType=FlowSourceType destination=ModelElementReference propertyAssociations+=PropertyAssociation*)
+	 *     (name=ID associationType=IsFlowSource destination=ModelElementReference propertyAssociations+=PropertyAssociation*)
 	 */
 	protected void sequence_FlowSource_PropertiesBlock(ISerializationContext context, Association semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

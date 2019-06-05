@@ -175,7 +175,11 @@ public class ModeTransitionTriggerAssignmentItemProvider extends ItemProviderAda
 
 		newChildDescriptors
 				.add(createChildParameter(Aadlv3Package.Literals.MODE_TRANSITION_TRIGGER_ASSIGNMENT__TRIGGERS,
-						Aadlv3Factory.eINSTANCE.createModeTransitionTrigger()));
+						Aadlv3Factory.eINSTANCE.createModelElementReference()));
+
+		newChildDescriptors
+				.add(createChildParameter(Aadlv3Package.Literals.MODE_TRANSITION_TRIGGER_ASSIGNMENT__TRIGGERS,
+						Aadlv3Factory.eINSTANCE.createPathElement()));
 	}
 
 	/**

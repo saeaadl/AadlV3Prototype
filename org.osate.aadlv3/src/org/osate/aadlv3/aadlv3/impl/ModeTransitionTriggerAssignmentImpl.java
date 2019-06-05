@@ -33,8 +33,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.ModeTransition;
-import org.osate.aadlv3.aadlv3.ModeTransitionTrigger;
 import org.osate.aadlv3.aadlv3.ModeTransitionTriggerAssignment;
+import org.osate.aadlv3.aadlv3.ModelElementReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -60,7 +60,7 @@ public class ModeTransitionTriggerAssignmentImpl extends MinimalEObjectImpl.Cont
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ModeTransitionTrigger> triggers;
+	protected EList<ModelElementReference> triggers;
 
 	/**
 	 * The cached value of the '{@link #getTransition() <em>Transition</em>}' reference.
@@ -97,9 +97,9 @@ public class ModeTransitionTriggerAssignmentImpl extends MinimalEObjectImpl.Cont
 	 * @generated
 	 */
 	@Override
-	public EList<ModeTransitionTrigger> getTriggers() {
+	public EList<ModelElementReference> getTriggers() {
 		if (triggers == null) {
-			triggers = new EObjectContainmentEList<ModeTransitionTrigger>(ModeTransitionTrigger.class, this,
+			triggers = new EObjectContainmentEList<ModelElementReference>(ModelElementReference.class, this,
 					Aadlv3Package.MODE_TRANSITION_TRIGGER_ASSIGNMENT__TRIGGERS);
 		}
 		return triggers;
@@ -190,7 +190,7 @@ public class ModeTransitionTriggerAssignmentImpl extends MinimalEObjectImpl.Cont
 		switch (featureID) {
 		case Aadlv3Package.MODE_TRANSITION_TRIGGER_ASSIGNMENT__TRIGGERS:
 			getTriggers().clear();
-			getTriggers().addAll((Collection<? extends ModeTransitionTrigger>) newValue);
+			getTriggers().addAll((Collection<? extends ModelElementReference>) newValue);
 			return;
 		case Aadlv3Package.MODE_TRANSITION_TRIGGER_ASSIGNMENT__TRANSITION:
 			setTransition((ModeTransition) newValue);

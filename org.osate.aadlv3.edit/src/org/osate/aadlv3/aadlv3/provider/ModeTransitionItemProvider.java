@@ -179,7 +179,10 @@ public class ModeTransitionItemProvider extends ModelElementItemProvider {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.MODE_TRANSITION__TRIGGERS,
-				Aadlv3Factory.eINSTANCE.createModeTransitionTrigger()));
+				Aadlv3Factory.eINSTANCE.createModelElementReference()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.MODE_TRANSITION__TRIGGERS,
+				Aadlv3Factory.eINSTANCE.createPathElement()));
 	}
 
 }

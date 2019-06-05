@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
+import org.osate.aadlv3.aadlv3.AnnexSubclause;
 import org.osate.aadlv3.aadlv3.Association;
 import org.osate.aadlv3.aadlv3.ConfigurationAssignment;
 import org.osate.aadlv3.aadlv3.ModelElementReference;
@@ -51,6 +52,7 @@ import org.osate.aadlv3.aadlv3.TypeReference;
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ConfigurationAssignmentImpl#getAssignedClassifiers <em>Assigned Classifiers</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ConfigurationAssignmentImpl#getPropertyAssociations <em>Property Associations</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ConfigurationAssignmentImpl#getBindings <em>Bindings</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.ConfigurationAssignmentImpl#getAnnexSubclause <em>Annex Subclause</em>}</li>
  * </ul>
  *
  * @generated
@@ -105,6 +107,16 @@ public class ConfigurationAssignmentImpl extends MinimalEObjectImpl.Container im
 	 * @ordered
 	 */
 	protected EList<Association> bindings;
+
+	/**
+	 * The cached value of the '{@link #getAnnexSubclause() <em>Annex Subclause</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAnnexSubclause()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<AnnexSubclause> annexSubclause;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -240,6 +252,20 @@ public class ConfigurationAssignmentImpl extends MinimalEObjectImpl.Container im
 	 * @generated
 	 */
 	@Override
+	public EList<AnnexSubclause> getAnnexSubclause() {
+		if (annexSubclause == null) {
+			annexSubclause = new EObjectContainmentEList<AnnexSubclause>(AnnexSubclause.class, this,
+					Aadlv3Package.CONFIGURATION_ASSIGNMENT__ANNEX_SUBCLAUSE);
+		}
+		return annexSubclause;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__TARGET:
@@ -252,6 +278,8 @@ public class ConfigurationAssignmentImpl extends MinimalEObjectImpl.Container im
 			return ((InternalEList<?>) getPropertyAssociations()).basicRemove(otherEnd, msgs);
 		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__BINDINGS:
 			return ((InternalEList<?>) getBindings()).basicRemove(otherEnd, msgs);
+		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__ANNEX_SUBCLAUSE:
+			return ((InternalEList<?>) getAnnexSubclause()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -274,6 +302,8 @@ public class ConfigurationAssignmentImpl extends MinimalEObjectImpl.Container im
 			return getPropertyAssociations();
 		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__BINDINGS:
 			return getBindings();
+		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__ANNEX_SUBCLAUSE:
+			return getAnnexSubclause();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -306,6 +336,10 @@ public class ConfigurationAssignmentImpl extends MinimalEObjectImpl.Container im
 			getBindings().clear();
 			getBindings().addAll((Collection<? extends Association>) newValue);
 			return;
+		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__ANNEX_SUBCLAUSE:
+			getAnnexSubclause().clear();
+			getAnnexSubclause().addAll((Collection<? extends AnnexSubclause>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -333,6 +367,9 @@ public class ConfigurationAssignmentImpl extends MinimalEObjectImpl.Container im
 		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__BINDINGS:
 			getBindings().clear();
 			return;
+		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__ANNEX_SUBCLAUSE:
+			getAnnexSubclause().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -355,6 +392,8 @@ public class ConfigurationAssignmentImpl extends MinimalEObjectImpl.Container im
 			return propertyAssociations != null && !propertyAssociations.isEmpty();
 		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__BINDINGS:
 			return bindings != null && !bindings.isEmpty();
+		case Aadlv3Package.CONFIGURATION_ASSIGNMENT__ANNEX_SUBCLAUSE:
+			return annexSubclause != null && !annexSubclause.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

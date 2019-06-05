@@ -31,7 +31,7 @@
       <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//FeatureCategory/port"/>
       <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//FeatureCategory/dataaccess"/>
       <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//FeatureCategory/busaccess"/>
-      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//FeatureCategory/bindingpoint"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//FeatureCategory/binding"/>
       <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//FeatureCategory/interface"/>
       <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//FeatureCategory/virtualbusaccess"/>
       <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//FeatureCategory/subprogramaccess"/>
@@ -99,6 +99,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ComponentClassifier/propertyAssociations"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ComponentClassifier/useModes"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//ComponentClassifier/inheritsModes"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ComponentClassifier/annexSubclause"/>
     </genClasses>
     <genClasses image="false" ecoreClass="Aadlv3.ecore#//ComponentRealization">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ComponentRealization/cachedInterfaceReference"/>
@@ -126,6 +127,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//Feature/category"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Feature/typeReference"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//Feature/event"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Feature/annexSubclause"/>
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//Component">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//Component/category"/>
@@ -141,9 +143,11 @@
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//Association">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//Association/associationType"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Association/bindingType"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Association/source"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Association/destination"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//Association/bidirectional"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Association/annexSubclause"/>
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//PathSequence">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//PathSequence/target"/>
@@ -159,6 +163,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ConfigurationAssignment/assignedClassifiers"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ConfigurationAssignment/propertyAssociations"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ConfigurationAssignment/bindings"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ConfigurationAssignment/annexSubclause"/>
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//ConfigurationAssignmentPattern">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ConfigurationAssignmentPattern/targetPattern"/>
@@ -201,10 +206,6 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ModeTransition/target"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ModeTransition/triggers"/>
     </genClasses>
-    <genClasses ecoreClass="Aadlv3.ecore#//ModeTransitionTrigger">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ModeTransitionTrigger/context"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ModeTransitionTrigger/trigger"/>
-    </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//ModeTransitionTriggerAssignment">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ModeTransitionTriggerAssignment/triggers"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ModeTransitionTriggerAssignment/transition"/>
@@ -216,5 +217,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ModeStateMachine/modes"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ModeStateMachine/transitions"/>
     </genClasses>
+    <genClasses ecoreClass="Aadlv3.ecore#//AnnexSubclause"/>
   </genPackages>
 </genmodel:GenModel>

@@ -15,15 +15,20 @@
  */
 package org.osate.aadlv3.aadlv3.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
+import org.osate.aadlv3.aadlv3.AnnexSubclause;
 import org.osate.aadlv3.aadlv3.Association;
 import org.osate.aadlv3.aadlv3.AssociationType;
+import org.osate.aadlv3.aadlv3.DataType;
 import org.osate.aadlv3.aadlv3.ModelElementReference;
 
 /**
@@ -35,9 +40,11 @@ import org.osate.aadlv3.aadlv3.ModelElementReference;
  * </p>
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.AssociationImpl#getAssociationType <em>Association Type</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.AssociationImpl#getBindingType <em>Binding Type</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.AssociationImpl#getSource <em>Source</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.AssociationImpl#getDestination <em>Destination</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.AssociationImpl#isBidirectional <em>Bidirectional</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.AssociationImpl#getAnnexSubclause <em>Annex Subclause</em>}</li>
  * </ul>
  *
  * @generated
@@ -62,6 +69,16 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	 * @ordered
 	 */
 	protected AssociationType associationType = ASSOCIATION_TYPE_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getBindingType() <em>Binding Type</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBindingType()
+	 * @generated
+	 * @ordered
+	 */
+	protected DataType bindingType;
 
 	/**
 	 * The cached value of the '{@link #getSource() <em>Source</em>}' containment reference.
@@ -104,6 +121,16 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	protected boolean bidirectional = BIDIRECTIONAL_EDEFAULT;
 
 	/**
+	 * The cached value of the '{@link #getAnnexSubclause() <em>Annex Subclause</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAnnexSubclause()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<AnnexSubclause> annexSubclause;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -144,6 +171,48 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.ASSOCIATION__ASSOCIATION_TYPE,
 					oldAssociationType, associationType));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public DataType getBindingType() {
+		if (bindingType != null && bindingType.eIsProxy()) {
+			InternalEObject oldBindingType = (InternalEObject) bindingType;
+			bindingType = (DataType) eResolveProxy(oldBindingType);
+			if (bindingType != oldBindingType) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Aadlv3Package.ASSOCIATION__BINDING_TYPE,
+							oldBindingType, bindingType));
+			}
+		}
+		return bindingType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DataType basicGetBindingType() {
+		return bindingType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setBindingType(DataType newBindingType) {
+		DataType oldBindingType = bindingType;
+		bindingType = newBindingType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.ASSOCIATION__BINDING_TYPE,
+					oldBindingType, bindingType));
 	}
 
 	/**
@@ -280,6 +349,20 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	 * @generated
 	 */
 	@Override
+	public EList<AnnexSubclause> getAnnexSubclause() {
+		if (annexSubclause == null) {
+			annexSubclause = new EObjectResolvingEList<AnnexSubclause>(AnnexSubclause.class, this,
+					Aadlv3Package.ASSOCIATION__ANNEX_SUBCLAUSE);
+		}
+		return annexSubclause;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case Aadlv3Package.ASSOCIATION__SOURCE:
@@ -300,12 +383,18 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 		switch (featureID) {
 		case Aadlv3Package.ASSOCIATION__ASSOCIATION_TYPE:
 			return getAssociationType();
+		case Aadlv3Package.ASSOCIATION__BINDING_TYPE:
+			if (resolve)
+				return getBindingType();
+			return basicGetBindingType();
 		case Aadlv3Package.ASSOCIATION__SOURCE:
 			return getSource();
 		case Aadlv3Package.ASSOCIATION__DESTINATION:
 			return getDestination();
 		case Aadlv3Package.ASSOCIATION__BIDIRECTIONAL:
 			return isBidirectional();
+		case Aadlv3Package.ASSOCIATION__ANNEX_SUBCLAUSE:
+			return getAnnexSubclause();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -322,6 +411,9 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 		case Aadlv3Package.ASSOCIATION__ASSOCIATION_TYPE:
 			setAssociationType((AssociationType) newValue);
 			return;
+		case Aadlv3Package.ASSOCIATION__BINDING_TYPE:
+			setBindingType((DataType) newValue);
+			return;
 		case Aadlv3Package.ASSOCIATION__SOURCE:
 			setSource((ModelElementReference) newValue);
 			return;
@@ -330,6 +422,10 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 			return;
 		case Aadlv3Package.ASSOCIATION__BIDIRECTIONAL:
 			setBidirectional((Boolean) newValue);
+			return;
+		case Aadlv3Package.ASSOCIATION__ANNEX_SUBCLAUSE:
+			getAnnexSubclause().clear();
+			getAnnexSubclause().addAll((Collection<? extends AnnexSubclause>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -346,6 +442,9 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 		case Aadlv3Package.ASSOCIATION__ASSOCIATION_TYPE:
 			setAssociationType(ASSOCIATION_TYPE_EDEFAULT);
 			return;
+		case Aadlv3Package.ASSOCIATION__BINDING_TYPE:
+			setBindingType((DataType) null);
+			return;
 		case Aadlv3Package.ASSOCIATION__SOURCE:
 			setSource((ModelElementReference) null);
 			return;
@@ -354,6 +453,9 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 			return;
 		case Aadlv3Package.ASSOCIATION__BIDIRECTIONAL:
 			setBidirectional(BIDIRECTIONAL_EDEFAULT);
+			return;
+		case Aadlv3Package.ASSOCIATION__ANNEX_SUBCLAUSE:
+			getAnnexSubclause().clear();
 			return;
 		}
 		super.eUnset(featureID);
@@ -369,12 +471,16 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 		switch (featureID) {
 		case Aadlv3Package.ASSOCIATION__ASSOCIATION_TYPE:
 			return associationType != ASSOCIATION_TYPE_EDEFAULT;
+		case Aadlv3Package.ASSOCIATION__BINDING_TYPE:
+			return bindingType != null;
 		case Aadlv3Package.ASSOCIATION__SOURCE:
 			return source != null;
 		case Aadlv3Package.ASSOCIATION__DESTINATION:
 			return destination != null;
 		case Aadlv3Package.ASSOCIATION__BIDIRECTIONAL:
 			return bidirectional != BIDIRECTIONAL_EDEFAULT;
+		case Aadlv3Package.ASSOCIATION__ANNEX_SUBCLAUSE:
+			return annexSubclause != null && !annexSubclause.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

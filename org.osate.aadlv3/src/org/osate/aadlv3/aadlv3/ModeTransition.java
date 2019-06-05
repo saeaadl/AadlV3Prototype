@@ -90,7 +90,7 @@ public interface ModeTransition extends ModelElement {
 
 	/**
 	 * Returns the value of the '<em><b>Triggers</b></em>' containment reference list.
-	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.ModeTransitionTrigger}.
+	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.ModelElementReference}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Triggers</em>' containment reference list.
@@ -98,6 +98,6 @@ public interface ModeTransition extends ModelElement {
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<ModeTransitionTrigger> getTriggers();
+	EList<ModelElementReference> getTriggers();
 
 } // ModeTransition

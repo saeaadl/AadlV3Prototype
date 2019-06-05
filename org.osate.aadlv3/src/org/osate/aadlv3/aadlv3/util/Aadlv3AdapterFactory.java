@@ -230,11 +230,6 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseModeTransitionTrigger(ModeTransitionTrigger object) {
-			return createModeTransitionTriggerAdapter();
-		}
-
-		@Override
 		public Adapter caseModeTransitionTriggerAssignment(ModeTransitionTriggerAssignment object) {
 			return createModeTransitionTriggerAssignmentAdapter();
 		}
@@ -247,6 +242,11 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseModeStateMachine(ModeStateMachine object) {
 			return createModeStateMachineAdapter();
+		}
+
+		@Override
+		public Adapter caseAnnexSubclause(AnnexSubclause object) {
+			return createAnnexSubclauseAdapter();
 		}
 
 		@Override
@@ -647,20 +647,6 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.ModeTransitionTrigger <em>Mode Transition Trigger</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.osate.aadlv3.aadlv3.ModeTransitionTrigger
-	 * @generated
-	 */
-	public Adapter createModeTransitionTriggerAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.ModeTransitionTriggerAssignment <em>Mode Transition Trigger Assignment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -699,6 +685,20 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createModeStateMachineAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.AnnexSubclause <em>Annex Subclause</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.osate.aadlv3.aadlv3.AnnexSubclause
+	 * @generated
+	 */
+	public Adapter createAnnexSubclauseAdapter() {
 		return null;
 	}
 

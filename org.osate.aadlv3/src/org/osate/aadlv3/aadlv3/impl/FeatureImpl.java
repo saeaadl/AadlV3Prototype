@@ -15,15 +15,20 @@
  */
 package org.osate.aadlv3.aadlv3.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
+import org.osate.aadlv3.aadlv3.AnnexSubclause;
 import org.osate.aadlv3.aadlv3.Feature;
 import org.osate.aadlv3.aadlv3.FeatureCategory;
 import org.osate.aadlv3.aadlv3.FeatureDirection;
@@ -41,6 +46,7 @@ import org.osate.aadlv3.aadlv3.TypeReference;
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.FeatureImpl#getCategory <em>Category</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.FeatureImpl#getTypeReference <em>Type Reference</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.FeatureImpl#isEvent <em>Event</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.FeatureImpl#getAnnexSubclause <em>Annex Subclause</em>}</li>
  * </ul>
  *
  * @generated
@@ -115,6 +121,16 @@ public class FeatureImpl extends ModelElementImpl implements Feature {
 	 * @ordered
 	 */
 	protected boolean event = EVENT_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getAnnexSubclause() <em>Annex Subclause</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAnnexSubclause()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<AnnexSubclause> annexSubclause;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -264,10 +280,26 @@ public class FeatureImpl extends ModelElementImpl implements Feature {
 	 * @generated
 	 */
 	@Override
+	public EList<AnnexSubclause> getAnnexSubclause() {
+		if (annexSubclause == null) {
+			annexSubclause = new EObjectContainmentEList<AnnexSubclause>(AnnexSubclause.class, this,
+					Aadlv3Package.FEATURE__ANNEX_SUBCLAUSE);
+		}
+		return annexSubclause;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case Aadlv3Package.FEATURE__TYPE_REFERENCE:
 			return basicSetTypeReference(null, msgs);
+		case Aadlv3Package.FEATURE__ANNEX_SUBCLAUSE:
+			return ((InternalEList<?>) getAnnexSubclause()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -288,6 +320,8 @@ public class FeatureImpl extends ModelElementImpl implements Feature {
 			return getTypeReference();
 		case Aadlv3Package.FEATURE__EVENT:
 			return isEvent();
+		case Aadlv3Package.FEATURE__ANNEX_SUBCLAUSE:
+			return getAnnexSubclause();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -297,6 +331,7 @@ public class FeatureImpl extends ModelElementImpl implements Feature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -311,6 +346,10 @@ public class FeatureImpl extends ModelElementImpl implements Feature {
 			return;
 		case Aadlv3Package.FEATURE__EVENT:
 			setEvent((Boolean) newValue);
+			return;
+		case Aadlv3Package.FEATURE__ANNEX_SUBCLAUSE:
+			getAnnexSubclause().clear();
+			getAnnexSubclause().addAll((Collection<? extends AnnexSubclause>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -336,6 +375,9 @@ public class FeatureImpl extends ModelElementImpl implements Feature {
 		case Aadlv3Package.FEATURE__EVENT:
 			setEvent(EVENT_EDEFAULT);
 			return;
+		case Aadlv3Package.FEATURE__ANNEX_SUBCLAUSE:
+			getAnnexSubclause().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -356,6 +398,8 @@ public class FeatureImpl extends ModelElementImpl implements Feature {
 			return typeReference != null;
 		case Aadlv3Package.FEATURE__EVENT:
 			return event != EVENT_EDEFAULT;
+		case Aadlv3Package.FEATURE__ANNEX_SUBCLAUSE:
+			return annexSubclause != null && !annexSubclause.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

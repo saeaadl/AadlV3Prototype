@@ -66,8 +66,8 @@ public class AadlV3ValueConverter extends DefaultTerminalConverters {
 	}
 
 
-	@ValueConverter(rule = "FlowPathType")
-	public IValueConverter<AssociationType> FlowPathType() {
+	@ValueConverter(rule = "IsFlowPath")
+	public IValueConverter<AssociationType> IsFlowPath() {
 		return new IValueConverter<AssociationType>() {
 			@Override
 			public AssociationType toValue(String string, INode node) {
@@ -85,8 +85,8 @@ public class AadlV3ValueConverter extends DefaultTerminalConverters {
 	}
 
 
-	@ValueConverter(rule = "FlowSourceType")
-	public IValueConverter<AssociationType> FlowSourceType() {
+	@ValueConverter(rule = "IsFlowSource")
+	public IValueConverter<AssociationType> IsFlowSource() {
 		return new IValueConverter<AssociationType>() {
 			@Override
 			public AssociationType toValue(String string, INode node) {
@@ -104,8 +104,8 @@ public class AadlV3ValueConverter extends DefaultTerminalConverters {
 	}
 
 
-	@ValueConverter(rule = "FlowSinkType")
-	public IValueConverter<AssociationType> FlowSinkType() {
+	@ValueConverter(rule = "IsFlowSink")
+	public IValueConverter<AssociationType> IsFlowSink() {
 		return new IValueConverter<AssociationType>() {
 			@Override
 			public AssociationType toValue(String string, INode node) {
@@ -122,8 +122,8 @@ public class AadlV3ValueConverter extends DefaultTerminalConverters {
 		};
 	}
 
-	@ValueConverter(rule = "FlowType")
-	public IValueConverter<AssociationType> FlowType() {
+	@ValueConverter(rule = "IsFlow")
+	public IValueConverter<AssociationType> IsFlow() {
 		return new IValueConverter<AssociationType>() {
 			@Override
 			public AssociationType toValue(String string, INode node) {

@@ -15,6 +15,8 @@
  */
 package org.osate.aadlv3.aadlv3;
 
+import org.eclipse.emf.common.util.EList;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Association</b></em>'.
@@ -25,9 +27,11 @@ package org.osate.aadlv3.aadlv3;
  * </p>
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.Association#getAssociationType <em>Association Type</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.Association#getBindingType <em>Binding Type</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.Association#getSource <em>Source</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.Association#getDestination <em>Destination</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.Association#isBidirectional <em>Bidirectional</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.Association#getAnnexSubclause <em>Annex Subclause</em>}</li>
  * </ul>
  *
  * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getAssociation()
@@ -63,6 +67,28 @@ public interface Association extends ModelElement {
 	 * @generated
 	 */
 	void setAssociationType(AssociationType value);
+
+	/**
+	 * Returns the value of the '<em><b>Binding Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Binding Type</em>' reference.
+	 * @see #setBindingType(DataType)
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getAssociation_BindingType()
+	 * @model
+	 * @generated
+	 */
+	DataType getBindingType();
+
+	/**
+	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.Association#getBindingType <em>Binding Type</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Binding Type</em>' reference.
+	 * @see #getBindingType()
+	 * @generated
+	 */
+	void setBindingType(DataType value);
 
 	/**
 	 * Returns the value of the '<em><b>Source</b></em>' containment reference.
@@ -141,5 +167,17 @@ public interface Association extends ModelElement {
 	 * @generated
 	 */
 	void setBidirectional(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Annex Subclause</b></em>' reference list.
+	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.AnnexSubclause}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Annex Subclause</em>' reference list.
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getAssociation_AnnexSubclause()
+	 * @model
+	 * @generated
+	 */
+	EList<AnnexSubclause> getAnnexSubclause();
 
 } // Association

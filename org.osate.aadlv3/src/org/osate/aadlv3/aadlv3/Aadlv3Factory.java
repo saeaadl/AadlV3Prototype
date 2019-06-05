@@ -233,15 +233,6 @@ public interface Aadlv3Factory extends EFactory {
 	ModeTransition createModeTransition();
 
 	/**
-	 * Returns a new object of class '<em>Mode Transition Trigger</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Mode Transition Trigger</em>'.
-	 * @generated
-	 */
-	ModeTransitionTrigger createModeTransitionTrigger();
-
-	/**
 	 * Returns a new object of class '<em>Mode Transition Trigger Assignment</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -267,6 +258,15 @@ public interface Aadlv3Factory extends EFactory {
 	 * @generated
 	 */
 	ModeStateMachine createModeStateMachine();
+
+	/**
+	 * Returns a new object of class '<em>Annex Subclause</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Annex Subclause</em>'.
+	 * @generated
+	 */
+	AnnexSubclause createAnnexSubclause();
 
 	/**
 	 * Returns a new object of class '<em>Path Element</em>'.

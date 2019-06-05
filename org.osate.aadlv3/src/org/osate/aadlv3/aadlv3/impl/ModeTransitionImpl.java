@@ -30,7 +30,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.Mode;
 import org.osate.aadlv3.aadlv3.ModeTransition;
-import org.osate.aadlv3.aadlv3.ModeTransitionTrigger;
+import org.osate.aadlv3.aadlv3.ModelElementReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -76,7 +76,7 @@ public class ModeTransitionImpl extends ModelElementImpl implements ModeTransiti
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ModeTransitionTrigger> triggers;
+	protected EList<ModelElementReference> triggers;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -187,9 +187,9 @@ public class ModeTransitionImpl extends ModelElementImpl implements ModeTransiti
 	 * @generated
 	 */
 	@Override
-	public EList<ModeTransitionTrigger> getTriggers() {
+	public EList<ModelElementReference> getTriggers() {
 		if (triggers == null) {
-			triggers = new EObjectContainmentEList<ModeTransitionTrigger>(ModeTransitionTrigger.class, this,
+			triggers = new EObjectContainmentEList<ModelElementReference>(ModelElementReference.class, this,
 					Aadlv3Package.MODE_TRANSITION__TRIGGERS);
 		}
 		return triggers;
@@ -248,7 +248,7 @@ public class ModeTransitionImpl extends ModelElementImpl implements ModeTransiti
 			return;
 		case Aadlv3Package.MODE_TRANSITION__TRIGGERS:
 			getTriggers().clear();
-			getTriggers().addAll((Collection<? extends ModeTransitionTrigger>) newValue);
+			getTriggers().addAll((Collection<? extends ModelElementReference>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);

@@ -592,29 +592,6 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.ModeTransitionTrigger} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ModeTransitionTriggerItemProvider modeTransitionTriggerItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.ModeTransitionTrigger}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createModeTransitionTriggerAdapter() {
-		if (modeTransitionTriggerItemProvider == null) {
-			modeTransitionTriggerItemProvider = new ModeTransitionTriggerItemProvider(this);
-		}
-
-		return modeTransitionTriggerItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.ModeTransitionTriggerAssignment} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -681,6 +658,29 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 		}
 
 		return modeStateMachineItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.AnnexSubclause} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AnnexSubclauseItemProvider annexSubclauseItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.AnnexSubclause}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createAnnexSubclauseAdapter() {
+		if (annexSubclauseItemProvider == null) {
+			annexSubclauseItemProvider = new AnnexSubclauseItemProvider(this);
+		}
+
+		return annexSubclauseItemProvider;
 	}
 
 	/**
@@ -882,14 +882,14 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 			modeItemProvider.dispose();
 		if (modeTransitionItemProvider != null)
 			modeTransitionItemProvider.dispose();
-		if (modeTransitionTriggerItemProvider != null)
-			modeTransitionTriggerItemProvider.dispose();
 		if (modeTransitionTriggerAssignmentItemProvider != null)
 			modeTransitionTriggerAssignmentItemProvider.dispose();
 		if (modeAssignmentItemProvider != null)
 			modeAssignmentItemProvider.dispose();
 		if (modeStateMachineItemProvider != null)
 			modeStateMachineItemProvider.dispose();
+		if (annexSubclauseItemProvider != null)
+			annexSubclauseItemProvider.dispose();
 	}
 
 }
