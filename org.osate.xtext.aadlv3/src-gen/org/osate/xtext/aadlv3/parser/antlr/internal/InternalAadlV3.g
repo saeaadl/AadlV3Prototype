@@ -2788,28 +2788,23 @@ ruleConfigurationAssignmentPattern returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		(
-			(
-				{
-					/* */
-				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getConfigurationAssignmentPatternRule());
-					}
-				}
-				{
-					newCompositeNode(grammarAccess.getConfigurationAssignmentPatternAccess().getTargetPatternTypeCrossReference_0_0());
-				}
-				ruleQualifiedTypesReference
-				{
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
-		otherlv_1='*=>'
 		{
-			newLeafNode(otherlv_1, grammarAccess.getConfigurationAssignmentPatternAccess().getAsteriskEqualsSignGreaterThanSignKeyword_1());
+			/* */
+		}
+		{
+			if ($current==null) {
+				$current = createModelElement(grammarAccess.getConfigurationAssignmentPatternRule());
+			}
+			newCompositeNode(grammarAccess.getConfigurationAssignmentPatternAccess().getQueryExpressionParserRuleCall_0());
+		}
+		this_QueryExpression_0=ruleQueryExpression[$current]
+		{
+			$current = $this_QueryExpression_0.current;
+			afterParserOrEnumRuleCall();
+		}
+		otherlv_1='=>'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getConfigurationAssignmentPatternAccess().getEqualsSignGreaterThanSignKeyword_1());
 		}
 		(
 			(
@@ -2893,6 +2888,50 @@ ruleConfigurationAssignmentPattern returns [EObject current=null]
 		otherlv_7=';'
 		{
 			newLeafNode(otherlv_7, grammarAccess.getConfigurationAssignmentPatternAccess().getSemicolonKeyword_3());
+		}
+	)
+;
+
+
+// Rule QueryExpression
+ruleQueryExpression[EObject in_current]  returns [EObject current=in_current]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='all'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getQueryExpressionAccess().getAllKeyword_0());
+		}
+		otherlv_1='('
+		{
+			newLeafNode(otherlv_1, grammarAccess.getQueryExpressionAccess().getLeftParenthesisKeyword_1());
+		}
+		(
+			(
+				{
+					/* */
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getQueryExpressionRule());
+					}
+				}
+				{
+					newCompositeNode(grammarAccess.getQueryExpressionAccess().getTargetPatternTypeCrossReference_2_0());
+				}
+				ruleQualifiedTypesReference
+				{
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		otherlv_3=')'
+		{
+			newLeafNode(otherlv_3, grammarAccess.getQueryExpressionAccess().getRightParenthesisKeyword_3());
 		}
 	)
 ;
@@ -3700,60 +3739,6 @@ ruleTypeReference returns [EObject current=null]
 	)
 ;
 
-// Entry rule entryRuleRealizationReference
-entryRuleRealizationReference returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getRealizationReferenceRule()); }
-	iv_ruleRealizationReference=ruleRealizationReference
-	{ $current=$iv_ruleRealizationReference.current; }
-	EOF;
-
-// Rule RealizationReference
-ruleRealizationReference returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		(
-			(
-				{
-					/* */
-				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getRealizationReferenceRule());
-					}
-				}
-				{
-					newCompositeNode(grammarAccess.getRealizationReferenceAccess().getTypeComponentRealizationCrossReference_0_0());
-				}
-				ruleQualifiedDottedReference
-				{
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
-		(
-			{
-				/* */
-			}
-			{
-				if ($current==null) {
-					$current = createModelElement(grammarAccess.getRealizationReferenceRule());
-				}
-				newCompositeNode(grammarAccess.getRealizationReferenceAccess().getConfigurationActualsParserRuleCall_1());
-			}
-			this_ConfigurationActuals_1=ruleConfigurationActuals[$current]
-			{
-				$current = $this_ConfigurationActuals_1.current;
-				afterParserOrEnumRuleCall();
-			}
-		)?
-	)
-;
-
 // Entry rule entryRuleImplementationReference
 entryRuleImplementationReference returns [EObject current=null]:
 	{ newCompositeNode(grammarAccess.getImplementationReferenceRule()); }
@@ -4041,9 +4026,9 @@ ruleConfigurationExtensions[EObject in_current]  returns [EObject current=in_cur
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getConfigurationExtensionsAccess().getSuperClassifiersRealizationReferenceParserRuleCall_0_0());
+					newCompositeNode(grammarAccess.getConfigurationExtensionsAccess().getSuperClassifiersTypeReferenceParserRuleCall_0_0());
 				}
-				lv_superClassifiers_0_0=ruleRealizationReference
+				lv_superClassifiers_0_0=ruleTypeReference
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getConfigurationExtensionsRule());
@@ -4052,7 +4037,7 @@ ruleConfigurationExtensions[EObject in_current]  returns [EObject current=in_cur
 						$current,
 						"superClassifiers",
 						lv_superClassifiers_0_0,
-						"org.osate.xtext.aadlv3.AadlV3.RealizationReference");
+						"org.osate.xtext.aadlv3.AadlV3.TypeReference");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -4065,9 +4050,9 @@ ruleConfigurationExtensions[EObject in_current]  returns [EObject current=in_cur
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getConfigurationExtensionsAccess().getSuperClassifiersRealizationReferenceParserRuleCall_1_1_0());
+						newCompositeNode(grammarAccess.getConfigurationExtensionsAccess().getSuperClassifiersTypeReferenceParserRuleCall_1_1_0());
 					}
-					lv_superClassifiers_2_0=ruleRealizationReference
+					lv_superClassifiers_2_0=ruleTypeReference
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getConfigurationExtensionsRule());
@@ -4076,7 +4061,7 @@ ruleConfigurationExtensions[EObject in_current]  returns [EObject current=in_cur
 							$current,
 							"superClassifiers",
 							lv_superClassifiers_2_0,
-							"org.osate.xtext.aadlv3.AadlV3.RealizationReference");
+							"org.osate.xtext.aadlv3.AadlV3.TypeReference");
 						afterParserOrEnumRuleCall();
 					}
 				)
@@ -5261,10 +5246,10 @@ rulePropertyAssociationType returns [AntlrDatatypeRuleToken current=new AntlrDat
 			newLeafNode(kw, grammarAccess.getPropertyAssociationTypeAccess().getEqualsSignGreaterThanSignKeyword_0());
 		}
 		    |
-		kw=':='
+		kw='='
 		{
 			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getPropertyAssociationTypeAccess().getColonEqualsSignKeyword_1());
+			newLeafNode(kw, grammarAccess.getPropertyAssociationTypeAccess().getEqualsSignKeyword_1());
 		}
 		    |
 		kw='*=>'

@@ -98,6 +98,7 @@ public class AadlV3Parser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getConfigurationAssignmentPatternAccess().getGroup(), "rule__ConfigurationAssignmentPattern__Group__0");
 			builder.put(grammarAccess.getConfigurationAssignmentPatternAccess().getGroup_2_0(), "rule__ConfigurationAssignmentPattern__Group_2_0__0");
 			builder.put(grammarAccess.getConfigurationAssignmentPatternAccess().getGroup_2_0_1(), "rule__ConfigurationAssignmentPattern__Group_2_0_1__0");
+			builder.put(grammarAccess.getQueryExpressionAccess().getGroup(), "rule__QueryExpression__Group__0");
 			builder.put(grammarAccess.getFlowAssignmentAccess().getGroup(), "rule__FlowAssignment__Group__0");
 			builder.put(grammarAccess.getFlowAssignmentAccess().getGroup_4(), "rule__FlowAssignment__Group_4__0");
 			builder.put(grammarAccess.getPropertyAssociationAccess().getGroup(), "rule__PropertyAssociation__Group__0");
@@ -241,9 +242,9 @@ public class AadlV3Parser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getConfigurationAssignmentAccess().getTargetAssignment_0(), "rule__ConfigurationAssignment__TargetAssignment_0");
 			builder.put(grammarAccess.getConfigurationAssignmentAccess().getAssignedClassifiersAssignment_2_0_0(), "rule__ConfigurationAssignment__AssignedClassifiersAssignment_2_0_0");
 			builder.put(grammarAccess.getConfigurationAssignmentAccess().getAssignedClassifiersAssignment_2_0_1_1(), "rule__ConfigurationAssignment__AssignedClassifiersAssignment_2_0_1_1");
-			builder.put(grammarAccess.getConfigurationAssignmentPatternAccess().getTargetPatternAssignment_0(), "rule__ConfigurationAssignmentPattern__TargetPatternAssignment_0");
 			builder.put(grammarAccess.getConfigurationAssignmentPatternAccess().getAssignedClassifiersAssignment_2_0_0(), "rule__ConfigurationAssignmentPattern__AssignedClassifiersAssignment_2_0_0");
 			builder.put(grammarAccess.getConfigurationAssignmentPatternAccess().getAssignedClassifiersAssignment_2_0_1_1(), "rule__ConfigurationAssignmentPattern__AssignedClassifiersAssignment_2_0_1_1");
+			builder.put(grammarAccess.getQueryExpressionAccess().getTargetPatternAssignment_2(), "rule__QueryExpression__TargetPatternAssignment_2");
 			builder.put(grammarAccess.getFlowAssignmentAccess().getTargetAssignment_0(), "rule__FlowAssignment__TargetAssignment_0");
 			builder.put(grammarAccess.getFlowAssignmentAccess().getElementsAssignment_3(), "rule__FlowAssignment__ElementsAssignment_3");
 			builder.put(grammarAccess.getFlowAssignmentAccess().getElementsAssignment_4_1(), "rule__FlowAssignment__ElementsAssignment_4_1");

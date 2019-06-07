@@ -143,12 +143,14 @@ ConfigurationAssignment returns av3::ConfigurationAssignment:
 	;
 
 ConfigurationAssignmentPattern returns av3::ConfigurationAssignmentPattern:
-	targetPattern = [av3::Type|QualifiedTypesReference] '*=>' 
+	QueryExpression '=>' 
 	((assignedClassifiers+=TypeReference (',' assignedClassifiers+=TypeReference)* (CurlyConfigurationElementBlock)?)
 	| CurlyConfigurationElementBlock)
 	';'
 	;
 
+fragment QueryExpression *: 
+'all''('targetPattern = [av3::Type|QualifiedTypesReference] ')';
 
 FlowAssignment returns av3::PathSequence:
 	target= ModelElementReference '=>' 'flow'
@@ -230,8 +232,8 @@ fragment NestedImplementationElement*:
 ;
 
 fragment ConfigurationExtensions *:
-	superClassifiers +=RealizationReference
-	("," superClassifiers +=RealizationReference)*;
+	superClassifiers +=TypeReference
+	("," superClassifiers +=TypeReference)*;
 
 fragment ImplementationExtensions *:
 	superClassifiers +=ImplementationReference
@@ -318,7 +320,7 @@ IsFlow returns av3::AssociationType:
 
 
 PropertyAssociationType returns av3::PropertyAssociationType:
-	'=>' | ':=' | '*=>' 
+	'=>' | '=' | '*=>' 
 ;
 
 VirtualProcessorKeywords:

@@ -128,7 +128,7 @@ class AadlV3ScopeProvider extends AbstractAadlV3ScopeProvider {
 						Component: {
 							// super classifier of containing classifier of configuration assignment may have configured the component
 							val casscopes = new Stack<Iterable<ConfigurationAssignment>>()
-							casscopes.push(context.containingComponentConfiguration.allSuperConfigurationAssignments)
+							casscopes.push(context.containingComponentClassifier.allSuperConfigurationAssignments)
 							val ptrs = previousElement.getConfiguredTypeReferences(casscopes)
 							if (!ptrs.empty && !ptrs.isDataType) {
 								ptrs.allModelElements

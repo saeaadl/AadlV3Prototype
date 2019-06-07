@@ -521,9 +521,9 @@ class Aadlv3Util {
 	}
 
 	// returns configuration assignments from all super configurations
-	static def Iterable<ConfigurationAssignment> getAllSuperConfigurationAssignments(ComponentConfiguration cc) {
+	static def Iterable<ConfigurationAssignment> getAllSuperConfigurationAssignments(ComponentClassifier cc) {
 		if(cc === null || cc.eIsProxy || cc.superClassifiers.isEmpty) return Collections.EMPTY_LIST
-		val supercls = cc.allSuperComponentConfigurations
+		val supercls = cc.allSuperComponentClassifiers
 		if (supercls.empty) return Collections.EMPTY_LIST
 		 supercls.map[cl|cl.getAllGivenClassifierConfigurationAssignments].flatten
 	}

@@ -33,12 +33,12 @@ package PropertyAssociationExample is
 	
 	configuration actuator.c1 extends actuator.i
 	is 
-		actuateThread#Period := 71ms ;
+		actuateThread#Period = 71ms ;
 	end;
 	
 	configuration actuator.c2 extends actuator.i
 	is 
-		actuateThread#Period := 72ms ;
+		actuateThread#Period = 72ms ;
 	end;
 	
 	thread interface sense  is
@@ -97,14 +97,14 @@ package PropertyAssociationExample is
 		sensetocontrol: connection sense.outp -> processing.insignal;
 		controltoactuate: connection processing.outaction -> actuate.inp;
 		actuate#Period => 34 ms;
-		actuate.actuateThread#Period := 55ms; 
+		actuate.actuateThread#Period = 55ms; 
 	end;
 	
 	configuration conntop.c1 extends conntop.i is
 	#Period *=> 99 ms;
 	#Data_Size *=> 88 bytes;
-		actuate => actuator.c1 , actuator.c2 {actuateThread#Period := 73ms;}
-		actuate => {actuateThread#Period := 74ms;};
+		actuate => actuator.c1 , actuator.c2 {actuateThread#Period = 73ms;};
+		actuate => {actuateThread#Period = 74ms;};
 	end;
 	
 	bus interface canbus 

@@ -335,13 +335,15 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	 * check the PA is FINAL when in configuration, CA, or reachdown
 	 */
 	def checkPropertyAssociationMustBeFinal(PropertyAssociation pa) {
-		if (pa.eContainer instanceof ConfigurationAssignment) {
-			if (pa.propertyAssociationType !== PropertyAssociationType.FINAL_VALUE) {
-				error('Property assignment in configuration assignment must be final', pa,
-					Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY_ASSOCIATION_TYPE, MustBeFinal)
-			}
-		} else if (pa.eContainer instanceof ComponentConfiguration) {
-			if (pa.propertyAssociationType === PropertyAssociationType.VARIABLE_VALUE) { // && !(pa.eContainer as ComponentConfiguration).superClassifiers.empty){
+		val enclosingCl = pa.containingComponentClassifier
+//		if (pa.eContainer instanceof ConfigurationAssignment) {
+//			if (pa.propertyAssociationType !== PropertyAssociationType.FINAL_VALUE) {
+//				error('Property assignment in configuration assignment must be final', pa,
+//					Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY_ASSOCIATION_TYPE, MustBeFinal)
+//			}
+//		} else 
+		if (enclosingCl instanceof ComponentConfiguration) {
+			if (pa.propertyAssociationType === PropertyAssociationType.VARIABLE_VALUE) {
 				error('Property assignment in configuration must be final', pa,
 					Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY_ASSOCIATION_TYPE, MustBeFinal)
 			}
@@ -466,11 +468,13 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	 */
 	def checkDuplicatePropertyAssociationForModelElementTarget(PropertyAssociation pa) {
 		if (pa.target !== null && !pa.target.modelElementReferenceReachDown) {
+			val context = pa.containingComponentClassifier
 			val targetme = pa.target.element
+			val targetcontext = targetme.containingComponentClassifier
 			// local target model element also has {} property assignment 
 			val tpas = targetme.propertyAssociations
 			for (tpa : tpas) {
-				if (tpa.target === null && sameProperty(tpa.property, pa.property)) {
+				if (tpa.target === null && sameProperty(tpa.property, pa.property) && context == targetcontext) {
 					error('Property value also assigned in {}', pa,
 						Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY, NoDoubleAssignment)
 				}
@@ -612,7 +616,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 		val casscopes = new Stack<Iterable<ConfigurationAssignment>>()
 		val cas = cl.allConfigurationAssignments
 		val caspas = cas.map[ca|ca.propertyAssociations].flatten
-		checkCompositeCasPasConflict( caspas, cl)
+		checkCompositeCasPasConflict(caspas, cl)
 		casscopes.push(cas)
 		val reachdownPAS = new Stack<Iterable<PropertyAssociation>>()
 		reachdownPAS.push(cl.allPropertyAssociations.filter[pa|pa.target?.modelElementReferenceReachDown])
@@ -645,7 +649,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 			val cas = trefs.allConfigurationAssignments
 			val caspas = cas.map[ca|ca.propertyAssociations].flatten
 			checkReachDownCasPasConflict(casscopes, context, caspas, rootcl)
-			checkCompositeCasPasConflict( caspas, rootcl)
+			checkCompositeCasPasConflict(caspas, rootcl)
 			val comps = trefs.getAllSubcomponents(comp)
 			casscopes.push(cas)
 			reachdownPAS.push(configuredPAS)
@@ -671,8 +675,9 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 						if (rdcont instanceof ComponentClassifier) {
 							error(
 								'Final property association ' + rdPA.target.targetPath + '#' + rdPA.property.name +
-									' conflicts with final ' + (configuredPA.eContainer as ComponentClassifier).name + '::' +
-									configuredPA.target.targetPath + '#' + configuredPA.property.name + 'configured for component '+context.element.name, rdcont,
+									' conflicts with final ' + (configuredPA.eContainer as ComponentClassifier).name +
+									'::' + configuredPA.target.targetPath + '#' + configuredPA.property.name +
+									'configured for component ' + context.element.name, rdcont,
 								Aadlv3Package.Literals.COMPONENT_CLASSIFIER__PROPERTY_ASSOCIATIONS,
 								rdcont.propertyAssociations.indexOf(rdPA), ConflictingFinal)
 						}
@@ -681,7 +686,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 			}
 		}
 	}
-	
+
 	def void checkReachDownConfiguredPasConflict(Stack<Iterable<ConfigurationAssignment>> casscopes,
 		ModelElementReference context, Iterable<PropertyAssociation> configuredPAS, ComponentClassifier rootcl) {
 		val n = casscopes.size
@@ -696,12 +701,17 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 							// error
 							val rdcont = rdPA.eContainer
 							if (rdcont instanceof ComponentClassifier) {
+								if (configuredPA.propertyAssociationType === PropertyAssociationType.FINAL_VALUE &&
+									rdPA.propertyAssociationType === PropertyAssociationType.FINAL_VALUE) {
 								error(
 									'Final property association ' + rdPA.target.targetPath + '#' + rdPA.property.name +
-										' conflicts with final ' + (configuredPA.eContainer as ComponentClassifier).name + '::' +
+										' conflicts with final ' +
+										(configuredPA.eContainer as ComponentClassifier).name + '::' +
 										configuredPA.target.targetPath + '#' + configuredPA.property.name, rdcont,
 									Aadlv3Package.Literals.COMPONENT_CLASSIFIER__PROPERTY_ASSOCIATIONS,
 									rdcont.propertyAssociations.indexOf(rdPA), ConflictingFinal)
+							}
+							
 							}
 						}
 					}
@@ -709,9 +719,9 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 			}
 		}
 	}
-	
+
 	def void checkReachDownCasPasConflict(Stack<Iterable<ConfigurationAssignment>> casscopes,
-		ModelElementReference context, Iterable<PropertyAssociation> casPAS,ComponentClassifier rootcl) {
+		ModelElementReference context, Iterable<PropertyAssociation> casPAS, ComponentClassifier rootcl) {
 		val n = casscopes.size
 		if(n === 0) return;
 		for (k : n - 1 .. 0) {
@@ -724,12 +734,16 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 							// error
 							val rdcont = rdPA.eContainer
 							if (rdcont instanceof ComponentClassifier) {
-								error(
-									'Final property association ' + rdPA.target.targetPath + '#' + rdPA.property.name +
-										' conflicts with final ' + (casPA.eContainer as ComponentClassifier).name + '::' +
-										casPA.target.targetPath + '#' + casPA.property.name, rdcont,
-									Aadlv3Package.Literals.COMPONENT_CLASSIFIER__PROPERTY_ASSOCIATIONS,
-									rdcont.propertyAssociations.indexOf(rdPA), ConflictingFinal)
+								if (casPA.propertyAssociationType === PropertyAssociationType.FINAL_VALUE &&
+									rdPA.propertyAssociationType === PropertyAssociationType.FINAL_VALUE) {
+									error(
+										'Final property association ' + rdPA.target.targetPath + '#' +
+											rdPA.property.name + ' conflicts with final ' +
+											(casPA.eContainer as ComponentClassifier).name + '::' +
+											casPA.target.targetPath + '#' + casPA.property.name, rdcont,
+										Aadlv3Package.Literals.COMPONENT_CLASSIFIER__PROPERTY_ASSOCIATIONS,
+										rdcont.propertyAssociations.indexOf(rdPA), ConflictingFinal)
+								}
 							}
 						}
 					}
@@ -737,9 +751,8 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 			}
 		}
 	}
-	
-	def void checkCompositeCasPasConflict(Iterable<PropertyAssociation> casPAS,
-		ComponentRealization rootcl) {
+
+	def void checkCompositeCasPasConflict(Iterable<PropertyAssociation> casPAS, ComponentRealization rootcl) {
 		val n = casPAS.size
 		for (var firstidx = 0; firstidx < n - 1; firstidx++) {
 			val first = casPAS.get(firstidx)
@@ -749,17 +762,15 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 					first.target?.targetPath == second.target?.targetPath &&
 					first.propertyAssociationType === PropertyAssociationType.FINAL_VALUE &&
 					second.propertyAssociationType === PropertyAssociationType.FINAL_VALUE) {
-						error(
-							'Final property association ' +
-								second.target.targetPath + '#' + second.property.name + ' conflicts with final ' +
-								first.target.targetPath + '#' + first.property.name, 
-								rootcl, Aadlv3Package.Literals.COMPONENT_REALIZATION__CONFIGURATION_ASSIGNMENTS,
-							rootcl.configurationAssignments.indexOf(second.eContainer), ConflictingFinal)
+					error(
+						'Final property association ' + second.target.targetPath + '#' + second.property.name +
+							' conflicts with final ' + first.target.targetPath + '#' + first.property.name, rootcl,
+						Aadlv3Package.Literals.COMPONENT_REALIZATION__CONFIGURATION_ASSIGNMENTS,
+						rootcl.configurationAssignments.indexOf(second.eContainer), ConflictingFinal)
 				}
 			}
 		}
 	}
-	
 
 	/**
 	 * conflicting PA in configured classifiers of component
@@ -976,15 +987,15 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 		val keys = map.keySet
 		for (key : keys) {
 			val trs = map.get(key)
-			trs.consistentTopComponentImplementation(cl,key)
+			trs.consistentTopComponentImplementation(cl, key)
 		}
 	}
 
 	/**
 	 * returns implementation that is the extension of all other implementations
 	 */
-	def void consistentTopComponentImplementation(Iterable<TypeReference> trs,ComponentConfiguration cc,String key) {
- 		var ComponentImplementation topimpl = null
+	def void consistentTopComponentImplementation(Iterable<TypeReference> trs, ComponentConfiguration cc, String key) {
+		var ComponentImplementation topimpl = null
 		var ConfigurationAssignment topca = null
 		for (tr : trs) {
 			if (tr.type instanceof ComponentClassifier) {
@@ -1007,7 +1018,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 
 							error(
 								'Implementation ' + impl.name + ' assigned to ' + key +
-									' is not in extends lineage of ' + topimpl.name , cc,
+									' is not in extends lineage of ' + topimpl.name, cc,
 								Aadlv3Package.Literals.COMPONENT_CLASSIFIER__SUPER_CLASSIFIERS, idx,
 								NoCommonImplementation)
 						}
@@ -1068,8 +1079,8 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 			case PARAMETER: {
 				if (!(fea.direction == FeatureDirection.IN || fea.direction == FeatureDirection.OUT ||
 					fea.direction == FeatureDirection.INOUT)) {
-					error('Parameter direction must be in, out, or in out', fea, Aadlv3Package.Literals.FEATURE__DIRECTION,
-						BAD_FEATURE_DIRECTION)
+					error('Parameter direction must be in, out, or in out', fea,
+						Aadlv3Package.Literals.FEATURE__DIRECTION, BAD_FEATURE_DIRECTION)
 				}
 			}
 			case SUBPROGRAMACCESS: {
@@ -1095,10 +1106,10 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 			}
 		}
 	}
-	
-	def checkFeatureEvent(Feature fea){
-		if (fea.event){
-			if (!(fea.category == FeatureCategory.PORT && fea.direction.incomingPort)){
+
+	def checkFeatureEvent(Feature fea) {
+		if (fea.event) {
+			if (!(fea.category == FeatureCategory.PORT && fea.direction.incomingPort)) {
 				error('Event trigger can only be specified for incoming ports', fea,
 					Aadlv3Package.Literals.FEATURE__EVENT, NoEvent)
 			}

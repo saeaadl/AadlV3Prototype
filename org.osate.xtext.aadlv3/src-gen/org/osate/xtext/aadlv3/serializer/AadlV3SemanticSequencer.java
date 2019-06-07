@@ -110,7 +110,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 				sequence_ConfigurationAssignment_ConfigurationElement(context, (ConfigurationAssignment) semanticObject); 
 				return; 
 			case Aadlv3Package.CONFIGURATION_ASSIGNMENT_PATTERN:
-				sequence_ConfigurationAssignmentPattern_ConfigurationElement(context, (ConfigurationAssignmentPattern) semanticObject); 
+				sequence_ConfigurationAssignmentPattern_ConfigurationElement_QueryExpression(context, (ConfigurationAssignmentPattern) semanticObject); 
 				return; 
 			case Aadlv3Package.CONFIGURATION_PARAMETER:
 				sequence_ConfigurationParameter(context, (ConfigurationParameter) semanticObject); 
@@ -250,7 +250,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *         private?='private'? 
 	 *         name=DottedName 
 	 *         (parameterized?='(' (parameters+=ConfigurationParameter parameters+=ConfigurationParameter*)?)? 
-	 *         (superClassifiers+=RealizationReference superClassifiers+=RealizationReference*)? 
+	 *         (superClassifiers+=TypeReference superClassifiers+=TypeReference*)? 
 	 *         (
 	 *             propertyAssociations+=PropertyAssociation | 
 	 *             bindings+=Binding | 
@@ -395,7 +395,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *         )?
 	 *     )
 	 */
-	protected void sequence_ConfigurationAssignmentPattern_ConfigurationElement(ISerializationContext context, ConfigurationAssignmentPattern semanticObject) {
+	protected void sequence_ConfigurationAssignmentPattern_ConfigurationElement_QueryExpression(ISerializationContext context, ConfigurationAssignmentPattern semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

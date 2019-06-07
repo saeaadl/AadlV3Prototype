@@ -1490,10 +1490,8 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	public class ConfigurationAssignmentPatternElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.osate.xtext.aadlv3.AadlV3.ConfigurationAssignmentPattern");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cTargetPatternAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final CrossReference cTargetPatternTypeCrossReference_0_0 = (CrossReference)cTargetPatternAssignment_0.eContents().get(0);
-		private final RuleCall cTargetPatternTypeQualifiedTypesReferenceParserRuleCall_0_0_1 = (RuleCall)cTargetPatternTypeCrossReference_0_0.eContents().get(1);
-		private final Keyword cAsteriskEqualsSignGreaterThanSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final RuleCall cQueryExpressionParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Keyword cEqualsSignGreaterThanSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
 		private final Group cGroup_2_0 = (Group)cAlternatives_2.eContents().get(0);
 		private final Assignment cAssignedClassifiersAssignment_2_0_0 = (Assignment)cGroup_2_0.eContents().get(0);
@@ -1507,25 +1505,19 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//ConfigurationAssignmentPattern av3::ConfigurationAssignmentPattern:
-		//	targetPattern=[av3::Type|QualifiedTypesReference] '*=>' (assignedClassifiers+=TypeReference (','
-		//	assignedClassifiers+=TypeReference)* CurlyConfigurationElementBlock? | CurlyConfigurationElementBlock) ';';
+		//	QueryExpression '=>' (assignedClassifiers+=TypeReference (',' assignedClassifiers+=TypeReference)*
+		//	CurlyConfigurationElementBlock? | CurlyConfigurationElementBlock) ';';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//targetPattern=[av3::Type|QualifiedTypesReference] '*=>' (assignedClassifiers+=TypeReference (','
-		//assignedClassifiers+=TypeReference)* CurlyConfigurationElementBlock? | CurlyConfigurationElementBlock) ';'
+		//QueryExpression '=>' (assignedClassifiers+=TypeReference (',' assignedClassifiers+=TypeReference)*
+		//CurlyConfigurationElementBlock? | CurlyConfigurationElementBlock) ';'
 		public Group getGroup() { return cGroup; }
 		
-		//targetPattern=[av3::Type|QualifiedTypesReference]
-		public Assignment getTargetPatternAssignment_0() { return cTargetPatternAssignment_0; }
+		//QueryExpression
+		public RuleCall getQueryExpressionParserRuleCall_0() { return cQueryExpressionParserRuleCall_0; }
 		
-		//[av3::Type|QualifiedTypesReference]
-		public CrossReference getTargetPatternTypeCrossReference_0_0() { return cTargetPatternTypeCrossReference_0_0; }
-		
-		//QualifiedTypesReference
-		public RuleCall getTargetPatternTypeQualifiedTypesReferenceParserRuleCall_0_0_1() { return cTargetPatternTypeQualifiedTypesReferenceParserRuleCall_0_0_1; }
-		
-		//'*=>'
-		public Keyword getAsteriskEqualsSignGreaterThanSignKeyword_1() { return cAsteriskEqualsSignGreaterThanSignKeyword_1; }
+		//'=>'
+		public Keyword getEqualsSignGreaterThanSignKeyword_1() { return cEqualsSignGreaterThanSignKeyword_1; }
 		
 		//assignedClassifiers+=TypeReference (',' assignedClassifiers+=TypeReference)* CurlyConfigurationElementBlock? |
 		//CurlyConfigurationElementBlock
@@ -1560,6 +1552,41 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		
 		//';'
 		public Keyword getSemicolonKeyword_3() { return cSemicolonKeyword_3; }
+	}
+	public class QueryExpressionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.osate.xtext.aadlv3.AadlV3.QueryExpression");
+		private final Group cGroup = (Group)rule.eContents().get(0);
+		private final Keyword cAllKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cTargetPatternAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final CrossReference cTargetPatternTypeCrossReference_2_0 = (CrossReference)cTargetPatternAssignment_2.eContents().get(0);
+		private final RuleCall cTargetPatternTypeQualifiedTypesReferenceParserRuleCall_2_0_1 = (RuleCall)cTargetPatternTypeCrossReference_2_0.eContents().get(1);
+		private final Keyword cRightParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		
+		//fragment QueryExpression *:
+		//	'all' '(' targetPattern=[av3::Type|QualifiedTypesReference] ')';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'all' '(' targetPattern=[av3::Type|QualifiedTypesReference] ')'
+		public Group getGroup() { return cGroup; }
+		
+		//'all'
+		public Keyword getAllKeyword_0() { return cAllKeyword_0; }
+		
+		//'('
+		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
+		
+		//targetPattern=[av3::Type|QualifiedTypesReference]
+		public Assignment getTargetPatternAssignment_2() { return cTargetPatternAssignment_2; }
+		
+		//[av3::Type|QualifiedTypesReference]
+		public CrossReference getTargetPatternTypeCrossReference_2_0() { return cTargetPatternTypeCrossReference_2_0; }
+		
+		//QualifiedTypesReference
+		public RuleCall getTargetPatternTypeQualifiedTypesReferenceParserRuleCall_2_0_1() { return cTargetPatternTypeQualifiedTypesReferenceParserRuleCall_2_0_1; }
+		
+		//')'
+		public Keyword getRightParenthesisKeyword_3() { return cRightParenthesisKeyword_3; }
 	}
 	public class FlowAssignmentElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.osate.xtext.aadlv3.AadlV3.FlowAssignment");
@@ -2215,36 +2242,36 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.osate.xtext.aadlv3.AadlV3.ConfigurationExtensions");
 		private final Group cGroup = (Group)rule.eContents().get(0);
 		private final Assignment cSuperClassifiersAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cSuperClassifiersRealizationReferenceParserRuleCall_0_0 = (RuleCall)cSuperClassifiersAssignment_0.eContents().get(0);
+		private final RuleCall cSuperClassifiersTypeReferenceParserRuleCall_0_0 = (RuleCall)cSuperClassifiersAssignment_0.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
 		private final Keyword cCommaKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
 		private final Assignment cSuperClassifiersAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cSuperClassifiersRealizationReferenceParserRuleCall_1_1_0 = (RuleCall)cSuperClassifiersAssignment_1_1.eContents().get(0);
+		private final RuleCall cSuperClassifiersTypeReferenceParserRuleCall_1_1_0 = (RuleCall)cSuperClassifiersAssignment_1_1.eContents().get(0);
 		
 		//fragment ConfigurationExtensions *:
-		//	superClassifiers+=RealizationReference ("," superClassifiers+=RealizationReference)*;
+		//	superClassifiers+=TypeReference ("," superClassifiers+=TypeReference)*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//superClassifiers+=RealizationReference ("," superClassifiers+=RealizationReference)*
+		//superClassifiers+=TypeReference ("," superClassifiers+=TypeReference)*
 		public Group getGroup() { return cGroup; }
 		
-		//superClassifiers+=RealizationReference
+		//superClassifiers+=TypeReference
 		public Assignment getSuperClassifiersAssignment_0() { return cSuperClassifiersAssignment_0; }
 		
-		//RealizationReference
-		public RuleCall getSuperClassifiersRealizationReferenceParserRuleCall_0_0() { return cSuperClassifiersRealizationReferenceParserRuleCall_0_0; }
+		//TypeReference
+		public RuleCall getSuperClassifiersTypeReferenceParserRuleCall_0_0() { return cSuperClassifiersTypeReferenceParserRuleCall_0_0; }
 		
-		//("," superClassifiers+=RealizationReference)*
+		//("," superClassifiers+=TypeReference)*
 		public Group getGroup_1() { return cGroup_1; }
 		
 		//","
 		public Keyword getCommaKeyword_1_0() { return cCommaKeyword_1_0; }
 		
-		//superClassifiers+=RealizationReference
+		//superClassifiers+=TypeReference
 		public Assignment getSuperClassifiersAssignment_1_1() { return cSuperClassifiersAssignment_1_1; }
 		
-		//RealizationReference
-		public RuleCall getSuperClassifiersRealizationReferenceParserRuleCall_1_1_0() { return cSuperClassifiersRealizationReferenceParserRuleCall_1_1_0; }
+		//TypeReference
+		public RuleCall getSuperClassifiersTypeReferenceParserRuleCall_1_1_0() { return cSuperClassifiersTypeReferenceParserRuleCall_1_1_0; }
 	}
 	public class ImplementationExtensionsElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.osate.xtext.aadlv3.AadlV3.ImplementationExtensions");
@@ -2883,21 +2910,21 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.osate.xtext.aadlv3.AadlV3.PropertyAssociationType");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Keyword cEqualsSignGreaterThanSignKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
-		private final Keyword cColonEqualsSignKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
+		private final Keyword cEqualsSignKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
 		private final Keyword cAsteriskEqualsSignGreaterThanSignKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
 		
 		//PropertyAssociationType av3::PropertyAssociationType:
-		//	'=>' | ':=' | '*=>';
+		//	'=>' | '=' | '*=>';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'=>' | ':=' | '*=>'
+		//'=>' | '=' | '*=>'
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//'=>'
 		public Keyword getEqualsSignGreaterThanSignKeyword_0() { return cEqualsSignGreaterThanSignKeyword_0; }
 		
-		//':='
-		public Keyword getColonEqualsSignKeyword_1() { return cColonEqualsSignKeyword_1; }
+		//'='
+		public Keyword getEqualsSignKeyword_1() { return cEqualsSignKeyword_1; }
 		
 		//'*=>'
 		public Keyword getAsteriskEqualsSignGreaterThanSignKeyword_2() { return cAsteriskEqualsSignGreaterThanSignKeyword_2; }
@@ -3372,6 +3399,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	private final ImportElements pImport;
 	private final ConfigurationAssignmentElements pConfigurationAssignment;
 	private final ConfigurationAssignmentPatternElements pConfigurationAssignmentPattern;
+	private final QueryExpressionElements pQueryExpression;
 	private final FlowAssignmentElements pFlowAssignment;
 	private final PropertyAssociationElements pPropertyAssociation;
 	private final PropertyValueElements pPropertyValue;
@@ -3471,6 +3499,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		this.pImport = new ImportElements();
 		this.pConfigurationAssignment = new ConfigurationAssignmentElements();
 		this.pConfigurationAssignmentPattern = new ConfigurationAssignmentPatternElements();
+		this.pQueryExpression = new QueryExpressionElements();
 		this.pFlowAssignment = new FlowAssignmentElements();
 		this.pPropertyAssociation = new PropertyAssociationElements();
 		this.pPropertyValue = new PropertyValueElements();
@@ -3832,14 +3861,24 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//ConfigurationAssignmentPattern av3::ConfigurationAssignmentPattern:
-	//	targetPattern=[av3::Type|QualifiedTypesReference] '*=>' (assignedClassifiers+=TypeReference (','
-	//	assignedClassifiers+=TypeReference)* CurlyConfigurationElementBlock? | CurlyConfigurationElementBlock) ';';
+	//	QueryExpression '=>' (assignedClassifiers+=TypeReference (',' assignedClassifiers+=TypeReference)*
+	//	CurlyConfigurationElementBlock? | CurlyConfigurationElementBlock) ';';
 	public ConfigurationAssignmentPatternElements getConfigurationAssignmentPatternAccess() {
 		return pConfigurationAssignmentPattern;
 	}
 	
 	public ParserRule getConfigurationAssignmentPatternRule() {
 		return getConfigurationAssignmentPatternAccess().getRule();
+	}
+	
+	//fragment QueryExpression *:
+	//	'all' '(' targetPattern=[av3::Type|QualifiedTypesReference] ')';
+	public QueryExpressionElements getQueryExpressionAccess() {
+		return pQueryExpression;
+	}
+	
+	public ParserRule getQueryExpressionRule() {
+		return getQueryExpressionAccess().getRule();
 	}
 	
 	//FlowAssignment av3::PathSequence:
@@ -4029,7 +4068,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//fragment ConfigurationExtensions *:
-	//	superClassifiers+=RealizationReference ("," superClassifiers+=RealizationReference)*;
+	//	superClassifiers+=TypeReference ("," superClassifiers+=TypeReference)*;
 	public ConfigurationExtensionsElements getConfigurationExtensionsAccess() {
 		return pConfigurationExtensions;
 	}
@@ -4254,7 +4293,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//PropertyAssociationType av3::PropertyAssociationType:
-	//	'=>' | ':=' | '*=>';
+	//	'=>' | '=' | '*=>';
 	public PropertyAssociationTypeElements getPropertyAssociationTypeAccess() {
 		return pPropertyAssociationType;
 	}

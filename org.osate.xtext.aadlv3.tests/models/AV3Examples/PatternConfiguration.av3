@@ -23,10 +23,10 @@ import StandardProperties::*;
 
 	configuration sender.sensorconf extends sender.i  
 	is
-		sub1 => sub.i {#Period := 23;
-			t1#Period := 30;
+		sub1 => sub.i {#Period = 23;
+			t1#Period = 30;
 		};
-		sub1.p1#Data_Size := 30;
+		sub1.p1#Data_Size = 30;
 	end;
 
 	abstract receiver.i is
@@ -65,7 +65,8 @@ import StandardProperties::*;
 	end;
 
 	configuration top.topc extends top.i is
-		sender *=> sender.i; // configure all senders
+		all(sender) => sender.i; // configure all senders
 	end;
+
 
 end;

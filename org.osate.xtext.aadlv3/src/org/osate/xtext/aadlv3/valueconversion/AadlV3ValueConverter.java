@@ -148,14 +148,14 @@ public class AadlV3ValueConverter extends DefaultTerminalConverters {
 				if (string == null) {
 					return null;
 				}
-				if (string.equals(":=")) return PropertyAssociationType.FINAL_VALUE;
+				if (string.equals("=")) return PropertyAssociationType.FINAL_VALUE;
 				if (string.equals("=>")) return PropertyAssociationType.VARIABLE_VALUE;
 				return PropertyAssociationType.DEFAULT_VALUE;
 			}
 
 			@Override
 			public String toString(PropertyAssociationType value) {
-				if (value == PropertyAssociationType.FINAL_VALUE) return ":=";
+				if (value == PropertyAssociationType.FINAL_VALUE) return "=";
 				if (value == PropertyAssociationType.VARIABLE_VALUE) return "=>";
 				return "*=>";
 			}
