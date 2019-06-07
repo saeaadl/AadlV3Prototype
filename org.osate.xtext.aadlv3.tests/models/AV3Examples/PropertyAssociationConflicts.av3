@@ -1,0 +1,172 @@
+package PropertyAssociationConflicts is
+// connections without and with reach down into is
+// shared data component
+	import StandardProperties::*;
+	
+	abstract interface actuator is
+		inp: in port {#Data_Size => 20 b;}; 
+		#Period => 20 ms;
+	end;
+	
+	interface Addon is
+		fea: feature;
+		#Period = 20 ms;
+	end;
+	
+	abstract interface combined extends actuator, Addon is end;
+	// should produce conflict message on Period due to composition
+	
+	abstract actuator.i is end;
+	
+	abstract interface sensor is
+		outp: out port;
+		fea: feature;
+		reading: flow source outp;
+	end;
+	
+	abstract sensor.i is end;
+	
+	
+	abstract actuator.i1 extends actuator.i
+	is 
+		#Period = 71ms ;
+	end;
+	
+	configuration actuator.c1 extends actuator.i
+	is 
+		#Period = 71ms ;
+	end;
+	
+	configuration actuator.c2 extends actuator.i
+	is 
+		#Period = 72ms ;
+	end;
+	
+	configuration actuator.combined extends actuator.c1, actuator.c2 is end;
+	
+	abstract interface control 
+	is #Period => 17 ms; end;
+	
+	abstract  control.i is
+	t1: thread compute { #Period => 18ms;};
+	end;
+	
+	thread interface compute is #Period => 19ms; end;
+
+	
+	configuration control.c1 extends control.i
+	is 
+		#Period = 31ms ;
+		t1#Period = 55ms;
+	end;
+	
+	system interface top is end;
+	
+	system top.i is
+		sense: abstract sensor;
+		processing: abstract control {#Period => 21ms;};
+		actuate: abstract actuator; 
+	end;
+
+	system top.ii is
+		sense: abstract sensor;
+		processing: abstract control.i {#Period => 21ms;};
+		actuate: abstract actuator; 
+	end;
+	
+	system top.s0 extends top.i is
+//		actuate => actuator.c2 ;
+		// should allow variable assignment as we are in implementation
+		processing => control.i { #Period => 22ms; t1#Period = 33ms;};
+	end;
+	
+	system top.s00 extends top.s0 is
+	// should be able to find t1
+		processing.t1#Period = 7ms; 
+	end;
+
+	
+	system top.s02 extends top.ii is
+	// should be able to find t1
+		processing => control.c1;
+		processing.t1#Period => 7ms;
+	end;
+	
+	system top.sii extends top.ii is
+	// should be able to find t1
+		processing.t1#Period = 7ms;
+	end;
+	
+	
+	system top.s01 extends top.ii is
+		actuate => actuator.c2 ;
+		// should allow variable assignment as we are in implementation
+		processing => control.i { #Period = 22ms; t1#Period = 33ms;};
+	end;
+	
+	system top.s1 extends top.i is
+		actuate => actuator.c1 ;
+	end;
+
+
+	configuration top.c0 extends top.i is
+		actuate => actuator.c1, actuator.c2 ;
+		processing => control.i { #Period = 22ms; t1#Period = 33ms;};
+	end;
+	
+	configuration top.c00 extends top.c0 is
+		processing.t1#Period = 7ms;
+	end;
+
+	
+	configuration top.c1 extends top.i is
+		actuate => actuator.c1 ;
+	end;
+
+	
+	configuration top.c2 extends top.i is
+		actuate => actuator.c2 ;
+	end;
+	
+	configuration top.c21 extends top.c2 is
+		actuate#Period = 77ms;
+	end;
+	
+	configuration top.c3 extends top.i is
+		actuate#Period = 77ms;
+	end;
+	
+	configuration top.c4 extends top.i is
+		actuate => actuator.c2 ;
+		actuate => {#Period = 74ms;};
+	end;
+	
+	configuration top.c5 extends top.i is
+		actuate => actuator.c1 ;
+		actuate#Period = 74ms;
+	end;
+	
+	configuration top.c6 extends top.i is
+		actuate => actuator.c1 {#Period = 44ms;};
+		actuate#Period = 74ms;
+	end;
+	
+	configuration top.combined1 extends top.c1, top.c2 is end;
+
+	configuration top.combined11 extends top.c1, top.c2 is 
+		actuate#Period = 79ms;
+	end;
+
+	configuration top.combined2 extends top.c1, top.c3 is end;
+
+	configuration top.combined3 extends top.c1, top.c4 is end;
+
+	configuration top.combined4 extends top.c1, top.c5 is end;
+
+	configuration top.combined5 extends top.c4, top.c5 is end;
+
+
+	configuration top.combined6 extends top.c4, top.c6 is end;
+	
+	configuration top.combined0 extends top.c0, top.c00 is end;
+end;
