@@ -98,8 +98,7 @@ class AadlV3ScopeProvider extends AbstractAadlV3ScopeProvider {
 										if (el instanceof Component) {
 											val casscopes = new Stack<Iterable<ConfigurationAssignment>>()
 											casscopes.push(
-												context.containingComponentClassifier.
-													allSuperConfigurationAssignments)
+												context.containingComponentClassifier.allSuperConfigurationAssignments)
 											el.getConfiguredTypeReferences(casscopes).allModelElements 
 										} else if (el instanceof Feature) {
 											val ftype = el?.typeReference?.type

@@ -1,5 +1,4 @@
 package AncestorOrder is
-	import StandardProperties::*;
 // two interface extensions based on a common interface
 // composed to implement a system
 
@@ -8,6 +7,7 @@ import StandardProperties::*;
 	interface common 
 	is
 		inport : in port ;
+		// this property is overwritten by the extensions
 		#Data_Size => 0;
 	end;
 	interface ext1 extends common 
@@ -21,6 +21,7 @@ import StandardProperties::*;
 		#Data_Size => 2;
 	end;
 	
+	// the two extensions properties are in conflict in the composition
 	system interface mine extends ext1 , ext2 is end;
 	
 	system mine.i 

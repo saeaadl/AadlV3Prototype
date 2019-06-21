@@ -46,6 +46,7 @@ import static extension org.eclipse.emf.ecore.util.EcoreUtil.*
 import static extension org.eclipse.xtext.EcoreUtil2.*
 import static extension org.osate.aadlv3.util.Av3API.*
 import org.osate.aadlv3.aadlv3.Aadlv3Factory
+import org.eclipse.xtext.EcoreUtil2
 
 class Aadlv3Util {
 	/**
@@ -207,9 +208,37 @@ class Aadlv3Util {
 		}
 		return true
 	}
+
+	/**
+	 * returns the top implementation of the set of type references
+	 */
+	static def ComponentImplementation getComponentImplementation(Iterable<TypeReference> trs){
+		for (tr : trs){
+			if (tr.type instanceof ComponentImplementation){
+				return tr.type as ComponentImplementation
+			}
+		}
+		return null
+	}
+	
 	
 	/**
-	 * returns implementation that is the extension of all other implementations
+	 * returns the trs of explicitly assigned implementations
+	 */
+	static def Iterable<TypeReference> getComponentImplementationTrs(Iterable<TypeReference> trs){
+		return  trs.filter[tr|tr.type instanceof ComponentImplementation]
+	}
+	
+	/**
+	 * returns the trs of explicitly assigned configurations
+	 */
+	static def Iterable<TypeReference> getComponentConfigurationTrs(Iterable<TypeReference> trs){
+		return  trs.filter[tr|tr.type instanceof ComponentConfiguration]
+	}
+	
+	
+	/**
+	 * returns the top implementation of the set of type references
 	 */
 	static def ComponentImplementation getTopComponentImplementation(Iterable<TypeReference> trs){
 		var ComponentImplementation top = null
@@ -224,6 +253,9 @@ class Aadlv3Util {
 		return top
 	}
 	
+	/**
+	 * returns the top implementation of a classifier and its ancestor classifiers
+	 */
 	static def ComponentImplementation getTopComponentImplementation(ComponentClassifier cl){
 		var ComponentImplementation top = null
 		val cls = cl.allComponentClassifiers
@@ -264,7 +296,7 @@ class Aadlv3Util {
 	}
 
 	/**
-	 * return set of component configurations of a given classifier
+	 * return set of component configurations of a given classifier in its extend hierarchy
 	 */
 	static def Iterable<ComponentConfiguration> getAllComponentConfigurations(ComponentClassifier cc) {
 		if(cc === null || cc.eIsProxy || !(cc instanceof ComponentConfiguration)) return Collections.EMPTY_LIST
@@ -275,7 +307,7 @@ class Aadlv3Util {
 	}
 
 	/**
-	 * return set of all super configurations of a given classifier
+	 * return set of all super configurations of a given classifier in its extend hierarchy
 	 */
 	static def Iterable<ComponentConfiguration> getAllSuperComponentConfigurations(ComponentClassifier cc) {
 		if(cc === null || cc.eIsProxy|| !(cc instanceof ComponentConfiguration)) return Collections.EMPTY_LIST
@@ -494,30 +526,30 @@ class Aadlv3Util {
 		}
 	}
 
-
-	// return all configuration assignments including those of super configurations
+	
+	// return all configuration assignments and nested CAs including those of super configurations 
 	static def Iterable<ConfigurationAssignment> getAllConfigurationAssignments(Iterable<TypeReference> trs) {
 		if(trs.empty) return Collections.EMPTY_LIST
 		val cls = trs.allComponentClassifiers
 		if (cls.empty) return Collections.EMPTY_LIST
 		cls.map[cl|cl.getAllGivenClassifierConfigurationAssignments].flatten
 	}
+
 	
-	// return all configuration assignments including those of super configurations
+	// return all configuration assignments and nested CAs including those of super configurations 
 	static def Iterable<ConfigurationAssignment> getAllConfigurationAssignments(ComponentClassifier ccl) {
 		if(ccl === null || ccl.eIsProxy) return Collections.EMPTY_LIST
 		val cls = ccl.allComponentClassifiers
 		if (cls.empty) return Collections.EMPTY_LIST
 		cls.map[cl|cl.getAllGivenClassifierConfigurationAssignments].flatten
 	}
-	
+
 	// returns all configuration assignments for given classifier including nested configuration assignments
 	// does not process super classifiers
 	static def Iterable<ConfigurationAssignment> getAllGivenClassifierConfigurationAssignments(ComponentClassifier cl) {
 		if(cl === null || cl.eIsProxy) return Collections.EMPTY_LIST
-		val Iterable<ConfigurationAssignment> cas = if (cl instanceof ComponentConfiguration) cl.configurationAssignments else if (cl instanceof ComponentImplementation) cl.configurationAssignments else Collections.EMPTY_LIST
-		val nestedcas = cas.map[ca|ca.nestedConfigurationAssignments].flatten
-		cas+nestedcas
+		val Iterable<ConfigurationAssignment> cas = EcoreUtil2.getAllContentsOfType(cl, ConfigurationAssignment)
+		cas
 	}
 
 	// returns configuration assignments from all super configurations
@@ -527,57 +559,84 @@ class Aadlv3Util {
 		if (supercls.empty) return Collections.EMPTY_LIST
 		 supercls.map[cl|cl.getAllGivenClassifierConfigurationAssignments].flatten
 	}
-
 	
-	// return configuration assignments that are contained in the specified configuration assignment
-	private static def Iterable<ConfigurationAssignment> getNestedConfigurationAssignments(ConfigurationAssignment ca) {
-		val subcas = ca.configurationAssignments.map[subca| subca.fullTargetPath(ca.target)]
-		return subcas+subcas.map[subca|subca.nestedConfigurationAssignments].flatten
-	}
-	
-	// makes a copy of the configuration assignment with the target path expanded
-	private static def ConfigurationAssignment fullTargetPath(ConfigurationAssignment ca, ModelElementReference contextpath){
-		val fullca = ca.copy
-		val newcontextpath = contextpath.copy
-		val first = fullca.target.firstModelElementReference
-		if (first !== null){
-			first.context = newcontextpath
-		} else {
-			fullca.target = newcontextpath
-		}
-		return fullca
-	}
+//	// returns all configuration assignments for given classifier including nested configuration assignments
+//	// does not process super classifiers
+//	static def Iterable<ConfigurationAssignment> getAllGivenClassifierFullPathConfigurationAssignments(ComponentClassifier cl) {
+//		if(cl === null || cl.eIsProxy) return Collections.EMPTY_LIST
+//		val Iterable<ConfigurationAssignment> cas = if (cl instanceof ComponentConfiguration) cl.configurationAssignments else if (cl instanceof ComponentImplementation) cl.configurationAssignments else Collections.EMPTY_LIST
+//		val nestedcas = cas.map[ca|ca.nestedFullPathConfigurationAssignments].flatten
+//		cas+nestedcas
+//	}
+//
+//	// returns configuration assignments from all super configurations
+//	static def Iterable<ConfigurationAssignment> getAllSuperFullPathConfigurationAssignments(ComponentClassifier cc) {
+//		if(cc === null || cc.eIsProxy || cc.superClassifiers.isEmpty) return Collections.EMPTY_LIST
+//		val supercls = cc.allSuperComponentClassifiers
+//		if (supercls.empty) return Collections.EMPTY_LIST
+//		 supercls.map[cl|cl.getAllGivenClassifierFullPathConfigurationAssignments].flatten
+//	}
+//
+//	
+//	// return configuration assignments that are contained in the specified configuration assignment
+//	private static def Iterable<ConfigurationAssignment> getNestedFullPathConfigurationAssignments(ConfigurationAssignment ca) {
+//		val subcas = ca.configurationAssignments.map[subca| subca.fullTargetPath(ca.target)]
+//		return subcas+subcas.map[subca|subca.nestedFullPathConfigurationAssignments].flatten
+//	}
+//	
+//	// makes a copy of the configuration assignment with the target path expanded
+//	private static def ConfigurationAssignment fullTargetPath(ConfigurationAssignment ca, ModelElementReference contextpath){
+//		val fullca = ca.copy
+//		val newcontextpath = contextpath.copy
+//		val first = fullca.target.firstModelElementReference
+//		if (first !== null){
+//			first.context = newcontextpath
+//		} else {
+//			fullca.target = newcontextpath
+//		}
+//		return fullca
+//	}
 
-	static def Iterable<PropertyAssociation> getAllPropertyAssociations(Iterable<TypeReference> trs) {
+	static def Iterable<PropertyAssociation> getAllOwnedPropertyAssociations(Iterable<TypeReference> trs) {
 		if(trs.empty) return Collections.EMPTY_LIST
 		val cls = trs.allComponentClassifiers
 		cls.map[cl|cl.propertyAssociations].flatten
 	}
 
-	static def Iterable<PropertyAssociation> getAllPropertyAssociations(ComponentClassifier cl) {
-		val cls = cl.allComponentClassifiers
-		cls.map[acl|acl.propertyAssociations].flatten
-	}
-	
-	
-	// the specified list contains a configuration assignment with the same target as the addition
-	static def boolean hasAdditionTarget(Iterable<ConfigurationAssignment> primary, ConfigurationAssignment addition){
-		for ( pca : primary){
-			if (pca.target.matchesTarget(addition.target)){
-				return true
-			}
-		}
-		return false
-	}
-	static def boolean hasAdditionTarget(Iterable<PropertyAssociation> primary, PropertyAssociation addition){
-		for ( pca : primary){
-			if (pca.target.matchesTarget(addition.target)){
-				return true
-			}
-		}
-		return false
+	static def Iterable<PropertyAssociation> getAllCAPropertyAssociations(Iterable<TypeReference> trs) {
+		if(trs.empty) return Collections.EMPTY_LIST
+		val cas = trs.allConfigurationAssignments
+		cas.map[ca|ca.propertyAssociations].flatten
 	}
 
+	static def Iterable<PropertyAssociation> getAllOwnedPropertyAssociations(ComponentClassifier cl) {
+		val cls = cl.allComponentClassifiers
+		cls.map[cll|cll.propertyAssociations].flatten
+	}
+
+	static def Iterable<PropertyAssociation> getAllCAPropertyAssociations(ComponentClassifier cl) {
+		val cas = cl.allConfigurationAssignments
+		cas.map[ca|ca.propertyAssociations].flatten
+	}
+
+	static def Iterable<PropertyAssociation> getAllPropertyAssociations(Iterable<TypeReference> trs) {
+		if(trs.empty) return Collections.EMPTY_LIST
+		val cls = trs.allComponentClassifiers
+		cls.map[cl|cl.getAllGivenClassifierPropertyAssociations].flatten
+	}
+
+	static def Iterable<PropertyAssociation> getAllPropertyAssociations(ComponentClassifier cl) {
+		val cls = cl.allComponentClassifiers
+		cls.map[cll|cll.getAllGivenClassifierPropertyAssociations].flatten
+	}
+	
+	// returns all PAs for given classifier including those in CAs and nested subcomponents
+	// does not process super classifiers
+	static def Iterable<PropertyAssociation> getAllGivenClassifierPropertyAssociations(ComponentClassifier cl) {
+		if(cl === null || cl.eIsProxy) return Collections.EMPTY_LIST
+		EcoreUtil2.getAllContentsOfType(cl, PropertyAssociation)
+	}
+	
 
 	static def boolean isParameterizedConfiguration(Type cc) {
 		cc instanceof ComponentConfiguration && (cc as ComponentConfiguration).parameterized
@@ -693,23 +752,23 @@ class Aadlv3Util {
 		Collections.EMPTY_LIST
 	}
 
-	// true of model element reference paths are the same, i.e., all referenced elements are the same
-	def static boolean matchesTarget(ModelElementReference mer1, ModelElementReference mer2) {
-		var m1 = mer1
-		var m2 = mer2
-		while (m1?.element === m2.element){
-			// the next elements up the path must match
-			if (m1.context !== null && m2.context !== null){
-				m1 = m1.context
-				m2 = m2.context
-			} else if (m1.context === null && m2.context === null){
-				return true
-			} else {
-				return false
-			}
-		}
-		return false
-	}
+//	// true of model element reference paths are the same, i.e., all referenced elements are the same
+//	def static boolean matchesTarget(ModelElementReference mer1, ModelElementReference mer2) {
+//		var m1 = mer1
+//		var m2 = mer2
+//		while (m1?.element === m2.element){
+//			// the next elements up the path must match
+//			if (m1.context !== null && m2.context !== null){
+//				m1 = m1.context
+//				m2 = m2.context
+//			} else if (m1.context === null && m2.context === null){
+//				return true
+//			} else {
+//				return false
+//			}
+//		}
+//		return false
+//	}
 
 
 	// depth indicates the target path length to be considered
@@ -717,13 +776,13 @@ class Aadlv3Util {
 		if (ca instanceof ConfigurationAssignmentPattern){
 			return ca.matchesTargetPattern(match)
 		} else {
-			return ca.target?.matchesTarget(match, depth, context)
+			return ca.target.matchesTarget(match, depth, context)
 		}
 	}
 
 	// depth indicates the target path length to be considered
 	private def static boolean matchesTarget(ModelElementReference mer, ModelElement match, int depth, ComponentInstance context) {
-		if(mer?.element.name != match.name) return false
+		if(mer === null || mer?.element.name != match.name) return false
 		if(depth == 1) return true // we found a match
 		if (context !== null) {
 			// there is an enclosing element in the model
@@ -735,7 +794,7 @@ class Aadlv3Util {
 				val cxt = mer.modelElementReferenceContext?.eContainer
 				if (cxt instanceof ConfigurationAssignment) {
 					// look for enclosing configuration assignment
-					return cxt.target?.matchesTarget(context.component, depth - 1,context.eContainer as ComponentInstance)
+					return cxt.target.matchesTarget(context.component, depth - 1,context.eContainer as ComponentInstance)
 				}
 			}
 		}
@@ -1198,6 +1257,7 @@ class Aadlv3Util {
 	
 	// model element reference reaches into a component
 	def static boolean modelElementReferenceReachDown(ModelElementReference mer) {
+		if (mer === null) return false
 		val firstcomp = mer.getClosestReferencedComponent
 		firstcomp !== null // reachdown
 		&& !(firstcomp === mer.element && mer.context === null) // not the only element in mer
@@ -1251,6 +1311,7 @@ class Aadlv3Util {
 		cxt.element
 	}
 	
+	// returns target path relative to the enclosing classifier, i.e., for nested CAs we add the path of the enclosing CA
 	def static String getTargetPath(ConfigurationAssignment ca){
 		var res = ca.target.targetPath
 		var cxt = ca.containingConfigurationAssignment
@@ -1261,9 +1322,25 @@ class Aadlv3Util {
 		return res
 		
 	}
+	
+		
+	/**
+	 * get full target path that includes the paths of any enclosing CAs
+	 */
+	def static String getTargetPath(PropertyAssociation pa){
+		val PApath = getTargetPath(pa.target)
+		val ca = pa.containingConfigurationAssignment
+		if (ca === null) return PApath
+		val CApath = ca.targetPath
+		if (CApath.isEmpty) return PApath
+		if (PApath.isEmpty) return CApath
+		return CApath+'.'+PApath
+	}
+	
 
 	
 	def static String getTargetPath(ModelElementReference mer){
+		if (mer === null) return ""
 		var res = mer.element.name
 		var cxt = mer.context
 		while( cxt !== null){
@@ -1505,6 +1582,25 @@ class Aadlv3Util {
 	
 	def static boolean sameProperty(PropertyDefinition first, PropertyDefinition second){
 		return first.name == second.name
+	}
+	
+	def static boolean samePropertyAndPath(PropertyAssociation first, PropertyAssociation second){
+		return first.property.name == second.property.name && first.target.targetPath == second.target.targetPath
+	}
+	
+		
+	static def boolean contains(Iterable <PropertyAssociation> pas, PropertyAssociation pa){
+		for (p : pas){
+			if (samePropertyAndPath(p,pa)) return true
+		}
+		return false
+	}
+	
+	
+	def static boolean overridesPropertyAssociation(PropertyAssociation first, PropertyAssociation second){
+			val firstCl = first.containingComponentClassifier
+			val secondCl = second.containingComponentClassifier
+		return firstCl.isSuperClassifierOf(secondCl)|| secondCl.isSuperClassifierOf(firstCl)
 	}
 	
 }

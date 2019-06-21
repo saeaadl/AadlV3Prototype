@@ -8,12 +8,18 @@ package PropertyAssociationConflicts is
 		#Period => 20 ms;
 	end;
 	
-	interface Addon is
-		fea: feature;
-		#Period = 20 ms;
+	abstract interface actuatore extends actuator is 
+	#Period => 4ms;
 	end;
 	
-	abstract interface combined extends actuator, Addon is end;
+	interface Addon is
+		fea: feature;
+		#Period => 20 ms;
+	end;
+	
+	abstract interface combined extends actuator, Addon is 
+	#Period => 4ms;
+	end;
 	// should produce conflict message on Period due to composition
 	
 	abstract actuator.i is end;
@@ -61,12 +67,6 @@ package PropertyAssociationConflicts is
 	end;
 	
 	system interface top is end;
-	
-	system top.i is
-		sense: abstract sensor;
-		processing: abstract control {#Period => 21ms;};
-		actuate: abstract actuator; 
-	end;
 
 	system top.ii is
 		sense: abstract sensor;
@@ -74,22 +74,33 @@ package PropertyAssociationConflicts is
 		actuate: abstract actuator; 
 	end;
 	
+	system top.i is
+		sense: abstract sensor;
+		processing: abstract control {#Period => 21ms;};
+		actuate: abstract actuator; 
+	end;
+	
 	system top.s0 extends top.i is
-//		actuate => actuator.c2 ;
+		actuate => { #Period = 44ms;} ;
+		actuate#Period => 45ms;
 		// should allow variable assignment as we are in implementation
-		processing => control.i { #Period => 22ms; t1#Period = 33ms;};
+		processing => control.i { #Period = 22ms; t1#Period = 33ms;};
 	end;
 	
 	system top.s00 extends top.s0 is
-	// should be able to find t1
+	 actuate => actuator.c1, actuator.c2;
 		processing.t1#Period = 7ms; 
+	end;
+	
+	system top.s000 extends top.s0 is
+	// should find t1
+		processing => { t1 => {#Period = 7ms; };}; 
 	end;
 
 	
 	system top.s02 extends top.ii is
-	// should be able to find t1
 		processing => control.c1;
-		processing.t1#Period => 7ms;
+		processing.t1#Period = 7ms;
 	end;
 	
 	system top.sii extends top.ii is
@@ -107,7 +118,6 @@ package PropertyAssociationConflicts is
 	system top.s1 extends top.i is
 		actuate => actuator.c1 ;
 	end;
-
 
 	configuration top.c0 extends top.i is
 		actuate => actuator.c1, actuator.c2 ;
@@ -166,7 +176,9 @@ package PropertyAssociationConflicts is
 	configuration top.combined5 extends top.c4, top.c5 is end;
 
 
-	configuration top.combined6 extends top.c4, top.c6 is end;
+	configuration top.combined6 extends top.c4, top.c6 is 
+		#Period = 234ms;
+	end;
 	
 	configuration top.combined0 extends top.c0, top.c00 is end;
 end;

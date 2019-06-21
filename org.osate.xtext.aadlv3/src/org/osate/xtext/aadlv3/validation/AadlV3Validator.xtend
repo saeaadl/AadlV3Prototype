@@ -4,7 +4,12 @@
 package org.osate.xtext.aadlv3.validation
 
 import com.google.common.collect.SetMultimap
+import java.util.Collections
+import java.util.Stack
+import org.eclipse.emf.ecore.EObject
+import org.eclipse.emf.ecore.EStructuralFeature
 import org.eclipse.xtext.validation.Check
+import org.osate.aadlv3.aadlv3.Aadlv3Factory
 import org.osate.aadlv3.aadlv3.Aadlv3Package
 import org.osate.aadlv3.aadlv3.Association
 import org.osate.aadlv3.aadlv3.Component
@@ -22,23 +27,17 @@ import org.osate.aadlv3.aadlv3.Feature
 import org.osate.aadlv3.aadlv3.FeatureCategory
 import org.osate.aadlv3.aadlv3.FeatureDirection
 import org.osate.aadlv3.aadlv3.ModelElement
+import org.osate.aadlv3.aadlv3.ModelElementReference
 import org.osate.aadlv3.aadlv3.PathElement
 import org.osate.aadlv3.aadlv3.PathSequence
 import org.osate.aadlv3.aadlv3.PropertyAssociation
+import org.osate.aadlv3.aadlv3.PropertyAssociationType
+import org.osate.aadlv3.aadlv3.PropertyDefinition
 import org.osate.aadlv3.aadlv3.TypeReference
 
 import static org.osate.aadlv3.util.Av3API.*
 
 import static extension org.osate.aadlv3.util.Aadlv3Util.*
-import org.osate.aadlv3.aadlv3.PropertyAssociationType
-import java.util.Collections
-import java.util.Stack
-import org.osate.aadlv3.aadlv3.NamedElement
-import org.osate.aadlv3.aadlv3.PropertyDefinition
-import org.eclipse.emf.ecore.EObject
-import org.osate.aadlv3.aadlv3.ModelElementReference
-import org.osate.aadlv3.aadlv3.Aadlv3Factory
-import org.eclipse.emf.ecore.EStructuralFeature
 
 /**
  * This class contains custom validation rules. 
@@ -95,8 +94,11 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	public static val NoDoubleAssignment = 'NoDoubleAssignment'
 	public static val NoFinalChange = 'NoFinalChange'
 	public static val ConflictingFinal = 'ConflictingFinal'
+	public static val ConflictingComposite = 'ConflictingComposite'
 	public static val MustBeFinal = 'MustBeFinal'
 	public static val NoCommonImplementation = 'NoCommonImplementation'
+	public static val NoImplementation = 'NoImplementation'
+	public static val MultipleImplementations = 'MultipleImplementations'
 	public static val NoEvent = 'NoEvent'
 
 	@Check
@@ -104,13 +106,14 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 		cl.checkConsistentCategory()
 		cl.checkCommonTopComponentImplementation
 		cl.checkDuplicatePropertyAssociations
-		cl.checkCompositePropertyAssociationFinalConflict
+		cl.checkCompositePropertyAssociationConflict
 	}
 
 	@Check
 	def checkComponentInterface(ComponentInterface cif) {
 		cif.checkUniqueModelElementNames()
 		cif.checkComponentInterfaceExtensions()
+		cif.checkCompositeInterfacePAConflict()
 	}
 
 	@Check
@@ -152,6 +155,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	def checkConfigurationAssignment(ConfigurationAssignment ca) {
 		ca.checkConfigurationAssignmentCategory
 		ca.checkCommonTopComponentImplementation
+		ca.checkExtendsSubcomponentImplementation
 		ca.checkDuplicatePropertyAssociations
 		ca.checkCompositePropertyAssociationFinalConflict
 	}
@@ -257,12 +261,12 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 
 	@Check
 	def checkPropertyAssociation(PropertyAssociation pa) {
-		pa.checkDuplicatePropertyAssociationForModelElementTarget
+		pa.checkDuplicatePropertyAssociationForLocalModelElementTarget
 		pa.checkPropertyAssociationAppliesto
-		pa.checkPropertyAssociationMustBeFinal
-		pa.checkLocalComponentPropertyAssociationFinal
-		pa.checkLocalSuperClassifierFinal
-		pa.checkFinalPropertyAssociationConflictsLocalFinal
+		pa.checkWhenPropertyAssociationMustBeFinal
+		pa.checkLocalPAOverridesSuperClassifierLocalFinalPA
+		pa.checkSubcomponentPAOverridesLocalFinalPA
+		pa.checkFinalPAOverridesLocalFinalPA
 	}
 
 	/**
@@ -334,37 +338,25 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	/**
 	 * check the PA is FINAL when in configuration, CA, or reachdown
 	 */
-	def checkPropertyAssociationMustBeFinal(PropertyAssociation pa) {
-		val enclosingCl = pa.containingComponentClassifier
-//		if (pa.eContainer instanceof ConfigurationAssignment) {
-//			if (pa.propertyAssociationType !== PropertyAssociationType.FINAL_VALUE) {
-//				error('Property assignment in configuration assignment must be final', pa,
-//					Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY_ASSOCIATION_TYPE, MustBeFinal)
-//			}
-//		} else 
-		if (enclosingCl instanceof ComponentConfiguration) {
-			if (pa.propertyAssociationType === PropertyAssociationType.VARIABLE_VALUE) {
-				error('Property assignment in configuration must be final', pa,
-					Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY_ASSOCIATION_TYPE, MustBeFinal)
-			}
-		} else if (pa.target !== null && pa.target.modelElementReferenceReachDown) {
+	def checkWhenPropertyAssociationMustBeFinal(PropertyAssociation pa) {
+		if (pa.isConfiguredPropertyAssociation) {
 			if (pa.propertyAssociationType !== PropertyAssociationType.FINAL_VALUE) {
-				error('Reach down property assignment must be final', pa,
+				error('Property assignment in configuration assignment must be final', pa,
 					Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY_ASSOCIATION_TYPE, MustBeFinal)
 			}
 		}
 	}
 
 	def isConfiguredPropertyAssociation(PropertyAssociation pa) {
-		return pa.eContainer instanceof ConfigurationAssignment || pa.eContainer instanceof ComponentConfiguration ||
-			(pa.target !== null && pa.target.modelElementReferenceReachDown)
+		return pa.eContainer instanceof ConfigurationAssignment || pa.containingComponentClassifier instanceof ComponentConfiguration ||
+			 pa.target.modelElementReferenceReachDown
 	}
 
 	/**
-	 * Check whether target model element has a locally assigned FINAL value
+	 * Check whether target model element of configuration, CA or reachdown PA has a locally assigned FINAL value
 	 * Locally assigned is by PA in classifier without target or model element of classifier other than component by {} or MER
 	 */
-	def checkFinalPropertyAssociationConflictsLocalFinal(PropertyAssociation pa) {
+	def checkFinalPAOverridesLocalFinalPA(PropertyAssociation pa) {
 		if(pa.propertyAssociationType !== PropertyAssociationType.FINAL_VALUE) return;
 		if (pa.eContainer instanceof ConfigurationAssignment) {
 			if (pa.target !== null && pa.target.element.hasLocalFinalPropertyAssociation(pa.property)) {
@@ -376,7 +368,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 				error('Locally assigned property value is already final', pa,
 					Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY_ASSOCIATION_TYPE, NoFinalChange)
 			}
-		} else if (pa.target !== null && pa.target.modelElementReferenceReachDown) {
+		} else if (pa.target.modelElementReferenceReachDown) {
 			if (pa.target.element.hasLocalFinalPropertyAssociation(pa.property)) {
 				error('Locally assigned property value is already final', pa,
 					Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY_ASSOCIATION_TYPE, NoFinalChange)
@@ -409,9 +401,9 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	}
 
 	/**
-	 * check FINAL override by classifiers for Component PAs 
+	 * check override of final local PAs by subcomponent PA reachdown or {}
 	 */
-	def checkLocalComponentPropertyAssociationFinal(PropertyAssociation pa) {
+	def checkSubcomponentPAOverridesLocalFinalPA(PropertyAssociation pa) {
 		if (pa.target !== null && pa.target.element instanceof Component) {
 			// PA points to component
 			val targetme = pa.target.element as Component
@@ -443,11 +435,11 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	}
 
 	/**
-	 * check whether super classifier already assigns final value
+	 * check whether pa overrides local final PA in super classifier
 	 */
-	def checkLocalSuperClassifierFinal(PropertyAssociation pa) {
+	def checkLocalPAOverridesSuperClassifierLocalFinalPA(PropertyAssociation pa) {
 		// for all model elements the enclosing classifier's super classifiers can have assigned a FINAL value
-		if(pa.target?.modelElementReferenceReachDown) return
+		if(pa.target.modelElementReferenceReachDown) return
 		// target is null or to a local ME
 		val me = pa.target?.element
 		val supercls = pa.containingComponentClassifier.allSuperComponentClassifiers
@@ -466,8 +458,8 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	/**
 	 * check duplicate PA via {} and local enclosing PA 
 	 */
-	def checkDuplicatePropertyAssociationForModelElementTarget(PropertyAssociation pa) {
-		if (pa.target !== null && !pa.target.modelElementReferenceReachDown) {
+	def checkDuplicatePropertyAssociationForLocalModelElementTarget(PropertyAssociation pa) {
+		if ( !pa.target.modelElementReferenceReachDown) {
 			val context = pa.containingComponentClassifier
 			val targetme = pa.target.element
 			val targetcontext = targetme.containingComponentClassifier
@@ -481,6 +473,26 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 			}
 		}
 	}
+	
+		/**
+	 * check duplicate PA via =>{} and reachdown PA 
+	 */
+	def checkDuplicatePropertyAssociationForReachDownModelElementTarget(PropertyAssociation pa) {
+		if ( !pa.target.modelElementReferenceReachDown) {
+			val context = pa.containingComponentClassifier
+			val targetme = pa.target.element
+			val targetcontext = targetme.containingComponentClassifier
+			// local target model element also has {} property assignment 
+			val tpas = targetme.propertyAssociations
+			for (tpa : tpas) {
+				if (tpa.target === null && sameProperty(tpa.property, pa.property) && context == targetcontext) {
+					error('Property value also assigned in {}', pa,
+						Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY, NoDoubleAssignment)
+				}
+			}
+		}
+	}
+	
 
 	/**
 	 * check duplicate PA in classifier
@@ -514,7 +526,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 			for (var secondidx = firstidx + 1; secondidx < maxpas; secondidx++) {
 				val second = pas.get(secondidx)
 				if (first !== second && sameProperty(first.property, second.property) &&
-					first.target?.targetPath == second.target?.targetPath) {
+					first.target.targetPath == second.target.targetPath) {
 					error('Duplicate property association ' + first.property.name, target, structuralfeature, secondidx,
 						NoDoubleAssignment)
 					error('Duplicate property association ' + second.property.name, target, structuralfeature, firstidx,
@@ -525,29 +537,58 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	}
 
 	/**
-	 * conflicting PA in super classifiers of given classifier. 
+	 * conflicting PA in super interfaces of given interface without local override. 
 	 */
-	def checkCompositePropertyAssociationFinalConflict(ComponentClassifier cl) {
+	def checkCompositeInterfacePAConflict(ComponentInterface cl) {
 		val pas = cl.superClassifiers.allPropertyAssociations
+		val localpas = cl.propertyAssociations
 		val maxpas = pas.length
 		for (var firstidx = 0; firstidx < maxpas - 1; firstidx++) {
 			val first = pas.get(firstidx)
+			val firstPath = first.target.targetPath
 			for (var secondidx = firstidx + 1; secondidx < maxpas; secondidx++) {
 				val second = pas.get(secondidx)
-				if (sameProperty(first.property, second.property) &&
-					first.target?.targetPath == second.target?.targetPath &&
-					first.propertyAssociationType === PropertyAssociationType.FINAL_VALUE &&
-					second.propertyAssociationType === PropertyAssociationType.FINAL_VALUE) {
+				val secondPath = second.target.targetPath
+				if (samePropertyAndPath(first, second) && !first.overridesPropertyAssociation(second)) {
+					// is there a local override
+					if (!contains(localpas,first)){
 					error(
-						'Final property association ' + (second.eContainer as ComponentClassifier).name + '::' +
-							second.target.targetPath + '#' + second.property.name + ' conflicts with final ' +
-							(first.eContainer as ComponentClassifier).name + '::' + first.target.targetPath + '#' +
+						'In interface composition property association ' + (second.eContainer as ComponentClassifier).name + '::' +
+							secondPath + '#' + second.property.name + ' conflicts with ' +
+							(first.eContainer as ComponentClassifier).name + '::' + firstPath + '#' +
 							first.property.name, cl, Aadlv3Package.Literals.COMPONENT_CLASSIFIER__SUPER_CLASSIFIERS,
-						cl.superClassifiers.indexOf(second.eContainer), ConflictingFinal)
+						cl.superClassifiers.indexOf(second.eContainer), ConflictingComposite)
+					}
 				}
 			}
 		}
 	}
+
+	/**
+	 * conflicting PA in super classifiers of given classifier. 
+	 */
+	def checkCompositePropertyAssociationConflict(ComponentClassifier cl) {
+		val pas = cl.superClassifiers.allPropertyAssociations
+		val maxpas = pas.length
+		for (var firstidx = 0; firstidx < maxpas - 1; firstidx++) {
+			val first = pas.get(firstidx)
+			val firstPath = first.targetPath
+			for (var secondidx = firstidx + 1; secondidx < maxpas; secondidx++) {
+				val second = pas.get(secondidx)
+				val secondPath = second.targetPath
+				if (sameProperty(first.property, second.property) &&
+					firstPath == secondPath && !first.overridesPropertyAssociation(second)) {
+					error(
+						'Property association ' + second.containingComponentClassifier.name + '::' +
+							secondPath + '#' + second.property.name + ' conflicts with ' +
+							first.containingComponentClassifier.name + '::' + firstPath + '#' +
+							first.property.name, cl, Aadlv3Package.Literals.COMPONENT_CLASSIFIER__SUPER_CLASSIFIERS,
+						cl.superClassifiers.indexOf(second.eContainer), ConflictingComposite)
+				}
+			}
+		}
+	}
+
 
 	/**
 	 * conflicting PA in assigned classifiers of CA
@@ -619,7 +660,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 		checkCompositeCasPasConflict(caspas, cl)
 		casscopes.push(cas)
 		val reachdownPAS = new Stack<Iterable<PropertyAssociation>>()
-		reachdownPAS.push(cl.allPropertyAssociations.filter[pa|pa.target?.modelElementReferenceReachDown])
+		reachdownPAS.push(cl.allPropertyAssociations.filter[pa|pa.target.modelElementReferenceReachDown])
 		for (sub : subs) {
 			val rootmer = Aadlv3Factory.eINSTANCE.createModelElementReference
 			rootmer.element = sub
@@ -636,7 +677,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 		if (trefs === null) {
 			// inline subcomponents without explicit classifier
 			casscopes.push(Collections.EMPTY_LIST)
-			reachdownPAS.push(comp.propertyAssociations.filter[pa|pa.target?.modelElementReferenceReachDown])
+			reachdownPAS.push(comp.propertyAssociations.filter[pa|pa.target.modelElementReferenceReachDown])
 			comp.components.forEach[subc|context.addComponent(subc).checkNestedPAS(casscopes, reachdownPAS, rootcl)]
 			casscopes.pop
 			reachdownPAS.pop
@@ -756,15 +797,17 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 		val n = casPAS.size
 		for (var firstidx = 0; firstidx < n - 1; firstidx++) {
 			val first = casPAS.get(firstidx)
+			val firstP = first.targetPath
 			for (var secondidx = firstidx + 1; secondidx < n; secondidx++) {
 				val second = casPAS.get(secondidx)
+				val secondP = second.targetPath
 				if (sameProperty(first.property, second.property) &&
-					first.target?.targetPath == second.target?.targetPath &&
+					firstP == secondP &&
 					first.propertyAssociationType === PropertyAssociationType.FINAL_VALUE &&
 					second.propertyAssociationType === PropertyAssociationType.FINAL_VALUE) {
 					error(
-						'Final property association ' + second.target.targetPath + '#' + second.property.name +
-							' conflicts with final ' + first.target.targetPath + '#' + first.property.name, rootcl,
+						'Final property association ' + secondP + '#' + second.property.name +
+							' conflicts with final ' + firstP + '#' + first.property.name, rootcl,
 						Aadlv3Package.Literals.COMPONENT_REALIZATION__CONFIGURATION_ASSIGNMENTS,
 						rootcl.configurationAssignments.indexOf(second.eContainer), ConflictingFinal)
 				}
@@ -875,7 +918,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 
 	def void reportDuplicateNames(ModelElement first, ComponentClassifier cl) {
 		val firstcl = first.containingComponentClassifier
-		if (firstcl == cl) {
+		if (firstcl === cl) {
 			error('Duplicate model element with name ' + first.name, first, Aadlv3Package.Literals.NAMED_ELEMENT__NAME,
 				DUPLICATE_NAMES)
 		} else {
@@ -992,35 +1035,86 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	}
 
 	/**
-	 * returns implementation that is the extension of all other implementations
+	 * check consistency of declared and assigned classifiers for a given subcomponent (path as key)
+	 * If subcomponent has assigned implementation we already checked for CA not extending the implementation 
+	 * Here we check that there is an explicit implementation assigned by CA and no configuration extends it
 	 */
 	def void consistentTopComponentImplementation(Iterable<TypeReference> trs, ComponentConfiguration cc, String key) {
-		var ComponentImplementation topimpl = null
-		var ConfigurationAssignment topca = null
-		for (tr : trs) {
-			if (tr.type instanceof ComponentClassifier) {
-				val cl = tr.type as ComponentClassifier
-				val impl = cl.getTopComponentImplementation
-				if (impl !== null) {
-					if (topimpl === null || topimpl.isSuperImplementationOf(impl)) {
-						topimpl = impl
-						topca = tr.containingConfigurationAssignment
-					} else if (!impl.isSuperImplementationOf(topimpl)) {
-						val ca = tr.containingConfigurationAssignment
-						if (ca !== null) {
-							val caconf = ca.containingComponentClassifier
-							val topconf = topca.containingComponentClassifier
-							val idx = if (caconf !== null) {
-									cc.superClassifiers.getIndex(caconf)
-								} else {
-									cc.superClassifiers.getIndex(topconf)
-								}
+		if (trs.empty) return;
+		val assignedimpls = trs.componentImplementationTrs
+		val assignedconfigs = trs.componentConfigurationTrs
+		if (assignedimpls.empty) {
+			if (assignedconfigs.size > 1){
+			error(
+				'Subcomponent ' + key + ' has configuration assignments but no explicitly assigned implementation',
+				cc, Aadlv3Package.Literals.NAMED_ELEMENT__NAME, NoImplementation)
+			}
+		} else if (assignedimpls.size > 1) {
+			val firstimpl = assignedimpls.get(0)
+			var TypeReference subimpltr = null
+			for (tr: assignedimpls){
+				if (tr.eContainer instanceof Component){
+					subimpltr = tr;
+				}
+			}
+			var same = true
+			if (!assignedconfigs.empty) {
+				val firstconfig = assignedconfigs.get(0)
+				if (subimpltr === null) {
+					// all configured must be the same impl
+					for (tr : assignedconfigs) {
+						if (firstconfig.type !== tr.type) {
+							same = false;
+						}
+					}
+				} else {
+					// all configured must be the same or super type of subcomponent impl
+					for (tr : assignedimpls) {
+						if (!tr.type.isSuperTypeOf(subimpltr.type)) {
+							same = false;
+						}
+					}
+				}
+			}
+			if (!same) {
+				var impls = "(" + firstimpl.type.name
+				for (tr : assignedimpls) {
+					val impl = tr.type as ComponentImplementation
+					if (tr !== firstimpl) {
+						impls += ", " + impl.name
 
-							error(
-								'Implementation ' + impl.name + ' assigned to ' + key +
-									' is not in extends lineage of ' + topimpl.name, cc,
-								Aadlv3Package.Literals.COMPONENT_CLASSIFIER__SUPER_CLASSIFIERS, idx,
-								NoCommonImplementation)
+					}
+				}
+				impls += ")"
+				error('Subcomponent ' + key + ' has more than one explicitly assigned implementation ' + impls, cc,
+					Aadlv3Package.Literals.NAMED_ELEMENT__NAME, MultipleImplementations)
+			}
+		} else {
+			// check against assigned impl
+			val assignedimpl = assignedimpls.get(0).type as ComponentImplementation
+			var ConfigurationAssignment topca = null
+			for (tr : trs) {
+				if (tr.type instanceof ComponentClassifier) {
+					val cl = tr.type as ComponentClassifier
+					val impl = cl.getTopComponentImplementation
+					if (impl !== null) {
+						if (!impl.isSuperImplementationOf(assignedimpl)) {
+							val ca = tr.containingConfigurationAssignment
+							if (ca !== null) {
+								val caconf = ca.containingComponentClassifier
+								val topconf = topca.containingComponentClassifier
+								val idx = if (caconf !== null) {
+										cc.superClassifiers.getIndex(caconf)
+									} else {
+										cc.superClassifiers.getIndex(topconf)
+									}
+
+								error(
+									'Classifier ' + impl.name + ' assigned to ' + key +
+										' is not in extends lineage of ' + assignedimpl.name, cc,
+									Aadlv3Package.Literals.COMPONENT_CLASSIFIER__SUPER_CLASSIFIERS, idx,
+									NoCommonImplementation)
+							}
 						}
 					}
 				}
@@ -1199,7 +1293,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	}
 
 	/**
-	 * Checks that the top implementations are not parallel super branches
+	 * Checks that the assigned classifier implementations are in a single extends lineage
 	 */
 	def void checkCommonTopComponentImplementation(ConfigurationAssignment ca) {
 		var ComponentImplementation top = null
@@ -1213,6 +1307,29 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 					error('Implementation is in conflict with implementation ' + top.name, ca,
 						Aadlv3Package.Literals.CONFIGURATION_ASSIGNMENT__ASSIGNED_CLASSIFIERS, trs.indexOf(tr),
 						NoCommonImplementation)
+				}
+			}
+		}
+	}
+
+	/**
+	 * Checks that the assigned classifier implementations do not extend the implementation of the subcomponent
+	 */
+	def void checkExtendsSubcomponentImplementation(ConfigurationAssignment ca) {
+		val sub = ca.target.element
+		if (sub instanceof Component) {
+			val subimpl = sub.typeReferences.componentImplementation
+			if(subimpl === null) return;
+			val trs = ca.assignedClassifiers
+			for (tr : trs) {
+				if (tr.type instanceof ComponentClassifier) {
+					val topimpl = (tr.type as ComponentClassifier).topComponentImplementation
+					if (!topimpl.isSuperImplementationOf(subimpl)) {
+						error(
+							'Implementation is in conflict with target subcomponent ' + sub.name + ' implementation ' +
+								subimpl.name, ca, Aadlv3Package.Literals.CONFIGURATION_ASSIGNMENT__ASSIGNED_CLASSIFIERS,
+							trs.indexOf(tr), NoCommonImplementation)
+					}
 				}
 			}
 		}
@@ -1329,13 +1446,13 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 				if (!(assoc.source.modelElementReferenceIncludesComponent &&
 					!assoc.destination.modelElementReferenceIncludesComponent)) {
 					error('Outgoing feature delegation must be from feature in subcomponent to feature', assoc, null,
-						org.osate.xtext.aadlv3.validation.AadlV3Validator.FeatureAndSubcomponent)
+						AadlV3Validator.FeatureAndSubcomponent)
 				}
 			} else {
 				if (!(!assoc.source.modelElementReferenceIncludesComponent &&
 					assoc.destination.modelElementReferenceIncludesComponent)) {
 					error('Feature delegation must be from feature to feature in subcomponent', assoc, null,
-						org.osate.xtext.aadlv3.validation.AadlV3Validator.FeatureAndSubcomponent)
+						AadlV3Validator.FeatureAndSubcomponent)
 				}
 			}
 		} else if (assoc.associationType.isFlowSpec) {
