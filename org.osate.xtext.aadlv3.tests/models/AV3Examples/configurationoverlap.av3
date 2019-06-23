@@ -109,7 +109,7 @@ system  y.security extends y.i
  	#SecurityLevel => 9;
  end;
 
-configuration top.config_Sub2 extends top.config_L1 
+configuration top.config_Sub2 extends top.config_L1
 is
   Sub1 => x.config_L1 ;
   Sub2 => y.security ;
