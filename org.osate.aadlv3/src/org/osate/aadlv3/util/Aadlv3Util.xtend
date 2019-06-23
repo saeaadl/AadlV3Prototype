@@ -236,6 +236,12 @@ class Aadlv3Util {
 		return  trs.filter[tr|tr.type instanceof ComponentConfiguration]
 	}
 	
+	/**
+	 * returns the trs of subcomponent classifier
+	 */
+	static def Iterable<TypeReference> getSubcomponentClassifierTrs(Iterable<TypeReference> trs){
+		return  trs.filter[tr|tr.eContainer instanceof Component]
+	}
 	
 	/**
 	 * returns the top implementation of the set of type references
@@ -244,7 +250,7 @@ class Aadlv3Util {
 		var ComponentImplementation top = null
 		for (tr : trs){
 			if (tr.type instanceof ComponentClassifier){
-				val cl = (tr.type as ComponentClassifier).getTopComponentImplementation
+				val cl = tr.type.getTopComponentImplementation
 				if (top === null || top.isSuperImplementationOf(cl)){
 					top = cl
 				}
@@ -256,8 +262,9 @@ class Aadlv3Util {
 	/**
 	 * returns the top implementation of a classifier and its ancestor classifiers
 	 */
-	static def ComponentImplementation getTopComponentImplementation(ComponentClassifier cl){
+	static def ComponentImplementation getTopComponentImplementation(Type cl){
 		var ComponentImplementation top = null
+		if (cl instanceof ComponentClassifier){
 		val cls = cl.allComponentClassifiers
 		for (scl : cls){
 			if (scl instanceof ComponentImplementation){
@@ -265,6 +272,7 @@ class Aadlv3Util {
 					top = scl
 				}
 			}
+		}
 		}
 		return top
 	}
@@ -560,42 +568,6 @@ class Aadlv3Util {
 		 supercls.map[cl|cl.getAllGivenClassifierConfigurationAssignments].flatten
 	}
 	
-//	// returns all configuration assignments for given classifier including nested configuration assignments
-//	// does not process super classifiers
-//	static def Iterable<ConfigurationAssignment> getAllGivenClassifierFullPathConfigurationAssignments(ComponentClassifier cl) {
-//		if(cl === null || cl.eIsProxy) return Collections.EMPTY_LIST
-//		val Iterable<ConfigurationAssignment> cas = if (cl instanceof ComponentConfiguration) cl.configurationAssignments else if (cl instanceof ComponentImplementation) cl.configurationAssignments else Collections.EMPTY_LIST
-//		val nestedcas = cas.map[ca|ca.nestedFullPathConfigurationAssignments].flatten
-//		cas+nestedcas
-//	}
-//
-//	// returns configuration assignments from all super configurations
-//	static def Iterable<ConfigurationAssignment> getAllSuperFullPathConfigurationAssignments(ComponentClassifier cc) {
-//		if(cc === null || cc.eIsProxy || cc.superClassifiers.isEmpty) return Collections.EMPTY_LIST
-//		val supercls = cc.allSuperComponentClassifiers
-//		if (supercls.empty) return Collections.EMPTY_LIST
-//		 supercls.map[cl|cl.getAllGivenClassifierFullPathConfigurationAssignments].flatten
-//	}
-//
-//	
-//	// return configuration assignments that are contained in the specified configuration assignment
-//	private static def Iterable<ConfigurationAssignment> getNestedFullPathConfigurationAssignments(ConfigurationAssignment ca) {
-//		val subcas = ca.configurationAssignments.map[subca| subca.fullTargetPath(ca.target)]
-//		return subcas+subcas.map[subca|subca.nestedFullPathConfigurationAssignments].flatten
-//	}
-//	
-//	// makes a copy of the configuration assignment with the target path expanded
-//	private static def ConfigurationAssignment fullTargetPath(ConfigurationAssignment ca, ModelElementReference contextpath){
-//		val fullca = ca.copy
-//		val newcontextpath = contextpath.copy
-//		val first = fullca.target.firstModelElementReference
-//		if (first !== null){
-//			first.context = newcontextpath
-//		} else {
-//			fullca.target = newcontextpath
-//		}
-//		return fullca
-//	}
 
 	static def Iterable<PropertyAssociation> getAllOwnedPropertyAssociations(Iterable<TypeReference> trs) {
 		if(trs.empty) return Collections.EMPTY_LIST
@@ -752,23 +724,6 @@ class Aadlv3Util {
 		Collections.EMPTY_LIST
 	}
 
-//	// true of model element reference paths are the same, i.e., all referenced elements are the same
-//	def static boolean matchesTarget(ModelElementReference mer1, ModelElementReference mer2) {
-//		var m1 = mer1
-//		var m2 = mer2
-//		while (m1?.element === m2.element){
-//			// the next elements up the path must match
-//			if (m1.context !== null && m2.context !== null){
-//				m1 = m1.context
-//				m2 = m2.context
-//			} else if (m1.context === null && m2.context === null){
-//				return true
-//			} else {
-//				return false
-//			}
-//		}
-//		return false
-//	}
 
 
 	// depth indicates the target path length to be considered
@@ -815,7 +770,7 @@ class Aadlv3Util {
 	}
 	
 	/**
-	 * collect all configuration assignments to all subcomponents for a given classifier.
+	 * collect all configuration assignments to all (recursive and nested) subcomponents for a given classifier's implementation.
 	 * recursively handles configuration assignments contained in assigned configurations
 	 */
 	def static SetMultimap <String, TypeReference> cacheClassifierAssignments(ComponentClassifier cl) {
