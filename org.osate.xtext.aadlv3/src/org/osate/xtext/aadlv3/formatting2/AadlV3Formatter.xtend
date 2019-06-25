@@ -7,7 +7,7 @@ import org.eclipse.xtext.formatting2.AbstractFormatter2
 import org.eclipse.xtext.formatting2.IFormattableDocument
 import org.osate.aadlv3.aadlv3.Component
 import org.osate.aadlv3.aadlv3.ComponentClassifier
-import org.osate.aadlv3.aadlv3.ConfigurationAssignment
+import org.osate.aadlv3.aadlv3.ClassifierAssignment
 import org.osate.aadlv3.aadlv3.Import
 import org.osate.aadlv3.aadlv3.ModelElement
 import org.osate.aadlv3.aadlv3.PackageDeclaration
@@ -76,7 +76,7 @@ class AadlV3Formatter extends AbstractFormatter2 {
 		pa.append[newLine]
 	}
 
-	def dispatch void format(ConfigurationAssignment ca, extension IFormattableDocument document) {
+	def dispatch void format(ClassifierAssignment ca, extension IFormattableDocument document) {
 		ca.append[newLine]
 	}
 

@@ -1252,18 +1252,18 @@ ruleImplementationElement[EObject in_current]  returns [EObject current=in_curre
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getImplementationElementAccess().getConfigurationAssignmentsConfigurationAssignmentParserRuleCall_5_0());
+					newCompositeNode(grammarAccess.getImplementationElementAccess().getClassifierAssignmentsClassifierAssignmentParserRuleCall_5_0());
 				}
-				lv_configurationAssignments_5_0=ruleConfigurationAssignment
+				lv_classifierAssignments_5_0=ruleClassifierAssignment
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getImplementationElementRule());
 					}
 					add(
 						$current,
-						"configurationAssignments",
-						lv_configurationAssignments_5_0,
-						"org.osate.xtext.aadlv3.AadlV3.ConfigurationAssignment");
+						"classifierAssignments",
+						lv_classifierAssignments_5_0,
+						"org.osate.xtext.aadlv3.AadlV3.ClassifierAssignment");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -1272,18 +1272,18 @@ ruleImplementationElement[EObject in_current]  returns [EObject current=in_curre
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getImplementationElementAccess().getConfigurationAssignmentsConfigurationAssignmentPatternParserRuleCall_6_0());
+					newCompositeNode(grammarAccess.getImplementationElementAccess().getClassifierAssignmentsClassifierAssignmentPatternParserRuleCall_6_0());
 				}
-				lv_configurationAssignments_6_0=ruleConfigurationAssignmentPattern
+				lv_classifierAssignments_6_0=ruleClassifierAssignmentPattern
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getImplementationElementRule());
 					}
 					add(
 						$current,
-						"configurationAssignments",
-						lv_configurationAssignments_6_0,
-						"org.osate.xtext.aadlv3.AadlV3.ConfigurationAssignmentPattern");
+						"classifierAssignments",
+						lv_classifierAssignments_6_0,
+						"org.osate.xtext.aadlv3.AadlV3.ClassifierAssignmentPattern");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -1500,24 +1500,10 @@ ruleFeature returns [EObject current=null]
 		)?
 		(
 			(
-				lv_event_3_0='event'
 				{
-					newLeafNode(lv_event_3_0, grammarAccess.getFeatureAccess().getEventEventKeyword_3_0());
+					newCompositeNode(grammarAccess.getFeatureAccess().getCategoryFeatureCategoryParserRuleCall_3_0());
 				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getFeatureRule());
-					}
-					setWithLastConsumed($current, "event", true, "event");
-				}
-			)
-		)?
-		(
-			(
-				{
-					newCompositeNode(grammarAccess.getFeatureAccess().getCategoryFeatureCategoryParserRuleCall_4_0());
-				}
-				lv_category_4_0=ruleFeatureCategory
+				lv_category_3_0=ruleFeatureCategory
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getFeatureRule());
@@ -1525,7 +1511,7 @@ ruleFeature returns [EObject current=null]
 					set(
 						$current,
 						"category",
-						lv_category_4_0,
+						lv_category_3_0,
 						"org.osate.xtext.aadlv3.AadlV3.FeatureCategory");
 					afterParserOrEnumRuleCall();
 				}
@@ -1534,9 +1520,9 @@ ruleFeature returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getFeatureAccess().getTypeReferenceReversableTypeReferenceParserRuleCall_5_0());
+					newCompositeNode(grammarAccess.getFeatureAccess().getTypeReferenceReversableTypeReferenceParserRuleCall_4_0());
 				}
-				lv_typeReference_5_0=ruleReversableTypeReference
+				lv_typeReference_4_0=ruleReversableTypeReference
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getFeatureRule());
@@ -1544,7 +1530,7 @@ ruleFeature returns [EObject current=null]
 					set(
 						$current,
 						"typeReference",
-						lv_typeReference_5_0,
+						lv_typeReference_4_0,
 						"org.osate.xtext.aadlv3.AadlV3.ReversableTypeReference");
 					afterParserOrEnumRuleCall();
 				}
@@ -1553,9 +1539,9 @@ ruleFeature returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getFeatureAccess().getAnnexSubclauseAnnexSubclauseParserRuleCall_6_0());
+					newCompositeNode(grammarAccess.getFeatureAccess().getAnnexSubclauseAnnexSubclauseParserRuleCall_5_0());
 				}
-				lv_annexSubclause_6_0=ruleAnnexSubclause
+				lv_annexSubclause_5_0=ruleAnnexSubclause
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getFeatureRule());
@@ -1563,7 +1549,7 @@ ruleFeature returns [EObject current=null]
 					add(
 						$current,
 						"annexSubclause",
-						lv_annexSubclause_6_0,
+						lv_annexSubclause_5_0,
 						"org.osate.xtext.aadlv3.AadlV3.AnnexSubclause");
 					afterParserOrEnumRuleCall();
 				}
@@ -1577,17 +1563,17 @@ ruleFeature returns [EObject current=null]
 				if ($current==null) {
 					$current = createModelElement(grammarAccess.getFeatureRule());
 				}
-				newCompositeNode(grammarAccess.getFeatureAccess().getPropertiesBlockParserRuleCall_7());
+				newCompositeNode(grammarAccess.getFeatureAccess().getPropertiesBlockParserRuleCall_6());
 			}
-			this_PropertiesBlock_7=rulePropertiesBlock[$current]
+			this_PropertiesBlock_6=rulePropertiesBlock[$current]
 			{
-				$current = $this_PropertiesBlock_7.current;
+				$current = $this_PropertiesBlock_6.current;
 				afterParserOrEnumRuleCall();
 			}
 		)?
-		otherlv_8=';'
+		otherlv_7=';'
 		{
-			newLeafNode(otherlv_8, grammarAccess.getFeatureAccess().getSemicolonKeyword_8());
+			newLeafNode(otherlv_7, grammarAccess.getFeatureAccess().getSemicolonKeyword_7());
 		}
 	)
 ;
@@ -2012,9 +1998,9 @@ ruleFlowPath returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getFlowPathAccess().getAssociationTypeIsFlowPathParserRuleCall_2_0());
+					newCompositeNode(grammarAccess.getFlowPathAccess().getAssociationTypeIsFlowParserRuleCall_2_0());
 				}
-				lv_associationType_2_0=ruleIsFlowPath
+				lv_associationType_2_0=ruleIsFlow
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getFlowPathRule());
@@ -2023,7 +2009,7 @@ ruleFlowPath returns [EObject current=null]
 						$current,
 						"associationType",
 						lv_associationType_2_0,
-						"org.osate.xtext.aadlv3.AadlV3.IsFlowPath");
+						"org.osate.xtext.aadlv3.AadlV3.IsFlow");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -2398,15 +2384,9 @@ rulePath returns [EObject current=null]
 		{
 			newLeafNode(otherlv_1, grammarAccess.getPathAccess().getColonKeyword_1());
 		}
+		otherlv_2='flow'
 		{
-			/* */
-		}
-		{
-			newCompositeNode(grammarAccess.getPathAccess().getEndToEndFlowKeywordsParserRuleCall_2());
-		}
-		ruleEndToEndFlowKeywords
-		{
-			afterParserOrEnumRuleCall();
+			newLeafNode(otherlv_2, grammarAccess.getPathAccess().getFlowKeyword_2());
 		}
 		(
 			(
@@ -2647,15 +2627,15 @@ ruleImport returns [EObject current=null]
 	)
 ;
 
-// Entry rule entryRuleConfigurationAssignment
-entryRuleConfigurationAssignment returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getConfigurationAssignmentRule()); }
-	iv_ruleConfigurationAssignment=ruleConfigurationAssignment
-	{ $current=$iv_ruleConfigurationAssignment.current; }
+// Entry rule entryRuleClassifierAssignment
+entryRuleClassifierAssignment returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getClassifierAssignmentRule()); }
+	iv_ruleClassifierAssignment=ruleClassifierAssignment
+	{ $current=$iv_ruleClassifierAssignment.current; }
 	EOF;
 
-// Rule ConfigurationAssignment
-ruleConfigurationAssignment returns [EObject current=null]
+// Rule ClassifierAssignment
+ruleClassifierAssignment returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -2666,12 +2646,12 @@ ruleConfigurationAssignment returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getConfigurationAssignmentAccess().getTargetModelElementReferenceParserRuleCall_0_0());
+					newCompositeNode(grammarAccess.getClassifierAssignmentAccess().getTargetModelElementReferenceParserRuleCall_0_0());
 				}
 				lv_target_0_0=ruleModelElementReference
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getConfigurationAssignmentRule());
+						$current = createModelElementForParent(grammarAccess.getClassifierAssignmentRule());
 					}
 					set(
 						$current,
@@ -2684,19 +2664,19 @@ ruleConfigurationAssignment returns [EObject current=null]
 		)
 		otherlv_1='=>'
 		{
-			newLeafNode(otherlv_1, grammarAccess.getConfigurationAssignmentAccess().getEqualsSignGreaterThanSignKeyword_1());
+			newLeafNode(otherlv_1, grammarAccess.getClassifierAssignmentAccess().getEqualsSignGreaterThanSignKeyword_1());
 		}
 		(
 			(
 				(
 					(
 						{
-							newCompositeNode(grammarAccess.getConfigurationAssignmentAccess().getAssignedClassifiersTypeReferenceParserRuleCall_2_0_0_0());
+							newCompositeNode(grammarAccess.getClassifierAssignmentAccess().getAssignedClassifiersTypeReferenceParserRuleCall_2_0_0_0());
 						}
 						lv_assignedClassifiers_2_0=ruleTypeReference
 						{
 							if ($current==null) {
-								$current = createModelElementForParent(grammarAccess.getConfigurationAssignmentRule());
+								$current = createModelElementForParent(grammarAccess.getClassifierAssignmentRule());
 							}
 							add(
 								$current,
@@ -2710,17 +2690,17 @@ ruleConfigurationAssignment returns [EObject current=null]
 				(
 					otherlv_3=','
 					{
-						newLeafNode(otherlv_3, grammarAccess.getConfigurationAssignmentAccess().getCommaKeyword_2_0_1_0());
+						newLeafNode(otherlv_3, grammarAccess.getClassifierAssignmentAccess().getCommaKeyword_2_0_1_0());
 					}
 					(
 						(
 							{
-								newCompositeNode(grammarAccess.getConfigurationAssignmentAccess().getAssignedClassifiersTypeReferenceParserRuleCall_2_0_1_1_0());
+								newCompositeNode(grammarAccess.getClassifierAssignmentAccess().getAssignedClassifiersTypeReferenceParserRuleCall_2_0_1_1_0());
 							}
 							lv_assignedClassifiers_4_0=ruleTypeReference
 							{
 								if ($current==null) {
-									$current = createModelElementForParent(grammarAccess.getConfigurationAssignmentRule());
+									$current = createModelElementForParent(grammarAccess.getClassifierAssignmentRule());
 								}
 								add(
 									$current,
@@ -2738,9 +2718,9 @@ ruleConfigurationAssignment returns [EObject current=null]
 					}
 					{
 						if ($current==null) {
-							$current = createModelElement(grammarAccess.getConfigurationAssignmentRule());
+							$current = createModelElement(grammarAccess.getClassifierAssignmentRule());
 						}
-						newCompositeNode(grammarAccess.getConfigurationAssignmentAccess().getCurlyConfigurationElementBlockParserRuleCall_2_0_2());
+						newCompositeNode(grammarAccess.getClassifierAssignmentAccess().getCurlyConfigurationElementBlockParserRuleCall_2_0_2());
 					}
 					this_CurlyConfigurationElementBlock_5=ruleCurlyConfigurationElementBlock[$current]
 					{
@@ -2755,9 +2735,9 @@ ruleConfigurationAssignment returns [EObject current=null]
 			}
 			{
 				if ($current==null) {
-					$current = createModelElement(grammarAccess.getConfigurationAssignmentRule());
+					$current = createModelElement(grammarAccess.getClassifierAssignmentRule());
 				}
-				newCompositeNode(grammarAccess.getConfigurationAssignmentAccess().getCurlyConfigurationElementBlockParserRuleCall_2_1());
+				newCompositeNode(grammarAccess.getClassifierAssignmentAccess().getCurlyConfigurationElementBlockParserRuleCall_2_1());
 			}
 			this_CurlyConfigurationElementBlock_6=ruleCurlyConfigurationElementBlock[$current]
 			{
@@ -2767,20 +2747,20 @@ ruleConfigurationAssignment returns [EObject current=null]
 		)
 		otherlv_7=';'
 		{
-			newLeafNode(otherlv_7, grammarAccess.getConfigurationAssignmentAccess().getSemicolonKeyword_3());
+			newLeafNode(otherlv_7, grammarAccess.getClassifierAssignmentAccess().getSemicolonKeyword_3());
 		}
 	)
 ;
 
-// Entry rule entryRuleConfigurationAssignmentPattern
-entryRuleConfigurationAssignmentPattern returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getConfigurationAssignmentPatternRule()); }
-	iv_ruleConfigurationAssignmentPattern=ruleConfigurationAssignmentPattern
-	{ $current=$iv_ruleConfigurationAssignmentPattern.current; }
+// Entry rule entryRuleClassifierAssignmentPattern
+entryRuleClassifierAssignmentPattern returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getClassifierAssignmentPatternRule()); }
+	iv_ruleClassifierAssignmentPattern=ruleClassifierAssignmentPattern
+	{ $current=$iv_ruleClassifierAssignmentPattern.current; }
 	EOF;
 
-// Rule ConfigurationAssignmentPattern
-ruleConfigurationAssignmentPattern returns [EObject current=null]
+// Rule ClassifierAssignmentPattern
+ruleClassifierAssignmentPattern returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -2793,9 +2773,9 @@ ruleConfigurationAssignmentPattern returns [EObject current=null]
 		}
 		{
 			if ($current==null) {
-				$current = createModelElement(grammarAccess.getConfigurationAssignmentPatternRule());
+				$current = createModelElement(grammarAccess.getClassifierAssignmentPatternRule());
 			}
-			newCompositeNode(grammarAccess.getConfigurationAssignmentPatternAccess().getQueryExpressionParserRuleCall_0());
+			newCompositeNode(grammarAccess.getClassifierAssignmentPatternAccess().getQueryExpressionParserRuleCall_0());
 		}
 		this_QueryExpression_0=ruleQueryExpression[$current]
 		{
@@ -2804,19 +2784,19 @@ ruleConfigurationAssignmentPattern returns [EObject current=null]
 		}
 		otherlv_1='=>'
 		{
-			newLeafNode(otherlv_1, grammarAccess.getConfigurationAssignmentPatternAccess().getEqualsSignGreaterThanSignKeyword_1());
+			newLeafNode(otherlv_1, grammarAccess.getClassifierAssignmentPatternAccess().getEqualsSignGreaterThanSignKeyword_1());
 		}
 		(
 			(
 				(
 					(
 						{
-							newCompositeNode(grammarAccess.getConfigurationAssignmentPatternAccess().getAssignedClassifiersTypeReferenceParserRuleCall_2_0_0_0());
+							newCompositeNode(grammarAccess.getClassifierAssignmentPatternAccess().getAssignedClassifiersTypeReferenceParserRuleCall_2_0_0_0());
 						}
 						lv_assignedClassifiers_2_0=ruleTypeReference
 						{
 							if ($current==null) {
-								$current = createModelElementForParent(grammarAccess.getConfigurationAssignmentPatternRule());
+								$current = createModelElementForParent(grammarAccess.getClassifierAssignmentPatternRule());
 							}
 							add(
 								$current,
@@ -2830,17 +2810,17 @@ ruleConfigurationAssignmentPattern returns [EObject current=null]
 				(
 					otherlv_3=','
 					{
-						newLeafNode(otherlv_3, grammarAccess.getConfigurationAssignmentPatternAccess().getCommaKeyword_2_0_1_0());
+						newLeafNode(otherlv_3, grammarAccess.getClassifierAssignmentPatternAccess().getCommaKeyword_2_0_1_0());
 					}
 					(
 						(
 							{
-								newCompositeNode(grammarAccess.getConfigurationAssignmentPatternAccess().getAssignedClassifiersTypeReferenceParserRuleCall_2_0_1_1_0());
+								newCompositeNode(grammarAccess.getClassifierAssignmentPatternAccess().getAssignedClassifiersTypeReferenceParserRuleCall_2_0_1_1_0());
 							}
 							lv_assignedClassifiers_4_0=ruleTypeReference
 							{
 								if ($current==null) {
-									$current = createModelElementForParent(grammarAccess.getConfigurationAssignmentPatternRule());
+									$current = createModelElementForParent(grammarAccess.getClassifierAssignmentPatternRule());
 								}
 								add(
 									$current,
@@ -2858,9 +2838,9 @@ ruleConfigurationAssignmentPattern returns [EObject current=null]
 					}
 					{
 						if ($current==null) {
-							$current = createModelElement(grammarAccess.getConfigurationAssignmentPatternRule());
+							$current = createModelElement(grammarAccess.getClassifierAssignmentPatternRule());
 						}
-						newCompositeNode(grammarAccess.getConfigurationAssignmentPatternAccess().getCurlyConfigurationElementBlockParserRuleCall_2_0_2());
+						newCompositeNode(grammarAccess.getClassifierAssignmentPatternAccess().getCurlyConfigurationElementBlockParserRuleCall_2_0_2());
 					}
 					this_CurlyConfigurationElementBlock_5=ruleCurlyConfigurationElementBlock[$current]
 					{
@@ -2875,9 +2855,9 @@ ruleConfigurationAssignmentPattern returns [EObject current=null]
 			}
 			{
 				if ($current==null) {
-					$current = createModelElement(grammarAccess.getConfigurationAssignmentPatternRule());
+					$current = createModelElement(grammarAccess.getClassifierAssignmentPatternRule());
 				}
-				newCompositeNode(grammarAccess.getConfigurationAssignmentPatternAccess().getCurlyConfigurationElementBlockParserRuleCall_2_1());
+				newCompositeNode(grammarAccess.getClassifierAssignmentPatternAccess().getCurlyConfigurationElementBlockParserRuleCall_2_1());
 			}
 			this_CurlyConfigurationElementBlock_6=ruleCurlyConfigurationElementBlock[$current]
 			{
@@ -2887,7 +2867,7 @@ ruleConfigurationAssignmentPattern returns [EObject current=null]
 		)
 		otherlv_7=';'
 		{
-			newLeafNode(otherlv_7, grammarAccess.getConfigurationAssignmentPatternAccess().getSemicolonKeyword_3());
+			newLeafNode(otherlv_7, grammarAccess.getClassifierAssignmentPatternAccess().getSemicolonKeyword_3());
 		}
 	)
 ;
@@ -3385,18 +3365,18 @@ ruleConfigurationElement[EObject in_current]  returns [EObject current=in_curren
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getConfigurationElementAccess().getConfigurationAssignmentsConfigurationAssignmentParserRuleCall_2_0());
+					newCompositeNode(grammarAccess.getConfigurationElementAccess().getClassifierAssignmentsClassifierAssignmentParserRuleCall_2_0());
 				}
-				lv_configurationAssignments_2_0=ruleConfigurationAssignment
+				lv_classifierAssignments_2_0=ruleClassifierAssignment
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getConfigurationElementRule());
 					}
 					add(
 						$current,
-						"configurationAssignments",
-						lv_configurationAssignments_2_0,
-						"org.osate.xtext.aadlv3.AadlV3.ConfigurationAssignment");
+						"classifierAssignments",
+						lv_classifierAssignments_2_0,
+						"org.osate.xtext.aadlv3.AadlV3.ClassifierAssignment");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -3405,18 +3385,18 @@ ruleConfigurationElement[EObject in_current]  returns [EObject current=in_curren
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getConfigurationElementAccess().getConfigurationAssignmentsConfigurationAssignmentPatternParserRuleCall_3_0());
+					newCompositeNode(grammarAccess.getConfigurationElementAccess().getClassifierAssignmentsClassifierAssignmentPatternParserRuleCall_3_0());
 				}
-				lv_configurationAssignments_3_0=ruleConfigurationAssignmentPattern
+				lv_classifierAssignments_3_0=ruleClassifierAssignmentPattern
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getConfigurationElementRule());
 					}
 					add(
 						$current,
-						"configurationAssignments",
-						lv_configurationAssignments_3_0,
-						"org.osate.xtext.aadlv3.AadlV3.ConfigurationAssignmentPattern");
+						"classifierAssignments",
+						lv_classifierAssignments_3_0,
+						"org.osate.xtext.aadlv3.AadlV3.ClassifierAssignmentPattern");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -5121,33 +5101,6 @@ ruleIsBinding returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken
 	}
 ;
 
-// Entry rule entryRuleIsFlowPath
-entryRuleIsFlowPath returns [String current=null]:
-	{ newCompositeNode(grammarAccess.getIsFlowPathRule()); }
-	iv_ruleIsFlowPath=ruleIsFlowPath
-	{ $current=$iv_ruleIsFlowPath.current.getText(); }
-	EOF;
-
-// Rule IsFlowPath
-ruleIsFlowPath returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	{
-		newCompositeNode(grammarAccess.getIsFlowPathAccess().getFlowPathKeywordsParserRuleCall());
-	}
-	this_FlowPathKeywords_0=ruleFlowPathKeywords
-	{
-		$current.merge(this_FlowPathKeywords_0);
-	}
-	{
-		afterParserOrEnumRuleCall();
-	}
-;
-
 // Entry rule entryRuleIsFlowSource
 entryRuleIsFlowSource returns [String current=null]:
 	{ newCompositeNode(grammarAccess.getIsFlowSourceRule()); }
@@ -5434,45 +5387,6 @@ ruleSubprogramGroupKeywords returns [AntlrDatatypeRuleToken current=new AntlrDat
 	)
 ;
 
-// Entry rule entryRuleEndToEndFlowKeywords
-entryRuleEndToEndFlowKeywords returns [String current=null]:
-	{ newCompositeNode(grammarAccess.getEndToEndFlowKeywordsRule()); }
-	iv_ruleEndToEndFlowKeywords=ruleEndToEndFlowKeywords
-	{ $current=$iv_ruleEndToEndFlowKeywords.current.getText(); }
-	EOF;
-
-// Rule EndToEndFlowKeywords
-ruleEndToEndFlowKeywords returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		kw='end'
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getEndToEndFlowKeywordsAccess().getEndKeyword_0());
-		}
-		kw='to'
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getEndToEndFlowKeywordsAccess().getToKeyword_1());
-		}
-		kw='end'
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getEndToEndFlowKeywordsAccess().getEndKeyword_2());
-		}
-		kw='flow'
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getEndToEndFlowKeywordsAccess().getFlowKeyword_3());
-		}
-	)
-;
-
 // Entry rule entryRuleFlowSourceKeywords
 entryRuleFlowSourceKeywords returns [String current=null]:
 	{ newCompositeNode(grammarAccess.getFlowSourceKeywordsRule()); }
@@ -5527,35 +5441,6 @@ ruleFlowSinkKeywords returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRu
 		{
 			$current.merge(kw);
 			newLeafNode(kw, grammarAccess.getFlowSinkKeywordsAccess().getSinkKeyword_1());
-		}
-	)
-;
-
-// Entry rule entryRuleFlowPathKeywords
-entryRuleFlowPathKeywords returns [String current=null]:
-	{ newCompositeNode(grammarAccess.getFlowPathKeywordsRule()); }
-	iv_ruleFlowPathKeywords=ruleFlowPathKeywords
-	{ $current=$iv_ruleFlowPathKeywords.current.getText(); }
-	EOF;
-
-// Rule FlowPathKeywords
-ruleFlowPathKeywords returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		kw='flow'
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getFlowPathKeywordsAccess().getFlowKeyword_0());
-		}
-		kw='path'
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getFlowPathKeywordsAccess().getPathKeyword_1());
 		}
 	)
 ;

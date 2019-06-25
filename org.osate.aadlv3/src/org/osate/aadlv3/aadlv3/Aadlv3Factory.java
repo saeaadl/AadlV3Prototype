@@ -134,24 +134,6 @@ public interface Aadlv3Factory extends EFactory {
 	Association createAssociation();
 
 	/**
-	 * Returns a new object of class '<em>Configuration Assignment</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Configuration Assignment</em>'.
-	 * @generated
-	 */
-	ConfigurationAssignment createConfigurationAssignment();
-
-	/**
-	 * Returns a new object of class '<em>Configuration Assignment Pattern</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Configuration Assignment Pattern</em>'.
-	 * @generated
-	 */
-	ConfigurationAssignmentPattern createConfigurationAssignmentPattern();
-
-	/**
 	 * Returns a new object of class '<em>Model Element Reference</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -276,6 +258,24 @@ public interface Aadlv3Factory extends EFactory {
 	 * @generated
 	 */
 	PathElement createPathElement();
+
+	/**
+	 * Returns a new object of class '<em>Classifier Assignment</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Classifier Assignment</em>'.
+	 * @generated
+	 */
+	ClassifierAssignment createClassifierAssignment();
+
+	/**
+	 * Returns a new object of class '<em>Classifier Assignment Pattern</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Classifier Assignment Pattern</em>'.
+	 * @generated
+	 */
+	ClassifierAssignmentPattern createClassifierAssignmentPattern();
 
 	/**
 	 * Returns a new object of class '<em>Path Sequence</em>'.

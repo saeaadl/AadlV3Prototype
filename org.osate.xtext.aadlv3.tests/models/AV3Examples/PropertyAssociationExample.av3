@@ -54,14 +54,14 @@ package PropertyAssociationExample is
 	thread interface filter is
 	insignal : in port;
 	outsignal : out port;
-	filterpath: flow path insignal -> outsignal;
+	filterpath: flow insignal -> outsignal;
 	#Period => 20 ;
 	end;
 	
 	thread interface compute is
 	insignal : in port;
 	outsignal : out port;
-	computepath: flow path insignal -> outsignal;
+	computepath: flow insignal -> outsignal;
 	end;
 	
 	thread interface logger is
@@ -71,7 +71,7 @@ package PropertyAssociationExample is
 	interface control is
 	insignal: in port;
 	outaction: out port;
-	processflow: flow path insignal -> outaction;
+	processflow: flow insignal -> outaction;
 	end;
 	
 	process interface controlProcess extends control 

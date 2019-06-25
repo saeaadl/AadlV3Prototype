@@ -26,7 +26,7 @@ import org.osate.aadlv3.aadlv3.ComponentClassifier
 import org.osate.aadlv3.aadlv3.ComponentConfiguration
 import org.osate.aadlv3.aadlv3.ComponentInterface
 import org.osate.aadlv3.aadlv3.ConfigurationActual
-import org.osate.aadlv3.aadlv3.ConfigurationAssignment
+import org.osate.aadlv3.aadlv3.ClassifierAssignment
 import org.osate.aadlv3.aadlv3.Feature
 import org.osate.aadlv3.aadlv3.Import
 import org.osate.aadlv3.aadlv3.ModelElementReference
@@ -69,7 +69,7 @@ class AadlV3ScopeProvider extends AbstractAadlV3ScopeProvider {
 								}
 							}
 						}
-						ConfigurationAssignment,
+						ClassifierAssignment,
 						PropertyAssociation: {
 							switch ccc: cc.eContainer {
 								ComponentClassifier:
@@ -77,7 +77,7 @@ class AadlV3ScopeProvider extends AbstractAadlV3ScopeProvider {
 								Component: {
 									ccc.allModelElements 
 								}
-								ConfigurationAssignment: {
+								ClassifierAssignment: {
 									// enclosing configuration assignment may configure a classifier or it may be empty, thus, we need to go to its target
 									// We only need to go to the enclosing configuration assignment as it acts as the root context for resolving the model element reference path
 									if (!ccc.assignedClassifiers.empty) {
@@ -96,9 +96,9 @@ class AadlV3ScopeProvider extends AbstractAadlV3ScopeProvider {
 										// We need to look at the classifier associated with the target on the left
 										val el = ccc.target?.element;
 										if (el instanceof Component) {
-											val casscopes = new Stack<Iterable<ConfigurationAssignment>>()
+											val casscopes = new Stack<Iterable<ClassifierAssignment>>()
 											casscopes.push(
-												context.containingComponentClassifier.allSuperConfigurationAssignments)
+												context.containingComponentClassifier.allSuperClassifierAssignments)
 											el.getConfiguredTypeReferences(casscopes).allModelElements 
 										} else if (el instanceof Feature) {
 											val ftype = el?.typeReference?.type
@@ -126,8 +126,8 @@ class AadlV3ScopeProvider extends AbstractAadlV3ScopeProvider {
 							Collections.EMPTY_LIST
 						Component: {
 							// super classifier of containing classifier of configuration assignment may have configured the component
-							val casscopes = new Stack<Iterable<ConfigurationAssignment>>()
-							casscopes.push(context.containingComponentClassifier.allSuperConfigurationAssignments)
+							val casscopes = new Stack<Iterable<ClassifierAssignment>>()
+							casscopes.push(context.containingComponentClassifier.allSuperClassifierAssignments)
 							val ptrs = previousElement.getConfiguredTypeReferences(casscopes)
 							if (!ptrs.empty && !ptrs.isDataType) {
 								ptrs.allModelElements

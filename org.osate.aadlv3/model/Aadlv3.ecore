@@ -55,8 +55,8 @@
       eSuperTypes="#//ComponentClassifier">
     <eStructuralFeatures xsi:type="ecore:EReference" name="cachedInterfaceReference"
         ordered="false" eType="#//ComponentInterface" transient="true" resolveProxies="false"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="configurationAssignments"
-        upperBound="-1" eType="#//ConfigurationAssignment" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="classifierAssignments"
+        upperBound="-1" eType="#//ClassifierAssignment" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ComponentInterface" eSuperTypes="#//ComponentClassifier">
     <eStructuralFeatures xsi:type="ecore:EReference" name="features" upperBound="-1"
@@ -90,7 +90,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="category" eType="#//FeatureCategory"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="typeReference" eType="#//TypeReference"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="event" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="annexSubclause" upperBound="-1"
         eType="#//AnnexSubclause" containment="true"/>
   </eClassifiers>
@@ -133,11 +132,11 @@
         eType="#//PathElement"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="next" upperBound="-1" eType="#//PathElement"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ConfigurationAssignment">
+  <eClassifiers xsi:type="ecore:EClass" name="ClassifierAssignment">
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//ModelElementReference"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="configurationAssignments"
-        upperBound="-1" eType="#//ConfigurationAssignment" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="classifierAssignments"
+        upperBound="-1" eType="#//ClassifierAssignment" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="assignedClassifiers" upperBound="-1"
         eType="#//TypeReference" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="propertyAssociations" upperBound="-1"
@@ -147,7 +146,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="annexSubclause" upperBound="-1"
         eType="#//AnnexSubclause" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ConfigurationAssignmentPattern" eSuperTypes="#//ConfigurationAssignment">
+  <eClassifiers xsi:type="ecore:EClass" name="ClassifierAssignmentPattern" eSuperTypes="#//ClassifierAssignment">
     <eStructuralFeatures xsi:type="ecore:EReference" name="targetPattern" eType="#//Type"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ModelElementReference">
@@ -225,9 +224,8 @@
     <eLiterals name="connection" literal="connection"/>
     <eLiterals name="binding" value="1" literal="binding"/>
     <eLiterals name="flow" value="2" literal="flow"/>
-    <eLiterals name="flowpath" value="3" literal="flow path"/>
-    <eLiterals name="flowsource" value="4" literal="flow source"/>
-    <eLiterals name="flowsink" value="5" literal="flow sink"/>
+    <eLiterals name="flowsource" value="3" literal="flow source"/>
+    <eLiterals name="flowsink" value="4" literal="flow sink"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PropertyValue">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>

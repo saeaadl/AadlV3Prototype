@@ -630,13 +630,13 @@ public interface Aadlv3Package extends EPackage {
 	int COMPONENT_REALIZATION__CACHED_INTERFACE_REFERENCE = COMPONENT_CLASSIFIER_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Configuration Assignments</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Classifier Assignments</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_REALIZATION__CONFIGURATION_ASSIGNMENTS = COMPONENT_CLASSIFIER_FEATURE_COUNT + 1;
+	int COMPONENT_REALIZATION__CLASSIFIER_ASSIGNMENTS = COMPONENT_CLASSIFIER_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Component Realization</em>' class.
@@ -847,13 +847,13 @@ public interface Aadlv3Package extends EPackage {
 	int COMPONENT_IMPLEMENTATION__CACHED_INTERFACE_REFERENCE = COMPONENT_REALIZATION__CACHED_INTERFACE_REFERENCE;
 
 	/**
-	 * The feature id for the '<em><b>Configuration Assignments</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Classifier Assignments</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_IMPLEMENTATION__CONFIGURATION_ASSIGNMENTS = COMPONENT_REALIZATION__CONFIGURATION_ASSIGNMENTS;
+	int COMPONENT_IMPLEMENTATION__CLASSIFIER_ASSIGNMENTS = COMPONENT_REALIZATION__CLASSIFIER_ASSIGNMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Components</b></em>' containment reference list.
@@ -1001,13 +1001,13 @@ public interface Aadlv3Package extends EPackage {
 	int COMPONENT_CONFIGURATION__CACHED_INTERFACE_REFERENCE = COMPONENT_REALIZATION__CACHED_INTERFACE_REFERENCE;
 
 	/**
-	 * The feature id for the '<em><b>Configuration Assignments</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Classifier Assignments</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_CONFIGURATION__CONFIGURATION_ASSIGNMENTS = COMPONENT_REALIZATION__CONFIGURATION_ASSIGNMENTS;
+	int COMPONENT_CONFIGURATION__CLASSIFIER_ASSIGNMENTS = COMPONENT_REALIZATION__CLASSIFIER_ASSIGNMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
@@ -1110,22 +1110,13 @@ public interface Aadlv3Package extends EPackage {
 	int FEATURE__TYPE_REFERENCE = MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Event</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE__EVENT = MODEL_ELEMENT_FEATURE_COUNT + 3;
-
-	/**
 	 * The feature id for the '<em><b>Annex Subclause</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__ANNEX_SUBCLAUSE = MODEL_ELEMENT_FEATURE_COUNT + 4;
+	int FEATURE__ANNEX_SUBCLAUSE = MODEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Feature</em>' class.
@@ -1134,7 +1125,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 5;
+	int FEATURE_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.ComponentImpl <em>Component</em>}' class.
@@ -1374,16 +1365,6 @@ public interface Aadlv3Package extends EPackage {
 	int ASSOCIATION_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
-	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.ConfigurationAssignmentImpl <em>Configuration Assignment</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.osate.aadlv3.aadlv3.impl.ConfigurationAssignmentImpl
-	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getConfigurationAssignment()
-	 * @generated
-	 */
-	int CONFIGURATION_ASSIGNMENT = 19;
-
-	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.ModelElementReferenceImpl <em>Model Element Reference</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1600,77 +1581,14 @@ public interface Aadlv3Package extends EPackage {
 	int PATH_ELEMENT_FEATURE_COUNT = MODEL_ELEMENT_REFERENCE_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Target</b></em>' containment reference.
+	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.ClassifierAssignmentImpl <em>Classifier Assignment</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONFIGURATION_ASSIGNMENT__TARGET = 0;
-
-	/**
-	 * The feature id for the '<em><b>Configuration Assignments</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONFIGURATION_ASSIGNMENT__CONFIGURATION_ASSIGNMENTS = 1;
-
-	/**
-	 * The feature id for the '<em><b>Assigned Classifiers</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONFIGURATION_ASSIGNMENT__ASSIGNED_CLASSIFIERS = 2;
-
-	/**
-	 * The feature id for the '<em><b>Property Associations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONFIGURATION_ASSIGNMENT__PROPERTY_ASSOCIATIONS = 3;
-
-	/**
-	 * The feature id for the '<em><b>Bindings</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONFIGURATION_ASSIGNMENT__BINDINGS = 4;
-
-	/**
-	 * The feature id for the '<em><b>Annex Subclause</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONFIGURATION_ASSIGNMENT__ANNEX_SUBCLAUSE = 5;
-
-	/**
-	 * The number of structural features of the '<em>Configuration Assignment</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONFIGURATION_ASSIGNMENT_FEATURE_COUNT = 6;
-
-	/**
-	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.ConfigurationAssignmentPatternImpl <em>Configuration Assignment Pattern</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.osate.aadlv3.aadlv3.impl.ConfigurationAssignmentPatternImpl
-	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getConfigurationAssignmentPattern()
+	 * @see org.osate.aadlv3.aadlv3.impl.ClassifierAssignmentImpl
+	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getClassifierAssignment()
 	 * @generated
 	 */
-	int CONFIGURATION_ASSIGNMENT_PATTERN = 20;
+	int CLASSIFIER_ASSIGNMENT = 19;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' containment reference.
@@ -1679,16 +1597,16 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONFIGURATION_ASSIGNMENT_PATTERN__TARGET = CONFIGURATION_ASSIGNMENT__TARGET;
+	int CLASSIFIER_ASSIGNMENT__TARGET = 0;
 
 	/**
-	 * The feature id for the '<em><b>Configuration Assignments</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Classifier Assignments</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONFIGURATION_ASSIGNMENT_PATTERN__CONFIGURATION_ASSIGNMENTS = CONFIGURATION_ASSIGNMENT__CONFIGURATION_ASSIGNMENTS;
+	int CLASSIFIER_ASSIGNMENT__CLASSIFIER_ASSIGNMENTS = 1;
 
 	/**
 	 * The feature id for the '<em><b>Assigned Classifiers</b></em>' containment reference list.
@@ -1697,7 +1615,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONFIGURATION_ASSIGNMENT_PATTERN__ASSIGNED_CLASSIFIERS = CONFIGURATION_ASSIGNMENT__ASSIGNED_CLASSIFIERS;
+	int CLASSIFIER_ASSIGNMENT__ASSIGNED_CLASSIFIERS = 2;
 
 	/**
 	 * The feature id for the '<em><b>Property Associations</b></em>' containment reference list.
@@ -1706,7 +1624,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONFIGURATION_ASSIGNMENT_PATTERN__PROPERTY_ASSOCIATIONS = CONFIGURATION_ASSIGNMENT__PROPERTY_ASSOCIATIONS;
+	int CLASSIFIER_ASSIGNMENT__PROPERTY_ASSOCIATIONS = 3;
 
 	/**
 	 * The feature id for the '<em><b>Bindings</b></em>' containment reference list.
@@ -1715,7 +1633,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONFIGURATION_ASSIGNMENT_PATTERN__BINDINGS = CONFIGURATION_ASSIGNMENT__BINDINGS;
+	int CLASSIFIER_ASSIGNMENT__BINDINGS = 4;
 
 	/**
 	 * The feature id for the '<em><b>Annex Subclause</b></em>' containment reference list.
@@ -1724,7 +1642,80 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONFIGURATION_ASSIGNMENT_PATTERN__ANNEX_SUBCLAUSE = CONFIGURATION_ASSIGNMENT__ANNEX_SUBCLAUSE;
+	int CLASSIFIER_ASSIGNMENT__ANNEX_SUBCLAUSE = 5;
+
+	/**
+	 * The number of structural features of the '<em>Classifier Assignment</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASSIFIER_ASSIGNMENT_FEATURE_COUNT = 6;
+
+	/**
+	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.ClassifierAssignmentPatternImpl <em>Classifier Assignment Pattern</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.osate.aadlv3.aadlv3.impl.ClassifierAssignmentPatternImpl
+	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getClassifierAssignmentPattern()
+	 * @generated
+	 */
+	int CLASSIFIER_ASSIGNMENT_PATTERN = 20;
+
+	/**
+	 * The feature id for the '<em><b>Target</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASSIFIER_ASSIGNMENT_PATTERN__TARGET = CLASSIFIER_ASSIGNMENT__TARGET;
+
+	/**
+	 * The feature id for the '<em><b>Classifier Assignments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASSIFIER_ASSIGNMENT_PATTERN__CLASSIFIER_ASSIGNMENTS = CLASSIFIER_ASSIGNMENT__CLASSIFIER_ASSIGNMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Assigned Classifiers</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASSIFIER_ASSIGNMENT_PATTERN__ASSIGNED_CLASSIFIERS = CLASSIFIER_ASSIGNMENT__ASSIGNED_CLASSIFIERS;
+
+	/**
+	 * The feature id for the '<em><b>Property Associations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASSIFIER_ASSIGNMENT_PATTERN__PROPERTY_ASSOCIATIONS = CLASSIFIER_ASSIGNMENT__PROPERTY_ASSOCIATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Bindings</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASSIFIER_ASSIGNMENT_PATTERN__BINDINGS = CLASSIFIER_ASSIGNMENT__BINDINGS;
+
+	/**
+	 * The feature id for the '<em><b>Annex Subclause</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASSIFIER_ASSIGNMENT_PATTERN__ANNEX_SUBCLAUSE = CLASSIFIER_ASSIGNMENT__ANNEX_SUBCLAUSE;
 
 	/**
 	 * The feature id for the '<em><b>Target Pattern</b></em>' reference.
@@ -1733,16 +1724,16 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONFIGURATION_ASSIGNMENT_PATTERN__TARGET_PATTERN = CONFIGURATION_ASSIGNMENT_FEATURE_COUNT + 0;
+	int CLASSIFIER_ASSIGNMENT_PATTERN__TARGET_PATTERN = CLASSIFIER_ASSIGNMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Configuration Assignment Pattern</em>' class.
+	 * The number of structural features of the '<em>Classifier Assignment Pattern</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONFIGURATION_ASSIGNMENT_PATTERN_FEATURE_COUNT = CONFIGURATION_ASSIGNMENT_FEATURE_COUNT + 1;
+	int CLASSIFIER_ASSIGNMENT_PATTERN_FEATURE_COUNT = CLASSIFIER_ASSIGNMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2789,17 +2780,6 @@ public interface Aadlv3Package extends EPackage {
 	EReference getFeature_TypeReference();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.osate.aadlv3.aadlv3.Feature#isEvent <em>Event</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Event</em>'.
-	 * @see org.osate.aadlv3.aadlv3.Feature#isEvent()
-	 * @see #getFeature()
-	 * @generated
-	 */
-	EAttribute getFeature_Event();
-
-	/**
 	 * Returns the meta object for the containment reference list '{@link org.osate.aadlv3.aadlv3.Feature#getAnnexSubclause <em>Annex Subclause</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2993,103 +2973,6 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 */
 	EReference getAssociation_AnnexSubclause();
-
-	/**
-	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.ConfigurationAssignment <em>Configuration Assignment</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Configuration Assignment</em>'.
-	 * @see org.osate.aadlv3.aadlv3.ConfigurationAssignment
-	 * @generated
-	 */
-	EClass getConfigurationAssignment();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.osate.aadlv3.aadlv3.ConfigurationAssignment#getTarget <em>Target</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Target</em>'.
-	 * @see org.osate.aadlv3.aadlv3.ConfigurationAssignment#getTarget()
-	 * @see #getConfigurationAssignment()
-	 * @generated
-	 */
-	EReference getConfigurationAssignment_Target();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.osate.aadlv3.aadlv3.ConfigurationAssignment#getConfigurationAssignments <em>Configuration Assignments</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Configuration Assignments</em>'.
-	 * @see org.osate.aadlv3.aadlv3.ConfigurationAssignment#getConfigurationAssignments()
-	 * @see #getConfigurationAssignment()
-	 * @generated
-	 */
-	EReference getConfigurationAssignment_ConfigurationAssignments();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.osate.aadlv3.aadlv3.ConfigurationAssignment#getAssignedClassifiers <em>Assigned Classifiers</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Assigned Classifiers</em>'.
-	 * @see org.osate.aadlv3.aadlv3.ConfigurationAssignment#getAssignedClassifiers()
-	 * @see #getConfigurationAssignment()
-	 * @generated
-	 */
-	EReference getConfigurationAssignment_AssignedClassifiers();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.osate.aadlv3.aadlv3.ConfigurationAssignment#getPropertyAssociations <em>Property Associations</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Property Associations</em>'.
-	 * @see org.osate.aadlv3.aadlv3.ConfigurationAssignment#getPropertyAssociations()
-	 * @see #getConfigurationAssignment()
-	 * @generated
-	 */
-	EReference getConfigurationAssignment_PropertyAssociations();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.osate.aadlv3.aadlv3.ConfigurationAssignment#getBindings <em>Bindings</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Bindings</em>'.
-	 * @see org.osate.aadlv3.aadlv3.ConfigurationAssignment#getBindings()
-	 * @see #getConfigurationAssignment()
-	 * @generated
-	 */
-	EReference getConfigurationAssignment_Bindings();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.osate.aadlv3.aadlv3.ConfigurationAssignment#getAnnexSubclause <em>Annex Subclause</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Annex Subclause</em>'.
-	 * @see org.osate.aadlv3.aadlv3.ConfigurationAssignment#getAnnexSubclause()
-	 * @see #getConfigurationAssignment()
-	 * @generated
-	 */
-	EReference getConfigurationAssignment_AnnexSubclause();
-
-	/**
-	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.ConfigurationAssignmentPattern <em>Configuration Assignment Pattern</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Configuration Assignment Pattern</em>'.
-	 * @see org.osate.aadlv3.aadlv3.ConfigurationAssignmentPattern
-	 * @generated
-	 */
-	EClass getConfigurationAssignmentPattern();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.osate.aadlv3.aadlv3.ConfigurationAssignmentPattern#getTargetPattern <em>Target Pattern</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Target Pattern</em>'.
-	 * @see org.osate.aadlv3.aadlv3.ConfigurationAssignmentPattern#getTargetPattern()
-	 * @see #getConfigurationAssignmentPattern()
-	 * @generated
-	 */
-	EReference getConfigurationAssignmentPattern_TargetPattern();
 
 	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.ModelElementReference <em>Model Element Reference</em>}'.
@@ -3529,6 +3412,103 @@ public interface Aadlv3Package extends EPackage {
 	EReference getPathElement_Next();
 
 	/**
+	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.ClassifierAssignment <em>Classifier Assignment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Classifier Assignment</em>'.
+	 * @see org.osate.aadlv3.aadlv3.ClassifierAssignment
+	 * @generated
+	 */
+	EClass getClassifierAssignment();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.osate.aadlv3.aadlv3.ClassifierAssignment#getTarget <em>Target</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Target</em>'.
+	 * @see org.osate.aadlv3.aadlv3.ClassifierAssignment#getTarget()
+	 * @see #getClassifierAssignment()
+	 * @generated
+	 */
+	EReference getClassifierAssignment_Target();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.osate.aadlv3.aadlv3.ClassifierAssignment#getClassifierAssignments <em>Classifier Assignments</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Classifier Assignments</em>'.
+	 * @see org.osate.aadlv3.aadlv3.ClassifierAssignment#getClassifierAssignments()
+	 * @see #getClassifierAssignment()
+	 * @generated
+	 */
+	EReference getClassifierAssignment_ClassifierAssignments();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.osate.aadlv3.aadlv3.ClassifierAssignment#getAssignedClassifiers <em>Assigned Classifiers</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Assigned Classifiers</em>'.
+	 * @see org.osate.aadlv3.aadlv3.ClassifierAssignment#getAssignedClassifiers()
+	 * @see #getClassifierAssignment()
+	 * @generated
+	 */
+	EReference getClassifierAssignment_AssignedClassifiers();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.osate.aadlv3.aadlv3.ClassifierAssignment#getPropertyAssociations <em>Property Associations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Property Associations</em>'.
+	 * @see org.osate.aadlv3.aadlv3.ClassifierAssignment#getPropertyAssociations()
+	 * @see #getClassifierAssignment()
+	 * @generated
+	 */
+	EReference getClassifierAssignment_PropertyAssociations();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.osate.aadlv3.aadlv3.ClassifierAssignment#getBindings <em>Bindings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Bindings</em>'.
+	 * @see org.osate.aadlv3.aadlv3.ClassifierAssignment#getBindings()
+	 * @see #getClassifierAssignment()
+	 * @generated
+	 */
+	EReference getClassifierAssignment_Bindings();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.osate.aadlv3.aadlv3.ClassifierAssignment#getAnnexSubclause <em>Annex Subclause</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Annex Subclause</em>'.
+	 * @see org.osate.aadlv3.aadlv3.ClassifierAssignment#getAnnexSubclause()
+	 * @see #getClassifierAssignment()
+	 * @generated
+	 */
+	EReference getClassifierAssignment_AnnexSubclause();
+
+	/**
+	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.ClassifierAssignmentPattern <em>Classifier Assignment Pattern</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Classifier Assignment Pattern</em>'.
+	 * @see org.osate.aadlv3.aadlv3.ClassifierAssignmentPattern
+	 * @generated
+	 */
+	EClass getClassifierAssignmentPattern();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.osate.aadlv3.aadlv3.ClassifierAssignmentPattern#getTargetPattern <em>Target Pattern</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Target Pattern</em>'.
+	 * @see org.osate.aadlv3.aadlv3.ClassifierAssignmentPattern#getTargetPattern()
+	 * @see #getClassifierAssignmentPattern()
+	 * @generated
+	 */
+	EReference getClassifierAssignmentPattern_TargetPattern();
+
+	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.PathSequence <em>Path Sequence</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3582,15 +3562,15 @@ public interface Aadlv3Package extends EPackage {
 	EReference getComponentRealization_CachedInterfaceReference();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.osate.aadlv3.aadlv3.ComponentRealization#getConfigurationAssignments <em>Configuration Assignments</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.osate.aadlv3.aadlv3.ComponentRealization#getClassifierAssignments <em>Classifier Assignments</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Configuration Assignments</em>'.
-	 * @see org.osate.aadlv3.aadlv3.ComponentRealization#getConfigurationAssignments()
+	 * @return the meta object for the containment reference list '<em>Classifier Assignments</em>'.
+	 * @see org.osate.aadlv3.aadlv3.ComponentRealization#getClassifierAssignments()
 	 * @see #getComponentRealization()
 	 * @generated
 	 */
-	EReference getComponentRealization_ConfigurationAssignments();
+	EReference getComponentRealization_ClassifierAssignments();
 
 	/**
 	 * Returns the meta object for enum '{@link org.osate.aadlv3.aadlv3.ComponentCategory <em>Component Category</em>}'.
@@ -4060,14 +4040,6 @@ public interface Aadlv3Package extends EPackage {
 		EReference FEATURE__TYPE_REFERENCE = eINSTANCE.getFeature_TypeReference();
 
 		/**
-		 * The meta object literal for the '<em><b>Event</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute FEATURE__EVENT = eINSTANCE.getFeature_Event();
-
-		/**
 		 * The meta object literal for the '<em><b>Annex Subclause</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -4216,86 +4188,6 @@ public interface Aadlv3Package extends EPackage {
 		 * @generated
 		 */
 		EReference ASSOCIATION__ANNEX_SUBCLAUSE = eINSTANCE.getAssociation_AnnexSubclause();
-
-		/**
-		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.ConfigurationAssignmentImpl <em>Configuration Assignment</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.osate.aadlv3.aadlv3.impl.ConfigurationAssignmentImpl
-		 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getConfigurationAssignment()
-		 * @generated
-		 */
-		EClass CONFIGURATION_ASSIGNMENT = eINSTANCE.getConfigurationAssignment();
-
-		/**
-		 * The meta object literal for the '<em><b>Target</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CONFIGURATION_ASSIGNMENT__TARGET = eINSTANCE.getConfigurationAssignment_Target();
-
-		/**
-		 * The meta object literal for the '<em><b>Configuration Assignments</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CONFIGURATION_ASSIGNMENT__CONFIGURATION_ASSIGNMENTS = eINSTANCE
-				.getConfigurationAssignment_ConfigurationAssignments();
-
-		/**
-		 * The meta object literal for the '<em><b>Assigned Classifiers</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CONFIGURATION_ASSIGNMENT__ASSIGNED_CLASSIFIERS = eINSTANCE
-				.getConfigurationAssignment_AssignedClassifiers();
-
-		/**
-		 * The meta object literal for the '<em><b>Property Associations</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CONFIGURATION_ASSIGNMENT__PROPERTY_ASSOCIATIONS = eINSTANCE
-				.getConfigurationAssignment_PropertyAssociations();
-
-		/**
-		 * The meta object literal for the '<em><b>Bindings</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CONFIGURATION_ASSIGNMENT__BINDINGS = eINSTANCE.getConfigurationAssignment_Bindings();
-
-		/**
-		 * The meta object literal for the '<em><b>Annex Subclause</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CONFIGURATION_ASSIGNMENT__ANNEX_SUBCLAUSE = eINSTANCE.getConfigurationAssignment_AnnexSubclause();
-
-		/**
-		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.ConfigurationAssignmentPatternImpl <em>Configuration Assignment Pattern</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.osate.aadlv3.aadlv3.impl.ConfigurationAssignmentPatternImpl
-		 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getConfigurationAssignmentPattern()
-		 * @generated
-		 */
-		EClass CONFIGURATION_ASSIGNMENT_PATTERN = eINSTANCE.getConfigurationAssignmentPattern();
-
-		/**
-		 * The meta object literal for the '<em><b>Target Pattern</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CONFIGURATION_ASSIGNMENT_PATTERN__TARGET_PATTERN = eINSTANCE
-				.getConfigurationAssignmentPattern_TargetPattern();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.ModelElementReferenceImpl <em>Model Element Reference</em>}' class.
@@ -4657,6 +4549,86 @@ public interface Aadlv3Package extends EPackage {
 		EReference PATH_ELEMENT__NEXT = eINSTANCE.getPathElement_Next();
 
 		/**
+		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.ClassifierAssignmentImpl <em>Classifier Assignment</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.osate.aadlv3.aadlv3.impl.ClassifierAssignmentImpl
+		 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getClassifierAssignment()
+		 * @generated
+		 */
+		EClass CLASSIFIER_ASSIGNMENT = eINSTANCE.getClassifierAssignment();
+
+		/**
+		 * The meta object literal for the '<em><b>Target</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CLASSIFIER_ASSIGNMENT__TARGET = eINSTANCE.getClassifierAssignment_Target();
+
+		/**
+		 * The meta object literal for the '<em><b>Classifier Assignments</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CLASSIFIER_ASSIGNMENT__CLASSIFIER_ASSIGNMENTS = eINSTANCE
+				.getClassifierAssignment_ClassifierAssignments();
+
+		/**
+		 * The meta object literal for the '<em><b>Assigned Classifiers</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CLASSIFIER_ASSIGNMENT__ASSIGNED_CLASSIFIERS = eINSTANCE
+				.getClassifierAssignment_AssignedClassifiers();
+
+		/**
+		 * The meta object literal for the '<em><b>Property Associations</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CLASSIFIER_ASSIGNMENT__PROPERTY_ASSOCIATIONS = eINSTANCE
+				.getClassifierAssignment_PropertyAssociations();
+
+		/**
+		 * The meta object literal for the '<em><b>Bindings</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CLASSIFIER_ASSIGNMENT__BINDINGS = eINSTANCE.getClassifierAssignment_Bindings();
+
+		/**
+		 * The meta object literal for the '<em><b>Annex Subclause</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CLASSIFIER_ASSIGNMENT__ANNEX_SUBCLAUSE = eINSTANCE.getClassifierAssignment_AnnexSubclause();
+
+		/**
+		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.ClassifierAssignmentPatternImpl <em>Classifier Assignment Pattern</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.osate.aadlv3.aadlv3.impl.ClassifierAssignmentPatternImpl
+		 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getClassifierAssignmentPattern()
+		 * @generated
+		 */
+		EClass CLASSIFIER_ASSIGNMENT_PATTERN = eINSTANCE.getClassifierAssignmentPattern();
+
+		/**
+		 * The meta object literal for the '<em><b>Target Pattern</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CLASSIFIER_ASSIGNMENT_PATTERN__TARGET_PATTERN = eINSTANCE
+				.getClassifierAssignmentPattern_TargetPattern();
+
+		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.PathSequenceImpl <em>Path Sequence</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -4702,13 +4674,13 @@ public interface Aadlv3Package extends EPackage {
 				.getComponentRealization_CachedInterfaceReference();
 
 		/**
-		 * The meta object literal for the '<em><b>Configuration Assignments</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Classifier Assignments</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference COMPONENT_REALIZATION__CONFIGURATION_ASSIGNMENTS = eINSTANCE
-				.getComponentRealization_ConfigurationAssignments();
+		EReference COMPONENT_REALIZATION__CLASSIFIER_ASSIGNMENTS = eINSTANCE
+				.getComponentRealization_ClassifierAssignments();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.ComponentCategory <em>Component Category</em>}' enum.

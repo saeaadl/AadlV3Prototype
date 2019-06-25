@@ -20,8 +20,8 @@ import org.osate.aadlv3.aadlv3.ComponentConfiguration
 import org.osate.aadlv3.aadlv3.ComponentImplementation
 import org.osate.aadlv3.aadlv3.ComponentInterface
 import org.osate.aadlv3.aadlv3.ConfigurationActual
-import org.osate.aadlv3.aadlv3.ConfigurationAssignment
-import org.osate.aadlv3.aadlv3.ConfigurationAssignmentPattern
+import org.osate.aadlv3.aadlv3.ClassifierAssignment
+import org.osate.aadlv3.aadlv3.ClassifierAssignmentPattern
 import org.osate.aadlv3.aadlv3.ConfigurationParameter
 import org.osate.aadlv3.aadlv3.DataType
 import org.osate.aadlv3.aadlv3.Feature
@@ -536,36 +536,36 @@ class Aadlv3Util {
 
 	
 	// return all configuration assignments and nested CAs including those of super configurations 
-	static def Iterable<ConfigurationAssignment> getAllConfigurationAssignments(Iterable<TypeReference> trs) {
+	static def Iterable<ClassifierAssignment> getAllClassifierAssignments(Iterable<TypeReference> trs) {
 		if(trs.empty) return Collections.EMPTY_LIST
 		val cls = trs.allComponentClassifiers
 		if (cls.empty) return Collections.EMPTY_LIST
-		cls.map[cl|cl.getAllGivenClassifierConfigurationAssignments].flatten
+		cls.map[cl|cl.getAllGivenClassifierClassifierAssignments].flatten
 	}
 
 	
 	// return all configuration assignments and nested CAs including those of super configurations 
-	static def Iterable<ConfigurationAssignment> getAllConfigurationAssignments(ComponentClassifier ccl) {
+	static def Iterable<ClassifierAssignment> getAllClassifierAssignments(ComponentClassifier ccl) {
 		if(ccl === null || ccl.eIsProxy) return Collections.EMPTY_LIST
 		val cls = ccl.allComponentClassifiers
 		if (cls.empty) return Collections.EMPTY_LIST
-		cls.map[cl|cl.getAllGivenClassifierConfigurationAssignments].flatten
+		cls.map[cl|cl.getAllGivenClassifierClassifierAssignments].flatten
 	}
 
 	// returns all configuration assignments for given classifier including nested configuration assignments
 	// does not process super classifiers
-	static def Iterable<ConfigurationAssignment> getAllGivenClassifierConfigurationAssignments(ComponentClassifier cl) {
+	static def Iterable<ClassifierAssignment> getAllGivenClassifierClassifierAssignments(ComponentClassifier cl) {
 		if(cl === null || cl.eIsProxy) return Collections.EMPTY_LIST
-		val Iterable<ConfigurationAssignment> cas = EcoreUtil2.getAllContentsOfType(cl, ConfigurationAssignment)
+		val Iterable<ClassifierAssignment> cas = EcoreUtil2.getAllContentsOfType(cl, ClassifierAssignment)
 		cas
 	}
 
 	// returns configuration assignments from all super configurations
-	static def Iterable<ConfigurationAssignment> getAllSuperConfigurationAssignments(ComponentClassifier cc) {
+	static def Iterable<ClassifierAssignment> getAllSuperClassifierAssignments(ComponentClassifier cc) {
 		if(cc === null || cc.eIsProxy || cc.superClassifiers.isEmpty) return Collections.EMPTY_LIST
 		val supercls = cc.allSuperComponentClassifiers
 		if (supercls.empty) return Collections.EMPTY_LIST
-		 supercls.map[cl|cl.getAllGivenClassifierConfigurationAssignments].flatten
+		 supercls.map[cl|cl.getAllGivenClassifierClassifierAssignments].flatten
 	}
 	
 
@@ -577,7 +577,7 @@ class Aadlv3Util {
 
 	static def Iterable<PropertyAssociation> getAllCAPropertyAssociations(Iterable<TypeReference> trs) {
 		if(trs.empty) return Collections.EMPTY_LIST
-		val cas = trs.allConfigurationAssignments
+		val cas = trs.allClassifierAssignments
 		cas.map[ca|ca.propertyAssociations].flatten
 	}
 
@@ -587,7 +587,7 @@ class Aadlv3Util {
 	}
 
 	static def Iterable<PropertyAssociation> getAllCAPropertyAssociations(ComponentClassifier cl) {
-		val cas = cl.allConfigurationAssignments
+		val cas = cl.allClassifierAssignments
 		cas.map[ca|ca.propertyAssociations].flatten
 	}
 
@@ -618,7 +618,7 @@ class Aadlv3Util {
 	// match is the target component to be matched by a configuration assignment of depth one 
 	// we have added only one scope as references are resolved relative to the enclosing model element reference
 	def static Iterable<TypeReference> getConfiguredTypeReferences(Component match,
-		Stack<Iterable<ConfigurationAssignment>> casscopes) {
+		Stack<Iterable<ClassifierAssignment>> casscopes) {
 		val ctyperefs = match.typeReferences
 		val n = casscopes.size
 		// component has no type or 
@@ -643,7 +643,7 @@ class Aadlv3Util {
 	// match can be a component or component instance
 	// TODO when we override we want to make sure it does not change the implementation
 	def static Iterable<TypeReference> getConfiguredTypeReferences(Component match,
-		Stack<Iterable<ConfigurationAssignment>> casscopes, ComponentInstance context) {
+		Stack<Iterable<ClassifierAssignment>> casscopes, ComponentInstance context) {
 		val mtyperefs = match.typeReferences
 		if (mtyperefs.empty) {
 			return Collections.EMPTY_LIST
@@ -727,8 +727,8 @@ class Aadlv3Util {
 
 
 	// depth indicates the target path length to be considered
-	def static boolean matchesTarget(ConfigurationAssignment ca, ModelElement match, int depth, ComponentInstance context) {
-		if (ca instanceof ConfigurationAssignmentPattern){
+	def static boolean matchesTarget(ClassifierAssignment ca, ModelElement match, int depth, ComponentInstance context) {
+		if (ca instanceof ClassifierAssignmentPattern){
 			return ca.matchesTargetPattern(match)
 		} else {
 			return ca.target.matchesTarget(match, depth, context)
@@ -747,7 +747,7 @@ class Aadlv3Util {
 			} else {
 				// end of path in mer path; check to see if there is an enclosing configuration assignment
 				val cxt = mer.modelElementReferenceContext?.eContainer
-				if (cxt instanceof ConfigurationAssignment) {
+				if (cxt instanceof ClassifierAssignment) {
 					// look for enclosing configuration assignment
 					return cxt.target.matchesTarget(context.component, depth - 1,context.eContainer as ComponentInstance)
 				}
@@ -757,8 +757,8 @@ class Aadlv3Util {
 	}
 
 	// depth indicates the target path length to be considered
-	private def static boolean matchesTargetPattern(ConfigurationAssignment pat, ModelElement match) {
-		if (pat instanceof ConfigurationAssignmentPattern){
+	private def static boolean matchesTargetPattern(ClassifierAssignment pat, ModelElement match) {
+		if (pat instanceof ClassifierAssignmentPattern){
 			val patternType = pat.targetPattern
 			if (match instanceof Component){
 				return patternType.isSuperTypeOf(match.typeReferences)
@@ -775,11 +775,11 @@ class Aadlv3Util {
 	 */
 	def static SetMultimap <String, TypeReference> cacheClassifierAssignments(ComponentClassifier cl) {
 		val SetMultimap <String, TypeReference> map = HashMultimap.create();
-		cl.processConfigurationAssignments(map,"")
+		cl.processClassifierAssignments(map,"")
 		// recurse on subcomponents to process their assigned configuration
 		val subs = cl.getAllSubcomponents
 		for (sub : subs) {
-			sub.processSubcomponentConfigurationAssignments(map, sub.name)
+			sub.processSubcomponentClassifierAssignments(map, sub.name)
 		}
 		return map
 	}
@@ -787,23 +787,23 @@ class Aadlv3Util {
 	/**
 	 * add all configuration assignments of collection of type references and declared classifiers of assignment targets into cache
 	 */
-	def static void processSubcomponentConfigurationAssignments(Component sub, SetMultimap<String, TypeReference> cache, String targetpath) {
+	def static void processSubcomponentClassifierAssignments(Component sub, SetMultimap<String, TypeReference> cache, String targetpath) {
 		val Iterable<TypeReference> subtrs = sub.typeReferences + cache.get(targetpath)
 		val cls = subtrs.allComponentClassifiers
 		for (cl : cls){
-			cl.processConfigurationAssignments(cache,targetpath)
+			cl.processClassifierAssignments(cache,targetpath)
 		}
 		val subsubs = subtrs.getAllSubcomponents(sub)
 		for (subsub : subsubs){
-			subsub.processSubcomponentConfigurationAssignments(cache,targetpath+"."+subsub.name)
+			subsub.processSubcomponentClassifierAssignments(cache,targetpath+"."+subsub.name)
 		}
 	}
 		
 	/**
 	 * add all configuration assignments of classifier cl and declared classifiers of assignment targets into cache
 	 */
-	def static void processConfigurationAssignments(ComponentClassifier cl, SetMultimap<String, TypeReference> cache, String targetpathprefix) {
-		val cas = cl.allConfigurationAssignments
+	def static void processClassifierAssignments(ComponentClassifier cl, SetMultimap<String, TypeReference> cache, String targetpathprefix) {
+		val cas = cl.allClassifierAssignments
 		for (ca : cas){
 			val targetcomp = ca.target?.element
 			if (targetcomp instanceof Component){
@@ -1081,12 +1081,12 @@ class Aadlv3Util {
 		return cxt as Component
 	}
 	// returns the enclosing component. 
-	def static ConfigurationAssignment getContainingConfigurationAssignment(EObject elem) {
-		var cxt = if (elem instanceof ConfigurationAssignment) elem.eContainer as EObject else elem
-		while (cxt !== null && !(cxt instanceof ConfigurationAssignment)) {
+	def static ClassifierAssignment getContainingClassifierAssignment(EObject elem) {
+		var cxt = if (elem instanceof ClassifierAssignment) elem.eContainer as EObject else elem
+		while (cxt !== null && !(cxt instanceof ClassifierAssignment)) {
 			cxt = cxt.eContainer as EObject
 		}
-		return cxt as ConfigurationAssignment
+		return cxt as ClassifierAssignment
 	}
 
 	
@@ -1164,7 +1164,7 @@ class Aadlv3Util {
 	def static boolean isFlowSpec(AssociationType connType){
 		connType == AssociationType.FLOWSINK ||
 		connType == AssociationType.FLOWSOURCE ||
-		connType == AssociationType.FLOWPATH 
+		connType == AssociationType.FLOW 
 	}
 	// association represents a binding
 	def static boolean isBinding(AssociationType connType){
@@ -1267,12 +1267,12 @@ class Aadlv3Util {
 	}
 	
 	// returns target path relative to the enclosing classifier, i.e., for nested CAs we add the path of the enclosing CA
-	def static String getTargetPath(ConfigurationAssignment ca){
+	def static String getTargetPath(ClassifierAssignment ca){
 		var res = ca.target.targetPath
-		var cxt = ca.containingConfigurationAssignment
+		var cxt = ca.containingClassifierAssignment
 		while (cxt !== null){
 			res = cxt.target.targetPath + '.' + res
-			cxt = cxt.containingConfigurationAssignment
+			cxt = cxt.containingClassifierAssignment
 		}
 		return res
 		
@@ -1284,7 +1284,7 @@ class Aadlv3Util {
 	 */
 	def static String getTargetPath(PropertyAssociation pa){
 		val PApath = getTargetPath(pa.target)
-		val ca = pa.containingConfigurationAssignment
+		val ca = pa.containingClassifierAssignment
 		if (ca === null) return PApath
 		val CApath = ca.targetPath
 		if (CApath.isEmpty) return PApath

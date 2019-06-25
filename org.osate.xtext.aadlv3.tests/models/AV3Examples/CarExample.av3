@@ -7,7 +7,7 @@ is
   EntertainmentSystem:  system EntertainmentSystem.basic;
 end;
 
-configuration car.configurable (gasengine: gasengine , speakers:  Speakers ) extends car.design is
+configuration car.configurable (gasengine: gasengine , speakers:  Speakers ) extends car.design is 
 Powertrain.myengine => gasengine ;
 EntertainmentSystem.soundsystem.speakers => speakers;
 EntertainmentSystem.soundsystem => MySoundSystem.Selectablespeakers(speakers => speakers);

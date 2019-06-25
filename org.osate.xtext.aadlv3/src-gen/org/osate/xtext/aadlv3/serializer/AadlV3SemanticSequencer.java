@@ -29,13 +29,13 @@ import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransi
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.AnnexSubclause;
 import org.osate.aadlv3.aadlv3.Association;
+import org.osate.aadlv3.aadlv3.ClassifierAssignment;
+import org.osate.aadlv3.aadlv3.ClassifierAssignmentPattern;
 import org.osate.aadlv3.aadlv3.Component;
 import org.osate.aadlv3.aadlv3.ComponentConfiguration;
 import org.osate.aadlv3.aadlv3.ComponentImplementation;
 import org.osate.aadlv3.aadlv3.ComponentInterface;
 import org.osate.aadlv3.aadlv3.ConfigurationActual;
-import org.osate.aadlv3.aadlv3.ConfigurationAssignment;
-import org.osate.aadlv3.aadlv3.ConfigurationAssignmentPattern;
 import org.osate.aadlv3.aadlv3.ConfigurationParameter;
 import org.osate.aadlv3.aadlv3.DataType;
 import org.osate.aadlv3.aadlv3.Feature;
@@ -91,6 +91,12 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 					return; 
 				}
 				else break;
+			case Aadlv3Package.CLASSIFIER_ASSIGNMENT:
+				sequence_ClassifierAssignment_ConfigurationElement(context, (ClassifierAssignment) semanticObject); 
+				return; 
+			case Aadlv3Package.CLASSIFIER_ASSIGNMENT_PATTERN:
+				sequence_ClassifierAssignmentPattern_ConfigurationElement_QueryExpression(context, (ClassifierAssignmentPattern) semanticObject); 
+				return; 
 			case Aadlv3Package.COMPONENT:
 				sequence_Component_NestedImplementationElement(context, (Component) semanticObject); 
 				return; 
@@ -105,12 +111,6 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 				return; 
 			case Aadlv3Package.CONFIGURATION_ACTUAL:
 				sequence_ConfigurationActual(context, (ConfigurationActual) semanticObject); 
-				return; 
-			case Aadlv3Package.CONFIGURATION_ASSIGNMENT:
-				sequence_ConfigurationAssignment_ConfigurationElement(context, (ConfigurationAssignment) semanticObject); 
-				return; 
-			case Aadlv3Package.CONFIGURATION_ASSIGNMENT_PATTERN:
-				sequence_ConfigurationAssignmentPattern_ConfigurationElement_QueryExpression(context, (ConfigurationAssignmentPattern) semanticObject); 
 				return; 
 			case Aadlv3Package.CONFIGURATION_PARAMETER:
 				sequence_ConfigurationParameter(context, (ConfigurationParameter) semanticObject); 
@@ -242,6 +242,60 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
+	 *     ClassifierAssignmentPattern returns ClassifierAssignmentPattern
+	 *
+	 * Constraint:
+	 *     (
+	 *         targetPattern=[Type|QualifiedTypesReference] 
+	 *         (
+	 *             (assignedClassifiers+=TypeReference assignedClassifiers+=TypeReference*) | 
+	 *             (
+	 *                 (assignedClassifiers+=TypeReference assignedClassifiers+=TypeReference*) 
+	 *                 (
+	 *                     propertyAssociations+=PropertyAssociation | 
+	 *                     bindings+=Binding | 
+	 *                     classifierAssignments+=ClassifierAssignment | 
+	 *                     classifierAssignments+=ClassifierAssignmentPattern | 
+	 *                     annexSubclause+=AnnexSubclause
+	 *                 )+
+	 *             )
+	 *         )?
+	 *     )
+	 */
+	protected void sequence_ClassifierAssignmentPattern_ConfigurationElement_QueryExpression(ISerializationContext context, ClassifierAssignmentPattern semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     ClassifierAssignment returns ClassifierAssignment
+	 *
+	 * Constraint:
+	 *     (
+	 *         target=ModelElementReference 
+	 *         (
+	 *             (assignedClassifiers+=TypeReference assignedClassifiers+=TypeReference*) | 
+	 *             (
+	 *                 (assignedClassifiers+=TypeReference assignedClassifiers+=TypeReference*) 
+	 *                 (
+	 *                     propertyAssociations+=PropertyAssociation | 
+	 *                     bindings+=Binding | 
+	 *                     classifierAssignments+=ClassifierAssignment | 
+	 *                     classifierAssignments+=ClassifierAssignmentPattern | 
+	 *                     annexSubclause+=AnnexSubclause
+	 *                 )+
+	 *             )
+	 *         )?
+	 *     )
+	 */
+	protected void sequence_ClassifierAssignment_ConfigurationElement(ISerializationContext context, ClassifierAssignment semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     PackageElement returns ComponentConfiguration
 	 *     ComponentConfiguration returns ComponentConfiguration
 	 *
@@ -254,8 +308,8 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *         (
 	 *             propertyAssociations+=PropertyAssociation | 
 	 *             bindings+=Binding | 
-	 *             configurationAssignments+=ConfigurationAssignment | 
-	 *             configurationAssignments+=ConfigurationAssignmentPattern | 
+	 *             classifierAssignments+=ClassifierAssignment | 
+	 *             classifierAssignments+=ClassifierAssignmentPattern | 
 	 *             annexSubclause+=AnnexSubclause
 	 *         )*
 	 *     )
@@ -282,8 +336,8 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *             components+=Component | 
 	 *             paths+=Path | 
 	 *             flowAssignments+=FlowAssignment | 
-	 *             configurationAssignments+=ConfigurationAssignment | 
-	 *             configurationAssignments+=ConfigurationAssignmentPattern | 
+	 *             classifierAssignments+=ClassifierAssignment | 
+	 *             classifierAssignments+=ClassifierAssignmentPattern | 
 	 *             propertyAssociations+=PropertyAssociation | 
 	 *             annexSubclause+=AnnexSubclause
 	 *         )*
@@ -375,60 +429,6 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
-	 *     ConfigurationAssignmentPattern returns ConfigurationAssignmentPattern
-	 *
-	 * Constraint:
-	 *     (
-	 *         targetPattern=[Type|QualifiedTypesReference] 
-	 *         (
-	 *             (assignedClassifiers+=TypeReference assignedClassifiers+=TypeReference*) | 
-	 *             (
-	 *                 (assignedClassifiers+=TypeReference assignedClassifiers+=TypeReference*) 
-	 *                 (
-	 *                     propertyAssociations+=PropertyAssociation | 
-	 *                     bindings+=Binding | 
-	 *                     configurationAssignments+=ConfigurationAssignment | 
-	 *                     configurationAssignments+=ConfigurationAssignmentPattern | 
-	 *                     annexSubclause+=AnnexSubclause
-	 *                 )+
-	 *             )
-	 *         )?
-	 *     )
-	 */
-	protected void sequence_ConfigurationAssignmentPattern_ConfigurationElement_QueryExpression(ISerializationContext context, ConfigurationAssignmentPattern semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     ConfigurationAssignment returns ConfigurationAssignment
-	 *
-	 * Constraint:
-	 *     (
-	 *         target=ModelElementReference 
-	 *         (
-	 *             (assignedClassifiers+=TypeReference assignedClassifiers+=TypeReference*) | 
-	 *             (
-	 *                 (assignedClassifiers+=TypeReference assignedClassifiers+=TypeReference*) 
-	 *                 (
-	 *                     propertyAssociations+=PropertyAssociation | 
-	 *                     bindings+=Binding | 
-	 *                     configurationAssignments+=ConfigurationAssignment | 
-	 *                     configurationAssignments+=ConfigurationAssignmentPattern | 
-	 *                     annexSubclause+=AnnexSubclause
-	 *                 )+
-	 *             )
-	 *         )?
-	 *     )
-	 */
-	protected void sequence_ConfigurationAssignment_ConfigurationElement(ISerializationContext context, ConfigurationAssignment semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
 	 *     ConfigurationParameter returns ConfigurationParameter
 	 *
 	 * Constraint:
@@ -488,7 +488,6 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     (
 	 *         name=ID 
 	 *         direction=FeatureDirection? 
-	 *         event?='event'? 
 	 *         category=FeatureCategory 
 	 *         typeReference=ReversableTypeReference? 
 	 *         annexSubclause+=AnnexSubclause? 
@@ -517,7 +516,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     FlowPath returns Association
 	 *
 	 * Constraint:
-	 *     (name=ID associationType=IsFlowPath source=ModelElementReference destination=ModelElementReference propertyAssociations+=PropertyAssociation*)
+	 *     (name=ID associationType=IsFlow source=ModelElementReference destination=ModelElementReference propertyAssociations+=PropertyAssociation*)
 	 */
 	protected void sequence_FlowPath_PropertiesBlock(ISerializationContext context, Association semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

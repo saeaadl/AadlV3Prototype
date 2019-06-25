@@ -25,9 +25,9 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
+import org.osate.aadlv3.aadlv3.ClassifierAssignment;
 import org.osate.aadlv3.aadlv3.ComponentInterface;
 import org.osate.aadlv3.aadlv3.ComponentRealization;
-import org.osate.aadlv3.aadlv3.ConfigurationAssignment;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,7 +38,7 @@ import org.osate.aadlv3.aadlv3.ConfigurationAssignment;
  * </p>
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentRealizationImpl#getCachedInterfaceReference <em>Cached Interface Reference</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentRealizationImpl#getConfigurationAssignments <em>Configuration Assignments</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentRealizationImpl#getClassifierAssignments <em>Classifier Assignments</em>}</li>
  * </ul>
  *
  * @generated
@@ -55,14 +55,14 @@ public abstract class ComponentRealizationImpl extends ComponentClassifierImpl i
 	protected ComponentInterface cachedInterfaceReference;
 
 	/**
-	 * The cached value of the '{@link #getConfigurationAssignments() <em>Configuration Assignments</em>}' containment reference list.
+	 * The cached value of the '{@link #getClassifierAssignments() <em>Classifier Assignments</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getConfigurationAssignments()
+	 * @see #getClassifierAssignments()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ConfigurationAssignment> configurationAssignments;
+	protected EList<ClassifierAssignment> classifierAssignments;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -114,13 +114,12 @@ public abstract class ComponentRealizationImpl extends ComponentClassifierImpl i
 	 * @generated
 	 */
 	@Override
-	public EList<ConfigurationAssignment> getConfigurationAssignments() {
-		if (configurationAssignments == null) {
-			configurationAssignments = new EObjectContainmentEList<ConfigurationAssignment>(
-					ConfigurationAssignment.class, this,
-					Aadlv3Package.COMPONENT_REALIZATION__CONFIGURATION_ASSIGNMENTS);
+	public EList<ClassifierAssignment> getClassifierAssignments() {
+		if (classifierAssignments == null) {
+			classifierAssignments = new EObjectContainmentEList<ClassifierAssignment>(ClassifierAssignment.class, this,
+					Aadlv3Package.COMPONENT_REALIZATION__CLASSIFIER_ASSIGNMENTS);
 		}
-		return configurationAssignments;
+		return classifierAssignments;
 	}
 
 	/**
@@ -131,8 +130,8 @@ public abstract class ComponentRealizationImpl extends ComponentClassifierImpl i
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case Aadlv3Package.COMPONENT_REALIZATION__CONFIGURATION_ASSIGNMENTS:
-			return ((InternalEList<?>) getConfigurationAssignments()).basicRemove(otherEnd, msgs);
+		case Aadlv3Package.COMPONENT_REALIZATION__CLASSIFIER_ASSIGNMENTS:
+			return ((InternalEList<?>) getClassifierAssignments()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -147,8 +146,8 @@ public abstract class ComponentRealizationImpl extends ComponentClassifierImpl i
 		switch (featureID) {
 		case Aadlv3Package.COMPONENT_REALIZATION__CACHED_INTERFACE_REFERENCE:
 			return getCachedInterfaceReference();
-		case Aadlv3Package.COMPONENT_REALIZATION__CONFIGURATION_ASSIGNMENTS:
-			return getConfigurationAssignments();
+		case Aadlv3Package.COMPONENT_REALIZATION__CLASSIFIER_ASSIGNMENTS:
+			return getClassifierAssignments();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -165,9 +164,9 @@ public abstract class ComponentRealizationImpl extends ComponentClassifierImpl i
 		case Aadlv3Package.COMPONENT_REALIZATION__CACHED_INTERFACE_REFERENCE:
 			setCachedInterfaceReference((ComponentInterface) newValue);
 			return;
-		case Aadlv3Package.COMPONENT_REALIZATION__CONFIGURATION_ASSIGNMENTS:
-			getConfigurationAssignments().clear();
-			getConfigurationAssignments().addAll((Collection<? extends ConfigurationAssignment>) newValue);
+		case Aadlv3Package.COMPONENT_REALIZATION__CLASSIFIER_ASSIGNMENTS:
+			getClassifierAssignments().clear();
+			getClassifierAssignments().addAll((Collection<? extends ClassifierAssignment>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -184,8 +183,8 @@ public abstract class ComponentRealizationImpl extends ComponentClassifierImpl i
 		case Aadlv3Package.COMPONENT_REALIZATION__CACHED_INTERFACE_REFERENCE:
 			setCachedInterfaceReference((ComponentInterface) null);
 			return;
-		case Aadlv3Package.COMPONENT_REALIZATION__CONFIGURATION_ASSIGNMENTS:
-			getConfigurationAssignments().clear();
+		case Aadlv3Package.COMPONENT_REALIZATION__CLASSIFIER_ASSIGNMENTS:
+			getClassifierAssignments().clear();
 			return;
 		}
 		super.eUnset(featureID);
@@ -201,8 +200,8 @@ public abstract class ComponentRealizationImpl extends ComponentClassifierImpl i
 		switch (featureID) {
 		case Aadlv3Package.COMPONENT_REALIZATION__CACHED_INTERFACE_REFERENCE:
 			return cachedInterfaceReference != null;
-		case Aadlv3Package.COMPONENT_REALIZATION__CONFIGURATION_ASSIGNMENTS:
-			return configurationAssignments != null && !configurationAssignments.isEmpty();
+		case Aadlv3Package.COMPONENT_REALIZATION__CLASSIFIER_ASSIGNMENTS:
+			return classifierAssignments != null && !classifierAssignments.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

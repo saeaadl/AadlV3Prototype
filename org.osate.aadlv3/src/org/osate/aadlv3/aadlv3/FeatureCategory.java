@@ -81,13 +81,13 @@ public enum FeatureCategory implements Enumerator {
 	 */
 	BINDING(4, "binding", "binding"),
 	/**
-	* The '<em><b>Interface</b></em>' literal object.
-	* <!-- begin-user-doc -->
+	 * The '<em><b>Interface</b></em>' literal object.
+	 * <!-- begin-user-doc -->
 	* <!-- end-user-doc -->
-	* @see #INTERFACE_VALUE
-	* @generated
-	* @ordered
-	*/
+	 * @see #INTERFACE_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	INTERFACE(5, "interface", "interface"),
 	/**
 	 * The '<em><b>Virtualbusaccess</b></em>' literal object.

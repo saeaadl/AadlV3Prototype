@@ -89,7 +89,7 @@ public class ComponentRealizationItemProvider extends ComponentClassifierItemPro
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(Aadlv3Package.Literals.COMPONENT_REALIZATION__CONFIGURATION_ASSIGNMENTS);
+			childrenFeatures.add(Aadlv3Package.Literals.COMPONENT_REALIZATION__CLASSIFIER_ASSIGNMENTS);
 		}
 		return childrenFeatures;
 	}
@@ -132,7 +132,7 @@ public class ComponentRealizationItemProvider extends ComponentClassifierItemPro
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ComponentRealization.class)) {
-		case Aadlv3Package.COMPONENT_REALIZATION__CONFIGURATION_ASSIGNMENTS:
+		case Aadlv3Package.COMPONENT_REALIZATION__CLASSIFIER_ASSIGNMENTS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -151,12 +151,12 @@ public class ComponentRealizationItemProvider extends ComponentClassifierItemPro
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors
-				.add(createChildParameter(Aadlv3Package.Literals.COMPONENT_REALIZATION__CONFIGURATION_ASSIGNMENTS,
-						Aadlv3Factory.eINSTANCE.createConfigurationAssignment()));
+				.add(createChildParameter(Aadlv3Package.Literals.COMPONENT_REALIZATION__CLASSIFIER_ASSIGNMENTS,
+						Aadlv3Factory.eINSTANCE.createClassifierAssignment()));
 
 		newChildDescriptors
-				.add(createChildParameter(Aadlv3Package.Literals.COMPONENT_REALIZATION__CONFIGURATION_ASSIGNMENTS,
-						Aadlv3Factory.eINSTANCE.createConfigurationAssignmentPattern()));
+				.add(createChildParameter(Aadlv3Package.Literals.COMPONENT_REALIZATION__CLASSIFIER_ASSIGNMENTS,
+						Aadlv3Factory.eINSTANCE.createClassifierAssignmentPattern()));
 	}
 
 }

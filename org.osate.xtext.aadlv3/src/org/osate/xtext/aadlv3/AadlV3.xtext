@@ -63,7 +63,7 @@ fragment ImplementationBody*:
 fragment ImplementationElement* :
 	connections+=Connection |
 	 bindings+=Binding | components+=Component 
-		| paths+= Path | flowAssignments+=FlowAssignment | configurationAssignments+=ConfigurationAssignment | configurationAssignments+=ConfigurationAssignmentPattern
+		| paths+= Path | flowAssignments+=FlowAssignment | classifierAssignments+=ClassifierAssignment | classifierAssignments+=ClassifierAssignmentPattern
 		| propertyAssociations+=PropertyAssociation | annexSubclause+=AnnexSubclause
 ;
 
@@ -79,7 +79,7 @@ ComponentConfiguration returns av3::ComponentConfiguration:
 
 Feature returns av3::Feature:
 	name=ID ':' direction=FeatureDirection?  
-	event?='event'? category=FeatureCategory 
+	category=FeatureCategory 
 	(typeReference=ReversableTypeReference )?
 	annexSubclause+=AnnexSubclause?
 	PropertiesBlock? ';'
@@ -105,7 +105,7 @@ Binding returns av3::Association:
 
 
 FlowPath returns av3::Association:
-	name=ID ':' associationType=IsFlowPath source=ModelElementReference
+	name=ID ':' associationType=IsFlow source=ModelElementReference
 	'->' destination=ModelElementReference PropertiesBlock? ';';
 
 FlowSource returns av3::Association:
@@ -122,7 +122,7 @@ fragment UseProps*:
 
 
 Path returns av3::PathSequence:
-	name=ID ':' EndToEndFlowKeywords elements+=PathElement ('->' elements+=PathElement)+
+	name=ID ':' 'flow' elements+=PathElement ('->' elements+=PathElement)+
 	 PropertiesBlock? ';';
 
 
@@ -135,14 +135,14 @@ Import returns av3::Import:
 	('as' alias=ID)?
 	';';
 
-ConfigurationAssignment returns av3::ConfigurationAssignment:
+ClassifierAssignment returns av3::ClassifierAssignment:
 	target= ModelElementReference '=>' 
 	((assignedClassifiers+=TypeReference (',' assignedClassifiers+=TypeReference)* (CurlyConfigurationElementBlock)?)
 	| CurlyConfigurationElementBlock)
 	';'
 	;
 
-ConfigurationAssignmentPattern returns av3::ConfigurationAssignmentPattern:
+ClassifierAssignmentPattern returns av3::ClassifierAssignmentPattern:
 	QueryExpression '=>' 
 	((assignedClassifiers+=TypeReference (',' assignedClassifiers+=TypeReference)* (CurlyConfigurationElementBlock)?)
 	| CurlyConfigurationElementBlock)
@@ -183,7 +183,7 @@ fragment CurlyConfigurationElementBlock *:
 
 fragment ConfigurationElement*: 
 	propertyAssociations+=PropertyAssociation | 
-	bindings+=Binding | configurationAssignments+=ConfigurationAssignment | configurationAssignments+=ConfigurationAssignmentPattern | annexSubclause+=AnnexSubclause
+	bindings+=Binding | classifierAssignments+=ClassifierAssignment | classifierAssignments+=ClassifierAssignmentPattern | annexSubclause+=AnnexSubclause
 ;
 
 fragment Parameters *:
@@ -306,9 +306,6 @@ IsConnection returns av3::AssociationType:
 IsBinding returns av3::AssociationType:
 	'binding' ;
 
-IsFlowPath returns av3::AssociationType:
-	FlowPathKeywords ;
-
 IsFlowSource returns av3::AssociationType:
 	FlowSourceKeywords ;
 
@@ -347,10 +344,9 @@ SubprogramGroupKeywords:
 	'subprogram' 'group'
 ;
 
-EndToEndFlowKeywords: 'end''to''end''flow';
 FlowSourceKeywords: 'flow''source';
 FlowSinkKeywords: 'flow''sink';
-FlowPathKeywords: 'flow''path';
+//FlowPathKeywords: 'flow';
 
 InOutKeywords: 'in''out'; 
 BusAccessKeywords: 'bus''access' ; 

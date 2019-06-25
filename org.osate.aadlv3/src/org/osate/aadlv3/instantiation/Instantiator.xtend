@@ -9,7 +9,7 @@ import org.osate.aadlv3.aadlv3.Association
 import org.osate.aadlv3.aadlv3.Component
 import org.osate.aadlv3.aadlv3.ComponentClassifier
 import org.osate.aadlv3.aadlv3.ComponentInterface
-import org.osate.aadlv3.aadlv3.ConfigurationAssignment
+import org.osate.aadlv3.aadlv3.ClassifierAssignment
 import org.osate.aadlv3.aadlv3.Feature
 import org.osate.aadlv3.aadlv3.FeatureCategory
 import org.osate.aadlv3.aadlv3.PathElement
@@ -68,7 +68,7 @@ class Instantiator {
 		}
 		instanceResource.contents.clear
 		
-		val casscopes = new Stack <Iterable<ConfigurationAssignment>>()
+		val casscopes = new Stack <Iterable<ClassifierAssignment>>()
 		val tref = c.getConfiguredTypeReferences(casscopes, null)
 		// set component instance to configured classifier
 		val ci = c.createComponentInstance(tref)
@@ -78,7 +78,7 @@ class Instantiator {
 	}
 
 	//  component to be instantiated using configured classifier confcl and set of configuration assignments
-	def void instantiateComponent(Component comp,  Stack<Iterable<ConfigurationAssignment>> casscopes, ComponentInstance context) {
+	def void instantiateComponent(Component comp,  Stack<Iterable<ClassifierAssignment>> casscopes, ComponentInstance context) {
 		var Iterable<TypeReference> trefs = null
 		val isRoot = comp.eContainer instanceof Workingset
 		val ci = if (isRoot){
@@ -104,7 +104,7 @@ class Instantiator {
 			ci.allFeatures.forEach[f|ci.features += f.instantiateFeature(trs.isReverseFeature(f))]
 			ci.allFlowSpecs.forEach[fs|fs.instantiateFlowSpec(ci)]
 			val comps = ci.allSubcomponents
-			val cas = trefs.allConfigurationAssignments
+			val cas = trefs.allClassifierAssignments
 			casscopes.push(cas)
 			comps.forEach[subc|subc.instantiateComponent(casscopes, ci)]
 			casscopes.pop
@@ -139,8 +139,8 @@ class Instantiator {
 			for (pa : ctyperefs.allPropertyAssociations){
 				ci.addPropertyAssociationInstance(pa)
 			}
-			for (ca : ctyperefs.allConfigurationAssignments){
-				ci.processConfigurationAssignmentPropertyAssociations(ca)
+			for (ca : ctyperefs.allClassifierAssignments){
+				ci.processClassifierAssignmentPropertyAssociations(ca)
 			}
 		}
 		// handle property assignments attached to (sub)component
@@ -405,13 +405,13 @@ class Instantiator {
 		psi.elements += context.getInstanceElement(pe)
 	}
 	
-	def void processConfigurationAssignmentPropertyAssociations(InstanceObject context, ConfigurationAssignment ca){
+	def void processClassifierAssignmentPropertyAssociations(InstanceObject context, ClassifierAssignment ca){
 		val target = context.getInstanceElement(ca.target)
 		for (pa : ca.propertyAssociations){
 			target.addPropertyAssociationInstance(pa)
 		}
-		for (subca : ca.configurationAssignments){
-			target.processConfigurationAssignmentPropertyAssociations(subca)
+		for (subca : ca.classifierAssignments){
+			target.processClassifierAssignmentPropertyAssociations(subca)
 		}
 	}
 	
@@ -490,8 +490,8 @@ class Instantiator {
 				} else {
 					// existing is not in classifier
 					// if existing in configuration assignment
-					if (epai.propertyAssociation.eContainer instanceof ConfigurationAssignment) {
-						if (!(npa.eContainer instanceof ConfigurationAssignment)) {
+					if (epai.propertyAssociation.eContainer instanceof ClassifierAssignment) {
+						if (!(npa.eContainer instanceof ClassifierAssignment)) {
 							// if new in classifier or local then new value and ERROR
 							epai.assignNewValue(npa)
 						} else {
@@ -503,7 +503,7 @@ class Instantiator {
 							npa.propertyAssociationType === PropertyAssociationType.FINAL_VALUE) {
 							// if new classifier use new value if FINAL and ERROR
 							epai.assignNewValue(npa)
-						} else if (npa.eContainer instanceof ConfigurationAssignment) {
+						} else if (npa.eContainer instanceof ClassifierAssignment) {
 							// ERROR local was already final
 						} else {
 							// npa is local ERROR should not have occurred

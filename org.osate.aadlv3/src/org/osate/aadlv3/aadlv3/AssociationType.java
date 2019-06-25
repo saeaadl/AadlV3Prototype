@@ -60,15 +60,6 @@ public enum AssociationType implements Enumerator {
 	 */
 	FLOW(2, "flow", "flow"),
 	/**
-	 * The '<em><b>Flowpath</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	* <!-- end-user-doc -->
-	 * @see #FLOWPATH_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FLOWPATH(3, "flowpath", "flow path"),
-	/**
 	 * The '<em><b>Flowsource</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	* <!-- end-user-doc -->
@@ -76,7 +67,7 @@ public enum AssociationType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	FLOWSOURCE(4, "flowsource", "flow source"),
+	FLOWSOURCE(3, "flowsource", "flow source"),
 	/**
 	 * The '<em><b>Flowsink</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -85,7 +76,7 @@ public enum AssociationType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	FLOWSINK(5, "flowsink", "flow sink");
+	FLOWSINK(4, "flowsink", "flow sink");
 
 	/**
 	 * The '<em><b>Connection</b></em>' literal value.
@@ -133,21 +124,6 @@ public enum AssociationType implements Enumerator {
 	public static final int FLOW_VALUE = 2;
 
 	/**
-	 * The '<em><b>Flowpath</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>Flowpath</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #FLOWPATH
-	 * @model name="flowpath" literal="flow path"
-	 * @generated
-	 * @ordered
-	 */
-	public static final int FLOWPATH_VALUE = 3;
-
-	/**
 	 * The '<em><b>Flowsource</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -160,7 +136,7 @@ public enum AssociationType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FLOWSOURCE_VALUE = 4;
+	public static final int FLOWSOURCE_VALUE = 3;
 
 	/**
 	 * The '<em><b>Flowsink</b></em>' literal value.
@@ -175,7 +151,7 @@ public enum AssociationType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FLOWSINK_VALUE = 5;
+	public static final int FLOWSINK_VALUE = 4;
 
 	/**
 	 * An array of all the '<em><b>Association Type</b></em>' enumerators.
@@ -183,8 +159,8 @@ public enum AssociationType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final AssociationType[] VALUES_ARRAY = new AssociationType[] { CONNECTION, BINDING, FLOW, FLOWPATH,
-			FLOWSOURCE, FLOWSINK, };
+	private static final AssociationType[] VALUES_ARRAY = new AssociationType[] { CONNECTION, BINDING, FLOW, FLOWSOURCE,
+			FLOWSINK, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Association Type</b></em>' enumerators.
@@ -246,8 +222,6 @@ public enum AssociationType implements Enumerator {
 			return BINDING;
 		case FLOW_VALUE:
 			return FLOW;
-		case FLOWPATH_VALUE:
-			return FLOWPATH;
 		case FLOWSOURCE_VALUE:
 			return FLOWSOURCE;
 		case FLOWSINK_VALUE:

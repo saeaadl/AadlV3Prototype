@@ -66,25 +66,6 @@ public class AadlV3ValueConverter extends DefaultTerminalConverters {
 	}
 
 
-	@ValueConverter(rule = "IsFlowPath")
-	public IValueConverter<AssociationType> IsFlowPath() {
-		return new IValueConverter<AssociationType>() {
-			@Override
-			public AssociationType toValue(String string, INode node) {
-				if (string == null) {
-					return null;
-				}
-				return AssociationType.FLOWPATH;
-			}
-
-			@Override
-			public String toString(AssociationType value) {
-				return "path";
-			}
-		};
-	}
-
-
 	@ValueConverter(rule = "IsFlowSource")
 	public IValueConverter<AssociationType> IsFlowSource() {
 		return new IValueConverter<AssociationType>() {

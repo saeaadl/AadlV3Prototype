@@ -45,7 +45,6 @@ import org.osate.aadlv3.aadlv3.TypeReference;
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.FeatureImpl#getDirection <em>Direction</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.FeatureImpl#getCategory <em>Category</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.FeatureImpl#getTypeReference <em>Type Reference</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.FeatureImpl#isEvent <em>Event</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.FeatureImpl#getAnnexSubclause <em>Annex Subclause</em>}</li>
  * </ul>
  *
@@ -101,26 +100,6 @@ public class FeatureImpl extends ModelElementImpl implements Feature {
 	 * @ordered
 	 */
 	protected TypeReference typeReference;
-
-	/**
-	 * The default value of the '{@link #isEvent() <em>Event</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isEvent()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean EVENT_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isEvent() <em>Event</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isEvent()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean event = EVENT_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getAnnexSubclause() <em>Annex Subclause</em>}' containment reference list.
@@ -257,29 +236,6 @@ public class FeatureImpl extends ModelElementImpl implements Feature {
 	 * @generated
 	 */
 	@Override
-	public boolean isEvent() {
-		return event;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setEvent(boolean newEvent) {
-		boolean oldEvent = event;
-		event = newEvent;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.FEATURE__EVENT, oldEvent, event));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EList<AnnexSubclause> getAnnexSubclause() {
 		if (annexSubclause == null) {
 			annexSubclause = new EObjectContainmentEList<AnnexSubclause>(AnnexSubclause.class, this,
@@ -318,8 +274,6 @@ public class FeatureImpl extends ModelElementImpl implements Feature {
 			return getCategory();
 		case Aadlv3Package.FEATURE__TYPE_REFERENCE:
 			return getTypeReference();
-		case Aadlv3Package.FEATURE__EVENT:
-			return isEvent();
 		case Aadlv3Package.FEATURE__ANNEX_SUBCLAUSE:
 			return getAnnexSubclause();
 		}
@@ -343,9 +297,6 @@ public class FeatureImpl extends ModelElementImpl implements Feature {
 			return;
 		case Aadlv3Package.FEATURE__TYPE_REFERENCE:
 			setTypeReference((TypeReference) newValue);
-			return;
-		case Aadlv3Package.FEATURE__EVENT:
-			setEvent((Boolean) newValue);
 			return;
 		case Aadlv3Package.FEATURE__ANNEX_SUBCLAUSE:
 			getAnnexSubclause().clear();
@@ -372,9 +323,6 @@ public class FeatureImpl extends ModelElementImpl implements Feature {
 		case Aadlv3Package.FEATURE__TYPE_REFERENCE:
 			setTypeReference((TypeReference) null);
 			return;
-		case Aadlv3Package.FEATURE__EVENT:
-			setEvent(EVENT_EDEFAULT);
-			return;
 		case Aadlv3Package.FEATURE__ANNEX_SUBCLAUSE:
 			getAnnexSubclause().clear();
 			return;
@@ -396,8 +344,6 @@ public class FeatureImpl extends ModelElementImpl implements Feature {
 			return category != CATEGORY_EDEFAULT;
 		case Aadlv3Package.FEATURE__TYPE_REFERENCE:
 			return typeReference != null;
-		case Aadlv3Package.FEATURE__EVENT:
-			return event != EVENT_EDEFAULT;
 		case Aadlv3Package.FEATURE__ANNEX_SUBCLAUSE:
 			return annexSubclause != null && !annexSubclause.isEmpty();
 		}
@@ -419,8 +365,6 @@ public class FeatureImpl extends ModelElementImpl implements Feature {
 		result.append(direction);
 		result.append(", category: ");
 		result.append(category);
-		result.append(", event: ");
-		result.append(event);
 		result.append(')');
 		return result.toString();
 	}

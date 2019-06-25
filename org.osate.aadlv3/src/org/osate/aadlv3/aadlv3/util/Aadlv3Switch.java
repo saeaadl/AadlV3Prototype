@@ -296,18 +296,18 @@ public class Aadlv3Switch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case Aadlv3Package.CONFIGURATION_ASSIGNMENT: {
-			ConfigurationAssignment configurationAssignment = (ConfigurationAssignment) theEObject;
-			T result = caseConfigurationAssignment(configurationAssignment);
+		case Aadlv3Package.CLASSIFIER_ASSIGNMENT: {
+			ClassifierAssignment classifierAssignment = (ClassifierAssignment) theEObject;
+			T result = caseClassifierAssignment(classifierAssignment);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case Aadlv3Package.CONFIGURATION_ASSIGNMENT_PATTERN: {
-			ConfigurationAssignmentPattern configurationAssignmentPattern = (ConfigurationAssignmentPattern) theEObject;
-			T result = caseConfigurationAssignmentPattern(configurationAssignmentPattern);
+		case Aadlv3Package.CLASSIFIER_ASSIGNMENT_PATTERN: {
+			ClassifierAssignmentPattern classifierAssignmentPattern = (ClassifierAssignmentPattern) theEObject;
+			T result = caseClassifierAssignmentPattern(classifierAssignmentPattern);
 			if (result == null)
-				result = caseConfigurationAssignment(configurationAssignmentPattern);
+				result = caseClassifierAssignment(classifierAssignmentPattern);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -673,36 +673,6 @@ public class Aadlv3Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Configuration Assignment</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Configuration Assignment</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseConfigurationAssignment(ConfigurationAssignment object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Configuration Assignment Pattern</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Configuration Assignment Pattern</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseConfigurationAssignmentPattern(ConfigurationAssignmentPattern object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Model Element Reference</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -909,6 +879,36 @@ public class Aadlv3Switch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T casePathElement(PathElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Classifier Assignment</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Classifier Assignment</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseClassifierAssignment(ClassifierAssignment object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Classifier Assignment Pattern</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Classifier Assignment Pattern</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseClassifierAssignmentPattern(ClassifierAssignmentPattern object) {
 		return null;
 	}
 

@@ -96,10 +96,10 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 			return createPathSequence();
 		case Aadlv3Package.PATH_ELEMENT:
 			return createPathElement();
-		case Aadlv3Package.CONFIGURATION_ASSIGNMENT:
-			return createConfigurationAssignment();
-		case Aadlv3Package.CONFIGURATION_ASSIGNMENT_PATTERN:
-			return createConfigurationAssignmentPattern();
+		case Aadlv3Package.CLASSIFIER_ASSIGNMENT:
+			return createClassifierAssignment();
+		case Aadlv3Package.CLASSIFIER_ASSIGNMENT_PATTERN:
+			return createClassifierAssignmentPattern();
 		case Aadlv3Package.MODEL_ELEMENT_REFERENCE:
 			return createModelElementReference();
 		case Aadlv3Package.CONFIGURATION_PARAMETER:
@@ -304,28 +304,6 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 	 * @generated
 	 */
 	@Override
-	public ConfigurationAssignment createConfigurationAssignment() {
-		ConfigurationAssignmentImpl configurationAssignment = new ConfigurationAssignmentImpl();
-		return configurationAssignment;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ConfigurationAssignmentPattern createConfigurationAssignmentPattern() {
-		ConfigurationAssignmentPatternImpl configurationAssignmentPattern = new ConfigurationAssignmentPatternImpl();
-		return configurationAssignmentPattern;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public ModelElementReference createModelElementReference() {
 		ModelElementReferenceImpl modelElementReference = new ModelElementReferenceImpl();
 		return modelElementReference;
@@ -472,6 +450,28 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 	public PathElement createPathElement() {
 		PathElementImpl pathElement = new PathElementImpl();
 		return pathElement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ClassifierAssignment createClassifierAssignment() {
+		ClassifierAssignmentImpl classifierAssignment = new ClassifierAssignmentImpl();
+		return classifierAssignment;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ClassifierAssignmentPattern createClassifierAssignmentPattern() {
+		ClassifierAssignmentPatternImpl classifierAssignmentPattern = new ClassifierAssignmentPatternImpl();
+		return classifierAssignmentPattern;
 	}
 
 	/**

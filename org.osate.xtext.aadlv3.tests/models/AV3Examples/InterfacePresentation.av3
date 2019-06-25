@@ -135,7 +135,7 @@ system interface Top
 	FG : interface composite ;
 	L2 : interface Logical2 ;
 	  // flows
-	flow1 : flow path FG.L1.temperature -> L2.temperature;
+	flow1 : flow FG.L1.temperature -> L2.temperature;
 end;
 
 system Top.i

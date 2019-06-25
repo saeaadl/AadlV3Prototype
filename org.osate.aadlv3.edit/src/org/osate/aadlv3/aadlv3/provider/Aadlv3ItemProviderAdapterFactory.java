@@ -339,52 +339,6 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.ConfigurationAssignment} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ConfigurationAssignmentItemProvider configurationAssignmentItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.ConfigurationAssignment}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createConfigurationAssignmentAdapter() {
-		if (configurationAssignmentItemProvider == null) {
-			configurationAssignmentItemProvider = new ConfigurationAssignmentItemProvider(this);
-		}
-
-		return configurationAssignmentItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.ConfigurationAssignmentPattern} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ConfigurationAssignmentPatternItemProvider configurationAssignmentPatternItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.ConfigurationAssignmentPattern}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createConfigurationAssignmentPatternAdapter() {
-		if (configurationAssignmentPatternItemProvider == null) {
-			configurationAssignmentPatternItemProvider = new ConfigurationAssignmentPatternItemProvider(this);
-		}
-
-		return configurationAssignmentPatternItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.ModelElementReference} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -707,6 +661,52 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.ClassifierAssignment} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ClassifierAssignmentItemProvider classifierAssignmentItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.ClassifierAssignment}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createClassifierAssignmentAdapter() {
+		if (classifierAssignmentItemProvider == null) {
+			classifierAssignmentItemProvider = new ClassifierAssignmentItemProvider(this);
+		}
+
+		return classifierAssignmentItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.ClassifierAssignmentPattern} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ClassifierAssignmentPatternItemProvider classifierAssignmentPatternItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.ClassifierAssignmentPattern}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createClassifierAssignmentPatternAdapter() {
+		if (classifierAssignmentPatternItemProvider == null) {
+			classifierAssignmentPatternItemProvider = new ClassifierAssignmentPatternItemProvider(this);
+		}
+
+		return classifierAssignmentPatternItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.PathSequence} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -860,10 +860,10 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 			pathSequenceItemProvider.dispose();
 		if (pathElementItemProvider != null)
 			pathElementItemProvider.dispose();
-		if (configurationAssignmentItemProvider != null)
-			configurationAssignmentItemProvider.dispose();
-		if (configurationAssignmentPatternItemProvider != null)
-			configurationAssignmentPatternItemProvider.dispose();
+		if (classifierAssignmentItemProvider != null)
+			classifierAssignmentItemProvider.dispose();
+		if (classifierAssignmentPatternItemProvider != null)
+			classifierAssignmentPatternItemProvider.dispose();
 		if (modelElementReferenceItemProvider != null)
 			modelElementReferenceItemProvider.dispose();
 		if (configurationParameterItemProvider != null)

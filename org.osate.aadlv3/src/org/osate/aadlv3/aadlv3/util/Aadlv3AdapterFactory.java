@@ -175,13 +175,13 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseConfigurationAssignment(ConfigurationAssignment object) {
-			return createConfigurationAssignmentAdapter();
+		public Adapter caseClassifierAssignment(ClassifierAssignment object) {
+			return createClassifierAssignmentAdapter();
 		}
 
 		@Override
-		public Adapter caseConfigurationAssignmentPattern(ConfigurationAssignmentPattern object) {
-			return createConfigurationAssignmentPatternAdapter();
+		public Adapter caseClassifierAssignmentPattern(ClassifierAssignmentPattern object) {
+			return createClassifierAssignmentPatternAdapter();
 		}
 
 		@Override
@@ -493,34 +493,6 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.ConfigurationAssignment <em>Configuration Assignment</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.osate.aadlv3.aadlv3.ConfigurationAssignment
-	 * @generated
-	 */
-	public Adapter createConfigurationAssignmentAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.ConfigurationAssignmentPattern <em>Configuration Assignment Pattern</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.osate.aadlv3.aadlv3.ConfigurationAssignmentPattern
-	 * @generated
-	 */
-	public Adapter createConfigurationAssignmentPatternAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.ModelElementReference <em>Model Element Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -713,6 +685,34 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createPathElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.ClassifierAssignment <em>Classifier Assignment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.osate.aadlv3.aadlv3.ClassifierAssignment
+	 * @generated
+	 */
+	public Adapter createClassifierAssignmentAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.ClassifierAssignmentPattern <em>Classifier Assignment Pattern</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.osate.aadlv3.aadlv3.ClassifierAssignmentPattern
+	 * @generated
+	 */
+	public Adapter createClassifierAssignmentPatternAdapter() {
 		return null;
 	}
 
