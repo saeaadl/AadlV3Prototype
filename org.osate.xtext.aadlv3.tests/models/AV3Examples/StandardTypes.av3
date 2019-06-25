@@ -1,0 +1,8 @@
+package StandardTypes is
+	type int;
+	type real;
+	type time;
+	type string;
+	
+	type event;
+end;

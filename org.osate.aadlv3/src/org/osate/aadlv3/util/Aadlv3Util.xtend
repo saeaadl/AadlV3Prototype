@@ -99,8 +99,6 @@ class Aadlv3Util {
 				ComponentClassifier: {
 					result.add(t)
 					t.addSuperComponentClassifiers(result)
-					val base = t.getBaseInterface(result.componentCategory)
-					if (base !== null) result += base
 				}
 				DataType: {
 				}
@@ -123,8 +121,6 @@ class Aadlv3Util {
 			result.add(cc)
 		}
 		cc.addSuperComponentClassifiers(result)
-		val base = cc.getBaseInterface(result.componentCategory)
-		if (base !== null) result += base
 		return result
 	}
 
@@ -137,8 +133,6 @@ class Aadlv3Util {
 		val result = new LinkedHashSet<ComponentClassifier>
 		if(cc === null || cc.eIsProxy) return result
 		cc.addSuperComponentClassifiers(result)
-		val base = cc.getBaseInterface(result.componentCategory)
-		if (base !== null) result += base
 		return result
 	}
 
@@ -1343,97 +1337,6 @@ class Aadlv3Util {
 	}
 	
 
-	
-	////////////////////////////////////
-	// deal with predeclared base interfaces for different component categories
-	///////////////////////////////////
-	
-	def static ComponentInterface getBaseInterface(EObject context, ComponentCategory cat){
-		switch cat {
-			case ComponentCategory.THREAD: {
-				Av3API.lookupComponentClassifier(context,"BaseInterfaces::BaseThread") as ComponentInterface
-				}
-			case BUS: {
-			}
-			case ABSTRACT: {
-			}
-			case DATA: {
-			}
-			case DEVICE: {
-			}
-			case MEMORY: {
-			}
-			case PROCESS: {
-			}
-			case PROCESSOR: {
-				Av3API.lookupComponentClassifier(context,"BaseInterfaces::BaseProcessor") as ComponentInterface
-			}
-			case SUBPROGRAM: {
-			}
-			case SUBPROGRAMGROUP: {
-			}
-			case SYSTEM: {
-			}
-			case THREADGROUP: {
-			}
-			case VIRTUALBUS: {
-			}
-			case VIRTUALDEVICE: {
-			}
-			case VIRTUALMEMORY: {
-			}
-			case VIRTUALPROCESSOR: {
-			}
-			case INTERFACE: {
-			}
-		}
-	}
-	
-	////////////////////////////////////////
-	// Instance Model methods
-	///////////////////////////////////////
-//
-//	def static FeatureInstance createFeatureInstance(Feature f, boolean reverse) {
-//		val featurei = Av3instanceFactory.eINSTANCE.createFeatureInstance
-//		featurei.name = f.name
-//		featurei.direction = if (reverse) f.direction.reverseDirection else f.direction
-//		featurei.feature = f
-//		featurei.category = f.category
-//		return featurei
-//	}
-//
-//	def static PathInstance createPathSequenceInstance(PathSequence ps) {
-//		val psi = Av3instanceFactory.eINSTANCE.createPathInstance
-//		psi.name = ps.name
-//		psi.path = ps
-//		return psi
-//	}
-//
-//	def static AssociationInstance createAssociationInstance(Association assoc) {
-//		val associ = Av3instanceFactory.eINSTANCE.createAssociationInstance
-//		associ.name = assoc.name
-//		associ.association = assoc
-//		associ.associationType = assoc.associationType
-//		return associ
-//	}
-//
-//	def static ComponentInstance createComponentInstance(Component c, Iterable<TypeReference> configuredtypereferences) {
-//		val compi = Av3instanceFactory.eINSTANCE.createComponentInstance
-//		compi.name = c.name
-//		compi.category = c.category
-//		compi.component = c
-//		Aadlv3Util.configuredClassifierTypereferenceCache.put(compi, configuredtypereferences)
-//		return compi
-//	}
-//	
-//	def static createPropertyAssociationInstance(PropertyAssociation pa){
-//		val pai = Av3instanceFactory.eINSTANCE.createPropertyAssociationInstance
-//		pai.property = pa.property
-//		pai.propertyAssociation = pa
-//		pai.propertyAssociationType = pa.propertyAssociationType
-//		pai.value = pa.value.copy
-//		return pai
-//	}
 
 	static HashMap<ComponentInstance, Iterable<TypeReference>> configuredClassifierTypereferenceCache = new HashMap;
 	
