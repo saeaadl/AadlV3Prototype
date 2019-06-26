@@ -15,8 +15,6 @@
  */
 package org.osate.aadlv3.aadlv3;
 
-import org.eclipse.emf.common.util.EList;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Feature</b></em>'.
@@ -29,7 +27,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.osate.aadlv3.aadlv3.Feature#getDirection <em>Direction</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.Feature#getCategory <em>Category</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.Feature#getTypeReference <em>Type Reference</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.Feature#getAnnexSubclause <em>Annex Subclause</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.Feature#getPropagation <em>Propagation</em>}</li>
  * </ul>
  *
  * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getFeature()
@@ -122,15 +120,25 @@ public interface Feature extends ModelElement {
 	void setTypeReference(TypeReference value);
 
 	/**
-	 * Returns the value of the '<em><b>Annex Subclause</b></em>' containment reference list.
-	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.AnnexSubclause}.
+	 * Returns the value of the '<em><b>Propagation</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Annex Subclause</em>' containment reference list.
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getFeature_AnnexSubclause()
+	 * @return the value of the '<em>Propagation</em>' containment reference.
+	 * @see #setPropagation(TypeSet)
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getFeature_Propagation()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<AnnexSubclause> getAnnexSubclause();
+	TypeSet getPropagation();
+
+	/**
+	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.Feature#getPropagation <em>Propagation</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Propagation</em>' containment reference.
+	 * @see #getPropagation()
+	 * @generated
+	 */
+	void setPropagation(TypeSet value);
 
 } // Feature

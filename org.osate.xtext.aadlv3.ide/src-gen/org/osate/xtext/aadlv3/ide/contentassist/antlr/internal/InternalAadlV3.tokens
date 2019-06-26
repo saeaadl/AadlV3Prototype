@@ -1,11 +1,10 @@
-'#'=57
+'#'=59
 '('=43
 ')'=44
 '*=>'=35
-'*}'=60
 ','=45
 '->'=14
-'.'=53
+'.'=55
 ':'=41
 '::'=63
 '::*'=62
@@ -13,11 +12,12 @@
 '<->'=70
 '='=34
 '=>'=33
-'@'=58
+'@'=60
+'@e'=54
 'abstract'=15
 'access'=68
-'all'=56
-'as'=55
+'all'=58
+'as'=57
 'binding'=12
 'bus'=16
 'configuration'=51
@@ -30,7 +30,7 @@
 'flow'=13
 'for'=42
 'group'=65
-'import'=54
+'import'=56
 'in'=29
 'interface'=28
 'is'=37
@@ -42,6 +42,7 @@
 'private'=69
 'process'=20
 'processor'=21
+'propagates'=53
 'properties'=46
 'property'=40
 'provides'=32
@@ -57,7 +58,6 @@
 'virtual'=64
 'workingset'=61
 '{'=47
-'{*'=59
 '}'=48
 RULE_ANY_OTHER=10
 RULE_ID=4

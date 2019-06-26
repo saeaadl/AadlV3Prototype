@@ -61,7 +61,6 @@ public class FeatureItemProvider extends ModelElementItemProvider {
 
 			addDirectionPropertyDescriptor(object);
 			addCategoryPropertyDescriptor(object);
-			addAnnexSubclausePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -99,21 +98,6 @@ public class FeatureItemProvider extends ModelElementItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Annex Subclause feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addAnnexSubclausePropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Feature_annexSubclause_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Feature_annexSubclause_feature",
-								"_UI_Feature_type"),
-						Aadlv3Package.Literals.FEATURE__ANNEX_SUBCLAUSE, true, false, true, null, null, null));
-	}
-
-	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -126,6 +110,7 @@ public class FeatureItemProvider extends ModelElementItemProvider {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(Aadlv3Package.Literals.FEATURE__TYPE_REFERENCE);
+			childrenFeatures.add(Aadlv3Package.Literals.FEATURE__PROPAGATION);
 		}
 		return childrenFeatures;
 	}
@@ -184,6 +169,7 @@ public class FeatureItemProvider extends ModelElementItemProvider {
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		case Aadlv3Package.FEATURE__TYPE_REFERENCE:
+		case Aadlv3Package.FEATURE__PROPAGATION:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -203,6 +189,9 @@ public class FeatureItemProvider extends ModelElementItemProvider {
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.FEATURE__TYPE_REFERENCE,
 				Aadlv3Factory.eINSTANCE.createTypeReference()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.FEATURE__PROPAGATION,
+				Aadlv3Factory.eINSTANCE.createTypeSet()));
 	}
 
 }

@@ -87,6 +87,7 @@
     <genClasses ecoreClass="Aadlv3.ecore#//ModelElement">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ModelElement/propertyAssociations"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ModelElement/inModes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ModelElement/annexElements"/>
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//Type"/>
     <genClasses ecoreClass="Aadlv3.ecore#//DataType">
@@ -125,7 +126,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//Feature/direction"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//Feature/category"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Feature/typeReference"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Feature/annexSubclause"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Feature/propagation"/>
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//Component">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//Component/category"/>
@@ -216,5 +217,10 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ModeStateMachine/transitions"/>
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//AnnexSubclause"/>
+    <genClasses ecoreClass="Aadlv3.ecore#//AnnexElement"/>
+    <genClasses ecoreClass="Aadlv3.ecore#//TypeSet">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//TypeSet/direction"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//TypeSet/propagatedTypes"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

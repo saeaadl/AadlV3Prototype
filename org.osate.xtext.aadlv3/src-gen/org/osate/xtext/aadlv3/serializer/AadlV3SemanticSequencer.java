@@ -27,6 +27,7 @@ import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
 import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequencer;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
+import org.osate.aadlv3.aadlv3.AnnexElement;
 import org.osate.aadlv3.aadlv3.AnnexSubclause;
 import org.osate.aadlv3.aadlv3.Association;
 import org.osate.aadlv3.aadlv3.ClassifierAssignment;
@@ -49,6 +50,7 @@ import org.osate.aadlv3.aadlv3.PropertyDefinition;
 import org.osate.aadlv3.aadlv3.PropertySet;
 import org.osate.aadlv3.aadlv3.PropertyValue;
 import org.osate.aadlv3.aadlv3.TypeReference;
+import org.osate.aadlv3.aadlv3.TypeSet;
 import org.osate.aadlv3.aadlv3.Workingset;
 import org.osate.xtext.aadlv3.services.AadlV3GrammarAccess;
 
@@ -66,6 +68,9 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 		Set<Parameter> parameters = context.getEnabledBooleanParameters();
 		if (epackage == Aadlv3Package.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
+			case Aadlv3Package.ANNEX_ELEMENT:
+				sequence_AnnexElement(context, (AnnexElement) semanticObject); 
+				return; 
 			case Aadlv3Package.ANNEX_SUBCLAUSE:
 				sequence_AnnexSubclause(context, (AnnexSubclause) semanticObject); 
 				return; 
@@ -177,6 +182,16 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 					return; 
 				}
 				else break;
+			case Aadlv3Package.TYPE_SET:
+				if (rule == grammarAccess.getEPropagationsRule()) {
+					sequence_EPropagations(context, (TypeSet) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getPropagationsRule()) {
+					sequence_Propagations(context, (TypeSet) semanticObject); 
+					return; 
+				}
+				else break;
 			case Aadlv3Package.WORKINGSET:
 				sequence_UseProps_Workingset(context, (Workingset) semanticObject); 
 				return; 
@@ -184,6 +199,24 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 		if (errorAcceptor != null)
 			errorAcceptor.accept(diagnosticProvider.createInvalidContextOrTypeDiagnostic(semanticObject, context));
 	}
+	
+	/**
+	 * Contexts:
+	 *     AnnexElement returns AnnexElement
+	 *
+	 * Constraint:
+	 *     name=ID
+	 */
+	protected void sequence_AnnexElement(ISerializationContext context, AnnexElement semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, Aadlv3Package.Literals.NAMED_ELEMENT__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, Aadlv3Package.Literals.NAMED_ELEMENT__NAME));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getAnnexElementAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
+		feeder.finish();
+	}
+	
 	
 	/**
 	 * Contexts:
@@ -482,6 +515,18 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
+	 *     EPropagations returns TypeSet
+	 *
+	 * Constraint:
+	 *     (direction=FeatureDirection? propagatedTypes+=[Type|QualifiedTypesReference] propagatedTypes+=[Type|QualifiedTypesReference]*)
+	 */
+	protected void sequence_EPropagations(ISerializationContext context, TypeSet semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Feature returns Feature
 	 *
 	 * Constraint:
@@ -490,7 +535,8 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *         direction=FeatureDirection? 
 	 *         category=FeatureCategory 
 	 *         typeReference=ReversableTypeReference? 
-	 *         annexSubclause+=AnnexSubclause? 
+	 *         (propagation=Propagations | propagation=EPropagations)? 
+	 *         annexElements+=AnnexElement* 
 	 *         propertyAssociations+=PropertyAssociation*
 	 *     )
 	 */
@@ -624,6 +670,18 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     (name=ID elements+=PathElement elements+=PathElement+ propertyAssociations+=PropertyAssociation*)
 	 */
 	protected void sequence_Path_PropertiesBlock(ISerializationContext context, PathSequence semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Propagations returns TypeSet
+	 *
+	 * Constraint:
+	 *     (direction=FeatureDirection? propagatedTypes+=[Type|QualifiedTypesReference] propagatedTypes+=[Type|QualifiedTypesReference]*)
+	 */
+	protected void sequence_Propagations(ISerializationContext context, TypeSet semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

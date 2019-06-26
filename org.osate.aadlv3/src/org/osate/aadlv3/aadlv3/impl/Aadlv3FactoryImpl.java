@@ -126,6 +126,10 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 			return createModeStateMachine();
 		case Aadlv3Package.ANNEX_SUBCLAUSE:
 			return createAnnexSubclause();
+		case Aadlv3Package.ANNEX_ELEMENT:
+			return createAnnexElement();
+		case Aadlv3Package.TYPE_SET:
+			return createTypeSet();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -439,6 +443,28 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 	public AnnexSubclause createAnnexSubclause() {
 		AnnexSubclauseImpl annexSubclause = new AnnexSubclauseImpl();
 		return annexSubclause;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public AnnexElement createAnnexElement() {
+		AnnexElementImpl annexElement = new AnnexElementImpl();
+		return annexElement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public TypeSet createTypeSet() {
+		TypeSetImpl typeSet = new TypeSetImpl();
+		return typeSet;
 	}
 
 	/**

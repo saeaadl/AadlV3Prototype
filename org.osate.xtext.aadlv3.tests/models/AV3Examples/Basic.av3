@@ -3,6 +3,7 @@ package Basic is
 // property associated with model element and as contained property in classifier
 
 import StandardProperties::*;
+import ErrorTypes::*;
 
 	type date ;
 	type person ;
@@ -16,8 +17,10 @@ import StandardProperties::*;
 	end;
 	
 	interface subsub is
-		p1 : in port date ;
-		p2 : in port date { #Data_Size => 3; };
+		p1 : in port date propagates {ServiceOmission};
+		p2 : in port date @e{ValueError,TimingError} { #Data_Size => 3;} ;
+//		p2 : in port date  { @e{ValueError,TimingError}; #Data_Size => 3;} ;
+//		p2 : in port date  { @e{* propagates {ValueError,TimingError}*}; #Data_Size => 3;} ;
 		p1#Data_Size => 3;
 	end;
 	system sub.impl is

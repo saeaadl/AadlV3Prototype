@@ -638,6 +638,52 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.AnnexElement} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AnnexElementItemProvider annexElementItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.AnnexElement}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createAnnexElementAdapter() {
+		if (annexElementItemProvider == null) {
+			annexElementItemProvider = new AnnexElementItemProvider(this);
+		}
+
+		return annexElementItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.TypeSet} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected TypeSetItemProvider typeSetItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.TypeSet}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createTypeSetAdapter() {
+		if (typeSetItemProvider == null) {
+			typeSetItemProvider = new TypeSetItemProvider(this);
+		}
+
+		return typeSetItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.PathElement} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -890,6 +936,10 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 			modeStateMachineItemProvider.dispose();
 		if (annexSubclauseItemProvider != null)
 			annexSubclauseItemProvider.dispose();
+		if (annexElementItemProvider != null)
+			annexElementItemProvider.dispose();
+		if (typeSetItemProvider != null)
+			typeSetItemProvider.dispose();
 	}
 
 }

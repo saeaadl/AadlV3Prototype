@@ -81,7 +81,8 @@ Feature returns av3::Feature:
 	name=ID ':' direction=FeatureDirection?  
 	category=FeatureCategory 
 	(typeReference=ReversableTypeReference )?
-	annexSubclause+=AnnexSubclause?
+	(propagation=Propagations|propagation=EPropagations)?
+	annexElements+=AnnexElement*
 	PropertiesBlock? ';'
 	;
 
@@ -118,6 +119,21 @@ FlowSink returns av3::Association:
 fragment UseProps*:	
 	'use''properties' useProperties += [av3::PropertySet|QualifiedName] (',' useProperties += [av3::PropertySet|QualifiedName])* 
 	';'
+;
+
+
+Propagations returns av3::TypeSet:	
+	'propagates' direction=FeatureDirection? '{'   propagatedTypes+=[av3::Type|QualifiedTypesReference]
+ (',' propagatedTypes+=[av3::Type|QualifiedTypesReference]
+)* 
+	'}'
+;
+
+EPropagations returns av3::TypeSet:	
+	'@e' '{' direction=FeatureDirection? propagatedTypes+=[av3::Type|QualifiedTypesReference]
+ (',' propagatedTypes+=[av3::Type|QualifiedTypesReference]
+)* 
+	'}'
 ;
 
 
@@ -216,7 +232,11 @@ ImplementationReference returns av3::TypeReference :
 ;
 
 AnnexSubclause returns av3::AnnexSubclause :
-	'@' name=ID '{*' '*}'
+	'@' name=ID '{' '}'
+;
+
+AnnexElement returns av3::AnnexElement :
+	'@' name=ID '{' '}'
 ;
 
 fragment PropertiesBlock *:
@@ -296,6 +316,10 @@ FeatureDirection returns av3::FeatureDirection:
 	ProvidesReadKeywords | RequiresReadKeywords | ProvidesWriteKeywords | RequiresWriteKeywords | ProvidesRWKeywords | RequiresRWKeywords
 	;
 
+PropagationDirection returns av3::FeatureDirection:
+	'in' | 'out' ;
+	
+	
 AssociationType returns  av3::AssociationType:
 	IsConnection | IsBinding | IsFlow 
 ;

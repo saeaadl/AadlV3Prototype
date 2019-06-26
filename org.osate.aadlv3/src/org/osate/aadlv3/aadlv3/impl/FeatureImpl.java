@@ -15,24 +15,19 @@
  */
 package org.osate.aadlv3.aadlv3.impl;
 
-import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
-import org.osate.aadlv3.aadlv3.AnnexSubclause;
 import org.osate.aadlv3.aadlv3.Feature;
 import org.osate.aadlv3.aadlv3.FeatureCategory;
 import org.osate.aadlv3.aadlv3.FeatureDirection;
 import org.osate.aadlv3.aadlv3.TypeReference;
+import org.osate.aadlv3.aadlv3.TypeSet;
 
 /**
  * <!-- begin-user-doc -->
@@ -45,7 +40,7 @@ import org.osate.aadlv3.aadlv3.TypeReference;
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.FeatureImpl#getDirection <em>Direction</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.FeatureImpl#getCategory <em>Category</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.FeatureImpl#getTypeReference <em>Type Reference</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.FeatureImpl#getAnnexSubclause <em>Annex Subclause</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.FeatureImpl#getPropagation <em>Propagation</em>}</li>
  * </ul>
  *
  * @generated
@@ -102,14 +97,14 @@ public class FeatureImpl extends ModelElementImpl implements Feature {
 	protected TypeReference typeReference;
 
 	/**
-	 * The cached value of the '{@link #getAnnexSubclause() <em>Annex Subclause</em>}' containment reference list.
+	 * The cached value of the '{@link #getPropagation() <em>Propagation</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAnnexSubclause()
+	 * @see #getPropagation()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<AnnexSubclause> annexSubclause;
+	protected TypeSet propagation;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -236,12 +231,50 @@ public class FeatureImpl extends ModelElementImpl implements Feature {
 	 * @generated
 	 */
 	@Override
-	public EList<AnnexSubclause> getAnnexSubclause() {
-		if (annexSubclause == null) {
-			annexSubclause = new EObjectContainmentEList<AnnexSubclause>(AnnexSubclause.class, this,
-					Aadlv3Package.FEATURE__ANNEX_SUBCLAUSE);
+	public TypeSet getPropagation() {
+		return propagation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetPropagation(TypeSet newPropagation, NotificationChain msgs) {
+		TypeSet oldPropagation = propagation;
+		propagation = newPropagation;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					Aadlv3Package.FEATURE__PROPAGATION, oldPropagation, newPropagation);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
-		return annexSubclause;
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setPropagation(TypeSet newPropagation) {
+		if (newPropagation != propagation) {
+			NotificationChain msgs = null;
+			if (propagation != null)
+				msgs = ((InternalEObject) propagation).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE - Aadlv3Package.FEATURE__PROPAGATION, null, msgs);
+			if (newPropagation != null)
+				msgs = ((InternalEObject) newPropagation).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE - Aadlv3Package.FEATURE__PROPAGATION, null, msgs);
+			msgs = basicSetPropagation(newPropagation, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.FEATURE__PROPAGATION, newPropagation,
+					newPropagation));
 	}
 
 	/**
@@ -254,8 +287,8 @@ public class FeatureImpl extends ModelElementImpl implements Feature {
 		switch (featureID) {
 		case Aadlv3Package.FEATURE__TYPE_REFERENCE:
 			return basicSetTypeReference(null, msgs);
-		case Aadlv3Package.FEATURE__ANNEX_SUBCLAUSE:
-			return ((InternalEList<?>) getAnnexSubclause()).basicRemove(otherEnd, msgs);
+		case Aadlv3Package.FEATURE__PROPAGATION:
+			return basicSetPropagation(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -274,8 +307,8 @@ public class FeatureImpl extends ModelElementImpl implements Feature {
 			return getCategory();
 		case Aadlv3Package.FEATURE__TYPE_REFERENCE:
 			return getTypeReference();
-		case Aadlv3Package.FEATURE__ANNEX_SUBCLAUSE:
-			return getAnnexSubclause();
+		case Aadlv3Package.FEATURE__PROPAGATION:
+			return getPropagation();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -298,9 +331,8 @@ public class FeatureImpl extends ModelElementImpl implements Feature {
 		case Aadlv3Package.FEATURE__TYPE_REFERENCE:
 			setTypeReference((TypeReference) newValue);
 			return;
-		case Aadlv3Package.FEATURE__ANNEX_SUBCLAUSE:
-			getAnnexSubclause().clear();
-			getAnnexSubclause().addAll((Collection<? extends AnnexSubclause>) newValue);
+		case Aadlv3Package.FEATURE__PROPAGATION:
+			setPropagation((TypeSet) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -323,8 +355,8 @@ public class FeatureImpl extends ModelElementImpl implements Feature {
 		case Aadlv3Package.FEATURE__TYPE_REFERENCE:
 			setTypeReference((TypeReference) null);
 			return;
-		case Aadlv3Package.FEATURE__ANNEX_SUBCLAUSE:
-			getAnnexSubclause().clear();
+		case Aadlv3Package.FEATURE__PROPAGATION:
+			setPropagation((TypeSet) null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -344,8 +376,8 @@ public class FeatureImpl extends ModelElementImpl implements Feature {
 			return category != CATEGORY_EDEFAULT;
 		case Aadlv3Package.FEATURE__TYPE_REFERENCE:
 			return typeReference != null;
-		case Aadlv3Package.FEATURE__ANNEX_SUBCLAUSE:
-			return annexSubclause != null && !annexSubclause.isEmpty();
+		case Aadlv3Package.FEATURE__PROPAGATION:
+			return propagation != null;
 		}
 		return super.eIsSet(featureID);
 	}

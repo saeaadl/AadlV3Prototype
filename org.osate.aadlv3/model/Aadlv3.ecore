@@ -32,6 +32,8 @@
         eType="#//PropertyAssociation" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="inModes" upperBound="-1"
         eType="#//Mode"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="annexElements" upperBound="-1"
+        eType="#//AnnexElement" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Type" abstract="true" eSuperTypes="#//NamedElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="DataType" eSuperTypes="#//PackageElement #//Type">
@@ -90,8 +92,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="category" eType="#//FeatureCategory"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="typeReference" eType="#//TypeReference"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="annexSubclause" upperBound="-1"
-        eType="#//AnnexSubclause" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="propagation" eType="#//TypeSet"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Component" eSuperTypes="#//ModelElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="category" eType="#//ComponentCategory"/>
@@ -270,4 +272,10 @@
         eType="#//ModeTransition" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AnnexSubclause" eSuperTypes="#//ModelElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AnnexElement" eSuperTypes="#//ModelElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TypeSet" eSuperTypes="#//ModelElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="direction" eType="#//FeatureDirection"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="propagatedTypes" upperBound="-1"
+        eType="#//Type"/>
+  </eClassifiers>
 </ecore:EPackage>

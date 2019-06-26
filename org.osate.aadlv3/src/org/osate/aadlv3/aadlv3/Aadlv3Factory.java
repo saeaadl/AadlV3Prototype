@@ -251,6 +251,24 @@ public interface Aadlv3Factory extends EFactory {
 	AnnexSubclause createAnnexSubclause();
 
 	/**
+	 * Returns a new object of class '<em>Annex Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Annex Element</em>'.
+	 * @generated
+	 */
+	AnnexElement createAnnexElement();
+
+	/**
+	 * Returns a new object of class '<em>Type Set</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Type Set</em>'.
+	 * @generated
+	 */
+	TypeSet createTypeSet();
+
+	/**
 	 * Returns a new object of class '<em>Path Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

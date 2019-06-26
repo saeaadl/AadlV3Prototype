@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.osate.aadlv3.aadlv3.Aadlv3Factory;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
+import org.osate.aadlv3.aadlv3.AnnexElement;
 import org.osate.aadlv3.aadlv3.AnnexSubclause;
 import org.osate.aadlv3.aadlv3.Association;
 import org.osate.aadlv3.aadlv3.AssociationType;
@@ -63,6 +64,7 @@ import org.osate.aadlv3.aadlv3.PropertySet;
 import org.osate.aadlv3.aadlv3.PropertyValue;
 import org.osate.aadlv3.aadlv3.Type;
 import org.osate.aadlv3.aadlv3.TypeReference;
+import org.osate.aadlv3.aadlv3.TypeSet;
 import org.osate.aadlv3.aadlv3.Workingset;
 
 /**
@@ -274,6 +276,20 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	private EClass annexSubclauseEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass annexElementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass typeSetEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -595,6 +611,16 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
+	public EReference getModelElement_AnnexElements() {
+		return (EReference) modelElementEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getType() {
 		return typeEClass;
 	}
@@ -875,7 +901,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getFeature_AnnexSubclause() {
+	public EReference getFeature_Propagation() {
 		return (EReference) featureEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -1435,6 +1461,46 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
+	public EClass getAnnexElement() {
+		return annexElementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getTypeSet() {
+		return typeSetEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getTypeSet_Direction() {
+		return (EAttribute) typeSetEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getTypeSet_PropagatedTypes() {
+		return (EReference) typeSetEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getPathElement() {
 		return pathElementEClass;
 	}
@@ -1712,6 +1778,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		modelElementEClass = createEClass(MODEL_ELEMENT);
 		createEReference(modelElementEClass, MODEL_ELEMENT__PROPERTY_ASSOCIATIONS);
 		createEReference(modelElementEClass, MODEL_ELEMENT__IN_MODES);
+		createEReference(modelElementEClass, MODEL_ELEMENT__ANNEX_ELEMENTS);
 
 		typeEClass = createEClass(TYPE);
 
@@ -1751,7 +1818,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		createEAttribute(featureEClass, FEATURE__DIRECTION);
 		createEAttribute(featureEClass, FEATURE__CATEGORY);
 		createEReference(featureEClass, FEATURE__TYPE_REFERENCE);
-		createEReference(featureEClass, FEATURE__ANNEX_SUBCLAUSE);
+		createEReference(featureEClass, FEATURE__PROPAGATION);
 
 		componentEClass = createEClass(COMPONENT);
 		createEAttribute(componentEClass, COMPONENT__CATEGORY);
@@ -1843,6 +1910,12 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 
 		annexSubclauseEClass = createEClass(ANNEX_SUBCLAUSE);
 
+		annexElementEClass = createEClass(ANNEX_ELEMENT);
+
+		typeSetEClass = createEClass(TYPE_SET);
+		createEAttribute(typeSetEClass, TYPE_SET__DIRECTION);
+		createEReference(typeSetEClass, TYPE_SET__PROPAGATED_TYPES);
+
 		// Create enums
 		componentCategoryEEnum = createEEnum(COMPONENT_CATEGORY);
 		featureCategoryEEnum = createEEnum(FEATURE_CATEGORY);
@@ -1906,6 +1979,8 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		modeTransitionEClass.getESuperTypes().add(this.getModelElement());
 		modeStateMachineEClass.getESuperTypes().add(this.getPackageElement());
 		annexSubclauseEClass.getESuperTypes().add(this.getModelElement());
+		annexElementEClass.getESuperTypes().add(this.getModelElement());
+		typeSetEClass.getESuperTypes().add(this.getModelElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(packageDeclarationEClass, PackageDeclaration.class, "PackageDeclaration", !IS_ABSTRACT,
@@ -1960,6 +2035,9 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		initEReference(getModelElement_InModes(), this.getMode(), null, "inModes", null, 0, -1, ModelElement.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getModelElement_AnnexElements(), this.getAnnexElement(), null, "annexElements", null, 0, -1,
+				ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(typeEClass, Type.class, "Type", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -2049,9 +2127,9 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		initEReference(getFeature_TypeReference(), this.getTypeReference(), null, "typeReference", null, 0, 1,
 				Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getFeature_AnnexSubclause(), this.getAnnexSubclause(), null, "annexSubclause", null, 0, -1,
-				Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFeature_Propagation(), this.getTypeSet(), null, "propagation", null, 0, 1, Feature.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(componentEClass, Component.class, "Component", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
@@ -2255,6 +2333,16 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 
 		initEClass(annexSubclauseEClass, AnnexSubclause.class, "AnnexSubclause", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(annexElementEClass, AnnexElement.class, "AnnexElement", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(typeSetEClass, TypeSet.class, "TypeSet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getTypeSet_Direction(), this.getFeatureDirection(), "direction", null, 0, 1, TypeSet.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTypeSet_PropagatedTypes(), this.getType(), null, "propagatedTypes", null, 0, -1,
+				TypeSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(componentCategoryEEnum, ComponentCategory.class, "ComponentCategory");
