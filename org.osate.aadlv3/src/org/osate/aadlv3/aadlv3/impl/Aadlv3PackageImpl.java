@@ -25,7 +25,9 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.osate.aadlv3.aadlv3.Aadlv3Factory;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
+import org.osate.aadlv3.aadlv3.AnnexDefinition;
 import org.osate.aadlv3.aadlv3.AnnexElement;
+import org.osate.aadlv3.aadlv3.AnnexLibrary;
 import org.osate.aadlv3.aadlv3.AnnexSubclause;
 import org.osate.aadlv3.aadlv3.Association;
 import org.osate.aadlv3.aadlv3.AssociationType;
@@ -290,6 +292,20 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	private EClass typeSetEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass annexLibraryEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass annexDefinitionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1501,6 +1517,26 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
+	public EClass getAnnexLibrary() {
+		return annexLibraryEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getAnnexDefinition() {
+		return annexDefinitionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getPathElement() {
 		return pathElementEClass;
 	}
@@ -1916,6 +1952,10 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		createEAttribute(typeSetEClass, TYPE_SET__DIRECTION);
 		createEReference(typeSetEClass, TYPE_SET__PROPAGATED_TYPES);
 
+		annexLibraryEClass = createEClass(ANNEX_LIBRARY);
+
+		annexDefinitionEClass = createEClass(ANNEX_DEFINITION);
+
 		// Create enums
 		componentCategoryEEnum = createEEnum(COMPONENT_CATEGORY);
 		featureCategoryEEnum = createEEnum(FEATURE_CATEGORY);
@@ -1981,6 +2021,8 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		annexSubclauseEClass.getESuperTypes().add(this.getModelElement());
 		annexElementEClass.getESuperTypes().add(this.getModelElement());
 		typeSetEClass.getESuperTypes().add(this.getModelElement());
+		annexLibraryEClass.getESuperTypes().add(this.getPackageDeclaration());
+		annexDefinitionEClass.getESuperTypes().add(this.getPackageElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(packageDeclarationEClass, PackageDeclaration.class, "PackageDeclaration", !IS_ABSTRACT,
@@ -2343,6 +2385,12 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		initEReference(getTypeSet_PropagatedTypes(), this.getType(), null, "propagatedTypes", null, 0, -1,
 				TypeSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(annexLibraryEClass, AnnexLibrary.class, "AnnexLibrary", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(annexDefinitionEClass, AnnexDefinition.class, "AnnexDefinition", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
 
 		// Initialize enums and add enum literals
 		initEEnum(componentCategoryEEnum, ComponentCategory.class, "ComponentCategory");

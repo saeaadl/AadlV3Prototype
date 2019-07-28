@@ -684,6 +684,52 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.AnnexLibrary} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AnnexLibraryItemProvider annexLibraryItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.AnnexLibrary}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createAnnexLibraryAdapter() {
+		if (annexLibraryItemProvider == null) {
+			annexLibraryItemProvider = new AnnexLibraryItemProvider(this);
+		}
+
+		return annexLibraryItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.AnnexDefinition} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AnnexDefinitionItemProvider annexDefinitionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.AnnexDefinition}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createAnnexDefinitionAdapter() {
+		if (annexDefinitionItemProvider == null) {
+			annexDefinitionItemProvider = new AnnexDefinitionItemProvider(this);
+		}
+
+		return annexDefinitionItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.PathElement} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -940,6 +986,10 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 			annexElementItemProvider.dispose();
 		if (typeSetItemProvider != null)
 			typeSetItemProvider.dispose();
+		if (annexLibraryItemProvider != null)
+			annexLibraryItemProvider.dispose();
+		if (annexDefinitionItemProvider != null)
+			annexDefinitionItemProvider.dispose();
 	}
 
 }

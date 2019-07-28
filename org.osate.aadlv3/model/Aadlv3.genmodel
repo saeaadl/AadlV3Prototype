@@ -222,5 +222,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//TypeSet/direction"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//TypeSet/propagatedTypes"/>
     </genClasses>
+    <genClasses ecoreClass="Aadlv3.ecore#//AnnexLibrary"/>
+    <genClasses ecoreClass="Aadlv3.ecore#//AnnexDefinition"/>
   </genPackages>
 </genmodel:GenModel>

@@ -28,6 +28,7 @@ import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequence
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.AnnexElement;
+import org.osate.aadlv3.aadlv3.AnnexLibrary;
 import org.osate.aadlv3.aadlv3.AnnexSubclause;
 import org.osate.aadlv3.aadlv3.Association;
 import org.osate.aadlv3.aadlv3.ClassifierAssignment;
@@ -70,6 +71,9 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 			switch (semanticObject.eClass().getClassifierID()) {
 			case Aadlv3Package.ANNEX_ELEMENT:
 				sequence_AnnexElement(context, (AnnexElement) semanticObject); 
+				return; 
+			case Aadlv3Package.ANNEX_LIBRARY:
+				sequence_AnnexLibrary(context, (AnnexLibrary) semanticObject); 
 				return; 
 			case Aadlv3Package.ANNEX_SUBCLAUSE:
 				sequence_AnnexSubclause(context, (AnnexSubclause) semanticObject); 
@@ -214,6 +218,24 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getAnnexElementAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     AnnexLibrary returns AnnexLibrary
+	 *
+	 * Constraint:
+	 *     name=ID
+	 */
+	protected void sequence_AnnexLibrary(ISerializationContext context, AnnexLibrary semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, Aadlv3Package.Literals.NAMED_ELEMENT__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, Aadlv3Package.Literals.NAMED_ELEMENT__NAME));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getAnnexLibraryAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
 		feeder.finish();
 	}
 	
@@ -642,7 +664,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     PackageElement returns PackageDeclaration
 	 *
 	 * Constraint:
-	 *     (private?='private'? name=QualifiedName (imports+=Import | elements+=PackageElement)*)
+	 *     (private?='private'? name=QualifiedName (elements+=AnnexLibrary | (imports+=Import | elements+=PackageElement)+)?)
 	 */
 	protected void sequence_PackageDeclaration(ISerializationContext context, PackageDeclaration semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

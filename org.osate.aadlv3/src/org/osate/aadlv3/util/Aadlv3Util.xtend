@@ -47,6 +47,7 @@ import static extension org.eclipse.xtext.EcoreUtil2.*
 import static extension org.osate.aadlv3.util.Av3API.*
 import org.osate.aadlv3.aadlv3.Aadlv3Factory
 import org.eclipse.xtext.EcoreUtil2
+import org.osate.aadlv3.aadlv3.PropertyValue
 
 class Aadlv3Util {
 	/**
@@ -1402,7 +1403,7 @@ class Aadlv3Util {
 	def static boolean appliesTo(PropertyDefinition pd, InstanceObject io){
 		switch(io){
 			ComponentInstance: {
-				appliesToCategory(pd,io.category) || io.component?.typeReferences.allowedUseProperties.exists[iopd|sameProperty(iopd, pd)]
+				appliesToCategory(pd,io.category) || io.component?.typeReferences.allowedUseProperties.exists[iopd|org.osate.aadlv3.util.Aadlv3Util.samePropertyDefinition(iopd, pd)]
 			}
 			FeatureInstance: {
 				appliesToCategory(pd,io.category)
@@ -1438,12 +1439,21 @@ class Aadlv3Util {
 //		pd.componentCategories.empty && pd.featureCategories.empty && pd.associationTypes.empty
 	}
 	
-	def static boolean sameProperty(PropertyDefinition first, PropertyDefinition second){
+	def static boolean samePropertyDefinition(PropertyDefinition first, PropertyDefinition second){
 		return first.name == second.name
 	}
 	
+	def static boolean samePropertyValueAssignment(PropertyAssociation first, PropertyAssociation second){
+		return samePropertyAndPath(first, second) && sameValue(first.value, second.value)
+	}
+	
 	def static boolean samePropertyAndPath(PropertyAssociation first, PropertyAssociation second){
-		return first.property.name == second.property.name && first.target.targetPath == second.target.targetPath
+		return samePropertyDefinition(first.property, second.property) && first.target.targetPath == second.target.targetPath
+	}
+
+	
+	def static boolean sameValue(PropertyValue first, PropertyValue second){
+		return first == second || (first.value == second.value && first.unit == second.unit)
 	}
 	
 		

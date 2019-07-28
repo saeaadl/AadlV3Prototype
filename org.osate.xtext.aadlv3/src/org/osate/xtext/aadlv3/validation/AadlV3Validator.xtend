@@ -285,7 +285,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 							error('Property does not apply to ' + targetme.category, pa,
 								Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY, DoesNotApply)
 						} else {
-							if (!allowedUse.exists[pd|sameProperty(pd, pa.property)]) {
+							if (!allowedUse.exists[pd|samePropertyDefinition(pd, pa.property)]) {
 								error('Property does not apply to subcomponent ' + targetme.name, pa,
 									Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY, DoesNotApply)
 							}
@@ -384,7 +384,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 			val pas = ne.typeReferences.allPropertyAssociations + ne.propertyAssociations
 			// PA with PD exists and does not have a target, i.e., is for the component and is FINAL
 			pas.exists [ pa |
-				sameProperty(pa.property, pd) && pa.propertyAssociationType === PropertyAssociationType.FINAL_VALUE &&
+				samePropertyDefinition(pa.property, pd) && pa.propertyAssociationType === PropertyAssociationType.FINAL_VALUE &&
 					pa.target === null
 			]
 		} else {
@@ -392,10 +392,10 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 			val clpas = ne.containingComponentClassifier.allPropertyAssociations
 			val mepas = ne.propertyAssociations
 			clpas.exists [ pa |
-				sameProperty(pa.property, pd) && pa.propertyAssociationType === PropertyAssociationType.FINAL_VALUE &&
+				samePropertyDefinition(pa.property, pd) && pa.propertyAssociationType === PropertyAssociationType.FINAL_VALUE &&
 					pa.target === ne
 			] || mepas.exists [ pa |
-				sameProperty(pa.property, pd) && pa.propertyAssociationType === PropertyAssociationType.FINAL_VALUE &&
+				samePropertyDefinition(pa.property, pd) && pa.propertyAssociationType === PropertyAssociationType.FINAL_VALUE &&
 					pa.target === null
 			]
 		}
@@ -412,7 +412,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 			// for all property assignments to components, if the declared component classifier(s) already has a local assignment that is final
 			val tpas = targetme.typeReferences.allPropertyAssociations
 			for (tpa : tpas) {
-				if (tpa.target === null && sameProperty(tpa.property, pa.property) &&
+				if (tpa.target === null && samePropertyDefinition(tpa.property, pa.property) &&
 					tpa.propertyAssociationType === PropertyAssociationType.FINAL_VALUE) {
 					error('Property association cannot change final value assigned via classifier ' +
 						tpa.containingComponentClassifier.name, pa,
@@ -425,7 +425,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 			val paTarget = pa.eContainer as Component
 			val tpas = paTarget.typeReferences.allPropertyAssociations
 			for (tpa : tpas) {
-				if (tpa.target === null && sameProperty(tpa.property, pa.property) &&
+				if (tpa.target === null && samePropertyDefinition(tpa.property, pa.property) &&
 					tpa.propertyAssociationType === PropertyAssociationType.FINAL_VALUE) {
 					error(
 						'Property association cannot change final value assigned via classifier ' +
@@ -448,7 +448,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 		for (supercl : supercls) {
 			val spas = supercl.propertyAssociations
 			for (spa : spas) {
-				if (spa.target === me && sameProperty(spa.property, pa.property) &&
+				if (spa.target === me && samePropertyDefinition(spa.property, pa.property) &&
 					spa.propertyAssociationType === PropertyAssociationType.FINAL_VALUE) {
 					error('Property association cannot change final value assigned in ' + supercl.name, pa,
 						Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY_ASSOCIATION_TYPE, NoFinalChange)
@@ -468,7 +468,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 			// local target model element also has {} property assignment 
 			val tpas = targetme.propertyAssociations
 			for (tpa : tpas) {
-				if (tpa.target === null && sameProperty(tpa.property, pa.property) && context == targetcontext) {
+				if (tpa.target === null && samePropertyDefinition(tpa.property, pa.property) && context == targetcontext) {
 					error('Property value also assigned in {}', pa,
 						Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY, NoDoubleAssignment)
 				}
@@ -487,7 +487,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 			// local target model element also has {} property assignment 
 			val tpas = targetme.propertyAssociations
 			for (tpa : tpas) {
-				if (tpa.target === null && sameProperty(tpa.property, pa.property) && context == targetcontext) {
+				if (tpa.target === null && samePropertyDefinition(tpa.property, pa.property) && context == targetcontext) {
 					error('Property value also assigned in {}', pa,
 						Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY, NoDoubleAssignment)
 				}
@@ -527,8 +527,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 			val first = pas.get(firstidx)
 			for (var secondidx = firstidx + 1; secondidx < maxpas; secondidx++) {
 				val second = pas.get(secondidx)
-				if (first !== second && sameProperty(first.property, second.property) &&
-					first.target.targetPath == second.target.targetPath) {
+				if (first !== second && samePropertyAndPath(first, second) ) {
 					error('Duplicate property association ' + first.property.name, target, structuralfeature, secondidx,
 						NoDoubleAssignment)
 					error('Duplicate property association ' + second.property.name, target, structuralfeature, firstidx,
@@ -590,8 +589,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 			// check for conflict between PAs from assigned classifiers
 			for (var secondidx = firstidx + 1; secondidx < maxpas; secondidx++) {
 				val second = pas.get(secondidx)
-				if (sameProperty(first.property, second.property) &&
-					first.target?.targetPath == second.target?.targetPath ) {
+				if (samePropertyValueAssignment(first, second)  ) {
 						if (trscontainer instanceof ComponentClassifier){
 					error(
 						'Property association ' + second.containingComponentClassifier.name + '::' +
@@ -614,8 +612,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 			}
 						// check PA in {} of CA for conflict with PAs from assigned classifiers
 			for (curlypa : locaPAs) {
-				if (sameProperty(first.property, curlypa.property) &&
-					first.target?.targetPath == curlypa.target?.targetPath ) {
+				if (samePropertyValueAssignment(first, curlypa) ) {
 						if (trscontainer instanceof ComponentClassifier){
 					error(
 						'Property association ' + curlypa.target.targetPath + '#' + curlypa.property.name +
@@ -810,7 +807,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 			for (var secondidx = firstidx + 1; secondidx < n; secondidx++) {
 				val second = casPAS.get(secondidx)
 				val secondP = second.targetPath
-				if (sameProperty(first.property, second.property) &&
+				if (samePropertyDefinition(first.property, second.property) &&
 					firstP == secondP &&
 					first.propertyAssociationType === PropertyAssociationType.FINAL_VALUE &&
 					second.propertyAssociationType === PropertyAssociationType.FINAL_VALUE) {
@@ -834,7 +831,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 			val first = pas.get(firstidx)
 			for (var secondidx = firstidx + 1; secondidx < maxpas; secondidx++) {
 				val second = pas.get(secondidx)
-				if (sameProperty(first.property, second.property) &&
+				if (samePropertyDefinition(first.property, second.property) &&
 					first.target?.targetPath == second.target?.targetPath &&
 					first.propertyAssociationType === PropertyAssociationType.FINAL_VALUE &&
 					second.propertyAssociationType === PropertyAssociationType.FINAL_VALUE) {

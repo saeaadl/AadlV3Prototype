@@ -162,7 +162,7 @@ class AIv3API {
 	
 	// instance object has property association
 	def static boolean hasPropertyAssociation(InstanceObject io, PropertyDefinition pd){
-		io.propertyAssociations.exists[pai|sameProperty(pai.property, pd)]
+		io.propertyAssociations.exists[pai|samePropertyDefinition(pai.property, pd)]
 	}
 	
 		

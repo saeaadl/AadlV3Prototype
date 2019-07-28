@@ -278,4 +278,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="propagatedTypes" upperBound="-1"
         eType="#//Type"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AnnexLibrary" eSuperTypes="#//PackageDeclaration"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AnnexDefinition" eSuperTypes="#//PackageElement"/>
 </ecore:EPackage>

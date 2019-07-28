@@ -449,6 +449,30 @@ public class Aadlv3Switch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case Aadlv3Package.ANNEX_LIBRARY: {
+			AnnexLibrary annexLibrary = (AnnexLibrary) theEObject;
+			T result = caseAnnexLibrary(annexLibrary);
+			if (result == null)
+				result = casePackageDeclaration(annexLibrary);
+			if (result == null)
+				result = casePackageElement(annexLibrary);
+			if (result == null)
+				result = caseNamedElement(annexLibrary);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Aadlv3Package.ANNEX_DEFINITION: {
+			AnnexDefinition annexDefinition = (AnnexDefinition) theEObject;
+			T result = caseAnnexDefinition(annexDefinition);
+			if (result == null)
+				result = casePackageElement(annexDefinition);
+			if (result == null)
+				result = caseNamedElement(annexDefinition);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		default:
 			return defaultCase(theEObject);
 		}
@@ -916,6 +940,36 @@ public class Aadlv3Switch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseTypeSet(TypeSet object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Annex Library</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Annex Library</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAnnexLibrary(AnnexLibrary object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Annex Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Annex Definition</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAnnexDefinition(AnnexDefinition object) {
 		return null;
 	}
 

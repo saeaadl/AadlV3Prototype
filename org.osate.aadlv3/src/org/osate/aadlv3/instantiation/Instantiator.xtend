@@ -425,7 +425,7 @@ class Instantiator {
 		val pais = target.propertyAssociations
 		var found = false
 		for (epai : pais) {
-			if (sameProperty(epai.property, pa.property)) {
+			if (samePropertyDefinition(epai.property, pa.property)) {
 				overridePropertyValue(epai, pa)
 				found = true
 			}
@@ -554,7 +554,7 @@ class Instantiator {
 		while (ci !== null) {
 			for (pa : ci.configuredTypeReferences.allPropertyAssociations) {
 				if (pa.propertyAssociationType === PropertyAssociationType.DEFAULT_VALUE &&
-					sameProperty(pd, pa.property) && appliesTo(pd,io)) {
+					samePropertyDefinition(pd, pa.property) && appliesTo(pd,io)) {
 					return pa
 				}
 			}

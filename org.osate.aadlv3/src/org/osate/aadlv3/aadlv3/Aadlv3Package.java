@@ -2437,6 +2437,98 @@ public interface Aadlv3Package extends EPackage {
 	int TYPE_SET_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
+	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.AnnexLibraryImpl <em>Annex Library</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.osate.aadlv3.aadlv3.impl.AnnexLibraryImpl
+	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getAnnexLibrary()
+	 * @generated
+	 */
+	int ANNEX_LIBRARY = 36;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNEX_LIBRARY__NAME = PACKAGE_DECLARATION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Private</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNEX_LIBRARY__PRIVATE = PACKAGE_DECLARATION__PRIVATE;
+
+	/**
+	 * The feature id for the '<em><b>Imports</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNEX_LIBRARY__IMPORTS = PACKAGE_DECLARATION__IMPORTS;
+
+	/**
+	 * The feature id for the '<em><b>Elements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNEX_LIBRARY__ELEMENTS = PACKAGE_DECLARATION__ELEMENTS;
+
+	/**
+	 * The number of structural features of the '<em>Annex Library</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNEX_LIBRARY_FEATURE_COUNT = PACKAGE_DECLARATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.AnnexDefinitionImpl <em>Annex Definition</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.osate.aadlv3.aadlv3.impl.AnnexDefinitionImpl
+	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getAnnexDefinition()
+	 * @generated
+	 */
+	int ANNEX_DEFINITION = 37;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNEX_DEFINITION__NAME = PACKAGE_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Private</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNEX_DEFINITION__PRIVATE = PACKAGE_ELEMENT__PRIVATE;
+
+	/**
+	 * The number of structural features of the '<em>Annex Definition</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNEX_DEFINITION_FEATURE_COUNT = PACKAGE_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.ComponentCategory <em>Component Category</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2444,7 +2536,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getComponentCategory()
 	 * @generated
 	 */
-	int COMPONENT_CATEGORY = 36;
+	int COMPONENT_CATEGORY = 38;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.FeatureCategory <em>Feature Category</em>}' enum.
@@ -2454,7 +2546,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getFeatureCategory()
 	 * @generated
 	 */
-	int FEATURE_CATEGORY = 37;
+	int FEATURE_CATEGORY = 39;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.FeatureDirection <em>Feature Direction</em>}' enum.
@@ -2464,7 +2556,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getFeatureDirection()
 	 * @generated
 	 */
-	int FEATURE_DIRECTION = 38;
+	int FEATURE_DIRECTION = 40;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.AssociationType <em>Association Type</em>}' enum.
@@ -2474,7 +2566,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getAssociationType()
 	 * @generated
 	 */
-	int ASSOCIATION_TYPE = 39;
+	int ASSOCIATION_TYPE = 41;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.PropertyAssociationType <em>Property Association Type</em>}' enum.
@@ -2484,7 +2576,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getPropertyAssociationType()
 	 * @generated
 	 */
-	int PROPERTY_ASSOCIATION_TYPE = 40;
+	int PROPERTY_ASSOCIATION_TYPE = 42;
 
 	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.PackageDeclaration <em>Package Declaration</em>}'.
@@ -3631,6 +3723,26 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 */
 	EReference getTypeSet_PropagatedTypes();
+
+	/**
+	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.AnnexLibrary <em>Annex Library</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Annex Library</em>'.
+	 * @see org.osate.aadlv3.aadlv3.AnnexLibrary
+	 * @generated
+	 */
+	EClass getAnnexLibrary();
+
+	/**
+	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.AnnexDefinition <em>Annex Definition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Annex Definition</em>'.
+	 * @see org.osate.aadlv3.aadlv3.AnnexDefinition
+	 * @generated
+	 */
+	EClass getAnnexDefinition();
 
 	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.PathElement <em>Path Element</em>}'.
@@ -4818,6 +4930,26 @@ public interface Aadlv3Package extends EPackage {
 		 * @generated
 		 */
 		EReference TYPE_SET__PROPAGATED_TYPES = eINSTANCE.getTypeSet_PropagatedTypes();
+
+		/**
+		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.AnnexLibraryImpl <em>Annex Library</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.osate.aadlv3.aadlv3.impl.AnnexLibraryImpl
+		 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getAnnexLibrary()
+		 * @generated
+		 */
+		EClass ANNEX_LIBRARY = eINSTANCE.getAnnexLibrary();
+
+		/**
+		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.AnnexDefinitionImpl <em>Annex Definition</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.osate.aadlv3.aadlv3.impl.AnnexDefinitionImpl
+		 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getAnnexDefinition()
+		 * @generated
+		 */
+		EClass ANNEX_DEFINITION = eINSTANCE.getAnnexDefinition();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.PathElementImpl <em>Path Element</em>}' class.

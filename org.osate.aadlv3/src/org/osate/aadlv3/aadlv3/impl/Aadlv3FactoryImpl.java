@@ -130,6 +130,10 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 			return createAnnexElement();
 		case Aadlv3Package.TYPE_SET:
 			return createTypeSet();
+		case Aadlv3Package.ANNEX_LIBRARY:
+			return createAnnexLibrary();
+		case Aadlv3Package.ANNEX_DEFINITION:
+			return createAnnexDefinition();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -465,6 +469,28 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 	public TypeSet createTypeSet() {
 		TypeSetImpl typeSet = new TypeSetImpl();
 		return typeSet;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public AnnexLibrary createAnnexLibrary() {
+		AnnexLibraryImpl annexLibrary = new AnnexLibraryImpl();
+		return annexLibrary;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public AnnexDefinition createAnnexDefinition() {
+		AnnexDefinitionImpl annexDefinition = new AnnexDefinitionImpl();
+		return annexDefinition;
 	}
 
 	/**

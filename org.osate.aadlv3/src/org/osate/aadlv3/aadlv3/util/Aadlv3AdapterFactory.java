@@ -260,6 +260,16 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseAnnexLibrary(AnnexLibrary object) {
+			return createAnnexLibraryAdapter();
+		}
+
+		@Override
+		public Adapter caseAnnexDefinition(AnnexDefinition object) {
+			return createAnnexDefinitionAdapter();
+		}
+
+		@Override
 		public Adapter defaultCase(EObject object) {
 			return createEObjectAdapter();
 		}
@@ -709,6 +719,34 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createTypeSetAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.AnnexLibrary <em>Annex Library</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.osate.aadlv3.aadlv3.AnnexLibrary
+	 * @generated
+	 */
+	public Adapter createAnnexLibraryAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.AnnexDefinition <em>Annex Definition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.osate.aadlv3.aadlv3.AnnexDefinition
+	 * @generated
+	 */
+	public Adapter createAnnexDefinitionAdapter() {
 		return null;
 	}
 

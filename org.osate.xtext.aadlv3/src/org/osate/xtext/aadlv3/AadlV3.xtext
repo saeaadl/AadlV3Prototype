@@ -7,9 +7,16 @@ import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 
 PackageDeclaration returns av3::PackageDeclaration:
 	(private?='private')? 'package' name=QualifiedName 'is'
+	
+	( elements+=AnnexLibrary |
 	(imports+=Import |
 	elements+= PackageElement)*
+	)
 	'end' ';';
+
+AnnexLibrary returns av3::AnnexLibrary :
+	'@' name=ID '{' '}'
+;
 
 PackageElement returns av3::PackageElement:
 	PackageDeclaration | DataType | ComponentInterface | ComponentImplementation | ComponentConfiguration | PropertyDefinition | PropertySet | Workingset

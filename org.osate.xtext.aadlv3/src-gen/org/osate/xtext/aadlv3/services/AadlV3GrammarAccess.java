@@ -46,18 +46,23 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cNameQualifiedNameParserRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
 		private final Keyword cIsKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Alternatives cAlternatives_4 = (Alternatives)cGroup.eContents().get(4);
-		private final Assignment cImportsAssignment_4_0 = (Assignment)cAlternatives_4.eContents().get(0);
-		private final RuleCall cImportsImportParserRuleCall_4_0_0 = (RuleCall)cImportsAssignment_4_0.eContents().get(0);
-		private final Assignment cElementsAssignment_4_1 = (Assignment)cAlternatives_4.eContents().get(1);
-		private final RuleCall cElementsPackageElementParserRuleCall_4_1_0 = (RuleCall)cElementsAssignment_4_1.eContents().get(0);
+		private final Assignment cElementsAssignment_4_0 = (Assignment)cAlternatives_4.eContents().get(0);
+		private final RuleCall cElementsAnnexLibraryParserRuleCall_4_0_0 = (RuleCall)cElementsAssignment_4_0.eContents().get(0);
+		private final Alternatives cAlternatives_4_1 = (Alternatives)cAlternatives_4.eContents().get(1);
+		private final Assignment cImportsAssignment_4_1_0 = (Assignment)cAlternatives_4_1.eContents().get(0);
+		private final RuleCall cImportsImportParserRuleCall_4_1_0_0 = (RuleCall)cImportsAssignment_4_1_0.eContents().get(0);
+		private final Assignment cElementsAssignment_4_1_1 = (Assignment)cAlternatives_4_1.eContents().get(1);
+		private final RuleCall cElementsPackageElementParserRuleCall_4_1_1_0 = (RuleCall)cElementsAssignment_4_1_1.eContents().get(0);
 		private final Keyword cEndKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		private final Keyword cSemicolonKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
 		//PackageDeclaration av3::PackageDeclaration:
-		//	private?='private'? 'package' name=QualifiedName 'is' (imports+=Import | elements+=PackageElement)* 'end' ';';
+		//	private?='private'? 'package' name=QualifiedName 'is' (elements+=AnnexLibrary | (imports+=Import |
+		//	elements+=PackageElement)*) 'end' ';';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//private?='private'? 'package' name=QualifiedName 'is' (imports+=Import | elements+=PackageElement)* 'end' ';'
+		//private?='private'? 'package' name=QualifiedName 'is' (elements+=AnnexLibrary | (imports+=Import |
+		//elements+=PackageElement)*) 'end' ';'
 		public Group getGroup() { return cGroup; }
 		
 		//private?='private'?
@@ -78,26 +83,66 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		//'is'
 		public Keyword getIsKeyword_3() { return cIsKeyword_3; }
 		
-		//(imports+=Import | elements+=PackageElement)*
+		//elements+=AnnexLibrary | (imports+=Import | elements+=PackageElement)*
 		public Alternatives getAlternatives_4() { return cAlternatives_4; }
 		
+		//elements+=AnnexLibrary
+		public Assignment getElementsAssignment_4_0() { return cElementsAssignment_4_0; }
+		
+		//AnnexLibrary
+		public RuleCall getElementsAnnexLibraryParserRuleCall_4_0_0() { return cElementsAnnexLibraryParserRuleCall_4_0_0; }
+		
+		//(imports+=Import | elements+=PackageElement)*
+		public Alternatives getAlternatives_4_1() { return cAlternatives_4_1; }
+		
 		//imports+=Import
-		public Assignment getImportsAssignment_4_0() { return cImportsAssignment_4_0; }
+		public Assignment getImportsAssignment_4_1_0() { return cImportsAssignment_4_1_0; }
 		
 		//Import
-		public RuleCall getImportsImportParserRuleCall_4_0_0() { return cImportsImportParserRuleCall_4_0_0; }
+		public RuleCall getImportsImportParserRuleCall_4_1_0_0() { return cImportsImportParserRuleCall_4_1_0_0; }
 		
 		//elements+=PackageElement
-		public Assignment getElementsAssignment_4_1() { return cElementsAssignment_4_1; }
+		public Assignment getElementsAssignment_4_1_1() { return cElementsAssignment_4_1_1; }
 		
 		//PackageElement
-		public RuleCall getElementsPackageElementParserRuleCall_4_1_0() { return cElementsPackageElementParserRuleCall_4_1_0; }
+		public RuleCall getElementsPackageElementParserRuleCall_4_1_1_0() { return cElementsPackageElementParserRuleCall_4_1_1_0; }
 		
 		//'end'
 		public Keyword getEndKeyword_5() { return cEndKeyword_5; }
 		
 		//';'
 		public Keyword getSemicolonKeyword_6() { return cSemicolonKeyword_6; }
+	}
+	public class AnnexLibraryElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.osate.xtext.aadlv3.AadlV3.AnnexLibrary");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cCommercialAtKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Keyword cRightCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		
+		//AnnexLibrary av3::AnnexLibrary:
+		//	'@' name=ID '{' '}';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'@' name=ID '{' '}'
+		public Group getGroup() { return cGroup; }
+		
+		//'@'
+		public Keyword getCommercialAtKeyword_0() { return cCommercialAtKeyword_0; }
+		
+		//name=ID
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+		
+		//'{'
+		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
+		
+		//'}'
+		public Keyword getRightCurlyBracketKeyword_3() { return cRightCurlyBracketKeyword_3; }
 	}
 	public class PackageElementElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.osate.xtext.aadlv3.AadlV3.PackageElement");
@@ -3510,6 +3555,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	
 	
 	private final PackageDeclarationElements pPackageDeclaration;
+	private final AnnexLibraryElements pAnnexLibrary;
 	private final PackageElementElements pPackageElement;
 	private final PropertyDefinitionElements pPropertyDefinition;
 	private final AppliesToElements pAppliesTo;
@@ -3611,6 +3657,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		this.grammar = internalFindGrammar(grammarProvider);
 		this.gaTerminals = gaTerminals;
 		this.pPackageDeclaration = new PackageDeclarationElements();
+		this.pAnnexLibrary = new AnnexLibraryElements();
 		this.pPackageElement = new PackageElementElements();
 		this.pPropertyDefinition = new PropertyDefinitionElements();
 		this.pAppliesTo = new AppliesToElements();
@@ -3731,13 +3778,24 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//PackageDeclaration av3::PackageDeclaration:
-	//	private?='private'? 'package' name=QualifiedName 'is' (imports+=Import | elements+=PackageElement)* 'end' ';';
+	//	private?='private'? 'package' name=QualifiedName 'is' (elements+=AnnexLibrary | (imports+=Import |
+	//	elements+=PackageElement)*) 'end' ';';
 	public PackageDeclarationElements getPackageDeclarationAccess() {
 		return pPackageDeclaration;
 	}
 	
 	public ParserRule getPackageDeclarationRule() {
 		return getPackageDeclarationAccess().getRule();
+	}
+	
+	//AnnexLibrary av3::AnnexLibrary:
+	//	'@' name=ID '{' '}';
+	public AnnexLibraryElements getAnnexLibraryAccess() {
+		return pAnnexLibrary;
+	}
+	
+	public ParserRule getAnnexLibraryRule() {
+		return getAnnexLibraryAccess().getRule();
 	}
 	
 	//PackageElement av3::PackageElement:

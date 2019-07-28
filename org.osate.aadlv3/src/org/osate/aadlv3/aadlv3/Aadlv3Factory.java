@@ -269,6 +269,24 @@ public interface Aadlv3Factory extends EFactory {
 	TypeSet createTypeSet();
 
 	/**
+	 * Returns a new object of class '<em>Annex Library</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Annex Library</em>'.
+	 * @generated
+	 */
+	AnnexLibrary createAnnexLibrary();
+
+	/**
+	 * Returns a new object of class '<em>Annex Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Annex Definition</em>'.
+	 * @generated
+	 */
+	AnnexDefinition createAnnexDefinition();
+
+	/**
 	 * Returns a new object of class '<em>Path Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

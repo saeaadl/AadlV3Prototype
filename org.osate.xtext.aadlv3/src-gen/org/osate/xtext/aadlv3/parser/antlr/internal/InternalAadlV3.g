@@ -139,29 +139,9 @@ rulePackageDeclaration returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getPackageDeclarationAccess().getImportsImportParserRuleCall_4_0_0());
+						newCompositeNode(grammarAccess.getPackageDeclarationAccess().getElementsAnnexLibraryParserRuleCall_4_0_0());
 					}
-					lv_imports_4_0=ruleImport
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getPackageDeclarationRule());
-						}
-						add(
-							$current,
-							"imports",
-							lv_imports_4_0,
-							"org.osate.xtext.aadlv3.AadlV3.Import");
-						afterParserOrEnumRuleCall();
-					}
-				)
-			)
-			    |
-			(
-				(
-					{
-						newCompositeNode(grammarAccess.getPackageDeclarationAccess().getElementsPackageElementParserRuleCall_4_1_0());
-					}
-					lv_elements_5_0=rulePackageElement
+					lv_elements_4_0=ruleAnnexLibrary
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getPackageDeclarationRule());
@@ -169,20 +149,111 @@ rulePackageDeclaration returns [EObject current=null]
 						add(
 							$current,
 							"elements",
-							lv_elements_5_0,
-							"org.osate.xtext.aadlv3.AadlV3.PackageElement");
+							lv_elements_4_0,
+							"org.osate.xtext.aadlv3.AadlV3.AnnexLibrary");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)
-		)*
-		otherlv_6='end'
+			    |
+			(
+				(
+					(
+						{
+							newCompositeNode(grammarAccess.getPackageDeclarationAccess().getImportsImportParserRuleCall_4_1_0_0());
+						}
+						lv_imports_5_0=ruleImport
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getPackageDeclarationRule());
+							}
+							add(
+								$current,
+								"imports",
+								lv_imports_5_0,
+								"org.osate.xtext.aadlv3.AadlV3.Import");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)
+				    |
+				(
+					(
+						{
+							newCompositeNode(grammarAccess.getPackageDeclarationAccess().getElementsPackageElementParserRuleCall_4_1_1_0());
+						}
+						lv_elements_6_0=rulePackageElement
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getPackageDeclarationRule());
+							}
+							add(
+								$current,
+								"elements",
+								lv_elements_6_0,
+								"org.osate.xtext.aadlv3.AadlV3.PackageElement");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)
+			)*
+		)
+		otherlv_7='end'
 		{
-			newLeafNode(otherlv_6, grammarAccess.getPackageDeclarationAccess().getEndKeyword_5());
+			newLeafNode(otherlv_7, grammarAccess.getPackageDeclarationAccess().getEndKeyword_5());
 		}
-		otherlv_7=';'
+		otherlv_8=';'
 		{
-			newLeafNode(otherlv_7, grammarAccess.getPackageDeclarationAccess().getSemicolonKeyword_6());
+			newLeafNode(otherlv_8, grammarAccess.getPackageDeclarationAccess().getSemicolonKeyword_6());
+		}
+	)
+;
+
+// Entry rule entryRuleAnnexLibrary
+entryRuleAnnexLibrary returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getAnnexLibraryRule()); }
+	iv_ruleAnnexLibrary=ruleAnnexLibrary
+	{ $current=$iv_ruleAnnexLibrary.current; }
+	EOF;
+
+// Rule AnnexLibrary
+ruleAnnexLibrary returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='@'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getAnnexLibraryAccess().getCommercialAtKeyword_0());
+		}
+		(
+			(
+				lv_name_1_0=RULE_ID
+				{
+					newLeafNode(lv_name_1_0, grammarAccess.getAnnexLibraryAccess().getNameIDTerminalRuleCall_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getAnnexLibraryRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"name",
+						lv_name_1_0,
+						"org.eclipse.xtext.common.Terminals.ID");
+				}
+			)
+		)
+		otherlv_2='{'
+		{
+			newLeafNode(otherlv_2, grammarAccess.getAnnexLibraryAccess().getLeftCurlyBracketKeyword_2());
+		}
+		otherlv_3='}'
+		{
+			newLeafNode(otherlv_3, grammarAccess.getAnnexLibraryAccess().getRightCurlyBracketKeyword_3());
 		}
 	)
 ;
