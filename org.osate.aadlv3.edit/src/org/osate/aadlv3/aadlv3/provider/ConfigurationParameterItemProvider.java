@@ -33,7 +33,7 @@ import org.osate.aadlv3.aadlv3.ConfigurationParameter;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ConfigurationParameterItemProvider extends TypeItemProvider {
+public class ConfigurationParameterItemProvider extends ClassifierOrTypeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -109,7 +109,6 @@ public class ConfigurationParameterItemProvider extends TypeItemProvider {
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-		super.notifyChanged(notification);
 	}
 
 	/**

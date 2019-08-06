@@ -91,7 +91,7 @@ public class ModelElementItemProvider extends NamedElementItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(Aadlv3Package.Literals.MODEL_ELEMENT__PROPERTY_ASSOCIATIONS);
+			childrenFeatures.add(Aadlv3Package.Literals.MODEL_ELEMENT__OWNED_PROPERTY_ASSOCIATIONS);
 			childrenFeatures.add(Aadlv3Package.Literals.MODEL_ELEMENT__ANNEX_ELEMENTS);
 		}
 		return childrenFeatures;
@@ -146,7 +146,7 @@ public class ModelElementItemProvider extends NamedElementItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ModelElement.class)) {
-		case Aadlv3Package.MODEL_ELEMENT__PROPERTY_ASSOCIATIONS:
+		case Aadlv3Package.MODEL_ELEMENT__OWNED_PROPERTY_ASSOCIATIONS:
 		case Aadlv3Package.MODEL_ELEMENT__ANNEX_ELEMENTS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
@@ -165,7 +165,7 @@ public class ModelElementItemProvider extends NamedElementItemProvider {
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.MODEL_ELEMENT__PROPERTY_ASSOCIATIONS,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.MODEL_ELEMENT__OWNED_PROPERTY_ASSOCIATIONS,
 				Aadlv3Factory.eINSTANCE.createPropertyAssociation()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.MODEL_ELEMENT__ANNEX_ELEMENTS,

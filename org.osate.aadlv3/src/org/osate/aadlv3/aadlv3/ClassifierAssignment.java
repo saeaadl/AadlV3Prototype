@@ -31,7 +31,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.osate.aadlv3.aadlv3.ClassifierAssignment#getTarget <em>Target</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.ClassifierAssignment#getClassifierAssignments <em>Classifier Assignments</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.ClassifierAssignment#getAssignedClassifiers <em>Assigned Classifiers</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.ClassifierAssignment#getPropertyAssociations <em>Property Associations</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.ClassifierAssignment#getOwnedPropertyAssociations <em>Owned Property Associations</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.ClassifierAssignment#getBindings <em>Bindings</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.ClassifierAssignment#getAnnexSubclause <em>Annex Subclause</em>}</li>
  * </ul>
@@ -88,16 +88,16 @@ public interface ClassifierAssignment extends EObject {
 	EList<TypeReference> getAssignedClassifiers();
 
 	/**
-	 * Returns the value of the '<em><b>Property Associations</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Property Associations</b></em>' containment reference list.
 	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.PropertyAssociation}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Property Associations</em>' containment reference list.
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getClassifierAssignment_PropertyAssociations()
+	 * @return the value of the '<em>Owned Property Associations</em>' containment reference list.
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getClassifierAssignment_OwnedPropertyAssociations()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<PropertyAssociation> getPropertyAssociations();
+	EList<PropertyAssociation> getOwnedPropertyAssociations();
 
 	/**
 	 * Returns the value of the '<em><b>Bindings</b></em>' containment reference list.

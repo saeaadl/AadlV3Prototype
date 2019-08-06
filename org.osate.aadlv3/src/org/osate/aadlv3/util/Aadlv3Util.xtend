@@ -23,7 +23,6 @@ import org.osate.aadlv3.aadlv3.ConfigurationActual
 import org.osate.aadlv3.aadlv3.ClassifierAssignment
 import org.osate.aadlv3.aadlv3.ClassifierAssignmentPattern
 import org.osate.aadlv3.aadlv3.ConfigurationParameter
-import org.osate.aadlv3.aadlv3.DataType
 import org.osate.aadlv3.aadlv3.Feature
 import org.osate.aadlv3.aadlv3.FeatureCategory
 import org.osate.aadlv3.aadlv3.FeatureDirection
@@ -34,7 +33,6 @@ import org.osate.aadlv3.aadlv3.PackageDeclaration
 import org.osate.aadlv3.aadlv3.PathSequence
 import org.osate.aadlv3.aadlv3.PropertyAssociation
 import org.osate.aadlv3.aadlv3.PropertyDefinition
-import org.osate.aadlv3.aadlv3.Type
 import org.osate.aadlv3.aadlv3.TypeReference
 import org.osate.aadlv3.aadlv3.Workingset
 import org.osate.av3instance.av3instance.AssociationInstance
@@ -48,19 +46,21 @@ import static extension org.osate.aadlv3.util.Av3API.*
 import org.osate.aadlv3.aadlv3.Aadlv3Factory
 import org.eclipse.xtext.EcoreUtil2
 import org.osate.aadlv3.aadlv3.PropertyValue
+import org.osate.aadlv3.aadlv3.TypeDecl
+import org.osate.aadlv3.aadlv3.ClassifierOrType
 
 class Aadlv3Util {
 	/**
 	 * return category of classifier collection. Returns first assigned category or ABSTRACT.
 	 * Assumes All classifier categories are the same or ABSTRACT.
 	 */
-	static def ComponentCategory getComponentCategory(Iterable<? extends Type> types){
+	static def ComponentCategory getComponentCategory(Iterable<? extends ClassifierOrType> types){
 		for (t: types){
 			var type = t
 			if (t instanceof ConfigurationParameter){
 				type = t.type
 			}
-			if (type instanceof DataType){
+			if (type instanceof TypeDecl){
 				
 			} else if (type instanceof ComponentClassifier){
 				if (type.category != ComponentCategory.INTERFACE){
@@ -101,7 +101,7 @@ class Aadlv3Util {
 					result.add(t)
 					t.addSuperComponentClassifiers(result)
 				}
-				DataType: {
+				TypeDecl: {
 				}
 				ConfigurationParameter: {
 				}
@@ -172,12 +172,12 @@ class Aadlv3Util {
 	/**
 	 * returns implementation that is the extension of all other implementations
 	 */
-	static def DataType getTopDataType(Iterable<TypeReference> trs){
-		var DataType top = null
+	static def TypeDecl getTopDataType(Iterable<TypeReference> trs){
+		var TypeDecl top = null
 		for (tr : trs){
-			if (tr.type instanceof DataType){
-				val cl = tr.type as DataType
-				if (top === null || top.isSuperDataTypeOf(cl)){
+			if (tr.type instanceof TypeDecl){
+				val cl = tr.type as TypeDecl
+				if (top === null || top.isSuperTypeDeclOf(cl)){
 					top = cl
 				}
 			}
@@ -185,9 +185,9 @@ class Aadlv3Util {
 		return top
 	}
 	
-	static def boolean isDataType(Iterable<TypeReference> trs){
+	static def boolean isTypeDecl(Iterable<TypeReference> trs){
 		for (tr : trs){
-			if (tr.type instanceof DataType){
+			if (tr.type instanceof TypeDecl){
 				return true
 			}
 		}
@@ -197,7 +197,7 @@ class Aadlv3Util {
 	static def boolean isComponentClassifier(Iterable<TypeReference> trs){
 		if (trs.empty) return true
 		for (tr : trs){
-			if (tr.type instanceof DataType){
+			if (tr.type instanceof TypeDecl){
 				return false
 			}
 		}
@@ -257,7 +257,7 @@ class Aadlv3Util {
 	/**
 	 * returns the top implementation of a classifier and its ancestor classifiers
 	 */
-	static def ComponentImplementation getTopComponentImplementation(Type cl){
+	static def ComponentImplementation getTopComponentImplementation(ClassifierOrType cl){
 		var ComponentImplementation top = null
 		if (cl instanceof ComponentClassifier){
 		val cls = cl.allComponentClassifiers
@@ -567,23 +567,23 @@ class Aadlv3Util {
 	static def Iterable<PropertyAssociation> getAllOwnedPropertyAssociations(Iterable<TypeReference> trs) {
 		if(trs.empty) return Collections.EMPTY_LIST
 		val cls = trs.allComponentClassifiers
-		cls.map[cl|cl.propertyAssociations].flatten
+		cls.map[cl|cl.ownedPropertyAssociations].flatten
 	}
 
 	static def Iterable<PropertyAssociation> getAllCAPropertyAssociations(Iterable<TypeReference> trs) {
 		if(trs.empty) return Collections.EMPTY_LIST
 		val cas = trs.allClassifierAssignments
-		cas.map[ca|ca.propertyAssociations].flatten
+		cas.map[ca|ca.ownedPropertyAssociations].flatten
 	}
 
 	static def Iterable<PropertyAssociation> getAllOwnedPropertyAssociations(ComponentClassifier cl) {
 		val cls = cl.allComponentClassifiers
-		cls.map[cll|cll.propertyAssociations].flatten
+		cls.map[cll|cll.ownedPropertyAssociations].flatten
 	}
 
 	static def Iterable<PropertyAssociation> getAllCAPropertyAssociations(ComponentClassifier cl) {
 		val cas = cl.allClassifierAssignments
-		cas.map[ca|ca.propertyAssociations].flatten
+		cas.map[ca|ca.ownedPropertyAssociations].flatten
 	}
 
 	static def Iterable<PropertyAssociation> getAllPropertyAssociations(Iterable<TypeReference> trs) {
@@ -605,7 +605,7 @@ class Aadlv3Util {
 	}
 	
 
-	static def boolean isParameterizedConfiguration(Type cc) {
+	static def boolean isParameterizedConfiguration(ClassifierOrType cc) {
 		cc instanceof ComponentConfiguration && (cc as ComponentConfiguration).parameterized
 	}
 
@@ -829,7 +829,7 @@ class Aadlv3Util {
 	 * These are model elements declared as part of the classifier or as part of the nested declaration
 	 */
 	static def Iterable<ModelElement> getAllModelElements(Component comp) {
-		if (comp.typeReferences.empty || comp.typeReferences.isDataType){
+		if (comp.typeReferences.empty || comp.typeReferences.isTypeDecl){
 			// model elements in nested declaration
 			return comp.eContents.typeSelect(ModelElement)
 		} else {
@@ -978,15 +978,15 @@ class Aadlv3Util {
 	
 	
 	// returns true if superTyperef is a super type of any of type in trefs
-	def static boolean isSuperTypeOf(Type superType, Iterable<TypeReference> trefs) {
+	def static boolean isSuperTypeOf(ClassifierOrType superType, Iterable<TypeReference> trefs) {
 		return trefs.exists[tref| superType.isSuperTypeOf(tref.type)]
 	
 	}
 
 	// returns true if if superType is a super type of type
-	def static boolean isSuperTypeOf(Type superType, Type type) {
-		if (superType instanceof DataType && type instanceof DataType){
-			return (superType as DataType).isSuperDataTypeOf(type as DataType)
+	def static boolean isSuperTypeOf(ClassifierOrType superType, ClassifierOrType type) {
+		if (superType instanceof TypeDecl && type instanceof TypeDecl){
+			return (superType as TypeDecl).isSuperTypeDeclOf(type as TypeDecl)
 		}
 		if (superType instanceof ComponentClassifier && type instanceof ComponentClassifier){
 			return 	(superType as ComponentClassifier).isSuperClassifierOf(type as ComponentClassifier)
@@ -1026,7 +1026,7 @@ class Aadlv3Util {
 	
 
 	// superImpl has to be a direct or indirect super implementation, or the same
-	def static boolean isSuperDataTypeOf(DataType superdt, DataType dt) {
+	def static boolean isSuperTypeDeclOf(TypeDecl superdt, TypeDecl dt) {
 		if( dt === null || superdt.eIsProxy || dt.eIsProxy) return false
 		if (superdt === null || superdt === dt) return true
 		false
@@ -1453,7 +1453,7 @@ class Aadlv3Util {
 
 	
 	def static boolean sameValue(PropertyValue first, PropertyValue second){
-		return first == second || (first.value == second.value && first.unit == second.unit)
+		return first == second || (first.expr == second.expr )
 	}
 	
 		

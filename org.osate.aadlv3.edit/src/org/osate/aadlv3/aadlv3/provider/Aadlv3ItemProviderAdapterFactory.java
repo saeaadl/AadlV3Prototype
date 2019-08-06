@@ -155,29 +155,6 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.DataType} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected DataTypeItemProvider dataTypeItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.DataType}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createDataTypeAdapter() {
-		if (dataTypeItemProvider == null) {
-			dataTypeItemProvider = new DataTypeItemProvider(this);
-		}
-
-		return dataTypeItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.ComponentInterface} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -730,6 +707,29 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.TypeDecl} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected TypeDeclItemProvider typeDeclItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.TypeDecl}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createTypeDeclAdapter() {
+		if (typeDeclItemProvider == null) {
+			typeDeclItemProvider = new TypeDeclItemProvider(this);
+		}
+
+		return typeDeclItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.PathElement} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -932,8 +932,6 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 			propertyDefinitionItemProvider.dispose();
 		if (propertySetItemProvider != null)
 			propertySetItemProvider.dispose();
-		if (dataTypeItemProvider != null)
-			dataTypeItemProvider.dispose();
 		if (componentInterfaceItemProvider != null)
 			componentInterfaceItemProvider.dispose();
 		if (componentImplementationItemProvider != null)
@@ -990,6 +988,8 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 			annexLibraryItemProvider.dispose();
 		if (annexDefinitionItemProvider != null)
 			annexDefinitionItemProvider.dispose();
+		if (typeDeclItemProvider != null)
+			typeDeclItemProvider.dispose();
 	}
 
 }

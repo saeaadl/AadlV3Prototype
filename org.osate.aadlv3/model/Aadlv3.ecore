@@ -14,7 +14,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="private" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PropertyDefinition" eSuperTypes="#//PackageElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Type"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//ClassifierOrType"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="componentCategories" upperBound="-1"
         eType="#//ComponentCategory"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="featureCategories" upperBound="-1"
@@ -28,26 +28,22 @@
         eType="#//PropertyDefinition"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ModelElement" abstract="true" eSuperTypes="#//NamedElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="propertyAssociations" upperBound="-1"
-        eType="#//PropertyAssociation" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedPropertyAssociations"
+        upperBound="-1" eType="#//PropertyAssociation" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="inModes" upperBound="-1"
         eType="#//Mode"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="annexElements" upperBound="-1"
         eType="#//AnnexElement" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Type" abstract="true" eSuperTypes="#//NamedElement"/>
-  <eClassifiers xsi:type="ecore:EClass" name="DataType" eSuperTypes="#//PackageElement #//Type">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="propertyAssociations" upperBound="-1"
-        eType="#//PropertyAssociation" containment="true"/>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ClassifierOrType" abstract="true" eSuperTypes="#//NamedElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="ComponentClassifier" abstract="true"
-      eSuperTypes="#//PackageElement #//Type">
+      eSuperTypes="#//PackageElement #//ClassifierOrType">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="category" eType="#//ComponentCategory"
         defaultValueLiteral="interface"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="superClassifiers" upperBound="-1"
         eType="#//TypeReference" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="propertyAssociations" upperBound="-1"
-        eType="#//PropertyAssociation" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedPropertyAssociations"
+        upperBound="-1" eType="#//PropertyAssociation" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="useModes" eType="#//ModeStateMachine"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="inheritsModes" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="annexSubclause" upperBound="-1"
@@ -114,7 +110,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Association" eSuperTypes="#//ModelElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="associationType" eType="#//AssociationType"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="bindingType" eType="#//DataType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bindingType" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//ModelElementReference"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="destination" eType="#//ModelElementReference"
@@ -141,27 +137,27 @@
         upperBound="-1" eType="#//ClassifierAssignment" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="assignedClassifiers" upperBound="-1"
         eType="#//TypeReference" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="propertyAssociations" upperBound="-1"
-        eType="#//PropertyAssociation" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedPropertyAssociations"
+        upperBound="-1" eType="#//PropertyAssociation" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="bindings" upperBound="-1"
         eType="#//Association" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="annexSubclause" upperBound="-1"
         eType="#//AnnexSubclause" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ClassifierAssignmentPattern" eSuperTypes="#//ClassifierAssignment">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="targetPattern" eType="#//Type"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="targetPattern" eType="#//ClassifierOrType"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ModelElementReference">
     <eStructuralFeatures xsi:type="ecore:EReference" name="element" eType="#//ModelElement"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="#//ModelElementReference"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ConfigurationParameter" eSuperTypes="#//Type">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Type"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ConfigurationParameter" eSuperTypes="#//ClassifierOrType">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//ClassifierOrType"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypeReference">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="reverse" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Type"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//ClassifierOrType"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="actuals" upperBound="-1"
         eType="#//ConfigurationActual" containment="true"/>
   </eClassifiers>
@@ -230,8 +226,8 @@
     <eLiterals name="flowsink" value="4" literal="flow sink"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PropertyValue">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="unit" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PropertyAssociation">
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//ModelElementReference"
@@ -276,8 +272,14 @@
   <eClassifiers xsi:type="ecore:EClass" name="TypeSet" eSuperTypes="#//ModelElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="direction" eType="#//FeatureDirection"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="propagatedTypes" upperBound="-1"
-        eType="#//Type"/>
+        eType="#//ClassifierOrType"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AnnexLibrary" eSuperTypes="#//PackageDeclaration"/>
   <eClassifiers xsi:type="ecore:EClass" name="AnnexDefinition" eSuperTypes="#//PackageElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TypeDecl" eSuperTypes="#//ClassifierOrType #//PackageElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedPropertyAssociations"
+        upperBound="-1" eType="#//PropertyAssociation" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+        containment="true"/>
+  </eClassifiers>
 </ecore:EPackage>

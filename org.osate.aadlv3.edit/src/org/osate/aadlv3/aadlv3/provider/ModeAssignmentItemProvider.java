@@ -115,7 +115,6 @@ public class ModeAssignmentItemProvider extends ItemProviderAdapter implements I
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-		super.notifyChanged(notification);
 	}
 
 	/**

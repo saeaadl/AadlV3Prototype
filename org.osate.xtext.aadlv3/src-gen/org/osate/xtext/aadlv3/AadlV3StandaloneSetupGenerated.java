@@ -19,16 +19,16 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.ISetup;
-import org.eclipse.xtext.common.TerminalsStandaloneSetup;
 import org.eclipse.xtext.resource.IResourceFactory;
 import org.eclipse.xtext.resource.IResourceServiceProvider;
+import org.osate.expr.ExprStandaloneSetup;
 
 @SuppressWarnings("all")
 public class AadlV3StandaloneSetupGenerated implements ISetup {
 
 	@Override
 	public Injector createInjectorAndDoEMFRegistration() {
-		TerminalsStandaloneSetup.doSetup();
+		ExprStandaloneSetup.doSetup();
 
 		Injector injector = createInjector();
 		register(injector);

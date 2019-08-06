@@ -85,18 +85,15 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//PropertySet/properties"/>
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//ModelElement">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ModelElement/propertyAssociations"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ModelElement/ownedPropertyAssociations"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ModelElement/inModes"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ModelElement/annexElements"/>
     </genClasses>
-    <genClasses ecoreClass="Aadlv3.ecore#//Type"/>
-    <genClasses ecoreClass="Aadlv3.ecore#//DataType">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//DataType/propertyAssociations"/>
-    </genClasses>
+    <genClasses image="false" ecoreClass="Aadlv3.ecore#//ClassifierOrType"/>
     <genClasses ecoreClass="Aadlv3.ecore#//ComponentClassifier">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//ComponentClassifier/category"/>
       <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ComponentClassifier/superClassifiers"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ComponentClassifier/propertyAssociations"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ComponentClassifier/ownedPropertyAssociations"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ComponentClassifier/useModes"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//ComponentClassifier/inheritsModes"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ComponentClassifier/annexSubclause"/>
@@ -160,7 +157,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ClassifierAssignment/target"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ClassifierAssignment/classifierAssignments"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ClassifierAssignment/assignedClassifiers"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ClassifierAssignment/propertyAssociations"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ClassifierAssignment/ownedPropertyAssociations"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ClassifierAssignment/bindings"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ClassifierAssignment/annexSubclause"/>
     </genClasses>
@@ -188,8 +185,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Workingset/useProperties"/>
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//PropertyValue">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//PropertyValue/value"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//PropertyValue/unit"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//PropertyValue/expr"/>
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//PropertyAssociation">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//PropertyAssociation/target"/>
@@ -224,5 +220,9 @@
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//AnnexLibrary"/>
     <genClasses ecoreClass="Aadlv3.ecore#//AnnexDefinition"/>
+    <genClasses ecoreClass="Aadlv3.ecore#//TypeDecl">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//TypeDecl/ownedPropertyAssociations"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//TypeDecl/type"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

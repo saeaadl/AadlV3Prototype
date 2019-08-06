@@ -20,6 +20,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -28,7 +29,6 @@ import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.AnnexSubclause;
 import org.osate.aadlv3.aadlv3.Association;
 import org.osate.aadlv3.aadlv3.AssociationType;
-import org.osate.aadlv3.aadlv3.DataType;
 import org.osate.aadlv3.aadlv3.ModelElementReference;
 
 /**
@@ -78,7 +78,7 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	 * @generated
 	 * @ordered
 	 */
-	protected DataType bindingType;
+	protected EObject bindingType;
 
 	/**
 	 * The cached value of the '{@link #getSource() <em>Source</em>}' containment reference.
@@ -179,10 +179,10 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	 * @generated
 	 */
 	@Override
-	public DataType getBindingType() {
+	public EObject getBindingType() {
 		if (bindingType != null && bindingType.eIsProxy()) {
 			InternalEObject oldBindingType = (InternalEObject) bindingType;
-			bindingType = (DataType) eResolveProxy(oldBindingType);
+			bindingType = eResolveProxy(oldBindingType);
 			if (bindingType != oldBindingType) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Aadlv3Package.ASSOCIATION__BINDING_TYPE,
@@ -197,7 +197,7 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DataType basicGetBindingType() {
+	public EObject basicGetBindingType() {
 		return bindingType;
 	}
 
@@ -207,8 +207,8 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	 * @generated
 	 */
 	@Override
-	public void setBindingType(DataType newBindingType) {
-		DataType oldBindingType = bindingType;
+	public void setBindingType(EObject newBindingType) {
+		EObject oldBindingType = bindingType;
 		bindingType = newBindingType;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.ASSOCIATION__BINDING_TYPE,
@@ -412,7 +412,7 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 			setAssociationType((AssociationType) newValue);
 			return;
 		case Aadlv3Package.ASSOCIATION__BINDING_TYPE:
-			setBindingType((DataType) newValue);
+			setBindingType((EObject) newValue);
 			return;
 		case Aadlv3Package.ASSOCIATION__SOURCE:
 			setSource((ModelElementReference) newValue);
@@ -443,7 +443,7 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 			setAssociationType(ASSOCIATION_TYPE_EDEFAULT);
 			return;
 		case Aadlv3Package.ASSOCIATION__BINDING_TYPE:
-			setBindingType((DataType) null);
+			setBindingType((EObject) null);
 			return;
 		case Aadlv3Package.ASSOCIATION__SOURCE:
 			setSource((ModelElementReference) null);

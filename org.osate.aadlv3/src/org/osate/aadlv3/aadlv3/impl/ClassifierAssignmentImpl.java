@@ -50,7 +50,7 @@ import org.osate.aadlv3.aadlv3.TypeReference;
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ClassifierAssignmentImpl#getTarget <em>Target</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ClassifierAssignmentImpl#getClassifierAssignments <em>Classifier Assignments</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ClassifierAssignmentImpl#getAssignedClassifiers <em>Assigned Classifiers</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.ClassifierAssignmentImpl#getPropertyAssociations <em>Property Associations</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.ClassifierAssignmentImpl#getOwnedPropertyAssociations <em>Owned Property Associations</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ClassifierAssignmentImpl#getBindings <em>Bindings</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ClassifierAssignmentImpl#getAnnexSubclause <em>Annex Subclause</em>}</li>
  * </ul>
@@ -89,14 +89,14 @@ public class ClassifierAssignmentImpl extends MinimalEObjectImpl.Container imple
 	protected EList<TypeReference> assignedClassifiers;
 
 	/**
-	 * The cached value of the '{@link #getPropertyAssociations() <em>Property Associations</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedPropertyAssociations() <em>Owned Property Associations</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPropertyAssociations()
+	 * @see #getOwnedPropertyAssociations()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<PropertyAssociation> propertyAssociations;
+	protected EList<PropertyAssociation> ownedPropertyAssociations;
 
 	/**
 	 * The cached value of the '{@link #getBindings() <em>Bindings</em>}' containment reference list.
@@ -223,12 +223,12 @@ public class ClassifierAssignmentImpl extends MinimalEObjectImpl.Container imple
 	 * @generated
 	 */
 	@Override
-	public EList<PropertyAssociation> getPropertyAssociations() {
-		if (propertyAssociations == null) {
-			propertyAssociations = new EObjectContainmentEList<PropertyAssociation>(PropertyAssociation.class, this,
-					Aadlv3Package.CLASSIFIER_ASSIGNMENT__PROPERTY_ASSOCIATIONS);
+	public EList<PropertyAssociation> getOwnedPropertyAssociations() {
+		if (ownedPropertyAssociations == null) {
+			ownedPropertyAssociations = new EObjectContainmentEList<PropertyAssociation>(PropertyAssociation.class,
+					this, Aadlv3Package.CLASSIFIER_ASSIGNMENT__OWNED_PROPERTY_ASSOCIATIONS);
 		}
-		return propertyAssociations;
+		return ownedPropertyAssociations;
 	}
 
 	/**
@@ -273,8 +273,8 @@ public class ClassifierAssignmentImpl extends MinimalEObjectImpl.Container imple
 			return ((InternalEList<?>) getClassifierAssignments()).basicRemove(otherEnd, msgs);
 		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__ASSIGNED_CLASSIFIERS:
 			return ((InternalEList<?>) getAssignedClassifiers()).basicRemove(otherEnd, msgs);
-		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__PROPERTY_ASSOCIATIONS:
-			return ((InternalEList<?>) getPropertyAssociations()).basicRemove(otherEnd, msgs);
+		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__OWNED_PROPERTY_ASSOCIATIONS:
+			return ((InternalEList<?>) getOwnedPropertyAssociations()).basicRemove(otherEnd, msgs);
 		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__BINDINGS:
 			return ((InternalEList<?>) getBindings()).basicRemove(otherEnd, msgs);
 		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__ANNEX_SUBCLAUSE:
@@ -297,8 +297,8 @@ public class ClassifierAssignmentImpl extends MinimalEObjectImpl.Container imple
 			return getClassifierAssignments();
 		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__ASSIGNED_CLASSIFIERS:
 			return getAssignedClassifiers();
-		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__PROPERTY_ASSOCIATIONS:
-			return getPropertyAssociations();
+		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__OWNED_PROPERTY_ASSOCIATIONS:
+			return getOwnedPropertyAssociations();
 		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__BINDINGS:
 			return getBindings();
 		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__ANNEX_SUBCLAUSE:
@@ -327,9 +327,9 @@ public class ClassifierAssignmentImpl extends MinimalEObjectImpl.Container imple
 			getAssignedClassifiers().clear();
 			getAssignedClassifiers().addAll((Collection<? extends TypeReference>) newValue);
 			return;
-		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__PROPERTY_ASSOCIATIONS:
-			getPropertyAssociations().clear();
-			getPropertyAssociations().addAll((Collection<? extends PropertyAssociation>) newValue);
+		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__OWNED_PROPERTY_ASSOCIATIONS:
+			getOwnedPropertyAssociations().clear();
+			getOwnedPropertyAssociations().addAll((Collection<? extends PropertyAssociation>) newValue);
 			return;
 		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__BINDINGS:
 			getBindings().clear();
@@ -360,8 +360,8 @@ public class ClassifierAssignmentImpl extends MinimalEObjectImpl.Container imple
 		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__ASSIGNED_CLASSIFIERS:
 			getAssignedClassifiers().clear();
 			return;
-		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__PROPERTY_ASSOCIATIONS:
-			getPropertyAssociations().clear();
+		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__OWNED_PROPERTY_ASSOCIATIONS:
+			getOwnedPropertyAssociations().clear();
 			return;
 		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__BINDINGS:
 			getBindings().clear();
@@ -387,8 +387,8 @@ public class ClassifierAssignmentImpl extends MinimalEObjectImpl.Container imple
 			return classifierAssignments != null && !classifierAssignments.isEmpty();
 		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__ASSIGNED_CLASSIFIERS:
 			return assignedClassifiers != null && !assignedClassifiers.isEmpty();
-		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__PROPERTY_ASSOCIATIONS:
-			return propertyAssociations != null && !propertyAssociations.isEmpty();
+		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__OWNED_PROPERTY_ASSOCIATIONS:
+			return ownedPropertyAssociations != null && !ownedPropertyAssociations.isEmpty();
 		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__BINDINGS:
 			return bindings != null && !bindings.isEmpty();
 		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__ANNEX_SUBCLAUSE:

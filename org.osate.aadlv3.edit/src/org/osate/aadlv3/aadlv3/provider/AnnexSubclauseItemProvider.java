@@ -91,7 +91,6 @@ public class AnnexSubclauseItemProvider extends ModelElementItemProvider {
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-		super.notifyChanged(notification);
 	}
 
 	/**

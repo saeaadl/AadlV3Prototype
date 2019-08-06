@@ -16,6 +16,7 @@
 package org.osate.aadlv3.aadlv3;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -73,12 +74,12 @@ public interface Association extends ModelElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Binding Type</em>' reference.
-	 * @see #setBindingType(DataType)
+	 * @see #setBindingType(EObject)
 	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getAssociation_BindingType()
 	 * @model
 	 * @generated
 	 */
-	DataType getBindingType();
+	EObject getBindingType();
 
 	/**
 	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.Association#getBindingType <em>Binding Type</em>}' reference.
@@ -88,7 +89,7 @@ public interface Association extends ModelElement {
 	 * @see #getBindingType()
 	 * @generated
 	 */
-	void setBindingType(DataType value);
+	void setBindingType(EObject value);
 
 	/**
 	 * Returns the value of the '<em><b>Source</b></em>' containment reference.

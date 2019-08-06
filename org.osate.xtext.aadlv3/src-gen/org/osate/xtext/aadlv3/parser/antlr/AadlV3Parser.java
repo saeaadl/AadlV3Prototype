@@ -28,7 +28,7 @@ public class AadlV3Parser extends AbstractAntlrParser {
 
 	@Override
 	protected void setInitialHiddenTokens(XtextTokenStream tokenStream) {
-		tokenStream.setInitialHiddenTokens("RULE_WS", "RULE_ML_COMMENT", "RULE_SL_COMMENT");
+		tokenStream.setInitialHiddenTokens("RULE_WS", "RULE_SL_COMMENT");
 	}
 	
 

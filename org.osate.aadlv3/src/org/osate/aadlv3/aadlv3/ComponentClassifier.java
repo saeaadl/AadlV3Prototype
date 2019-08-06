@@ -28,7 +28,7 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.ComponentClassifier#getCategory <em>Category</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.ComponentClassifier#getSuperClassifiers <em>Super Classifiers</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.ComponentClassifier#getPropertyAssociations <em>Property Associations</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.ComponentClassifier#getOwnedPropertyAssociations <em>Owned Property Associations</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.ComponentClassifier#getUseModes <em>Use Modes</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.ComponentClassifier#isInheritsModes <em>Inherits Modes</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.ComponentClassifier#getAnnexSubclause <em>Annex Subclause</em>}</li>
@@ -38,7 +38,7 @@ import org.eclipse.emf.common.util.EList;
  * @model abstract="true"
  * @generated
  */
-public interface ComponentClassifier extends PackageElement, Type {
+public interface ComponentClassifier extends PackageElement, ClassifierOrType {
 	/**
 	 * Returns the value of the '<em><b>Category</b></em>' attribute.
 	 * The default value is <code>"interface"</code>.
@@ -86,20 +86,16 @@ public interface ComponentClassifier extends PackageElement, Type {
 	EList<TypeReference> getSuperClassifiers();
 
 	/**
-	 * Returns the value of the '<em><b>Property Associations</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Property Associations</b></em>' containment reference list.
 	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.PropertyAssociation}.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Property Associations</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Property Associations</em>' containment reference list.
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getComponentClassifier_PropertyAssociations()
+	 * @return the value of the '<em>Owned Property Associations</em>' containment reference list.
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getComponentClassifier_OwnedPropertyAssociations()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<PropertyAssociation> getPropertyAssociations();
+	EList<PropertyAssociation> getOwnedPropertyAssociations();
 
 	/**
 	 * Returns the value of the '<em><b>Use Modes</b></em>' reference.

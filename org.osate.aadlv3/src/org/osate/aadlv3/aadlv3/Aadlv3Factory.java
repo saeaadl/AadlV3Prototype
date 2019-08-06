@@ -62,15 +62,6 @@ public interface Aadlv3Factory extends EFactory {
 	PropertySet createPropertySet();
 
 	/**
-	 * Returns a new object of class '<em>Data Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Data Type</em>'.
-	 * @generated
-	 */
-	DataType createDataType();
-
-	/**
 	 * Returns a new object of class '<em>Component Interface</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -285,6 +276,15 @@ public interface Aadlv3Factory extends EFactory {
 	 * @generated
 	 */
 	AnnexDefinition createAnnexDefinition();
+
+	/**
+	 * Returns a new object of class '<em>Type Decl</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Type Decl</em>'.
+	 * @generated
+	 */
+	TypeDecl createTypeDecl();
 
 	/**
 	 * Returns a new object of class '<em>Path Element</em>'.

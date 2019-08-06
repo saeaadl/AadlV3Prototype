@@ -37,7 +37,6 @@ public class AadlV3InjectorProvider implements IInjectorProvider, IRegistryConfi
 	@Override
 	public Injector getInjector() {
 		if (injector == null) {
-			stateBeforeInjectorCreation = GlobalRegistries.makeCopyOfGlobalState();
 			this.injector = internalCreateInjector();
 			stateAfterInjectorCreation = GlobalRegistries.makeCopyOfGlobalState();
 		}
@@ -68,11 +67,15 @@ public class AadlV3InjectorProvider implements IInjectorProvider, IRegistryConfi
 	@Override
 	public void restoreRegistry() {
 		stateBeforeInjectorCreation.restoreGlobalState();
+		stateBeforeInjectorCreation = null;
 	}
 
 	@Override
 	public void setupRegistry() {
-		getInjector();
+		stateBeforeInjectorCreation = GlobalRegistries.makeCopyOfGlobalState();
+		if (injector == null) {
+			getInjector();
+		}
 		stateAfterInjectorCreation.restoreGlobalState();
 	}
 }

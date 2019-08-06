@@ -23,8 +23,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
+import org.osate.aadlv3.aadlv3.ClassifierOrType;
 import org.osate.aadlv3.aadlv3.ConfigurationParameter;
-import org.osate.aadlv3.aadlv3.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -39,7 +39,7 @@ import org.osate.aadlv3.aadlv3.Type;
  *
  * @generated
  */
-public class ConfigurationParameterImpl extends TypeImpl implements ConfigurationParameter {
+public class ConfigurationParameterImpl extends ClassifierOrTypeImpl implements ConfigurationParameter {
 	/**
 	 * The cached value of the '{@link #getType() <em>Type</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -48,7 +48,7 @@ public class ConfigurationParameterImpl extends TypeImpl implements Configuratio
 	 * @generated
 	 * @ordered
 	 */
-	protected Type type;
+	protected ClassifierOrType type;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -75,10 +75,10 @@ public class ConfigurationParameterImpl extends TypeImpl implements Configuratio
 	 * @generated
 	 */
 	@Override
-	public Type getType() {
+	public ClassifierOrType getType() {
 		if (type != null && type.eIsProxy()) {
 			InternalEObject oldType = (InternalEObject) type;
-			type = (Type) eResolveProxy(oldType);
+			type = (ClassifierOrType) eResolveProxy(oldType);
 			if (type != oldType) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
@@ -93,7 +93,7 @@ public class ConfigurationParameterImpl extends TypeImpl implements Configuratio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Type basicGetType() {
+	public ClassifierOrType basicGetType() {
 		return type;
 	}
 
@@ -103,8 +103,8 @@ public class ConfigurationParameterImpl extends TypeImpl implements Configuratio
 	 * @generated
 	 */
 	@Override
-	public void setType(Type newType) {
-		Type oldType = type;
+	public void setType(ClassifierOrType newType) {
+		ClassifierOrType oldType = type;
 		type = newType;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.CONFIGURATION_PARAMETER__TYPE, oldType,
@@ -136,7 +136,7 @@ public class ConfigurationParameterImpl extends TypeImpl implements Configuratio
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 		case Aadlv3Package.CONFIGURATION_PARAMETER__TYPE:
-			setType((Type) newValue);
+			setType((ClassifierOrType) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -151,7 +151,7 @@ public class ConfigurationParameterImpl extends TypeImpl implements Configuratio
 	public void eUnset(int featureID) {
 		switch (featureID) {
 		case Aadlv3Package.CONFIGURATION_PARAMETER__TYPE:
-			setType((Type) null);
+			setType((ClassifierOrType) null);
 			return;
 		}
 		super.eUnset(featureID);

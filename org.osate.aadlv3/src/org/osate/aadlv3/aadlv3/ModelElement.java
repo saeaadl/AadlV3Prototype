@@ -26,7 +26,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.osate.aadlv3.aadlv3.ModelElement#getPropertyAssociations <em>Property Associations</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.ModelElement#getOwnedPropertyAssociations <em>Owned Property Associations</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.ModelElement#getInModes <em>In Modes</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.ModelElement#getAnnexElements <em>Annex Elements</em>}</li>
  * </ul>
@@ -37,20 +37,16 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface ModelElement extends NamedElement {
 	/**
-	 * Returns the value of the '<em><b>Property Associations</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Property Associations</b></em>' containment reference list.
 	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.PropertyAssociation}.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Property Associations</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Property Associations</em>' containment reference list.
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getModelElement_PropertyAssociations()
+	 * @return the value of the '<em>Owned Property Associations</em>' containment reference list.
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getModelElement_OwnedPropertyAssociations()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<PropertyAssociation> getPropertyAssociations();
+	EList<PropertyAssociation> getOwnedPropertyAssociations();
 
 	/**
 	 * Returns the value of the '<em><b>In Modes</b></em>' reference list.

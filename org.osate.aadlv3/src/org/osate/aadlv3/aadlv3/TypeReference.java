@@ -73,12 +73,12 @@ public interface TypeReference extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Type</em>' reference.
-	 * @see #setType(Type)
+	 * @see #setType(ClassifierOrType)
 	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getTypeReference_Type()
 	 * @model
 	 * @generated
 	 */
-	Type getType();
+	ClassifierOrType getType();
 
 	/**
 	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.TypeReference#getType <em>Type</em>}' reference.
@@ -88,7 +88,7 @@ public interface TypeReference extends EObject {
 	 * @see #getType()
 	 * @generated
 	 */
-	void setType(Type value);
+	void setType(ClassifierOrType value);
 
 	/**
 	 * Returns the value of the '<em><b>Actuals</b></em>' containment reference list.

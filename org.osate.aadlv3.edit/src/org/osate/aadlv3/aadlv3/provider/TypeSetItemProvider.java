@@ -169,9 +169,6 @@ public class TypeSetItemProvider extends ModelElementItemProvider {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.TYPE_SET__PROPAGATED_TYPES,
-				Aadlv3Factory.eINSTANCE.createDataType()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.TYPE_SET__PROPAGATED_TYPES,
 				Aadlv3Factory.eINSTANCE.createComponentInterface()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.TYPE_SET__PROPAGATED_TYPES,
@@ -182,6 +179,9 @@ public class TypeSetItemProvider extends ModelElementItemProvider {
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.TYPE_SET__PROPAGATED_TYPES,
 				Aadlv3Factory.eINSTANCE.createConfigurationParameter()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.TYPE_SET__PROPAGATED_TYPES,
+				Aadlv3Factory.eINSTANCE.createTypeDecl()));
 	}
 
 }

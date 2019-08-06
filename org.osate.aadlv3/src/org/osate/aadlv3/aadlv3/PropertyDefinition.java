@@ -47,12 +47,12 @@ public interface PropertyDefinition extends PackageElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Type</em>' reference.
-	 * @see #setType(Type)
+	 * @see #setType(ClassifierOrType)
 	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getPropertyDefinition_Type()
 	 * @model
 	 * @generated
 	 */
-	Type getType();
+	ClassifierOrType getType();
 
 	/**
 	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.PropertyDefinition#getType <em>Type</em>}' reference.
@@ -62,7 +62,7 @@ public interface PropertyDefinition extends PackageElement {
 	 * @see #getType()
 	 * @generated
 	 */
-	void setType(Type value);
+	void setType(ClassifierOrType value);
 
 	/**
 	 * Returns the value of the '<em><b>Component Categories</b></em>' attribute list.

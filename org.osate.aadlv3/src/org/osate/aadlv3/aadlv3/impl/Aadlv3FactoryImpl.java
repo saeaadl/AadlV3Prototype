@@ -76,8 +76,6 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 			return createPropertyDefinition();
 		case Aadlv3Package.PROPERTY_SET:
 			return createPropertySet();
-		case Aadlv3Package.DATA_TYPE:
-			return createDataType();
 		case Aadlv3Package.COMPONENT_INTERFACE:
 			return createComponentInterface();
 		case Aadlv3Package.COMPONENT_IMPLEMENTATION:
@@ -134,6 +132,8 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 			return createAnnexLibrary();
 		case Aadlv3Package.ANNEX_DEFINITION:
 			return createAnnexDefinition();
+		case Aadlv3Package.TYPE_DECL:
+			return createTypeDecl();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -216,17 +216,6 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 	public PropertySet createPropertySet() {
 		PropertySetImpl propertySet = new PropertySetImpl();
 		return propertySet;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public DataType createDataType() {
-		DataTypeImpl dataType = new DataTypeImpl();
-		return dataType;
 	}
 
 	/**
@@ -491,6 +480,17 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 	public AnnexDefinition createAnnexDefinition() {
 		AnnexDefinitionImpl annexDefinition = new AnnexDefinitionImpl();
 		return annexDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public TypeDecl createTypeDecl() {
+		TypeDeclImpl typeDecl = new TypeDeclImpl();
+		return typeDecl;
 	}
 
 	/**

@@ -22,7 +22,6 @@ import org.osate.aadlv3.aadlv3.ComponentRealization
 import org.osate.aadlv3.aadlv3.ConfigurationActual
 import org.osate.aadlv3.aadlv3.ClassifierAssignment
 import org.osate.aadlv3.aadlv3.ConfigurationParameter
-import org.osate.aadlv3.aadlv3.DataType
 import org.osate.aadlv3.aadlv3.Feature
 import org.osate.aadlv3.aadlv3.FeatureCategory
 import org.osate.aadlv3.aadlv3.FeatureDirection
@@ -39,6 +38,7 @@ import static org.osate.aadlv3.util.Av3API.*
 
 import static extension org.osate.aadlv3.util.Aadlv3Util.*
 import org.eclipse.emf.common.util.EList
+import org.osate.aadlv3.aadlv3.TypeDecl
 
 /**
  * This class contains custom validation rules. 
@@ -214,7 +214,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 						error('Configuration actual does not match component classifier of configuration parameter', ca,
 							null, FormalActualMismatch)
 					}
-				} else if (assignedtype instanceof DataType) {
+				} else if (assignedtype instanceof TypeDecl) {
 					error(
 						'Configuration actual (data type) does not match component classifier of configuration parameter',
 						ca, null, FormalActualMismatch)
@@ -232,7 +232,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 					error('Configuration actual is not a component classifier', ca, null, FormalActualMismatch)
 				}
 			}
-		} else if (cif instanceof DataType) {
+		} else if (cif instanceof TypeDecl) {
 			val assignedtypes = ca.assignedClassifiers
 			for (assignedtyperef : assignedtypes) {
 				val assignedtype = assignedtyperef.type
@@ -240,8 +240,8 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 					error(
 						'Configuration actual (component classifier) does not match configuration parameter data type',
 						ca, null, FormalActualMismatch)
-				} else if (assignedtype instanceof DataType) {
-					if (!(cif.isSuperDataTypeOf(assignedtype))) {
+				} else if (assignedtype instanceof TypeDecl) {
+					if (!(cif.isSuperTypeOf(assignedtype))) {
 						error(
 							'Configuration actual (data type) is not an extension of configuration parameter data type',
 							ca, null, FormalActualMismatch)
@@ -381,7 +381,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	def hasLocalFinalPropertyAssociation(ModelElement ne, PropertyDefinition pd) {
 		if (ne instanceof Component) {
 			// all PA in classifiers listed in component & PA in {} of component
-			val pas = ne.typeReferences.allPropertyAssociations + ne.propertyAssociations
+			val pas = ne.typeReferences.allPropertyAssociations + ne.ownedPropertyAssociations
 			// PA with PD exists and does not have a target, i.e., is for the component and is FINAL
 			pas.exists [ pa |
 				samePropertyDefinition(pa.property, pd) && pa.propertyAssociationType === PropertyAssociationType.FINAL_VALUE &&
@@ -390,7 +390,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 		} else {
 			// PA in {} & PA in enclosing classifier with ne as target
 			val clpas = ne.containingComponentClassifier.allPropertyAssociations
-			val mepas = ne.propertyAssociations
+			val mepas = ne.ownedPropertyAssociations
 			clpas.exists [ pa |
 				samePropertyDefinition(pa.property, pd) && pa.propertyAssociationType === PropertyAssociationType.FINAL_VALUE &&
 					pa.target === ne
@@ -446,7 +446,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 		val me = pa.target?.element
 		val supercls = pa.containingComponentClassifier.allSuperComponentClassifiers
 		for (supercl : supercls) {
-			val spas = supercl.propertyAssociations
+			val spas = supercl.ownedPropertyAssociations
 			for (spa : spas) {
 				if (spa.target === me && samePropertyDefinition(spa.property, pa.property) &&
 					spa.propertyAssociationType === PropertyAssociationType.FINAL_VALUE) {
@@ -466,7 +466,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 			val targetme = pa.target.element
 			val targetcontext = targetme.containingComponentClassifier
 			// local target model element also has {} property assignment 
-			val tpas = targetme.propertyAssociations
+			val tpas = targetme.ownedPropertyAssociations
 			for (tpa : tpas) {
 				if (tpa.target === null && samePropertyDefinition(tpa.property, pa.property) && context == targetcontext) {
 					error('Property value also assigned in {}', pa,
@@ -485,7 +485,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 			val targetme = pa.target.element
 			val targetcontext = targetme.containingComponentClassifier
 			// local target model element also has {} property assignment 
-			val tpas = targetme.propertyAssociations
+			val tpas = targetme.ownedPropertyAssociations
 			for (tpa : tpas) {
 				if (tpa.target === null && samePropertyDefinition(tpa.property, pa.property) && context == targetcontext) {
 					error('Property value also assigned in {}', pa,
@@ -500,24 +500,24 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	 * check duplicate PA in classifier
 	 */
 	def checkDuplicatePropertyAssociations(ComponentClassifier cl) {
-		checkDuplicatePropertyAssociations(cl.propertyAssociations, cl,
-			Aadlv3Package.Literals.COMPONENT_CLASSIFIER__PROPERTY_ASSOCIATIONS)
+		checkDuplicatePropertyAssociations(cl.ownedPropertyAssociations, cl,
+			Aadlv3Package.Literals.COMPONENT_CLASSIFIER__OWNED_PROPERTY_ASSOCIATIONS)
 	}
 
 	/**
 	 * check duplicate PA in CA
 	 */
 	def checkDuplicatePropertyAssociations(ClassifierAssignment ca) {
-		checkDuplicatePropertyAssociations(ca.propertyAssociations, ca,
-			Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__PROPERTY_ASSOCIATIONS)
+		checkDuplicatePropertyAssociations(ca.ownedPropertyAssociations, ca,
+			Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__OWNED_PROPERTY_ASSOCIATIONS)
 	}
 
 	/**
 	 * check duplicate PA in Model Element
 	 */
 	def checkDuplicatePropertyAssociations(ModelElement me) {
-		checkDuplicatePropertyAssociations(me.propertyAssociations, me,
-			Aadlv3Package.Literals.MODEL_ELEMENT__PROPERTY_ASSOCIATIONS)
+		checkDuplicatePropertyAssociations(me.ownedPropertyAssociations, me,
+			Aadlv3Package.Literals.MODEL_ELEMENT__OWNED_PROPERTY_ASSOCIATIONS)
 	}
 
 	def checkDuplicatePropertyAssociations(Iterable<PropertyAssociation> pas, EObject target,
@@ -542,7 +542,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	 */
 	def checkCompositeInterfacePAConflict(ComponentInterface cl) {
 		val pas = cl.superClassifiers.allPropertyAssociations
-		val localpas = cl.propertyAssociations
+		val localpas = cl.ownedPropertyAssociations
 		val maxpas = pas.length
 		for (var firstidx = 0; firstidx < maxpas - 1; firstidx++) {
 			val first = pas.get(firstidx)
@@ -570,7 +570,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	 * conflicting PA in assigned classifiers of CA
 	 */
 	def checkCompositePropertyAssociationConflict(ClassifierAssignment ca) {
-		checkCompositeClassifierPropertyAssociationConflict(ca,ca.assignedClassifiers, ca.propertyAssociations)
+		checkCompositeClassifierPropertyAssociationConflict(ca,ca.assignedClassifiers, ca.ownedPropertyAssociations)
 	}
 	
 
@@ -578,7 +578,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	 * conflicting PA in assigned classifiers of configuration extends
 	 */
 	def checkCompositePropertyAssociationConflict(ComponentClassifier conf) {
-		checkCompositeClassifierPropertyAssociationConflict(conf,conf.superClassifiers, conf.propertyAssociations)
+		checkCompositeClassifierPropertyAssociationConflict(conf,conf.superClassifiers, conf.ownedPropertyAssociations)
 	}
 
 	def checkCompositeClassifierPropertyAssociationConflict(EObject trscontainer, EList<TypeReference> trs, EList<PropertyAssociation> locaPAs) {
@@ -627,7 +627,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 						'Property association ' + curlypa.target.targetPath + '#' + curlypa.property.name +
 							' conflicts with ' + first.containingComponentClassifier.name + '::' +
 							first.target.targetPath + '#' + first.property.name, trscontainer,
-						Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__PROPERTY_ASSOCIATIONS,
+						Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__OWNED_PROPERTY_ASSOCIATIONS,
 						locaPAs.indexOf(curlypa), ConflictingComposite)
 						}
 				}
@@ -662,7 +662,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 		val subs = cl.allSubcomponents
 		val casscopes = new Stack<Iterable<ClassifierAssignment>>()
 		val cas = cl.allClassifierAssignments
-		val caspas = cas.map[ca|ca.propertyAssociations].flatten
+		val caspas = cas.map[ca|ca.ownedPropertyAssociations].flatten
 		checkCompositeCasPasConflict(caspas, cl)
 		casscopes.push(cas)
 		val reachdownPAS = new Stack<Iterable<PropertyAssociation>>()
@@ -683,7 +683,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 		if (trefs === null) {
 			// inline subcomponents without explicit classifier
 			casscopes.push(Collections.EMPTY_LIST)
-			reachdownPAS.push(comp.propertyAssociations.filter[pa|pa.target.modelElementReferenceReachDown])
+			reachdownPAS.push(comp.ownedPropertyAssociations.filter[pa|pa.target.modelElementReferenceReachDown])
 			comp.components.forEach[subc|context.addComponent(subc).checkNestedPAS(casscopes, reachdownPAS, rootcl)]
 			casscopes.pop
 			reachdownPAS.pop
@@ -694,7 +694,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 			checkReachDownConfiguredPasConflict(casscopes, context, configuredPAS, rootcl)
 			// all CAs including nested ones
 			val cas = trefs.allClassifierAssignments
-			val caspas = cas.map[ca|ca.propertyAssociations].flatten
+			val caspas = cas.map[ca|ca.ownedPropertyAssociations].flatten
 			checkReachDownCasPasConflict(casscopes, context, caspas, rootcl)
 			checkCompositeCasPasConflict(caspas, rootcl)
 			val comps = trefs.getAllSubcomponents(comp)
@@ -725,8 +725,8 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 									' conflicts with final ' + (configuredPA.eContainer as ComponentClassifier).name +
 									'::' + configuredPA.target.targetPath + '#' + configuredPA.property.name +
 									'configured for component ' + context.element.name, rdcont,
-								Aadlv3Package.Literals.COMPONENT_CLASSIFIER__PROPERTY_ASSOCIATIONS,
-								rdcont.propertyAssociations.indexOf(rdPA), ConflictingFinal)
+								Aadlv3Package.Literals.COMPONENT_CLASSIFIER__OWNED_PROPERTY_ASSOCIATIONS,
+								rdcont.ownedPropertyAssociations.indexOf(rdPA), ConflictingFinal)
 						}
 					}
 				}
@@ -740,7 +740,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 		if(n === 0) return;
 		for (k : n - 1 .. 0) {
 			for (ca : casscopes.get(k)) {
-				val rdpas = ca.propertyAssociations
+				val rdpas = ca.ownedPropertyAssociations
 				for (rdPA : rdpas) {
 					// PAS from configured classifiers
 					for (configuredPA : configuredPAS) {
@@ -755,8 +755,8 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 										' conflicts with final ' +
 										(configuredPA.eContainer as ComponentClassifier).name + '::' +
 										configuredPA.target.targetPath + '#' + configuredPA.property.name, rdcont,
-									Aadlv3Package.Literals.COMPONENT_CLASSIFIER__PROPERTY_ASSOCIATIONS,
-									rdcont.propertyAssociations.indexOf(rdPA), ConflictingFinal)
+									Aadlv3Package.Literals.COMPONENT_CLASSIFIER__OWNED_PROPERTY_ASSOCIATIONS,
+									rdcont.ownedPropertyAssociations.indexOf(rdPA), ConflictingFinal)
 							}
 							
 							}
@@ -773,7 +773,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 		if(n === 0) return;
 		for (k : n - 1 .. 0) {
 			for (ca : casscopes.get(k)) {
-				val rdpas = ca.propertyAssociations
+				val rdpas = ca.ownedPropertyAssociations
 				for (rdPA : rdpas) {
 					// PAS from configured classifiers
 					for (casPA : casPAS) {
@@ -788,8 +788,8 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 											rdPA.property.name + ' conflicts with final ' +
 											(casPA.eContainer as ComponentClassifier).name + '::' +
 											casPA.target.targetPath + '#' + casPA.property.name, rdcont,
-										Aadlv3Package.Literals.COMPONENT_CLASSIFIER__PROPERTY_ASSOCIATIONS,
-										rdcont.propertyAssociations.indexOf(rdPA), ConflictingFinal)
+										Aadlv3Package.Literals.COMPONENT_CLASSIFIER__OWNED_PROPERTY_ASSOCIATIONS,
+										rdcont.ownedPropertyAssociations.indexOf(rdPA), ConflictingFinal)
 								}
 							}
 						}
@@ -1013,7 +1013,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 					error('Data component must have data type', comp, Aadlv3Package.Literals.COMPONENT__CATEGORY,
 						MustBeDataType)
 				}
-			} else if (t instanceof DataType) {
+			} else if (t instanceof TypeDecl) {
 				if (!(comp.category === ComponentCategory.DATA || comp.category === ComponentCategory.INTERFACE)) {
 					error('Components other than "data" or "component" cannot have primitive type', comp,
 						Aadlv3Package.Literals.COMPONENT__CATEGORY, NoDataType)
@@ -1023,7 +1023,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 			}
 		}
 		// if has type references that are not data type then {} can only contain property associations
-		if (!comp.typeReferences.empty && ! comp.typeReferences.isDataType &&
+		if (!comp.typeReferences.empty && ! comp.typeReferences.isTypeDecl &&
 			(!comp.features.empty || !comp.connections.empty || !comp.components.empty)) {
 			error('Component with classifier can only have property associations in {}', comp, null,
 				OnlyPropertyAssociations)
@@ -1289,7 +1289,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 								comp.category + '\' of the component or must be "abstract"', ca, null,
 							MISMATCHED_COMPONENT_CATEGORY)
 					}
-				} else if (thetype instanceof DataType) {
+				} else if (thetype instanceof TypeDecl) {
 					// primitive type
 					if (comp.category === ComponentCategory.DATA || comp.category === ComponentCategory.INTERFACE) {
 						if (!comp.typeReferences.empty) {
@@ -1322,7 +1322,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 							Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__ASSIGNED_CLASSIFIERS,
 							ONLY_INTERFACES_REVERSE)
 					}
-				} else if (thetype instanceof DataType) {
+				} else if (thetype instanceof TypeDecl) {
 					// data type
 					if (fea.category === FeatureCategory.DATAACCESS || fea.category === FeatureCategory.PORT ||
 						fea.category === FeatureCategory.FEATURE) {

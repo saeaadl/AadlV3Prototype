@@ -122,7 +122,6 @@ public class PathElementItemProvider extends ModelElementReferenceItemProvider {
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-		super.notifyChanged(notification);
 	}
 
 	/**

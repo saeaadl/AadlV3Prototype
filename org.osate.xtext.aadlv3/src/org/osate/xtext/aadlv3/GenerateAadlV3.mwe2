@@ -1,9 +1,12 @@
 module org.osate.xtext.aadlv3.GenerateAadlV3
 
+import org.eclipse.emf.mwe.utils.*
 import org.eclipse.xtext.xtext.generator.*
 import org.eclipse.xtext.xtext.generator.model.project.*
 
 var rootPath = ".."
+var projectName = "org.osate.aadlv3"
+var runtimeProject = "../${projectName}"
 
 Workflow {
 	
@@ -33,6 +36,7 @@ Workflow {
 			name = "org.osate.xtext.aadlv3.AadlV3"
 			fileExtensions = "av3"
 			referencedResource = "platform:/resource/org.osate.aadlv3/model/Aadlv3.genmodel"
+			referencedResource = "platform:/resource/org.osate.expr/model/generated/Expr.genmodel"
 			
 			parserGenerator = {
   				options = {

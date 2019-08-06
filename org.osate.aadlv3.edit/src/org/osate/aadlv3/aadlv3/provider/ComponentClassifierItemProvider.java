@@ -159,7 +159,7 @@ public class ComponentClassifierItemProvider extends PackageElementItemProvider 
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(Aadlv3Package.Literals.COMPONENT_CLASSIFIER__SUPER_CLASSIFIERS);
-			childrenFeatures.add(Aadlv3Package.Literals.COMPONENT_CLASSIFIER__PROPERTY_ASSOCIATIONS);
+			childrenFeatures.add(Aadlv3Package.Literals.COMPONENT_CLASSIFIER__OWNED_PROPERTY_ASSOCIATIONS);
 		}
 		return childrenFeatures;
 	}
@@ -218,7 +218,7 @@ public class ComponentClassifierItemProvider extends PackageElementItemProvider 
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		case Aadlv3Package.COMPONENT_CLASSIFIER__SUPER_CLASSIFIERS:
-		case Aadlv3Package.COMPONENT_CLASSIFIER__PROPERTY_ASSOCIATIONS:
+		case Aadlv3Package.COMPONENT_CLASSIFIER__OWNED_PROPERTY_ASSOCIATIONS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -239,8 +239,9 @@ public class ComponentClassifierItemProvider extends PackageElementItemProvider 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.COMPONENT_CLASSIFIER__SUPER_CLASSIFIERS,
 				Aadlv3Factory.eINSTANCE.createTypeReference()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.COMPONENT_CLASSIFIER__PROPERTY_ASSOCIATIONS,
-				Aadlv3Factory.eINSTANCE.createPropertyAssociation()));
+		newChildDescriptors
+				.add(createChildParameter(Aadlv3Package.Literals.COMPONENT_CLASSIFIER__OWNED_PROPERTY_ASSOCIATIONS,
+						Aadlv3Factory.eINSTANCE.createPropertyAssociation()));
 	}
 
 }

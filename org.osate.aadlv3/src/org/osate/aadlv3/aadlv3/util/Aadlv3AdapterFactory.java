@@ -110,13 +110,8 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseType(Type object) {
-			return createTypeAdapter();
-		}
-
-		@Override
-		public Adapter caseDataType(DataType object) {
-			return createDataTypeAdapter();
+		public Adapter caseClassifierOrType(ClassifierOrType object) {
+			return createClassifierOrTypeAdapter();
 		}
 
 		@Override
@@ -270,6 +265,11 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseTypeDecl(TypeDecl object) {
+			return createTypeDeclAdapter();
+		}
+
+		@Override
 		public Adapter defaultCase(EObject object) {
 			return createEObjectAdapter();
 		}
@@ -373,30 +373,16 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.Type <em>Type</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.ClassifierOrType <em>Classifier Or Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.osate.aadlv3.aadlv3.Type
+	 * @see org.osate.aadlv3.aadlv3.ClassifierOrType
 	 * @generated
 	 */
-	public Adapter createTypeAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.DataType <em>Data Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.osate.aadlv3.aadlv3.DataType
-	 * @generated
-	 */
-	public Adapter createDataTypeAdapter() {
+	public Adapter createClassifierOrTypeAdapter() {
 		return null;
 	}
 
@@ -747,6 +733,20 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createAnnexDefinitionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.TypeDecl <em>Type Decl</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.osate.aadlv3.aadlv3.TypeDecl
+	 * @generated
+	 */
+	public Adapter createTypeDeclAdapter() {
 		return null;
 	}
 

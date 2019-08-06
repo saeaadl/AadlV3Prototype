@@ -24,8 +24,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
+import org.osate.aadlv3.aadlv3.ClassifierOrType;
 import org.osate.aadlv3.aadlv3.FeatureDirection;
-import org.osate.aadlv3.aadlv3.Type;
 import org.osate.aadlv3.aadlv3.TypeSet;
 
 /**
@@ -71,7 +71,7 @@ public class TypeSetImpl extends ModelElementImpl implements TypeSet {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Type> propagatedTypes;
+	protected EList<ClassifierOrType> propagatedTypes;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -122,9 +122,9 @@ public class TypeSetImpl extends ModelElementImpl implements TypeSet {
 	 * @generated
 	 */
 	@Override
-	public EList<Type> getPropagatedTypes() {
+	public EList<ClassifierOrType> getPropagatedTypes() {
 		if (propagatedTypes == null) {
-			propagatedTypes = new EObjectResolvingEList<Type>(Type.class, this,
+			propagatedTypes = new EObjectResolvingEList<ClassifierOrType>(ClassifierOrType.class, this,
 					Aadlv3Package.TYPE_SET__PROPAGATED_TYPES);
 		}
 		return propagatedTypes;
@@ -160,7 +160,7 @@ public class TypeSetImpl extends ModelElementImpl implements TypeSet {
 			return;
 		case Aadlv3Package.TYPE_SET__PROPAGATED_TYPES:
 			getPropagatedTypes().clear();
-			getPropagatedTypes().addAll((Collection<? extends Type>) newValue);
+			getPropagatedTypes().addAll((Collection<? extends ClassifierOrType>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);

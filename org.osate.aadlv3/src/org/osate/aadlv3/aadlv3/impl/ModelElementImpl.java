@@ -42,7 +42,7 @@ import org.osate.aadlv3.aadlv3.PropertyAssociation;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.ModelElementImpl#getPropertyAssociations <em>Property Associations</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.ModelElementImpl#getOwnedPropertyAssociations <em>Owned Property Associations</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ModelElementImpl#getInModes <em>In Modes</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ModelElementImpl#getAnnexElements <em>Annex Elements</em>}</li>
  * </ul>
@@ -51,14 +51,14 @@ import org.osate.aadlv3.aadlv3.PropertyAssociation;
  */
 public abstract class ModelElementImpl extends NamedElementImpl implements ModelElement {
 	/**
-	 * The cached value of the '{@link #getPropertyAssociations() <em>Property Associations</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedPropertyAssociations() <em>Owned Property Associations</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPropertyAssociations()
+	 * @see #getOwnedPropertyAssociations()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<PropertyAssociation> propertyAssociations;
+	protected EList<PropertyAssociation> ownedPropertyAssociations;
 
 	/**
 	 * The cached value of the '{@link #getInModes() <em>In Modes</em>}' reference list.
@@ -105,12 +105,12 @@ public abstract class ModelElementImpl extends NamedElementImpl implements Model
 	 * @generated
 	 */
 	@Override
-	public EList<PropertyAssociation> getPropertyAssociations() {
-		if (propertyAssociations == null) {
-			propertyAssociations = new EObjectContainmentEList<PropertyAssociation>(PropertyAssociation.class, this,
-					Aadlv3Package.MODEL_ELEMENT__PROPERTY_ASSOCIATIONS);
+	public EList<PropertyAssociation> getOwnedPropertyAssociations() {
+		if (ownedPropertyAssociations == null) {
+			ownedPropertyAssociations = new EObjectContainmentEList<PropertyAssociation>(PropertyAssociation.class,
+					this, Aadlv3Package.MODEL_ELEMENT__OWNED_PROPERTY_ASSOCIATIONS);
 		}
-		return propertyAssociations;
+		return ownedPropertyAssociations;
 	}
 
 	/**
@@ -148,8 +148,8 @@ public abstract class ModelElementImpl extends NamedElementImpl implements Model
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case Aadlv3Package.MODEL_ELEMENT__PROPERTY_ASSOCIATIONS:
-			return ((InternalEList<?>) getPropertyAssociations()).basicRemove(otherEnd, msgs);
+		case Aadlv3Package.MODEL_ELEMENT__OWNED_PROPERTY_ASSOCIATIONS:
+			return ((InternalEList<?>) getOwnedPropertyAssociations()).basicRemove(otherEnd, msgs);
 		case Aadlv3Package.MODEL_ELEMENT__ANNEX_ELEMENTS:
 			return ((InternalEList<?>) getAnnexElements()).basicRemove(otherEnd, msgs);
 		}
@@ -164,8 +164,8 @@ public abstract class ModelElementImpl extends NamedElementImpl implements Model
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case Aadlv3Package.MODEL_ELEMENT__PROPERTY_ASSOCIATIONS:
-			return getPropertyAssociations();
+		case Aadlv3Package.MODEL_ELEMENT__OWNED_PROPERTY_ASSOCIATIONS:
+			return getOwnedPropertyAssociations();
 		case Aadlv3Package.MODEL_ELEMENT__IN_MODES:
 			return getInModes();
 		case Aadlv3Package.MODEL_ELEMENT__ANNEX_ELEMENTS:
@@ -183,9 +183,9 @@ public abstract class ModelElementImpl extends NamedElementImpl implements Model
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case Aadlv3Package.MODEL_ELEMENT__PROPERTY_ASSOCIATIONS:
-			getPropertyAssociations().clear();
-			getPropertyAssociations().addAll((Collection<? extends PropertyAssociation>) newValue);
+		case Aadlv3Package.MODEL_ELEMENT__OWNED_PROPERTY_ASSOCIATIONS:
+			getOwnedPropertyAssociations().clear();
+			getOwnedPropertyAssociations().addAll((Collection<? extends PropertyAssociation>) newValue);
 			return;
 		case Aadlv3Package.MODEL_ELEMENT__IN_MODES:
 			getInModes().clear();
@@ -207,8 +207,8 @@ public abstract class ModelElementImpl extends NamedElementImpl implements Model
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case Aadlv3Package.MODEL_ELEMENT__PROPERTY_ASSOCIATIONS:
-			getPropertyAssociations().clear();
+		case Aadlv3Package.MODEL_ELEMENT__OWNED_PROPERTY_ASSOCIATIONS:
+			getOwnedPropertyAssociations().clear();
 			return;
 		case Aadlv3Package.MODEL_ELEMENT__IN_MODES:
 			getInModes().clear();
@@ -228,8 +228,8 @@ public abstract class ModelElementImpl extends NamedElementImpl implements Model
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case Aadlv3Package.MODEL_ELEMENT__PROPERTY_ASSOCIATIONS:
-			return propertyAssociations != null && !propertyAssociations.isEmpty();
+		case Aadlv3Package.MODEL_ELEMENT__OWNED_PROPERTY_ASSOCIATIONS:
+			return ownedPropertyAssociations != null && !ownedPropertyAssociations.isEmpty();
 		case Aadlv3Package.MODEL_ELEMENT__IN_MODES:
 			return inModes != null && !inModes.isEmpty();
 		case Aadlv3Package.MODEL_ELEMENT__ANNEX_ELEMENTS:

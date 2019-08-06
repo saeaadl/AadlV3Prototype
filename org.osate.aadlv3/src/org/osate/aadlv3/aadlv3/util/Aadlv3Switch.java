@@ -137,24 +137,11 @@ public class Aadlv3Switch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case Aadlv3Package.TYPE: {
-			Type type = (Type) theEObject;
-			T result = caseType(type);
+		case Aadlv3Package.CLASSIFIER_OR_TYPE: {
+			ClassifierOrType classifierOrType = (ClassifierOrType) theEObject;
+			T result = caseClassifierOrType(classifierOrType);
 			if (result == null)
-				result = caseNamedElement(type);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Aadlv3Package.DATA_TYPE: {
-			DataType dataType = (DataType) theEObject;
-			T result = caseDataType(dataType);
-			if (result == null)
-				result = casePackageElement(dataType);
-			if (result == null)
-				result = caseType(dataType);
-			if (result == null)
-				result = caseNamedElement(dataType);
+				result = caseNamedElement(classifierOrType);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -165,7 +152,7 @@ public class Aadlv3Switch<T> extends Switch<T> {
 			if (result == null)
 				result = casePackageElement(componentClassifier);
 			if (result == null)
-				result = caseType(componentClassifier);
+				result = caseClassifierOrType(componentClassifier);
 			if (result == null)
 				result = caseNamedElement(componentClassifier);
 			if (result == null)
@@ -180,7 +167,7 @@ public class Aadlv3Switch<T> extends Switch<T> {
 			if (result == null)
 				result = casePackageElement(componentRealization);
 			if (result == null)
-				result = caseType(componentRealization);
+				result = caseClassifierOrType(componentRealization);
 			if (result == null)
 				result = caseNamedElement(componentRealization);
 			if (result == null)
@@ -195,7 +182,7 @@ public class Aadlv3Switch<T> extends Switch<T> {
 			if (result == null)
 				result = casePackageElement(componentInterface);
 			if (result == null)
-				result = caseType(componentInterface);
+				result = caseClassifierOrType(componentInterface);
 			if (result == null)
 				result = caseNamedElement(componentInterface);
 			if (result == null)
@@ -212,7 +199,7 @@ public class Aadlv3Switch<T> extends Switch<T> {
 			if (result == null)
 				result = casePackageElement(componentImplementation);
 			if (result == null)
-				result = caseType(componentImplementation);
+				result = caseClassifierOrType(componentImplementation);
 			if (result == null)
 				result = caseNamedElement(componentImplementation);
 			if (result == null)
@@ -229,7 +216,7 @@ public class Aadlv3Switch<T> extends Switch<T> {
 			if (result == null)
 				result = casePackageElement(componentConfiguration);
 			if (result == null)
-				result = caseType(componentConfiguration);
+				result = caseClassifierOrType(componentConfiguration);
 			if (result == null)
 				result = caseNamedElement(componentConfiguration);
 			if (result == null)
@@ -323,7 +310,7 @@ public class Aadlv3Switch<T> extends Switch<T> {
 			ConfigurationParameter configurationParameter = (ConfigurationParameter) theEObject;
 			T result = caseConfigurationParameter(configurationParameter);
 			if (result == null)
-				result = caseType(configurationParameter);
+				result = caseClassifierOrType(configurationParameter);
 			if (result == null)
 				result = caseNamedElement(configurationParameter);
 			if (result == null)
@@ -473,6 +460,19 @@ public class Aadlv3Switch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case Aadlv3Package.TYPE_DECL: {
+			TypeDecl typeDecl = (TypeDecl) theEObject;
+			T result = caseTypeDecl(typeDecl);
+			if (result == null)
+				result = caseClassifierOrType(typeDecl);
+			if (result == null)
+				result = casePackageElement(typeDecl);
+			if (result == null)
+				result = caseNamedElement(typeDecl);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		default:
 			return defaultCase(theEObject);
 		}
@@ -569,32 +569,17 @@ public class Aadlv3Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Type</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Classifier Or Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Type</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Classifier Or Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseType(Type object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Data Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Data Type</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseDataType(DataType object) {
+	public T caseClassifierOrType(ClassifierOrType object) {
 		return null;
 	}
 
@@ -970,6 +955,21 @@ public class Aadlv3Switch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseAnnexDefinition(AnnexDefinition object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Type Decl</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Type Decl</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTypeDecl(TypeDecl object) {
 		return null;
 	}
 

@@ -160,9 +160,6 @@ public class PackageDeclarationItemProvider extends PackageElementItemProvider {
 				Aadlv3Factory.eINSTANCE.createPropertySet()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PACKAGE_DECLARATION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createDataType()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PACKAGE_DECLARATION__ELEMENTS,
 				Aadlv3Factory.eINSTANCE.createComponentInterface()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PACKAGE_DECLARATION__ELEMENTS,
@@ -182,6 +179,9 @@ public class PackageDeclarationItemProvider extends PackageElementItemProvider {
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PACKAGE_DECLARATION__ELEMENTS,
 				Aadlv3Factory.eINSTANCE.createAnnexDefinition()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PACKAGE_DECLARATION__ELEMENTS,
+				Aadlv3Factory.eINSTANCE.createTypeDecl()));
 	}
 
 }

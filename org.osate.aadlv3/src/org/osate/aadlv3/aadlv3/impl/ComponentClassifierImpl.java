@@ -48,7 +48,7 @@ import org.osate.aadlv3.aadlv3.TypeReference;
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentClassifierImpl#getCategory <em>Category</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentClassifierImpl#getSuperClassifiers <em>Super Classifiers</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentClassifierImpl#getPropertyAssociations <em>Property Associations</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentClassifierImpl#getOwnedPropertyAssociations <em>Owned Property Associations</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentClassifierImpl#getUseModes <em>Use Modes</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentClassifierImpl#isInheritsModes <em>Inherits Modes</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentClassifierImpl#getAnnexSubclause <em>Annex Subclause</em>}</li>
@@ -88,14 +88,14 @@ public abstract class ComponentClassifierImpl extends PackageElementImpl impleme
 	protected EList<TypeReference> superClassifiers;
 
 	/**
-	 * The cached value of the '{@link #getPropertyAssociations() <em>Property Associations</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedPropertyAssociations() <em>Owned Property Associations</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPropertyAssociations()
+	 * @see #getOwnedPropertyAssociations()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<PropertyAssociation> propertyAssociations;
+	protected EList<PropertyAssociation> ownedPropertyAssociations;
 
 	/**
 	 * The cached value of the '{@link #getUseModes() <em>Use Modes</em>}' reference.
@@ -200,12 +200,12 @@ public abstract class ComponentClassifierImpl extends PackageElementImpl impleme
 	 * @generated
 	 */
 	@Override
-	public EList<PropertyAssociation> getPropertyAssociations() {
-		if (propertyAssociations == null) {
-			propertyAssociations = new EObjectContainmentEList<PropertyAssociation>(PropertyAssociation.class, this,
-					Aadlv3Package.COMPONENT_CLASSIFIER__PROPERTY_ASSOCIATIONS);
+	public EList<PropertyAssociation> getOwnedPropertyAssociations() {
+		if (ownedPropertyAssociations == null) {
+			ownedPropertyAssociations = new EObjectContainmentEList<PropertyAssociation>(PropertyAssociation.class,
+					this, Aadlv3Package.COMPONENT_CLASSIFIER__OWNED_PROPERTY_ASSOCIATIONS);
 		}
-		return propertyAssociations;
+		return ownedPropertyAssociations;
 	}
 
 	/**
@@ -298,8 +298,8 @@ public abstract class ComponentClassifierImpl extends PackageElementImpl impleme
 		switch (featureID) {
 		case Aadlv3Package.COMPONENT_CLASSIFIER__SUPER_CLASSIFIERS:
 			return ((InternalEList<?>) getSuperClassifiers()).basicRemove(otherEnd, msgs);
-		case Aadlv3Package.COMPONENT_CLASSIFIER__PROPERTY_ASSOCIATIONS:
-			return ((InternalEList<?>) getPropertyAssociations()).basicRemove(otherEnd, msgs);
+		case Aadlv3Package.COMPONENT_CLASSIFIER__OWNED_PROPERTY_ASSOCIATIONS:
+			return ((InternalEList<?>) getOwnedPropertyAssociations()).basicRemove(otherEnd, msgs);
 		case Aadlv3Package.COMPONENT_CLASSIFIER__ANNEX_SUBCLAUSE:
 			return ((InternalEList<?>) getAnnexSubclause()).basicRemove(otherEnd, msgs);
 		}
@@ -318,8 +318,8 @@ public abstract class ComponentClassifierImpl extends PackageElementImpl impleme
 			return getCategory();
 		case Aadlv3Package.COMPONENT_CLASSIFIER__SUPER_CLASSIFIERS:
 			return getSuperClassifiers();
-		case Aadlv3Package.COMPONENT_CLASSIFIER__PROPERTY_ASSOCIATIONS:
-			return getPropertyAssociations();
+		case Aadlv3Package.COMPONENT_CLASSIFIER__OWNED_PROPERTY_ASSOCIATIONS:
+			return getOwnedPropertyAssociations();
 		case Aadlv3Package.COMPONENT_CLASSIFIER__USE_MODES:
 			if (resolve)
 				return getUseModes();
@@ -348,9 +348,9 @@ public abstract class ComponentClassifierImpl extends PackageElementImpl impleme
 			getSuperClassifiers().clear();
 			getSuperClassifiers().addAll((Collection<? extends TypeReference>) newValue);
 			return;
-		case Aadlv3Package.COMPONENT_CLASSIFIER__PROPERTY_ASSOCIATIONS:
-			getPropertyAssociations().clear();
-			getPropertyAssociations().addAll((Collection<? extends PropertyAssociation>) newValue);
+		case Aadlv3Package.COMPONENT_CLASSIFIER__OWNED_PROPERTY_ASSOCIATIONS:
+			getOwnedPropertyAssociations().clear();
+			getOwnedPropertyAssociations().addAll((Collection<? extends PropertyAssociation>) newValue);
 			return;
 		case Aadlv3Package.COMPONENT_CLASSIFIER__USE_MODES:
 			setUseModes((ModeStateMachine) newValue);
@@ -380,8 +380,8 @@ public abstract class ComponentClassifierImpl extends PackageElementImpl impleme
 		case Aadlv3Package.COMPONENT_CLASSIFIER__SUPER_CLASSIFIERS:
 			getSuperClassifiers().clear();
 			return;
-		case Aadlv3Package.COMPONENT_CLASSIFIER__PROPERTY_ASSOCIATIONS:
-			getPropertyAssociations().clear();
+		case Aadlv3Package.COMPONENT_CLASSIFIER__OWNED_PROPERTY_ASSOCIATIONS:
+			getOwnedPropertyAssociations().clear();
 			return;
 		case Aadlv3Package.COMPONENT_CLASSIFIER__USE_MODES:
 			setUseModes((ModeStateMachine) null);
@@ -408,8 +408,8 @@ public abstract class ComponentClassifierImpl extends PackageElementImpl impleme
 			return category != CATEGORY_EDEFAULT;
 		case Aadlv3Package.COMPONENT_CLASSIFIER__SUPER_CLASSIFIERS:
 			return superClassifiers != null && !superClassifiers.isEmpty();
-		case Aadlv3Package.COMPONENT_CLASSIFIER__PROPERTY_ASSOCIATIONS:
-			return propertyAssociations != null && !propertyAssociations.isEmpty();
+		case Aadlv3Package.COMPONENT_CLASSIFIER__OWNED_PROPERTY_ASSOCIATIONS:
+			return ownedPropertyAssociations != null && !ownedPropertyAssociations.isEmpty();
 		case Aadlv3Package.COMPONENT_CLASSIFIER__USE_MODES:
 			return useModes != null;
 		case Aadlv3Package.COMPONENT_CLASSIFIER__INHERITS_MODES:

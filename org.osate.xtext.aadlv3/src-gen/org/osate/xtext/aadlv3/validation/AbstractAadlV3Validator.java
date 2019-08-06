@@ -18,16 +18,16 @@ package org.osate.xtext.aadlv3.validation;
 import java.util.ArrayList;
 import java.util.List;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.xtext.validation.AbstractDeclarativeValidator;
 import org.eclipse.xtext.validation.ComposedChecks;
 import org.eclipse.xtext.validation.NamesAreUniqueValidator;
+import org.osate.expr.validation.ExprValidator;
 
 @ComposedChecks(validators = {NamesAreUniqueValidator.class})
-public abstract class AbstractAadlV3Validator extends AbstractDeclarativeValidator {
+public abstract class AbstractAadlV3Validator extends ExprValidator {
 	
 	@Override
 	protected List<EPackage> getEPackages() {
-		List<EPackage> result = new ArrayList<EPackage>();
+		List<EPackage> result = new ArrayList<EPackage>(super.getEPackages());
 		result.add(EPackage.Registry.INSTANCE.getEPackage("http://www.osate.org/aadlv3/Aadlv3"));
 		return result;
 	}

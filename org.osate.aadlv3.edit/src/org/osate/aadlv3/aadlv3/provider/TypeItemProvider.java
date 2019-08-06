@@ -21,7 +21,7 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.osate.aadlv3.aadlv3.Type;
+import org.osate.aadlv3.aadlv3.ClassifierOrType;
 
 /**
  * This is the item provider adapter for a {@link org.osate.aadlv3.aadlv3.Type} object.
@@ -74,7 +74,7 @@ public class TypeItemProvider extends NamedElementItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Type) object).getName();
+		String label = ((ClassifierOrType) object).getName();
 		return label == null || label.length() == 0 ? getString("_UI_Type_type")
 				: getString("_UI_Type_type") + " " + label;
 	}
@@ -89,7 +89,6 @@ public class TypeItemProvider extends NamedElementItemProvider {
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-		super.notifyChanged(notification);
 	}
 
 	/**

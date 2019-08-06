@@ -32,8 +32,8 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
+import org.osate.aadlv3.aadlv3.ClassifierOrType;
 import org.osate.aadlv3.aadlv3.ConfigurationActual;
-import org.osate.aadlv3.aadlv3.Type;
 import org.osate.aadlv3.aadlv3.TypeReference;
 
 /**
@@ -80,7 +80,7 @@ public class TypeReferenceImpl extends MinimalEObjectImpl.Container implements T
 	 * @generated
 	 * @ordered
 	 */
-	protected Type type;
+	protected ClassifierOrType type;
 
 	/**
 	 * The cached value of the '{@link #getActuals() <em>Actuals</em>}' containment reference list.
@@ -141,10 +141,10 @@ public class TypeReferenceImpl extends MinimalEObjectImpl.Container implements T
 	 * @generated
 	 */
 	@Override
-	public Type getType() {
+	public ClassifierOrType getType() {
 		if (type != null && type.eIsProxy()) {
 			InternalEObject oldType = (InternalEObject) type;
-			type = (Type) eResolveProxy(oldType);
+			type = (ClassifierOrType) eResolveProxy(oldType);
 			if (type != oldType) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Aadlv3Package.TYPE_REFERENCE__TYPE,
@@ -159,7 +159,7 @@ public class TypeReferenceImpl extends MinimalEObjectImpl.Container implements T
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Type basicGetType() {
+	public ClassifierOrType basicGetType() {
 		return type;
 	}
 
@@ -169,8 +169,8 @@ public class TypeReferenceImpl extends MinimalEObjectImpl.Container implements T
 	 * @generated
 	 */
 	@Override
-	public void setType(Type newType) {
-		Type oldType = type;
+	public void setType(ClassifierOrType newType) {
+		ClassifierOrType oldType = type;
 		type = newType;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.TYPE_REFERENCE__TYPE, oldType, type));
@@ -237,7 +237,7 @@ public class TypeReferenceImpl extends MinimalEObjectImpl.Container implements T
 			setReverse((Boolean) newValue);
 			return;
 		case Aadlv3Package.TYPE_REFERENCE__TYPE:
-			setType((Type) newValue);
+			setType((ClassifierOrType) newValue);
 			return;
 		case Aadlv3Package.TYPE_REFERENCE__ACTUALS:
 			getActuals().clear();
@@ -259,7 +259,7 @@ public class TypeReferenceImpl extends MinimalEObjectImpl.Container implements T
 			setReverse(REVERSE_EDEFAULT);
 			return;
 		case Aadlv3Package.TYPE_REFERENCE__TYPE:
-			setType((Type) null);
+			setType((ClassifierOrType) null);
 			return;
 		case Aadlv3Package.TYPE_REFERENCE__ACTUALS:
 			getActuals().clear();

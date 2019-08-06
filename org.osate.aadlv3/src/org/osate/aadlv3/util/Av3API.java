@@ -11,9 +11,9 @@ import org.osate.aadlv3.aadlv3.ComponentInterface;
 import org.osate.aadlv3.aadlv3.ComponentRealization;
 import org.osate.aadlv3.aadlv3.PackageDeclaration;
 import org.osate.aadlv3.aadlv3.PackageElement;
-import org.osate.aadlv3.aadlv3.DataType;
 import org.osate.aadlv3.aadlv3.PropertyDefinition;
 import org.osate.aadlv3.aadlv3.PropertySet;
+import org.osate.aadlv3.aadlv3.TypeDecl;
 import org.osate.aadlv3.aadlv3.Workingset;
 
 public class Av3API {
@@ -38,10 +38,10 @@ public class Av3API {
 	public static ComponentClassifier lookupComponentClassifier(EObject context, String qpname) {
 		return Aadlv3GlobalScopeUtil.get(context, Aadlv3Package.eINSTANCE.getComponentClassifier(), qpname);
 	}
-
-	public static DataType lookupDataType(EObject context, String qpname) {
-		return Aadlv3GlobalScopeUtil.get(context, Aadlv3Package.eINSTANCE.getDataType(), qpname);
-	}
+//
+//	public static TypeDecl lookupTypeDecl(EObject context, String qpname) {
+//		return Aadlv3GlobalScopeUtil.get(context, ExprPackage.eINSTANCE.getTypeDecl(), qpname);
+//	}
 
 	public static Workingset lookupWorkingset(EObject context, String qpname) {
 		return Aadlv3GlobalScopeUtil.get(context, Aadlv3Package.eINSTANCE.getWorkingset(), qpname);

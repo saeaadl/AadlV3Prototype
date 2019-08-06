@@ -62,7 +62,7 @@ public interface TypeSet extends ModelElement {
 
 	/**
 	 * Returns the value of the '<em><b>Propagated Types</b></em>' reference list.
-	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.Type}.
+	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.ClassifierOrType}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Propagated Types</em>' reference list.
@@ -70,6 +70,6 @@ public interface TypeSet extends ModelElement {
 	 * @model
 	 * @generated
 	 */
-	EList<Type> getPropagatedTypes();
+	EList<ClassifierOrType> getPropagatedTypes();
 
 } // TypeSet

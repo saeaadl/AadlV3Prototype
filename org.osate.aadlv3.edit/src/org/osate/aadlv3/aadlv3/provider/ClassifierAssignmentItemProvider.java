@@ -86,7 +86,7 @@ public class ClassifierAssignmentItemProvider extends ItemProviderAdapter implem
 			childrenFeatures.add(Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__TARGET);
 			childrenFeatures.add(Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__CLASSIFIER_ASSIGNMENTS);
 			childrenFeatures.add(Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__ASSIGNED_CLASSIFIERS);
-			childrenFeatures.add(Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__PROPERTY_ASSOCIATIONS);
+			childrenFeatures.add(Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__OWNED_PROPERTY_ASSOCIATIONS);
 			childrenFeatures.add(Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__BINDINGS);
 			childrenFeatures.add(Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__ANNEX_SUBCLAUSE);
 		}
@@ -143,7 +143,7 @@ public class ClassifierAssignmentItemProvider extends ItemProviderAdapter implem
 		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__TARGET:
 		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__CLASSIFIER_ASSIGNMENTS:
 		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__ASSIGNED_CLASSIFIERS:
-		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__PROPERTY_ASSOCIATIONS:
+		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__OWNED_PROPERTY_ASSOCIATIONS:
 		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__BINDINGS:
 		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__ANNEX_SUBCLAUSE:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
@@ -181,7 +181,7 @@ public class ClassifierAssignmentItemProvider extends ItemProviderAdapter implem
 				Aadlv3Factory.eINSTANCE.createTypeReference()));
 
 		newChildDescriptors
-				.add(createChildParameter(Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__PROPERTY_ASSOCIATIONS,
+				.add(createChildParameter(Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__OWNED_PROPERTY_ASSOCIATIONS,
 						Aadlv3Factory.eINSTANCE.createPropertyAssociation()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__BINDINGS,

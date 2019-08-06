@@ -27,10 +27,10 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.AssociationType;
+import org.osate.aadlv3.aadlv3.ClassifierOrType;
 import org.osate.aadlv3.aadlv3.ComponentCategory;
 import org.osate.aadlv3.aadlv3.FeatureCategory;
 import org.osate.aadlv3.aadlv3.PropertyDefinition;
-import org.osate.aadlv3.aadlv3.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -58,7 +58,7 @@ public class PropertyDefinitionImpl extends PackageElementImpl implements Proper
 	 * @generated
 	 * @ordered
 	 */
-	protected Type type;
+	protected ClassifierOrType type;
 
 	/**
 	 * The cached value of the '{@link #getComponentCategories() <em>Component Categories</em>}' attribute list.
@@ -133,10 +133,10 @@ public class PropertyDefinitionImpl extends PackageElementImpl implements Proper
 	 * @generated
 	 */
 	@Override
-	public Type getType() {
+	public ClassifierOrType getType() {
 		if (type != null && type.eIsProxy()) {
 			InternalEObject oldType = (InternalEObject) type;
-			type = (Type) eResolveProxy(oldType);
+			type = (ClassifierOrType) eResolveProxy(oldType);
 			if (type != oldType) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Aadlv3Package.PROPERTY_DEFINITION__TYPE,
@@ -151,7 +151,7 @@ public class PropertyDefinitionImpl extends PackageElementImpl implements Proper
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Type basicGetType() {
+	public ClassifierOrType basicGetType() {
 		return type;
 	}
 
@@ -161,8 +161,8 @@ public class PropertyDefinitionImpl extends PackageElementImpl implements Proper
 	 * @generated
 	 */
 	@Override
-	public void setType(Type newType) {
-		Type oldType = type;
+	public void setType(ClassifierOrType newType) {
+		ClassifierOrType oldType = type;
 		type = newType;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.PROPERTY_DEFINITION__TYPE, oldType,
@@ -269,7 +269,7 @@ public class PropertyDefinitionImpl extends PackageElementImpl implements Proper
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 		case Aadlv3Package.PROPERTY_DEFINITION__TYPE:
-			setType((Type) newValue);
+			setType((ClassifierOrType) newValue);
 			return;
 		case Aadlv3Package.PROPERTY_DEFINITION__COMPONENT_CATEGORIES:
 			getComponentCategories().clear();
@@ -299,7 +299,7 @@ public class PropertyDefinitionImpl extends PackageElementImpl implements Proper
 	public void eUnset(int featureID) {
 		switch (featureID) {
 		case Aadlv3Package.PROPERTY_DEFINITION__TYPE:
-			setType((Type) null);
+			setType((ClassifierOrType) null);
 			return;
 		case Aadlv3Package.PROPERTY_DEFINITION__COMPONENT_CATEGORIES:
 			getComponentCategories().clear();
