@@ -145,7 +145,7 @@ class Instantiator {
 		}
 		// handle property assignments attached to (sub)component
 		// This is done for nested subcomponent declarations as well
-		for (pa : comp.propertyAssociations) {
+		for (pa : comp.ownedPropertyAssociations) {
 			ci.addPropertyAssociationInstance(pa)
 		}
 		// fill in default properties for all expected properties that do not have an explicitly assigned value
@@ -176,7 +176,7 @@ class Instantiator {
 				]
 			}
 		}
-		for (pa : f.propertyAssociations){
+		for (pa : f.ownedPropertyAssociations){
 			fi.addPropertyAssociationInstance(pa)
 		}
 		fi
@@ -191,7 +191,7 @@ class Instantiator {
 		if (conn.destination !== null){
 			fsi.destination = context.getInstanceElement(conn.destination) as FeatureInstance
 		}
-		for (pa : conn.propertyAssociations){
+		for (pa : conn.ownedPropertyAssociations){
 			fsi.addPropertyAssociationInstance(pa)
 		}
 		context.flowspecs += fsi
@@ -209,7 +209,7 @@ class Instantiator {
 		context.connections += allconnis
 		for (finalconni : allconnis){
 			// add in local property assignment
-			for (pa : conn.propertyAssociations){
+			for (pa : conn.ownedPropertyAssociations){
 				finalconni.addPropertyAssociationInstance(pa)
 			}
 		}
@@ -227,7 +227,7 @@ class Instantiator {
 		context.connections += expandedSources
 		for (finalconni : expandedSources){
 			finalconni.external = true
-			for (pa : conn.propertyAssociations){
+			for (pa : conn.ownedPropertyAssociations){
 				finalconni.addPropertyAssociationInstance(pa)
 			}
 		}
@@ -244,7 +244,7 @@ class Instantiator {
 		context.connections += expandedDestinations
 		for (finalconni : expandedDestinations){
 			finalconni.external = true
-			for (pa : conn.propertyAssociations){
+			for (pa : conn.ownedPropertyAssociations){
 				finalconni.addPropertyAssociationInstance(pa)
 			}
 		}
@@ -340,7 +340,7 @@ class Instantiator {
 		val psi = ps.createPathSequenceInstance
 		context.paths += psi
 		ps.processPath(psi,context)
-		for (pa : ps.propertyAssociations){
+		for (pa : ps.ownedPropertyAssociations){
 			// local property assignment
 			psi.addPropertyAssociationInstance(pa)
 		}
@@ -407,7 +407,7 @@ class Instantiator {
 	
 	def void processClassifierAssignmentPropertyAssociations(InstanceObject context, ClassifierAssignment ca){
 		val target = context.getInstanceElement(ca.target)
-		for (pa : ca.propertyAssociations){
+		for (pa : ca.ownedPropertyAssociations){
 			target.addPropertyAssociationInstance(pa)
 		}
 		for (subca : ca.classifierAssignments){
