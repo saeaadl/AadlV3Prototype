@@ -11,8 +11,13 @@ import java.util.Stack
 import org.eclipse.emf.common.util.BasicEList
 import org.eclipse.emf.common.util.EList
 import org.eclipse.emf.ecore.EObject
+import org.eclipse.xtext.EcoreUtil2
+import org.osate.aadlv3.aadlv3.Aadlv3Factory
 import org.osate.aadlv3.aadlv3.Association
 import org.osate.aadlv3.aadlv3.AssociationType
+import org.osate.aadlv3.aadlv3.ClassifierAssignment
+import org.osate.aadlv3.aadlv3.ClassifierAssignmentPattern
+import org.osate.aadlv3.aadlv3.ClassifierOrType
 import org.osate.aadlv3.aadlv3.Component
 import org.osate.aadlv3.aadlv3.ComponentCategory
 import org.osate.aadlv3.aadlv3.ComponentClassifier
@@ -20,8 +25,6 @@ import org.osate.aadlv3.aadlv3.ComponentConfiguration
 import org.osate.aadlv3.aadlv3.ComponentImplementation
 import org.osate.aadlv3.aadlv3.ComponentInterface
 import org.osate.aadlv3.aadlv3.ConfigurationActual
-import org.osate.aadlv3.aadlv3.ClassifierAssignment
-import org.osate.aadlv3.aadlv3.ClassifierAssignmentPattern
 import org.osate.aadlv3.aadlv3.ConfigurationParameter
 import org.osate.aadlv3.aadlv3.Feature
 import org.osate.aadlv3.aadlv3.FeatureCategory
@@ -33,6 +36,8 @@ import org.osate.aadlv3.aadlv3.PackageDeclaration
 import org.osate.aadlv3.aadlv3.PathSequence
 import org.osate.aadlv3.aadlv3.PropertyAssociation
 import org.osate.aadlv3.aadlv3.PropertyDefinition
+import org.osate.aadlv3.aadlv3.PropertyValue
+import org.osate.aadlv3.aadlv3.TypeDecl
 import org.osate.aadlv3.aadlv3.TypeReference
 import org.osate.aadlv3.aadlv3.Workingset
 import org.osate.av3instance.av3instance.AssociationInstance
@@ -40,14 +45,8 @@ import org.osate.av3instance.av3instance.ComponentInstance
 import org.osate.av3instance.av3instance.FeatureInstance
 import org.osate.av3instance.av3instance.InstanceObject
 
-import static extension org.eclipse.emf.ecore.util.EcoreUtil.*
 import static extension org.eclipse.xtext.EcoreUtil2.*
 import static extension org.osate.aadlv3.util.Av3API.*
-import org.osate.aadlv3.aadlv3.Aadlv3Factory
-import org.eclipse.xtext.EcoreUtil2
-import org.osate.aadlv3.aadlv3.PropertyValue
-import org.osate.aadlv3.aadlv3.TypeDecl
-import org.osate.aadlv3.aadlv3.ClassifierOrType
 
 class Aadlv3Util {
 	/**
@@ -1403,7 +1402,7 @@ class Aadlv3Util {
 	def static boolean appliesTo(PropertyDefinition pd, InstanceObject io){
 		switch(io){
 			ComponentInstance: {
-				appliesToCategory(pd,io.category) || io.component?.typeReferences.allowedUseProperties.exists[iopd|org.osate.aadlv3.util.Aadlv3Util.samePropertyDefinition(iopd, pd)]
+				appliesToCategory(pd,io.category) || io.component?.typeReferences.allowedUseProperties.exists[iopd|Aadlv3Util.samePropertyDefinition(iopd, pd)]
 			}
 			FeatureInstance: {
 				appliesToCategory(pd,io.category)
@@ -1452,8 +1451,8 @@ class Aadlv3Util {
 	}
 
 	
-	def static boolean sameValue(PropertyValue first, PropertyValue second){
-		return first == second || (first.expr == second.expr )
+	def static boolean sameValue(EObject first, EObject second){
+		return first == second 
 	}
 	
 		

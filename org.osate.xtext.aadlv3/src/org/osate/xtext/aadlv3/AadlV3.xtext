@@ -20,7 +20,7 @@ AnnexLibrary returns av3::AnnexLibrary :
 
 PackageElement returns av3::PackageElement:
 	PackageDeclaration  | ComponentInterface | ComponentImplementation | ComponentConfiguration | PropertyDefinition | PropertySet | Workingset
-	| TypeDecl //| EDeclaration//| VarDecl | FunDecl | Assertion
+//	| TypeDecl //| EDeclaration//| VarDecl | FunDecl | Assertion
 ;
 
 PropertyDefinition returns av3::PropertyDefinition:
@@ -48,34 +48,34 @@ PropertySet returns av3::PropertySet:
 //	(private?='private')? 'type' name=ID /*('extends' baseType=Type)?*/ ':' type=Type
 //	PropertiesBlock?
 //;
-TypeDecl returns av3::TypeDecl:
-	'type' name=ID /*('extends' baseType=Type)?*/ ':' type=Type
-	(
-		'{'
-		ownedPropertyAssociations+=PropertyAssociation (';' ownedPropertyAssociations+=PropertyAssociation)*
-		'}'
-	)?
-;
-
-PropertyAssociation returns av3::PropertyAssociation:
-	 ( target=ModelElementReference)? 
-	 '#' property=[av3::PropertyDefinition|QCREF] 
-	propertyAssociationType=PropertyAssociationType value=PropertyValue
-	 ';'
-	;
-
-PropertyAssociationType returns av3::PropertyAssociationType:
-	'=>' | '=' | '*=>' 
-;
-
-ModelElementReference returns av3::ModelElementReference:
-	// => or -> both work
-	element=[av3::ModelElement|ID] -> ({av3::ModelElementReference.context=current} '.' element=[av3::ModelElement|ID])*;
-
-PropertyValue returns av3::PropertyValue:
-	 expr=Expression
-;
-
+//TypeDecl returns av3::TypeDecl:
+//	'type' name=ID /*('extends' baseType=Type)?*/ ':' type=Type
+//	(
+//		'{'
+//		ownedPropertyAssociations+=PropertyAssociation (';' ownedPropertyAssociations+=PropertyAssociation)*
+//		'}'
+//	)?
+//;
+//
+//PropertyAssociation returns av3::PropertyAssociation:
+//	 ( target=ModelElementReference)? 
+//	 '#' property=[av3::PropertyDefinition|QCREF] 
+//	propertyAssociationType=PropertyAssociationType value=PropertyValue
+//	 ';'
+//	;
+//
+//PropertyAssociationType returns av3::PropertyAssociationType:
+//	'=>' | '=' | '*=>' 
+//;
+//
+//ModelElementReference returns av3::ModelElementReference:
+//	// => or -> both work
+//	element=[av3::ModelElement|ID] -> ({av3::ModelElementReference.context=current} '.' element=[av3::ModelElement|ID])*;
+//
+//PropertyValue returns av3::PropertyValue:
+//	 expr=Expression
+//;
+//
 
 ComponentInterface returns av3::ComponentInterface:
 	(private?='private')? category=ComponentCategory? 'interface'  name=ID ('extends' InterfaceExtensions)? 

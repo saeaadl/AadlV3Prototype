@@ -19,14 +19,13 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.osate.aadlv3.aadlv3.PropertyAssociation;
 import org.osate.aadlv3.aadlv3.PropertyAssociationType;
 import org.osate.aadlv3.aadlv3.PropertyDefinition;
-import org.osate.aadlv3.aadlv3.PropertyValue;
-
 import org.osate.av3instance.av3instance.Av3instancePackage;
 import org.osate.av3instance.av3instance.PropertyAssociationInstance;
 
@@ -65,7 +64,7 @@ public class PropertyAssociationInstanceImpl extends InstanceObjectImpl implemen
 	 * @generated
 	 * @ordered
 	 */
-	protected PropertyValue value;
+	protected EObject value;
 
 	/**
 	 * The default value of the '{@link #getPropertyAssociationType() <em>Property Association Type</em>}' attribute.
@@ -164,7 +163,7 @@ public class PropertyAssociationInstanceImpl extends InstanceObjectImpl implemen
 	 * @generated
 	 */
 	@Override
-	public PropertyValue getValue() {
+	public EObject getValue() {
 		return value;
 	}
 
@@ -173,8 +172,8 @@ public class PropertyAssociationInstanceImpl extends InstanceObjectImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetValue(PropertyValue newValue, NotificationChain msgs) {
-		PropertyValue oldValue = value;
+	public NotificationChain basicSetValue(EObject newValue, NotificationChain msgs) {
+		EObject oldValue = value;
 		value = newValue;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
@@ -193,7 +192,7 @@ public class PropertyAssociationInstanceImpl extends InstanceObjectImpl implemen
 	 * @generated
 	 */
 	@Override
-	public void setValue(PropertyValue newValue) {
+	public void setValue(EObject newValue) {
 		if (newValue != value) {
 			NotificationChain msgs = null;
 			if (value != null)
@@ -330,7 +329,7 @@ public class PropertyAssociationInstanceImpl extends InstanceObjectImpl implemen
 			setProperty((PropertyDefinition) newValue);
 			return;
 		case Av3instancePackage.PROPERTY_ASSOCIATION_INSTANCE__VALUE:
-			setValue((PropertyValue) newValue);
+			setValue((EObject) newValue);
 			return;
 		case Av3instancePackage.PROPERTY_ASSOCIATION_INSTANCE__PROPERTY_ASSOCIATION_TYPE:
 			setPropertyAssociationType((PropertyAssociationType) newValue);
@@ -354,7 +353,7 @@ public class PropertyAssociationInstanceImpl extends InstanceObjectImpl implemen
 			setProperty((PropertyDefinition) null);
 			return;
 		case Av3instancePackage.PROPERTY_ASSOCIATION_INSTANCE__VALUE:
-			setValue((PropertyValue) null);
+			setValue((EObject) null);
 			return;
 		case Av3instancePackage.PROPERTY_ASSOCIATION_INSTANCE__PROPERTY_ASSOCIATION_TYPE:
 			setPropertyAssociationType(PROPERTY_ASSOCIATION_TYPE_EDEFAULT);

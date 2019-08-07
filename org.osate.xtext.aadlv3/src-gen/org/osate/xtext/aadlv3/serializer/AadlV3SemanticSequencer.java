@@ -47,8 +47,6 @@ import org.osate.aadlv3.aadlv3.PathSequence;
 import org.osate.aadlv3.aadlv3.PropertyAssociation;
 import org.osate.aadlv3.aadlv3.PropertyDefinition;
 import org.osate.aadlv3.aadlv3.PropertySet;
-import org.osate.aadlv3.aadlv3.PropertyValue;
-import org.osate.aadlv3.aadlv3.TypeDecl;
 import org.osate.aadlv3.aadlv3.TypeReference;
 import org.osate.aadlv3.aadlv3.TypeSet;
 import org.osate.aadlv3.aadlv3.Workingset;
@@ -86,7 +84,6 @@ import org.osate.expr.expr.NamedElementRef;
 import org.osate.expr.expr.PropertyExpression;
 import org.osate.expr.expr.Range;
 import org.osate.expr.expr.RangeType;
-import org.osate.expr.expr.Real;
 import org.osate.expr.expr.RecordLiteral;
 import org.osate.expr.expr.RecordType;
 import org.osate.expr.expr.Selection;
@@ -94,6 +91,7 @@ import org.osate.expr.expr.SetLiteral;
 import org.osate.expr.expr.SetType;
 import org.osate.expr.expr.TupleLiteral;
 import org.osate.expr.expr.TupleType;
+import org.osate.expr.expr.TypeDecl;
 import org.osate.expr.expr.TypeRef;
 import org.osate.expr.expr.UnaryOperation;
 import org.osate.expr.expr.UnionLiteral;
@@ -102,7 +100,6 @@ import org.osate.expr.expr.UnitExpression;
 import org.osate.expr.expr.UnitLiteral;
 import org.osate.expr.expr.UnitsType;
 import org.osate.expr.expr.VarDecl;
-import org.osate.expr.expr.WrappedNamedElement;
 import org.osate.expr.serializer.ExprSemanticSequencer;
 import org.osate.xtext.aadlv3.services.AadlV3GrammarAccess;
 
@@ -208,12 +205,6 @@ public class AadlV3SemanticSequencer extends ExprSemanticSequencer {
 				return; 
 			case Aadlv3Package.PROPERTY_SET:
 				sequence_PropertySet(context, (PropertySet) semanticObject); 
-				return; 
-			case Aadlv3Package.PROPERTY_VALUE:
-				sequence_PropertyValue(context, (PropertyValue) semanticObject); 
-				return; 
-			case Aadlv3Package.TYPE_DECL:
-				sequence_TypeDecl(context, (TypeDecl) semanticObject); 
 				return; 
 			case Aadlv3Package.TYPE_REFERENCE:
 				if (rule == grammarAccess.getRealizationReferenceRule()) {
@@ -333,9 +324,6 @@ public class AadlV3SemanticSequencer extends ExprSemanticSequencer {
 			case ExprPackage.FUN_DECL:
 				sequence_Args_FunDecl(context, (FunDecl) semanticObject); 
 				return; 
-			case ExprPackage.INTEGER:
-				sequence_INTVALUE(context, (org.osate.expr.expr.Integer) semanticObject); 
-				return; 
 			case ExprPackage.LIST_LITERAL:
 				sequence_ExpressionList_ListLiteral(context, (ListLiteral) semanticObject); 
 				return; 
@@ -363,9 +351,6 @@ public class AadlV3SemanticSequencer extends ExprSemanticSequencer {
 			case ExprPackage.RANGE_TYPE:
 				sequence_RangeType(context, (RangeType) semanticObject); 
 				return; 
-			case ExprPackage.REAL:
-				sequence_REALVALUE_SignedReal(context, (Real) semanticObject); 
-				return; 
 			case ExprPackage.RECORD_LITERAL:
 				sequence_RecordLiteral(context, (RecordLiteral) semanticObject); 
 				return; 
@@ -386,6 +371,9 @@ public class AadlV3SemanticSequencer extends ExprSemanticSequencer {
 				return; 
 			case ExprPackage.TUPLE_TYPE:
 				sequence_TupleType(context, (TupleType) semanticObject); 
+				return; 
+			case ExprPackage.TYPE_DECL:
+				sequence_TypeDecl(context, (TypeDecl) semanticObject); 
 				return; 
 			case ExprPackage.TYPE_REF:
 				sequence_TypeRef(context, (TypeRef) semanticObject); 
@@ -413,20 +401,10 @@ public class AadlV3SemanticSequencer extends ExprSemanticSequencer {
 				}
 				else break;
 			case ExprPackage.UNITS_TYPE:
-				if (rule == grammarAccess.getUnitsTypeRule()) {
-					sequence_UnitsType(context, (UnitsType) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getUnnamedUnitsTypeRule()) {
-					sequence_UnnamedUnitsType(context, (UnitsType) semanticObject); 
-					return; 
-				}
-				else break;
+				sequence_UnitsType(context, (UnitsType) semanticObject); 
+				return; 
 			case ExprPackage.VAR_DECL:
 				sequence_VarDecl(context, (VarDecl) semanticObject); 
-				return; 
-			case ExprPackage.WRAPPED_NAMED_ELEMENT:
-				sequence_WrappedNamedElement(context, (WrappedNamedElement) semanticObject); 
 				return; 
 			}
 		if (errorAcceptor != null)
@@ -867,19 +845,6 @@ public class AadlV3SemanticSequencer extends ExprSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     ModelElementReference returns ModelElementReference
-	 *     ModelElementReference.ModelElementReference_1_0_0 returns ModelElementReference
-	 *
-	 * Constraint:
-	 *     (element=[ModelElement|ID] | (context=ModelElementReference_ModelElementReference_1_0_0 element=[ModelElement|ID]))
-	 */
-	protected void sequence_ModelElementReference(ISerializationContext context, ModelElementReference semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
 	 *     PackageDeclaration returns PackageDeclaration
 	 *     PackageElement returns PackageDeclaration
 	 *
@@ -934,18 +899,6 @@ public class AadlV3SemanticSequencer extends ExprSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     PropertyAssociation returns PropertyAssociation
-	 *
-	 * Constraint:
-	 *     (target=ModelElementReference? property=[PropertyDefinition|QCREF] propertyAssociationType=PropertyAssociationType value=PropertyValue)
-	 */
-	protected void sequence_PropertyAssociation(ISerializationContext context, PropertyAssociation semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
 	 *     PackageElement returns PropertySet
 	 *     PropertySet returns PropertySet
 	 *
@@ -954,24 +907,6 @@ public class AadlV3SemanticSequencer extends ExprSemanticSequencer {
 	 */
 	protected void sequence_PropertySet(ISerializationContext context, PropertySet semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     PropertyValue returns PropertyValue
-	 *
-	 * Constraint:
-	 *     expr=Expression
-	 */
-	protected void sequence_PropertyValue(ISerializationContext context, PropertyValue semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, Aadlv3Package.Literals.PROPERTY_VALUE__EXPR) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, Aadlv3Package.Literals.PROPERTY_VALUE__EXPR));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getPropertyValueAccess().getExprExpressionParserRuleCall_0(), semanticObject.getExpr());
-		feeder.finish();
 	}
 	
 	
@@ -995,19 +930,6 @@ public class AadlV3SemanticSequencer extends ExprSemanticSequencer {
 	 *     (reverse?='reverse'? type=[ClassifierOrType|QualifiedReference])
 	 */
 	protected void sequence_ReversableTypeReference(ISerializationContext context, TypeReference semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     PackageElement returns TypeDecl
-	 *     TypeDecl returns TypeDecl
-	 *
-	 * Constraint:
-	 *     (name=ID type=Type (ownedPropertyAssociations+=PropertyAssociation ownedPropertyAssociations+=PropertyAssociation*)?)
-	 */
-	protected void sequence_TypeDecl(ISerializationContext context, TypeDecl semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

@@ -51,7 +51,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PropertyAssociationInstance" eSuperTypes="#//InstanceObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="property" eType="ecore:EClass Aadlv3.ecore#//PropertyDefinition"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="ecore:EClass Aadlv3.ecore#//PropertyValue"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="propertyAssociationType"
         eType="ecore:EEnum Aadlv3.ecore#//PropertyAssociationType" defaultValueLiteral="FinalValue"/>

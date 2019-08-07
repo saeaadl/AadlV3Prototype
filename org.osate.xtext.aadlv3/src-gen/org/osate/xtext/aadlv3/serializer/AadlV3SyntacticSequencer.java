@@ -51,37 +51,9 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	@Override
 	protected String getUnassignedRuleCallToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (ruleCall.getRule() == grammarAccess.getINTEGER_LITRule())
-			return getINTEGER_LITToken(semanticObject, ruleCall, node);
-		else if (ruleCall.getRule() == grammarAccess.getREAL_LITRule())
-			return getREAL_LITToken(semanticObject, ruleCall, node);
 		return "";
 	}
 	
-	/**
-	 * terminal INTEGER_LIT : 
-	 * 		(DIGIT)+('_' (DIGIT)+)*
-	 * 		(( '#' BASED_INTEGER  '#' ( INT_EXPONENT )? )
-	 * 			| (INT_EXPONENT)?
-	 * 		)
-	 *   ;
-	 */
-	protected String getINTEGER_LITToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (node != null)
-			return getTokenText(node);
-		return "#2#";
-	}
-	
-	/**
-	 * terminal REAL_LIT : 	
-	 * 	(DIGIT)+('_' (DIGIT)+)* ( '.' (DIGIT)+('_' (DIGIT)+)* ( EXPONENT )?)
-	 *   ;
-	 */
-	protected String getREAL_LITToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (node != null)
-			return getTokenText(node);
-		return ".";
-	}
 	
 	@Override
 	protected void emitUnassignedTokens(EObject semanticObject, ISynTransition transition, INode fromNode, INode toNode) {
@@ -150,9 +122,9 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) core?='^'
 	 *     (rule start) (ambiguity) operator=OpUnary
 	 *     (rule start) (ambiguity) ref=[NamedElement|QCREF]
-	 *     (rule start) (ambiguity) value=INTVALUE
+	 *     (rule start) (ambiguity) value=INTEGER_LIT
 	 *     (rule start) (ambiguity) value=NoQuoteString
-	 *     (rule start) (ambiguity) value=SignedReal
+	 *     (rule start) (ambiguity) value=REAL_LIT
 	 *     (rule start) (ambiguity) value?='true'
 	 *     (rule start) (ambiguity) {BinaryOperation.left=}
 	 *     (rule start) (ambiguity) {PropertyExpression.modelElement=}
