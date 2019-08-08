@@ -776,6 +776,10 @@ ruleTypeDecl returns [EObject current=null]
 				afterParserOrEnumRuleCall();
 			}
 		)?
+		otherlv_4=';'
+		{
+			newLeafNode(otherlv_4, grammarAccess.getTypeDeclAccess().getSemicolonKeyword_4());
+		}
 	)
 ;
 
@@ -859,9 +863,9 @@ rulePropertyAssociation returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getPropertyAssociationAccess().getValueIntegerLiteralParserRuleCall_4_0());
+					newCompositeNode(grammarAccess.getPropertyAssociationAccess().getValueLiteralParserRuleCall_4_0());
 				}
-				lv_value_4_0=ruleIntegerLiteral
+				lv_value_4_0=ruleLiteral
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getPropertyAssociationRule());
@@ -870,7 +874,7 @@ rulePropertyAssociation returns [EObject current=null]
 						$current,
 						"value",
 						lv_value_4_0,
-						"org.osate.xtext.aadlv3.AadlV3.IntegerLiteral");
+						"org.osate.xtext.aadlv3.AadlV3.Literal");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -988,6 +992,60 @@ ruleModelElementReference returns [EObject current=null]
 	)
 ;
 
+// Entry rule entryRuleLiteral
+entryRuleLiteral returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getLiteralRule()); }
+	iv_ruleLiteral=ruleLiteral
+	{ $current=$iv_ruleLiteral.current; }
+	EOF;
+
+// Rule Literal
+ruleLiteral returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		{
+			/* */
+		}
+		{
+			newCompositeNode(grammarAccess.getLiteralAccess().getIntegerLiteralParserRuleCall_0());
+		}
+		this_IntegerLiteral_0=ruleIntegerLiteral
+		{
+			$current = $this_IntegerLiteral_0.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			/* */
+		}
+		{
+			newCompositeNode(grammarAccess.getLiteralAccess().getListLiteralParserRuleCall_1());
+		}
+		this_ListLiteral_1=ruleListLiteral
+		{
+			$current = $this_ListLiteral_1.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			/* */
+		}
+		{
+			newCompositeNode(grammarAccess.getLiteralAccess().getTypeReferenceParserRuleCall_2());
+		}
+		this_TypeReference_2=ruleTypeReference
+		{
+			$current = $this_TypeReference_2.current;
+			afterParserOrEnumRuleCall();
+		}
+	)
+;
+
 // Entry rule entryRuleIntegerLiteral
 entryRuleIntegerLiteral returns [EObject current=null]:
 	{ newCompositeNode(grammarAccess.getIntegerLiteralRule()); }
@@ -1024,9 +1082,9 @@ ruleIntegerLiteral returns [EObject current=null]
 		)
 		(
 			(
-				lv_unit_1_0=RULE_STRING
+				lv_unit_1_0=RULE_ID
 				{
-					newLeafNode(lv_unit_1_0, grammarAccess.getIntegerLiteralAccess().getUnitSTRINGTerminalRuleCall_1_0());
+					newLeafNode(lv_unit_1_0, grammarAccess.getIntegerLiteralAccess().getUnitIDTerminalRuleCall_1_0());
 				}
 				{
 					if ($current==null) {
@@ -1036,10 +1094,97 @@ ruleIntegerLiteral returns [EObject current=null]
 						$current,
 						"unit",
 						lv_unit_1_0,
-						"org.eclipse.xtext.common.Terminals.STRING");
+						"org.eclipse.xtext.common.Terminals.ID");
 				}
 			)
 		)?
+	)
+;
+
+// Entry rule entryRuleListLiteral
+entryRuleListLiteral returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getListLiteralRule()); }
+	iv_ruleListLiteral=ruleListLiteral
+	{ $current=$iv_ruleListLiteral.current; }
+	EOF;
+
+// Rule ListLiteral
+ruleListLiteral returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				/* */
+			}
+			{
+				$current = forceCreateModelElement(
+					grammarAccess.getListLiteralAccess().getListLiteralAction_0(),
+					$current);
+			}
+		)
+		otherlv_1='list'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getListLiteralAccess().getListKeyword_1());
+		}
+		otherlv_2='('
+		{
+			newLeafNode(otherlv_2, grammarAccess.getListLiteralAccess().getLeftParenthesisKeyword_2());
+		}
+		(
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getListLiteralAccess().getElementsLiteralParserRuleCall_3_0_0());
+					}
+					lv_elements_3_0=ruleLiteral
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getListLiteralRule());
+						}
+						add(
+							$current,
+							"elements",
+							lv_elements_3_0,
+							"org.osate.xtext.aadlv3.AadlV3.Literal");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+			(
+				otherlv_4=','
+				{
+					newLeafNode(otherlv_4, grammarAccess.getListLiteralAccess().getCommaKeyword_3_1_0());
+				}
+				(
+					(
+						{
+							newCompositeNode(grammarAccess.getListLiteralAccess().getElementsLiteralParserRuleCall_3_1_1_0());
+						}
+						lv_elements_5_0=ruleLiteral
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getListLiteralRule());
+							}
+							add(
+								$current,
+								"elements",
+								lv_elements_5_0,
+								"org.osate.xtext.aadlv3.AadlV3.Literal");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)
+			)*
+		)?
+		otherlv_6=')'
+		{
+			newLeafNode(otherlv_6, grammarAccess.getListLiteralAccess().getRightParenthesisKeyword_4());
+		}
 	)
 ;
 
@@ -2010,9 +2155,9 @@ ruleSubcomponent returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getSubcomponentAccess().getTypeReferencesTypeReferenceParserRuleCall_3_0());
+					newCompositeNode(grammarAccess.getSubcomponentAccess().getTypeReferencesClassifierOrTypeReferenceParserRuleCall_3_0());
 				}
-				lv_typeReferences_3_0=ruleTypeReference
+				lv_typeReferences_3_0=ruleClassifierOrTypeReference
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getSubcomponentRule());
@@ -2021,7 +2166,7 @@ ruleSubcomponent returns [EObject current=null]
 						$current,
 						"typeReferences",
 						lv_typeReferences_3_0,
-						"org.osate.xtext.aadlv3.AadlV3.TypeReference");
+						"org.osate.xtext.aadlv3.AadlV3.ClassifierOrTypeReference");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -3231,9 +3376,9 @@ ruleClassifierAssignment returns [EObject current=null]
 				(
 					(
 						{
-							newCompositeNode(grammarAccess.getClassifierAssignmentAccess().getAssignedClassifiersTypeReferenceParserRuleCall_2_0_0_0());
+							newCompositeNode(grammarAccess.getClassifierAssignmentAccess().getAssignedClassifiersClassifierOrTypeReferenceParserRuleCall_2_0_0_0());
 						}
-						lv_assignedClassifiers_2_0=ruleTypeReference
+						lv_assignedClassifiers_2_0=ruleClassifierOrTypeReference
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getClassifierAssignmentRule());
@@ -3242,7 +3387,7 @@ ruleClassifierAssignment returns [EObject current=null]
 								$current,
 								"assignedClassifiers",
 								lv_assignedClassifiers_2_0,
-								"org.osate.xtext.aadlv3.AadlV3.TypeReference");
+								"org.osate.xtext.aadlv3.AadlV3.ClassifierOrTypeReference");
 							afterParserOrEnumRuleCall();
 						}
 					)
@@ -3255,9 +3400,9 @@ ruleClassifierAssignment returns [EObject current=null]
 					(
 						(
 							{
-								newCompositeNode(grammarAccess.getClassifierAssignmentAccess().getAssignedClassifiersTypeReferenceParserRuleCall_2_0_1_1_0());
+								newCompositeNode(grammarAccess.getClassifierAssignmentAccess().getAssignedClassifiersClassifierOrTypeReferenceParserRuleCall_2_0_1_1_0());
 							}
-							lv_assignedClassifiers_4_0=ruleTypeReference
+							lv_assignedClassifiers_4_0=ruleClassifierOrTypeReference
 							{
 								if ($current==null) {
 									$current = createModelElementForParent(grammarAccess.getClassifierAssignmentRule());
@@ -3266,7 +3411,7 @@ ruleClassifierAssignment returns [EObject current=null]
 									$current,
 									"assignedClassifiers",
 									lv_assignedClassifiers_4_0,
-									"org.osate.xtext.aadlv3.AadlV3.TypeReference");
+									"org.osate.xtext.aadlv3.AadlV3.ClassifierOrTypeReference");
 								afterParserOrEnumRuleCall();
 							}
 						)
@@ -3351,9 +3496,9 @@ ruleClassifierAssignmentPattern returns [EObject current=null]
 				(
 					(
 						{
-							newCompositeNode(grammarAccess.getClassifierAssignmentPatternAccess().getAssignedClassifiersTypeReferenceParserRuleCall_2_0_0_0());
+							newCompositeNode(grammarAccess.getClassifierAssignmentPatternAccess().getAssignedClassifiersClassifierOrTypeReferenceParserRuleCall_2_0_0_0());
 						}
-						lv_assignedClassifiers_2_0=ruleTypeReference
+						lv_assignedClassifiers_2_0=ruleClassifierOrTypeReference
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getClassifierAssignmentPatternRule());
@@ -3362,7 +3507,7 @@ ruleClassifierAssignmentPattern returns [EObject current=null]
 								$current,
 								"assignedClassifiers",
 								lv_assignedClassifiers_2_0,
-								"org.osate.xtext.aadlv3.AadlV3.TypeReference");
+								"org.osate.xtext.aadlv3.AadlV3.ClassifierOrTypeReference");
 							afterParserOrEnumRuleCall();
 						}
 					)
@@ -3375,9 +3520,9 @@ ruleClassifierAssignmentPattern returns [EObject current=null]
 					(
 						(
 							{
-								newCompositeNode(grammarAccess.getClassifierAssignmentPatternAccess().getAssignedClassifiersTypeReferenceParserRuleCall_2_0_1_1_0());
+								newCompositeNode(grammarAccess.getClassifierAssignmentPatternAccess().getAssignedClassifiersClassifierOrTypeReferenceParserRuleCall_2_0_1_1_0());
 							}
-							lv_assignedClassifiers_4_0=ruleTypeReference
+							lv_assignedClassifiers_4_0=ruleClassifierOrTypeReference
 							{
 								if ($current==null) {
 									$current = createModelElementForParent(grammarAccess.getClassifierAssignmentPatternRule());
@@ -3386,7 +3531,7 @@ ruleClassifierAssignmentPattern returns [EObject current=null]
 									$current,
 									"assignedClassifiers",
 									lv_assignedClassifiers_4_0,
-									"org.osate.xtext.aadlv3.AadlV3.TypeReference");
+									"org.osate.xtext.aadlv3.AadlV3.ClassifierOrTypeReference");
 								afterParserOrEnumRuleCall();
 							}
 						)
@@ -3997,6 +4142,60 @@ ruleReversableTypeReference returns [EObject current=null]
 	)
 ;
 
+// Entry rule entryRuleClassifierOrTypeReference
+entryRuleClassifierOrTypeReference returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getClassifierOrTypeReferenceRule()); }
+	iv_ruleClassifierOrTypeReference=ruleClassifierOrTypeReference
+	{ $current=$iv_ruleClassifierOrTypeReference.current; }
+	EOF;
+
+// Rule ClassifierOrTypeReference
+ruleClassifierOrTypeReference returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				{
+					/* */
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getClassifierOrTypeReferenceRule());
+					}
+				}
+				{
+					newCompositeNode(grammarAccess.getClassifierOrTypeReferenceAccess().getTypeClassifierOrTypeCrossReference_0_0());
+				}
+				ruleQualifiedTypesReference
+				{
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		(
+			{
+				/* */
+			}
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getClassifierOrTypeReferenceRule());
+				}
+				newCompositeNode(grammarAccess.getClassifierOrTypeReferenceAccess().getConfigurationActualsParserRuleCall_1());
+			}
+			this_ConfigurationActuals_1=ruleConfigurationActuals[$current]
+			{
+				$current = $this_ConfigurationActuals_1.current;
+				afterParserOrEnumRuleCall();
+			}
+		)?
+	)
+;
+
 // Entry rule entryRuleTypeReference
 entryRuleTypeReference returns [EObject current=null]:
 	{ newCompositeNode(grammarAccess.getTypeReferenceRule()); }
@@ -4014,25 +4213,6 @@ ruleTypeReference returns [EObject current=null]
 }:
 	(
 		(
-			(
-				{
-					/* */
-				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getTypeReferenceRule());
-					}
-				}
-				{
-					newCompositeNode(grammarAccess.getTypeReferenceAccess().getTypeClassifierOrTypeCrossReference_0_0());
-				}
-				ruleQualifiedTypesReference
-				{
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
-		(
 			{
 				/* */
 			}
@@ -4040,14 +4220,15 @@ ruleTypeReference returns [EObject current=null]
 				if ($current==null) {
 					$current = createModelElement(grammarAccess.getTypeReferenceRule());
 				}
-				newCompositeNode(grammarAccess.getTypeReferenceAccess().getConfigurationActualsParserRuleCall_1());
 			}
-			this_ConfigurationActuals_1=ruleConfigurationActuals[$current]
 			{
-				$current = $this_ConfigurationActuals_1.current;
+				newCompositeNode(grammarAccess.getTypeReferenceAccess().getTypeTypeDeclCrossReference_0());
+			}
+			ruleQualifiedName
+			{
 				afterParserOrEnumRuleCall();
 			}
-		)?
+		)
 	)
 ;
 
@@ -4387,9 +4568,9 @@ ruleConfigurationExtensions[EObject in_current]  returns [EObject current=in_cur
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getConfigurationExtensionsAccess().getSuperClassifiersTypeReferenceParserRuleCall_0_0());
+					newCompositeNode(grammarAccess.getConfigurationExtensionsAccess().getSuperClassifiersClassifierOrTypeReferenceParserRuleCall_0_0());
 				}
-				lv_superClassifiers_0_0=ruleTypeReference
+				lv_superClassifiers_0_0=ruleClassifierOrTypeReference
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getConfigurationExtensionsRule());
@@ -4398,7 +4579,7 @@ ruleConfigurationExtensions[EObject in_current]  returns [EObject current=in_cur
 						$current,
 						"superClassifiers",
 						lv_superClassifiers_0_0,
-						"org.osate.xtext.aadlv3.AadlV3.TypeReference");
+						"org.osate.xtext.aadlv3.AadlV3.ClassifierOrTypeReference");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -4411,9 +4592,9 @@ ruleConfigurationExtensions[EObject in_current]  returns [EObject current=in_cur
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getConfigurationExtensionsAccess().getSuperClassifiersTypeReferenceParserRuleCall_1_1_0());
+						newCompositeNode(grammarAccess.getConfigurationExtensionsAccess().getSuperClassifiersClassifierOrTypeReferenceParserRuleCall_1_1_0());
 					}
-					lv_superClassifiers_2_0=ruleTypeReference
+					lv_superClassifiers_2_0=ruleClassifierOrTypeReference
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getConfigurationExtensionsRule());
@@ -4422,7 +4603,7 @@ ruleConfigurationExtensions[EObject in_current]  returns [EObject current=in_cur
 							$current,
 							"superClassifiers",
 							lv_superClassifiers_2_0,
-							"org.osate.xtext.aadlv3.AadlV3.TypeReference");
+							"org.osate.xtext.aadlv3.AadlV3.ClassifierOrTypeReference");
 						afterParserOrEnumRuleCall();
 					}
 				)
@@ -4651,9 +4832,9 @@ ruleConfigurationActual returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getConfigurationActualAccess().getAssignedClassifiersTypeReferenceParserRuleCall_2_0());
+					newCompositeNode(grammarAccess.getConfigurationActualAccess().getAssignedClassifiersClassifierOrTypeReferenceParserRuleCall_2_0());
 				}
-				lv_assignedClassifiers_2_0=ruleTypeReference
+				lv_assignedClassifiers_2_0=ruleClassifierOrTypeReference
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getConfigurationActualRule());
@@ -4662,7 +4843,7 @@ ruleConfigurationActual returns [EObject current=null]
 						$current,
 						"assignedClassifiers",
 						lv_assignedClassifiers_2_0,
-						"org.osate.xtext.aadlv3.AadlV3.TypeReference");
+						"org.osate.xtext.aadlv3.AadlV3.ClassifierOrTypeReference");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -4675,9 +4856,9 @@ ruleConfigurationActual returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getConfigurationActualAccess().getAssignedClassifiersTypeReferenceParserRuleCall_3_1_0());
+						newCompositeNode(grammarAccess.getConfigurationActualAccess().getAssignedClassifiersClassifierOrTypeReferenceParserRuleCall_3_1_0());
 					}
-					lv_assignedClassifiers_4_0=ruleTypeReference
+					lv_assignedClassifiers_4_0=ruleClassifierOrTypeReference
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getConfigurationActualRule());
@@ -4686,7 +4867,7 @@ ruleConfigurationActual returns [EObject current=null]
 							$current,
 							"assignedClassifiers",
 							lv_assignedClassifiers_4_0,
-							"org.osate.xtext.aadlv3.AadlV3.TypeReference");
+							"org.osate.xtext.aadlv3.AadlV3.ClassifierOrTypeReference");
 						afterParserOrEnumRuleCall();
 					}
 				)

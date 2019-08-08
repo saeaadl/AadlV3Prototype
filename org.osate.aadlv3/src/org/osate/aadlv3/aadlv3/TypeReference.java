@@ -17,8 +17,6 @@ package org.osate.aadlv3.aadlv3;
 
 import org.eclipse.emf.common.util.EList;
 
-import org.eclipse.emf.ecore.EObject;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Type Reference</b></em>'.
@@ -37,7 +35,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface TypeReference extends EObject {
+public interface TypeReference extends Literal {
 	/**
 	 * Returns the value of the '<em><b>Reverse</b></em>' attribute.
 	 * <!-- begin-user-doc -->

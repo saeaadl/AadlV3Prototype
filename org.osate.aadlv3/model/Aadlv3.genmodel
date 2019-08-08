@@ -190,6 +190,9 @@
     <genClasses ecoreClass="Aadlv3.ecore#//IntegerLiteral">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//IntegerLiteral/value"/>
     </genClasses>
+    <genClasses ecoreClass="Aadlv3.ecore#//ListLiteral">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ListLiteral/elements"/>
+    </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//Literal"/>
     <genClasses ecoreClass="Aadlv3.ecore#//PropertyAssociation">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//PropertyAssociation/target"/>

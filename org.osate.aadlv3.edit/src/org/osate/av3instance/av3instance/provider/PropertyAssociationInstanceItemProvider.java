@@ -160,7 +160,10 @@ public class PropertyAssociationInstanceItemProvider extends InstanceObjectItemP
 	public String getText(Object object) {
 		String label = ((PropertyAssociationInstance) object).getProperty().getName();
 		Literal pvalue = ((PropertyAssociationInstance) object).getValue();
-		String value = pvalue instanceof IntegerLiteral && pvalue != null ? ((IntegerLiteral)pvalue).getValue() + " " + (((IntegerLiteral)pvalue).getUnit()!= null ? ((IntegerLiteral)pvalue).getUnit():"") : "0";
+		String value = pvalue instanceof IntegerLiteral && pvalue != null
+				? ((IntegerLiteral) pvalue).getValue() + " "
+						+ (((IntegerLiteral) pvalue).getUnit() != null ? ((IntegerLiteral) pvalue).getUnit() : "")
+				: "0";
 		return label == null || label.length() == 0 ? getString("_UI_PropertyAssociationInstance_type") : //$NON-NLS-1$
 				label + " => " + value; //$NON-NLS-1$ 
 	}

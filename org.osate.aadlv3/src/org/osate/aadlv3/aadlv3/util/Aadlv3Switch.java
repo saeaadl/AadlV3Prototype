@@ -321,6 +321,8 @@ public class Aadlv3Switch<T> extends Switch<T> {
 			TypeReference typeReference = (TypeReference) theEObject;
 			T result = caseTypeReference(typeReference);
 			if (result == null)
+				result = caseLiteral(typeReference);
+			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -358,6 +360,15 @@ public class Aadlv3Switch<T> extends Switch<T> {
 				result = caseNumberLiteral(integerLiteral);
 			if (result == null)
 				result = caseLiteral(integerLiteral);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Aadlv3Package.LIST_LITERAL: {
+			ListLiteral listLiteral = (ListLiteral) theEObject;
+			T result = caseListLiteral(listLiteral);
+			if (result == null)
+				result = caseLiteral(listLiteral);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -825,6 +836,21 @@ public class Aadlv3Switch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseIntegerLiteral(IntegerLiteral object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>List Literal</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>List Literal</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseListLiteral(ListLiteral object) {
 		return null;
 	}
 

@@ -215,6 +215,11 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseListLiteral(ListLiteral object) {
+			return createListLiteralAdapter();
+		}
+
+		@Override
 		public Adapter caseLiteral(Literal object) {
 			return createLiteralAdapter();
 		}
@@ -603,6 +608,20 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createIntegerLiteralAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.ListLiteral <em>List Literal</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.osate.aadlv3.aadlv3.ListLiteral
+	 * @generated
+	 */
+	public Adapter createListLiteralAdapter() {
 		return null;
 	}
 

@@ -188,6 +188,15 @@ public interface Aadlv3Factory extends EFactory {
 	IntegerLiteral createIntegerLiteral();
 
 	/**
+	 * Returns a new object of class '<em>List Literal</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>List Literal</em>'.
+	 * @generated
+	 */
+	ListLiteral createListLiteral();
+
+	/**
 	 * Returns a new object of class '<em>Literal</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

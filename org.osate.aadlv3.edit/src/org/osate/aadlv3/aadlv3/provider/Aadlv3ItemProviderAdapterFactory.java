@@ -477,6 +477,29 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.ListLiteral} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ListLiteralItemProvider listLiteralItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.ListLiteral}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createListLiteralAdapter() {
+		if (listLiteralItemProvider == null) {
+			listLiteralItemProvider = new ListLiteralItemProvider(this);
+		}
+
+		return listLiteralItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.Literal} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1014,6 +1037,8 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 			numberLiteralItemProvider.dispose();
 		if (integerLiteralItemProvider != null)
 			integerLiteralItemProvider.dispose();
+		if (listLiteralItemProvider != null)
+			listLiteralItemProvider.dispose();
 		if (literalItemProvider != null)
 			literalItemProvider.dispose();
 		if (propertyAssociationItemProvider != null)

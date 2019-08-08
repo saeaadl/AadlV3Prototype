@@ -14,7 +14,7 @@ import StandardProperties::*;
 	
 	interface mine is
 		name: feature person;
-		#Period => 6ms;
+		#Period => 6 ms;
 	end;
 	
 	system interface subsub extends sub, mine

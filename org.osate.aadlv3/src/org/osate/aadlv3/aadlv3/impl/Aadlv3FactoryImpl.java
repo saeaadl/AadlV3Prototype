@@ -112,6 +112,8 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 			return createNumberLiteral();
 		case Aadlv3Package.INTEGER_LITERAL:
 			return createIntegerLiteral();
+		case Aadlv3Package.LIST_LITERAL:
+			return createListLiteral();
 		case Aadlv3Package.LITERAL:
 			return createLiteral();
 		case Aadlv3Package.PROPERTY_ASSOCIATION:
@@ -374,6 +376,17 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 	public IntegerLiteral createIntegerLiteral() {
 		IntegerLiteralImpl integerLiteral = new IntegerLiteralImpl();
 		return integerLiteral;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ListLiteral createListLiteral() {
+		ListLiteralImpl listLiteral = new ListLiteralImpl();
+		return listLiteral;
 	}
 
 	/**

@@ -154,7 +154,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="ConfigurationParameter" eSuperTypes="#//ClassifierOrType">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//ClassifierOrType"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TypeReference">
+  <eClassifiers xsi:type="ecore:EClass" name="TypeReference" eSuperTypes="#//Literal">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="reverse" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//ClassifierOrType"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="actuals" upperBound="-1"
@@ -229,6 +229,10 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IntegerLiteral" eSuperTypes="#//NumberLiteral">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ListLiteral" eSuperTypes="#//Literal">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
+        eType="#//Literal" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Literal"/>
   <eClassifiers xsi:type="ecore:EClass" name="PropertyAssociation">

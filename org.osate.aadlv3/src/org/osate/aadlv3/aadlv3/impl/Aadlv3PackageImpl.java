@@ -47,6 +47,7 @@ import org.osate.aadlv3.aadlv3.FeatureCategory;
 import org.osate.aadlv3.aadlv3.FeatureDirection;
 import org.osate.aadlv3.aadlv3.Import;
 import org.osate.aadlv3.aadlv3.IntegerLiteral;
+import org.osate.aadlv3.aadlv3.ListLiteral;
 import org.osate.aadlv3.aadlv3.Literal;
 import org.osate.aadlv3.aadlv3.Mode;
 import org.osate.aadlv3.aadlv3.ModeAssignment;
@@ -231,6 +232,13 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	private EClass integerLiteralEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass listLiteralEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1283,6 +1291,26 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
+	public EClass getListLiteral() {
+		return listLiteralEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getListLiteral_Elements() {
+		return (EReference) listLiteralEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getLiteral() {
 		return literalEClass;
 	}
@@ -1964,6 +1992,9 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		integerLiteralEClass = createEClass(INTEGER_LITERAL);
 		createEAttribute(integerLiteralEClass, INTEGER_LITERAL__VALUE);
 
+		listLiteralEClass = createEClass(LIST_LITERAL);
+		createEReference(listLiteralEClass, LIST_LITERAL__ELEMENTS);
+
 		literalEClass = createEClass(LITERAL);
 
 		propertyAssociationEClass = createEClass(PROPERTY_ASSOCIATION);
@@ -2063,9 +2094,11 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		pathElementEClass.getESuperTypes().add(this.getModelElementReference());
 		classifierAssignmentPatternEClass.getESuperTypes().add(this.getClassifierAssignment());
 		configurationParameterEClass.getESuperTypes().add(this.getClassifierOrType());
+		typeReferenceEClass.getESuperTypes().add(this.getLiteral());
 		workingsetEClass.getESuperTypes().add(this.getPackageElement());
 		numberLiteralEClass.getESuperTypes().add(this.getLiteral());
 		integerLiteralEClass.getESuperTypes().add(this.getNumberLiteral());
+		listLiteralEClass.getESuperTypes().add(this.getLiteral());
 		modeEClass.getESuperTypes().add(this.getModelElement());
 		modeTransitionEClass.getESuperTypes().add(this.getModelElement());
 		modeStateMachineEClass.getESuperTypes().add(this.getPackageElement());
@@ -2369,6 +2402,12 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 				IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getIntegerLiteral_Value(), ecorePackage.getEInt(), "value", null, 0, 1, IntegerLiteral.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(listLiteralEClass, ListLiteral.class, "ListLiteral", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getListLiteral_Elements(), this.getLiteral(), null, "elements", null, 0, -1, ListLiteral.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(literalEClass, Literal.class, "Literal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

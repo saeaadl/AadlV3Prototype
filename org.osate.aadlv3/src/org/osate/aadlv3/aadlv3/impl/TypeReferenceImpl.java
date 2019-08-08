@@ -26,8 +26,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -51,7 +49,7 @@ import org.osate.aadlv3.aadlv3.TypeReference;
  *
  * @generated
  */
-public class TypeReferenceImpl extends MinimalEObjectImpl.Container implements TypeReference {
+public class TypeReferenceImpl extends LiteralImpl implements TypeReference {
 	/**
 	 * The default value of the '{@link #isReverse() <em>Reverse</em>}' attribute.
 	 * <!-- begin-user-doc -->
