@@ -164,7 +164,7 @@ public class WorkingsetItemProvider extends PackageElementItemProvider {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.WORKINGSET__ROOT_COMPONENTS,
-				Aadlv3Factory.eINSTANCE.createComponent()));
+				Aadlv3Factory.eINSTANCE.createSubcomponent()));
 	}
 
 }

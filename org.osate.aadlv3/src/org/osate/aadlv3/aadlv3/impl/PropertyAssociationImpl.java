@@ -19,13 +19,13 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
+import org.osate.aadlv3.aadlv3.Literal;
 import org.osate.aadlv3.aadlv3.ModelElementReference;
 import org.osate.aadlv3.aadlv3.PropertyAssociation;
 import org.osate.aadlv3.aadlv3.PropertyAssociationType;
@@ -76,7 +76,7 @@ public class PropertyAssociationImpl extends MinimalEObjectImpl.Container implem
 	 * @generated
 	 * @ordered
 	 */
-	protected EObject value;
+	protected Literal value;
 
 	/**
 	 * The default value of the '{@link #getPropertyAssociationType() <em>Property Association Type</em>}' attribute.
@@ -217,7 +217,7 @@ public class PropertyAssociationImpl extends MinimalEObjectImpl.Container implem
 	 * @generated
 	 */
 	@Override
-	public EObject getValue() {
+	public Literal getValue() {
 		return value;
 	}
 
@@ -226,8 +226,8 @@ public class PropertyAssociationImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetValue(EObject newValue, NotificationChain msgs) {
-		EObject oldValue = value;
+	public NotificationChain basicSetValue(Literal newValue, NotificationChain msgs) {
+		Literal oldValue = value;
 		value = newValue;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
@@ -246,7 +246,7 @@ public class PropertyAssociationImpl extends MinimalEObjectImpl.Container implem
 	 * @generated
 	 */
 	@Override
-	public void setValue(EObject newValue) {
+	public void setValue(Literal newValue) {
 		if (newValue != value) {
 			NotificationChain msgs = null;
 			if (value != null)
@@ -342,7 +342,7 @@ public class PropertyAssociationImpl extends MinimalEObjectImpl.Container implem
 			setProperty((PropertyDefinition) newValue);
 			return;
 		case Aadlv3Package.PROPERTY_ASSOCIATION__VALUE:
-			setValue((EObject) newValue);
+			setValue((Literal) newValue);
 			return;
 		case Aadlv3Package.PROPERTY_ASSOCIATION__PROPERTY_ASSOCIATION_TYPE:
 			setPropertyAssociationType((PropertyAssociationType) newValue);
@@ -366,7 +366,7 @@ public class PropertyAssociationImpl extends MinimalEObjectImpl.Container implem
 			setProperty((PropertyDefinition) null);
 			return;
 		case Aadlv3Package.PROPERTY_ASSOCIATION__VALUE:
-			setValue((EObject) null);
+			setValue((Literal) null);
 			return;
 		case Aadlv3Package.PROPERTY_ASSOCIATION__PROPERTY_ASSOCIATION_TYPE:
 			setPropertyAssociationType(PROPERTY_ASSOCIATION_TYPE_EDEFAULT);

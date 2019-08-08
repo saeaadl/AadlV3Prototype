@@ -19,10 +19,10 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.osate.aadlv3.aadlv3.Literal;
 import org.osate.aadlv3.aadlv3.PropertyAssociation;
 import org.osate.aadlv3.aadlv3.PropertyAssociationType;
 import org.osate.aadlv3.aadlv3.PropertyDefinition;
@@ -64,7 +64,7 @@ public class PropertyAssociationInstanceImpl extends InstanceObjectImpl implemen
 	 * @generated
 	 * @ordered
 	 */
-	protected EObject value;
+	protected Literal value;
 
 	/**
 	 * The default value of the '{@link #getPropertyAssociationType() <em>Property Association Type</em>}' attribute.
@@ -163,7 +163,7 @@ public class PropertyAssociationInstanceImpl extends InstanceObjectImpl implemen
 	 * @generated
 	 */
 	@Override
-	public EObject getValue() {
+	public Literal getValue() {
 		return value;
 	}
 
@@ -172,8 +172,8 @@ public class PropertyAssociationInstanceImpl extends InstanceObjectImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetValue(EObject newValue, NotificationChain msgs) {
-		EObject oldValue = value;
+	public NotificationChain basicSetValue(Literal newValue, NotificationChain msgs) {
+		Literal oldValue = value;
 		value = newValue;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
@@ -192,7 +192,7 @@ public class PropertyAssociationInstanceImpl extends InstanceObjectImpl implemen
 	 * @generated
 	 */
 	@Override
-	public void setValue(EObject newValue) {
+	public void setValue(Literal newValue) {
 		if (newValue != value) {
 			NotificationChain msgs = null;
 			if (value != null)
@@ -329,7 +329,7 @@ public class PropertyAssociationInstanceImpl extends InstanceObjectImpl implemen
 			setProperty((PropertyDefinition) newValue);
 			return;
 		case Av3instancePackage.PROPERTY_ASSOCIATION_INSTANCE__VALUE:
-			setValue((EObject) newValue);
+			setValue((Literal) newValue);
 			return;
 		case Av3instancePackage.PROPERTY_ASSOCIATION_INSTANCE__PROPERTY_ASSOCIATION_TYPE:
 			setPropertyAssociationType((PropertyAssociationType) newValue);
@@ -353,7 +353,7 @@ public class PropertyAssociationInstanceImpl extends InstanceObjectImpl implemen
 			setProperty((PropertyDefinition) null);
 			return;
 		case Av3instancePackage.PROPERTY_ASSOCIATION_INSTANCE__VALUE:
-			setValue((EObject) null);
+			setValue((Literal) null);
 			return;
 		case Av3instancePackage.PROPERTY_ASSOCIATION_INSTANCE__PROPERTY_ASSOCIATION_TYPE:
 			setPropertyAssociationType(PROPERTY_ASSOCIATION_TYPE_EDEFAULT);

@@ -43,7 +43,7 @@ import org.osate.aadlv3.aadlv3.ComponentRealization;
  *
  * @generated
  */
-public abstract class ComponentRealizationImpl extends ComponentClassifierImpl implements ComponentRealization {
+public abstract class ComponentRealizationImpl extends ClassifierImpl implements ComponentRealization {
 	/**
 	 * The cached value of the '{@link #getCachedInterfaceReference() <em>Cached Interface Reference</em>}' reference.
 	 * <!-- begin-user-doc -->

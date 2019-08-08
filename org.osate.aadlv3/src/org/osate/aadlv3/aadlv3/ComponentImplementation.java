@@ -40,7 +40,7 @@ import org.eclipse.emf.common.util.EList;
 public interface ComponentImplementation extends ComponentRealization {
 	/**
 	 * Returns the value of the '<em><b>Components</b></em>' containment reference list.
-	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.Component}.
+	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.Subcomponent}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Components</em>' containment reference list isn't clear,
@@ -52,7 +52,7 @@ public interface ComponentImplementation extends ComponentRealization {
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Component> getComponents();
+	EList<Subcomponent> getComponents();
 
 	/**
 	 * Returns the value of the '<em><b>Connections</b></em>' containment reference list.

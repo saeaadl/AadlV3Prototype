@@ -27,9 +27,9 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.Association;
-import org.osate.aadlv3.aadlv3.Component;
 import org.osate.aadlv3.aadlv3.ComponentImplementation;
 import org.osate.aadlv3.aadlv3.PathSequence;
+import org.osate.aadlv3.aadlv3.Subcomponent;
 
 /**
  * <!-- begin-user-doc -->
@@ -57,7 +57,7 @@ public class ComponentImplementationImpl extends ComponentRealizationImpl implem
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Component> components;
+	protected EList<Subcomponent> components;
 
 	/**
 	 * The cached value of the '{@link #getConnections() <em>Connections</em>}' containment reference list.
@@ -124,9 +124,9 @@ public class ComponentImplementationImpl extends ComponentRealizationImpl implem
 	 * @generated
 	 */
 	@Override
-	public EList<Component> getComponents() {
+	public EList<Subcomponent> getComponents() {
 		if (components == null) {
-			components = new EObjectContainmentEList<Component>(Component.class, this,
+			components = new EObjectContainmentEList<Subcomponent>(Subcomponent.class, this,
 					Aadlv3Package.COMPONENT_IMPLEMENTATION__COMPONENTS);
 		}
 		return components;
@@ -243,7 +243,7 @@ public class ComponentImplementationImpl extends ComponentRealizationImpl implem
 		switch (featureID) {
 		case Aadlv3Package.COMPONENT_IMPLEMENTATION__COMPONENTS:
 			getComponents().clear();
-			getComponents().addAll((Collection<? extends Component>) newValue);
+			getComponents().addAll((Collection<? extends Subcomponent>) newValue);
 			return;
 		case Aadlv3Package.COMPONENT_IMPLEMENTATION__CONNECTIONS:
 			getConnections().clear();

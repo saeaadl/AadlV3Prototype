@@ -36,8 +36,7 @@
         eType="#//AnnexElement" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ClassifierOrType" abstract="true" eSuperTypes="#//NamedElement"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ComponentClassifier" abstract="true"
-      eSuperTypes="#//PackageElement #//ClassifierOrType">
+  <eClassifiers xsi:type="ecore:EClass" name="Classifier" abstract="true" eSuperTypes="#//PackageElement #//ClassifierOrType">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="category" eType="#//ComponentCategory"
         defaultValueLiteral="interface"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="superClassifiers" upperBound="-1"
@@ -50,13 +49,13 @@
         eType="#//AnnexSubclause" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ComponentRealization" abstract="true"
-      eSuperTypes="#//ComponentClassifier">
+      eSuperTypes="#//Classifier">
     <eStructuralFeatures xsi:type="ecore:EReference" name="cachedInterfaceReference"
         ordered="false" eType="#//ComponentInterface" transient="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="classifierAssignments"
         upperBound="-1" eType="#//ClassifierAssignment" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ComponentInterface" eSuperTypes="#//ComponentClassifier">
+  <eClassifiers xsi:type="ecore:EClass" name="ComponentInterface" eSuperTypes="#//Classifier">
     <eStructuralFeatures xsi:type="ecore:EReference" name="features" upperBound="-1"
         eType="#//Feature" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="flows" upperBound="-1"
@@ -66,7 +65,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ComponentImplementation" eSuperTypes="#//ComponentRealization">
     <eStructuralFeatures xsi:type="ecore:EReference" name="components" upperBound="-1"
-        eType="#//Component" containment="true"/>
+        eType="#//Subcomponent" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="connections" upperBound="-1"
         eType="#//Association" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="flowAssignments" upperBound="-1"
@@ -91,12 +90,12 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="propagation" eType="#//TypeSet"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Component" eSuperTypes="#//ModelElement">
+  <eClassifiers xsi:type="ecore:EClass" name="Subcomponent" eSuperTypes="#//ModelElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="category" eType="#//ComponentCategory"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="typeReferences" upperBound="-1"
         eType="#//TypeReference" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="components" upperBound="-1"
-        eType="#//Component" containment="true"/>
+        eType="#//Subcomponent" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="bindings" upperBound="-1"
         eType="#//Association" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="connections" upperBound="-1"
@@ -168,7 +167,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Workingset" eSuperTypes="#//PackageElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="rootComponents" upperBound="-1"
-        eType="#//Component" containment="true"/>
+        eType="#//Subcomponent" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="useProperties" upperBound="-1"
         eType="#//PropertySet"/>
   </eClassifiers>
@@ -225,15 +224,18 @@
     <eLiterals name="flowsource" value="3" literal="flow source"/>
     <eLiterals name="flowsink" value="4" literal="flow sink"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PropertyValue">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
-        containment="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NumberLiteral" eSuperTypes="#//Literal">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="unit" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IntegerLiteral" eSuperTypes="#//NumberLiteral">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Literal"/>
   <eClassifiers xsi:type="ecore:EClass" name="PropertyAssociation">
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//ModelElementReference"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="property" eType="#//PropertyDefinition"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Literal"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="propertyAssociationType"
         eType="#//PropertyAssociationType" defaultValueLiteral="FinalValue"/>

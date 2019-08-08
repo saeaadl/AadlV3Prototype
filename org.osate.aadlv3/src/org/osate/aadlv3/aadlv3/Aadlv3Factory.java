@@ -98,13 +98,13 @@ public interface Aadlv3Factory extends EFactory {
 	Feature createFeature();
 
 	/**
-	 * Returns a new object of class '<em>Component</em>'.
+	 * Returns a new object of class '<em>Subcomponent</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Component</em>'.
+	 * @return a new object of class '<em>Subcomponent</em>'.
 	 * @generated
 	 */
-	Component createComponent();
+	Subcomponent createSubcomponent();
 
 	/**
 	 * Returns a new object of class '<em>Import</em>'.
@@ -170,13 +170,31 @@ public interface Aadlv3Factory extends EFactory {
 	Workingset createWorkingset();
 
 	/**
-	 * Returns a new object of class '<em>Property Value</em>'.
+	 * Returns a new object of class '<em>Number Literal</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Property Value</em>'.
+	 * @return a new object of class '<em>Number Literal</em>'.
 	 * @generated
 	 */
-	PropertyValue createPropertyValue();
+	NumberLiteral createNumberLiteral();
+
+	/**
+	 * Returns a new object of class '<em>Integer Literal</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Integer Literal</em>'.
+	 * @generated
+	 */
+	IntegerLiteral createIntegerLiteral();
+
+	/**
+	 * Returns a new object of class '<em>Literal</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Literal</em>'.
+	 * @generated
+	 */
+	Literal createLiteral();
 
 	/**
 	 * Returns a new object of class '<em>Property Association</em>'.

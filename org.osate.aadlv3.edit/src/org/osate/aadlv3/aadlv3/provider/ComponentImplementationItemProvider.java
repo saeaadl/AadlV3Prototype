@@ -154,7 +154,7 @@ public class ComponentImplementationItemProvider extends ComponentRealizationIte
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.COMPONENT_IMPLEMENTATION__COMPONENTS,
-				Aadlv3Factory.eINSTANCE.createComponent()));
+				Aadlv3Factory.eINSTANCE.createSubcomponent()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.COMPONENT_IMPLEMENTATION__CONNECTIONS,
 				Aadlv3Factory.eINSTANCE.createAssociation()));

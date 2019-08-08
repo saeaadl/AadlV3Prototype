@@ -6,8 +6,8 @@ import java.util.Collections
 import java.util.Stack
 import org.eclipse.xtext.EcoreUtil2
 import org.osate.aadlv3.aadlv3.Association
-import org.osate.aadlv3.aadlv3.Component
-import org.osate.aadlv3.aadlv3.ComponentClassifier
+import org.osate.aadlv3.aadlv3.Subcomponent
+import org.osate.aadlv3.aadlv3.Classifier
 import org.osate.aadlv3.aadlv3.ComponentInterface
 import org.osate.aadlv3.aadlv3.ClassifierAssignment
 import org.osate.aadlv3.aadlv3.Feature
@@ -48,7 +48,7 @@ class Instantiator {
 		}
 	}
 	
-	def getInstanceURI(Workingset ws, Component root){
+	def getInstanceURI(Workingset ws, Subcomponent root){
 		val wsURI = ws.eResource.URI.trimFileExtension
 		val wsname = wsURI.lastSegment
 		val rootname = root.name
@@ -56,8 +56,8 @@ class Instantiator {
 	}
 
 
-	def ComponentInstance instantiateRoot(Component c) {
-		// cas scope represents the configuration assignments (CAs) for a given nesting level in the component hierarchy
+	def ComponentInstance instantiateRoot(Subcomponent c) {
+		// cas scope represents the configuration assignments (CAs) for a given nesting level in the Subcomponent hierarchy
 		// The top of the stack has the CAs whose single path element references are relevant
 		Aadlv3Util.resetComponentInstanceCache
 		val ws = c.eContainer as Workingset
@@ -78,7 +78,7 @@ class Instantiator {
 	}
 
 	//  component to be instantiated using configured classifier confcl and set of configuration assignments
-	def void instantiateComponent(Component comp,  Stack<Iterable<ClassifierAssignment>> casscopes, ComponentInstance context) {
+	def void instantiateComponent(Subcomponent comp,  Stack<Iterable<ClassifierAssignment>> casscopes, ComponentInstance context) {
 		var Iterable<TypeReference> trefs = null
 		val isRoot = comp.eContainer instanceof Workingset
 		val ci = if (isRoot){
@@ -366,7 +366,7 @@ class Instantiator {
 						}
 					}
 					pe.processFlowSpec(psi,context)
- 			} else if (flowelement instanceof Component){
+ 			} else if (flowelement instanceof Subcomponent){
 				// find component instance
 				val ci = context.getInstanceElement(pe)
 				psi.elements += ci
@@ -446,10 +446,10 @@ class Instantiator {
 	def static void overridePropertyValue(PropertyAssociationInstance epai, PropertyAssociation npa) {
 		switch (epai.propertyAssociationType) {
 			case PropertyAssociationType.FINAL_VALUE: {
-				if (epai.propertyAssociation.eContainer instanceof ComponentClassifier) {
-					val ecl = epai.propertyAssociation.eContainer as ComponentClassifier
-					if (npa.eContainer instanceof ComponentClassifier) {
-						val tcl = npa.eContainer as ComponentClassifier
+				if (epai.propertyAssociation.eContainer instanceof Classifier) {
+					val ecl = epai.propertyAssociation.eContainer as Classifier
+					if (npa.eContainer instanceof Classifier) {
+						val tcl = npa.eContainer as Classifier
 						if (npa.target.modelElementReferenceReachDown) {
 							// reachdown assignment to subcomponent (should be final)
 							// in implementation vs configuration
@@ -499,7 +499,7 @@ class Instantiator {
 						}
 					} else {
 						// existing is local assignment
-						if (npa.eContainer instanceof ComponentClassifier &&
+						if (npa.eContainer instanceof Classifier &&
 							npa.propertyAssociationType === PropertyAssociationType.FINAL_VALUE) {
 							// if new classifier use new value if FINAL and ERROR
 							epai.assignNewValue(npa)

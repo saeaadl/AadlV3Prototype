@@ -84,8 +84,8 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 			return createComponentConfiguration();
 		case Aadlv3Package.FEATURE:
 			return createFeature();
-		case Aadlv3Package.COMPONENT:
-			return createComponent();
+		case Aadlv3Package.SUBCOMPONENT:
+			return createSubcomponent();
 		case Aadlv3Package.IMPORT:
 			return createImport();
 		case Aadlv3Package.ASSOCIATION:
@@ -108,8 +108,12 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 			return createConfigurationActual();
 		case Aadlv3Package.WORKINGSET:
 			return createWorkingset();
-		case Aadlv3Package.PROPERTY_VALUE:
-			return createPropertyValue();
+		case Aadlv3Package.NUMBER_LITERAL:
+			return createNumberLiteral();
+		case Aadlv3Package.INTEGER_LITERAL:
+			return createIntegerLiteral();
+		case Aadlv3Package.LITERAL:
+			return createLiteral();
 		case Aadlv3Package.PROPERTY_ASSOCIATION:
 			return createPropertyAssociation();
 		case Aadlv3Package.MODE:
@@ -268,9 +272,9 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 	 * @generated
 	 */
 	@Override
-	public Component createComponent() {
-		ComponentImpl component = new ComponentImpl();
-		return component;
+	public Subcomponent createSubcomponent() {
+		SubcomponentImpl subcomponent = new SubcomponentImpl();
+		return subcomponent;
 	}
 
 	/**
@@ -356,9 +360,31 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 	 * @generated
 	 */
 	@Override
-	public PropertyValue createPropertyValue() {
-		PropertyValueImpl propertyValue = new PropertyValueImpl();
-		return propertyValue;
+	public NumberLiteral createNumberLiteral() {
+		NumberLiteralImpl numberLiteral = new NumberLiteralImpl();
+		return numberLiteral;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public IntegerLiteral createIntegerLiteral() {
+		IntegerLiteralImpl integerLiteral = new IntegerLiteralImpl();
+		return integerLiteral;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Literal createLiteral() {
+		LiteralImpl literal = new LiteralImpl();
+		return literal;
 	}
 
 	/**

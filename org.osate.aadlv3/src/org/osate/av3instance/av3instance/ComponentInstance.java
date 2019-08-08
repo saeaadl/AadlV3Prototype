@@ -16,9 +16,8 @@
 package org.osate.av3instance.av3instance;
 
 import org.eclipse.emf.common.util.EList;
-
-import org.osate.aadlv3.aadlv3.Component;
 import org.osate.aadlv3.aadlv3.ComponentCategory;
+import org.osate.aadlv3.aadlv3.Subcomponent;
 
 /**
  * <!-- begin-user-doc -->
@@ -98,12 +97,12 @@ public interface ComponentInstance extends InstanceObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Component</em>' reference.
-	 * @see #setComponent(Component)
+	 * @see #setComponent(Subcomponent)
 	 * @see org.osate.av3instance.av3instance.Av3instancePackage#getComponentInstance_Component()
 	 * @model
 	 * @generated
 	 */
-	Component getComponent();
+	Subcomponent getComponent();
 
 	/**
 	 * Sets the value of the '{@link org.osate.av3instance.av3instance.ComponentInstance#getComponent <em>Component</em>}' reference.
@@ -113,7 +112,7 @@ public interface ComponentInstance extends InstanceObject {
 	 * @see #getComponent()
 	 * @generated
 	 */
-	void setComponent(Component value);
+	void setComponent(Subcomponent value);
 
 	/**
 	 * Returns the value of the '<em><b>Connections</b></em>' containment reference list.

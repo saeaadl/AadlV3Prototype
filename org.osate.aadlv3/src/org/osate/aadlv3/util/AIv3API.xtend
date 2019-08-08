@@ -6,7 +6,7 @@ import org.eclipse.emf.ecore.EObject
 import org.eclipse.xtext.EcoreUtil2
 import org.osate.aadlv3.aadlv3.Association
 import org.osate.aadlv3.aadlv3.AssociationType
-import org.osate.aadlv3.aadlv3.Component
+import org.osate.aadlv3.aadlv3.Subcomponent
 import org.osate.aadlv3.aadlv3.ComponentCategory
 import org.osate.aadlv3.aadlv3.Feature
 import org.osate.aadlv3.aadlv3.FeatureCategory
@@ -57,7 +57,7 @@ class AIv3API {
 		return associ
 	}
 
-	def static ComponentInstance createComponentInstance(Component c, Iterable<TypeReference> configuredtypereferences) {
+	def static ComponentInstance createComponentInstance(Subcomponent c, Iterable<TypeReference> configuredtypereferences) {
 		val compi = Av3instanceFactory.eINSTANCE.createComponentInstance
 		compi.name = c.name
 		compi.category = c.category
@@ -91,7 +91,7 @@ class AIv3API {
 		switch (context){
 			ComponentInstance: {
 				switch (me) {
-					Component: {
+					Subcomponent: {
 						for (compi : context.components) {
 							if (compi.component == me) return compi
 						}

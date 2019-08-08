@@ -247,26 +247,26 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.Component} instances.
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.Subcomponent} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ComponentItemProvider componentItemProvider;
+	protected SubcomponentItemProvider subcomponentItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.Component}.
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.Subcomponent}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createComponentAdapter() {
-		if (componentItemProvider == null) {
-			componentItemProvider = new ComponentItemProvider(this);
+	public Adapter createSubcomponentAdapter() {
+		if (subcomponentItemProvider == null) {
+			subcomponentItemProvider = new SubcomponentItemProvider(this);
 		}
 
-		return componentItemProvider;
+		return subcomponentItemProvider;
 	}
 
 	/**
@@ -431,26 +431,72 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.PropertyValue} instances.
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.NumberLiteral} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected PropertyValueItemProvider propertyValueItemProvider;
+	protected NumberLiteralItemProvider numberLiteralItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.PropertyValue}.
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.NumberLiteral}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createPropertyValueAdapter() {
-		if (propertyValueItemProvider == null) {
-			propertyValueItemProvider = new PropertyValueItemProvider(this);
+	public Adapter createNumberLiteralAdapter() {
+		if (numberLiteralItemProvider == null) {
+			numberLiteralItemProvider = new NumberLiteralItemProvider(this);
 		}
 
-		return propertyValueItemProvider;
+		return numberLiteralItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.IntegerLiteral} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected IntegerLiteralItemProvider integerLiteralItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.IntegerLiteral}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createIntegerLiteralAdapter() {
+		if (integerLiteralItemProvider == null) {
+			integerLiteralItemProvider = new IntegerLiteralItemProvider(this);
+		}
+
+		return integerLiteralItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.Literal} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected LiteralItemProvider literalItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.Literal}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createLiteralAdapter() {
+		if (literalItemProvider == null) {
+			literalItemProvider = new LiteralItemProvider(this);
+		}
+
+		return literalItemProvider;
 	}
 
 	/**
@@ -940,8 +986,8 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 			componentConfigurationItemProvider.dispose();
 		if (featureItemProvider != null)
 			featureItemProvider.dispose();
-		if (componentItemProvider != null)
-			componentItemProvider.dispose();
+		if (subcomponentItemProvider != null)
+			subcomponentItemProvider.dispose();
 		if (importItemProvider != null)
 			importItemProvider.dispose();
 		if (associationItemProvider != null)
@@ -964,8 +1010,12 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 			configurationActualItemProvider.dispose();
 		if (workingsetItemProvider != null)
 			workingsetItemProvider.dispose();
-		if (propertyValueItemProvider != null)
-			propertyValueItemProvider.dispose();
+		if (numberLiteralItemProvider != null)
+			numberLiteralItemProvider.dispose();
+		if (integerLiteralItemProvider != null)
+			integerLiteralItemProvider.dispose();
+		if (literalItemProvider != null)
+			literalItemProvider.dispose();
 		if (propertyAssociationItemProvider != null)
 			propertyAssociationItemProvider.dispose();
 		if (modeItemProvider != null)

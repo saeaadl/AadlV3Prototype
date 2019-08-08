@@ -21,8 +21,8 @@ import org.eclipse.xtext.scoping.impl.SimpleScope
 import org.eclipse.xtext.util.SimpleAttributeResolver
 import org.osate.aadlv3.aadlv3.Aadlv3Package
 import org.osate.aadlv3.aadlv3.Association
-import org.osate.aadlv3.aadlv3.Component
-import org.osate.aadlv3.aadlv3.ComponentClassifier
+import org.osate.aadlv3.aadlv3.Subcomponent
+import org.osate.aadlv3.aadlv3.Classifier
 import org.osate.aadlv3.aadlv3.ComponentConfiguration
 import org.osate.aadlv3.aadlv3.ComponentInterface
 import org.osate.aadlv3.aadlv3.ConfigurationActual
@@ -61,10 +61,10 @@ class AadlV3ScopeProvider extends AbstractAadlV3ScopeProvider {
 						Association,
 						PathSequence: {
 							switch container : cc.eContainer {
-								ComponentClassifier: {
+								Classifier: {
 									container.allModelElements 
 								}
-								Component: {
+								Subcomponent: {
 									container.allModelElements 
 								}
 							}
@@ -72,9 +72,9 @@ class AadlV3ScopeProvider extends AbstractAadlV3ScopeProvider {
 						ClassifierAssignment,
 						PropertyAssociation: {
 							switch ccc: cc.eContainer {
-								ComponentClassifier:
+								Classifier:
 									ccc.allModelElements
-								Component: {
+								Subcomponent: {
 									ccc.allModelElements 
 								}
 								ClassifierAssignment: {
@@ -95,10 +95,10 @@ class AadlV3ScopeProvider extends AbstractAadlV3ScopeProvider {
 										// or without a value on the right
 										// We need to look at the classifier associated with the target on the left
 										val el = ccc.target?.element;
-										if (el instanceof Component) {
+										if (el instanceof Subcomponent) {
 											val casscopes = new Stack<Iterable<ClassifierAssignment>>()
 											casscopes.push(
-												context.containingComponentClassifier.allSuperClassifierAssignments)
+												context.containingClassifier.allSuperClassifierAssignments)
 											el.getConfiguredTypeReferences(casscopes).allModelElements 
 										} else if (el instanceof Feature) {
 											val ftype = el?.typeReference?.type
@@ -124,10 +124,10 @@ class AadlV3ScopeProvider extends AbstractAadlV3ScopeProvider {
 						case previousElement.eIsProxy:
 							// Don't provide a scope if the previous element could not be resolved
 							Collections.EMPTY_LIST
-						Component: {
+						Subcomponent: {
 							// super classifier of containing classifier of configuration assignment may have configured the component
 							val casscopes = new Stack<Iterable<ClassifierAssignment>>()
-							casscopes.push(context.containingComponentClassifier.allSuperClassifierAssignments)
+							casscopes.push(context.containingClassifier.allSuperClassifierAssignments)
 							val ptrs = previousElement.getConfiguredTypeReferences(casscopes)
 							if (!ptrs.empty && !ptrs.isTypeDecl) {
 								ptrs.allModelElements
@@ -137,7 +137,7 @@ class AadlV3ScopeProvider extends AbstractAadlV3ScopeProvider {
 						}
 						Feature: {
 							val at = previousElement?.typeReference?.type
-							if (at instanceof ComponentClassifier) {
+							if (at instanceof Classifier) {
 								at.allModelElements
 							}
 						}

@@ -204,121 +204,13 @@ public class PropertyAssociationItemProvider extends ItemProviderAdapter impleme
 				Aadlv3Factory.eINSTANCE.createPathElement()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
-				Aadlv3Factory.eINSTANCE.createPackageDeclaration()));
+				Aadlv3Factory.eINSTANCE.createLiteral()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
-				Aadlv3Factory.eINSTANCE.createPropertyDefinition()));
+				Aadlv3Factory.eINSTANCE.createNumberLiteral()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
-				Aadlv3Factory.eINSTANCE.createPropertySet()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
-				Aadlv3Factory.eINSTANCE.createComponentInterface()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
-				Aadlv3Factory.eINSTANCE.createComponentImplementation()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
-				Aadlv3Factory.eINSTANCE.createComponentConfiguration()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
-				Aadlv3Factory.eINSTANCE.createFeature()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
-				Aadlv3Factory.eINSTANCE.createComponent()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
-				Aadlv3Factory.eINSTANCE.createImport()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
-				Aadlv3Factory.eINSTANCE.createAssociation()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
-				Aadlv3Factory.eINSTANCE.createPathSequence()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
-				Aadlv3Factory.eINSTANCE.createModelElementReference()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
-				Aadlv3Factory.eINSTANCE.createPathElement()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
-				Aadlv3Factory.eINSTANCE.createClassifierAssignment()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
-				Aadlv3Factory.eINSTANCE.createClassifierAssignmentPattern()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
-				Aadlv3Factory.eINSTANCE.createConfigurationParameter()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
-				Aadlv3Factory.eINSTANCE.createTypeReference()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
-				Aadlv3Factory.eINSTANCE.createConfigurationActual()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
-				Aadlv3Factory.eINSTANCE.createWorkingset()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
-				Aadlv3Factory.eINSTANCE.createPropertyValue()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
-				Aadlv3Factory.eINSTANCE.createPropertyAssociation()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
-				Aadlv3Factory.eINSTANCE.createMode()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
-				Aadlv3Factory.eINSTANCE.createModeTransition()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
-				Aadlv3Factory.eINSTANCE.createModeTransitionTriggerAssignment()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
-				Aadlv3Factory.eINSTANCE.createModeAssignment()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
-				Aadlv3Factory.eINSTANCE.createModeStateMachine()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
-				Aadlv3Factory.eINSTANCE.createAnnexSubclause()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
-				Aadlv3Factory.eINSTANCE.createAnnexElement()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
-				Aadlv3Factory.eINSTANCE.createTypeSet()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
-				Aadlv3Factory.eINSTANCE.createAnnexLibrary()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
-				Aadlv3Factory.eINSTANCE.createAnnexDefinition()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
-				Aadlv3Factory.eINSTANCE.createTypeDecl()));
-	}
-
-	/**
-	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
-		Object childFeature = feature;
-		Object childObject = child;
-
-		boolean qualify = childFeature == Aadlv3Package.Literals.PROPERTY_ASSOCIATION__TARGET
-				|| childFeature == Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE;
-
-		if (qualify) {
-			return getString("_UI_CreateChild_text2",
-					new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
-		}
-		return super.getCreateChildText(owner, feature, child, selection);
+				Aadlv3Factory.eINSTANCE.createIntegerLiteral()));
 	}
 
 	/**

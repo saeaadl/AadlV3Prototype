@@ -34,7 +34,7 @@ import org.osate.aadlv3.aadlv3.ComponentRealization;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ComponentRealizationItemProvider extends ComponentClassifierItemProvider {
+public class ComponentRealizationItemProvider extends ClassifierItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

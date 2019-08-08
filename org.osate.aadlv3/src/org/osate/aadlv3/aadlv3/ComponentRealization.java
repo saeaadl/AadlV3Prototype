@@ -34,7 +34,7 @@ import org.eclipse.emf.common.util.EList;
  * @model abstract="true"
  * @generated
  */
-public interface ComponentRealization extends ComponentClassifier {
+public interface ComponentRealization extends Classifier {
 
 	/**
 	 * Returns the value of the '<em><b>Cached Interface Reference</b></em>' reference.

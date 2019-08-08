@@ -5,8 +5,8 @@ package org.osate.xtext.aadlv3.formatting2
 
 import org.eclipse.xtext.formatting2.AbstractFormatter2
 import org.eclipse.xtext.formatting2.IFormattableDocument
-import org.osate.aadlv3.aadlv3.Component
-import org.osate.aadlv3.aadlv3.ComponentClassifier
+import org.osate.aadlv3.aadlv3.Subcomponent
+import org.osate.aadlv3.aadlv3.Classifier
 import org.osate.aadlv3.aadlv3.ClassifierAssignment
 import org.osate.aadlv3.aadlv3.Import
 import org.osate.aadlv3.aadlv3.ModelElement
@@ -39,7 +39,7 @@ class AadlV3Formatter extends AbstractFormatter2 {
 		ws.rootComponents.forEach[format]
 	}
 
-	def dispatch void format(ComponentClassifier cl, extension IFormattableDocument document) {
+	def dispatch void format(Classifier cl, extension IFormattableDocument document) {
 		cl.append[newLines = 2]
 		interior(cl.regionFor.keyword("is"), cl.regionFor.keyword("end"))[indent]
 		cl.regionFor.keyword("is").append[newLine]
@@ -80,7 +80,7 @@ class AadlV3Formatter extends AbstractFormatter2 {
 		ca.append[newLine]
 	}
 
-	def dispatch void format(Component co, extension IFormattableDocument document) {
+	def dispatch void format(Subcomponent co, extension IFormattableDocument document) {
 		interior(co.regionFor.keyword("features"), co.regionFor.keyword("end"))[indent]
 		interior(co.regionFor.keyword("subcomponents"), co.regionFor.keyword("end"))[indent]
 		co.append[newLines = 1]

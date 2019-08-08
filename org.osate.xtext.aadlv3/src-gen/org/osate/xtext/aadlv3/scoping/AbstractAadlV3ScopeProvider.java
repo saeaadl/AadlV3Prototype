@@ -15,7 +15,7 @@
  */
 package org.osate.xtext.aadlv3.scoping;
 
-import org.osate.expr.scoping.ExprScopeProvider;
+import org.eclipse.xtext.scoping.impl.DelegatingScopeProvider;
 
-public abstract class AbstractAadlV3ScopeProvider extends ExprScopeProvider {
+public abstract class AbstractAadlV3ScopeProvider extends DelegatingScopeProvider {
 }

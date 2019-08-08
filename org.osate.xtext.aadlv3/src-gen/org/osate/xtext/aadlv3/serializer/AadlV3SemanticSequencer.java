@@ -24,6 +24,7 @@ import org.eclipse.xtext.Parameter;
 import org.eclipse.xtext.ParserRule;
 import org.eclipse.xtext.serializer.ISerializationContext;
 import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
+import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequencer;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.AnnexElement;
@@ -32,7 +33,6 @@ import org.osate.aadlv3.aadlv3.AnnexSubclause;
 import org.osate.aadlv3.aadlv3.Association;
 import org.osate.aadlv3.aadlv3.ClassifierAssignment;
 import org.osate.aadlv3.aadlv3.ClassifierAssignmentPattern;
-import org.osate.aadlv3.aadlv3.Component;
 import org.osate.aadlv3.aadlv3.ComponentConfiguration;
 import org.osate.aadlv3.aadlv3.ComponentImplementation;
 import org.osate.aadlv3.aadlv3.ComponentInterface;
@@ -40,6 +40,7 @@ import org.osate.aadlv3.aadlv3.ConfigurationActual;
 import org.osate.aadlv3.aadlv3.ConfigurationParameter;
 import org.osate.aadlv3.aadlv3.Feature;
 import org.osate.aadlv3.aadlv3.Import;
+import org.osate.aadlv3.aadlv3.IntegerLiteral;
 import org.osate.aadlv3.aadlv3.ModelElementReference;
 import org.osate.aadlv3.aadlv3.PackageDeclaration;
 import org.osate.aadlv3.aadlv3.PathElement;
@@ -47,64 +48,15 @@ import org.osate.aadlv3.aadlv3.PathSequence;
 import org.osate.aadlv3.aadlv3.PropertyAssociation;
 import org.osate.aadlv3.aadlv3.PropertyDefinition;
 import org.osate.aadlv3.aadlv3.PropertySet;
+import org.osate.aadlv3.aadlv3.Subcomponent;
+import org.osate.aadlv3.aadlv3.TypeDecl;
 import org.osate.aadlv3.aadlv3.TypeReference;
 import org.osate.aadlv3.aadlv3.TypeSet;
 import org.osate.aadlv3.aadlv3.Workingset;
-import org.osate.expr.expr.Argument;
-import org.osate.expr.expr.Assertion;
-import org.osate.expr.expr.BagLiteral;
-import org.osate.expr.expr.BagType;
-import org.osate.expr.expr.BinaryOperation;
-import org.osate.expr.expr.Block;
-import org.osate.expr.expr.Category;
-import org.osate.expr.expr.Conditional;
-import org.osate.expr.expr.EBoolean;
-import org.osate.expr.expr.EBooleanLiteral;
-import org.osate.expr.expr.EInteger;
-import org.osate.expr.expr.EIntegerLiteral;
-import org.osate.expr.expr.EReal;
-import org.osate.expr.expr.ERealLiteral;
-import org.osate.expr.expr.EString;
-import org.osate.expr.expr.EStringLiteral;
-import org.osate.expr.expr.EnumLiteral;
-import org.osate.expr.expr.EnumType;
-import org.osate.expr.expr.ExprLibrary;
-import org.osate.expr.expr.ExprModel;
-import org.osate.expr.expr.ExprPackage;
-import org.osate.expr.expr.ExprSubclause;
-import org.osate.expr.expr.Field;
-import org.osate.expr.expr.FieldValue;
-import org.osate.expr.expr.FunDecl;
-import org.osate.expr.expr.ListLiteral;
-import org.osate.expr.expr.ListType;
-import org.osate.expr.expr.MapLiteral;
-import org.osate.expr.expr.MapType;
-import org.osate.expr.expr.MetaClass;
-import org.osate.expr.expr.NamedElementRef;
-import org.osate.expr.expr.PropertyExpression;
-import org.osate.expr.expr.Range;
-import org.osate.expr.expr.RangeType;
-import org.osate.expr.expr.RecordLiteral;
-import org.osate.expr.expr.RecordType;
-import org.osate.expr.expr.Selection;
-import org.osate.expr.expr.SetLiteral;
-import org.osate.expr.expr.SetType;
-import org.osate.expr.expr.TupleLiteral;
-import org.osate.expr.expr.TupleType;
-import org.osate.expr.expr.TypeDecl;
-import org.osate.expr.expr.TypeRef;
-import org.osate.expr.expr.UnaryOperation;
-import org.osate.expr.expr.UnionLiteral;
-import org.osate.expr.expr.UnionType;
-import org.osate.expr.expr.UnitExpression;
-import org.osate.expr.expr.UnitLiteral;
-import org.osate.expr.expr.UnitsType;
-import org.osate.expr.expr.VarDecl;
-import org.osate.expr.serializer.ExprSemanticSequencer;
 import org.osate.xtext.aadlv3.services.AadlV3GrammarAccess;
 
 @SuppressWarnings("all")
-public class AadlV3SemanticSequencer extends ExprSemanticSequencer {
+public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer {
 
 	@Inject
 	private AadlV3GrammarAccess grammarAccess;
@@ -154,9 +106,6 @@ public class AadlV3SemanticSequencer extends ExprSemanticSequencer {
 			case Aadlv3Package.CLASSIFIER_ASSIGNMENT_PATTERN:
 				sequence_ClassifierAssignmentPattern_ConfigurationElement_QueryExpression(context, (ClassifierAssignmentPattern) semanticObject); 
 				return; 
-			case Aadlv3Package.COMPONENT:
-				sequence_Component_NestedImplementationElement(context, (Component) semanticObject); 
-				return; 
 			case Aadlv3Package.COMPONENT_CONFIGURATION:
 				sequence_ComponentConfiguration_ConfigurationElement_ConfigurationExtensions_Parameters(context, (ComponentConfiguration) semanticObject); 
 				return; 
@@ -177,6 +126,9 @@ public class AadlV3SemanticSequencer extends ExprSemanticSequencer {
 				return; 
 			case Aadlv3Package.IMPORT:
 				sequence_Import(context, (Import) semanticObject); 
+				return; 
+			case Aadlv3Package.INTEGER_LITERAL:
+				sequence_IntegerLiteral(context, (IntegerLiteral) semanticObject); 
 				return; 
 			case Aadlv3Package.MODEL_ELEMENT_REFERENCE:
 				sequence_ModelElementReference(context, (ModelElementReference) semanticObject); 
@@ -205,6 +157,12 @@ public class AadlV3SemanticSequencer extends ExprSemanticSequencer {
 				return; 
 			case Aadlv3Package.PROPERTY_SET:
 				sequence_PropertySet(context, (PropertySet) semanticObject); 
+				return; 
+			case Aadlv3Package.SUBCOMPONENT:
+				sequence_NestedImplementationElement_Subcomponent(context, (Subcomponent) semanticObject); 
+				return; 
+			case Aadlv3Package.TYPE_DECL:
+				sequence_PropertiesBlock_TypeDecl(context, (TypeDecl) semanticObject); 
 				return; 
 			case Aadlv3Package.TYPE_REFERENCE:
 				if (rule == grammarAccess.getRealizationReferenceRule()) {
@@ -240,171 +198,6 @@ public class AadlV3SemanticSequencer extends ExprSemanticSequencer {
 				else break;
 			case Aadlv3Package.WORKINGSET:
 				sequence_UseProps_Workingset(context, (Workingset) semanticObject); 
-				return; 
-			}
-		else if (epackage == ExprPackage.eINSTANCE)
-			switch (semanticObject.eClass().getClassifierID()) {
-			case ExprPackage.ARGUMENT:
-				sequence_Argument(context, (Argument) semanticObject); 
-				return; 
-			case ExprPackage.ASSERTION:
-				sequence_Assertion(context, (Assertion) semanticObject); 
-				return; 
-			case ExprPackage.BAG_LITERAL:
-				sequence_BagLiteral_ExpressionList(context, (BagLiteral) semanticObject); 
-				return; 
-			case ExprPackage.BAG_TYPE:
-				sequence_BagType(context, (BagType) semanticObject); 
-				return; 
-			case ExprPackage.BINARY_OPERATION:
-				sequence_AdditiveExpression_AndExpression_EqualityExpression_MultiplicativeExpression_OrExpression_RelationalExpression(context, (BinaryOperation) semanticObject); 
-				return; 
-			case ExprPackage.BLOCK:
-				sequence_BlockExpression(context, (Block) semanticObject); 
-				return; 
-			case ExprPackage.CATEGORY:
-				sequence_Category(context, (Category) semanticObject); 
-				return; 
-			case ExprPackage.CONDITIONAL:
-				sequence_IfExpression(context, (Conditional) semanticObject); 
-				return; 
-			case ExprPackage.EBOOLEAN:
-				sequence_PrimitiveType(context, (EBoolean) semanticObject); 
-				return; 
-			case ExprPackage.EBOOLEAN_LITERAL:
-				sequence_EBooleanLiteral(context, (EBooleanLiteral) semanticObject); 
-				return; 
-			case ExprPackage.EINTEGER:
-				sequence_EInteger(context, (EInteger) semanticObject); 
-				return; 
-			case ExprPackage.EINTEGER_LITERAL:
-				sequence_EIntegerLiteral(context, (EIntegerLiteral) semanticObject); 
-				return; 
-			case ExprPackage.EREAL:
-				sequence_EReal(context, (EReal) semanticObject); 
-				return; 
-			case ExprPackage.EREAL_LITERAL:
-				sequence_ERealLiteral(context, (ERealLiteral) semanticObject); 
-				return; 
-			case ExprPackage.ESTRING:
-				sequence_PrimitiveType(context, (EString) semanticObject); 
-				return; 
-			case ExprPackage.ESTRING_LITERAL:
-				sequence_EStringLiteral(context, (EStringLiteral) semanticObject); 
-				return; 
-			case ExprPackage.ENUM_LITERAL:
-				sequence_EnumLiteral(context, (EnumLiteral) semanticObject); 
-				return; 
-			case ExprPackage.ENUM_TYPE:
-				sequence_EnumType(context, (EnumType) semanticObject); 
-				return; 
-			case ExprPackage.EXPR_LIBRARY:
-				sequence_Declarations_ExprLibrary(context, (ExprLibrary) semanticObject); 
-				return; 
-			case ExprPackage.EXPR_MODEL:
-				sequence_ExprModel(context, (ExprModel) semanticObject); 
-				return; 
-			case ExprPackage.EXPR_SUBCLAUSE:
-				sequence_Declarations_ExprSubclause(context, (ExprSubclause) semanticObject); 
-				return; 
-			case ExprPackage.FIELD:
-				if (rule == grammarAccess.getNamedElementRule()
-						|| rule == grammarAccess.getFieldRule()) {
-					sequence_Field(context, (Field) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getTupleFieldRule()) {
-					sequence_TupleField(context, (Field) semanticObject); 
-					return; 
-				}
-				else break;
-			case ExprPackage.FIELD_VALUE:
-				sequence_FieldValue(context, (FieldValue) semanticObject); 
-				return; 
-			case ExprPackage.FUN_DECL:
-				sequence_Args_FunDecl(context, (FunDecl) semanticObject); 
-				return; 
-			case ExprPackage.LIST_LITERAL:
-				sequence_ExpressionList_ListLiteral(context, (ListLiteral) semanticObject); 
-				return; 
-			case ExprPackage.LIST_TYPE:
-				sequence_ListType(context, (ListType) semanticObject); 
-				return; 
-			case ExprPackage.MAP_LITERAL:
-				sequence_MapLiteral(context, (MapLiteral) semanticObject); 
-				return; 
-			case ExprPackage.MAP_TYPE:
-				sequence_MapType(context, (MapType) semanticObject); 
-				return; 
-			case ExprPackage.META_CLASS:
-				sequence_MetaClass(context, (MetaClass) semanticObject); 
-				return; 
-			case ExprPackage.NAMED_ELEMENT_REF:
-				sequence_NamedElementRef(context, (NamedElementRef) semanticObject); 
-				return; 
-			case ExprPackage.PROPERTY_EXPRESSION:
-				sequence_PropertyExpression(context, (PropertyExpression) semanticObject); 
-				return; 
-			case ExprPackage.RANGE:
-				sequence_RangeExpression(context, (Range) semanticObject); 
-				return; 
-			case ExprPackage.RANGE_TYPE:
-				sequence_RangeType(context, (RangeType) semanticObject); 
-				return; 
-			case ExprPackage.RECORD_LITERAL:
-				sequence_RecordLiteral(context, (RecordLiteral) semanticObject); 
-				return; 
-			case ExprPackage.RECORD_TYPE:
-				sequence_RecordType(context, (RecordType) semanticObject); 
-				return; 
-			case ExprPackage.SELECTION:
-				sequence_SelectExpression(context, (Selection) semanticObject); 
-				return; 
-			case ExprPackage.SET_LITERAL:
-				sequence_ExpressionList_SetLiteral(context, (SetLiteral) semanticObject); 
-				return; 
-			case ExprPackage.SET_TYPE:
-				sequence_SetType(context, (SetType) semanticObject); 
-				return; 
-			case ExprPackage.TUPLE_LITERAL:
-				sequence_ExpressionList_TupleLiteral(context, (TupleLiteral) semanticObject); 
-				return; 
-			case ExprPackage.TUPLE_TYPE:
-				sequence_TupleType(context, (TupleType) semanticObject); 
-				return; 
-			case ExprPackage.TYPE_DECL:
-				sequence_TypeDecl(context, (TypeDecl) semanticObject); 
-				return; 
-			case ExprPackage.TYPE_REF:
-				sequence_TypeRef(context, (TypeRef) semanticObject); 
-				return; 
-			case ExprPackage.UNARY_OPERATION:
-				sequence_UnaryOperation(context, (UnaryOperation) semanticObject); 
-				return; 
-			case ExprPackage.UNION_LITERAL:
-				sequence_UnionLiteral(context, (UnionLiteral) semanticObject); 
-				return; 
-			case ExprPackage.UNION_TYPE:
-				sequence_UnionType(context, (UnionType) semanticObject); 
-				return; 
-			case ExprPackage.UNIT_EXPRESSION:
-				sequence_UnitExpression(context, (UnitExpression) semanticObject); 
-				return; 
-			case ExprPackage.UNIT_LITERAL:
-				if (rule == grammarAccess.getUnitLiteralConversionRule()) {
-					sequence_UnitLiteralConversion(context, (UnitLiteral) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getUnitLiteralRule()) {
-					sequence_UnitLiteral(context, (UnitLiteral) semanticObject); 
-					return; 
-				}
-				else break;
-			case ExprPackage.UNITS_TYPE:
-				sequence_UnitsType(context, (UnitsType) semanticObject); 
-				return; 
-			case ExprPackage.VAR_DECL:
-				sequence_VarDecl(context, (VarDecl) semanticObject); 
 				return; 
 			}
 		if (errorAcceptor != null)
@@ -595,7 +388,7 @@ public class AadlV3SemanticSequencer extends ExprSemanticSequencer {
 	 *         (
 	 *             connections+=Connection | 
 	 *             bindings+=Binding | 
-	 *             components+=Component | 
+	 *             components+=Subcomponent | 
 	 *             paths+=Path | 
 	 *             flowAssignments+=FlowAssignment | 
 	 *             classifierAssignments+=ClassifierAssignment | 
@@ -632,23 +425,6 @@ public class AadlV3SemanticSequencer extends ExprSemanticSequencer {
 	 *     )
 	 */
 	protected void sequence_ComponentInterface_InterfaceElement_InterfaceExtensions(ISerializationContext context, ComponentInterface semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     Component returns Component
-	 *
-	 * Constraint:
-	 *     (
-	 *         name=ID 
-	 *         category=ComponentCategory 
-	 *         typeReferences+=TypeReference? 
-	 *         (features+=Feature | connections+=Connection | bindings+=Binding | components+=Component | ownedPropertyAssociations+=PropertyAssociation)*
-	 *     )
-	 */
-	protected void sequence_Component_NestedImplementationElement(ISerializationContext context, Component semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -845,6 +621,48 @@ public class AadlV3SemanticSequencer extends ExprSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     IntegerLiteral returns IntegerLiteral
+	 *
+	 * Constraint:
+	 *     (value=INT unit=STRING?)
+	 */
+	protected void sequence_IntegerLiteral(ISerializationContext context, IntegerLiteral semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     ModelElementReference returns ModelElementReference
+	 *     ModelElementReference.ModelElementReference_1_0_0 returns ModelElementReference
+	 *
+	 * Constraint:
+	 *     (element=[ModelElement|ID] | (context=ModelElementReference_ModelElementReference_1_0_0 element=[ModelElement|ID]))
+	 */
+	protected void sequence_ModelElementReference(ISerializationContext context, ModelElementReference semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Subcomponent returns Subcomponent
+	 *
+	 * Constraint:
+	 *     (
+	 *         name=ID 
+	 *         category=ComponentCategory 
+	 *         typeReferences+=TypeReference? 
+	 *         (features+=Feature | connections+=Connection | bindings+=Binding | components+=Subcomponent | ownedPropertyAssociations+=PropertyAssociation)*
+	 *     )
+	 */
+	protected void sequence_NestedImplementationElement_Subcomponent(ISerializationContext context, Subcomponent semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     PackageDeclaration returns PackageDeclaration
 	 *     PackageElement returns PackageDeclaration
 	 *
@@ -899,6 +717,31 @@ public class AadlV3SemanticSequencer extends ExprSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     PackageElement returns TypeDecl
+	 *     TypeDecl returns TypeDecl
+	 *
+	 * Constraint:
+	 *     (private?='private'? name=ID ownedPropertyAssociations+=PropertyAssociation*)
+	 */
+	protected void sequence_PropertiesBlock_TypeDecl(ISerializationContext context, TypeDecl semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     PropertyAssociation returns PropertyAssociation
+	 *
+	 * Constraint:
+	 *     (target=ModelElementReference? property=[PropertyDefinition|QualifiedName] propertyAssociationType=PropertyAssociationType value=IntegerLiteral)
+	 */
+	protected void sequence_PropertyAssociation(ISerializationContext context, PropertyAssociation semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     PackageElement returns PropertySet
 	 *     PropertySet returns PropertySet
 	 *
@@ -944,7 +787,7 @@ public class AadlV3SemanticSequencer extends ExprSemanticSequencer {
 	 *         private?='private'? 
 	 *         name=QualifiedName 
 	 *         (useProperties+=[PropertySet|QualifiedName] useProperties+=[PropertySet|QualifiedName]*)? 
-	 *         rootComponents+=Component*
+	 *         rootComponents+=Subcomponent*
 	 *     )
 	 */
 	protected void sequence_UseProps_Workingset(ISerializationContext context, Workingset semanticObject) {

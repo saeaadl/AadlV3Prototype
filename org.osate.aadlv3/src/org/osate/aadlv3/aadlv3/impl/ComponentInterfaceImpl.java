@@ -49,7 +49,7 @@ import org.osate.aadlv3.aadlv3.PropertySet;
  *
  * @generated
  */
-public class ComponentInterfaceImpl extends ComponentClassifierImpl implements ComponentInterface {
+public class ComponentInterfaceImpl extends ClassifierImpl implements ComponentInterface {
 	/**
 	 * The cached value of the '{@link #getFeatures() <em>Features</em>}' containment reference list.
 	 * <!-- begin-user-doc -->

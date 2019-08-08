@@ -29,8 +29,8 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
-import org.osate.aadlv3.aadlv3.Component;
 import org.osate.aadlv3.aadlv3.PropertySet;
+import org.osate.aadlv3.aadlv3.Subcomponent;
 import org.osate.aadlv3.aadlv3.Workingset;
 
 /**
@@ -56,7 +56,7 @@ public class WorkingsetImpl extends PackageElementImpl implements Workingset {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Component> rootComponents;
+	protected EList<Subcomponent> rootComponents;
 
 	/**
 	 * The cached value of the '{@link #getUseProperties() <em>Use Properties</em>}' reference list.
@@ -93,9 +93,9 @@ public class WorkingsetImpl extends PackageElementImpl implements Workingset {
 	 * @generated
 	 */
 	@Override
-	public EList<Component> getRootComponents() {
+	public EList<Subcomponent> getRootComponents() {
 		if (rootComponents == null) {
-			rootComponents = new EObjectContainmentEList<Component>(Component.class, this,
+			rootComponents = new EObjectContainmentEList<Subcomponent>(Subcomponent.class, this,
 					Aadlv3Package.WORKINGSET__ROOT_COMPONENTS);
 		}
 		return rootComponents;
@@ -156,7 +156,7 @@ public class WorkingsetImpl extends PackageElementImpl implements Workingset {
 		switch (featureID) {
 		case Aadlv3Package.WORKINGSET__ROOT_COMPONENTS:
 			getRootComponents().clear();
-			getRootComponents().addAll((Collection<? extends Component>) newValue);
+			getRootComponents().addAll((Collection<? extends Subcomponent>) newValue);
 			return;
 		case Aadlv3Package.WORKINGSET__USE_PROPERTIES:
 			getUseProperties().clear();

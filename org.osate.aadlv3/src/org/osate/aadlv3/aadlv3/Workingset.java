@@ -37,7 +37,7 @@ import org.eclipse.emf.common.util.EList;
 public interface Workingset extends PackageElement {
 	/**
 	 * Returns the value of the '<em><b>Root Components</b></em>' containment reference list.
-	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.Component}.
+	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.Subcomponent}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Root Components</em>' containment reference list isn't clear,
@@ -49,7 +49,7 @@ public interface Workingset extends PackageElement {
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Component> getRootComponents();
+	EList<Subcomponent> getRootComponents();
 
 	/**
 	 * Returns the value of the '<em><b>Use Properties</b></em>' reference list.

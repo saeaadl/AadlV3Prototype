@@ -27,7 +27,8 @@ import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.osate.aadlv3.aadlv3.PropertyValue;
+import org.osate.aadlv3.aadlv3.IntegerLiteral;
+import org.osate.aadlv3.aadlv3.Literal;
 import org.osate.av3instance.av3instance.Av3instancePackage;
 import org.osate.av3instance.av3instance.PropertyAssociationInstance;
 
@@ -158,8 +159,8 @@ public class PropertyAssociationInstanceItemProvider extends InstanceObjectItemP
 	@Override
 	public String getText(Object object) {
 		String label = ((PropertyAssociationInstance) object).getProperty().getName();
-		PropertyValue pvalue = ((PropertyAssociationInstance) object).getValue();
-		String value = pvalue != null ? pvalue.getExpr().toString() : "0";
+		Literal pvalue = ((PropertyAssociationInstance) object).getValue();
+		String value = pvalue instanceof IntegerLiteral && pvalue != null ? ((IntegerLiteral)pvalue).getValue() + " " + (((IntegerLiteral)pvalue).getUnit()!= null ? ((IntegerLiteral)pvalue).getUnit():"") : "0";
 		return label == null || label.length() == 0 ? getString("_UI_PropertyAssociationInstance_type") : //$NON-NLS-1$
 				label + " => " + value; //$NON-NLS-1$ 
 	}

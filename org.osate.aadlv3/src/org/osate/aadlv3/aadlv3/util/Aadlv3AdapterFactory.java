@@ -115,8 +115,8 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseComponentClassifier(ComponentClassifier object) {
-			return createComponentClassifierAdapter();
+		public Adapter caseClassifier(Classifier object) {
+			return createClassifierAdapter();
 		}
 
 		@Override
@@ -145,8 +145,8 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseComponent(Component object) {
-			return createComponentAdapter();
+		public Adapter caseSubcomponent(Subcomponent object) {
+			return createSubcomponentAdapter();
 		}
 
 		@Override
@@ -205,8 +205,18 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter casePropertyValue(PropertyValue object) {
-			return createPropertyValueAdapter();
+		public Adapter caseNumberLiteral(NumberLiteral object) {
+			return createNumberLiteralAdapter();
+		}
+
+		@Override
+		public Adapter caseIntegerLiteral(IntegerLiteral object) {
+			return createIntegerLiteralAdapter();
+		}
+
+		@Override
+		public Adapter caseLiteral(Literal object) {
+			return createLiteralAdapter();
 		}
 
 		@Override
@@ -387,16 +397,16 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.ComponentClassifier <em>Component Classifier</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.Classifier <em>Classifier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.osate.aadlv3.aadlv3.ComponentClassifier
+	 * @see org.osate.aadlv3.aadlv3.Classifier
 	 * @generated
 	 */
-	public Adapter createComponentClassifierAdapter() {
+	public Adapter createClassifierAdapter() {
 		return null;
 	}
 
@@ -457,16 +467,16 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.Component <em>Component</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.Subcomponent <em>Subcomponent</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.osate.aadlv3.aadlv3.Component
+	 * @see org.osate.aadlv3.aadlv3.Subcomponent
 	 * @generated
 	 */
-	public Adapter createComponentAdapter() {
+	public Adapter createSubcomponentAdapter() {
 		return null;
 	}
 
@@ -569,16 +579,44 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.PropertyValue <em>Property Value</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.NumberLiteral <em>Number Literal</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.osate.aadlv3.aadlv3.PropertyValue
+	 * @see org.osate.aadlv3.aadlv3.NumberLiteral
 	 * @generated
 	 */
-	public Adapter createPropertyValueAdapter() {
+	public Adapter createNumberLiteralAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.IntegerLiteral <em>Integer Literal</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.osate.aadlv3.aadlv3.IntegerLiteral
+	 * @generated
+	 */
+	public Adapter createIntegerLiteralAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.Literal <em>Literal</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.osate.aadlv3.aadlv3.Literal
+	 * @generated
+	 */
+	public Adapter createLiteralAdapter() {
 		return null;
 	}
 

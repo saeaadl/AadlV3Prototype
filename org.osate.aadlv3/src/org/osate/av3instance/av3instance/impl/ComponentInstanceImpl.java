@@ -29,10 +29,9 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
-import org.osate.aadlv3.aadlv3.Component;
 import org.osate.aadlv3.aadlv3.ComponentCategory;
 
+import org.osate.aadlv3.aadlv3.Subcomponent;
 import org.osate.av3instance.av3instance.AssociationInstance;
 import org.osate.av3instance.av3instance.Av3instancePackage;
 import org.osate.av3instance.av3instance.ComponentInstance;
@@ -97,7 +96,7 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 	 * @generated
 	 * @ordered
 	 */
-	protected Component component;
+	protected Subcomponent component;
 
 	/**
 	 * The cached value of the '{@link #getConnections() <em>Connections</em>}' containment reference list.
@@ -202,10 +201,10 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 	 * @generated
 	 */
 	@Override
-	public Component getComponent() {
+	public Subcomponent getComponent() {
 		if (component != null && component.eIsProxy()) {
 			InternalEObject oldComponent = (InternalEObject) component;
-			component = (Component) eResolveProxy(oldComponent);
+			component = (Subcomponent) eResolveProxy(oldComponent);
 			if (component != oldComponent) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
@@ -220,7 +219,7 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Component basicGetComponent() {
+	public Subcomponent basicGetComponent() {
 		return component;
 	}
 
@@ -230,8 +229,8 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 	 * @generated
 	 */
 	@Override
-	public void setComponent(Component newComponent) {
-		Component oldComponent = component;
+	public void setComponent(Subcomponent newComponent) {
+		Subcomponent oldComponent = component;
 		component = newComponent;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Av3instancePackage.COMPONENT_INSTANCE__COMPONENT,
@@ -361,7 +360,7 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 			getComponents().addAll((Collection<? extends ComponentInstance>) newValue);
 			return;
 		case Av3instancePackage.COMPONENT_INSTANCE__COMPONENT:
-			setComponent((Component) newValue);
+			setComponent((Subcomponent) newValue);
 			return;
 		case Av3instancePackage.COMPONENT_INSTANCE__CONNECTIONS:
 			getConnections().clear();
@@ -398,7 +397,7 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 			getComponents().clear();
 			return;
 		case Av3instancePackage.COMPONENT_INSTANCE__COMPONENT:
-			setComponent((Component) null);
+			setComponent((Subcomponent) null);
 			return;
 		case Av3instancePackage.COMPONENT_INSTANCE__CONNECTIONS:
 			getConnections().clear();

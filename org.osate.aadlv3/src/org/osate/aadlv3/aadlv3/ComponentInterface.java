@@ -35,7 +35,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface ComponentInterface extends ComponentClassifier {
+public interface ComponentInterface extends Classifier {
 	/**
 	 * Returns the value of the '<em><b>Features</b></em>' containment reference list.
 	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.Feature}.

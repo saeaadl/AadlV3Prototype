@@ -4,7 +4,7 @@ import java.util.Collection;
 
 import org.eclipse.emf.ecore.EObject;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
-import org.osate.aadlv3.aadlv3.ComponentClassifier;
+import org.osate.aadlv3.aadlv3.Classifier;
 import org.osate.aadlv3.aadlv3.ComponentConfiguration;
 import org.osate.aadlv3.aadlv3.ComponentImplementation;
 import org.osate.aadlv3.aadlv3.ComponentInterface;
@@ -35,13 +35,13 @@ public class Av3API {
 		return Aadlv3GlobalScopeUtil.get(context, Aadlv3Package.eINSTANCE.getPackageDeclaration(), qpname);
 	}
 
-	public static ComponentClassifier lookupComponentClassifier(EObject context, String qpname) {
-		return Aadlv3GlobalScopeUtil.get(context, Aadlv3Package.eINSTANCE.getComponentClassifier(), qpname);
+	public static Classifier lookupClassifier(EObject context, String qpname) {
+		return Aadlv3GlobalScopeUtil.get(context, Aadlv3Package.eINSTANCE.getClassifier(), qpname);
 	}
-//
-//	public static TypeDecl lookupTypeDecl(EObject context, String qpname) {
-//		return Aadlv3GlobalScopeUtil.get(context, ExprPackage.eINSTANCE.getTypeDecl(), qpname);
-//	}
+
+	public static TypeDecl lookupTypeDecl(EObject context, String qpname) {
+		return Aadlv3GlobalScopeUtil.get(context, Aadlv3Package.eINSTANCE.getTypeDecl(), qpname);
+	}
 
 	public static Workingset lookupWorkingset(EObject context, String qpname) {
 		return Aadlv3GlobalScopeUtil.get(context, Aadlv3Package.eINSTANCE.getWorkingset(), qpname);
@@ -51,7 +51,7 @@ public class Av3API {
 		return Aadlv3GlobalScopeUtil.get(context, Aadlv3Package.eINSTANCE.getPackageElement(), qpname);
 	}
 
-	public static ComponentInterface getComponentInterface(ComponentClassifier ccl) {
+	public static ComponentInterface getComponentInterface(Classifier ccl) {
 		if (ccl instanceof ComponentRealization) {
 			ComponentRealization creal = (ComponentRealization) ccl;
 			if (creal.getCachedInterfaceReference() != null) {

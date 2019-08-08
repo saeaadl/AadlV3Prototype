@@ -649,9 +649,9 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 		initEReference(getComponentInstance_Components(), this.getComponentInstance(), null, "components", null, 0, -1, //$NON-NLS-1$
 				ComponentInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getComponentInstance_Component(), theAadlv3Package.getComponent(), null, "component", null, 0, 1, //$NON-NLS-1$
-				ComponentInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getComponentInstance_Component(), theAadlv3Package.getSubcomponent(), null, "component", null, 0, //$NON-NLS-1$
+				1, ComponentInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getComponentInstance_Connections(), this.getAssociationInstance(), null, "connections", null, 0, //$NON-NLS-1$
 				-1, ComponentInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -699,7 +699,7 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 		initEReference(getPropertyAssociationInstance_Property(), theAadlv3Package.getPropertyDefinition(), null,
 				"property", null, 0, 1, PropertyAssociationInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, //$NON-NLS-1$
 				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getPropertyAssociationInstance_Value(), ecorePackage.getEObject(), null, "value", null, 0, 1, //$NON-NLS-1$
+		initEReference(getPropertyAssociationInstance_Value(), theAadlv3Package.getLiteral(), null, "value", null, 0, 1, //$NON-NLS-1$
 				PropertyAssociationInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPropertyAssociationInstance_PropertyAssociationType(),
