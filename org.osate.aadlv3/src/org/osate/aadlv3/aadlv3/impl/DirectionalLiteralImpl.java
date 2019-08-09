@@ -15,34 +15,34 @@
  */
 package org.osate.aadlv3.aadlv3.impl;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.EList;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
-import org.osate.aadlv3.aadlv3.ClassifierOrType;
+import org.osate.aadlv3.aadlv3.DirectionalLiteral;
 import org.osate.aadlv3.aadlv3.FeatureDirection;
-import org.osate.aadlv3.aadlv3.TypeSet;
+import org.osate.aadlv3.aadlv3.Literal;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Type Set</b></em>'.
+ * An implementation of the model object '<em><b>Directional Literal</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.TypeSetImpl#getDirection <em>Direction</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.TypeSetImpl#getPropagatedTypes <em>Propagated Types</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.DirectionalLiteralImpl#getDirection <em>Direction</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.DirectionalLiteralImpl#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class TypeSetImpl extends ModelElementImpl implements TypeSet {
+public class DirectionalLiteralImpl extends LiteralImpl implements DirectionalLiteral {
 	/**
 	 * The default value of the '{@link #getDirection() <em>Direction</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -64,21 +64,21 @@ public class TypeSetImpl extends ModelElementImpl implements TypeSet {
 	protected FeatureDirection direction = DIRECTION_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getPropagatedTypes() <em>Propagated Types</em>}' reference list.
+	 * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPropagatedTypes()
+	 * @see #getValue()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ClassifierOrType> propagatedTypes;
+	protected Literal value;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected TypeSetImpl() {
+	protected DirectionalLiteralImpl() {
 		super();
 	}
 
@@ -89,7 +89,7 @@ public class TypeSetImpl extends ModelElementImpl implements TypeSet {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return Aadlv3Package.Literals.TYPE_SET;
+		return Aadlv3Package.Literals.DIRECTIONAL_LITERAL;
 	}
 
 	/**
@@ -112,8 +112,8 @@ public class TypeSetImpl extends ModelElementImpl implements TypeSet {
 		FeatureDirection oldDirection = direction;
 		direction = newDirection == null ? DIRECTION_EDEFAULT : newDirection;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.TYPE_SET__DIRECTION, oldDirection,
-					direction));
+			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.DIRECTIONAL_LITERAL__DIRECTION,
+					oldDirection, direction));
 	}
 
 	/**
@@ -122,12 +122,64 @@ public class TypeSetImpl extends ModelElementImpl implements TypeSet {
 	 * @generated
 	 */
 	@Override
-	public EList<ClassifierOrType> getPropagatedTypes() {
-		if (propagatedTypes == null) {
-			propagatedTypes = new EObjectResolvingEList<ClassifierOrType>(ClassifierOrType.class, this,
-					Aadlv3Package.TYPE_SET__PROPAGATED_TYPES);
+	public Literal getValue() {
+		return value;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetValue(Literal newValue, NotificationChain msgs) {
+		Literal oldValue = value;
+		value = newValue;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					Aadlv3Package.DIRECTIONAL_LITERAL__VALUE, oldValue, newValue);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
-		return propagatedTypes;
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setValue(Literal newValue) {
+		if (newValue != value) {
+			NotificationChain msgs = null;
+			if (value != null)
+				msgs = ((InternalEObject) value).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE - Aadlv3Package.DIRECTIONAL_LITERAL__VALUE, null, msgs);
+			if (newValue != null)
+				msgs = ((InternalEObject) newValue).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE - Aadlv3Package.DIRECTIONAL_LITERAL__VALUE, null, msgs);
+			msgs = basicSetValue(newValue, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.DIRECTIONAL_LITERAL__VALUE, newValue,
+					newValue));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case Aadlv3Package.DIRECTIONAL_LITERAL__VALUE:
+			return basicSetValue(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -138,10 +190,10 @@ public class TypeSetImpl extends ModelElementImpl implements TypeSet {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case Aadlv3Package.TYPE_SET__DIRECTION:
+		case Aadlv3Package.DIRECTIONAL_LITERAL__DIRECTION:
 			return getDirection();
-		case Aadlv3Package.TYPE_SET__PROPAGATED_TYPES:
-			return getPropagatedTypes();
+		case Aadlv3Package.DIRECTIONAL_LITERAL__VALUE:
+			return getValue();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -151,16 +203,14 @@ public class TypeSetImpl extends ModelElementImpl implements TypeSet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case Aadlv3Package.TYPE_SET__DIRECTION:
+		case Aadlv3Package.DIRECTIONAL_LITERAL__DIRECTION:
 			setDirection((FeatureDirection) newValue);
 			return;
-		case Aadlv3Package.TYPE_SET__PROPAGATED_TYPES:
-			getPropagatedTypes().clear();
-			getPropagatedTypes().addAll((Collection<? extends ClassifierOrType>) newValue);
+		case Aadlv3Package.DIRECTIONAL_LITERAL__VALUE:
+			setValue((Literal) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -174,11 +224,11 @@ public class TypeSetImpl extends ModelElementImpl implements TypeSet {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case Aadlv3Package.TYPE_SET__DIRECTION:
+		case Aadlv3Package.DIRECTIONAL_LITERAL__DIRECTION:
 			setDirection(DIRECTION_EDEFAULT);
 			return;
-		case Aadlv3Package.TYPE_SET__PROPAGATED_TYPES:
-			getPropagatedTypes().clear();
+		case Aadlv3Package.DIRECTIONAL_LITERAL__VALUE:
+			setValue((Literal) null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -192,10 +242,10 @@ public class TypeSetImpl extends ModelElementImpl implements TypeSet {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case Aadlv3Package.TYPE_SET__DIRECTION:
+		case Aadlv3Package.DIRECTIONAL_LITERAL__DIRECTION:
 			return direction != DIRECTION_EDEFAULT;
-		case Aadlv3Package.TYPE_SET__PROPAGATED_TYPES:
-			return propagatedTypes != null && !propagatedTypes.isEmpty();
+		case Aadlv3Package.DIRECTIONAL_LITERAL__VALUE:
+			return value != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -217,4 +267,4 @@ public class TypeSetImpl extends ModelElementImpl implements TypeSet {
 		return result.toString();
 	}
 
-} //TypeSetImpl
+} //DirectionalLiteralImpl

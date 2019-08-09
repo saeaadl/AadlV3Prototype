@@ -92,7 +92,6 @@ public class ModelElementItemProvider extends NamedElementItemProvider {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(Aadlv3Package.Literals.MODEL_ELEMENT__OWNED_PROPERTY_ASSOCIATIONS);
-			childrenFeatures.add(Aadlv3Package.Literals.MODEL_ELEMENT__ANNEX_ELEMENTS);
 		}
 		return childrenFeatures;
 	}
@@ -147,7 +146,6 @@ public class ModelElementItemProvider extends NamedElementItemProvider {
 
 		switch (notification.getFeatureID(ModelElement.class)) {
 		case Aadlv3Package.MODEL_ELEMENT__OWNED_PROPERTY_ASSOCIATIONS:
-		case Aadlv3Package.MODEL_ELEMENT__ANNEX_ELEMENTS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -167,9 +165,6 @@ public class ModelElementItemProvider extends NamedElementItemProvider {
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.MODEL_ELEMENT__OWNED_PROPERTY_ASSOCIATIONS,
 				Aadlv3Factory.eINSTANCE.createPropertyAssociation()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.MODEL_ELEMENT__ANNEX_ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createAnnexElement()));
 	}
 
 }

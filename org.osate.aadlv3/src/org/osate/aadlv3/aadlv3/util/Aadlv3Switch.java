@@ -373,6 +373,22 @@ public class Aadlv3Switch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case Aadlv3Package.SET_LITERAL: {
+			SetLiteral setLiteral = (SetLiteral) theEObject;
+			T result = caseSetLiteral(setLiteral);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Aadlv3Package.DIRECTIONAL_LITERAL: {
+			DirectionalLiteral directionalLiteral = (DirectionalLiteral) theEObject;
+			T result = caseDirectionalLiteral(directionalLiteral);
+			if (result == null)
+				result = caseLiteral(directionalLiteral);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		case Aadlv3Package.LITERAL: {
 			Literal literal = (Literal) theEObject;
 			T result = caseLiteral(literal);
@@ -445,28 +461,6 @@ public class Aadlv3Switch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case Aadlv3Package.ANNEX_ELEMENT: {
-			AnnexElement annexElement = (AnnexElement) theEObject;
-			T result = caseAnnexElement(annexElement);
-			if (result == null)
-				result = caseModelElement(annexElement);
-			if (result == null)
-				result = caseNamedElement(annexElement);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Aadlv3Package.TYPE_SET: {
-			TypeSet typeSet = (TypeSet) theEObject;
-			T result = caseTypeSet(typeSet);
-			if (result == null)
-				result = caseModelElement(typeSet);
-			if (result == null)
-				result = caseNamedElement(typeSet);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
 		case Aadlv3Package.ANNEX_LIBRARY: {
 			AnnexLibrary annexLibrary = (AnnexLibrary) theEObject;
 			T result = caseAnnexLibrary(annexLibrary);
@@ -476,17 +470,6 @@ public class Aadlv3Switch<T> extends Switch<T> {
 				result = casePackageElement(annexLibrary);
 			if (result == null)
 				result = caseNamedElement(annexLibrary);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Aadlv3Package.ANNEX_DEFINITION: {
-			AnnexDefinition annexDefinition = (AnnexDefinition) theEObject;
-			T result = caseAnnexDefinition(annexDefinition);
-			if (result == null)
-				result = casePackageElement(annexDefinition);
-			if (result == null)
-				result = caseNamedElement(annexDefinition);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -855,6 +838,36 @@ public class Aadlv3Switch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Set Literal</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Set Literal</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSetLiteral(SetLiteral object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Directional Literal</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Directional Literal</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDirectionalLiteral(DirectionalLiteral object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Literal</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -975,36 +988,6 @@ public class Aadlv3Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Annex Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Annex Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseAnnexElement(AnnexElement object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Type Set</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Type Set</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseTypeSet(TypeSet object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Annex Library</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1016,21 +999,6 @@ public class Aadlv3Switch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseAnnexLibrary(AnnexLibrary object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Annex Definition</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Annex Definition</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseAnnexDefinition(AnnexDefinition object) {
 		return null;
 	}
 

@@ -114,6 +114,10 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 			return createIntegerLiteral();
 		case Aadlv3Package.LIST_LITERAL:
 			return createListLiteral();
+		case Aadlv3Package.SET_LITERAL:
+			return createSetLiteral();
+		case Aadlv3Package.DIRECTIONAL_LITERAL:
+			return createDirectionalLiteral();
 		case Aadlv3Package.LITERAL:
 			return createLiteral();
 		case Aadlv3Package.PROPERTY_ASSOCIATION:
@@ -130,14 +134,8 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 			return createModeStateMachine();
 		case Aadlv3Package.ANNEX_SUBCLAUSE:
 			return createAnnexSubclause();
-		case Aadlv3Package.ANNEX_ELEMENT:
-			return createAnnexElement();
-		case Aadlv3Package.TYPE_SET:
-			return createTypeSet();
 		case Aadlv3Package.ANNEX_LIBRARY:
 			return createAnnexLibrary();
-		case Aadlv3Package.ANNEX_DEFINITION:
-			return createAnnexDefinition();
 		case Aadlv3Package.TYPE_DECL:
 			return createTypeDecl();
 		default:
@@ -395,6 +393,28 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 	 * @generated
 	 */
 	@Override
+	public SetLiteral createSetLiteral() {
+		SetLiteralImpl setLiteral = new SetLiteralImpl();
+		return setLiteral;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public DirectionalLiteral createDirectionalLiteral() {
+		DirectionalLiteralImpl directionalLiteral = new DirectionalLiteralImpl();
+		return directionalLiteral;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Literal createLiteral() {
 		LiteralImpl literal = new LiteralImpl();
 		return literal;
@@ -483,42 +503,9 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 	 * @generated
 	 */
 	@Override
-	public AnnexElement createAnnexElement() {
-		AnnexElementImpl annexElement = new AnnexElementImpl();
-		return annexElement;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public TypeSet createTypeSet() {
-		TypeSetImpl typeSet = new TypeSetImpl();
-		return typeSet;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public AnnexLibrary createAnnexLibrary() {
 		AnnexLibraryImpl annexLibrary = new AnnexLibraryImpl();
 		return annexLibrary;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public AnnexDefinition createAnnexDefinition() {
-		AnnexDefinitionImpl annexDefinition = new AnnexDefinitionImpl();
-		return annexDefinition;
 	}
 
 	/**

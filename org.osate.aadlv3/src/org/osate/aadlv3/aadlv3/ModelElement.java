@@ -28,7 +28,6 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.ModelElement#getOwnedPropertyAssociations <em>Owned Property Associations</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.ModelElement#getInModes <em>In Modes</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.ModelElement#getAnnexElements <em>Annex Elements</em>}</li>
  * </ul>
  *
  * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getModelElement()
@@ -59,17 +58,5 @@ public interface ModelElement extends NamedElement {
 	 * @generated
 	 */
 	EList<Mode> getInModes();
-
-	/**
-	 * Returns the value of the '<em><b>Annex Elements</b></em>' containment reference list.
-	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.AnnexElement}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Annex Elements</em>' containment reference list.
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getModelElement_AnnexElements()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<AnnexElement> getAnnexElements();
 
 } // ModelElement

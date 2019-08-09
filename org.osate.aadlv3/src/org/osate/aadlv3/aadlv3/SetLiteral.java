@@ -13,38 +13,39 @@
  * 
  * See COPYRIGHT file for full details.
  */
-package org.osate.aadlv3.aadlv3.impl;
+package org.osate.aadlv3.aadlv3;
 
-import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.common.util.EList;
 
-import org.osate.aadlv3.aadlv3.Aadlv3Package;
-import org.osate.aadlv3.aadlv3.AnnexElement;
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Annex Element</b></em>'.
+ * A representation of the model object '<em><b>Set Literal</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <p>
+ * The following features are supported:
+ * </p>
+ * <ul>
+ *   <li>{@link org.osate.aadlv3.aadlv3.SetLiteral#getElements <em>Elements</em>}</li>
+ * </ul>
+ *
+ * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getSetLiteral()
+ * @model
  * @generated
  */
-public class AnnexElementImpl extends ModelElementImpl implements AnnexElement {
+public interface SetLiteral extends EObject {
 	/**
+	 * Returns the value of the '<em><b>Elements</b></em>' containment reference list.
+	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.Literal}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Elements</em>' containment reference list.
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getSetLiteral_Elements()
+	 * @model containment="true"
 	 * @generated
 	 */
-	protected AnnexElementImpl() {
-		super();
-	}
+	EList<Literal> getElements();
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return Aadlv3Package.Literals.ANNEX_ELEMENT;
-	}
-
-} //AnnexElementImpl
+} // SetLiteral

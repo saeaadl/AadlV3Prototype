@@ -191,7 +191,7 @@ public class FeatureItemProvider extends ModelElementItemProvider {
 				Aadlv3Factory.eINSTANCE.createTypeReference()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.FEATURE__PROPAGATION,
-				Aadlv3Factory.eINSTANCE.createTypeSet()));
+				Aadlv3Factory.eINSTANCE.createDirectionalLiteral()));
 	}
 
 }

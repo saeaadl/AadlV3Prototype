@@ -29,7 +29,6 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
-import org.osate.aadlv3.aadlv3.AnnexElement;
 import org.osate.aadlv3.aadlv3.Mode;
 import org.osate.aadlv3.aadlv3.ModelElement;
 import org.osate.aadlv3.aadlv3.PropertyAssociation;
@@ -44,7 +43,6 @@ import org.osate.aadlv3.aadlv3.PropertyAssociation;
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ModelElementImpl#getOwnedPropertyAssociations <em>Owned Property Associations</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ModelElementImpl#getInModes <em>In Modes</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.ModelElementImpl#getAnnexElements <em>Annex Elements</em>}</li>
  * </ul>
  *
  * @generated
@@ -69,16 +67,6 @@ public abstract class ModelElementImpl extends NamedElementImpl implements Model
 	 * @ordered
 	 */
 	protected EList<Mode> inModes;
-
-	/**
-	 * The cached value of the '{@link #getAnnexElements() <em>Annex Elements</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getAnnexElements()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<AnnexElement> annexElements;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -132,26 +120,10 @@ public abstract class ModelElementImpl extends NamedElementImpl implements Model
 	 * @generated
 	 */
 	@Override
-	public EList<AnnexElement> getAnnexElements() {
-		if (annexElements == null) {
-			annexElements = new EObjectContainmentEList<AnnexElement>(AnnexElement.class, this,
-					Aadlv3Package.MODEL_ELEMENT__ANNEX_ELEMENTS);
-		}
-		return annexElements;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case Aadlv3Package.MODEL_ELEMENT__OWNED_PROPERTY_ASSOCIATIONS:
 			return ((InternalEList<?>) getOwnedPropertyAssociations()).basicRemove(otherEnd, msgs);
-		case Aadlv3Package.MODEL_ELEMENT__ANNEX_ELEMENTS:
-			return ((InternalEList<?>) getAnnexElements()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -168,8 +140,6 @@ public abstract class ModelElementImpl extends NamedElementImpl implements Model
 			return getOwnedPropertyAssociations();
 		case Aadlv3Package.MODEL_ELEMENT__IN_MODES:
 			return getInModes();
-		case Aadlv3Package.MODEL_ELEMENT__ANNEX_ELEMENTS:
-			return getAnnexElements();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -191,10 +161,6 @@ public abstract class ModelElementImpl extends NamedElementImpl implements Model
 			getInModes().clear();
 			getInModes().addAll((Collection<? extends Mode>) newValue);
 			return;
-		case Aadlv3Package.MODEL_ELEMENT__ANNEX_ELEMENTS:
-			getAnnexElements().clear();
-			getAnnexElements().addAll((Collection<? extends AnnexElement>) newValue);
-			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -213,9 +179,6 @@ public abstract class ModelElementImpl extends NamedElementImpl implements Model
 		case Aadlv3Package.MODEL_ELEMENT__IN_MODES:
 			getInModes().clear();
 			return;
-		case Aadlv3Package.MODEL_ELEMENT__ANNEX_ELEMENTS:
-			getAnnexElements().clear();
-			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -232,8 +195,6 @@ public abstract class ModelElementImpl extends NamedElementImpl implements Model
 			return ownedPropertyAssociations != null && !ownedPropertyAssociations.isEmpty();
 		case Aadlv3Package.MODEL_ELEMENT__IN_MODES:
 			return inModes != null && !inModes.isEmpty();
-		case Aadlv3Package.MODEL_ELEMENT__ANNEX_ELEMENTS:
-			return annexElements != null && !annexElements.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

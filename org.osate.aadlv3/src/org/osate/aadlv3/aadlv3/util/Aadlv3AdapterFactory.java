@@ -220,6 +220,16 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseSetLiteral(SetLiteral object) {
+			return createSetLiteralAdapter();
+		}
+
+		@Override
+		public Adapter caseDirectionalLiteral(DirectionalLiteral object) {
+			return createDirectionalLiteralAdapter();
+		}
+
+		@Override
 		public Adapter caseLiteral(Literal object) {
 			return createLiteralAdapter();
 		}
@@ -260,23 +270,8 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseAnnexElement(AnnexElement object) {
-			return createAnnexElementAdapter();
-		}
-
-		@Override
-		public Adapter caseTypeSet(TypeSet object) {
-			return createTypeSetAdapter();
-		}
-
-		@Override
 		public Adapter caseAnnexLibrary(AnnexLibrary object) {
 			return createAnnexLibraryAdapter();
-		}
-
-		@Override
-		public Adapter caseAnnexDefinition(AnnexDefinition object) {
-			return createAnnexDefinitionAdapter();
 		}
 
 		@Override
@@ -626,6 +621,34 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.SetLiteral <em>Set Literal</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.osate.aadlv3.aadlv3.SetLiteral
+	 * @generated
+	 */
+	public Adapter createSetLiteralAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.DirectionalLiteral <em>Directional Literal</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.osate.aadlv3.aadlv3.DirectionalLiteral
+	 * @generated
+	 */
+	public Adapter createDirectionalLiteralAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.Literal <em>Literal</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -738,34 +761,6 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.AnnexElement <em>Annex Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.osate.aadlv3.aadlv3.AnnexElement
-	 * @generated
-	 */
-	public Adapter createAnnexElementAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.TypeSet <em>Type Set</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.osate.aadlv3.aadlv3.TypeSet
-	 * @generated
-	 */
-	public Adapter createTypeSetAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.AnnexLibrary <em>Annex Library</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -776,20 +771,6 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createAnnexLibraryAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.AnnexDefinition <em>Annex Definition</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.osate.aadlv3.aadlv3.AnnexDefinition
-	 * @generated
-	 */
-	public Adapter createAnnexDefinitionAdapter() {
 		return null;
 	}
 

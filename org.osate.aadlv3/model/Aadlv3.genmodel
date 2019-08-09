@@ -87,7 +87,6 @@
     <genClasses ecoreClass="Aadlv3.ecore#//ModelElement">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ModelElement/ownedPropertyAssociations"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ModelElement/inModes"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ModelElement/annexElements"/>
     </genClasses>
     <genClasses image="false" ecoreClass="Aadlv3.ecore#//ClassifierOrType"/>
     <genClasses image="false" ecoreClass="Aadlv3.ecore#//Classifier">
@@ -193,6 +192,13 @@
     <genClasses ecoreClass="Aadlv3.ecore#//ListLiteral">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ListLiteral/elements"/>
     </genClasses>
+    <genClasses ecoreClass="Aadlv3.ecore#//SetLiteral">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//SetLiteral/elements"/>
+    </genClasses>
+    <genClasses ecoreClass="Aadlv3.ecore#//DirectionalLiteral">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//DirectionalLiteral/direction"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//DirectionalLiteral/value"/>
+    </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//Literal"/>
     <genClasses ecoreClass="Aadlv3.ecore#//PropertyAssociation">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//PropertyAssociation/target"/>
@@ -220,13 +226,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ModeStateMachine/transitions"/>
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//AnnexSubclause"/>
-    <genClasses ecoreClass="Aadlv3.ecore#//AnnexElement"/>
-    <genClasses ecoreClass="Aadlv3.ecore#//TypeSet">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//TypeSet/direction"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//TypeSet/propagatedTypes"/>
-    </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//AnnexLibrary"/>
-    <genClasses ecoreClass="Aadlv3.ecore#//AnnexDefinition"/>
     <genClasses ecoreClass="Aadlv3.ecore#//TypeDecl">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//TypeDecl/ownedPropertyAssociations"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//TypeDecl/type"/>

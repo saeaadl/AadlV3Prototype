@@ -15,26 +15,24 @@
  */
 package org.osate.aadlv3.aadlv3;
 
-import org.eclipse.emf.common.util.EList;
-
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Type Set</b></em>'.
+ * A representation of the model object '<em><b>Directional Literal</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.osate.aadlv3.aadlv3.TypeSet#getDirection <em>Direction</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.TypeSet#getPropagatedTypes <em>Propagated Types</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.DirectionalLiteral#getDirection <em>Direction</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.DirectionalLiteral#getValue <em>Value</em>}</li>
  * </ul>
  *
- * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getTypeSet()
+ * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getDirectionalLiteral()
  * @model
  * @generated
  */
-public interface TypeSet extends ModelElement {
+public interface DirectionalLiteral extends Literal {
 	/**
 	 * Returns the value of the '<em><b>Direction</b></em>' attribute.
 	 * The literals are from the enumeration {@link org.osate.aadlv3.aadlv3.FeatureDirection}.
@@ -43,14 +41,14 @@ public interface TypeSet extends ModelElement {
 	 * @return the value of the '<em>Direction</em>' attribute.
 	 * @see org.osate.aadlv3.aadlv3.FeatureDirection
 	 * @see #setDirection(FeatureDirection)
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getTypeSet_Direction()
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getDirectionalLiteral_Direction()
 	 * @model
 	 * @generated
 	 */
 	FeatureDirection getDirection();
 
 	/**
-	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.TypeSet#getDirection <em>Direction</em>}' attribute.
+	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.DirectionalLiteral#getDirection <em>Direction</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Direction</em>' attribute.
@@ -61,15 +59,25 @@ public interface TypeSet extends ModelElement {
 	void setDirection(FeatureDirection value);
 
 	/**
-	 * Returns the value of the '<em><b>Propagated Types</b></em>' reference list.
-	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.ClassifierOrType}.
+	 * Returns the value of the '<em><b>Value</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Propagated Types</em>' reference list.
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getTypeSet_PropagatedTypes()
-	 * @model
+	 * @return the value of the '<em>Value</em>' containment reference.
+	 * @see #setValue(Literal)
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getDirectionalLiteral_Value()
+	 * @model containment="true"
 	 * @generated
 	 */
-	EList<ClassifierOrType> getPropagatedTypes();
+	Literal getValue();
 
-} // TypeSet
+	/**
+	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.DirectionalLiteral#getValue <em>Value</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Value</em>' containment reference.
+	 * @see #getValue()
+	 * @generated
+	 */
+	void setValue(Literal value);
+
+} // DirectionalLiteral

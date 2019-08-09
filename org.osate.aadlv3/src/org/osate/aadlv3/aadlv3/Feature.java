@@ -124,12 +124,12 @@ public interface Feature extends ModelElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Propagation</em>' containment reference.
-	 * @see #setPropagation(TypeSet)
+	 * @see #setPropagation(DirectionalLiteral)
 	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getFeature_Propagation()
 	 * @model containment="true"
 	 * @generated
 	 */
-	TypeSet getPropagation();
+	DirectionalLiteral getPropagation();
 
 	/**
 	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.Feature#getPropagation <em>Propagation</em>}' containment reference.
@@ -139,6 +139,6 @@ public interface Feature extends ModelElement {
 	 * @see #getPropagation()
 	 * @generated
 	 */
-	void setPropagation(TypeSet value);
+	void setPropagation(DirectionalLiteral value);
 
 } // Feature

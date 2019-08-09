@@ -47,8 +47,27 @@ public class AadlV3ValueConverter extends DefaultTerminalConverters {
 			}
 		};
 	}
+	
 	@ValueConverter(rule = "FeatureDirection")
 	public IValueConverter<FeatureDirection> FeatureDirection() {
+		return new IValueConverter<FeatureDirection>() {
+			@Override
+			public FeatureDirection toValue(String string, INode node) {
+				if (string == null) {
+					return null;
+				}
+				return FeatureDirection.get(string);
+			}
+
+			@Override
+			public String toString(FeatureDirection value) {
+				return value.getName();
+			}
+		};
+	}
+	
+	@ValueConverter(rule = "PropagationDirection")
+	public IValueConverter<FeatureDirection> PropagationDirection() {
 		return new IValueConverter<FeatureDirection>() {
 			@Override
 			public FeatureDirection toValue(String string, INode node) {

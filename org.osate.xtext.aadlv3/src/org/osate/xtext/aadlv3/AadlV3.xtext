@@ -61,7 +61,7 @@ ModelElementReference returns av3::ModelElementReference:
 	element=[av3::ModelElement|ID] -> ({av3::ModelElementReference.context=current} '.' element=[av3::ModelElement|ID])*;
 
 Literal returns av3::Literal: 
-	 IntegerLiteral | ListLiteral | TypeReference
+	 IntegerLiteral | ListLiteral | TypeReference | DirectionalLiteral
 ;
 
 IntegerLiteral returns av3::IntegerLiteral:
@@ -70,6 +70,10 @@ IntegerLiteral returns av3::IntegerLiteral:
 
 ListLiteral returns av3::ListLiteral:
 	{av3::ListLiteral}'list' '(' (elements+=Literal (',' elements+=Literal)*)? ')'
+;
+
+DirectionalLiteral returns av3::DirectionalLiteral:
+	{av3::DirectionalLiteral}direction=PropagationDirection value=Literal
 ;
 
 
@@ -119,8 +123,6 @@ Feature returns av3::Feature:
 	name=ID ':' direction=FeatureDirection?  
 	category=FeatureCategory 
 	(typeReference=ReversableTypeReference )?
-	(propagation=Propagations|propagation=EPropagations)?
-	annexElements+=AnnexElement*
 	PropertiesBlock? ';'
 	;
 
@@ -158,22 +160,6 @@ fragment UseProps*:
 	'use''properties' useProperties += [av3::PropertySet|QualifiedName] (',' useProperties += [av3::PropertySet|QualifiedName])* 
 	';'
 ;
-
-
-Propagations returns av3::TypeSet:	
-	'propagates' direction=FeatureDirection? '{'   propagatedTypes+=[av3::ClassifierOrType|QualifiedTypesReference]
- (',' propagatedTypes+=[av3::ClassifierOrType|QualifiedTypesReference]
-)* 
-	'}'
-;
-
-EPropagations returns av3::TypeSet:	
-	'@e' '{' direction=FeatureDirection? propagatedTypes+=[av3::ClassifierOrType|QualifiedTypesReference]
- (',' propagatedTypes+=[av3::ClassifierOrType|QualifiedTypesReference]
-)* 
-	'}'
-;
-
 
 Path returns av3::PathSequence:
 	name=ID ':' 'flow' elements+=PathElement ('->' elements+=PathElement)+
@@ -274,10 +260,6 @@ ImplementationReference returns av3::TypeReference :
 ;
 
 AnnexSubclause returns av3::AnnexSubclause :
-	'@' name=ID '{' '}'
-;
-
-AnnexElement returns av3::AnnexElement :
 	'@' name=ID '{' '}'
 ;
 

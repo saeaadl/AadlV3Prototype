@@ -355,22 +355,13 @@ public interface Aadlv3Package extends EPackage {
 	int MODEL_ELEMENT__IN_MODES = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Annex Elements</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ELEMENT__ANNEX_ELEMENTS = NAMED_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
 	 * The number of structural features of the '<em>Model Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 3;
+	int MODEL_ELEMENT_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.ClassifierOrTypeImpl <em>Classifier Or Type</em>}' class.
@@ -1046,15 +1037,6 @@ public interface Aadlv3Package extends EPackage {
 	int FEATURE__IN_MODES = MODEL_ELEMENT__IN_MODES;
 
 	/**
-	 * The feature id for the '<em><b>Annex Elements</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE__ANNEX_ELEMENTS = MODEL_ELEMENT__ANNEX_ELEMENTS;
-
-	/**
 	 * The feature id for the '<em><b>Direction</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1135,15 +1117,6 @@ public interface Aadlv3Package extends EPackage {
 	 * @ordered
 	 */
 	int SUBCOMPONENT__IN_MODES = MODEL_ELEMENT__IN_MODES;
-
-	/**
-	 * The feature id for the '<em><b>Annex Elements</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUBCOMPONENT__ANNEX_ELEMENTS = MODEL_ELEMENT__ANNEX_ELEMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Category</b></em>' attribute.
@@ -1283,15 +1256,6 @@ public interface Aadlv3Package extends EPackage {
 	int ASSOCIATION__IN_MODES = MODEL_ELEMENT__IN_MODES;
 
 	/**
-	 * The feature id for the '<em><b>Annex Elements</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATION__ANNEX_ELEMENTS = MODEL_ELEMENT__ANNEX_ELEMENTS;
-
-	/**
 	 * The feature id for the '<em><b>Association Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1412,7 +1376,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getPropertyAssociation()
 	 * @generated
 	 */
-	int PROPERTY_ASSOCIATION = 29;
+	int PROPERTY_ASSOCIATION = 31;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.PathElementImpl <em>Path Element</em>}' class.
@@ -1460,15 +1424,6 @@ public interface Aadlv3Package extends EPackage {
 	 * @ordered
 	 */
 	int PATH_SEQUENCE__IN_MODES = MODEL_ELEMENT__IN_MODES;
-
-	/**
-	 * The feature id for the '<em><b>Annex Elements</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PATH_SEQUENCE__ANNEX_ELEMENTS = MODEL_ELEMENT__ANNEX_ELEMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' containment reference.
@@ -1759,7 +1714,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getLiteral()
 	 * @generated
 	 */
-	int LITERAL = 28;
+	int LITERAL = 30;
 
 	/**
 	 * The number of structural features of the '<em>Literal</em>' class.
@@ -1972,6 +1927,71 @@ public interface Aadlv3Package extends EPackage {
 	int LIST_LITERAL_FEATURE_COUNT = LITERAL_FEATURE_COUNT + 1;
 
 	/**
+	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.SetLiteralImpl <em>Set Literal</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.osate.aadlv3.aadlv3.impl.SetLiteralImpl
+	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getSetLiteral()
+	 * @generated
+	 */
+	int SET_LITERAL = 28;
+
+	/**
+	 * The feature id for the '<em><b>Elements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_LITERAL__ELEMENTS = 0;
+
+	/**
+	 * The number of structural features of the '<em>Set Literal</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_LITERAL_FEATURE_COUNT = 1;
+
+	/**
+	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.DirectionalLiteralImpl <em>Directional Literal</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.osate.aadlv3.aadlv3.impl.DirectionalLiteralImpl
+	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getDirectionalLiteral()
+	 * @generated
+	 */
+	int DIRECTIONAL_LITERAL = 29;
+
+	/**
+	 * The feature id for the '<em><b>Direction</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIRECTIONAL_LITERAL__DIRECTION = LITERAL_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIRECTIONAL_LITERAL__VALUE = LITERAL_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Directional Literal</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIRECTIONAL_LITERAL_FEATURE_COUNT = LITERAL_FEATURE_COUNT + 2;
+
+	/**
 	 * The feature id for the '<em><b>Target</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2024,7 +2044,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getMode()
 	 * @generated
 	 */
-	int MODE = 30;
+	int MODE = 32;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2054,15 +2074,6 @@ public interface Aadlv3Package extends EPackage {
 	int MODE__IN_MODES = MODEL_ELEMENT__IN_MODES;
 
 	/**
-	 * The feature id for the '<em><b>Annex Elements</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODE__ANNEX_ELEMENTS = MODEL_ELEMENT__ANNEX_ELEMENTS;
-
-	/**
 	 * The feature id for the '<em><b>Initial</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2088,7 +2099,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getModeTransition()
 	 * @generated
 	 */
-	int MODE_TRANSITION = 31;
+	int MODE_TRANSITION = 33;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2116,15 +2127,6 @@ public interface Aadlv3Package extends EPackage {
 	 * @ordered
 	 */
 	int MODE_TRANSITION__IN_MODES = MODEL_ELEMENT__IN_MODES;
-
-	/**
-	 * The feature id for the '<em><b>Annex Elements</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODE_TRANSITION__ANNEX_ELEMENTS = MODEL_ELEMENT__ANNEX_ELEMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' reference.
@@ -2170,7 +2172,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getModeTransitionTriggerAssignment()
 	 * @generated
 	 */
-	int MODE_TRANSITION_TRIGGER_ASSIGNMENT = 32;
+	int MODE_TRANSITION_TRIGGER_ASSIGNMENT = 34;
 
 	/**
 	 * The feature id for the '<em><b>Triggers</b></em>' containment reference list.
@@ -2207,7 +2209,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getModeAssignment()
 	 * @generated
 	 */
-	int MODE_ASSIGNMENT = 33;
+	int MODE_ASSIGNMENT = 35;
 
 	/**
 	 * The feature id for the '<em><b>Members</b></em>' reference list.
@@ -2235,7 +2237,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getModeStateMachine()
 	 * @generated
 	 */
-	int MODE_STATE_MACHINE = 34;
+	int MODE_STATE_MACHINE = 36;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2290,7 +2292,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getAnnexSubclause()
 	 * @generated
 	 */
-	int ANNEX_SUBCLAUSE = 35;
+	int ANNEX_SUBCLAUSE = 37;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2320,15 +2322,6 @@ public interface Aadlv3Package extends EPackage {
 	int ANNEX_SUBCLAUSE__IN_MODES = MODEL_ELEMENT__IN_MODES;
 
 	/**
-	 * The feature id for the '<em><b>Annex Elements</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANNEX_SUBCLAUSE__ANNEX_ELEMENTS = MODEL_ELEMENT__ANNEX_ELEMENTS;
-
-	/**
 	 * The number of structural features of the '<em>Annex Subclause</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2336,134 +2329,6 @@ public interface Aadlv3Package extends EPackage {
 	 * @ordered
 	 */
 	int ANNEX_SUBCLAUSE_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.AnnexElementImpl <em>Annex Element</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.osate.aadlv3.aadlv3.impl.AnnexElementImpl
-	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getAnnexElement()
-	 * @generated
-	 */
-	int ANNEX_ELEMENT = 36;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANNEX_ELEMENT__NAME = MODEL_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Owned Property Associations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANNEX_ELEMENT__OWNED_PROPERTY_ASSOCIATIONS = MODEL_ELEMENT__OWNED_PROPERTY_ASSOCIATIONS;
-
-	/**
-	 * The feature id for the '<em><b>In Modes</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANNEX_ELEMENT__IN_MODES = MODEL_ELEMENT__IN_MODES;
-
-	/**
-	 * The feature id for the '<em><b>Annex Elements</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANNEX_ELEMENT__ANNEX_ELEMENTS = MODEL_ELEMENT__ANNEX_ELEMENTS;
-
-	/**
-	 * The number of structural features of the '<em>Annex Element</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANNEX_ELEMENT_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.TypeSetImpl <em>Type Set</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.osate.aadlv3.aadlv3.impl.TypeSetImpl
-	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getTypeSet()
-	 * @generated
-	 */
-	int TYPE_SET = 37;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_SET__NAME = MODEL_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Owned Property Associations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_SET__OWNED_PROPERTY_ASSOCIATIONS = MODEL_ELEMENT__OWNED_PROPERTY_ASSOCIATIONS;
-
-	/**
-	 * The feature id for the '<em><b>In Modes</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_SET__IN_MODES = MODEL_ELEMENT__IN_MODES;
-
-	/**
-	 * The feature id for the '<em><b>Annex Elements</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_SET__ANNEX_ELEMENTS = MODEL_ELEMENT__ANNEX_ELEMENTS;
-
-	/**
-	 * The feature id for the '<em><b>Direction</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_SET__DIRECTION = MODEL_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Propagated Types</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_SET__PROPAGATED_TYPES = MODEL_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Type Set</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_SET_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.AnnexLibraryImpl <em>Annex Library</em>}' class.
@@ -2521,43 +2386,6 @@ public interface Aadlv3Package extends EPackage {
 	int ANNEX_LIBRARY_FEATURE_COUNT = PACKAGE_DECLARATION_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.AnnexDefinitionImpl <em>Annex Definition</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.osate.aadlv3.aadlv3.impl.AnnexDefinitionImpl
-	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getAnnexDefinition()
-	 * @generated
-	 */
-	int ANNEX_DEFINITION = 39;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANNEX_DEFINITION__NAME = PACKAGE_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Private</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANNEX_DEFINITION__PRIVATE = PACKAGE_ELEMENT__PRIVATE;
-
-	/**
-	 * The number of structural features of the '<em>Annex Definition</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANNEX_DEFINITION_FEATURE_COUNT = PACKAGE_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.TypeDeclImpl <em>Type Decl</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2565,7 +2393,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getTypeDecl()
 	 * @generated
 	 */
-	int TYPE_DECL = 40;
+	int TYPE_DECL = 39;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2620,7 +2448,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getComponentCategory()
 	 * @generated
 	 */
-	int COMPONENT_CATEGORY = 41;
+	int COMPONENT_CATEGORY = 40;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.FeatureCategory <em>Feature Category</em>}' enum.
@@ -2630,7 +2458,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getFeatureCategory()
 	 * @generated
 	 */
-	int FEATURE_CATEGORY = 42;
+	int FEATURE_CATEGORY = 41;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.FeatureDirection <em>Feature Direction</em>}' enum.
@@ -2640,7 +2468,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getFeatureDirection()
 	 * @generated
 	 */
-	int FEATURE_DIRECTION = 43;
+	int FEATURE_DIRECTION = 42;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.AssociationType <em>Association Type</em>}' enum.
@@ -2650,7 +2478,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getAssociationType()
 	 * @generated
 	 */
-	int ASSOCIATION_TYPE = 44;
+	int ASSOCIATION_TYPE = 43;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.PropertyAssociationType <em>Property Association Type</em>}' enum.
@@ -2660,7 +2488,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getPropertyAssociationType()
 	 * @generated
 	 */
-	int PROPERTY_ASSOCIATION_TYPE = 45;
+	int PROPERTY_ASSOCIATION_TYPE = 44;
 
 	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.PackageDeclaration <em>Package Declaration</em>}'.
@@ -2853,17 +2681,6 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 */
 	EReference getModelElement_InModes();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.osate.aadlv3.aadlv3.ModelElement#getAnnexElements <em>Annex Elements</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Annex Elements</em>'.
-	 * @see org.osate.aadlv3.aadlv3.ModelElement#getAnnexElements()
-	 * @see #getModelElement()
-	 * @generated
-	 */
-	EReference getModelElement_AnnexElements();
 
 	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.ClassifierOrType <em>Classifier Or Type</em>}'.
@@ -3564,6 +3381,59 @@ public interface Aadlv3Package extends EPackage {
 	EReference getListLiteral_Elements();
 
 	/**
+	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.SetLiteral <em>Set Literal</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Set Literal</em>'.
+	 * @see org.osate.aadlv3.aadlv3.SetLiteral
+	 * @generated
+	 */
+	EClass getSetLiteral();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.osate.aadlv3.aadlv3.SetLiteral#getElements <em>Elements</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Elements</em>'.
+	 * @see org.osate.aadlv3.aadlv3.SetLiteral#getElements()
+	 * @see #getSetLiteral()
+	 * @generated
+	 */
+	EReference getSetLiteral_Elements();
+
+	/**
+	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.DirectionalLiteral <em>Directional Literal</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Directional Literal</em>'.
+	 * @see org.osate.aadlv3.aadlv3.DirectionalLiteral
+	 * @generated
+	 */
+	EClass getDirectionalLiteral();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.osate.aadlv3.aadlv3.DirectionalLiteral#getDirection <em>Direction</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Direction</em>'.
+	 * @see org.osate.aadlv3.aadlv3.DirectionalLiteral#getDirection()
+	 * @see #getDirectionalLiteral()
+	 * @generated
+	 */
+	EAttribute getDirectionalLiteral_Direction();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.osate.aadlv3.aadlv3.DirectionalLiteral#getValue <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Value</em>'.
+	 * @see org.osate.aadlv3.aadlv3.DirectionalLiteral#getValue()
+	 * @see #getDirectionalLiteral()
+	 * @generated
+	 */
+	EReference getDirectionalLiteral_Value();
+
+	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.Literal <em>Literal</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3787,48 +3657,6 @@ public interface Aadlv3Package extends EPackage {
 	EClass getAnnexSubclause();
 
 	/**
-	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.AnnexElement <em>Annex Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Annex Element</em>'.
-	 * @see org.osate.aadlv3.aadlv3.AnnexElement
-	 * @generated
-	 */
-	EClass getAnnexElement();
-
-	/**
-	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.TypeSet <em>Type Set</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Type Set</em>'.
-	 * @see org.osate.aadlv3.aadlv3.TypeSet
-	 * @generated
-	 */
-	EClass getTypeSet();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.osate.aadlv3.aadlv3.TypeSet#getDirection <em>Direction</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Direction</em>'.
-	 * @see org.osate.aadlv3.aadlv3.TypeSet#getDirection()
-	 * @see #getTypeSet()
-	 * @generated
-	 */
-	EAttribute getTypeSet_Direction();
-
-	/**
-	 * Returns the meta object for the reference list '{@link org.osate.aadlv3.aadlv3.TypeSet#getPropagatedTypes <em>Propagated Types</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Propagated Types</em>'.
-	 * @see org.osate.aadlv3.aadlv3.TypeSet#getPropagatedTypes()
-	 * @see #getTypeSet()
-	 * @generated
-	 */
-	EReference getTypeSet_PropagatedTypes();
-
-	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.AnnexLibrary <em>Annex Library</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3837,16 +3665,6 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 */
 	EClass getAnnexLibrary();
-
-	/**
-	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.AnnexDefinition <em>Annex Definition</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Annex Definition</em>'.
-	 * @see org.osate.aadlv3.aadlv3.AnnexDefinition
-	 * @generated
-	 */
-	EClass getAnnexDefinition();
 
 	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.TypeDecl <em>Type Decl</em>}'.
@@ -4300,14 +4118,6 @@ public interface Aadlv3Package extends EPackage {
 		 * @generated
 		 */
 		EReference MODEL_ELEMENT__IN_MODES = eINSTANCE.getModelElement_InModes();
-
-		/**
-		 * The meta object literal for the '<em><b>Annex Elements</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference MODEL_ELEMENT__ANNEX_ELEMENTS = eINSTANCE.getModelElement_AnnexElements();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.ClassifierOrTypeImpl <em>Classifier Or Type</em>}' class.
@@ -4864,6 +4674,50 @@ public interface Aadlv3Package extends EPackage {
 		EReference LIST_LITERAL__ELEMENTS = eINSTANCE.getListLiteral_Elements();
 
 		/**
+		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.SetLiteralImpl <em>Set Literal</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.osate.aadlv3.aadlv3.impl.SetLiteralImpl
+		 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getSetLiteral()
+		 * @generated
+		 */
+		EClass SET_LITERAL = eINSTANCE.getSetLiteral();
+
+		/**
+		 * The meta object literal for the '<em><b>Elements</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SET_LITERAL__ELEMENTS = eINSTANCE.getSetLiteral_Elements();
+
+		/**
+		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.DirectionalLiteralImpl <em>Directional Literal</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.osate.aadlv3.aadlv3.impl.DirectionalLiteralImpl
+		 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getDirectionalLiteral()
+		 * @generated
+		 */
+		EClass DIRECTIONAL_LITERAL = eINSTANCE.getDirectionalLiteral();
+
+		/**
+		 * The meta object literal for the '<em><b>Direction</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DIRECTIONAL_LITERAL__DIRECTION = eINSTANCE.getDirectionalLiteral_Direction();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DIRECTIONAL_LITERAL__VALUE = eINSTANCE.getDirectionalLiteral_Value();
+
+		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.LiteralImpl <em>Literal</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -5051,42 +4905,6 @@ public interface Aadlv3Package extends EPackage {
 		EClass ANNEX_SUBCLAUSE = eINSTANCE.getAnnexSubclause();
 
 		/**
-		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.AnnexElementImpl <em>Annex Element</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.osate.aadlv3.aadlv3.impl.AnnexElementImpl
-		 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getAnnexElement()
-		 * @generated
-		 */
-		EClass ANNEX_ELEMENT = eINSTANCE.getAnnexElement();
-
-		/**
-		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.TypeSetImpl <em>Type Set</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.osate.aadlv3.aadlv3.impl.TypeSetImpl
-		 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getTypeSet()
-		 * @generated
-		 */
-		EClass TYPE_SET = eINSTANCE.getTypeSet();
-
-		/**
-		 * The meta object literal for the '<em><b>Direction</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TYPE_SET__DIRECTION = eINSTANCE.getTypeSet_Direction();
-
-		/**
-		 * The meta object literal for the '<em><b>Propagated Types</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TYPE_SET__PROPAGATED_TYPES = eINSTANCE.getTypeSet_PropagatedTypes();
-
-		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.AnnexLibraryImpl <em>Annex Library</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -5095,16 +4913,6 @@ public interface Aadlv3Package extends EPackage {
 		 * @generated
 		 */
 		EClass ANNEX_LIBRARY = eINSTANCE.getAnnexLibrary();
-
-		/**
-		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.AnnexDefinitionImpl <em>Annex Definition</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.osate.aadlv3.aadlv3.impl.AnnexDefinitionImpl
-		 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getAnnexDefinition()
-		 * @generated
-		 */
-		EClass ANNEX_DEFINITION = eINSTANCE.getAnnexDefinition();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.TypeDeclImpl <em>Type Decl</em>}' class.

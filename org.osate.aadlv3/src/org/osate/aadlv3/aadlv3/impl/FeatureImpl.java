@@ -23,11 +23,11 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
+import org.osate.aadlv3.aadlv3.DirectionalLiteral;
 import org.osate.aadlv3.aadlv3.Feature;
 import org.osate.aadlv3.aadlv3.FeatureCategory;
 import org.osate.aadlv3.aadlv3.FeatureDirection;
 import org.osate.aadlv3.aadlv3.TypeReference;
-import org.osate.aadlv3.aadlv3.TypeSet;
 
 /**
  * <!-- begin-user-doc -->
@@ -104,7 +104,7 @@ public class FeatureImpl extends ModelElementImpl implements Feature {
 	 * @generated
 	 * @ordered
 	 */
-	protected TypeSet propagation;
+	protected DirectionalLiteral propagation;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -231,7 +231,7 @@ public class FeatureImpl extends ModelElementImpl implements Feature {
 	 * @generated
 	 */
 	@Override
-	public TypeSet getPropagation() {
+	public DirectionalLiteral getPropagation() {
 		return propagation;
 	}
 
@@ -240,8 +240,8 @@ public class FeatureImpl extends ModelElementImpl implements Feature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetPropagation(TypeSet newPropagation, NotificationChain msgs) {
-		TypeSet oldPropagation = propagation;
+	public NotificationChain basicSetPropagation(DirectionalLiteral newPropagation, NotificationChain msgs) {
+		DirectionalLiteral oldPropagation = propagation;
 		propagation = newPropagation;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
@@ -260,7 +260,7 @@ public class FeatureImpl extends ModelElementImpl implements Feature {
 	 * @generated
 	 */
 	@Override
-	public void setPropagation(TypeSet newPropagation) {
+	public void setPropagation(DirectionalLiteral newPropagation) {
 		if (newPropagation != propagation) {
 			NotificationChain msgs = null;
 			if (propagation != null)
@@ -332,7 +332,7 @@ public class FeatureImpl extends ModelElementImpl implements Feature {
 			setTypeReference((TypeReference) newValue);
 			return;
 		case Aadlv3Package.FEATURE__PROPAGATION:
-			setPropagation((TypeSet) newValue);
+			setPropagation((DirectionalLiteral) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -356,7 +356,7 @@ public class FeatureImpl extends ModelElementImpl implements Feature {
 			setTypeReference((TypeReference) null);
 			return;
 		case Aadlv3Package.FEATURE__PROPAGATION:
-			setPropagation((TypeSet) null);
+			setPropagation((DirectionalLiteral) null);
 			return;
 		}
 		super.eUnset(featureID);

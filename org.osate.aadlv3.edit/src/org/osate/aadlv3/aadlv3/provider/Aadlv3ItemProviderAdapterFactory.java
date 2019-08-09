@@ -500,6 +500,52 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.SetLiteral} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SetLiteralItemProvider setLiteralItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.SetLiteral}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSetLiteralAdapter() {
+		if (setLiteralItemProvider == null) {
+			setLiteralItemProvider = new SetLiteralItemProvider(this);
+		}
+
+		return setLiteralItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.DirectionalLiteral} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected DirectionalLiteralItemProvider directionalLiteralItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.DirectionalLiteral}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createDirectionalLiteralAdapter() {
+		if (directionalLiteralItemProvider == null) {
+			directionalLiteralItemProvider = new DirectionalLiteralItemProvider(this);
+		}
+
+		return directionalLiteralItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.Literal} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -684,52 +730,6 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.AnnexElement} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected AnnexElementItemProvider annexElementItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.AnnexElement}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createAnnexElementAdapter() {
-		if (annexElementItemProvider == null) {
-			annexElementItemProvider = new AnnexElementItemProvider(this);
-		}
-
-		return annexElementItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.TypeSet} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected TypeSetItemProvider typeSetItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.TypeSet}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createTypeSetAdapter() {
-		if (typeSetItemProvider == null) {
-			typeSetItemProvider = new TypeSetItemProvider(this);
-		}
-
-		return typeSetItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.AnnexLibrary} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -750,29 +750,6 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 		}
 
 		return annexLibraryItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.AnnexDefinition} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected AnnexDefinitionItemProvider annexDefinitionItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.AnnexDefinition}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createAnnexDefinitionAdapter() {
-		if (annexDefinitionItemProvider == null) {
-			annexDefinitionItemProvider = new AnnexDefinitionItemProvider(this);
-		}
-
-		return annexDefinitionItemProvider;
 	}
 
 	/**
@@ -1039,6 +1016,10 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 			integerLiteralItemProvider.dispose();
 		if (listLiteralItemProvider != null)
 			listLiteralItemProvider.dispose();
+		if (setLiteralItemProvider != null)
+			setLiteralItemProvider.dispose();
+		if (directionalLiteralItemProvider != null)
+			directionalLiteralItemProvider.dispose();
 		if (literalItemProvider != null)
 			literalItemProvider.dispose();
 		if (propertyAssociationItemProvider != null)
@@ -1055,14 +1036,8 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 			modeStateMachineItemProvider.dispose();
 		if (annexSubclauseItemProvider != null)
 			annexSubclauseItemProvider.dispose();
-		if (annexElementItemProvider != null)
-			annexElementItemProvider.dispose();
-		if (typeSetItemProvider != null)
-			typeSetItemProvider.dispose();
 		if (annexLibraryItemProvider != null)
 			annexLibraryItemProvider.dispose();
-		if (annexDefinitionItemProvider != null)
-			annexDefinitionItemProvider.dispose();
 		if (typeDeclItemProvider != null)
 			typeDeclItemProvider.dispose();
 	}

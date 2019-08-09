@@ -197,6 +197,24 @@ public interface Aadlv3Factory extends EFactory {
 	ListLiteral createListLiteral();
 
 	/**
+	 * Returns a new object of class '<em>Set Literal</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Set Literal</em>'.
+	 * @generated
+	 */
+	SetLiteral createSetLiteral();
+
+	/**
+	 * Returns a new object of class '<em>Directional Literal</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Directional Literal</em>'.
+	 * @generated
+	 */
+	DirectionalLiteral createDirectionalLiteral();
+
+	/**
 	 * Returns a new object of class '<em>Literal</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -269,24 +287,6 @@ public interface Aadlv3Factory extends EFactory {
 	AnnexSubclause createAnnexSubclause();
 
 	/**
-	 * Returns a new object of class '<em>Annex Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Annex Element</em>'.
-	 * @generated
-	 */
-	AnnexElement createAnnexElement();
-
-	/**
-	 * Returns a new object of class '<em>Type Set</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Type Set</em>'.
-	 * @generated
-	 */
-	TypeSet createTypeSet();
-
-	/**
 	 * Returns a new object of class '<em>Annex Library</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -294,15 +294,6 @@ public interface Aadlv3Factory extends EFactory {
 	 * @generated
 	 */
 	AnnexLibrary createAnnexLibrary();
-
-	/**
-	 * Returns a new object of class '<em>Annex Definition</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Annex Definition</em>'.
-	 * @generated
-	 */
-	AnnexDefinition createAnnexDefinition();
 
 	/**
 	 * Returns a new object of class '<em>Type Decl</em>'.

@@ -217,6 +217,9 @@ public class PropertyAssociationItemProvider extends ItemProviderAdapter impleme
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
 				Aadlv3Factory.eINSTANCE.createListLiteral()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
+				Aadlv3Factory.eINSTANCE.createDirectionalLiteral()));
 	}
 
 	/**
