@@ -144,9 +144,9 @@ class Aadlv3Util {
 	private static def void addSuperClassifiers(Classifier cl, HashSet<Classifier> set) {
 		if (cl instanceof ComponentImplementation){
 			if (cl.superClassifiers.empty){
-				if (cl.componentInterface !== null) {
-					set.add(cl.componentInterface)
-					addSuperClassifiers(cl.componentInterface, set)
+				if (cl.interface !== null) {
+					set.add(cl.interface)
+					addSuperClassifiers(cl.interface, set)
 				}
 			}
 		}
@@ -279,7 +279,7 @@ class Aadlv3Util {
 		var ComponentInterface top = null
 		for (tr : trs){
 			if (tr.type instanceof Classifier){
-				val cif = getComponentInterface(tr.type as Classifier)
+				val cif = getInterface(tr.type as Classifier)
 				if (top === null || top.isSuperInterfaceOf(cif)){
 					top = cif
 				}
@@ -949,9 +949,9 @@ class Aadlv3Util {
 		if( cl === null || superClassifier.eIsProxy || cl.eIsProxy) return false
 		if (superClassifier === null || superClassifier === cl) return true
 		val clinterface = if (cl instanceof ComponentImplementation){
-			cl.componentInterface
+			cl.interface
 		} else if (cl instanceof ComponentConfiguration){
-			cl.componentInterface
+			cl.interface
 		}
 		if (clinterface !== null){
 			if(clinterface == superClassifier) return true

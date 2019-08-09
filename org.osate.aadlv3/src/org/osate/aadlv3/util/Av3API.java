@@ -51,7 +51,7 @@ public class Av3API {
 		return Aadlv3GlobalScopeUtil.get(context, Aadlv3Package.eINSTANCE.getPackageElement(), qpname);
 	}
 
-	public static ComponentInterface getComponentInterface(Classifier ccl) {
+	public static ComponentInterface getInterface(Classifier ccl) {
 		if (ccl instanceof ComponentRealization) {
 			ComponentRealization creal = (ComponentRealization) ccl;
 			if (creal.getCachedInterfaceReference() != null) {
@@ -74,16 +74,23 @@ public class Av3API {
 		}
 	}
 
-	public static Collection<ComponentRealization> getComponentRealizations(ComponentInterface cinterface) {
+	public static Collection<ComponentRealization> getAllRealizations(ComponentInterface cinterface) {
 		return Aadlv3GlobalScopeUtil.getAllInContext(cinterface, Aadlv3Package.eINSTANCE.getComponentRealization());
 	}
 
-	public static Collection<ComponentImplementation> getComponentImplementations(ComponentInterface cinterface) {
+	public static Collection<ComponentImplementation> getAllImplementations(ComponentInterface cinterface) {
 		return Aadlv3GlobalScopeUtil.getAllInContext(cinterface, Aadlv3Package.eINSTANCE.getComponentImplementation());
 	}
 
-	public static Collection<ComponentConfiguration> getComponentConfigurations(ComponentInterface cinterface) {
+	public static Collection<ComponentConfiguration> getAllConfigurations(ComponentInterface cinterface) {
 		return Aadlv3GlobalScopeUtil.getAllInContext(cinterface, Aadlv3Package.eINSTANCE.getComponentConfiguration());
+	}
+
+	public static Collection<ComponentRealization> getConfigurableRealizations(Classifier classifier) {
+		ComponentInterface cinterface = getInterface(classifier);
+		Collection<ComponentRealization> allif = Aadlv3GlobalScopeUtil.getAllInContext(cinterface, Aadlv3Package.eINSTANCE.getComponentRealization());
+		Collection<ComponentRealization> all = Aadlv3GlobalScopeUtil.getAllInContext(classifier, Aadlv3Package.eINSTANCE.getComponentRealization());
+		return all;
 	}
 	
 }

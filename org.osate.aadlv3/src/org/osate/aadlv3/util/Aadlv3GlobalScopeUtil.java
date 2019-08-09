@@ -15,6 +15,7 @@ import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.resource.IResourceServiceProvider;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.impl.ImportedNamespaceAwareLocalScopeProvider;
+import org.osate.aadlv3.aadlv3.Classifier;
 
 import com.google.common.base.Predicate;
 import com.google.inject.Inject;
@@ -91,7 +92,7 @@ public class Aadlv3GlobalScopeUtil {
 
 	/**
 	 * Get all global definitions of a specified eClass
-	 * @param context used for determining a resoruceset for resolution
+	 * @param context used for determining a resourceset for resolution
 	 * @param eClass
 	 * @return
 	 */
@@ -121,7 +122,7 @@ public class Aadlv3GlobalScopeUtil {
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	public static <T extends EObject> Collection<T> getAllInContext(EObject context, EClass eClass) {
+	public static <T extends EObject> Collection<T> getAllInContext(Classifier context, EClass eClass) {
 		Collection<T> result = new ArrayList<T>();
 		final QualifiedName qn = qnameProvider.getFullyQualifiedName(context);
 		IScope scope = globalScope.getScope(context.eResource(), eClass,new Predicate<IEObjectDescription>() {

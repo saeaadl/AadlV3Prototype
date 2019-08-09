@@ -890,7 +890,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	}
 
 	def checkInterface(ComponentRealization cimpl) {
-		val interface = getComponentInterface(cimpl);
+		val interface = getInterface(cimpl);
 		if (interface === null) {
 			error('Could not find Component Interface', cimpl, null, FormalActualMismatch)
 		}
