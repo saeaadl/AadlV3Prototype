@@ -32,6 +32,8 @@ import org.osate.av3instance.av3instance.PropertyAssociationInstance
 import static extension org.eclipse.emf.ecore.util.EcoreUtil.*
 import static extension org.osate.aadlv3.util.AIv3API.*
 import static extension org.osate.aadlv3.util.Aadlv3Util.*
+import org.osate.aadlv3.util.AIJGraphXUtil
+import org.osate.aadlv3.util.AIJGraphTUtil
 
 class Instantiator {
 	
@@ -45,6 +47,9 @@ class Instantiator {
 			rootinstance.eResource.save(null)
 		//  check whether all expected properties have been set
 		//	val issues = validateExpectedPropertyValues(rootinstance,expectedProperties)
+// XXX TODO 
+//		val g =AIJGraphTUtil.generateGraph(rootinstance)
+//		AIJGraphXUtil.runme(g);
 		}
 	}
 	
