@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
-import org.osate.aadlv3.aadlv3.IntegerLiteral;
 import org.osate.aadlv3.aadlv3.StringLiteral;
 
 /**
@@ -181,6 +180,7 @@ public class StringLiteralImpl extends SingleLiteralImpl implements StringLitera
 	public boolean equals(Object second) {
 		return this.value == ((StringLiteral) second).getValue();
 	}
+
 	@Override
 	public int hashCode() {
 		return this.value != null ? this.value.hashCode() : 0;

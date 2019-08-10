@@ -23,7 +23,7 @@ system interface top is end;
 
 system  top.basic
  is
- 	Sub1: system x;
+ 	Sub1: system x; 
  	Sub2: system y;
  end;
  

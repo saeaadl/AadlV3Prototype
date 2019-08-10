@@ -34,11 +34,12 @@ import org.osate.aadlv3.aadlv3.PropertyAssociationType
 import org.osate.aadlv3.aadlv3.PropertyDefinition
 import org.osate.aadlv3.aadlv3.TypeReference
 
-import static org.osate.aadlv3.util.Av3API.*
+import static extension org.osate.aadlv3.util.Av3API.*
 
 import static extension org.osate.aadlv3.util.Aadlv3Util.*
 import org.eclipse.emf.common.util.EList
 import org.osate.aadlv3.aadlv3.TypeDecl
+import org.osate.aadlv3.util.Aadlv3Util
 
 /**
  * This class contains custom validation rules. 
@@ -188,7 +189,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	}
 
 	@Check
-	def checkComponent(Subcomponent comp) {
+	def checkSubcomponent(Subcomponent comp) {
 		comp.checkConsistentCategory
 		comp.checkSingleImplementationExtendsLineage
 		comp.checkDuplicatePropertyAssociations
@@ -892,7 +893,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	def checkInterface(ComponentRealization cimpl) {
 		val interface = getInterface(cimpl);
 		if (interface === null) {
-			error('Could not find Component Interface', cimpl, null, FormalActualMismatch)
+			error('Could not find Component Interface '+Aadlv3Util.stripLastSegment(cimpl.getName()), cimpl, null, FormalActualMismatch)
 		}
 	}
 
@@ -986,8 +987,10 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 		var ComponentImplementation top = null
 		val trs = sub.typeReferences
 		for (tr : trs) {
-			if (tr.type instanceof Classifier) {
-				val topimpl = (tr.type as Classifier).topComponentImplementation
+			val type = tr.type
+			if (type instanceof Classifier) {
+				val configurables = type.getConfigurableRealizations()
+				val topimpl = type.topComponentImplementation
 				if (top === null || top.isSuperImplementationOf(topimpl)) {
 					top = topimpl
 				} else if (!topimpl.isSuperImplementationOf(top)) {
@@ -1266,7 +1269,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 				val matchcat = matchcl.componentCategory
 				if (matchcat !== targetcat && matchcat !== ComponentCategory.INTERFACE &&
 					targetcat !== ComponentCategory.INTERFACE) {
-					error('Extension category differs', matchcl,
+					error('Extension category differs', cl,
 						Aadlv3Package.Literals.CLASSIFIER__SUPER_CLASSIFIERS,
 						AadlV3Validator.MISMATCHED_COMPONENT_CATEGORY)
 				}

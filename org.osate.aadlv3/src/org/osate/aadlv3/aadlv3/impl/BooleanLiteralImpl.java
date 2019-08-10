@@ -23,7 +23,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.BooleanLiteral;
-import org.osate.aadlv3.aadlv3.IntegerLiteral;
 
 /**
  * <!-- begin-user-doc -->

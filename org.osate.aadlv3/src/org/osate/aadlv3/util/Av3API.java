@@ -9,6 +9,7 @@ import org.osate.aadlv3.aadlv3.ComponentConfiguration;
 import org.osate.aadlv3.aadlv3.ComponentImplementation;
 import org.osate.aadlv3.aadlv3.ComponentInterface;
 import org.osate.aadlv3.aadlv3.ComponentRealization;
+import org.osate.aadlv3.aadlv3.Import;
 import org.osate.aadlv3.aadlv3.PackageDeclaration;
 import org.osate.aadlv3.aadlv3.PackageElement;
 import org.osate.aadlv3.aadlv3.PropertyDefinition;
@@ -58,10 +59,12 @@ public class Av3API {
 				return creal.getCachedInterfaceReference();
 			}
 			String iname = creal.getName();
-			String ifname = iname;
-			int idx = iname.lastIndexOf('.');
-			if (idx >= 0) {
-				ifname = iname.substring(0, idx);
+			String ifname = Aadlv3Util.stripLastSegment(iname);
+			PackageDeclaration pkg = Aadlv3Util.getContainingPackage(ccl);
+			for (Import importdecl : pkg.getImports()) {
+				if (importdecl.getAlias() != null && importdecl.getAlias().equals(ifname)){
+					ifname = importdecl.getImportedNamespace();
+				}
 			}
 			ComponentInterface cif = (ComponentInterface) Aadlv3GlobalScopeUtil.get(creal,
 					Aadlv3Package.eINSTANCE.getComponentRealization_CachedInterfaceReference(), ifname);

@@ -20,7 +20,7 @@ import ConCon::*;
 	system interface gps is end;
 	
 	system gps.i is
-		locator : process sub;
+		locator : process sub; 
 	#FeatureLabels => list ( l1, l2);
 	end;
 	

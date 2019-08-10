@@ -303,7 +303,7 @@ public class TypeReferenceImpl extends TypeImpl implements TypeReference {
 
 	@Override
 	public boolean equals(Object second) {
-		return second instanceof TypeReference?this.type == ((TypeReference) second).getType(): false;
+		return second instanceof TypeReference ? this.type == ((TypeReference) second).getType() : false;
 	}
 
 	@Override

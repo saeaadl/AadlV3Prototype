@@ -38,6 +38,7 @@ import org.osate.aadlv3.util.Av3API
 
 import static extension org.osate.aadlv3.util.Aadlv3Util.*
 import org.osate.xtext.aadlv3.naming.AadlV3QualifiedNameConverter
+import org.osate.aadlv3.aadlv3.ComponentRealization
 
 /**
  * This class contains custom scoping description.

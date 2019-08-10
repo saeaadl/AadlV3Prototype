@@ -52,6 +52,18 @@ import static extension org.osate.aadlv3.util.Av3API.*
 import org.osate.aadlv3.aadlv3.LCollection
 
 class Aadlv3Util {
+	
+	/**
+	 * strip the last ID and dot of a string with dotted IDs
+	 * If the string has no dot return the string
+	 */
+	static def String stripLastSegment(String dottedString) {
+		val idx = dottedString.lastIndexOf('.');
+		if (idx >= 0) {
+			return dottedString.substring(0, idx);
+		}
+		return dottedString
+	}
 
 
 	/**
@@ -122,9 +134,7 @@ class Aadlv3Util {
 	static def Iterable<Classifier> getAllClassifiers(Classifier cc) {
 		val result = new LinkedHashSet<Classifier>
 		if(cc === null || cc.eIsProxy) return result
-		if (cc instanceof Classifier) {
-			result.add(cc)
-		}
+		result.add(cc)
 		cc.addSuperClassifiers(result)
 		return result
 	}

@@ -99,7 +99,6 @@ public class Aadlv3GlobalScopeUtil {
 	@SuppressWarnings("unchecked")
 	public static <T extends EObject> Collection<T> getAll(EObject context, EClass eClass) {
 		Collection<T> result = new ArrayList<T>();
-		final QualifiedName qn = qnameProvider.getFullyQualifiedName(context);
 		IScope scope = globalScope.getScope(context.eResource(), eClass);
 		for(IEObjectDescription desc: scope.getAllElements()) {
 			if (desc != null) {
