@@ -38,7 +38,7 @@ import org.osate.aadlv3.aadlv3.Classifier;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ClassifierItemProvider extends PackageElementItemProvider {
+public class ClassifierItemProvider extends NamedTypeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -127,7 +127,6 @@ public class ClassifierItemProvider extends PackageElementItemProvider {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(Aadlv3Package.Literals.CLASSIFIER__SUPER_CLASSIFIERS);
-			childrenFeatures.add(Aadlv3Package.Literals.CLASSIFIER__OWNED_PROPERTY_ASSOCIATIONS);
 			childrenFeatures.add(Aadlv3Package.Literals.CLASSIFIER__ANNEX_SUBCLAUSE);
 		}
 		return childrenFeatures;
@@ -176,7 +175,6 @@ public class ClassifierItemProvider extends PackageElementItemProvider {
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		case Aadlv3Package.CLASSIFIER__SUPER_CLASSIFIERS:
-		case Aadlv3Package.CLASSIFIER__OWNED_PROPERTY_ASSOCIATIONS:
 		case Aadlv3Package.CLASSIFIER__ANNEX_SUBCLAUSE:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
@@ -197,9 +195,6 @@ public class ClassifierItemProvider extends PackageElementItemProvider {
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CLASSIFIER__SUPER_CLASSIFIERS,
 				Aadlv3Factory.eINSTANCE.createTypeReference()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CLASSIFIER__OWNED_PROPERTY_ASSOCIATIONS,
-				Aadlv3Factory.eINSTANCE.createPropertyAssociation()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CLASSIFIER__ANNEX_SUBCLAUSE,
 				Aadlv3Factory.eINSTANCE.createAnnexSubclause()));

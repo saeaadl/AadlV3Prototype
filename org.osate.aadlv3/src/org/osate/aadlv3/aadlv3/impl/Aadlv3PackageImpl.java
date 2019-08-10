@@ -22,51 +22,66 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.osate.aadlv3.aadlv3.Aadlv3Factory;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.AnnexLibrary;
 import org.osate.aadlv3.aadlv3.AnnexSubclause;
 import org.osate.aadlv3.aadlv3.Association;
 import org.osate.aadlv3.aadlv3.AssociationType;
+import org.osate.aadlv3.aadlv3.BooleanLiteral;
 import org.osate.aadlv3.aadlv3.Classifier;
 import org.osate.aadlv3.aadlv3.ClassifierAssignment;
 import org.osate.aadlv3.aadlv3.ClassifierAssignmentPattern;
-import org.osate.aadlv3.aadlv3.ClassifierOrType;
 import org.osate.aadlv3.aadlv3.ComponentCategory;
 import org.osate.aadlv3.aadlv3.ComponentConfiguration;
 import org.osate.aadlv3.aadlv3.ComponentImplementation;
 import org.osate.aadlv3.aadlv3.ComponentInterface;
 import org.osate.aadlv3.aadlv3.ComponentRealization;
+import org.osate.aadlv3.aadlv3.Composite;
+import org.osate.aadlv3.aadlv3.CompositeType;
 import org.osate.aadlv3.aadlv3.ConfigurationActual;
 import org.osate.aadlv3.aadlv3.ConfigurationParameter;
 import org.osate.aadlv3.aadlv3.DirectionalLiteral;
+import org.osate.aadlv3.aadlv3.ECollection;
+import org.osate.aadlv3.aadlv3.EOperation;
+import org.osate.aadlv3.aadlv3.Expression;
 import org.osate.aadlv3.aadlv3.Feature;
 import org.osate.aadlv3.aadlv3.FeatureCategory;
 import org.osate.aadlv3.aadlv3.FeatureDirection;
 import org.osate.aadlv3.aadlv3.Import;
 import org.osate.aadlv3.aadlv3.IntegerLiteral;
+import org.osate.aadlv3.aadlv3.LCollection;
+import org.osate.aadlv3.aadlv3.LOperation;
 import org.osate.aadlv3.aadlv3.ListLiteral;
 import org.osate.aadlv3.aadlv3.Literal;
-import org.osate.aadlv3.aadlv3.Mode;
 import org.osate.aadlv3.aadlv3.ModeAssignment;
-import org.osate.aadlv3.aadlv3.ModeStateMachine;
-import org.osate.aadlv3.aadlv3.ModeTransition;
-import org.osate.aadlv3.aadlv3.ModeTransitionTriggerAssignment;
 import org.osate.aadlv3.aadlv3.ModelElement;
 import org.osate.aadlv3.aadlv3.ModelElementReference;
+import org.osate.aadlv3.aadlv3.MultiExpressionOperation;
+import org.osate.aadlv3.aadlv3.MultiLiteralOperation;
 import org.osate.aadlv3.aadlv3.NamedElement;
+import org.osate.aadlv3.aadlv3.NamedType;
 import org.osate.aadlv3.aadlv3.NumberLiteral;
 import org.osate.aadlv3.aadlv3.PackageDeclaration;
 import org.osate.aadlv3.aadlv3.PackageElement;
 import org.osate.aadlv3.aadlv3.PathElement;
 import org.osate.aadlv3.aadlv3.PathSequence;
+import org.osate.aadlv3.aadlv3.Primitive;
+import org.osate.aadlv3.aadlv3.PrimitiveType;
 import org.osate.aadlv3.aadlv3.PropertyAssociation;
 import org.osate.aadlv3.aadlv3.PropertyAssociationType;
 import org.osate.aadlv3.aadlv3.PropertyDefinition;
 import org.osate.aadlv3.aadlv3.PropertySet;
+import org.osate.aadlv3.aadlv3.RealLiteral;
 import org.osate.aadlv3.aadlv3.SetLiteral;
+import org.osate.aadlv3.aadlv3.SingleLiteral;
+import org.osate.aadlv3.aadlv3.State;
+import org.osate.aadlv3.aadlv3.StateMachine;
+import org.osate.aadlv3.aadlv3.StringLiteral;
 import org.osate.aadlv3.aadlv3.Subcomponent;
+import org.osate.aadlv3.aadlv3.Transition;
+import org.osate.aadlv3.aadlv3.TransitionTriggerAssignment;
+import org.osate.aadlv3.aadlv3.Type;
 import org.osate.aadlv3.aadlv3.TypeDecl;
 import org.osate.aadlv3.aadlv3.TypeReference;
 import org.osate.aadlv3.aadlv3.Workingset;
@@ -119,13 +134,6 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	private EClass modelElementEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass classifierOrTypeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -209,6 +217,20 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass typeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass namedTypeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass configurationActualEClass = null;
 
 	/**
@@ -237,6 +259,27 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass realLiteralEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass stringLiteralEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass booleanLiteralEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass listLiteralEClass = null;
 
 	/**
@@ -258,7 +301,49 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass eCollectionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass lCollectionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass literalEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass singleLiteralEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass expressionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass multiLiteralOperationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass multiExpressionOperationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -272,21 +357,21 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass modeEClass = null;
+	private EClass stateEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass modeTransitionEClass = null;
+	private EClass transitionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass modeTransitionTriggerAssignmentEClass = null;
+	private EClass transitionTriggerAssignmentEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -300,7 +385,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass modeStateMachineEClass = null;
+	private EClass stateMachineEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -322,6 +407,20 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	private EClass typeDeclEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass primitiveTypeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass compositeTypeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -385,6 +484,34 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	private EEnum associationTypeEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum primitiveEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum compositeEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum lOperationEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum eOperationEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -643,16 +770,6 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EClass getClassifierOrType() {
-		return classifierOrTypeEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getClassifier() {
 		return classifierEClass;
 	}
@@ -683,7 +800,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getClassifier_OwnedPropertyAssociations() {
+	public EReference getClassifier_UseModes() {
 		return (EReference) classifierEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -693,18 +810,8 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getClassifier_UseModes() {
-		return (EReference) classifierEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EAttribute getClassifier_InheritsModes() {
-		return (EAttribute) classifierEClass.getEStructuralFeatures().get(4);
+		return (EAttribute) classifierEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -714,7 +821,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 */
 	@Override
 	public EReference getClassifier_AnnexSubclause() {
-		return (EReference) classifierEClass.getEStructuralFeatures().get(5);
+		return (EReference) classifierEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -1173,6 +1280,36 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
+	public EClass getType() {
+		return typeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getNamedType() {
+		return namedTypeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getNamedType_OwnedPropertyAssociations() {
+		return (EReference) namedTypeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getConfigurationActual() {
 		return configurationActualEClass;
 	}
@@ -1273,6 +1410,66 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
+	public EClass getRealLiteral() {
+		return realLiteralEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getRealLiteral_Value() {
+		return (EAttribute) realLiteralEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getStringLiteral() {
+		return stringLiteralEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getStringLiteral_Value() {
+		return (EAttribute) stringLiteralEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getBooleanLiteral() {
+		return booleanLiteralEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getBooleanLiteral_Value() {
+		return (EAttribute) booleanLiteralEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getListLiteral() {
 		return listLiteralEClass;
 	}
@@ -1283,28 +1480,8 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getListLiteral_Elements() {
-		return (EReference) listLiteralEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getSetLiteral() {
 		return setLiteralEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getSetLiteral_Elements() {
-		return (EReference) setLiteralEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1343,8 +1520,108 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
+	public EClass getECollection() {
+		return eCollectionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getECollection_Elements() {
+		return (EReference) eCollectionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getLCollection() {
+		return lCollectionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getLCollection_Elements() {
+		return (EReference) lCollectionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getLiteral() {
 		return literalEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getSingleLiteral() {
+		return singleLiteralEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getExpression() {
+		return expressionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getMultiLiteralOperation() {
+		return multiLiteralOperationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getMultiLiteralOperation_Operator() {
+		return (EAttribute) multiLiteralOperationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getMultiExpressionOperation() {
+		return multiExpressionOperationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getMultiExpressionOperation_Operator() {
+		return (EAttribute) multiExpressionOperationEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1403,8 +1680,8 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EClass getMode() {
-		return modeEClass;
+	public EClass getState() {
+		return stateEClass;
 	}
 
 	/**
@@ -1413,8 +1690,8 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getMode_Initial() {
-		return (EAttribute) modeEClass.getEStructuralFeatures().get(0);
+	public EAttribute getState_Initial() {
+		return (EAttribute) stateEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1423,8 +1700,8 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EClass getModeTransition() {
-		return modeTransitionEClass;
+	public EClass getTransition() {
+		return transitionEClass;
 	}
 
 	/**
@@ -1433,8 +1710,8 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getModeTransition_Source() {
-		return (EReference) modeTransitionEClass.getEStructuralFeatures().get(0);
+	public EReference getTransition_Source() {
+		return (EReference) transitionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1443,8 +1720,8 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getModeTransition_Target() {
-		return (EReference) modeTransitionEClass.getEStructuralFeatures().get(1);
+	public EReference getTransition_Target() {
+		return (EReference) transitionEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1453,8 +1730,8 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getModeTransition_Triggers() {
-		return (EReference) modeTransitionEClass.getEStructuralFeatures().get(2);
+	public EReference getTransition_Triggers() {
+		return (EReference) transitionEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1463,8 +1740,8 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EClass getModeTransitionTriggerAssignment() {
-		return modeTransitionTriggerAssignmentEClass;
+	public EClass getTransitionTriggerAssignment() {
+		return transitionTriggerAssignmentEClass;
 	}
 
 	/**
@@ -1473,8 +1750,8 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getModeTransitionTriggerAssignment_Triggers() {
-		return (EReference) modeTransitionTriggerAssignmentEClass.getEStructuralFeatures().get(0);
+	public EReference getTransitionTriggerAssignment_Triggers() {
+		return (EReference) transitionTriggerAssignmentEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1483,8 +1760,8 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getModeTransitionTriggerAssignment_Transition() {
-		return (EReference) modeTransitionTriggerAssignmentEClass.getEStructuralFeatures().get(1);
+	public EReference getTransitionTriggerAssignment_Transition() {
+		return (EReference) transitionTriggerAssignmentEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1513,8 +1790,8 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EClass getModeStateMachine() {
-		return modeStateMachineEClass;
+	public EClass getStateMachine() {
+		return stateMachineEClass;
 	}
 
 	/**
@@ -1523,8 +1800,8 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getModeStateMachine_Modes() {
-		return (EReference) modeStateMachineEClass.getEStructuralFeatures().get(0);
+	public EReference getStateMachine_States() {
+		return (EReference) stateMachineEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1533,8 +1810,8 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getModeStateMachine_Transitions() {
-		return (EReference) modeStateMachineEClass.getEStructuralFeatures().get(1);
+	public EReference getStateMachine_Transitions() {
+		return (EReference) stateMachineEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1573,7 +1850,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getTypeDecl_OwnedPropertyAssociations() {
+	public EReference getTypeDecl_Type() {
 		return (EReference) typeDeclEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -1583,8 +1860,48 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getTypeDecl_Type() {
-		return (EReference) typeDeclEClass.getEStructuralFeatures().get(1);
+	public EClass getPrimitiveType() {
+		return primitiveTypeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getPrimitiveType_PrimitiveType() {
+		return (EAttribute) primitiveTypeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getCompositeType() {
+		return compositeTypeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getCompositeType_CompositeType() {
+		return (EAttribute) compositeTypeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getCompositeType_Type() {
+		return (EReference) compositeTypeEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1813,6 +2130,46 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
+	public EEnum getPrimitive() {
+		return primitiveEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EEnum getComposite() {
+		return compositeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EEnum getLOperation() {
+		return lOperationEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EEnum getEOperation() {
+		return eOperationEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EEnum getPropertyAssociationType() {
 		return propertyAssociationTypeEEnum;
 	}
@@ -1871,12 +2228,9 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		createEReference(modelElementEClass, MODEL_ELEMENT__OWNED_PROPERTY_ASSOCIATIONS);
 		createEReference(modelElementEClass, MODEL_ELEMENT__IN_MODES);
 
-		classifierOrTypeEClass = createEClass(CLASSIFIER_OR_TYPE);
-
 		classifierEClass = createEClass(CLASSIFIER);
 		createEAttribute(classifierEClass, CLASSIFIER__CATEGORY);
 		createEReference(classifierEClass, CLASSIFIER__SUPER_CLASSIFIERS);
-		createEReference(classifierEClass, CLASSIFIER__OWNED_PROPERTY_ASSOCIATIONS);
 		createEReference(classifierEClass, CLASSIFIER__USE_MODES);
 		createEAttribute(classifierEClass, CLASSIFIER__INHERITS_MODES);
 		createEReference(classifierEClass, CLASSIFIER__ANNEX_SUBCLAUSE);
@@ -1954,11 +2308,6 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		configurationParameterEClass = createEClass(CONFIGURATION_PARAMETER);
 		createEReference(configurationParameterEClass, CONFIGURATION_PARAMETER__TYPE);
 
-		typeReferenceEClass = createEClass(TYPE_REFERENCE);
-		createEAttribute(typeReferenceEClass, TYPE_REFERENCE__REVERSE);
-		createEReference(typeReferenceEClass, TYPE_REFERENCE__TYPE);
-		createEReference(typeReferenceEClass, TYPE_REFERENCE__ACTUALS);
-
 		configurationActualEClass = createEClass(CONFIGURATION_ACTUAL);
 		createEReference(configurationActualEClass, CONFIGURATION_ACTUAL__PARAMETER);
 		createEReference(configurationActualEClass, CONFIGURATION_ACTUAL__ASSIGNED_CLASSIFIERS);
@@ -1967,23 +2316,66 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		createEReference(workingsetEClass, WORKINGSET__ROOT_COMPONENTS);
 		createEReference(workingsetEClass, WORKINGSET__USE_PROPERTIES);
 
+		typeEClass = createEClass(TYPE);
+
+		namedTypeEClass = createEClass(NAMED_TYPE);
+		createEReference(namedTypeEClass, NAMED_TYPE__OWNED_PROPERTY_ASSOCIATIONS);
+
+		typeDeclEClass = createEClass(TYPE_DECL);
+		createEReference(typeDeclEClass, TYPE_DECL__TYPE);
+
+		primitiveTypeEClass = createEClass(PRIMITIVE_TYPE);
+		createEAttribute(primitiveTypeEClass, PRIMITIVE_TYPE__PRIMITIVE_TYPE);
+
+		compositeTypeEClass = createEClass(COMPOSITE_TYPE);
+		createEAttribute(compositeTypeEClass, COMPOSITE_TYPE__COMPOSITE_TYPE);
+		createEReference(compositeTypeEClass, COMPOSITE_TYPE__TYPE);
+
+		typeReferenceEClass = createEClass(TYPE_REFERENCE);
+		createEAttribute(typeReferenceEClass, TYPE_REFERENCE__REVERSE);
+		createEReference(typeReferenceEClass, TYPE_REFERENCE__TYPE);
+		createEReference(typeReferenceEClass, TYPE_REFERENCE__ACTUALS);
+
+		literalEClass = createEClass(LITERAL);
+
+		singleLiteralEClass = createEClass(SINGLE_LITERAL);
+
 		numberLiteralEClass = createEClass(NUMBER_LITERAL);
 		createEAttribute(numberLiteralEClass, NUMBER_LITERAL__UNIT);
 
 		integerLiteralEClass = createEClass(INTEGER_LITERAL);
 		createEAttribute(integerLiteralEClass, INTEGER_LITERAL__VALUE);
 
-		listLiteralEClass = createEClass(LIST_LITERAL);
-		createEReference(listLiteralEClass, LIST_LITERAL__ELEMENTS);
+		realLiteralEClass = createEClass(REAL_LITERAL);
+		createEAttribute(realLiteralEClass, REAL_LITERAL__VALUE);
 
-		setLiteralEClass = createEClass(SET_LITERAL);
-		createEReference(setLiteralEClass, SET_LITERAL__ELEMENTS);
+		stringLiteralEClass = createEClass(STRING_LITERAL);
+		createEAttribute(stringLiteralEClass, STRING_LITERAL__VALUE);
+
+		booleanLiteralEClass = createEClass(BOOLEAN_LITERAL);
+		createEAttribute(booleanLiteralEClass, BOOLEAN_LITERAL__VALUE);
 
 		directionalLiteralEClass = createEClass(DIRECTIONAL_LITERAL);
 		createEAttribute(directionalLiteralEClass, DIRECTIONAL_LITERAL__DIRECTION);
 		createEReference(directionalLiteralEClass, DIRECTIONAL_LITERAL__VALUE);
 
-		literalEClass = createEClass(LITERAL);
+		eCollectionEClass = createEClass(ECOLLECTION);
+		createEReference(eCollectionEClass, ECOLLECTION__ELEMENTS);
+
+		lCollectionEClass = createEClass(LCOLLECTION);
+		createEReference(lCollectionEClass, LCOLLECTION__ELEMENTS);
+
+		listLiteralEClass = createEClass(LIST_LITERAL);
+
+		setLiteralEClass = createEClass(SET_LITERAL);
+
+		expressionEClass = createEClass(EXPRESSION);
+
+		multiLiteralOperationEClass = createEClass(MULTI_LITERAL_OPERATION);
+		createEAttribute(multiLiteralOperationEClass, MULTI_LITERAL_OPERATION__OPERATOR);
+
+		multiExpressionOperationEClass = createEClass(MULTI_EXPRESSION_OPERATION);
+		createEAttribute(multiExpressionOperationEClass, MULTI_EXPRESSION_OPERATION__OPERATOR);
 
 		propertyAssociationEClass = createEClass(PROPERTY_ASSOCIATION);
 		createEReference(propertyAssociationEClass, PROPERTY_ASSOCIATION__TARGET);
@@ -1991,38 +2383,38 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		createEReference(propertyAssociationEClass, PROPERTY_ASSOCIATION__VALUE);
 		createEAttribute(propertyAssociationEClass, PROPERTY_ASSOCIATION__PROPERTY_ASSOCIATION_TYPE);
 
-		modeEClass = createEClass(MODE);
-		createEAttribute(modeEClass, MODE__INITIAL);
+		stateEClass = createEClass(STATE);
+		createEAttribute(stateEClass, STATE__INITIAL);
 
-		modeTransitionEClass = createEClass(MODE_TRANSITION);
-		createEReference(modeTransitionEClass, MODE_TRANSITION__SOURCE);
-		createEReference(modeTransitionEClass, MODE_TRANSITION__TARGET);
-		createEReference(modeTransitionEClass, MODE_TRANSITION__TRIGGERS);
+		transitionEClass = createEClass(TRANSITION);
+		createEReference(transitionEClass, TRANSITION__SOURCE);
+		createEReference(transitionEClass, TRANSITION__TARGET);
+		createEReference(transitionEClass, TRANSITION__TRIGGERS);
 
-		modeTransitionTriggerAssignmentEClass = createEClass(MODE_TRANSITION_TRIGGER_ASSIGNMENT);
-		createEReference(modeTransitionTriggerAssignmentEClass, MODE_TRANSITION_TRIGGER_ASSIGNMENT__TRIGGERS);
-		createEReference(modeTransitionTriggerAssignmentEClass, MODE_TRANSITION_TRIGGER_ASSIGNMENT__TRANSITION);
+		transitionTriggerAssignmentEClass = createEClass(TRANSITION_TRIGGER_ASSIGNMENT);
+		createEReference(transitionTriggerAssignmentEClass, TRANSITION_TRIGGER_ASSIGNMENT__TRIGGERS);
+		createEReference(transitionTriggerAssignmentEClass, TRANSITION_TRIGGER_ASSIGNMENT__TRANSITION);
 
 		modeAssignmentEClass = createEClass(MODE_ASSIGNMENT);
 		createEReference(modeAssignmentEClass, MODE_ASSIGNMENT__MEMBERS);
 
-		modeStateMachineEClass = createEClass(MODE_STATE_MACHINE);
-		createEReference(modeStateMachineEClass, MODE_STATE_MACHINE__MODES);
-		createEReference(modeStateMachineEClass, MODE_STATE_MACHINE__TRANSITIONS);
+		stateMachineEClass = createEClass(STATE_MACHINE);
+		createEReference(stateMachineEClass, STATE_MACHINE__STATES);
+		createEReference(stateMachineEClass, STATE_MACHINE__TRANSITIONS);
 
 		annexSubclauseEClass = createEClass(ANNEX_SUBCLAUSE);
 
 		annexLibraryEClass = createEClass(ANNEX_LIBRARY);
-
-		typeDeclEClass = createEClass(TYPE_DECL);
-		createEReference(typeDeclEClass, TYPE_DECL__OWNED_PROPERTY_ASSOCIATIONS);
-		createEReference(typeDeclEClass, TYPE_DECL__TYPE);
 
 		// Create enums
 		componentCategoryEEnum = createEEnum(COMPONENT_CATEGORY);
 		featureCategoryEEnum = createEEnum(FEATURE_CATEGORY);
 		featureDirectionEEnum = createEEnum(FEATURE_DIRECTION);
 		associationTypeEEnum = createEEnum(ASSOCIATION_TYPE);
+		primitiveEEnum = createEEnum(PRIMITIVE);
+		compositeEEnum = createEEnum(COMPOSITE);
+		lOperationEEnum = createEEnum(LOPERATION);
+		eOperationEEnum = createEEnum(EOPERATION);
 		propertyAssociationTypeEEnum = createEEnum(PROPERTY_ASSOCIATION_TYPE);
 	}
 
@@ -2060,9 +2452,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		propertyDefinitionEClass.getESuperTypes().add(this.getPackageElement());
 		propertySetEClass.getESuperTypes().add(this.getPackageElement());
 		modelElementEClass.getESuperTypes().add(this.getNamedElement());
-		classifierOrTypeEClass.getESuperTypes().add(this.getNamedElement());
-		classifierEClass.getESuperTypes().add(this.getPackageElement());
-		classifierEClass.getESuperTypes().add(this.getClassifierOrType());
+		classifierEClass.getESuperTypes().add(this.getNamedType());
 		componentRealizationEClass.getESuperTypes().add(this.getClassifier());
 		componentInterfaceEClass.getESuperTypes().add(this.getClassifier());
 		componentImplementationEClass.getESuperTypes().add(this.getComponentRealization());
@@ -2073,20 +2463,34 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		pathSequenceEClass.getESuperTypes().add(this.getModelElement());
 		pathElementEClass.getESuperTypes().add(this.getModelElementReference());
 		classifierAssignmentPatternEClass.getESuperTypes().add(this.getClassifierAssignment());
-		configurationParameterEClass.getESuperTypes().add(this.getClassifierOrType());
-		typeReferenceEClass.getESuperTypes().add(this.getLiteral());
+		configurationParameterEClass.getESuperTypes().add(this.getNamedType());
 		workingsetEClass.getESuperTypes().add(this.getPackageElement());
-		numberLiteralEClass.getESuperTypes().add(this.getLiteral());
+		namedTypeEClass.getESuperTypes().add(this.getPackageElement());
+		namedTypeEClass.getESuperTypes().add(this.getType());
+		typeDeclEClass.getESuperTypes().add(this.getNamedType());
+		primitiveTypeEClass.getESuperTypes().add(this.getType());
+		compositeTypeEClass.getESuperTypes().add(this.getType());
+		typeReferenceEClass.getESuperTypes().add(this.getType());
+		typeReferenceEClass.getESuperTypes().add(this.getSingleLiteral());
+		literalEClass.getESuperTypes().add(this.getExpression());
+		singleLiteralEClass.getESuperTypes().add(this.getLiteral());
+		numberLiteralEClass.getESuperTypes().add(this.getSingleLiteral());
 		integerLiteralEClass.getESuperTypes().add(this.getNumberLiteral());
-		listLiteralEClass.getESuperTypes().add(this.getLiteral());
+		realLiteralEClass.getESuperTypes().add(this.getNumberLiteral());
+		stringLiteralEClass.getESuperTypes().add(this.getSingleLiteral());
+		booleanLiteralEClass.getESuperTypes().add(this.getSingleLiteral());
 		directionalLiteralEClass.getESuperTypes().add(this.getLiteral());
-		modeEClass.getESuperTypes().add(this.getModelElement());
-		modeTransitionEClass.getESuperTypes().add(this.getModelElement());
-		modeStateMachineEClass.getESuperTypes().add(this.getPackageElement());
+		eCollectionEClass.getESuperTypes().add(this.getExpression());
+		lCollectionEClass.getESuperTypes().add(this.getLiteral());
+		listLiteralEClass.getESuperTypes().add(this.getLCollection());
+		setLiteralEClass.getESuperTypes().add(this.getLCollection());
+		multiLiteralOperationEClass.getESuperTypes().add(this.getLCollection());
+		multiExpressionOperationEClass.getESuperTypes().add(this.getECollection());
+		stateEClass.getESuperTypes().add(this.getModelElement());
+		transitionEClass.getESuperTypes().add(this.getModelElement());
+		stateMachineEClass.getESuperTypes().add(this.getPackageElement());
 		annexSubclauseEClass.getESuperTypes().add(this.getModelElement());
 		annexLibraryEClass.getESuperTypes().add(this.getPackageDeclaration());
-		typeDeclEClass.getESuperTypes().add(this.getClassifierOrType());
-		typeDeclEClass.getESuperTypes().add(this.getPackageElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(packageDeclarationEClass, PackageDeclaration.class, "PackageDeclaration", !IS_ABSTRACT,
@@ -2111,9 +2515,9 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 
 		initEClass(propertyDefinitionEClass, PropertyDefinition.class, "PropertyDefinition", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPropertyDefinition_Type(), this.getClassifierOrType(), null, "type", null, 0, 1,
-				PropertyDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPropertyDefinition_Type(), this.getType(), null, "type", null, 0, 1, PropertyDefinition.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPropertyDefinition_ComponentCategories(), this.getComponentCategory(), "componentCategories",
 				null, 0, -1, PropertyDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
 				!IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2138,12 +2542,9 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		initEReference(getModelElement_OwnedPropertyAssociations(), this.getPropertyAssociation(), null,
 				"ownedPropertyAssociations", null, 0, -1, ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getModelElement_InModes(), this.getMode(), null, "inModes", null, 0, -1, ModelElement.class,
+		initEReference(getModelElement_InModes(), this.getState(), null, "inModes", null, 0, -1, ModelElement.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(classifierOrTypeEClass, ClassifierOrType.class, "ClassifierOrType", IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(classifierEClass, Classifier.class, "Classifier", IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
@@ -2153,12 +2554,9 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		initEReference(getClassifier_SuperClassifiers(), this.getTypeReference(), null, "superClassifiers", null, 0, -1,
 				Classifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getClassifier_OwnedPropertyAssociations(), this.getPropertyAssociation(), null,
-				"ownedPropertyAssociations", null, 0, -1, Classifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getClassifier_UseModes(), this.getModeStateMachine(), null, "useModes", null, 0, 1,
-				Classifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getClassifier_UseModes(), this.getStateMachine(), null, "useModes", null, 0, 1, Classifier.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getClassifier_InheritsModes(), ecorePackage.getEBoolean(), "inheritsModes", null, 0, 1,
 				Classifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
@@ -2319,9 +2717,9 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 
 		initEClass(classifierAssignmentPatternEClass, ClassifierAssignmentPattern.class, "ClassifierAssignmentPattern",
 				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getClassifierAssignmentPattern_TargetPattern(), this.getClassifierOrType(), null,
-				"targetPattern", null, 0, 1, ClassifierAssignmentPattern.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getClassifierAssignmentPattern_TargetPattern(), this.getType(), null, "targetPattern", null, 0,
+				1, ClassifierAssignmentPattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(modelElementReferenceEClass, ModelElementReference.class, "ModelElementReference", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2334,21 +2732,9 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 
 		initEClass(configurationParameterEClass, ConfigurationParameter.class, "ConfigurationParameter", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getConfigurationParameter_Type(), this.getClassifierOrType(), null, "type", null, 0, 1,
+		initEReference(getConfigurationParameter_Type(), this.getType(), null, "type", null, 0, 1,
 				ConfigurationParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(typeReferenceEClass, TypeReference.class, "TypeReference", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getTypeReference_Reverse(), ecorePackage.getEBoolean(), "reverse", null, 0, 1,
-				TypeReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEReference(getTypeReference_Type(), this.getClassifierOrType(), null, "type", null, 0, 1,
-				TypeReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTypeReference_Actuals(), this.getConfigurationActual(), null, "actuals", null, 0, -1,
-				TypeReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(configurationActualEClass, ConfigurationActual.class, "ConfigurationActual", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2368,6 +2754,52 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 				Workingset.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(typeEClass, Type.class, "Type", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(namedTypeEClass, NamedType.class, "NamedType", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getNamedType_OwnedPropertyAssociations(), this.getPropertyAssociation(), null,
+				"ownedPropertyAssociations", null, 0, -1, NamedType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(typeDeclEClass, TypeDecl.class, "TypeDecl", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getTypeDecl_Type(), ecorePackage.getEObject(), null, "type", null, 0, 1, TypeDecl.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(primitiveTypeEClass, PrimitiveType.class, "PrimitiveType", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getPrimitiveType_PrimitiveType(), this.getPrimitive(), "primitiveType", null, 0, 1,
+				PrimitiveType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+
+		initEClass(compositeTypeEClass, CompositeType.class, "CompositeType", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getCompositeType_CompositeType(), this.getComposite(), "compositeType", null, 0, 1,
+				CompositeType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEReference(getCompositeType_Type(), this.getType(), null, "type", null, 0, 1, CompositeType.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(typeReferenceEClass, TypeReference.class, "TypeReference", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getTypeReference_Reverse(), ecorePackage.getEBoolean(), "reverse", null, 0, 1,
+				TypeReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEReference(getTypeReference_Type(), this.getNamedType(), null, "type", null, 0, 1, TypeReference.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTypeReference_Actuals(), this.getConfigurationActual(), null, "actuals", null, 0, -1,
+				TypeReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(literalEClass, Literal.class, "Literal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(singleLiteralEClass, SingleLiteral.class, "SingleLiteral", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+
 		initEClass(numberLiteralEClass, NumberLiteral.class, "NumberLiteral", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNumberLiteral_Unit(), ecorePackage.getEString(), "unit", null, 0, 1, NumberLiteral.class,
@@ -2378,17 +2810,20 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		initEAttribute(getIntegerLiteral_Value(), ecorePackage.getEInt(), "value", null, 0, 1, IntegerLiteral.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(listLiteralEClass, ListLiteral.class, "ListLiteral", !IS_ABSTRACT, !IS_INTERFACE,
+		initEClass(realLiteralEClass, RealLiteral.class, "RealLiteral", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getListLiteral_Elements(), this.getLiteral(), null, "elements", null, 0, -1, ListLiteral.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
-				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getRealLiteral_Value(), ecorePackage.getEDouble(), "value", null, 0, 1, RealLiteral.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(setLiteralEClass, SetLiteral.class, "SetLiteral", !IS_ABSTRACT, !IS_INTERFACE,
+		initEClass(stringLiteralEClass, StringLiteral.class, "StringLiteral", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSetLiteral_Elements(), this.getLiteral(), null, "elements", null, 0, -1, SetLiteral.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
-				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getStringLiteral_Value(), ecorePackage.getEString(), "value", null, 0, 1, StringLiteral.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(booleanLiteralEClass, BooleanLiteral.class, "BooleanLiteral", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getBooleanLiteral_Value(), ecorePackage.getEBoolean(), "value", null, 0, 1, BooleanLiteral.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(directionalLiteralEClass, DirectionalLiteral.class, "DirectionalLiteral", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2399,7 +2834,38 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 				DirectionalLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(literalEClass, Literal.class, "Literal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(eCollectionEClass, ECollection.class, "ECollection", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getECollection_Elements(), this.getExpression(), null, "elements", null, 0, -1,
+				ECollection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(lCollectionEClass, LCollection.class, "LCollection", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getLCollection_Elements(), this.getLiteral(), null, "elements", null, 0, -1, LCollection.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(listLiteralEClass, ListLiteral.class, "ListLiteral", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(setLiteralEClass, SetLiteral.class, "SetLiteral", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(expressionEClass, Expression.class, "Expression", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(multiLiteralOperationEClass, MultiLiteralOperation.class, "MultiLiteralOperation", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getMultiLiteralOperation_Operator(), this.getLOperation(), "operator", null, 0, 1,
+				MultiLiteralOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(multiExpressionOperationEClass, MultiExpressionOperation.class, "MultiExpressionOperation",
+				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getMultiExpressionOperation_Operator(), this.getEOperation(), "operator", null, 0, 1,
+				MultiExpressionOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(propertyAssociationEClass, PropertyAssociation.class, "PropertyAssociation", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2416,30 +2882,30 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 				"propertyAssociationType", "FinalValue", 0, 1, PropertyAssociation.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(modeEClass, Mode.class, "Mode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getMode_Initial(), ecorePackage.getEBoolean(), "initial", null, 0, 1, Mode.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(stateEClass, State.class, "State", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getState_Initial(), ecorePackage.getEBoolean(), "initial", null, 0, 1, State.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(modeTransitionEClass, ModeTransition.class, "ModeTransition", !IS_ABSTRACT, !IS_INTERFACE,
+		initEClass(transitionEClass, Transition.class, "Transition", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getModeTransition_Source(), this.getMode(), null, "source", null, 0, 1, ModeTransition.class,
+		initEReference(getTransition_Source(), this.getState(), null, "source", null, 0, 1, Transition.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getModeTransition_Target(), this.getMode(), null, "target", null, 0, 1, ModeTransition.class,
+		initEReference(getTransition_Target(), this.getState(), null, "target", null, 0, 1, Transition.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getModeTransition_Triggers(), this.getModelElementReference(), null, "triggers", null, 0, -1,
-				ModeTransition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+		initEReference(getTransition_Triggers(), this.getModelElementReference(), null, "triggers", null, 0, -1,
+				Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(modeTransitionTriggerAssignmentEClass, ModeTransitionTriggerAssignment.class,
-				"ModeTransitionTriggerAssignment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getModeTransitionTriggerAssignment_Triggers(), this.getModelElementReference(), null, "triggers",
-				null, 0, -1, ModeTransitionTriggerAssignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+		initEClass(transitionTriggerAssignmentEClass, TransitionTriggerAssignment.class, "TransitionTriggerAssignment",
+				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getTransitionTriggerAssignment_Triggers(), this.getModelElementReference(), null, "triggers",
+				null, 0, -1, TransitionTriggerAssignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getModeTransitionTriggerAssignment_Transition(), this.getModeTransition(), null, "transition",
-				null, 0, 1, ModeTransitionTriggerAssignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTransitionTriggerAssignment_Transition(), this.getTransition(), null, "transition", null, 0,
+				1, TransitionTriggerAssignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(modeAssignmentEClass, ModeAssignment.class, "ModeAssignment", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
@@ -2447,13 +2913,13 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 				ModeAssignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(modeStateMachineEClass, ModeStateMachine.class, "ModeStateMachine", !IS_ABSTRACT, !IS_INTERFACE,
+		initEClass(stateMachineEClass, StateMachine.class, "StateMachine", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getModeStateMachine_Modes(), this.getMode(), null, "modes", null, 0, -1, ModeStateMachine.class,
+		initEReference(getStateMachine_States(), this.getState(), null, "states", null, 0, -1, StateMachine.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getModeStateMachine_Transitions(), this.getModeTransition(), null, "transitions", null, 0, -1,
-				ModeStateMachine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+		initEReference(getStateMachine_Transitions(), this.getTransition(), null, "transitions", null, 0, -1,
+				StateMachine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(annexSubclauseEClass, AnnexSubclause.class, "AnnexSubclause", !IS_ABSTRACT, !IS_INTERFACE,
@@ -2461,15 +2927,6 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 
 		initEClass(annexLibraryEClass, AnnexLibrary.class, "AnnexLibrary", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(typeDeclEClass, TypeDecl.class, "TypeDecl", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTypeDecl_OwnedPropertyAssociations(), this.getPropertyAssociation(), null,
-				"ownedPropertyAssociations", null, 0, -1, TypeDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTypeDecl_Type(), ecorePackage.getEObject(), null, "type", null, 0, 1, TypeDecl.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
-				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(componentCategoryEEnum, ComponentCategory.class, "ComponentCategory");
@@ -2523,6 +2980,28 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		addEEnumLiteral(associationTypeEEnum, AssociationType.FLOW);
 		addEEnumLiteral(associationTypeEEnum, AssociationType.FLOWSOURCE);
 		addEEnumLiteral(associationTypeEEnum, AssociationType.FLOWSINK);
+
+		initEEnum(primitiveEEnum, Primitive.class, "Primitive");
+		addEEnumLiteral(primitiveEEnum, Primitive.BOOLEAN);
+		addEEnumLiteral(primitiveEEnum, Primitive.INTEGER);
+		addEEnumLiteral(primitiveEEnum, Primitive.REAL);
+		addEEnumLiteral(primitiveEEnum, Primitive.STRING);
+
+		initEEnum(compositeEEnum, Composite.class, "Composite");
+		addEEnumLiteral(compositeEEnum, Composite.LIST);
+		addEEnumLiteral(compositeEEnum, Composite.SET);
+		addEEnumLiteral(compositeEEnum, Composite.DIRECTIONAL);
+
+		initEEnum(lOperationEEnum, LOperation.class, "LOperation");
+		addEEnumLiteral(lOperationEEnum, LOperation.ANY);
+		addEEnumLiteral(lOperationEEnum, LOperation.ALL);
+		addEEnumLiteral(lOperationEEnum, LOperation.ONEOF);
+		addEEnumLiteral(lOperationEEnum, LOperation.KOFN);
+		addEEnumLiteral(lOperationEEnum, LOperation.KORMORE);
+		addEEnumLiteral(lOperationEEnum, LOperation.KORLESS);
+
+		initEEnum(eOperationEEnum, EOperation.class, "EOperation");
+		addEEnumLiteral(eOperationEEnum, EOperation.OR);
 
 		initEEnum(propertyAssociationTypeEEnum, PropertyAssociationType.class, "PropertyAssociationType");
 		addEEnumLiteral(propertyAssociationTypeEEnum, PropertyAssociationType.FINAL_VALUE);

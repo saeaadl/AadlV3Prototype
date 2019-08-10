@@ -1,0 +1,27 @@
+package SimpleSystem is
+// example with nested packages, duplicate feature name in original and extension,
+// property associated with model element and as contained property in classifier
+
+import ConCon::*;
+
+	process interface sub is
+		name : in feature ;
+		surname : in feature  ;
+	end;
+	
+	process sub.i1 is
+	#FeatureLabels => list ( l1, l2);
+	end;
+	
+	process sub.i2 is 
+		#FeatureLabels => list ( l1, l3);
+	end;
+	
+	system interface gps is end;
+	
+	system gps.i is
+		locator : process sub;
+	#FeatureLabels => list ( l1, l2);
+	end;
+	
+end;

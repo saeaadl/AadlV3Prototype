@@ -34,15 +34,24 @@ import static extension org.osate.aadlv3.util.AIv3API.*
 import static extension org.osate.aadlv3.util.Aadlv3Util.*
 import org.osate.aadlv3.util.AIJGraphXUtil
 import org.osate.aadlv3.util.AIJGraphTUtil
+import org.osate.aadlv3.aadlv3.ListLiteral
+import org.osate.aadlv3.aadlv3.LCollection
 
 class Instantiator {
 	
 	static var Iterable<PropertyDefinition> expectedProperties = Collections.EMPTY_LIST
 	
+	static var LCollection configurationConstraint = null;
 	
 	def instantiate(Workingset ws) {
 		expectedProperties = ws.expectedProperties
 		for (iroot : ws.rootComponents) {
+			configurationConstraint = getProductLineQualifier(iroot);
+			if (iroot.typeReferences.satisfies(configurationConstraint)){
+				System.out.println("yes")
+			} else {
+				System.out.println("no")
+			}
 			val rootinstance = iroot.instantiateRoot
 			rootinstance.eResource.save(null)
 		//  check whether all expected properties have been set

@@ -1,6 +1,8 @@
 package simpleinstances is
+import ConCon::*;
 workingset simpleinstances is
-	basic: system Basic::gps.i;
+	simpleSystems: system SimpleSystem::gps.i {#FeatureLabels => list (l1, l1, list (l1, l3));};
+//	basic: system Basic::gps.i;
 //	first : system SimpleConfiguration::top.i ;
 //	second : system SimpleConfiguration::top.topc ;
 //	patt1 : system PatternConfiguration::top.topc ;

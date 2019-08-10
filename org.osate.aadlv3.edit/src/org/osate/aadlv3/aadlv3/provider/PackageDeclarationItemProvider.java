@@ -160,6 +160,9 @@ public class PackageDeclarationItemProvider extends PackageElementItemProvider {
 				Aadlv3Factory.eINSTANCE.createPropertySet()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PACKAGE_DECLARATION__ELEMENTS,
+				Aadlv3Factory.eINSTANCE.createNamedType()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PACKAGE_DECLARATION__ELEMENTS,
 				Aadlv3Factory.eINSTANCE.createComponentInterface()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PACKAGE_DECLARATION__ELEMENTS,
@@ -169,16 +172,19 @@ public class PackageDeclarationItemProvider extends PackageElementItemProvider {
 				Aadlv3Factory.eINSTANCE.createComponentConfiguration()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PACKAGE_DECLARATION__ELEMENTS,
+				Aadlv3Factory.eINSTANCE.createConfigurationParameter()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PACKAGE_DECLARATION__ELEMENTS,
 				Aadlv3Factory.eINSTANCE.createWorkingset()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PACKAGE_DECLARATION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createModeStateMachine()));
+				Aadlv3Factory.eINSTANCE.createTypeDecl()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PACKAGE_DECLARATION__ELEMENTS,
+				Aadlv3Factory.eINSTANCE.createStateMachine()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PACKAGE_DECLARATION__ELEMENTS,
 				Aadlv3Factory.eINSTANCE.createAnnexLibrary()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PACKAGE_DECLARATION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createTypeDecl()));
 	}
 
 }

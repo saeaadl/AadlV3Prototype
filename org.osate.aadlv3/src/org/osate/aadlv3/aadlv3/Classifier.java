@@ -28,7 +28,6 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.Classifier#getCategory <em>Category</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.Classifier#getSuperClassifiers <em>Super Classifiers</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.Classifier#getOwnedPropertyAssociations <em>Owned Property Associations</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.Classifier#getUseModes <em>Use Modes</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.Classifier#isInheritsModes <em>Inherits Modes</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.Classifier#getAnnexSubclause <em>Annex Subclause</em>}</li>
@@ -38,7 +37,7 @@ import org.eclipse.emf.common.util.EList;
  * @model abstract="true"
  * @generated
  */
-public interface Classifier extends PackageElement, ClassifierOrType {
+public interface Classifier extends NamedType {
 	/**
 	 * Returns the value of the '<em><b>Category</b></em>' attribute.
 	 * The default value is <code>"interface"</code>.
@@ -78,28 +77,16 @@ public interface Classifier extends PackageElement, ClassifierOrType {
 	EList<TypeReference> getSuperClassifiers();
 
 	/**
-	 * Returns the value of the '<em><b>Owned Property Associations</b></em>' containment reference list.
-	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.PropertyAssociation}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Property Associations</em>' containment reference list.
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getClassifier_OwnedPropertyAssociations()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<PropertyAssociation> getOwnedPropertyAssociations();
-
-	/**
 	 * Returns the value of the '<em><b>Use Modes</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Use Modes</em>' reference.
-	 * @see #setUseModes(ModeStateMachine)
+	 * @see #setUseModes(StateMachine)
 	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getClassifier_UseModes()
 	 * @model
 	 * @generated
 	 */
-	ModeStateMachine getUseModes();
+	StateMachine getUseModes();
 
 	/**
 	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.Classifier#getUseModes <em>Use Modes</em>}' reference.
@@ -109,7 +96,7 @@ public interface Classifier extends PackageElement, ClassifierOrType {
 	 * @see #getUseModes()
 	 * @generated
 	 */
-	void setUseModes(ModeStateMachine value);
+	void setUseModes(StateMachine value);
 
 	/**
 	 * Returns the value of the '<em><b>Inherits Modes</b></em>' attribute.

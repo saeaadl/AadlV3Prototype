@@ -89,6 +89,7 @@ public class Av3API {
 	public static Collection<ComponentRealization> getConfigurableRealizations(Classifier classifier) {
 		ComponentInterface cinterface = getInterface(classifier);
 		Collection<ComponentRealization> allif = Aadlv3GlobalScopeUtil.getAllInContext(cinterface, Aadlv3Package.eINSTANCE.getComponentRealization());
+//		allif.stream().filter(uri -> uri.getHost().equals("www.jgrapht.org")).findAny();
 		Collection<ComponentRealization> all = Aadlv3GlobalScopeUtil.getAllInContext(classifier, Aadlv3Package.eINSTANCE.getComponentRealization());
 		return all;
 	}

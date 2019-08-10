@@ -9,6 +9,11 @@ import org.osate.aadlv3.aadlv3.FeatureCategory;
 import org.osate.aadlv3.aadlv3.FeatureDirection;
 import org.osate.aadlv3.aadlv3.AssociationType;
 import org.osate.aadlv3.aadlv3.PropertyAssociationType;
+import org.osate.aadlv3.aadlv3.Composite;
+import org.osate.aadlv3.aadlv3.Primitive;
+import org.osate.aadlv3.aadlv3.LOperation;
+import org.osate.aadlv3.aadlv3.EOperation;
+
 
 public class AadlV3ValueConverter extends DefaultTerminalConverters {
 
@@ -162,5 +167,103 @@ public class AadlV3ValueConverter extends DefaultTerminalConverters {
 		};
 	}
 
+
+	@ValueConverter(rule = "Composite")
+	public IValueConverter<Composite> Composite() {
+		return new IValueConverter<Composite>() {
+			@Override
+			public Composite toValue(String string, INode node) {
+				if (string == null) {
+					return null;
+				}
+				return Composite.get(string);
+			}
+
+			@Override
+			public String toString(Composite value) {
+				return value.getName();
+			}
+		};
+	}
+
+	@ValueConverter(rule = "Primitive")
+	public IValueConverter<Primitive> Primitive() {
+		return new IValueConverter<Primitive>() {
+			@Override
+			public Primitive toValue(String string, INode node) {
+				if (string == null) {
+					return null;
+				}
+				return Primitive.get(string);
+			}
+
+			@Override
+			public String toString(Primitive value) {
+				return value.getName();
+			}
+		};
+	}
+
+	@ValueConverter(rule = "LOperation")
+	public IValueConverter<LOperation> LOperation() {
+		return new IValueConverter<LOperation>() {
+			@Override
+			public LOperation toValue(String string, INode node) {
+				if (string == null) {
+					return null;
+				}
+				return LOperation.get(string);
+			}
+
+			@Override
+			public String toString(LOperation value) {
+				return value.getName();
+			}
+		};
+	}
+
+	@ValueConverter(rule = "EOperation")
+	public IValueConverter<EOperation> EOperation() {
+		return new IValueConverter<EOperation>() {
+			@Override
+			public EOperation toValue(String string, INode node) {
+				if (string == null) {
+					return null;
+				}
+				return EOperation.get(string);
+			}
+
+			@Override
+			public String toString(EOperation value) {
+				return value.getName();
+			}
+		};
+	}
+	@ValueConverter(rule = "NoQuoteString")
+	public IValueConverter<String> NoQuoteString() {
+		return new IValueConverter<String>() {
+			@Override
+			public String toValue(String string, INode node) {
+				if (string == null) {
+					return null;
+				}
+				if (string.charAt(0) == '"') {
+					string = string.substring(1);
+				}
+				if (string.endsWith("\"")) {
+					string = string.substring(0, string.length() - 1);
+				}
+				return string;
+			}
+
+			@Override
+			public String toString(String value) {
+				if (!value.isEmpty() && value.charAt(0) == '"') {
+					return value;
+				}
+				return '"' + value + '"';
+			}
+		};
+	}
 	
 }

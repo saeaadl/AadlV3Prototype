@@ -18,6 +18,7 @@ package org.osate.aadlv3.aadlv3.impl;
 import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -27,10 +28,10 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.AssociationType;
-import org.osate.aadlv3.aadlv3.ClassifierOrType;
 import org.osate.aadlv3.aadlv3.ComponentCategory;
 import org.osate.aadlv3.aadlv3.FeatureCategory;
 import org.osate.aadlv3.aadlv3.PropertyDefinition;
+import org.osate.aadlv3.aadlv3.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -51,14 +52,14 @@ import org.osate.aadlv3.aadlv3.PropertyDefinition;
  */
 public class PropertyDefinitionImpl extends PackageElementImpl implements PropertyDefinition {
 	/**
-	 * The cached value of the '{@link #getType() <em>Type</em>}' reference.
+	 * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getType()
 	 * @generated
 	 * @ordered
 	 */
-	protected ClassifierOrType type;
+	protected Type type;
 
 	/**
 	 * The cached value of the '{@link #getComponentCategories() <em>Component Categories</em>}' attribute list.
@@ -133,16 +134,7 @@ public class PropertyDefinitionImpl extends PackageElementImpl implements Proper
 	 * @generated
 	 */
 	@Override
-	public ClassifierOrType getType() {
-		if (type != null && type.eIsProxy()) {
-			InternalEObject oldType = (InternalEObject) type;
-			type = (ClassifierOrType) eResolveProxy(oldType);
-			if (type != oldType) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Aadlv3Package.PROPERTY_DEFINITION__TYPE,
-							oldType, type));
-			}
-		}
+	public Type getType() {
 		return type;
 	}
 
@@ -151,8 +143,18 @@ public class PropertyDefinitionImpl extends PackageElementImpl implements Proper
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ClassifierOrType basicGetType() {
-		return type;
+	public NotificationChain basicSetType(Type newType, NotificationChain msgs) {
+		Type oldType = type;
+		type = newType;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					Aadlv3Package.PROPERTY_DEFINITION__TYPE, oldType, newType);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -161,12 +163,21 @@ public class PropertyDefinitionImpl extends PackageElementImpl implements Proper
 	 * @generated
 	 */
 	@Override
-	public void setType(ClassifierOrType newType) {
-		ClassifierOrType oldType = type;
-		type = newType;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.PROPERTY_DEFINITION__TYPE, oldType,
-					type));
+	public void setType(Type newType) {
+		if (newType != type) {
+			NotificationChain msgs = null;
+			if (type != null)
+				msgs = ((InternalEObject) type).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE - Aadlv3Package.PROPERTY_DEFINITION__TYPE, null, msgs);
+			if (newType != null)
+				msgs = ((InternalEObject) newType).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE - Aadlv3Package.PROPERTY_DEFINITION__TYPE, null, msgs);
+			msgs = basicSetType(newType, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.PROPERTY_DEFINITION__TYPE, newType,
+					newType));
 	}
 
 	/**
@@ -241,12 +252,24 @@ public class PropertyDefinitionImpl extends PackageElementImpl implements Proper
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case Aadlv3Package.PROPERTY_DEFINITION__TYPE:
+			return basicSetType(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case Aadlv3Package.PROPERTY_DEFINITION__TYPE:
-			if (resolve)
-				return getType();
-			return basicGetType();
+			return getType();
 		case Aadlv3Package.PROPERTY_DEFINITION__COMPONENT_CATEGORIES:
 			return getComponentCategories();
 		case Aadlv3Package.PROPERTY_DEFINITION__FEATURE_CATEGORIES:
@@ -269,7 +292,7 @@ public class PropertyDefinitionImpl extends PackageElementImpl implements Proper
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 		case Aadlv3Package.PROPERTY_DEFINITION__TYPE:
-			setType((ClassifierOrType) newValue);
+			setType((Type) newValue);
 			return;
 		case Aadlv3Package.PROPERTY_DEFINITION__COMPONENT_CATEGORIES:
 			getComponentCategories().clear();
@@ -299,7 +322,7 @@ public class PropertyDefinitionImpl extends PackageElementImpl implements Proper
 	public void eUnset(int featureID) {
 		switch (featureID) {
 		case Aadlv3Package.PROPERTY_DEFINITION__TYPE:
-			setType((ClassifierOrType) null);
+			setType((Type) null);
 			return;
 		case Aadlv3Package.PROPERTY_DEFINITION__COMPONENT_CATEGORIES:
 			getComponentCategories().clear();

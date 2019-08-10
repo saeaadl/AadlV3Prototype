@@ -15,8 +15,6 @@
  */
 package org.osate.aadlv3.aadlv3;
 
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -28,7 +26,6 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.osate.aadlv3.aadlv3.TypeDecl#getOwnedPropertyAssociations <em>Owned Property Associations</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.TypeDecl#getType <em>Type</em>}</li>
  * </ul>
  *
@@ -36,19 +33,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface TypeDecl extends ClassifierOrType, PackageElement {
-	/**
-	 * Returns the value of the '<em><b>Owned Property Associations</b></em>' containment reference list.
-	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.PropertyAssociation}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Property Associations</em>' containment reference list.
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getTypeDecl_OwnedPropertyAssociations()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<PropertyAssociation> getOwnedPropertyAssociations();
-
+public interface TypeDecl extends NamedType {
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

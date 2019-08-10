@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.ClassifierAssignmentPattern;
-import org.osate.aadlv3.aadlv3.ClassifierOrType;
+import org.osate.aadlv3.aadlv3.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -48,7 +48,7 @@ public class ClassifierAssignmentPatternImpl extends ClassifierAssignmentImpl im
 	 * @generated
 	 * @ordered
 	 */
-	protected ClassifierOrType targetPattern;
+	protected Type targetPattern;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -75,10 +75,10 @@ public class ClassifierAssignmentPatternImpl extends ClassifierAssignmentImpl im
 	 * @generated
 	 */
 	@Override
-	public ClassifierOrType getTargetPattern() {
+	public Type getTargetPattern() {
 		if (targetPattern != null && targetPattern.eIsProxy()) {
 			InternalEObject oldTargetPattern = (InternalEObject) targetPattern;
-			targetPattern = (ClassifierOrType) eResolveProxy(oldTargetPattern);
+			targetPattern = (Type) eResolveProxy(oldTargetPattern);
 			if (targetPattern != oldTargetPattern) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
@@ -94,7 +94,7 @@ public class ClassifierAssignmentPatternImpl extends ClassifierAssignmentImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ClassifierOrType basicGetTargetPattern() {
+	public Type basicGetTargetPattern() {
 		return targetPattern;
 	}
 
@@ -104,8 +104,8 @@ public class ClassifierAssignmentPatternImpl extends ClassifierAssignmentImpl im
 	 * @generated
 	 */
 	@Override
-	public void setTargetPattern(ClassifierOrType newTargetPattern) {
-		ClassifierOrType oldTargetPattern = targetPattern;
+	public void setTargetPattern(Type newTargetPattern) {
+		Type oldTargetPattern = targetPattern;
 		targetPattern = newTargetPattern;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
@@ -137,7 +137,7 @@ public class ClassifierAssignmentPatternImpl extends ClassifierAssignmentImpl im
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 		case Aadlv3Package.CLASSIFIER_ASSIGNMENT_PATTERN__TARGET_PATTERN:
-			setTargetPattern((ClassifierOrType) newValue);
+			setTargetPattern((Type) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -152,7 +152,7 @@ public class ClassifierAssignmentPatternImpl extends ClassifierAssignmentImpl im
 	public void eUnset(int featureID) {
 		switch (featureID) {
 		case Aadlv3Package.CLASSIFIER_ASSIGNMENT_PATTERN__TARGET_PATTERN:
-			setTargetPattern((ClassifierOrType) null);
+			setTargetPattern((Type) null);
 			return;
 		}
 		super.eUnset(featureID);

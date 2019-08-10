@@ -176,4 +176,9 @@ public abstract class NamedElementImpl extends MinimalEObjectImpl.Container impl
 		return result.toString();
 	}
 
+	@Override
+	public String getQualifiedName() {
+		return this.name;
+	}
+
 } //NamedElementImpl

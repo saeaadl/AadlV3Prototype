@@ -22,8 +22,6 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.TypeDecl;
 
@@ -33,7 +31,7 @@ import org.osate.aadlv3.aadlv3.TypeDecl;
  * <!-- end-user-doc -->
  * @generated
  */
-public class TypeDeclItemProvider extends ClassifierOrTypeItemProvider {
+public class TypeDeclItemProvider extends NamedTypeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -55,42 +53,9 @@ public class TypeDeclItemProvider extends ClassifierOrTypeItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addPrivatePropertyDescriptor(object);
-			addOwnedPropertyAssociationsPropertyDescriptor(object);
 			addTypePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Private feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addPrivatePropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_PackageElement_private_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_PackageElement_private_feature",
-								"_UI_PackageElement_type"),
-						Aadlv3Package.Literals.PACKAGE_ELEMENT__PRIVATE, true, false, false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Owned Property Associations feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addOwnedPropertyAssociationsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_TypeDecl_ownedPropertyAssociations_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_TypeDecl_ownedPropertyAssociations_feature",
-						"_UI_TypeDecl_type"),
-				Aadlv3Package.Literals.TYPE_DECL__OWNED_PROPERTY_ASSOCIATIONS, true, false, true, null, null, null));
 	}
 
 	/**
@@ -142,13 +107,6 @@ public class TypeDeclItemProvider extends ClassifierOrTypeItemProvider {
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(TypeDecl.class)) {
-		case Aadlv3Package.TYPE_DECL__PRIVATE:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
-		}
-		super.notifyChanged(notification);
 	}
 
 	/**

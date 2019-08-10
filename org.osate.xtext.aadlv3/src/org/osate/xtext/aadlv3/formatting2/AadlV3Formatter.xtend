@@ -14,7 +14,7 @@ import org.osate.aadlv3.aadlv3.PackageDeclaration
 import org.osate.aadlv3.aadlv3.PropertyAssociation
 import org.osate.aadlv3.aadlv3.PropertyDefinition
 import org.osate.aadlv3.aadlv3.Workingset
-import org.osate.aadlv3.aadlv3.ClassifierOrType
+import org.osate.aadlv3.aadlv3.Type
 
 @SuppressWarnings("all")
 class AadlV3Formatter extends AbstractFormatter2 {
@@ -56,7 +56,7 @@ class AadlV3Formatter extends AbstractFormatter2 {
 		cl.eContents.forEach[format]
 	}
 
-	def dispatch void format(ClassifierOrType tp, extension IFormattableDocument document) {
+	def dispatch void format(Type tp, extension IFormattableDocument document) {
 		tp.append[newLines = 2]
 	}
 

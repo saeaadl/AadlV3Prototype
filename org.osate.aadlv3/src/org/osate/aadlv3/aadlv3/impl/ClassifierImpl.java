@@ -34,8 +34,7 @@ import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.AnnexSubclause;
 import org.osate.aadlv3.aadlv3.Classifier;
 import org.osate.aadlv3.aadlv3.ComponentCategory;
-import org.osate.aadlv3.aadlv3.ModeStateMachine;
-import org.osate.aadlv3.aadlv3.PropertyAssociation;
+import org.osate.aadlv3.aadlv3.StateMachine;
 import org.osate.aadlv3.aadlv3.TypeReference;
 
 /**
@@ -48,7 +47,6 @@ import org.osate.aadlv3.aadlv3.TypeReference;
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ClassifierImpl#getCategory <em>Category</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ClassifierImpl#getSuperClassifiers <em>Super Classifiers</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.ClassifierImpl#getOwnedPropertyAssociations <em>Owned Property Associations</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ClassifierImpl#getUseModes <em>Use Modes</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ClassifierImpl#isInheritsModes <em>Inherits Modes</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ClassifierImpl#getAnnexSubclause <em>Annex Subclause</em>}</li>
@@ -56,7 +54,7 @@ import org.osate.aadlv3.aadlv3.TypeReference;
  *
  * @generated
  */
-public abstract class ClassifierImpl extends PackageElementImpl implements Classifier {
+public abstract class ClassifierImpl extends NamedTypeImpl implements Classifier {
 	/**
 	 * The default value of the '{@link #getCategory() <em>Category</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -88,16 +86,6 @@ public abstract class ClassifierImpl extends PackageElementImpl implements Class
 	protected EList<TypeReference> superClassifiers;
 
 	/**
-	 * The cached value of the '{@link #getOwnedPropertyAssociations() <em>Owned Property Associations</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedPropertyAssociations()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<PropertyAssociation> ownedPropertyAssociations;
-
-	/**
 	 * The cached value of the '{@link #getUseModes() <em>Use Modes</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -105,7 +93,7 @@ public abstract class ClassifierImpl extends PackageElementImpl implements Class
 	 * @generated
 	 * @ordered
 	 */
-	protected ModeStateMachine useModes;
+	protected StateMachine useModes;
 
 	/**
 	 * The default value of the '{@link #isInheritsModes() <em>Inherits Modes</em>}' attribute.
@@ -200,24 +188,10 @@ public abstract class ClassifierImpl extends PackageElementImpl implements Class
 	 * @generated
 	 */
 	@Override
-	public EList<PropertyAssociation> getOwnedPropertyAssociations() {
-		if (ownedPropertyAssociations == null) {
-			ownedPropertyAssociations = new EObjectContainmentEList<PropertyAssociation>(PropertyAssociation.class,
-					this, Aadlv3Package.CLASSIFIER__OWNED_PROPERTY_ASSOCIATIONS);
-		}
-		return ownedPropertyAssociations;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ModeStateMachine getUseModes() {
+	public StateMachine getUseModes() {
 		if (useModes != null && useModes.eIsProxy()) {
 			InternalEObject oldUseModes = (InternalEObject) useModes;
-			useModes = (ModeStateMachine) eResolveProxy(oldUseModes);
+			useModes = (StateMachine) eResolveProxy(oldUseModes);
 			if (useModes != oldUseModes) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Aadlv3Package.CLASSIFIER__USE_MODES,
@@ -232,7 +206,7 @@ public abstract class ClassifierImpl extends PackageElementImpl implements Class
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModeStateMachine basicGetUseModes() {
+	public StateMachine basicGetUseModes() {
 		return useModes;
 	}
 
@@ -242,8 +216,8 @@ public abstract class ClassifierImpl extends PackageElementImpl implements Class
 	 * @generated
 	 */
 	@Override
-	public void setUseModes(ModeStateMachine newUseModes) {
-		ModeStateMachine oldUseModes = useModes;
+	public void setUseModes(StateMachine newUseModes) {
+		StateMachine oldUseModes = useModes;
 		useModes = newUseModes;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.CLASSIFIER__USE_MODES, oldUseModes,
@@ -298,8 +272,6 @@ public abstract class ClassifierImpl extends PackageElementImpl implements Class
 		switch (featureID) {
 		case Aadlv3Package.CLASSIFIER__SUPER_CLASSIFIERS:
 			return ((InternalEList<?>) getSuperClassifiers()).basicRemove(otherEnd, msgs);
-		case Aadlv3Package.CLASSIFIER__OWNED_PROPERTY_ASSOCIATIONS:
-			return ((InternalEList<?>) getOwnedPropertyAssociations()).basicRemove(otherEnd, msgs);
 		case Aadlv3Package.CLASSIFIER__ANNEX_SUBCLAUSE:
 			return ((InternalEList<?>) getAnnexSubclause()).basicRemove(otherEnd, msgs);
 		}
@@ -318,8 +290,6 @@ public abstract class ClassifierImpl extends PackageElementImpl implements Class
 			return getCategory();
 		case Aadlv3Package.CLASSIFIER__SUPER_CLASSIFIERS:
 			return getSuperClassifiers();
-		case Aadlv3Package.CLASSIFIER__OWNED_PROPERTY_ASSOCIATIONS:
-			return getOwnedPropertyAssociations();
 		case Aadlv3Package.CLASSIFIER__USE_MODES:
 			if (resolve)
 				return getUseModes();
@@ -348,12 +318,8 @@ public abstract class ClassifierImpl extends PackageElementImpl implements Class
 			getSuperClassifiers().clear();
 			getSuperClassifiers().addAll((Collection<? extends TypeReference>) newValue);
 			return;
-		case Aadlv3Package.CLASSIFIER__OWNED_PROPERTY_ASSOCIATIONS:
-			getOwnedPropertyAssociations().clear();
-			getOwnedPropertyAssociations().addAll((Collection<? extends PropertyAssociation>) newValue);
-			return;
 		case Aadlv3Package.CLASSIFIER__USE_MODES:
-			setUseModes((ModeStateMachine) newValue);
+			setUseModes((StateMachine) newValue);
 			return;
 		case Aadlv3Package.CLASSIFIER__INHERITS_MODES:
 			setInheritsModes((Boolean) newValue);
@@ -380,11 +346,8 @@ public abstract class ClassifierImpl extends PackageElementImpl implements Class
 		case Aadlv3Package.CLASSIFIER__SUPER_CLASSIFIERS:
 			getSuperClassifiers().clear();
 			return;
-		case Aadlv3Package.CLASSIFIER__OWNED_PROPERTY_ASSOCIATIONS:
-			getOwnedPropertyAssociations().clear();
-			return;
 		case Aadlv3Package.CLASSIFIER__USE_MODES:
-			setUseModes((ModeStateMachine) null);
+			setUseModes((StateMachine) null);
 			return;
 		case Aadlv3Package.CLASSIFIER__INHERITS_MODES:
 			setInheritsModes(INHERITS_MODES_EDEFAULT);
@@ -408,8 +371,6 @@ public abstract class ClassifierImpl extends PackageElementImpl implements Class
 			return category != CATEGORY_EDEFAULT;
 		case Aadlv3Package.CLASSIFIER__SUPER_CLASSIFIERS:
 			return superClassifiers != null && !superClassifiers.isEmpty();
-		case Aadlv3Package.CLASSIFIER__OWNED_PROPERTY_ASSOCIATIONS:
-			return ownedPropertyAssociations != null && !ownedPropertyAssociations.isEmpty();
 		case Aadlv3Package.CLASSIFIER__USE_MODES:
 			return useModes != null;
 		case Aadlv3Package.CLASSIFIER__INHERITS_MODES:

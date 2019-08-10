@@ -30,8 +30,8 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
-import org.osate.aadlv3.aadlv3.ClassifierOrType;
 import org.osate.aadlv3.aadlv3.ConfigurationActual;
+import org.osate.aadlv3.aadlv3.NamedType;
 import org.osate.aadlv3.aadlv3.TypeReference;
 
 /**
@@ -49,7 +49,7 @@ import org.osate.aadlv3.aadlv3.TypeReference;
  *
  * @generated
  */
-public class TypeReferenceImpl extends LiteralImpl implements TypeReference {
+public class TypeReferenceImpl extends TypeImpl implements TypeReference {
 	/**
 	 * The default value of the '{@link #isReverse() <em>Reverse</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -78,7 +78,7 @@ public class TypeReferenceImpl extends LiteralImpl implements TypeReference {
 	 * @generated
 	 * @ordered
 	 */
-	protected ClassifierOrType type;
+	protected NamedType type;
 
 	/**
 	 * The cached value of the '{@link #getActuals() <em>Actuals</em>}' containment reference list.
@@ -139,10 +139,10 @@ public class TypeReferenceImpl extends LiteralImpl implements TypeReference {
 	 * @generated
 	 */
 	@Override
-	public ClassifierOrType getType() {
+	public NamedType getType() {
 		if (type != null && type.eIsProxy()) {
 			InternalEObject oldType = (InternalEObject) type;
-			type = (ClassifierOrType) eResolveProxy(oldType);
+			type = (NamedType) eResolveProxy(oldType);
 			if (type != oldType) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Aadlv3Package.TYPE_REFERENCE__TYPE,
@@ -157,7 +157,7 @@ public class TypeReferenceImpl extends LiteralImpl implements TypeReference {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ClassifierOrType basicGetType() {
+	public NamedType basicGetType() {
 		return type;
 	}
 
@@ -167,8 +167,8 @@ public class TypeReferenceImpl extends LiteralImpl implements TypeReference {
 	 * @generated
 	 */
 	@Override
-	public void setType(ClassifierOrType newType) {
-		ClassifierOrType oldType = type;
+	public void setType(NamedType newType) {
+		NamedType oldType = type;
 		type = newType;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.TYPE_REFERENCE__TYPE, oldType, type));
@@ -235,7 +235,7 @@ public class TypeReferenceImpl extends LiteralImpl implements TypeReference {
 			setReverse((Boolean) newValue);
 			return;
 		case Aadlv3Package.TYPE_REFERENCE__TYPE:
-			setType((ClassifierOrType) newValue);
+			setType((NamedType) newValue);
 			return;
 		case Aadlv3Package.TYPE_REFERENCE__ACTUALS:
 			getActuals().clear();
@@ -257,7 +257,7 @@ public class TypeReferenceImpl extends LiteralImpl implements TypeReference {
 			setReverse(REVERSE_EDEFAULT);
 			return;
 		case Aadlv3Package.TYPE_REFERENCE__TYPE:
-			setType((ClassifierOrType) null);
+			setType((NamedType) null);
 			return;
 		case Aadlv3Package.TYPE_REFERENCE__ACTUALS:
 			getActuals().clear();
@@ -299,6 +299,16 @@ public class TypeReferenceImpl extends LiteralImpl implements TypeReference {
 		result.append(reverse);
 		result.append(')');
 		return result.toString();
+	}
+
+	@Override
+	public boolean equals(Object second) {
+		return second instanceof TypeReference?this.type == ((TypeReference) second).getType(): false;
+	}
+
+	@Override
+	public int hashCode() {
+		return this.type != null ? this.type.hashCode() : 0;
 	}
 
 } //TypeReferenceImpl

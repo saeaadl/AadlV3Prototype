@@ -15,27 +15,30 @@ import org.eclipse.xtext.EcoreUtil2
 import org.osate.aadlv3.aadlv3.Aadlv3Factory
 import org.osate.aadlv3.aadlv3.Association
 import org.osate.aadlv3.aadlv3.AssociationType
+import org.osate.aadlv3.aadlv3.Classifier
 import org.osate.aadlv3.aadlv3.ClassifierAssignment
 import org.osate.aadlv3.aadlv3.ClassifierAssignmentPattern
-import org.osate.aadlv3.aadlv3.ClassifierOrType
-import org.osate.aadlv3.aadlv3.Subcomponent
 import org.osate.aadlv3.aadlv3.ComponentCategory
-import org.osate.aadlv3.aadlv3.Classifier
 import org.osate.aadlv3.aadlv3.ComponentConfiguration
 import org.osate.aadlv3.aadlv3.ComponentImplementation
 import org.osate.aadlv3.aadlv3.ComponentInterface
 import org.osate.aadlv3.aadlv3.ConfigurationActual
 import org.osate.aadlv3.aadlv3.ConfigurationParameter
+import org.osate.aadlv3.aadlv3.ECollection
 import org.osate.aadlv3.aadlv3.Feature
 import org.osate.aadlv3.aadlv3.FeatureCategory
 import org.osate.aadlv3.aadlv3.FeatureDirection
 import org.osate.aadlv3.aadlv3.Import
+import org.osate.aadlv3.aadlv3.Literal
 import org.osate.aadlv3.aadlv3.ModelElement
 import org.osate.aadlv3.aadlv3.ModelElementReference
+import org.osate.aadlv3.aadlv3.NamedType
 import org.osate.aadlv3.aadlv3.PackageDeclaration
 import org.osate.aadlv3.aadlv3.PathSequence
 import org.osate.aadlv3.aadlv3.PropertyAssociation
 import org.osate.aadlv3.aadlv3.PropertyDefinition
+import org.osate.aadlv3.aadlv3.Subcomponent
+import org.osate.aadlv3.aadlv3.Type
 import org.osate.aadlv3.aadlv3.TypeDecl
 import org.osate.aadlv3.aadlv3.TypeReference
 import org.osate.aadlv3.aadlv3.Workingset
@@ -46,13 +49,16 @@ import org.osate.av3instance.av3instance.InstanceObject
 
 import static extension org.eclipse.xtext.EcoreUtil2.*
 import static extension org.osate.aadlv3.util.Av3API.*
+import org.osate.aadlv3.aadlv3.LCollection
 
 class Aadlv3Util {
+
+
 	/**
 	 * return category of classifier collection. Returns first assigned category or ABSTRACT.
 	 * Assumes All classifier categories are the same or ABSTRACT.
 	 */
-	static def ComponentCategory getComponentCategory(Iterable<? extends ClassifierOrType> types){
+	static def ComponentCategory getComponentCategory(Iterable<? extends Type> types){
 		for (t: types){
 			var type = t
 			if (t instanceof ConfigurationParameter){
@@ -255,7 +261,7 @@ class Aadlv3Util {
 	/**
 	 * returns the top implementation of a classifier and its ancestor classifiers
 	 */
-	static def ComponentImplementation getTopComponentImplementation(ClassifierOrType cl){
+	static def ComponentImplementation getTopComponentImplementation(Type cl){
 		var ComponentImplementation top = null
 		if (cl instanceof Classifier){
 		val cls = cl.allClassifiers
@@ -603,7 +609,7 @@ class Aadlv3Util {
 	}
 	
 
-	static def boolean isParameterizedConfiguration(ClassifierOrType cc) {
+	static def boolean isParameterizedConfiguration(Type cc) {
 		cc instanceof ComponentConfiguration && (cc as ComponentConfiguration).parameterized
 	}
 
@@ -976,13 +982,13 @@ class Aadlv3Util {
 	
 	
 	// returns true if superTyperef is a super type of any of type in trefs
-	def static boolean isSuperTypeOf(ClassifierOrType superType, Iterable<TypeReference> trefs) {
+	def static boolean isSuperTypeOf(Type superType, Iterable<TypeReference> trefs) {
 		return trefs.exists[tref| superType.isSuperTypeOf(tref.type)]
 	
 	}
 
 	// returns true if if superType is a super type of type
-	def static boolean isSuperTypeOf(ClassifierOrType superType, ClassifierOrType type) {
+	def static boolean isSuperTypeOf(Type superType, Type type) {
 		if (superType instanceof TypeDecl && type instanceof TypeDecl){
 			return (superType as TypeDecl).isSuperTypeDeclOf(type as TypeDecl)
 		}
@@ -1438,7 +1444,11 @@ class Aadlv3Util {
 	}
 	
 	def static boolean samePropertyDefinition(PropertyDefinition first, PropertyDefinition second){
-		return first.name == second.name
+		return first === second || first.qualifiedName == second.qualifiedName
+	}
+	
+	def static boolean samePropertyDefinition(PropertyDefinition first, String match){
+		return first.name == match || first.qualifiedName == match
 	}
 	
 	def static boolean samePropertyValueAssignment(PropertyAssociation first, PropertyAssociation second){
@@ -1450,23 +1460,118 @@ class Aadlv3Util {
 	}
 
 	
-	def static boolean sameValue(EObject first, EObject second){
-		return first == second 
-	}
-	
-		
-	static def boolean contains(Iterable <PropertyAssociation> pas, PropertyAssociation pa){
-		for (p : pas){
-			if (samePropertyAndPath(p,pa)) return true
-		}
-		return false
-	}
-	
-	
 	def static boolean overridesPropertyAssociation(PropertyAssociation first, PropertyAssociation second){
 			val firstCl = first.containingClassifier
 			val secondCl = second.containingClassifier
 		return firstCl.isSuperClassifierOf(secondCl)|| secondCl.isSuperClassifierOf(firstCl)
 	}
 	
+	def static boolean sameValue(EObject first, EObject second){
+		return first == second 
+	}
+	
+		
+	def static boolean contains(Iterable <PropertyAssociation> pas, PropertyAssociation pa){
+		for (p : pas){
+			if (samePropertyAndPath(p,pa)) return true
+		}
+		return false
+	}
+	
+	def static boolean contains(LCollection collection, Literal element){
+		if (element instanceof LCollection){
+			return collection.contains(element)
+		}
+		return collection.elements.exists[elem| elem.equals(element)]
+	}
+	
+	def static boolean contains(Literal element, Literal subelement){
+		if (element instanceof LCollection){
+			return element.contains(subelement)
+		}
+		return element.equals(subelement);
+	}
+	
+	def static boolean contains(LCollection coll, LCollection subCollection){
+		return subCollection.elements.forall[elem| coll.contains(elem)]
+	}
+	
+	
+	def static boolean satisfies(LCollection value, LCollection constraint) {
+		for (orElement : constraint.elements) {
+			if (orElement instanceof LCollection) {
+				// and list
+				if(value.contains(orElement)) return true
+			} else {
+				if(value.contains(orElement)) return true
+			}
+		}
+		return false
+	}
+	
+	def static boolean satisfies(NamedType cl, LCollection constraint) {
+		val match = cl.getProductLineQualifier();
+		if (match instanceof LCollection){
+			return match.satisfies(constraint)
+		}
+		return false
+	}
+
+	
+	def static boolean satisfies(Iterable<TypeReference> trefs, LCollection constraint) {
+		return trefs.forall[tref| tref.type.satisfies(constraint)]
+	}
+
+/*
+ * property value retrieval
+ */
+
+	val static String ProductLineQualifier = "FeatureLabels";
+	
+	def static LCollection getProductLineQualifier(ModelElement cl){
+		return getOwnedPropertyValue(cl,ProductLineQualifier) as LCollection
+	}
+	
+	def static LCollection getProductLineQualifier(NamedType cl){
+		return getOwnedPropertyValue(cl,ProductLineQualifier) as LCollection
+	}
+	
+	def static Literal getOwnedPropertyValue(NamedType cl, String property) {
+		for (pa : cl.ownedPropertyAssociations) {
+			if (samePropertyDefinition(pa.property, property)) {
+				return pa.value
+			}
+			return null;
+		}
+	}
+	
+	def static Literal getOwnedPropertyValue(ModelElement me, String property) {
+		for (pa : me.ownedPropertyAssociations) {
+			if (samePropertyDefinition(pa.property, property)) {
+				return pa.value
+			}
+			return null;
+		}
+	}
+	
+	def static Literal getOwnedPropertyValue(Iterable<TypeReference> trefs, String property) {
+		for (tref : trefs) {
+			val res = getOwnedPropertyValue(tref.type, property);
+			if (res !== null) {
+				return res;
+			}
+		}
+		return null;
+	}
+	
+	
+	def static Literal getPropertyValue(ModelElement me, String property) {
+		val res = getOwnedPropertyValue(me, property);
+		if (res !== null) return res;
+		if (me instanceof Subcomponent){
+			return getOwnedPropertyValue(me.typeReferences, property);
+		}
+		return null;
+	}
+
 }

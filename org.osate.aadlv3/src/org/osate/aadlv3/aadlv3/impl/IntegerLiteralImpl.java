@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.IntegerLiteral;
+import org.osate.aadlv3.aadlv3.TypeReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -174,6 +175,11 @@ public class IntegerLiteralImpl extends NumberLiteralImpl implements IntegerLite
 		result.append(value);
 		result.append(')');
 		return result.toString();
+	}
+
+	@Override
+	public boolean equals(Object second) {
+		return this.value == ((IntegerLiteral) second).getValue();
 	}
 
 } //IntegerLiteralImpl

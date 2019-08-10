@@ -60,4 +60,6 @@ public interface NamedElement extends EObject {
 	 */
 	void setName(String value);
 
+	String getQualifiedName();
+
 } // NamedElement

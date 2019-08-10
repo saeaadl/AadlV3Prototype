@@ -204,10 +204,13 @@ public class PropertyAssociationItemProvider extends ItemProviderAdapter impleme
 				Aadlv3Factory.eINSTANCE.createPathElement()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
+				Aadlv3Factory.eINSTANCE.createTypeReference()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
 				Aadlv3Factory.eINSTANCE.createLiteral()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
-				Aadlv3Factory.eINSTANCE.createTypeReference()));
+				Aadlv3Factory.eINSTANCE.createSingleLiteral()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
 				Aadlv3Factory.eINSTANCE.createNumberLiteral()));
@@ -216,10 +219,28 @@ public class PropertyAssociationItemProvider extends ItemProviderAdapter impleme
 				Aadlv3Factory.eINSTANCE.createIntegerLiteral()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
-				Aadlv3Factory.eINSTANCE.createListLiteral()));
+				Aadlv3Factory.eINSTANCE.createRealLiteral()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
+				Aadlv3Factory.eINSTANCE.createStringLiteral()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
+				Aadlv3Factory.eINSTANCE.createBooleanLiteral()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
 				Aadlv3Factory.eINSTANCE.createDirectionalLiteral()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
+				Aadlv3Factory.eINSTANCE.createLCollection()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
+				Aadlv3Factory.eINSTANCE.createListLiteral()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
+				Aadlv3Factory.eINSTANCE.createSetLiteral()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
+				Aadlv3Factory.eINSTANCE.createMultiLiteralOperation()));
 	}
 
 	/**

@@ -59,6 +59,28 @@
       <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//AssociationType/flowsource"/>
       <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//AssociationType/flowsink"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Aadlv3.ecore#//Primitive">
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//Primitive/BOOLEAN"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//Primitive/INTEGER"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//Primitive/REAL"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//Primitive/STRING"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Aadlv3.ecore#//Composite">
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//Composite/LIST"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//Composite/SET"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//Composite/DIRECTIONAL"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Aadlv3.ecore#//LOperation">
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//LOperation/ANY"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//LOperation/ALL"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//LOperation/ONEOF"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//LOperation/KOFN"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//LOperation/KORMORE"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//LOperation/KORLESS"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Aadlv3.ecore#//EOperation">
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//EOperation/OR"/>
+    </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Aadlv3.ecore#//PropertyAssociationType">
       <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//PropertyAssociationType/FinalValue"/>
       <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//PropertyAssociationType/VariableValue"/>
@@ -88,11 +110,9 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ModelElement/ownedPropertyAssociations"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ModelElement/inModes"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="Aadlv3.ecore#//ClassifierOrType"/>
     <genClasses image="false" ecoreClass="Aadlv3.ecore#//Classifier">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//Classifier/category"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Classifier/superClassifiers"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Classifier/ownedPropertyAssociations"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Classifier/useModes"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//Classifier/inheritsModes"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Classifier/annexSubclause"/>
@@ -170,11 +190,6 @@
     <genClasses ecoreClass="Aadlv3.ecore#//ConfigurationParameter">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ConfigurationParameter/type"/>
     </genClasses>
-    <genClasses ecoreClass="Aadlv3.ecore#//TypeReference">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//TypeReference/reverse"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//TypeReference/type"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//TypeReference/actuals"/>
-    </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//ConfigurationActual">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ConfigurationActual/parameter"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ConfigurationActual/assignedClassifiers"/>
@@ -183,53 +198,87 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Workingset/rootComponents"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Workingset/useProperties"/>
     </genClasses>
+    <genClasses image="false" ecoreClass="Aadlv3.ecore#//Type"/>
+    <genClasses ecoreClass="Aadlv3.ecore#//NamedType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//NamedType/ownedPropertyAssociations"/>
+    </genClasses>
+    <genClasses ecoreClass="Aadlv3.ecore#//TypeDecl">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//TypeDecl/type"/>
+    </genClasses>
+    <genClasses ecoreClass="Aadlv3.ecore#//PrimitiveType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//PrimitiveType/primitiveType"/>
+    </genClasses>
+    <genClasses ecoreClass="Aadlv3.ecore#//CompositeType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//CompositeType/compositeType"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//CompositeType/type"/>
+    </genClasses>
+    <genClasses ecoreClass="Aadlv3.ecore#//TypeReference">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//TypeReference/reverse"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//TypeReference/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//TypeReference/actuals"/>
+    </genClasses>
+    <genClasses ecoreClass="Aadlv3.ecore#//Literal"/>
+    <genClasses ecoreClass="Aadlv3.ecore#//SingleLiteral"/>
     <genClasses ecoreClass="Aadlv3.ecore#//NumberLiteral">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//NumberLiteral/unit"/>
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//IntegerLiteral">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//IntegerLiteral/value"/>
     </genClasses>
-    <genClasses ecoreClass="Aadlv3.ecore#//ListLiteral">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ListLiteral/elements"/>
+    <genClasses ecoreClass="Aadlv3.ecore#//RealLiteral">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//RealLiteral/value"/>
     </genClasses>
-    <genClasses ecoreClass="Aadlv3.ecore#//SetLiteral">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//SetLiteral/elements"/>
+    <genClasses ecoreClass="Aadlv3.ecore#//StringLiteral">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//StringLiteral/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Aadlv3.ecore#//BooleanLiteral">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//BooleanLiteral/value"/>
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//DirectionalLiteral">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//DirectionalLiteral/direction"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//DirectionalLiteral/value"/>
     </genClasses>
-    <genClasses ecoreClass="Aadlv3.ecore#//Literal"/>
+    <genClasses ecoreClass="Aadlv3.ecore#//ECollection">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ECollection/elements"/>
+    </genClasses>
+    <genClasses ecoreClass="Aadlv3.ecore#//LCollection">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//LCollection/elements"/>
+    </genClasses>
+    <genClasses ecoreClass="Aadlv3.ecore#//ListLiteral"/>
+    <genClasses ecoreClass="Aadlv3.ecore#//SetLiteral"/>
+    <genClasses ecoreClass="Aadlv3.ecore#//Expression"/>
+    <genClasses ecoreClass="Aadlv3.ecore#//MultiLiteralOperation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//MultiLiteralOperation/operator"/>
+    </genClasses>
+    <genClasses ecoreClass="Aadlv3.ecore#//MultiExpressionOperation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//MultiExpressionOperation/operator"/>
+    </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//PropertyAssociation">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//PropertyAssociation/target"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//PropertyAssociation/property"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//PropertyAssociation/value"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//PropertyAssociation/propertyAssociationType"/>
     </genClasses>
-    <genClasses ecoreClass="Aadlv3.ecore#//Mode">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//Mode/initial"/>
+    <genClasses ecoreClass="Aadlv3.ecore#//State">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//State/initial"/>
     </genClasses>
-    <genClasses ecoreClass="Aadlv3.ecore#//ModeTransition">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ModeTransition/source"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ModeTransition/target"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ModeTransition/triggers"/>
+    <genClasses ecoreClass="Aadlv3.ecore#//Transition">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Transition/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Transition/target"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Transition/triggers"/>
     </genClasses>
-    <genClasses ecoreClass="Aadlv3.ecore#//ModeTransitionTriggerAssignment">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ModeTransitionTriggerAssignment/triggers"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ModeTransitionTriggerAssignment/transition"/>
+    <genClasses ecoreClass="Aadlv3.ecore#//TransitionTriggerAssignment">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//TransitionTriggerAssignment/triggers"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//TransitionTriggerAssignment/transition"/>
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//ModeAssignment">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ModeAssignment/members"/>
     </genClasses>
-    <genClasses ecoreClass="Aadlv3.ecore#//ModeStateMachine">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ModeStateMachine/modes"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ModeStateMachine/transitions"/>
+    <genClasses ecoreClass="Aadlv3.ecore#//StateMachine">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//StateMachine/states"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//StateMachine/transitions"/>
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//AnnexSubclause"/>
     <genClasses ecoreClass="Aadlv3.ecore#//AnnexLibrary"/>
-    <genClasses ecoreClass="Aadlv3.ecore#//TypeDecl">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//TypeDecl/ownedPropertyAssociations"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//TypeDecl/type"/>
-    </genClasses>
   </genPackages>
 </genmodel:GenModel>

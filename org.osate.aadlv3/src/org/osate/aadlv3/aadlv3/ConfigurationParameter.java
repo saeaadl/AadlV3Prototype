@@ -31,7 +31,7 @@ package org.osate.aadlv3.aadlv3;
  * @model
  * @generated
  */
-public interface ConfigurationParameter extends ClassifierOrType {
+public interface ConfigurationParameter extends NamedType {
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -41,12 +41,12 @@ public interface ConfigurationParameter extends ClassifierOrType {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Type</em>' reference.
-	 * @see #setType(ClassifierOrType)
+	 * @see #setType(Type)
 	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getConfigurationParameter_Type()
 	 * @model
 	 * @generated
 	 */
-	ClassifierOrType getType();
+	Type getType();
 
 	/**
 	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.ConfigurationParameter#getType <em>Type</em>}' reference.
@@ -56,6 +56,6 @@ public interface ConfigurationParameter extends ClassifierOrType {
 	 * @see #getType()
 	 * @generated
 	 */
-	void setType(ClassifierOrType value);
+	void setType(Type value);
 
 } // ConfigurationParameter

@@ -15,8 +15,6 @@
  */
 package org.osate.aadlv3.aadlv3;
 
-import org.eclipse.emf.ecore.EObject;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Literal</b></em>'.
@@ -27,5 +25,5 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface Literal extends EObject {
+public interface Literal extends Expression {
 } // Literal

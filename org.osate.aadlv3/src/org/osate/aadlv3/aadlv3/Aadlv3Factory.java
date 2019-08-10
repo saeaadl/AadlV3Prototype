@@ -152,6 +152,15 @@ public interface Aadlv3Factory extends EFactory {
 	TypeReference createTypeReference();
 
 	/**
+	 * Returns a new object of class '<em>Named Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Named Type</em>'.
+	 * @generated
+	 */
+	NamedType createNamedType();
+
+	/**
 	 * Returns a new object of class '<em>Configuration Actual</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -188,6 +197,33 @@ public interface Aadlv3Factory extends EFactory {
 	IntegerLiteral createIntegerLiteral();
 
 	/**
+	 * Returns a new object of class '<em>Real Literal</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Real Literal</em>'.
+	 * @generated
+	 */
+	RealLiteral createRealLiteral();
+
+	/**
+	 * Returns a new object of class '<em>String Literal</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>String Literal</em>'.
+	 * @generated
+	 */
+	StringLiteral createStringLiteral();
+
+	/**
+	 * Returns a new object of class '<em>Boolean Literal</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Boolean Literal</em>'.
+	 * @generated
+	 */
+	BooleanLiteral createBooleanLiteral();
+
+	/**
 	 * Returns a new object of class '<em>List Literal</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -215,6 +251,24 @@ public interface Aadlv3Factory extends EFactory {
 	DirectionalLiteral createDirectionalLiteral();
 
 	/**
+	 * Returns a new object of class '<em>ECollection</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>ECollection</em>'.
+	 * @generated
+	 */
+	ECollection createECollection();
+
+	/**
+	 * Returns a new object of class '<em>LCollection</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>LCollection</em>'.
+	 * @generated
+	 */
+	LCollection createLCollection();
+
+	/**
 	 * Returns a new object of class '<em>Literal</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -222,6 +276,42 @@ public interface Aadlv3Factory extends EFactory {
 	 * @generated
 	 */
 	Literal createLiteral();
+
+	/**
+	 * Returns a new object of class '<em>Single Literal</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Single Literal</em>'.
+	 * @generated
+	 */
+	SingleLiteral createSingleLiteral();
+
+	/**
+	 * Returns a new object of class '<em>Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Expression</em>'.
+	 * @generated
+	 */
+	Expression createExpression();
+
+	/**
+	 * Returns a new object of class '<em>Multi Literal Operation</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Multi Literal Operation</em>'.
+	 * @generated
+	 */
+	MultiLiteralOperation createMultiLiteralOperation();
+
+	/**
+	 * Returns a new object of class '<em>Multi Expression Operation</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Multi Expression Operation</em>'.
+	 * @generated
+	 */
+	MultiExpressionOperation createMultiExpressionOperation();
 
 	/**
 	 * Returns a new object of class '<em>Property Association</em>'.
@@ -233,31 +323,31 @@ public interface Aadlv3Factory extends EFactory {
 	PropertyAssociation createPropertyAssociation();
 
 	/**
-	 * Returns a new object of class '<em>Mode</em>'.
+	 * Returns a new object of class '<em>State</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Mode</em>'.
+	 * @return a new object of class '<em>State</em>'.
 	 * @generated
 	 */
-	Mode createMode();
+	State createState();
 
 	/**
-	 * Returns a new object of class '<em>Mode Transition</em>'.
+	 * Returns a new object of class '<em>Transition</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Mode Transition</em>'.
+	 * @return a new object of class '<em>Transition</em>'.
 	 * @generated
 	 */
-	ModeTransition createModeTransition();
+	Transition createTransition();
 
 	/**
-	 * Returns a new object of class '<em>Mode Transition Trigger Assignment</em>'.
+	 * Returns a new object of class '<em>Transition Trigger Assignment</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Mode Transition Trigger Assignment</em>'.
+	 * @return a new object of class '<em>Transition Trigger Assignment</em>'.
 	 * @generated
 	 */
-	ModeTransitionTriggerAssignment createModeTransitionTriggerAssignment();
+	TransitionTriggerAssignment createTransitionTriggerAssignment();
 
 	/**
 	 * Returns a new object of class '<em>Mode Assignment</em>'.
@@ -269,13 +359,13 @@ public interface Aadlv3Factory extends EFactory {
 	ModeAssignment createModeAssignment();
 
 	/**
-	 * Returns a new object of class '<em>Mode State Machine</em>'.
+	 * Returns a new object of class '<em>State Machine</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Mode State Machine</em>'.
+	 * @return a new object of class '<em>State Machine</em>'.
 	 * @generated
 	 */
-	ModeStateMachine createModeStateMachine();
+	StateMachine createStateMachine();
 
 	/**
 	 * Returns a new object of class '<em>Annex Subclause</em>'.
@@ -303,6 +393,24 @@ public interface Aadlv3Factory extends EFactory {
 	 * @generated
 	 */
 	TypeDecl createTypeDecl();
+
+	/**
+	 * Returns a new object of class '<em>Primitive Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Primitive Type</em>'.
+	 * @generated
+	 */
+	PrimitiveType createPrimitiveType();
+
+	/**
+	 * Returns a new object of class '<em>Composite Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Composite Type</em>'.
+	 * @generated
+	 */
+	CompositeType createCompositeType();
 
 	/**
 	 * Returns a new object of class '<em>Path Element</em>'.

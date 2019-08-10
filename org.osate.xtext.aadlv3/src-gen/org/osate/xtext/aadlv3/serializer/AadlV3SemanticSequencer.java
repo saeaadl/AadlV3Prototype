@@ -30,11 +30,13 @@ import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.AnnexLibrary;
 import org.osate.aadlv3.aadlv3.AnnexSubclause;
 import org.osate.aadlv3.aadlv3.Association;
+import org.osate.aadlv3.aadlv3.BooleanLiteral;
 import org.osate.aadlv3.aadlv3.ClassifierAssignment;
 import org.osate.aadlv3.aadlv3.ClassifierAssignmentPattern;
 import org.osate.aadlv3.aadlv3.ComponentConfiguration;
 import org.osate.aadlv3.aadlv3.ComponentImplementation;
 import org.osate.aadlv3.aadlv3.ComponentInterface;
+import org.osate.aadlv3.aadlv3.CompositeType;
 import org.osate.aadlv3.aadlv3.ConfigurationActual;
 import org.osate.aadlv3.aadlv3.ConfigurationParameter;
 import org.osate.aadlv3.aadlv3.DirectionalLiteral;
@@ -46,9 +48,12 @@ import org.osate.aadlv3.aadlv3.ModelElementReference;
 import org.osate.aadlv3.aadlv3.PackageDeclaration;
 import org.osate.aadlv3.aadlv3.PathElement;
 import org.osate.aadlv3.aadlv3.PathSequence;
+import org.osate.aadlv3.aadlv3.PrimitiveType;
 import org.osate.aadlv3.aadlv3.PropertyAssociation;
 import org.osate.aadlv3.aadlv3.PropertyDefinition;
 import org.osate.aadlv3.aadlv3.PropertySet;
+import org.osate.aadlv3.aadlv3.RealLiteral;
+import org.osate.aadlv3.aadlv3.StringLiteral;
 import org.osate.aadlv3.aadlv3.Subcomponent;
 import org.osate.aadlv3.aadlv3.TypeDecl;
 import org.osate.aadlv3.aadlv3.TypeReference;
@@ -97,6 +102,9 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 					return; 
 				}
 				else break;
+			case Aadlv3Package.BOOLEAN_LITERAL:
+				sequence_BooleanLiteral(context, (BooleanLiteral) semanticObject); 
+				return; 
 			case Aadlv3Package.CLASSIFIER_ASSIGNMENT:
 				sequence_ClassifierAssignment_ConfigurationElement(context, (ClassifierAssignment) semanticObject); 
 				return; 
@@ -111,6 +119,9 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 				return; 
 			case Aadlv3Package.COMPONENT_INTERFACE:
 				sequence_ComponentInterface_InterfaceElement_InterfaceExtensions(context, (ComponentInterface) semanticObject); 
+				return; 
+			case Aadlv3Package.COMPOSITE_TYPE:
+				sequence_CompositeType(context, (CompositeType) semanticObject); 
 				return; 
 			case Aadlv3Package.CONFIGURATION_ACTUAL:
 				sequence_ConfigurationActual(context, (ConfigurationActual) semanticObject); 
@@ -152,6 +163,9 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 					return; 
 				}
 				else break;
+			case Aadlv3Package.PRIMITIVE_TYPE:
+				sequence_PrimitiveType(context, (PrimitiveType) semanticObject); 
+				return; 
 			case Aadlv3Package.PROPERTY_ASSOCIATION:
 				sequence_PropertyAssociation(context, (PropertyAssociation) semanticObject); 
 				return; 
@@ -160,6 +174,12 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 				return; 
 			case Aadlv3Package.PROPERTY_SET:
 				sequence_PropertySet(context, (PropertySet) semanticObject); 
+				return; 
+			case Aadlv3Package.REAL_LITERAL:
+				sequence_RealLiteral(context, (RealLiteral) semanticObject); 
+				return; 
+			case Aadlv3Package.STRING_LITERAL:
+				sequence_StringLiteral(context, (StringLiteral) semanticObject); 
 				return; 
 			case Aadlv3Package.SUBCOMPONENT:
 				sequence_NestedImplementationElement_Subcomponent(context, (Subcomponent) semanticObject); 
@@ -189,7 +209,8 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 					return; 
 				}
 				else if (rule == grammarAccess.getLiteralRule()
-						|| rule == grammarAccess.getTypeReferenceRule()) {
+						|| rule == grammarAccess.getTypeReferenceRule()
+						|| rule == grammarAccess.getTypeRule()) {
 					sequence_TypeReference(context, (TypeReference) semanticObject); 
 					return; 
 				}
@@ -247,7 +268,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     (
 	 *         private?='private'? 
 	 *         name=ID 
-	 *         type=[ClassifierOrType|QualifiedReference] 
+	 *         type=Type 
 	 *         (forAll?='all' | (componentCategories+=ComponentCategory | featureCategories+=FeatureCategory | associationTypes+=AssociationType)+)?
 	 *     )
 	 */
@@ -277,11 +298,24 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
+	 *     Literal returns BooleanLiteral
+	 *     BooleanLiteral returns BooleanLiteral
+	 *
+	 * Constraint:
+	 *     value?='true'?
+	 */
+	protected void sequence_BooleanLiteral(ISerializationContext context, BooleanLiteral semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     ClassifierAssignmentPattern returns ClassifierAssignmentPattern
 	 *
 	 * Constraint:
 	 *     (
-	 *         targetPattern=[ClassifierOrType|QualifiedTypesReference] 
+	 *         targetPattern=[Type|QualifiedTypesReference] 
 	 *         (
 	 *             (assignedClassifiers+=ClassifierOrTypeReference assignedClassifiers+=ClassifierOrTypeReference*) | 
 	 *             (
@@ -334,7 +368,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     ClassifierOrTypeReference returns TypeReference
 	 *
 	 * Constraint:
-	 *     (type=[ClassifierOrType|QualifiedTypesReference] (actuals+=ConfigurationActual actuals+=ConfigurationActual*)?)
+	 *     (type=[NamedType|QualifiedTypesReference] (actuals+=ConfigurationActual actuals+=ConfigurationActual*)?)
 	 */
 	protected void sequence_ClassifierOrTypeReference_ConfigurationActuals(ISerializationContext context, TypeReference semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -423,6 +457,28 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
+	 *     Type returns CompositeType
+	 *     CompositeType returns CompositeType
+	 *
+	 * Constraint:
+	 *     (compositeType=Composite type=Type)
+	 */
+	protected void sequence_CompositeType(ISerializationContext context, CompositeType semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, Aadlv3Package.Literals.COMPOSITE_TYPE__COMPOSITE_TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, Aadlv3Package.Literals.COMPOSITE_TYPE__COMPOSITE_TYPE));
+			if (transientValues.isValueTransient(semanticObject, Aadlv3Package.Literals.COMPOSITE_TYPE__TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, Aadlv3Package.Literals.COMPOSITE_TYPE__TYPE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getCompositeTypeAccess().getCompositeTypeCompositeParserRuleCall_0_0(), semanticObject.getCompositeType());
+		feeder.accept(grammarAccess.getCompositeTypeAccess().getTypeTypeParserRuleCall_2_0(), semanticObject.getType());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     ConfigurationActual returns ConfigurationActual
 	 *
 	 * Constraint:
@@ -450,7 +506,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     ConfigurationParameter returns ConfigurationParameter
 	 *
 	 * Constraint:
-	 *     (name=ID type=[ClassifierOrType|QualifiedName])
+	 *     (name=ID type=[Type|QualifiedName])
 	 */
 	protected void sequence_ConfigurationParameter(ISerializationContext context, ConfigurationParameter semanticObject) {
 		if (errorAcceptor != null) {
@@ -461,7 +517,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getConfigurationParameterAccess().getNameIDTerminalRuleCall_0_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getConfigurationParameterAccess().getTypeClassifierOrTypeQualifiedNameParserRuleCall_2_0_1(), semanticObject.eGet(Aadlv3Package.Literals.CONFIGURATION_PARAMETER__TYPE, false));
+		feeder.accept(grammarAccess.getConfigurationParameterAccess().getTypeTypeQualifiedNameParserRuleCall_2_0_1(), semanticObject.eGet(Aadlv3Package.Literals.CONFIGURATION_PARAMETER__TYPE, false));
 		feeder.finish();
 	}
 	
@@ -699,11 +755,30 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
+	 *     Type returns PrimitiveType
+	 *     PrimitiveType returns PrimitiveType
+	 *
+	 * Constraint:
+	 *     primitiveType=Primitive
+	 */
+	protected void sequence_PrimitiveType(ISerializationContext context, PrimitiveType semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, Aadlv3Package.Literals.PRIMITIVE_TYPE__PRIMITIVE_TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, Aadlv3Package.Literals.PRIMITIVE_TYPE__PRIMITIVE_TYPE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getPrimitiveTypeAccess().getPrimitiveTypePrimitiveParserRuleCall_0(), semanticObject.getPrimitiveType());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     PackageElement returns TypeDecl
 	 *     TypeDecl returns TypeDecl
 	 *
 	 * Constraint:
-	 *     (private?='private'? name=ID ownedPropertyAssociations+=PropertyAssociation*)
+	 *     (private?='private'? name=ID type=Type? ownedPropertyAssociations+=PropertyAssociation*)
 	 */
 	protected void sequence_PropertiesBlock_TypeDecl(ISerializationContext context, TypeDecl semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -737,6 +812,19 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
+	 *     Literal returns RealLiteral
+	 *     RealLiteral returns RealLiteral
+	 *
+	 * Constraint:
+	 *     (value=DOUBLE unit=ID?)
+	 */
+	protected void sequence_RealLiteral(ISerializationContext context, RealLiteral semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     ReversableInterfaceReference returns TypeReference
 	 *
 	 * Constraint:
@@ -752,7 +840,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     ReversableTypeReference returns TypeReference
 	 *
 	 * Constraint:
-	 *     (reverse?='reverse'? type=[ClassifierOrType|QualifiedReference])
+	 *     (reverse?='reverse'? type=[NamedType|QualifiedReference])
 	 */
 	protected void sequence_ReversableTypeReference(ISerializationContext context, TypeReference semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -761,11 +849,31 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
-	 *     Literal returns TypeReference
-	 *     TypeReference returns TypeReference
+	 *     Literal returns StringLiteral
+	 *     StringLiteral returns StringLiteral
 	 *
 	 * Constraint:
-	 *     type=[TypeDecl|QualifiedName]
+	 *     value=NoQuoteString
+	 */
+	protected void sequence_StringLiteral(ISerializationContext context, StringLiteral semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, Aadlv3Package.Literals.STRING_LITERAL__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, Aadlv3Package.Literals.STRING_LITERAL__VALUE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getStringLiteralAccess().getValueNoQuoteStringParserRuleCall_1_0(), semanticObject.getValue());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Literal returns TypeReference
+	 *     TypeReference returns TypeReference
+	 *     Type returns TypeReference
+	 *
+	 * Constraint:
+	 *     type=[NamedType|QualifiedName]
 	 */
 	protected void sequence_TypeReference(ISerializationContext context, TypeReference semanticObject) {
 		if (errorAcceptor != null) {
@@ -773,7 +881,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, Aadlv3Package.Literals.TYPE_REFERENCE__TYPE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getTypeReferenceAccess().getTypeTypeDeclQualifiedNameParserRuleCall_0_1(), semanticObject.eGet(Aadlv3Package.Literals.TYPE_REFERENCE__TYPE, false));
+		feeder.accept(grammarAccess.getTypeReferenceAccess().getTypeNamedTypeQualifiedNameParserRuleCall_0_1(), semanticObject.eGet(Aadlv3Package.Literals.TYPE_REFERENCE__TYPE, false));
 		feeder.finish();
 	}
 	

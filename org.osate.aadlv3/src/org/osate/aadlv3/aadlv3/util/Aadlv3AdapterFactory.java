@@ -110,11 +110,6 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseClassifierOrType(ClassifierOrType object) {
-			return createClassifierOrTypeAdapter();
-		}
-
-		@Override
 		public Adapter caseClassifier(Classifier object) {
 			return createClassifierAdapter();
 		}
@@ -190,11 +185,6 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseTypeReference(TypeReference object) {
-			return createTypeReferenceAdapter();
-		}
-
-		@Override
 		public Adapter caseConfigurationActual(ConfigurationActual object) {
 			return createConfigurationActualAdapter();
 		}
@@ -202,6 +192,46 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseWorkingset(Workingset object) {
 			return createWorkingsetAdapter();
+		}
+
+		@Override
+		public Adapter caseType(Type object) {
+			return createTypeAdapter();
+		}
+
+		@Override
+		public Adapter caseNamedType(NamedType object) {
+			return createNamedTypeAdapter();
+		}
+
+		@Override
+		public Adapter caseTypeDecl(TypeDecl object) {
+			return createTypeDeclAdapter();
+		}
+
+		@Override
+		public Adapter casePrimitiveType(PrimitiveType object) {
+			return createPrimitiveTypeAdapter();
+		}
+
+		@Override
+		public Adapter caseCompositeType(CompositeType object) {
+			return createCompositeTypeAdapter();
+		}
+
+		@Override
+		public Adapter caseTypeReference(TypeReference object) {
+			return createTypeReferenceAdapter();
+		}
+
+		@Override
+		public Adapter caseLiteral(Literal object) {
+			return createLiteralAdapter();
+		}
+
+		@Override
+		public Adapter caseSingleLiteral(SingleLiteral object) {
+			return createSingleLiteralAdapter();
 		}
 
 		@Override
@@ -215,6 +245,36 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseRealLiteral(RealLiteral object) {
+			return createRealLiteralAdapter();
+		}
+
+		@Override
+		public Adapter caseStringLiteral(StringLiteral object) {
+			return createStringLiteralAdapter();
+		}
+
+		@Override
+		public Adapter caseBooleanLiteral(BooleanLiteral object) {
+			return createBooleanLiteralAdapter();
+		}
+
+		@Override
+		public Adapter caseDirectionalLiteral(DirectionalLiteral object) {
+			return createDirectionalLiteralAdapter();
+		}
+
+		@Override
+		public Adapter caseECollection(ECollection object) {
+			return createECollectionAdapter();
+		}
+
+		@Override
+		public Adapter caseLCollection(LCollection object) {
+			return createLCollectionAdapter();
+		}
+
+		@Override
 		public Adapter caseListLiteral(ListLiteral object) {
 			return createListLiteralAdapter();
 		}
@@ -225,13 +285,18 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseDirectionalLiteral(DirectionalLiteral object) {
-			return createDirectionalLiteralAdapter();
+		public Adapter caseExpression(Expression object) {
+			return createExpressionAdapter();
 		}
 
 		@Override
-		public Adapter caseLiteral(Literal object) {
-			return createLiteralAdapter();
+		public Adapter caseMultiLiteralOperation(MultiLiteralOperation object) {
+			return createMultiLiteralOperationAdapter();
+		}
+
+		@Override
+		public Adapter caseMultiExpressionOperation(MultiExpressionOperation object) {
+			return createMultiExpressionOperationAdapter();
 		}
 
 		@Override
@@ -240,18 +305,18 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseMode(Mode object) {
-			return createModeAdapter();
+		public Adapter caseState(State object) {
+			return createStateAdapter();
 		}
 
 		@Override
-		public Adapter caseModeTransition(ModeTransition object) {
-			return createModeTransitionAdapter();
+		public Adapter caseTransition(Transition object) {
+			return createTransitionAdapter();
 		}
 
 		@Override
-		public Adapter caseModeTransitionTriggerAssignment(ModeTransitionTriggerAssignment object) {
-			return createModeTransitionTriggerAssignmentAdapter();
+		public Adapter caseTransitionTriggerAssignment(TransitionTriggerAssignment object) {
+			return createTransitionTriggerAssignmentAdapter();
 		}
 
 		@Override
@@ -260,8 +325,8 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseModeStateMachine(ModeStateMachine object) {
-			return createModeStateMachineAdapter();
+		public Adapter caseStateMachine(StateMachine object) {
+			return createStateMachineAdapter();
 		}
 
 		@Override
@@ -272,11 +337,6 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseAnnexLibrary(AnnexLibrary object) {
 			return createAnnexLibraryAdapter();
-		}
-
-		@Override
-		public Adapter caseTypeDecl(TypeDecl object) {
-			return createTypeDeclAdapter();
 		}
 
 		@Override
@@ -379,20 +439,6 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createModelElementAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.ClassifierOrType <em>Classifier Or Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.osate.aadlv3.aadlv3.ClassifierOrType
-	 * @generated
-	 */
-	public Adapter createClassifierOrTypeAdapter() {
 		return null;
 	}
 
@@ -551,6 +597,34 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.Type <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.osate.aadlv3.aadlv3.Type
+	 * @generated
+	 */
+	public Adapter createTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.NamedType <em>Named Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.osate.aadlv3.aadlv3.NamedType
+	 * @generated
+	 */
+	public Adapter createNamedTypeAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.ConfigurationActual <em>Configuration Actual</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -607,6 +681,48 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.RealLiteral <em>Real Literal</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.osate.aadlv3.aadlv3.RealLiteral
+	 * @generated
+	 */
+	public Adapter createRealLiteralAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.StringLiteral <em>String Literal</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.osate.aadlv3.aadlv3.StringLiteral
+	 * @generated
+	 */
+	public Adapter createStringLiteralAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.BooleanLiteral <em>Boolean Literal</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.osate.aadlv3.aadlv3.BooleanLiteral
+	 * @generated
+	 */
+	public Adapter createBooleanLiteralAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.ListLiteral <em>List Literal</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -649,6 +765,34 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.ECollection <em>ECollection</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.osate.aadlv3.aadlv3.ECollection
+	 * @generated
+	 */
+	public Adapter createECollectionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.LCollection <em>LCollection</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.osate.aadlv3.aadlv3.LCollection
+	 * @generated
+	 */
+	public Adapter createLCollectionAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.Literal <em>Literal</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -659,6 +803,62 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createLiteralAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.SingleLiteral <em>Single Literal</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.osate.aadlv3.aadlv3.SingleLiteral
+	 * @generated
+	 */
+	public Adapter createSingleLiteralAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.Expression <em>Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.osate.aadlv3.aadlv3.Expression
+	 * @generated
+	 */
+	public Adapter createExpressionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.MultiLiteralOperation <em>Multi Literal Operation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.osate.aadlv3.aadlv3.MultiLiteralOperation
+	 * @generated
+	 */
+	public Adapter createMultiLiteralOperationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.MultiExpressionOperation <em>Multi Expression Operation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.osate.aadlv3.aadlv3.MultiExpressionOperation
+	 * @generated
+	 */
+	public Adapter createMultiExpressionOperationAdapter() {
 		return null;
 	}
 
@@ -677,44 +877,44 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.Mode <em>Mode</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.State <em>State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.osate.aadlv3.aadlv3.Mode
+	 * @see org.osate.aadlv3.aadlv3.State
 	 * @generated
 	 */
-	public Adapter createModeAdapter() {
+	public Adapter createStateAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.ModeTransition <em>Mode Transition</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.Transition <em>Transition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.osate.aadlv3.aadlv3.ModeTransition
+	 * @see org.osate.aadlv3.aadlv3.Transition
 	 * @generated
 	 */
-	public Adapter createModeTransitionAdapter() {
+	public Adapter createTransitionAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.ModeTransitionTriggerAssignment <em>Mode Transition Trigger Assignment</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.TransitionTriggerAssignment <em>Transition Trigger Assignment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.osate.aadlv3.aadlv3.ModeTransitionTriggerAssignment
+	 * @see org.osate.aadlv3.aadlv3.TransitionTriggerAssignment
 	 * @generated
 	 */
-	public Adapter createModeTransitionTriggerAssignmentAdapter() {
+	public Adapter createTransitionTriggerAssignmentAdapter() {
 		return null;
 	}
 
@@ -733,16 +933,16 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.ModeStateMachine <em>Mode State Machine</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.StateMachine <em>State Machine</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.osate.aadlv3.aadlv3.ModeStateMachine
+	 * @see org.osate.aadlv3.aadlv3.StateMachine
 	 * @generated
 	 */
-	public Adapter createModeStateMachineAdapter() {
+	public Adapter createStateMachineAdapter() {
 		return null;
 	}
 
@@ -785,6 +985,34 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createTypeDeclAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.PrimitiveType <em>Primitive Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.osate.aadlv3.aadlv3.PrimitiveType
+	 * @generated
+	 */
+	public Adapter createPrimitiveTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.CompositeType <em>Composite Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.osate.aadlv3.aadlv3.CompositeType
+	 * @generated
+	 */
+	public Adapter createCompositeTypeAdapter() {
 		return null;
 	}
 

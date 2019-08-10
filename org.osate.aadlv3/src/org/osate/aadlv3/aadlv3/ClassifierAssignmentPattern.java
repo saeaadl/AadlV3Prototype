@@ -37,12 +37,12 @@ public interface ClassifierAssignmentPattern extends ClassifierAssignment {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Target Pattern</em>' reference.
-	 * @see #setTargetPattern(ClassifierOrType)
+	 * @see #setTargetPattern(Type)
 	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getClassifierAssignmentPattern_TargetPattern()
 	 * @model
 	 * @generated
 	 */
-	ClassifierOrType getTargetPattern();
+	Type getTargetPattern();
 
 	/**
 	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.ClassifierAssignmentPattern#getTargetPattern <em>Target Pattern</em>}' reference.
@@ -52,6 +52,6 @@ public interface ClassifierAssignmentPattern extends ClassifierAssignment {
 	 * @see #getTargetPattern()
 	 * @generated
 	 */
-	void setTargetPattern(ClassifierOrType value);
+	void setTargetPattern(Type value);
 
 } // ClassifierAssignmentPattern

@@ -385,6 +385,29 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.NamedType} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected NamedTypeItemProvider namedTypeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.NamedType}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createNamedTypeAdapter() {
+		if (namedTypeItemProvider == null) {
+			namedTypeItemProvider = new NamedTypeItemProvider(this);
+		}
+
+		return namedTypeItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.ConfigurationActual} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -477,6 +500,75 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.RealLiteral} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected RealLiteralItemProvider realLiteralItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.RealLiteral}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createRealLiteralAdapter() {
+		if (realLiteralItemProvider == null) {
+			realLiteralItemProvider = new RealLiteralItemProvider(this);
+		}
+
+		return realLiteralItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.StringLiteral} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected StringLiteralItemProvider stringLiteralItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.StringLiteral}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createStringLiteralAdapter() {
+		if (stringLiteralItemProvider == null) {
+			stringLiteralItemProvider = new StringLiteralItemProvider(this);
+		}
+
+		return stringLiteralItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.BooleanLiteral} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected BooleanLiteralItemProvider booleanLiteralItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.BooleanLiteral}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createBooleanLiteralAdapter() {
+		if (booleanLiteralItemProvider == null) {
+			booleanLiteralItemProvider = new BooleanLiteralItemProvider(this);
+		}
+
+		return booleanLiteralItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.ListLiteral} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -546,6 +638,52 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.ECollection} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ECollectionItemProvider eCollectionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.ECollection}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createECollectionAdapter() {
+		if (eCollectionItemProvider == null) {
+			eCollectionItemProvider = new ECollectionItemProvider(this);
+		}
+
+		return eCollectionItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.LCollection} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected LCollectionItemProvider lCollectionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.LCollection}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createLCollectionAdapter() {
+		if (lCollectionItemProvider == null) {
+			lCollectionItemProvider = new LCollectionItemProvider(this);
+		}
+
+		return lCollectionItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.Literal} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -566,6 +704,98 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 		}
 
 		return literalItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.SingleLiteral} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SingleLiteralItemProvider singleLiteralItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.SingleLiteral}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSingleLiteralAdapter() {
+		if (singleLiteralItemProvider == null) {
+			singleLiteralItemProvider = new SingleLiteralItemProvider(this);
+		}
+
+		return singleLiteralItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.Expression} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ExpressionItemProvider expressionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.Expression}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createExpressionAdapter() {
+		if (expressionItemProvider == null) {
+			expressionItemProvider = new ExpressionItemProvider(this);
+		}
+
+		return expressionItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.MultiLiteralOperation} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected MultiLiteralOperationItemProvider multiLiteralOperationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.MultiLiteralOperation}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createMultiLiteralOperationAdapter() {
+		if (multiLiteralOperationItemProvider == null) {
+			multiLiteralOperationItemProvider = new MultiLiteralOperationItemProvider(this);
+		}
+
+		return multiLiteralOperationItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.MultiExpressionOperation} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected MultiExpressionOperationItemProvider multiExpressionOperationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.MultiExpressionOperation}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createMultiExpressionOperationAdapter() {
+		if (multiExpressionOperationItemProvider == null) {
+			multiExpressionOperationItemProvider = new MultiExpressionOperationItemProvider(this);
+		}
+
+		return multiExpressionOperationItemProvider;
 	}
 
 	/**
@@ -592,72 +822,72 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.Mode} instances.
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.State} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ModeItemProvider modeItemProvider;
+	protected StateItemProvider stateItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.Mode}.
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.State}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createModeAdapter() {
-		if (modeItemProvider == null) {
-			modeItemProvider = new ModeItemProvider(this);
+	public Adapter createStateAdapter() {
+		if (stateItemProvider == null) {
+			stateItemProvider = new StateItemProvider(this);
 		}
 
-		return modeItemProvider;
+		return stateItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.ModeTransition} instances.
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.Transition} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ModeTransitionItemProvider modeTransitionItemProvider;
+	protected TransitionItemProvider transitionItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.ModeTransition}.
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.Transition}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createModeTransitionAdapter() {
-		if (modeTransitionItemProvider == null) {
-			modeTransitionItemProvider = new ModeTransitionItemProvider(this);
+	public Adapter createTransitionAdapter() {
+		if (transitionItemProvider == null) {
+			transitionItemProvider = new TransitionItemProvider(this);
 		}
 
-		return modeTransitionItemProvider;
+		return transitionItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.ModeTransitionTriggerAssignment} instances.
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.TransitionTriggerAssignment} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ModeTransitionTriggerAssignmentItemProvider modeTransitionTriggerAssignmentItemProvider;
+	protected TransitionTriggerAssignmentItemProvider transitionTriggerAssignmentItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.ModeTransitionTriggerAssignment}.
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.TransitionTriggerAssignment}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createModeTransitionTriggerAssignmentAdapter() {
-		if (modeTransitionTriggerAssignmentItemProvider == null) {
-			modeTransitionTriggerAssignmentItemProvider = new ModeTransitionTriggerAssignmentItemProvider(this);
+	public Adapter createTransitionTriggerAssignmentAdapter() {
+		if (transitionTriggerAssignmentItemProvider == null) {
+			transitionTriggerAssignmentItemProvider = new TransitionTriggerAssignmentItemProvider(this);
 		}
 
-		return modeTransitionTriggerAssignmentItemProvider;
+		return transitionTriggerAssignmentItemProvider;
 	}
 
 	/**
@@ -684,26 +914,26 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.ModeStateMachine} instances.
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.StateMachine} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ModeStateMachineItemProvider modeStateMachineItemProvider;
+	protected StateMachineItemProvider stateMachineItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.ModeStateMachine}.
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.StateMachine}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createModeStateMachineAdapter() {
-		if (modeStateMachineItemProvider == null) {
-			modeStateMachineItemProvider = new ModeStateMachineItemProvider(this);
+	public Adapter createStateMachineAdapter() {
+		if (stateMachineItemProvider == null) {
+			stateMachineItemProvider = new StateMachineItemProvider(this);
 		}
 
-		return modeStateMachineItemProvider;
+		return stateMachineItemProvider;
 	}
 
 	/**
@@ -773,6 +1003,52 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 		}
 
 		return typeDeclItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.PrimitiveType} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected PrimitiveTypeItemProvider primitiveTypeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.PrimitiveType}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createPrimitiveTypeAdapter() {
+		if (primitiveTypeItemProvider == null) {
+			primitiveTypeItemProvider = new PrimitiveTypeItemProvider(this);
+		}
+
+		return primitiveTypeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.CompositeType} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CompositeTypeItemProvider compositeTypeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.CompositeType}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createCompositeTypeAdapter() {
+		if (compositeTypeItemProvider == null) {
+			compositeTypeItemProvider = new CompositeTypeItemProvider(this);
+		}
+
+		return compositeTypeItemProvider;
 	}
 
 	/**
@@ -1004,42 +1280,66 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 			modelElementReferenceItemProvider.dispose();
 		if (configurationParameterItemProvider != null)
 			configurationParameterItemProvider.dispose();
-		if (typeReferenceItemProvider != null)
-			typeReferenceItemProvider.dispose();
 		if (configurationActualItemProvider != null)
 			configurationActualItemProvider.dispose();
 		if (workingsetItemProvider != null)
 			workingsetItemProvider.dispose();
+		if (namedTypeItemProvider != null)
+			namedTypeItemProvider.dispose();
+		if (typeDeclItemProvider != null)
+			typeDeclItemProvider.dispose();
+		if (primitiveTypeItemProvider != null)
+			primitiveTypeItemProvider.dispose();
+		if (compositeTypeItemProvider != null)
+			compositeTypeItemProvider.dispose();
+		if (typeReferenceItemProvider != null)
+			typeReferenceItemProvider.dispose();
+		if (literalItemProvider != null)
+			literalItemProvider.dispose();
+		if (singleLiteralItemProvider != null)
+			singleLiteralItemProvider.dispose();
 		if (numberLiteralItemProvider != null)
 			numberLiteralItemProvider.dispose();
 		if (integerLiteralItemProvider != null)
 			integerLiteralItemProvider.dispose();
+		if (realLiteralItemProvider != null)
+			realLiteralItemProvider.dispose();
+		if (stringLiteralItemProvider != null)
+			stringLiteralItemProvider.dispose();
+		if (booleanLiteralItemProvider != null)
+			booleanLiteralItemProvider.dispose();
+		if (directionalLiteralItemProvider != null)
+			directionalLiteralItemProvider.dispose();
+		if (eCollectionItemProvider != null)
+			eCollectionItemProvider.dispose();
+		if (lCollectionItemProvider != null)
+			lCollectionItemProvider.dispose();
 		if (listLiteralItemProvider != null)
 			listLiteralItemProvider.dispose();
 		if (setLiteralItemProvider != null)
 			setLiteralItemProvider.dispose();
-		if (directionalLiteralItemProvider != null)
-			directionalLiteralItemProvider.dispose();
-		if (literalItemProvider != null)
-			literalItemProvider.dispose();
+		if (expressionItemProvider != null)
+			expressionItemProvider.dispose();
+		if (multiLiteralOperationItemProvider != null)
+			multiLiteralOperationItemProvider.dispose();
+		if (multiExpressionOperationItemProvider != null)
+			multiExpressionOperationItemProvider.dispose();
 		if (propertyAssociationItemProvider != null)
 			propertyAssociationItemProvider.dispose();
-		if (modeItemProvider != null)
-			modeItemProvider.dispose();
-		if (modeTransitionItemProvider != null)
-			modeTransitionItemProvider.dispose();
-		if (modeTransitionTriggerAssignmentItemProvider != null)
-			modeTransitionTriggerAssignmentItemProvider.dispose();
+		if (stateItemProvider != null)
+			stateItemProvider.dispose();
+		if (transitionItemProvider != null)
+			transitionItemProvider.dispose();
+		if (transitionTriggerAssignmentItemProvider != null)
+			transitionTriggerAssignmentItemProvider.dispose();
 		if (modeAssignmentItemProvider != null)
 			modeAssignmentItemProvider.dispose();
-		if (modeStateMachineItemProvider != null)
-			modeStateMachineItemProvider.dispose();
+		if (stateMachineItemProvider != null)
+			stateMachineItemProvider.dispose();
 		if (annexSubclauseItemProvider != null)
 			annexSubclauseItemProvider.dispose();
 		if (annexLibraryItemProvider != null)
 			annexLibraryItemProvider.dispose();
-		if (typeDeclItemProvider != null)
-			typeDeclItemProvider.dispose();
 	}
 
 }

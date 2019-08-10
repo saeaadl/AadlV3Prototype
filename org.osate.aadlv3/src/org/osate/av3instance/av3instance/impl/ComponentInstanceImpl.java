@@ -17,7 +17,6 @@ package org.osate.av3instance.av3instance.impl;
 
 import java.util.Collection;
 
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -40,6 +39,7 @@ import org.osate.av3instance.av3instance.FeatureInstance;
 import org.osate.av3instance.av3instance.PathInstance;
 
 import static org.osate.aadlv3.util.AIv3API.*;
+
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Component Instance</b></em>'.
@@ -453,7 +453,7 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 		if (eIsProxy())
 			return super.toString();
 
-		String result = category.toString() + " "+ getInstanceObjectPath(this);
+		String result = category.toString() + " " + getInstanceObjectPath(this);
 		return result;
 	}
 

@@ -31,7 +31,7 @@ package org.osate.aadlv3.aadlv3;
  * @model
  * @generated
  */
-public interface NumberLiteral extends Literal {
+public interface NumberLiteral extends SingleLiteral {
 	/**
 	 * Returns the value of the '<em><b>Unit</b></em>' attribute.
 	 * <!-- begin-user-doc -->

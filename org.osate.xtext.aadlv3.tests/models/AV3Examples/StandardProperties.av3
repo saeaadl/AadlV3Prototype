@@ -3,7 +3,12 @@ package StandardProperties is
 		
 	property Period :time for (thread,process,abstract);
 	property Deadline :time for (thread,abstract);
-	property Data_Size :int for (thread,data,process,port,abstract);
+	property Data_Size :integer for (thread,data,process,port,abstract);
 	
 	properties ThreadProperties : { Period , Deadline, Data_Size };
+	
+	
+property SecurityLevel: integer for (all);
+property SafetyLevel: integer for (all);
+	
 end;

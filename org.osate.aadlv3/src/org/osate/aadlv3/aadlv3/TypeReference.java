@@ -35,7 +35,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface TypeReference extends Literal {
+public interface TypeReference extends Type, SingleLiteral {
 	/**
 	 * Returns the value of the '<em><b>Reverse</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -71,12 +71,12 @@ public interface TypeReference extends Literal {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Type</em>' reference.
-	 * @see #setType(ClassifierOrType)
+	 * @see #setType(NamedType)
 	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getTypeReference_Type()
 	 * @model
 	 * @generated
 	 */
-	ClassifierOrType getType();
+	NamedType getType();
 
 	/**
 	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.TypeReference#getType <em>Type</em>}' reference.
@@ -86,7 +86,7 @@ public interface TypeReference extends Literal {
 	 * @see #getType()
 	 * @generated
 	 */
-	void setType(ClassifierOrType value);
+	void setType(NamedType value);
 
 	/**
 	 * Returns the value of the '<em><b>Actuals</b></em>' containment reference list.

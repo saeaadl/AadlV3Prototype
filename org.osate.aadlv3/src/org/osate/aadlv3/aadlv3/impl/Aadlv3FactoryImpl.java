@@ -102,42 +102,66 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 			return createModelElementReference();
 		case Aadlv3Package.CONFIGURATION_PARAMETER:
 			return createConfigurationParameter();
-		case Aadlv3Package.TYPE_REFERENCE:
-			return createTypeReference();
 		case Aadlv3Package.CONFIGURATION_ACTUAL:
 			return createConfigurationActual();
 		case Aadlv3Package.WORKINGSET:
 			return createWorkingset();
+		case Aadlv3Package.NAMED_TYPE:
+			return createNamedType();
+		case Aadlv3Package.TYPE_DECL:
+			return createTypeDecl();
+		case Aadlv3Package.PRIMITIVE_TYPE:
+			return createPrimitiveType();
+		case Aadlv3Package.COMPOSITE_TYPE:
+			return createCompositeType();
+		case Aadlv3Package.TYPE_REFERENCE:
+			return createTypeReference();
+		case Aadlv3Package.LITERAL:
+			return createLiteral();
+		case Aadlv3Package.SINGLE_LITERAL:
+			return createSingleLiteral();
 		case Aadlv3Package.NUMBER_LITERAL:
 			return createNumberLiteral();
 		case Aadlv3Package.INTEGER_LITERAL:
 			return createIntegerLiteral();
+		case Aadlv3Package.REAL_LITERAL:
+			return createRealLiteral();
+		case Aadlv3Package.STRING_LITERAL:
+			return createStringLiteral();
+		case Aadlv3Package.BOOLEAN_LITERAL:
+			return createBooleanLiteral();
+		case Aadlv3Package.DIRECTIONAL_LITERAL:
+			return createDirectionalLiteral();
+		case Aadlv3Package.ECOLLECTION:
+			return createECollection();
+		case Aadlv3Package.LCOLLECTION:
+			return createLCollection();
 		case Aadlv3Package.LIST_LITERAL:
 			return createListLiteral();
 		case Aadlv3Package.SET_LITERAL:
 			return createSetLiteral();
-		case Aadlv3Package.DIRECTIONAL_LITERAL:
-			return createDirectionalLiteral();
-		case Aadlv3Package.LITERAL:
-			return createLiteral();
+		case Aadlv3Package.EXPRESSION:
+			return createExpression();
+		case Aadlv3Package.MULTI_LITERAL_OPERATION:
+			return createMultiLiteralOperation();
+		case Aadlv3Package.MULTI_EXPRESSION_OPERATION:
+			return createMultiExpressionOperation();
 		case Aadlv3Package.PROPERTY_ASSOCIATION:
 			return createPropertyAssociation();
-		case Aadlv3Package.MODE:
-			return createMode();
-		case Aadlv3Package.MODE_TRANSITION:
-			return createModeTransition();
-		case Aadlv3Package.MODE_TRANSITION_TRIGGER_ASSIGNMENT:
-			return createModeTransitionTriggerAssignment();
+		case Aadlv3Package.STATE:
+			return createState();
+		case Aadlv3Package.TRANSITION:
+			return createTransition();
+		case Aadlv3Package.TRANSITION_TRIGGER_ASSIGNMENT:
+			return createTransitionTriggerAssignment();
 		case Aadlv3Package.MODE_ASSIGNMENT:
 			return createModeAssignment();
-		case Aadlv3Package.MODE_STATE_MACHINE:
-			return createModeStateMachine();
+		case Aadlv3Package.STATE_MACHINE:
+			return createStateMachine();
 		case Aadlv3Package.ANNEX_SUBCLAUSE:
 			return createAnnexSubclause();
 		case Aadlv3Package.ANNEX_LIBRARY:
 			return createAnnexLibrary();
-		case Aadlv3Package.TYPE_DECL:
-			return createTypeDecl();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -159,6 +183,14 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 			return createFeatureDirectionFromString(eDataType, initialValue);
 		case Aadlv3Package.ASSOCIATION_TYPE:
 			return createAssociationTypeFromString(eDataType, initialValue);
+		case Aadlv3Package.PRIMITIVE:
+			return createPrimitiveFromString(eDataType, initialValue);
+		case Aadlv3Package.COMPOSITE:
+			return createCompositeFromString(eDataType, initialValue);
+		case Aadlv3Package.LOPERATION:
+			return createLOperationFromString(eDataType, initialValue);
+		case Aadlv3Package.EOPERATION:
+			return createEOperationFromString(eDataType, initialValue);
 		case Aadlv3Package.PROPERTY_ASSOCIATION_TYPE:
 			return createPropertyAssociationTypeFromString(eDataType, initialValue);
 		default:
@@ -182,6 +214,14 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 			return convertFeatureDirectionToString(eDataType, instanceValue);
 		case Aadlv3Package.ASSOCIATION_TYPE:
 			return convertAssociationTypeToString(eDataType, instanceValue);
+		case Aadlv3Package.PRIMITIVE:
+			return convertPrimitiveToString(eDataType, instanceValue);
+		case Aadlv3Package.COMPOSITE:
+			return convertCompositeToString(eDataType, instanceValue);
+		case Aadlv3Package.LOPERATION:
+			return convertLOperationToString(eDataType, instanceValue);
+		case Aadlv3Package.EOPERATION:
+			return convertEOperationToString(eDataType, instanceValue);
 		case Aadlv3Package.PROPERTY_ASSOCIATION_TYPE:
 			return convertPropertyAssociationTypeToString(eDataType, instanceValue);
 		default:
@@ -338,6 +378,17 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 	 * @generated
 	 */
 	@Override
+	public NamedType createNamedType() {
+		NamedTypeImpl namedType = new NamedTypeImpl();
+		return namedType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public ConfigurationActual createConfigurationActual() {
 		ConfigurationActualImpl configurationActual = new ConfigurationActualImpl();
 		return configurationActual;
@@ -382,6 +433,39 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 	 * @generated
 	 */
 	@Override
+	public RealLiteral createRealLiteral() {
+		RealLiteralImpl realLiteral = new RealLiteralImpl();
+		return realLiteral;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public StringLiteral createStringLiteral() {
+		StringLiteralImpl stringLiteral = new StringLiteralImpl();
+		return stringLiteral;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public BooleanLiteral createBooleanLiteral() {
+		BooleanLiteralImpl booleanLiteral = new BooleanLiteralImpl();
+		return booleanLiteral;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public ListLiteral createListLiteral() {
 		ListLiteralImpl listLiteral = new ListLiteralImpl();
 		return listLiteral;
@@ -415,9 +499,75 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 	 * @generated
 	 */
 	@Override
+	public ECollection createECollection() {
+		ECollectionImpl eCollection = new ECollectionImpl();
+		return eCollection;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public LCollection createLCollection() {
+		LCollectionImpl lCollection = new LCollectionImpl();
+		return lCollection;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Literal createLiteral() {
 		LiteralImpl literal = new LiteralImpl();
 		return literal;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public SingleLiteral createSingleLiteral() {
+		SingleLiteralImpl singleLiteral = new SingleLiteralImpl();
+		return singleLiteral;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Expression createExpression() {
+		ExpressionImpl expression = new ExpressionImpl();
+		return expression;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public MultiLiteralOperation createMultiLiteralOperation() {
+		MultiLiteralOperationImpl multiLiteralOperation = new MultiLiteralOperationImpl();
+		return multiLiteralOperation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public MultiExpressionOperation createMultiExpressionOperation() {
+		MultiExpressionOperationImpl multiExpressionOperation = new MultiExpressionOperationImpl();
+		return multiExpressionOperation;
 	}
 
 	/**
@@ -437,9 +587,9 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 	 * @generated
 	 */
 	@Override
-	public Mode createMode() {
-		ModeImpl mode = new ModeImpl();
-		return mode;
+	public State createState() {
+		StateImpl state = new StateImpl();
+		return state;
 	}
 
 	/**
@@ -448,9 +598,9 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 	 * @generated
 	 */
 	@Override
-	public ModeTransition createModeTransition() {
-		ModeTransitionImpl modeTransition = new ModeTransitionImpl();
-		return modeTransition;
+	public Transition createTransition() {
+		TransitionImpl transition = new TransitionImpl();
+		return transition;
 	}
 
 	/**
@@ -459,9 +609,9 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 	 * @generated
 	 */
 	@Override
-	public ModeTransitionTriggerAssignment createModeTransitionTriggerAssignment() {
-		ModeTransitionTriggerAssignmentImpl modeTransitionTriggerAssignment = new ModeTransitionTriggerAssignmentImpl();
-		return modeTransitionTriggerAssignment;
+	public TransitionTriggerAssignment createTransitionTriggerAssignment() {
+		TransitionTriggerAssignmentImpl transitionTriggerAssignment = new TransitionTriggerAssignmentImpl();
+		return transitionTriggerAssignment;
 	}
 
 	/**
@@ -481,9 +631,9 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 	 * @generated
 	 */
 	@Override
-	public ModeStateMachine createModeStateMachine() {
-		ModeStateMachineImpl modeStateMachine = new ModeStateMachineImpl();
-		return modeStateMachine;
+	public StateMachine createStateMachine() {
+		StateMachineImpl stateMachine = new StateMachineImpl();
+		return stateMachine;
 	}
 
 	/**
@@ -517,6 +667,28 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 	public TypeDecl createTypeDecl() {
 		TypeDeclImpl typeDecl = new TypeDeclImpl();
 		return typeDecl;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public PrimitiveType createPrimitiveType() {
+		PrimitiveTypeImpl primitiveType = new PrimitiveTypeImpl();
+		return primitiveType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public CompositeType createCompositeType() {
+		CompositeTypeImpl compositeType = new CompositeTypeImpl();
+		return compositeType;
 	}
 
 	/**
@@ -648,6 +820,94 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 	 * @generated
 	 */
 	public String convertAssociationTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Primitive createPrimitiveFromString(EDataType eDataType, String initialValue) {
+		Primitive result = Primitive.get(initialValue);
+		if (result == null)
+			throw new IllegalArgumentException(
+					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertPrimitiveToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Composite createCompositeFromString(EDataType eDataType, String initialValue) {
+		Composite result = Composite.get(initialValue);
+		if (result == null)
+			throw new IllegalArgumentException(
+					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertCompositeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LOperation createLOperationFromString(EDataType eDataType, String initialValue) {
+		LOperation result = LOperation.get(initialValue);
+		if (result == null)
+			throw new IllegalArgumentException(
+					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertLOperationToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation createEOperationFromString(EDataType eDataType, String initialValue) {
+		EOperation result = EOperation.get(initialValue);
+		if (result == null)
+			throw new IllegalArgumentException(
+					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertEOperationToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

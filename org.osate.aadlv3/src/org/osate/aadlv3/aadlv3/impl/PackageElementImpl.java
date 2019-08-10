@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
+import org.osate.aadlv3.aadlv3.NamedElement;
 import org.osate.aadlv3.aadlv3.PackageElement;
 
 /**
@@ -171,6 +172,14 @@ public abstract class PackageElementImpl extends NamedElementImpl implements Pac
 		result.append(private_);
 		result.append(')');
 		return result.toString();
+	}
+
+	@Override
+	public String getQualifiedName() {
+		if (this.eContainer != null && this.eContainer instanceof NamedElement) {
+			return ((NamedElement) this.eContainer).getQualifiedName() + "::" + this.name;
+		}
+		return this.name;
 	}
 
 } //PackageElementImpl

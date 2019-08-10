@@ -33,7 +33,7 @@ import org.osate.aadlv3.aadlv3.ConfigurationParameter;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ConfigurationParameterItemProvider extends ClassifierOrTypeItemProvider {
+public class ConfigurationParameterItemProvider extends NamedTypeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

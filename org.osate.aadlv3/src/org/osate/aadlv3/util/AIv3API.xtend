@@ -26,6 +26,7 @@ import org.osate.av3instance.av3instance.PropertyAssociationInstance
 
 import static extension org.eclipse.emf.ecore.util.EcoreUtil.*
 import static extension org.osate.aadlv3.util.Aadlv3Util.*
+import org.osate.aadlv3.aadlv3.Literal
 
 class AIv3API {
 	
@@ -163,6 +164,24 @@ class AIv3API {
 	// instance object has property association
 	def static boolean hasPropertyAssociation(InstanceObject io, PropertyDefinition pd){
 		io.propertyAssociations.exists[pai|samePropertyDefinition(pai.property, pd)]
+	}
+	
+	def static Literal getPropertyValue(InstanceObject io, PropertyDefinition pd){
+		for (pai : io.propertyAssociations){
+			if (samePropertyDefinition(pai.property, pd)){
+				return pai.value;
+			}
+		}
+		return null;
+	}
+	
+	def static Literal getPropertyValue(InstanceObject io, String pname){
+		for (pai : io.propertyAssociations){
+			if (samePropertyDefinition(pai.property, pname)){
+				return pai.value;
+			}
+		}
+		return null;
 	}
 	
 		

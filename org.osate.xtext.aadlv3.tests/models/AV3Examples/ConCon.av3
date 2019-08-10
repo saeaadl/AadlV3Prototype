@@ -1,0 +1,9 @@
+package ConCon is
+	import StandardTypes::*;	
+	
+	property FeatureLabels : string for (all);
+	
+	type l1;
+	type l2;
+	type l3;
+end;
