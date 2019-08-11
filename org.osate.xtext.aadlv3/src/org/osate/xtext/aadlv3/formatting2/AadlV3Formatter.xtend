@@ -36,7 +36,7 @@ class AadlV3Formatter extends AbstractFormatter2 {
 	def dispatch void format(Workingset ws, extension IFormattableDocument document) {
 		ws.surround[noSpace]
 		ws.interior[indent]
-		ws.rootComponents.forEach[format]
+		ws.instanceRoots.forEach[format]
 	}
 
 	def dispatch void format(Classifier cl, extension IFormattableDocument document) {

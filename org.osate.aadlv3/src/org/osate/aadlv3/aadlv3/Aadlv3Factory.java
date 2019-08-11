@@ -179,6 +179,15 @@ public interface Aadlv3Factory extends EFactory {
 	Workingset createWorkingset();
 
 	/**
+	 * Returns a new object of class '<em>Instance Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Instance Configuration</em>'.
+	 * @generated
+	 */
+	InstanceConfiguration createInstanceConfiguration();
+
+	/**
 	 * Returns a new object of class '<em>Number Literal</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

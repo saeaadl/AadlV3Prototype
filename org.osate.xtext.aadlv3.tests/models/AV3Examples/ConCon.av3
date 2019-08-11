@@ -1,9 +1,9 @@
 package ConCon is
 	import StandardTypes::*;	
 	
-	property FeatureLabels : string for (all);
-	
-	type l1;
-	type l2;
-	type l3;
+	property FeatureLabels : list of FeatureLabel for (all);
+	type FeatureLabel;
+	type l1 extends FeatureLabel;
+	type l2 extends FeatureLabel;
+	type l3 extends FeatureLabel;
 end;

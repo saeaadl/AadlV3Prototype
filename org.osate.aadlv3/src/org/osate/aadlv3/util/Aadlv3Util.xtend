@@ -1488,6 +1488,9 @@ class Aadlv3Util {
 		return false
 	}
 	
+	/**
+	 * collection contains element, where element can be a single element or a collection, i.e., element collection is a sub-collection of collection
+	 */
 	def static boolean contains(LCollection collection, Literal element){
 		if (element instanceof LCollection){
 			return collection.contains(element)
@@ -1495,6 +1498,9 @@ class Aadlv3Util {
 		return collection.elements.exists[elem| elem.equals(element)]
 	}
 	
+	/**
+	 * element and subelement are the same or subelement is contained in the element collection
+	 */
 	def static boolean contains(Literal element, Literal subelement){
 		if (element instanceof LCollection){
 			return element.contains(subelement)
@@ -1502,11 +1508,19 @@ class Aadlv3Util {
 		return element.equals(subelement);
 	}
 	
+	/**
+	 * subcollection is contained in collection
+	 */
 	def static boolean contains(LCollection coll, LCollection subCollection){
 		return subCollection.elements.forall[elem| coll.contains(elem)]
 	}
 	
 	
+	/**
+	 * value satisfies constraint if one of the constraint alternatives is a subset of value
+	 * value: a collection of literals associated with a classifier
+	 * constraint: a collection of alternatives (ANY) where each alternative represents a single literal or collection of literals (ALL)
+	 */
 	def static boolean satisfies(LCollection value, LCollection constraint) {
 		for (orElement : constraint.elements) {
 			if (orElement instanceof LCollection) {
@@ -1519,6 +1533,9 @@ class Aadlv3Util {
 		return false
 	}
 	
+	/**
+	 * the product line qualifier of cl satisfies the specified constraint
+	 */
 	def static boolean satisfies(NamedType cl, LCollection constraint) {
 		val match = cl.getProductLineQualifier();
 		if (match instanceof LCollection){
@@ -1528,6 +1545,9 @@ class Aadlv3Util {
 	}
 
 	
+	/**
+	 * all elements of trefs satisfy the specified constraint
+	 */
 	def static boolean satisfies(Iterable<TypeReference> trefs, LCollection constraint) {
 		return trefs.forall[tref| tref.type.satisfies(constraint)]
 	}
@@ -1546,6 +1566,9 @@ class Aadlv3Util {
 		return getOwnedPropertyValue(cl,ProductLineQualifier) as LCollection
 	}
 	
+	/**
+	 * Get property value associated directly with the classifier
+	 */
 	def static Literal getOwnedPropertyValue(NamedType cl, String property) {
 		for (pa : cl.ownedPropertyAssociations) {
 			if (samePropertyDefinition(pa.property, property)) {
@@ -1555,6 +1578,9 @@ class Aadlv3Util {
 		}
 	}
 	
+	/**
+	 * Get property value associated directly with the model element
+	 */
 	def static Literal getOwnedPropertyValue(ModelElement me, String property) {
 		for (pa : me.ownedPropertyAssociations) {
 			if (samePropertyDefinition(pa.property, property)) {
@@ -1564,6 +1590,9 @@ class Aadlv3Util {
 		}
 	}
 	
+	/**
+	 * Get property value associated with the first Type/Classifier in the trefs list
+	 */
 	def static Literal getOwnedPropertyValue(Iterable<TypeReference> trefs, String property) {
 		for (tref : trefs) {
 			val res = getOwnedPropertyValue(tref.type, property);
@@ -1575,6 +1604,9 @@ class Aadlv3Util {
 	}
 	
 	
+	/**
+	 * Get property value associated with the model element or its classifier
+	 */
 	def static Literal getPropertyValue(ModelElement me, String property) {
 		val res = getOwnedPropertyValue(me, property);
 		if (res !== null) return res;

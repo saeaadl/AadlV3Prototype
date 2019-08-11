@@ -106,6 +106,8 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 			return createConfigurationActual();
 		case Aadlv3Package.WORKINGSET:
 			return createWorkingset();
+		case Aadlv3Package.INSTANCE_CONFIGURATION:
+			return createInstanceConfiguration();
 		case Aadlv3Package.NAMED_TYPE:
 			return createNamedType();
 		case Aadlv3Package.TYPE_DECL:
@@ -403,6 +405,17 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 	public Workingset createWorkingset() {
 		WorkingsetImpl workingset = new WorkingsetImpl();
 		return workingset;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public InstanceConfiguration createInstanceConfiguration() {
+		InstanceConfigurationImpl instanceConfiguration = new InstanceConfigurationImpl();
+		return instanceConfiguration;
 	}
 
 	/**

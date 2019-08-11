@@ -42,9 +42,11 @@ import org.osate.aadlv3.aadlv3.ConfigurationParameter;
 import org.osate.aadlv3.aadlv3.DirectionalLiteral;
 import org.osate.aadlv3.aadlv3.Feature;
 import org.osate.aadlv3.aadlv3.Import;
+import org.osate.aadlv3.aadlv3.InstanceConfiguration;
 import org.osate.aadlv3.aadlv3.IntegerLiteral;
 import org.osate.aadlv3.aadlv3.ListLiteral;
 import org.osate.aadlv3.aadlv3.ModelElementReference;
+import org.osate.aadlv3.aadlv3.MultiLiteralOperation;
 import org.osate.aadlv3.aadlv3.PackageDeclaration;
 import org.osate.aadlv3.aadlv3.PathElement;
 import org.osate.aadlv3.aadlv3.PathSequence;
@@ -138,6 +140,9 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 			case Aadlv3Package.IMPORT:
 				sequence_Import(context, (Import) semanticObject); 
 				return; 
+			case Aadlv3Package.INSTANCE_CONFIGURATION:
+				sequence_InstanceConfiguration_NestedImplementationElement_SubcomponentDecl(context, (InstanceConfiguration) semanticObject); 
+				return; 
 			case Aadlv3Package.INTEGER_LITERAL:
 				sequence_IntegerLiteral(context, (IntegerLiteral) semanticObject); 
 				return; 
@@ -146,6 +151,9 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 				return; 
 			case Aadlv3Package.MODEL_ELEMENT_REFERENCE:
 				sequence_ModelElementReference(context, (ModelElementReference) semanticObject); 
+				return; 
+			case Aadlv3Package.MULTI_LITERAL_OPERATION:
+				sequence_MultiLiteralOperation(context, (MultiLiteralOperation) semanticObject); 
 				return; 
 			case Aadlv3Package.PACKAGE_DECLARATION:
 				sequence_PackageDeclaration(context, (PackageDeclaration) semanticObject); 
@@ -182,7 +190,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 				sequence_StringLiteral(context, (StringLiteral) semanticObject); 
 				return; 
 			case Aadlv3Package.SUBCOMPONENT:
-				sequence_NestedImplementationElement_Subcomponent(context, (Subcomponent) semanticObject); 
+				sequence_NestedImplementationElement_Subcomponent_SubcomponentDecl(context, (Subcomponent) semanticObject); 
 				return; 
 			case Aadlv3Package.TYPE_DECL:
 				sequence_PropertiesBlock_TypeDecl(context, (TypeDecl) semanticObject); 
@@ -661,6 +669,24 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
+	 *     InstanceConfiguration returns InstanceConfiguration
+	 *
+	 * Constraint:
+	 *     (
+	 *         name=ID 
+	 *         category=ComponentCategory 
+	 *         typeReferences+=ClassifierOrTypeReference 
+	 *         (features+=Feature | connections+=Connection | bindings+=Binding | components+=Subcomponent | ownedPropertyAssociations+=PropertyAssociation)* 
+	 *         (constrainedProperty=[PropertyDefinition|QualifiedName] constraintExpression=MultiLiteralOperation)?
+	 *     )
+	 */
+	protected void sequence_InstanceConfiguration_NestedImplementationElement_SubcomponentDecl(ISerializationContext context, InstanceConfiguration semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Literal returns IntegerLiteral
 	 *     IntegerLiteral returns IntegerLiteral
 	 *
@@ -700,17 +726,30 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
+	 *     Literal returns MultiLiteralOperation
+	 *     MultiLiteralOperation returns MultiLiteralOperation
+	 *
+	 * Constraint:
+	 *     (operator=LOperation (elements+=Literal elements+=Literal*)?)
+	 */
+	protected void sequence_MultiLiteralOperation(ISerializationContext context, MultiLiteralOperation semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Subcomponent returns Subcomponent
 	 *
 	 * Constraint:
 	 *     (
 	 *         name=ID 
 	 *         category=ComponentCategory 
-	 *         typeReferences+=ClassifierOrTypeReference? 
+	 *         typeReferences+=ClassifierOrTypeReference 
 	 *         (features+=Feature | connections+=Connection | bindings+=Binding | components+=Subcomponent | ownedPropertyAssociations+=PropertyAssociation)*
 	 *     )
 	 */
-	protected void sequence_NestedImplementationElement_Subcomponent(ISerializationContext context, Subcomponent semanticObject) {
+	protected void sequence_NestedImplementationElement_Subcomponent_SubcomponentDecl(ISerializationContext context, Subcomponent semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -778,7 +817,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     TypeDecl returns TypeDecl
 	 *
 	 * Constraint:
-	 *     (private?='private'? name=ID type=Type? ownedPropertyAssociations+=PropertyAssociation*)
+	 *     (private?='private'? name=ID superType=Type? ownedPropertyAssociations+=PropertyAssociation*)
 	 */
 	protected void sequence_PropertiesBlock_TypeDecl(ISerializationContext context, TypeDecl semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -896,7 +935,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *         private?='private'? 
 	 *         name=QualifiedName 
 	 *         (useProperties+=[PropertySet|QualifiedName] useProperties+=[PropertySet|QualifiedName]*)? 
-	 *         rootComponents+=Subcomponent*
+	 *         instanceRoots+=InstanceConfiguration*
 	 *     )
 	 */
 	protected void sequence_UseProps_Workingset(ISerializationContext context, Workingset semanticObject) {

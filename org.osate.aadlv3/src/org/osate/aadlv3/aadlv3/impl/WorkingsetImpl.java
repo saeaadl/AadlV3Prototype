@@ -29,8 +29,8 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
+import org.osate.aadlv3.aadlv3.InstanceConfiguration;
 import org.osate.aadlv3.aadlv3.PropertySet;
-import org.osate.aadlv3.aadlv3.Subcomponent;
 import org.osate.aadlv3.aadlv3.Workingset;
 
 /**
@@ -41,7 +41,7 @@ import org.osate.aadlv3.aadlv3.Workingset;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.WorkingsetImpl#getRootComponents <em>Root Components</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.WorkingsetImpl#getInstanceRoots <em>Instance Roots</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.WorkingsetImpl#getUseProperties <em>Use Properties</em>}</li>
  * </ul>
  *
@@ -49,14 +49,14 @@ import org.osate.aadlv3.aadlv3.Workingset;
  */
 public class WorkingsetImpl extends PackageElementImpl implements Workingset {
 	/**
-	 * The cached value of the '{@link #getRootComponents() <em>Root Components</em>}' containment reference list.
+	 * The cached value of the '{@link #getInstanceRoots() <em>Instance Roots</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getRootComponents()
+	 * @see #getInstanceRoots()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Subcomponent> rootComponents;
+	protected EList<InstanceConfiguration> instanceRoots;
 
 	/**
 	 * The cached value of the '{@link #getUseProperties() <em>Use Properties</em>}' reference list.
@@ -93,12 +93,12 @@ public class WorkingsetImpl extends PackageElementImpl implements Workingset {
 	 * @generated
 	 */
 	@Override
-	public EList<Subcomponent> getRootComponents() {
-		if (rootComponents == null) {
-			rootComponents = new EObjectContainmentEList<Subcomponent>(Subcomponent.class, this,
-					Aadlv3Package.WORKINGSET__ROOT_COMPONENTS);
+	public EList<InstanceConfiguration> getInstanceRoots() {
+		if (instanceRoots == null) {
+			instanceRoots = new EObjectContainmentEList<InstanceConfiguration>(InstanceConfiguration.class, this,
+					Aadlv3Package.WORKINGSET__INSTANCE_ROOTS);
 		}
-		return rootComponents;
+		return instanceRoots;
 	}
 
 	/**
@@ -123,8 +123,8 @@ public class WorkingsetImpl extends PackageElementImpl implements Workingset {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case Aadlv3Package.WORKINGSET__ROOT_COMPONENTS:
-			return ((InternalEList<?>) getRootComponents()).basicRemove(otherEnd, msgs);
+		case Aadlv3Package.WORKINGSET__INSTANCE_ROOTS:
+			return ((InternalEList<?>) getInstanceRoots()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -137,8 +137,8 @@ public class WorkingsetImpl extends PackageElementImpl implements Workingset {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case Aadlv3Package.WORKINGSET__ROOT_COMPONENTS:
-			return getRootComponents();
+		case Aadlv3Package.WORKINGSET__INSTANCE_ROOTS:
+			return getInstanceRoots();
 		case Aadlv3Package.WORKINGSET__USE_PROPERTIES:
 			return getUseProperties();
 		}
@@ -154,9 +154,9 @@ public class WorkingsetImpl extends PackageElementImpl implements Workingset {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case Aadlv3Package.WORKINGSET__ROOT_COMPONENTS:
-			getRootComponents().clear();
-			getRootComponents().addAll((Collection<? extends Subcomponent>) newValue);
+		case Aadlv3Package.WORKINGSET__INSTANCE_ROOTS:
+			getInstanceRoots().clear();
+			getInstanceRoots().addAll((Collection<? extends InstanceConfiguration>) newValue);
 			return;
 		case Aadlv3Package.WORKINGSET__USE_PROPERTIES:
 			getUseProperties().clear();
@@ -174,8 +174,8 @@ public class WorkingsetImpl extends PackageElementImpl implements Workingset {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case Aadlv3Package.WORKINGSET__ROOT_COMPONENTS:
-			getRootComponents().clear();
+		case Aadlv3Package.WORKINGSET__INSTANCE_ROOTS:
+			getInstanceRoots().clear();
 			return;
 		case Aadlv3Package.WORKINGSET__USE_PROPERTIES:
 			getUseProperties().clear();
@@ -192,8 +192,8 @@ public class WorkingsetImpl extends PackageElementImpl implements Workingset {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case Aadlv3Package.WORKINGSET__ROOT_COMPONENTS:
-			return rootComponents != null && !rootComponents.isEmpty();
+		case Aadlv3Package.WORKINGSET__INSTANCE_ROOTS:
+			return instanceRoots != null && !instanceRoots.isEmpty();
 		case Aadlv3Package.WORKINGSET__USE_PROPERTIES:
 			return useProperties != null && !useProperties.isEmpty();
 		}

@@ -1,7 +1,7 @@
 package simpleinstances is
 import ConCon::*;
 workingset simpleinstances is
-	simpleSystems: system SimpleSystem::gps.i {#FeatureLabels => list (l1, l1, list (l1, l3));};
+	simpleSystems: system SimpleSystem::gps.i assert #FeatureLabels = any (l1, l1, all (l1, l3));
 //	basic: system Basic::gps.i;
 //	first : system SimpleConfiguration::top.i ;
 //	second : system SimpleConfiguration::top.topc ;

@@ -454,6 +454,29 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.InstanceConfiguration} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected InstanceConfigurationItemProvider instanceConfigurationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.InstanceConfiguration}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createInstanceConfigurationAdapter() {
+		if (instanceConfigurationItemProvider == null) {
+			instanceConfigurationItemProvider = new InstanceConfigurationItemProvider(this);
+		}
+
+		return instanceConfigurationItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.NumberLiteral} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1284,6 +1307,8 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 			configurationActualItemProvider.dispose();
 		if (workingsetItemProvider != null)
 			workingsetItemProvider.dispose();
+		if (instanceConfigurationItemProvider != null)
+			instanceConfigurationItemProvider.dispose();
 		if (namedTypeItemProvider != null)
 			namedTypeItemProvider.dispose();
 		if (typeDeclItemProvider != null)

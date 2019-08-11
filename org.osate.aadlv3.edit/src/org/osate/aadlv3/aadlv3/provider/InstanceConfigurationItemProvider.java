@@ -20,32 +20,28 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
 import org.osate.aadlv3.aadlv3.Aadlv3Factory;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
-import org.osate.aadlv3.aadlv3.Subcomponent;
+import org.osate.aadlv3.aadlv3.InstanceConfiguration;
 
 /**
- * This is the item provider adapter for a {@link org.osate.aadlv3.aadlv3.Subcomponent} object.
+ * This is the item provider adapter for a {@link org.osate.aadlv3.aadlv3.InstanceConfiguration} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class SubcomponentItemProvider extends ModelElementItemProvider {
+public class InstanceConfigurationItemProvider extends SubcomponentItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SubcomponentItemProvider(AdapterFactory adapterFactory) {
+	public InstanceConfigurationItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -60,25 +56,25 @@ public class SubcomponentItemProvider extends ModelElementItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addCategoryPropertyDescriptor(object);
+			addConstrainedPropertyPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Category feature.
+	 * This adds a property descriptor for the Constrained Property feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addCategoryPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Subcomponent_category_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Subcomponent_category_feature",
-								"_UI_Subcomponent_type"),
-						Aadlv3Package.Literals.SUBCOMPONENT__CATEGORY, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	protected void addConstrainedPropertyPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_InstanceConfiguration_constrainedProperty_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_InstanceConfiguration_constrainedProperty_feature",
+						"_UI_InstanceConfiguration_type"),
+				Aadlv3Package.Literals.INSTANCE_CONFIGURATION__CONSTRAINED_PROPERTY, true, false, true, null, null,
+				null));
 	}
 
 	/**
@@ -93,11 +89,7 @@ public class SubcomponentItemProvider extends ModelElementItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(Aadlv3Package.Literals.SUBCOMPONENT__TYPE_REFERENCES);
-			childrenFeatures.add(Aadlv3Package.Literals.SUBCOMPONENT__COMPONENTS);
-			childrenFeatures.add(Aadlv3Package.Literals.SUBCOMPONENT__BINDINGS);
-			childrenFeatures.add(Aadlv3Package.Literals.SUBCOMPONENT__CONNECTIONS);
-			childrenFeatures.add(Aadlv3Package.Literals.SUBCOMPONENT__FEATURES);
+			childrenFeatures.add(Aadlv3Package.Literals.INSTANCE_CONFIGURATION__CONSTRAINT_EXPRESSION);
 		}
 		return childrenFeatures;
 	}
@@ -116,14 +108,14 @@ public class SubcomponentItemProvider extends ModelElementItemProvider {
 	}
 
 	/**
-	 * This returns Subcomponent.gif.
+	 * This returns InstanceConfiguration.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Subcomponent"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/InstanceConfiguration"));
 	}
 
 	/**
@@ -134,9 +126,9 @@ public class SubcomponentItemProvider extends ModelElementItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Subcomponent) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_Subcomponent_type")
-				: getString("_UI_Subcomponent_type") + " " + label;
+		String label = ((InstanceConfiguration) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_InstanceConfiguration_type")
+				: getString("_UI_InstanceConfiguration_type") + " " + label;
 	}
 
 	/**
@@ -150,15 +142,8 @@ public class SubcomponentItemProvider extends ModelElementItemProvider {
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Subcomponent.class)) {
-		case Aadlv3Package.SUBCOMPONENT__CATEGORY:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
-		case Aadlv3Package.SUBCOMPONENT__TYPE_REFERENCES:
-		case Aadlv3Package.SUBCOMPONENT__COMPONENTS:
-		case Aadlv3Package.SUBCOMPONENT__BINDINGS:
-		case Aadlv3Package.SUBCOMPONENT__CONNECTIONS:
-		case Aadlv3Package.SUBCOMPONENT__FEATURES:
+		switch (notification.getFeatureID(InstanceConfiguration.class)) {
+		case Aadlv3Package.INSTANCE_CONFIGURATION__CONSTRAINT_EXPRESSION:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -176,23 +161,9 @@ public class SubcomponentItemProvider extends ModelElementItemProvider {
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.SUBCOMPONENT__TYPE_REFERENCES,
-				Aadlv3Factory.eINSTANCE.createTypeReference()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.SUBCOMPONENT__COMPONENTS,
-				Aadlv3Factory.eINSTANCE.createSubcomponent()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.SUBCOMPONENT__COMPONENTS,
-				Aadlv3Factory.eINSTANCE.createInstanceConfiguration()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.SUBCOMPONENT__BINDINGS,
-				Aadlv3Factory.eINSTANCE.createAssociation()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.SUBCOMPONENT__CONNECTIONS,
-				Aadlv3Factory.eINSTANCE.createAssociation()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.SUBCOMPONENT__FEATURES,
-				Aadlv3Factory.eINSTANCE.createFeature()));
+		newChildDescriptors
+				.add(createChildParameter(Aadlv3Package.Literals.INSTANCE_CONFIGURATION__CONSTRAINT_EXPRESSION,
+						Aadlv3Factory.eINSTANCE.createMultiLiteralOperation()));
 	}
 
 	/**

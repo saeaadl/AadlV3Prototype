@@ -42,8 +42,8 @@ PropertySet returns av3::PropertySet:
 ;
 
 TypeDecl returns av3::TypeDecl:
-	(private?='private')? 'type' name=ID /*('extends' baseType=Type)?*/ (':' type=Type)?
-	PropertiesBlock? ';'
+	(private?='private')? 'type' name=ID ('extends' superType=Type)?
+		PropertiesBlock? ';'
 ;
 
 
@@ -63,7 +63,7 @@ ModelElementReference returns av3::ModelElementReference:
 	element=[av3::ModelElement|ID] -> ({av3::ModelElementReference.context=current} '.' element=[av3::ModelElement|ID])*;
 
 Literal returns av3::Literal:
-	IntegerLiteral | RealLiteral | StringLiteral | BooleanLiteral | TypeReference | DirectionalLiteral | ListLiteral 
+	IntegerLiteral | RealLiteral | StringLiteral | BooleanLiteral | TypeReference | DirectionalLiteral | ListLiteral | MultiLiteralOperation
 ;
 
 IntegerLiteral returns av3::SingleLiteral:
@@ -97,6 +97,10 @@ DirectionalLiteral returns av3::DirectionalLiteral:
 	{av3::DirectionalLiteral}direction=PropagationDirection value=Literal
 ;
 
+
+MultiLiteralOperation returns av3::MultiLiteralOperation:
+	{av3::MultiLiteralOperation} operator=LOperation '(' (elements+=Literal (',' elements+=Literal)*)? ')'
+;
 
 
 ComponentInterface returns av3::ComponentInterface:
@@ -149,11 +153,14 @@ Feature returns av3::Feature:
 	;
 
 Subcomponent returns av3::Subcomponent:
+	{av3::Subcomponent}SubcomponentDecl ';'
+ ;
+ 
+fragment SubcomponentDecl*:
 	name=ID ':' category=ComponentCategory
-	(typeReferences+=ClassifierOrTypeReference 
+	typeReferences+=ClassifierOrTypeReference 
 		//(',' typeReferences+=TypeReference?)*
-	)?
-	NestedComponentImplementationBlock? ';'
+	NestedComponentImplementationBlock? 
  ;
 
 Connection returns av3::Association:
@@ -318,11 +325,15 @@ ConfigurationActual returns av3::ConfigurationActual:
 Workingset returns av3::Workingset: 
 	(private?='private')? 'workingset' name=QualifiedName 'is' 
 	UseProps?
-	 ( rootComponents+=Subcomponent )*  
+	 ( instanceRoots+=InstanceConfiguration )*  
 	'end' ';'
 ;
 
-
+InstanceConfiguration returns av3::InstanceConfiguration:
+	{av3::InstanceConfiguration} SubcomponentDecl 
+	('assert' '#'constrainedProperty=[av3::PropertyDefinition|QualifiedName] '=' constraintExpression=MultiLiteralOperation)?
+	';'
+;
 
 QualifiedNameWithWildcard:
 	QualifiedName '::*';
@@ -367,6 +378,9 @@ Composite returns av3::Composite:
 Primitive returns av3::Primitive:
 	'boolean' | 'integer' | 'real' | 'string' ;
 	
+
+LOperation returns av3::LOperation:
+	'any' | 'all' | 'oneof' | 'of' | 'ormore' | 'orless' ;
 	
 AssociationType returns  av3::AssociationType:
 	IsConnection | IsBinding | IsFlow 

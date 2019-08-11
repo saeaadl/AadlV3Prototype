@@ -195,6 +195,11 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseInstanceConfiguration(InstanceConfiguration object) {
+			return createInstanceConfigurationAdapter();
+		}
+
+		@Override
 		public Adapter caseType(Type object) {
 			return createTypeAdapter();
 		}
@@ -649,6 +654,20 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createWorkingsetAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.InstanceConfiguration <em>Instance Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.osate.aadlv3.aadlv3.InstanceConfiguration
+	 * @generated
+	 */
+	public Adapter createInstanceConfigurationAdapter() {
 		return null;
 	}
 

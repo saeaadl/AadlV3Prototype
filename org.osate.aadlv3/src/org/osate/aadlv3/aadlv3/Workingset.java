@@ -26,7 +26,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.osate.aadlv3.aadlv3.Workingset#getRootComponents <em>Root Components</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.Workingset#getInstanceRoots <em>Instance Roots</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.Workingset#getUseProperties <em>Use Properties</em>}</li>
  * </ul>
  *
@@ -36,20 +36,16 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface Workingset extends PackageElement {
 	/**
-	 * Returns the value of the '<em><b>Root Components</b></em>' containment reference list.
-	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.Subcomponent}.
+	 * Returns the value of the '<em><b>Instance Roots</b></em>' containment reference list.
+	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.InstanceConfiguration}.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Root Components</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Root Components</em>' containment reference list.
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getWorkingset_RootComponents()
+	 * @return the value of the '<em>Instance Roots</em>' containment reference list.
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getWorkingset_InstanceRoots()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Subcomponent> getRootComponents();
+	EList<InstanceConfiguration> getInstanceRoots();
 
 	/**
 	 * Returns the value of the '<em><b>Use Properties</b></em>' reference list.

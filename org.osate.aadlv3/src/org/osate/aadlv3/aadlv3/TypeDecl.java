@@ -15,8 +15,6 @@
  */
 package org.osate.aadlv3.aadlv3;
 
-import org.eclipse.emf.ecore.EObject;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Type Decl</b></em>'.
@@ -26,7 +24,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.osate.aadlv3.aadlv3.TypeDecl#getType <em>Type</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.TypeDecl#getSuperType <em>Super Type</em>}</li>
  * </ul>
  *
  * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getTypeDecl()
@@ -35,25 +33,25 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface TypeDecl extends NamedType {
 	/**
-	 * Returns the value of the '<em><b>Type</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Super Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Type</em>' containment reference.
-	 * @see #setType(EObject)
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getTypeDecl_Type()
+	 * @return the value of the '<em>Super Type</em>' containment reference.
+	 * @see #setSuperType(Type)
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getTypeDecl_SuperType()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EObject getType();
+	Type getSuperType();
 
 	/**
-	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.TypeDecl#getType <em>Type</em>}' containment reference.
+	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.TypeDecl#getSuperType <em>Super Type</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Type</em>' containment reference.
-	 * @see #getType()
+	 * @param value the new value of the '<em>Super Type</em>' containment reference.
+	 * @see #getSuperType()
 	 * @generated
 	 */
-	void setType(EObject value);
+	void setSuperType(Type value);
 
 } // TypeDecl

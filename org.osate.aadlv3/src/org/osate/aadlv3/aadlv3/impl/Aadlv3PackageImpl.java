@@ -49,6 +49,7 @@ import org.osate.aadlv3.aadlv3.Feature;
 import org.osate.aadlv3.aadlv3.FeatureCategory;
 import org.osate.aadlv3.aadlv3.FeatureDirection;
 import org.osate.aadlv3.aadlv3.Import;
+import org.osate.aadlv3.aadlv3.InstanceConfiguration;
 import org.osate.aadlv3.aadlv3.IntegerLiteral;
 import org.osate.aadlv3.aadlv3.LCollection;
 import org.osate.aadlv3.aadlv3.LOperation;
@@ -239,6 +240,13 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	private EClass workingsetEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass instanceConfigurationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1350,7 +1358,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getWorkingset_RootComponents() {
+	public EReference getWorkingset_InstanceRoots() {
 		return (EReference) workingsetEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -1362,6 +1370,36 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	@Override
 	public EReference getWorkingset_UseProperties() {
 		return (EReference) workingsetEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getInstanceConfiguration() {
+		return instanceConfigurationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getInstanceConfiguration_ConstrainedProperty() {
+		return (EReference) instanceConfigurationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getInstanceConfiguration_ConstraintExpression() {
+		return (EReference) instanceConfigurationEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1850,7 +1888,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getTypeDecl_Type() {
+	public EReference getTypeDecl_SuperType() {
 		return (EReference) typeDeclEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -2313,8 +2351,12 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		createEReference(configurationActualEClass, CONFIGURATION_ACTUAL__ASSIGNED_CLASSIFIERS);
 
 		workingsetEClass = createEClass(WORKINGSET);
-		createEReference(workingsetEClass, WORKINGSET__ROOT_COMPONENTS);
+		createEReference(workingsetEClass, WORKINGSET__INSTANCE_ROOTS);
 		createEReference(workingsetEClass, WORKINGSET__USE_PROPERTIES);
+
+		instanceConfigurationEClass = createEClass(INSTANCE_CONFIGURATION);
+		createEReference(instanceConfigurationEClass, INSTANCE_CONFIGURATION__CONSTRAINED_PROPERTY);
+		createEReference(instanceConfigurationEClass, INSTANCE_CONFIGURATION__CONSTRAINT_EXPRESSION);
 
 		typeEClass = createEClass(TYPE);
 
@@ -2322,7 +2364,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		createEReference(namedTypeEClass, NAMED_TYPE__OWNED_PROPERTY_ASSOCIATIONS);
 
 		typeDeclEClass = createEClass(TYPE_DECL);
-		createEReference(typeDeclEClass, TYPE_DECL__TYPE);
+		createEReference(typeDeclEClass, TYPE_DECL__SUPER_TYPE);
 
 		primitiveTypeEClass = createEClass(PRIMITIVE_TYPE);
 		createEAttribute(primitiveTypeEClass, PRIMITIVE_TYPE__PRIMITIVE_TYPE);
@@ -2465,6 +2507,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		classifierAssignmentPatternEClass.getESuperTypes().add(this.getClassifierAssignment());
 		configurationParameterEClass.getESuperTypes().add(this.getNamedType());
 		workingsetEClass.getESuperTypes().add(this.getPackageElement());
+		instanceConfigurationEClass.getESuperTypes().add(this.getSubcomponent());
 		namedTypeEClass.getESuperTypes().add(this.getPackageElement());
 		namedTypeEClass.getESuperTypes().add(this.getType());
 		typeDeclEClass.getESuperTypes().add(this.getNamedType());
@@ -2747,12 +2790,21 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 
 		initEClass(workingsetEClass, Workingset.class, "Workingset", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getWorkingset_RootComponents(), this.getSubcomponent(), null, "rootComponents", null, 0, -1,
-				Workingset.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+		initEReference(getWorkingset_InstanceRoots(), this.getInstanceConfiguration(), null, "instanceRoots", null, 0,
+				-1, Workingset.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getWorkingset_UseProperties(), this.getPropertySet(), null, "useProperties", null, 0, -1,
 				Workingset.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(instanceConfigurationEClass, InstanceConfiguration.class, "InstanceConfiguration", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getInstanceConfiguration_ConstrainedProperty(), this.getPropertyDefinition(), null,
+				"constrainedProperty", null, 0, 1, InstanceConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getInstanceConfiguration_ConstraintExpression(), this.getMultiLiteralOperation(), null,
+				"constraintExpression", null, 0, 1, InstanceConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(typeEClass, Type.class, "Type", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -2764,7 +2816,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 
 		initEClass(typeDeclEClass, TypeDecl.class, "TypeDecl", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTypeDecl_Type(), ecorePackage.getEObject(), null, "type", null, 0, 1, TypeDecl.class,
+		initEReference(getTypeDecl_SuperType(), this.getType(), null, "superType", null, 0, 1, TypeDecl.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

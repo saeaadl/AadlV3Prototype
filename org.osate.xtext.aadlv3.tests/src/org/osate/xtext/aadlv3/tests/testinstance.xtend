@@ -52,7 +52,7 @@ class testinstance extends XtextTest{
 	def void simpleinstancestest() {
 		val pd = testHelper.parseFile("org.osate.xtext.aadlv3.tests/models/AV3Examples/simpleinstances.av3","org.osate.xtext.aadlv3.tests/models/AV3Examples/SimpleConfiguration.av3")
 		val ws = pd.getElements().get(0) as Workingset
-		root = new Instantiator().instantiateRoot(ws.getRootComponents().get(0));
+		root = new Instantiator().instantiateRoot(ws.instanceRoots.get(0));
 		println("Instantiated "+root.getName());
 		// all verification activities
 		assertAll("Root ", 

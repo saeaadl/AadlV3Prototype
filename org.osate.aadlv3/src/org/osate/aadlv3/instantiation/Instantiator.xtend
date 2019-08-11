@@ -45,7 +45,7 @@ class Instantiator {
 	
 	def instantiate(Workingset ws) {
 		expectedProperties = ws.expectedProperties
-		for (iroot : ws.rootComponents) {
+		for (iroot : ws.instanceRoots) {
 			configurationConstraint = getProductLineQualifier(iroot);
 			if (iroot.typeReferences.satisfies(configurationConstraint)){
 				System.out.println("yes")

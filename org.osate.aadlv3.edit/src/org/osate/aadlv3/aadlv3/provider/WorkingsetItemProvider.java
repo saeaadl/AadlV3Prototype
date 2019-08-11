@@ -91,7 +91,7 @@ public class WorkingsetItemProvider extends PackageElementItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(Aadlv3Package.Literals.WORKINGSET__ROOT_COMPONENTS);
+			childrenFeatures.add(Aadlv3Package.Literals.WORKINGSET__INSTANCE_ROOTS);
 		}
 		return childrenFeatures;
 	}
@@ -145,7 +145,7 @@ public class WorkingsetItemProvider extends PackageElementItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Workingset.class)) {
-		case Aadlv3Package.WORKINGSET__ROOT_COMPONENTS:
+		case Aadlv3Package.WORKINGSET__INSTANCE_ROOTS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -163,8 +163,8 @@ public class WorkingsetItemProvider extends PackageElementItemProvider {
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.WORKINGSET__ROOT_COMPONENTS,
-				Aadlv3Factory.eINSTANCE.createSubcomponent()));
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.WORKINGSET__INSTANCE_ROOTS,
+				Aadlv3Factory.eINSTANCE.createInstanceConfiguration()));
 	}
 
 }

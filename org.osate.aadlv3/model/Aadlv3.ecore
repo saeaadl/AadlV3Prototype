@@ -155,10 +155,15 @@
         eType="#//TypeReference" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Workingset" eSuperTypes="#//PackageElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="rootComponents" upperBound="-1"
-        eType="#//Subcomponent" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="instanceRoots" upperBound="-1"
+        eType="#//InstanceConfiguration" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="useProperties" upperBound="-1"
         eType="#//PropertySet"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InstanceConfiguration" eSuperTypes="#//Subcomponent">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="constrainedProperty" eType="#//PropertyDefinition"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="constraintExpression" eType="#//MultiLiteralOperation"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="ComponentCategory">
     <eLiterals name="interface" literal="interface"/>
@@ -219,7 +224,7 @@
         upperBound="-1" eType="#//PropertyAssociation" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypeDecl" eSuperTypes="#//NamedType">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="superType" eType="#//Type"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PrimitiveType" eSuperTypes="#//Type">
