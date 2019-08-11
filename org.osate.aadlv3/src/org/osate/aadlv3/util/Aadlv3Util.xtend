@@ -57,7 +57,7 @@ class Aadlv3Util {
 	 * strip the last ID and dot of a string with dotted IDs
 	 * If the string has no dot return the string
 	 */
-	static def String stripLastSegment(String dottedString) {
+	static def String stripExtensionInName(String dottedString) {
 		val idx = dottedString.lastIndexOf('.');
 		if (idx >= 0) {
 			return dottedString.substring(0, idx);

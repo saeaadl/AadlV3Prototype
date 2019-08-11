@@ -40,6 +40,9 @@ import static extension org.osate.aadlv3.util.Aadlv3Util.*
 import org.eclipse.emf.common.util.EList
 import org.osate.aadlv3.aadlv3.TypeDecl
 import org.osate.aadlv3.util.Aadlv3Util
+import org.osate.aadlv3.util.Av3API
+import org.osate.aadlv3.util.Aadlv3GlobalScopeUtil
+import java.util.Collection
 
 /**
  * This class contains custom validation rules. 
@@ -893,7 +896,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	def checkInterface(ComponentRealization cimpl) {
 		val interface = getInterface(cimpl);
 		if (interface === null) {
-			error('Could not find Component Interface '+Aadlv3Util.stripLastSegment(cimpl.getName()), cimpl, null, FormalActualMismatch)
+			error('Could not find Component Interface '+Aadlv3Util.stripExtensionInName(cimpl.getName()), cimpl, null, FormalActualMismatch)
 		}
 	}
 
@@ -989,7 +992,6 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 		for (tr : trs) {
 			val type = tr.type
 			if (type instanceof Classifier) {
-				val configurables = type.getConfigurableRealizations()
 				val topimpl = type.topComponentImplementation
 				if (top === null || top.isSuperImplementationOf(topimpl)) {
 					top = topimpl

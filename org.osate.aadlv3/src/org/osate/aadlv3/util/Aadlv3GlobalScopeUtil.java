@@ -7,6 +7,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.xtext.naming.IQualifiedNameConverter;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
@@ -16,6 +17,7 @@ import org.eclipse.xtext.resource.IResourceServiceProvider;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.impl.ImportedNamespaceAwareLocalScopeProvider;
 import org.osate.aadlv3.aadlv3.Classifier;
+import org.osate.aadlv3.aadlv3.ComponentInterface;
 
 import com.google.common.base.Predicate;
 import com.google.inject.Inject;
@@ -29,7 +31,7 @@ import com.google.inject.Injector;
 public class Aadlv3GlobalScopeUtil {
 
 	@Inject
-	static IEClassGlobalScopeProvider globalScope;
+	static IEClassGlobalScopeProvider globalScopeProvider;
 	@Inject
 	static ImportedNamespaceAwareLocalScopeProvider nameSpaceScope;
 
@@ -42,7 +44,7 @@ public class Aadlv3GlobalScopeUtil {
 	static {
 		Injector injector = IResourceServiceProvider.Registry.INSTANCE
 				.getResourceServiceProvider(URI.createFileURI("dummy.av3")).get(Injector.class);
-		globalScope = injector.getInstance(IEClassGlobalScopeProvider.class);
+		globalScopeProvider = injector.getInstance(IEClassGlobalScopeProvider.class);
 		nameSpaceScope = injector.getInstance(ImportedNamespaceAwareLocalScopeProvider.class);
 		qnameConverter = injector.getInstance(IQualifiedNameConverter.class);
 		qnameProvider = injector.getInstance(IQualifiedNameProvider.class);
@@ -62,7 +64,7 @@ public class Aadlv3GlobalScopeUtil {
 	@SuppressWarnings("unchecked")
 	public static <T extends EObject> T get(EObject context, EClass eClass, String qname) {
 		T result = null;
-		IScope scope = globalScope.getScope(context.eResource(), eClass);
+		IScope scope = globalScopeProvider.getScope(context.eResource(), eClass);
 		IEObjectDescription desc = scope.getSingleElement(qnameConverter.toQualifiedName(qname));
 		if (desc != null) {
 			EObject o = desc.getEObjectOrProxy();
@@ -97,14 +99,14 @@ public class Aadlv3GlobalScopeUtil {
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	public static <T extends EObject> Collection<T> getAll(EObject context, EClass eClass) {
+	public static <T extends EObject> Collection<T> getAll(Resource rsc, EClass eClass) {
 		Collection<T> result = new ArrayList<T>();
-		IScope scope = globalScope.getScope(context.eResource(), eClass);
+		IScope scope = globalScopeProvider.getAllScope(rsc, eClass);
 		for(IEObjectDescription desc: scope.getAllElements()) {
 			if (desc != null) {
 				EObject o = desc.getEObjectOrProxy();
 				if (o.eIsProxy()) {
-					o = EcoreUtil.resolve(o, context);
+					o = EcoreUtil.resolve(o, rsc);
 				}
 				if (!o.eIsProxy()) result.add((T) o);
 			}
@@ -114,20 +116,21 @@ public class Aadlv3GlobalScopeUtil {
 
 	
 	/**
-	 * Get all global definitions in specified context.
+	 * Get all global definitions in specified context
 	 * Primarily used to get all implementations or configurations for a given interface
 	 * @param context the component interface (or other context object whose global content is to be returned
 	 * @param eClass
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	public static <T extends EObject> Collection<T> getAllInContext(Classifier context, EClass eClass) {
+	public static <T extends EObject> Collection<T> getAllInContext(ComponentInterface context, EClass eClass) {
 		Collection<T> result = new ArrayList<T>();
 		final QualifiedName qn = qnameProvider.getFullyQualifiedName(context);
-		IScope scope = globalScope.getScope(context.eResource(), eClass,new Predicate<IEObjectDescription>() {
+		final String ifname = qn.getLastSegment();
+		IScope scope = globalScopeProvider.getAllScope(context.eResource(), eClass,new Predicate<IEObjectDescription>() {
 			@Override
 			public boolean apply(IEObjectDescription input) {
-				return qn.equals(input.getQualifiedName().skipLast(1));
+				return ifname.equals(Aadlv3Util.stripExtensionInName(input.getQualifiedName().getLastSegment()));
 			}
 		});
 		for(IEObjectDescription desc: scope.getAllElements()) {

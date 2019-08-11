@@ -25,7 +25,7 @@ public class Av3API {
 	}
 	
 	public static Collection<PropertyDefinition> getAllPropertyDefinitions(EObject context) {
-		return Aadlv3GlobalScopeUtil.getAll(context, Aadlv3Package.eINSTANCE.getPropertyDefinition());
+		return Aadlv3GlobalScopeUtil.getAll(context.eResource(), Aadlv3Package.eINSTANCE.getPropertyDefinition());
 	}
 	
 	public static PropertySet lookupPropertySet(EObject context, String qpname) {
@@ -59,7 +59,7 @@ public class Av3API {
 				return creal.getCachedInterfaceReference();
 			}
 			String iname = creal.getName();
-			String ifname = Aadlv3Util.stripLastSegment(iname);
+			String ifname = Aadlv3Util.stripExtensionInName(iname);
 			PackageDeclaration pkg = Aadlv3Util.getContainingPackage(ccl);
 			for (Import importdecl : pkg.getImports()) {
 				if (importdecl.getAlias() != null && importdecl.getAlias().equals(ifname)){
@@ -91,10 +91,10 @@ public class Av3API {
 
 	public static Collection<ComponentRealization> getConfigurableRealizations(Classifier classifier) {
 		ComponentInterface cinterface = getInterface(classifier);
-		Collection<ComponentRealization> allif = Aadlv3GlobalScopeUtil.getAllInContext(cinterface, Aadlv3Package.eINSTANCE.getComponentRealization());
+		Collection<ComponentRealization> allif = Aadlv3GlobalScopeUtil.getAll(cinterface.eResource(), Aadlv3Package.eINSTANCE.getComponentRealization());
 //		allif.stream().filter(uri -> uri.getHost().equals("www.jgrapht.org")).findAny();
-		Collection<ComponentRealization> all = Aadlv3GlobalScopeUtil.getAllInContext(classifier, Aadlv3Package.eINSTANCE.getComponentRealization());
-		return all;
+//		Collection<ComponentRealization> all = Aadlv3GlobalScopeUtil.getAllInContext(classifier, Aadlv3Package.eINSTANCE.getComponentRealization());
+		return allif;
 	}
 	
 }

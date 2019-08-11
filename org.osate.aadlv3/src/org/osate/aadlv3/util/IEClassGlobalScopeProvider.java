@@ -15,5 +15,9 @@ public interface IEClassGlobalScopeProvider extends IGlobalScopeProvider {
 	IScope getScope(Resource resource, EClass type, Predicate<IEObjectDescription> filter);
 
 	IScope getScope(Resource resource, EClass type);
+	
+	IScope getAllScope( final Resource containerContext,  EClass type) ;
+
+	IScope getAllScope( final Resource containerContext,  EClass type, Predicate<IEObjectDescription> filter);
 
 }
