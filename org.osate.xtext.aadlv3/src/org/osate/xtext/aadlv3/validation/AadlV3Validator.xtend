@@ -537,7 +537,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	 */
 	def checkDuplicatePropertyAssociations(Classifier cl) {
 		checkDuplicatePropertyAssociations(cl.ownedPropertyAssociations, cl,
-			Aadlv3Package.Literals.NAMED_TYPE__OWNED_PROPERTY_ASSOCIATIONS)
+			Aadlv3Package.Literals.NAMED_ELEMENT__OWNED_PROPERTY_ASSOCIATIONS)
 	}
 
 	/**
@@ -553,7 +553,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	 */
 	def checkDuplicatePropertyAssociations(ModelElement me) {
 		checkDuplicatePropertyAssociations(me.ownedPropertyAssociations, me,
-			Aadlv3Package.Literals.MODEL_ELEMENT__OWNED_PROPERTY_ASSOCIATIONS)
+			Aadlv3Package.Literals.NAMED_ELEMENT__OWNED_PROPERTY_ASSOCIATIONS)
 	}
 
 	def checkDuplicatePropertyAssociations(Iterable<PropertyAssociation> pas, EObject target,
@@ -761,7 +761,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 									' conflicts with final ' + (configuredPA.eContainer as Classifier).name +
 									'::' + configuredPA.target.targetPath + '#' + configuredPA.property.name +
 									'configured for component ' + context.element.name, rdcont,
-								Aadlv3Package.Literals.NAMED_TYPE__OWNED_PROPERTY_ASSOCIATIONS,
+								Aadlv3Package.Literals.NAMED_ELEMENT__OWNED_PROPERTY_ASSOCIATIONS,
 								rdcont.ownedPropertyAssociations.indexOf(rdPA), ConflictingFinal)
 						}
 					}
@@ -791,7 +791,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 										' conflicts with final ' +
 										(configuredPA.eContainer as Classifier).name + '::' +
 										configuredPA.target.targetPath + '#' + configuredPA.property.name, rdcont,
-									Aadlv3Package.Literals.NAMED_TYPE__OWNED_PROPERTY_ASSOCIATIONS,
+									Aadlv3Package.Literals.NAMED_ELEMENT__OWNED_PROPERTY_ASSOCIATIONS,
 									rdcont.ownedPropertyAssociations.indexOf(rdPA), ConflictingFinal)
 							}
 							
@@ -824,7 +824,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 											rdPA.property.name + ' conflicts with final ' +
 											(casPA.eContainer as Classifier).name + '::' +
 											casPA.target.targetPath + '#' + casPA.property.name, rdcont,
-										Aadlv3Package.Literals.NAMED_TYPE__OWNED_PROPERTY_ASSOCIATIONS,
+										Aadlv3Package.Literals.NAMED_ELEMENT__OWNED_PROPERTY_ASSOCIATIONS,
 										rdcont.ownedPropertyAssociations.indexOf(rdPA), ConflictingFinal)
 								}
 							}

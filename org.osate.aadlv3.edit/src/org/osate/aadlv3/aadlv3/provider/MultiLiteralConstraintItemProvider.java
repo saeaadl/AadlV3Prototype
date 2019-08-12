@@ -27,7 +27,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
-import org.osate.aadlv3.aadlv3.LOperation;
+import org.osate.aadlv3.aadlv3.LOperator;
 import org.osate.aadlv3.aadlv3.MultiLiteralConstraint;
 
 /**
@@ -98,7 +98,7 @@ public class MultiLiteralConstraintItemProvider extends LCollectionItemProvider 
 	 */
 	@Override
 	public String getText(Object object) {
-		LOperation labelValue = ((MultiLiteralConstraint) object).getOperator();
+		LOperator labelValue = ((MultiLiteralConstraint) object).getOperator();
 		String label = labelValue == null ? null : labelValue.toString();
 		return label == null || label.length() == 0 ? getString("_UI_MultiLiteralConstraint_type")
 				: getString("_UI_MultiLiteralConstraint_type") + " " + label;

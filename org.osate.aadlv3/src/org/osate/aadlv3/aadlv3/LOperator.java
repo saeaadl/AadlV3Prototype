@@ -23,14 +23,14 @@ import org.eclipse.emf.common.util.Enumerator;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the literals of the enumeration '<em><b>LOperation</b></em>',
+ * A representation of the literals of the enumeration '<em><b>LOperator</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getLOperation()
+ * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getLOperator()
  * @model
  * @generated
  */
-public enum LOperation implements Enumerator {
+public enum LOperator implements Enumerator {
 	/**
 	 * The '<em><b>ANY</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -158,32 +158,32 @@ public enum LOperation implements Enumerator {
 	public static final int KORLESS_VALUE = 5;
 
 	/**
-	 * An array of all the '<em><b>LOperation</b></em>' enumerators.
+	 * An array of all the '<em><b>LOperator</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final LOperation[] VALUES_ARRAY = new LOperation[] { ANY, ALL, ONEOF, KOFN, KORMORE, KORLESS, };
+	private static final LOperator[] VALUES_ARRAY = new LOperator[] { ANY, ALL, ONEOF, KOFN, KORMORE, KORLESS, };
 
 	/**
-	 * A public read-only list of all the '<em><b>LOperation</b></em>' enumerators.
+	 * A public read-only list of all the '<em><b>LOperator</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<LOperation> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<LOperator> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>LOperation</b></em>' literal with the specified literal value.
+	 * Returns the '<em><b>LOperator</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param literal the literal.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
-	public static LOperation get(String literal) {
+	public static LOperator get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			LOperation result = VALUES_ARRAY[i];
+			LOperator result = VALUES_ARRAY[i];
 			if (result.toString().equals(literal)) {
 				return result;
 			}
@@ -192,16 +192,16 @@ public enum LOperation implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>LOperation</b></em>' literal with the specified name.
+	 * Returns the '<em><b>LOperator</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param name the name.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
-	public static LOperation getByName(String name) {
+	public static LOperator getByName(String name) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			LOperation result = VALUES_ARRAY[i];
+			LOperator result = VALUES_ARRAY[i];
 			if (result.getName().equals(name)) {
 				return result;
 			}
@@ -210,14 +210,14 @@ public enum LOperation implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>LOperation</b></em>' literal with the specified integer value.
+	 * Returns the '<em><b>LOperator</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the integer value.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
-	public static LOperation get(int value) {
+	public static LOperator get(int value) {
 		switch (value) {
 		case ANY_VALUE:
 			return ANY;
@@ -262,7 +262,7 @@ public enum LOperation implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private LOperation(int value, String name, String literal) {
+	private LOperator(int value, String name, String literal) {
 		this.value = value;
 		this.name = name;
 		this.literal = literal;
@@ -309,4 +309,4 @@ public enum LOperation implements Enumerator {
 		return literal;
 	}
 
-} //LOperation
+} //LOperator

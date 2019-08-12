@@ -23,14 +23,14 @@ import org.eclipse.emf.common.util.Enumerator;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the literals of the enumeration '<em><b>EOperation</b></em>',
+ * A representation of the literals of the enumeration '<em><b>EOperator</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getEOperation()
+ * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getEOperator()
  * @model
  * @generated
  */
-public enum EOperation implements Enumerator {
+public enum EOperator implements Enumerator {
 	/**
 	 * The '<em><b>OR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -53,32 +53,32 @@ public enum EOperation implements Enumerator {
 	public static final int OR_VALUE = 0;
 
 	/**
-	 * An array of all the '<em><b>EOperation</b></em>' enumerators.
+	 * An array of all the '<em><b>EOperator</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final EOperation[] VALUES_ARRAY = new EOperation[] { OR, };
+	private static final EOperator[] VALUES_ARRAY = new EOperator[] { OR, };
 
 	/**
-	 * A public read-only list of all the '<em><b>EOperation</b></em>' enumerators.
+	 * A public read-only list of all the '<em><b>EOperator</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<EOperation> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<EOperator> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>EOperation</b></em>' literal with the specified literal value.
+	 * Returns the '<em><b>EOperator</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param literal the literal.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
-	public static EOperation get(String literal) {
+	public static EOperator get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			EOperation result = VALUES_ARRAY[i];
+			EOperator result = VALUES_ARRAY[i];
 			if (result.toString().equals(literal)) {
 				return result;
 			}
@@ -87,16 +87,16 @@ public enum EOperation implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>EOperation</b></em>' literal with the specified name.
+	 * Returns the '<em><b>EOperator</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param name the name.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
-	public static EOperation getByName(String name) {
+	public static EOperator getByName(String name) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			EOperation result = VALUES_ARRAY[i];
+			EOperator result = VALUES_ARRAY[i];
 			if (result.getName().equals(name)) {
 				return result;
 			}
@@ -105,14 +105,14 @@ public enum EOperation implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>EOperation</b></em>' literal with the specified integer value.
+	 * Returns the '<em><b>EOperator</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the integer value.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
-	public static EOperation get(int value) {
+	public static EOperator get(int value) {
 		switch (value) {
 		case OR_VALUE:
 			return OR;
@@ -147,7 +147,7 @@ public enum EOperation implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EOperation(int value, String name, String literal) {
+	private EOperator(int value, String name, String literal) {
 		this.value = value;
 		this.name = name;
 		this.literal = literal;
@@ -194,4 +194,4 @@ public enum EOperation implements Enumerator {
 		return literal;
 	}
 
-} //EOperation
+} //EOperator

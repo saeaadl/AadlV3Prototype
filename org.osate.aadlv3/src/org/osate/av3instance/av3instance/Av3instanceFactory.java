@@ -62,15 +62,6 @@ public interface Av3instanceFactory extends EFactory {
 	AssociationInstance createAssociationInstance();
 
 	/**
-	 * Returns a new object of class '<em>Property Association Instance</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Property Association Instance</em>'.
-	 * @generated
-	 */
-	PropertyAssociationInstance createPropertyAssociationInstance();
-
-	/**
 	 * Returns a new object of class '<em>Path Instance</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

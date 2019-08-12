@@ -51,6 +51,7 @@ import org.osate.av3instance.av3instance.InstanceObject
 
 import static extension org.eclipse.xtext.EcoreUtil2.*
 import static extension org.osate.aadlv3.util.Av3API.*
+import org.osate.aadlv3.aadlv3.NamedElement
 
 class Aadlv3Util {
 	
@@ -1536,6 +1537,16 @@ class Aadlv3Util {
 	/**
 	 * the product line qualifier of cl satisfies the specified constraint
 	 */
+	def static boolean satisfies(ComponentInstance ci, MultiLiteralConstraint constraint) {
+		if (constraint === null) return true
+		val match = ci.getProductLineQualifier();
+		if (match === null) return true
+		return match.satisfies(constraint)
+	}
+	
+	/**
+	 * the product line qualifier of cl satisfies the specified constraint
+	 */
 	def static boolean satisfies(NamedType cl, MultiLiteralConstraint constraint) {
 		if (constraint === null) return true
 		val match = cl.getProductLineQualifier();
@@ -1562,14 +1573,14 @@ class Aadlv3Util {
 		return ic.propertyConstraint?.constraintExpression
 	}
 	
-	def static LCollection getProductLineQualifier(NamedType cl){
+	def static LCollection getProductLineQualifier(NamedElement cl){
 		return getOwnedPropertyValue(cl,ProductLineQualifier) as LCollection
 	}
 	
 	/**
 	 * Get property value associated directly with the classifier
 	 */
-	def static Literal getOwnedPropertyValue(NamedType cl, String property) {
+	def static Literal getOwnedPropertyValue(NamedElement cl, String property) {
 		for (pa : cl.ownedPropertyAssociations) {
 			if (samePropertyDefinition(pa.property, property)) {
 				return pa.value

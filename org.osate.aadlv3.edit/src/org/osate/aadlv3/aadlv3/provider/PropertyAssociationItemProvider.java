@@ -72,6 +72,7 @@ public class PropertyAssociationItemProvider extends ItemProviderAdapter impleme
 
 			addPropertyPropertyDescriptor(object);
 			addPropertyAssociationTypePropertyDescriptor(object);
+			addPropertyAssociationPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -105,6 +106,22 @@ public class PropertyAssociationItemProvider extends ItemProviderAdapter impleme
 						"_UI_PropertyAssociation_propertyAssociationType_feature", "_UI_PropertyAssociation_type"),
 				Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY_ASSOCIATION_TYPE, true, false, false,
 				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Property Association feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addPropertyAssociationPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_PropertyAssociation_propertyAssociation_feature"),
+						getString("_UI_PropertyDescriptor_description",
+								"_UI_PropertyAssociation_propertyAssociation_feature", "_UI_PropertyAssociation_type"),
+						Aadlv3Package.Literals.PROPERTY_ASSOCIATION__PROPERTY_ASSOCIATION, true, false, true, null,
+						null, null));
 	}
 
 	/**

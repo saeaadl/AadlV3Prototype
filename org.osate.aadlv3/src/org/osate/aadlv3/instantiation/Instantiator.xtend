@@ -4,7 +4,6 @@ import java.util.ArrayList
 import java.util.Collection
 import java.util.Collections
 import java.util.Stack
-import org.eclipse.xtext.EcoreUtil2
 import org.osate.aadlv3.aadlv3.Association
 import org.osate.aadlv3.aadlv3.Classifier
 import org.osate.aadlv3.aadlv3.ClassifierAssignment
@@ -21,14 +20,11 @@ import org.osate.aadlv3.aadlv3.Subcomponent
 import org.osate.aadlv3.aadlv3.TypeReference
 import org.osate.aadlv3.aadlv3.Workingset
 import org.osate.aadlv3.util.Aadlv3Util
-import org.osate.aadlv3.util.Diagnostic
-import org.osate.aadlv3.util.DiagnosticUtil
 import org.osate.av3instance.av3instance.AssociationInstance
 import org.osate.av3instance.av3instance.ComponentInstance
 import org.osate.av3instance.av3instance.FeatureInstance
 import org.osate.av3instance.av3instance.InstanceObject
 import org.osate.av3instance.av3instance.PathInstance
-import org.osate.av3instance.av3instance.PropertyAssociationInstance
 
 import static extension org.eclipse.emf.ecore.util.EcoreUtil.*
 import static extension org.osate.aadlv3.util.AIv3API.*
@@ -44,15 +40,12 @@ class Instantiator {
 		expectedProperties = ws.expectedProperties
 		for (iroot : ws.instanceRoots) {
 			configurationConstraint = getProductLineConstraint(iroot);
-			if (iroot.typeReferences.satisfies(configurationConstraint)){
-				System.out.println("yes")
-			} else {
-				System.out.println("no")
-			}
 			val rootinstance = iroot.instantiateRoot
 			rootinstance.eResource.save(null)
+// XXX TODO 
 		//  check whether all expected properties have been set
 		//	val issues = validateExpectedPropertyValues(rootinstance,expectedProperties)
+		// validate product line constraint
 // XXX TODO 
 //		val g =AIJGraphTUtil.generateGraph(rootinstance)
 //		AIJGraphXUtil.runme(g);
@@ -435,7 +428,7 @@ class Instantiator {
 	// return false if the property association or its value was not added  
 	def static void addPropertyAssociationInstance(InstanceObject context, PropertyAssociation pa){
 		val target = context.getInstanceElement(pa.target)
-		val pais = target.propertyAssociations
+		val pais = target.ownedPropertyAssociations
 		var found = false
 		for (epai : pais) {
 			if (samePropertyDefinition(epai.property, pa.property)) {
@@ -456,7 +449,7 @@ class Instantiator {
 	 * epai existing property association instance
 	 * npa new property association
 	 */
-	def static void overridePropertyValue(PropertyAssociationInstance epai, PropertyAssociation npa) {
+	def static void overridePropertyValue(PropertyAssociation epai, PropertyAssociation npa) {
 		switch (epai.propertyAssociationType) {
 			case PropertyAssociationType.FINAL_VALUE: {
 				if (epai.propertyAssociation.eContainer instanceof Classifier) {
@@ -539,7 +532,7 @@ class Instantiator {
 
 	}
 	
-	def static void assignNewValue(PropertyAssociationInstance epai, PropertyAssociation npa) {
+	def static void assignNewValue(PropertyAssociation epai, PropertyAssociation npa) {
 		epai.value = npa.value.copy
 		epai.propertyAssociation = npa
 		epai.propertyAssociationType = npa.propertyAssociationType
@@ -558,7 +551,7 @@ class Instantiator {
 	
 	def static void addDefaultPropertyAssociationInstance(InstanceObject context, PropertyAssociation pa){
 		val target = context.getInstanceElement(pa.target)
-		val pais = target.propertyAssociations
+		val pais = target.ownedPropertyAssociations
 		pais += createPropertyAssociationInstance(pa)
 	}
 	
@@ -574,19 +567,6 @@ class Instantiator {
 			ci = ci.eContainer as ComponentInstance
 		}
 		return null
-	}
-	
-	def static Collection<Diagnostic> validateExpectedPropertyValues(ComponentInstance root, Iterable<PropertyDefinition> pds){
-		val issues = new ArrayList<Diagnostic>
-		val ios = EcoreUtil2.getAllContentsOfType(root, ComponentInstance)+EcoreUtil2.getAllContentsOfType(root, FeatureInstance)+EcoreUtil2.getAllContentsOfType(root, AssociationInstance)
-		for (io : ios) {
-			for (pd : pds) {
-				if (!io.hasPropertyAssociation(pd)) {
-					issues.add(DiagnosticUtil.createError(io, "Missing property value "+pd.name))
-				}
-			}
-		}
-		issues
 	}
 
 }

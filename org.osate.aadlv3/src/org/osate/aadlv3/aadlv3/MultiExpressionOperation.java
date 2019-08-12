@@ -34,27 +34,27 @@ package org.osate.aadlv3.aadlv3;
 public interface MultiExpressionOperation extends ECollection {
 	/**
 	 * Returns the value of the '<em><b>Operator</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.osate.aadlv3.aadlv3.EOperation}.
+	 * The literals are from the enumeration {@link org.osate.aadlv3.aadlv3.EOperator}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Operator</em>' attribute.
-	 * @see org.osate.aadlv3.aadlv3.EOperation
-	 * @see #setOperator(EOperation)
+	 * @see org.osate.aadlv3.aadlv3.EOperator
+	 * @see #setOperator(EOperator)
 	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getMultiExpressionOperation_Operator()
 	 * @model
 	 * @generated
 	 */
-	EOperation getOperator();
+	EOperator getOperator();
 
 	/**
 	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.MultiExpressionOperation#getOperator <em>Operator</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Operator</em>' attribute.
-	 * @see org.osate.aadlv3.aadlv3.EOperation
+	 * @see org.osate.aadlv3.aadlv3.EOperator
 	 * @see #getOperator()
 	 * @generated
 	 */
-	void setOperator(EOperation value);
+	void setOperator(EOperator value);
 
 } // MultiExpressionOperation

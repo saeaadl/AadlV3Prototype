@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.osate.aadlv3.aadlv3.PropertyAssociation#getProperty <em>Property</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.PropertyAssociation#getValue <em>Value</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.PropertyAssociation#getPropertyAssociationType <em>Property Association Type</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.PropertyAssociation#getPropertyAssociation <em>Property Association</em>}</li>
  * </ul>
  *
  * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getPropertyAssociation()
@@ -144,5 +145,27 @@ public interface PropertyAssociation extends EObject {
 	 * @generated
 	 */
 	void setPropertyAssociationType(PropertyAssociationType value);
+
+	/**
+	 * Returns the value of the '<em><b>Property Association</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Property Association</em>' reference.
+	 * @see #setPropertyAssociation(PropertyAssociation)
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getPropertyAssociation_PropertyAssociation()
+	 * @model
+	 * @generated
+	 */
+	PropertyAssociation getPropertyAssociation();
+
+	/**
+	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.PropertyAssociation#getPropertyAssociation <em>Property Association</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Property Association</em>' reference.
+	 * @see #getPropertyAssociation()
+	 * @generated
+	 */
+	void setPropertyAssociation(PropertyAssociation value);
 
 } // PropertyAssociation

@@ -155,29 +155,6 @@ public class Av3instanceItemProviderAdapterFactory extends Av3instanceAdapterFac
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.osate.av3instance.av3instance.PropertyAssociationInstance} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected PropertyAssociationInstanceItemProvider propertyAssociationInstanceItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.osate.av3instance.av3instance.PropertyAssociationInstance}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createPropertyAssociationInstanceAdapter() {
-		if (propertyAssociationInstanceItemProvider == null) {
-			propertyAssociationInstanceItemProvider = new PropertyAssociationInstanceItemProvider(this);
-		}
-
-		return propertyAssociationInstanceItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.osate.av3instance.av3instance.PathInstance} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -311,8 +288,6 @@ public class Av3instanceItemProviderAdapterFactory extends Av3instanceAdapterFac
 			componentInstanceItemProvider.dispose();
 		if (associationInstanceItemProvider != null)
 			associationInstanceItemProvider.dispose();
-		if (propertyAssociationInstanceItemProvider != null)
-			propertyAssociationInstanceItemProvider.dispose();
 		if (pathInstanceItemProvider != null)
 			pathInstanceItemProvider.dispose();
 	}

@@ -34,27 +34,27 @@ package org.osate.aadlv3.aadlv3;
 public interface MultiLiteralConstraint extends LCollection {
 	/**
 	 * Returns the value of the '<em><b>Operator</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.osate.aadlv3.aadlv3.LOperation}.
+	 * The literals are from the enumeration {@link org.osate.aadlv3.aadlv3.LOperator}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Operator</em>' attribute.
-	 * @see org.osate.aadlv3.aadlv3.LOperation
-	 * @see #setOperator(LOperation)
+	 * @see org.osate.aadlv3.aadlv3.LOperator
+	 * @see #setOperator(LOperator)
 	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getMultiLiteralConstraint_Operator()
 	 * @model
 	 * @generated
 	 */
-	LOperation getOperator();
+	LOperator getOperator();
 
 	/**
 	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.MultiLiteralConstraint#getOperator <em>Operator</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Operator</em>' attribute.
-	 * @see org.osate.aadlv3.aadlv3.LOperation
+	 * @see org.osate.aadlv3.aadlv3.LOperator
 	 * @see #getOperator()
 	 * @generated
 	 */
-	void setOperator(LOperation value);
+	void setOperator(LOperator value);
 
 } // MultiLiteralConstraint

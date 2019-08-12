@@ -15,6 +15,7 @@
  */
 package org.osate.aadlv3.aadlv3;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -27,6 +28,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.NamedElement#getName <em>Name</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.NamedElement#getOwnedPropertyAssociations <em>Owned Property Associations</em>}</li>
  * </ul>
  *
  * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getNamedElement()
@@ -59,6 +61,18 @@ public interface NamedElement extends EObject {
 	 * @generated
 	 */
 	void setName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Owned Property Associations</b></em>' containment reference list.
+	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.PropertyAssociation}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owned Property Associations</em>' containment reference list.
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getNamedElement_OwnedPropertyAssociations()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<PropertyAssociation> getOwnedPropertyAssociations();
 
 	String getQualifiedName();
 

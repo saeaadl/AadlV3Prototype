@@ -69,6 +69,7 @@ public interface Aadlv3Package extends EPackage {
 	 */
 	Aadlv3Package eINSTANCE = org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl.init();
 
+	int NAMED_ELEMENT_OPERATION_COUNT = 0;
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.NamedElementImpl <em>Named Element</em>}' class.
 	 * <!-- begin-user-doc -->
@@ -89,13 +90,22 @@ public interface Aadlv3Package extends EPackage {
 	int NAMED_ELEMENT__NAME = 0;
 
 	/**
+	 * The feature id for the '<em><b>Owned Property Associations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMED_ELEMENT__OWNED_PROPERTY_ASSOCIATIONS = 1;
+
+	/**
 	 * The number of structural features of the '<em>Named Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT_FEATURE_COUNT = 1;
+	int NAMED_ELEMENT_FEATURE_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.PackageElementImpl <em>Package Element</em>}' class.
@@ -115,6 +125,15 @@ public interface Aadlv3Package extends EPackage {
 	 * @ordered
 	 */
 	int PACKAGE_ELEMENT__NAME = NAMED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Property Associations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE_ELEMENT__OWNED_PROPERTY_ASSOCIATIONS = NAMED_ELEMENT__OWNED_PROPERTY_ASSOCIATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Private</b></em>' attribute.
@@ -152,6 +171,15 @@ public interface Aadlv3Package extends EPackage {
 	 * @ordered
 	 */
 	int PACKAGE_DECLARATION__NAME = PACKAGE_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Property Associations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE_DECLARATION__OWNED_PROPERTY_ASSOCIATIONS = PACKAGE_ELEMENT__OWNED_PROPERTY_ASSOCIATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Private</b></em>' attribute.
@@ -207,6 +235,15 @@ public interface Aadlv3Package extends EPackage {
 	 * @ordered
 	 */
 	int PROPERTY_DEFINITION__NAME = PACKAGE_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Property Associations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_DEFINITION__OWNED_PROPERTY_ASSOCIATIONS = PACKAGE_ELEMENT__OWNED_PROPERTY_ASSOCIATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Private</b></em>' attribute.
@@ -291,6 +328,15 @@ public interface Aadlv3Package extends EPackage {
 	int PROPERTY_SET__NAME = PACKAGE_ELEMENT__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Owned Property Associations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_SET__OWNED_PROPERTY_ASSOCIATIONS = PACKAGE_ELEMENT__OWNED_PROPERTY_ASSOCIATIONS;
+
+	/**
 	 * The feature id for the '<em><b>Private</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -343,7 +389,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT__OWNED_PROPERTY_ASSOCIATIONS = NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int MODEL_ELEMENT__OWNED_PROPERTY_ASSOCIATIONS = NAMED_ELEMENT__OWNED_PROPERTY_ASSOCIATIONS;
 
 	/**
 	 * The feature id for the '<em><b>In Modes</b></em>' reference list.
@@ -352,7 +398,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT__IN_MODES = NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int MODEL_ELEMENT__IN_MODES = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Model Element</em>' class.
@@ -361,7 +407,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 2;
+	int MODEL_ELEMENT_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.NamedTypeImpl <em>Named Type</em>}' class.
@@ -383,6 +429,15 @@ public interface Aadlv3Package extends EPackage {
 	int NAMED_TYPE__NAME = PACKAGE_ELEMENT__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Owned Property Associations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMED_TYPE__OWNED_PROPERTY_ASSOCIATIONS = PACKAGE_ELEMENT__OWNED_PROPERTY_ASSOCIATIONS;
+
+	/**
 	 * The feature id for the '<em><b>Private</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -392,22 +447,13 @@ public interface Aadlv3Package extends EPackage {
 	int NAMED_TYPE__PRIVATE = PACKAGE_ELEMENT__PRIVATE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Property Associations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMED_TYPE__OWNED_PROPERTY_ASSOCIATIONS = PACKAGE_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
 	 * The number of structural features of the '<em>Named Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_TYPE_FEATURE_COUNT = PACKAGE_ELEMENT_FEATURE_COUNT + 1;
+	int NAMED_TYPE_FEATURE_COUNT = PACKAGE_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.ClassifierImpl <em>Classifier</em>}' class.
@@ -429,15 +475,6 @@ public interface Aadlv3Package extends EPackage {
 	int CLASSIFIER__NAME = NAMED_TYPE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Private</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASSIFIER__PRIVATE = NAMED_TYPE__PRIVATE;
-
-	/**
 	 * The feature id for the '<em><b>Owned Property Associations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -445,6 +482,15 @@ public interface Aadlv3Package extends EPackage {
 	 * @ordered
 	 */
 	int CLASSIFIER__OWNED_PROPERTY_ASSOCIATIONS = NAMED_TYPE__OWNED_PROPERTY_ASSOCIATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Private</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASSIFIER__PRIVATE = NAMED_TYPE__PRIVATE;
 
 	/**
 	 * The feature id for the '<em><b>Category</b></em>' attribute.
@@ -530,15 +576,6 @@ public interface Aadlv3Package extends EPackage {
 	int COMPONENT_REALIZATION__NAME = CLASSIFIER__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Private</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPONENT_REALIZATION__PRIVATE = CLASSIFIER__PRIVATE;
-
-	/**
 	 * The feature id for the '<em><b>Owned Property Associations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -546,6 +583,15 @@ public interface Aadlv3Package extends EPackage {
 	 * @ordered
 	 */
 	int COMPONENT_REALIZATION__OWNED_PROPERTY_ASSOCIATIONS = CLASSIFIER__OWNED_PROPERTY_ASSOCIATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Private</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_REALIZATION__PRIVATE = CLASSIFIER__PRIVATE;
 
 	/**
 	 * The feature id for the '<em><b>Category</b></em>' attribute.
@@ -629,15 +675,6 @@ public interface Aadlv3Package extends EPackage {
 	int COMPONENT_INTERFACE__NAME = CLASSIFIER__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Private</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPONENT_INTERFACE__PRIVATE = CLASSIFIER__PRIVATE;
-
-	/**
 	 * The feature id for the '<em><b>Owned Property Associations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -645,6 +682,15 @@ public interface Aadlv3Package extends EPackage {
 	 * @ordered
 	 */
 	int COMPONENT_INTERFACE__OWNED_PROPERTY_ASSOCIATIONS = CLASSIFIER__OWNED_PROPERTY_ASSOCIATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Private</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_INTERFACE__PRIVATE = CLASSIFIER__PRIVATE;
 
 	/**
 	 * The feature id for the '<em><b>Category</b></em>' attribute.
@@ -747,15 +793,6 @@ public interface Aadlv3Package extends EPackage {
 	int COMPONENT_IMPLEMENTATION__NAME = COMPONENT_REALIZATION__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Private</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPONENT_IMPLEMENTATION__PRIVATE = COMPONENT_REALIZATION__PRIVATE;
-
-	/**
 	 * The feature id for the '<em><b>Owned Property Associations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -763,6 +800,15 @@ public interface Aadlv3Package extends EPackage {
 	 * @ordered
 	 */
 	int COMPONENT_IMPLEMENTATION__OWNED_PROPERTY_ASSOCIATIONS = COMPONENT_REALIZATION__OWNED_PROPERTY_ASSOCIATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Private</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_IMPLEMENTATION__PRIVATE = COMPONENT_REALIZATION__PRIVATE;
 
 	/**
 	 * The feature id for the '<em><b>Category</b></em>' attribute.
@@ -901,15 +947,6 @@ public interface Aadlv3Package extends EPackage {
 	int COMPONENT_CONFIGURATION__NAME = COMPONENT_REALIZATION__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Private</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPONENT_CONFIGURATION__PRIVATE = COMPONENT_REALIZATION__PRIVATE;
-
-	/**
 	 * The feature id for the '<em><b>Owned Property Associations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -917,6 +954,15 @@ public interface Aadlv3Package extends EPackage {
 	 * @ordered
 	 */
 	int COMPONENT_CONFIGURATION__OWNED_PROPERTY_ASSOCIATIONS = COMPONENT_REALIZATION__OWNED_PROPERTY_ASSOCIATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Private</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_CONFIGURATION__PRIVATE = COMPONENT_REALIZATION__PRIVATE;
 
 	/**
 	 * The feature id for the '<em><b>Category</b></em>' attribute.
@@ -1707,15 +1753,6 @@ public interface Aadlv3Package extends EPackage {
 	int CONFIGURATION_PARAMETER__NAME = NAMED_TYPE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Private</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONFIGURATION_PARAMETER__PRIVATE = NAMED_TYPE__PRIVATE;
-
-	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.TypeImpl <em>Type</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1733,6 +1770,15 @@ public interface Aadlv3Package extends EPackage {
 	 * @ordered
 	 */
 	int CONFIGURATION_PARAMETER__OWNED_PROPERTY_ASSOCIATIONS = NAMED_TYPE__OWNED_PROPERTY_ASSOCIATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Private</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONFIGURATION_PARAMETER__PRIVATE = NAMED_TYPE__PRIVATE;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -1797,6 +1843,15 @@ public interface Aadlv3Package extends EPackage {
 	 * @ordered
 	 */
 	int WORKINGSET__NAME = PACKAGE_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Property Associations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKINGSET__OWNED_PROPERTY_ASSOCIATIONS = PACKAGE_ELEMENT__OWNED_PROPERTY_ASSOCIATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Private</b></em>' attribute.
@@ -2009,15 +2064,6 @@ public interface Aadlv3Package extends EPackage {
 	int TYPE_DEF__NAME = NAMED_TYPE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Private</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_DEF__PRIVATE = NAMED_TYPE__PRIVATE;
-
-	/**
 	 * The feature id for the '<em><b>Owned Property Associations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2025,6 +2071,15 @@ public interface Aadlv3Package extends EPackage {
 	 * @ordered
 	 */
 	int TYPE_DEF__OWNED_PROPERTY_ASSOCIATIONS = NAMED_TYPE__OWNED_PROPERTY_ASSOCIATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Private</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_DEF__PRIVATE = NAMED_TYPE__PRIVATE;
 
 	/**
 	 * The feature id for the '<em><b>Super Type</b></em>' containment reference.
@@ -2640,13 +2695,22 @@ public interface Aadlv3Package extends EPackage {
 	int PROPERTY_ASSOCIATION__PROPERTY_ASSOCIATION_TYPE = 3;
 
 	/**
+	 * The feature id for the '<em><b>Property Association</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_ASSOCIATION__PROPERTY_ASSOCIATION = 4;
+
+	/**
 	 * The number of structural features of the '<em>Property Association</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_ASSOCIATION_FEATURE_COUNT = 4;
+	int PROPERTY_ASSOCIATION_FEATURE_COUNT = 5;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.StateImpl <em>State</em>}' class.
@@ -2851,6 +2915,15 @@ public interface Aadlv3Package extends EPackage {
 	int STATE_MACHINE__NAME = PACKAGE_ELEMENT__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Owned Property Associations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_MACHINE__OWNED_PROPERTY_ASSOCIATIONS = PACKAGE_ELEMENT__OWNED_PROPERTY_ASSOCIATIONS;
+
+	/**
 	 * The feature id for the '<em><b>Private</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2930,6 +3003,15 @@ public interface Aadlv3Package extends EPackage {
 	 * @ordered
 	 */
 	int ANNEX_LIBRARY__NAME = PACKAGE_DECLARATION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Property Associations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNEX_LIBRARY__OWNED_PROPERTY_ASSOCIATIONS = PACKAGE_DECLARATION__OWNED_PROPERTY_ASSOCIATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Private</b></em>' attribute.
@@ -3028,24 +3110,24 @@ public interface Aadlv3Package extends EPackage {
 	int COMPOSITE = 59;
 
 	/**
-	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.LOperation <em>LOperation</em>}' enum.
+	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.LOperator <em>LOperator</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.osate.aadlv3.aadlv3.LOperation
-	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getLOperation()
+	 * @see org.osate.aadlv3.aadlv3.LOperator
+	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getLOperator()
 	 * @generated
 	 */
-	int LOPERATION = 60;
+	int LOPERATOR = 60;
 
 	/**
-	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.EOperation <em>EOperation</em>}' enum.
+	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.EOperator <em>EOperator</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.osate.aadlv3.aadlv3.EOperation
-	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getEOperation()
+	 * @see org.osate.aadlv3.aadlv3.EOperator
+	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getEOperator()
 	 * @generated
 	 */
-	int EOPERATION = 61;
+	int EOPERATOR = 61;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.PropertyAssociationType <em>Property Association Type</em>}' enum.
@@ -3109,6 +3191,17 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 */
 	EAttribute getNamedElement_Name();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.osate.aadlv3.aadlv3.NamedElement#getOwnedPropertyAssociations <em>Owned Property Associations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Owned Property Associations</em>'.
+	 * @see org.osate.aadlv3.aadlv3.NamedElement#getOwnedPropertyAssociations()
+	 * @see #getNamedElement()
+	 * @generated
+	 */
+	EReference getNamedElement_OwnedPropertyAssociations();
 
 	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.PackageElement <em>Package Element</em>}'.
@@ -3226,17 +3319,6 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 */
 	EClass getModelElement();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.osate.aadlv3.aadlv3.ModelElement#getOwnedPropertyAssociations <em>Owned Property Associations</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned Property Associations</em>'.
-	 * @see org.osate.aadlv3.aadlv3.ModelElement#getOwnedPropertyAssociations()
-	 * @see #getModelElement()
-	 * @generated
-	 */
-	EReference getModelElement_OwnedPropertyAssociations();
 
 	/**
 	 * Returns the meta object for the reference list '{@link org.osate.aadlv3.aadlv3.ModelElement#getInModes <em>In Modes</em>}'.
@@ -3820,17 +3902,6 @@ public interface Aadlv3Package extends EPackage {
 	EClass getNamedType();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.osate.aadlv3.aadlv3.NamedType#getOwnedPropertyAssociations <em>Owned Property Associations</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned Property Associations</em>'.
-	 * @see org.osate.aadlv3.aadlv3.NamedType#getOwnedPropertyAssociations()
-	 * @see #getNamedType()
-	 * @generated
-	 */
-	EReference getNamedType_OwnedPropertyAssociations();
-
-	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.TypeDef <em>Type Def</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4292,6 +4363,17 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 */
 	EAttribute getPropertyAssociation_PropertyAssociationType();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.osate.aadlv3.aadlv3.PropertyAssociation#getPropertyAssociation <em>Property Association</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Property Association</em>'.
+	 * @see org.osate.aadlv3.aadlv3.PropertyAssociation#getPropertyAssociation()
+	 * @see #getPropertyAssociation()
+	 * @generated
+	 */
+	EReference getPropertyAssociation_PropertyAssociation();
 
 	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.State <em>State</em>}'.
@@ -4769,24 +4851,24 @@ public interface Aadlv3Package extends EPackage {
 	EEnum getComposite();
 
 	/**
-	 * Returns the meta object for enum '{@link org.osate.aadlv3.aadlv3.LOperation <em>LOperation</em>}'.
+	 * Returns the meta object for enum '{@link org.osate.aadlv3.aadlv3.LOperator <em>LOperator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>LOperation</em>'.
-	 * @see org.osate.aadlv3.aadlv3.LOperation
+	 * @return the meta object for enum '<em>LOperator</em>'.
+	 * @see org.osate.aadlv3.aadlv3.LOperator
 	 * @generated
 	 */
-	EEnum getLOperation();
+	EEnum getLOperator();
 
 	/**
-	 * Returns the meta object for enum '{@link org.osate.aadlv3.aadlv3.EOperation <em>EOperation</em>}'.
+	 * Returns the meta object for enum '{@link org.osate.aadlv3.aadlv3.EOperator <em>EOperator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>EOperation</em>'.
-	 * @see org.osate.aadlv3.aadlv3.EOperation
+	 * @return the meta object for enum '<em>EOperator</em>'.
+	 * @see org.osate.aadlv3.aadlv3.EOperator
 	 * @generated
 	 */
-	EEnum getEOperation();
+	EEnum getEOperator();
 
 	/**
 	 * Returns the meta object for enum '{@link org.osate.aadlv3.aadlv3.PropertyAssociationType <em>Property Association Type</em>}'.
@@ -4863,6 +4945,14 @@ public interface Aadlv3Package extends EPackage {
 		 * @generated
 		 */
 		EAttribute NAMED_ELEMENT__NAME = eINSTANCE.getNamedElement_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Owned Property Associations</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference NAMED_ELEMENT__OWNED_PROPERTY_ASSOCIATIONS = eINSTANCE.getNamedElement_OwnedPropertyAssociations();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.PackageElementImpl <em>Package Element</em>}' class.
@@ -4959,14 +5049,6 @@ public interface Aadlv3Package extends EPackage {
 		 * @generated
 		 */
 		EClass MODEL_ELEMENT = eINSTANCE.getModelElement();
-
-		/**
-		 * The meta object literal for the '<em><b>Owned Property Associations</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference MODEL_ELEMENT__OWNED_PROPERTY_ASSOCIATIONS = eINSTANCE.getModelElement_OwnedPropertyAssociations();
 
 		/**
 		 * The meta object literal for the '<em><b>In Modes</b></em>' reference list feature.
@@ -5427,14 +5509,6 @@ public interface Aadlv3Package extends EPackage {
 		EClass NAMED_TYPE = eINSTANCE.getNamedType();
 
 		/**
-		 * The meta object literal for the '<em><b>Owned Property Associations</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference NAMED_TYPE__OWNED_PROPERTY_ASSOCIATIONS = eINSTANCE.getNamedType_OwnedPropertyAssociations();
-
-		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.TypeDefImpl <em>Type Def</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -5829,6 +5903,14 @@ public interface Aadlv3Package extends EPackage {
 		 */
 		EAttribute PROPERTY_ASSOCIATION__PROPERTY_ASSOCIATION_TYPE = eINSTANCE
 				.getPropertyAssociation_PropertyAssociationType();
+
+		/**
+		 * The meta object literal for the '<em><b>Property Association</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PROPERTY_ASSOCIATION__PROPERTY_ASSOCIATION = eINSTANCE.getPropertyAssociation_PropertyAssociation();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.StateImpl <em>State</em>}' class.
@@ -6237,24 +6319,24 @@ public interface Aadlv3Package extends EPackage {
 		EEnum COMPOSITE = eINSTANCE.getComposite();
 
 		/**
-		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.LOperation <em>LOperation</em>}' enum.
+		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.LOperator <em>LOperator</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.osate.aadlv3.aadlv3.LOperation
-		 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getLOperation()
+		 * @see org.osate.aadlv3.aadlv3.LOperator
+		 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getLOperator()
 		 * @generated
 		 */
-		EEnum LOPERATION = eINSTANCE.getLOperation();
+		EEnum LOPERATOR = eINSTANCE.getLOperator();
 
 		/**
-		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.EOperation <em>EOperation</em>}' enum.
+		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.EOperator <em>EOperator</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.osate.aadlv3.aadlv3.EOperation
-		 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getEOperation()
+		 * @see org.osate.aadlv3.aadlv3.EOperator
+		 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getEOperator()
 		 * @generated
 		 */
-		EEnum EOPERATION = eINSTANCE.getEOperation();
+		EEnum EOPERATOR = eINSTANCE.getEOperator();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.PropertyAssociationType <em>Property Association Type</em>}' enum.

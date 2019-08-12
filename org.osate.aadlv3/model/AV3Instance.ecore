@@ -2,10 +2,7 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="av3instance" nsURI="http://www.osate.org/aadlv3/AV3Instance"
     nsPrefix="av3instance">
-  <eClassifiers xsi:type="ecore:EClass" name="InstanceObject" abstract="true">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="propertyAssociations" upperBound="-1"
-        eType="#//PropertyAssociationInstance" containment="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="InstanceObject" abstract="true" eSuperTypes="Aadlv3.ecore#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="incomingAssociations" ordered="false"
         upperBound="-1" eType="#//AssociationInstance" transient="true" derived="true"
         resolveProxies="false" eOpposite="#//AssociationInstance/destination"/>
@@ -48,14 +45,6 @@
         eType="ecore:EClass Aadlv3.ecore#//Association"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="external" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="bidirectional" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PropertyAssociationInstance" eSuperTypes="#//InstanceObject">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="property" eType="ecore:EClass Aadlv3.ecore#//PropertyDefinition"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="ecore:EClass Aadlv3.ecore#//Literal"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="propertyAssociationType"
-        eType="ecore:EEnum Aadlv3.ecore#//PropertyAssociationType" defaultValueLiteral="FinalValue"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="propertyAssociation" eType="ecore:EClass Aadlv3.ecore#//PropertyAssociation"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PathInstance" eSuperTypes="#//InstanceObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"

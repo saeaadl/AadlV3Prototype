@@ -384,7 +384,7 @@ Primitive returns av3::Primitive:
 	'boolean' | 'integer' | 'real' | 'string' ;
 	
 
-LOperation returns av3::LOperation:
+LOperation returns av3::LOperator:
 	'any' | 'all' | 'oneof' | 'of' | 'ormore' | 'orless' ;
 	
 AssociationType returns  av3::AssociationType:

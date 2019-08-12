@@ -22,11 +22,11 @@ import org.osate.av3instance.av3instance.ComponentInstance
 import org.osate.av3instance.av3instance.FeatureInstance
 import org.osate.av3instance.av3instance.InstanceObject
 import org.osate.av3instance.av3instance.PathInstance
-import org.osate.av3instance.av3instance.PropertyAssociationInstance
 
 import static extension org.eclipse.emf.ecore.util.EcoreUtil.*
 import static extension org.osate.aadlv3.util.Aadlv3Util.*
 import org.osate.aadlv3.aadlv3.Literal
+import org.osate.aadlv3.aadlv3.Aadlv3Factory
 
 class AIv3API {
 	
@@ -68,7 +68,7 @@ class AIv3API {
 	}
 	
 	def static createPropertyAssociationInstance(PropertyAssociation pa){
-		val pai = Av3instanceFactory.eINSTANCE.createPropertyAssociationInstance
+		val pai = Aadlv3Factory.eINSTANCE.createPropertyAssociation
 		pai.property = pa.property
 		pai.propertyAssociation = pa
 		pai.propertyAssociationType = pa.propertyAssociationType
@@ -143,9 +143,6 @@ class AIv3API {
 			PathInstance: {
 				io.path
 			}
-			PropertyAssociationInstance: {
-				io.propertyAssociation
-			}
 			default: { io}
 		}
 	}
@@ -163,11 +160,11 @@ class AIv3API {
 	
 	// instance object has property association
 	def static boolean hasPropertyAssociation(InstanceObject io, PropertyDefinition pd){
-		io.propertyAssociations.exists[pai|samePropertyDefinition(pai.property, pd)]
+		io.ownedPropertyAssociations.exists[pai|samePropertyDefinition(pai.property, pd)]
 	}
 	
 	def static Literal getPropertyValue(InstanceObject io, PropertyDefinition pd){
-		for (pai : io.propertyAssociations){
+		for (pai : io.ownedPropertyAssociations){
 			if (samePropertyDefinition(pai.property, pd)){
 				return pai.value;
 			}
@@ -176,7 +173,7 @@ class AIv3API {
 	}
 	
 	def static Literal getPropertyValue(InstanceObject io, String pname){
-		for (pai : io.propertyAssociations){
+		for (pai : io.ownedPropertyAssociations){
 			if (samePropertyDefinition(pai.property, pname)){
 				return pai.value;
 			}

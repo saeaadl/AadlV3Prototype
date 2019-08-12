@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
-import org.osate.aadlv3.aadlv3.EOperation;
+import org.osate.aadlv3.aadlv3.EOperator;
 import org.osate.aadlv3.aadlv3.MultiExpressionOperation;
 
 /**
@@ -47,7 +47,7 @@ public class MultiExpressionOperationImpl extends ECollectionImpl implements Mul
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation OPERATOR_EDEFAULT = EOperation.OR;
+	protected static final EOperator OPERATOR_EDEFAULT = EOperator.OR;
 
 	/**
 	 * The cached value of the '{@link #getOperator() <em>Operator</em>}' attribute.
@@ -57,7 +57,7 @@ public class MultiExpressionOperationImpl extends ECollectionImpl implements Mul
 	 * @generated
 	 * @ordered
 	 */
-	protected EOperation operator = OPERATOR_EDEFAULT;
+	protected EOperator operator = OPERATOR_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -84,7 +84,7 @@ public class MultiExpressionOperationImpl extends ECollectionImpl implements Mul
 	 * @generated
 	 */
 	@Override
-	public EOperation getOperator() {
+	public EOperator getOperator() {
 		return operator;
 	}
 
@@ -94,8 +94,8 @@ public class MultiExpressionOperationImpl extends ECollectionImpl implements Mul
 	 * @generated
 	 */
 	@Override
-	public void setOperator(EOperation newOperator) {
-		EOperation oldOperator = operator;
+	public void setOperator(EOperator newOperator) {
+		EOperator oldOperator = operator;
 		operator = newOperator == null ? OPERATOR_EDEFAULT : newOperator;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.MULTI_EXPRESSION_OPERATION__OPERATOR,
@@ -125,7 +125,7 @@ public class MultiExpressionOperationImpl extends ECollectionImpl implements Mul
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 		case Aadlv3Package.MULTI_EXPRESSION_OPERATION__OPERATOR:
-			setOperator((EOperation) newValue);
+			setOperator((EOperator) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);

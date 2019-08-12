@@ -75,8 +75,6 @@ public class Av3instanceFactoryImpl extends EFactoryImpl implements Av3instanceF
 			return createComponentInstance();
 		case Av3instancePackage.ASSOCIATION_INSTANCE:
 			return createAssociationInstance();
-		case Av3instancePackage.PROPERTY_ASSOCIATION_INSTANCE:
-			return createPropertyAssociationInstance();
 		case Av3instancePackage.PATH_INSTANCE:
 			return createPathInstance();
 		default:
@@ -115,17 +113,6 @@ public class Av3instanceFactoryImpl extends EFactoryImpl implements Av3instanceF
 	public AssociationInstance createAssociationInstance() {
 		AssociationInstanceImpl associationInstance = new AssociationInstanceImpl();
 		return associationInstance;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public PropertyAssociationInstance createPropertyAssociationInstance() {
-		PropertyAssociationInstanceImpl propertyAssociationInstance = new PropertyAssociationInstanceImpl();
-		return propertyAssociationInstance;
 	}
 
 	/**

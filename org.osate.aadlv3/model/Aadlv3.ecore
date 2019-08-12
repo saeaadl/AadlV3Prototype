@@ -9,6 +9,8 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedPropertyAssociations"
+        upperBound="-1" eType="#//PropertyAssociation" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PackageElement" abstract="true" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="private" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
@@ -28,8 +30,6 @@
         eType="#//PropertyDefinition"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ModelElement" abstract="true" eSuperTypes="#//NamedElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedPropertyAssociations"
-        upperBound="-1" eType="#//PropertyAssociation" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="inModes" upperBound="-1"
         eType="#//State"/>
   </eClassifiers>
@@ -189,7 +189,6 @@
     <eLiterals name="abstract" value="15" literal="abstract"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="FeatureCategory">
-    <eAnnotations/>
     <eLiterals name="feature" literal="feature"/>
     <eLiterals name="port" value="1" literal="port"/>
     <eLiterals name="dataaccess" value="2" literal="data access"/>
@@ -223,10 +222,7 @@
     <eLiterals name="flowsink" value="4" literal="flow sink"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Type" abstract="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="NamedType" eSuperTypes="#//PackageElement #//Type">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedPropertyAssociations"
-        upperBound="-1" eType="#//PropertyAssociation" containment="true"/>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NamedType" eSuperTypes="#//PackageElement #//Type"/>
   <eClassifiers xsi:type="ecore:EClass" name="TypeDef" eSuperTypes="#//NamedType">
     <eStructuralFeatures xsi:type="ecore:EReference" name="superType" eType="#//Type"
         containment="true"/>
@@ -289,12 +285,12 @@
   <eClassifiers xsi:type="ecore:EClass" name="SetLiteral" eSuperTypes="#//LCollection"/>
   <eClassifiers xsi:type="ecore:EClass" name="Expression"/>
   <eClassifiers xsi:type="ecore:EClass" name="MultiLiteralConstraint" eSuperTypes="#//LCollection">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="#//LOperation"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="#//LOperator"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MultiExpressionOperation" eSuperTypes="#//ECollection">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="#//EOperation"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="#//EOperator"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="LOperation">
+  <eClassifiers xsi:type="ecore:EEnum" name="LOperator">
     <eLiterals name="ANY" literal="any"/>
     <eLiterals name="ALL" value="1" literal="all"/>
     <eLiterals name="ONEOF" value="3" literal="oneof"/>
@@ -302,7 +298,7 @@
     <eLiterals name="KORMORE" value="4" literal="kormore"/>
     <eLiterals name="KORLESS" value="5" literal="korless"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="EOperation">
+  <eClassifiers xsi:type="ecore:EEnum" name="EOperator">
     <eLiterals name="OR" literal="or"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PropertyAssociation">
@@ -313,6 +309,7 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="propertyAssociationType"
         eType="#//PropertyAssociationType" defaultValueLiteral="FinalValue"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="propertyAssociation" eType="#//PropertyAssociation"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="PropertyAssociationType">
     <eLiterals name="FinalValue"/>

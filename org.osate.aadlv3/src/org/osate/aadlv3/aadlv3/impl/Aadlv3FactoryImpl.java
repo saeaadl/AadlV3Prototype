@@ -191,10 +191,10 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 			return createPrimitiveFromString(eDataType, initialValue);
 		case Aadlv3Package.COMPOSITE:
 			return createCompositeFromString(eDataType, initialValue);
-		case Aadlv3Package.LOPERATION:
-			return createLOperationFromString(eDataType, initialValue);
-		case Aadlv3Package.EOPERATION:
-			return createEOperationFromString(eDataType, initialValue);
+		case Aadlv3Package.LOPERATOR:
+			return createLOperatorFromString(eDataType, initialValue);
+		case Aadlv3Package.EOPERATOR:
+			return createEOperatorFromString(eDataType, initialValue);
 		case Aadlv3Package.PROPERTY_ASSOCIATION_TYPE:
 			return createPropertyAssociationTypeFromString(eDataType, initialValue);
 		default:
@@ -222,10 +222,10 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 			return convertPrimitiveToString(eDataType, instanceValue);
 		case Aadlv3Package.COMPOSITE:
 			return convertCompositeToString(eDataType, instanceValue);
-		case Aadlv3Package.LOPERATION:
-			return convertLOperationToString(eDataType, instanceValue);
-		case Aadlv3Package.EOPERATION:
-			return convertEOperationToString(eDataType, instanceValue);
+		case Aadlv3Package.LOPERATOR:
+			return convertLOperatorToString(eDataType, instanceValue);
+		case Aadlv3Package.EOPERATOR:
+			return convertEOperatorToString(eDataType, instanceValue);
 		case Aadlv3Package.PROPERTY_ASSOCIATION_TYPE:
 			return convertPropertyAssociationTypeToString(eDataType, instanceValue);
 		default:
@@ -898,8 +898,8 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LOperation createLOperationFromString(EDataType eDataType, String initialValue) {
-		LOperation result = LOperation.get(initialValue);
+	public LOperator createLOperatorFromString(EDataType eDataType, String initialValue) {
+		LOperator result = LOperator.get(initialValue);
 		if (result == null)
 			throw new IllegalArgumentException(
 					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
@@ -911,7 +911,7 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertLOperationToString(EDataType eDataType, Object instanceValue) {
+	public String convertLOperatorToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -920,8 +920,8 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation createEOperationFromString(EDataType eDataType, String initialValue) {
-		EOperation result = EOperation.get(initialValue);
+	public EOperator createEOperatorFromString(EDataType eDataType, String initialValue) {
+		EOperator result = EOperator.get(initialValue);
 		if (result == null)
 			throw new IllegalArgumentException(
 					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
@@ -933,7 +933,7 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertEOperationToString(EDataType eDataType, Object instanceValue) {
+	public String convertEOperatorToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

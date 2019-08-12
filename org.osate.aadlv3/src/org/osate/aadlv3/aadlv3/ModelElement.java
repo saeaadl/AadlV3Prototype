@@ -26,7 +26,6 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.osate.aadlv3.aadlv3.ModelElement#getOwnedPropertyAssociations <em>Owned Property Associations</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.ModelElement#getInModes <em>In Modes</em>}</li>
  * </ul>
  *
@@ -35,18 +34,6 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface ModelElement extends NamedElement {
-	/**
-	 * Returns the value of the '<em><b>Owned Property Associations</b></em>' containment reference list.
-	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.PropertyAssociation}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Property Associations</em>' containment reference list.
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getModelElement_OwnedPropertyAssociations()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<PropertyAssociation> getOwnedPropertyAssociations();
-
 	/**
 	 * Returns the value of the '<em><b>In Modes</b></em>' reference list.
 	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.State}.

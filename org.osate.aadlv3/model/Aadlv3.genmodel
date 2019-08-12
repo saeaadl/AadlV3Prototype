@@ -70,16 +70,16 @@
       <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//Composite/SET"/>
       <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//Composite/DIRECTIONAL"/>
     </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Aadlv3.ecore#//LOperation">
-      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//LOperation/ANY"/>
-      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//LOperation/ALL"/>
-      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//LOperation/ONEOF"/>
-      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//LOperation/KOFN"/>
-      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//LOperation/KORMORE"/>
-      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//LOperation/KORLESS"/>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Aadlv3.ecore#//LOperator">
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//LOperator/ANY"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//LOperator/ALL"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//LOperator/ONEOF"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//LOperator/KOFN"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//LOperator/KORMORE"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//LOperator/KORLESS"/>
     </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Aadlv3.ecore#//EOperation">
-      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//EOperation/OR"/>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Aadlv3.ecore#//EOperator">
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//EOperator/OR"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Aadlv3.ecore#//PropertyAssociationType">
       <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//PropertyAssociationType/FinalValue"/>
@@ -92,6 +92,7 @@
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//NamedElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//NamedElement/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//NamedElement/ownedPropertyAssociations"/>
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//PackageElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//PackageElement/private"/>
@@ -107,7 +108,6 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//PropertySet/properties"/>
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//ModelElement">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ModelElement/ownedPropertyAssociations"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ModelElement/inModes"/>
     </genClasses>
     <genClasses image="false" ecoreClass="Aadlv3.ecore#//Classifier">
@@ -206,9 +206,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//PropertyConstraint/constraintExpression"/>
     </genClasses>
     <genClasses image="false" ecoreClass="Aadlv3.ecore#//Type"/>
-    <genClasses ecoreClass="Aadlv3.ecore#//NamedType">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//NamedType/ownedPropertyAssociations"/>
-    </genClasses>
+    <genClasses ecoreClass="Aadlv3.ecore#//NamedType"/>
     <genClasses ecoreClass="Aadlv3.ecore#//TypeDef">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//TypeDef/superType"/>
     </genClasses>
@@ -265,6 +263,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//PropertyAssociation/property"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//PropertyAssociation/value"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//PropertyAssociation/propertyAssociationType"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//PropertyAssociation/propertyAssociation"/>
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//State">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//State/initial"/>

@@ -1,8 +1,6 @@
 package org.osate.aadlv3.design;
 
-import static org.osate.aadlv3.util.AIv3API.containingComponentInstance;
-import static org.osate.aadlv3.util.AIv3API.getInstanceObjectPath;
-import static org.osate.aadlv3.util.AIv3API.isFlowSpec;
+import static org.osate.aadlv3.util.AIv3API.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -15,7 +13,6 @@ import org.eclipse.sirius.business.api.dialect.command.RefreshRepresentationsCom
 import org.eclipse.sirius.business.api.session.Session;
 import org.eclipse.sirius.business.api.session.SessionManager;
 import org.eclipse.sirius.viewpoint.DRepresentation;
-import org.osate.aadlv3.util.AIv3API;
 import org.osate.av3instance.av3instance.AssociationInstance;
 import org.osate.av3instance.av3instance.ComponentInstance;
 import org.osate.av3instance.av3instance.InstanceObject;
@@ -69,8 +66,8 @@ public class Services {
 	}
 	
 	public Collection<ComponentInstance> getNeighbors(ComponentInstance ci){
-		 ComponentInstance root = AIv3API.getRoot(ci);
-		 List<AssociationInstance> connis = AIv3API.getAllConnections(root);
+		 ComponentInstance root = getRoot(ci);
+		 List<AssociationInstance> connis = getAllConnections(root);
 		 Collection<ComponentInstance> neighbors = new ArrayList<ComponentInstance>();
 		 neighbors.add(ci);
 		 for (AssociationInstance conni : connis) {

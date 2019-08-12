@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
 
+import org.osate.aadlv3.aadlv3.NamedElement;
 import org.osate.av3instance.av3instance.*;
 
 /**
@@ -83,6 +84,8 @@ public class Av3instanceSwitch<T> extends Switch<T> {
 			InstanceObject instanceObject = (InstanceObject) theEObject;
 			T result = caseInstanceObject(instanceObject);
 			if (result == null)
+				result = caseNamedElement(instanceObject);
+			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -91,6 +94,8 @@ public class Av3instanceSwitch<T> extends Switch<T> {
 			T result = caseFeatureInstance(featureInstance);
 			if (result == null)
 				result = caseInstanceObject(featureInstance);
+			if (result == null)
+				result = caseNamedElement(featureInstance);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -101,6 +106,8 @@ public class Av3instanceSwitch<T> extends Switch<T> {
 			if (result == null)
 				result = caseInstanceObject(componentInstance);
 			if (result == null)
+				result = caseNamedElement(componentInstance);
+			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -110,14 +117,7 @@ public class Av3instanceSwitch<T> extends Switch<T> {
 			if (result == null)
 				result = caseInstanceObject(associationInstance);
 			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Av3instancePackage.PROPERTY_ASSOCIATION_INSTANCE: {
-			PropertyAssociationInstance propertyAssociationInstance = (PropertyAssociationInstance) theEObject;
-			T result = casePropertyAssociationInstance(propertyAssociationInstance);
-			if (result == null)
-				result = caseInstanceObject(propertyAssociationInstance);
+				result = caseNamedElement(associationInstance);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -127,6 +127,8 @@ public class Av3instanceSwitch<T> extends Switch<T> {
 			T result = casePathInstance(pathInstance);
 			if (result == null)
 				result = caseInstanceObject(pathInstance);
+			if (result == null)
+				result = caseNamedElement(pathInstance);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -197,21 +199,6 @@ public class Av3instanceSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Property Association Instance</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Property Association Instance</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T casePropertyAssociationInstance(PropertyAssociationInstance object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Path Instance</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -223,6 +210,21 @@ public class Av3instanceSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T casePathInstance(PathInstance object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Named Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Named Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNamedElement(NamedElement object) {
 		return null;
 	}
 

@@ -27,7 +27,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
-import org.osate.aadlv3.aadlv3.EOperation;
+import org.osate.aadlv3.aadlv3.EOperator;
 import org.osate.aadlv3.aadlv3.MultiExpressionOperation;
 
 /**
@@ -98,7 +98,7 @@ public class MultiExpressionOperationItemProvider extends ECollectionItemProvide
 	 */
 	@Override
 	public String getText(Object object) {
-		EOperation labelValue = ((MultiExpressionOperation) object).getOperator();
+		EOperator labelValue = ((MultiExpressionOperation) object).getOperator();
 		String label = labelValue == null ? null : labelValue.toString();
 		return label == null || label.length() == 0 ? getString("_UI_MultiExpressionOperation_type")
 				: getString("_UI_MultiExpressionOperation_type") + " " + label;

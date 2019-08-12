@@ -22,6 +22,7 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
 
+import org.osate.aadlv3.aadlv3.NamedElement;
 import org.osate.av3instance.av3instance.*;
 
 /**
@@ -100,13 +101,13 @@ public class Av3instanceAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter casePropertyAssociationInstance(PropertyAssociationInstance object) {
-			return createPropertyAssociationInstanceAdapter();
+		public Adapter casePathInstance(PathInstance object) {
+			return createPathInstanceAdapter();
 		}
 
 		@Override
-		public Adapter casePathInstance(PathInstance object) {
-			return createPathInstanceAdapter();
+		public Adapter caseNamedElement(NamedElement object) {
+			return createNamedElementAdapter();
 		}
 
 		@Override
@@ -185,20 +186,6 @@ public class Av3instanceAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.osate.av3instance.av3instance.PropertyAssociationInstance <em>Property Association Instance</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.osate.av3instance.av3instance.PropertyAssociationInstance
-	 * @generated
-	 */
-	public Adapter createPropertyAssociationInstanceAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.osate.av3instance.av3instance.PathInstance <em>Path Instance</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -209,6 +196,20 @@ public class Av3instanceAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createPathInstanceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.NamedElement <em>Named Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.osate.aadlv3.aadlv3.NamedElement
+	 * @generated
+	 */
+	public Adapter createNamedElementAdapter() {
 		return null;
 	}
 

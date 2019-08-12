@@ -20,6 +20,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
+import org.osate.aadlv3.aadlv3.Aadlv3Package;
+
 /**
  * <!-- begin-user-doc -->
  * The <b>Package</b> for the model.
@@ -86,16 +88,16 @@ public interface Av3instancePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_OBJECT__NAME = 0;
+	int INSTANCE_OBJECT__NAME = Aadlv3Package.NAMED_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Property Associations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Property Associations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_OBJECT__PROPERTY_ASSOCIATIONS = 1;
+	int INSTANCE_OBJECT__OWNED_PROPERTY_ASSOCIATIONS = Aadlv3Package.NAMED_ELEMENT__OWNED_PROPERTY_ASSOCIATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Associations</b></em>' reference list.
@@ -104,7 +106,7 @@ public interface Av3instancePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_OBJECT__INCOMING_ASSOCIATIONS = 2;
+	int INSTANCE_OBJECT__INCOMING_ASSOCIATIONS = Aadlv3Package.NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Outgoing Associations</b></em>' reference list.
@@ -113,7 +115,7 @@ public interface Av3instancePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_OBJECT__OUTGOING_ASSOCIATIONS = 3;
+	int INSTANCE_OBJECT__OUTGOING_ASSOCIATIONS = Aadlv3Package.NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Instance Object</em>' class.
@@ -122,7 +124,7 @@ public interface Av3instancePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_OBJECT_FEATURE_COUNT = 4;
+	int INSTANCE_OBJECT_FEATURE_COUNT = Aadlv3Package.NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Instance Object</em>' class.
@@ -131,7 +133,7 @@ public interface Av3instancePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_OBJECT_OPERATION_COUNT = 0;
+	int INSTANCE_OBJECT_OPERATION_COUNT = Aadlv3Package.NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.osate.av3instance.av3instance.impl.FeatureInstanceImpl <em>Feature Instance</em>}' class.
@@ -153,13 +155,13 @@ public interface Av3instancePackage extends EPackage {
 	int FEATURE_INSTANCE__NAME = INSTANCE_OBJECT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Property Associations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Property Associations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_INSTANCE__PROPERTY_ASSOCIATIONS = INSTANCE_OBJECT__PROPERTY_ASSOCIATIONS;
+	int FEATURE_INSTANCE__OWNED_PROPERTY_ASSOCIATIONS = INSTANCE_OBJECT__OWNED_PROPERTY_ASSOCIATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Associations</b></em>' reference list.
@@ -253,13 +255,13 @@ public interface Av3instancePackage extends EPackage {
 	int COMPONENT_INSTANCE__NAME = INSTANCE_OBJECT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Property Associations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Property Associations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_INSTANCE__PROPERTY_ASSOCIATIONS = INSTANCE_OBJECT__PROPERTY_ASSOCIATIONS;
+	int COMPONENT_INSTANCE__OWNED_PROPERTY_ASSOCIATIONS = INSTANCE_OBJECT__OWNED_PROPERTY_ASSOCIATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Associations</b></em>' reference list.
@@ -380,13 +382,13 @@ public interface Av3instancePackage extends EPackage {
 	int ASSOCIATION_INSTANCE__NAME = INSTANCE_OBJECT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Property Associations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Property Associations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION_INSTANCE__PROPERTY_ASSOCIATIONS = INSTANCE_OBJECT__PROPERTY_ASSOCIATIONS;
+	int ASSOCIATION_INSTANCE__OWNED_PROPERTY_ASSOCIATIONS = INSTANCE_OBJECT__OWNED_PROPERTY_ASSOCIATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Associations</b></em>' reference list.
@@ -497,106 +499,6 @@ public interface Av3instancePackage extends EPackage {
 	int ASSOCIATION_INSTANCE_OPERATION_COUNT = INSTANCE_OBJECT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.osate.av3instance.av3instance.impl.PropertyAssociationInstanceImpl <em>Property Association Instance</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.osate.av3instance.av3instance.impl.PropertyAssociationInstanceImpl
-	 * @see org.osate.av3instance.av3instance.impl.Av3instancePackageImpl#getPropertyAssociationInstance()
-	 * @generated
-	 */
-	int PROPERTY_ASSOCIATION_INSTANCE = 4;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY_ASSOCIATION_INSTANCE__NAME = INSTANCE_OBJECT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Property Associations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY_ASSOCIATION_INSTANCE__PROPERTY_ASSOCIATIONS = INSTANCE_OBJECT__PROPERTY_ASSOCIATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Incoming Associations</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY_ASSOCIATION_INSTANCE__INCOMING_ASSOCIATIONS = INSTANCE_OBJECT__INCOMING_ASSOCIATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Outgoing Associations</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY_ASSOCIATION_INSTANCE__OUTGOING_ASSOCIATIONS = INSTANCE_OBJECT__OUTGOING_ASSOCIATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Property</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY_ASSOCIATION_INSTANCE__PROPERTY = INSTANCE_OBJECT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Value</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY_ASSOCIATION_INSTANCE__VALUE = INSTANCE_OBJECT_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Property Association Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY_ASSOCIATION_INSTANCE__PROPERTY_ASSOCIATION_TYPE = INSTANCE_OBJECT_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Property Association</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY_ASSOCIATION_INSTANCE__PROPERTY_ASSOCIATION = INSTANCE_OBJECT_FEATURE_COUNT + 3;
-
-	/**
-	 * The number of structural features of the '<em>Property Association Instance</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY_ASSOCIATION_INSTANCE_FEATURE_COUNT = INSTANCE_OBJECT_FEATURE_COUNT + 4;
-
-	/**
-	 * The number of operations of the '<em>Property Association Instance</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY_ASSOCIATION_INSTANCE_OPERATION_COUNT = INSTANCE_OBJECT_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.osate.av3instance.av3instance.impl.PathInstanceImpl <em>Path Instance</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -604,7 +506,7 @@ public interface Av3instancePackage extends EPackage {
 	 * @see org.osate.av3instance.av3instance.impl.Av3instancePackageImpl#getPathInstance()
 	 * @generated
 	 */
-	int PATH_INSTANCE = 5;
+	int PATH_INSTANCE = 4;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -616,13 +518,13 @@ public interface Av3instancePackage extends EPackage {
 	int PATH_INSTANCE__NAME = INSTANCE_OBJECT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Property Associations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Property Associations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PATH_INSTANCE__PROPERTY_ASSOCIATIONS = INSTANCE_OBJECT__PROPERTY_ASSOCIATIONS;
+	int PATH_INSTANCE__OWNED_PROPERTY_ASSOCIATIONS = INSTANCE_OBJECT__OWNED_PROPERTY_ASSOCIATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Associations</b></em>' reference list.
@@ -687,28 +589,6 @@ public interface Av3instancePackage extends EPackage {
 	 * @generated
 	 */
 	EClass getInstanceObject();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.osate.av3instance.av3instance.InstanceObject#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see org.osate.av3instance.av3instance.InstanceObject#getName()
-	 * @see #getInstanceObject()
-	 * @generated
-	 */
-	EAttribute getInstanceObject_Name();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.osate.av3instance.av3instance.InstanceObject#getPropertyAssociations <em>Property Associations</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Property Associations</em>'.
-	 * @see org.osate.av3instance.av3instance.InstanceObject#getPropertyAssociations()
-	 * @see #getInstanceObject()
-	 * @generated
-	 */
-	EReference getInstanceObject_PropertyAssociations();
 
 	/**
 	 * Returns the meta object for the reference list '{@link org.osate.av3instance.av3instance.InstanceObject#getIncomingAssociations <em>Incoming Associations</em>}'.
@@ -950,17 +830,6 @@ public interface Av3instancePackage extends EPackage {
 	EReference getAssociationInstance_DestinationDelegates();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.osate.av3instance.av3instance.AssociationInstance#isBidirectional <em>Bidirectional</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Bidirectional</em>'.
-	 * @see org.osate.av3instance.av3instance.AssociationInstance#isBidirectional()
-	 * @see #getAssociationInstance()
-	 * @generated
-	 */
-	EAttribute getAssociationInstance_Bidirectional();
-
-	/**
 	 * Returns the meta object for the attribute '{@link org.osate.av3instance.av3instance.AssociationInstance#isExternal <em>External</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -972,58 +841,15 @@ public interface Av3instancePackage extends EPackage {
 	EAttribute getAssociationInstance_External();
 
 	/**
-	 * Returns the meta object for class '{@link org.osate.av3instance.av3instance.PropertyAssociationInstance <em>Property Association Instance</em>}'.
+	 * Returns the meta object for the attribute '{@link org.osate.av3instance.av3instance.AssociationInstance#isBidirectional <em>Bidirectional</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Property Association Instance</em>'.
-	 * @see org.osate.av3instance.av3instance.PropertyAssociationInstance
+	 * @return the meta object for the attribute '<em>Bidirectional</em>'.
+	 * @see org.osate.av3instance.av3instance.AssociationInstance#isBidirectional()
+	 * @see #getAssociationInstance()
 	 * @generated
 	 */
-	EClass getPropertyAssociationInstance();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.osate.av3instance.av3instance.PropertyAssociationInstance#getProperty <em>Property</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Property</em>'.
-	 * @see org.osate.av3instance.av3instance.PropertyAssociationInstance#getProperty()
-	 * @see #getPropertyAssociationInstance()
-	 * @generated
-	 */
-	EReference getPropertyAssociationInstance_Property();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.osate.av3instance.av3instance.PropertyAssociationInstance#getValue <em>Value</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Value</em>'.
-	 * @see org.osate.av3instance.av3instance.PropertyAssociationInstance#getValue()
-	 * @see #getPropertyAssociationInstance()
-	 * @generated
-	 */
-	EReference getPropertyAssociationInstance_Value();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.osate.av3instance.av3instance.PropertyAssociationInstance#getPropertyAssociationType <em>Property Association Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Property Association Type</em>'.
-	 * @see org.osate.av3instance.av3instance.PropertyAssociationInstance#getPropertyAssociationType()
-	 * @see #getPropertyAssociationInstance()
-	 * @generated
-	 */
-	EAttribute getPropertyAssociationInstance_PropertyAssociationType();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.osate.av3instance.av3instance.PropertyAssociationInstance#getPropertyAssociation <em>Property Association</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Property Association</em>'.
-	 * @see org.osate.av3instance.av3instance.PropertyAssociationInstance#getPropertyAssociation()
-	 * @see #getPropertyAssociationInstance()
-	 * @generated
-	 */
-	EReference getPropertyAssociationInstance_PropertyAssociation();
+	EAttribute getAssociationInstance_Bidirectional();
 
 	/**
 	 * Returns the meta object for class '{@link org.osate.av3instance.av3instance.PathInstance <em>Path Instance</em>}'.
@@ -1089,22 +915,6 @@ public interface Av3instancePackage extends EPackage {
 		 * @generated
 		 */
 		EClass INSTANCE_OBJECT = eINSTANCE.getInstanceObject();
-
-		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute INSTANCE_OBJECT__NAME = eINSTANCE.getInstanceObject_Name();
-
-		/**
-		 * The meta object literal for the '<em><b>Property Associations</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference INSTANCE_OBJECT__PROPERTY_ASSOCIATIONS = eINSTANCE.getInstanceObject_PropertyAssociations();
 
 		/**
 		 * The meta object literal for the '<em><b>Incoming Associations</b></em>' reference list feature.
@@ -1290,14 +1100,6 @@ public interface Av3instancePackage extends EPackage {
 				.getAssociationInstance_DestinationDelegates();
 
 		/**
-		 * The meta object literal for the '<em><b>Bidirectional</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ASSOCIATION_INSTANCE__BIDIRECTIONAL = eINSTANCE.getAssociationInstance_Bidirectional();
-
-		/**
 		 * The meta object literal for the '<em><b>External</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1306,48 +1108,12 @@ public interface Av3instancePackage extends EPackage {
 		EAttribute ASSOCIATION_INSTANCE__EXTERNAL = eINSTANCE.getAssociationInstance_External();
 
 		/**
-		 * The meta object literal for the '{@link org.osate.av3instance.av3instance.impl.PropertyAssociationInstanceImpl <em>Property Association Instance</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.osate.av3instance.av3instance.impl.PropertyAssociationInstanceImpl
-		 * @see org.osate.av3instance.av3instance.impl.Av3instancePackageImpl#getPropertyAssociationInstance()
-		 * @generated
-		 */
-		EClass PROPERTY_ASSOCIATION_INSTANCE = eINSTANCE.getPropertyAssociationInstance();
-
-		/**
-		 * The meta object literal for the '<em><b>Property</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Bidirectional</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PROPERTY_ASSOCIATION_INSTANCE__PROPERTY = eINSTANCE.getPropertyAssociationInstance_Property();
-
-		/**
-		 * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PROPERTY_ASSOCIATION_INSTANCE__VALUE = eINSTANCE.getPropertyAssociationInstance_Value();
-
-		/**
-		 * The meta object literal for the '<em><b>Property Association Type</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PROPERTY_ASSOCIATION_INSTANCE__PROPERTY_ASSOCIATION_TYPE = eINSTANCE
-				.getPropertyAssociationInstance_PropertyAssociationType();
-
-		/**
-		 * The meta object literal for the '<em><b>Property Association</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PROPERTY_ASSOCIATION_INSTANCE__PROPERTY_ASSOCIATION = eINSTANCE
-				.getPropertyAssociationInstance_PropertyAssociation();
+		EAttribute ASSOCIATION_INSTANCE__BIDIRECTIONAL = eINSTANCE.getAssociationInstance_Bidirectional();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.av3instance.av3instance.impl.PathInstanceImpl <em>Path Instance</em>}' class.

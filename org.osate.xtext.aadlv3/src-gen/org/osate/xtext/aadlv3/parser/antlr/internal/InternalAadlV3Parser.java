@@ -1837,7 +1837,7 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalAadlV3.g:712:49: (iv_ruleTypeDef= ruleTypeDef EOF )
+            // InternalAadlV3.g:712:48: (iv_ruleTypeDef= ruleTypeDef EOF )
             // InternalAadlV3.g:713:2: iv_ruleTypeDef= ruleTypeDef EOF
             {
             if ( state.backtracking==0 ) {

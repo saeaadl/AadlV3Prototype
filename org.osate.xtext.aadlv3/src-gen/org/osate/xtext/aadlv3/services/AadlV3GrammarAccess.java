@@ -3443,7 +3443,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cOrmoreKeyword_4 = (Keyword)cAlternatives.eContents().get(4);
 		private final Keyword cOrlessKeyword_5 = (Keyword)cAlternatives.eContents().get(5);
 		
-		//LOperation av3::LOperation:
+		//LOperation av3::LOperator:
 		//	'any' | 'all' | 'oneof' | 'of' | 'ormore' | 'orless';
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -5042,7 +5042,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		return getPrimitiveAccess().getRule();
 	}
 	
-	//LOperation av3::LOperation:
+	//LOperation av3::LOperator:
 	//	'any' | 'all' | 'oneof' | 'of' | 'ormore' | 'orless';
 	public LOperationElements getLOperationAccess() {
 		return pLOperation;

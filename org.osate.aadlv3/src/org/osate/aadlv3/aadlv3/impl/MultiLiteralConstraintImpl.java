@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
-import org.osate.aadlv3.aadlv3.LOperation;
+import org.osate.aadlv3.aadlv3.LOperator;
 import org.osate.aadlv3.aadlv3.MultiLiteralConstraint;
 
 /**
@@ -47,7 +47,7 @@ public class MultiLiteralConstraintImpl extends LCollectionImpl implements Multi
 	 * @generated
 	 * @ordered
 	 */
-	protected static final LOperation OPERATOR_EDEFAULT = LOperation.ANY;
+	protected static final LOperator OPERATOR_EDEFAULT = LOperator.ANY;
 
 	/**
 	 * The cached value of the '{@link #getOperator() <em>Operator</em>}' attribute.
@@ -57,7 +57,7 @@ public class MultiLiteralConstraintImpl extends LCollectionImpl implements Multi
 	 * @generated
 	 * @ordered
 	 */
-	protected LOperation operator = OPERATOR_EDEFAULT;
+	protected LOperator operator = OPERATOR_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -84,7 +84,7 @@ public class MultiLiteralConstraintImpl extends LCollectionImpl implements Multi
 	 * @generated
 	 */
 	@Override
-	public LOperation getOperator() {
+	public LOperator getOperator() {
 		return operator;
 	}
 
@@ -94,8 +94,8 @@ public class MultiLiteralConstraintImpl extends LCollectionImpl implements Multi
 	 * @generated
 	 */
 	@Override
-	public void setOperator(LOperation newOperator) {
-		LOperation oldOperator = operator;
+	public void setOperator(LOperator newOperator) {
+		LOperator oldOperator = operator;
 		operator = newOperator == null ? OPERATOR_EDEFAULT : newOperator;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.MULTI_LITERAL_CONSTRAINT__OPERATOR,
@@ -125,7 +125,7 @@ public class MultiLiteralConstraintImpl extends LCollectionImpl implements Multi
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 		case Aadlv3Package.MULTI_LITERAL_CONSTRAINT__OPERATOR:
-			setOperator((LOperation) newValue);
+			setOperator((LOperator) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);

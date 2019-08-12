@@ -16,8 +16,7 @@
 package org.osate.av3instance.av3instance;
 
 import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.emf.ecore.EObject;
+import org.osate.aadlv3.aadlv3.NamedElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,8 +27,6 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.osate.av3instance.av3instance.InstanceObject#getName <em>Name</em>}</li>
- *   <li>{@link org.osate.av3instance.av3instance.InstanceObject#getPropertyAssociations <em>Property Associations</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.InstanceObject#getIncomingAssociations <em>Incoming Associations</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.InstanceObject#getOutgoingAssociations <em>Outgoing Associations</em>}</li>
  * </ul>
@@ -38,49 +35,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model abstract="true"
  * @generated
  */
-public interface InstanceObject extends EObject {
-	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Name</em>' attribute.
-	 * @see #setName(String)
-	 * @see org.osate.av3instance.av3instance.Av3instancePackage#getInstanceObject_Name()
-	 * @model
-	 * @generated
-	 */
-	String getName();
-
-	/**
-	 * Sets the value of the '{@link org.osate.av3instance.av3instance.InstanceObject#getName <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Name</em>' attribute.
-	 * @see #getName()
-	 * @generated
-	 */
-	void setName(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Property Associations</b></em>' containment reference list.
-	 * The list contents are of type {@link org.osate.av3instance.av3instance.PropertyAssociationInstance}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Property Associations</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Property Associations</em>' containment reference list.
-	 * @see org.osate.av3instance.av3instance.Av3instancePackage#getInstanceObject_PropertyAssociations()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<PropertyAssociationInstance> getPropertyAssociations();
-
+public interface InstanceObject extends NamedElement {
 	/**
 	 * Returns the value of the '<em><b>Incoming Associations</b></em>' reference list.
 	 * The list contents are of type {@link org.osate.av3instance.av3instance.AssociationInstance}.
