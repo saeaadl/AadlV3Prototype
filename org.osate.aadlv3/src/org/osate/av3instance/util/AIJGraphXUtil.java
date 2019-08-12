@@ -15,7 +15,7 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR LGPL-2.1-or-later
  */
-package org.osate.aadlv3.util;
+package org.osate.av3instance.util;
 
 //@example:full:begin
 

@@ -1,4 +1,4 @@
-package org.osate.aadlv3.util;
+package org.osate.av3instance.util;
 
 import org.jgrapht.Graph;
 import org.jgrapht.graph.DefaultDirectedGraph;

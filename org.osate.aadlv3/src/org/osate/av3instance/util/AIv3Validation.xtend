@@ -1,4 +1,4 @@
-package org.osate.av3instance.av3instance.util
+package org.osate.av3instance.util
 
 import java.util.ArrayList
 import java.util.Collection
