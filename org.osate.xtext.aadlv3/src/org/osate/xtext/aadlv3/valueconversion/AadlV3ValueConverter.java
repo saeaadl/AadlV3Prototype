@@ -11,8 +11,8 @@ import org.osate.aadlv3.aadlv3.AssociationType;
 import org.osate.aadlv3.aadlv3.PropertyAssociationType;
 import org.osate.aadlv3.aadlv3.Composite;
 import org.osate.aadlv3.aadlv3.Primitive;
-import org.osate.aadlv3.aadlv3.LOperation;
-import org.osate.aadlv3.aadlv3.EOperation;
+import org.osate.aadlv3.aadlv3.LOperator;
+import org.osate.aadlv3.aadlv3.EOperator;
 
 
 public class AadlV3ValueConverter extends DefaultTerminalConverters {
@@ -204,37 +204,37 @@ public class AadlV3ValueConverter extends DefaultTerminalConverters {
 		};
 	}
 
-	@ValueConverter(rule = "LOperation")
-	public IValueConverter<LOperation> LOperation() {
-		return new IValueConverter<LOperation>() {
+	@ValueConverter(rule = "LOperator")
+	public IValueConverter<LOperator> LOperator() {
+		return new IValueConverter<LOperator>() {
 			@Override
-			public LOperation toValue(String string, INode node) {
+			public LOperator toValue(String string, INode node) {
 				if (string == null) {
 					return null;
 				}
-				return LOperation.get(string);
+				return LOperator.get(string);
 			}
 
 			@Override
-			public String toString(LOperation value) {
+			public String toString(LOperator value) {
 				return value.getName();
 			}
 		};
 	}
 
-	@ValueConverter(rule = "EOperation")
-	public IValueConverter<EOperation> EOperation() {
-		return new IValueConverter<EOperation>() {
+	@ValueConverter(rule = "EOperator")
+	public IValueConverter<EOperator> EOperator() {
+		return new IValueConverter<EOperator>() {
 			@Override
-			public EOperation toValue(String string, INode node) {
+			public EOperator toValue(String string, INode node) {
 				if (string == null) {
 					return null;
 				}
-				return EOperation.get(string);
+				return EOperator.get(string);
 			}
 
 			@Override
-			public String toString(EOperation value) {
+			public String toString(EOperator value) {
 				return value.getName();
 			}
 		};

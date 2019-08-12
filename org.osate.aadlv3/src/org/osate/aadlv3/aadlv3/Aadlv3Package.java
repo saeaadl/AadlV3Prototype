@@ -69,7 +69,6 @@ public interface Aadlv3Package extends EPackage {
 	 */
 	Aadlv3Package eINSTANCE = org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl.init();
 
-	int NAMED_ELEMENT_OPERATION_COUNT = 0;
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.NamedElementImpl <em>Named Element</em>}' class.
 	 * <!-- begin-user-doc -->

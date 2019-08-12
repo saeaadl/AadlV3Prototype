@@ -523,7 +523,7 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 		associationInstanceEClass.getESuperTypes().add(this.getInstanceObject());
 		pathInstanceEClass.getESuperTypes().add(this.getInstanceObject());
 
-		// Initialize classes, features, and operations; add parameters
+		// Initialize classes and features; add operations and parameters
 		initEClass(instanceObjectEClass, InstanceObject.class, "InstanceObject", IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
 				IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getInstanceObject_IncomingAssociations(), this.getAssociationInstance(),

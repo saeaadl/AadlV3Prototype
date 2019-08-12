@@ -127,15 +127,6 @@ public interface Av3instancePackage extends EPackage {
 	int INSTANCE_OBJECT_FEATURE_COUNT = Aadlv3Package.NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of operations of the '<em>Instance Object</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_OBJECT_OPERATION_COUNT = Aadlv3Package.NAMED_ELEMENT_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.osate.av3instance.av3instance.impl.FeatureInstanceImpl <em>Feature Instance</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -225,15 +216,6 @@ public interface Av3instancePackage extends EPackage {
 	 * @ordered
 	 */
 	int FEATURE_INSTANCE_FEATURE_COUNT = INSTANCE_OBJECT_FEATURE_COUNT + 4;
-
-	/**
-	 * The number of operations of the '<em>Feature Instance</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_INSTANCE_OPERATION_COUNT = INSTANCE_OBJECT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.osate.av3instance.av3instance.impl.ComponentInstanceImpl <em>Component Instance</em>}' class.
@@ -352,15 +334,6 @@ public interface Av3instancePackage extends EPackage {
 	 * @ordered
 	 */
 	int COMPONENT_INSTANCE_FEATURE_COUNT = INSTANCE_OBJECT_FEATURE_COUNT + 7;
-
-	/**
-	 * The number of operations of the '<em>Component Instance</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPONENT_INSTANCE_OPERATION_COUNT = INSTANCE_OBJECT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.osate.av3instance.av3instance.impl.AssociationInstanceImpl <em>Association Instance</em>}' class.
@@ -490,15 +463,6 @@ public interface Av3instancePackage extends EPackage {
 	int ASSOCIATION_INSTANCE_FEATURE_COUNT = INSTANCE_OBJECT_FEATURE_COUNT + 8;
 
 	/**
-	 * The number of operations of the '<em>Association Instance</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATION_INSTANCE_OPERATION_COUNT = INSTANCE_OBJECT_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.osate.av3instance.av3instance.impl.PathInstanceImpl <em>Path Instance</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -570,15 +534,6 @@ public interface Av3instancePackage extends EPackage {
 	 * @ordered
 	 */
 	int PATH_INSTANCE_FEATURE_COUNT = INSTANCE_OBJECT_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of operations of the '<em>Path Instance</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PATH_INSTANCE_OPERATION_COUNT = INSTANCE_OBJECT_OPERATION_COUNT + 0;
 
 	/**
 	 * Returns the meta object for class '{@link org.osate.av3instance.av3instance.InstanceObject <em>Instance Object</em>}'.

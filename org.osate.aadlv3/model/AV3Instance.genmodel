@@ -9,7 +9,7 @@
     testsDirectory="" testSuiteClass="org.osate.aadlv3.av3instance.tests.AV3InstanceAllTests"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
     editPluginID="org.osate.aadlv3.edit" editorPluginID="org.osate.aadlv3.editor"
-    usedGenPackages="Aadlv3.genmodel#//aadlv3" operationReflection="true" importOrganizing="true"
+    usedGenPackages="Aadlv3.genmodel#//aadlv3" operationReflection="false" importOrganizing="true"
     cleanup="true">
   <foreignModel>AV3Instance.ecore</foreignModel>
   <genPackages prefix="Av3instance" basePackage="org.osate.av3instance" disposableProviderFactory="true"
