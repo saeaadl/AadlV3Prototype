@@ -362,11 +362,11 @@ rulePackageElement returns [EObject current=null]
 			/* */
 		}
 		{
-			newCompositeNode(grammarAccess.getPackageElementAccess().getTypeDeclParserRuleCall_7());
+			newCompositeNode(grammarAccess.getPackageElementAccess().getTypeDefParserRuleCall_7());
 		}
-		this_TypeDecl_7=ruleTypeDecl
+		this_TypeDef_7=ruleTypeDef
 		{
-			$current = $this_TypeDecl_7.current;
+			$current = $this_TypeDef_7.current;
 			afterParserOrEnumRuleCall();
 		}
 	)
@@ -708,15 +708,15 @@ rulePropertySet returns [EObject current=null]
 	)
 ;
 
-// Entry rule entryRuleTypeDecl
-entryRuleTypeDecl returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getTypeDeclRule()); }
-	iv_ruleTypeDecl=ruleTypeDecl
-	{ $current=$iv_ruleTypeDecl.current; }
+// Entry rule entryRuleTypeDef
+entryRuleTypeDef returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getTypeDefRule()); }
+	iv_ruleTypeDef=ruleTypeDef
+	{ $current=$iv_ruleTypeDef.current; }
 	EOF;
 
-// Rule TypeDecl
-ruleTypeDecl returns [EObject current=null]
+// Rule TypeDef
+ruleTypeDef returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -728,11 +728,11 @@ ruleTypeDecl returns [EObject current=null]
 			(
 				lv_private_0_0='private'
 				{
-					newLeafNode(lv_private_0_0, grammarAccess.getTypeDeclAccess().getPrivatePrivateKeyword_0_0());
+					newLeafNode(lv_private_0_0, grammarAccess.getTypeDefAccess().getPrivatePrivateKeyword_0_0());
 				}
 				{
 					if ($current==null) {
-						$current = createModelElement(grammarAccess.getTypeDeclRule());
+						$current = createModelElement(grammarAccess.getTypeDefRule());
 					}
 					setWithLastConsumed($current, "private", true, "private");
 				}
@@ -740,17 +740,17 @@ ruleTypeDecl returns [EObject current=null]
 		)?
 		otherlv_1='type'
 		{
-			newLeafNode(otherlv_1, grammarAccess.getTypeDeclAccess().getTypeKeyword_1());
+			newLeafNode(otherlv_1, grammarAccess.getTypeDefAccess().getTypeKeyword_1());
 		}
 		(
 			(
 				lv_name_2_0=RULE_ID
 				{
-					newLeafNode(lv_name_2_0, grammarAccess.getTypeDeclAccess().getNameIDTerminalRuleCall_2_0());
+					newLeafNode(lv_name_2_0, grammarAccess.getTypeDefAccess().getNameIDTerminalRuleCall_2_0());
 				}
 				{
 					if ($current==null) {
-						$current = createModelElement(grammarAccess.getTypeDeclRule());
+						$current = createModelElement(grammarAccess.getTypeDefRule());
 					}
 					setWithLastConsumed(
 						$current,
@@ -763,17 +763,17 @@ ruleTypeDecl returns [EObject current=null]
 		(
 			otherlv_3='extends'
 			{
-				newLeafNode(otherlv_3, grammarAccess.getTypeDeclAccess().getExtendsKeyword_3_0());
+				newLeafNode(otherlv_3, grammarAccess.getTypeDefAccess().getExtendsKeyword_3_0());
 			}
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getTypeDeclAccess().getSuperTypeTypeParserRuleCall_3_1_0());
+						newCompositeNode(grammarAccess.getTypeDefAccess().getSuperTypeTypeParserRuleCall_3_1_0());
 					}
 					lv_superType_4_0=ruleType
 					{
 						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getTypeDeclRule());
+							$current = createModelElementForParent(grammarAccess.getTypeDefRule());
 						}
 						set(
 							$current,
@@ -791,9 +791,9 @@ ruleTypeDecl returns [EObject current=null]
 			}
 			{
 				if ($current==null) {
-					$current = createModelElement(grammarAccess.getTypeDeclRule());
+					$current = createModelElement(grammarAccess.getTypeDefRule());
 				}
-				newCompositeNode(grammarAccess.getTypeDeclAccess().getPropertiesBlockParserRuleCall_4());
+				newCompositeNode(grammarAccess.getTypeDefAccess().getPropertiesBlockParserRuleCall_4());
 			}
 			this_PropertiesBlock_5=rulePropertiesBlock[$current]
 			{
@@ -803,7 +803,7 @@ ruleTypeDecl returns [EObject current=null]
 		)?
 		otherlv_6=';'
 		{
-			newLeafNode(otherlv_6, grammarAccess.getTypeDeclAccess().getSemicolonKeyword_5());
+			newLeafNode(otherlv_6, grammarAccess.getTypeDefAccess().getSemicolonKeyword_5());
 		}
 	)
 ;
@@ -1559,7 +1559,7 @@ ruleMultiLiteralOperation returns [EObject current=null]
 			}
 			{
 				$current = forceCreateModelElement(
-					grammarAccess.getMultiLiteralOperationAccess().getMultiLiteralOperationAction_0(),
+					grammarAccess.getMultiLiteralOperationAccess().getMultiLiteralConstraintAction_0(),
 					$current);
 			}
 		)
@@ -2810,7 +2810,7 @@ ruleBinding returns [EObject current=null]
 					}
 				}
 				{
-					newCompositeNode(grammarAccess.getBindingAccess().getBindingTypeTypeDeclCrossReference_2_0());
+					newCompositeNode(grammarAccess.getBindingAccess().getBindingTypeTypeDefCrossReference_2_0());
 				}
 				ruleQualifiedName
 				{
@@ -5362,13 +5362,65 @@ ruleInstanceConfiguration returns [EObject current=null]
 			afterParserOrEnumRuleCall();
 		}
 		(
-			otherlv_2='assert'
+			(
+				{
+					newCompositeNode(grammarAccess.getInstanceConfigurationAccess().getPropertyConstraintPropertyConstraintParserRuleCall_2_0());
+				}
+				lv_propertyConstraint_2_0=rulePropertyConstraint
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getInstanceConfigurationRule());
+					}
+					set(
+						$current,
+						"propertyConstraint",
+						lv_propertyConstraint_2_0,
+						"org.osate.xtext.aadlv3.AadlV3.PropertyConstraint");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)?
+		otherlv_3=';'
+		{
+			newLeafNode(otherlv_3, grammarAccess.getInstanceConfigurationAccess().getSemicolonKeyword_3());
+		}
+	)
+;
+
+// Entry rule entryRulePropertyConstraint
+entryRulePropertyConstraint returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getPropertyConstraintRule()); }
+	iv_rulePropertyConstraint=rulePropertyConstraint
+	{ $current=$iv_rulePropertyConstraint.current; }
+	EOF;
+
+// Rule PropertyConstraint
+rulePropertyConstraint returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
 			{
-				newLeafNode(otherlv_2, grammarAccess.getInstanceConfigurationAccess().getAssertKeyword_2_0());
+				/* */
 			}
-			otherlv_3='#'
 			{
-				newLeafNode(otherlv_3, grammarAccess.getInstanceConfigurationAccess().getNumberSignKeyword_2_1());
+				$current = forceCreateModelElement(
+					grammarAccess.getPropertyConstraintAccess().getPropertyConstraintAction_0(),
+					$current);
+			}
+		)
+		(
+			otherlv_1='assert'
+			{
+				newLeafNode(otherlv_1, grammarAccess.getPropertyConstraintAccess().getAssertKeyword_1_0());
+			}
+			otherlv_2='#'
+			{
+				newLeafNode(otherlv_2, grammarAccess.getPropertyConstraintAccess().getNumberSignKeyword_1_1());
 			}
 			(
 				(
@@ -5377,11 +5429,11 @@ ruleInstanceConfiguration returns [EObject current=null]
 					}
 					{
 						if ($current==null) {
-							$current = createModelElement(grammarAccess.getInstanceConfigurationRule());
+							$current = createModelElement(grammarAccess.getPropertyConstraintRule());
 						}
 					}
 					{
-						newCompositeNode(grammarAccess.getInstanceConfigurationAccess().getConstrainedPropertyPropertyDefinitionCrossReference_2_2_0());
+						newCompositeNode(grammarAccess.getPropertyConstraintAccess().getConstrainedPropertyPropertyDefinitionCrossReference_1_2_0());
 					}
 					ruleQualifiedName
 					{
@@ -5389,34 +5441,30 @@ ruleInstanceConfiguration returns [EObject current=null]
 					}
 				)
 			)
-			otherlv_5='='
+			otherlv_4='='
 			{
-				newLeafNode(otherlv_5, grammarAccess.getInstanceConfigurationAccess().getEqualsSignKeyword_2_3());
+				newLeafNode(otherlv_4, grammarAccess.getPropertyConstraintAccess().getEqualsSignKeyword_1_3());
 			}
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstanceConfigurationAccess().getConstraintExpressionMultiLiteralOperationParserRuleCall_2_4_0());
+						newCompositeNode(grammarAccess.getPropertyConstraintAccess().getConstraintExpressionMultiLiteralOperationParserRuleCall_1_4_0());
 					}
-					lv_constraintExpression_6_0=ruleMultiLiteralOperation
+					lv_constraintExpression_5_0=ruleMultiLiteralOperation
 					{
 						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getInstanceConfigurationRule());
+							$current = createModelElementForParent(grammarAccess.getPropertyConstraintRule());
 						}
 						set(
 							$current,
 							"constraintExpression",
-							lv_constraintExpression_6_0,
+							lv_constraintExpression_5_0,
 							"org.osate.xtext.aadlv3.AadlV3.MultiLiteralOperation");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)
 		)?
-		otherlv_7=';'
-		{
-			newLeafNode(otherlv_7, grammarAccess.getInstanceConfigurationAccess().getSemicolonKeyword_3());
-		}
 	)
 ;
 

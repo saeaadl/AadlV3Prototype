@@ -24,8 +24,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.InstanceConfiguration;
-import org.osate.aadlv3.aadlv3.MultiLiteralOperation;
-import org.osate.aadlv3.aadlv3.PropertyDefinition;
+import org.osate.aadlv3.aadlv3.PropertyConstraint;
 
 /**
  * <!-- begin-user-doc -->
@@ -35,31 +34,21 @@ import org.osate.aadlv3.aadlv3.PropertyDefinition;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.InstanceConfigurationImpl#getConstrainedProperty <em>Constrained Property</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.InstanceConfigurationImpl#getConstraintExpression <em>Constraint Expression</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.InstanceConfigurationImpl#getPropertyConstraint <em>Property Constraint</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class InstanceConfigurationImpl extends SubcomponentImpl implements InstanceConfiguration {
 	/**
-	 * The cached value of the '{@link #getConstrainedProperty() <em>Constrained Property</em>}' reference.
+	 * The cached value of the '{@link #getPropertyConstraint() <em>Property Constraint</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getConstrainedProperty()
+	 * @see #getPropertyConstraint()
 	 * @generated
 	 * @ordered
 	 */
-	protected PropertyDefinition constrainedProperty;
-	/**
-	 * The cached value of the '{@link #getConstraintExpression() <em>Constraint Expression</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getConstraintExpression()
-	 * @generated
-	 * @ordered
-	 */
-	protected MultiLiteralOperation constraintExpression;
+	protected PropertyConstraint propertyConstraint;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -86,18 +75,8 @@ public class InstanceConfigurationImpl extends SubcomponentImpl implements Insta
 	 * @generated
 	 */
 	@Override
-	public PropertyDefinition getConstrainedProperty() {
-		if (constrainedProperty != null && constrainedProperty.eIsProxy()) {
-			InternalEObject oldConstrainedProperty = (InternalEObject) constrainedProperty;
-			constrainedProperty = (PropertyDefinition) eResolveProxy(oldConstrainedProperty);
-			if (constrainedProperty != oldConstrainedProperty) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							Aadlv3Package.INSTANCE_CONFIGURATION__CONSTRAINED_PROPERTY, oldConstrainedProperty,
-							constrainedProperty));
-			}
-		}
-		return constrainedProperty;
+	public PropertyConstraint getPropertyConstraint() {
+		return propertyConstraint;
 	}
 
 	/**
@@ -105,48 +84,14 @@ public class InstanceConfigurationImpl extends SubcomponentImpl implements Insta
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PropertyDefinition basicGetConstrainedProperty() {
-		return constrainedProperty;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setConstrainedProperty(PropertyDefinition newConstrainedProperty) {
-		PropertyDefinition oldConstrainedProperty = constrainedProperty;
-		constrainedProperty = newConstrainedProperty;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					Aadlv3Package.INSTANCE_CONFIGURATION__CONSTRAINED_PROPERTY, oldConstrainedProperty,
-					constrainedProperty));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public MultiLiteralOperation getConstraintExpression() {
-		return constraintExpression;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetConstraintExpression(MultiLiteralOperation newConstraintExpression,
+	public NotificationChain basicSetPropertyConstraint(PropertyConstraint newPropertyConstraint,
 			NotificationChain msgs) {
-		MultiLiteralOperation oldConstraintExpression = constraintExpression;
-		constraintExpression = newConstraintExpression;
+		PropertyConstraint oldPropertyConstraint = propertyConstraint;
+		propertyConstraint = newPropertyConstraint;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					Aadlv3Package.INSTANCE_CONFIGURATION__CONSTRAINT_EXPRESSION, oldConstraintExpression,
-					newConstraintExpression);
+					Aadlv3Package.INSTANCE_CONFIGURATION__PROPERTY_CONSTRAINT, oldPropertyConstraint,
+					newPropertyConstraint);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -161,24 +106,22 @@ public class InstanceConfigurationImpl extends SubcomponentImpl implements Insta
 	 * @generated
 	 */
 	@Override
-	public void setConstraintExpression(MultiLiteralOperation newConstraintExpression) {
-		if (newConstraintExpression != constraintExpression) {
+	public void setPropertyConstraint(PropertyConstraint newPropertyConstraint) {
+		if (newPropertyConstraint != propertyConstraint) {
 			NotificationChain msgs = null;
-			if (constraintExpression != null)
-				msgs = ((InternalEObject) constraintExpression).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE - Aadlv3Package.INSTANCE_CONFIGURATION__CONSTRAINT_EXPRESSION, null,
-						msgs);
-			if (newConstraintExpression != null)
-				msgs = ((InternalEObject) newConstraintExpression).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE - Aadlv3Package.INSTANCE_CONFIGURATION__CONSTRAINT_EXPRESSION, null,
-						msgs);
-			msgs = basicSetConstraintExpression(newConstraintExpression, msgs);
+			if (propertyConstraint != null)
+				msgs = ((InternalEObject) propertyConstraint).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE - Aadlv3Package.INSTANCE_CONFIGURATION__PROPERTY_CONSTRAINT, null, msgs);
+			if (newPropertyConstraint != null)
+				msgs = ((InternalEObject) newPropertyConstraint).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE - Aadlv3Package.INSTANCE_CONFIGURATION__PROPERTY_CONSTRAINT, null, msgs);
+			msgs = basicSetPropertyConstraint(newPropertyConstraint, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-					Aadlv3Package.INSTANCE_CONFIGURATION__CONSTRAINT_EXPRESSION, newConstraintExpression,
-					newConstraintExpression));
+					Aadlv3Package.INSTANCE_CONFIGURATION__PROPERTY_CONSTRAINT, newPropertyConstraint,
+					newPropertyConstraint));
 	}
 
 	/**
@@ -189,8 +132,8 @@ public class InstanceConfigurationImpl extends SubcomponentImpl implements Insta
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case Aadlv3Package.INSTANCE_CONFIGURATION__CONSTRAINT_EXPRESSION:
-			return basicSetConstraintExpression(null, msgs);
+		case Aadlv3Package.INSTANCE_CONFIGURATION__PROPERTY_CONSTRAINT:
+			return basicSetPropertyConstraint(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -203,12 +146,8 @@ public class InstanceConfigurationImpl extends SubcomponentImpl implements Insta
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case Aadlv3Package.INSTANCE_CONFIGURATION__CONSTRAINED_PROPERTY:
-			if (resolve)
-				return getConstrainedProperty();
-			return basicGetConstrainedProperty();
-		case Aadlv3Package.INSTANCE_CONFIGURATION__CONSTRAINT_EXPRESSION:
-			return getConstraintExpression();
+		case Aadlv3Package.INSTANCE_CONFIGURATION__PROPERTY_CONSTRAINT:
+			return getPropertyConstraint();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -221,11 +160,8 @@ public class InstanceConfigurationImpl extends SubcomponentImpl implements Insta
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case Aadlv3Package.INSTANCE_CONFIGURATION__CONSTRAINED_PROPERTY:
-			setConstrainedProperty((PropertyDefinition) newValue);
-			return;
-		case Aadlv3Package.INSTANCE_CONFIGURATION__CONSTRAINT_EXPRESSION:
-			setConstraintExpression((MultiLiteralOperation) newValue);
+		case Aadlv3Package.INSTANCE_CONFIGURATION__PROPERTY_CONSTRAINT:
+			setPropertyConstraint((PropertyConstraint) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -239,11 +175,8 @@ public class InstanceConfigurationImpl extends SubcomponentImpl implements Insta
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case Aadlv3Package.INSTANCE_CONFIGURATION__CONSTRAINED_PROPERTY:
-			setConstrainedProperty((PropertyDefinition) null);
-			return;
-		case Aadlv3Package.INSTANCE_CONFIGURATION__CONSTRAINT_EXPRESSION:
-			setConstraintExpression((MultiLiteralOperation) null);
+		case Aadlv3Package.INSTANCE_CONFIGURATION__PROPERTY_CONSTRAINT:
+			setPropertyConstraint((PropertyConstraint) null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -257,10 +190,8 @@ public class InstanceConfigurationImpl extends SubcomponentImpl implements Insta
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case Aadlv3Package.INSTANCE_CONFIGURATION__CONSTRAINED_PROPERTY:
-			return constrainedProperty != null;
-		case Aadlv3Package.INSTANCE_CONFIGURATION__CONSTRAINT_EXPRESSION:
-			return constraintExpression != null;
+		case Aadlv3Package.INSTANCE_CONFIGURATION__PROPERTY_CONSTRAINT:
+			return propertyConstraint != null;
 		}
 		return super.eIsSet(featureID);
 	}

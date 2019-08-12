@@ -24,14 +24,16 @@ import org.osate.aadlv3.aadlv3.ComponentImplementation
 import org.osate.aadlv3.aadlv3.ComponentInterface
 import org.osate.aadlv3.aadlv3.ConfigurationActual
 import org.osate.aadlv3.aadlv3.ConfigurationParameter
-import org.osate.aadlv3.aadlv3.ECollection
 import org.osate.aadlv3.aadlv3.Feature
 import org.osate.aadlv3.aadlv3.FeatureCategory
 import org.osate.aadlv3.aadlv3.FeatureDirection
 import org.osate.aadlv3.aadlv3.Import
+import org.osate.aadlv3.aadlv3.InstanceConfiguration
+import org.osate.aadlv3.aadlv3.LCollection
 import org.osate.aadlv3.aadlv3.Literal
 import org.osate.aadlv3.aadlv3.ModelElement
 import org.osate.aadlv3.aadlv3.ModelElementReference
+import org.osate.aadlv3.aadlv3.MultiLiteralConstraint
 import org.osate.aadlv3.aadlv3.NamedType
 import org.osate.aadlv3.aadlv3.PackageDeclaration
 import org.osate.aadlv3.aadlv3.PathSequence
@@ -39,7 +41,7 @@ import org.osate.aadlv3.aadlv3.PropertyAssociation
 import org.osate.aadlv3.aadlv3.PropertyDefinition
 import org.osate.aadlv3.aadlv3.Subcomponent
 import org.osate.aadlv3.aadlv3.Type
-import org.osate.aadlv3.aadlv3.TypeDecl
+import org.osate.aadlv3.aadlv3.TypeDef
 import org.osate.aadlv3.aadlv3.TypeReference
 import org.osate.aadlv3.aadlv3.Workingset
 import org.osate.av3instance.av3instance.AssociationInstance
@@ -49,7 +51,6 @@ import org.osate.av3instance.av3instance.InstanceObject
 
 import static extension org.eclipse.xtext.EcoreUtil2.*
 import static extension org.osate.aadlv3.util.Av3API.*
-import org.osate.aadlv3.aadlv3.LCollection
 
 class Aadlv3Util {
 	
@@ -76,7 +77,7 @@ class Aadlv3Util {
 			if (t instanceof ConfigurationParameter){
 				type = t.type
 			}
-			if (type instanceof TypeDecl){
+			if (type instanceof TypeDef){
 				
 			} else if (type instanceof Classifier){
 				if (type.category != ComponentCategory.INTERFACE){
@@ -117,7 +118,7 @@ class Aadlv3Util {
 					result.add(t)
 					t.addSuperClassifiers(result)
 				}
-				TypeDecl: {
+				TypeDef: {
 				}
 				ConfigurationParameter: {
 				}
@@ -129,7 +130,6 @@ class Aadlv3Util {
 	/**
 	 * returns an ordered set of component classifier.
 	 * The list consists of the classifier cc as well as all its super classifiers.
-	 * In addition, the BaseInterface classifier is added.
 	 */
 	static def Iterable<Classifier> getAllClassifiers(Classifier cc) {
 		val result = new LinkedHashSet<Classifier>
@@ -142,7 +142,6 @@ class Aadlv3Util {
 	/**
 	 * returns an ordered set of component classifier.
 	 * The list consists of all its super classifiers.
-	 * In addition, the BaseInterface classifier is added.
 	 */
 	static def Iterable<Classifier> getAllSuperClassifiers(Classifier cc) {
 		val result = new LinkedHashSet<Classifier>
@@ -186,12 +185,12 @@ class Aadlv3Util {
 	/**
 	 * returns implementation that is the extension of all other implementations
 	 */
-	static def TypeDecl getTopDataType(Iterable<TypeReference> trs){
-		var TypeDecl top = null
+	static def TypeDef getTopDataType(Iterable<TypeReference> trs){
+		var TypeDef top = null
 		for (tr : trs){
-			if (tr.type instanceof TypeDecl){
-				val cl = tr.type as TypeDecl
-				if (top === null || top.isSuperTypeDeclOf(cl)){
+			if (tr.type instanceof TypeDef){
+				val cl = tr.type as TypeDef
+				if (top === null || top.isSuperTypeDefOf(cl)){
 					top = cl
 				}
 			}
@@ -199,9 +198,9 @@ class Aadlv3Util {
 		return top
 	}
 	
-	static def boolean isTypeDecl(Iterable<TypeReference> trs){
+	static def boolean isTypeDef(Iterable<TypeReference> trs){
 		for (tr : trs){
-			if (tr.type instanceof TypeDecl){
+			if (tr.type instanceof TypeDef){
 				return true
 			}
 		}
@@ -211,7 +210,7 @@ class Aadlv3Util {
 	static def boolean isClassifier(Iterable<TypeReference> trs){
 		if (trs.empty) return true
 		for (tr : trs){
-			if (tr.type instanceof TypeDecl){
+			if (tr.type instanceof TypeDef){
 				return false
 			}
 		}
@@ -843,7 +842,7 @@ class Aadlv3Util {
 	 * These are model elements declared as part of the classifier or as part of the nested declaration
 	 */
 	static def Iterable<ModelElement> getAllModelElements(Subcomponent comp) {
-		if (comp.typeReferences.empty || comp.typeReferences.isTypeDecl){
+		if (comp.typeReferences.empty || comp.typeReferences.isTypeDef){
 			// model elements in nested declaration
 			return comp.eContents.typeSelect(ModelElement)
 		} else {
@@ -999,8 +998,8 @@ class Aadlv3Util {
 
 	// returns true if if superType is a super type of type
 	def static boolean isSuperTypeOf(Type superType, Type type) {
-		if (superType instanceof TypeDecl && type instanceof TypeDecl){
-			return (superType as TypeDecl).isSuperTypeDeclOf(type as TypeDecl)
+		if (superType instanceof TypeDef && type instanceof TypeDef){
+			return (superType as TypeDef).isSuperTypeDefOf(type as TypeDef)
 		}
 		if (superType instanceof Classifier && type instanceof Classifier){
 			return 	(superType as Classifier).isSuperClassifierOf(type as Classifier)
@@ -1040,7 +1039,7 @@ class Aadlv3Util {
 	
 
 	// superImpl has to be a direct or indirect super implementation, or the same
-	def static boolean isSuperTypeDeclOf(TypeDecl superdt, TypeDecl dt) {
+	def static boolean isSuperTypeDefOf(TypeDef superdt, TypeDef dt) {
 		if( dt === null || superdt.eIsProxy || dt.eIsProxy) return false
 		if (superdt === null || superdt === dt) return true
 		false
@@ -1521,9 +1520,10 @@ class Aadlv3Util {
 	 * value: a collection of literals associated with a classifier
 	 * constraint: a collection of alternatives (ANY) where each alternative represents a single literal or collection of literals (ALL)
 	 */
-	def static boolean satisfies(LCollection value, LCollection constraint) {
+	def static boolean satisfies(LCollection value, MultiLiteralConstraint constraint) {
+		if (constraint === null|| value === null) return true
 		for (orElement : constraint.elements) {
-			if (orElement instanceof LCollection) {
+			if (orElement instanceof MultiLiteralConstraint) {
 				// and list
 				if(value.contains(orElement)) return true
 			} else {
@@ -1536,19 +1536,19 @@ class Aadlv3Util {
 	/**
 	 * the product line qualifier of cl satisfies the specified constraint
 	 */
-	def static boolean satisfies(NamedType cl, LCollection constraint) {
+	def static boolean satisfies(NamedType cl, MultiLiteralConstraint constraint) {
+		if (constraint === null) return true
 		val match = cl.getProductLineQualifier();
-		if (match instanceof LCollection){
-			return match.satisfies(constraint)
-		}
-		return false
+		if (match === null) return true
+		return match.satisfies(constraint)
 	}
 
 	
 	/**
 	 * all elements of trefs satisfy the specified constraint
 	 */
-	def static boolean satisfies(Iterable<TypeReference> trefs, LCollection constraint) {
+	def static boolean satisfies(Iterable<TypeReference> trefs, MultiLiteralConstraint constraint) {
+		if (constraint === null) return true
 		return trefs.forall[tref| tref.type.satisfies(constraint)]
 	}
 
@@ -1558,8 +1558,8 @@ class Aadlv3Util {
 
 	val static String ProductLineQualifier = "FeatureLabels";
 	
-	def static LCollection getProductLineQualifier(ModelElement cl){
-		return getOwnedPropertyValue(cl,ProductLineQualifier) as LCollection
+	def static MultiLiteralConstraint getProductLineConstraint(InstanceConfiguration ic){
+		return ic.propertyConstraint?.constraintExpression
 	}
 	
 	def static LCollection getProductLineQualifier(NamedType cl){
@@ -1574,8 +1574,8 @@ class Aadlv3Util {
 			if (samePropertyDefinition(pa.property, property)) {
 				return pa.value
 			}
-			return null;
 		}
+		return null;
 	}
 	
 	/**

@@ -11,15 +11,17 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.xtext.naming.IQualifiedNameConverter;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
-import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.resource.IResourceServiceProvider;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.impl.ImportedNamespaceAwareLocalScopeProvider;
+import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.Classifier;
 import org.osate.aadlv3.aadlv3.ComponentInterface;
+import org.osate.aadlv3.aadlv3.ComponentRealization;
+import org.osate.aadlv3.aadlv3.MultiLiteralConstraint;
+import org.osate.aadlv3.aadlv3.NamedType;
 
-import com.google.common.base.Predicate;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
 
@@ -115,31 +117,73 @@ public class Aadlv3GlobalScopeUtil {
 	}
 
 	
-	/**
-	 * Get all global definitions in specified context
-	 * Primarily used to get all implementations or configurations for a given interface
-	 * @param context the component interface (or other context object whose global content is to be returned
+	/** 
+	 * Get all extensions of the component interface of eclass.
+	 * This can be all classifier (incl. interfaces), realizations, all implementations, or all configurations that are extensions
+	 * In addition if the constraint is non-null then the constraint must be satisfied as well
+	 * @param context the component interface 
 	 * @param eClass
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	public static <T extends EObject> Collection<T> getAllInContext(ComponentInterface context, EClass eClass) {
+	public static  <T extends Classifier> Collection<T> getAllExtensions(Classifier context,EClass eclass,MultiLiteralConstraint productLineQualifierconstraint) {
+		Resource rsc = context.eResource();
 		Collection<T> result = new ArrayList<T>();
-		final QualifiedName qn = qnameProvider.getFullyQualifiedName(context);
-		final String ifname = qn.getLastSegment();
-		IScope scope = globalScopeProvider.getAllScope(context.eResource(), eClass,new Predicate<IEObjectDescription>() {
-			@Override
-			public boolean apply(IEObjectDescription input) {
-				return ifname.equals(Aadlv3Util.stripExtensionInName(input.getQualifiedName().getLastSegment()));
-			}
-		});
+		IScope scope = globalScopeProvider.getAllScope(rsc, eclass);
 		for(IEObjectDescription desc: scope.getAllElements()) {
 			if (desc != null) {
 				EObject o = desc.getEObjectOrProxy();
 				if (o.eIsProxy()) {
-					o = EcoreUtil.resolve(o, context);
+					o = EcoreUtil.resolve(o, rsc);
 				}
-				if (!o.eIsProxy()) result.add((T) o);
+				if (!o.eIsProxy()) {
+					T cl = (T)o;
+					if (Aadlv3Util.isSuperClassifierOf(context, cl)) {
+						if (productLineQualifierconstraint == null || Aadlv3Util.satisfies(cl, productLineQualifierconstraint)) {
+							result.add(cl);
+						}
+					}
+				}
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * Get all objects of class eclass (assuming they are Classifiers) that are a extensions of classifier context
+	 * This can be all classifier (incl. interfaces), realizations, all implementations, or all configurations that are extensions
+	 * @param <T>
+	 * @param context
+	 * @param eclass
+	 * @return
+	 */
+	public static  <T extends Classifier> Collection<T> getAllExtensions(Classifier context,EClass eclass) {
+		return getAllExtensions(context, eclass, null);
+	}
+	
+	/**
+	 * Get all extensions of name type context
+	 * @param <T>
+	 * @param context
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public static  <T extends NamedType> Collection<T> getAllExtensions(NamedType context) {
+		Resource rsc = context.eResource();
+		Collection<T> result = new ArrayList<T>();
+		IScope scope = globalScopeProvider.getAllScope(rsc, Aadlv3Package.eINSTANCE.getNamedType());
+		for(IEObjectDescription desc: scope.getAllElements()) {
+			if (desc != null) {
+				EObject o = desc.getEObjectOrProxy();
+				if (o.eIsProxy()) {
+					o = EcoreUtil.resolve(o, rsc);
+				}
+				if (!o.eIsProxy()) {
+					T tp = (T)o;
+					if (Aadlv3Util.isSuperTypeOf(context, tp)) {
+						result.add(tp);
+					}
+				}
 			}
 		}
 		return result;

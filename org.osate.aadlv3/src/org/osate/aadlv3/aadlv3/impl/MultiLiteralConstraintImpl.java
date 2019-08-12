@@ -23,22 +23,22 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.LOperation;
-import org.osate.aadlv3.aadlv3.MultiLiteralOperation;
+import org.osate.aadlv3.aadlv3.MultiLiteralConstraint;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Multi Literal Operation</b></em>'.
+ * An implementation of the model object '<em><b>Multi Literal Constraint</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.MultiLiteralOperationImpl#getOperator <em>Operator</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.MultiLiteralConstraintImpl#getOperator <em>Operator</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class MultiLiteralOperationImpl extends LCollectionImpl implements MultiLiteralOperation {
+public class MultiLiteralConstraintImpl extends LCollectionImpl implements MultiLiteralConstraint {
 	/**
 	 * The default value of the '{@link #getOperator() <em>Operator</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -64,7 +64,7 @@ public class MultiLiteralOperationImpl extends LCollectionImpl implements MultiL
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected MultiLiteralOperationImpl() {
+	protected MultiLiteralConstraintImpl() {
 		super();
 	}
 
@@ -75,7 +75,7 @@ public class MultiLiteralOperationImpl extends LCollectionImpl implements MultiL
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return Aadlv3Package.Literals.MULTI_LITERAL_OPERATION;
+		return Aadlv3Package.Literals.MULTI_LITERAL_CONSTRAINT;
 	}
 
 	/**
@@ -98,7 +98,7 @@ public class MultiLiteralOperationImpl extends LCollectionImpl implements MultiL
 		LOperation oldOperator = operator;
 		operator = newOperator == null ? OPERATOR_EDEFAULT : newOperator;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.MULTI_LITERAL_OPERATION__OPERATOR,
+			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.MULTI_LITERAL_CONSTRAINT__OPERATOR,
 					oldOperator, operator));
 	}
 
@@ -110,7 +110,7 @@ public class MultiLiteralOperationImpl extends LCollectionImpl implements MultiL
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case Aadlv3Package.MULTI_LITERAL_OPERATION__OPERATOR:
+		case Aadlv3Package.MULTI_LITERAL_CONSTRAINT__OPERATOR:
 			return getOperator();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -124,7 +124,7 @@ public class MultiLiteralOperationImpl extends LCollectionImpl implements MultiL
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case Aadlv3Package.MULTI_LITERAL_OPERATION__OPERATOR:
+		case Aadlv3Package.MULTI_LITERAL_CONSTRAINT__OPERATOR:
 			setOperator((LOperation) newValue);
 			return;
 		}
@@ -139,7 +139,7 @@ public class MultiLiteralOperationImpl extends LCollectionImpl implements MultiL
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case Aadlv3Package.MULTI_LITERAL_OPERATION__OPERATOR:
+		case Aadlv3Package.MULTI_LITERAL_CONSTRAINT__OPERATOR:
 			setOperator(OPERATOR_EDEFAULT);
 			return;
 		}
@@ -154,7 +154,7 @@ public class MultiLiteralOperationImpl extends LCollectionImpl implements MultiL
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case Aadlv3Package.MULTI_LITERAL_OPERATION__OPERATOR:
+		case Aadlv3Package.MULTI_LITERAL_CONSTRAINT__OPERATOR:
 			return operator != OPERATOR_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
@@ -177,4 +177,4 @@ public class MultiLiteralOperationImpl extends LCollectionImpl implements MultiL
 		return result.toString();
 	}
 
-} //MultiLiteralOperationImpl
+} //MultiLiteralConstraintImpl

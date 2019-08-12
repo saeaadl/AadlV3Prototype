@@ -161,6 +161,15 @@ public interface Aadlv3Factory extends EFactory {
 	NamedType createNamedType();
 
 	/**
+	 * Returns a new object of class '<em>Type Def</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Type Def</em>'.
+	 * @generated
+	 */
+	TypeDef createTypeDef();
+
+	/**
 	 * Returns a new object of class '<em>Configuration Actual</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -186,6 +195,15 @@ public interface Aadlv3Factory extends EFactory {
 	 * @generated
 	 */
 	InstanceConfiguration createInstanceConfiguration();
+
+	/**
+	 * Returns a new object of class '<em>Property Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Property Constraint</em>'.
+	 * @generated
+	 */
+	PropertyConstraint createPropertyConstraint();
 
 	/**
 	 * Returns a new object of class '<em>Number Literal</em>'.
@@ -305,13 +323,13 @@ public interface Aadlv3Factory extends EFactory {
 	Expression createExpression();
 
 	/**
-	 * Returns a new object of class '<em>Multi Literal Operation</em>'.
+	 * Returns a new object of class '<em>Multi Literal Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Multi Literal Operation</em>'.
+	 * @return a new object of class '<em>Multi Literal Constraint</em>'.
 	 * @generated
 	 */
-	MultiLiteralOperation createMultiLiteralOperation();
+	MultiLiteralConstraint createMultiLiteralConstraint();
 
 	/**
 	 * Returns a new object of class '<em>Multi Expression Operation</em>'.
@@ -393,15 +411,6 @@ public interface Aadlv3Factory extends EFactory {
 	 * @generated
 	 */
 	AnnexLibrary createAnnexLibrary();
-
-	/**
-	 * Returns a new object of class '<em>Type Decl</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Type Decl</em>'.
-	 * @generated
-	 */
-	TypeDecl createTypeDecl();
 
 	/**
 	 * Returns a new object of class '<em>Primitive Type</em>'.

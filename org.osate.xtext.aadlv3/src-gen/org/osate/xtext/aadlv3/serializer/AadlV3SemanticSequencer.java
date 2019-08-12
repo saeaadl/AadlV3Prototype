@@ -46,18 +46,19 @@ import org.osate.aadlv3.aadlv3.InstanceConfiguration;
 import org.osate.aadlv3.aadlv3.IntegerLiteral;
 import org.osate.aadlv3.aadlv3.ListLiteral;
 import org.osate.aadlv3.aadlv3.ModelElementReference;
-import org.osate.aadlv3.aadlv3.MultiLiteralOperation;
+import org.osate.aadlv3.aadlv3.MultiLiteralConstraint;
 import org.osate.aadlv3.aadlv3.PackageDeclaration;
 import org.osate.aadlv3.aadlv3.PathElement;
 import org.osate.aadlv3.aadlv3.PathSequence;
 import org.osate.aadlv3.aadlv3.PrimitiveType;
 import org.osate.aadlv3.aadlv3.PropertyAssociation;
+import org.osate.aadlv3.aadlv3.PropertyConstraint;
 import org.osate.aadlv3.aadlv3.PropertyDefinition;
 import org.osate.aadlv3.aadlv3.PropertySet;
 import org.osate.aadlv3.aadlv3.RealLiteral;
 import org.osate.aadlv3.aadlv3.StringLiteral;
 import org.osate.aadlv3.aadlv3.Subcomponent;
-import org.osate.aadlv3.aadlv3.TypeDecl;
+import org.osate.aadlv3.aadlv3.TypeDef;
 import org.osate.aadlv3.aadlv3.TypeReference;
 import org.osate.aadlv3.aadlv3.Workingset;
 import org.osate.xtext.aadlv3.services.AadlV3GrammarAccess;
@@ -152,8 +153,8 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 			case Aadlv3Package.MODEL_ELEMENT_REFERENCE:
 				sequence_ModelElementReference(context, (ModelElementReference) semanticObject); 
 				return; 
-			case Aadlv3Package.MULTI_LITERAL_OPERATION:
-				sequence_MultiLiteralOperation(context, (MultiLiteralOperation) semanticObject); 
+			case Aadlv3Package.MULTI_LITERAL_CONSTRAINT:
+				sequence_MultiLiteralOperation(context, (MultiLiteralConstraint) semanticObject); 
 				return; 
 			case Aadlv3Package.PACKAGE_DECLARATION:
 				sequence_PackageDeclaration(context, (PackageDeclaration) semanticObject); 
@@ -177,6 +178,9 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 			case Aadlv3Package.PROPERTY_ASSOCIATION:
 				sequence_PropertyAssociation(context, (PropertyAssociation) semanticObject); 
 				return; 
+			case Aadlv3Package.PROPERTY_CONSTRAINT:
+				sequence_PropertyConstraint(context, (PropertyConstraint) semanticObject); 
+				return; 
 			case Aadlv3Package.PROPERTY_DEFINITION:
 				sequence_AppliesTo_PropertyDefinition(context, (PropertyDefinition) semanticObject); 
 				return; 
@@ -192,8 +196,8 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 			case Aadlv3Package.SUBCOMPONENT:
 				sequence_NestedImplementationElement_Subcomponent_SubcomponentDecl(context, (Subcomponent) semanticObject); 
 				return; 
-			case Aadlv3Package.TYPE_DECL:
-				sequence_PropertiesBlock_TypeDecl(context, (TypeDecl) semanticObject); 
+			case Aadlv3Package.TYPE_DEF:
+				sequence_PropertiesBlock_TypeDef(context, (TypeDef) semanticObject); 
 				return; 
 			case Aadlv3Package.TYPE_REFERENCE:
 				if (rule == grammarAccess.getClassifierOrTypeReferenceRule()) {
@@ -292,7 +296,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 * Constraint:
 	 *     (
 	 *         name=ID 
-	 *         bindingType=[TypeDecl|QualifiedName]? 
+	 *         bindingType=[TypeDef|QualifiedName]? 
 	 *         associationType=IsBinding 
 	 *         source=ModelElementReference 
 	 *         destination=ModelElementReference 
@@ -677,7 +681,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *         category=ComponentCategory 
 	 *         typeReferences+=ClassifierOrTypeReference 
 	 *         (features+=Feature | connections+=Connection | bindings+=Binding | components+=Subcomponent | ownedPropertyAssociations+=PropertyAssociation)* 
-	 *         (constrainedProperty=[PropertyDefinition|QualifiedName] constraintExpression=MultiLiteralOperation)?
+	 *         propertyConstraint=PropertyConstraint?
 	 *     )
 	 */
 	protected void sequence_InstanceConfiguration_NestedImplementationElement_SubcomponentDecl(ISerializationContext context, InstanceConfiguration semanticObject) {
@@ -726,13 +730,13 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
-	 *     Literal returns MultiLiteralOperation
-	 *     MultiLiteralOperation returns MultiLiteralOperation
+	 *     Literal returns MultiLiteralConstraint
+	 *     MultiLiteralOperation returns MultiLiteralConstraint
 	 *
 	 * Constraint:
 	 *     (operator=LOperation (elements+=Literal elements+=Literal*)?)
 	 */
-	protected void sequence_MultiLiteralOperation(ISerializationContext context, MultiLiteralOperation semanticObject) {
+	protected void sequence_MultiLiteralOperation(ISerializationContext context, MultiLiteralConstraint semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -813,13 +817,13 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
-	 *     PackageElement returns TypeDecl
-	 *     TypeDecl returns TypeDecl
+	 *     PackageElement returns TypeDef
+	 *     TypeDef returns TypeDef
 	 *
 	 * Constraint:
 	 *     (private?='private'? name=ID superType=Type? ownedPropertyAssociations+=PropertyAssociation*)
 	 */
-	protected void sequence_PropertiesBlock_TypeDecl(ISerializationContext context, TypeDecl semanticObject) {
+	protected void sequence_PropertiesBlock_TypeDef(ISerializationContext context, TypeDef semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -832,6 +836,18 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     (target=ModelElementReference? property=[PropertyDefinition|QualifiedName] propertyAssociationType=PropertyAssociationType value=Literal)
 	 */
 	protected void sequence_PropertyAssociation(ISerializationContext context, PropertyAssociation semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     PropertyConstraint returns PropertyConstraint
+	 *
+	 * Constraint:
+	 *     (constrainedProperty=[PropertyDefinition|QualifiedName] constraintExpression=MultiLiteralOperation)?
+	 */
+	protected void sequence_PropertyConstraint(ISerializationContext context, PropertyConstraint semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

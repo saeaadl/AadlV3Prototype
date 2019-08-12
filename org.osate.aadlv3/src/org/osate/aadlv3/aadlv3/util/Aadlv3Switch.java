@@ -353,6 +353,13 @@ public class Aadlv3Switch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case Aadlv3Package.PROPERTY_CONSTRAINT: {
+			PropertyConstraint propertyConstraint = (PropertyConstraint) theEObject;
+			T result = casePropertyConstraint(propertyConstraint);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		case Aadlv3Package.TYPE: {
 			Type type = (Type) theEObject;
 			T result = caseType(type);
@@ -373,17 +380,17 @@ public class Aadlv3Switch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case Aadlv3Package.TYPE_DECL: {
-			TypeDecl typeDecl = (TypeDecl) theEObject;
-			T result = caseTypeDecl(typeDecl);
+		case Aadlv3Package.TYPE_DEF: {
+			TypeDef typeDef = (TypeDef) theEObject;
+			T result = caseTypeDef(typeDef);
 			if (result == null)
-				result = caseNamedType(typeDecl);
+				result = caseNamedType(typeDef);
 			if (result == null)
-				result = casePackageElement(typeDecl);
+				result = casePackageElement(typeDef);
 			if (result == null)
-				result = caseType(typeDecl);
+				result = caseType(typeDef);
 			if (result == null)
-				result = caseNamedElement(typeDecl);
+				result = caseNamedElement(typeDef);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -574,15 +581,15 @@ public class Aadlv3Switch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case Aadlv3Package.MULTI_LITERAL_OPERATION: {
-			MultiLiteralOperation multiLiteralOperation = (MultiLiteralOperation) theEObject;
-			T result = caseMultiLiteralOperation(multiLiteralOperation);
+		case Aadlv3Package.MULTI_LITERAL_CONSTRAINT: {
+			MultiLiteralConstraint multiLiteralConstraint = (MultiLiteralConstraint) theEObject;
+			T result = caseMultiLiteralConstraint(multiLiteralConstraint);
 			if (result == null)
-				result = caseLCollection(multiLiteralOperation);
+				result = caseLCollection(multiLiteralConstraint);
 			if (result == null)
-				result = caseLiteral(multiLiteralOperation);
+				result = caseLiteral(multiLiteralConstraint);
 			if (result == null)
-				result = caseExpression(multiLiteralOperation);
+				result = caseExpression(multiLiteralConstraint);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -967,6 +974,21 @@ public class Aadlv3Switch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Type Def</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Type Def</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTypeDef(TypeDef object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Configuration Actual</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1008,6 +1030,21 @@ public class Aadlv3Switch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseInstanceConfiguration(InstanceConfiguration object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Property Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Property Constraint</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePropertyConstraint(PropertyConstraint object) {
 		return null;
 	}
 
@@ -1207,17 +1244,17 @@ public class Aadlv3Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Multi Literal Operation</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Multi Literal Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Multi Literal Operation</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Multi Literal Constraint</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseMultiLiteralOperation(MultiLiteralOperation object) {
+	public T caseMultiLiteralConstraint(MultiLiteralConstraint object) {
 		return null;
 	}
 
@@ -1353,21 +1390,6 @@ public class Aadlv3Switch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseAnnexLibrary(AnnexLibrary object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Type Decl</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Type Decl</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseTypeDecl(TypeDecl object) {
 		return null;
 	}
 

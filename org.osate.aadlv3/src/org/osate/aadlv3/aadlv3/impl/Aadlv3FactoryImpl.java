@@ -108,10 +108,12 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 			return createWorkingset();
 		case Aadlv3Package.INSTANCE_CONFIGURATION:
 			return createInstanceConfiguration();
+		case Aadlv3Package.PROPERTY_CONSTRAINT:
+			return createPropertyConstraint();
 		case Aadlv3Package.NAMED_TYPE:
 			return createNamedType();
-		case Aadlv3Package.TYPE_DECL:
-			return createTypeDecl();
+		case Aadlv3Package.TYPE_DEF:
+			return createTypeDef();
 		case Aadlv3Package.PRIMITIVE_TYPE:
 			return createPrimitiveType();
 		case Aadlv3Package.COMPOSITE_TYPE:
@@ -144,8 +146,8 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 			return createSetLiteral();
 		case Aadlv3Package.EXPRESSION:
 			return createExpression();
-		case Aadlv3Package.MULTI_LITERAL_OPERATION:
-			return createMultiLiteralOperation();
+		case Aadlv3Package.MULTI_LITERAL_CONSTRAINT:
+			return createMultiLiteralConstraint();
 		case Aadlv3Package.MULTI_EXPRESSION_OPERATION:
 			return createMultiExpressionOperation();
 		case Aadlv3Package.PROPERTY_ASSOCIATION:
@@ -391,6 +393,17 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 	 * @generated
 	 */
 	@Override
+	public TypeDef createTypeDef() {
+		TypeDefImpl typeDef = new TypeDefImpl();
+		return typeDef;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public ConfigurationActual createConfigurationActual() {
 		ConfigurationActualImpl configurationActual = new ConfigurationActualImpl();
 		return configurationActual;
@@ -416,6 +429,17 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 	public InstanceConfiguration createInstanceConfiguration() {
 		InstanceConfigurationImpl instanceConfiguration = new InstanceConfigurationImpl();
 		return instanceConfiguration;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public PropertyConstraint createPropertyConstraint() {
+		PropertyConstraintImpl propertyConstraint = new PropertyConstraintImpl();
+		return propertyConstraint;
 	}
 
 	/**
@@ -567,9 +591,9 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 	 * @generated
 	 */
 	@Override
-	public MultiLiteralOperation createMultiLiteralOperation() {
-		MultiLiteralOperationImpl multiLiteralOperation = new MultiLiteralOperationImpl();
-		return multiLiteralOperation;
+	public MultiLiteralConstraint createMultiLiteralConstraint() {
+		MultiLiteralConstraintImpl multiLiteralConstraint = new MultiLiteralConstraintImpl();
+		return multiLiteralConstraint;
 	}
 
 	/**
@@ -669,17 +693,6 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 	public AnnexLibrary createAnnexLibrary() {
 		AnnexLibraryImpl annexLibrary = new AnnexLibraryImpl();
 		return annexLibrary;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public TypeDecl createTypeDecl() {
-		TypeDeclImpl typeDecl = new TypeDeclImpl();
-		return typeDecl;
 	}
 
 	/**

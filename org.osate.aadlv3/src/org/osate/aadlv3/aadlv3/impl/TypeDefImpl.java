@@ -16,30 +16,31 @@
 package org.osate.aadlv3.aadlv3.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.Type;
-import org.osate.aadlv3.aadlv3.TypeDecl;
+import org.osate.aadlv3.aadlv3.TypeDef;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Type Decl</b></em>'.
+ * An implementation of the model object '<em><b>Type Def</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.TypeDeclImpl#getSuperType <em>Super Type</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.TypeDefImpl#getSuperType <em>Super Type</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class TypeDeclImpl extends NamedTypeImpl implements TypeDecl {
+public class TypeDefImpl extends NamedTypeImpl implements TypeDef {
 	/**
 	 * The cached value of the '{@link #getSuperType() <em>Super Type</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -55,7 +56,7 @@ public class TypeDeclImpl extends NamedTypeImpl implements TypeDecl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected TypeDeclImpl() {
+	protected TypeDefImpl() {
 		super();
 	}
 
@@ -66,7 +67,7 @@ public class TypeDeclImpl extends NamedTypeImpl implements TypeDecl {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return Aadlv3Package.Literals.TYPE_DECL;
+		return Aadlv3Package.Literals.TYPE_DEF;
 	}
 
 	/**
@@ -89,7 +90,7 @@ public class TypeDeclImpl extends NamedTypeImpl implements TypeDecl {
 		superType = newSuperType;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					Aadlv3Package.TYPE_DECL__SUPER_TYPE, oldSuperType, newSuperType);
+					Aadlv3Package.TYPE_DEF__SUPER_TYPE, oldSuperType, newSuperType);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -109,15 +110,15 @@ public class TypeDeclImpl extends NamedTypeImpl implements TypeDecl {
 			NotificationChain msgs = null;
 			if (superType != null)
 				msgs = ((InternalEObject) superType).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE - Aadlv3Package.TYPE_DECL__SUPER_TYPE, null, msgs);
+						EOPPOSITE_FEATURE_BASE - Aadlv3Package.TYPE_DEF__SUPER_TYPE, null, msgs);
 			if (newSuperType != null)
 				msgs = ((InternalEObject) newSuperType).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE - Aadlv3Package.TYPE_DECL__SUPER_TYPE, null, msgs);
+						EOPPOSITE_FEATURE_BASE - Aadlv3Package.TYPE_DEF__SUPER_TYPE, null, msgs);
 			msgs = basicSetSuperType(newSuperType, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.TYPE_DECL__SUPER_TYPE, newSuperType,
+			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.TYPE_DEF__SUPER_TYPE, newSuperType,
 					newSuperType));
 	}
 
@@ -129,7 +130,7 @@ public class TypeDeclImpl extends NamedTypeImpl implements TypeDecl {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case Aadlv3Package.TYPE_DECL__SUPER_TYPE:
+		case Aadlv3Package.TYPE_DEF__SUPER_TYPE:
 			return basicSetSuperType(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -143,7 +144,7 @@ public class TypeDeclImpl extends NamedTypeImpl implements TypeDecl {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case Aadlv3Package.TYPE_DECL__SUPER_TYPE:
+		case Aadlv3Package.TYPE_DEF__SUPER_TYPE:
 			return getSuperType();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -154,11 +155,10 @@ public class TypeDeclImpl extends NamedTypeImpl implements TypeDecl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case Aadlv3Package.TYPE_DECL__SUPER_TYPE:
+		case Aadlv3Package.TYPE_DEF__SUPER_TYPE:
 			setSuperType((Type) newValue);
 			return;
 		}
@@ -173,7 +173,7 @@ public class TypeDeclImpl extends NamedTypeImpl implements TypeDecl {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case Aadlv3Package.TYPE_DECL__SUPER_TYPE:
+		case Aadlv3Package.TYPE_DEF__SUPER_TYPE:
 			setSuperType((Type) null);
 			return;
 		}
@@ -188,10 +188,10 @@ public class TypeDeclImpl extends NamedTypeImpl implements TypeDecl {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case Aadlv3Package.TYPE_DECL__SUPER_TYPE:
+		case Aadlv3Package.TYPE_DEF__SUPER_TYPE:
 			return superType != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //TypeDeclImpl
+} //TypeDefImpl

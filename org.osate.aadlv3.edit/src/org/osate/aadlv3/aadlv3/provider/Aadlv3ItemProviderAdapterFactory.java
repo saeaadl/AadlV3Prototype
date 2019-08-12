@@ -408,6 +408,29 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.TypeDef} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected TypeDefItemProvider typeDefItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.TypeDef}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createTypeDefAdapter() {
+		if (typeDefItemProvider == null) {
+			typeDefItemProvider = new TypeDefItemProvider(this);
+		}
+
+		return typeDefItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.ConfigurationActual} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -474,6 +497,29 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 		}
 
 		return instanceConfigurationItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.PropertyConstraint} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected PropertyConstraintItemProvider propertyConstraintItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.PropertyConstraint}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createPropertyConstraintAdapter() {
+		if (propertyConstraintItemProvider == null) {
+			propertyConstraintItemProvider = new PropertyConstraintItemProvider(this);
+		}
+
+		return propertyConstraintItemProvider;
 	}
 
 	/**
@@ -776,26 +822,26 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.MultiLiteralOperation} instances.
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.MultiLiteralConstraint} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected MultiLiteralOperationItemProvider multiLiteralOperationItemProvider;
+	protected MultiLiteralConstraintItemProvider multiLiteralConstraintItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.MultiLiteralOperation}.
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.MultiLiteralConstraint}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createMultiLiteralOperationAdapter() {
-		if (multiLiteralOperationItemProvider == null) {
-			multiLiteralOperationItemProvider = new MultiLiteralOperationItemProvider(this);
+	public Adapter createMultiLiteralConstraintAdapter() {
+		if (multiLiteralConstraintItemProvider == null) {
+			multiLiteralConstraintItemProvider = new MultiLiteralConstraintItemProvider(this);
 		}
 
-		return multiLiteralOperationItemProvider;
+		return multiLiteralConstraintItemProvider;
 	}
 
 	/**
@@ -1003,29 +1049,6 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 		}
 
 		return annexLibraryItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.TypeDecl} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected TypeDeclItemProvider typeDeclItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.TypeDecl}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createTypeDeclAdapter() {
-		if (typeDeclItemProvider == null) {
-			typeDeclItemProvider = new TypeDeclItemProvider(this);
-		}
-
-		return typeDeclItemProvider;
 	}
 
 	/**
@@ -1309,10 +1332,12 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 			workingsetItemProvider.dispose();
 		if (instanceConfigurationItemProvider != null)
 			instanceConfigurationItemProvider.dispose();
+		if (propertyConstraintItemProvider != null)
+			propertyConstraintItemProvider.dispose();
 		if (namedTypeItemProvider != null)
 			namedTypeItemProvider.dispose();
-		if (typeDeclItemProvider != null)
-			typeDeclItemProvider.dispose();
+		if (typeDefItemProvider != null)
+			typeDefItemProvider.dispose();
 		if (primitiveTypeItemProvider != null)
 			primitiveTypeItemProvider.dispose();
 		if (compositeTypeItemProvider != null)
@@ -1345,8 +1370,8 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 			setLiteralItemProvider.dispose();
 		if (expressionItemProvider != null)
 			expressionItemProvider.dispose();
-		if (multiLiteralOperationItemProvider != null)
-			multiLiteralOperationItemProvider.dispose();
+		if (multiLiteralConstraintItemProvider != null)
+			multiLiteralConstraintItemProvider.dispose();
 		if (multiExpressionOperationItemProvider != null)
 			multiExpressionOperationItemProvider.dispose();
 		if (propertyAssociationItemProvider != null)

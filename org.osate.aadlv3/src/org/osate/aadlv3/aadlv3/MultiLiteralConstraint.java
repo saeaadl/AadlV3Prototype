@@ -17,21 +17,21 @@ package org.osate.aadlv3.aadlv3;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Multi Literal Operation</b></em>'.
+ * A representation of the model object '<em><b>Multi Literal Constraint</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.osate.aadlv3.aadlv3.MultiLiteralOperation#getOperator <em>Operator</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.MultiLiteralConstraint#getOperator <em>Operator</em>}</li>
  * </ul>
  *
- * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getMultiLiteralOperation()
+ * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getMultiLiteralConstraint()
  * @model
  * @generated
  */
-public interface MultiLiteralOperation extends LCollection {
+public interface MultiLiteralConstraint extends LCollection {
 	/**
 	 * Returns the value of the '<em><b>Operator</b></em>' attribute.
 	 * The literals are from the enumeration {@link org.osate.aadlv3.aadlv3.LOperation}.
@@ -40,14 +40,14 @@ public interface MultiLiteralOperation extends LCollection {
 	 * @return the value of the '<em>Operator</em>' attribute.
 	 * @see org.osate.aadlv3.aadlv3.LOperation
 	 * @see #setOperator(LOperation)
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getMultiLiteralOperation_Operator()
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getMultiLiteralConstraint_Operator()
 	 * @model
 	 * @generated
 	 */
 	LOperation getOperator();
 
 	/**
-	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.MultiLiteralOperation#getOperator <em>Operator</em>}' attribute.
+	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.MultiLiteralConstraint#getOperator <em>Operator</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Operator</em>' attribute.
@@ -57,4 +57,4 @@ public interface MultiLiteralOperation extends LCollection {
 	 */
 	void setOperator(LOperation value);
 
-} // MultiLiteralOperation
+} // MultiLiteralConstraint

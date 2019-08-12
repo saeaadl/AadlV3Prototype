@@ -21,7 +21,6 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.osate.aadlv3.aadlv3.Aadlv3Factory;
@@ -56,25 +55,8 @@ public class InstanceConfigurationItemProvider extends SubcomponentItemProvider 
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addConstrainedPropertyPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Constrained Property feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addConstrainedPropertyPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_InstanceConfiguration_constrainedProperty_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_InstanceConfiguration_constrainedProperty_feature",
-						"_UI_InstanceConfiguration_type"),
-				Aadlv3Package.Literals.INSTANCE_CONFIGURATION__CONSTRAINED_PROPERTY, true, false, true, null, null,
-				null));
 	}
 
 	/**
@@ -89,7 +71,7 @@ public class InstanceConfigurationItemProvider extends SubcomponentItemProvider 
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(Aadlv3Package.Literals.INSTANCE_CONFIGURATION__CONSTRAINT_EXPRESSION);
+			childrenFeatures.add(Aadlv3Package.Literals.INSTANCE_CONFIGURATION__PROPERTY_CONSTRAINT);
 		}
 		return childrenFeatures;
 	}
@@ -143,7 +125,7 @@ public class InstanceConfigurationItemProvider extends SubcomponentItemProvider 
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(InstanceConfiguration.class)) {
-		case Aadlv3Package.INSTANCE_CONFIGURATION__CONSTRAINT_EXPRESSION:
+		case Aadlv3Package.INSTANCE_CONFIGURATION__PROPERTY_CONSTRAINT:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -161,9 +143,8 @@ public class InstanceConfigurationItemProvider extends SubcomponentItemProvider 
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors
-				.add(createChildParameter(Aadlv3Package.Literals.INSTANCE_CONFIGURATION__CONSTRAINT_EXPRESSION,
-						Aadlv3Factory.eINSTANCE.createMultiLiteralOperation()));
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.INSTANCE_CONFIGURATION__PROPERTY_CONSTRAINT,
+				Aadlv3Factory.eINSTANCE.createPropertyConstraint()));
 	}
 
 	/**

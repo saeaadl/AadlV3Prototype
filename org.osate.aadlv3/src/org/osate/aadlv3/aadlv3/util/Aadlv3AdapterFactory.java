@@ -200,6 +200,11 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter casePropertyConstraint(PropertyConstraint object) {
+			return createPropertyConstraintAdapter();
+		}
+
+		@Override
 		public Adapter caseType(Type object) {
 			return createTypeAdapter();
 		}
@@ -210,8 +215,8 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseTypeDecl(TypeDecl object) {
-			return createTypeDeclAdapter();
+		public Adapter caseTypeDef(TypeDef object) {
+			return createTypeDefAdapter();
 		}
 
 		@Override
@@ -295,8 +300,8 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseMultiLiteralOperation(MultiLiteralOperation object) {
-			return createMultiLiteralOperationAdapter();
+		public Adapter caseMultiLiteralConstraint(MultiLiteralConstraint object) {
+			return createMultiLiteralConstraintAdapter();
 		}
 
 		@Override
@@ -630,6 +635,20 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.TypeDef <em>Type Def</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.osate.aadlv3.aadlv3.TypeDef
+	 * @generated
+	 */
+	public Adapter createTypeDefAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.ConfigurationActual <em>Configuration Actual</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -668,6 +687,20 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createInstanceConfigurationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.PropertyConstraint <em>Property Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.osate.aadlv3.aadlv3.PropertyConstraint
+	 * @generated
+	 */
+	public Adapter createPropertyConstraintAdapter() {
 		return null;
 	}
 
@@ -854,16 +887,16 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.MultiLiteralOperation <em>Multi Literal Operation</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.MultiLiteralConstraint <em>Multi Literal Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.osate.aadlv3.aadlv3.MultiLiteralOperation
+	 * @see org.osate.aadlv3.aadlv3.MultiLiteralConstraint
 	 * @generated
 	 */
-	public Adapter createMultiLiteralOperationAdapter() {
+	public Adapter createMultiLiteralConstraintAdapter() {
 		return null;
 	}
 
@@ -990,20 +1023,6 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createAnnexLibraryAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.TypeDecl <em>Type Decl</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.osate.aadlv3.aadlv3.TypeDecl
-	 * @generated
-	 */
-	public Adapter createTypeDeclAdapter() {
 		return null;
 	}
 

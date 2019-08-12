@@ -178,7 +178,7 @@ public class PackageDeclarationItemProvider extends PackageElementItemProvider {
 				Aadlv3Factory.eINSTANCE.createWorkingset()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PACKAGE_DECLARATION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createTypeDecl()));
+				Aadlv3Factory.eINSTANCE.createTypeDef()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PACKAGE_DECLARATION__ELEMENTS,
 				Aadlv3Factory.eINSTANCE.createStateMachine()));

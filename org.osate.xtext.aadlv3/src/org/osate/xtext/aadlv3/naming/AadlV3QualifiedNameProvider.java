@@ -7,7 +7,7 @@ import org.osate.aadlv3.aadlv3.Classifier;
 import org.osate.aadlv3.aadlv3.PackageDeclaration;
 import org.osate.aadlv3.aadlv3.PropertyDefinition;
 import org.osate.aadlv3.aadlv3.PropertySet;
-import org.osate.aadlv3.aadlv3.TypeDecl;
+import org.osate.aadlv3.aadlv3.TypeDef;
 import org.osate.aadlv3.aadlv3.Workingset;
 
 public class AadlV3QualifiedNameProvider extends DefaultDeclarativeQualifiedNameProvider {
@@ -16,7 +16,7 @@ public class AadlV3QualifiedNameProvider extends DefaultDeclarativeQualifiedName
 	public QualifiedName getFullyQualifiedName(final EObject obj) {
 		if (obj instanceof Classifier 
 				|| obj instanceof PackageDeclaration || obj instanceof PropertyDefinition || obj instanceof PropertySet
-				|| obj instanceof Workingset || obj instanceof TypeDecl) {
+				|| obj instanceof Workingset || obj instanceof TypeDef) {
 			return super.getFullyQualifiedName(obj);
 		}
 		return null;

@@ -28,22 +28,22 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.osate.aadlv3.aadlv3.Aadlv3Factory;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
-import org.osate.aadlv3.aadlv3.ECollection;
+import org.osate.aadlv3.aadlv3.TypeDef;
 
 /**
- * This is the item provider adapter for a {@link org.osate.aadlv3.aadlv3.ECollection} object.
+ * This is the item provider adapter for a {@link org.osate.aadlv3.aadlv3.TypeDef} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ECollectionItemProvider extends ExpressionItemProvider {
+public class TypeDefItemProvider extends NamedTypeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ECollectionItemProvider(AdapterFactory adapterFactory) {
+	public TypeDefItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -74,7 +74,7 @@ public class ECollectionItemProvider extends ExpressionItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(Aadlv3Package.Literals.ECOLLECTION__ELEMENTS);
+			childrenFeatures.add(Aadlv3Package.Literals.TYPE_DEF__SUPER_TYPE);
 		}
 		return childrenFeatures;
 	}
@@ -93,14 +93,14 @@ public class ECollectionItemProvider extends ExpressionItemProvider {
 	}
 
 	/**
-	 * This returns ECollection.gif.
+	 * This returns TypeDef.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ECollection"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/TypeDef"));
 	}
 
 	/**
@@ -111,7 +111,9 @@ public class ECollectionItemProvider extends ExpressionItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_ECollection_type");
+		String label = ((TypeDef) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_TypeDef_type")
+				: getString("_UI_TypeDef_type") + " " + label;
 	}
 
 	/**
@@ -125,8 +127,8 @@ public class ECollectionItemProvider extends ExpressionItemProvider {
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ECollection.class)) {
-		case Aadlv3Package.ECOLLECTION__ELEMENTS:
+		switch (notification.getFeatureID(TypeDef.class)) {
+		case Aadlv3Package.TYPE_DEF__SUPER_TYPE:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -144,53 +146,32 @@ public class ECollectionItemProvider extends ExpressionItemProvider {
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ECOLLECTION__ELEMENTS,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.TYPE_DEF__SUPER_TYPE,
+				Aadlv3Factory.eINSTANCE.createNamedType()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.TYPE_DEF__SUPER_TYPE,
+				Aadlv3Factory.eINSTANCE.createComponentInterface()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.TYPE_DEF__SUPER_TYPE,
+				Aadlv3Factory.eINSTANCE.createComponentImplementation()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.TYPE_DEF__SUPER_TYPE,
+				Aadlv3Factory.eINSTANCE.createComponentConfiguration()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.TYPE_DEF__SUPER_TYPE,
+				Aadlv3Factory.eINSTANCE.createConfigurationParameter()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.TYPE_DEF__SUPER_TYPE,
+				Aadlv3Factory.eINSTANCE.createTypeDef()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.TYPE_DEF__SUPER_TYPE,
+				Aadlv3Factory.eINSTANCE.createPrimitiveType()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.TYPE_DEF__SUPER_TYPE,
+				Aadlv3Factory.eINSTANCE.createCompositeType()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.TYPE_DEF__SUPER_TYPE,
 				Aadlv3Factory.eINSTANCE.createTypeReference()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ECOLLECTION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createExpression()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ECOLLECTION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createLiteral()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ECOLLECTION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createSingleLiteral()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ECOLLECTION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createNumberLiteral()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ECOLLECTION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createIntegerLiteral()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ECOLLECTION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createRealLiteral()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ECOLLECTION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createStringLiteral()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ECOLLECTION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createBooleanLiteral()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ECOLLECTION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createDirectionalLiteral()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ECOLLECTION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createECollection()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ECOLLECTION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createLCollection()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ECOLLECTION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createListLiteral()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ECOLLECTION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createSetLiteral()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ECOLLECTION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createMultiLiteralConstraint()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ECOLLECTION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createMultiExpressionOperation()));
 	}
 
 }

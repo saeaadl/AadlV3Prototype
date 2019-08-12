@@ -10,11 +10,12 @@ import org.osate.aadlv3.aadlv3.ComponentImplementation;
 import org.osate.aadlv3.aadlv3.ComponentInterface;
 import org.osate.aadlv3.aadlv3.ComponentRealization;
 import org.osate.aadlv3.aadlv3.Import;
+import org.osate.aadlv3.aadlv3.MultiLiteralConstraint;
 import org.osate.aadlv3.aadlv3.PackageDeclaration;
 import org.osate.aadlv3.aadlv3.PackageElement;
 import org.osate.aadlv3.aadlv3.PropertyDefinition;
 import org.osate.aadlv3.aadlv3.PropertySet;
-import org.osate.aadlv3.aadlv3.TypeDecl;
+import org.osate.aadlv3.aadlv3.TypeDef;
 import org.osate.aadlv3.aadlv3.Workingset;
 
 public class Av3API {
@@ -40,8 +41,8 @@ public class Av3API {
 		return Aadlv3GlobalScopeUtil.get(context, Aadlv3Package.eINSTANCE.getClassifier(), qpname);
 	}
 
-	public static TypeDecl lookupTypeDecl(EObject context, String qpname) {
-		return Aadlv3GlobalScopeUtil.get(context, Aadlv3Package.eINSTANCE.getTypeDecl(), qpname);
+	public static TypeDef lookupTypeDef(EObject context, String qpname) {
+		return Aadlv3GlobalScopeUtil.get(context, Aadlv3Package.eINSTANCE.getTypeDef(), qpname);
 	}
 
 	public static Workingset lookupWorkingset(EObject context, String qpname) {
@@ -77,24 +78,51 @@ public class Av3API {
 		}
 	}
 
+	/**
+	 * get all extensions of a given classifier 
+	 * This includes component interfaces, implementations, and configurations.
+	 * @param cl
+	 * @return
+	 */
+	public static Collection<Classifier> getAllClassifierExtensions(Classifier cl) {
+		return Aadlv3GlobalScopeUtil.getAllExtensions(cl, Aadlv3Package.eINSTANCE.getClassifier());
+	}
+
+	/**
+	 * get all realizations of a given component interface
+	 * @param cinterface
+	 * @return
+	 */
 	public static Collection<ComponentRealization> getAllRealizations(ComponentInterface cinterface) {
-		return Aadlv3GlobalScopeUtil.getAllInContext(cinterface, Aadlv3Package.eINSTANCE.getComponentRealization());
+		return Aadlv3GlobalScopeUtil.getAllExtensions(cinterface, Aadlv3Package.eINSTANCE.getComponentRealization());
 	}
 
+	/**
+	 * get all implementations of a given component interface
+	 * @param cinterface
+	 * @return
+	 */
 	public static Collection<ComponentImplementation> getAllImplementations(ComponentInterface cinterface) {
-		return Aadlv3GlobalScopeUtil.getAllInContext(cinterface, Aadlv3Package.eINSTANCE.getComponentImplementation());
+		return Aadlv3GlobalScopeUtil.getAllExtensions(cinterface, Aadlv3Package.eINSTANCE.getComponentImplementation());
 	}
 
+	/**
+	 * get all configurations of a given component interface
+	 * @param cinterface
+	 * @return
+	 */
 	public static Collection<ComponentConfiguration> getAllConfigurations(ComponentInterface cinterface) {
-		return Aadlv3GlobalScopeUtil.getAllInContext(cinterface, Aadlv3Package.eINSTANCE.getComponentConfiguration());
+		return Aadlv3GlobalScopeUtil.getAllExtensions(cinterface, Aadlv3Package.eINSTANCE.getComponentConfiguration());
 	}
 
-	public static Collection<ComponentRealization> getConfigurableRealizations(Classifier classifier) {
-		ComponentInterface cinterface = getInterface(classifier);
-		Collection<ComponentRealization> allif = Aadlv3GlobalScopeUtil.getAll(cinterface.eResource(), Aadlv3Package.eINSTANCE.getComponentRealization());
-//		allif.stream().filter(uri -> uri.getHost().equals("www.jgrapht.org")).findAny();
-//		Collection<ComponentRealization> all = Aadlv3GlobalScopeUtil.getAllInContext(classifier, Aadlv3Package.eINSTANCE.getComponentRealization());
-		return allif;
+	/**
+	 * get all realizations of a given component interface that satisfy the specified Product Line Qualifier constraint
+	 * @param cinterface
+	 * @return
+	 */
+	public static Collection<ComponentRealization> getConfigurableRealizations(ComponentInterface classifier, MultiLiteralConstraint productLineQualifierconstraint) {
+		Collection<ComponentRealization> all = Aadlv3GlobalScopeUtil.getAllExtensions(classifier, Aadlv3Package.eINSTANCE.getComponentRealization(),productLineQualifierconstraint);
+		return all;
 	}
 	
 }

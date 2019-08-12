@@ -59,7 +59,7 @@ import org.osate.aadlv3.aadlv3.ModeAssignment;
 import org.osate.aadlv3.aadlv3.ModelElement;
 import org.osate.aadlv3.aadlv3.ModelElementReference;
 import org.osate.aadlv3.aadlv3.MultiExpressionOperation;
-import org.osate.aadlv3.aadlv3.MultiLiteralOperation;
+import org.osate.aadlv3.aadlv3.MultiLiteralConstraint;
 import org.osate.aadlv3.aadlv3.NamedElement;
 import org.osate.aadlv3.aadlv3.NamedType;
 import org.osate.aadlv3.aadlv3.NumberLiteral;
@@ -71,6 +71,7 @@ import org.osate.aadlv3.aadlv3.Primitive;
 import org.osate.aadlv3.aadlv3.PrimitiveType;
 import org.osate.aadlv3.aadlv3.PropertyAssociation;
 import org.osate.aadlv3.aadlv3.PropertyAssociationType;
+import org.osate.aadlv3.aadlv3.PropertyConstraint;
 import org.osate.aadlv3.aadlv3.PropertyDefinition;
 import org.osate.aadlv3.aadlv3.PropertySet;
 import org.osate.aadlv3.aadlv3.RealLiteral;
@@ -83,7 +84,7 @@ import org.osate.aadlv3.aadlv3.Subcomponent;
 import org.osate.aadlv3.aadlv3.Transition;
 import org.osate.aadlv3.aadlv3.TransitionTriggerAssignment;
 import org.osate.aadlv3.aadlv3.Type;
-import org.osate.aadlv3.aadlv3.TypeDecl;
+import org.osate.aadlv3.aadlv3.TypeDef;
 import org.osate.aadlv3.aadlv3.TypeReference;
 import org.osate.aadlv3.aadlv3.Workingset;
 
@@ -232,6 +233,13 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass typeDefEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass configurationActualEClass = null;
 
 	/**
@@ -247,6 +255,13 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	private EClass instanceConfigurationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass propertyConstraintEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -344,7 +359,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass multiLiteralOperationEClass = null;
+	private EClass multiLiteralConstraintEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -408,13 +423,6 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	private EClass annexLibraryEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass typeDeclEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1318,6 +1326,26 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
+	public EClass getTypeDef() {
+		return typeDefEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getTypeDef_SuperType() {
+		return (EReference) typeDefEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getConfigurationActual() {
 		return configurationActualEClass;
 	}
@@ -1388,7 +1416,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getInstanceConfiguration_ConstrainedProperty() {
+	public EReference getInstanceConfiguration_PropertyConstraint() {
 		return (EReference) instanceConfigurationEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -1398,8 +1426,28 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getInstanceConfiguration_ConstraintExpression() {
-		return (EReference) instanceConfigurationEClass.getEStructuralFeatures().get(1);
+	public EClass getPropertyConstraint() {
+		return propertyConstraintEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getPropertyConstraint_ConstrainedProperty() {
+		return (EReference) propertyConstraintEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getPropertyConstraint_ConstraintExpression() {
+		return (EReference) propertyConstraintEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1628,8 +1676,8 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EClass getMultiLiteralOperation() {
-		return multiLiteralOperationEClass;
+	public EClass getMultiLiteralConstraint() {
+		return multiLiteralConstraintEClass;
 	}
 
 	/**
@@ -1638,8 +1686,8 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getMultiLiteralOperation_Operator() {
-		return (EAttribute) multiLiteralOperationEClass.getEStructuralFeatures().get(0);
+	public EAttribute getMultiLiteralConstraint_Operator() {
+		return (EAttribute) multiLiteralConstraintEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1870,26 +1918,6 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	@Override
 	public EClass getAnnexLibrary() {
 		return annexLibraryEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getTypeDecl() {
-		return typeDeclEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getTypeDecl_SuperType() {
-		return (EReference) typeDeclEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -2355,16 +2383,19 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		createEReference(workingsetEClass, WORKINGSET__USE_PROPERTIES);
 
 		instanceConfigurationEClass = createEClass(INSTANCE_CONFIGURATION);
-		createEReference(instanceConfigurationEClass, INSTANCE_CONFIGURATION__CONSTRAINED_PROPERTY);
-		createEReference(instanceConfigurationEClass, INSTANCE_CONFIGURATION__CONSTRAINT_EXPRESSION);
+		createEReference(instanceConfigurationEClass, INSTANCE_CONFIGURATION__PROPERTY_CONSTRAINT);
+
+		propertyConstraintEClass = createEClass(PROPERTY_CONSTRAINT);
+		createEReference(propertyConstraintEClass, PROPERTY_CONSTRAINT__CONSTRAINED_PROPERTY);
+		createEReference(propertyConstraintEClass, PROPERTY_CONSTRAINT__CONSTRAINT_EXPRESSION);
 
 		typeEClass = createEClass(TYPE);
 
 		namedTypeEClass = createEClass(NAMED_TYPE);
 		createEReference(namedTypeEClass, NAMED_TYPE__OWNED_PROPERTY_ASSOCIATIONS);
 
-		typeDeclEClass = createEClass(TYPE_DECL);
-		createEReference(typeDeclEClass, TYPE_DECL__SUPER_TYPE);
+		typeDefEClass = createEClass(TYPE_DEF);
+		createEReference(typeDefEClass, TYPE_DEF__SUPER_TYPE);
 
 		primitiveTypeEClass = createEClass(PRIMITIVE_TYPE);
 		createEAttribute(primitiveTypeEClass, PRIMITIVE_TYPE__PRIMITIVE_TYPE);
@@ -2413,8 +2444,8 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 
 		expressionEClass = createEClass(EXPRESSION);
 
-		multiLiteralOperationEClass = createEClass(MULTI_LITERAL_OPERATION);
-		createEAttribute(multiLiteralOperationEClass, MULTI_LITERAL_OPERATION__OPERATOR);
+		multiLiteralConstraintEClass = createEClass(MULTI_LITERAL_CONSTRAINT);
+		createEAttribute(multiLiteralConstraintEClass, MULTI_LITERAL_CONSTRAINT__OPERATOR);
 
 		multiExpressionOperationEClass = createEClass(MULTI_EXPRESSION_OPERATION);
 		createEAttribute(multiExpressionOperationEClass, MULTI_EXPRESSION_OPERATION__OPERATOR);
@@ -2510,7 +2541,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		instanceConfigurationEClass.getESuperTypes().add(this.getSubcomponent());
 		namedTypeEClass.getESuperTypes().add(this.getPackageElement());
 		namedTypeEClass.getESuperTypes().add(this.getType());
-		typeDeclEClass.getESuperTypes().add(this.getNamedType());
+		typeDefEClass.getESuperTypes().add(this.getNamedType());
 		primitiveTypeEClass.getESuperTypes().add(this.getType());
 		compositeTypeEClass.getESuperTypes().add(this.getType());
 		typeReferenceEClass.getESuperTypes().add(this.getType());
@@ -2527,7 +2558,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		lCollectionEClass.getESuperTypes().add(this.getLiteral());
 		listLiteralEClass.getESuperTypes().add(this.getLCollection());
 		setLiteralEClass.getESuperTypes().add(this.getLCollection());
-		multiLiteralOperationEClass.getESuperTypes().add(this.getLCollection());
+		multiLiteralConstraintEClass.getESuperTypes().add(this.getLCollection());
 		multiExpressionOperationEClass.getESuperTypes().add(this.getECollection());
 		stateEClass.getESuperTypes().add(this.getModelElement());
 		transitionEClass.getESuperTypes().add(this.getModelElement());
@@ -2799,11 +2830,17 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 
 		initEClass(instanceConfigurationEClass, InstanceConfiguration.class, "InstanceConfiguration", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getInstanceConfiguration_ConstrainedProperty(), this.getPropertyDefinition(), null,
-				"constrainedProperty", null, 0, 1, InstanceConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getInstanceConfiguration_ConstraintExpression(), this.getMultiLiteralOperation(), null,
-				"constraintExpression", null, 0, 1, InstanceConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE,
+		initEReference(getInstanceConfiguration_PropertyConstraint(), this.getPropertyConstraint(), null,
+				"propertyConstraint", null, 0, 1, InstanceConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(propertyConstraintEClass, PropertyConstraint.class, "PropertyConstraint", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPropertyConstraint_ConstrainedProperty(), this.getPropertyDefinition(), null,
+				"constrainedProperty", null, 0, 1, PropertyConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPropertyConstraint_ConstraintExpression(), this.getMultiLiteralConstraint(), null,
+				"constraintExpression", null, 0, 1, PropertyConstraint.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(typeEClass, Type.class, "Type", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2814,9 +2851,8 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 				"ownedPropertyAssociations", null, 0, -1, NamedType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(typeDeclEClass, TypeDecl.class, "TypeDecl", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTypeDecl_SuperType(), this.getType(), null, "superType", null, 0, 1, TypeDecl.class,
+		initEClass(typeDefEClass, TypeDef.class, "TypeDef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getTypeDef_SuperType(), this.getType(), null, "superType", null, 0, 1, TypeDef.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -2907,10 +2943,10 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		initEClass(expressionEClass, Expression.class, "Expression", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(multiLiteralOperationEClass, MultiLiteralOperation.class, "MultiLiteralOperation", !IS_ABSTRACT,
+		initEClass(multiLiteralConstraintEClass, MultiLiteralConstraint.class, "MultiLiteralConstraint", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getMultiLiteralOperation_Operator(), this.getLOperation(), "operator", null, 0, 1,
-				MultiLiteralOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+		initEAttribute(getMultiLiteralConstraint_Operator(), this.getLOperation(), "operator", null, 0, 1,
+				MultiLiteralConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(multiExpressionOperationEClass, MultiExpressionOperation.class, "MultiExpressionOperation",

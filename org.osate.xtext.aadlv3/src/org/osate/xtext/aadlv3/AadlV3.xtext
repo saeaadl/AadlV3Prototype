@@ -21,7 +21,7 @@ AnnexLibrary returns av3::AnnexLibrary :
 
 PackageElement returns av3::PackageElement:
 	PackageDeclaration  | ComponentInterface | ComponentImplementation | ComponentConfiguration | PropertyDefinition | PropertySet | Workingset
-	| TypeDecl
+	| TypeDef
 	;
 
 PropertyDefinition returns av3::PropertyDefinition:
@@ -41,7 +41,7 @@ PropertySet returns av3::PropertySet:
 	';'
 ;
 
-TypeDecl returns av3::TypeDecl:
+TypeDef returns av3::TypeDef:
 	(private?='private')? 'type' name=ID ('extends' superType=Type)?
 		PropertiesBlock? ';'
 ;
@@ -98,8 +98,8 @@ DirectionalLiteral returns av3::DirectionalLiteral:
 ;
 
 
-MultiLiteralOperation returns av3::MultiLiteralOperation:
-	{av3::MultiLiteralOperation} operator=LOperation '(' (elements+=Literal (',' elements+=Literal)*)? ')'
+MultiLiteralOperation returns av3::MultiLiteralConstraint:
+	{av3::MultiLiteralConstraint} operator=LOperation '(' (elements+=Literal (',' elements+=Literal)*)? ')'
 ;
 
 
@@ -169,7 +169,7 @@ Connection returns av3::Association:
 
 
 Binding returns av3::Association:
-	name=ID ':' bindingType=[av3::TypeDecl|QualifiedName]? associationType=IsBinding 
+	name=ID ':' bindingType=[av3::TypeDef|QualifiedName]? associationType=IsBinding 
 	source=ModelElementReference
 	'->' destination=ModelElementReference PropertiesBlock? ';';
 
@@ -331,8 +331,13 @@ Workingset returns av3::Workingset:
 
 InstanceConfiguration returns av3::InstanceConfiguration:
 	{av3::InstanceConfiguration} SubcomponentDecl 
-	('assert' '#'constrainedProperty=[av3::PropertyDefinition|QualifiedName] '=' constraintExpression=MultiLiteralOperation)?
+	(propertyConstraint=PropertyConstraint)?
 	';'
+;
+
+PropertyConstraint returns av3::PropertyConstraint:
+	{av3::PropertyConstraint}
+	('assert' '#'constrainedProperty=[av3::PropertyDefinition|QualifiedName] '=' constraintExpression=MultiLiteralOperation)?
 ;
 
 QualifiedNameWithWildcard:

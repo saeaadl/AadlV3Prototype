@@ -20,27 +20,40 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.ecore.EStructuralFeature;
+
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
+import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.IItemPropertySource;
+import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
+import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
 import org.osate.aadlv3.aadlv3.Aadlv3Factory;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
-import org.osate.aadlv3.aadlv3.TypeDecl;
+import org.osate.aadlv3.aadlv3.PropertyConstraint;
 
 /**
- * This is the item provider adapter for a {@link org.osate.aadlv3.aadlv3.TypeDecl} object.
+ * This is the item provider adapter for a {@link org.osate.aadlv3.aadlv3.PropertyConstraint} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class TypeDeclItemProvider extends NamedTypeItemProvider {
+public class PropertyConstraintItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TypeDeclItemProvider(AdapterFactory adapterFactory) {
+	public PropertyConstraintItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -55,8 +68,24 @@ public class TypeDeclItemProvider extends NamedTypeItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addConstrainedPropertyPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Constrained Property feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addConstrainedPropertyPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_PropertyConstraint_constrainedProperty_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_PropertyConstraint_constrainedProperty_feature",
+						"_UI_PropertyConstraint_type"),
+				Aadlv3Package.Literals.PROPERTY_CONSTRAINT__CONSTRAINED_PROPERTY, true, false, true, null, null, null));
 	}
 
 	/**
@@ -71,7 +100,7 @@ public class TypeDeclItemProvider extends NamedTypeItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(Aadlv3Package.Literals.TYPE_DECL__SUPER_TYPE);
+			childrenFeatures.add(Aadlv3Package.Literals.PROPERTY_CONSTRAINT__CONSTRAINT_EXPRESSION);
 		}
 		return childrenFeatures;
 	}
@@ -90,14 +119,14 @@ public class TypeDeclItemProvider extends NamedTypeItemProvider {
 	}
 
 	/**
-	 * This returns TypeDecl.gif.
+	 * This returns PropertyConstraint.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/TypeDecl"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/PropertyConstraint"));
 	}
 
 	/**
@@ -108,9 +137,7 @@ public class TypeDeclItemProvider extends NamedTypeItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((TypeDecl) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_TypeDecl_type")
-				: getString("_UI_TypeDecl_type") + " " + label;
+		return getString("_UI_PropertyConstraint_type");
 	}
 
 	/**
@@ -124,8 +151,8 @@ public class TypeDeclItemProvider extends NamedTypeItemProvider {
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(TypeDecl.class)) {
-		case Aadlv3Package.TYPE_DECL__SUPER_TYPE:
+		switch (notification.getFeatureID(PropertyConstraint.class)) {
+		case Aadlv3Package.PROPERTY_CONSTRAINT__CONSTRAINT_EXPRESSION:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -143,32 +170,19 @@ public class TypeDeclItemProvider extends NamedTypeItemProvider {
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.TYPE_DECL__SUPER_TYPE,
-				Aadlv3Factory.eINSTANCE.createNamedType()));
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_CONSTRAINT__CONSTRAINT_EXPRESSION,
+				Aadlv3Factory.eINSTANCE.createMultiLiteralConstraint()));
+	}
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.TYPE_DECL__SUPER_TYPE,
-				Aadlv3Factory.eINSTANCE.createComponentInterface()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.TYPE_DECL__SUPER_TYPE,
-				Aadlv3Factory.eINSTANCE.createComponentImplementation()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.TYPE_DECL__SUPER_TYPE,
-				Aadlv3Factory.eINSTANCE.createComponentConfiguration()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.TYPE_DECL__SUPER_TYPE,
-				Aadlv3Factory.eINSTANCE.createConfigurationParameter()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.TYPE_DECL__SUPER_TYPE,
-				Aadlv3Factory.eINSTANCE.createTypeDecl()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.TYPE_DECL__SUPER_TYPE,
-				Aadlv3Factory.eINSTANCE.createPrimitiveType()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.TYPE_DECL__SUPER_TYPE,
-				Aadlv3Factory.eINSTANCE.createCompositeType()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.TYPE_DECL__SUPER_TYPE,
-				Aadlv3Factory.eINSTANCE.createTypeReference()));
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		return Aadlv3EditPlugin.INSTANCE;
 	}
 
 }

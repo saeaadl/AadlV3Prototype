@@ -161,8 +161,12 @@
         eType="#//PropertySet"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InstanceConfiguration" eSuperTypes="#//Subcomponent">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="propertyConstraint" eType="#//PropertyConstraint"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PropertyConstraint">
     <eStructuralFeatures xsi:type="ecore:EReference" name="constrainedProperty" eType="#//PropertyDefinition"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="constraintExpression" eType="#//MultiLiteralOperation"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="constraintExpression" eType="#//MultiLiteralConstraint"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="ComponentCategory">
@@ -223,7 +227,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedPropertyAssociations"
         upperBound="-1" eType="#//PropertyAssociation" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TypeDecl" eSuperTypes="#//NamedType">
+  <eClassifiers xsi:type="ecore:EClass" name="TypeDef" eSuperTypes="#//NamedType">
     <eStructuralFeatures xsi:type="ecore:EReference" name="superType" eType="#//Type"
         containment="true"/>
   </eClassifiers>
@@ -284,7 +288,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="ListLiteral" eSuperTypes="#//LCollection"/>
   <eClassifiers xsi:type="ecore:EClass" name="SetLiteral" eSuperTypes="#//LCollection"/>
   <eClassifiers xsi:type="ecore:EClass" name="Expression"/>
-  <eClassifiers xsi:type="ecore:EClass" name="MultiLiteralOperation" eSuperTypes="#//LCollection">
+  <eClassifiers xsi:type="ecore:EClass" name="MultiLiteralConstraint" eSuperTypes="#//LCollection">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="#//LOperation"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MultiExpressionOperation" eSuperTypes="#//ECollection">

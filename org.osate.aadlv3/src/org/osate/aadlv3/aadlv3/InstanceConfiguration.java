@@ -24,8 +24,7 @@ package org.osate.aadlv3.aadlv3;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.osate.aadlv3.aadlv3.InstanceConfiguration#getConstrainedProperty <em>Constrained Property</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.InstanceConfiguration#getConstraintExpression <em>Constraint Expression</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.InstanceConfiguration#getPropertyConstraint <em>Property Constraint</em>}</li>
  * </ul>
  *
  * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getInstanceConfiguration()
@@ -34,47 +33,25 @@ package org.osate.aadlv3.aadlv3;
  */
 public interface InstanceConfiguration extends Subcomponent {
 	/**
-	 * Returns the value of the '<em><b>Constrained Property</b></em>' reference.
+	 * Returns the value of the '<em><b>Property Constraint</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Constrained Property</em>' reference.
-	 * @see #setConstrainedProperty(PropertyDefinition)
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getInstanceConfiguration_ConstrainedProperty()
-	 * @model
-	 * @generated
-	 */
-	PropertyDefinition getConstrainedProperty();
-
-	/**
-	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.InstanceConfiguration#getConstrainedProperty <em>Constrained Property</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Constrained Property</em>' reference.
-	 * @see #getConstrainedProperty()
-	 * @generated
-	 */
-	void setConstrainedProperty(PropertyDefinition value);
-
-	/**
-	 * Returns the value of the '<em><b>Constraint Expression</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Constraint Expression</em>' containment reference.
-	 * @see #setConstraintExpression(MultiLiteralOperation)
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getInstanceConfiguration_ConstraintExpression()
+	 * @return the value of the '<em>Property Constraint</em>' containment reference.
+	 * @see #setPropertyConstraint(PropertyConstraint)
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getInstanceConfiguration_PropertyConstraint()
 	 * @model containment="true"
 	 * @generated
 	 */
-	MultiLiteralOperation getConstraintExpression();
+	PropertyConstraint getPropertyConstraint();
 
 	/**
-	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.InstanceConfiguration#getConstraintExpression <em>Constraint Expression</em>}' containment reference.
+	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.InstanceConfiguration#getPropertyConstraint <em>Property Constraint</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Constraint Expression</em>' containment reference.
-	 * @see #getConstraintExpression()
+	 * @param value the new value of the '<em>Property Constraint</em>' containment reference.
+	 * @see #getPropertyConstraint()
 	 * @generated
 	 */
-	void setConstraintExpression(MultiLiteralOperation value);
+	void setPropertyConstraint(PropertyConstraint value);
 
 } // InstanceConfiguration

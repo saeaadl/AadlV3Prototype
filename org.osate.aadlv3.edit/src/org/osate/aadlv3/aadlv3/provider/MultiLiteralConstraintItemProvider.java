@@ -28,22 +28,22 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.LOperation;
-import org.osate.aadlv3.aadlv3.MultiLiteralOperation;
+import org.osate.aadlv3.aadlv3.MultiLiteralConstraint;
 
 /**
- * This is the item provider adapter for a {@link org.osate.aadlv3.aadlv3.MultiLiteralOperation} object.
+ * This is the item provider adapter for a {@link org.osate.aadlv3.aadlv3.MultiLiteralConstraint} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class MultiLiteralOperationItemProvider extends LCollectionItemProvider {
+public class MultiLiteralConstraintItemProvider extends LCollectionItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MultiLiteralOperationItemProvider(AdapterFactory adapterFactory) {
+	public MultiLiteralConstraintItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -72,22 +72,22 @@ public class MultiLiteralOperationItemProvider extends LCollectionItemProvider {
 	protected void addOperatorPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
 				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_MultiLiteralOperation_operator_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_MultiLiteralOperation_operator_feature",
-						"_UI_MultiLiteralOperation_type"),
-				Aadlv3Package.Literals.MULTI_LITERAL_OPERATION__OPERATOR, true, false, false,
+				getString("_UI_MultiLiteralConstraint_operator_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_MultiLiteralConstraint_operator_feature",
+						"_UI_MultiLiteralConstraint_type"),
+				Aadlv3Package.Literals.MULTI_LITERAL_CONSTRAINT__OPERATOR, true, false, false,
 				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This returns MultiLiteralOperation.gif.
+	 * This returns MultiLiteralConstraint.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/MultiLiteralOperation"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/MultiLiteralConstraint"));
 	}
 
 	/**
@@ -98,10 +98,10 @@ public class MultiLiteralOperationItemProvider extends LCollectionItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		LOperation labelValue = ((MultiLiteralOperation) object).getOperator();
+		LOperation labelValue = ((MultiLiteralConstraint) object).getOperator();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ? getString("_UI_MultiLiteralOperation_type")
-				: getString("_UI_MultiLiteralOperation_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_MultiLiteralConstraint_type")
+				: getString("_UI_MultiLiteralConstraint_type") + " " + label;
 	}
 
 	/**
@@ -115,8 +115,8 @@ public class MultiLiteralOperationItemProvider extends LCollectionItemProvider {
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(MultiLiteralOperation.class)) {
-		case Aadlv3Package.MULTI_LITERAL_OPERATION__OPERATOR:
+		switch (notification.getFeatureID(MultiLiteralConstraint.class)) {
+		case Aadlv3Package.MULTI_LITERAL_CONSTRAINT__OPERATOR:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}

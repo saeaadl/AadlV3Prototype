@@ -6,17 +6,18 @@ import java.util.Collections
 import java.util.Stack
 import org.eclipse.xtext.EcoreUtil2
 import org.osate.aadlv3.aadlv3.Association
-import org.osate.aadlv3.aadlv3.Subcomponent
 import org.osate.aadlv3.aadlv3.Classifier
-import org.osate.aadlv3.aadlv3.ComponentInterface
 import org.osate.aadlv3.aadlv3.ClassifierAssignment
+import org.osate.aadlv3.aadlv3.ComponentInterface
 import org.osate.aadlv3.aadlv3.Feature
 import org.osate.aadlv3.aadlv3.FeatureCategory
+import org.osate.aadlv3.aadlv3.MultiLiteralConstraint
 import org.osate.aadlv3.aadlv3.PathElement
 import org.osate.aadlv3.aadlv3.PathSequence
 import org.osate.aadlv3.aadlv3.PropertyAssociation
 import org.osate.aadlv3.aadlv3.PropertyAssociationType
 import org.osate.aadlv3.aadlv3.PropertyDefinition
+import org.osate.aadlv3.aadlv3.Subcomponent
 import org.osate.aadlv3.aadlv3.TypeReference
 import org.osate.aadlv3.aadlv3.Workingset
 import org.osate.aadlv3.util.Aadlv3Util
@@ -32,21 +33,17 @@ import org.osate.av3instance.av3instance.PropertyAssociationInstance
 import static extension org.eclipse.emf.ecore.util.EcoreUtil.*
 import static extension org.osate.aadlv3.util.AIv3API.*
 import static extension org.osate.aadlv3.util.Aadlv3Util.*
-import org.osate.aadlv3.util.AIJGraphXUtil
-import org.osate.aadlv3.util.AIJGraphTUtil
-import org.osate.aadlv3.aadlv3.ListLiteral
-import org.osate.aadlv3.aadlv3.LCollection
 
 class Instantiator {
 	
 	static var Iterable<PropertyDefinition> expectedProperties = Collections.EMPTY_LIST
 	
-	static var LCollection configurationConstraint = null;
+	static var MultiLiteralConstraint configurationConstraint = null;
 	
 	def instantiate(Workingset ws) {
 		expectedProperties = ws.expectedProperties
 		for (iroot : ws.instanceRoots) {
-			configurationConstraint = getProductLineQualifier(iroot);
+			configurationConstraint = getProductLineConstraint(iroot);
 			if (iroot.typeReferences.satisfies(configurationConstraint)){
 				System.out.println("yes")
 			} else {
@@ -85,6 +82,7 @@ class Instantiator {
 		val casscopes = new Stack <Iterable<ClassifierAssignment>>()
 		val tref = c.getConfiguredTypeReferences(casscopes, null)
 		// set component instance to configured classifier
+		// XXX TODO check product line constraint
 		val ci = c.createComponentInstance(tref)
 		instanceResource.contents.add(ci)
 		c.instantiateComponent(casscopes,ci)
@@ -103,6 +101,7 @@ class Instantiator {
 			// subcomponent
 			trefs = comp.getConfiguredTypeReferences(casscopes, context)
 			// set component instance to configured classifier
+		// XXX TODO check product line constraint
 			val subci = comp.createComponentInstance(trefs)
 			context.components += subci
 			subci

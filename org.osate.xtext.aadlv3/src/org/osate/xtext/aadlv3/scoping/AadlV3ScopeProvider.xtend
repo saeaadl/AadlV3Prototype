@@ -130,7 +130,7 @@ class AadlV3ScopeProvider extends AbstractAadlV3ScopeProvider {
 							val casscopes = new Stack<Iterable<ClassifierAssignment>>()
 							casscopes.push(context.containingClassifier.allSuperClassifierAssignments)
 							val ptrs = previousElement.getConfiguredTypeReferences(casscopes)
-							if (!ptrs.empty && !ptrs.isTypeDecl) {
+							if (!ptrs.empty && !ptrs.isTypeDef) {
 								ptrs.allModelElements
 							} else {
 								previousElement.allModelElements

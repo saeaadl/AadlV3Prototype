@@ -181,7 +181,7 @@ public class LCollectionItemProvider extends LiteralItemProvider {
 				Aadlv3Factory.eINSTANCE.createSetLiteral()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.LCOLLECTION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createMultiLiteralOperation()));
+				Aadlv3Factory.eINSTANCE.createMultiLiteralConstraint()));
 	}
 
 }

@@ -38,11 +38,14 @@ import static extension org.osate.aadlv3.util.Av3API.*
 
 import static extension org.osate.aadlv3.util.Aadlv3Util.*
 import org.eclipse.emf.common.util.EList
-import org.osate.aadlv3.aadlv3.TypeDecl
+import org.osate.aadlv3.aadlv3.TypeDef
 import org.osate.aadlv3.util.Aadlv3Util
 import org.osate.aadlv3.util.Av3API
 import org.osate.aadlv3.util.Aadlv3GlobalScopeUtil
 import java.util.Collection
+import org.osate.aadlv3.aadlv3.ListLiteral
+import org.osate.aadlv3.aadlv3.CompositeType
+import org.osate.aadlv3.aadlv3.Composite
 
 /**
  * This class contains custom validation rules. 
@@ -88,6 +91,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	public static val MustBeDataType = 'MustBeDataType'
 	public static val NoDataType = 'NoDataType'
 	public static val FormalActualMismatch = 'FormalActualMismatch'
+	public static val TypeMismatch = 'TypeMismatch'
 	public static val ConfigurationPattern = 'ConfigurationPattern'
 	public static val ParameterNotInterface = 'ParameterNotInterface'
 	public static val OverrideType = 'OverrideType'
@@ -218,7 +222,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 						error('Configuration actual does not match component classifier of configuration parameter', ca,
 							null, FormalActualMismatch)
 					}
-				} else if (assignedtype instanceof TypeDecl) {
+				} else if (assignedtype instanceof TypeDef) {
 					error(
 						'Configuration actual (data type) does not match component classifier of configuration parameter',
 						ca, null, FormalActualMismatch)
@@ -236,7 +240,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 					error('Configuration actual is not a component classifier', ca, null, FormalActualMismatch)
 				}
 			}
-		} else if (cif instanceof TypeDecl) {
+		} else if (cif instanceof TypeDef) {
 			val assignedtypes = ca.assignedClassifiers
 			for (assignedtyperef : assignedtypes) {
 				val assignedtype = assignedtyperef.type
@@ -244,7 +248,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 					error(
 						'Configuration actual (component classifier) does not match configuration parameter data type',
 						ca, null, FormalActualMismatch)
-				} else if (assignedtype instanceof TypeDecl) {
+				} else if (assignedtype instanceof TypeDef) {
 					if (!(cif.isSuperTypeOf(assignedtype))) {
 						error(
 							'Configuration actual (data type) is not an extension of configuration parameter data type',
@@ -268,11 +272,39 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	@Check
 	def checkPropertyAssociation(PropertyAssociation pa) {
 		pa.checkDuplicatePropertyAssociationForLocalModelElementTarget
+		pa.checkPropertyAssociationTypeConsistency
 		pa.checkPropertyAssociationAppliesto
 		pa.checkWhenPropertyAssociationMustBeFinal
 		pa.checkLocalPAOverridesSuperClassifierLocalFinalPA
 		pa.checkSubcomponentPAOverridesLocalFinalPA
 		pa.checkFinalPAOverridesLocalFinalPA
+	}
+
+	/**
+	 * Check that the assigned value is consistent with the property type
+	 * This will be handled by Lutz' expression language
+	 */
+	def checkPropertyAssociationTypeConsistency(PropertyAssociation pa) {
+		val pdt = pa.property.type
+		val pe = pa.value
+		switch( pe){
+			case ListLiteral: {
+				if (!((pdt instanceof CompositeType)&&(pdt as CompositeType).compositeType === Composite.LIST)){
+					error(
+						"Property value is not of type 'list'",
+						pa, null, TypeMismatch)
+				}
+			}
+			case TypeReference: {
+				if (!(pdt instanceof TypeReference)){
+					error(
+						"property value is not of type 'type'",
+						pa, null, TypeMismatch)
+				}
+			}
+			default: {}
+		}
+		
 	}
 
 	/**
@@ -1018,7 +1050,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 					error('Data component must have data type', comp, Aadlv3Package.Literals.SUBCOMPONENT__CATEGORY,
 						MustBeDataType)
 				}
-			} else if (t instanceof TypeDecl) {
+			} else if (t instanceof TypeDef) {
 				if (!(comp.category === ComponentCategory.DATA || comp.category === ComponentCategory.INTERFACE)) {
 					error('Components other than "data" or "component" cannot have primitive type', comp,
 						Aadlv3Package.Literals.SUBCOMPONENT__CATEGORY, NoDataType)
@@ -1028,7 +1060,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 			}
 		}
 		// if has type references that are not data type then {} can only contain property associations
-		if (!comp.typeReferences.empty && ! comp.typeReferences.isTypeDecl &&
+		if (!comp.typeReferences.empty && ! comp.typeReferences.isTypeDef &&
 			(!comp.features.empty || !comp.connections.empty || !comp.components.empty)) {
 			error('Component with classifier can only have property associations in {}', comp, null,
 				OnlyPropertyAssociations)
@@ -1294,7 +1326,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 								comp.category + '\' of the component or must be "abstract"', ca, null,
 							MISMATCHED_COMPONENT_CATEGORY)
 					}
-				} else if (thetype instanceof TypeDecl) {
+				} else if (thetype instanceof TypeDef) {
 					// primitive type
 					if (comp.category === ComponentCategory.DATA || comp.category === ComponentCategory.INTERFACE) {
 						if (!comp.typeReferences.empty) {
@@ -1327,7 +1359,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 							Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__ASSIGNED_CLASSIFIERS,
 							ONLY_INTERFACES_REVERSE)
 					}
-				} else if (thetype instanceof TypeDecl) {
+				} else if (thetype instanceof TypeDef) {
 					// data type
 					if (fea.category === FeatureCategory.DATAACCESS || fea.category === FeatureCategory.PORT ||
 						fea.category === FeatureCategory.FEATURE) {
