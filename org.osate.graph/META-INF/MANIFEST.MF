@@ -4,7 +4,10 @@ Bundle-Name: %pluginName
 Bundle-SymbolicName: org.osate.graph;singleton:=true
 Automatic-Module-Name: org.osate.graph
 Bundle-Version: 1.0.0.qualifier
-Bundle-ClassPath: .
+Bundle-ClassPath: .,
+ lib/jgrapht-core-1.3.0.jar,
+ lib/jgrapht-ext-1.3.0.jar,
+ lib/jgraphx-3.4.1.3.jar
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
