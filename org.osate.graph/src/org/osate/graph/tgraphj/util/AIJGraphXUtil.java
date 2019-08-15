@@ -15,7 +15,7 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR LGPL-2.1-or-later
  */
-package org.osate.av3instance.util;
+package org.osate.graph.tgraphj.util;
 
 //@example:full:begin
 
@@ -34,6 +34,7 @@ import java.awt.*;
  * JGraphAdapterDemo.
  *
  */
+@SuppressWarnings("rawtypes")
 public class AIJGraphXUtil
     extends
     JApplet
@@ -42,19 +43,18 @@ public class AIJGraphXUtil
 
     private static final Dimension DEFAULT_SIZE = new Dimension(530, 320);
 
-    private JGraphXAdapter<ComponentInstance, DefaultEdge> jgxAdapter;
-    private static Graph graph;
+	private static JGraphXAdapter jgxAdapter;
 
-     public static void runme(Graph g)
+     public static void showGraph(Graph g)
     {
-        graph = g;
+        jgxAdapter = new JGraphXAdapter(g);
     	AIJGraphXUtil applet = new AIJGraphXUtil();
         applet.init();
 
         JFrame frame = new JFrame();
         frame.getContentPane().add(applet);
         frame.setTitle("Show graph");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
     }
@@ -63,7 +63,6 @@ public class AIJGraphXUtil
     public void init()
     {
         // create a visualization using JGraph, via an adapter
-        jgxAdapter = new JGraphXAdapter<ComponentInstance, DefaultEdge>(graph);
 
         setPreferredSize(DEFAULT_SIZE);
         mxGraphComponent component = new mxGraphComponent(jgxAdapter);

@@ -15,6 +15,8 @@
  */
 package org.osate.av3instance.av3instance.impl;
 
+import static org.osate.aadlv3.util.AIv3API.getInstanceObjectPath;
+
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -345,20 +347,15 @@ public class FeatureInstanceImpl extends InstanceObjectImpl implements FeatureIn
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String toString() {
 		if (eIsProxy())
 			return super.toString();
 
-		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (direction: "); //$NON-NLS-1$
-		result.append(direction);
-		result.append(", category: "); //$NON-NLS-1$
-		result.append(category);
-		result.append(')');
-		return result.toString();
+		String result = category.toString() + " " + getInstanceObjectPath(this);
+		return result;
 	}
 
 } //FeatureInstanceImpl

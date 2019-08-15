@@ -258,7 +258,7 @@ class AIv3API {
 		}
 		return conns;
 	}
-
+	
 	def static List<AssociationInstance> getContainedAllConnections(ComponentInstance root) {
 		val assis = EcoreUtil2.eAllOfType(root, AssociationInstance);
 		val conns = new ArrayList<AssociationInstance>();

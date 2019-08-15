@@ -15,6 +15,8 @@
  */
 package org.osate.av3instance.av3instance.impl;
 
+import static org.osate.aadlv3.util.AIv3API.getInstanceObjectPath;
+
 import java.util.Collection;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -218,6 +220,20 @@ public abstract class InstanceObjectImpl extends NamedElementImpl implements Ins
 			return outgoingAssociations != null && !outgoingAssociations.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy())
+			return super.toString();
+
+		String result = getInstanceObjectPath(this);
+		return result;
 	}
 
 } //InstanceObjectImpl

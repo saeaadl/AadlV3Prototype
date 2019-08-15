@@ -288,14 +288,14 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 		val pdt = pa.property.type
 		val pe = pa.value
 		switch( pe){
-			case ListLiteral: {
+			ListLiteral: {
 				if (!((pdt instanceof CompositeType)&&(pdt as CompositeType).compositeType === Composite.LIST)){
 					error(
 						"Property value is not of type 'list'",
 						pa, null, TypeMismatch)
 				}
 			}
-			case TypeReference: {
+			TypeReference: {
 				if (!(pdt instanceof TypeReference)){
 					error(
 						"property value is not of type 'type'",

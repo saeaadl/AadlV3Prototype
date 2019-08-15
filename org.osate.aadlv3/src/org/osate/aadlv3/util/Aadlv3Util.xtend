@@ -1102,9 +1102,10 @@ class Aadlv3Util {
 	// mapping maps an outgoing feature, i.e., a source
 	def static boolean isOutgoingFeatureDelegation(Association conn){
 		if (conn.associationType == AssociationType.CONNECTION ){
-			val el = conn.source.element
-			if (el instanceof Feature){
-				return el.direction.outgoing
+			val src = conn.source.element
+			val dst = conn.destination.element
+			if (src instanceof Feature && dst instanceof Feature){
+				return (src as Feature).direction.outgoing && (dst as Feature).direction.outgoing
 			}
 		}
 		false
@@ -1113,9 +1114,10 @@ class Aadlv3Util {
 	// mapping maps an incoming features, i.e., a destination
 	def static boolean isIncomingFeatureDelegation(Association conn){
 		if (conn.associationType == AssociationType.CONNECTION ){
-			val el = conn.source.element
-			if (el instanceof Feature){
-				return el.direction.incoming
+			val src = conn.source.element
+			val dst = conn.destination.element
+			if (src instanceof Feature && dst instanceof Feature){
+				return (src as Feature).direction.incoming && (dst as Feature).direction.incoming
 			}
 		}
 		false
@@ -1625,6 +1627,10 @@ class Aadlv3Util {
 			return getOwnedPropertyValue(me.typeReferences, property);
 		}
 		return null;
+	}
+	
+	def static String getName(TypeReference type){
+		type.type.name
 	}
 
 }

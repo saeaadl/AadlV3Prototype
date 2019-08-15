@@ -24,7 +24,8 @@ Require-Bundle: org.osate.xtext.aadlv3,
  org.eclipse.sirius;bundle-version="6.1.2",
  org.eclipse.emf.transaction;bundle-version="1.9.1",
  org.eclipse.sirius.ui;bundle-version="6.1.2",
- org.eclipse.sirius.ext.base;bundle-version="6.1.2"
+ org.eclipse.sirius.ext.base;bundle-version="6.1.2",
+ org.osate.graph;bundle-version="1.0.0"
 Import-Package: org.apache.log4j
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: org.osate.xtext.aadlv3.ui.internal,

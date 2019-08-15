@@ -38,18 +38,18 @@ class Instantiator {
 	
 	def instantiate(Workingset ws) {
 		expectedProperties = ws.expectedProperties
+		var ComponentInstance root = null
 		for (iroot : ws.instanceRoots) {
 			configurationConstraint = getProductLineConstraint(iroot);
 			val rootinstance = iroot.instantiateRoot
 			rootinstance.eResource.save(null)
+			root = rootinstance
 // XXX TODO 
 		//  check whether all expected properties have been set
 		//	val issues = validateExpectedPropertyValues(rootinstance,expectedProperties)
 		// validate product line constraint
-// XXX TODO 
-//		val g =AIJGraphTUtil.generateGraph(rootinstance)
-//		AIJGraphXUtil.runme(g);
 		}
+		return root
 	}
 	
 	def getInstanceURI(Workingset ws, Subcomponent root){
