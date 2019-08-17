@@ -5,6 +5,8 @@ package org.osate.graph.TokenTrace.provider;
 import org.eclipse.emf.common.EMFPlugin;
 
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.osate.aadlv3.aadlv3.provider.Aadlv3EditPlugin;
+import org.osate.aadlv3.provider.AV3InstanceEditPlugin;
 
 /**
  * This is the central singleton for the TokenTrace edit plugin.
@@ -38,6 +40,8 @@ public final class TokenTraceEditPlugin extends EMFPlugin {
 	public TokenTraceEditPlugin() {
 		super
 		  (new ResourceLocator [] {
+		     AV3InstanceEditPlugin.INSTANCE,
+		     Aadlv3EditPlugin.INSTANCE,
 		   });
 	}
 

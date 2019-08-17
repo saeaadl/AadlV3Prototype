@@ -2,6 +2,7 @@ package org.osate.graph.TokenTrace.util;
 
 import static org.osate.aadlv3.util.AIv3API.getInstanceObjectPath;
 
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -19,7 +20,7 @@ import org.osate.graph.TokenTrace.Token;
 import org.osate.graph.TokenTrace.TokenTrace;
 import org.osate.graph.TokenTrace.TokenTraceFactory;
 
-public class TokenTraceUtils {
+public class TokenTraceUtil {
 
 
 	public static String buildName(InstanceObject io,  TypeReference typeref) {
@@ -29,19 +30,89 @@ public class TokenTraceUtils {
 		}
 
 		identifier = getInstanceObjectPath(io);
-				identifier += "-";
 
-				if (typeref == null) {
+		if (typeref == null) {
 //			identifier+="-notypes";
-				} else if (typeref.getType().getName() != null) {
-					identifier += "-" + typeref.getType().getName();
-				} else {
-					identifier += "-" + Aadlv3Util.getName(typeref);
-				}
-				identifier = identifier.replaceAll("\\{", "").replaceAll("\\}", "").toLowerCase();
-				return identifier;
+		} else if (typeref.getType().getName() != null) {
+			identifier += "-" + typeref.getType().getName();
+		} else {
+			identifier += "-" + Aadlv3Util.getName(typeref);
+		}
+//		identifier = identifier.replaceAll("\\{", "").replaceAll("\\}", "").toLowerCase();
+		return identifier;
 	}
 
+	public static Token createToken( ComponentInstance component, TypeReference type) {
+		Token newToken = TokenTraceFactory.eINSTANCE.createToken();
+		String name = buildName(component, type);
+		newToken.setName(name);
+		newToken.setRelatedInstanceObject(component);
+		newToken.setRelatedType(type);
+		return newToken;
+	}
+
+	public static void addToken(Token parent, ComponentInstance component, NamedElement namedElement,
+			TypeReference type) {
+		Token newToken = createToken( component, type);
+		parent.getTokens().add(newToken);
+	}
+
+
+	public static Token findToken(Collection<Token> tokens, String tokenName) {
+		for (Token token : tokens) {
+			if (token.getName().equalsIgnoreCase(tokenName)) {
+				return token;
+			}
+		}
+		return null;
+	}
+
+	public static Token findSharedSubtree(TokenTrace tokenTrace, List<EObject> tokens, LogicOperation optype,
+			ComponentInstance component,  TypeReference type) {
+		for (Token token : tokenTrace.getTokens()) {
+			if (token.getRelatedInstanceObject() == component && token.getRelatedType() == type) {
+				if (!token.getTokens().isEmpty() && token.getTokenLogic() == optype
+						&& token.getTokens().size() == tokens.size() && tokens.containsAll(token.getTokens())) {
+					return token;
+				}
+			}
+		}
+		return null;
+	}
+
+	public static List<Token> copy(TokenTrace tokenTrace, List<Token> alts) {
+		LinkedList<Token> altscopy = new LinkedList<Token>();
+		for (Token alt : alts) {
+			Token newalt = EcoreUtil.copy(alt);
+			altscopy.add(newalt);
+			tokenTrace.getTokens().add(newalt);
+		}
+		return altscopy;
+	}
+
+	public static boolean sameToken(Token e1, Token e2) {
+		return e1.getName().equalsIgnoreCase(e2.getName());
+	}
+
+	public static String getDescription(Token token) {
+		return getInstanceDescription(token) + " " + token.getMessage() != null ? token.getMessage() : "";
+	}
+
+	public static String getInstanceDescription(Token token) {
+		InstanceObject io = (InstanceObject) token.getRelatedInstanceObject();
+		String description = "";
+		if (io instanceof ComponentInstance) {
+			description = "'" + AIv3API.getInstanceObjectPath((ComponentInstance) io) + "'";
+		} else if (io instanceof AssociationInstance) {
+			description = "Connection '" + ((AssociationInstance) io).getName() + "'";
+		}
+		return description;
+	}
+
+	
+	// methods dealing with reference count in TokenTrace.
+	// TokenTrace is the equivalent of a Graph
+	// Should take the graph and convert to a TokenTrace object so it can be persisted and used in Sirius.
 	private static void redoCount(TokenTrace tokenTrace) {
 		for (Token ev : tokenTrace.getTokens()) {
 			ev.setReferenceCount(0);
@@ -80,76 +151,5 @@ public class TokenTraceUtils {
 		return token.getReferenceCount() > 1;
 	}
 
-	public static Token createToken(TokenTrace tokenTrace, ComponentInstance component, TypeReference type) {
-		String name = buildName(component, type);
-		Token result = findToken(tokenTrace, name);
-		if (result != null) {
-			return result;
-		}
-		Token newToken = TokenTraceFactory.eINSTANCE.createToken();
-		tokenTrace.getTokens().add(newToken);
-		newToken.setName(name);
-		newToken.setRelatedInstanceObject(component);
-		newToken.setRelatedToken(type);
-		return newToken;
-	}
-
-	public static void addToken(Token parent, ComponentInstance component, NamedElement namedElement,
-			TypeReference type) {
-		Token newToken = createToken((TokenTrace) parent.eContainer(), component, type);
-		parent.getTokens().add(newToken);
-	}
-
-
-	public static Token findToken(TokenTrace tokenTrace, String tokenName) {
-		for (Token token : tokenTrace.getTokens()) {
-			if (token.getName().equalsIgnoreCase(tokenName)) {
-				return token;
-			}
-		}
-		return null;
-	}
-
-	public static Token findSharedSubtree(TokenTrace tokenTrace, List<EObject> tokens, LogicOperation optype,
-			ComponentInstance component,  TypeReference type) {
-		for (Token token : tokenTrace.getTokens()) {
-			if (token.getRelatedInstanceObject() == component && token.getRelatedToken() == type) {
-				if (!token.getTokens().isEmpty() && token.getTokenLogic() == optype
-						&& token.getTokens().size() == tokens.size() && tokens.containsAll(token.getTokens())) {
-					return token;
-				}
-			}
-		}
-		return null;
-	}
-
-	public static List<Token> copy(TokenTrace tokenTrace, List<Token> alts) {
-		LinkedList<Token> altscopy = new LinkedList<Token>();
-		for (Token alt : alts) {
-			Token newalt = EcoreUtil.copy(alt);
-			altscopy.add(newalt);
-			tokenTrace.getTokens().add(newalt);
-		}
-		return altscopy;
-	}
-
-	public static boolean sameToken(Token e1, Token e2) {
-		return e1.getName().equalsIgnoreCase(e2.getName());
-	}
-
-	public static String getDescription(Token token) {
-		return getInstanceDescription(token) + " " + token.getMessage() != null ? token.getMessage() : "";
-	}
-
-	public static String getInstanceDescription(Token token) {
-		InstanceObject io = (InstanceObject) token.getRelatedInstanceObject();
-		String description = "";
-		if (io instanceof ComponentInstance) {
-			description = "'" + AIv3API.getInstanceObjectPath((ComponentInstance) io) + "'";
-		} else if (io instanceof AssociationInstance) {
-			description = "Connection '" + ((AssociationInstance) io).getName() + "'";
-		}
-		return description;
-	}
 
 }

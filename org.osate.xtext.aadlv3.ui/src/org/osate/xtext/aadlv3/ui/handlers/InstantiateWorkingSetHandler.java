@@ -48,10 +48,12 @@ public class InstantiateWorkingSetHandler extends AbstractHandler {
 						// XXX TODO 
 //						val ng = AIJGraphTUtil.generateComponentInstanceHierarchy(rootinstance)
 //						AIJGraphXUtil.showGraph(ng);
-						Graph topo =AIJGraphTUtil.generateConnectionTopology(rootinstance);
-						AIJGraphXUtil.showGraph(topo);
-						Graph Prop =AIJGraphTUtil.generatePropagationPaths(rootinstance);
-						AIJGraphXUtil.showGraph(Prop);
+//						Graph topo =AIJGraphTUtil.generateConnectionTopology(rootinstance);
+//						AIJGraphXUtil.showGraph(topo);
+//						Graph Prop =AIJGraphTUtil.generatePropagationPaths(rootinstance);
+//						AIJGraphXUtil.showGraph(Prop);
+						Graph token =AIJGraphTUtil.generateTokenTrace(rootinstance);
+						AIJGraphXUtil.showGraph(token);
 					}
 				}
 			});

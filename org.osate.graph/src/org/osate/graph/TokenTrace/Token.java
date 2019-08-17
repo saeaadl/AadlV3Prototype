@@ -5,6 +5,8 @@ package org.osate.graph.TokenTrace;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
+import org.osate.aadlv3.aadlv3.TypeReference;
+import org.osate.av3instance.av3instance.InstanceObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -20,7 +22,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.osate.graph.TokenTrace.Token#getTokens <em>Tokens</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.Token#getK <em>K</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.Token#getRelatedInstanceObject <em>Related Instance Object</em>}</li>
- *   <li>{@link org.osate.graph.TokenTrace.Token#getRelatedToken <em>Related Token</em>}</li>
+ *   <li>{@link org.osate.graph.TokenTrace.Token#getRelatedType <em>Related Type</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.Token#getReferenceCount <em>Reference Count</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.Token#getTokenLogic <em>Token Logic</em>}</li>
  * </ul>
@@ -114,12 +116,12 @@ public interface Token extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Related Instance Object</em>' reference.
-	 * @see #setRelatedInstanceObject(EObject)
+	 * @see #setRelatedInstanceObject(InstanceObject)
 	 * @see org.osate.graph.TokenTrace.TokenTracePackage#getToken_RelatedInstanceObject()
 	 * @model
 	 * @generated
 	 */
-	EObject getRelatedInstanceObject();
+	InstanceObject getRelatedInstanceObject();
 
 	/**
 	 * Sets the value of the '{@link org.osate.graph.TokenTrace.Token#getRelatedInstanceObject <em>Related Instance Object</em>}' reference.
@@ -129,29 +131,29 @@ public interface Token extends EObject {
 	 * @see #getRelatedInstanceObject()
 	 * @generated
 	 */
-	void setRelatedInstanceObject(EObject value);
+	void setRelatedInstanceObject(InstanceObject value);
 
 	/**
-	 * Returns the value of the '<em><b>Related Token</b></em>' reference.
+	 * Returns the value of the '<em><b>Related Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Related Token</em>' reference.
-	 * @see #setRelatedToken(EObject)
-	 * @see org.osate.graph.TokenTrace.TokenTracePackage#getToken_RelatedToken()
+	 * @return the value of the '<em>Related Type</em>' reference.
+	 * @see #setRelatedType(TypeReference)
+	 * @see org.osate.graph.TokenTrace.TokenTracePackage#getToken_RelatedType()
 	 * @model
 	 * @generated
 	 */
-	EObject getRelatedToken();
+	TypeReference getRelatedType();
 
 	/**
-	 * Sets the value of the '{@link org.osate.graph.TokenTrace.Token#getRelatedToken <em>Related Token</em>}' reference.
+	 * Sets the value of the '{@link org.osate.graph.TokenTrace.Token#getRelatedType <em>Related Type</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Related Token</em>' reference.
-	 * @see #getRelatedToken()
+	 * @param value the new value of the '<em>Related Type</em>' reference.
+	 * @see #getRelatedType()
 	 * @generated
 	 */
-	void setRelatedToken(EObject value);
+	void setRelatedType(TypeReference value);
 
 	/**
 	 * Returns the value of the '<em><b>Reference Count</b></em>' attribute.

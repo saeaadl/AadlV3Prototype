@@ -3,7 +3,8 @@
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.osate.graph/src" editorDirectory="" modelPluginID="org.osate.graph"
     modelName="TokenTrace" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     testsDirectory="" importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0"
-    copyrightFields="false" operationReflection="true" importOrganizing="true">
+    copyrightFields="false" usedGenPackages="../../org.osate.aadlv3/model/AV3Instance.genmodel#//av3instance ../../org.osate.aadlv3/model/Aadlv3.genmodel#//aadlv3"
+    operationReflection="true" importOrganizing="true">
   <foreignModel>TokenTrace.ecore</foreignModel>
   <genPackages prefix="TokenTrace" basePackage="org.osate.graph" disposableProviderFactory="true"
       ecorePackage="TokenTrace.ecore#/">
@@ -42,7 +43,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TokenTrace.ecore#//Token/tokens"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TokenTrace.ecore#//Token/k"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TokenTrace.ecore#//Token/relatedInstanceObject"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TokenTrace.ecore#//Token/relatedToken"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TokenTrace.ecore#//Token/relatedType"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TokenTrace.ecore#//Token/referenceCount"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TokenTrace.ecore#//Token/tokenLogic"/>
     </genClasses>

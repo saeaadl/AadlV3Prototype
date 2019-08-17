@@ -65,7 +65,7 @@ public class TokenItemProvider
 			addTokensPropertyDescriptor(object);
 			addKPropertyDescriptor(object);
 			addRelatedInstanceObjectPropertyDescriptor(object);
-			addRelatedTokenPropertyDescriptor(object);
+			addRelatedTypePropertyDescriptor(object);
 			addReferenceCountPropertyDescriptor(object);
 			addTokenLogicPropertyDescriptor(object);
 		}
@@ -183,19 +183,19 @@ public class TokenItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Related Token feature.
+	 * This adds a property descriptor for the Related Type feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addRelatedTokenPropertyDescriptor(Object object) {
+	protected void addRelatedTypePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Token_relatedToken_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Token_relatedToken_feature", "_UI_Token_type"),
-				 TokenTracePackage.Literals.TOKEN__RELATED_TOKEN,
+				 getString("_UI_Token_relatedType_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Token_relatedType_feature", "_UI_Token_type"),
+				 TokenTracePackage.Literals.TOKEN__RELATED_TYPE,
 				 true,
 				 false,
 				 true,

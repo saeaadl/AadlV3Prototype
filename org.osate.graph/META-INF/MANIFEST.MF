@@ -18,5 +18,5 @@ Export-Package: org.jgrapht,
  org.osate.graph.tgraphj.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
- org.osate.aadlv3;bundle-version="0.1.0"
+ org.osate.aadlv3;bundle-version="0.1.0";visibility:=reexport
 Bundle-ActivationPolicy: lazy

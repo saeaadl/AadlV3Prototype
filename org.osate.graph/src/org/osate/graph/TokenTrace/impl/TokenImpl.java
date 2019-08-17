@@ -9,14 +9,14 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-
+import org.osate.aadlv3.aadlv3.TypeReference;
+import org.osate.av3instance.av3instance.InstanceObject;
 import org.osate.graph.TokenTrace.LogicOperation;
 import org.osate.graph.TokenTrace.Token;
 import org.osate.graph.TokenTrace.TokenTracePackage;
@@ -34,7 +34,7 @@ import org.osate.graph.TokenTrace.TokenTracePackage;
  *   <li>{@link org.osate.graph.TokenTrace.impl.TokenImpl#getTokens <em>Tokens</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.impl.TokenImpl#getK <em>K</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.impl.TokenImpl#getRelatedInstanceObject <em>Related Instance Object</em>}</li>
- *   <li>{@link org.osate.graph.TokenTrace.impl.TokenImpl#getRelatedToken <em>Related Token</em>}</li>
+ *   <li>{@link org.osate.graph.TokenTrace.impl.TokenImpl#getRelatedType <em>Related Type</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.impl.TokenImpl#getReferenceCount <em>Reference Count</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.impl.TokenImpl#getTokenLogic <em>Token Logic</em>}</li>
  * </ul>
@@ -120,17 +120,17 @@ public class TokenImpl extends MinimalEObjectImpl.Container implements Token {
 	 * @generated
 	 * @ordered
 	 */
-	protected EObject relatedInstanceObject;
+	protected InstanceObject relatedInstanceObject;
 
 	/**
-	 * The cached value of the '{@link #getRelatedToken() <em>Related Token</em>}' reference.
+	 * The cached value of the '{@link #getRelatedType() <em>Related Type</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getRelatedToken()
+	 * @see #getRelatedType()
 	 * @generated
 	 * @ordered
 	 */
-	protected EObject relatedToken;
+	protected TypeReference relatedType;
 
 	/**
 	 * The default value of the '{@link #getReferenceCount() <em>Reference Count</em>}' attribute.
@@ -279,10 +279,10 @@ public class TokenImpl extends MinimalEObjectImpl.Container implements Token {
 	 * @generated
 	 */
 	@Override
-	public EObject getRelatedInstanceObject() {
+	public InstanceObject getRelatedInstanceObject() {
 		if (relatedInstanceObject != null && relatedInstanceObject.eIsProxy()) {
 			InternalEObject oldRelatedInstanceObject = (InternalEObject)relatedInstanceObject;
-			relatedInstanceObject = eResolveProxy(oldRelatedInstanceObject);
+			relatedInstanceObject = (InstanceObject)eResolveProxy(oldRelatedInstanceObject);
 			if (relatedInstanceObject != oldRelatedInstanceObject) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TokenTracePackage.TOKEN__RELATED_INSTANCE_OBJECT, oldRelatedInstanceObject, relatedInstanceObject));
@@ -296,7 +296,7 @@ public class TokenImpl extends MinimalEObjectImpl.Container implements Token {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EObject basicGetRelatedInstanceObject() {
+	public InstanceObject basicGetRelatedInstanceObject() {
 		return relatedInstanceObject;
 	}
 
@@ -306,8 +306,8 @@ public class TokenImpl extends MinimalEObjectImpl.Container implements Token {
 	 * @generated
 	 */
 	@Override
-	public void setRelatedInstanceObject(EObject newRelatedInstanceObject) {
-		EObject oldRelatedInstanceObject = relatedInstanceObject;
+	public void setRelatedInstanceObject(InstanceObject newRelatedInstanceObject) {
+		InstanceObject oldRelatedInstanceObject = relatedInstanceObject;
 		relatedInstanceObject = newRelatedInstanceObject;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, TokenTracePackage.TOKEN__RELATED_INSTANCE_OBJECT, oldRelatedInstanceObject, relatedInstanceObject));
@@ -319,16 +319,16 @@ public class TokenImpl extends MinimalEObjectImpl.Container implements Token {
 	 * @generated
 	 */
 	@Override
-	public EObject getRelatedToken() {
-		if (relatedToken != null && relatedToken.eIsProxy()) {
-			InternalEObject oldRelatedToken = (InternalEObject)relatedToken;
-			relatedToken = eResolveProxy(oldRelatedToken);
-			if (relatedToken != oldRelatedToken) {
+	public TypeReference getRelatedType() {
+		if (relatedType != null && relatedType.eIsProxy()) {
+			InternalEObject oldRelatedType = (InternalEObject)relatedType;
+			relatedType = (TypeReference)eResolveProxy(oldRelatedType);
+			if (relatedType != oldRelatedType) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TokenTracePackage.TOKEN__RELATED_TOKEN, oldRelatedToken, relatedToken));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TokenTracePackage.TOKEN__RELATED_TYPE, oldRelatedType, relatedType));
 			}
 		}
-		return relatedToken;
+		return relatedType;
 	}
 
 	/**
@@ -336,8 +336,8 @@ public class TokenImpl extends MinimalEObjectImpl.Container implements Token {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EObject basicGetRelatedToken() {
-		return relatedToken;
+	public TypeReference basicGetRelatedType() {
+		return relatedType;
 	}
 
 	/**
@@ -346,11 +346,11 @@ public class TokenImpl extends MinimalEObjectImpl.Container implements Token {
 	 * @generated
 	 */
 	@Override
-	public void setRelatedToken(EObject newRelatedToken) {
-		EObject oldRelatedToken = relatedToken;
-		relatedToken = newRelatedToken;
+	public void setRelatedType(TypeReference newRelatedType) {
+		TypeReference oldRelatedType = relatedType;
+		relatedType = newRelatedType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TokenTracePackage.TOKEN__RELATED_TOKEN, oldRelatedToken, relatedToken));
+			eNotify(new ENotificationImpl(this, Notification.SET, TokenTracePackage.TOKEN__RELATED_TYPE, oldRelatedType, relatedType));
 	}
 
 	/**
@@ -418,9 +418,9 @@ public class TokenImpl extends MinimalEObjectImpl.Container implements Token {
 			case TokenTracePackage.TOKEN__RELATED_INSTANCE_OBJECT:
 				if (resolve) return getRelatedInstanceObject();
 				return basicGetRelatedInstanceObject();
-			case TokenTracePackage.TOKEN__RELATED_TOKEN:
-				if (resolve) return getRelatedToken();
-				return basicGetRelatedToken();
+			case TokenTracePackage.TOKEN__RELATED_TYPE:
+				if (resolve) return getRelatedType();
+				return basicGetRelatedType();
 			case TokenTracePackage.TOKEN__REFERENCE_COUNT:
 				return getReferenceCount();
 			case TokenTracePackage.TOKEN__TOKEN_LOGIC:
@@ -452,10 +452,10 @@ public class TokenImpl extends MinimalEObjectImpl.Container implements Token {
 				setK((Integer)newValue);
 				return;
 			case TokenTracePackage.TOKEN__RELATED_INSTANCE_OBJECT:
-				setRelatedInstanceObject((EObject)newValue);
+				setRelatedInstanceObject((InstanceObject)newValue);
 				return;
-			case TokenTracePackage.TOKEN__RELATED_TOKEN:
-				setRelatedToken((EObject)newValue);
+			case TokenTracePackage.TOKEN__RELATED_TYPE:
+				setRelatedType((TypeReference)newValue);
 				return;
 			case TokenTracePackage.TOKEN__REFERENCE_COUNT:
 				setReferenceCount((Integer)newValue);
@@ -488,10 +488,10 @@ public class TokenImpl extends MinimalEObjectImpl.Container implements Token {
 				setK(K_EDEFAULT);
 				return;
 			case TokenTracePackage.TOKEN__RELATED_INSTANCE_OBJECT:
-				setRelatedInstanceObject((EObject)null);
+				setRelatedInstanceObject((InstanceObject)null);
 				return;
-			case TokenTracePackage.TOKEN__RELATED_TOKEN:
-				setRelatedToken((EObject)null);
+			case TokenTracePackage.TOKEN__RELATED_TYPE:
+				setRelatedType((TypeReference)null);
 				return;
 			case TokenTracePackage.TOKEN__REFERENCE_COUNT:
 				setReferenceCount(REFERENCE_COUNT_EDEFAULT);
@@ -521,8 +521,8 @@ public class TokenImpl extends MinimalEObjectImpl.Container implements Token {
 				return k != K_EDEFAULT;
 			case TokenTracePackage.TOKEN__RELATED_INSTANCE_OBJECT:
 				return relatedInstanceObject != null;
-			case TokenTracePackage.TOKEN__RELATED_TOKEN:
-				return relatedToken != null;
+			case TokenTracePackage.TOKEN__RELATED_TYPE:
+				return relatedType != null;
 			case TokenTracePackage.TOKEN__REFERENCE_COUNT:
 				return referenceCount != REFERENCE_COUNT_EDEFAULT;
 			case TokenTracePackage.TOKEN__TOKEN_LOGIC:
@@ -553,6 +553,16 @@ public class TokenImpl extends MinimalEObjectImpl.Container implements Token {
 		result.append(tokenLogic);
 		result.append(')');
 		return result.toString();
+	}
+
+	@Override
+	public boolean equals(Object second) {
+		return this.name.equals(((Token) second).getName());
+	}
+
+	@Override
+	public int hashCode() {
+		return this.name != null ? this.name.hashCode() : 0;
 	}
 
 } //TokenImpl

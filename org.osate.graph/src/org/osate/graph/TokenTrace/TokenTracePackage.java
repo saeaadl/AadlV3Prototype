@@ -196,13 +196,13 @@ public interface TokenTracePackage extends EPackage {
 	int TOKEN__RELATED_INSTANCE_OBJECT = 4;
 
 	/**
-	 * The feature id for the '<em><b>Related Token</b></em>' reference.
+	 * The feature id for the '<em><b>Related Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TOKEN__RELATED_TOKEN = 5;
+	int TOKEN__RELATED_TYPE = 5;
 
 	/**
 	 * The feature id for the '<em><b>Reference Count</b></em>' attribute.
@@ -296,13 +296,13 @@ public interface TokenTracePackage extends EPackage {
 	int EVENT__RELATED_INSTANCE_OBJECT = TOKEN__RELATED_INSTANCE_OBJECT;
 
 	/**
-	 * The feature id for the '<em><b>Related Token</b></em>' reference.
+	 * The feature id for the '<em><b>Related Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT__RELATED_TOKEN = TOKEN__RELATED_TOKEN;
+	int EVENT__RELATED_TYPE = TOKEN__RELATED_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Reference Count</b></em>' attribute.
@@ -567,15 +567,15 @@ public interface TokenTracePackage extends EPackage {
 	EReference getToken_RelatedInstanceObject();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.osate.graph.TokenTrace.Token#getRelatedToken <em>Related Token</em>}'.
+	 * Returns the meta object for the reference '{@link org.osate.graph.TokenTrace.Token#getRelatedType <em>Related Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Related Token</em>'.
-	 * @see org.osate.graph.TokenTrace.Token#getRelatedToken()
+	 * @return the meta object for the reference '<em>Related Type</em>'.
+	 * @see org.osate.graph.TokenTrace.Token#getRelatedType()
 	 * @see #getToken()
 	 * @generated
 	 */
-	EReference getToken_RelatedToken();
+	EReference getToken_RelatedType();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.osate.graph.TokenTrace.Token#getReferenceCount <em>Reference Count</em>}'.
@@ -836,12 +836,12 @@ public interface TokenTracePackage extends EPackage {
 		EReference TOKEN__RELATED_INSTANCE_OBJECT = eINSTANCE.getToken_RelatedInstanceObject();
 
 		/**
-		 * The meta object literal for the '<em><b>Related Token</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Related Type</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TOKEN__RELATED_TOKEN = eINSTANCE.getToken_RelatedToken();
+		EReference TOKEN__RELATED_TYPE = eINSTANCE.getToken_RelatedType();
 
 		/**
 		 * The meta object literal for the '<em><b>Reference Count</b></em>' attribute feature.
