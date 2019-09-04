@@ -12,7 +12,7 @@ import org.osate.av3instance.av3instance.ComponentInstance
 import org.osate.av3instance.av3instance.FeatureInstance
 
 import static extension org.osate.aadlv3.util.AIv3API.*
-import static extension org.osate.aadlv3.util.Aadlv3Util.*
+import static extension org.osate.aadlv3.util.ProductLineConstraint.*
 
 class AIv3Validation {
 	

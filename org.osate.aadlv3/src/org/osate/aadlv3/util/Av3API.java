@@ -115,14 +115,5 @@ public class Av3API {
 		return Aadlv3GlobalScopeUtil.getAllExtensions(cinterface, Aadlv3Package.eINSTANCE.getComponentConfiguration());
 	}
 
-	/**
-	 * get all realizations of a given component interface that satisfy the specified Product Line Qualifier constraint
-	 * @param cinterface
-	 * @return
-	 */
-	public static Collection<ComponentRealization> getConfigurableRealizations(ComponentInterface classifier, MultiLiteralConstraint productLineQualifierconstraint) {
-		Collection<ComponentRealization> all = Aadlv3GlobalScopeUtil.getAllExtensions(classifier, Aadlv3Package.eINSTANCE.getComponentRealization(),productLineQualifierconstraint);
-		return all;
-	}
 	
 }

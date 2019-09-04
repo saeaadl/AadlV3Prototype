@@ -120,13 +120,12 @@ public class Aadlv3GlobalScopeUtil {
 	/** 
 	 * Get all extensions of the component interface of eclass.
 	 * This can be all classifier (incl. interfaces), realizations, all implementations, or all configurations that are extensions
-	 * In addition if the constraint is non-null then the constraint must be satisfied as well
 	 * @param context the component interface 
 	 * @param eClass
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	public static  <T extends Classifier> Collection<T> getAllExtensions(Classifier context,EClass eclass,MultiLiteralConstraint productLineQualifierconstraint) {
+	public static  <T extends Classifier> Collection<T> getAllExtensions(Classifier context,EClass eclass) {
 		Resource rsc = context.eResource();
 		Collection<T> result = new ArrayList<T>();
 		IScope scope = globalScopeProvider.getAllScope(rsc, eclass);
@@ -139,9 +138,7 @@ public class Aadlv3GlobalScopeUtil {
 				if (!o.eIsProxy()) {
 					T cl = (T)o;
 					if (Aadlv3Util.isSuperClassifierOf(context, cl)) {
-						if (productLineQualifierconstraint == null || Aadlv3Util.satisfies(cl, productLineQualifierconstraint)) {
-							result.add(cl);
-						}
+						result.add(cl);
 					}
 				}
 			}
@@ -149,17 +146,6 @@ public class Aadlv3GlobalScopeUtil {
 		return result;
 	}
 
-	/**
-	 * Get all objects of class eclass (assuming they are Classifiers) that are a extensions of classifier context
-	 * This can be all classifier (incl. interfaces), realizations, all implementations, or all configurations that are extensions
-	 * @param <T>
-	 * @param context
-	 * @param eclass
-	 * @return
-	 */
-	public static  <T extends Classifier> Collection<T> getAllExtensions(Classifier context,EClass eclass) {
-		return getAllExtensions(context, eclass, null);
-	}
 	
 	/**
 	 * Get all extensions of name type context

@@ -19,7 +19,6 @@ import org.osate.aadlv3.aadlv3.PropertyDefinition
 import org.osate.aadlv3.aadlv3.Subcomponent
 import org.osate.aadlv3.aadlv3.TypeReference
 import org.osate.aadlv3.aadlv3.Workingset
-import org.osate.aadlv3.util.Aadlv3Util
 import org.osate.av3instance.av3instance.AssociationInstance
 import org.osate.av3instance.av3instance.ComponentInstance
 import org.osate.av3instance.av3instance.FeatureInstance
@@ -29,6 +28,8 @@ import org.osate.av3instance.av3instance.PathInstance
 import static extension org.eclipse.emf.ecore.util.EcoreUtil.*
 import static extension org.osate.aadlv3.util.AIv3API.*
 import static extension org.osate.aadlv3.util.Aadlv3Util.*
+import static extension org.osate.aadlv3.util.ProductLineConstraint.*
+import static extension org.osate.av3instance.util.AIv3Validation.*
 
 class Instantiator {
 	
@@ -45,9 +46,10 @@ class Instantiator {
 			rootinstance.eResource.save(null)
 			root = rootinstance
 // XXX TODO 
-		//  check whether all expected properties have been set
-		//	val issues = validateExpectedPropertyValues(rootinstance,expectedProperties)
-		// validate product line constraint
+//		//  check whether all expected properties have been set
+//			val PVissues = validateExpectedPropertyValues(rootinstance,expectedProperties)
+//		// validate product line constraint
+//		val PLCissues = validateProductLineConstraint(rootinstance,configurationConstraint)
 		}
 		return root
 	}
@@ -63,7 +65,7 @@ class Instantiator {
 	def ComponentInstance instantiateRoot(Subcomponent c) {
 		// cas scope represents the configuration assignments (CAs) for a given nesting level in the Subcomponent hierarchy
 		// The top of the stack has the CAs whose single path element references are relevant
-		Aadlv3Util.resetComponentInstanceCache
+		resetComponentInstanceCache
 		val ws = c.eContainer as Workingset
 		val wsinstancesresourceURI = getInstanceURI(ws, c)
 		var instanceResource = ws.eResource.resourceSet.getResource(wsinstancesresourceURI,false)
@@ -154,7 +156,7 @@ class Instantiator {
 		for (pa : comp.ownedPropertyAssociations) {
 			ci.addPropertyAssociationInstance(pa)
 		}
-		// fill in default properties for all expected properties that do not have an explicitly assigned value
+		// fill in default property values for all expected properties that do not have an explicitly assigned value
 		if (expectedProperties.empty){
 			// fill in default for all allowed properties
 			val allowedProperties = ci.allowedProperties
@@ -162,7 +164,7 @@ class Instantiator {
 			for (fi : ci.features) {
 				fi.addDefaultPropertyValues(fi.allowedProperties)
 			}
-			for (conni : ci.allConnections) {
+			for (conni : ci.connections) {
 				conni.addDefaultPropertyValues(conni.allowedProperties)
 			}
 		} else {
@@ -365,7 +367,7 @@ class Instantiator {
 						if (fsi.flowSpec){
 							val src = (previousflowelementinstance as AssociationInstance).destination
 							val dst = (fsi as AssociationInstance).source
-							val conni = findAssociationInstance(src,dst)
+							val conni = findConnectionInstance(src,dst)
 							if (conni !== null){
 								psi.elements += conni
 							}

@@ -28,13 +28,12 @@ import org.osate.aadlv3.aadlv3.Feature
 import org.osate.aadlv3.aadlv3.FeatureCategory
 import org.osate.aadlv3.aadlv3.FeatureDirection
 import org.osate.aadlv3.aadlv3.Import
-import org.osate.aadlv3.aadlv3.InstanceConfiguration
 import org.osate.aadlv3.aadlv3.LCollection
 import org.osate.aadlv3.aadlv3.Literal
 import org.osate.aadlv3.aadlv3.ModelElement
 import org.osate.aadlv3.aadlv3.ModelElementReference
 import org.osate.aadlv3.aadlv3.MultiLiteralConstraint
-import org.osate.aadlv3.aadlv3.NamedType
+import org.osate.aadlv3.aadlv3.NamedElement
 import org.osate.aadlv3.aadlv3.PackageDeclaration
 import org.osate.aadlv3.aadlv3.PathSequence
 import org.osate.aadlv3.aadlv3.PropertyAssociation
@@ -51,7 +50,6 @@ import org.osate.av3instance.av3instance.InstanceObject
 
 import static extension org.eclipse.xtext.EcoreUtil2.*
 import static extension org.osate.aadlv3.util.Av3API.*
-import org.osate.aadlv3.aadlv3.NamedElement
 
 class Aadlv3Util {
 	
@@ -1535,49 +1533,11 @@ class Aadlv3Util {
 		}
 		return false
 	}
-	
-	/**
-	 * the product line qualifier of cl satisfies the specified constraint
-	 */
-	def static boolean satisfies(ComponentInstance ci, MultiLiteralConstraint constraint) {
-		if (constraint === null) return true
-		val match = ci.getProductLineQualifier();
-		if (match === null) return true
-		return match.satisfies(constraint)
-	}
-	
-	/**
-	 * the product line qualifier of cl satisfies the specified constraint
-	 */
-	def static boolean satisfies(NamedType cl, MultiLiteralConstraint constraint) {
-		if (constraint === null) return true
-		val match = cl.getProductLineQualifier();
-		if (match === null) return true
-		return match.satisfies(constraint)
-	}
 
 	
-	/**
-	 * all elements of trefs satisfy the specified constraint
-	 */
-	def static boolean satisfies(Iterable<TypeReference> trefs, MultiLiteralConstraint constraint) {
-		if (constraint === null) return true
-		return trefs.forall[tref| tref.type.satisfies(constraint)]
-	}
-
 /*
  * property value retrieval
  */
-
-	val static String ProductLineQualifier = "FeatureLabels";
-	
-	def static MultiLiteralConstraint getProductLineConstraint(InstanceConfiguration ic){
-		return ic.propertyConstraint?.constraintExpression
-	}
-	
-	def static LCollection getProductLineQualifier(NamedElement cl){
-		return getOwnedPropertyValue(cl,ProductLineQualifier) as LCollection
-	}
 	
 	/**
 	 * Get property value associated directly with the classifier

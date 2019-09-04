@@ -213,7 +213,7 @@ class AIv3API {
 	}
 
 	
-	def static AssociationInstance findAssociationInstance(InstanceObject srcfi, InstanceObject dstfi){
+	def static AssociationInstance findConnectionInstance(InstanceObject srcfi, InstanceObject dstfi){
 		var ci = srcfi.containingComponentInstance
 		while (ci !== null){
 			for (conni : ci.connections){
@@ -247,19 +247,24 @@ class AIv3API {
 	}
 
 
-	def static List<AssociationInstance> getAllConnections(ComponentInstance ci) {
-		val root = ci.root
-		val assis = EcoreUtil2.eAllOfType(root, AssociationInstance);
-		val conns = new ArrayList<AssociationInstance>();
-		for (AssociationInstance ai : assis) {
-			if (ai.getAssociationType() == AssociationType.CONNECTION) {
-				conns.add(ai);
-			}
-		}
-		return conns;
+	def static Iterable<FeatureInstance> getAllIncomingFeatures(ComponentInstance ci) {
+		return ci.features.filter[f|f.direction.incoming];
 	}
-	
-	def static List<AssociationInstance> getContainedAllConnections(ComponentInstance root) {
+
+	def static Iterable<FeatureInstance> getAllOutgoingFeatures(ComponentInstance ci) {
+		return ci.features.filter[f|f.direction.outgoing];
+	}
+
+	def static boolean isFlowSource(FeatureInstance fi, Iterable<AssociationInstance> flows) {
+		return flows.exists[f|f.source === fi];
+	}
+
+	def static boolean isFlowDestination(FeatureInstance fi, Iterable<AssociationInstance> flows) {
+		return flows.exists[f|f.destination === fi];
+	}
+
+
+	def static List<AssociationInstance> getAllConnections(ComponentInstance root) {
 		val assis = EcoreUtil2.eAllOfType(root, AssociationInstance);
 		val conns = new ArrayList<AssociationInstance>();
 		for (AssociationInstance ai : assis) {
