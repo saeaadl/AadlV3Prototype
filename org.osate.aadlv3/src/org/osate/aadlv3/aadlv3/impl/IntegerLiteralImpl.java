@@ -178,6 +178,9 @@ public class IntegerLiteralImpl extends NumberLiteralImpl implements IntegerLite
 
 	@Override
 	public boolean equals(Object second) {
+		if (!(second instanceof IntegerLiteral)) {
+			return false;
+		}
 		return this.value == ((IntegerLiteral) second).getValue();
 	}
 

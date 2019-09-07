@@ -241,6 +241,10 @@ class AIv3API {
 		return EcoreUtil2.eAllOfType(root, ComponentInstance);
 	}
 
+	def static Iterable<ComponentInstance> getAllLeafComponents(ComponentInstance root) {
+		return getAllComponents(root).filter[ci|ci.isLeafComponent];
+	}
+
 
 	def static boolean isLeafComponent(ComponentInstance ci) {
 		return ci.getComponents().isEmpty();

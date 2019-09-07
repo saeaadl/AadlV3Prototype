@@ -15,7 +15,7 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR LGPL-2.1-or-later
  */
-package org.osate.graph.tgraphj.util;
+package org.osate.graph.util;
 
 //@example:full:begin
 

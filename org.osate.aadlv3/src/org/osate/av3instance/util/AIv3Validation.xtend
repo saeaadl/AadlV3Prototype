@@ -16,18 +16,6 @@ import static extension org.osate.aadlv3.util.ProductLineConstraint.*
 
 class AIv3Validation {
 	
-	def static Collection<Diagnostic> validateProductLineConstraint(ComponentInstance root,
-		MultiLiteralConstraint constraint) {
-		val issues = new ArrayList<Diagnostic>
-		val ios = EcoreUtil2.getAllContentsOfType(root, ComponentInstance)
-		for (io : ios) {
-			if (!io.satisfies(constraint)) {
-				issues.add(DiagnosticUtil.createError(io, "Does not meet product line constraint " + io.name))
-			}
-		}
-		issues
-	}
-	
 	
 	/**
 	 * validate that all expected properties have been assigned

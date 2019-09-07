@@ -1,4 +1,4 @@
-package org.osate.graph.tgraphj.util;
+package org.osate.graph.util;
 
 import static org.osate.aadlv3.util.AIv3API.*;
 import static org.osate.aadlv3.util.AIv3API.getAllComponents;

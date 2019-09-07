@@ -18,8 +18,8 @@ import org.osate.aadlv3.aadlv3.PackageDeclaration;
 import org.osate.aadlv3.aadlv3.Workingset;
 import org.osate.aadlv3.instantiation.Instantiator;
 import org.osate.av3instance.av3instance.ComponentInstance;
-import org.osate.graph.tgraphj.util.AIJGraphTUtil;
-import org.osate.graph.tgraphj.util.AIJGraphXUtil;
+import org.osate.graph.util.AIJGraphTUtil;
+import org.osate.graph.util.AIJGraphXUtil;
 
 public class InstantiateWorkingSetHandler extends AbstractHandler {
 
@@ -52,8 +52,8 @@ public class InstantiateWorkingSetHandler extends AbstractHandler {
 //						AIJGraphXUtil.showGraph(topo);
 //						Graph Prop =AIJGraphTUtil.generatePropagationPaths(rootinstance);
 //						AIJGraphXUtil.showGraph(Prop);
-						Graph token =AIJGraphTUtil.generateTokenTrace(rootinstance);
-						AIJGraphXUtil.showGraph(token);
+//						Graph token =AIJGraphTUtil.generateTokenTrace(rootinstance);
+//						AIJGraphXUtil.showGraph(token);
 					}
 				}
 			});

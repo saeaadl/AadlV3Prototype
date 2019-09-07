@@ -37,7 +37,7 @@ import org.osate.aadlv3.aadlv3.TypeReference;
  * <!-- end-user-doc -->
  * @generated
  */
-public class TypeReferenceItemProvider extends TypeItemProvider {
+public class TypeReferenceItemProvider extends SingleLiteralItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -146,7 +146,7 @@ public class TypeReferenceItemProvider extends TypeItemProvider {
 	@Override
 	public String getText(Object object) {
 		TypeReference typeReference = (TypeReference) object;
-		return getString("_UI_TypeReference_type") + " " + typeReference.isReverse();
+		return getString("_UI_TypeReference_type") + " " + typeReference.getType().getName();
 	}
 
 	/**

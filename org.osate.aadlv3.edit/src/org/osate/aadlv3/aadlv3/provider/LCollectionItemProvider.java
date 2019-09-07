@@ -145,13 +145,13 @@ public class LCollectionItemProvider extends LiteralItemProvider {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.LCOLLECTION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createTypeReference()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.LCOLLECTION__ELEMENTS,
 				Aadlv3Factory.eINSTANCE.createLiteral()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.LCOLLECTION__ELEMENTS,
 				Aadlv3Factory.eINSTANCE.createSingleLiteral()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.LCOLLECTION__ELEMENTS,
+				Aadlv3Factory.eINSTANCE.createTypeReference()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.LCOLLECTION__ELEMENTS,
 				Aadlv3Factory.eINSTANCE.createNumberLiteral()));

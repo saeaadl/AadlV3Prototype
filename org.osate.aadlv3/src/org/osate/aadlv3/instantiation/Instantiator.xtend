@@ -10,6 +10,7 @@ import org.osate.aadlv3.aadlv3.ClassifierAssignment
 import org.osate.aadlv3.aadlv3.ComponentInterface
 import org.osate.aadlv3.aadlv3.Feature
 import org.osate.aadlv3.aadlv3.FeatureCategory
+import org.osate.aadlv3.aadlv3.LCollection
 import org.osate.aadlv3.aadlv3.MultiLiteralConstraint
 import org.osate.aadlv3.aadlv3.PathElement
 import org.osate.aadlv3.aadlv3.PathSequence
@@ -25,11 +26,11 @@ import org.osate.av3instance.av3instance.FeatureInstance
 import org.osate.av3instance.av3instance.InstanceObject
 import org.osate.av3instance.av3instance.PathInstance
 
+import static org.osate.aadlv3.util.ProductLineConstraint.*
+
 import static extension org.eclipse.emf.ecore.util.EcoreUtil.*
 import static extension org.osate.aadlv3.util.AIv3API.*
 import static extension org.osate.aadlv3.util.Aadlv3Util.*
-import static extension org.osate.aadlv3.util.ProductLineConstraint.*
-import static extension org.osate.av3instance.util.AIv3Validation.*
 
 class Instantiator {
 	
@@ -79,6 +80,7 @@ class Instantiator {
 		// set component instance to configured classifier
 		// XXX TODO check product line constraint
 		val ci = c.createComponentInstance(tref)
+		//  val issues = validateConfiguredComponentInstance(subci, configurationConstraint)
 		instanceResource.contents.add(ci)
 		c.instantiateComponent(casscopes,ci)
 		return ci
@@ -96,8 +98,9 @@ class Instantiator {
 			// subcomponent
 			trefs = comp.getConfiguredTypeReferences(casscopes, context)
 			// set component instance to configured classifier
-		// XXX TODO check product line constraint
 			val subci = comp.createComponentInstance(trefs)
+		// XXX TODO check product line constraint
+		//  val issues = validateConfiguredComponentInstance(subci, configurationConstraint)
 			context.components += subci
 			subci
 		}
@@ -434,7 +437,11 @@ class Instantiator {
 		var found = false
 		for (epai : pais) {
 			if (samePropertyDefinition(epai.property, pa.property)) {
-				overridePropertyValue(epai, pa)
+				if (epai.value instanceof LCollection){
+					epai.addValues(pa)
+				} else {
+					overridePropertyValue(epai, pa)
+				}
 				found = true
 			}
 		}
@@ -443,6 +450,12 @@ class Instantiator {
 		}
 	}
 	
+	
+	def static void addValues(PropertyAssociation epai, PropertyAssociation npa) {
+		val values = epai.value as LCollection
+		val newvalues = npa.value.copy as LCollection
+		values.elements.addAll(newvalues.elements)
+	}
 	
 	/**
 	 * override existing property value with return value true indicating that is was overridden

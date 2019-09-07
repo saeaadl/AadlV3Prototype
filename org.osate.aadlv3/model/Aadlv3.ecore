@@ -245,7 +245,7 @@
     <eLiterals name="SET" value="1" literal="set"/>
     <eLiterals name="DIRECTIONAL" value="2" literal="directional"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TypeReference" eSuperTypes="#//Type #//SingleLiteral">
+  <eClassifiers xsi:type="ecore:EClass" name="TypeReference" eSuperTypes="#//SingleLiteral #//Type">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="reverse" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//NamedType"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="actuals" upperBound="-1"

@@ -417,9 +417,9 @@ public class Aadlv3Switch<T> extends Switch<T> {
 			TypeReference typeReference = (TypeReference) theEObject;
 			T result = caseTypeReference(typeReference);
 			if (result == null)
-				result = caseType(typeReference);
-			if (result == null)
 				result = caseSingleLiteral(typeReference);
+			if (result == null)
+				result = caseType(typeReference);
 			if (result == null)
 				result = caseLiteral(typeReference);
 			if (result == null)

@@ -6,8 +6,8 @@ public class DiagnosticUtil {
 	
 	public static void error(EObject target, String message){
 		Diagnostic error = createError(target,message);
-		if (error.eResource() != null) {
-			error.eResource().getErrors().add(error);
+		if (target.eResource() != null) {
+			target.eResource().getErrors().add(error);
 		}
 	}
 	
@@ -21,8 +21,8 @@ public class DiagnosticUtil {
 	
 	public static void warning(EObject target, String message){
 		Diagnostic warning = createWarning(target,message);
-		if (warning.eResource() != null) {
-			warning.eResource().getWarnings().add(warning);
+		if (target.eResource() != null) {
+			target.eResource().getWarnings().add(warning);
 		}
 	}
 	

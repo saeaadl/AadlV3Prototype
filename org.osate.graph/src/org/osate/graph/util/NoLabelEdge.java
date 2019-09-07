@@ -1,4 +1,4 @@
-package org.osate.graph.tgraphj.util;
+package org.osate.graph.util;
 
 import org.jgrapht.graph.DefaultEdge;
 

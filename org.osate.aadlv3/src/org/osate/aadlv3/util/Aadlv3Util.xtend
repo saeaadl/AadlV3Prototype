@@ -32,7 +32,6 @@ import org.osate.aadlv3.aadlv3.LCollection
 import org.osate.aadlv3.aadlv3.Literal
 import org.osate.aadlv3.aadlv3.ModelElement
 import org.osate.aadlv3.aadlv3.ModelElementReference
-import org.osate.aadlv3.aadlv3.MultiLiteralConstraint
 import org.osate.aadlv3.aadlv3.NamedElement
 import org.osate.aadlv3.aadlv3.PackageDeclaration
 import org.osate.aadlv3.aadlv3.PathSequence
@@ -1498,15 +1497,6 @@ class Aadlv3Util {
 		return collection.elements.exists[elem| elem.equals(element)]
 	}
 	
-	/**
-	 * element and subelement are the same or subelement is contained in the element collection
-	 */
-	def static boolean contains(Literal element, Literal subelement){
-		if (element instanceof LCollection){
-			return element.contains(subelement)
-		}
-		return element.equals(subelement);
-	}
 	
 	/**
 	 * subcollection is contained in collection
@@ -1515,25 +1505,6 @@ class Aadlv3Util {
 		return subCollection.elements.forall[elem| coll.contains(elem)]
 	}
 	
-	
-	/**
-	 * value satisfies constraint if one of the constraint alternatives is a subset of value
-	 * value: a collection of literals associated with a classifier
-	 * constraint: a collection of alternatives (ANY) where each alternative represents a single literal or collection of literals (ALL)
-	 */
-	def static boolean satisfies(LCollection value, MultiLiteralConstraint constraint) {
-		if (constraint === null|| value === null) return true
-		for (orElement : constraint.elements) {
-			if (orElement instanceof MultiLiteralConstraint) {
-				// and list
-				if(value.contains(orElement)) return true
-			} else {
-				if(value.contains(orElement)) return true
-			}
-		}
-		return false
-	}
-
 	
 /*
  * property value retrieval

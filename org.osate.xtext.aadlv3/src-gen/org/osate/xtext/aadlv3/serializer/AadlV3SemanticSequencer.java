@@ -142,7 +142,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 				sequence_Import(context, (Import) semanticObject); 
 				return; 
 			case Aadlv3Package.INSTANCE_CONFIGURATION:
-				sequence_InstanceConfiguration_NestedImplementationElement_SubcomponentDecl(context, (InstanceConfiguration) semanticObject); 
+				sequence_InstanceConfiguration(context, (InstanceConfiguration) semanticObject); 
 				return; 
 			case Aadlv3Package.INTEGER_LITERAL:
 				sequence_IntegerLiteral(context, (IntegerLiteral) semanticObject); 
@@ -194,7 +194,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 				sequence_StringLiteral(context, (StringLiteral) semanticObject); 
 				return; 
 			case Aadlv3Package.SUBCOMPONENT:
-				sequence_NestedImplementationElement_Subcomponent_SubcomponentDecl(context, (Subcomponent) semanticObject); 
+				sequence_NestedImplementationElement_Subcomponent(context, (Subcomponent) semanticObject); 
 				return; 
 			case Aadlv3Package.TYPE_DEF:
 				sequence_PropertiesBlock_TypeDef(context, (TypeDef) semanticObject); 
@@ -676,15 +676,9 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     InstanceConfiguration returns InstanceConfiguration
 	 *
 	 * Constraint:
-	 *     (
-	 *         name=ID 
-	 *         category=ComponentCategory 
-	 *         typeReferences+=ClassifierOrTypeReference 
-	 *         (features+=Feature | connections+=Connection | bindings+=Binding | components+=Subcomponent | ownedPropertyAssociations+=PropertyAssociation)* 
-	 *         propertyConstraint=PropertyConstraint?
-	 *     )
+	 *     (name=ID category=ComponentCategory typeReferences+=ClassifierOrTypeReference propertyConstraint=PropertyConstraint?)
 	 */
-	protected void sequence_InstanceConfiguration_NestedImplementationElement_SubcomponentDecl(ISerializationContext context, InstanceConfiguration semanticObject) {
+	protected void sequence_InstanceConfiguration(ISerializationContext context, InstanceConfiguration semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -749,11 +743,11 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     (
 	 *         name=ID 
 	 *         category=ComponentCategory 
-	 *         typeReferences+=ClassifierOrTypeReference 
+	 *         typeReferences+=ClassifierOrTypeReference? 
 	 *         (features+=Feature | connections+=Connection | bindings+=Binding | components+=Subcomponent | ownedPropertyAssociations+=PropertyAssociation)*
 	 *     )
 	 */
-	protected void sequence_NestedImplementationElement_Subcomponent_SubcomponentDecl(ISerializationContext context, Subcomponent semanticObject) {
+	protected void sequence_NestedImplementationElement_Subcomponent(ISerializationContext context, Subcomponent semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

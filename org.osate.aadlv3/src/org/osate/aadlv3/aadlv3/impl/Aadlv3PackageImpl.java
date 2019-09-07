@@ -2544,8 +2544,8 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		typeDefEClass.getESuperTypes().add(this.getNamedType());
 		primitiveTypeEClass.getESuperTypes().add(this.getType());
 		compositeTypeEClass.getESuperTypes().add(this.getType());
-		typeReferenceEClass.getESuperTypes().add(this.getType());
 		typeReferenceEClass.getESuperTypes().add(this.getSingleLiteral());
+		typeReferenceEClass.getESuperTypes().add(this.getType());
 		literalEClass.getESuperTypes().add(this.getExpression());
 		singleLiteralEClass.getESuperTypes().add(this.getLiteral());
 		numberLiteralEClass.getESuperTypes().add(this.getSingleLiteral());

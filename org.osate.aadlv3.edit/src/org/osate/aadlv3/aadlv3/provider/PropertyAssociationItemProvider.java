@@ -40,6 +40,7 @@ import org.osate.aadlv3.aadlv3.Aadlv3Factory;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.PropertyAssociation;
 import org.osate.aadlv3.aadlv3.PropertyAssociationType;
+import org.osate.aadlv3.aadlv3.PropertyDefinition;
 
 /**
  * This is the item provider adapter for a {@link org.osate.aadlv3.aadlv3.PropertyAssociation} object.
@@ -170,12 +171,12 @@ public class PropertyAssociationItemProvider extends ItemProviderAdapter impleme
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		PropertyAssociationType labelValue = ((PropertyAssociation) object).getPropertyAssociationType();
-		String label = labelValue == null ? null : labelValue.toString();
+		PropertyDefinition def = ((PropertyAssociation) object).getProperty();
+		String label = def == null ? null : def.getName();
 		return label == null || label.length() == 0 ? getString("_UI_PropertyAssociation_type")
 				: getString("_UI_PropertyAssociation_type") + " " + label;
 	}
@@ -221,13 +222,13 @@ public class PropertyAssociationItemProvider extends ItemProviderAdapter impleme
 				Aadlv3Factory.eINSTANCE.createPathElement()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
-				Aadlv3Factory.eINSTANCE.createTypeReference()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
 				Aadlv3Factory.eINSTANCE.createLiteral()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
 				Aadlv3Factory.eINSTANCE.createSingleLiteral()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
+				Aadlv3Factory.eINSTANCE.createTypeReference()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
 				Aadlv3Factory.eINSTANCE.createNumberLiteral()));

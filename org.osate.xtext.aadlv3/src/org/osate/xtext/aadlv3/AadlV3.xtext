@@ -90,7 +90,7 @@ BooleanLiteral returns av3::SingleLiteral:
 ;
 
 ListLiteral returns av3::ListLiteral:
-	{av3::ListLiteral}'list' '(' (elements+=Literal (',' elements+=Literal)*)? ')'
+	{av3::ListLiteral} '(' (elements+=Literal (',' elements+=Literal)*)? ')'
 ;
 
 DirectionalLiteral returns av3::DirectionalLiteral:
@@ -153,14 +153,11 @@ Feature returns av3::Feature:
 	;
 
 Subcomponent returns av3::Subcomponent:
-	{av3::Subcomponent}SubcomponentDecl ';'
- ;
- 
-fragment SubcomponentDecl*:
-	name=ID ':' category=ComponentCategory
-	typeReferences+=ClassifierOrTypeReference 
-		//(',' typeReferences+=TypeReference?)*
-	NestedComponentImplementationBlock? 
+	{av3::Subcomponent}name=ID ':' category=ComponentCategory
+	( typeReferences+=ClassifierOrTypeReference 
+		//(',' typeReferences+=TypeReference?)* 
+		)?
+	NestedComponentImplementationBlock? ';'
  ;
 
 Connection returns av3::Association:
@@ -330,14 +327,15 @@ Workingset returns av3::Workingset:
 ;
 
 InstanceConfiguration returns av3::InstanceConfiguration:
-	{av3::InstanceConfiguration} SubcomponentDecl 
+	{av3::InstanceConfiguration} name=ID ':' category=ComponentCategory
+	typeReferences+=ClassifierOrTypeReference 
 	(propertyConstraint=PropertyConstraint)?
 	';'
 ;
 
 PropertyConstraint returns av3::PropertyConstraint:
 	{av3::PropertyConstraint}
-	('assert' '#'constrainedProperty=[av3::PropertyDefinition|QualifiedName] '=' constraintExpression=MultiLiteralOperation)?
+	( '#'constrainedProperty=[av3::PropertyDefinition|QualifiedName] 'satisfies' constraintExpression=MultiLiteralOperation)?
 ;
 
 QualifiedNameWithWildcard:

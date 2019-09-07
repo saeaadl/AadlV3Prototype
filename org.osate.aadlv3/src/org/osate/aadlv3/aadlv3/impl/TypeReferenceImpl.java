@@ -49,7 +49,7 @@ import org.osate.aadlv3.aadlv3.TypeReference;
  *
  * @generated
  */
-public class TypeReferenceImpl extends TypeImpl implements TypeReference {
+public class TypeReferenceImpl extends SingleLiteralImpl implements TypeReference {
 	/**
 	 * The default value of the '{@link #isReverse() <em>Reverse</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -303,7 +303,16 @@ public class TypeReferenceImpl extends TypeImpl implements TypeReference {
 
 	@Override
 	public boolean equals(Object second) {
-		return second instanceof TypeReference ? this.type == ((TypeReference) second).getType() : false;
+		if (second instanceof TypeReference) {
+			if (this == second) return true;
+			if ((this.type == null&&((TypeReference) second).getType()==null)) {
+				return false;
+			} else {
+				return this.type ==((TypeReference) second).getType();
+			}
+		} else {
+			return false;
+		}
 	}
 
 	@Override
