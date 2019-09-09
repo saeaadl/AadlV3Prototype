@@ -141,12 +141,12 @@ public class TypeReferenceItemProvider extends SingleLiteralItemProvider {
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
 		TypeReference typeReference = (TypeReference) object;
-		return getString("_UI_TypeReference_type") + " " + typeReference.isReverse();
+		return getString("_UI_TypeReference_type") + " " + typeReference.getType().getName();
 	}
 
 	/**

@@ -93,13 +93,15 @@ public class IntegerLiteralItemProvider extends NumberLiteralItemProvider {
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((IntegerLiteral) object).getUnit();
-		return label == null || label.length() == 0 ? getString("_UI_IntegerLiteral_type")
-				: getString("_UI_IntegerLiteral_type") + " " + label;
+		if (label == null) {
+			label = "";
+		}
+		return ((IntegerLiteral) object).getValue()  +" "+label;
 	}
 
 	/**

@@ -27,6 +27,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
+import org.osate.aadlv3.aadlv3.IntegerLiteral;
 import org.osate.aadlv3.aadlv3.RealLiteral;
 
 /**
@@ -93,13 +94,15 @@ public class RealLiteralItemProvider extends NumberLiteralItemProvider {
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((RealLiteral) object).getUnit();
-		return label == null || label.length() == 0 ? getString("_UI_RealLiteral_type")
-				: getString("_UI_RealLiteral_type") + " " + label;
+		String label = ((IntegerLiteral) object).getUnit();
+		if (label == null) {
+			label = "";
+		}
+		return ((IntegerLiteral) object).getValue()  +" "+label;
 	}
 
 	/**
