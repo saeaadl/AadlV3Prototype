@@ -44,7 +44,7 @@ import org.osate.aadlv3.aadlv3.Literal;
  *
  * @generated
  */
-public class LCollectionImpl extends LiteralImpl implements LCollection {
+public abstract class LCollectionImpl extends LiteralImpl implements LCollection {
 	/**
 	 * The cached value of the '{@link #getElements() <em>Elements</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -159,6 +159,23 @@ public class LCollectionImpl extends LiteralImpl implements LCollection {
 			return elements != null && !elements.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	@Override
+	public boolean sameAs(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		LCollectionImpl other = (LCollectionImpl) obj;
+		if (elements == null) {
+			if (other.elements != null)
+				return false;
+		} else if (!elements.equals(other.elements))
+			return false;
+		return true;
 	}
 
 } //LCollectionImpl

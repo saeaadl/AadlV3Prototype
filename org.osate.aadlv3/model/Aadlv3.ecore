@@ -251,9 +251,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="actuals" upperBound="-1"
         eType="#//ConfigurationActual" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Literal" eSuperTypes="#//Expression"/>
-  <eClassifiers xsi:type="ecore:EClass" name="SingleLiteral" eSuperTypes="#//Literal"/>
-  <eClassifiers xsi:type="ecore:EClass" name="NumberLiteral" eSuperTypes="#//SingleLiteral">
+  <eClassifiers xsi:type="ecore:EClass" name="Literal" abstract="true" eSuperTypes="#//Expression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SingleLiteral" abstract="true" eSuperTypes="#//Literal"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NumberLiteral" abstract="true" eSuperTypes="#//SingleLiteral">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="unit" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IntegerLiteral" eSuperTypes="#//NumberLiteral">
@@ -277,7 +277,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
         eType="#//Expression" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LCollection" eSuperTypes="#//Literal">
+  <eClassifiers xsi:type="ecore:EClass" name="LCollection" abstract="true" eSuperTypes="#//Literal">
     <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
         eType="#//Literal" containment="true"/>
   </eClassifiers>

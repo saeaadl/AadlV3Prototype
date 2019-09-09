@@ -146,7 +146,7 @@ public class TypeReferenceItemProvider extends SingleLiteralItemProvider {
 	@Override
 	public String getText(Object object) {
 		TypeReference typeReference = (TypeReference) object;
-		return getString("_UI_TypeReference_type") + " " + typeReference.getType().getName();
+		return getString("_UI_TypeReference_type") + " " + typeReference.isReverse();
 	}
 
 	/**

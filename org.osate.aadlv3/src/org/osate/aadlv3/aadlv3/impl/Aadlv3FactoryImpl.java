@@ -120,12 +120,6 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 			return createCompositeType();
 		case Aadlv3Package.TYPE_REFERENCE:
 			return createTypeReference();
-		case Aadlv3Package.LITERAL:
-			return createLiteral();
-		case Aadlv3Package.SINGLE_LITERAL:
-			return createSingleLiteral();
-		case Aadlv3Package.NUMBER_LITERAL:
-			return createNumberLiteral();
 		case Aadlv3Package.INTEGER_LITERAL:
 			return createIntegerLiteral();
 		case Aadlv3Package.REAL_LITERAL:
@@ -138,8 +132,6 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 			return createDirectionalLiteral();
 		case Aadlv3Package.ECOLLECTION:
 			return createECollection();
-		case Aadlv3Package.LCOLLECTION:
-			return createLCollection();
 		case Aadlv3Package.LIST_LITERAL:
 			return createListLiteral();
 		case Aadlv3Package.SET_LITERAL:
@@ -448,17 +440,6 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 	 * @generated
 	 */
 	@Override
-	public NumberLiteral createNumberLiteral() {
-		NumberLiteralImpl numberLiteral = new NumberLiteralImpl();
-		return numberLiteral;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public IntegerLiteral createIntegerLiteral() {
 		IntegerLiteralImpl integerLiteral = new IntegerLiteralImpl();
 		return integerLiteral;
@@ -539,39 +520,6 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 	public ECollection createECollection() {
 		ECollectionImpl eCollection = new ECollectionImpl();
 		return eCollection;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public LCollection createLCollection() {
-		LCollectionImpl lCollection = new LCollectionImpl();
-		return lCollection;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Literal createLiteral() {
-		LiteralImpl literal = new LiteralImpl();
-		return literal;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public SingleLiteral createSingleLiteral() {
-		SingleLiteralImpl singleLiteral = new SingleLiteralImpl();
-		return singleLiteral;
 	}
 
 	/**

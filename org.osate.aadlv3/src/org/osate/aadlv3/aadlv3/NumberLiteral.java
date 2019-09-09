@@ -28,7 +28,7 @@ package org.osate.aadlv3.aadlv3;
  * </ul>
  *
  * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getNumberLiteral()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface NumberLiteral extends SingleLiteral {

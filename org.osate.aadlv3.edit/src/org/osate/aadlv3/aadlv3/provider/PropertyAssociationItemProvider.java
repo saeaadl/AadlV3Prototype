@@ -39,7 +39,6 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.osate.aadlv3.aadlv3.Aadlv3Factory;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.PropertyAssociation;
-import org.osate.aadlv3.aadlv3.PropertyAssociationType;
 import org.osate.aadlv3.aadlv3.PropertyDefinition;
 
 /**
@@ -222,16 +221,7 @@ public class PropertyAssociationItemProvider extends ItemProviderAdapter impleme
 				Aadlv3Factory.eINSTANCE.createPathElement()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
-				Aadlv3Factory.eINSTANCE.createLiteral()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
-				Aadlv3Factory.eINSTANCE.createSingleLiteral()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
 				Aadlv3Factory.eINSTANCE.createTypeReference()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
-				Aadlv3Factory.eINSTANCE.createNumberLiteral()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
 				Aadlv3Factory.eINSTANCE.createIntegerLiteral()));
@@ -247,9 +237,6 @@ public class PropertyAssociationItemProvider extends ItemProviderAdapter impleme
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
 				Aadlv3Factory.eINSTANCE.createDirectionalLiteral()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
-				Aadlv3Factory.eINSTANCE.createLCollection()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
 				Aadlv3Factory.eINSTANCE.createListLiteral()));

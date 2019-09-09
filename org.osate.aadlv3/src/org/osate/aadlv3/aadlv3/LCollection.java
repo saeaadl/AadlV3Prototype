@@ -30,7 +30,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  *
  * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getLCollection()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface LCollection extends Literal {

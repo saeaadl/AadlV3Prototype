@@ -145,16 +145,7 @@ public class LCollectionItemProvider extends LiteralItemProvider {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.LCOLLECTION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createLiteral()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.LCOLLECTION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createSingleLiteral()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.LCOLLECTION__ELEMENTS,
 				Aadlv3Factory.eINSTANCE.createTypeReference()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.LCOLLECTION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createNumberLiteral()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.LCOLLECTION__ELEMENTS,
 				Aadlv3Factory.eINSTANCE.createIntegerLiteral()));
@@ -170,9 +161,6 @@ public class LCollectionItemProvider extends LiteralItemProvider {
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.LCOLLECTION__ELEMENTS,
 				Aadlv3Factory.eINSTANCE.createDirectionalLiteral()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.LCOLLECTION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createLCollection()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.LCOLLECTION__ELEMENTS,
 				Aadlv3Factory.eINSTANCE.createListLiteral()));

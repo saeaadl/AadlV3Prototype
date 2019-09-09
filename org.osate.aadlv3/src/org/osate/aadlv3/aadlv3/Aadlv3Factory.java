@@ -206,15 +206,6 @@ public interface Aadlv3Factory extends EFactory {
 	PropertyConstraint createPropertyConstraint();
 
 	/**
-	 * Returns a new object of class '<em>Number Literal</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Number Literal</em>'.
-	 * @generated
-	 */
-	NumberLiteral createNumberLiteral();
-
-	/**
 	 * Returns a new object of class '<em>Integer Literal</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -285,33 +276,6 @@ public interface Aadlv3Factory extends EFactory {
 	 * @generated
 	 */
 	ECollection createECollection();
-
-	/**
-	 * Returns a new object of class '<em>LCollection</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>LCollection</em>'.
-	 * @generated
-	 */
-	LCollection createLCollection();
-
-	/**
-	 * Returns a new object of class '<em>Literal</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Literal</em>'.
-	 * @generated
-	 */
-	Literal createLiteral();
-
-	/**
-	 * Returns a new object of class '<em>Single Literal</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Single Literal</em>'.
-	 * @generated
-	 */
-	SingleLiteral createSingleLiteral();
 
 	/**
 	 * Returns a new object of class '<em>Expression</em>'.

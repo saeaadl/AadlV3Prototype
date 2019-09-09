@@ -523,29 +523,6 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.NumberLiteral} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected NumberLiteralItemProvider numberLiteralItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.NumberLiteral}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createNumberLiteralAdapter() {
-		if (numberLiteralItemProvider == null) {
-			numberLiteralItemProvider = new NumberLiteralItemProvider(this);
-		}
-
-		return numberLiteralItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.IntegerLiteral} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -727,75 +704,6 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 		}
 
 		return eCollectionItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.LCollection} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected LCollectionItemProvider lCollectionItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.LCollection}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createLCollectionAdapter() {
-		if (lCollectionItemProvider == null) {
-			lCollectionItemProvider = new LCollectionItemProvider(this);
-		}
-
-		return lCollectionItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.Literal} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected LiteralItemProvider literalItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.Literal}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createLiteralAdapter() {
-		if (literalItemProvider == null) {
-			literalItemProvider = new LiteralItemProvider(this);
-		}
-
-		return literalItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.SingleLiteral} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected SingleLiteralItemProvider singleLiteralItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.SingleLiteral}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createSingleLiteralAdapter() {
-		if (singleLiteralItemProvider == null) {
-			singleLiteralItemProvider = new SingleLiteralItemProvider(this);
-		}
-
-		return singleLiteralItemProvider;
 	}
 
 	/**
@@ -1344,12 +1252,6 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 			compositeTypeItemProvider.dispose();
 		if (typeReferenceItemProvider != null)
 			typeReferenceItemProvider.dispose();
-		if (literalItemProvider != null)
-			literalItemProvider.dispose();
-		if (singleLiteralItemProvider != null)
-			singleLiteralItemProvider.dispose();
-		if (numberLiteralItemProvider != null)
-			numberLiteralItemProvider.dispose();
 		if (integerLiteralItemProvider != null)
 			integerLiteralItemProvider.dispose();
 		if (realLiteralItemProvider != null)
@@ -1362,8 +1264,6 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 			directionalLiteralItemProvider.dispose();
 		if (eCollectionItemProvider != null)
 			eCollectionItemProvider.dispose();
-		if (lCollectionItemProvider != null)
-			lCollectionItemProvider.dispose();
 		if (listLiteralItemProvider != null)
 			listLiteralItemProvider.dispose();
 		if (setLiteralItemProvider != null)

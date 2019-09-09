@@ -221,7 +221,7 @@ public abstract class InstanceObjectImpl extends NamedElementImpl implements Ins
 		}
 		return super.eIsSet(featureID);
 	}
-	
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -177,11 +177,17 @@ public class IntegerLiteralImpl extends NumberLiteralImpl implements IntegerLite
 	}
 
 	@Override
-	public boolean equals(Object second) {
-		if (!(second instanceof IntegerLiteral)) {
+	public boolean sameAs(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
 			return false;
-		}
-		return this.value == ((IntegerLiteral) second).getValue();
+		if (getClass() != obj.getClass())
+			return false;
+		IntegerLiteralImpl other = (IntegerLiteralImpl) obj;
+		if (value != other.value)
+			return false;
+		return true;
 	}
 
 } //IntegerLiteralImpl

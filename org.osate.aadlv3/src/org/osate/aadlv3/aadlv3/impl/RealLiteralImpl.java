@@ -175,9 +175,19 @@ public class RealLiteralImpl extends NumberLiteralImpl implements RealLiteral {
 		return result.toString();
 	}
 
+
 	@Override
-	public boolean equals(Object second) {
-		return this.value == ((RealLiteral) second).getValue();
+	public boolean sameAs(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		RealLiteralImpl other = (RealLiteralImpl) obj;
+		if (Double.doubleToLongBits(value) != Double.doubleToLongBits(other.value))
+			return false;
+		return true;
 	}
 
 } //RealLiteralImpl

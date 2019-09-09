@@ -16,6 +16,7 @@
 package org.osate.aadlv3.aadlv3.impl;
 
 import org.eclipse.emf.ecore.EClass;
+
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.Literal;
 
@@ -26,7 +27,7 @@ import org.osate.aadlv3.aadlv3.Literal;
  *
  * @generated
  */
-public class LiteralImpl extends ExpressionImpl implements Literal {
+public abstract class LiteralImpl extends ExpressionImpl implements Literal {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -148,16 +148,7 @@ public class ECollectionItemProvider extends ExpressionItemProvider {
 				Aadlv3Factory.eINSTANCE.createExpression()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ECOLLECTION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createLiteral()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ECOLLECTION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createSingleLiteral()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ECOLLECTION__ELEMENTS,
 				Aadlv3Factory.eINSTANCE.createTypeReference()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ECOLLECTION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createNumberLiteral()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ECOLLECTION__ELEMENTS,
 				Aadlv3Factory.eINSTANCE.createIntegerLiteral()));
@@ -176,9 +167,6 @@ public class ECollectionItemProvider extends ExpressionItemProvider {
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ECOLLECTION__ELEMENTS,
 				Aadlv3Factory.eINSTANCE.createECollection()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ECOLLECTION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createLCollection()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ECOLLECTION__ELEMENTS,
 				Aadlv3Factory.eINSTANCE.createListLiteral()));

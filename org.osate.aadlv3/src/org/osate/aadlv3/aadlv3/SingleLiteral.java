@@ -22,7 +22,7 @@ package org.osate.aadlv3.aadlv3;
  *
  *
  * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getSingleLiteral()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface SingleLiteral extends Literal {

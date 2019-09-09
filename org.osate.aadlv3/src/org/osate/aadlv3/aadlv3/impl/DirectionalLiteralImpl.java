@@ -267,4 +267,10 @@ public class DirectionalLiteralImpl extends LiteralImpl implements DirectionalLi
 		return result.toString();
 	}
 
+	@Override
+	public boolean sameAs(Object obj) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 } //DirectionalLiteralImpl

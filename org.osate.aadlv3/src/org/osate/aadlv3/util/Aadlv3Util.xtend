@@ -1461,7 +1461,7 @@ class Aadlv3Util {
 	}
 	
 	def static boolean samePropertyValueAssignment(PropertyAssociation first, PropertyAssociation second){
-		return samePropertyAndPath(first, second) && sameValue(first.value, second.value)
+		return samePropertyAndPath(first, second) && first.value.sameAs(second.value)
 	}
 	
 	def static boolean samePropertyAndPath(PropertyAssociation first, PropertyAssociation second){
@@ -1474,11 +1474,6 @@ class Aadlv3Util {
 			val secondCl = second.containingClassifier
 		return firstCl.isSuperClassifierOf(secondCl)|| secondCl.isSuperClassifierOf(firstCl)
 	}
-	
-	def static boolean sameValue(EObject first, EObject second){
-		return first == second 
-	}
-	
 		
 	def static boolean contains(Iterable <PropertyAssociation> pas, PropertyAssociation pa){
 		for (p : pas){
@@ -1494,7 +1489,7 @@ class Aadlv3Util {
 		if (element instanceof LCollection){
 			return collection.contains(element)
 		}
-		return collection.elements.exists[elem| elem.equals(element)]
+		return collection.elements.exists[elem| elem.sameAs(element)]
 	}
 	
 	
@@ -1563,5 +1558,7 @@ class Aadlv3Util {
 	def static String getName(TypeReference type){
 		type.type.name
 	}
+	
+	
 
 }

@@ -177,13 +177,21 @@ public class StringLiteralImpl extends SingleLiteralImpl implements StringLitera
 	}
 
 	@Override
-	public boolean equals(Object second) {
-		return this.value == ((StringLiteral) second).getValue();
+	public boolean sameAs(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		StringLiteralImpl other = (StringLiteralImpl) obj;
+		if (value == null) {
+			if (other.value != null)
+				return false;
+		} else if (!value.equals(other.value))
+			return false;
+		return true;
 	}
 
-	@Override
-	public int hashCode() {
-		return this.value != null ? this.value.hashCode() : 0;
-	}
 
 } //StringLiteralImpl

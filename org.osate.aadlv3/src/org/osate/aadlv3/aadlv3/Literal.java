@@ -22,8 +22,10 @@ package org.osate.aadlv3.aadlv3;
  *
  *
  * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getLiteral()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface Literal extends Expression {
+
+	public boolean sameAs(Object obj);
 } // Literal

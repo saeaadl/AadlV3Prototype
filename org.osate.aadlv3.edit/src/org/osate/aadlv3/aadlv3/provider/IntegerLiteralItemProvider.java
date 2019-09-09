@@ -98,10 +98,8 @@ public class IntegerLiteralItemProvider extends NumberLiteralItemProvider {
 	@Override
 	public String getText(Object object) {
 		String label = ((IntegerLiteral) object).getUnit();
-		if (label == null) {
-			label = "";
-		}
-		return ((IntegerLiteral) object).getValue()  +" "+label;
+		return label == null || label.length() == 0 ? getString("_UI_IntegerLiteral_type")
+				: getString("_UI_IntegerLiteral_type") + " " + label;
 	}
 
 	/**

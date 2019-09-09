@@ -27,7 +27,7 @@ import org.osate.aadlv3.aadlv3.SingleLiteral;
  *
  * @generated
  */
-public class SingleLiteralImpl extends LiteralImpl implements SingleLiteral {
+public abstract class SingleLiteralImpl extends LiteralImpl implements SingleLiteral {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

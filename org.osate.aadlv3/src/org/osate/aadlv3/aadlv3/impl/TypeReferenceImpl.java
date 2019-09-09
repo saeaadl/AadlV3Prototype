@@ -301,23 +301,20 @@ public class TypeReferenceImpl extends SingleLiteralImpl implements TypeReferenc
 		return result.toString();
 	}
 
-	@Override
-	public boolean equals(Object second) {
-		if (second instanceof TypeReference) {
-			if (this == second) return true;
-			if ((this.type == null&&((TypeReference) second).getType()==null)) {
-				return false;
-			} else {
-				return this.type ==((TypeReference) second).getType();
-			}
-		} else {
+	public boolean sameAs(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
 			return false;
-		}
-	}
-
-	@Override
-	public int hashCode() {
-		return this.type != null ? this.type.hashCode() : 0;
+		if (getClass() != obj.getClass())
+			return false;
+		TypeReferenceImpl other = (TypeReferenceImpl) obj;
+		if (type == null) {
+			if (other.type != null)
+				return false;
+		} else if (this.getType() != other.getType())
+			return false;
+		return true;
 	}
 
 } //TypeReferenceImpl

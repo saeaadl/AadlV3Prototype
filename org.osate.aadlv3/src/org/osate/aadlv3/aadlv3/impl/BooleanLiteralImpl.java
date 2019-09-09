@@ -176,9 +176,19 @@ public class BooleanLiteralImpl extends SingleLiteralImpl implements BooleanLite
 		return result.toString();
 	}
 
+
 	@Override
-	public boolean equals(Object second) {
-		return this.value == ((BooleanLiteral) second).isValue();
+	public boolean sameAs(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		BooleanLiteralImpl other = (BooleanLiteralImpl) obj;
+		if (value != other.value)
+			return false;
+		return true;
 	}
 
 } //BooleanLiteralImpl

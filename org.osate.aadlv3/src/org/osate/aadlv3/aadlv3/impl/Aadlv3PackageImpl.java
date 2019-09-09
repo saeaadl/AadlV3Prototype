@@ -2880,12 +2880,12 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 				TypeReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(literalEClass, Literal.class, "Literal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(literalEClass, Literal.class, "Literal", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(singleLiteralEClass, SingleLiteral.class, "SingleLiteral", !IS_ABSTRACT, !IS_INTERFACE,
+		initEClass(singleLiteralEClass, SingleLiteral.class, "SingleLiteral", IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(numberLiteralEClass, NumberLiteral.class, "NumberLiteral", !IS_ABSTRACT, !IS_INTERFACE,
+		initEClass(numberLiteralEClass, NumberLiteral.class, "NumberLiteral", IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNumberLiteral_Unit(), ecorePackage.getEString(), "unit", null, 0, 1, NumberLiteral.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2925,7 +2925,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 				ECollection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(lCollectionEClass, LCollection.class, "LCollection", !IS_ABSTRACT, !IS_INTERFACE,
+		initEClass(lCollectionEClass, LCollection.class, "LCollection", IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getLCollection_Elements(), this.getLiteral(), null, "elements", null, 0, -1, LCollection.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
