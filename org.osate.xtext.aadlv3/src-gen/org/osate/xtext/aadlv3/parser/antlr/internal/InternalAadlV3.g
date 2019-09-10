@@ -4537,9 +4537,9 @@ ruleCompositeType returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getCompositeTypeAccess().getTypeTypeParserRuleCall_2_0());
+					newCompositeNode(grammarAccess.getCompositeTypeAccess().getTypeTypeReferenceParserRuleCall_2_0());
 				}
-				lv_type_2_0=ruleType
+				lv_type_2_0=ruleTypeReference
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getCompositeTypeRule());
@@ -4548,7 +4548,7 @@ ruleCompositeType returns [EObject current=null]
 						$current,
 						"type",
 						lv_type_2_0,
-						"org.osate.xtext.aadlv3.AadlV3.Type");
+						"org.osate.xtext.aadlv3.AadlV3.TypeReference");
 					afterParserOrEnumRuleCall();
 				}
 			)

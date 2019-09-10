@@ -2465,13 +2465,13 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cCompositeTypeCompositeParserRuleCall_0_0 = (RuleCall)cCompositeTypeAssignment_0.eContents().get(0);
 		private final Keyword cOfKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cTypeTypeParserRuleCall_2_0 = (RuleCall)cTypeAssignment_2.eContents().get(0);
+		private final RuleCall cTypeTypeReferenceParserRuleCall_2_0 = (RuleCall)cTypeAssignment_2.eContents().get(0);
 		
 		//CompositeType av3::CompositeType:
-		//	compositeType=Composite 'of' type=Type;
+		//	compositeType=Composite 'of' type=TypeReference;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//compositeType=Composite 'of' type=Type
+		//compositeType=Composite 'of' type=TypeReference
 		public Group getGroup() { return cGroup; }
 		
 		//compositeType=Composite
@@ -2483,11 +2483,11 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		//'of'
 		public Keyword getOfKeyword_1() { return cOfKeyword_1; }
 		
-		//type=Type
+		//type=TypeReference
 		public Assignment getTypeAssignment_2() { return cTypeAssignment_2; }
 		
-		//Type
-		public RuleCall getTypeTypeParserRuleCall_2_0() { return cTypeTypeParserRuleCall_2_0; }
+		//TypeReference
+		public RuleCall getTypeTypeReferenceParserRuleCall_2_0() { return cTypeTypeReferenceParserRuleCall_2_0; }
 	}
 	public class PrimitiveTypeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.osate.xtext.aadlv3.AadlV3.PrimitiveType");
@@ -4746,7 +4746,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//CompositeType av3::CompositeType:
-	//	compositeType=Composite 'of' type=Type;
+	//	compositeType=Composite 'of' type=TypeReference;
 	public CompositeTypeElements getCompositeTypeAccess() {
 		return pCompositeType;
 	}

@@ -16,7 +16,6 @@
 package org.osate.aadlv3.aadlv3.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -26,7 +25,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.Composite;
 import org.osate.aadlv3.aadlv3.CompositeType;
-import org.osate.aadlv3.aadlv3.Type;
+import org.osate.aadlv3.aadlv3.TypeReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -71,7 +70,7 @@ public class CompositeTypeImpl extends TypeImpl implements CompositeType {
 	 * @generated
 	 * @ordered
 	 */
-	protected Type type;
+	protected TypeReference type;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -122,7 +121,7 @@ public class CompositeTypeImpl extends TypeImpl implements CompositeType {
 	 * @generated
 	 */
 	@Override
-	public Type getType() {
+	public TypeReference getType() {
 		return type;
 	}
 
@@ -131,8 +130,8 @@ public class CompositeTypeImpl extends TypeImpl implements CompositeType {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetType(Type newType, NotificationChain msgs) {
-		Type oldType = type;
+	public NotificationChain basicSetType(TypeReference newType, NotificationChain msgs) {
+		TypeReference oldType = type;
 		type = newType;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
@@ -151,7 +150,7 @@ public class CompositeTypeImpl extends TypeImpl implements CompositeType {
 	 * @generated
 	 */
 	@Override
-	public void setType(Type newType) {
+	public void setType(TypeReference newType) {
 		if (newType != type) {
 			NotificationChain msgs = null;
 			if (type != null)
@@ -210,7 +209,7 @@ public class CompositeTypeImpl extends TypeImpl implements CompositeType {
 			setCompositeType((Composite) newValue);
 			return;
 		case Aadlv3Package.COMPOSITE_TYPE__TYPE:
-			setType((Type) newValue);
+			setType((TypeReference) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -228,7 +227,7 @@ public class CompositeTypeImpl extends TypeImpl implements CompositeType {
 			setCompositeType(COMPOSITE_TYPE_EDEFAULT);
 			return;
 		case Aadlv3Package.COMPOSITE_TYPE__TYPE:
-			setType((Type) null);
+			setType((TypeReference) null);
 			return;
 		}
 		super.eUnset(featureID);

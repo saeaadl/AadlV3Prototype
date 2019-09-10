@@ -221,6 +221,9 @@ public class PropertyAssociationItemProvider extends ItemProviderAdapter impleme
 				Aadlv3Factory.eINSTANCE.createPathElement()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
+				Aadlv3Factory.eINSTANCE.createEnumerationType()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
 				Aadlv3Factory.eINSTANCE.createTypeReference()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
@@ -234,6 +237,9 @@ public class PropertyAssociationItemProvider extends ItemProviderAdapter impleme
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
 				Aadlv3Factory.eINSTANCE.createBooleanLiteral()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
+				Aadlv3Factory.eINSTANCE.createEnumerationLiteral()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
 				Aadlv3Factory.eINSTANCE.createDirectionalLiteral()));

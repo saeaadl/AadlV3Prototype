@@ -176,7 +176,6 @@ public class BooleanLiteralImpl extends SingleLiteralImpl implements BooleanLite
 		return result.toString();
 	}
 
-
 	@Override
 	public boolean sameAs(Object obj) {
 		if (this == obj)

@@ -21,8 +21,8 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
+import org.osate.aadlv3.aadlv3.EnumerationLiteral;
 import org.osate.aadlv3.aadlv3.ModelElement;
-import org.osate.aadlv3.aadlv3.State;
 
 /**
  * <!-- begin-user-doc -->
@@ -46,7 +46,7 @@ public abstract class ModelElementImpl extends NamedElementImpl implements Model
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<State> inModes;
+	protected EList<EnumerationLiteral> inModes;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -73,9 +73,10 @@ public abstract class ModelElementImpl extends NamedElementImpl implements Model
 	 * @generated
 	 */
 	@Override
-	public EList<State> getInModes() {
+	public EList<EnumerationLiteral> getInModes() {
 		if (inModes == null) {
-			inModes = new EObjectResolvingEList<State>(State.class, this, Aadlv3Package.MODEL_ELEMENT__IN_MODES);
+			inModes = new EObjectResolvingEList<EnumerationLiteral>(EnumerationLiteral.class, this,
+					Aadlv3Package.MODEL_ELEMENT__IN_MODES);
 		}
 		return inModes;
 	}
@@ -105,7 +106,7 @@ public abstract class ModelElementImpl extends NamedElementImpl implements Model
 		switch (featureID) {
 		case Aadlv3Package.MODEL_ELEMENT__IN_MODES:
 			getInModes().clear();
-			getInModes().addAll((Collection<? extends State>) newValue);
+			getInModes().addAll((Collection<? extends EnumerationLiteral>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);

@@ -11835,7 +11835,7 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleCompositeType"
-    // InternalAadlV3.g:4506:1: ruleCompositeType returns [EObject current=null] : ( ( (lv_compositeType_0_0= ruleComposite ) ) otherlv_1= 'of' ( (lv_type_2_0= ruleType ) ) ) ;
+    // InternalAadlV3.g:4506:1: ruleCompositeType returns [EObject current=null] : ( ( (lv_compositeType_0_0= ruleComposite ) ) otherlv_1= 'of' ( (lv_type_2_0= ruleTypeReference ) ) ) ;
     public final EObject ruleCompositeType() throws RecognitionException {
         EObject current = null;
 
@@ -11849,11 +11849,11 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalAadlV3.g:4512:2: ( ( ( (lv_compositeType_0_0= ruleComposite ) ) otherlv_1= 'of' ( (lv_type_2_0= ruleType ) ) ) )
-            // InternalAadlV3.g:4513:2: ( ( (lv_compositeType_0_0= ruleComposite ) ) otherlv_1= 'of' ( (lv_type_2_0= ruleType ) ) )
+            // InternalAadlV3.g:4512:2: ( ( ( (lv_compositeType_0_0= ruleComposite ) ) otherlv_1= 'of' ( (lv_type_2_0= ruleTypeReference ) ) ) )
+            // InternalAadlV3.g:4513:2: ( ( (lv_compositeType_0_0= ruleComposite ) ) otherlv_1= 'of' ( (lv_type_2_0= ruleTypeReference ) ) )
             {
-            // InternalAadlV3.g:4513:2: ( ( (lv_compositeType_0_0= ruleComposite ) ) otherlv_1= 'of' ( (lv_type_2_0= ruleType ) ) )
-            // InternalAadlV3.g:4514:3: ( (lv_compositeType_0_0= ruleComposite ) ) otherlv_1= 'of' ( (lv_type_2_0= ruleType ) )
+            // InternalAadlV3.g:4513:2: ( ( (lv_compositeType_0_0= ruleComposite ) ) otherlv_1= 'of' ( (lv_type_2_0= ruleTypeReference ) ) )
+            // InternalAadlV3.g:4514:3: ( (lv_compositeType_0_0= ruleComposite ) ) otherlv_1= 'of' ( (lv_type_2_0= ruleTypeReference ) )
             {
             // InternalAadlV3.g:4514:3: ( (lv_compositeType_0_0= ruleComposite ) )
             // InternalAadlV3.g:4515:4: (lv_compositeType_0_0= ruleComposite )
@@ -11890,25 +11890,25 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,46,FOLLOW_14); if (state.failed) return current;
+            otherlv_1=(Token)match(input,46,FOLLOW_4); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
               			newLeafNode(otherlv_1, grammarAccess.getCompositeTypeAccess().getOfKeyword_1());
               		
             }
-            // InternalAadlV3.g:4537:3: ( (lv_type_2_0= ruleType ) )
-            // InternalAadlV3.g:4538:4: (lv_type_2_0= ruleType )
+            // InternalAadlV3.g:4537:3: ( (lv_type_2_0= ruleTypeReference ) )
+            // InternalAadlV3.g:4538:4: (lv_type_2_0= ruleTypeReference )
             {
-            // InternalAadlV3.g:4538:4: (lv_type_2_0= ruleType )
-            // InternalAadlV3.g:4539:5: lv_type_2_0= ruleType
+            // InternalAadlV3.g:4538:4: (lv_type_2_0= ruleTypeReference )
+            // InternalAadlV3.g:4539:5: lv_type_2_0= ruleTypeReference
             {
             if ( state.backtracking==0 ) {
 
-              					newCompositeNode(grammarAccess.getCompositeTypeAccess().getTypeTypeParserRuleCall_2_0());
+              					newCompositeNode(grammarAccess.getCompositeTypeAccess().getTypeTypeReferenceParserRuleCall_2_0());
               				
             }
             pushFollow(FOLLOW_2);
-            lv_type_2_0=ruleType();
+            lv_type_2_0=ruleTypeReference();
 
             state._fsp--;
             if (state.failed) return current;
@@ -11921,7 +11921,7 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
               						current,
               						"type",
               						lv_type_2_0,
-              						"org.osate.xtext.aadlv3.AadlV3.Type");
+              						"org.osate.xtext.aadlv3.AadlV3.TypeReference");
               					afterParserOrEnumRuleCall();
               				
             }

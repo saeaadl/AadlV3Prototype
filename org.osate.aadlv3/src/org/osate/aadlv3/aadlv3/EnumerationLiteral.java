@@ -15,37 +15,15 @@
  */
 package org.osate.aadlv3.aadlv3;
 
-import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.emf.ecore.EObject;
-
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Mode Assignment</b></em>'.
+ * A representation of the model object '<em><b>Enumeration Literal</b></em>'.
  * <!-- end-user-doc -->
  *
- * <p>
- * The following features are supported:
- * </p>
- * <ul>
- *   <li>{@link org.osate.aadlv3.aadlv3.ModeAssignment#getMembers <em>Members</em>}</li>
- * </ul>
  *
- * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getModeAssignment()
+ * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getEnumerationLiteral()
  * @model
  * @generated
  */
-public interface ModeAssignment extends EObject {
-	/**
-	 * Returns the value of the '<em><b>Members</b></em>' reference list.
-	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.ModelElement}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Members</em>' reference list.
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getModeAssignment_Members()
-	 * @model
-	 * @generated
-	 */
-	EList<ModelElement> getMembers();
-
-} // ModeAssignment
+public interface EnumerationLiteral extends StringLiteral {
+} // EnumerationLiteral

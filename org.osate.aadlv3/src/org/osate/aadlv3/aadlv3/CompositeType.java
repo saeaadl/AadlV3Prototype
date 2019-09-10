@@ -63,12 +63,12 @@ public interface CompositeType extends Type {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Type</em>' containment reference.
-	 * @see #setType(Type)
+	 * @see #setType(TypeReference)
 	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getCompositeType_Type()
 	 * @model containment="true"
 	 * @generated
 	 */
-	Type getType();
+	TypeReference getType();
 
 	/**
 	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.CompositeType#getType <em>Type</em>}' containment reference.
@@ -78,6 +78,6 @@ public interface CompositeType extends Type {
 	 * @see #getType()
 	 * @generated
 	 */
-	void setType(Type value);
+	void setType(TypeReference value);
 
 } // CompositeType

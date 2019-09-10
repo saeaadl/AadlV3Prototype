@@ -210,6 +210,9 @@
     <genClasses ecoreClass="Aadlv3.ecore#//TypeDef">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//TypeDef/superType"/>
     </genClasses>
+    <genClasses ecoreClass="Aadlv3.ecore#//EnumerationType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//EnumerationType/type"/>
+    </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//PrimitiveType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//PrimitiveType/primitiveType"/>
     </genClasses>
@@ -239,6 +242,7 @@
     <genClasses ecoreClass="Aadlv3.ecore#//BooleanLiteral">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//BooleanLiteral/value"/>
     </genClasses>
+    <genClasses ecoreClass="Aadlv3.ecore#//EnumerationLiteral"/>
     <genClasses ecoreClass="Aadlv3.ecore#//DirectionalLiteral">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//DirectionalLiteral/direction"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//DirectionalLiteral/value"/>
@@ -264,25 +268,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//PropertyAssociation/value"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//PropertyAssociation/propertyAssociationType"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//PropertyAssociation/propertyAssociation"/>
-    </genClasses>
-    <genClasses ecoreClass="Aadlv3.ecore#//State">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//State/initial"/>
-    </genClasses>
-    <genClasses ecoreClass="Aadlv3.ecore#//Transition">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Transition/source"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Transition/target"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Transition/triggers"/>
-    </genClasses>
-    <genClasses ecoreClass="Aadlv3.ecore#//TransitionTriggerAssignment">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//TransitionTriggerAssignment/triggers"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//TransitionTriggerAssignment/transition"/>
-    </genClasses>
-    <genClasses ecoreClass="Aadlv3.ecore#//ModeAssignment">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ModeAssignment/members"/>
-    </genClasses>
-    <genClasses ecoreClass="Aadlv3.ecore#//StateMachine">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//StateMachine/states"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//StateMachine/transitions"/>
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//AnnexSubclause"/>
     <genClasses ecoreClass="Aadlv3.ecore#//AnnexLibrary"/>

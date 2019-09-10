@@ -15476,9 +15476,9 @@ rule__CompositeType__TypeAssignment_2
 	}
 :
 	(
-		{ before(grammarAccess.getCompositeTypeAccess().getTypeTypeParserRuleCall_2_0()); }
-		ruleType
-		{ after(grammarAccess.getCompositeTypeAccess().getTypeTypeParserRuleCall_2_0()); }
+		{ before(grammarAccess.getCompositeTypeAccess().getTypeTypeReferenceParserRuleCall_2_0()); }
+		ruleTypeReference
+		{ after(grammarAccess.getCompositeTypeAccess().getTypeTypeReferenceParserRuleCall_2_0()); }
 	)
 ;
 finally {

@@ -34,7 +34,7 @@ import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.AnnexSubclause;
 import org.osate.aadlv3.aadlv3.Classifier;
 import org.osate.aadlv3.aadlv3.ComponentCategory;
-import org.osate.aadlv3.aadlv3.StateMachine;
+import org.osate.aadlv3.aadlv3.EnumerationType;
 import org.osate.aadlv3.aadlv3.TypeReference;
 
 /**
@@ -93,7 +93,7 @@ public abstract class ClassifierImpl extends NamedTypeImpl implements Classifier
 	 * @generated
 	 * @ordered
 	 */
-	protected StateMachine useModes;
+	protected EnumerationType useModes;
 
 	/**
 	 * The default value of the '{@link #isInheritsModes() <em>Inherits Modes</em>}' attribute.
@@ -188,10 +188,10 @@ public abstract class ClassifierImpl extends NamedTypeImpl implements Classifier
 	 * @generated
 	 */
 	@Override
-	public StateMachine getUseModes() {
+	public EnumerationType getUseModes() {
 		if (useModes != null && useModes.eIsProxy()) {
 			InternalEObject oldUseModes = (InternalEObject) useModes;
-			useModes = (StateMachine) eResolveProxy(oldUseModes);
+			useModes = (EnumerationType) eResolveProxy(oldUseModes);
 			if (useModes != oldUseModes) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Aadlv3Package.CLASSIFIER__USE_MODES,
@@ -206,7 +206,7 @@ public abstract class ClassifierImpl extends NamedTypeImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StateMachine basicGetUseModes() {
+	public EnumerationType basicGetUseModes() {
 		return useModes;
 	}
 
@@ -216,8 +216,8 @@ public abstract class ClassifierImpl extends NamedTypeImpl implements Classifier
 	 * @generated
 	 */
 	@Override
-	public void setUseModes(StateMachine newUseModes) {
-		StateMachine oldUseModes = useModes;
+	public void setUseModes(EnumerationType newUseModes) {
+		EnumerationType oldUseModes = useModes;
 		useModes = newUseModes;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.CLASSIFIER__USE_MODES, oldUseModes,
@@ -319,7 +319,7 @@ public abstract class ClassifierImpl extends NamedTypeImpl implements Classifier
 			getSuperClassifiers().addAll((Collection<? extends TypeReference>) newValue);
 			return;
 		case Aadlv3Package.CLASSIFIER__USE_MODES:
-			setUseModes((StateMachine) newValue);
+			setUseModes((EnumerationType) newValue);
 			return;
 		case Aadlv3Package.CLASSIFIER__INHERITS_MODES:
 			setInheritsModes((Boolean) newValue);
@@ -347,7 +347,7 @@ public abstract class ClassifierImpl extends NamedTypeImpl implements Classifier
 			getSuperClassifiers().clear();
 			return;
 		case Aadlv3Package.CLASSIFIER__USE_MODES:
-			setUseModes((StateMachine) null);
+			setUseModes((EnumerationType) null);
 			return;
 		case Aadlv3Package.CLASSIFIER__INHERITS_MODES:
 			setInheritsModes(INHERITS_MODES_EDEFAULT);

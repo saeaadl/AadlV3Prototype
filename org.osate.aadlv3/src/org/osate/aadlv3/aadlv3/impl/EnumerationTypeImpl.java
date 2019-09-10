@@ -15,64 +15,48 @@
  */
 package org.osate.aadlv3.aadlv3.impl;
 
-import java.util.Collection;
-
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
-import org.osate.aadlv3.aadlv3.State;
-import org.osate.aadlv3.aadlv3.StateMachine;
-import org.osate.aadlv3.aadlv3.Transition;
+import org.osate.aadlv3.aadlv3.EnumerationLiteral;
+import org.osate.aadlv3.aadlv3.EnumerationType;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>State Machine</b></em>'.
+ * An implementation of the model object '<em><b>Enumeration Type</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.StateMachineImpl#getStates <em>States</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.StateMachineImpl#getTransitions <em>Transitions</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.EnumerationTypeImpl#getType <em>Type</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class StateMachineImpl extends PackageElementImpl implements StateMachine {
+public class EnumerationTypeImpl extends SingleLiteralImpl implements EnumerationType {
 	/**
-	 * The cached value of the '{@link #getStates() <em>States</em>}' containment reference list.
+	 * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getStates()
+	 * @see #getType()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<State> states;
-
-	/**
-	 * The cached value of the '{@link #getTransitions() <em>Transitions</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTransitions()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Transition> transitions;
+	protected EnumerationLiteral type;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected StateMachineImpl() {
+	protected EnumerationTypeImpl() {
 		super();
 	}
 
@@ -83,7 +67,7 @@ public class StateMachineImpl extends PackageElementImpl implements StateMachine
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return Aadlv3Package.Literals.STATE_MACHINE;
+		return Aadlv3Package.Literals.ENUMERATION_TYPE;
 	}
 
 	/**
@@ -92,11 +76,27 @@ public class StateMachineImpl extends PackageElementImpl implements StateMachine
 	 * @generated
 	 */
 	@Override
-	public EList<State> getStates() {
-		if (states == null) {
-			states = new EObjectContainmentEList<State>(State.class, this, Aadlv3Package.STATE_MACHINE__STATES);
+	public EnumerationLiteral getType() {
+		return type;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetType(EnumerationLiteral newType, NotificationChain msgs) {
+		EnumerationLiteral oldType = type;
+		type = newType;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					Aadlv3Package.ENUMERATION_TYPE__TYPE, oldType, newType);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
-		return states;
+		return msgs;
 	}
 
 	/**
@@ -105,12 +105,21 @@ public class StateMachineImpl extends PackageElementImpl implements StateMachine
 	 * @generated
 	 */
 	@Override
-	public EList<Transition> getTransitions() {
-		if (transitions == null) {
-			transitions = new EObjectContainmentEList<Transition>(Transition.class, this,
-					Aadlv3Package.STATE_MACHINE__TRANSITIONS);
-		}
-		return transitions;
+	public void setType(EnumerationLiteral newType) {
+		if (newType != type) {
+			NotificationChain msgs = null;
+			if (type != null)
+				msgs = ((InternalEObject) type).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE - Aadlv3Package.ENUMERATION_TYPE__TYPE, null, msgs);
+			if (newType != null)
+				msgs = ((InternalEObject) newType).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE - Aadlv3Package.ENUMERATION_TYPE__TYPE, null, msgs);
+			msgs = basicSetType(newType, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.ENUMERATION_TYPE__TYPE, newType,
+					newType));
 	}
 
 	/**
@@ -121,10 +130,8 @@ public class StateMachineImpl extends PackageElementImpl implements StateMachine
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case Aadlv3Package.STATE_MACHINE__STATES:
-			return ((InternalEList<?>) getStates()).basicRemove(otherEnd, msgs);
-		case Aadlv3Package.STATE_MACHINE__TRANSITIONS:
-			return ((InternalEList<?>) getTransitions()).basicRemove(otherEnd, msgs);
+		case Aadlv3Package.ENUMERATION_TYPE__TYPE:
+			return basicSetType(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -137,10 +144,8 @@ public class StateMachineImpl extends PackageElementImpl implements StateMachine
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case Aadlv3Package.STATE_MACHINE__STATES:
-			return getStates();
-		case Aadlv3Package.STATE_MACHINE__TRANSITIONS:
-			return getTransitions();
+		case Aadlv3Package.ENUMERATION_TYPE__TYPE:
+			return getType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -150,17 +155,11 @@ public class StateMachineImpl extends PackageElementImpl implements StateMachine
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case Aadlv3Package.STATE_MACHINE__STATES:
-			getStates().clear();
-			getStates().addAll((Collection<? extends State>) newValue);
-			return;
-		case Aadlv3Package.STATE_MACHINE__TRANSITIONS:
-			getTransitions().clear();
-			getTransitions().addAll((Collection<? extends Transition>) newValue);
+		case Aadlv3Package.ENUMERATION_TYPE__TYPE:
+			setType((EnumerationLiteral) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -174,11 +173,8 @@ public class StateMachineImpl extends PackageElementImpl implements StateMachine
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case Aadlv3Package.STATE_MACHINE__STATES:
-			getStates().clear();
-			return;
-		case Aadlv3Package.STATE_MACHINE__TRANSITIONS:
-			getTransitions().clear();
+		case Aadlv3Package.ENUMERATION_TYPE__TYPE:
+			setType((EnumerationLiteral) null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -192,12 +188,27 @@ public class StateMachineImpl extends PackageElementImpl implements StateMachine
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case Aadlv3Package.STATE_MACHINE__STATES:
-			return states != null && !states.isEmpty();
-		case Aadlv3Package.STATE_MACHINE__TRANSITIONS:
-			return transitions != null && !transitions.isEmpty();
+		case Aadlv3Package.ENUMERATION_TYPE__TYPE:
+			return type != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //StateMachineImpl
+	@Override
+	public boolean sameAs(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		EnumerationTypeImpl other = (EnumerationTypeImpl) obj;
+		if (type == null) {
+			if (other.type != null)
+				return false;
+		} else if (!type.sameAs(other.type))
+			return false;
+		return true;
+	}
+
+} //EnumerationTypeImpl

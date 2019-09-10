@@ -114,6 +114,8 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 			return createNamedType();
 		case Aadlv3Package.TYPE_DEF:
 			return createTypeDef();
+		case Aadlv3Package.ENUMERATION_TYPE:
+			return createEnumerationType();
 		case Aadlv3Package.PRIMITIVE_TYPE:
 			return createPrimitiveType();
 		case Aadlv3Package.COMPOSITE_TYPE:
@@ -128,6 +130,8 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 			return createStringLiteral();
 		case Aadlv3Package.BOOLEAN_LITERAL:
 			return createBooleanLiteral();
+		case Aadlv3Package.ENUMERATION_LITERAL:
+			return createEnumerationLiteral();
 		case Aadlv3Package.DIRECTIONAL_LITERAL:
 			return createDirectionalLiteral();
 		case Aadlv3Package.ECOLLECTION:
@@ -144,16 +148,6 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 			return createMultiExpressionOperation();
 		case Aadlv3Package.PROPERTY_ASSOCIATION:
 			return createPropertyAssociation();
-		case Aadlv3Package.STATE:
-			return createState();
-		case Aadlv3Package.TRANSITION:
-			return createTransition();
-		case Aadlv3Package.TRANSITION_TRIGGER_ASSIGNMENT:
-			return createTransitionTriggerAssignment();
-		case Aadlv3Package.MODE_ASSIGNMENT:
-			return createModeAssignment();
-		case Aadlv3Package.STATE_MACHINE:
-			return createStateMachine();
 		case Aadlv3Package.ANNEX_SUBCLAUSE:
 			return createAnnexSubclause();
 		case Aadlv3Package.ANNEX_LIBRARY:
@@ -396,6 +390,17 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 	 * @generated
 	 */
 	@Override
+	public EnumerationType createEnumerationType() {
+		EnumerationTypeImpl enumerationType = new EnumerationTypeImpl();
+		return enumerationType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public ConfigurationActual createConfigurationActual() {
 		ConfigurationActualImpl configurationActual = new ConfigurationActualImpl();
 		return configurationActual;
@@ -484,6 +489,17 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 	 * @generated
 	 */
 	@Override
+	public EnumerationLiteral createEnumerationLiteral() {
+		EnumerationLiteralImpl enumerationLiteral = new EnumerationLiteralImpl();
+		return enumerationLiteral;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public ListLiteral createListLiteral() {
 		ListLiteralImpl listLiteral = new ListLiteralImpl();
 		return listLiteral;
@@ -564,61 +580,6 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 	public PropertyAssociation createPropertyAssociation() {
 		PropertyAssociationImpl propertyAssociation = new PropertyAssociationImpl();
 		return propertyAssociation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public State createState() {
-		StateImpl state = new StateImpl();
-		return state;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Transition createTransition() {
-		TransitionImpl transition = new TransitionImpl();
-		return transition;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public TransitionTriggerAssignment createTransitionTriggerAssignment() {
-		TransitionTriggerAssignmentImpl transitionTriggerAssignment = new TransitionTriggerAssignmentImpl();
-		return transitionTriggerAssignment;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ModeAssignment createModeAssignment() {
-		ModeAssignmentImpl modeAssignment = new ModeAssignmentImpl();
-		return modeAssignment;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public StateMachine createStateMachine() {
-		StateMachineImpl stateMachine = new StateMachineImpl();
-		return stateMachine;
 	}
 
 	/**

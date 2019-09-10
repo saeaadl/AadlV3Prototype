@@ -21,39 +21,29 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
 
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.IItemPropertySource;
-import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
-import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.osate.aadlv3.aadlv3.Aadlv3Factory;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
-import org.osate.aadlv3.aadlv3.TransitionTriggerAssignment;
+import org.osate.aadlv3.aadlv3.EnumerationType;
 
 /**
- * This is the item provider adapter for a {@link org.osate.aadlv3.aadlv3.TransitionTriggerAssignment} object.
+ * This is the item provider adapter for a {@link org.osate.aadlv3.aadlv3.EnumerationType} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class TransitionTriggerAssignmentItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
-		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class EnumerationTypeItemProvider extends SingleLiteralItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TransitionTriggerAssignmentItemProvider(AdapterFactory adapterFactory) {
+	public EnumerationTypeItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -68,24 +58,8 @@ public class TransitionTriggerAssignmentItemProvider extends ItemProviderAdapter
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addTransitionPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Transition feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addTransitionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_TransitionTriggerAssignment_transition_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_TransitionTriggerAssignment_transition_feature",
-						"_UI_TransitionTriggerAssignment_type"),
-				Aadlv3Package.Literals.TRANSITION_TRIGGER_ASSIGNMENT__TRANSITION, true, false, true, null, null, null));
 	}
 
 	/**
@@ -100,7 +74,7 @@ public class TransitionTriggerAssignmentItemProvider extends ItemProviderAdapter
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(Aadlv3Package.Literals.TRANSITION_TRIGGER_ASSIGNMENT__TRIGGERS);
+			childrenFeatures.add(Aadlv3Package.Literals.ENUMERATION_TYPE__TYPE);
 		}
 		return childrenFeatures;
 	}
@@ -119,14 +93,14 @@ public class TransitionTriggerAssignmentItemProvider extends ItemProviderAdapter
 	}
 
 	/**
-	 * This returns TransitionTriggerAssignment.gif.
+	 * This returns EnumerationType.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/TransitionTriggerAssignment"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/EnumerationType"));
 	}
 
 	/**
@@ -137,7 +111,7 @@ public class TransitionTriggerAssignmentItemProvider extends ItemProviderAdapter
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_TransitionTriggerAssignment_type");
+		return getString("_UI_EnumerationType_type");
 	}
 
 	/**
@@ -151,8 +125,8 @@ public class TransitionTriggerAssignmentItemProvider extends ItemProviderAdapter
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(TransitionTriggerAssignment.class)) {
-		case Aadlv3Package.TRANSITION_TRIGGER_ASSIGNMENT__TRIGGERS:
+		switch (notification.getFeatureID(EnumerationType.class)) {
+		case Aadlv3Package.ENUMERATION_TYPE__TYPE:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -170,22 +144,8 @@ public class TransitionTriggerAssignmentItemProvider extends ItemProviderAdapter
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.TRANSITION_TRIGGER_ASSIGNMENT__TRIGGERS,
-				Aadlv3Factory.eINSTANCE.createModelElementReference()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.TRANSITION_TRIGGER_ASSIGNMENT__TRIGGERS,
-				Aadlv3Factory.eINSTANCE.createPathElement()));
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return Aadlv3EditPlugin.INSTANCE;
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ENUMERATION_TYPE__TYPE,
+				Aadlv3Factory.eINSTANCE.createEnumerationLiteral()));
 	}
 
 }

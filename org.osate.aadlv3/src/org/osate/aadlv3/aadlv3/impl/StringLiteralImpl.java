@@ -193,5 +193,4 @@ public class StringLiteralImpl extends SingleLiteralImpl implements StringLitera
 		return true;
 	}
 
-
 } //StringLiteralImpl

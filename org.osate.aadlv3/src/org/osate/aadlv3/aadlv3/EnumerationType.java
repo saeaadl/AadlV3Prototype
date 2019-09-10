@@ -15,48 +15,43 @@
  */
 package org.osate.aadlv3.aadlv3;
 
-import org.eclipse.emf.common.util.EList;
-
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>State Machine</b></em>'.
+ * A representation of the model object '<em><b>Enumeration Type</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.osate.aadlv3.aadlv3.StateMachine#getStates <em>States</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.StateMachine#getTransitions <em>Transitions</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.EnumerationType#getType <em>Type</em>}</li>
  * </ul>
  *
- * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getStateMachine()
+ * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getEnumerationType()
  * @model
  * @generated
  */
-public interface StateMachine extends PackageElement {
+public interface EnumerationType extends SingleLiteral {
 	/**
-	 * Returns the value of the '<em><b>States</b></em>' containment reference list.
-	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.State}.
+	 * Returns the value of the '<em><b>Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>States</em>' containment reference list.
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getStateMachine_States()
+	 * @return the value of the '<em>Type</em>' containment reference.
+	 * @see #setType(EnumerationLiteral)
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getEnumerationType_Type()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<State> getStates();
+	EnumerationLiteral getType();
 
 	/**
-	 * Returns the value of the '<em><b>Transitions</b></em>' containment reference list.
-	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.Transition}.
+	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.EnumerationType#getType <em>Type</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Transitions</em>' containment reference list.
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getStateMachine_Transitions()
-	 * @model containment="true"
+	 * @param value the new value of the '<em>Type</em>' containment reference.
+	 * @see #getType()
 	 * @generated
 	 */
-	EList<Transition> getTransitions();
+	void setType(EnumerationLiteral value);
 
-} // StateMachine
+} // EnumerationType

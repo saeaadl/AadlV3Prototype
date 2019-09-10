@@ -473,7 +473,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     CompositeType returns CompositeType
 	 *
 	 * Constraint:
-	 *     (compositeType=Composite type=Type)
+	 *     (compositeType=Composite type=TypeReference)
 	 */
 	protected void sequence_CompositeType(ISerializationContext context, CompositeType semanticObject) {
 		if (errorAcceptor != null) {
@@ -484,7 +484,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getCompositeTypeAccess().getCompositeTypeCompositeParserRuleCall_0_0(), semanticObject.getCompositeType());
-		feeder.accept(grammarAccess.getCompositeTypeAccess().getTypeTypeParserRuleCall_2_0(), semanticObject.getType());
+		feeder.accept(grammarAccess.getCompositeTypeAccess().getTypeTypeReferenceParserRuleCall_2_0(), semanticObject.getType());
 		feeder.finish();
 	}
 	

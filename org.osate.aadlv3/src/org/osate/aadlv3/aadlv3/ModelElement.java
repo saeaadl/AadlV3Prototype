@@ -36,7 +36,7 @@ import org.eclipse.emf.common.util.EList;
 public interface ModelElement extends NamedElement {
 	/**
 	 * Returns the value of the '<em><b>In Modes</b></em>' reference list.
-	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.State}.
+	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.EnumerationLiteral}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>In Modes</em>' reference list.
@@ -44,6 +44,6 @@ public interface ModelElement extends NamedElement {
 	 * @model
 	 * @generated
 	 */
-	EList<State> getInModes();
+	EList<EnumerationLiteral> getInModes();
 
 } // ModelElement

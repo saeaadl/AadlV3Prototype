@@ -266,7 +266,7 @@ Type returns av3::Type :
 ;
 
 CompositeType returns av3::CompositeType:
-	compositeType=Composite 'of' type=Type
+	compositeType=Composite 'of' type=TypeReference
 ;
 
 PrimitiveType returns av3::PrimitiveType:

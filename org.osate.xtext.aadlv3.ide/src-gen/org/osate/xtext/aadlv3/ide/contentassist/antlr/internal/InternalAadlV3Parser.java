@@ -34014,7 +34014,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             // InternalAadlV3.g:10286:1: ( rule__CompositeType__Group__1__Impl rule__CompositeType__Group__2 )
             // InternalAadlV3.g:10287:2: rule__CompositeType__Group__1__Impl rule__CompositeType__Group__2
             {
-            pushFollow(FOLLOW_14);
+            pushFollow(FOLLOW_5);
             rule__CompositeType__Group__1__Impl();
 
             state._fsp--;
@@ -49583,28 +49583,28 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__CompositeType__TypeAssignment_2"
-    // InternalAadlV3.g:15473:1: rule__CompositeType__TypeAssignment_2 : ( ruleType ) ;
+    // InternalAadlV3.g:15473:1: rule__CompositeType__TypeAssignment_2 : ( ruleTypeReference ) ;
     public final void rule__CompositeType__TypeAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAadlV3.g:15477:1: ( ( ruleType ) )
-            // InternalAadlV3.g:15478:2: ( ruleType )
+            // InternalAadlV3.g:15477:1: ( ( ruleTypeReference ) )
+            // InternalAadlV3.g:15478:2: ( ruleTypeReference )
             {
-            // InternalAadlV3.g:15478:2: ( ruleType )
-            // InternalAadlV3.g:15479:3: ruleType
+            // InternalAadlV3.g:15478:2: ( ruleTypeReference )
+            // InternalAadlV3.g:15479:3: ruleTypeReference
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getCompositeTypeAccess().getTypeTypeParserRuleCall_2_0()); 
+               before(grammarAccess.getCompositeTypeAccess().getTypeTypeReferenceParserRuleCall_2_0()); 
             }
             pushFollow(FOLLOW_2);
-            ruleType();
+            ruleTypeReference();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getCompositeTypeAccess().getTypeTypeParserRuleCall_2_0()); 
+               after(grammarAccess.getCompositeTypeAccess().getTypeTypeReferenceParserRuleCall_2_0()); 
             }
 
             }

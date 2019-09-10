@@ -101,7 +101,7 @@ public class IntegerLiteralItemProvider extends NumberLiteralItemProvider {
 		if (label == null) {
 			label = "";
 		}
-		return ((IntegerLiteral) object).getValue()  +" "+label;
+		return ((IntegerLiteral) object).getValue() + " " + label;
 	}
 
 	/**

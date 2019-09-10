@@ -13,45 +13,38 @@
  * 
  * See COPYRIGHT file for full details.
  */
-package org.osate.aadlv3.aadlv3;
+package org.osate.aadlv3.aadlv3.impl;
+
+import org.eclipse.emf.ecore.EClass;
+
+import org.osate.aadlv3.aadlv3.Aadlv3Package;
+import org.osate.aadlv3.aadlv3.EnumerationLiteral;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>State</b></em>'.
+ * An implementation of the model object '<em><b>Enumeration Literal</b></em>'.
  * <!-- end-user-doc -->
  *
- * <p>
- * The following features are supported:
- * </p>
- * <ul>
- *   <li>{@link org.osate.aadlv3.aadlv3.State#isInitial <em>Initial</em>}</li>
- * </ul>
- *
- * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getState()
- * @model
  * @generated
  */
-public interface State extends ModelElement {
+public class EnumerationLiteralImpl extends StringLiteralImpl implements EnumerationLiteral {
 	/**
-	 * Returns the value of the '<em><b>Initial</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Initial</em>' attribute.
-	 * @see #setInitial(boolean)
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getState_Initial()
-	 * @model
 	 * @generated
 	 */
-	boolean isInitial();
+	protected EnumerationLiteralImpl() {
+		super();
+	}
 
 	/**
-	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.State#isInitial <em>Initial</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Initial</em>' attribute.
-	 * @see #isInitial()
 	 * @generated
 	 */
-	void setInitial(boolean value);
+	@Override
+	protected EClass eStaticClass() {
+		return Aadlv3Package.Literals.ENUMERATION_LITERAL;
+	}
 
-} // State
+} //EnumerationLiteralImpl

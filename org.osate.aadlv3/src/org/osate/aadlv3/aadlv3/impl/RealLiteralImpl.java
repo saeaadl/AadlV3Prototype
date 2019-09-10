@@ -175,7 +175,6 @@ public class RealLiteralImpl extends NumberLiteralImpl implements RealLiteral {
 		return result.toString();
 	}
 
-
 	@Override
 	public boolean sameAs(Object obj) {
 		if (this == obj)

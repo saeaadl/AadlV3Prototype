@@ -1409,7 +1409,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getTypeReference()
 	 * @generated
 	 */
-	int TYPE_REFERENCE = 30;
+	int TYPE_REFERENCE = 31;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.ConfigurationActualImpl <em>Configuration Actual</em>}' class.
@@ -1439,7 +1439,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getPropertyAssociation()
 	 * @generated
 	 */
-	int PROPERTY_ASSOCIATION = 46;
+	int PROPERTY_ASSOCIATION = 48;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.PathElementImpl <em>Path Element</em>}' class.
@@ -1805,7 +1805,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getLiteral()
 	 * @generated
 	 */
-	int LITERAL = 31;
+	int LITERAL = 32;
 
 	/**
 	 * The feature id for the '<em><b>Parameter</b></em>' reference.
@@ -2106,7 +2106,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getNumberLiteral()
 	 * @generated
 	 */
-	int NUMBER_LITERAL = 33;
+	int NUMBER_LITERAL = 34;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.IntegerLiteralImpl <em>Integer Literal</em>}' class.
@@ -2116,7 +2116,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getIntegerLiteral()
 	 * @generated
 	 */
-	int INTEGER_LITERAL = 34;
+	int INTEGER_LITERAL = 35;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.ListLiteralImpl <em>List Literal</em>}' class.
@@ -2126,7 +2126,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getListLiteral()
 	 * @generated
 	 */
-	int LIST_LITERAL = 41;
+	int LIST_LITERAL = 43;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.SetLiteralImpl <em>Set Literal</em>}' class.
@@ -2136,7 +2136,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getSetLiteral()
 	 * @generated
 	 */
-	int SET_LITERAL = 42;
+	int SET_LITERAL = 44;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.DirectionalLiteralImpl <em>Directional Literal</em>}' class.
@@ -2146,17 +2146,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getDirectionalLiteral()
 	 * @generated
 	 */
-	int DIRECTIONAL_LITERAL = 38;
-
-	/**
-	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.ModeAssignmentImpl <em>Mode Assignment</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.osate.aadlv3.aadlv3.impl.ModeAssignmentImpl
-	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getModeAssignment()
-	 * @generated
-	 */
-	int MODE_ASSIGNMENT = 50;
+	int DIRECTIONAL_LITERAL = 40;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.AnnexSubclauseImpl <em>Annex Subclause</em>}' class.
@@ -2166,7 +2156,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getAnnexSubclause()
 	 * @generated
 	 */
-	int ANNEX_SUBCLAUSE = 52;
+	int ANNEX_SUBCLAUSE = 49;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.AnnexLibraryImpl <em>Annex Library</em>}' class.
@@ -2176,7 +2166,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getAnnexLibrary()
 	 * @generated
 	 */
-	int ANNEX_LIBRARY = 53;
+	int ANNEX_LIBRARY = 50;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.PrimitiveTypeImpl <em>Primitive Type</em>}' class.
@@ -2186,25 +2176,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getPrimitiveType()
 	 * @generated
 	 */
-	int PRIMITIVE_TYPE = 28;
-
-	/**
-	 * The feature id for the '<em><b>Primitive Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRIMITIVE_TYPE__PRIMITIVE_TYPE = TYPE_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Primitive Type</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRIMITIVE_TYPE_FEATURE_COUNT = TYPE_FEATURE_COUNT + 1;
+	int PRIMITIVE_TYPE = 29;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.CompositeTypeImpl <em>Composite Type</em>}' class.
@@ -2214,34 +2186,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getCompositeType()
 	 * @generated
 	 */
-	int COMPOSITE_TYPE = 29;
-
-	/**
-	 * The feature id for the '<em><b>Composite Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSITE_TYPE__COMPOSITE_TYPE = TYPE_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSITE_TYPE__TYPE = TYPE_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Composite Type</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSITE_TYPE_FEATURE_COUNT = TYPE_FEATURE_COUNT + 2;
+	int COMPOSITE_TYPE = 30;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.ExpressionImpl <em>Expression</em>}' class.
@@ -2251,7 +2196,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getExpression()
 	 * @generated
 	 */
-	int EXPRESSION = 43;
+	int EXPRESSION = 45;
 
 	/**
 	 * The number of structural features of the '<em>Expression</em>' class.
@@ -2279,7 +2224,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getSingleLiteral()
 	 * @generated
 	 */
-	int SINGLE_LITERAL = 32;
+	int SINGLE_LITERAL = 33;
 
 	/**
 	 * The number of structural features of the '<em>Single Literal</em>' class.
@@ -2289,6 +2234,79 @@ public interface Aadlv3Package extends EPackage {
 	 * @ordered
 	 */
 	int SINGLE_LITERAL_FEATURE_COUNT = LITERAL_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.EnumerationTypeImpl <em>Enumeration Type</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.osate.aadlv3.aadlv3.impl.EnumerationTypeImpl
+	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getEnumerationType()
+	 * @generated
+	 */
+	int ENUMERATION_TYPE = 28;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENUMERATION_TYPE__TYPE = SINGLE_LITERAL_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Enumeration Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENUMERATION_TYPE_FEATURE_COUNT = SINGLE_LITERAL_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Primitive Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMITIVE_TYPE__PRIMITIVE_TYPE = TYPE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Primitive Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMITIVE_TYPE_FEATURE_COUNT = TYPE_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Composite Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_TYPE__COMPOSITE_TYPE = TYPE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_TYPE__TYPE = TYPE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Composite Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_TYPE_FEATURE_COUNT = TYPE_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Reverse</b></em>' attribute.
@@ -2379,7 +2397,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getRealLiteral()
 	 * @generated
 	 */
-	int REAL_LITERAL = 35;
+	int REAL_LITERAL = 36;
 
 	/**
 	 * The feature id for the '<em><b>Unit</b></em>' attribute.
@@ -2416,7 +2434,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getStringLiteral()
 	 * @generated
 	 */
-	int STRING_LITERAL = 36;
+	int STRING_LITERAL = 37;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -2444,7 +2462,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getBooleanLiteral()
 	 * @generated
 	 */
-	int BOOLEAN_LITERAL = 37;
+	int BOOLEAN_LITERAL = 38;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -2463,6 +2481,34 @@ public interface Aadlv3Package extends EPackage {
 	 * @ordered
 	 */
 	int BOOLEAN_LITERAL_FEATURE_COUNT = SINGLE_LITERAL_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.EnumerationLiteralImpl <em>Enumeration Literal</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.osate.aadlv3.aadlv3.impl.EnumerationLiteralImpl
+	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getEnumerationLiteral()
+	 * @generated
+	 */
+	int ENUMERATION_LITERAL = 39;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENUMERATION_LITERAL__VALUE = STRING_LITERAL__VALUE;
+
+	/**
+	 * The number of structural features of the '<em>Enumeration Literal</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENUMERATION_LITERAL_FEATURE_COUNT = STRING_LITERAL_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Direction</b></em>' attribute.
@@ -2499,7 +2545,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getECollection()
 	 * @generated
 	 */
-	int ECOLLECTION = 39;
+	int ECOLLECTION = 41;
 
 	/**
 	 * The feature id for the '<em><b>Elements</b></em>' containment reference list.
@@ -2527,7 +2573,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getLCollection()
 	 * @generated
 	 */
-	int LCOLLECTION = 40;
+	int LCOLLECTION = 42;
 
 	/**
 	 * The feature id for the '<em><b>Elements</b></em>' containment reference list.
@@ -2591,7 +2637,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getMultiLiteralConstraint()
 	 * @generated
 	 */
-	int MULTI_LITERAL_CONSTRAINT = 44;
+	int MULTI_LITERAL_CONSTRAINT = 46;
 
 	/**
 	 * The feature id for the '<em><b>Elements</b></em>' containment reference list.
@@ -2628,7 +2674,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getMultiExpressionOperation()
 	 * @generated
 	 */
-	int MULTI_EXPRESSION_OPERATION = 45;
+	int MULTI_EXPRESSION_OPERATION = 47;
 
 	/**
 	 * The feature id for the '<em><b>Elements</b></em>' containment reference list.
@@ -2710,253 +2756,6 @@ public interface Aadlv3Package extends EPackage {
 	 * @ordered
 	 */
 	int PROPERTY_ASSOCIATION_FEATURE_COUNT = 5;
-
-	/**
-	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.StateImpl <em>State</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.osate.aadlv3.aadlv3.impl.StateImpl
-	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getState()
-	 * @generated
-	 */
-	int STATE = 47;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE__NAME = MODEL_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Owned Property Associations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE__OWNED_PROPERTY_ASSOCIATIONS = MODEL_ELEMENT__OWNED_PROPERTY_ASSOCIATIONS;
-
-	/**
-	 * The feature id for the '<em><b>In Modes</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE__IN_MODES = MODEL_ELEMENT__IN_MODES;
-
-	/**
-	 * The feature id for the '<em><b>Initial</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE__INITIAL = MODEL_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>State</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.TransitionImpl <em>Transition</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.osate.aadlv3.aadlv3.impl.TransitionImpl
-	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getTransition()
-	 * @generated
-	 */
-	int TRANSITION = 48;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRANSITION__NAME = MODEL_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Owned Property Associations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRANSITION__OWNED_PROPERTY_ASSOCIATIONS = MODEL_ELEMENT__OWNED_PROPERTY_ASSOCIATIONS;
-
-	/**
-	 * The feature id for the '<em><b>In Modes</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRANSITION__IN_MODES = MODEL_ELEMENT__IN_MODES;
-
-	/**
-	 * The feature id for the '<em><b>Source</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRANSITION__SOURCE = MODEL_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Target</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRANSITION__TARGET = MODEL_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Triggers</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRANSITION__TRIGGERS = MODEL_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of structural features of the '<em>Transition</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRANSITION_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 3;
-
-	/**
-	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.TransitionTriggerAssignmentImpl <em>Transition Trigger Assignment</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.osate.aadlv3.aadlv3.impl.TransitionTriggerAssignmentImpl
-	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getTransitionTriggerAssignment()
-	 * @generated
-	 */
-	int TRANSITION_TRIGGER_ASSIGNMENT = 49;
-
-	/**
-	 * The feature id for the '<em><b>Triggers</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRANSITION_TRIGGER_ASSIGNMENT__TRIGGERS = 0;
-
-	/**
-	 * The feature id for the '<em><b>Transition</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRANSITION_TRIGGER_ASSIGNMENT__TRANSITION = 1;
-
-	/**
-	 * The number of structural features of the '<em>Transition Trigger Assignment</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRANSITION_TRIGGER_ASSIGNMENT_FEATURE_COUNT = 2;
-
-	/**
-	 * The feature id for the '<em><b>Members</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODE_ASSIGNMENT__MEMBERS = 0;
-
-	/**
-	 * The number of structural features of the '<em>Mode Assignment</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODE_ASSIGNMENT_FEATURE_COUNT = 1;
-
-	/**
-	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.StateMachineImpl <em>State Machine</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.osate.aadlv3.aadlv3.impl.StateMachineImpl
-	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getStateMachine()
-	 * @generated
-	 */
-	int STATE_MACHINE = 51;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE_MACHINE__NAME = PACKAGE_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Owned Property Associations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE_MACHINE__OWNED_PROPERTY_ASSOCIATIONS = PACKAGE_ELEMENT__OWNED_PROPERTY_ASSOCIATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Private</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE_MACHINE__PRIVATE = PACKAGE_ELEMENT__PRIVATE;
-
-	/**
-	 * The feature id for the '<em><b>States</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE_MACHINE__STATES = PACKAGE_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Transitions</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE_MACHINE__TRANSITIONS = PACKAGE_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>State Machine</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE_MACHINE_FEATURE_COUNT = PACKAGE_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3056,7 +2855,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getComponentCategory()
 	 * @generated
 	 */
-	int COMPONENT_CATEGORY = 54;
+	int COMPONENT_CATEGORY = 51;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.FeatureCategory <em>Feature Category</em>}' enum.
@@ -3066,7 +2865,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getFeatureCategory()
 	 * @generated
 	 */
-	int FEATURE_CATEGORY = 55;
+	int FEATURE_CATEGORY = 52;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.FeatureDirection <em>Feature Direction</em>}' enum.
@@ -3076,7 +2875,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getFeatureDirection()
 	 * @generated
 	 */
-	int FEATURE_DIRECTION = 56;
+	int FEATURE_DIRECTION = 53;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.AssociationType <em>Association Type</em>}' enum.
@@ -3086,7 +2885,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getAssociationType()
 	 * @generated
 	 */
-	int ASSOCIATION_TYPE = 57;
+	int ASSOCIATION_TYPE = 54;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.Primitive <em>Primitive</em>}' enum.
@@ -3096,7 +2895,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getPrimitive()
 	 * @generated
 	 */
-	int PRIMITIVE = 58;
+	int PRIMITIVE = 55;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.Composite <em>Composite</em>}' enum.
@@ -3106,7 +2905,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getComposite()
 	 * @generated
 	 */
-	int COMPOSITE = 59;
+	int COMPOSITE = 56;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.LOperator <em>LOperator</em>}' enum.
@@ -3116,7 +2915,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getLOperator()
 	 * @generated
 	 */
-	int LOPERATOR = 60;
+	int LOPERATOR = 57;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.EOperator <em>EOperator</em>}' enum.
@@ -3126,7 +2925,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getEOperator()
 	 * @generated
 	 */
-	int EOPERATOR = 61;
+	int EOPERATOR = 58;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.PropertyAssociationType <em>Property Association Type</em>}' enum.
@@ -3136,7 +2935,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getPropertyAssociationType()
 	 * @generated
 	 */
-	int PROPERTY_ASSOCIATION_TYPE = 62;
+	int PROPERTY_ASSOCIATION_TYPE = 59;
 
 	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.PackageDeclaration <em>Package Declaration</em>}'.
@@ -3922,6 +3721,27 @@ public interface Aadlv3Package extends EPackage {
 	EReference getTypeDef_SuperType();
 
 	/**
+	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.EnumerationType <em>Enumeration Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Enumeration Type</em>'.
+	 * @see org.osate.aadlv3.aadlv3.EnumerationType
+	 * @generated
+	 */
+	EClass getEnumerationType();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.osate.aadlv3.aadlv3.EnumerationType#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Type</em>'.
+	 * @see org.osate.aadlv3.aadlv3.EnumerationType#getType()
+	 * @see #getEnumerationType()
+	 * @generated
+	 */
+	EReference getEnumerationType_Type();
+
+	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.ConfigurationActual <em>Configuration Actual</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4142,6 +3962,16 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 */
 	EAttribute getBooleanLiteral_Value();
+
+	/**
+	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.EnumerationLiteral <em>Enumeration Literal</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Enumeration Literal</em>'.
+	 * @see org.osate.aadlv3.aadlv3.EnumerationLiteral
+	 * @generated
+	 */
+	EClass getEnumerationLiteral();
 
 	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.ListLiteral <em>List Literal</em>}'.
@@ -4373,155 +4203,6 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 */
 	EReference getPropertyAssociation_PropertyAssociation();
-
-	/**
-	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.State <em>State</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>State</em>'.
-	 * @see org.osate.aadlv3.aadlv3.State
-	 * @generated
-	 */
-	EClass getState();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.osate.aadlv3.aadlv3.State#isInitial <em>Initial</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Initial</em>'.
-	 * @see org.osate.aadlv3.aadlv3.State#isInitial()
-	 * @see #getState()
-	 * @generated
-	 */
-	EAttribute getState_Initial();
-
-	/**
-	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.Transition <em>Transition</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Transition</em>'.
-	 * @see org.osate.aadlv3.aadlv3.Transition
-	 * @generated
-	 */
-	EClass getTransition();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.osate.aadlv3.aadlv3.Transition#getSource <em>Source</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Source</em>'.
-	 * @see org.osate.aadlv3.aadlv3.Transition#getSource()
-	 * @see #getTransition()
-	 * @generated
-	 */
-	EReference getTransition_Source();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.osate.aadlv3.aadlv3.Transition#getTarget <em>Target</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Target</em>'.
-	 * @see org.osate.aadlv3.aadlv3.Transition#getTarget()
-	 * @see #getTransition()
-	 * @generated
-	 */
-	EReference getTransition_Target();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.osate.aadlv3.aadlv3.Transition#getTriggers <em>Triggers</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Triggers</em>'.
-	 * @see org.osate.aadlv3.aadlv3.Transition#getTriggers()
-	 * @see #getTransition()
-	 * @generated
-	 */
-	EReference getTransition_Triggers();
-
-	/**
-	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.TransitionTriggerAssignment <em>Transition Trigger Assignment</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Transition Trigger Assignment</em>'.
-	 * @see org.osate.aadlv3.aadlv3.TransitionTriggerAssignment
-	 * @generated
-	 */
-	EClass getTransitionTriggerAssignment();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.osate.aadlv3.aadlv3.TransitionTriggerAssignment#getTriggers <em>Triggers</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Triggers</em>'.
-	 * @see org.osate.aadlv3.aadlv3.TransitionTriggerAssignment#getTriggers()
-	 * @see #getTransitionTriggerAssignment()
-	 * @generated
-	 */
-	EReference getTransitionTriggerAssignment_Triggers();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.osate.aadlv3.aadlv3.TransitionTriggerAssignment#getTransition <em>Transition</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Transition</em>'.
-	 * @see org.osate.aadlv3.aadlv3.TransitionTriggerAssignment#getTransition()
-	 * @see #getTransitionTriggerAssignment()
-	 * @generated
-	 */
-	EReference getTransitionTriggerAssignment_Transition();
-
-	/**
-	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.ModeAssignment <em>Mode Assignment</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Mode Assignment</em>'.
-	 * @see org.osate.aadlv3.aadlv3.ModeAssignment
-	 * @generated
-	 */
-	EClass getModeAssignment();
-
-	/**
-	 * Returns the meta object for the reference list '{@link org.osate.aadlv3.aadlv3.ModeAssignment#getMembers <em>Members</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Members</em>'.
-	 * @see org.osate.aadlv3.aadlv3.ModeAssignment#getMembers()
-	 * @see #getModeAssignment()
-	 * @generated
-	 */
-	EReference getModeAssignment_Members();
-
-	/**
-	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.StateMachine <em>State Machine</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>State Machine</em>'.
-	 * @see org.osate.aadlv3.aadlv3.StateMachine
-	 * @generated
-	 */
-	EClass getStateMachine();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.osate.aadlv3.aadlv3.StateMachine#getStates <em>States</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>States</em>'.
-	 * @see org.osate.aadlv3.aadlv3.StateMachine#getStates()
-	 * @see #getStateMachine()
-	 * @generated
-	 */
-	EReference getStateMachine_States();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.osate.aadlv3.aadlv3.StateMachine#getTransitions <em>Transitions</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Transitions</em>'.
-	 * @see org.osate.aadlv3.aadlv3.StateMachine#getTransitions()
-	 * @see #getStateMachine()
-	 * @generated
-	 */
-	EReference getStateMachine_Transitions();
 
 	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.AnnexSubclause <em>Annex Subclause</em>}'.
@@ -5526,6 +5207,24 @@ public interface Aadlv3Package extends EPackage {
 		EReference TYPE_DEF__SUPER_TYPE = eINSTANCE.getTypeDef_SuperType();
 
 		/**
+		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.EnumerationTypeImpl <em>Enumeration Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.osate.aadlv3.aadlv3.impl.EnumerationTypeImpl
+		 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getEnumerationType()
+		 * @generated
+		 */
+		EClass ENUMERATION_TYPE = eINSTANCE.getEnumerationType();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ENUMERATION_TYPE__TYPE = eINSTANCE.getEnumerationType_Type();
+
+		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.ConfigurationActualImpl <em>Configuration Actual</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -5711,6 +5410,16 @@ public interface Aadlv3Package extends EPackage {
 		 * @generated
 		 */
 		EAttribute BOOLEAN_LITERAL__VALUE = eINSTANCE.getBooleanLiteral_Value();
+
+		/**
+		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.EnumerationLiteralImpl <em>Enumeration Literal</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.osate.aadlv3.aadlv3.impl.EnumerationLiteralImpl
+		 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getEnumerationLiteral()
+		 * @generated
+		 */
+		EClass ENUMERATION_LITERAL = eINSTANCE.getEnumerationLiteral();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.ListLiteralImpl <em>List Literal</em>}' class.
@@ -5910,128 +5619,6 @@ public interface Aadlv3Package extends EPackage {
 		 * @generated
 		 */
 		EReference PROPERTY_ASSOCIATION__PROPERTY_ASSOCIATION = eINSTANCE.getPropertyAssociation_PropertyAssociation();
-
-		/**
-		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.StateImpl <em>State</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.osate.aadlv3.aadlv3.impl.StateImpl
-		 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getState()
-		 * @generated
-		 */
-		EClass STATE = eINSTANCE.getState();
-
-		/**
-		 * The meta object literal for the '<em><b>Initial</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute STATE__INITIAL = eINSTANCE.getState_Initial();
-
-		/**
-		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.TransitionImpl <em>Transition</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.osate.aadlv3.aadlv3.impl.TransitionImpl
-		 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getTransition()
-		 * @generated
-		 */
-		EClass TRANSITION = eINSTANCE.getTransition();
-
-		/**
-		 * The meta object literal for the '<em><b>Source</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TRANSITION__SOURCE = eINSTANCE.getTransition_Source();
-
-		/**
-		 * The meta object literal for the '<em><b>Target</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TRANSITION__TARGET = eINSTANCE.getTransition_Target();
-
-		/**
-		 * The meta object literal for the '<em><b>Triggers</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TRANSITION__TRIGGERS = eINSTANCE.getTransition_Triggers();
-
-		/**
-		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.TransitionTriggerAssignmentImpl <em>Transition Trigger Assignment</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.osate.aadlv3.aadlv3.impl.TransitionTriggerAssignmentImpl
-		 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getTransitionTriggerAssignment()
-		 * @generated
-		 */
-		EClass TRANSITION_TRIGGER_ASSIGNMENT = eINSTANCE.getTransitionTriggerAssignment();
-
-		/**
-		 * The meta object literal for the '<em><b>Triggers</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TRANSITION_TRIGGER_ASSIGNMENT__TRIGGERS = eINSTANCE.getTransitionTriggerAssignment_Triggers();
-
-		/**
-		 * The meta object literal for the '<em><b>Transition</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TRANSITION_TRIGGER_ASSIGNMENT__TRANSITION = eINSTANCE.getTransitionTriggerAssignment_Transition();
-
-		/**
-		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.ModeAssignmentImpl <em>Mode Assignment</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.osate.aadlv3.aadlv3.impl.ModeAssignmentImpl
-		 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getModeAssignment()
-		 * @generated
-		 */
-		EClass MODE_ASSIGNMENT = eINSTANCE.getModeAssignment();
-
-		/**
-		 * The meta object literal for the '<em><b>Members</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference MODE_ASSIGNMENT__MEMBERS = eINSTANCE.getModeAssignment_Members();
-
-		/**
-		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.StateMachineImpl <em>State Machine</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.osate.aadlv3.aadlv3.impl.StateMachineImpl
-		 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getStateMachine()
-		 * @generated
-		 */
-		EClass STATE_MACHINE = eINSTANCE.getStateMachine();
-
-		/**
-		 * The meta object literal for the '<em><b>States</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference STATE_MACHINE__STATES = eINSTANCE.getStateMachine_States();
-
-		/**
-		 * The meta object literal for the '<em><b>Transitions</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference STATE_MACHINE__TRANSITIONS = eINSTANCE.getStateMachine_Transitions();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.AnnexSubclauseImpl <em>Annex Subclause</em>}' class.

@@ -395,6 +395,19 @@ public class Aadlv3Switch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case Aadlv3Package.ENUMERATION_TYPE: {
+			EnumerationType enumerationType = (EnumerationType) theEObject;
+			T result = caseEnumerationType(enumerationType);
+			if (result == null)
+				result = caseSingleLiteral(enumerationType);
+			if (result == null)
+				result = caseLiteral(enumerationType);
+			if (result == null)
+				result = caseExpression(enumerationType);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		case Aadlv3Package.PRIMITIVE_TYPE: {
 			PrimitiveType primitiveType = (PrimitiveType) theEObject;
 			T result = casePrimitiveType(primitiveType);
@@ -517,6 +530,21 @@ public class Aadlv3Switch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case Aadlv3Package.ENUMERATION_LITERAL: {
+			EnumerationLiteral enumerationLiteral = (EnumerationLiteral) theEObject;
+			T result = caseEnumerationLiteral(enumerationLiteral);
+			if (result == null)
+				result = caseStringLiteral(enumerationLiteral);
+			if (result == null)
+				result = caseSingleLiteral(enumerationLiteral);
+			if (result == null)
+				result = caseLiteral(enumerationLiteral);
+			if (result == null)
+				result = caseExpression(enumerationLiteral);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		case Aadlv3Package.DIRECTIONAL_LITERAL: {
 			DirectionalLiteral directionalLiteral = (DirectionalLiteral) theEObject;
 			T result = caseDirectionalLiteral(directionalLiteral);
@@ -608,53 +636,6 @@ public class Aadlv3Switch<T> extends Switch<T> {
 		case Aadlv3Package.PROPERTY_ASSOCIATION: {
 			PropertyAssociation propertyAssociation = (PropertyAssociation) theEObject;
 			T result = casePropertyAssociation(propertyAssociation);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Aadlv3Package.STATE: {
-			State state = (State) theEObject;
-			T result = caseState(state);
-			if (result == null)
-				result = caseModelElement(state);
-			if (result == null)
-				result = caseNamedElement(state);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Aadlv3Package.TRANSITION: {
-			Transition transition = (Transition) theEObject;
-			T result = caseTransition(transition);
-			if (result == null)
-				result = caseModelElement(transition);
-			if (result == null)
-				result = caseNamedElement(transition);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Aadlv3Package.TRANSITION_TRIGGER_ASSIGNMENT: {
-			TransitionTriggerAssignment transitionTriggerAssignment = (TransitionTriggerAssignment) theEObject;
-			T result = caseTransitionTriggerAssignment(transitionTriggerAssignment);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Aadlv3Package.MODE_ASSIGNMENT: {
-			ModeAssignment modeAssignment = (ModeAssignment) theEObject;
-			T result = caseModeAssignment(modeAssignment);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Aadlv3Package.STATE_MACHINE: {
-			StateMachine stateMachine = (StateMachine) theEObject;
-			T result = caseStateMachine(stateMachine);
-			if (result == null)
-				result = casePackageElement(stateMachine);
-			if (result == null)
-				result = caseNamedElement(stateMachine);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -989,6 +970,21 @@ public class Aadlv3Switch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Enumeration Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Enumeration Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseEnumerationType(EnumerationType object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Configuration Actual</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1120,6 +1116,21 @@ public class Aadlv3Switch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseBooleanLiteral(BooleanLiteral object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Enumeration Literal</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Enumeration Literal</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseEnumerationLiteral(EnumerationLiteral object) {
 		return null;
 	}
 
@@ -1285,81 +1296,6 @@ public class Aadlv3Switch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T casePropertyAssociation(PropertyAssociation object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>State</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>State</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseState(State object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Transition</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Transition</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseTransition(Transition object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Transition Trigger Assignment</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Transition Trigger Assignment</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseTransitionTriggerAssignment(TransitionTriggerAssignment object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Mode Assignment</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Mode Assignment</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseModeAssignment(ModeAssignment object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>State Machine</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>State Machine</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseStateMachine(StateMachine object) {
 		return null;
 	}
 

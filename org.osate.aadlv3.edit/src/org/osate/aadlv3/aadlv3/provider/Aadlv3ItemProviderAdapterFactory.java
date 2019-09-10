@@ -431,6 +431,29 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.EnumerationType} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected EnumerationTypeItemProvider enumerationTypeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.EnumerationType}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createEnumerationTypeAdapter() {
+		if (enumerationTypeItemProvider == null) {
+			enumerationTypeItemProvider = new EnumerationTypeItemProvider(this);
+		}
+
+		return enumerationTypeItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.ConfigurationActual} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -615,6 +638,29 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.EnumerationLiteral} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected EnumerationLiteralItemProvider enumerationLiteralItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.EnumerationLiteral}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createEnumerationLiteralAdapter() {
+		if (enumerationLiteralItemProvider == null) {
+			enumerationLiteralItemProvider = new EnumerationLiteralItemProvider(this);
+		}
+
+		return enumerationLiteralItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.ListLiteral} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -796,121 +842,6 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 		}
 
 		return propertyAssociationItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.State} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected StateItemProvider stateItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.State}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createStateAdapter() {
-		if (stateItemProvider == null) {
-			stateItemProvider = new StateItemProvider(this);
-		}
-
-		return stateItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.Transition} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected TransitionItemProvider transitionItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.Transition}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createTransitionAdapter() {
-		if (transitionItemProvider == null) {
-			transitionItemProvider = new TransitionItemProvider(this);
-		}
-
-		return transitionItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.TransitionTriggerAssignment} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected TransitionTriggerAssignmentItemProvider transitionTriggerAssignmentItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.TransitionTriggerAssignment}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createTransitionTriggerAssignmentAdapter() {
-		if (transitionTriggerAssignmentItemProvider == null) {
-			transitionTriggerAssignmentItemProvider = new TransitionTriggerAssignmentItemProvider(this);
-		}
-
-		return transitionTriggerAssignmentItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.ModeAssignment} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ModeAssignmentItemProvider modeAssignmentItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.ModeAssignment}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createModeAssignmentAdapter() {
-		if (modeAssignmentItemProvider == null) {
-			modeAssignmentItemProvider = new ModeAssignmentItemProvider(this);
-		}
-
-		return modeAssignmentItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.StateMachine} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected StateMachineItemProvider stateMachineItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.StateMachine}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createStateMachineAdapter() {
-		if (stateMachineItemProvider == null) {
-			stateMachineItemProvider = new StateMachineItemProvider(this);
-		}
-
-		return stateMachineItemProvider;
 	}
 
 	/**
@@ -1246,6 +1177,8 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 			namedTypeItemProvider.dispose();
 		if (typeDefItemProvider != null)
 			typeDefItemProvider.dispose();
+		if (enumerationTypeItemProvider != null)
+			enumerationTypeItemProvider.dispose();
 		if (primitiveTypeItemProvider != null)
 			primitiveTypeItemProvider.dispose();
 		if (compositeTypeItemProvider != null)
@@ -1260,6 +1193,8 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 			stringLiteralItemProvider.dispose();
 		if (booleanLiteralItemProvider != null)
 			booleanLiteralItemProvider.dispose();
+		if (enumerationLiteralItemProvider != null)
+			enumerationLiteralItemProvider.dispose();
 		if (directionalLiteralItemProvider != null)
 			directionalLiteralItemProvider.dispose();
 		if (eCollectionItemProvider != null)
@@ -1276,16 +1211,6 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 			multiExpressionOperationItemProvider.dispose();
 		if (propertyAssociationItemProvider != null)
 			propertyAssociationItemProvider.dispose();
-		if (stateItemProvider != null)
-			stateItemProvider.dispose();
-		if (transitionItemProvider != null)
-			transitionItemProvider.dispose();
-		if (transitionTriggerAssignmentItemProvider != null)
-			transitionTriggerAssignmentItemProvider.dispose();
-		if (modeAssignmentItemProvider != null)
-			modeAssignmentItemProvider.dispose();
-		if (stateMachineItemProvider != null)
-			stateMachineItemProvider.dispose();
 		if (annexSubclauseItemProvider != null)
 			annexSubclauseItemProvider.dispose();
 		if (annexLibraryItemProvider != null)

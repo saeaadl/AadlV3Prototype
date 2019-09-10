@@ -81,12 +81,12 @@ public interface Classifier extends NamedType {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Use Modes</em>' reference.
-	 * @see #setUseModes(StateMachine)
+	 * @see #setUseModes(EnumerationType)
 	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getClassifier_UseModes()
 	 * @model
 	 * @generated
 	 */
-	StateMachine getUseModes();
+	EnumerationType getUseModes();
 
 	/**
 	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.Classifier#getUseModes <em>Use Modes</em>}' reference.
@@ -96,7 +96,7 @@ public interface Classifier extends NamedType {
 	 * @see #getUseModes()
 	 * @generated
 	 */
-	void setUseModes(StateMachine value);
+	void setUseModes(EnumerationType value);
 
 	/**
 	 * Returns the value of the '<em><b>Inherits Modes</b></em>' attribute.

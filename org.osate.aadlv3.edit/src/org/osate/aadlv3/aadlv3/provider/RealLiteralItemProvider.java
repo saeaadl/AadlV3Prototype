@@ -102,7 +102,7 @@ public class RealLiteralItemProvider extends NumberLiteralItemProvider {
 		if (label == null) {
 			label = "";
 		}
-		return ((IntegerLiteral) object).getValue()  +" "+label;
+		return ((IntegerLiteral) object).getValue() + " " + label;
 	}
 
 	/**

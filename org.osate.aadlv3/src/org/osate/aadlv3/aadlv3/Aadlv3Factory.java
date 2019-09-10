@@ -170,6 +170,15 @@ public interface Aadlv3Factory extends EFactory {
 	TypeDef createTypeDef();
 
 	/**
+	 * Returns a new object of class '<em>Enumeration Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Enumeration Type</em>'.
+	 * @generated
+	 */
+	EnumerationType createEnumerationType();
+
+	/**
 	 * Returns a new object of class '<em>Configuration Actual</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -242,6 +251,15 @@ public interface Aadlv3Factory extends EFactory {
 	BooleanLiteral createBooleanLiteral();
 
 	/**
+	 * Returns a new object of class '<em>Enumeration Literal</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Enumeration Literal</em>'.
+	 * @generated
+	 */
+	EnumerationLiteral createEnumerationLiteral();
+
+	/**
 	 * Returns a new object of class '<em>List Literal</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -312,51 +330,6 @@ public interface Aadlv3Factory extends EFactory {
 	 * @generated
 	 */
 	PropertyAssociation createPropertyAssociation();
-
-	/**
-	 * Returns a new object of class '<em>State</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>State</em>'.
-	 * @generated
-	 */
-	State createState();
-
-	/**
-	 * Returns a new object of class '<em>Transition</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Transition</em>'.
-	 * @generated
-	 */
-	Transition createTransition();
-
-	/**
-	 * Returns a new object of class '<em>Transition Trigger Assignment</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Transition Trigger Assignment</em>'.
-	 * @generated
-	 */
-	TransitionTriggerAssignment createTransitionTriggerAssignment();
-
-	/**
-	 * Returns a new object of class '<em>Mode Assignment</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Mode Assignment</em>'.
-	 * @generated
-	 */
-	ModeAssignment createModeAssignment();
-
-	/**
-	 * Returns a new object of class '<em>State Machine</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>State Machine</em>'.
-	 * @generated
-	 */
-	StateMachine createStateMachine();
 
 	/**
 	 * Returns a new object of class '<em>Annex Subclause</em>'.
