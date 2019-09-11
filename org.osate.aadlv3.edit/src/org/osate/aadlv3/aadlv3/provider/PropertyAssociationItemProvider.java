@@ -221,9 +221,6 @@ public class PropertyAssociationItemProvider extends ItemProviderAdapter impleme
 				Aadlv3Factory.eINSTANCE.createPathElement()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
-				Aadlv3Factory.eINSTANCE.createEnumerationType()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
 				Aadlv3Factory.eINSTANCE.createTypeReference()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
@@ -245,10 +242,16 @@ public class PropertyAssociationItemProvider extends ItemProviderAdapter impleme
 				Aadlv3Factory.eINSTANCE.createDirectionalLiteral()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
+				Aadlv3Factory.eINSTANCE.createECollection()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
 				Aadlv3Factory.eINSTANCE.createListLiteral()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
 				Aadlv3Factory.eINSTANCE.createSetLiteral()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
+				Aadlv3Factory.eINSTANCE.createMultiOperandExpression()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
 				Aadlv3Factory.eINSTANCE.createMultiLiteralConstraint()));

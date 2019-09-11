@@ -25,6 +25,6 @@ package org.osate.aadlv3.aadlv3;
  * @model
  * @generated
  */
-public interface SetLiteral extends LCollection {
+public interface SetLiteral extends ECollection {
 
 } // SetLiteral

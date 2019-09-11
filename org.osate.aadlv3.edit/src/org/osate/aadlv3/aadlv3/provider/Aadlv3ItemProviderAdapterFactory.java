@@ -799,26 +799,26 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.MultiExpressionOperation} instances.
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.MultiOperandExpression} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected MultiExpressionOperationItemProvider multiExpressionOperationItemProvider;
+	protected MultiOperandExpressionItemProvider multiOperandExpressionItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.MultiExpressionOperation}.
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.MultiOperandExpression}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createMultiExpressionOperationAdapter() {
-		if (multiExpressionOperationItemProvider == null) {
-			multiExpressionOperationItemProvider = new MultiExpressionOperationItemProvider(this);
+	public Adapter createMultiOperandExpressionAdapter() {
+		if (multiOperandExpressionItemProvider == null) {
+			multiOperandExpressionItemProvider = new MultiOperandExpressionItemProvider(this);
 		}
 
-		return multiExpressionOperationItemProvider;
+		return multiOperandExpressionItemProvider;
 	}
 
 	/**
@@ -888,6 +888,52 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 		}
 
 		return annexLibraryItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.BehaviorSpecification} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected BehaviorSpecificationItemProvider behaviorSpecificationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.BehaviorSpecification}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createBehaviorSpecificationAdapter() {
+		if (behaviorSpecificationItemProvider == null) {
+			behaviorSpecificationItemProvider = new BehaviorSpecificationItemProvider(this);
+		}
+
+		return behaviorSpecificationItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.StateSpecification} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected StateSpecificationItemProvider stateSpecificationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.StateSpecification}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createStateSpecificationAdapter() {
+		if (stateSpecificationItemProvider == null) {
+			stateSpecificationItemProvider = new StateSpecificationItemProvider(this);
+		}
+
+		return stateSpecificationItemProvider;
 	}
 
 	/**
@@ -1207,14 +1253,18 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 			expressionItemProvider.dispose();
 		if (multiLiteralConstraintItemProvider != null)
 			multiLiteralConstraintItemProvider.dispose();
-		if (multiExpressionOperationItemProvider != null)
-			multiExpressionOperationItemProvider.dispose();
+		if (multiOperandExpressionItemProvider != null)
+			multiOperandExpressionItemProvider.dispose();
 		if (propertyAssociationItemProvider != null)
 			propertyAssociationItemProvider.dispose();
 		if (annexSubclauseItemProvider != null)
 			annexSubclauseItemProvider.dispose();
 		if (annexLibraryItemProvider != null)
 			annexLibraryItemProvider.dispose();
+		if (behaviorSpecificationItemProvider != null)
+			behaviorSpecificationItemProvider.dispose();
+		if (stateSpecificationItemProvider != null)
+			stateSpecificationItemProvider.dispose();
 	}
 
 }

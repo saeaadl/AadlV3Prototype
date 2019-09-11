@@ -35,7 +35,7 @@ import org.osate.aadlv3.aadlv3.NumberLiteral;
  * <!-- end-user-doc -->
  * @generated
  */
-public class NumberLiteralItemProvider extends SingleLiteralItemProvider {
+public class NumberLiteralItemProvider extends LiteralItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

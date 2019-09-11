@@ -10,7 +10,7 @@ import org.osate.aadlv3.aadlv3.ClassifierAssignment
 import org.osate.aadlv3.aadlv3.ComponentInterface
 import org.osate.aadlv3.aadlv3.Feature
 import org.osate.aadlv3.aadlv3.FeatureCategory
-import org.osate.aadlv3.aadlv3.LCollection
+import org.osate.aadlv3.aadlv3.ECollection
 import org.osate.aadlv3.aadlv3.MultiLiteralConstraint
 import org.osate.aadlv3.aadlv3.PathElement
 import org.osate.aadlv3.aadlv3.PathSequence
@@ -437,7 +437,7 @@ class Instantiator {
 		var found = false
 		for (epai : pais) {
 			if (samePropertyDefinition(epai.property, pa.property)) {
-				if (epai.value instanceof LCollection){
+				if (epai.value instanceof ECollection){
 					epai.addValues(pa)
 				} else {
 					overridePropertyValue(epai, pa)
@@ -452,8 +452,8 @@ class Instantiator {
 	
 	
 	def static void addValues(PropertyAssociation epai, PropertyAssociation npa) {
-		val values = epai.value as LCollection
-		val newvalues = npa.value.copy as LCollection
+		val values = epai.value as ECollection
+		val newvalues = npa.value.copy as ECollection
 		values.elements.addAll(newvalues.elements)
 	}
 	

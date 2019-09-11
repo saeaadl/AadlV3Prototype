@@ -21,29 +21,39 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
+import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.IItemPropertySource;
+import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
+import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.osate.aadlv3.aadlv3.Aadlv3Factory;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
-import org.osate.aadlv3.aadlv3.LCollection;
+import org.osate.aadlv3.aadlv3.StateSpecification;
 
 /**
- * This is the item provider adapter for a {@link org.osate.aadlv3.aadlv3.LCollection} object.
+ * This is the item provider adapter for a {@link org.osate.aadlv3.aadlv3.StateSpecification} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class LCollectionItemProvider extends LiteralItemProvider {
+public class StateSpecificationItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LCollectionItemProvider(AdapterFactory adapterFactory) {
+	public StateSpecificationItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -58,8 +68,24 @@ public class LCollectionItemProvider extends LiteralItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addStateVariablePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the State Variable feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addStateVariablePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_StateSpecification_stateVariable_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_StateSpecification_stateVariable_feature",
+						"_UI_StateSpecification_type"),
+				Aadlv3Package.Literals.STATE_SPECIFICATION__STATE_VARIABLE, true, false, true, null, null, null));
 	}
 
 	/**
@@ -74,7 +100,7 @@ public class LCollectionItemProvider extends LiteralItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(Aadlv3Package.Literals.LCOLLECTION__ELEMENTS);
+			childrenFeatures.add(Aadlv3Package.Literals.STATE_SPECIFICATION__CURRENT_STATE);
 		}
 		return childrenFeatures;
 	}
@@ -93,14 +119,14 @@ public class LCollectionItemProvider extends LiteralItemProvider {
 	}
 
 	/**
-	 * This returns LCollection.gif.
+	 * This returns StateSpecification.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/LCollection"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/StateSpecification"));
 	}
 
 	/**
@@ -111,7 +137,7 @@ public class LCollectionItemProvider extends LiteralItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_LCollection_type");
+		return getString("_UI_StateSpecification_type");
 	}
 
 	/**
@@ -125,8 +151,8 @@ public class LCollectionItemProvider extends LiteralItemProvider {
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(LCollection.class)) {
-		case Aadlv3Package.LCOLLECTION__ELEMENTS:
+		switch (notification.getFeatureID(StateSpecification.class)) {
+		case Aadlv3Package.STATE_SPECIFICATION__CURRENT_STATE:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -144,38 +170,19 @@ public class LCollectionItemProvider extends LiteralItemProvider {
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.LCOLLECTION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createEnumerationType()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.LCOLLECTION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createTypeReference()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.LCOLLECTION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createIntegerLiteral()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.LCOLLECTION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createRealLiteral()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.LCOLLECTION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createStringLiteral()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.LCOLLECTION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createBooleanLiteral()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.LCOLLECTION__ELEMENTS,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.STATE_SPECIFICATION__CURRENT_STATE,
 				Aadlv3Factory.eINSTANCE.createEnumerationLiteral()));
+	}
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.LCOLLECTION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createDirectionalLiteral()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.LCOLLECTION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createListLiteral()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.LCOLLECTION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createSetLiteral()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.LCOLLECTION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createMultiLiteralConstraint()));
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		return Aadlv3EditPlugin.INSTANCE;
 	}
 
 }

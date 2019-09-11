@@ -28,7 +28,7 @@ import org.osate.aadlv3.aadlv3.Feature
 import org.osate.aadlv3.aadlv3.FeatureCategory
 import org.osate.aadlv3.aadlv3.FeatureDirection
 import org.osate.aadlv3.aadlv3.Import
-import org.osate.aadlv3.aadlv3.LCollection
+import org.osate.aadlv3.aadlv3.ECollection
 import org.osate.aadlv3.aadlv3.Literal
 import org.osate.aadlv3.aadlv3.ModelElement
 import org.osate.aadlv3.aadlv3.ModelElementReference
@@ -49,6 +49,7 @@ import org.osate.av3instance.av3instance.InstanceObject
 
 import static extension org.eclipse.xtext.EcoreUtil2.*
 import static extension org.osate.aadlv3.util.Av3API.*
+import org.osate.aadlv3.aadlv3.Expression
 
 class Aadlv3Util {
 	
@@ -1485,18 +1486,25 @@ class Aadlv3Util {
 	/**
 	 * collection contains element, where element can be a single element or a collection, i.e., element collection is a sub-collection of collection
 	 */
-	def static boolean contains(LCollection collection, Literal element){
-		if (element instanceof LCollection){
+	def static boolean contains(ECollection collection, Literal element){
+		if (element instanceof ECollection){
 			return collection.contains(element)
 		}
-		return collection.elements.exists[elem| elem.sameAs(element)]
+		return collection.elements.exists[elem| elem instanceof Literal?elem.sameAs(element):false]
+	}
+	
+	def static boolean contains(ECollection collection, Expression element){
+		if (element instanceof Literal){
+			return collection.contains(element)
+		}
+		return false
 	}
 	
 	
 	/**
 	 * subcollection is contained in collection
 	 */
-	def static boolean contains(LCollection coll, LCollection subCollection){
+	def static boolean contains(ECollection coll, ECollection subCollection){
 		return subCollection.elements.forall[elem| coll.contains(elem)]
 	}
 	

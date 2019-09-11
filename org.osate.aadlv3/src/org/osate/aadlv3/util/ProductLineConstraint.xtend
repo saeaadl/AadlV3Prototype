@@ -6,7 +6,7 @@ import org.eclipse.xtext.EcoreUtil2
 import org.osate.aadlv3.aadlv3.ComponentInterface
 import org.osate.aadlv3.aadlv3.ComponentRealization
 import org.osate.aadlv3.aadlv3.InstanceConfiguration
-import org.osate.aadlv3.aadlv3.LCollection
+import org.osate.aadlv3.aadlv3.ECollection
 import org.osate.aadlv3.aadlv3.MultiLiteralConstraint
 import org.osate.aadlv3.aadlv3.NamedElement
 import org.osate.aadlv3.aadlv3.NamedType
@@ -22,7 +22,7 @@ class ProductLineConstraint {
 	 * value: a collection of literals associated with a classifier
 	 * constraint: a collection of alternatives (ANY) where each alternative represents a single literal or collection of literals (ALL)
 	 */
-	def static boolean satisfies(LCollection value, MultiLiteralConstraint constraint) {
+	def static boolean satisfies(ECollection value, MultiLiteralConstraint constraint) {
 		if (constraint === null|| value === null) return true
 		constraint.elements.exists[alt| value.contains(alt)]
 		return false
@@ -64,8 +64,8 @@ class ProductLineConstraint {
 		return ic.propertyConstraint?.constraintExpression
 	}
 	
-	def static LCollection getFeatureLabels(NamedElement cl){
-		return getOwnedPropertyValue(cl,FeatureLabels) as LCollection
+	def static ECollection getFeatureLabels(NamedElement cl){
+		return getOwnedPropertyValue(cl,FeatureLabels) as ECollection
 	}
 	
 	

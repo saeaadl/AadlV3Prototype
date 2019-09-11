@@ -31,7 +31,7 @@ package org.osate.aadlv3.aadlv3;
  * @model
  * @generated
  */
-public interface StringLiteral extends SingleLiteral {
+public interface StringLiteral extends Literal {
 	/**
 	 * Returns the value of the '<em><b>Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->

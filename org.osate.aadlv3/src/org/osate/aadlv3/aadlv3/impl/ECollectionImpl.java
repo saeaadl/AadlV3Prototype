@@ -44,7 +44,7 @@ import org.osate.aadlv3.aadlv3.Expression;
  *
  * @generated
  */
-public class ECollectionImpl extends ExpressionImpl implements ECollection {
+public class ECollectionImpl extends LiteralImpl implements ECollection {
 	/**
 	 * The cached value of the '{@link #getElements() <em>Elements</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -160,6 +160,23 @@ public class ECollectionImpl extends ExpressionImpl implements ECollection {
 			return elements != null && !elements.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	@Override
+	public boolean sameAs(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ECollectionImpl other = (ECollectionImpl) obj;
+		if (elements == null) {
+			if (other.elements != null)
+				return false;
+		} else if (!elements.equals(other.elements))
+			return false;
+		return true;
 	}
 
 } //ECollectionImpl

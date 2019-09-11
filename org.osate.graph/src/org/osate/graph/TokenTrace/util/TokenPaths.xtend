@@ -1,6 +1,6 @@
 package org.osate.graph.TokenTrace.util
 
-import org.osate.aadlv3.aadlv3.LCollection
+import org.osate.aadlv3.aadlv3.ECollection
 import org.osate.aadlv3.aadlv3.NamedElement
 import org.osate.av3instance.av3instance.ComponentInstance
 
@@ -17,12 +17,12 @@ class TokenPaths {
 	val static String TokenSource = "TokenSource";
 	val static String TokenSink = "TokenSink";
 	
-	def static LCollection getTokenSource(NamedElement ne){
-		return getOwnedPropertyValue(ne,TokenSource) as LCollection
+	def static ECollection getTokenSource(NamedElement ne){
+		return getOwnedPropertyValue(ne,TokenSource) as ECollection
 	}
 	
-	def static LCollection getTokenSink(NamedElement ne){
-		return getOwnedPropertyValue(ne,TokenSink) as LCollection
+	def static ECollection getTokenSink(NamedElement ne){
+		return getOwnedPropertyValue(ne,TokenSink) as ECollection
 	}
 	
 	def static Iterable<ComponentInstance> getAllTokenSources(ComponentInstance root){

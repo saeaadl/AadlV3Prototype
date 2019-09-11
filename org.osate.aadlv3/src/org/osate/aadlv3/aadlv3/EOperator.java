@@ -32,25 +32,125 @@ import org.eclipse.emf.common.util.Enumerator;
  */
 public enum EOperator implements Enumerator {
 	/**
-	 * The '<em><b>OR</b></em>' literal object.
+	 * The '<em><b>ANY</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #OR_VALUE
+	 * @see #ANY_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	OR(0, "OR", "or");
+	ANY(0, "ANY", "any"),
+	/**
+	 * The '<em><b>ALL</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
+	 * @see #ALL_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	ALL(1, "ALL", "all"),
+	/**
+	 * The '<em><b>ONEOF</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
+	 * @see #ONEOF_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	ONEOF(3, "ONEOF", "oneof"),
+	/**
+	 * The '<em><b>KOFN</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
+	 * @see #KOFN_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	KOFN(2, "KOFN", "kofn"),
+	/**
+	 * The '<em><b>KORMORE</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
+	 * @see #KORMORE_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	KORMORE(4, "KORMORE", "kormore"),
+	/**
+	 * The '<em><b>KORLESS</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
+	 * @see #KORLESS_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	KORLESS(5, "KORLESS", "korless");
 
 	/**
-	 * The '<em><b>OR</b></em>' literal value.
+	 * The '<em><b>ANY</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #OR
-	 * @model literal="or"
+	 * @see #ANY
+	 * @model literal="any"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int OR_VALUE = 0;
+	public static final int ANY_VALUE = 0;
+
+	/**
+	 * The '<em><b>ALL</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #ALL
+	 * @model literal="all"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int ALL_VALUE = 1;
+
+	/**
+	 * The '<em><b>ONEOF</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #ONEOF
+	 * @model literal="oneof"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int ONEOF_VALUE = 3;
+
+	/**
+	 * The '<em><b>KOFN</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #KOFN
+	 * @model literal="kofn"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int KOFN_VALUE = 2;
+
+	/**
+	 * The '<em><b>KORMORE</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #KORMORE
+	 * @model literal="kormore"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int KORMORE_VALUE = 4;
+
+	/**
+	 * The '<em><b>KORLESS</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #KORLESS
+	 * @model literal="korless"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int KORLESS_VALUE = 5;
 
 	/**
 	 * An array of all the '<em><b>EOperator</b></em>' enumerators.
@@ -58,7 +158,7 @@ public enum EOperator implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final EOperator[] VALUES_ARRAY = new EOperator[] { OR, };
+	private static final EOperator[] VALUES_ARRAY = new EOperator[] { ANY, ALL, ONEOF, KOFN, KORMORE, KORLESS, };
 
 	/**
 	 * A public read-only list of all the '<em><b>EOperator</b></em>' enumerators.
@@ -114,8 +214,18 @@ public enum EOperator implements Enumerator {
 	 */
 	public static EOperator get(int value) {
 		switch (value) {
-		case OR_VALUE:
-			return OR;
+		case ANY_VALUE:
+			return ANY;
+		case ALL_VALUE:
+			return ALL;
+		case ONEOF_VALUE:
+			return ONEOF;
+		case KOFN_VALUE:
+			return KOFN;
+		case KORMORE_VALUE:
+			return KORMORE;
+		case KORLESS_VALUE:
+			return KORLESS;
 		}
 		return null;
 	}

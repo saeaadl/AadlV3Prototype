@@ -26,7 +26,7 @@ import org.osate.aadlv3.aadlv3.SetLiteral;
  *
  * @generated
  */
-public class SetLiteralImpl extends LCollectionImpl implements SetLiteral {
+public class SetLiteralImpl extends ECollectionImpl implements SetLiteral {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

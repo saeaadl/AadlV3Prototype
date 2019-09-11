@@ -28,22 +28,22 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.EOperator;
-import org.osate.aadlv3.aadlv3.MultiExpressionOperation;
+import org.osate.aadlv3.aadlv3.MultiOperandExpression;
 
 /**
- * This is the item provider adapter for a {@link org.osate.aadlv3.aadlv3.MultiExpressionOperation} object.
+ * This is the item provider adapter for a {@link org.osate.aadlv3.aadlv3.MultiOperandExpression} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class MultiExpressionOperationItemProvider extends ECollectionItemProvider {
+public class MultiOperandExpressionItemProvider extends ECollectionItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MultiExpressionOperationItemProvider(AdapterFactory adapterFactory) {
+	public MultiOperandExpressionItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -70,24 +70,24 @@ public class MultiExpressionOperationItemProvider extends ECollectionItemProvide
 	 * @generated
 	 */
 	protected void addOperatorPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_MultiExpressionOperation_operator_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_MultiExpressionOperation_operator_feature",
-								"_UI_MultiExpressionOperation_type"),
-						Aadlv3Package.Literals.MULTI_EXPRESSION_OPERATION__OPERATOR, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_MultiOperandExpression_operator_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_MultiOperandExpression_operator_feature",
+						"_UI_MultiOperandExpression_type"),
+				Aadlv3Package.Literals.MULTI_OPERAND_EXPRESSION__OPERATOR, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This returns MultiExpressionOperation.gif.
+	 * This returns MultiOperandExpression.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/MultiExpressionOperation"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/MultiOperandExpression"));
 	}
 
 	/**
@@ -98,10 +98,10 @@ public class MultiExpressionOperationItemProvider extends ECollectionItemProvide
 	 */
 	@Override
 	public String getText(Object object) {
-		EOperator labelValue = ((MultiExpressionOperation) object).getOperator();
+		EOperator labelValue = ((MultiOperandExpression) object).getOperator();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ? getString("_UI_MultiExpressionOperation_type")
-				: getString("_UI_MultiExpressionOperation_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_MultiOperandExpression_type")
+				: getString("_UI_MultiOperandExpression_type") + " " + label;
 	}
 
 	/**
@@ -115,8 +115,8 @@ public class MultiExpressionOperationItemProvider extends ECollectionItemProvide
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(MultiExpressionOperation.class)) {
-		case Aadlv3Package.MULTI_EXPRESSION_OPERATION__OPERATOR:
+		switch (notification.getFeatureID(MultiOperandExpression.class)) {
+		case Aadlv3Package.MULTI_OPERAND_EXPRESSION__OPERATOR:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}

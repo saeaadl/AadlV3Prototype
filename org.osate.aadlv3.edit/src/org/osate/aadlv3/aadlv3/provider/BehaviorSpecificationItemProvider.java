@@ -23,27 +23,28 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.osate.aadlv3.aadlv3.Aadlv3Factory;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
-import org.osate.aadlv3.aadlv3.ECollection;
+import org.osate.aadlv3.aadlv3.BehaviorSpecification;
 
 /**
- * This is the item provider adapter for a {@link org.osate.aadlv3.aadlv3.ECollection} object.
+ * This is the item provider adapter for a {@link org.osate.aadlv3.aadlv3.BehaviorSpecification} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ECollectionItemProvider extends LiteralItemProvider {
+public class BehaviorSpecificationItemProvider extends ModelElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ECollectionItemProvider(AdapterFactory adapterFactory) {
+	public BehaviorSpecificationItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -58,8 +59,40 @@ public class ECollectionItemProvider extends LiteralItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addTargetStatePropertyDescriptor(object);
+			addResultPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Target State feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTargetStatePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_BehaviorSpecification_targetState_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_BehaviorSpecification_targetState_feature",
+						"_UI_BehaviorSpecification_type"),
+				Aadlv3Package.Literals.BEHAVIOR_SPECIFICATION__TARGET_STATE, true, false, true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Result feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addResultPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_BehaviorSpecification_result_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_BehaviorSpecification_result_feature",
+								"_UI_BehaviorSpecification_type"),
+						Aadlv3Package.Literals.BEHAVIOR_SPECIFICATION__RESULT, true, false, true, null, null, null));
 	}
 
 	/**
@@ -74,7 +107,8 @@ public class ECollectionItemProvider extends LiteralItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(Aadlv3Package.Literals.ECOLLECTION__ELEMENTS);
+			childrenFeatures.add(Aadlv3Package.Literals.BEHAVIOR_SPECIFICATION__GUARD);
+			childrenFeatures.add(Aadlv3Package.Literals.BEHAVIOR_SPECIFICATION__CONDITION);
 		}
 		return childrenFeatures;
 	}
@@ -93,14 +127,14 @@ public class ECollectionItemProvider extends LiteralItemProvider {
 	}
 
 	/**
-	 * This returns ECollection.gif.
+	 * This returns BehaviorSpecification.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ECollection"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/BehaviorSpecification"));
 	}
 
 	/**
@@ -111,7 +145,9 @@ public class ECollectionItemProvider extends LiteralItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_ECollection_type");
+		String label = ((BehaviorSpecification) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_BehaviorSpecification_type")
+				: getString("_UI_BehaviorSpecification_type") + " " + label;
 	}
 
 	/**
@@ -125,8 +161,9 @@ public class ECollectionItemProvider extends LiteralItemProvider {
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ECollection.class)) {
-		case Aadlv3Package.ECOLLECTION__ELEMENTS:
+		switch (notification.getFeatureID(BehaviorSpecification.class)) {
+		case Aadlv3Package.BEHAVIOR_SPECIFICATION__GUARD:
+		case Aadlv3Package.BEHAVIOR_SPECIFICATION__CONDITION:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -144,43 +181,10 @@ public class ECollectionItemProvider extends LiteralItemProvider {
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ECOLLECTION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createTypeReference()));
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.BEHAVIOR_SPECIFICATION__GUARD,
+				Aadlv3Factory.eINSTANCE.createStateSpecification()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ECOLLECTION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createExpression()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ECOLLECTION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createIntegerLiteral()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ECOLLECTION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createRealLiteral()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ECOLLECTION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createStringLiteral()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ECOLLECTION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createBooleanLiteral()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ECOLLECTION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createEnumerationLiteral()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ECOLLECTION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createDirectionalLiteral()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ECOLLECTION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createECollection()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ECOLLECTION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createListLiteral()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ECOLLECTION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createSetLiteral()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ECOLLECTION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createMultiOperandExpression()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ECOLLECTION__ELEMENTS,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.BEHAVIOR_SPECIFICATION__CONDITION,
 				Aadlv3Factory.eINSTANCE.createMultiLiteralConstraint()));
 	}
 

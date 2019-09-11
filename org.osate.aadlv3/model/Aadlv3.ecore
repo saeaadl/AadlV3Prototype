@@ -227,7 +227,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="superType" eType="#//Type"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="EnumerationType" eSuperTypes="#//SingleLiteral">
+  <eClassifiers xsi:type="ecore:EClass" name="EnumerationType">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//EnumerationLiteral"
         containment="true"/>
   </eClassifiers>
@@ -250,15 +250,14 @@
     <eLiterals name="SET" value="1" literal="set"/>
     <eLiterals name="DIRECTIONAL" value="2" literal="directional"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TypeReference" eSuperTypes="#//SingleLiteral #//Type">
+  <eClassifiers xsi:type="ecore:EClass" name="TypeReference" eSuperTypes="#//Type #//Literal">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="reverse" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//NamedType"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="actuals" upperBound="-1"
         eType="#//ConfigurationActual" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Literal" abstract="true" eSuperTypes="#//Expression"/>
-  <eClassifiers xsi:type="ecore:EClass" name="SingleLiteral" abstract="true" eSuperTypes="#//Literal"/>
-  <eClassifiers xsi:type="ecore:EClass" name="NumberLiteral" abstract="true" eSuperTypes="#//SingleLiteral">
+  <eClassifiers xsi:type="ecore:EClass" name="NumberLiteral" abstract="true" eSuperTypes="#//Literal">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="unit" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IntegerLiteral" eSuperTypes="#//NumberLiteral">
@@ -267,10 +266,10 @@
   <eClassifiers xsi:type="ecore:EClass" name="RealLiteral" eSuperTypes="#//NumberLiteral">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="StringLiteral" eSuperTypes="#//SingleLiteral">
+  <eClassifiers xsi:type="ecore:EClass" name="StringLiteral" eSuperTypes="#//Literal">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BooleanLiteral" eSuperTypes="#//SingleLiteral">
+  <eClassifiers xsi:type="ecore:EClass" name="BooleanLiteral" eSuperTypes="#//Literal">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EnumerationLiteral" eSuperTypes="#//StringLiteral"/>
@@ -279,33 +278,24 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Literal"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ECollection" eSuperTypes="#//Expression">
+  <eClassifiers xsi:type="ecore:EClass" name="ECollection" eSuperTypes="#//Literal">
     <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
         eType="#//Expression" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LCollection" abstract="true" eSuperTypes="#//Literal">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
-        eType="#//Literal" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ListLiteral" eSuperTypes="#//LCollection"/>
-  <eClassifiers xsi:type="ecore:EClass" name="SetLiteral" eSuperTypes="#//LCollection"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ListLiteral" eSuperTypes="#//ECollection"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SetLiteral" eSuperTypes="#//ECollection"/>
   <eClassifiers xsi:type="ecore:EClass" name="Expression"/>
-  <eClassifiers xsi:type="ecore:EClass" name="MultiLiteralConstraint" eSuperTypes="#//LCollection">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="#//LOperator"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="MultiExpressionOperation" eSuperTypes="#//ECollection">
+  <eClassifiers xsi:type="ecore:EClass" name="MultiLiteralConstraint" eSuperTypes="#//MultiOperandExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MultiOperandExpression" eSuperTypes="#//ECollection">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="#//EOperator"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="LOperator">
+  <eClassifiers xsi:type="ecore:EEnum" name="EOperator">
     <eLiterals name="ANY" literal="any"/>
     <eLiterals name="ALL" value="1" literal="all"/>
     <eLiterals name="ONEOF" value="3" literal="oneof"/>
     <eLiterals name="KOFN" value="2" literal="kofn"/>
     <eLiterals name="KORMORE" value="4" literal="kormore"/>
     <eLiterals name="KORLESS" value="5" literal="korless"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="EOperator">
-    <eLiterals name="OR" literal="or"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PropertyAssociation">
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//ModelElementReference"
@@ -324,4 +314,18 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AnnexSubclause" eSuperTypes="#//ModelElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="AnnexLibrary" eSuperTypes="#//PackageDeclaration"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BehaviorSpecification" eSuperTypes="#//ModelElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="guard" eType="#//StateSpecification"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="targetState" ordered="false"
+        eType="#//StateSpecification"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//MultiLiteralConstraint"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="result" eType="#//Literal"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StateSpecification">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stateVariable" eType="#//StringLiteral"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="currentState" eType="#//EnumerationLiteral"
+        containment="true"/>
+  </eClassifiers>
 </ecore:EPackage>

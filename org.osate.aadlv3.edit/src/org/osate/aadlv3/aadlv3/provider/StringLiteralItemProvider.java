@@ -35,7 +35,7 @@ import org.osate.aadlv3.aadlv3.StringLiteral;
  * <!-- end-user-doc -->
  * @generated
  */
-public class StringLiteralItemProvider extends SingleLiteralItemProvider {
+public class StringLiteralItemProvider extends LiteralItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

@@ -144,14 +144,18 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 			return createExpression();
 		case Aadlv3Package.MULTI_LITERAL_CONSTRAINT:
 			return createMultiLiteralConstraint();
-		case Aadlv3Package.MULTI_EXPRESSION_OPERATION:
-			return createMultiExpressionOperation();
+		case Aadlv3Package.MULTI_OPERAND_EXPRESSION:
+			return createMultiOperandExpression();
 		case Aadlv3Package.PROPERTY_ASSOCIATION:
 			return createPropertyAssociation();
 		case Aadlv3Package.ANNEX_SUBCLAUSE:
 			return createAnnexSubclause();
 		case Aadlv3Package.ANNEX_LIBRARY:
 			return createAnnexLibrary();
+		case Aadlv3Package.BEHAVIOR_SPECIFICATION:
+			return createBehaviorSpecification();
+		case Aadlv3Package.STATE_SPECIFICATION:
+			return createStateSpecification();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -177,8 +181,6 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 			return createPrimitiveFromString(eDataType, initialValue);
 		case Aadlv3Package.COMPOSITE:
 			return createCompositeFromString(eDataType, initialValue);
-		case Aadlv3Package.LOPERATOR:
-			return createLOperatorFromString(eDataType, initialValue);
 		case Aadlv3Package.EOPERATOR:
 			return createEOperatorFromString(eDataType, initialValue);
 		case Aadlv3Package.PROPERTY_ASSOCIATION_TYPE:
@@ -208,8 +210,6 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 			return convertPrimitiveToString(eDataType, instanceValue);
 		case Aadlv3Package.COMPOSITE:
 			return convertCompositeToString(eDataType, instanceValue);
-		case Aadlv3Package.LOPERATOR:
-			return convertLOperatorToString(eDataType, instanceValue);
 		case Aadlv3Package.EOPERATOR:
 			return convertEOperatorToString(eDataType, instanceValue);
 		case Aadlv3Package.PROPERTY_ASSOCIATION_TYPE:
@@ -566,9 +566,9 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 	 * @generated
 	 */
 	@Override
-	public MultiExpressionOperation createMultiExpressionOperation() {
-		MultiExpressionOperationImpl multiExpressionOperation = new MultiExpressionOperationImpl();
-		return multiExpressionOperation;
+	public MultiOperandExpression createMultiOperandExpression() {
+		MultiOperandExpressionImpl multiOperandExpression = new MultiOperandExpressionImpl();
+		return multiOperandExpression;
 	}
 
 	/**
@@ -602,6 +602,28 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 	public AnnexLibrary createAnnexLibrary() {
 		AnnexLibraryImpl annexLibrary = new AnnexLibraryImpl();
 		return annexLibrary;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public BehaviorSpecification createBehaviorSpecification() {
+		BehaviorSpecificationImpl behaviorSpecification = new BehaviorSpecificationImpl();
+		return behaviorSpecification;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public StateSpecification createStateSpecification() {
+		StateSpecificationImpl stateSpecification = new StateSpecificationImpl();
+		return stateSpecification;
 	}
 
 	/**
@@ -799,28 +821,6 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 	 * @generated
 	 */
 	public String convertCompositeToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public LOperator createLOperatorFromString(EDataType eDataType, String initialValue) {
-		LOperator result = LOperator.get(initialValue);
-		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertLOperatorToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

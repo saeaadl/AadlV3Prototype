@@ -66,17 +66,17 @@ Literal returns av3::Literal:
 	IntegerLiteral | RealLiteral | StringLiteral | BooleanLiteral | TypeReference | DirectionalLiteral | ListLiteral | MultiLiteralOperation
 ;
 
-IntegerLiteral returns av3::SingleLiteral:
+IntegerLiteral returns av3::Literal:
 	{av3::IntegerLiteral} value=INT unit=ID?
 ;
 
-RealLiteral returns av3::SingleLiteral:
+RealLiteral returns av3::Literal:
 	{av3::RealLiteral} value=DOUBLE unit=ID?
 ;
 
 terminal DOUBLE returns ecore::EDouble: ('0'..'9')+ '.' ('0'..'9')+;
 
-StringLiteral returns av3::SingleLiteral:
+StringLiteral returns av3::Literal:
 	{av3::StringLiteral} value=NoQuoteString
 ;
 
@@ -85,7 +85,7 @@ NoQuoteString :
 	STRING
 ;
 
-BooleanLiteral returns av3::SingleLiteral:
+BooleanLiteral returns av3::Literal:
 	{av3::BooleanLiteral} (value?='true'|'false')
 ;
 
@@ -382,7 +382,7 @@ Primitive returns av3::Primitive:
 	'boolean' | 'integer' | 'real' | 'string' ;
 	
 
-LOperation returns av3::LOperator:
+LOperation returns av3::EOperator:
 	'any' | 'all' | 'oneof' | 'of' | 'ormore' | 'orless' ;
 	
 AssociationType returns  av3::AssociationType:

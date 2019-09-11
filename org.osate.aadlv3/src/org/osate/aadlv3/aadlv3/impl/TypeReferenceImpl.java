@@ -49,7 +49,7 @@ import org.osate.aadlv3.aadlv3.TypeReference;
  *
  * @generated
  */
-public class TypeReferenceImpl extends SingleLiteralImpl implements TypeReference {
+public class TypeReferenceImpl extends TypeImpl implements TypeReference {
 	/**
 	 * The default value of the '{@link #isReverse() <em>Reverse</em>}' attribute.
 	 * <!-- begin-user-doc -->

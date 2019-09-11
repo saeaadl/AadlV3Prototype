@@ -399,12 +399,6 @@ public class Aadlv3Switch<T> extends Switch<T> {
 			EnumerationType enumerationType = (EnumerationType) theEObject;
 			T result = caseEnumerationType(enumerationType);
 			if (result == null)
-				result = caseSingleLiteral(enumerationType);
-			if (result == null)
-				result = caseLiteral(enumerationType);
-			if (result == null)
-				result = caseExpression(enumerationType);
-			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -430,8 +424,6 @@ public class Aadlv3Switch<T> extends Switch<T> {
 			TypeReference typeReference = (TypeReference) theEObject;
 			T result = caseTypeReference(typeReference);
 			if (result == null)
-				result = caseSingleLiteral(typeReference);
-			if (result == null)
 				result = caseType(typeReference);
 			if (result == null)
 				result = caseLiteral(typeReference);
@@ -450,22 +442,9 @@ public class Aadlv3Switch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case Aadlv3Package.SINGLE_LITERAL: {
-			SingleLiteral singleLiteral = (SingleLiteral) theEObject;
-			T result = caseSingleLiteral(singleLiteral);
-			if (result == null)
-				result = caseLiteral(singleLiteral);
-			if (result == null)
-				result = caseExpression(singleLiteral);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
 		case Aadlv3Package.NUMBER_LITERAL: {
 			NumberLiteral numberLiteral = (NumberLiteral) theEObject;
 			T result = caseNumberLiteral(numberLiteral);
-			if (result == null)
-				result = caseSingleLiteral(numberLiteral);
 			if (result == null)
 				result = caseLiteral(numberLiteral);
 			if (result == null)
@@ -480,8 +459,6 @@ public class Aadlv3Switch<T> extends Switch<T> {
 			if (result == null)
 				result = caseNumberLiteral(integerLiteral);
 			if (result == null)
-				result = caseSingleLiteral(integerLiteral);
-			if (result == null)
 				result = caseLiteral(integerLiteral);
 			if (result == null)
 				result = caseExpression(integerLiteral);
@@ -495,8 +472,6 @@ public class Aadlv3Switch<T> extends Switch<T> {
 			if (result == null)
 				result = caseNumberLiteral(realLiteral);
 			if (result == null)
-				result = caseSingleLiteral(realLiteral);
-			if (result == null)
 				result = caseLiteral(realLiteral);
 			if (result == null)
 				result = caseExpression(realLiteral);
@@ -508,8 +483,6 @@ public class Aadlv3Switch<T> extends Switch<T> {
 			StringLiteral stringLiteral = (StringLiteral) theEObject;
 			T result = caseStringLiteral(stringLiteral);
 			if (result == null)
-				result = caseSingleLiteral(stringLiteral);
-			if (result == null)
 				result = caseLiteral(stringLiteral);
 			if (result == null)
 				result = caseExpression(stringLiteral);
@@ -520,8 +493,6 @@ public class Aadlv3Switch<T> extends Switch<T> {
 		case Aadlv3Package.BOOLEAN_LITERAL: {
 			BooleanLiteral booleanLiteral = (BooleanLiteral) theEObject;
 			T result = caseBooleanLiteral(booleanLiteral);
-			if (result == null)
-				result = caseSingleLiteral(booleanLiteral);
 			if (result == null)
 				result = caseLiteral(booleanLiteral);
 			if (result == null)
@@ -535,8 +506,6 @@ public class Aadlv3Switch<T> extends Switch<T> {
 			T result = caseEnumerationLiteral(enumerationLiteral);
 			if (result == null)
 				result = caseStringLiteral(enumerationLiteral);
-			if (result == null)
-				result = caseSingleLiteral(enumerationLiteral);
 			if (result == null)
 				result = caseLiteral(enumerationLiteral);
 			if (result == null)
@@ -560,18 +529,9 @@ public class Aadlv3Switch<T> extends Switch<T> {
 			ECollection eCollection = (ECollection) theEObject;
 			T result = caseECollection(eCollection);
 			if (result == null)
+				result = caseLiteral(eCollection);
+			if (result == null)
 				result = caseExpression(eCollection);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Aadlv3Package.LCOLLECTION: {
-			LCollection lCollection = (LCollection) theEObject;
-			T result = caseLCollection(lCollection);
-			if (result == null)
-				result = caseLiteral(lCollection);
-			if (result == null)
-				result = caseExpression(lCollection);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -580,7 +540,7 @@ public class Aadlv3Switch<T> extends Switch<T> {
 			ListLiteral listLiteral = (ListLiteral) theEObject;
 			T result = caseListLiteral(listLiteral);
 			if (result == null)
-				result = caseLCollection(listLiteral);
+				result = caseECollection(listLiteral);
 			if (result == null)
 				result = caseLiteral(listLiteral);
 			if (result == null)
@@ -593,7 +553,7 @@ public class Aadlv3Switch<T> extends Switch<T> {
 			SetLiteral setLiteral = (SetLiteral) theEObject;
 			T result = caseSetLiteral(setLiteral);
 			if (result == null)
-				result = caseLCollection(setLiteral);
+				result = caseECollection(setLiteral);
 			if (result == null)
 				result = caseLiteral(setLiteral);
 			if (result == null)
@@ -613,7 +573,9 @@ public class Aadlv3Switch<T> extends Switch<T> {
 			MultiLiteralConstraint multiLiteralConstraint = (MultiLiteralConstraint) theEObject;
 			T result = caseMultiLiteralConstraint(multiLiteralConstraint);
 			if (result == null)
-				result = caseLCollection(multiLiteralConstraint);
+				result = caseMultiOperandExpression(multiLiteralConstraint);
+			if (result == null)
+				result = caseECollection(multiLiteralConstraint);
 			if (result == null)
 				result = caseLiteral(multiLiteralConstraint);
 			if (result == null)
@@ -622,13 +584,15 @@ public class Aadlv3Switch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case Aadlv3Package.MULTI_EXPRESSION_OPERATION: {
-			MultiExpressionOperation multiExpressionOperation = (MultiExpressionOperation) theEObject;
-			T result = caseMultiExpressionOperation(multiExpressionOperation);
+		case Aadlv3Package.MULTI_OPERAND_EXPRESSION: {
+			MultiOperandExpression multiOperandExpression = (MultiOperandExpression) theEObject;
+			T result = caseMultiOperandExpression(multiOperandExpression);
 			if (result == null)
-				result = caseECollection(multiExpressionOperation);
+				result = caseECollection(multiOperandExpression);
 			if (result == null)
-				result = caseExpression(multiExpressionOperation);
+				result = caseLiteral(multiOperandExpression);
+			if (result == null)
+				result = caseExpression(multiOperandExpression);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -660,6 +624,24 @@ public class Aadlv3Switch<T> extends Switch<T> {
 				result = casePackageElement(annexLibrary);
 			if (result == null)
 				result = caseNamedElement(annexLibrary);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Aadlv3Package.BEHAVIOR_SPECIFICATION: {
+			BehaviorSpecification behaviorSpecification = (BehaviorSpecification) theEObject;
+			T result = caseBehaviorSpecification(behaviorSpecification);
+			if (result == null)
+				result = caseModelElement(behaviorSpecification);
+			if (result == null)
+				result = caseNamedElement(behaviorSpecification);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Aadlv3Package.STATE_SPECIFICATION: {
+			StateSpecification stateSpecification = (StateSpecification) theEObject;
+			T result = caseStateSpecification(stateSpecification);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -1195,21 +1177,6 @@ public class Aadlv3Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>LCollection</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>LCollection</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseLCollection(LCollection object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Literal</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1221,21 +1188,6 @@ public class Aadlv3Switch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseLiteral(Literal object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Single Literal</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Single Literal</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseSingleLiteral(SingleLiteral object) {
 		return null;
 	}
 
@@ -1270,17 +1222,17 @@ public class Aadlv3Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Multi Expression Operation</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Multi Operand Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Multi Expression Operation</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Multi Operand Expression</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseMultiExpressionOperation(MultiExpressionOperation object) {
+	public T caseMultiOperandExpression(MultiOperandExpression object) {
 		return null;
 	}
 
@@ -1326,6 +1278,36 @@ public class Aadlv3Switch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseAnnexLibrary(AnnexLibrary object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Behavior Specification</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Behavior Specification</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseBehaviorSpecification(BehaviorSpecification object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>State Specification</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>State Specification</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStateSpecification(StateSpecification object) {
 		return null;
 	}
 

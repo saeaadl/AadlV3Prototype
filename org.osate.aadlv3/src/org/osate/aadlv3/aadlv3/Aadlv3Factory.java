@@ -314,13 +314,13 @@ public interface Aadlv3Factory extends EFactory {
 	MultiLiteralConstraint createMultiLiteralConstraint();
 
 	/**
-	 * Returns a new object of class '<em>Multi Expression Operation</em>'.
+	 * Returns a new object of class '<em>Multi Operand Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Multi Expression Operation</em>'.
+	 * @return a new object of class '<em>Multi Operand Expression</em>'.
 	 * @generated
 	 */
-	MultiExpressionOperation createMultiExpressionOperation();
+	MultiOperandExpression createMultiOperandExpression();
 
 	/**
 	 * Returns a new object of class '<em>Property Association</em>'.
@@ -348,6 +348,24 @@ public interface Aadlv3Factory extends EFactory {
 	 * @generated
 	 */
 	AnnexLibrary createAnnexLibrary();
+
+	/**
+	 * Returns a new object of class '<em>Behavior Specification</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Behavior Specification</em>'.
+	 * @generated
+	 */
+	BehaviorSpecification createBehaviorSpecification();
+
+	/**
+	 * Returns a new object of class '<em>State Specification</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>State Specification</em>'.
+	 * @generated
+	 */
+	StateSpecification createStateSpecification();
 
 	/**
 	 * Returns a new object of class '<em>Primitive Type</em>'.

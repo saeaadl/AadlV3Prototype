@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.EnumerationLiteral;
 import org.osate.aadlv3.aadlv3.EnumerationType;
@@ -40,7 +41,7 @@ import org.osate.aadlv3.aadlv3.EnumerationType;
  *
  * @generated
  */
-public class EnumerationTypeImpl extends SingleLiteralImpl implements EnumerationType {
+public class EnumerationTypeImpl extends MinimalEObjectImpl.Container implements EnumerationType {
 	/**
 	 * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -192,23 +193,6 @@ public class EnumerationTypeImpl extends SingleLiteralImpl implements Enumeratio
 			return type != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	@Override
-	public boolean sameAs(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		EnumerationTypeImpl other = (EnumerationTypeImpl) obj;
-		if (type == null) {
-			if (other.type != null)
-				return false;
-		} else if (!type.sameAs(other.type))
-			return false;
-		return true;
 	}
 
 } //EnumerationTypeImpl

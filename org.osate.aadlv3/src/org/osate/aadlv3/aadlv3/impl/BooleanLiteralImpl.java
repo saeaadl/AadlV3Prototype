@@ -37,7 +37,7 @@ import org.osate.aadlv3.aadlv3.BooleanLiteral;
  *
  * @generated
  */
-public class BooleanLiteralImpl extends SingleLiteralImpl implements BooleanLiteral {
+public class BooleanLiteralImpl extends LiteralImpl implements BooleanLiteral {
 	/**
 	 * The default value of the '{@link #isValue() <em>Value</em>}' attribute.
 	 * <!-- begin-user-doc -->

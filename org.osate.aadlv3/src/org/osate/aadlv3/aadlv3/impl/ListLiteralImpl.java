@@ -26,7 +26,7 @@ import org.osate.aadlv3.aadlv3.ListLiteral;
  *
  * @generated
  */
-public class ListLiteralImpl extends LCollectionImpl implements ListLiteral {
+public class ListLiteralImpl extends ECollectionImpl implements ListLiteral {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

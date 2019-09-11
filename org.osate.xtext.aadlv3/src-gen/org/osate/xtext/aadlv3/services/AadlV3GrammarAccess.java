@@ -644,7 +644,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cUnitAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cUnitIDTerminalRuleCall_2_0 = (RuleCall)cUnitAssignment_2.eContents().get(0);
 		
-		//IntegerLiteral av3::SingleLiteral:
+		//IntegerLiteral av3::Literal:
 		//	{av3::IntegerLiteral} value=INT unit=ID?;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -675,7 +675,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cUnitAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cUnitIDTerminalRuleCall_2_0 = (RuleCall)cUnitAssignment_2.eContents().get(0);
 		
-		//RealLiteral av3::SingleLiteral:
+		//RealLiteral av3::Literal:
 		//	{av3::RealLiteral} value=DOUBLE unit=ID?;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -704,7 +704,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cValueAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cValueNoQuoteStringParserRuleCall_1_0 = (RuleCall)cValueAssignment_1.eContents().get(0);
 		
-		//StringLiteral av3::SingleLiteral:
+		//StringLiteral av3::Literal:
 		//	{av3::StringLiteral} value=NoQuoteString;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -741,7 +741,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cValueTrueKeyword_1_0_0 = (Keyword)cValueAssignment_1_0.eContents().get(0);
 		private final Keyword cFalseKeyword_1_1 = (Keyword)cAlternatives_1.eContents().get(1);
 		
-		//BooleanLiteral av3::SingleLiteral:
+		//BooleanLiteral av3::Literal:
 		//	{av3::BooleanLiteral} (value?='true' | 'false');
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -3446,7 +3446,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cOrmoreKeyword_4 = (Keyword)cAlternatives.eContents().get(4);
 		private final Keyword cOrlessKeyword_5 = (Keyword)cAlternatives.eContents().get(5);
 		
-		//LOperation av3::LOperator:
+		//LOperation av3::EOperator:
 		//	'any' | 'all' | 'oneof' | 'of' | 'ormore' | 'orless';
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -4317,7 +4317,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		return getLiteralAccess().getRule();
 	}
 	
-	//IntegerLiteral av3::SingleLiteral:
+	//IntegerLiteral av3::Literal:
 	//	{av3::IntegerLiteral} value=INT unit=ID?;
 	public IntegerLiteralElements getIntegerLiteralAccess() {
 		return pIntegerLiteral;
@@ -4327,7 +4327,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		return getIntegerLiteralAccess().getRule();
 	}
 	
-	//RealLiteral av3::SingleLiteral:
+	//RealLiteral av3::Literal:
 	//	{av3::RealLiteral} value=DOUBLE unit=ID?;
 	public RealLiteralElements getRealLiteralAccess() {
 		return pRealLiteral;
@@ -4343,7 +4343,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		return tDOUBLE;
 	}
 	
-	//StringLiteral av3::SingleLiteral:
+	//StringLiteral av3::Literal:
 	//	{av3::StringLiteral} value=NoQuoteString;
 	public StringLiteralElements getStringLiteralAccess() {
 		return pStringLiteral;
@@ -4363,7 +4363,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		return getNoQuoteStringAccess().getRule();
 	}
 	
-	//BooleanLiteral av3::SingleLiteral:
+	//BooleanLiteral av3::Literal:
 	//	{av3::BooleanLiteral} (value?='true' | 'false');
 	public BooleanLiteralElements getBooleanLiteralAccess() {
 		return pBooleanLiteral;
@@ -5034,7 +5034,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		return getPrimitiveAccess().getRule();
 	}
 	
-	//LOperation av3::LOperator:
+	//LOperation av3::EOperator:
 	//	'any' | 'all' | 'oneof' | 'of' | 'ormore' | 'orless';
 	public LOperationElements getLOperationAccess() {
 		return pLOperation;

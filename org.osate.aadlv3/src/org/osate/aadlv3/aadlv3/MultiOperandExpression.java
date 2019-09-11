@@ -17,21 +17,21 @@ package org.osate.aadlv3.aadlv3;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Multi Expression Operation</b></em>'.
+ * A representation of the model object '<em><b>Multi Operand Expression</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.osate.aadlv3.aadlv3.MultiExpressionOperation#getOperator <em>Operator</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.MultiOperandExpression#getOperator <em>Operator</em>}</li>
  * </ul>
  *
- * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getMultiExpressionOperation()
+ * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getMultiOperandExpression()
  * @model
  * @generated
  */
-public interface MultiExpressionOperation extends ECollection {
+public interface MultiOperandExpression extends ECollection {
 	/**
 	 * Returns the value of the '<em><b>Operator</b></em>' attribute.
 	 * The literals are from the enumeration {@link org.osate.aadlv3.aadlv3.EOperator}.
@@ -40,14 +40,14 @@ public interface MultiExpressionOperation extends ECollection {
 	 * @return the value of the '<em>Operator</em>' attribute.
 	 * @see org.osate.aadlv3.aadlv3.EOperator
 	 * @see #setOperator(EOperator)
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getMultiExpressionOperation_Operator()
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getMultiOperandExpression_Operator()
 	 * @model
 	 * @generated
 	 */
 	EOperator getOperator();
 
 	/**
-	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.MultiExpressionOperation#getOperator <em>Operator</em>}' attribute.
+	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.MultiOperandExpression#getOperator <em>Operator</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Operator</em>' attribute.
@@ -57,4 +57,4 @@ public interface MultiExpressionOperation extends ECollection {
 	 */
 	void setOperator(EOperator value);
 
-} // MultiExpressionOperation
+} // MultiOperandExpression

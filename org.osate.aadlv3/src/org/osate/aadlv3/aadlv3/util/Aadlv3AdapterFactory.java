@@ -245,11 +245,6 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseSingleLiteral(SingleLiteral object) {
-			return createSingleLiteralAdapter();
-		}
-
-		@Override
 		public Adapter caseNumberLiteral(NumberLiteral object) {
 			return createNumberLiteralAdapter();
 		}
@@ -290,11 +285,6 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseLCollection(LCollection object) {
-			return createLCollectionAdapter();
-		}
-
-		@Override
 		public Adapter caseListLiteral(ListLiteral object) {
 			return createListLiteralAdapter();
 		}
@@ -315,8 +305,8 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseMultiExpressionOperation(MultiExpressionOperation object) {
-			return createMultiExpressionOperationAdapter();
+		public Adapter caseMultiOperandExpression(MultiOperandExpression object) {
+			return createMultiOperandExpressionAdapter();
 		}
 
 		@Override
@@ -332,6 +322,16 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseAnnexLibrary(AnnexLibrary object) {
 			return createAnnexLibraryAdapter();
+		}
+
+		@Override
+		public Adapter caseBehaviorSpecification(BehaviorSpecification object) {
+			return createBehaviorSpecificationAdapter();
+		}
+
+		@Override
+		public Adapter caseStateSpecification(StateSpecification object) {
+			return createStateSpecificationAdapter();
 		}
 
 		@Override
@@ -844,20 +844,6 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.LCollection <em>LCollection</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.osate.aadlv3.aadlv3.LCollection
-	 * @generated
-	 */
-	public Adapter createLCollectionAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.Literal <em>Literal</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -868,20 +854,6 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createLiteralAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.SingleLiteral <em>Single Literal</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.osate.aadlv3.aadlv3.SingleLiteral
-	 * @generated
-	 */
-	public Adapter createSingleLiteralAdapter() {
 		return null;
 	}
 
@@ -914,16 +886,16 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.MultiExpressionOperation <em>Multi Expression Operation</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.MultiOperandExpression <em>Multi Operand Expression</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.osate.aadlv3.aadlv3.MultiExpressionOperation
+	 * @see org.osate.aadlv3.aadlv3.MultiOperandExpression
 	 * @generated
 	 */
-	public Adapter createMultiExpressionOperationAdapter() {
+	public Adapter createMultiOperandExpressionAdapter() {
 		return null;
 	}
 
@@ -966,6 +938,34 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createAnnexLibraryAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.BehaviorSpecification <em>Behavior Specification</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.osate.aadlv3.aadlv3.BehaviorSpecification
+	 * @generated
+	 */
+	public Adapter createBehaviorSpecificationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.StateSpecification <em>State Specification</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.osate.aadlv3.aadlv3.StateSpecification
+	 * @generated
+	 */
+	public Adapter createStateSpecificationAdapter() {
 		return null;
 	}
 

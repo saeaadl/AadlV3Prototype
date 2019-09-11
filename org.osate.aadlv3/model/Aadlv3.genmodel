@@ -70,16 +70,13 @@
       <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//Composite/SET"/>
       <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//Composite/DIRECTIONAL"/>
     </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Aadlv3.ecore#//LOperator">
-      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//LOperator/ANY"/>
-      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//LOperator/ALL"/>
-      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//LOperator/ONEOF"/>
-      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//LOperator/KOFN"/>
-      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//LOperator/KORMORE"/>
-      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//LOperator/KORLESS"/>
-    </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Aadlv3.ecore#//EOperator">
-      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//EOperator/OR"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//EOperator/ANY"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//EOperator/ALL"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//EOperator/ONEOF"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//EOperator/KOFN"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//EOperator/KORMORE"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//EOperator/KORLESS"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Aadlv3.ecore#//PropertyAssociationType">
       <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//PropertyAssociationType/FinalValue"/>
@@ -226,7 +223,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//TypeReference/actuals"/>
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//Literal"/>
-    <genClasses ecoreClass="Aadlv3.ecore#//SingleLiteral"/>
     <genClasses ecoreClass="Aadlv3.ecore#//NumberLiteral">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//NumberLiteral/unit"/>
     </genClasses>
@@ -250,17 +246,12 @@
     <genClasses ecoreClass="Aadlv3.ecore#//ECollection">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ECollection/elements"/>
     </genClasses>
-    <genClasses ecoreClass="Aadlv3.ecore#//LCollection">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//LCollection/elements"/>
-    </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//ListLiteral"/>
     <genClasses ecoreClass="Aadlv3.ecore#//SetLiteral"/>
     <genClasses ecoreClass="Aadlv3.ecore#//Expression"/>
-    <genClasses ecoreClass="Aadlv3.ecore#//MultiLiteralConstraint">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//MultiLiteralConstraint/operator"/>
-    </genClasses>
-    <genClasses ecoreClass="Aadlv3.ecore#//MultiExpressionOperation">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//MultiExpressionOperation/operator"/>
+    <genClasses ecoreClass="Aadlv3.ecore#//MultiLiteralConstraint"/>
+    <genClasses ecoreClass="Aadlv3.ecore#//MultiOperandExpression">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//MultiOperandExpression/operator"/>
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//PropertyAssociation">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//PropertyAssociation/target"/>
@@ -271,5 +262,15 @@
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//AnnexSubclause"/>
     <genClasses ecoreClass="Aadlv3.ecore#//AnnexLibrary"/>
+    <genClasses ecoreClass="Aadlv3.ecore#//BehaviorSpecification">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//BehaviorSpecification/guard"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//BehaviorSpecification/targetState"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//BehaviorSpecification/condition"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//BehaviorSpecification/result"/>
+    </genClasses>
+    <genClasses ecoreClass="Aadlv3.ecore#//StateSpecification">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//StateSpecification/stateVariable"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//StateSpecification/currentState"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

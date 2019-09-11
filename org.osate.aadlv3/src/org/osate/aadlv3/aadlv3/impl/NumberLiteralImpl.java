@@ -37,7 +37,7 @@ import org.osate.aadlv3.aadlv3.NumberLiteral;
  *
  * @generated
  */
-public abstract class NumberLiteralImpl extends SingleLiteralImpl implements NumberLiteral {
+public abstract class NumberLiteralImpl extends LiteralImpl implements NumberLiteral {
 	/**
 	 * The default value of the '{@link #getUnit() <em>Unit</em>}' attribute.
 	 * <!-- begin-user-doc -->

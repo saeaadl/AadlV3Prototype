@@ -15,6 +15,8 @@
  */
 package org.osate.aadlv3.aadlv3;
 
+import org.eclipse.emf.ecore.EObject;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Enumeration Type</b></em>'.
@@ -31,7 +33,7 @@ package org.osate.aadlv3.aadlv3;
  * @model
  * @generated
  */
-public interface EnumerationType extends SingleLiteral {
+public interface EnumerationType extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

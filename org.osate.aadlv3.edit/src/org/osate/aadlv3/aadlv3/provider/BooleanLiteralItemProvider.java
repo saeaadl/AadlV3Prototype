@@ -35,7 +35,7 @@ import org.osate.aadlv3.aadlv3.BooleanLiteral;
  * <!-- end-user-doc -->
  * @generated
  */
-public class BooleanLiteralItemProvider extends SingleLiteralItemProvider {
+public class BooleanLiteralItemProvider extends LiteralItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

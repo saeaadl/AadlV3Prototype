@@ -20,14 +20,8 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ViewerNotification;
-
-import org.osate.aadlv3.aadlv3.Aadlv3Package;
-import org.osate.aadlv3.aadlv3.LOperator;
+import org.osate.aadlv3.aadlv3.EOperator;
 import org.osate.aadlv3.aadlv3.MultiLiteralConstraint;
 
 /**
@@ -36,7 +30,7 @@ import org.osate.aadlv3.aadlv3.MultiLiteralConstraint;
  * <!-- end-user-doc -->
  * @generated
  */
-public class MultiLiteralConstraintItemProvider extends LCollectionItemProvider {
+public class MultiLiteralConstraintItemProvider extends MultiOperandExpressionItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -58,25 +52,8 @@ public class MultiLiteralConstraintItemProvider extends LCollectionItemProvider 
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addOperatorPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Operator feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addOperatorPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_MultiLiteralConstraint_operator_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_MultiLiteralConstraint_operator_feature",
-						"_UI_MultiLiteralConstraint_type"),
-				Aadlv3Package.Literals.MULTI_LITERAL_CONSTRAINT__OPERATOR, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -98,7 +75,7 @@ public class MultiLiteralConstraintItemProvider extends LCollectionItemProvider 
 	 */
 	@Override
 	public String getText(Object object) {
-		LOperator labelValue = ((MultiLiteralConstraint) object).getOperator();
+		EOperator labelValue = ((MultiLiteralConstraint) object).getOperator();
 		String label = labelValue == null ? null : labelValue.toString();
 		return label == null || label.length() == 0 ? getString("_UI_MultiLiteralConstraint_type")
 				: getString("_UI_MultiLiteralConstraint_type") + " " + label;
@@ -114,13 +91,6 @@ public class MultiLiteralConstraintItemProvider extends LCollectionItemProvider 
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(MultiLiteralConstraint.class)) {
-		case Aadlv3Package.MULTI_LITERAL_CONSTRAINT__OPERATOR:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
-		}
-		super.notifyChanged(notification);
 	}
 
 	/**
