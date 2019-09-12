@@ -21,7 +21,7 @@ AnnexLibrary returns av3::AnnexLibrary :
 
 PackageElement returns av3::PackageElement:
 	PackageDeclaration  | ComponentInterface | ComponentImplementation | ComponentConfiguration | PropertyDefinition | PropertySet | Workingset
-	| TypeDef
+	| TypeDef | ConstantDef
 	;
 
 PropertyDefinition returns av3::PropertyDefinition:
@@ -43,7 +43,14 @@ PropertySet returns av3::PropertySet:
 
 TypeDef returns av3::TypeDef:
 	(private?='private')? 'type' name=ID ('extends' superType=Type)?
+	(':' baseType=Type)?
 		PropertiesBlock? ';'
+;
+
+
+ConstantDef returns av3::Constant:
+	(private?='private')? 'constant' name=ID ':' value=Literal
+		';'
 ;
 
 
@@ -61,46 +68,6 @@ PropertyAssociationType returns av3::PropertyAssociationType:
 ModelElementReference returns av3::ModelElementReference:
 	// => or -> both work
 	element=[av3::ModelElement|ID] -> ({av3::ModelElementReference.context=current} '.' element=[av3::ModelElement|ID])*;
-
-Literal returns av3::Literal:
-	IntegerLiteral | RealLiteral | StringLiteral | BooleanLiteral | TypeReference | DirectionalLiteral | ListLiteral | MultiLiteralOperation
-;
-
-IntegerLiteral returns av3::Literal:
-	{av3::IntegerLiteral} value=INT unit=ID?
-;
-
-RealLiteral returns av3::Literal:
-	{av3::RealLiteral} value=DOUBLE unit=ID?
-;
-
-terminal DOUBLE returns ecore::EDouble: ('0'..'9')+ '.' ('0'..'9')+;
-
-StringLiteral returns av3::Literal:
-	{av3::StringLiteral} value=NoQuoteString
-;
-
-NoQuoteString :
-	// remove quotes from string in ValueConverter
-	STRING
-;
-
-BooleanLiteral returns av3::Literal:
-	{av3::BooleanLiteral} (value?='true'|'false')
-;
-
-ListLiteral returns av3::ListLiteral:
-	{av3::ListLiteral} '(' (elements+=Literal (',' elements+=Literal)*)? ')'
-;
-
-DirectionalLiteral returns av3::DirectionalLiteral:
-	{av3::DirectionalLiteral}direction=PropagationDirection value=Literal
-;
-
-
-MultiLiteralOperation returns av3::MultiLiteralConstraint:
-	{av3::MultiLiteralConstraint} operator=LOperation '(' (elements+=Literal (',' elements+=Literal)*)? ')'
-;
 
 
 ComponentInterface returns av3::ComponentInterface:
@@ -262,7 +229,11 @@ TypeReference returns av3::TypeReference :
 ;
 
 Type returns av3::Type :  
-	 TypeReference | CompositeType | PrimitiveType
+	 TypeReference | CompositeType | PrimitiveType | EnumerationType
+;
+
+EnumerationType returns av3::EnumerationType :
+	{av3::EnumerationType} 'enum' '(' literals+=EnumerationLiteral* ')'
 ;
 
 CompositeType returns av3::CompositeType:
@@ -283,8 +254,13 @@ ImplementationReference returns av3::TypeReference :
 ;
 
 AnnexSubclause returns av3::AnnexSubclause :
-	'@' name=ID '{' '}'
+	EMSubclause | BASubclause | DefaultAnnexSubclause
 ;
+
+DefaultAnnexSubclause returns av3::DefaultAnnexSubclause :
+	'@' name=ID  body=ANNEXTEXT ';'
+;
+
 
 fragment PropertiesBlock *:
 	'{' (ownedPropertyAssociations+=PropertyAssociation )+ '}';
@@ -329,14 +305,129 @@ Workingset returns av3::Workingset:
 InstanceConfiguration returns av3::InstanceConfiguration:
 	{av3::InstanceConfiguration} name=ID ':' category=ComponentCategory
 	typeReferences+=ClassifierOrTypeReference 
-	(propertyConstraint=PropertyConstraint)?
+	(productlineConstraint=ProductLineConstraint)?
 	';'
 ;
 
-PropertyConstraint returns av3::PropertyConstraint:
-	{av3::PropertyConstraint}
-	( '#'constrainedProperty=[av3::PropertyDefinition|QualifiedName] 'satisfies' constraintExpression=MultiLiteralOperation)?
+ProductLineConstraint returns av3::ConditionOperation:
+	{av3::ConditionOperation}
+	left=PropertyReference operator=SatisfiesOperation right=ListLiteral
 ;
+
+// Behavior specification including error behavior
+
+
+EMSubclause returns av3::EMSubclause :
+	'@' name='EM' '{'
+		BehaviorSpecificationBlock
+	 '}'';'
+;
+
+BASubclause returns av3::BASubclause :
+	'@' name='BA' '{'
+		BehaviorSpecificationBlock
+	 '}'';'
+;
+
+fragment BehaviorSpecificationBlock*:
+	('use''states' states=[av3::TypeDef|QualifiedName] ';')?
+	BehaviorSpecificationElement*
+;
+
+fragment BehaviorSpecificationElement*:
+	generators+= Event | rules+= BehaviorRule
+;
+
+Event returns av3::Generator:
+	name=ID ':' type=('error'|'recover'|'repair') 'event' ';'
+;
+
+
+BehaviorRule returns av3::BehaviorRule :
+	name=ID ':' (StateTransitionRule|StatelessRule)
+;
+
+Assignment returns av3::Assignment:
+	target= ModelElementReference '!'('(' value=TypeReference')')?
+;
+
+CurrentState returns av3::StateSpecification:
+	currentState=EnumerationLiteral
+;
+
+fragment StateTransitionRule *:
+	guard=CurrentState '-[' condition =  (MultiLiteralOperation | ContainsToken | FeatureInput)  ']->' targetState=CurrentState ('{' action+=Assignment* '}')?';';
+
+fragment StatelessRule *:
+	condition = (MultiLiteralOperation | ContainsToken | FeatureInput) '->'  action+=Assignment* ';';
+
+
+ContainsToken returns av3::ConditionOperation:
+	 left=ModelElementReference operator=InOperation right=Literal
+;
+
+FeatureInput returns av3::ConditionOperation:
+	 left=ModelElementReference operator=InputOperation 
+;
+
+
+
+// expression/constraint language
+
+Literal returns av3::Literal:
+	IntegerLiteral | RealLiteral | StringLiteral | BooleanLiteral | PropertyReference | PackageElementReference | DirectionalLiteral | ListLiteral | MultiLiteralOperation
+	| ContainsToken | EnumerationLiteral | FeatureInput
+;
+
+
+PackageElementReference returns av3::PackageElementReference :  
+	 element=[av3::PackageElement|QualifiedName]
+;
+
+PropertyReference returns av3::PackageElementReference :  
+	'#' element=[av3::PackageElement|QualifiedName]
+;
+
+IntegerLiteral returns av3::Literal:
+	{av3::IntegerLiteral} value=INT unit=ID?
+;
+
+RealLiteral returns av3::Literal:
+	{av3::RealLiteral} value=DOUBLE unit=ID?
+;
+
+terminal DOUBLE returns ecore::EDouble: ('0'..'9')+ '.' ('0'..'9')+;
+
+StringLiteral returns av3::Literal:
+	{av3::StringLiteral} value=NoQuoteString
+;
+
+EnumerationLiteral returns av3::EnumerationLiteral:
+	{av3::EnumerationLiteral} value=ID
+;
+
+NoQuoteString :
+	// remove quotes from string in ValueConverter
+	STRING
+;
+
+BooleanLiteral returns av3::Literal:
+	{av3::BooleanLiteral} (value?='true'|'false')
+;
+
+ListLiteral returns av3::ListLiteral:
+	{av3::ListLiteral} '(' (elements+=Literal (',' elements+=Literal)*)? ')'
+;
+
+DirectionalLiteral returns av3::DirectionalLiteral:
+	{av3::DirectionalLiteral}direction=PropagationDirection value=Literal
+;
+
+
+MultiLiteralOperation returns av3::MultiLiteralConstraint:
+	{av3::MultiLiteralConstraint} operator=EOperation '(' (elements+=Literal (',' elements+=Literal)*)? ')'
+;
+
 
 QualifiedNameWithWildcard:
 	QualifiedName '::*';
@@ -382,8 +473,20 @@ Primitive returns av3::Primitive:
 	'boolean' | 'integer' | 'real' | 'string' ;
 	
 
-LOperation returns av3::EOperator:
+EOperation returns av3::EOperator:
 	'any' | 'all' | 'oneof' | 'of' | 'ormore' | 'orless' ;
+
+COperation returns av3::COperator:
+	'in' | 'contains' | 'equals'  | 'satisfies' | '?';
+
+SatisfiesOperation returns av3::COperator:
+	 'satisfies' ;
+
+InOperation returns av3::COperator:
+	 'in' ;
+
+InputOperation returns av3::COperator:
+	 '?' ;
 	
 AssociationType returns  av3::AssociationType:
 	IsConnection | IsBinding | IsFlow 
@@ -447,4 +550,7 @@ RequiresWriteKeywords: 'requires' 'out';
 ProvidesRWKeywords: 'provides' 'in''out';
 RequiresRWKeywords: 'requires' 'in''out';
 
+        
+terminal ANNEXTEXT:
+	'{*' -> '*}';
         

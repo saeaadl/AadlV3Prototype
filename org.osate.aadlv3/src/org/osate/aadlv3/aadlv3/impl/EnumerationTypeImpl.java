@@ -15,15 +15,14 @@
  */
 package org.osate.aadlv3.aadlv3.impl;
 
-import org.eclipse.emf.common.notify.Notification;
+import java.util.Collection;
 import org.eclipse.emf.common.notify.NotificationChain;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.EnumerationLiteral;
 import org.osate.aadlv3.aadlv3.EnumerationType;
@@ -36,21 +35,21 @@ import org.osate.aadlv3.aadlv3.EnumerationType;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.EnumerationTypeImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.EnumerationTypeImpl#getLiterals <em>Literals</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class EnumerationTypeImpl extends MinimalEObjectImpl.Container implements EnumerationType {
+public class EnumerationTypeImpl extends TypeImpl implements EnumerationType {
 	/**
-	 * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
+	 * The cached value of the '{@link #getLiterals() <em>Literals</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getType()
+	 * @see #getLiterals()
 	 * @generated
 	 * @ordered
 	 */
-	protected EnumerationLiteral type;
+	protected EList<EnumerationLiteral> literals;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -77,50 +76,12 @@ public class EnumerationTypeImpl extends MinimalEObjectImpl.Container implements
 	 * @generated
 	 */
 	@Override
-	public EnumerationLiteral getType() {
-		return type;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetType(EnumerationLiteral newType, NotificationChain msgs) {
-		EnumerationLiteral oldType = type;
-		type = newType;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					Aadlv3Package.ENUMERATION_TYPE__TYPE, oldType, newType);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
+	public EList<EnumerationLiteral> getLiterals() {
+		if (literals == null) {
+			literals = new EObjectContainmentEList<EnumerationLiteral>(EnumerationLiteral.class, this,
+					Aadlv3Package.ENUMERATION_TYPE__LITERALS);
 		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setType(EnumerationLiteral newType) {
-		if (newType != type) {
-			NotificationChain msgs = null;
-			if (type != null)
-				msgs = ((InternalEObject) type).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE - Aadlv3Package.ENUMERATION_TYPE__TYPE, null, msgs);
-			if (newType != null)
-				msgs = ((InternalEObject) newType).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE - Aadlv3Package.ENUMERATION_TYPE__TYPE, null, msgs);
-			msgs = basicSetType(newType, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.ENUMERATION_TYPE__TYPE, newType,
-					newType));
+		return literals;
 	}
 
 	/**
@@ -131,8 +92,8 @@ public class EnumerationTypeImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case Aadlv3Package.ENUMERATION_TYPE__TYPE:
-			return basicSetType(null, msgs);
+		case Aadlv3Package.ENUMERATION_TYPE__LITERALS:
+			return ((InternalEList<?>) getLiterals()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -145,8 +106,8 @@ public class EnumerationTypeImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case Aadlv3Package.ENUMERATION_TYPE__TYPE:
-			return getType();
+		case Aadlv3Package.ENUMERATION_TYPE__LITERALS:
+			return getLiterals();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -156,11 +117,13 @@ public class EnumerationTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case Aadlv3Package.ENUMERATION_TYPE__TYPE:
-			setType((EnumerationLiteral) newValue);
+		case Aadlv3Package.ENUMERATION_TYPE__LITERALS:
+			getLiterals().clear();
+			getLiterals().addAll((Collection<? extends EnumerationLiteral>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -174,8 +137,8 @@ public class EnumerationTypeImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case Aadlv3Package.ENUMERATION_TYPE__TYPE:
-			setType((EnumerationLiteral) null);
+		case Aadlv3Package.ENUMERATION_TYPE__LITERALS:
+			getLiterals().clear();
 			return;
 		}
 		super.eUnset(featureID);
@@ -189,8 +152,8 @@ public class EnumerationTypeImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case Aadlv3Package.ENUMERATION_TYPE__TYPE:
-			return type != null;
+		case Aadlv3Package.ENUMERATION_TYPE__LITERALS:
+			return literals != null && !literals.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

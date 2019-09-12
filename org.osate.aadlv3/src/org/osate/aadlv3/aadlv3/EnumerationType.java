@@ -15,7 +15,7 @@
  */
 package org.osate.aadlv3.aadlv3;
 
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,34 +26,24 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.osate.aadlv3.aadlv3.EnumerationType#getType <em>Type</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.EnumerationType#getLiterals <em>Literals</em>}</li>
  * </ul>
  *
  * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getEnumerationType()
  * @model
  * @generated
  */
-public interface EnumerationType extends EObject {
+public interface EnumerationType extends Type {
 	/**
-	 * Returns the value of the '<em><b>Type</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Literals</b></em>' containment reference list.
+	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.EnumerationLiteral}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Type</em>' containment reference.
-	 * @see #setType(EnumerationLiteral)
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getEnumerationType_Type()
+	 * @return the value of the '<em>Literals</em>' containment reference list.
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getEnumerationType_Literals()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EnumerationLiteral getType();
-
-	/**
-	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.EnumerationType#getType <em>Type</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Type</em>' containment reference.
-	 * @see #getType()
-	 * @generated
-	 */
-	void setType(EnumerationLiteral value);
+	EList<EnumerationLiteral> getLiterals();
 
 } // EnumerationType

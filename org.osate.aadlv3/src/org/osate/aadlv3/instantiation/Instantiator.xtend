@@ -31,12 +31,13 @@ import static org.osate.aadlv3.util.ProductLineConstraint.*
 import static extension org.eclipse.emf.ecore.util.EcoreUtil.*
 import static extension org.osate.aadlv3.util.AIv3API.*
 import static extension org.osate.aadlv3.util.Aadlv3Util.*
+import org.osate.aadlv3.aadlv3.ListLiteral
 
 class Instantiator {
 	
 	static var Iterable<PropertyDefinition> expectedProperties = Collections.EMPTY_LIST
 	
-	static var MultiLiteralConstraint configurationConstraint = null;
+	static var ListLiteral configurationConstraint = null;
 	
 	def instantiate(Workingset ws) {
 		expectedProperties = ws.expectedProperties

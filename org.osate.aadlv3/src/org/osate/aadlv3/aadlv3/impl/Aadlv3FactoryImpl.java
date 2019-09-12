@@ -108,8 +108,6 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 			return createWorkingset();
 		case Aadlv3Package.INSTANCE_CONFIGURATION:
 			return createInstanceConfiguration();
-		case Aadlv3Package.PROPERTY_CONSTRAINT:
-			return createPropertyConstraint();
 		case Aadlv3Package.NAMED_TYPE:
 			return createNamedType();
 		case Aadlv3Package.TYPE_DEF:
@@ -146,16 +144,34 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 			return createMultiLiteralConstraint();
 		case Aadlv3Package.MULTI_OPERAND_EXPRESSION:
 			return createMultiOperandExpression();
+		case Aadlv3Package.ASSIGNMENT:
+			return createAssignment();
+		case Aadlv3Package.ACTION:
+			return createAction();
+		case Aadlv3Package.CONDITION_OPERATION:
+			return createConditionOperation();
 		case Aadlv3Package.PROPERTY_ASSOCIATION:
 			return createPropertyAssociation();
-		case Aadlv3Package.ANNEX_SUBCLAUSE:
-			return createAnnexSubclause();
+		case Aadlv3Package.DEFAULT_ANNEX_SUBCLAUSE:
+			return createDefaultAnnexSubclause();
 		case Aadlv3Package.ANNEX_LIBRARY:
 			return createAnnexLibrary();
+		case Aadlv3Package.BEHAVIOR_RULE:
+			return createBehaviorRule();
+		case Aadlv3Package.EM_SUBCLAUSE:
+			return createEMSubclause();
+		case Aadlv3Package.BA_SUBCLAUSE:
+			return createBASubclause();
 		case Aadlv3Package.BEHAVIOR_SPECIFICATION:
 			return createBehaviorSpecification();
 		case Aadlv3Package.STATE_SPECIFICATION:
 			return createStateSpecification();
+		case Aadlv3Package.GENERATOR:
+			return createGenerator();
+		case Aadlv3Package.CONSTANT:
+			return createConstant();
+		case Aadlv3Package.PACKAGE_ELEMENT_REFERENCE:
+			return createPackageElementReference();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -183,6 +199,8 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 			return createCompositeFromString(eDataType, initialValue);
 		case Aadlv3Package.EOPERATOR:
 			return createEOperatorFromString(eDataType, initialValue);
+		case Aadlv3Package.COPERATOR:
+			return createCOperatorFromString(eDataType, initialValue);
 		case Aadlv3Package.PROPERTY_ASSOCIATION_TYPE:
 			return createPropertyAssociationTypeFromString(eDataType, initialValue);
 		default:
@@ -212,6 +230,8 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 			return convertCompositeToString(eDataType, instanceValue);
 		case Aadlv3Package.EOPERATOR:
 			return convertEOperatorToString(eDataType, instanceValue);
+		case Aadlv3Package.COPERATOR:
+			return convertCOperatorToString(eDataType, instanceValue);
 		case Aadlv3Package.PROPERTY_ASSOCIATION_TYPE:
 			return convertPropertyAssociationTypeToString(eDataType, instanceValue);
 		default:
@@ -434,17 +454,6 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 	 * @generated
 	 */
 	@Override
-	public PropertyConstraint createPropertyConstraint() {
-		PropertyConstraintImpl propertyConstraint = new PropertyConstraintImpl();
-		return propertyConstraint;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public IntegerLiteral createIntegerLiteral() {
 		IntegerLiteralImpl integerLiteral = new IntegerLiteralImpl();
 		return integerLiteral;
@@ -577,6 +586,39 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 	 * @generated
 	 */
 	@Override
+	public Assignment createAssignment() {
+		AssignmentImpl assignment = new AssignmentImpl();
+		return assignment;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Action createAction() {
+		ActionImpl action = new ActionImpl();
+		return action;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ConditionOperation createConditionOperation() {
+		ConditionOperationImpl conditionOperation = new ConditionOperationImpl();
+		return conditionOperation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public PropertyAssociation createPropertyAssociation() {
 		PropertyAssociationImpl propertyAssociation = new PropertyAssociationImpl();
 		return propertyAssociation;
@@ -588,9 +630,9 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 	 * @generated
 	 */
 	@Override
-	public AnnexSubclause createAnnexSubclause() {
-		AnnexSubclauseImpl annexSubclause = new AnnexSubclauseImpl();
-		return annexSubclause;
+	public DefaultAnnexSubclause createDefaultAnnexSubclause() {
+		DefaultAnnexSubclauseImpl defaultAnnexSubclause = new DefaultAnnexSubclauseImpl();
+		return defaultAnnexSubclause;
 	}
 
 	/**
@@ -602,6 +644,39 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 	public AnnexLibrary createAnnexLibrary() {
 		AnnexLibraryImpl annexLibrary = new AnnexLibraryImpl();
 		return annexLibrary;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public BehaviorRule createBehaviorRule() {
+		BehaviorRuleImpl behaviorRule = new BehaviorRuleImpl();
+		return behaviorRule;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EMSubclause createEMSubclause() {
+		EMSubclauseImpl emSubclause = new EMSubclauseImpl();
+		return emSubclause;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public BASubclause createBASubclause() {
+		BASubclauseImpl baSubclause = new BASubclauseImpl();
+		return baSubclause;
 	}
 
 	/**
@@ -624,6 +699,39 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 	public StateSpecification createStateSpecification() {
 		StateSpecificationImpl stateSpecification = new StateSpecificationImpl();
 		return stateSpecification;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Generator createGenerator() {
+		GeneratorImpl generator = new GeneratorImpl();
+		return generator;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Constant createConstant() {
+		ConstantImpl constant = new ConstantImpl();
+		return constant;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public PackageElementReference createPackageElementReference() {
+		PackageElementReferenceImpl packageElementReference = new PackageElementReferenceImpl();
+		return packageElementReference;
 	}
 
 	/**
@@ -843,6 +951,28 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 	 * @generated
 	 */
 	public String convertEOperatorToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public COperator createCOperatorFromString(EDataType eDataType, String initialValue) {
+		COperator result = COperator.get(initialValue);
+		if (result == null)
+			throw new IllegalArgumentException(
+					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertCOperatorToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

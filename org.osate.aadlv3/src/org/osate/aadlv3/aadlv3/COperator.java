@@ -23,167 +23,143 @@ import org.eclipse.emf.common.util.Enumerator;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the literals of the enumeration '<em><b>LOperator</b></em>',
+ * A representation of the literals of the enumeration '<em><b>COperator</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getLOperator()
+ * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getCOperator()
  * @model
  * @generated
  */
-public enum LOperator implements Enumerator {
+public enum COperator implements Enumerator {
 	/**
-	 * The '<em><b>ANY</b></em>' literal object.
+	 * The '<em><b>IN</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ANY_VALUE
+	 * @see #IN_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ANY(0, "ANY", "any"),
-
+	IN(0, "IN", "in"),
 	/**
-	 * The '<em><b>ALL</b></em>' literal object.
+	 * The '<em><b>CONTAINS</b></em>' literal object.
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ALL_VALUE
+	* <!-- end-user-doc -->
+	 * @see #CONTAINS_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ALL(1, "ALL", "all"),
-
+	CONTAINS(1, "CONTAINS", "contains"),
 	/**
-	 * The '<em><b>ONEOF</b></em>' literal object.
+	 * The '<em><b>EQUALS</b></em>' literal object.
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ONEOF_VALUE
+	* <!-- end-user-doc -->
+	 * @see #EQUALS_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ONEOF(3, "ONEOF", "oneof"),
+	EQUALS(2, "EQUALS", "equals"),
 
 	/**
-	 * The '<em><b>KOFN</b></em>' literal object.
+	 * The '<em><b>SATISFIES</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #KOFN_VALUE
+	 * @see #SATISFIES_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	KOFN(2, "KOFN", "kofn"),
-
+	SATISFIES(3, "SATISFIES", "satisfies"),
 	/**
-	 * The '<em><b>KORMORE</b></em>' literal object.
+	 * The '<em><b>QUESTIONMARK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #KORMORE_VALUE
+	* <!-- end-user-doc -->
+	 * @see #QUESTIONMARK_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	KORMORE(4, "KORMORE", "kormore"),
+	QUESTIONMARK(4, "QUESTIONMARK", "?");
 
 	/**
-	 * The '<em><b>KORLESS</b></em>' literal object.
+	 * The '<em><b>IN</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #KORLESS_VALUE
+	 * @see #IN
+	 * @model literal="in"
 	 * @generated
 	 * @ordered
 	 */
-	KORLESS(5, "KORLESS", "korless");
+	public static final int IN_VALUE = 0;
 
 	/**
-	 * The '<em><b>ANY</b></em>' literal value.
+	 * The '<em><b>CONTAINS</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ANY
-	 * @model literal="any"
+	 * @see #CONTAINS
+	 * @model literal="contains"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ANY_VALUE = 0;
+	public static final int CONTAINS_VALUE = 1;
 
 	/**
-	 * The '<em><b>ALL</b></em>' literal value.
+	 * The '<em><b>EQUALS</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ALL
-	 * @model literal="all"
+	 * @see #EQUALS
+	 * @model literal="equals"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ALL_VALUE = 1;
+	public static final int EQUALS_VALUE = 2;
 
 	/**
-	 * The '<em><b>ONEOF</b></em>' literal value.
+	 * The '<em><b>SATISFIES</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ONEOF
-	 * @model literal="oneof"
+	 * @see #SATISFIES
+	 * @model literal="satisfies"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ONEOF_VALUE = 3;
+	public static final int SATISFIES_VALUE = 3;
 
 	/**
-	 * The '<em><b>KOFN</b></em>' literal value.
+	 * The '<em><b>QUESTIONMARK</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #KOFN
-	 * @model literal="kofn"
+	 * @see #QUESTIONMARK
+	 * @model literal="?"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int KOFN_VALUE = 2;
+	public static final int QUESTIONMARK_VALUE = 4;
 
 	/**
-	 * The '<em><b>KORMORE</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #KORMORE
-	 * @model literal="kormore"
-	 * @generated
-	 * @ordered
-	 */
-	public static final int KORMORE_VALUE = 4;
-
-	/**
-	 * The '<em><b>KORLESS</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #KORLESS
-	 * @model literal="korless"
-	 * @generated
-	 * @ordered
-	 */
-	public static final int KORLESS_VALUE = 5;
-
-	/**
-	 * An array of all the '<em><b>LOperator</b></em>' enumerators.
+	 * An array of all the '<em><b>COperator</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final LOperator[] VALUES_ARRAY = new LOperator[] { ANY, ALL, ONEOF, KOFN, KORMORE, KORLESS, };
+	private static final COperator[] VALUES_ARRAY = new COperator[] { IN, CONTAINS, EQUALS, SATISFIES, QUESTIONMARK, };
 
 	/**
-	 * A public read-only list of all the '<em><b>LOperator</b></em>' enumerators.
+	 * A public read-only list of all the '<em><b>COperator</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<LOperator> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<COperator> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>LOperator</b></em>' literal with the specified literal value.
+	 * Returns the '<em><b>COperator</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param literal the literal.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
-	public static LOperator get(String literal) {
+	public static COperator get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			LOperator result = VALUES_ARRAY[i];
+			COperator result = VALUES_ARRAY[i];
 			if (result.toString().equals(literal)) {
 				return result;
 			}
@@ -192,16 +168,16 @@ public enum LOperator implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>LOperator</b></em>' literal with the specified name.
+	 * Returns the '<em><b>COperator</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param name the name.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
-	public static LOperator getByName(String name) {
+	public static COperator getByName(String name) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			LOperator result = VALUES_ARRAY[i];
+			COperator result = VALUES_ARRAY[i];
 			if (result.getName().equals(name)) {
 				return result;
 			}
@@ -210,27 +186,25 @@ public enum LOperator implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>LOperator</b></em>' literal with the specified integer value.
+	 * Returns the '<em><b>COperator</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the integer value.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
-	public static LOperator get(int value) {
+	public static COperator get(int value) {
 		switch (value) {
-		case ANY_VALUE:
-			return ANY;
-		case ALL_VALUE:
-			return ALL;
-		case ONEOF_VALUE:
-			return ONEOF;
-		case KOFN_VALUE:
-			return KOFN;
-		case KORMORE_VALUE:
-			return KORMORE;
-		case KORLESS_VALUE:
-			return KORLESS;
+		case IN_VALUE:
+			return IN;
+		case CONTAINS_VALUE:
+			return CONTAINS;
+		case EQUALS_VALUE:
+			return EQUALS;
+		case SATISFIES_VALUE:
+			return SATISFIES;
+		case QUESTIONMARK_VALUE:
+			return QUESTIONMARK;
 		}
 		return null;
 	}
@@ -262,7 +236,7 @@ public enum LOperator implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private LOperator(int value, String name, String literal) {
+	private COperator(int value, String name, String literal) {
 		this.value = value;
 		this.name = name;
 		this.literal = literal;
@@ -309,4 +283,4 @@ public enum LOperator implements Enumerator {
 		return literal;
 	}
 
-} //LOperator
+} //COperator

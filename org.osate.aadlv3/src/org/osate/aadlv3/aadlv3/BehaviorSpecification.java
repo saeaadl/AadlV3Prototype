@@ -15,6 +15,8 @@
  */
 package org.osate.aadlv3.aadlv3;
 
+import org.eclipse.emf.common.util.EList;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Behavior Specification</b></em>'.
@@ -24,10 +26,9 @@ package org.osate.aadlv3.aadlv3;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.osate.aadlv3.aadlv3.BehaviorSpecification#getGuard <em>Guard</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.BehaviorSpecification#getTargetState <em>Target State</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.BehaviorSpecification#getCondition <em>Condition</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.BehaviorSpecification#getResult <em>Result</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.BehaviorSpecification#getRules <em>Rules</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.BehaviorSpecification#getStates <em>States</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.BehaviorSpecification#getGenerators <em>Generators</em>}</li>
  * </ul>
  *
  * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getBehaviorSpecification()
@@ -36,91 +37,49 @@ package org.osate.aadlv3.aadlv3;
  */
 public interface BehaviorSpecification extends ModelElement {
 	/**
-	 * Returns the value of the '<em><b>Guard</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Rules</b></em>' containment reference list.
+	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.BehaviorRule}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Guard</em>' containment reference.
-	 * @see #setGuard(StateSpecification)
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getBehaviorSpecification_Guard()
+	 * @return the value of the '<em>Rules</em>' containment reference list.
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getBehaviorSpecification_Rules()
 	 * @model containment="true"
 	 * @generated
 	 */
-	StateSpecification getGuard();
+	EList<BehaviorRule> getRules();
 
 	/**
-	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.BehaviorSpecification#getGuard <em>Guard</em>}' containment reference.
+	 * Returns the value of the '<em><b>States</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Guard</em>' containment reference.
-	 * @see #getGuard()
-	 * @generated
-	 */
-	void setGuard(StateSpecification value);
-
-	/**
-	 * Returns the value of the '<em><b>Target State</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Target State</em>' reference.
-	 * @see #setTargetState(StateSpecification)
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getBehaviorSpecification_TargetState()
-	 * @model ordered="false"
-	 * @generated
-	 */
-	StateSpecification getTargetState();
-
-	/**
-	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.BehaviorSpecification#getTargetState <em>Target State</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Target State</em>' reference.
-	 * @see #getTargetState()
-	 * @generated
-	 */
-	void setTargetState(StateSpecification value);
-
-	/**
-	 * Returns the value of the '<em><b>Condition</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Condition</em>' containment reference.
-	 * @see #setCondition(MultiLiteralConstraint)
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getBehaviorSpecification_Condition()
-	 * @model containment="true"
-	 * @generated
-	 */
-	MultiLiteralConstraint getCondition();
-
-	/**
-	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.BehaviorSpecification#getCondition <em>Condition</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Condition</em>' containment reference.
-	 * @see #getCondition()
-	 * @generated
-	 */
-	void setCondition(MultiLiteralConstraint value);
-
-	/**
-	 * Returns the value of the '<em><b>Result</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Result</em>' reference.
-	 * @see #setResult(Literal)
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getBehaviorSpecification_Result()
+	 * @return the value of the '<em>States</em>' reference.
+	 * @see #setStates(TypeDef)
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getBehaviorSpecification_States()
 	 * @model
 	 * @generated
 	 */
-	Literal getResult();
+	TypeDef getStates();
 
 	/**
-	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.BehaviorSpecification#getResult <em>Result</em>}' reference.
+	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.BehaviorSpecification#getStates <em>States</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Result</em>' reference.
-	 * @see #getResult()
+	 * @param value the new value of the '<em>States</em>' reference.
+	 * @see #getStates()
 	 * @generated
 	 */
-	void setResult(Literal value);
+	void setStates(TypeDef value);
+
+	/**
+	 * Returns the value of the '<em><b>Generators</b></em>' containment reference list.
+	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.Generator}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Generators</em>' containment reference list.
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getBehaviorSpecification_Generators()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<Generator> getGenerators();
 
 } // BehaviorSpecification

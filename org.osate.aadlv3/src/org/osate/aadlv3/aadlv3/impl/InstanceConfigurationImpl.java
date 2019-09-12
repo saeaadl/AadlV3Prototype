@@ -23,8 +23,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
+import org.osate.aadlv3.aadlv3.ConditionOperation;
 import org.osate.aadlv3.aadlv3.InstanceConfiguration;
-import org.osate.aadlv3.aadlv3.PropertyConstraint;
 
 /**
  * <!-- begin-user-doc -->
@@ -34,21 +34,21 @@ import org.osate.aadlv3.aadlv3.PropertyConstraint;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.InstanceConfigurationImpl#getPropertyConstraint <em>Property Constraint</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.InstanceConfigurationImpl#getProductlineConstraint <em>Productline Constraint</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class InstanceConfigurationImpl extends SubcomponentImpl implements InstanceConfiguration {
 	/**
-	 * The cached value of the '{@link #getPropertyConstraint() <em>Property Constraint</em>}' containment reference.
+	 * The cached value of the '{@link #getProductlineConstraint() <em>Productline Constraint</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPropertyConstraint()
+	 * @see #getProductlineConstraint()
 	 * @generated
 	 * @ordered
 	 */
-	protected PropertyConstraint propertyConstraint;
+	protected ConditionOperation productlineConstraint;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -75,8 +75,8 @@ public class InstanceConfigurationImpl extends SubcomponentImpl implements Insta
 	 * @generated
 	 */
 	@Override
-	public PropertyConstraint getPropertyConstraint() {
-		return propertyConstraint;
+	public ConditionOperation getProductlineConstraint() {
+		return productlineConstraint;
 	}
 
 	/**
@@ -84,14 +84,14 @@ public class InstanceConfigurationImpl extends SubcomponentImpl implements Insta
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetPropertyConstraint(PropertyConstraint newPropertyConstraint,
+	public NotificationChain basicSetProductlineConstraint(ConditionOperation newProductlineConstraint,
 			NotificationChain msgs) {
-		PropertyConstraint oldPropertyConstraint = propertyConstraint;
-		propertyConstraint = newPropertyConstraint;
+		ConditionOperation oldProductlineConstraint = productlineConstraint;
+		productlineConstraint = newProductlineConstraint;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					Aadlv3Package.INSTANCE_CONFIGURATION__PROPERTY_CONSTRAINT, oldPropertyConstraint,
-					newPropertyConstraint);
+					Aadlv3Package.INSTANCE_CONFIGURATION__PRODUCTLINE_CONSTRAINT, oldProductlineConstraint,
+					newProductlineConstraint);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -106,22 +106,24 @@ public class InstanceConfigurationImpl extends SubcomponentImpl implements Insta
 	 * @generated
 	 */
 	@Override
-	public void setPropertyConstraint(PropertyConstraint newPropertyConstraint) {
-		if (newPropertyConstraint != propertyConstraint) {
+	public void setProductlineConstraint(ConditionOperation newProductlineConstraint) {
+		if (newProductlineConstraint != productlineConstraint) {
 			NotificationChain msgs = null;
-			if (propertyConstraint != null)
-				msgs = ((InternalEObject) propertyConstraint).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE - Aadlv3Package.INSTANCE_CONFIGURATION__PROPERTY_CONSTRAINT, null, msgs);
-			if (newPropertyConstraint != null)
-				msgs = ((InternalEObject) newPropertyConstraint).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE - Aadlv3Package.INSTANCE_CONFIGURATION__PROPERTY_CONSTRAINT, null, msgs);
-			msgs = basicSetPropertyConstraint(newPropertyConstraint, msgs);
+			if (productlineConstraint != null)
+				msgs = ((InternalEObject) productlineConstraint).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE - Aadlv3Package.INSTANCE_CONFIGURATION__PRODUCTLINE_CONSTRAINT, null,
+						msgs);
+			if (newProductlineConstraint != null)
+				msgs = ((InternalEObject) newProductlineConstraint).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE - Aadlv3Package.INSTANCE_CONFIGURATION__PRODUCTLINE_CONSTRAINT, null,
+						msgs);
+			msgs = basicSetProductlineConstraint(newProductlineConstraint, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-					Aadlv3Package.INSTANCE_CONFIGURATION__PROPERTY_CONSTRAINT, newPropertyConstraint,
-					newPropertyConstraint));
+					Aadlv3Package.INSTANCE_CONFIGURATION__PRODUCTLINE_CONSTRAINT, newProductlineConstraint,
+					newProductlineConstraint));
 	}
 
 	/**
@@ -132,8 +134,8 @@ public class InstanceConfigurationImpl extends SubcomponentImpl implements Insta
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case Aadlv3Package.INSTANCE_CONFIGURATION__PROPERTY_CONSTRAINT:
-			return basicSetPropertyConstraint(null, msgs);
+		case Aadlv3Package.INSTANCE_CONFIGURATION__PRODUCTLINE_CONSTRAINT:
+			return basicSetProductlineConstraint(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -146,8 +148,8 @@ public class InstanceConfigurationImpl extends SubcomponentImpl implements Insta
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case Aadlv3Package.INSTANCE_CONFIGURATION__PROPERTY_CONSTRAINT:
-			return getPropertyConstraint();
+		case Aadlv3Package.INSTANCE_CONFIGURATION__PRODUCTLINE_CONSTRAINT:
+			return getProductlineConstraint();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -160,8 +162,8 @@ public class InstanceConfigurationImpl extends SubcomponentImpl implements Insta
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case Aadlv3Package.INSTANCE_CONFIGURATION__PROPERTY_CONSTRAINT:
-			setPropertyConstraint((PropertyConstraint) newValue);
+		case Aadlv3Package.INSTANCE_CONFIGURATION__PRODUCTLINE_CONSTRAINT:
+			setProductlineConstraint((ConditionOperation) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -175,8 +177,8 @@ public class InstanceConfigurationImpl extends SubcomponentImpl implements Insta
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case Aadlv3Package.INSTANCE_CONFIGURATION__PROPERTY_CONSTRAINT:
-			setPropertyConstraint((PropertyConstraint) null);
+		case Aadlv3Package.INSTANCE_CONFIGURATION__PRODUCTLINE_CONSTRAINT:
+			setProductlineConstraint((ConditionOperation) null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -190,8 +192,8 @@ public class InstanceConfigurationImpl extends SubcomponentImpl implements Insta
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case Aadlv3Package.INSTANCE_CONFIGURATION__PROPERTY_CONSTRAINT:
-			return propertyConstraint != null;
+		case Aadlv3Package.INSTANCE_CONFIGURATION__PRODUCTLINE_CONSTRAINT:
+			return productlineConstraint != null;
 		}
 		return super.eIsSet(featureID);
 	}

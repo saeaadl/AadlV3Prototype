@@ -50,6 +50,8 @@ import org.osate.av3instance.av3instance.InstanceObject
 import static extension org.eclipse.xtext.EcoreUtil2.*
 import static extension org.osate.aadlv3.util.Av3API.*
 import org.osate.aadlv3.aadlv3.Expression
+import org.osate.aadlv3.aadlv3.AnnexSubclause
+import org.osate.aadlv3.aadlv3.BehaviorSpecification
 
 class Aadlv3Util {
 	
@@ -1079,21 +1081,37 @@ class Aadlv3Util {
 	}
 
 
-	// returns the enclosing component. 
+	// returns the enclosing subcomponent. Handles nested subcomponents
 	def static Subcomponent getContainingSubcomponent(EObject elem) {
-		var cxt = elem
+		var cxt = if (elem instanceof ClassifierAssignment) elem.eContainer as EObject else elem
 		while (cxt !== null && !(cxt instanceof Subcomponent)) {
 			cxt = cxt.eContainer as EObject
 		}
 		return cxt as Subcomponent
 	}
-	// returns the enclosing component. 
+	// returns the enclosing component. Handles nested classifier assignments
 	def static ClassifierAssignment getContainingClassifierAssignment(EObject elem) {
 		var cxt = if (elem instanceof ClassifierAssignment) elem.eContainer as EObject else elem
 		while (cxt !== null && !(cxt instanceof ClassifierAssignment)) {
 			cxt = cxt.eContainer as EObject
 		}
 		return cxt as ClassifierAssignment
+	}
+	// returns the enclosing annex subclause. 
+	def static AnnexSubclause getContainingSubclause(EObject elem) {
+		var cxt = elem 
+		while (cxt !== null && !(cxt instanceof AnnexSubclause)) {
+			cxt = cxt.eContainer as EObject
+		}
+		return cxt as AnnexSubclause
+	}
+	// returns the enclosing annex subclause. 
+	def static BehaviorSpecification getContainingBehaviorSpecification(EObject elem) {
+		var cxt = elem 
+		while (cxt !== null && !(cxt instanceof BehaviorSpecification)) {
+			cxt = cxt.eContainer as EObject
+		}
+		return cxt as BehaviorSpecification
 	}
 
 	

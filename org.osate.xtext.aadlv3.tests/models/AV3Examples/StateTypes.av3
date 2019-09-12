@@ -1,0 +1,3 @@
+package StateTypes is
+	type threestate : enum ( s0 s1 s2);
+end;

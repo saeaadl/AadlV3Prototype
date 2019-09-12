@@ -21,39 +21,30 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.IItemPropertySource;
-import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
-import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.osate.aadlv3.aadlv3.Aadlv3Factory;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
-import org.osate.aadlv3.aadlv3.PropertyConstraint;
+import org.osate.aadlv3.aadlv3.EMSubclause;
 
 /**
- * This is the item provider adapter for a {@link org.osate.aadlv3.aadlv3.PropertyConstraint} object.
+ * This is the item provider adapter for a {@link org.osate.aadlv3.aadlv3.EMSubclause} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class PropertyConstraintItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
-		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class EMSubclauseItemProvider extends AnnexSubclauseItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PropertyConstraintItemProvider(AdapterFactory adapterFactory) {
+	public EMSubclauseItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -68,24 +59,40 @@ public class PropertyConstraintItemProvider extends ItemProviderAdapter implemen
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addConstrainedPropertyPropertyDescriptor(object);
+			addStatesPropertyDescriptor(object);
+			addGeneratorsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Constrained Property feature.
+	 * This adds a property descriptor for the States feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addConstrainedPropertyPropertyDescriptor(Object object) {
+	protected void addStatesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_BehaviorSpecification_states_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_BehaviorSpecification_states_feature",
+								"_UI_BehaviorSpecification_type"),
+						Aadlv3Package.Literals.BEHAVIOR_SPECIFICATION__STATES, true, false, true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Generators feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addGeneratorsPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
 				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_PropertyConstraint_constrainedProperty_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_PropertyConstraint_constrainedProperty_feature",
-						"_UI_PropertyConstraint_type"),
-				Aadlv3Package.Literals.PROPERTY_CONSTRAINT__CONSTRAINED_PROPERTY, true, false, true, null, null, null));
+				getString("_UI_BehaviorSpecification_generators_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_BehaviorSpecification_generators_feature",
+						"_UI_BehaviorSpecification_type"),
+				Aadlv3Package.Literals.BEHAVIOR_SPECIFICATION__GENERATORS, true, false, true, null, null, null));
 	}
 
 	/**
@@ -100,7 +107,7 @@ public class PropertyConstraintItemProvider extends ItemProviderAdapter implemen
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(Aadlv3Package.Literals.PROPERTY_CONSTRAINT__CONSTRAINT_EXPRESSION);
+			childrenFeatures.add(Aadlv3Package.Literals.BEHAVIOR_SPECIFICATION__RULES);
 		}
 		return childrenFeatures;
 	}
@@ -119,14 +126,14 @@ public class PropertyConstraintItemProvider extends ItemProviderAdapter implemen
 	}
 
 	/**
-	 * This returns PropertyConstraint.gif.
+	 * This returns EMSubclause.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/PropertyConstraint"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/EMSubclause"));
 	}
 
 	/**
@@ -137,7 +144,9 @@ public class PropertyConstraintItemProvider extends ItemProviderAdapter implemen
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_PropertyConstraint_type");
+		String label = ((EMSubclause) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_EMSubclause_type")
+				: getString("_UI_EMSubclause_type") + " " + label;
 	}
 
 	/**
@@ -151,8 +160,8 @@ public class PropertyConstraintItemProvider extends ItemProviderAdapter implemen
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(PropertyConstraint.class)) {
-		case Aadlv3Package.PROPERTY_CONSTRAINT__CONSTRAINT_EXPRESSION:
+		switch (notification.getFeatureID(EMSubclause.class)) {
+		case Aadlv3Package.EM_SUBCLAUSE__RULES:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -170,19 +179,8 @@ public class PropertyConstraintItemProvider extends ItemProviderAdapter implemen
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_CONSTRAINT__CONSTRAINT_EXPRESSION,
-				Aadlv3Factory.eINSTANCE.createMultiLiteralConstraint()));
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return Aadlv3EditPlugin.INSTANCE;
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.BEHAVIOR_SPECIFICATION__RULES,
+				Aadlv3Factory.eINSTANCE.createBehaviorRule()));
 	}
 
 }

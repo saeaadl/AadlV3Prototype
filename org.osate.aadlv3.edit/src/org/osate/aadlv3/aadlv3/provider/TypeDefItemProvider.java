@@ -75,6 +75,7 @@ public class TypeDefItemProvider extends NamedTypeItemProvider {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(Aadlv3Package.Literals.TYPE_DEF__SUPER_TYPE);
+			childrenFeatures.add(Aadlv3Package.Literals.TYPE_DEF__BASE_TYPE);
 		}
 		return childrenFeatures;
 	}
@@ -129,6 +130,7 @@ public class TypeDefItemProvider extends NamedTypeItemProvider {
 
 		switch (notification.getFeatureID(TypeDef.class)) {
 		case Aadlv3Package.TYPE_DEF__SUPER_TYPE:
+		case Aadlv3Package.TYPE_DEF__BASE_TYPE:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -165,6 +167,9 @@ public class TypeDefItemProvider extends NamedTypeItemProvider {
 				Aadlv3Factory.eINSTANCE.createTypeDef()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.TYPE_DEF__SUPER_TYPE,
+				Aadlv3Factory.eINSTANCE.createEnumerationType()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.TYPE_DEF__SUPER_TYPE,
 				Aadlv3Factory.eINSTANCE.createPrimitiveType()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.TYPE_DEF__SUPER_TYPE,
@@ -172,6 +177,57 @@ public class TypeDefItemProvider extends NamedTypeItemProvider {
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.TYPE_DEF__SUPER_TYPE,
 				Aadlv3Factory.eINSTANCE.createTypeReference()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.TYPE_DEF__BASE_TYPE,
+				Aadlv3Factory.eINSTANCE.createNamedType()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.TYPE_DEF__BASE_TYPE,
+				Aadlv3Factory.eINSTANCE.createComponentInterface()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.TYPE_DEF__BASE_TYPE,
+				Aadlv3Factory.eINSTANCE.createComponentImplementation()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.TYPE_DEF__BASE_TYPE,
+				Aadlv3Factory.eINSTANCE.createComponentConfiguration()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.TYPE_DEF__BASE_TYPE,
+				Aadlv3Factory.eINSTANCE.createConfigurationParameter()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.TYPE_DEF__BASE_TYPE,
+				Aadlv3Factory.eINSTANCE.createTypeDef()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.TYPE_DEF__BASE_TYPE,
+				Aadlv3Factory.eINSTANCE.createEnumerationType()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.TYPE_DEF__BASE_TYPE,
+				Aadlv3Factory.eINSTANCE.createPrimitiveType()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.TYPE_DEF__BASE_TYPE,
+				Aadlv3Factory.eINSTANCE.createCompositeType()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.TYPE_DEF__BASE_TYPE,
+				Aadlv3Factory.eINSTANCE.createTypeReference()));
+	}
+
+	/**
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
+		Object childFeature = feature;
+		Object childObject = child;
+
+		boolean qualify = childFeature == Aadlv3Package.Literals.TYPE_DEF__SUPER_TYPE
+				|| childFeature == Aadlv3Package.Literals.TYPE_DEF__BASE_TYPE;
+
+		if (qualify) {
+			return getString("_UI_CreateChild_text2",
+					new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+		}
+		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 }

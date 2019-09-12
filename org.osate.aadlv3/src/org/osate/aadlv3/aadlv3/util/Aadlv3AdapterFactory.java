@@ -200,11 +200,6 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter casePropertyConstraint(PropertyConstraint object) {
-			return createPropertyConstraintAdapter();
-		}
-
-		@Override
 		public Adapter caseType(Type object) {
 			return createTypeAdapter();
 		}
@@ -310,6 +305,21 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseAssignment(Assignment object) {
+			return createAssignmentAdapter();
+		}
+
+		@Override
+		public Adapter caseAction(Action object) {
+			return createActionAdapter();
+		}
+
+		@Override
+		public Adapter caseConditionOperation(ConditionOperation object) {
+			return createConditionOperationAdapter();
+		}
+
+		@Override
 		public Adapter casePropertyAssociation(PropertyAssociation object) {
 			return createPropertyAssociationAdapter();
 		}
@@ -320,8 +330,28 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseDefaultAnnexSubclause(DefaultAnnexSubclause object) {
+			return createDefaultAnnexSubclauseAdapter();
+		}
+
+		@Override
 		public Adapter caseAnnexLibrary(AnnexLibrary object) {
 			return createAnnexLibraryAdapter();
+		}
+
+		@Override
+		public Adapter caseBehaviorRule(BehaviorRule object) {
+			return createBehaviorRuleAdapter();
+		}
+
+		@Override
+		public Adapter caseEMSubclause(EMSubclause object) {
+			return createEMSubclauseAdapter();
+		}
+
+		@Override
+		public Adapter caseBASubclause(BASubclause object) {
+			return createBASubclauseAdapter();
 		}
 
 		@Override
@@ -332,6 +362,21 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseStateSpecification(StateSpecification object) {
 			return createStateSpecificationAdapter();
+		}
+
+		@Override
+		public Adapter caseGenerator(Generator object) {
+			return createGeneratorAdapter();
+		}
+
+		@Override
+		public Adapter caseConstant(Constant object) {
+			return createConstantAdapter();
+		}
+
+		@Override
+		public Adapter casePackageElementReference(PackageElementReference object) {
+			return createPackageElementReferenceAdapter();
 		}
 
 		@Override
@@ -690,20 +735,6 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.PropertyConstraint <em>Property Constraint</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.osate.aadlv3.aadlv3.PropertyConstraint
-	 * @generated
-	 */
-	public Adapter createPropertyConstraintAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.NumberLiteral <em>Number Literal</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -900,6 +931,48 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.Assignment <em>Assignment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.osate.aadlv3.aadlv3.Assignment
+	 * @generated
+	 */
+	public Adapter createAssignmentAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.Action <em>Action</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.osate.aadlv3.aadlv3.Action
+	 * @generated
+	 */
+	public Adapter createActionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.ConditionOperation <em>Condition Operation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.osate.aadlv3.aadlv3.ConditionOperation
+	 * @generated
+	 */
+	public Adapter createConditionOperationAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.PropertyAssociation <em>Property Association</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -928,6 +1001,20 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.DefaultAnnexSubclause <em>Default Annex Subclause</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.osate.aadlv3.aadlv3.DefaultAnnexSubclause
+	 * @generated
+	 */
+	public Adapter createDefaultAnnexSubclauseAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.AnnexLibrary <em>Annex Library</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -938,6 +1025,48 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createAnnexLibraryAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.BehaviorRule <em>Behavior Rule</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.osate.aadlv3.aadlv3.BehaviorRule
+	 * @generated
+	 */
+	public Adapter createBehaviorRuleAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.EMSubclause <em>EM Subclause</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.osate.aadlv3.aadlv3.EMSubclause
+	 * @generated
+	 */
+	public Adapter createEMSubclauseAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.BASubclause <em>BA Subclause</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.osate.aadlv3.aadlv3.BASubclause
+	 * @generated
+	 */
+	public Adapter createBASubclauseAdapter() {
 		return null;
 	}
 
@@ -966,6 +1095,48 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createStateSpecificationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.Generator <em>Generator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.osate.aadlv3.aadlv3.Generator
+	 * @generated
+	 */
+	public Adapter createGeneratorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.Constant <em>Constant</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.osate.aadlv3.aadlv3.Constant
+	 * @generated
+	 */
+	public Adapter createConstantAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.PackageElementReference <em>Package Element Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.osate.aadlv3.aadlv3.PackageElementReference
+	 * @generated
+	 */
+	public Adapter createPackageElementReferenceAdapter() {
 		return null;
 	}
 

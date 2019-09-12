@@ -197,7 +197,13 @@ public class ClassifierItemProvider extends NamedTypeItemProvider {
 				Aadlv3Factory.eINSTANCE.createTypeReference()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CLASSIFIER__ANNEX_SUBCLAUSE,
-				Aadlv3Factory.eINSTANCE.createAnnexSubclause()));
+				Aadlv3Factory.eINSTANCE.createDefaultAnnexSubclause()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CLASSIFIER__ANNEX_SUBCLAUSE,
+				Aadlv3Factory.eINSTANCE.createEMSubclause()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CLASSIFIER__ANNEX_SUBCLAUSE,
+				Aadlv3Factory.eINSTANCE.createBASubclause()));
 	}
 
 }

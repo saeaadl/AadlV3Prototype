@@ -22,7 +22,7 @@ package org.osate.aadlv3.aadlv3;
  *
  *
  * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getAnnexSubclause()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface AnnexSubclause extends ModelElement {

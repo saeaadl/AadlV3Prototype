@@ -416,7 +416,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getNamedType()
 	 * @generated
 	 */
-	int NAMED_TYPE = 26;
+	int NAMED_TYPE = 25;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1409,7 +1409,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getTypeReference()
 	 * @generated
 	 */
-	int TYPE_REFERENCE = 31;
+	int TYPE_REFERENCE = 30;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.ConfigurationActualImpl <em>Configuration Actual</em>}' class.
@@ -1439,7 +1439,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getPropertyAssociation()
 	 * @generated
 	 */
-	int PROPERTY_ASSOCIATION = 46;
+	int PROPERTY_ASSOCIATION = 48;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.PathElementImpl <em>Path Element</em>}' class.
@@ -1516,13 +1516,201 @@ public interface Aadlv3Package extends EPackage {
 	int PATH_SEQUENCE_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
+	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.ClassifierAssignmentImpl <em>Classifier Assignment</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.osate.aadlv3.aadlv3.impl.ClassifierAssignmentImpl
+	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getClassifierAssignment()
+	 * @generated
+	 */
+	int CLASSIFIER_ASSIGNMENT = 17;
+
+	/**
+	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.ClassifierAssignmentPatternImpl <em>Classifier Assignment Pattern</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.osate.aadlv3.aadlv3.impl.ClassifierAssignmentPatternImpl
+	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getClassifierAssignmentPattern()
+	 * @generated
+	 */
+	int CLASSIFIER_ASSIGNMENT_PATTERN = 18;
+
+	/**
+	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.TypeImpl <em>Type</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.osate.aadlv3.aadlv3.impl.TypeImpl
+	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getType()
+	 * @generated
+	 */
+	int TYPE = 24;
+
+	/**
+	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.LiteralImpl <em>Literal</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.osate.aadlv3.aadlv3.impl.LiteralImpl
+	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getLiteral()
+	 * @generated
+	 */
+	int LITERAL = 31;
+
+	/**
+	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.InstanceConfigurationImpl <em>Instance Configuration</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.osate.aadlv3.aadlv3.impl.InstanceConfigurationImpl
+	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getInstanceConfiguration()
+	 * @generated
+	 */
+	int INSTANCE_CONFIGURATION = 23;
+
+	/**
+	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.TypeDefImpl <em>Type Def</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.osate.aadlv3.aadlv3.impl.TypeDefImpl
+	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getTypeDef()
+	 * @generated
+	 */
+	int TYPE_DEF = 26;
+
+	/**
+	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.NumberLiteralImpl <em>Number Literal</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.osate.aadlv3.aadlv3.impl.NumberLiteralImpl
+	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getNumberLiteral()
+	 * @generated
+	 */
+	int NUMBER_LITERAL = 32;
+
+	/**
+	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.IntegerLiteralImpl <em>Integer Literal</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.osate.aadlv3.aadlv3.impl.IntegerLiteralImpl
+	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getIntegerLiteral()
+	 * @generated
+	 */
+	int INTEGER_LITERAL = 33;
+
+	/**
+	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.ListLiteralImpl <em>List Literal</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.osate.aadlv3.aadlv3.impl.ListLiteralImpl
+	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getListLiteral()
+	 * @generated
+	 */
+	int LIST_LITERAL = 40;
+
+	/**
+	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.SetLiteralImpl <em>Set Literal</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.osate.aadlv3.aadlv3.impl.SetLiteralImpl
+	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getSetLiteral()
+	 * @generated
+	 */
+	int SET_LITERAL = 41;
+
+	/**
+	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.DirectionalLiteralImpl <em>Directional Literal</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.osate.aadlv3.aadlv3.impl.DirectionalLiteralImpl
+	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getDirectionalLiteral()
+	 * @generated
+	 */
+	int DIRECTIONAL_LITERAL = 38;
+
+	/**
+	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.AnnexSubclauseImpl <em>Annex Subclause</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.osate.aadlv3.aadlv3.impl.AnnexSubclauseImpl
+	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getAnnexSubclause()
+	 * @generated
+	 */
+	int ANNEX_SUBCLAUSE = 49;
+
+	/**
+	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.AnnexLibraryImpl <em>Annex Library</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.osate.aadlv3.aadlv3.impl.AnnexLibraryImpl
+	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getAnnexLibrary()
+	 * @generated
+	 */
+	int ANNEX_LIBRARY = 51;
+
+	/**
+	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.PrimitiveTypeImpl <em>Primitive Type</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.osate.aadlv3.aadlv3.impl.PrimitiveTypeImpl
+	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getPrimitiveType()
+	 * @generated
+	 */
+	int PRIMITIVE_TYPE = 28;
+
+	/**
+	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.CompositeTypeImpl <em>Composite Type</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.osate.aadlv3.aadlv3.impl.CompositeTypeImpl
+	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getCompositeType()
+	 * @generated
+	 */
+	int COMPOSITE_TYPE = 29;
+
+	/**
+	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.ExpressionImpl <em>Expression</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.osate.aadlv3.aadlv3.impl.ExpressionImpl
+	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getExpression()
+	 * @generated
+	 */
+	int EXPRESSION = 42;
+
+	/**
+	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.EnumerationTypeImpl <em>Enumeration Type</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.osate.aadlv3.aadlv3.impl.EnumerationTypeImpl
+	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getEnumerationType()
+	 * @generated
+	 */
+	int ENUMERATION_TYPE = 27;
+
+	/**
+	 * The number of structural features of the '<em>Expression</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of structural features of the '<em>Literal</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Element</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_REFERENCE__ELEMENT = 0;
+	int MODEL_ELEMENT_REFERENCE__ELEMENT = LITERAL_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Context</b></em>' containment reference.
@@ -1531,7 +1719,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_REFERENCE__CONTEXT = 1;
+	int MODEL_ELEMENT_REFERENCE__CONTEXT = LITERAL_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Model Element Reference</em>' class.
@@ -1540,7 +1728,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_REFERENCE_FEATURE_COUNT = 2;
+	int MODEL_ELEMENT_REFERENCE_FEATURE_COUNT = LITERAL_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Element</b></em>' reference.
@@ -1586,16 +1774,6 @@ public interface Aadlv3Package extends EPackage {
 	 * @ordered
 	 */
 	int PATH_ELEMENT_FEATURE_COUNT = MODEL_ELEMENT_REFERENCE_FEATURE_COUNT + 2;
-
-	/**
-	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.ClassifierAssignmentImpl <em>Classifier Assignment</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.osate.aadlv3.aadlv3.impl.ClassifierAssignmentImpl
-	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getClassifierAssignment()
-	 * @generated
-	 */
-	int CLASSIFIER_ASSIGNMENT = 17;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' containment reference.
@@ -1659,16 +1837,6 @@ public interface Aadlv3Package extends EPackage {
 	 * @ordered
 	 */
 	int CLASSIFIER_ASSIGNMENT_FEATURE_COUNT = 6;
-
-	/**
-	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.ClassifierAssignmentPatternImpl <em>Classifier Assignment Pattern</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.osate.aadlv3.aadlv3.impl.ClassifierAssignmentPatternImpl
-	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getClassifierAssignmentPattern()
-	 * @generated
-	 */
-	int CLASSIFIER_ASSIGNMENT_PATTERN = 18;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' containment reference.
@@ -1752,16 +1920,6 @@ public interface Aadlv3Package extends EPackage {
 	int CONFIGURATION_PARAMETER__NAME = NAMED_TYPE__NAME;
 
 	/**
-	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.TypeImpl <em>Type</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.osate.aadlv3.aadlv3.impl.TypeImpl
-	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getType()
-	 * @generated
-	 */
-	int TYPE = 25;
-
-	/**
 	 * The feature id for the '<em><b>Owned Property Associations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1796,16 +1954,6 @@ public interface Aadlv3Package extends EPackage {
 	 * @ordered
 	 */
 	int CONFIGURATION_PARAMETER_FEATURE_COUNT = NAMED_TYPE_FEATURE_COUNT + 1;
-
-	/**
-	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.LiteralImpl <em>Literal</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.osate.aadlv3.aadlv3.impl.LiteralImpl
-	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getLiteral()
-	 * @generated
-	 */
-	int LITERAL = 32;
 
 	/**
 	 * The feature id for the '<em><b>Parameter</b></em>' reference.
@@ -1889,16 +2037,6 @@ public interface Aadlv3Package extends EPackage {
 	int WORKINGSET_FEATURE_COUNT = PACKAGE_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.InstanceConfigurationImpl <em>Instance Configuration</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.osate.aadlv3.aadlv3.impl.InstanceConfigurationImpl
-	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getInstanceConfiguration()
-	 * @generated
-	 */
-	int INSTANCE_CONFIGURATION = 23;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1980,13 +2118,13 @@ public interface Aadlv3Package extends EPackage {
 	int INSTANCE_CONFIGURATION__FEATURES = SUBCOMPONENT__FEATURES;
 
 	/**
-	 * The feature id for the '<em><b>Property Constraint</b></em>' containment reference.
+	 * The feature id for the '<em><b>Productline Constraint</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_CONFIGURATION__PROPERTY_CONSTRAINT = SUBCOMPONENT_FEATURE_COUNT + 0;
+	int INSTANCE_CONFIGURATION__PRODUCTLINE_CONSTRAINT = SUBCOMPONENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Instance Configuration</em>' class.
@@ -1998,43 +2136,6 @@ public interface Aadlv3Package extends EPackage {
 	int INSTANCE_CONFIGURATION_FEATURE_COUNT = SUBCOMPONENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.PropertyConstraintImpl <em>Property Constraint</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.osate.aadlv3.aadlv3.impl.PropertyConstraintImpl
-	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getPropertyConstraint()
-	 * @generated
-	 */
-	int PROPERTY_CONSTRAINT = 24;
-
-	/**
-	 * The feature id for the '<em><b>Constrained Property</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY_CONSTRAINT__CONSTRAINED_PROPERTY = 0;
-
-	/**
-	 * The feature id for the '<em><b>Constraint Expression</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY_CONSTRAINT__CONSTRAINT_EXPRESSION = 1;
-
-	/**
-	 * The number of structural features of the '<em>Property Constraint</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY_CONSTRAINT_FEATURE_COUNT = 2;
-
-	/**
 	 * The number of structural features of the '<em>Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2042,16 +2143,6 @@ public interface Aadlv3Package extends EPackage {
 	 * @ordered
 	 */
 	int TYPE_FEATURE_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.TypeDefImpl <em>Type Def</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.osate.aadlv3.aadlv3.impl.TypeDefImpl
-	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getTypeDef()
-	 * @generated
-	 */
-	int TYPE_DEF = 27;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2090,132 +2181,31 @@ public interface Aadlv3Package extends EPackage {
 	int TYPE_DEF__SUPER_TYPE = NAMED_TYPE_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Base Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_DEF__BASE_TYPE = NAMED_TYPE_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Type Def</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_DEF_FEATURE_COUNT = NAMED_TYPE_FEATURE_COUNT + 1;
+	int TYPE_DEF_FEATURE_COUNT = NAMED_TYPE_FEATURE_COUNT + 2;
 
 	/**
-	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.NumberLiteralImpl <em>Number Literal</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.osate.aadlv3.aadlv3.impl.NumberLiteralImpl
-	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getNumberLiteral()
-	 * @generated
-	 */
-	int NUMBER_LITERAL = 33;
-
-	/**
-	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.IntegerLiteralImpl <em>Integer Literal</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.osate.aadlv3.aadlv3.impl.IntegerLiteralImpl
-	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getIntegerLiteral()
-	 * @generated
-	 */
-	int INTEGER_LITERAL = 34;
-
-	/**
-	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.ListLiteralImpl <em>List Literal</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.osate.aadlv3.aadlv3.impl.ListLiteralImpl
-	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getListLiteral()
-	 * @generated
-	 */
-	int LIST_LITERAL = 41;
-
-	/**
-	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.SetLiteralImpl <em>Set Literal</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.osate.aadlv3.aadlv3.impl.SetLiteralImpl
-	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getSetLiteral()
-	 * @generated
-	 */
-	int SET_LITERAL = 42;
-
-	/**
-	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.DirectionalLiteralImpl <em>Directional Literal</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.osate.aadlv3.aadlv3.impl.DirectionalLiteralImpl
-	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getDirectionalLiteral()
-	 * @generated
-	 */
-	int DIRECTIONAL_LITERAL = 39;
-
-	/**
-	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.AnnexSubclauseImpl <em>Annex Subclause</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.osate.aadlv3.aadlv3.impl.AnnexSubclauseImpl
-	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getAnnexSubclause()
-	 * @generated
-	 */
-	int ANNEX_SUBCLAUSE = 47;
-
-	/**
-	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.AnnexLibraryImpl <em>Annex Library</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.osate.aadlv3.aadlv3.impl.AnnexLibraryImpl
-	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getAnnexLibrary()
-	 * @generated
-	 */
-	int ANNEX_LIBRARY = 48;
-
-	/**
-	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.PrimitiveTypeImpl <em>Primitive Type</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.osate.aadlv3.aadlv3.impl.PrimitiveTypeImpl
-	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getPrimitiveType()
-	 * @generated
-	 */
-	int PRIMITIVE_TYPE = 29;
-
-	/**
-	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.CompositeTypeImpl <em>Composite Type</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.osate.aadlv3.aadlv3.impl.CompositeTypeImpl
-	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getCompositeType()
-	 * @generated
-	 */
-	int COMPOSITE_TYPE = 30;
-
-	/**
-	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.ExpressionImpl <em>Expression</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.osate.aadlv3.aadlv3.impl.ExpressionImpl
-	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getExpression()
-	 * @generated
-	 */
-	int EXPRESSION = 43;
-
-	/**
-	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.EnumerationTypeImpl <em>Enumeration Type</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.osate.aadlv3.aadlv3.impl.EnumerationTypeImpl
-	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getEnumerationType()
-	 * @generated
-	 */
-	int ENUMERATION_TYPE = 28;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' containment reference.
+	 * The feature id for the '<em><b>Literals</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ENUMERATION_TYPE__TYPE = 0;
+	int ENUMERATION_TYPE__LITERALS = TYPE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Enumeration Type</em>' class.
@@ -2224,7 +2214,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENUMERATION_TYPE_FEATURE_COUNT = 1;
+	int ENUMERATION_TYPE_FEATURE_COUNT = TYPE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Primitive Type</b></em>' attribute.
@@ -2308,24 +2298,6 @@ public interface Aadlv3Package extends EPackage {
 	int TYPE_REFERENCE_FEATURE_COUNT = TYPE_FEATURE_COUNT + 3;
 
 	/**
-	 * The number of structural features of the '<em>Expression</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXPRESSION_FEATURE_COUNT = 0;
-
-	/**
-	 * The number of structural features of the '<em>Literal</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Unit</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2378,7 +2350,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getRealLiteral()
 	 * @generated
 	 */
-	int REAL_LITERAL = 35;
+	int REAL_LITERAL = 34;
 
 	/**
 	 * The feature id for the '<em><b>Unit</b></em>' attribute.
@@ -2415,7 +2387,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getStringLiteral()
 	 * @generated
 	 */
-	int STRING_LITERAL = 36;
+	int STRING_LITERAL = 35;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -2443,7 +2415,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getBooleanLiteral()
 	 * @generated
 	 */
-	int BOOLEAN_LITERAL = 37;
+	int BOOLEAN_LITERAL = 36;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -2471,7 +2443,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getEnumerationLiteral()
 	 * @generated
 	 */
-	int ENUMERATION_LITERAL = 38;
+	int ENUMERATION_LITERAL = 37;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -2480,7 +2452,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENUMERATION_LITERAL__VALUE = STRING_LITERAL__VALUE;
+	int ENUMERATION_LITERAL__VALUE = LITERAL_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Enumeration Literal</em>' class.
@@ -2489,7 +2461,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENUMERATION_LITERAL_FEATURE_COUNT = STRING_LITERAL_FEATURE_COUNT + 0;
+	int ENUMERATION_LITERAL_FEATURE_COUNT = LITERAL_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Direction</b></em>' attribute.
@@ -2526,7 +2498,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getECollection()
 	 * @generated
 	 */
-	int ECOLLECTION = 40;
+	int ECOLLECTION = 39;
 
 	/**
 	 * The feature id for the '<em><b>Elements</b></em>' containment reference list.
@@ -2590,7 +2562,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getMultiOperandExpression()
 	 * @generated
 	 */
-	int MULTI_OPERAND_EXPRESSION = 45;
+	int MULTI_OPERAND_EXPRESSION = 44;
 
 	/**
 	 * The feature id for the '<em><b>Elements</b></em>' containment reference list.
@@ -2627,7 +2599,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getMultiLiteralConstraint()
 	 * @generated
 	 */
-	int MULTI_LITERAL_CONSTRAINT = 44;
+	int MULTI_LITERAL_CONSTRAINT = 43;
 
 	/**
 	 * The feature id for the '<em><b>Elements</b></em>' containment reference list.
@@ -2655,6 +2627,108 @@ public interface Aadlv3Package extends EPackage {
 	 * @ordered
 	 */
 	int MULTI_LITERAL_CONSTRAINT_FEATURE_COUNT = MULTI_OPERAND_EXPRESSION_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.ActionImpl <em>Action</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.osate.aadlv3.aadlv3.impl.ActionImpl
+	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getAction()
+	 * @generated
+	 */
+	int ACTION = 46;
+
+	/**
+	 * The number of structural features of the '<em>Action</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_FEATURE_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.AssignmentImpl <em>Assignment</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.osate.aadlv3.aadlv3.impl.AssignmentImpl
+	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getAssignment()
+	 * @generated
+	 */
+	int ASSIGNMENT = 45;
+
+	/**
+	 * The feature id for the '<em><b>Target</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSIGNMENT__TARGET = ACTION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSIGNMENT__VALUE = ACTION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Assignment</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSIGNMENT_FEATURE_COUNT = ACTION_FEATURE_COUNT + 2;
+
+	/**
+	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.ConditionOperationImpl <em>Condition Operation</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.osate.aadlv3.aadlv3.impl.ConditionOperationImpl
+	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getConditionOperation()
+	 * @generated
+	 */
+	int CONDITION_OPERATION = 47;
+
+	/**
+	 * The feature id for the '<em><b>Left</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITION_OPERATION__LEFT = LITERAL_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Operator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITION_OPERATION__OPERATOR = LITERAL_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Right</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITION_OPERATION__RIGHT = LITERAL_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Condition Operation</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITION_OPERATION_FEATURE_COUNT = LITERAL_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' containment reference.
@@ -2747,6 +2821,61 @@ public interface Aadlv3Package extends EPackage {
 	int ANNEX_SUBCLAUSE_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.DefaultAnnexSubclauseImpl <em>Default Annex Subclause</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.osate.aadlv3.aadlv3.impl.DefaultAnnexSubclauseImpl
+	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getDefaultAnnexSubclause()
+	 * @generated
+	 */
+	int DEFAULT_ANNEX_SUBCLAUSE = 50;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEFAULT_ANNEX_SUBCLAUSE__NAME = ANNEX_SUBCLAUSE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Property Associations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEFAULT_ANNEX_SUBCLAUSE__OWNED_PROPERTY_ASSOCIATIONS = ANNEX_SUBCLAUSE__OWNED_PROPERTY_ASSOCIATIONS;
+
+	/**
+	 * The feature id for the '<em><b>In Modes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEFAULT_ANNEX_SUBCLAUSE__IN_MODES = ANNEX_SUBCLAUSE__IN_MODES;
+
+	/**
+	 * The feature id for the '<em><b>Body</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEFAULT_ANNEX_SUBCLAUSE__BODY = ANNEX_SUBCLAUSE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Default Annex Subclause</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEFAULT_ANNEX_SUBCLAUSE_FEATURE_COUNT = ANNEX_SUBCLAUSE_FEATURE_COUNT + 1;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2801,6 +2930,161 @@ public interface Aadlv3Package extends EPackage {
 	int ANNEX_LIBRARY_FEATURE_COUNT = PACKAGE_DECLARATION_FEATURE_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.BehaviorRuleImpl <em>Behavior Rule</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.osate.aadlv3.aadlv3.impl.BehaviorRuleImpl
+	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getBehaviorRule()
+	 * @generated
+	 */
+	int BEHAVIOR_RULE = 52;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEHAVIOR_RULE__NAME = MODEL_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Property Associations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEHAVIOR_RULE__OWNED_PROPERTY_ASSOCIATIONS = MODEL_ELEMENT__OWNED_PROPERTY_ASSOCIATIONS;
+
+	/**
+	 * The feature id for the '<em><b>In Modes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEHAVIOR_RULE__IN_MODES = MODEL_ELEMENT__IN_MODES;
+
+	/**
+	 * The feature id for the '<em><b>Guard</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEHAVIOR_RULE__GUARD = MODEL_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Target State</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEHAVIOR_RULE__TARGET_STATE = MODEL_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Condition</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEHAVIOR_RULE__CONDITION = MODEL_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Action</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEHAVIOR_RULE__ACTION = MODEL_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of structural features of the '<em>Behavior Rule</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEHAVIOR_RULE_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
+	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.EMSubclauseImpl <em>EM Subclause</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.osate.aadlv3.aadlv3.impl.EMSubclauseImpl
+	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getEMSubclause()
+	 * @generated
+	 */
+	int EM_SUBCLAUSE = 53;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EM_SUBCLAUSE__NAME = ANNEX_SUBCLAUSE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Property Associations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EM_SUBCLAUSE__OWNED_PROPERTY_ASSOCIATIONS = ANNEX_SUBCLAUSE__OWNED_PROPERTY_ASSOCIATIONS;
+
+	/**
+	 * The feature id for the '<em><b>In Modes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EM_SUBCLAUSE__IN_MODES = ANNEX_SUBCLAUSE__IN_MODES;
+
+	/**
+	 * The feature id for the '<em><b>Rules</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EM_SUBCLAUSE__RULES = ANNEX_SUBCLAUSE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>States</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EM_SUBCLAUSE__STATES = ANNEX_SUBCLAUSE_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Generators</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EM_SUBCLAUSE__GENERATORS = ANNEX_SUBCLAUSE_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>EM Subclause</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EM_SUBCLAUSE_FEATURE_COUNT = ANNEX_SUBCLAUSE_FEATURE_COUNT + 3;
+
+	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.BehaviorSpecificationImpl <em>Behavior Specification</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2808,7 +3092,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getBehaviorSpecification()
 	 * @generated
 	 */
-	int BEHAVIOR_SPECIFICATION = 49;
+	int BEHAVIOR_SPECIFICATION = 55;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2838,40 +3122,31 @@ public interface Aadlv3Package extends EPackage {
 	int BEHAVIOR_SPECIFICATION__IN_MODES = MODEL_ELEMENT__IN_MODES;
 
 	/**
-	 * The feature id for the '<em><b>Guard</b></em>' containment reference.
+	 * The feature id for the '<em><b>Rules</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BEHAVIOR_SPECIFICATION__GUARD = MODEL_ELEMENT_FEATURE_COUNT + 0;
+	int BEHAVIOR_SPECIFICATION__RULES = MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Target State</b></em>' reference.
+	 * The feature id for the '<em><b>States</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BEHAVIOR_SPECIFICATION__TARGET_STATE = MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int BEHAVIOR_SPECIFICATION__STATES = MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Condition</b></em>' containment reference.
+	 * The feature id for the '<em><b>Generators</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BEHAVIOR_SPECIFICATION__CONDITION = MODEL_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Result</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BEHAVIOR_SPECIFICATION__RESULT = MODEL_ELEMENT_FEATURE_COUNT + 3;
+	int BEHAVIOR_SPECIFICATION__GENERATORS = MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Behavior Specification</em>' class.
@@ -2880,7 +3155,80 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BEHAVIOR_SPECIFICATION_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 4;
+	int BEHAVIOR_SPECIFICATION_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.BASubclauseImpl <em>BA Subclause</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.osate.aadlv3.aadlv3.impl.BASubclauseImpl
+	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getBASubclause()
+	 * @generated
+	 */
+	int BA_SUBCLAUSE = 54;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BA_SUBCLAUSE__NAME = BEHAVIOR_SPECIFICATION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Property Associations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BA_SUBCLAUSE__OWNED_PROPERTY_ASSOCIATIONS = BEHAVIOR_SPECIFICATION__OWNED_PROPERTY_ASSOCIATIONS;
+
+	/**
+	 * The feature id for the '<em><b>In Modes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BA_SUBCLAUSE__IN_MODES = BEHAVIOR_SPECIFICATION__IN_MODES;
+
+	/**
+	 * The feature id for the '<em><b>Rules</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BA_SUBCLAUSE__RULES = BEHAVIOR_SPECIFICATION__RULES;
+
+	/**
+	 * The feature id for the '<em><b>States</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BA_SUBCLAUSE__STATES = BEHAVIOR_SPECIFICATION__STATES;
+
+	/**
+	 * The feature id for the '<em><b>Generators</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BA_SUBCLAUSE__GENERATORS = BEHAVIOR_SPECIFICATION__GENERATORS;
+
+	/**
+	 * The number of structural features of the '<em>BA Subclause</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BA_SUBCLAUSE_FEATURE_COUNT = BEHAVIOR_SPECIFICATION_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.StateSpecificationImpl <em>State Specification</em>}' class.
@@ -2890,16 +3238,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getStateSpecification()
 	 * @generated
 	 */
-	int STATE_SPECIFICATION = 50;
-
-	/**
-	 * The feature id for the '<em><b>State Variable</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE_SPECIFICATION__STATE_VARIABLE = 0;
+	int STATE_SPECIFICATION = 56;
 
 	/**
 	 * The feature id for the '<em><b>Current State</b></em>' containment reference.
@@ -2908,7 +3247,16 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_SPECIFICATION__CURRENT_STATE = 1;
+	int STATE_SPECIFICATION__CURRENT_STATE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_SPECIFICATION__TYPE = 1;
 
 	/**
 	 * The number of structural features of the '<em>State Specification</em>' class.
@@ -2920,6 +3268,171 @@ public interface Aadlv3Package extends EPackage {
 	int STATE_SPECIFICATION_FEATURE_COUNT = 2;
 
 	/**
+	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.GeneratorImpl <em>Generator</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.osate.aadlv3.aadlv3.impl.GeneratorImpl
+	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getGenerator()
+	 * @generated
+	 */
+	int GENERATOR = 57;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERATOR__NAME = MODEL_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Property Associations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERATOR__OWNED_PROPERTY_ASSOCIATIONS = MODEL_ELEMENT__OWNED_PROPERTY_ASSOCIATIONS;
+
+	/**
+	 * The feature id for the '<em><b>In Modes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERATOR__IN_MODES = MODEL_ELEMENT__IN_MODES;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERATOR__TYPE = MODEL_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Generator</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERATOR_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.ConstantImpl <em>Constant</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.osate.aadlv3.aadlv3.impl.ConstantImpl
+	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getConstant()
+	 * @generated
+	 */
+	int CONSTANT = 58;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTANT__NAME = PACKAGE_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Property Associations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTANT__OWNED_PROPERTY_ASSOCIATIONS = PACKAGE_ELEMENT__OWNED_PROPERTY_ASSOCIATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Private</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTANT__PRIVATE = PACKAGE_ELEMENT__PRIVATE;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTANT__VALUE = PACKAGE_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTANT__TYPE = PACKAGE_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Constant</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTANT_FEATURE_COUNT = PACKAGE_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.PackageElementReferenceImpl <em>Package Element Reference</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.osate.aadlv3.aadlv3.impl.PackageElementReferenceImpl
+	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getPackageElementReference()
+	 * @generated
+	 */
+	int PACKAGE_ELEMENT_REFERENCE = 59;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE_ELEMENT_REFERENCE__NAME = NAMED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Property Associations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE_ELEMENT_REFERENCE__OWNED_PROPERTY_ASSOCIATIONS = NAMED_ELEMENT__OWNED_PROPERTY_ASSOCIATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE_ELEMENT_REFERENCE__ELEMENT = NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Package Element Reference</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE_ELEMENT_REFERENCE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.ComponentCategory <em>Component Category</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2927,7 +3440,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getComponentCategory()
 	 * @generated
 	 */
-	int COMPONENT_CATEGORY = 51;
+	int COMPONENT_CATEGORY = 60;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.FeatureCategory <em>Feature Category</em>}' enum.
@@ -2937,7 +3450,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getFeatureCategory()
 	 * @generated
 	 */
-	int FEATURE_CATEGORY = 52;
+	int FEATURE_CATEGORY = 61;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.FeatureDirection <em>Feature Direction</em>}' enum.
@@ -2947,7 +3460,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getFeatureDirection()
 	 * @generated
 	 */
-	int FEATURE_DIRECTION = 53;
+	int FEATURE_DIRECTION = 62;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.AssociationType <em>Association Type</em>}' enum.
@@ -2957,7 +3470,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getAssociationType()
 	 * @generated
 	 */
-	int ASSOCIATION_TYPE = 54;
+	int ASSOCIATION_TYPE = 63;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.Primitive <em>Primitive</em>}' enum.
@@ -2967,7 +3480,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getPrimitive()
 	 * @generated
 	 */
-	int PRIMITIVE = 55;
+	int PRIMITIVE = 64;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.Composite <em>Composite</em>}' enum.
@@ -2977,7 +3490,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getComposite()
 	 * @generated
 	 */
-	int COMPOSITE = 56;
+	int COMPOSITE = 65;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.EOperator <em>EOperator</em>}' enum.
@@ -2987,7 +3500,17 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getEOperator()
 	 * @generated
 	 */
-	int EOPERATOR = 57;
+	int EOPERATOR = 66;
+
+	/**
+	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.COperator <em>COperator</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.osate.aadlv3.aadlv3.COperator
+	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getCOperator()
+	 * @generated
+	 */
+	int COPERATOR = 67;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.PropertyAssociationType <em>Property Association Type</em>}' enum.
@@ -2997,7 +3520,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getPropertyAssociationType()
 	 * @generated
 	 */
-	int PROPERTY_ASSOCIATION_TYPE = 58;
+	int PROPERTY_ASSOCIATION_TYPE = 68;
 
 	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.PackageDeclaration <em>Package Declaration</em>}'.
@@ -3783,6 +4306,17 @@ public interface Aadlv3Package extends EPackage {
 	EReference getTypeDef_SuperType();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link org.osate.aadlv3.aadlv3.TypeDef#getBaseType <em>Base Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Base Type</em>'.
+	 * @see org.osate.aadlv3.aadlv3.TypeDef#getBaseType()
+	 * @see #getTypeDef()
+	 * @generated
+	 */
+	EReference getTypeDef_BaseType();
+
+	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.EnumerationType <em>Enumeration Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3793,15 +4327,15 @@ public interface Aadlv3Package extends EPackage {
 	EClass getEnumerationType();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.osate.aadlv3.aadlv3.EnumerationType#getType <em>Type</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.osate.aadlv3.aadlv3.EnumerationType#getLiterals <em>Literals</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Type</em>'.
-	 * @see org.osate.aadlv3.aadlv3.EnumerationType#getType()
+	 * @return the meta object for the containment reference list '<em>Literals</em>'.
+	 * @see org.osate.aadlv3.aadlv3.EnumerationType#getLiterals()
 	 * @see #getEnumerationType()
 	 * @generated
 	 */
-	EReference getEnumerationType_Type();
+	EReference getEnumerationType_Literals();
 
 	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.ConfigurationActual <em>Configuration Actual</em>}'.
@@ -3878,47 +4412,15 @@ public interface Aadlv3Package extends EPackage {
 	EClass getInstanceConfiguration();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.osate.aadlv3.aadlv3.InstanceConfiguration#getPropertyConstraint <em>Property Constraint</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.osate.aadlv3.aadlv3.InstanceConfiguration#getProductlineConstraint <em>Productline Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Property Constraint</em>'.
-	 * @see org.osate.aadlv3.aadlv3.InstanceConfiguration#getPropertyConstraint()
+	 * @return the meta object for the containment reference '<em>Productline Constraint</em>'.
+	 * @see org.osate.aadlv3.aadlv3.InstanceConfiguration#getProductlineConstraint()
 	 * @see #getInstanceConfiguration()
 	 * @generated
 	 */
-	EReference getInstanceConfiguration_PropertyConstraint();
-
-	/**
-	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.PropertyConstraint <em>Property Constraint</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Property Constraint</em>'.
-	 * @see org.osate.aadlv3.aadlv3.PropertyConstraint
-	 * @generated
-	 */
-	EClass getPropertyConstraint();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.osate.aadlv3.aadlv3.PropertyConstraint#getConstrainedProperty <em>Constrained Property</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Constrained Property</em>'.
-	 * @see org.osate.aadlv3.aadlv3.PropertyConstraint#getConstrainedProperty()
-	 * @see #getPropertyConstraint()
-	 * @generated
-	 */
-	EReference getPropertyConstraint_ConstrainedProperty();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.osate.aadlv3.aadlv3.PropertyConstraint#getConstraintExpression <em>Constraint Expression</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Constraint Expression</em>'.
-	 * @see org.osate.aadlv3.aadlv3.PropertyConstraint#getConstraintExpression()
-	 * @see #getPropertyConstraint()
-	 * @generated
-	 */
-	EReference getPropertyConstraint_ConstraintExpression();
+	EReference getInstanceConfiguration_ProductlineConstraint();
 
 	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.NumberLiteral <em>Number Literal</em>}'.
@@ -4034,6 +4536,17 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 */
 	EClass getEnumerationLiteral();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.osate.aadlv3.aadlv3.EnumerationLiteral#getValue <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Value</em>'.
+	 * @see org.osate.aadlv3.aadlv3.EnumerationLiteral#getValue()
+	 * @see #getEnumerationLiteral()
+	 * @generated
+	 */
+	EAttribute getEnumerationLiteral_Value();
 
 	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.ListLiteral <em>List Literal</em>}'.
@@ -4160,6 +4673,91 @@ public interface Aadlv3Package extends EPackage {
 	EAttribute getMultiOperandExpression_Operator();
 
 	/**
+	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.Assignment <em>Assignment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Assignment</em>'.
+	 * @see org.osate.aadlv3.aadlv3.Assignment
+	 * @generated
+	 */
+	EClass getAssignment();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.osate.aadlv3.aadlv3.Assignment#getTarget <em>Target</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Target</em>'.
+	 * @see org.osate.aadlv3.aadlv3.Assignment#getTarget()
+	 * @see #getAssignment()
+	 * @generated
+	 */
+	EReference getAssignment_Target();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.osate.aadlv3.aadlv3.Assignment#getValue <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Value</em>'.
+	 * @see org.osate.aadlv3.aadlv3.Assignment#getValue()
+	 * @see #getAssignment()
+	 * @generated
+	 */
+	EReference getAssignment_Value();
+
+	/**
+	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.Action <em>Action</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Action</em>'.
+	 * @see org.osate.aadlv3.aadlv3.Action
+	 * @generated
+	 */
+	EClass getAction();
+
+	/**
+	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.ConditionOperation <em>Condition Operation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Condition Operation</em>'.
+	 * @see org.osate.aadlv3.aadlv3.ConditionOperation
+	 * @generated
+	 */
+	EClass getConditionOperation();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.osate.aadlv3.aadlv3.ConditionOperation#getLeft <em>Left</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Left</em>'.
+	 * @see org.osate.aadlv3.aadlv3.ConditionOperation#getLeft()
+	 * @see #getConditionOperation()
+	 * @generated
+	 */
+	EReference getConditionOperation_Left();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.osate.aadlv3.aadlv3.ConditionOperation#getOperator <em>Operator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Operator</em>'.
+	 * @see org.osate.aadlv3.aadlv3.ConditionOperation#getOperator()
+	 * @see #getConditionOperation()
+	 * @generated
+	 */
+	EAttribute getConditionOperation_Operator();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.osate.aadlv3.aadlv3.ConditionOperation#getRight <em>Right</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Right</em>'.
+	 * @see org.osate.aadlv3.aadlv3.ConditionOperation#getRight()
+	 * @see #getConditionOperation()
+	 * @generated
+	 */
+	EReference getConditionOperation_Right();
+
+	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.PropertyAssociation <em>Property Association</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4235,6 +4833,27 @@ public interface Aadlv3Package extends EPackage {
 	EClass getAnnexSubclause();
 
 	/**
+	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.DefaultAnnexSubclause <em>Default Annex Subclause</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Default Annex Subclause</em>'.
+	 * @see org.osate.aadlv3.aadlv3.DefaultAnnexSubclause
+	 * @generated
+	 */
+	EClass getDefaultAnnexSubclause();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.osate.aadlv3.aadlv3.DefaultAnnexSubclause#getBody <em>Body</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Body</em>'.
+	 * @see org.osate.aadlv3.aadlv3.DefaultAnnexSubclause#getBody()
+	 * @see #getDefaultAnnexSubclause()
+	 * @generated
+	 */
+	EAttribute getDefaultAnnexSubclause_Body();
+
+	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.AnnexLibrary <em>Annex Library</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4243,6 +4862,80 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 */
 	EClass getAnnexLibrary();
+
+	/**
+	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.BehaviorRule <em>Behavior Rule</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Behavior Rule</em>'.
+	 * @see org.osate.aadlv3.aadlv3.BehaviorRule
+	 * @generated
+	 */
+	EClass getBehaviorRule();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.osate.aadlv3.aadlv3.BehaviorRule#getGuard <em>Guard</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Guard</em>'.
+	 * @see org.osate.aadlv3.aadlv3.BehaviorRule#getGuard()
+	 * @see #getBehaviorRule()
+	 * @generated
+	 */
+	EReference getBehaviorRule_Guard();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.osate.aadlv3.aadlv3.BehaviorRule#getTargetState <em>Target State</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Target State</em>'.
+	 * @see org.osate.aadlv3.aadlv3.BehaviorRule#getTargetState()
+	 * @see #getBehaviorRule()
+	 * @generated
+	 */
+	EReference getBehaviorRule_TargetState();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.osate.aadlv3.aadlv3.BehaviorRule#getCondition <em>Condition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Condition</em>'.
+	 * @see org.osate.aadlv3.aadlv3.BehaviorRule#getCondition()
+	 * @see #getBehaviorRule()
+	 * @generated
+	 */
+	EReference getBehaviorRule_Condition();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.osate.aadlv3.aadlv3.BehaviorRule#getAction <em>Action</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Action</em>'.
+	 * @see org.osate.aadlv3.aadlv3.BehaviorRule#getAction()
+	 * @see #getBehaviorRule()
+	 * @generated
+	 */
+	EReference getBehaviorRule_Action();
+
+	/**
+	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.EMSubclause <em>EM Subclause</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>EM Subclause</em>'.
+	 * @see org.osate.aadlv3.aadlv3.EMSubclause
+	 * @generated
+	 */
+	EClass getEMSubclause();
+
+	/**
+	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.BASubclause <em>BA Subclause</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>BA Subclause</em>'.
+	 * @see org.osate.aadlv3.aadlv3.BASubclause
+	 * @generated
+	 */
+	EClass getBASubclause();
 
 	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.BehaviorSpecification <em>Behavior Specification</em>}'.
@@ -4255,48 +4948,37 @@ public interface Aadlv3Package extends EPackage {
 	EClass getBehaviorSpecification();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.osate.aadlv3.aadlv3.BehaviorSpecification#getGuard <em>Guard</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.osate.aadlv3.aadlv3.BehaviorSpecification#getRules <em>Rules</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Guard</em>'.
-	 * @see org.osate.aadlv3.aadlv3.BehaviorSpecification#getGuard()
+	 * @return the meta object for the containment reference list '<em>Rules</em>'.
+	 * @see org.osate.aadlv3.aadlv3.BehaviorSpecification#getRules()
 	 * @see #getBehaviorSpecification()
 	 * @generated
 	 */
-	EReference getBehaviorSpecification_Guard();
+	EReference getBehaviorSpecification_Rules();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.osate.aadlv3.aadlv3.BehaviorSpecification#getTargetState <em>Target State</em>}'.
+	 * Returns the meta object for the reference '{@link org.osate.aadlv3.aadlv3.BehaviorSpecification#getStates <em>States</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Target State</em>'.
-	 * @see org.osate.aadlv3.aadlv3.BehaviorSpecification#getTargetState()
+	 * @return the meta object for the reference '<em>States</em>'.
+	 * @see org.osate.aadlv3.aadlv3.BehaviorSpecification#getStates()
 	 * @see #getBehaviorSpecification()
 	 * @generated
 	 */
-	EReference getBehaviorSpecification_TargetState();
+	EReference getBehaviorSpecification_States();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.osate.aadlv3.aadlv3.BehaviorSpecification#getCondition <em>Condition</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.osate.aadlv3.aadlv3.BehaviorSpecification#getGenerators <em>Generators</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Condition</em>'.
-	 * @see org.osate.aadlv3.aadlv3.BehaviorSpecification#getCondition()
+	 * @return the meta object for the containment reference list '<em>Generators</em>'.
+	 * @see org.osate.aadlv3.aadlv3.BehaviorSpecification#getGenerators()
 	 * @see #getBehaviorSpecification()
 	 * @generated
 	 */
-	EReference getBehaviorSpecification_Condition();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.osate.aadlv3.aadlv3.BehaviorSpecification#getResult <em>Result</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Result</em>'.
-	 * @see org.osate.aadlv3.aadlv3.BehaviorSpecification#getResult()
-	 * @see #getBehaviorSpecification()
-	 * @generated
-	 */
-	EReference getBehaviorSpecification_Result();
+	EReference getBehaviorSpecification_Generators();
 
 	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.StateSpecification <em>State Specification</em>}'.
@@ -4309,17 +4991,6 @@ public interface Aadlv3Package extends EPackage {
 	EClass getStateSpecification();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.osate.aadlv3.aadlv3.StateSpecification#getStateVariable <em>State Variable</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>State Variable</em>'.
-	 * @see org.osate.aadlv3.aadlv3.StateSpecification#getStateVariable()
-	 * @see #getStateSpecification()
-	 * @generated
-	 */
-	EReference getStateSpecification_StateVariable();
-
-	/**
 	 * Returns the meta object for the containment reference '{@link org.osate.aadlv3.aadlv3.StateSpecification#getCurrentState <em>Current State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4329,6 +5000,91 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 */
 	EReference getStateSpecification_CurrentState();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.osate.aadlv3.aadlv3.StateSpecification#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Type</em>'.
+	 * @see org.osate.aadlv3.aadlv3.StateSpecification#getType()
+	 * @see #getStateSpecification()
+	 * @generated
+	 */
+	EReference getStateSpecification_Type();
+
+	/**
+	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.Generator <em>Generator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Generator</em>'.
+	 * @see org.osate.aadlv3.aadlv3.Generator
+	 * @generated
+	 */
+	EClass getGenerator();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.osate.aadlv3.aadlv3.Generator#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type</em>'.
+	 * @see org.osate.aadlv3.aadlv3.Generator#getType()
+	 * @see #getGenerator()
+	 * @generated
+	 */
+	EAttribute getGenerator_Type();
+
+	/**
+	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.Constant <em>Constant</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Constant</em>'.
+	 * @see org.osate.aadlv3.aadlv3.Constant
+	 * @generated
+	 */
+	EClass getConstant();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.osate.aadlv3.aadlv3.Constant#getValue <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Value</em>'.
+	 * @see org.osate.aadlv3.aadlv3.Constant#getValue()
+	 * @see #getConstant()
+	 * @generated
+	 */
+	EReference getConstant_Value();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.osate.aadlv3.aadlv3.Constant#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Type</em>'.
+	 * @see org.osate.aadlv3.aadlv3.Constant#getType()
+	 * @see #getConstant()
+	 * @generated
+	 */
+	EReference getConstant_Type();
+
+	/**
+	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.PackageElementReference <em>Package Element Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Package Element Reference</em>'.
+	 * @see org.osate.aadlv3.aadlv3.PackageElementReference
+	 * @generated
+	 */
+	EClass getPackageElementReference();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.osate.aadlv3.aadlv3.PackageElementReference#getElement <em>Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Element</em>'.
+	 * @see org.osate.aadlv3.aadlv3.PackageElementReference#getElement()
+	 * @see #getPackageElementReference()
+	 * @generated
+	 */
+	EReference getPackageElementReference_Element();
 
 	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.PrimitiveType <em>Primitive Type</em>}'.
@@ -4645,6 +5401,16 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 */
 	EEnum getEOperator();
+
+	/**
+	 * Returns the meta object for enum '{@link org.osate.aadlv3.aadlv3.COperator <em>COperator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>COperator</em>'.
+	 * @see org.osate.aadlv3.aadlv3.COperator
+	 * @generated
+	 */
+	EEnum getCOperator();
 
 	/**
 	 * Returns the meta object for enum '{@link org.osate.aadlv3.aadlv3.PropertyAssociationType <em>Property Association Type</em>}'.
@@ -5303,6 +6069,14 @@ public interface Aadlv3Package extends EPackage {
 		EReference TYPE_DEF__SUPER_TYPE = eINSTANCE.getTypeDef_SuperType();
 
 		/**
+		 * The meta object literal for the '<em><b>Base Type</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TYPE_DEF__BASE_TYPE = eINSTANCE.getTypeDef_BaseType();
+
+		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.EnumerationTypeImpl <em>Enumeration Type</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -5313,12 +6087,12 @@ public interface Aadlv3Package extends EPackage {
 		EClass ENUMERATION_TYPE = eINSTANCE.getEnumerationType();
 
 		/**
-		 * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Literals</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ENUMERATION_TYPE__TYPE = eINSTANCE.getEnumerationType_Type();
+		EReference ENUMERATION_TYPE__LITERALS = eINSTANCE.getEnumerationType_Literals();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.ConfigurationActualImpl <em>Configuration Actual</em>}' class.
@@ -5383,39 +6157,13 @@ public interface Aadlv3Package extends EPackage {
 		EClass INSTANCE_CONFIGURATION = eINSTANCE.getInstanceConfiguration();
 
 		/**
-		 * The meta object literal for the '<em><b>Property Constraint</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Productline Constraint</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference INSTANCE_CONFIGURATION__PROPERTY_CONSTRAINT = eINSTANCE
-				.getInstanceConfiguration_PropertyConstraint();
-
-		/**
-		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.PropertyConstraintImpl <em>Property Constraint</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.osate.aadlv3.aadlv3.impl.PropertyConstraintImpl
-		 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getPropertyConstraint()
-		 * @generated
-		 */
-		EClass PROPERTY_CONSTRAINT = eINSTANCE.getPropertyConstraint();
-
-		/**
-		 * The meta object literal for the '<em><b>Constrained Property</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PROPERTY_CONSTRAINT__CONSTRAINED_PROPERTY = eINSTANCE.getPropertyConstraint_ConstrainedProperty();
-
-		/**
-		 * The meta object literal for the '<em><b>Constraint Expression</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PROPERTY_CONSTRAINT__CONSTRAINT_EXPRESSION = eINSTANCE.getPropertyConstraint_ConstraintExpression();
+		EReference INSTANCE_CONFIGURATION__PRODUCTLINE_CONSTRAINT = eINSTANCE
+				.getInstanceConfiguration_ProductlineConstraint();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.NumberLiteralImpl <em>Number Literal</em>}' class.
@@ -5516,6 +6264,14 @@ public interface Aadlv3Package extends EPackage {
 		 * @generated
 		 */
 		EClass ENUMERATION_LITERAL = eINSTANCE.getEnumerationLiteral();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ENUMERATION_LITERAL__VALUE = eINSTANCE.getEnumerationLiteral_Value();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.ListLiteralImpl <em>List Literal</em>}' class.
@@ -5630,6 +6386,76 @@ public interface Aadlv3Package extends EPackage {
 		EAttribute MULTI_OPERAND_EXPRESSION__OPERATOR = eINSTANCE.getMultiOperandExpression_Operator();
 
 		/**
+		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.AssignmentImpl <em>Assignment</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.osate.aadlv3.aadlv3.impl.AssignmentImpl
+		 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getAssignment()
+		 * @generated
+		 */
+		EClass ASSIGNMENT = eINSTANCE.getAssignment();
+
+		/**
+		 * The meta object literal for the '<em><b>Target</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ASSIGNMENT__TARGET = eINSTANCE.getAssignment_Target();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ASSIGNMENT__VALUE = eINSTANCE.getAssignment_Value();
+
+		/**
+		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.ActionImpl <em>Action</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.osate.aadlv3.aadlv3.impl.ActionImpl
+		 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getAction()
+		 * @generated
+		 */
+		EClass ACTION = eINSTANCE.getAction();
+
+		/**
+		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.ConditionOperationImpl <em>Condition Operation</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.osate.aadlv3.aadlv3.impl.ConditionOperationImpl
+		 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getConditionOperation()
+		 * @generated
+		 */
+		EClass CONDITION_OPERATION = eINSTANCE.getConditionOperation();
+
+		/**
+		 * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONDITION_OPERATION__LEFT = eINSTANCE.getConditionOperation_Left();
+
+		/**
+		 * The meta object literal for the '<em><b>Operator</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONDITION_OPERATION__OPERATOR = eINSTANCE.getConditionOperation_Operator();
+
+		/**
+		 * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONDITION_OPERATION__RIGHT = eINSTANCE.getConditionOperation_Right();
+
+		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.PropertyAssociationImpl <em>Property Association</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -5691,6 +6517,24 @@ public interface Aadlv3Package extends EPackage {
 		EClass ANNEX_SUBCLAUSE = eINSTANCE.getAnnexSubclause();
 
 		/**
+		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.DefaultAnnexSubclauseImpl <em>Default Annex Subclause</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.osate.aadlv3.aadlv3.impl.DefaultAnnexSubclauseImpl
+		 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getDefaultAnnexSubclause()
+		 * @generated
+		 */
+		EClass DEFAULT_ANNEX_SUBCLAUSE = eINSTANCE.getDefaultAnnexSubclause();
+
+		/**
+		 * The meta object literal for the '<em><b>Body</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DEFAULT_ANNEX_SUBCLAUSE__BODY = eINSTANCE.getDefaultAnnexSubclause_Body();
+
+		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.AnnexLibraryImpl <em>Annex Library</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -5699,6 +6543,68 @@ public interface Aadlv3Package extends EPackage {
 		 * @generated
 		 */
 		EClass ANNEX_LIBRARY = eINSTANCE.getAnnexLibrary();
+
+		/**
+		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.BehaviorRuleImpl <em>Behavior Rule</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.osate.aadlv3.aadlv3.impl.BehaviorRuleImpl
+		 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getBehaviorRule()
+		 * @generated
+		 */
+		EClass BEHAVIOR_RULE = eINSTANCE.getBehaviorRule();
+
+		/**
+		 * The meta object literal for the '<em><b>Guard</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BEHAVIOR_RULE__GUARD = eINSTANCE.getBehaviorRule_Guard();
+
+		/**
+		 * The meta object literal for the '<em><b>Target State</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BEHAVIOR_RULE__TARGET_STATE = eINSTANCE.getBehaviorRule_TargetState();
+
+		/**
+		 * The meta object literal for the '<em><b>Condition</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BEHAVIOR_RULE__CONDITION = eINSTANCE.getBehaviorRule_Condition();
+
+		/**
+		 * The meta object literal for the '<em><b>Action</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BEHAVIOR_RULE__ACTION = eINSTANCE.getBehaviorRule_Action();
+
+		/**
+		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.EMSubclauseImpl <em>EM Subclause</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.osate.aadlv3.aadlv3.impl.EMSubclauseImpl
+		 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getEMSubclause()
+		 * @generated
+		 */
+		EClass EM_SUBCLAUSE = eINSTANCE.getEMSubclause();
+
+		/**
+		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.BASubclauseImpl <em>BA Subclause</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.osate.aadlv3.aadlv3.impl.BASubclauseImpl
+		 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getBASubclause()
+		 * @generated
+		 */
+		EClass BA_SUBCLAUSE = eINSTANCE.getBASubclause();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.BehaviorSpecificationImpl <em>Behavior Specification</em>}' class.
@@ -5711,36 +6617,28 @@ public interface Aadlv3Package extends EPackage {
 		EClass BEHAVIOR_SPECIFICATION = eINSTANCE.getBehaviorSpecification();
 
 		/**
-		 * The meta object literal for the '<em><b>Guard</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Rules</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference BEHAVIOR_SPECIFICATION__GUARD = eINSTANCE.getBehaviorSpecification_Guard();
+		EReference BEHAVIOR_SPECIFICATION__RULES = eINSTANCE.getBehaviorSpecification_Rules();
 
 		/**
-		 * The meta object literal for the '<em><b>Target State</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>States</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference BEHAVIOR_SPECIFICATION__TARGET_STATE = eINSTANCE.getBehaviorSpecification_TargetState();
+		EReference BEHAVIOR_SPECIFICATION__STATES = eINSTANCE.getBehaviorSpecification_States();
 
 		/**
-		 * The meta object literal for the '<em><b>Condition</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Generators</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference BEHAVIOR_SPECIFICATION__CONDITION = eINSTANCE.getBehaviorSpecification_Condition();
-
-		/**
-		 * The meta object literal for the '<em><b>Result</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference BEHAVIOR_SPECIFICATION__RESULT = eINSTANCE.getBehaviorSpecification_Result();
+		EReference BEHAVIOR_SPECIFICATION__GENERATORS = eINSTANCE.getBehaviorSpecification_Generators();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.StateSpecificationImpl <em>State Specification</em>}' class.
@@ -5753,20 +6651,82 @@ public interface Aadlv3Package extends EPackage {
 		EClass STATE_SPECIFICATION = eINSTANCE.getStateSpecification();
 
 		/**
-		 * The meta object literal for the '<em><b>State Variable</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference STATE_SPECIFICATION__STATE_VARIABLE = eINSTANCE.getStateSpecification_StateVariable();
-
-		/**
 		 * The meta object literal for the '<em><b>Current State</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference STATE_SPECIFICATION__CURRENT_STATE = eINSTANCE.getStateSpecification_CurrentState();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STATE_SPECIFICATION__TYPE = eINSTANCE.getStateSpecification_Type();
+
+		/**
+		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.GeneratorImpl <em>Generator</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.osate.aadlv3.aadlv3.impl.GeneratorImpl
+		 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getGenerator()
+		 * @generated
+		 */
+		EClass GENERATOR = eINSTANCE.getGenerator();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute GENERATOR__TYPE = eINSTANCE.getGenerator_Type();
+
+		/**
+		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.ConstantImpl <em>Constant</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.osate.aadlv3.aadlv3.impl.ConstantImpl
+		 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getConstant()
+		 * @generated
+		 */
+		EClass CONSTANT = eINSTANCE.getConstant();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONSTANT__VALUE = eINSTANCE.getConstant_Value();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONSTANT__TYPE = eINSTANCE.getConstant_Type();
+
+		/**
+		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.PackageElementReferenceImpl <em>Package Element Reference</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.osate.aadlv3.aadlv3.impl.PackageElementReferenceImpl
+		 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getPackageElementReference()
+		 * @generated
+		 */
+		EClass PACKAGE_ELEMENT_REFERENCE = eINSTANCE.getPackageElementReference();
+
+		/**
+		 * The meta object literal for the '<em><b>Element</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PACKAGE_ELEMENT_REFERENCE__ELEMENT = eINSTANCE.getPackageElementReference_Element();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.PrimitiveTypeImpl <em>Primitive Type</em>}' class.
@@ -6041,6 +7001,16 @@ public interface Aadlv3Package extends EPackage {
 		 * @generated
 		 */
 		EEnum EOPERATOR = eINSTANCE.getEOperator();
+
+		/**
+		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.COperator <em>COperator</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.osate.aadlv3.aadlv3.COperator
+		 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getCOperator()
+		 * @generated
+		 */
+		EEnum COPERATOR = eINSTANCE.getCOperator();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.PropertyAssociationType <em>Property Association Type</em>}' enum.

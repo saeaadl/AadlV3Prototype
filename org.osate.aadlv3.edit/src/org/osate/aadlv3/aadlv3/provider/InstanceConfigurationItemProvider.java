@@ -71,7 +71,7 @@ public class InstanceConfigurationItemProvider extends SubcomponentItemProvider 
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(Aadlv3Package.Literals.INSTANCE_CONFIGURATION__PROPERTY_CONSTRAINT);
+			childrenFeatures.add(Aadlv3Package.Literals.INSTANCE_CONFIGURATION__PRODUCTLINE_CONSTRAINT);
 		}
 		return childrenFeatures;
 	}
@@ -125,7 +125,7 @@ public class InstanceConfigurationItemProvider extends SubcomponentItemProvider 
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(InstanceConfiguration.class)) {
-		case Aadlv3Package.INSTANCE_CONFIGURATION__PROPERTY_CONSTRAINT:
+		case Aadlv3Package.INSTANCE_CONFIGURATION__PRODUCTLINE_CONSTRAINT:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -143,8 +143,9 @@ public class InstanceConfigurationItemProvider extends SubcomponentItemProvider 
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.INSTANCE_CONFIGURATION__PROPERTY_CONSTRAINT,
-				Aadlv3Factory.eINSTANCE.createPropertyConstraint()));
+		newChildDescriptors
+				.add(createChildParameter(Aadlv3Package.Literals.INSTANCE_CONFIGURATION__PRODUCTLINE_CONSTRAINT,
+						Aadlv3Factory.eINSTANCE.createConditionOperation()));
 	}
 
 	/**

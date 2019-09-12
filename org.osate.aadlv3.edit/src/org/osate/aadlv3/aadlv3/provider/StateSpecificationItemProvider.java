@@ -68,24 +68,24 @@ public class StateSpecificationItemProvider extends ItemProviderAdapter implemen
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addStateVariablePropertyDescriptor(object);
+			addTypePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the State Variable feature.
+	 * This adds a property descriptor for the Type feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addStateVariablePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_StateSpecification_stateVariable_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_StateSpecification_stateVariable_feature",
-						"_UI_StateSpecification_type"),
-				Aadlv3Package.Literals.STATE_SPECIFICATION__STATE_VARIABLE, true, false, true, null, null, null));
+	protected void addTypePropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_StateSpecification_type_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_StateSpecification_type_feature",
+								"_UI_StateSpecification_type"),
+						Aadlv3Package.Literals.STATE_SPECIFICATION__TYPE, true, false, true, null, null, null));
 	}
 
 	/**

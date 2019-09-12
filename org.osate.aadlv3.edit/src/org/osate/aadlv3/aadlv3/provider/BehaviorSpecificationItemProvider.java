@@ -59,40 +59,40 @@ public class BehaviorSpecificationItemProvider extends ModelElementItemProvider 
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addTargetStatePropertyDescriptor(object);
-			addResultPropertyDescriptor(object);
+			addStatesPropertyDescriptor(object);
+			addGeneratorsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Target State feature.
+	 * This adds a property descriptor for the States feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addTargetStatePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_BehaviorSpecification_targetState_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_BehaviorSpecification_targetState_feature",
-						"_UI_BehaviorSpecification_type"),
-				Aadlv3Package.Literals.BEHAVIOR_SPECIFICATION__TARGET_STATE, true, false, true, null, null, null));
+	protected void addStatesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_BehaviorSpecification_states_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_BehaviorSpecification_states_feature",
+								"_UI_BehaviorSpecification_type"),
+						Aadlv3Package.Literals.BEHAVIOR_SPECIFICATION__STATES, true, false, true, null, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Result feature.
+	 * This adds a property descriptor for the Generators feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addResultPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_BehaviorSpecification_result_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_BehaviorSpecification_result_feature",
-								"_UI_BehaviorSpecification_type"),
-						Aadlv3Package.Literals.BEHAVIOR_SPECIFICATION__RESULT, true, false, true, null, null, null));
+	protected void addGeneratorsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_BehaviorSpecification_generators_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_BehaviorSpecification_generators_feature",
+						"_UI_BehaviorSpecification_type"),
+				Aadlv3Package.Literals.BEHAVIOR_SPECIFICATION__GENERATORS, true, false, true, null, null, null));
 	}
 
 	/**
@@ -107,8 +107,7 @@ public class BehaviorSpecificationItemProvider extends ModelElementItemProvider 
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(Aadlv3Package.Literals.BEHAVIOR_SPECIFICATION__GUARD);
-			childrenFeatures.add(Aadlv3Package.Literals.BEHAVIOR_SPECIFICATION__CONDITION);
+			childrenFeatures.add(Aadlv3Package.Literals.BEHAVIOR_SPECIFICATION__RULES);
 		}
 		return childrenFeatures;
 	}
@@ -162,8 +161,7 @@ public class BehaviorSpecificationItemProvider extends ModelElementItemProvider 
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(BehaviorSpecification.class)) {
-		case Aadlv3Package.BEHAVIOR_SPECIFICATION__GUARD:
-		case Aadlv3Package.BEHAVIOR_SPECIFICATION__CONDITION:
+		case Aadlv3Package.BEHAVIOR_SPECIFICATION__RULES:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -181,11 +179,8 @@ public class BehaviorSpecificationItemProvider extends ModelElementItemProvider 
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.BEHAVIOR_SPECIFICATION__GUARD,
-				Aadlv3Factory.eINSTANCE.createStateSpecification()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.BEHAVIOR_SPECIFICATION__CONDITION,
-				Aadlv3Factory.eINSTANCE.createMultiLiteralConstraint()));
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.BEHAVIOR_SPECIFICATION__RULES,
+				Aadlv3Factory.eINSTANCE.createBehaviorRule()));
 	}
 
 }

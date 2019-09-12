@@ -27,7 +27,7 @@ import org.osate.aadlv3.aadlv3.AnnexSubclause;
  *
  * @generated
  */
-public class AnnexSubclauseImpl extends ModelElementImpl implements AnnexSubclause {
+public abstract class AnnexSubclauseImpl extends ModelElementImpl implements AnnexSubclause {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -36,6 +36,7 @@ import org.osate.aadlv3.aadlv3.TypeDef;
  * </p>
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.TypeDefImpl#getSuperType <em>Super Type</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.TypeDefImpl#getBaseType <em>Base Type</em>}</li>
  * </ul>
  *
  * @generated
@@ -50,6 +51,16 @@ public class TypeDefImpl extends NamedTypeImpl implements TypeDef {
 	 * @ordered
 	 */
 	protected Type superType;
+
+	/**
+	 * The cached value of the '{@link #getBaseType() <em>Base Type</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBaseType()
+	 * @generated
+	 * @ordered
+	 */
+	protected Type baseType;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -128,10 +139,64 @@ public class TypeDefImpl extends NamedTypeImpl implements TypeDef {
 	 * @generated
 	 */
 	@Override
+	public Type getBaseType() {
+		return baseType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetBaseType(Type newBaseType, NotificationChain msgs) {
+		Type oldBaseType = baseType;
+		baseType = newBaseType;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					Aadlv3Package.TYPE_DEF__BASE_TYPE, oldBaseType, newBaseType);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setBaseType(Type newBaseType) {
+		if (newBaseType != baseType) {
+			NotificationChain msgs = null;
+			if (baseType != null)
+				msgs = ((InternalEObject) baseType).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE - Aadlv3Package.TYPE_DEF__BASE_TYPE, null, msgs);
+			if (newBaseType != null)
+				msgs = ((InternalEObject) newBaseType).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE - Aadlv3Package.TYPE_DEF__BASE_TYPE, null, msgs);
+			msgs = basicSetBaseType(newBaseType, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.TYPE_DEF__BASE_TYPE, newBaseType,
+					newBaseType));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case Aadlv3Package.TYPE_DEF__SUPER_TYPE:
 			return basicSetSuperType(null, msgs);
+		case Aadlv3Package.TYPE_DEF__BASE_TYPE:
+			return basicSetBaseType(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -146,6 +211,8 @@ public class TypeDefImpl extends NamedTypeImpl implements TypeDef {
 		switch (featureID) {
 		case Aadlv3Package.TYPE_DEF__SUPER_TYPE:
 			return getSuperType();
+		case Aadlv3Package.TYPE_DEF__BASE_TYPE:
+			return getBaseType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -160,6 +227,9 @@ public class TypeDefImpl extends NamedTypeImpl implements TypeDef {
 		switch (featureID) {
 		case Aadlv3Package.TYPE_DEF__SUPER_TYPE:
 			setSuperType((Type) newValue);
+			return;
+		case Aadlv3Package.TYPE_DEF__BASE_TYPE:
+			setBaseType((Type) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -176,6 +246,9 @@ public class TypeDefImpl extends NamedTypeImpl implements TypeDef {
 		case Aadlv3Package.TYPE_DEF__SUPER_TYPE:
 			setSuperType((Type) null);
 			return;
+		case Aadlv3Package.TYPE_DEF__BASE_TYPE:
+			setBaseType((Type) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -190,6 +263,8 @@ public class TypeDefImpl extends NamedTypeImpl implements TypeDef {
 		switch (featureID) {
 		case Aadlv3Package.TYPE_DEF__SUPER_TYPE:
 			return superType != null;
+		case Aadlv3Package.TYPE_DEF__BASE_TYPE:
+			return baseType != null;
 		}
 		return super.eIsSet(featureID);
 	}

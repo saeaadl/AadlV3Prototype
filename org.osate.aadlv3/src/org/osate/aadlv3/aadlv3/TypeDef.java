@@ -25,6 +25,7 @@ package org.osate.aadlv3.aadlv3;
  * </p>
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.TypeDef#getSuperType <em>Super Type</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.TypeDef#getBaseType <em>Base Type</em>}</li>
  * </ul>
  *
  * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getTypeDef()
@@ -53,5 +54,27 @@ public interface TypeDef extends NamedType {
 	 * @generated
 	 */
 	void setSuperType(Type value);
+
+	/**
+	 * Returns the value of the '<em><b>Base Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Base Type</em>' containment reference.
+	 * @see #setBaseType(Type)
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getTypeDef_BaseType()
+	 * @model containment="true"
+	 * @generated
+	 */
+	Type getBaseType();
+
+	/**
+	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.TypeDef#getBaseType <em>Base Type</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Base Type</em>' containment reference.
+	 * @see #getBaseType()
+	 * @generated
+	 */
+	void setBaseType(Type value);
 
 } // TypeDef

@@ -221,6 +221,12 @@ public class PropertyAssociationItemProvider extends ItemProviderAdapter impleme
 				Aadlv3Factory.eINSTANCE.createPathElement()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
+				Aadlv3Factory.eINSTANCE.createModelElementReference()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
+				Aadlv3Factory.eINSTANCE.createPathElement()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
 				Aadlv3Factory.eINSTANCE.createTypeReference()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
@@ -255,6 +261,33 @@ public class PropertyAssociationItemProvider extends ItemProviderAdapter impleme
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
 				Aadlv3Factory.eINSTANCE.createMultiLiteralConstraint()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
+				Aadlv3Factory.eINSTANCE.createConditionOperation()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
+				Aadlv3Factory.eINSTANCE.createPackageElementReference()));
+	}
+
+	/**
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
+		Object childFeature = feature;
+		Object childObject = child;
+
+		boolean qualify = childFeature == Aadlv3Package.Literals.PROPERTY_ASSOCIATION__TARGET
+				|| childFeature == Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE;
+
+		if (qualify) {
+			return getString("_UI_CreateChild_text2",
+					new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+		}
+		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 	/**

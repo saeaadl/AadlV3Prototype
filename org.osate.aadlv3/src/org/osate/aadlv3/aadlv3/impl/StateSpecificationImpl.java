@@ -27,7 +27,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.EnumerationLiteral;
 import org.osate.aadlv3.aadlv3.StateSpecification;
-import org.osate.aadlv3.aadlv3.StringLiteral;
+import org.osate.aadlv3.aadlv3.TypeReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -37,23 +37,13 @@ import org.osate.aadlv3.aadlv3.StringLiteral;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.StateSpecificationImpl#getStateVariable <em>State Variable</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.StateSpecificationImpl#getCurrentState <em>Current State</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.StateSpecificationImpl#getType <em>Type</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class StateSpecificationImpl extends MinimalEObjectImpl.Container implements StateSpecification {
-	/**
-	 * The cached value of the '{@link #getStateVariable() <em>State Variable</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getStateVariable()
-	 * @generated
-	 * @ordered
-	 */
-	protected StringLiteral stateVariable;
-
 	/**
 	 * The cached value of the '{@link #getCurrentState() <em>Current State</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -63,6 +53,16 @@ public class StateSpecificationImpl extends MinimalEObjectImpl.Container impleme
 	 * @ordered
 	 */
 	protected EnumerationLiteral currentState;
+
+	/**
+	 * The cached value of the '{@link #getType() <em>Type</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getType()
+	 * @generated
+	 * @ordered
+	 */
+	protected TypeReference type;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -81,48 +81,6 @@ public class StateSpecificationImpl extends MinimalEObjectImpl.Container impleme
 	@Override
 	protected EClass eStaticClass() {
 		return Aadlv3Package.Literals.STATE_SPECIFICATION;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public StringLiteral getStateVariable() {
-		if (stateVariable != null && stateVariable.eIsProxy()) {
-			InternalEObject oldStateVariable = (InternalEObject) stateVariable;
-			stateVariable = (StringLiteral) eResolveProxy(oldStateVariable);
-			if (stateVariable != oldStateVariable) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							Aadlv3Package.STATE_SPECIFICATION__STATE_VARIABLE, oldStateVariable, stateVariable));
-			}
-		}
-		return stateVariable;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public StringLiteral basicGetStateVariable() {
-		return stateVariable;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setStateVariable(StringLiteral newStateVariable) {
-		StringLiteral oldStateVariable = stateVariable;
-		stateVariable = newStateVariable;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.STATE_SPECIFICATION__STATE_VARIABLE,
-					oldStateVariable, stateVariable));
 	}
 
 	/**
@@ -183,6 +141,48 @@ public class StateSpecificationImpl extends MinimalEObjectImpl.Container impleme
 	 * @generated
 	 */
 	@Override
+	public TypeReference getType() {
+		if (type != null && type.eIsProxy()) {
+			InternalEObject oldType = (InternalEObject) type;
+			type = (TypeReference) eResolveProxy(oldType);
+			if (type != oldType) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Aadlv3Package.STATE_SPECIFICATION__TYPE,
+							oldType, type));
+			}
+		}
+		return type;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TypeReference basicGetType() {
+		return type;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setType(TypeReference newType) {
+		TypeReference oldType = type;
+		type = newType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.STATE_SPECIFICATION__TYPE, oldType,
+					type));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case Aadlv3Package.STATE_SPECIFICATION__CURRENT_STATE:
@@ -199,12 +199,12 @@ public class StateSpecificationImpl extends MinimalEObjectImpl.Container impleme
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case Aadlv3Package.STATE_SPECIFICATION__STATE_VARIABLE:
-			if (resolve)
-				return getStateVariable();
-			return basicGetStateVariable();
 		case Aadlv3Package.STATE_SPECIFICATION__CURRENT_STATE:
 			return getCurrentState();
+		case Aadlv3Package.STATE_SPECIFICATION__TYPE:
+			if (resolve)
+				return getType();
+			return basicGetType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -217,11 +217,11 @@ public class StateSpecificationImpl extends MinimalEObjectImpl.Container impleme
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case Aadlv3Package.STATE_SPECIFICATION__STATE_VARIABLE:
-			setStateVariable((StringLiteral) newValue);
-			return;
 		case Aadlv3Package.STATE_SPECIFICATION__CURRENT_STATE:
 			setCurrentState((EnumerationLiteral) newValue);
+			return;
+		case Aadlv3Package.STATE_SPECIFICATION__TYPE:
+			setType((TypeReference) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -235,11 +235,11 @@ public class StateSpecificationImpl extends MinimalEObjectImpl.Container impleme
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case Aadlv3Package.STATE_SPECIFICATION__STATE_VARIABLE:
-			setStateVariable((StringLiteral) null);
-			return;
 		case Aadlv3Package.STATE_SPECIFICATION__CURRENT_STATE:
 			setCurrentState((EnumerationLiteral) null);
+			return;
+		case Aadlv3Package.STATE_SPECIFICATION__TYPE:
+			setType((TypeReference) null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -253,10 +253,10 @@ public class StateSpecificationImpl extends MinimalEObjectImpl.Container impleme
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case Aadlv3Package.STATE_SPECIFICATION__STATE_VARIABLE:
-			return stateVariable != null;
 		case Aadlv3Package.STATE_SPECIFICATION__CURRENT_STATE:
 			return currentState != null;
+		case Aadlv3Package.STATE_SPECIFICATION__TYPE:
+			return type != null;
 		}
 		return super.eIsSet(featureID);
 	}

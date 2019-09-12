@@ -14,6 +14,8 @@ import org.osate.aadlv3.aadlv3.TypeReference
 import org.osate.av3instance.av3instance.ComponentInstance
 
 import static extension org.osate.aadlv3.util.Aadlv3Util.*
+import org.osate.aadlv3.aadlv3.Literal
+import org.osate.aadlv3.aadlv3.ListLiteral
 
 class ProductLineConstraint {
 	
@@ -60,8 +62,8 @@ class ProductLineConstraint {
 
 	val static String FeatureLabels = "FeatureLabels";
 	
-	def static MultiLiteralConstraint getProductLineConstraint(InstanceConfiguration ic){
-		return ic.propertyConstraint?.constraintExpression
+	def static ListLiteral getProductLineConstraint(InstanceConfiguration ic){
+		return ic.productlineConstraint?.right as ListLiteral
 	}
 	
 	def static ECollection getFeatureLabels(NamedElement cl){

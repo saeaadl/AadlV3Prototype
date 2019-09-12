@@ -15,19 +15,23 @@
  */
 package org.osate.aadlv3.aadlv3.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
+import org.osate.aadlv3.aadlv3.BehaviorRule;
 import org.osate.aadlv3.aadlv3.BehaviorSpecification;
-import org.osate.aadlv3.aadlv3.Literal;
-import org.osate.aadlv3.aadlv3.MultiLiteralConstraint;
-import org.osate.aadlv3.aadlv3.StateSpecification;
+import org.osate.aadlv3.aadlv3.Generator;
+import org.osate.aadlv3.aadlv3.TypeDef;
 
 /**
  * <!-- begin-user-doc -->
@@ -37,54 +41,43 @@ import org.osate.aadlv3.aadlv3.StateSpecification;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.BehaviorSpecificationImpl#getGuard <em>Guard</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.BehaviorSpecificationImpl#getTargetState <em>Target State</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.BehaviorSpecificationImpl#getCondition <em>Condition</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.BehaviorSpecificationImpl#getResult <em>Result</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.BehaviorSpecificationImpl#getRules <em>Rules</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.BehaviorSpecificationImpl#getStates <em>States</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.BehaviorSpecificationImpl#getGenerators <em>Generators</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class BehaviorSpecificationImpl extends ModelElementImpl implements BehaviorSpecification {
 	/**
-	 * The cached value of the '{@link #getGuard() <em>Guard</em>}' containment reference.
+	 * The cached value of the '{@link #getRules() <em>Rules</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getGuard()
+	 * @see #getRules()
 	 * @generated
 	 * @ordered
 	 */
-	protected StateSpecification guard;
+	protected EList<BehaviorRule> rules;
 
 	/**
-	 * The cached value of the '{@link #getTargetState() <em>Target State</em>}' reference.
+	 * The cached value of the '{@link #getStates() <em>States</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTargetState()
+	 * @see #getStates()
 	 * @generated
 	 * @ordered
 	 */
-	protected StateSpecification targetState;
+	protected TypeDef states;
 
 	/**
-	 * The cached value of the '{@link #getCondition() <em>Condition</em>}' containment reference.
+	 * The cached value of the '{@link #getGenerators() <em>Generators</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getCondition()
+	 * @see #getGenerators()
 	 * @generated
 	 * @ordered
 	 */
-	protected MultiLiteralConstraint condition;
-
-	/**
-	 * The cached value of the '{@link #getResult() <em>Result</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getResult()
-	 * @generated
-	 * @ordered
-	 */
-	protected Literal result;
+	protected EList<Generator> generators;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -111,27 +104,12 @@ public class BehaviorSpecificationImpl extends ModelElementImpl implements Behav
 	 * @generated
 	 */
 	@Override
-	public StateSpecification getGuard() {
-		return guard;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetGuard(StateSpecification newGuard, NotificationChain msgs) {
-		StateSpecification oldGuard = guard;
-		guard = newGuard;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					Aadlv3Package.BEHAVIOR_SPECIFICATION__GUARD, oldGuard, newGuard);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
+	public EList<BehaviorRule> getRules() {
+		if (rules == null) {
+			rules = new EObjectContainmentEList<BehaviorRule>(BehaviorRule.class, this,
+					Aadlv3Package.BEHAVIOR_SPECIFICATION__RULES);
 		}
-		return msgs;
+		return rules;
 	}
 
 	/**
@@ -140,40 +118,17 @@ public class BehaviorSpecificationImpl extends ModelElementImpl implements Behav
 	 * @generated
 	 */
 	@Override
-	public void setGuard(StateSpecification newGuard) {
-		if (newGuard != guard) {
-			NotificationChain msgs = null;
-			if (guard != null)
-				msgs = ((InternalEObject) guard).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE - Aadlv3Package.BEHAVIOR_SPECIFICATION__GUARD, null, msgs);
-			if (newGuard != null)
-				msgs = ((InternalEObject) newGuard).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE - Aadlv3Package.BEHAVIOR_SPECIFICATION__GUARD, null, msgs);
-			msgs = basicSetGuard(newGuard, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.BEHAVIOR_SPECIFICATION__GUARD, newGuard,
-					newGuard));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public StateSpecification getTargetState() {
-		if (targetState != null && targetState.eIsProxy()) {
-			InternalEObject oldTargetState = (InternalEObject) targetState;
-			targetState = (StateSpecification) eResolveProxy(oldTargetState);
-			if (targetState != oldTargetState) {
+	public TypeDef getStates() {
+		if (states != null && states.eIsProxy()) {
+			InternalEObject oldStates = (InternalEObject) states;
+			states = (TypeDef) eResolveProxy(oldStates);
+			if (states != oldStates) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							Aadlv3Package.BEHAVIOR_SPECIFICATION__TARGET_STATE, oldTargetState, targetState));
+							Aadlv3Package.BEHAVIOR_SPECIFICATION__STATES, oldStates, states));
 			}
 		}
-		return targetState;
+		return states;
 	}
 
 	/**
@@ -181,8 +136,8 @@ public class BehaviorSpecificationImpl extends ModelElementImpl implements Behav
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StateSpecification basicGetTargetState() {
-		return targetState;
+	public TypeDef basicGetStates() {
+		return states;
 	}
 
 	/**
@@ -191,12 +146,12 @@ public class BehaviorSpecificationImpl extends ModelElementImpl implements Behav
 	 * @generated
 	 */
 	@Override
-	public void setTargetState(StateSpecification newTargetState) {
-		StateSpecification oldTargetState = targetState;
-		targetState = newTargetState;
+	public void setStates(TypeDef newStates) {
+		TypeDef oldStates = states;
+		states = newStates;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.BEHAVIOR_SPECIFICATION__TARGET_STATE,
-					oldTargetState, targetState));
+			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.BEHAVIOR_SPECIFICATION__STATES,
+					oldStates, states));
 	}
 
 	/**
@@ -205,92 +160,12 @@ public class BehaviorSpecificationImpl extends ModelElementImpl implements Behav
 	 * @generated
 	 */
 	@Override
-	public MultiLiteralConstraint getCondition() {
-		return condition;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetCondition(MultiLiteralConstraint newCondition, NotificationChain msgs) {
-		MultiLiteralConstraint oldCondition = condition;
-		condition = newCondition;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					Aadlv3Package.BEHAVIOR_SPECIFICATION__CONDITION, oldCondition, newCondition);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
+	public EList<Generator> getGenerators() {
+		if (generators == null) {
+			generators = new EObjectContainmentEList<Generator>(Generator.class, this,
+					Aadlv3Package.BEHAVIOR_SPECIFICATION__GENERATORS);
 		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setCondition(MultiLiteralConstraint newCondition) {
-		if (newCondition != condition) {
-			NotificationChain msgs = null;
-			if (condition != null)
-				msgs = ((InternalEObject) condition).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE - Aadlv3Package.BEHAVIOR_SPECIFICATION__CONDITION, null, msgs);
-			if (newCondition != null)
-				msgs = ((InternalEObject) newCondition).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE - Aadlv3Package.BEHAVIOR_SPECIFICATION__CONDITION, null, msgs);
-			msgs = basicSetCondition(newCondition, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.BEHAVIOR_SPECIFICATION__CONDITION,
-					newCondition, newCondition));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Literal getResult() {
-		if (result != null && result.eIsProxy()) {
-			InternalEObject oldResult = (InternalEObject) result;
-			result = (Literal) eResolveProxy(oldResult);
-			if (result != oldResult) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							Aadlv3Package.BEHAVIOR_SPECIFICATION__RESULT, oldResult, result));
-			}
-		}
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Literal basicGetResult() {
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setResult(Literal newResult) {
-		Literal oldResult = result;
-		result = newResult;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.BEHAVIOR_SPECIFICATION__RESULT,
-					oldResult, result));
+		return generators;
 	}
 
 	/**
@@ -301,10 +176,10 @@ public class BehaviorSpecificationImpl extends ModelElementImpl implements Behav
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case Aadlv3Package.BEHAVIOR_SPECIFICATION__GUARD:
-			return basicSetGuard(null, msgs);
-		case Aadlv3Package.BEHAVIOR_SPECIFICATION__CONDITION:
-			return basicSetCondition(null, msgs);
+		case Aadlv3Package.BEHAVIOR_SPECIFICATION__RULES:
+			return ((InternalEList<?>) getRules()).basicRemove(otherEnd, msgs);
+		case Aadlv3Package.BEHAVIOR_SPECIFICATION__GENERATORS:
+			return ((InternalEList<?>) getGenerators()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -317,18 +192,14 @@ public class BehaviorSpecificationImpl extends ModelElementImpl implements Behav
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case Aadlv3Package.BEHAVIOR_SPECIFICATION__GUARD:
-			return getGuard();
-		case Aadlv3Package.BEHAVIOR_SPECIFICATION__TARGET_STATE:
+		case Aadlv3Package.BEHAVIOR_SPECIFICATION__RULES:
+			return getRules();
+		case Aadlv3Package.BEHAVIOR_SPECIFICATION__STATES:
 			if (resolve)
-				return getTargetState();
-			return basicGetTargetState();
-		case Aadlv3Package.BEHAVIOR_SPECIFICATION__CONDITION:
-			return getCondition();
-		case Aadlv3Package.BEHAVIOR_SPECIFICATION__RESULT:
-			if (resolve)
-				return getResult();
-			return basicGetResult();
+				return getStates();
+			return basicGetStates();
+		case Aadlv3Package.BEHAVIOR_SPECIFICATION__GENERATORS:
+			return getGenerators();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -338,20 +209,20 @@ public class BehaviorSpecificationImpl extends ModelElementImpl implements Behav
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case Aadlv3Package.BEHAVIOR_SPECIFICATION__GUARD:
-			setGuard((StateSpecification) newValue);
+		case Aadlv3Package.BEHAVIOR_SPECIFICATION__RULES:
+			getRules().clear();
+			getRules().addAll((Collection<? extends BehaviorRule>) newValue);
 			return;
-		case Aadlv3Package.BEHAVIOR_SPECIFICATION__TARGET_STATE:
-			setTargetState((StateSpecification) newValue);
+		case Aadlv3Package.BEHAVIOR_SPECIFICATION__STATES:
+			setStates((TypeDef) newValue);
 			return;
-		case Aadlv3Package.BEHAVIOR_SPECIFICATION__CONDITION:
-			setCondition((MultiLiteralConstraint) newValue);
-			return;
-		case Aadlv3Package.BEHAVIOR_SPECIFICATION__RESULT:
-			setResult((Literal) newValue);
+		case Aadlv3Package.BEHAVIOR_SPECIFICATION__GENERATORS:
+			getGenerators().clear();
+			getGenerators().addAll((Collection<? extends Generator>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -365,17 +236,14 @@ public class BehaviorSpecificationImpl extends ModelElementImpl implements Behav
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case Aadlv3Package.BEHAVIOR_SPECIFICATION__GUARD:
-			setGuard((StateSpecification) null);
+		case Aadlv3Package.BEHAVIOR_SPECIFICATION__RULES:
+			getRules().clear();
 			return;
-		case Aadlv3Package.BEHAVIOR_SPECIFICATION__TARGET_STATE:
-			setTargetState((StateSpecification) null);
+		case Aadlv3Package.BEHAVIOR_SPECIFICATION__STATES:
+			setStates((TypeDef) null);
 			return;
-		case Aadlv3Package.BEHAVIOR_SPECIFICATION__CONDITION:
-			setCondition((MultiLiteralConstraint) null);
-			return;
-		case Aadlv3Package.BEHAVIOR_SPECIFICATION__RESULT:
-			setResult((Literal) null);
+		case Aadlv3Package.BEHAVIOR_SPECIFICATION__GENERATORS:
+			getGenerators().clear();
 			return;
 		}
 		super.eUnset(featureID);
@@ -389,14 +257,12 @@ public class BehaviorSpecificationImpl extends ModelElementImpl implements Behav
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case Aadlv3Package.BEHAVIOR_SPECIFICATION__GUARD:
-			return guard != null;
-		case Aadlv3Package.BEHAVIOR_SPECIFICATION__TARGET_STATE:
-			return targetState != null;
-		case Aadlv3Package.BEHAVIOR_SPECIFICATION__CONDITION:
-			return condition != null;
-		case Aadlv3Package.BEHAVIOR_SPECIFICATION__RESULT:
-			return result != null;
+		case Aadlv3Package.BEHAVIOR_SPECIFICATION__RULES:
+			return rules != null && !rules.isEmpty();
+		case Aadlv3Package.BEHAVIOR_SPECIFICATION__STATES:
+			return states != null;
+		case Aadlv3Package.BEHAVIOR_SPECIFICATION__GENERATORS:
+			return generators != null && !generators.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

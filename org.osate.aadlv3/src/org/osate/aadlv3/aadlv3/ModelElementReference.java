@@ -15,8 +15,6 @@
  */
 package org.osate.aadlv3.aadlv3;
 
-import org.eclipse.emf.ecore.EObject;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Model Element Reference</b></em>'.
@@ -34,7 +32,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface ModelElementReference extends EObject {
+public interface ModelElementReference extends Literal {
 	/**
 	 * Returns the value of the '<em><b>Element</b></em>' reference.
 	 * <!-- begin-user-doc -->

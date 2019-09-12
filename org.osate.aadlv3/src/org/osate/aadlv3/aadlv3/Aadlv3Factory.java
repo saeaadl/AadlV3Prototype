@@ -206,15 +206,6 @@ public interface Aadlv3Factory extends EFactory {
 	InstanceConfiguration createInstanceConfiguration();
 
 	/**
-	 * Returns a new object of class '<em>Property Constraint</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Property Constraint</em>'.
-	 * @generated
-	 */
-	PropertyConstraint createPropertyConstraint();
-
-	/**
 	 * Returns a new object of class '<em>Integer Literal</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -323,6 +314,33 @@ public interface Aadlv3Factory extends EFactory {
 	MultiOperandExpression createMultiOperandExpression();
 
 	/**
+	 * Returns a new object of class '<em>Assignment</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Assignment</em>'.
+	 * @generated
+	 */
+	Assignment createAssignment();
+
+	/**
+	 * Returns a new object of class '<em>Action</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Action</em>'.
+	 * @generated
+	 */
+	Action createAction();
+
+	/**
+	 * Returns a new object of class '<em>Condition Operation</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Condition Operation</em>'.
+	 * @generated
+	 */
+	ConditionOperation createConditionOperation();
+
+	/**
 	 * Returns a new object of class '<em>Property Association</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -332,13 +350,13 @@ public interface Aadlv3Factory extends EFactory {
 	PropertyAssociation createPropertyAssociation();
 
 	/**
-	 * Returns a new object of class '<em>Annex Subclause</em>'.
+	 * Returns a new object of class '<em>Default Annex Subclause</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Annex Subclause</em>'.
+	 * @return a new object of class '<em>Default Annex Subclause</em>'.
 	 * @generated
 	 */
-	AnnexSubclause createAnnexSubclause();
+	DefaultAnnexSubclause createDefaultAnnexSubclause();
 
 	/**
 	 * Returns a new object of class '<em>Annex Library</em>'.
@@ -348,6 +366,33 @@ public interface Aadlv3Factory extends EFactory {
 	 * @generated
 	 */
 	AnnexLibrary createAnnexLibrary();
+
+	/**
+	 * Returns a new object of class '<em>Behavior Rule</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Behavior Rule</em>'.
+	 * @generated
+	 */
+	BehaviorRule createBehaviorRule();
+
+	/**
+	 * Returns a new object of class '<em>EM Subclause</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>EM Subclause</em>'.
+	 * @generated
+	 */
+	EMSubclause createEMSubclause();
+
+	/**
+	 * Returns a new object of class '<em>BA Subclause</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>BA Subclause</em>'.
+	 * @generated
+	 */
+	BASubclause createBASubclause();
 
 	/**
 	 * Returns a new object of class '<em>Behavior Specification</em>'.
@@ -366,6 +411,33 @@ public interface Aadlv3Factory extends EFactory {
 	 * @generated
 	 */
 	StateSpecification createStateSpecification();
+
+	/**
+	 * Returns a new object of class '<em>Generator</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Generator</em>'.
+	 * @generated
+	 */
+	Generator createGenerator();
+
+	/**
+	 * Returns a new object of class '<em>Constant</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Constant</em>'.
+	 * @generated
+	 */
+	Constant createConstant();
+
+	/**
+	 * Returns a new object of class '<em>Package Element Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Package Element Reference</em>'.
+	 * @generated
+	 */
+	PackageElementReference createPackageElementReference();
 
 	/**
 	 * Returns a new object of class '<em>Primitive Type</em>'.

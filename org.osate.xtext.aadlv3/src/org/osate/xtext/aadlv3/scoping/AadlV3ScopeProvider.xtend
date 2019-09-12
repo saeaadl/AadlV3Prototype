@@ -117,6 +117,12 @@ class AadlV3ScopeProvider extends AbstractAadlV3ScopeProvider {
 									Collections.EMPTY_LIST
 							}
 						}
+						default: {
+							val bs = cc.containingBehaviorSpecification
+							val bsElements = bs === null? Collections.EMPTY_LIST: bs.generators
+							cc.containingClassifier.allModelElements+bsElements
+							
+						}
 					}
 				} else {
 					// context element is not null

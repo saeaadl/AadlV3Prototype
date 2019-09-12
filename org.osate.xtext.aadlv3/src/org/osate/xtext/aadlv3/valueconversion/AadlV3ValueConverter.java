@@ -11,7 +11,7 @@ import org.osate.aadlv3.aadlv3.AssociationType;
 import org.osate.aadlv3.aadlv3.PropertyAssociationType;
 import org.osate.aadlv3.aadlv3.Composite;
 import org.osate.aadlv3.aadlv3.Primitive;
-import org.osate.aadlv3.aadlv3.LOperator;
+import org.osate.aadlv3.aadlv3.COperator;
 import org.osate.aadlv3.aadlv3.EOperator;
 
 
@@ -204,41 +204,61 @@ public class AadlV3ValueConverter extends DefaultTerminalConverters {
 		};
 	}
 
-	@ValueConverter(rule = "LOperator")
-	public IValueConverter<LOperator> LOperator() {
-		return new IValueConverter<LOperator>() {
-			@Override
-			public LOperator toValue(String string, INode node) {
-				if (string == null) {
-					return null;
-				}
-				return LOperator.get(string);
-			}
+//	@ValueConverter(rule = "COperation")
+//	public IValueConverter<COperator> COperation() {
+//		return new IValueConverter<COperator>() {
+//			@Override
+//			public COperator toValue(String string, INode node) {
+//				if (string == null) {
+//					return null;
+//				}
+//				return COperator.get(string);
+//			}
+//
+//			@Override
+//			public String toString(COperator value) {
+//				return value.getName();
+//			}
+//		};
+//	}
+//
+//	@ValueConverter(rule = "SatisfiesOperation")
+//	public IValueConverter<COperator> SatisfiesOperation() {
+//		return new IValueConverter<COperator>() {
+//			@Override
+//			public COperator toValue(String string, INode node) {
+//				if (string == null) {
+//					return null;
+//				}
+//				return COperator.get(string);
+//			}
+//
+//			@Override
+//			public String toString(COperator value) {
+//				return value.getName();
+//			}
+//		};
+//	}
+//
+//	@ValueConverter(rule = "EOperation")
+//	public IValueConverter<EOperator> EOperation() {
+//		return new IValueConverter<EOperator>() {
+//			@Override
+//			public EOperator toValue(String string, INode node) {
+//				if (string == null) {
+//					return null;
+//				}
+//				return EOperator.get(string);
+//			}
+//
+//			@Override
+//			public String toString(EOperator value) {
+//				return value.getName();
+//			}
+//		};
+//	}
 
-			@Override
-			public String toString(LOperator value) {
-				return value.getName();
-			}
-		};
-	}
-
-	@ValueConverter(rule = "EOperator")
-	public IValueConverter<EOperator> EOperator() {
-		return new IValueConverter<EOperator>() {
-			@Override
-			public EOperator toValue(String string, INode node) {
-				if (string == null) {
-					return null;
-				}
-				return EOperator.get(string);
-			}
-
-			@Override
-			public String toString(EOperator value) {
-				return value.getName();
-			}
-		};
-	}
+	
 	@ValueConverter(rule = "NoQuoteString")
 	public IValueConverter<String> NoQuoteString() {
 		return new IValueConverter<String>() {

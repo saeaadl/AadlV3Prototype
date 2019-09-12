@@ -2,6 +2,8 @@ package PortConnectionExample is
 // connections without and with reach down into is
 // shared data component
 	import StandardProperties::*;
+	import StateTypes::*;
+	import ErrorTypes::*;
 
 	type systemstate;
 	type int;
@@ -47,6 +49,16 @@ package PortConnectionExample is
 	insignal : in port;
 	outsignal : out port;
 	computepath: flow insignal -> outsignal;
+	@BA{
+		f1: any(insignal ?) -> outsignal!;
+	};
+	@EM{
+		use states threestate;
+		e1: error event;
+		r1: s0 -[e1 in ServiceOmission]-> s1 {outsignal!(ServiceOmission)};
+		r2: any(insignal in ServiceOmission, insignal in ServiceOmission) ->  outsignal!(ServiceOmission);
+		r3: insignal in ServiceOmission-> ;
+	};
 	end;
 	
 	thread interface logger is

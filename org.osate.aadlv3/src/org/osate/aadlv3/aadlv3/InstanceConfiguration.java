@@ -24,7 +24,7 @@ package org.osate.aadlv3.aadlv3;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.osate.aadlv3.aadlv3.InstanceConfiguration#getPropertyConstraint <em>Property Constraint</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.InstanceConfiguration#getProductlineConstraint <em>Productline Constraint</em>}</li>
  * </ul>
  *
  * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getInstanceConfiguration()
@@ -33,25 +33,25 @@ package org.osate.aadlv3.aadlv3;
  */
 public interface InstanceConfiguration extends Subcomponent {
 	/**
-	 * Returns the value of the '<em><b>Property Constraint</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Productline Constraint</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Property Constraint</em>' containment reference.
-	 * @see #setPropertyConstraint(PropertyConstraint)
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getInstanceConfiguration_PropertyConstraint()
+	 * @return the value of the '<em>Productline Constraint</em>' containment reference.
+	 * @see #setProductlineConstraint(ConditionOperation)
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getInstanceConfiguration_ProductlineConstraint()
 	 * @model containment="true"
 	 * @generated
 	 */
-	PropertyConstraint getPropertyConstraint();
+	ConditionOperation getProductlineConstraint();
 
 	/**
-	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.InstanceConfiguration#getPropertyConstraint <em>Property Constraint</em>}' containment reference.
+	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.InstanceConfiguration#getProductlineConstraint <em>Productline Constraint</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Property Constraint</em>' containment reference.
-	 * @see #getPropertyConstraint()
+	 * @param value the new value of the '<em>Productline Constraint</em>' containment reference.
+	 * @see #getProductlineConstraint()
 	 * @generated
 	 */
-	void setPropertyConstraint(PropertyConstraint value);
+	void setProductlineConstraint(ConditionOperation value);
 
 } // InstanceConfiguration

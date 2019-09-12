@@ -523,29 +523,6 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.PropertyConstraint} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected PropertyConstraintItemProvider propertyConstraintItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.PropertyConstraint}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createPropertyConstraintAdapter() {
-		if (propertyConstraintItemProvider == null) {
-			propertyConstraintItemProvider = new PropertyConstraintItemProvider(this);
-		}
-
-		return propertyConstraintItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.IntegerLiteral} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -822,6 +799,75 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.Assignment} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AssignmentItemProvider assignmentItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.Assignment}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createAssignmentAdapter() {
+		if (assignmentItemProvider == null) {
+			assignmentItemProvider = new AssignmentItemProvider(this);
+		}
+
+		return assignmentItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.Action} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ActionItemProvider actionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.Action}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createActionAdapter() {
+		if (actionItemProvider == null) {
+			actionItemProvider = new ActionItemProvider(this);
+		}
+
+		return actionItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.ConditionOperation} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ConditionOperationItemProvider conditionOperationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.ConditionOperation}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createConditionOperationAdapter() {
+		if (conditionOperationItemProvider == null) {
+			conditionOperationItemProvider = new ConditionOperationItemProvider(this);
+		}
+
+		return conditionOperationItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.PropertyAssociation} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -845,26 +891,26 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.AnnexSubclause} instances.
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.DefaultAnnexSubclause} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected AnnexSubclauseItemProvider annexSubclauseItemProvider;
+	protected DefaultAnnexSubclauseItemProvider defaultAnnexSubclauseItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.AnnexSubclause}.
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.DefaultAnnexSubclause}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createAnnexSubclauseAdapter() {
-		if (annexSubclauseItemProvider == null) {
-			annexSubclauseItemProvider = new AnnexSubclauseItemProvider(this);
+	public Adapter createDefaultAnnexSubclauseAdapter() {
+		if (defaultAnnexSubclauseItemProvider == null) {
+			defaultAnnexSubclauseItemProvider = new DefaultAnnexSubclauseItemProvider(this);
 		}
 
-		return annexSubclauseItemProvider;
+		return defaultAnnexSubclauseItemProvider;
 	}
 
 	/**
@@ -888,6 +934,75 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 		}
 
 		return annexLibraryItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.BehaviorRule} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected BehaviorRuleItemProvider behaviorRuleItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.BehaviorRule}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createBehaviorRuleAdapter() {
+		if (behaviorRuleItemProvider == null) {
+			behaviorRuleItemProvider = new BehaviorRuleItemProvider(this);
+		}
+
+		return behaviorRuleItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.EMSubclause} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected EMSubclauseItemProvider emSubclauseItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.EMSubclause}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createEMSubclauseAdapter() {
+		if (emSubclauseItemProvider == null) {
+			emSubclauseItemProvider = new EMSubclauseItemProvider(this);
+		}
+
+		return emSubclauseItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.BASubclause} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected BASubclauseItemProvider baSubclauseItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.BASubclause}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createBASubclauseAdapter() {
+		if (baSubclauseItemProvider == null) {
+			baSubclauseItemProvider = new BASubclauseItemProvider(this);
+		}
+
+		return baSubclauseItemProvider;
 	}
 
 	/**
@@ -934,6 +1049,75 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 		}
 
 		return stateSpecificationItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.Generator} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected GeneratorItemProvider generatorItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.Generator}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createGeneratorAdapter() {
+		if (generatorItemProvider == null) {
+			generatorItemProvider = new GeneratorItemProvider(this);
+		}
+
+		return generatorItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.Constant} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ConstantItemProvider constantItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.Constant}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createConstantAdapter() {
+		if (constantItemProvider == null) {
+			constantItemProvider = new ConstantItemProvider(this);
+		}
+
+		return constantItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.PackageElementReference} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected PackageElementReferenceItemProvider packageElementReferenceItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.PackageElementReference}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createPackageElementReferenceAdapter() {
+		if (packageElementReferenceItemProvider == null) {
+			packageElementReferenceItemProvider = new PackageElementReferenceItemProvider(this);
+		}
+
+		return packageElementReferenceItemProvider;
 	}
 
 	/**
@@ -1217,8 +1401,6 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 			workingsetItemProvider.dispose();
 		if (instanceConfigurationItemProvider != null)
 			instanceConfigurationItemProvider.dispose();
-		if (propertyConstraintItemProvider != null)
-			propertyConstraintItemProvider.dispose();
 		if (namedTypeItemProvider != null)
 			namedTypeItemProvider.dispose();
 		if (typeDefItemProvider != null)
@@ -1255,16 +1437,34 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 			multiLiteralConstraintItemProvider.dispose();
 		if (multiOperandExpressionItemProvider != null)
 			multiOperandExpressionItemProvider.dispose();
+		if (assignmentItemProvider != null)
+			assignmentItemProvider.dispose();
+		if (actionItemProvider != null)
+			actionItemProvider.dispose();
+		if (conditionOperationItemProvider != null)
+			conditionOperationItemProvider.dispose();
 		if (propertyAssociationItemProvider != null)
 			propertyAssociationItemProvider.dispose();
-		if (annexSubclauseItemProvider != null)
-			annexSubclauseItemProvider.dispose();
+		if (defaultAnnexSubclauseItemProvider != null)
+			defaultAnnexSubclauseItemProvider.dispose();
 		if (annexLibraryItemProvider != null)
 			annexLibraryItemProvider.dispose();
+		if (behaviorRuleItemProvider != null)
+			behaviorRuleItemProvider.dispose();
+		if (emSubclauseItemProvider != null)
+			emSubclauseItemProvider.dispose();
+		if (baSubclauseItemProvider != null)
+			baSubclauseItemProvider.dispose();
 		if (behaviorSpecificationItemProvider != null)
 			behaviorSpecificationItemProvider.dispose();
 		if (stateSpecificationItemProvider != null)
 			stateSpecificationItemProvider.dispose();
+		if (generatorItemProvider != null)
+			generatorItemProvider.dispose();
+		if (constantItemProvider != null)
+			constantItemProvider.dispose();
+		if (packageElementReferenceItemProvider != null)
+			packageElementReferenceItemProvider.dispose();
 	}
 
 }

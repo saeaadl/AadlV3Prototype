@@ -22,8 +22,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.ModelElement;
 import org.osate.aadlv3.aadlv3.ModelElementReference;
@@ -42,7 +40,7 @@ import org.osate.aadlv3.aadlv3.ModelElementReference;
  *
  * @generated
  */
-public class ModelElementReferenceImpl extends MinimalEObjectImpl.Container implements ModelElementReference {
+public class ModelElementReferenceImpl extends LiteralImpl implements ModelElementReference {
 	/**
 	 * The cached value of the '{@link #getElement() <em>Element</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -258,6 +256,28 @@ public class ModelElementReferenceImpl extends MinimalEObjectImpl.Container impl
 			return context != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	@Override
+	public boolean sameAs(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ModelElementReferenceImpl other = (ModelElementReferenceImpl) obj;
+		if (context == null) {
+			if (other.context != null)
+				return false;
+		} else if (!context.equals(other.context))
+			return false;
+		if (element == null) {
+			if (other.element != null)
+				return false;
+		} else if (!element.equals(other.element))
+			return false;
+		return true;
 	}
 
 } //ModelElementReferenceImpl

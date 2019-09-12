@@ -26,8 +26,8 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.osate.aadlv3.aadlv3.StateSpecification#getStateVariable <em>State Variable</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.StateSpecification#getCurrentState <em>Current State</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.StateSpecification#getType <em>Type</em>}</li>
  * </ul>
  *
  * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getStateSpecification()
@@ -35,28 +35,6 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface StateSpecification extends EObject {
-	/**
-	 * Returns the value of the '<em><b>State Variable</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>State Variable</em>' reference.
-	 * @see #setStateVariable(StringLiteral)
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getStateSpecification_StateVariable()
-	 * @model
-	 * @generated
-	 */
-	StringLiteral getStateVariable();
-
-	/**
-	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.StateSpecification#getStateVariable <em>State Variable</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>State Variable</em>' reference.
-	 * @see #getStateVariable()
-	 * @generated
-	 */
-	void setStateVariable(StringLiteral value);
-
 	/**
 	 * Returns the value of the '<em><b>Current State</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
@@ -78,5 +56,27 @@ public interface StateSpecification extends EObject {
 	 * @generated
 	 */
 	void setCurrentState(EnumerationLiteral value);
+
+	/**
+	 * Returns the value of the '<em><b>Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Type</em>' reference.
+	 * @see #setType(TypeReference)
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getStateSpecification_Type()
+	 * @model
+	 * @generated
+	 */
+	TypeReference getType();
+
+	/**
+	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.StateSpecification#getType <em>Type</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Type</em>' reference.
+	 * @see #getType()
+	 * @generated
+	 */
+	void setType(TypeReference value);
 
 } // StateSpecification

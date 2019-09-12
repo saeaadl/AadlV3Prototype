@@ -145,10 +145,16 @@ public class ECollectionItemProvider extends LiteralItemProvider {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ECOLLECTION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createTypeReference()));
+				Aadlv3Factory.eINSTANCE.createExpression()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ECOLLECTION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createExpression()));
+				Aadlv3Factory.eINSTANCE.createModelElementReference()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ECOLLECTION__ELEMENTS,
+				Aadlv3Factory.eINSTANCE.createPathElement()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ECOLLECTION__ELEMENTS,
+				Aadlv3Factory.eINSTANCE.createTypeReference()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ECOLLECTION__ELEMENTS,
 				Aadlv3Factory.eINSTANCE.createIntegerLiteral()));
@@ -182,6 +188,12 @@ public class ECollectionItemProvider extends LiteralItemProvider {
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ECOLLECTION__ELEMENTS,
 				Aadlv3Factory.eINSTANCE.createMultiLiteralConstraint()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ECOLLECTION__ELEMENTS,
+				Aadlv3Factory.eINSTANCE.createConditionOperation()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ECOLLECTION__ELEMENTS,
+				Aadlv3Factory.eINSTANCE.createPackageElementReference()));
 	}
 
 }
