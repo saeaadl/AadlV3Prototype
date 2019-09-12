@@ -17,12 +17,15 @@ package org.osate.aadlv3.aadlv3.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.Generator;
+import org.osate.aadlv3.aadlv3.Literal;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,6 +36,7 @@ import org.osate.aadlv3.aadlv3.Generator;
  * </p>
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.GeneratorImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.GeneratorImpl#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @generated
@@ -57,6 +61,16 @@ public class GeneratorImpl extends ModelElementImpl implements Generator {
 	 * @ordered
 	 */
 	protected String type = TYPE_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getValue()
+	 * @generated
+	 * @ordered
+	 */
+	protected Literal value;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -106,10 +120,77 @@ public class GeneratorImpl extends ModelElementImpl implements Generator {
 	 * @generated
 	 */
 	@Override
+	public Literal getValue() {
+		return value;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetValue(Literal newValue, NotificationChain msgs) {
+		Literal oldValue = value;
+		value = newValue;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					Aadlv3Package.GENERATOR__VALUE, oldValue, newValue);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setValue(Literal newValue) {
+		if (newValue != value) {
+			NotificationChain msgs = null;
+			if (value != null)
+				msgs = ((InternalEObject) value).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE - Aadlv3Package.GENERATOR__VALUE, null, msgs);
+			if (newValue != null)
+				msgs = ((InternalEObject) newValue).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE - Aadlv3Package.GENERATOR__VALUE, null, msgs);
+			msgs = basicSetValue(newValue, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.GENERATOR__VALUE, newValue, newValue));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case Aadlv3Package.GENERATOR__VALUE:
+			return basicSetValue(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case Aadlv3Package.GENERATOR__TYPE:
 			return getType();
+		case Aadlv3Package.GENERATOR__VALUE:
+			return getValue();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -124,6 +205,9 @@ public class GeneratorImpl extends ModelElementImpl implements Generator {
 		switch (featureID) {
 		case Aadlv3Package.GENERATOR__TYPE:
 			setType((String) newValue);
+			return;
+		case Aadlv3Package.GENERATOR__VALUE:
+			setValue((Literal) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -140,6 +224,9 @@ public class GeneratorImpl extends ModelElementImpl implements Generator {
 		case Aadlv3Package.GENERATOR__TYPE:
 			setType(TYPE_EDEFAULT);
 			return;
+		case Aadlv3Package.GENERATOR__VALUE:
+			setValue((Literal) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -154,6 +241,8 @@ public class GeneratorImpl extends ModelElementImpl implements Generator {
 		switch (featureID) {
 		case Aadlv3Package.GENERATOR__TYPE:
 			return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
+		case Aadlv3Package.GENERATOR__VALUE:
+			return value != null;
 		}
 		return super.eIsSet(featureID);
 	}

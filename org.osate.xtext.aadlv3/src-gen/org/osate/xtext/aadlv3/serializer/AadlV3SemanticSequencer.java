@@ -371,11 +371,11 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *         (
 	 *             (
 	 *                 guard=CurrentState 
-	 *                 (condition=MultiLiteralOperation | condition=ContainsToken | condition=FeatureInput) 
+	 *                 (condition=MultiLiteralOperation | condition=ContainsToken | condition=ModelElementReference) 
 	 *                 targetState=CurrentState 
 	 *                 action+=Assignment*
 	 *             ) | 
-	 *             ((condition=MultiLiteralOperation | condition=ContainsToken | condition=FeatureInput) action+=Assignment*)
+	 *             ((condition=MultiLiteralOperation | condition=ContainsToken | condition=ModelElementReference) action+=Assignment*)
 	 *         )
 	 *     )
 	 */
@@ -975,6 +975,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 * Contexts:
 	 *     ModelElementReference returns ModelElementReference
 	 *     ModelElementReference.ModelElementReference_1_0_0 returns ModelElementReference
+	 *     Literal returns ModelElementReference
 	 *
 	 * Constraint:
 	 *     (element=[ModelElement|ID] | (context=ModelElementReference_ModelElementReference_1_0_0 element=[ModelElement|ID]))

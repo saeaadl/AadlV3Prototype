@@ -50,13 +50,13 @@ package PortConnectionExample is
 	outsignal : out port;
 	computepath: flow insignal -> outsignal;
 	@BA{
-		f1: any(insignal ?) -> outsignal!;
+		f1: any(insignal ?) -> outsignal; 
 	};
 	@EM{
 		use states threestate;
 		e1: error event;
-		r1: s0 -[e1 in ServiceOmission]-> s1 {outsignal!(ServiceOmission)};
-		r2: any(insignal in ServiceOmission, insignal in ServiceOmission) ->  outsignal!(ServiceOmission);
+		r1: s0 -[e1 ]-> s1 {outsignal(ServiceOmission)};
+		r2: any(insignal in ServiceOmission, insignal in ServiceOmission) ->  outsignal(ServiceOmission);
 		r3: insignal in ServiceOmission-> ;
 	};
 	end;
@@ -71,8 +71,7 @@ package PortConnectionExample is
 	processflow: flow insignal -> outaction;
 	end;
 	
-	process interface controlProcess extends control //is
-//	controlIF: interface control;
+	process interface controlProcess extends control 
 	is end;
 	
 	process controlProcess.impl is

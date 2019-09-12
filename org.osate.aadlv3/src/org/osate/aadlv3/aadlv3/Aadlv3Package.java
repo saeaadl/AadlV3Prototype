@@ -3314,13 +3314,22 @@ public interface Aadlv3Package extends EPackage {
 	int GENERATOR__TYPE = MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Value</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERATOR__VALUE = MODEL_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Generator</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GENERATOR_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int GENERATOR_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.ConstantImpl <em>Constant</em>}' class.
@@ -5034,6 +5043,17 @@ public interface Aadlv3Package extends EPackage {
 	EAttribute getGenerator_Type();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link org.osate.aadlv3.aadlv3.Generator#getValue <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Value</em>'.
+	 * @see org.osate.aadlv3.aadlv3.Generator#getValue()
+	 * @see #getGenerator()
+	 * @generated
+	 */
+	EReference getGenerator_Value();
+
+	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.Constant <em>Constant</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6683,6 +6703,14 @@ public interface Aadlv3Package extends EPackage {
 		 * @generated
 		 */
 		EAttribute GENERATOR__TYPE = eINSTANCE.getGenerator_Type();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GENERATOR__VALUE = eINSTANCE.getGenerator_Value();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.ConstantImpl <em>Constant</em>}' class.

@@ -339,7 +339,8 @@ fragment BehaviorSpecificationElement*:
 ;
 
 Event returns av3::Generator:
-	name=ID ':' type=('error'|'recover'|'repair') 'event' ';'
+	name=ID ':' type=('error'|'recover'|'repair') 'event' 
+	(value=Literal)?	';'
 ;
 
 
@@ -348,7 +349,7 @@ BehaviorRule returns av3::BehaviorRule :
 ;
 
 Assignment returns av3::Assignment:
-	target= ModelElementReference '!'('(' value=TypeReference')')?
+	target= ModelElementReference ('(' value=TypeReference')')?
 ;
 
 CurrentState returns av3::StateSpecification:
@@ -356,10 +357,10 @@ CurrentState returns av3::StateSpecification:
 ;
 
 fragment StateTransitionRule *:
-	guard=CurrentState '-[' condition =  (MultiLiteralOperation | ContainsToken | FeatureInput)  ']->' targetState=CurrentState ('{' action+=Assignment* '}')?';';
+	guard=CurrentState '-[' condition =  (MultiLiteralOperation | ContainsToken | ModelElementReference)  ']->' targetState=CurrentState ('{' action+=Assignment* '}')?';';
 
 fragment StatelessRule *:
-	condition = (MultiLiteralOperation | ContainsToken | FeatureInput) '->'  action+=Assignment* ';';
+	condition = (MultiLiteralOperation | ContainsToken | ModelElementReference) '->'  action+=Assignment* ';';
 
 
 ContainsToken returns av3::ConditionOperation:
@@ -376,7 +377,7 @@ FeatureInput returns av3::ConditionOperation:
 
 Literal returns av3::Literal:
 	IntegerLiteral | RealLiteral | StringLiteral | BooleanLiteral | PropertyReference | PackageElementReference | DirectionalLiteral | ListLiteral | MultiLiteralOperation
-	| ContainsToken | EnumerationLiteral | FeatureInput
+	| ContainsToken | EnumerationLiteral  | ModelElementReference //| FeatureInput
 ;
 
 

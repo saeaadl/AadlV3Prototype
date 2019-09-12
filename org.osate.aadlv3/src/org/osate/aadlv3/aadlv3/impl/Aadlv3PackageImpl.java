@@ -2074,6 +2074,16 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
+	public EReference getGenerator_Value() {
+		return (EReference) generatorEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getConstant() {
 		return constantEClass;
 	}
@@ -2690,6 +2700,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 
 		generatorEClass = createEClass(GENERATOR);
 		createEAttribute(generatorEClass, GENERATOR__TYPE);
+		createEReference(generatorEClass, GENERATOR__VALUE);
 
 		constantEClass = createEClass(CONSTANT);
 		createEReference(constantEClass, CONSTANT__VALUE);
@@ -3275,6 +3286,9 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 				IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getGenerator_Type(), ecorePackage.getEString(), "type", null, 0, 1, Generator.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGenerator_Value(), this.getLiteral(), null, "value", null, 0, 1, Generator.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(constantEClass, Constant.class, "Constant", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);

@@ -25,6 +25,7 @@ package org.osate.aadlv3.aadlv3;
  * </p>
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.Generator#getType <em>Type</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.Generator#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getGenerator()
@@ -53,5 +54,27 @@ public interface Generator extends ModelElement {
 	 * @generated
 	 */
 	void setType(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Value</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Value</em>' containment reference.
+	 * @see #setValue(Literal)
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getGenerator_Value()
+	 * @model containment="true"
+	 * @generated
+	 */
+	Literal getValue();
+
+	/**
+	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.Generator#getValue <em>Value</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Value</em>' containment reference.
+	 * @see #getValue()
+	 * @generated
+	 */
+	void setValue(Literal value);
 
 } // Generator
