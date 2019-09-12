@@ -3021,13 +3021,15 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cTypeRecoverKeyword_2_0_1 = (Keyword)cTypeAlternatives_2_0.eContents().get(1);
 		private final Keyword cTypeRepairKeyword_2_0_2 = (Keyword)cTypeAlternatives_2_0.eContents().get(2);
 		private final Keyword cEventKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Keyword cSemicolonKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cValueAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cValueLiteralParserRuleCall_4_0 = (RuleCall)cValueAssignment_4.eContents().get(0);
+		private final Keyword cSemicolonKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//Event av3::Generator:
-		//	name=ID ':' type=('error' | 'recover' | 'repair') 'event' ';';
+		//	name=ID ':' type=('error' | 'recover' | 'repair') 'event' value=Literal? ';';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//name=ID ':' type=('error' | 'recover' | 'repair') 'event' ';'
+		//name=ID ':' type=('error' | 'recover' | 'repair') 'event' value=Literal? ';'
 		public Group getGroup() { return cGroup; }
 		
 		//name=ID
@@ -3057,8 +3059,14 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		//'event'
 		public Keyword getEventKeyword_3() { return cEventKeyword_3; }
 		
+		//value=Literal?
+		public Assignment getValueAssignment_4() { return cValueAssignment_4; }
+		
+		//Literal
+		public RuleCall getValueLiteralParserRuleCall_4_0() { return cValueLiteralParserRuleCall_4_0; }
+		
 		//';'
-		public Keyword getSemicolonKeyword_4() { return cSemicolonKeyword_4; }
+		public Keyword getSemicolonKeyword_5() { return cSemicolonKeyword_5; }
 	}
 	public class BehaviorRuleElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.osate.xtext.aadlv3.AadlV3.BehaviorRule");
@@ -3244,13 +3252,13 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//fragment StatelessRule *:
-		//	condition=(MultiLiteralOperation | ContainsToken | ModelElementReference) '->' action+=Assignment* ';';
+		//	condition=(MultiLiteralOperation | ContainsToken | ModelElementReference)? '->' action+=Assignment* ';';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//condition=(MultiLiteralOperation | ContainsToken | ModelElementReference) '->' action+=Assignment* ';'
+		//condition=(MultiLiteralOperation | ContainsToken | ModelElementReference)? '->' action+=Assignment* ';'
 		public Group getGroup() { return cGroup; }
 		
-		//condition=(MultiLiteralOperation | ContainsToken | ModelElementReference)
+		//condition=(MultiLiteralOperation | ContainsToken | ModelElementReference)?
 		public Assignment getConditionAssignment_0() { return cConditionAssignment_0; }
 		
 		//(MultiLiteralOperation | ContainsToken | ModelElementReference)
@@ -3353,19 +3361,18 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cMultiLiteralOperationParserRuleCall_8 = (RuleCall)cAlternatives.eContents().get(8);
 		private final RuleCall cContainsTokenParserRuleCall_9 = (RuleCall)cAlternatives.eContents().get(9);
 		private final RuleCall cEnumerationLiteralParserRuleCall_10 = (RuleCall)cAlternatives.eContents().get(10);
-		private final RuleCall cFeatureInputParserRuleCall_11 = (RuleCall)cAlternatives.eContents().get(11);
-		private final RuleCall cModelElementReferenceParserRuleCall_12 = (RuleCall)cAlternatives.eContents().get(12);
+		private final RuleCall cModelElementReferenceParserRuleCall_11 = (RuleCall)cAlternatives.eContents().get(11);
 		
 		//// expression/constraint language
 		// Literal av3::Literal:
 		//	IntegerLiteral | RealLiteral | StringLiteral | BooleanLiteral | PropertyReference | PackageElementReference |
-		//	DirectionalLiteral | ListLiteral | MultiLiteralOperation | ContainsToken | EnumerationLiteral | FeatureInput |
-		//	ModelElementReference;
+		//	DirectionalLiteral | ListLiteral | MultiLiteralOperation | ContainsToken | EnumerationLiteral | ModelElementReference
+		//	//| FeatureInput
+		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//IntegerLiteral | RealLiteral | StringLiteral | BooleanLiteral | PropertyReference | PackageElementReference |
-		//DirectionalLiteral | ListLiteral | MultiLiteralOperation | ContainsToken | EnumerationLiteral | FeatureInput |
-		//ModelElementReference
+		//DirectionalLiteral | ListLiteral | MultiLiteralOperation | ContainsToken | EnumerationLiteral | ModelElementReference
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//IntegerLiteral
@@ -3401,11 +3408,8 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		//EnumerationLiteral
 		public RuleCall getEnumerationLiteralParserRuleCall_10() { return cEnumerationLiteralParserRuleCall_10; }
 		
-		//FeatureInput
-		public RuleCall getFeatureInputParserRuleCall_11() { return cFeatureInputParserRuleCall_11; }
-		
 		//ModelElementReference
-		public RuleCall getModelElementReferenceParserRuleCall_12() { return cModelElementReferenceParserRuleCall_12; }
+		public RuleCall getModelElementReferenceParserRuleCall_11() { return cModelElementReferenceParserRuleCall_11; }
 	}
 	public class PackageElementReferenceElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.osate.xtext.aadlv3.AadlV3.PackageElementReference");
@@ -5687,7 +5691,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Event av3::Generator:
-	//	name=ID ':' type=('error' | 'recover' | 'repair') 'event' ';';
+	//	name=ID ':' type=('error' | 'recover' | 'repair') 'event' value=Literal? ';';
 	public EventElements getEventAccess() {
 		return pEvent;
 	}
@@ -5738,7 +5742,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//fragment StatelessRule *:
-	//	condition=(MultiLiteralOperation | ContainsToken | ModelElementReference) '->' action+=Assignment* ';';
+	//	condition=(MultiLiteralOperation | ContainsToken | ModelElementReference)? '->' action+=Assignment* ';';
 	public StatelessRuleElements getStatelessRuleAccess() {
 		return pStatelessRule;
 	}
@@ -5770,8 +5774,9 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	//// expression/constraint language
 	// Literal av3::Literal:
 	//	IntegerLiteral | RealLiteral | StringLiteral | BooleanLiteral | PropertyReference | PackageElementReference |
-	//	DirectionalLiteral | ListLiteral | MultiLiteralOperation | ContainsToken | EnumerationLiteral | FeatureInput |
-	//	ModelElementReference;
+	//	DirectionalLiteral | ListLiteral | MultiLiteralOperation | ContainsToken | EnumerationLiteral | ModelElementReference
+	//	//| FeatureInput
+	//;
 	public LiteralElements getLiteralAccess() {
 		return pLiteral;
 	}

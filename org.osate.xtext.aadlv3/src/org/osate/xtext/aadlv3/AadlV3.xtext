@@ -360,7 +360,7 @@ fragment StateTransitionRule *:
 	guard=CurrentState '-[' condition =  (MultiLiteralOperation | ContainsToken | ModelElementReference)  ']->' targetState=CurrentState ('{' action+=Assignment* '}')?';';
 
 fragment StatelessRule *:
-	condition = (MultiLiteralOperation | ContainsToken | ModelElementReference) '->'  action+=Assignment* ';';
+	condition = (MultiLiteralOperation | ContainsToken | ModelElementReference)? '->'  action+=Assignment* ';';
 
 
 ContainsToken returns av3::ConditionOperation:

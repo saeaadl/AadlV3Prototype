@@ -363,6 +363,7 @@ public class AadlV3Parser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getBehaviorSpecificationElementAccess().getRulesAssignment_1(), "rule__BehaviorSpecificationElement__RulesAssignment_1");
 			builder.put(grammarAccess.getEventAccess().getNameAssignment_0(), "rule__Event__NameAssignment_0");
 			builder.put(grammarAccess.getEventAccess().getTypeAssignment_2(), "rule__Event__TypeAssignment_2");
+			builder.put(grammarAccess.getEventAccess().getValueAssignment_4(), "rule__Event__ValueAssignment_4");
 			builder.put(grammarAccess.getBehaviorRuleAccess().getNameAssignment_0(), "rule__BehaviorRule__NameAssignment_0");
 			builder.put(grammarAccess.getAssignmentAccess().getTargetAssignment_0(), "rule__Assignment__TargetAssignment_0");
 			builder.put(grammarAccess.getAssignmentAccess().getValueAssignment_1_1(), "rule__Assignment__ValueAssignment_1_1");

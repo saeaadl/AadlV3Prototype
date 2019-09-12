@@ -143,12 +143,9 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 				sequence_CompositeType(context, (CompositeType) semanticObject); 
 				return; 
 			case Aadlv3Package.CONDITION_OPERATION:
-				if (rule == grammarAccess.getContainsTokenRule()) {
+				if (rule == grammarAccess.getContainsTokenRule()
+						|| rule == grammarAccess.getLiteralRule()) {
 					sequence_ContainsToken(context, (ConditionOperation) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getLiteralRule()) {
-					sequence_ContainsToken_FeatureInput(context, (ConditionOperation) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getFeatureInputRule()) {
@@ -375,7 +372,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *                 targetState=CurrentState 
 	 *                 action+=Assignment*
 	 *             ) | 
-	 *             ((condition=MultiLiteralOperation | condition=ContainsToken | condition=ModelElementReference) action+=Assignment*)
+	 *             ((condition=MultiLiteralOperation | condition=ContainsToken | condition=ModelElementReference)? action+=Assignment*)
 	 *         )
 	 *     )
 	 */
@@ -677,6 +674,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	/**
 	 * Contexts:
 	 *     ContainsToken returns ConditionOperation
+	 *     Literal returns ConditionOperation
 	 *
 	 * Constraint:
 	 *     (left=ModelElementReference operator=InOperation right=Literal)
@@ -695,18 +693,6 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 		feeder.accept(grammarAccess.getContainsTokenAccess().getOperatorInOperationParserRuleCall_1_0(), semanticObject.getOperator());
 		feeder.accept(grammarAccess.getContainsTokenAccess().getRightLiteralParserRuleCall_2_0(), semanticObject.getRight());
 		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     Literal returns ConditionOperation
-	 *
-	 * Constraint:
-	 *     ((left=ModelElementReference operator=InOperation right=Literal) | (left=ModelElementReference operator=InputOperation))
-	 */
-	protected void sequence_ContainsToken_FeatureInput(ISerializationContext context, ConditionOperation semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -809,7 +795,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     Event returns Generator
 	 *
 	 * Constraint:
-	 *     (name=ID (type='error' | type='recover' | type='repair'))
+	 *     (name=ID (type='error' | type='recover' | type='repair') value=Literal?)
 	 */
 	protected void sequence_Event(ISerializationContext context, Generator semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
