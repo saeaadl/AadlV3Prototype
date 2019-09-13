@@ -16,6 +16,7 @@ workingset simpleinstances is
 //	nested: system NestedImplementations::ControlSystem.i;
 //	
 //	connex: system ConnectionExamples::conntop.i;
+//	portex: system PortConnectionExample::conntop.i;
 //
 //  flowex: system FlowExamples::conntop.i;
 end ;

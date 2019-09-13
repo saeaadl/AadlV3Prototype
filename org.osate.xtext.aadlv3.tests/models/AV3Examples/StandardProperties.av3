@@ -10,5 +10,8 @@ package StandardProperties is
 	
 property SecurityLevel: integer for (all);
 property SafetyLevel: integer for (all);
+
+property TokenSource : list of time for (all);
+property TokenSink : list of time for (all);
 	
 end;

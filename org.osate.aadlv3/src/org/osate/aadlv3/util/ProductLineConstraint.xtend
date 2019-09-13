@@ -24,7 +24,7 @@ class ProductLineConstraint {
 	 * value: a collection of literals associated with a classifier
 	 * constraint: a collection of alternatives (ANY) where each alternative represents a single literal or collection of literals (ALL)
 	 */
-	def static boolean satisfies(ECollection value, MultiLiteralConstraint constraint) {
+	def static boolean satisfies(ECollection value, ListLiteral constraint) {
 		if (constraint === null|| value === null) return true
 		constraint.elements.exists[alt| value.contains(alt)]
 		return false
@@ -34,7 +34,7 @@ class ProductLineConstraint {
 	/**
 	 * the feature labels of ci satisfies the specified constraint
 	 */
-	def static boolean satisfies(ComponentInstance ci, MultiLiteralConstraint constraint) {
+	def static boolean satisfies(ComponentInstance ci, ListLiteral constraint) {
 		if (constraint === null) return true
 		val match = ci.getFeatureLabels();
 		if (match === null) return true
@@ -44,7 +44,7 @@ class ProductLineConstraint {
 	/**
 	 * the product line qualifier of cl satisfies the specified constraint
 	 */
-	def static boolean satisfies(NamedType cl, MultiLiteralConstraint constraint) {
+	def static boolean satisfies(NamedType cl, ListLiteral constraint) {
 		if (constraint === null) return true
 		val match = cl.getFeatureLabels();
 		if (match === null) return true
@@ -55,7 +55,7 @@ class ProductLineConstraint {
 	/**
 	 * all elements of trefs satisfy the specified constraint
 	 */
-	def static boolean satisfies(Iterable<TypeReference> trefs, MultiLiteralConstraint constraint) {
+	def static boolean satisfies(Iterable<TypeReference> trefs, ListLiteral constraint) {
 		if (constraint === null) return true
 		return trefs.forall[tref| tref.type.satisfies(constraint)]
 	}
@@ -76,7 +76,7 @@ class ProductLineConstraint {
 	 * @param cinterface
 	 * @return
 	 */
-	def static Iterable<ComponentRealization> getConfigurableRealizations(ComponentInterface classifier, MultiLiteralConstraint productLineQualifierconstraint) {
+	def static Iterable<ComponentRealization> getConfigurableRealizations(ComponentInterface classifier, ListLiteral productLineQualifierconstraint) {
 		val all = Av3API.getAllRealizations(classifier);
 		return all.filter[cl|cl.satisfies(productLineQualifierconstraint)];
 	}
@@ -86,7 +86,7 @@ class ProductLineConstraint {
 	 * validate by examining the instance model FeatureLabels property
 	 */
 	def static Collection<Diagnostic> validateProductLineConstraint(ComponentInstance root,
-		MultiLiteralConstraint constraint) {
+		ListLiteral constraint) {
 		val issues = new ArrayList<Diagnostic>
 		val ios = EcoreUtil2.getAllContentsOfType(root, ComponentInstance)
 		for (io : ios) {
@@ -98,7 +98,7 @@ class ProductLineConstraint {
 	/**
 	 * all configured classifiers of component instance satisfy the specified constraint
 	 */
-	def static Collection<Diagnostic> validateConfiguredComponentInstance(ComponentInstance ci, MultiLiteralConstraint constraint) {
+	def static Collection<Diagnostic> validateConfiguredComponentInstance(ComponentInstance ci, ListLiteral constraint) {
 		val trefs = getConfiguredTypeReferences( ci);
 		val issues = new ArrayList<Diagnostic>
 		if (constraint !== null) {

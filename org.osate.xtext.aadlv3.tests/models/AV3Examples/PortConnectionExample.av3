@@ -5,8 +5,7 @@ package PortConnectionExample is
 	import StateTypes::*;
 	import ErrorTypes::*;
 
-	type systemstate;
-	type int;
+	type t1;
 	
 	interface actuator is
 		inp: in port;
@@ -32,6 +31,7 @@ package PortConnectionExample is
 	thread interface sense  is
 		p1: out port ;
 		reading: flow  source p1;
+		#TokenSource => (t1);
 	end;
 	thread interface actuate  is
 		p1: in port ;
@@ -50,7 +50,7 @@ package PortConnectionExample is
 	outsignal : out port;
 	computepath: flow insignal -> outsignal;
 	@BA{
-		f1: any(insignal ?) -> outsignal; 
+		f1: insignal -> outsignal; 
 	};
 	@EM{
 		use states threestate;

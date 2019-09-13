@@ -2,6 +2,7 @@ package org.osate.aadlv3.util
 
 import com.google.common.collect.HashMultimap
 import com.google.common.collect.SetMultimap
+import java.util.ArrayList
 import java.util.Collection
 import java.util.Collections
 import java.util.HashMap
@@ -13,8 +14,10 @@ import org.eclipse.emf.common.util.EList
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.xtext.EcoreUtil2
 import org.osate.aadlv3.aadlv3.Aadlv3Factory
+import org.osate.aadlv3.aadlv3.AnnexSubclause
 import org.osate.aadlv3.aadlv3.Association
 import org.osate.aadlv3.aadlv3.AssociationType
+import org.osate.aadlv3.aadlv3.BehaviorSpecification
 import org.osate.aadlv3.aadlv3.Classifier
 import org.osate.aadlv3.aadlv3.ClassifierAssignment
 import org.osate.aadlv3.aadlv3.ClassifierAssignmentPattern
@@ -24,11 +27,12 @@ import org.osate.aadlv3.aadlv3.ComponentImplementation
 import org.osate.aadlv3.aadlv3.ComponentInterface
 import org.osate.aadlv3.aadlv3.ConfigurationActual
 import org.osate.aadlv3.aadlv3.ConfigurationParameter
+import org.osate.aadlv3.aadlv3.ECollection
+import org.osate.aadlv3.aadlv3.Expression
 import org.osate.aadlv3.aadlv3.Feature
 import org.osate.aadlv3.aadlv3.FeatureCategory
 import org.osate.aadlv3.aadlv3.FeatureDirection
 import org.osate.aadlv3.aadlv3.Import
-import org.osate.aadlv3.aadlv3.ECollection
 import org.osate.aadlv3.aadlv3.Literal
 import org.osate.aadlv3.aadlv3.ModelElement
 import org.osate.aadlv3.aadlv3.ModelElementReference
@@ -49,9 +53,6 @@ import org.osate.av3instance.av3instance.InstanceObject
 
 import static extension org.eclipse.xtext.EcoreUtil2.*
 import static extension org.osate.aadlv3.util.Av3API.*
-import org.osate.aadlv3.aadlv3.Expression
-import org.osate.aadlv3.aadlv3.AnnexSubclause
-import org.osate.aadlv3.aadlv3.BehaviorSpecification
 
 class Aadlv3Util {
 	
@@ -1525,6 +1526,28 @@ class Aadlv3Util {
 	def static boolean contains(ECollection coll, ECollection subCollection){
 		return subCollection.elements.forall[elem| coll.contains(elem)]
 	}
+
+
+	/**
+	 * remove elements from subCollection that are sameAs from collection
+	 * collection is modified.
+	 */
+	def static remove(ECollection coll, ECollection subCollection){
+		if (coll === null || coll.elements.empty || subCollection === null) return
+		val removeme = new ArrayList() 
+		for (subelement: subCollection.elements){
+			for(elem:coll.elements){
+				if (subelement instanceof Literal){
+					if (elem instanceof Literal){
+						if (elem.sameAs(subelement)){
+							removeme.add(elem);
+						}
+					}
+				}
+			}
+		}
+		coll.elements.removeAll(removeme)
+	}
 	
 	
 /*
@@ -1584,7 +1607,6 @@ class Aadlv3Util {
 	def static String getName(TypeReference type){
 		type.type.name
 	}
-	
 	
 
 }

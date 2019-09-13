@@ -52,6 +52,7 @@ class Instantiator {
 //			val PVissues = validateExpectedPropertyValues(rootinstance,expectedProperties)
 //		// validate product line constraint
 //		val PLCissues = validateProductLineConstraint(rootinstance,configurationConstraint)
+		// analyze token paths
 		}
 		return root
 	}

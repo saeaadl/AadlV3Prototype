@@ -1,5 +1,7 @@
 package org.osate.xtext.aadlv3.ui.handlers;
 
+import java.util.Collections;
+
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -14,12 +16,16 @@ import org.eclipse.xtext.ui.editor.XtextEditor;
 import org.eclipse.xtext.ui.editor.model.IXtextDocument;
 import org.eclipse.xtext.util.concurrent.IUnitOfWork;
 import org.jgrapht.Graph;
+import org.osate.aadlv3.aadlv3.ListLiteral;
 import org.osate.aadlv3.aadlv3.PackageDeclaration;
+import org.osate.aadlv3.aadlv3.PropertyDefinition;
 import org.osate.aadlv3.aadlv3.Workingset;
 import org.osate.aadlv3.instantiation.Instantiator;
+import org.osate.aadlv3.util.ProductLineConstraint;
 import org.osate.av3instance.av3instance.ComponentInstance;
 import org.osate.graph.util.AIJGraphTUtil;
 import org.osate.graph.util.AIJGraphXUtil;
+import org.osate.graph.TokenTrace.util.TokenPaths;
 
 public class InstantiateWorkingSetHandler extends AbstractHandler {
 
@@ -46,6 +52,9 @@ public class InstantiateWorkingSetHandler extends AbstractHandler {
 						Workingset ws = (Workingset) pkg.getElements().get(0);
 						ComponentInstance rootinstance = new Instantiator().instantiate(ws);
 						// XXX TODO 
+//						ComponentInstance subci = rootinstance.getComponents().get(2).getComponents().get(0);
+//						TokenPaths.validateTokenPropagation(rootinstance, subci);
+						
 //						Graph ng = AIJGraphTUtil.generateComponentInstanceHierarchy(rootinstance);
 //						AIJGraphXUtil.showGraph(ng);
 //						Graph topo =AIJGraphTUtil.generateConnectionTopology(rootinstance);
