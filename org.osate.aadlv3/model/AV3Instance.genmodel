@@ -9,8 +9,7 @@
     testsDirectory="" testSuiteClass="org.osate.aadlv3.av3instance.tests.AV3InstanceAllTests"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
     editPluginID="org.osate.aadlv3.edit" editorPluginID="org.osate.aadlv3.editor"
-    usedGenPackages="Aadlv3.genmodel#//aadlv3" operationReflection="false" importOrganizing="true"
-    cleanup="true">
+    usedGenPackages="Aadlv3.genmodel#//aadlv3" importOrganizing="true" cleanup="true">
   <foreignModel>AV3Instance.ecore</foreignModel>
   <genPackages prefix="Av3instance" basePackage="org.osate.av3instance" disposableProviderFactory="true"
       fileExtensions="aiv3" ecorePackage="AV3Instance.ecore#/">
@@ -32,6 +31,8 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//ComponentInstance/features"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//ComponentInstance/flowspecs"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//ComponentInstance/paths"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//ComponentInstance/behaviorRules"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//ComponentInstance/generators"/>
     </genClasses>
     <genClasses ecoreClass="AV3Instance.ecore#//AssociationInstance">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AV3Instance.ecore#//AssociationInstance/associationType"/>
@@ -47,6 +48,19 @@
       <genFeatures children="true" createChild="false" propertySortChoices="true"
           ecoreFeature="ecore:EReference AV3Instance.ecore#//PathInstance/elements"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//PathInstance/path"/>
+    </genClasses>
+    <genClasses ecoreClass="AV3Instance.ecore#//BehaviorRuleInstance">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//BehaviorRuleInstance/behaviorRule"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//BehaviorRuleInstance/condition"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//BehaviorRuleInstance/actions"/>
+    </genClasses>
+    <genClasses ecoreClass="AV3Instance.ecore#//GeneratorInstance">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//GeneratorInstance/generator"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//GeneratorInstance/value"/>
+    </genClasses>
+    <genClasses ecoreClass="AV3Instance.ecore#//ConstrainedInstanceObject">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//ConstrainedInstanceObject/instanceObject"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//ConstrainedInstanceObject/constraint"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

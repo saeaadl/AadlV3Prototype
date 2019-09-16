@@ -357,10 +357,10 @@ CurrentState returns av3::StateSpecification:
 ;
 
 fragment StateTransitionRule *:
-	guard=CurrentState '-[' condition =  (MultiLiteralOperation | ContainsToken | ModelElementReference)  ']->' targetState=CurrentState ('{' action+=Assignment* '}')?';';
+	guard=CurrentState '-[' condition =  (MultiLiteralOperation | ContainsToken | ModelElementReference)  ']->' targetState=CurrentState ('{' actions+=Assignment* '}')?';';
 
 fragment StatelessRule *:
-	condition = (MultiLiteralOperation | ContainsToken | ModelElementReference)? '->'  action+=Assignment* ';';
+	condition = (MultiLiteralOperation | ContainsToken | ModelElementReference)? '->'  actions+=Assignment* ';';
 
 
 ContainsToken returns av3::ConditionOperation:

@@ -371,9 +371,9 @@ public class AadlV3Parser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getStateTransitionRuleAccess().getGuardAssignment_0(), "rule__StateTransitionRule__GuardAssignment_0");
 			builder.put(grammarAccess.getStateTransitionRuleAccess().getConditionAssignment_2(), "rule__StateTransitionRule__ConditionAssignment_2");
 			builder.put(grammarAccess.getStateTransitionRuleAccess().getTargetStateAssignment_4(), "rule__StateTransitionRule__TargetStateAssignment_4");
-			builder.put(grammarAccess.getStateTransitionRuleAccess().getActionAssignment_5_1(), "rule__StateTransitionRule__ActionAssignment_5_1");
+			builder.put(grammarAccess.getStateTransitionRuleAccess().getActionsAssignment_5_1(), "rule__StateTransitionRule__ActionsAssignment_5_1");
 			builder.put(grammarAccess.getStatelessRuleAccess().getConditionAssignment_0(), "rule__StatelessRule__ConditionAssignment_0");
-			builder.put(grammarAccess.getStatelessRuleAccess().getActionAssignment_2(), "rule__StatelessRule__ActionAssignment_2");
+			builder.put(grammarAccess.getStatelessRuleAccess().getActionsAssignment_2(), "rule__StatelessRule__ActionsAssignment_2");
 			builder.put(grammarAccess.getContainsTokenAccess().getLeftAssignment_0(), "rule__ContainsToken__LeftAssignment_0");
 			builder.put(grammarAccess.getContainsTokenAccess().getOperatorAssignment_1(), "rule__ContainsToken__OperatorAssignment_1");
 			builder.put(grammarAccess.getContainsTokenAccess().getRightAssignment_2(), "rule__ContainsToken__RightAssignment_2");

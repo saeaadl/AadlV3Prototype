@@ -13125,9 +13125,9 @@ rule__StateTransitionRule__Group_5__1__Impl
 	}
 :
 (
-	{ before(grammarAccess.getStateTransitionRuleAccess().getActionAssignment_5_1()); }
-	(rule__StateTransitionRule__ActionAssignment_5_1)*
-	{ after(grammarAccess.getStateTransitionRuleAccess().getActionAssignment_5_1()); }
+	{ before(grammarAccess.getStateTransitionRuleAccess().getActionsAssignment_5_1()); }
+	(rule__StateTransitionRule__ActionsAssignment_5_1)*
+	{ after(grammarAccess.getStateTransitionRuleAccess().getActionsAssignment_5_1()); }
 )
 ;
 finally {
@@ -13233,9 +13233,9 @@ rule__StatelessRule__Group__2__Impl
 	}
 :
 (
-	{ before(grammarAccess.getStatelessRuleAccess().getActionAssignment_2()); }
-	(rule__StatelessRule__ActionAssignment_2)*
-	{ after(grammarAccess.getStatelessRuleAccess().getActionAssignment_2()); }
+	{ before(grammarAccess.getStatelessRuleAccess().getActionsAssignment_2()); }
+	(rule__StatelessRule__ActionsAssignment_2)*
+	{ after(grammarAccess.getStatelessRuleAccess().getActionsAssignment_2()); }
 )
 ;
 finally {
@@ -18488,15 +18488,15 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__StateTransitionRule__ActionAssignment_5_1
+rule__StateTransitionRule__ActionsAssignment_5_1
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getStateTransitionRuleAccess().getActionAssignmentParserRuleCall_5_1_0()); }
+		{ before(grammarAccess.getStateTransitionRuleAccess().getActionsAssignmentParserRuleCall_5_1_0()); }
 		ruleAssignment
-		{ after(grammarAccess.getStateTransitionRuleAccess().getActionAssignmentParserRuleCall_5_1_0()); }
+		{ after(grammarAccess.getStateTransitionRuleAccess().getActionsAssignmentParserRuleCall_5_1_0()); }
 	)
 ;
 finally {
@@ -18518,15 +18518,15 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__StatelessRule__ActionAssignment_2
+rule__StatelessRule__ActionsAssignment_2
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getStatelessRuleAccess().getActionAssignmentParserRuleCall_2_0()); }
+		{ before(grammarAccess.getStatelessRuleAccess().getActionsAssignmentParserRuleCall_2_0()); }
 		ruleAssignment
-		{ after(grammarAccess.getStatelessRuleAccess().getActionAssignmentParserRuleCall_2_0()); }
+		{ after(grammarAccess.getStatelessRuleAccess().getActionsAssignmentParserRuleCall_2_0()); }
 	)
 ;
 finally {

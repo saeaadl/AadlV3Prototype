@@ -3,8 +3,7 @@
 package org.osate.graph.TokenTrace;
 
 import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.emf.ecore.EObject;
+import org.osate.aadlv3.aadlv3.MultiLiteralConstraint;
 import org.osate.aadlv3.aadlv3.TypeReference;
 import org.osate.av3instance.av3instance.InstanceObject;
 
@@ -20,7 +19,6 @@ import org.osate.av3instance.av3instance.InstanceObject;
  *   <li>{@link org.osate.graph.TokenTrace.Token#getName <em>Name</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.Token#getMessage <em>Message</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.Token#getTokens <em>Tokens</em>}</li>
- *   <li>{@link org.osate.graph.TokenTrace.Token#getK <em>K</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.Token#getRelatedInstanceObject <em>Related Instance Object</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.Token#getRelatedType <em>Related Type</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.Token#getReferenceCount <em>Reference Count</em>}</li>
@@ -31,7 +29,7 @@ import org.osate.av3instance.av3instance.InstanceObject;
  * @model
  * @generated
  */
-public interface Token extends EObject {
+public interface Token extends MultiLiteralConstraint {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -87,29 +85,6 @@ public interface Token extends EObject {
 	 * @generated
 	 */
 	EList<Token> getTokens();
-
-	/**
-	 * Returns the value of the '<em><b>K</b></em>' attribute.
-	 * The default value is <code>"1"</code>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>K</em>' attribute.
-	 * @see #setK(int)
-	 * @see org.osate.graph.TokenTrace.TokenTracePackage#getToken_K()
-	 * @model default="1"
-	 * @generated
-	 */
-	int getK();
-
-	/**
-	 * Sets the value of the '{@link org.osate.graph.TokenTrace.Token#getK <em>K</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>K</em>' attribute.
-	 * @see #getK()
-	 * @generated
-	 */
-	void setK(int value);
 
 	/**
 	 * Returns the value of the '<em><b>Related Instance Object</b></em>' reference.

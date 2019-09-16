@@ -19,7 +19,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
-
+import org.osate.aadlv3.aadlv3.Expression;
+import org.osate.aadlv3.aadlv3.Literal;
 import org.osate.aadlv3.aadlv3.NamedElement;
 import org.osate.av3instance.av3instance.*;
 
@@ -133,6 +134,43 @@ public class Av3instanceSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE: {
+			BehaviorRuleInstance behaviorRuleInstance = (BehaviorRuleInstance) theEObject;
+			T result = caseBehaviorRuleInstance(behaviorRuleInstance);
+			if (result == null)
+				result = caseInstanceObject(behaviorRuleInstance);
+			if (result == null)
+				result = caseNamedElement(behaviorRuleInstance);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Av3instancePackage.GENERATOR_INSTANCE: {
+			GeneratorInstance generatorInstance = (GeneratorInstance) theEObject;
+			T result = caseGeneratorInstance(generatorInstance);
+			if (result == null)
+				result = caseInstanceObject(generatorInstance);
+			if (result == null)
+				result = caseNamedElement(generatorInstance);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Av3instancePackage.CONSTRAINED_INSTANCE_OBJECT: {
+			ConstrainedInstanceObject constrainedInstanceObject = (ConstrainedInstanceObject) theEObject;
+			T result = caseConstrainedInstanceObject(constrainedInstanceObject);
+			if (result == null)
+				result = caseInstanceObject(constrainedInstanceObject);
+			if (result == null)
+				result = caseLiteral(constrainedInstanceObject);
+			if (result == null)
+				result = caseNamedElement(constrainedInstanceObject);
+			if (result == null)
+				result = caseExpression(constrainedInstanceObject);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		default:
 			return defaultCase(theEObject);
 		}
@@ -214,6 +252,51 @@ public class Av3instanceSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Behavior Rule Instance</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Behavior Rule Instance</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseBehaviorRuleInstance(BehaviorRuleInstance object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Generator Instance</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Generator Instance</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseGeneratorInstance(GeneratorInstance object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Constrained Instance Object</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Constrained Instance Object</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseConstrainedInstanceObject(ConstrainedInstanceObject object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Named Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -225,6 +308,36 @@ public class Av3instanceSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseNamedElement(NamedElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Expression</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseExpression(Expression object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Literal</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Literal</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLiteral(Literal object) {
 		return null;
 	}
 

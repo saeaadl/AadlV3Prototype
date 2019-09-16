@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.osate.aadlv3.aadlv3.EOperator;
 import org.osate.aadlv3.aadlv3.NamedElement;
 import org.osate.aadlv3.aadlv3.TypeReference;
 import org.osate.aadlv3.util.AIv3API;
@@ -67,11 +68,11 @@ public class TokenTraceUtil {
 		return null;
 	}
 
-	public static Token findSharedSubtree(TokenTrace tokenTrace, List<EObject> tokens, LogicOperation optype,
+	public static Token findSharedSubtree(TokenTrace tokenTrace, List<EObject> tokens, EOperator optype,
 			ComponentInstance component,  TypeReference type) {
 		for (Token token : tokenTrace.getTokens()) {
 			if (token.getRelatedInstanceObject() == component && token.getRelatedType() == type) {
-				if (!token.getTokens().isEmpty() && token.getTokenLogic() == optype
+				if (!token.getTokens().isEmpty() && token.getOperator() == optype
 						&& token.getTokens().size() == tokens.size() && tokens.containsAll(token.getTokens())) {
 					return token;
 				}

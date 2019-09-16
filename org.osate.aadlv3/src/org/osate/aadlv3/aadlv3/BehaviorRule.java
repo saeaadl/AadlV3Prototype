@@ -29,7 +29,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.osate.aadlv3.aadlv3.BehaviorRule#getGuard <em>Guard</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.BehaviorRule#getTargetState <em>Target State</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.BehaviorRule#getCondition <em>Condition</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.BehaviorRule#getAction <em>Action</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.BehaviorRule#getActions <em>Actions</em>}</li>
  * </ul>
  *
  * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getBehaviorRule()
@@ -104,15 +104,15 @@ public interface BehaviorRule extends ModelElement {
 	void setCondition(Literal value);
 
 	/**
-	 * Returns the value of the '<em><b>Action</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Actions</b></em>' containment reference list.
 	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.Assignment}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Action</em>' containment reference list.
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getBehaviorRule_Action()
+	 * @return the value of the '<em>Actions</em>' containment reference list.
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getBehaviorRule_Actions()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Assignment> getAction();
+	EList<Assignment> getActions();
 
 } // BehaviorRule

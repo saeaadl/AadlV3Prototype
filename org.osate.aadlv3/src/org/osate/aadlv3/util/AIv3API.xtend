@@ -4,29 +4,34 @@ import java.util.ArrayList
 import java.util.List
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.xtext.EcoreUtil2
+import org.osate.aadlv3.aadlv3.Aadlv3Factory
 import org.osate.aadlv3.aadlv3.Association
 import org.osate.aadlv3.aadlv3.AssociationType
-import org.osate.aadlv3.aadlv3.Subcomponent
+import org.osate.aadlv3.aadlv3.BehaviorRule
 import org.osate.aadlv3.aadlv3.ComponentCategory
 import org.osate.aadlv3.aadlv3.Feature
 import org.osate.aadlv3.aadlv3.FeatureCategory
+import org.osate.aadlv3.aadlv3.Literal
 import org.osate.aadlv3.aadlv3.ModelElement
 import org.osate.aadlv3.aadlv3.ModelElementReference
 import org.osate.aadlv3.aadlv3.PathSequence
 import org.osate.aadlv3.aadlv3.PropertyAssociation
 import org.osate.aadlv3.aadlv3.PropertyDefinition
+import org.osate.aadlv3.aadlv3.Subcomponent
 import org.osate.aadlv3.aadlv3.TypeReference
 import org.osate.av3instance.av3instance.AssociationInstance
 import org.osate.av3instance.av3instance.Av3instanceFactory
+import org.osate.av3instance.av3instance.BehaviorRuleInstance
 import org.osate.av3instance.av3instance.ComponentInstance
+import org.osate.av3instance.av3instance.ConstrainedInstanceObject
 import org.osate.av3instance.av3instance.FeatureInstance
 import org.osate.av3instance.av3instance.InstanceObject
 import org.osate.av3instance.av3instance.PathInstance
 
 import static extension org.eclipse.emf.ecore.util.EcoreUtil.*
 import static extension org.osate.aadlv3.util.Aadlv3Util.*
-import org.osate.aadlv3.aadlv3.Literal
-import org.osate.aadlv3.aadlv3.Aadlv3Factory
+import org.osate.av3instance.av3instance.GeneratorInstance
+import org.osate.aadlv3.aadlv3.Generator
 
 class AIv3API {
 	
@@ -74,6 +79,28 @@ class AIv3API {
 		pai.propertyAssociationType = pa.propertyAssociationType
 		pai.value = pa.value.copy
 		return pai
+	}
+
+	def static BehaviorRuleInstance createBehaviorRuleInstance(BehaviorRule br) {
+		val bri = Av3instanceFactory.eINSTANCE.createBehaviorRuleInstance
+		bri.name = br.name
+		bri.behaviorRule = br
+		return bri
+	}
+	
+	def static ConstrainedInstanceObject createConstrainedInstanceObject(ModelElementReference mer, ComponentInstance context) {
+		val cio = Av3instanceFactory.eINSTANCE.createConstrainedInstanceObject
+		cio.instanceObject = context.getInstanceElement(mer)
+		return cio
+	}
+
+
+	def static GeneratorInstance createGeneratorInstance(Generator g) {
+		val gi = Av3instanceFactory.eINSTANCE.createGeneratorInstance
+		gi.name = g.name
+		gi.generator = g
+		gi.value = g.value.copy
+		return gi
 	}
 
 	/**

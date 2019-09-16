@@ -25,6 +25,7 @@ package org.osate.aadlv3.aadlv3;
  * </p>
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.MultiOperandExpression#getOperator <em>Operator</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.MultiOperandExpression#getK <em>K</em>}</li>
  * </ul>
  *
  * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getMultiOperandExpression()
@@ -56,5 +57,27 @@ public interface MultiOperandExpression extends ECollection {
 	 * @generated
 	 */
 	void setOperator(EOperator value);
+
+	/**
+	 * Returns the value of the '<em><b>K</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>K</em>' attribute.
+	 * @see #setK(int)
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getMultiOperandExpression_K()
+	 * @model
+	 * @generated
+	 */
+	int getK();
+
+	/**
+	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.MultiOperandExpression#getK <em>K</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>K</em>' attribute.
+	 * @see #getK()
+	 * @generated
+	 */
+	void setK(int value);
 
 } // MultiOperandExpression

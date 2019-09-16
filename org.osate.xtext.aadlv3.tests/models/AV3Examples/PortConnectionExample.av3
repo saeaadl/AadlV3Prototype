@@ -49,15 +49,15 @@ package PortConnectionExample is
 	insignal : in port;
 	outsignal : out port;
 	computepath: flow insignal -> outsignal;
-	@BA{
-		f1: insignal -> outsignal; 
-	};
+//	@BA{
+//		f1: insignal -> outsignal; 
+//	};
 	@EM{
-		use states threestate;
-		e1: error event;
-		r1: s0 -[e1 ]-> s1 {outsignal(ServiceOmission)};
+//		use states threestate;
+//		e1: error event;
+//		r1: s0 -[e1 ]-> s1 {outsignal(ServiceOmission)};
 		r2: any(insignal in ServiceOmission, insignal in ServiceOmission) ->  outsignal(ServiceOmission);
-		r3: insignal in ServiceOmission-> ;
+//		r3: insignal in ServiceOmission-> ;
 	};
 	end;
 	

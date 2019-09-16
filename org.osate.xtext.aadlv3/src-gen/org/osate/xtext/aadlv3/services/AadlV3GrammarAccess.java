@@ -3173,18 +3173,18 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cTargetStateCurrentStateParserRuleCall_4_0 = (RuleCall)cTargetStateAssignment_4.eContents().get(0);
 		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
 		private final Keyword cLeftCurlyBracketKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
-		private final Assignment cActionAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
-		private final RuleCall cActionAssignmentParserRuleCall_5_1_0 = (RuleCall)cActionAssignment_5_1.eContents().get(0);
+		private final Assignment cActionsAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
+		private final RuleCall cActionsAssignmentParserRuleCall_5_1_0 = (RuleCall)cActionsAssignment_5_1.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_5_2 = (Keyword)cGroup_5.eContents().get(2);
 		private final Keyword cSemicolonKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
 		//fragment StateTransitionRule *:
 		//	guard=CurrentState '-[' condition=(MultiLiteralOperation | ContainsToken | ModelElementReference) ']->'
-		//	targetState=CurrentState ('{' action+=Assignment* '}')? ';';
+		//	targetState=CurrentState ('{' actions+=Assignment* '}')? ';';
 		@Override public ParserRule getRule() { return rule; }
 		
 		//guard=CurrentState '-[' condition=(MultiLiteralOperation | ContainsToken | ModelElementReference) ']->'
-		//targetState=CurrentState ('{' action+=Assignment* '}')? ';'
+		//targetState=CurrentState ('{' actions+=Assignment* '}')? ';'
 		public Group getGroup() { return cGroup; }
 		
 		//guard=CurrentState
@@ -3220,17 +3220,17 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		//CurrentState
 		public RuleCall getTargetStateCurrentStateParserRuleCall_4_0() { return cTargetStateCurrentStateParserRuleCall_4_0; }
 		
-		//('{' action+=Assignment* '}')?
+		//('{' actions+=Assignment* '}')?
 		public Group getGroup_5() { return cGroup_5; }
 		
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_5_0() { return cLeftCurlyBracketKeyword_5_0; }
 		
-		//action+=Assignment*
-		public Assignment getActionAssignment_5_1() { return cActionAssignment_5_1; }
+		//actions+=Assignment*
+		public Assignment getActionsAssignment_5_1() { return cActionsAssignment_5_1; }
 		
 		//Assignment
-		public RuleCall getActionAssignmentParserRuleCall_5_1_0() { return cActionAssignmentParserRuleCall_5_1_0; }
+		public RuleCall getActionsAssignmentParserRuleCall_5_1_0() { return cActionsAssignmentParserRuleCall_5_1_0; }
 		
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_5_2() { return cRightCurlyBracketKeyword_5_2; }
@@ -3247,15 +3247,15 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cConditionContainsTokenParserRuleCall_0_0_1 = (RuleCall)cConditionAlternatives_0_0.eContents().get(1);
 		private final RuleCall cConditionModelElementReferenceParserRuleCall_0_0_2 = (RuleCall)cConditionAlternatives_0_0.eContents().get(2);
 		private final Keyword cHyphenMinusGreaterThanSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cActionAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cActionAssignmentParserRuleCall_2_0 = (RuleCall)cActionAssignment_2.eContents().get(0);
+		private final Assignment cActionsAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cActionsAssignmentParserRuleCall_2_0 = (RuleCall)cActionsAssignment_2.eContents().get(0);
 		private final Keyword cSemicolonKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//fragment StatelessRule *:
-		//	condition=(MultiLiteralOperation | ContainsToken | ModelElementReference)? '->' action+=Assignment* ';';
+		//	condition=(MultiLiteralOperation | ContainsToken | ModelElementReference)? '->' actions+=Assignment* ';';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//condition=(MultiLiteralOperation | ContainsToken | ModelElementReference)? '->' action+=Assignment* ';'
+		//condition=(MultiLiteralOperation | ContainsToken | ModelElementReference)? '->' actions+=Assignment* ';'
 		public Group getGroup() { return cGroup; }
 		
 		//condition=(MultiLiteralOperation | ContainsToken | ModelElementReference)?
@@ -3276,11 +3276,11 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		//'->'
 		public Keyword getHyphenMinusGreaterThanSignKeyword_1() { return cHyphenMinusGreaterThanSignKeyword_1; }
 		
-		//action+=Assignment*
-		public Assignment getActionAssignment_2() { return cActionAssignment_2; }
+		//actions+=Assignment*
+		public Assignment getActionsAssignment_2() { return cActionsAssignment_2; }
 		
 		//Assignment
-		public RuleCall getActionAssignmentParserRuleCall_2_0() { return cActionAssignmentParserRuleCall_2_0; }
+		public RuleCall getActionsAssignmentParserRuleCall_2_0() { return cActionsAssignmentParserRuleCall_2_0; }
 		
 		//';'
 		public Keyword getSemicolonKeyword_3() { return cSemicolonKeyword_3; }
@@ -5732,7 +5732,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	
 	//fragment StateTransitionRule *:
 	//	guard=CurrentState '-[' condition=(MultiLiteralOperation | ContainsToken | ModelElementReference) ']->'
-	//	targetState=CurrentState ('{' action+=Assignment* '}')? ';';
+	//	targetState=CurrentState ('{' actions+=Assignment* '}')? ';';
 	public StateTransitionRuleElements getStateTransitionRuleAccess() {
 		return pStateTransitionRule;
 	}
@@ -5742,7 +5742,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//fragment StatelessRule *:
-	//	condition=(MultiLiteralOperation | ContainsToken | ModelElementReference)? '->' action+=Assignment* ';';
+	//	condition=(MultiLiteralOperation | ContainsToken | ModelElementReference)? '->' actions+=Assignment* ';';
 	public StatelessRuleElements getStatelessRuleAccess() {
 		return pStatelessRule;
 	}

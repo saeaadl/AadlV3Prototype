@@ -258,6 +258,7 @@
     <genClasses ecoreClass="Aadlv3.ecore#//MultiLiteralConstraint"/>
     <genClasses ecoreClass="Aadlv3.ecore#//MultiOperandExpression">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//MultiOperandExpression/operator"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//MultiOperandExpression/k"/>
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//Assignment">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Assignment/target"/>
@@ -285,7 +286,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//BehaviorRule/guard"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//BehaviorRule/targetState"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//BehaviorRule/condition"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//BehaviorRule/action"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//BehaviorRule/actions"/>
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//EMSubclause"/>
     <genClasses ecoreClass="Aadlv3.ecore#//BASubclause"/>

@@ -287,6 +287,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="MultiLiteralConstraint" eSuperTypes="#//MultiOperandExpression"/>
   <eClassifiers xsi:type="ecore:EClass" name="MultiOperandExpression" eSuperTypes="#//ECollection">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="#//EOperator"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="k" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="EOperator">
     <eLiterals name="ANY" literal="any"/>
@@ -344,7 +345,7 @@
         eType="#//StateSpecification" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//Literal"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="action" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="actions" upperBound="-1"
         eType="#//Assignment" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EMSubclause" eSuperTypes="#//AnnexSubclause #//BehaviorSpecification"/>

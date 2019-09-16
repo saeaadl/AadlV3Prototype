@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.osate.aadlv3.aadlv3.Aadlv3Package;
 
 /**
  * <!-- begin-user-doc -->
@@ -151,31 +152,22 @@ public interface TokenTracePackage extends EPackage {
 	int TOKEN = 1;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Elements</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TOKEN__NAME = 0;
+	int TOKEN__ELEMENTS = Aadlv3Package.MULTI_LITERAL_CONSTRAINT__ELEMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Message</b></em>' attribute.
+	 * The feature id for the '<em><b>Operator</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TOKEN__MESSAGE = 1;
-
-	/**
-	 * The feature id for the '<em><b>Tokens</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TOKEN__TOKENS = 2;
+	int TOKEN__OPERATOR = Aadlv3Package.MULTI_LITERAL_CONSTRAINT__OPERATOR;
 
 	/**
 	 * The feature id for the '<em><b>K</b></em>' attribute.
@@ -184,7 +176,34 @@ public interface TokenTracePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TOKEN__K = 3;
+	int TOKEN__K = Aadlv3Package.MULTI_LITERAL_CONSTRAINT__K;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOKEN__NAME = Aadlv3Package.MULTI_LITERAL_CONSTRAINT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Message</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOKEN__MESSAGE = Aadlv3Package.MULTI_LITERAL_CONSTRAINT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Tokens</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOKEN__TOKENS = Aadlv3Package.MULTI_LITERAL_CONSTRAINT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Related Instance Object</b></em>' reference.
@@ -193,7 +212,7 @@ public interface TokenTracePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TOKEN__RELATED_INSTANCE_OBJECT = 4;
+	int TOKEN__RELATED_INSTANCE_OBJECT = Aadlv3Package.MULTI_LITERAL_CONSTRAINT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Related Type</b></em>' reference.
@@ -202,7 +221,7 @@ public interface TokenTracePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TOKEN__RELATED_TYPE = 5;
+	int TOKEN__RELATED_TYPE = Aadlv3Package.MULTI_LITERAL_CONSTRAINT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Reference Count</b></em>' attribute.
@@ -211,7 +230,7 @@ public interface TokenTracePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TOKEN__REFERENCE_COUNT = 6;
+	int TOKEN__REFERENCE_COUNT = Aadlv3Package.MULTI_LITERAL_CONSTRAINT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Token Logic</b></em>' attribute.
@@ -220,7 +239,7 @@ public interface TokenTracePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TOKEN__TOKEN_LOGIC = 7;
+	int TOKEN__TOKEN_LOGIC = Aadlv3Package.MULTI_LITERAL_CONSTRAINT_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of structural features of the '<em>Token</em>' class.
@@ -229,7 +248,7 @@ public interface TokenTracePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TOKEN_FEATURE_COUNT = 8;
+	int TOKEN_FEATURE_COUNT = Aadlv3Package.MULTI_LITERAL_CONSTRAINT_FEATURE_COUNT + 7;
 
 	/**
 	 * The number of operations of the '<em>Token</em>' class.
@@ -238,7 +257,7 @@ public interface TokenTracePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TOKEN_OPERATION_COUNT = 0;
+	int TOKEN_OPERATION_COUNT = Aadlv3Package.MULTI_LITERAL_CONSTRAINT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.osate.graph.TokenTrace.impl.EventImpl <em>Event</em>}' class.
@@ -249,6 +268,33 @@ public interface TokenTracePackage extends EPackage {
 	 * @generated
 	 */
 	int EVENT = 2;
+
+	/**
+	 * The feature id for the '<em><b>Elements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT__ELEMENTS = TOKEN__ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Operator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT__OPERATOR = TOKEN__OPERATOR;
+
+	/**
+	 * The feature id for the '<em><b>K</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT__K = TOKEN__K;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -276,15 +322,6 @@ public interface TokenTracePackage extends EPackage {
 	 * @ordered
 	 */
 	int EVENT__TOKENS = TOKEN__TOKENS;
-
-	/**
-	 * The feature id for the '<em><b>K</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EVENT__K = TOKEN__K;
 
 	/**
 	 * The feature id for the '<em><b>Related Instance Object</b></em>' reference.
@@ -543,17 +580,6 @@ public interface TokenTracePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getToken_Tokens();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.osate.graph.TokenTrace.Token#getK <em>K</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>K</em>'.
-	 * @see org.osate.graph.TokenTrace.Token#getK()
-	 * @see #getToken()
-	 * @generated
-	 */
-	EAttribute getToken_K();
 
 	/**
 	 * Returns the meta object for the reference '{@link org.osate.graph.TokenTrace.Token#getRelatedInstanceObject <em>Related Instance Object</em>}'.
@@ -818,14 +844,6 @@ public interface TokenTracePackage extends EPackage {
 		 * @generated
 		 */
 		EReference TOKEN__TOKENS = eINSTANCE.getToken_Tokens();
-
-		/**
-		 * The meta object literal for the '<em><b>K</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TOKEN__K = eINSTANCE.getToken_K();
 
 		/**
 		 * The meta object literal for the '<em><b>Related Instance Object</b></em>' reference feature.

@@ -12,7 +12,9 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
+
 import org.osate.av3instance.av3instance.Av3instancePackage;
+
 import org.osate.graph.TokenTrace.Event;
 import org.osate.graph.TokenTrace.EventType;
 import org.osate.graph.TokenTrace.LogicOperation;
@@ -252,18 +254,8 @@ public class TokenTracePackageImpl extends EPackageImpl implements TokenTracePac
 	 * @generated
 	 */
 	@Override
-	public EAttribute getToken_K() {
-		return (EAttribute)tokenEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EReference getToken_RelatedInstanceObject() {
-		return (EReference)tokenEClass.getEStructuralFeatures().get(4);
+		return (EReference)tokenEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -273,7 +265,7 @@ public class TokenTracePackageImpl extends EPackageImpl implements TokenTracePac
 	 */
 	@Override
 	public EReference getToken_RelatedType() {
-		return (EReference)tokenEClass.getEStructuralFeatures().get(5);
+		return (EReference)tokenEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -283,7 +275,7 @@ public class TokenTracePackageImpl extends EPackageImpl implements TokenTracePac
 	 */
 	@Override
 	public EAttribute getToken_ReferenceCount() {
-		return (EAttribute)tokenEClass.getEStructuralFeatures().get(6);
+		return (EAttribute)tokenEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -293,7 +285,7 @@ public class TokenTracePackageImpl extends EPackageImpl implements TokenTracePac
 	 */
 	@Override
 	public EAttribute getToken_TokenLogic() {
-		return (EAttribute)tokenEClass.getEStructuralFeatures().get(7);
+		return (EAttribute)tokenEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -437,7 +429,6 @@ public class TokenTracePackageImpl extends EPackageImpl implements TokenTracePac
 		createEAttribute(tokenEClass, TOKEN__NAME);
 		createEAttribute(tokenEClass, TOKEN__MESSAGE);
 		createEReference(tokenEClass, TOKEN__TOKENS);
-		createEAttribute(tokenEClass, TOKEN__K);
 		createEReference(tokenEClass, TOKEN__RELATED_INSTANCE_OBJECT);
 		createEReference(tokenEClass, TOKEN__RELATED_TYPE);
 		createEAttribute(tokenEClass, TOKEN__REFERENCE_COUNT);
@@ -481,14 +472,15 @@ public class TokenTracePackageImpl extends EPackageImpl implements TokenTracePac
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		Av3instancePackage theAv3instancePackage = (Av3instancePackage)EPackage.Registry.INSTANCE.getEPackage(Av3instancePackage.eNS_URI);
 		Aadlv3Package theAadlv3Package = (Aadlv3Package)EPackage.Registry.INSTANCE.getEPackage(Aadlv3Package.eNS_URI);
+		Av3instancePackage theAv3instancePackage = (Av3instancePackage)EPackage.Registry.INSTANCE.getEPackage(Av3instancePackage.eNS_URI);
 
 		// Create type parameters
 
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
+		tokenEClass.getESuperTypes().add(theAadlv3Package.getMultiLiteralConstraint());
 		eventEClass.getESuperTypes().add(this.getToken());
 
 		// Initialize classes, features, and operations; add parameters
@@ -504,7 +496,6 @@ public class TokenTracePackageImpl extends EPackageImpl implements TokenTracePac
 		initEAttribute(getToken_Name(), ecorePackage.getEString(), "name", null, 0, 1, Token.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getToken_Message(), ecorePackage.getEString(), "message", null, 0, 1, Token.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getToken_Tokens(), this.getToken(), null, "tokens", null, 0, -1, Token.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getToken_K(), ecorePackage.getEInt(), "k", "1", 0, 1, Token.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getToken_RelatedInstanceObject(), theAv3instancePackage.getInstanceObject(), null, "relatedInstanceObject", null, 0, 1, Token.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getToken_RelatedType(), theAadlv3Package.getTypeReference(), null, "relatedType", null, 0, 1, Token.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getToken_ReferenceCount(), ecorePackage.getEInt(), "referenceCount", "0", 0, 1, Token.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

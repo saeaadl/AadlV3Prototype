@@ -113,6 +113,8 @@ public class ComponentInstanceItemProvider extends InstanceObjectItemProvider {
 			childrenFeatures.add(Av3instancePackage.Literals.COMPONENT_INSTANCE__FEATURES);
 			childrenFeatures.add(Av3instancePackage.Literals.COMPONENT_INSTANCE__FLOWSPECS);
 			childrenFeatures.add(Av3instancePackage.Literals.COMPONENT_INSTANCE__PATHS);
+			childrenFeatures.add(Av3instancePackage.Literals.COMPONENT_INSTANCE__BEHAVIOR_RULES);
+			childrenFeatures.add(Av3instancePackage.Literals.COMPONENT_INSTANCE__GENERATORS);
 		}
 		return childrenFeatures;
 	}
@@ -192,6 +194,8 @@ public class ComponentInstanceItemProvider extends InstanceObjectItemProvider {
 		case Av3instancePackage.COMPONENT_INSTANCE__FEATURES:
 		case Av3instancePackage.COMPONENT_INSTANCE__FLOWSPECS:
 		case Av3instancePackage.COMPONENT_INSTANCE__PATHS:
+		case Av3instancePackage.COMPONENT_INSTANCE__BEHAVIOR_RULES:
+		case Av3instancePackage.COMPONENT_INSTANCE__GENERATORS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}

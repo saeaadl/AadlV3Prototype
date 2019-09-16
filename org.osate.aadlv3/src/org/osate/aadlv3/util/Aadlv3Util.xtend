@@ -402,6 +402,25 @@ class Aadlv3Util {
 		}
 	}
 
+	/**
+	 * return collection of features of a component.
+	 * These are features declared as part of the classifier or as part of the nested declaration
+	 */
+	static def Iterable<AnnexSubclause> getAllSubclauses(ComponentInstance ci) {
+		val conftrs = ci.configuredTypeReferences
+		if (conftrs.empty){
+			// features in nested declaration
+			return Collections.EMPTY_LIST //ci.component.annexSubclause
+		} else {
+			return conftrs.getAllSubclauses //+ci.component.annexSubclause in nested subcomponent
+		}
+	}
+	static def Iterable<AnnexSubclause> getAllSubclauses(Iterable<TypeReference> trs) {
+		// features from classifier
+		val cls = trs.allClassifiers
+		return cls.filter[ccl|ccl instanceof ComponentInterface].map[cif|cif.eContents.typeSelect(AnnexSubclause)].flatten
+	}
+
 
 	/**
 	 * return collection of features of a component.

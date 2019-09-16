@@ -2583,13 +2583,22 @@ public interface Aadlv3Package extends EPackage {
 	int MULTI_OPERAND_EXPRESSION__OPERATOR = ECOLLECTION_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>K</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_OPERAND_EXPRESSION__K = ECOLLECTION_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Multi Operand Expression</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MULTI_OPERAND_EXPRESSION_FEATURE_COUNT = ECOLLECTION_FEATURE_COUNT + 1;
+	int MULTI_OPERAND_EXPRESSION_FEATURE_COUNT = ECOLLECTION_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.MultiLiteralConstraintImpl <em>Multi Literal Constraint</em>}' class.
@@ -2620,6 +2629,15 @@ public interface Aadlv3Package extends EPackage {
 	int MULTI_LITERAL_CONSTRAINT__OPERATOR = MULTI_OPERAND_EXPRESSION__OPERATOR;
 
 	/**
+	 * The feature id for the '<em><b>K</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_LITERAL_CONSTRAINT__K = MULTI_OPERAND_EXPRESSION__K;
+
+	/**
 	 * The number of structural features of the '<em>Multi Literal Constraint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2628,6 +2646,7 @@ public interface Aadlv3Package extends EPackage {
 	 */
 	int MULTI_LITERAL_CONSTRAINT_FEATURE_COUNT = MULTI_OPERAND_EXPRESSION_FEATURE_COUNT + 0;
 
+	int MULTI_LITERAL_CONSTRAINT_OPERATION_COUNT = 0;
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.ActionImpl <em>Action</em>}' class.
 	 * <!-- begin-user-doc -->
@@ -2994,13 +3013,13 @@ public interface Aadlv3Package extends EPackage {
 	int BEHAVIOR_RULE__CONDITION = MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Action</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Actions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BEHAVIOR_RULE__ACTION = MODEL_ELEMENT_FEATURE_COUNT + 3;
+	int BEHAVIOR_RULE__ACTIONS = MODEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Behavior Rule</em>' class.
@@ -4682,6 +4701,17 @@ public interface Aadlv3Package extends EPackage {
 	EAttribute getMultiOperandExpression_Operator();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.osate.aadlv3.aadlv3.MultiOperandExpression#getK <em>K</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>K</em>'.
+	 * @see org.osate.aadlv3.aadlv3.MultiOperandExpression#getK()
+	 * @see #getMultiOperandExpression()
+	 * @generated
+	 */
+	EAttribute getMultiOperandExpression_K();
+
+	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.Assignment <em>Assignment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4916,15 +4946,15 @@ public interface Aadlv3Package extends EPackage {
 	EReference getBehaviorRule_Condition();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.osate.aadlv3.aadlv3.BehaviorRule#getAction <em>Action</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.osate.aadlv3.aadlv3.BehaviorRule#getActions <em>Actions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Action</em>'.
-	 * @see org.osate.aadlv3.aadlv3.BehaviorRule#getAction()
+	 * @return the meta object for the containment reference list '<em>Actions</em>'.
+	 * @see org.osate.aadlv3.aadlv3.BehaviorRule#getActions()
 	 * @see #getBehaviorRule()
 	 * @generated
 	 */
-	EReference getBehaviorRule_Action();
+	EReference getBehaviorRule_Actions();
 
 	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.EMSubclause <em>EM Subclause</em>}'.
@@ -6406,6 +6436,14 @@ public interface Aadlv3Package extends EPackage {
 		EAttribute MULTI_OPERAND_EXPRESSION__OPERATOR = eINSTANCE.getMultiOperandExpression_Operator();
 
 		/**
+		 * The meta object literal for the '<em><b>K</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MULTI_OPERAND_EXPRESSION__K = eINSTANCE.getMultiOperandExpression_K();
+
+		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.AssignmentImpl <em>Assignment</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -6599,12 +6637,12 @@ public interface Aadlv3Package extends EPackage {
 		EReference BEHAVIOR_RULE__CONDITION = eINSTANCE.getBehaviorRule_Condition();
 
 		/**
-		 * The meta object literal for the '<em><b>Action</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Actions</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference BEHAVIOR_RULE__ACTION = eINSTANCE.getBehaviorRule_Action();
+		EReference BEHAVIOR_RULE__ACTIONS = eINSTANCE.getBehaviorRule_Actions();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.EMSubclauseImpl <em>EM Subclause</em>}' class.

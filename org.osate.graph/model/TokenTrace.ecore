@@ -10,13 +10,11 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="tokens" upperBound="-1"
         eType="#//Token" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Token">
+  <eClassifiers xsi:type="ecore:EClass" name="Token" eSuperTypes="../../org.osate.aadlv3/model/Aadlv3.ecore#//MultiLiteralConstraint">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="message" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="tokens" upperBound="-1"
         eType="#//Token"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="k" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
-        defaultValueLiteral="1"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="relatedInstanceObject"
         eType="ecore:EClass ../../org.osate.aadlv3/model/AV3Instance.ecore#//InstanceObject"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="relatedType" eType="ecore:EClass ../../org.osate.aadlv3/model/Aadlv3.ecore#//TypeReference"/>

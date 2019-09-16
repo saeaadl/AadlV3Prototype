@@ -46,14 +46,14 @@ public class ListLiteralImpl extends ECollectionImpl implements ListLiteral {
 	protected EClass eStaticClass() {
 		return Aadlv3Package.Literals.LIST_LITERAL;
 	}
-	
+
 	@Override
 	public String toString() {
 		String values = "";
 		for (Expression elem : this.elements) {
-			values = values.isEmpty()? elem.toString(): ", "+elem.toString();
+			values = values.isEmpty() ? elem.toString() : ", " + elem.toString();
 		}
-		return "("+values+")";
+		return "(" + values + ")";
 	}
 
 } //ListLiteralImpl

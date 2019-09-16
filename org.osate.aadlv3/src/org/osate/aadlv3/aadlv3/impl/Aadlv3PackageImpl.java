@@ -1734,6 +1734,16 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
+	public EAttribute getMultiOperandExpression_K() {
+		return (EAttribute) multiOperandExpressionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getAssignment() {
 		return assignmentEClass;
 	}
@@ -1954,7 +1964,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getBehaviorRule_Action() {
+	public EReference getBehaviorRule_Actions() {
 		return (EReference) behaviorRuleEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -2653,6 +2663,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 
 		multiOperandExpressionEClass = createEClass(MULTI_OPERAND_EXPRESSION);
 		createEAttribute(multiOperandExpressionEClass, MULTI_OPERAND_EXPRESSION__OPERATOR);
+		createEAttribute(multiOperandExpressionEClass, MULTI_OPERAND_EXPRESSION__K);
 
 		assignmentEClass = createEClass(ASSIGNMENT);
 		createEReference(assignmentEClass, ASSIGNMENT__TARGET);
@@ -2683,7 +2694,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		createEReference(behaviorRuleEClass, BEHAVIOR_RULE__GUARD);
 		createEReference(behaviorRuleEClass, BEHAVIOR_RULE__TARGET_STATE);
 		createEReference(behaviorRuleEClass, BEHAVIOR_RULE__CONDITION);
-		createEReference(behaviorRuleEClass, BEHAVIOR_RULE__ACTION);
+		createEReference(behaviorRuleEClass, BEHAVIOR_RULE__ACTIONS);
 
 		emSubclauseEClass = createEClass(EM_SUBCLAUSE);
 
@@ -3186,6 +3197,9 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		initEAttribute(getMultiOperandExpression_Operator(), this.getEOperator(), "operator", null, 0, 1,
 				MultiOperandExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMultiOperandExpression_K(), ecorePackage.getEInt(), "k", null, 0, 1,
+				MultiOperandExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(assignmentEClass, Assignment.class, "Assignment", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
@@ -3251,9 +3265,9 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		initEReference(getBehaviorRule_Condition(), this.getLiteral(), null, "condition", null, 0, 1,
 				BehaviorRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getBehaviorRule_Action(), this.getAssignment(), null, "action", null, 0, -1, BehaviorRule.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
-				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBehaviorRule_Actions(), this.getAssignment(), null, "actions", null, 0, -1,
+				BehaviorRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(emSubclauseEClass, EMSubclause.class, "EMSubclause", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);

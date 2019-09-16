@@ -32,6 +32,12 @@ import static extension org.eclipse.emf.ecore.util.EcoreUtil.*
 import static extension org.osate.aadlv3.util.AIv3API.*
 import static extension org.osate.aadlv3.util.Aadlv3Util.*
 import org.osate.aadlv3.aadlv3.ListLiteral
+import org.osate.aadlv3.aadlv3.BehaviorRule
+import org.eclipse.xtext.EcoreUtil2
+import org.osate.aadlv3.aadlv3.ConditionOperation
+import org.osate.aadlv3.aadlv3.ModelElementReference
+import org.osate.aadlv3.aadlv3.Generator
+import org.osate.aadlv3.aadlv3.BehaviorSpecification
 
 class Instantiator {
 	
@@ -154,6 +160,17 @@ class Instantiator {
 			}
 			for (ca : ctyperefs.allClassifierAssignments){
 				ci.processClassifierAssignmentPropertyAssociations(ca)
+			}
+		}
+		// now we handle Generators and Behavior Rules in annexes
+		for (subclause: ci.getAllSubclauses){
+			if (subclause instanceof BehaviorSpecification){
+				for (gen : subclause.generators){
+					gen.instantiateGenerator(ci)
+				}
+				for (br: subclause.rules){
+					br.instantiateBehaviorRule(ci)
+				}
 			}
 		}
 		// handle property assignments attached to (sub)component
@@ -585,5 +602,53 @@ class Instantiator {
 		}
 		return null
 	}
+
+
+	// Behavior Rules
+	def void instantiateBehaviorRule(BehaviorRule br, ComponentInstance context){
+		val bri = br.createBehaviorRuleInstance
+		val behaviorCondition = br.condition.copy
+		// now replace ConditionElements by respective instances
+		val cos = EcoreUtil2.eAllOfType(behaviorCondition, ConditionOperation);
+		for (co: cos){
+			val cio = (co.left as ModelElementReference).createConstrainedInstanceObject(context)
+			if (co.right !== null){
+				cio.constraint = co.right.copy
+			}
+			val container = co.eContainer
+			if (container instanceof ECollection){
+				container.elements.remove(co)
+				container.elements.add(cio)
+			}
+		}
+		// do the same for Generator references
+		val mers = EcoreUtil2.eAllOfType(behaviorCondition, ModelElementReference);
+		for (mer: mers){
+			val cio = mer.createConstrainedInstanceObject(context)
+			val container = mer.eContainer
+			if (container instanceof ECollection){
+				container.elements.remove(mer)
+				container.elements.add(cio)
+			}
+		}
+		bri.condition = behaviorCondition
+		// now actions
+		for ( action: br.actions){
+			val tio = action.target.createConstrainedInstanceObject(context)
+			if (action.value !== null){
+				tio.constraint = action.value.copy
+			}
+			bri.actions += tio
+		}
+		
+		context.behaviorRules += bri
+	}
+
+	// Behavior Rules
+	def void instantiateGenerator(Generator g, ComponentInstance context){
+		val gi = g.createGeneratorInstance
+		context.generators += gi
+	}
+
 
 }

@@ -41,7 +41,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TokenTrace.ecore#//Token/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TokenTrace.ecore#//Token/message"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TokenTrace.ecore#//Token/tokens"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TokenTrace.ecore#//Token/k"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TokenTrace.ecore#//Token/relatedInstanceObject"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TokenTrace.ecore#//Token/relatedType"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TokenTrace.ecore#//Token/referenceCount"/>

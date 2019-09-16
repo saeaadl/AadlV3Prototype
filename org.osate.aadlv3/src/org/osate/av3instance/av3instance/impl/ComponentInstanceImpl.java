@@ -34,8 +34,10 @@ import org.osate.aadlv3.aadlv3.ComponentCategory;
 import org.osate.aadlv3.aadlv3.Subcomponent;
 import org.osate.av3instance.av3instance.AssociationInstance;
 import org.osate.av3instance.av3instance.Av3instancePackage;
+import org.osate.av3instance.av3instance.BehaviorRuleInstance;
 import org.osate.av3instance.av3instance.ComponentInstance;
 import org.osate.av3instance.av3instance.FeatureInstance;
+import org.osate.av3instance.av3instance.GeneratorInstance;
 import org.osate.av3instance.av3instance.PathInstance;
 
 import static org.osate.aadlv3.util.AIv3API.*;
@@ -55,6 +57,8 @@ import static org.osate.aadlv3.util.AIv3API.*;
  *   <li>{@link org.osate.av3instance.av3instance.impl.ComponentInstanceImpl#getFeatures <em>Features</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.impl.ComponentInstanceImpl#getFlowspecs <em>Flowspecs</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.impl.ComponentInstanceImpl#getPaths <em>Paths</em>}</li>
+ *   <li>{@link org.osate.av3instance.av3instance.impl.ComponentInstanceImpl#getBehaviorRules <em>Behavior Rules</em>}</li>
+ *   <li>{@link org.osate.av3instance.av3instance.impl.ComponentInstanceImpl#getGenerators <em>Generators</em>}</li>
  * </ul>
  *
  * @generated
@@ -139,6 +143,26 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 	 * @ordered
 	 */
 	protected EList<PathInstance> paths;
+
+	/**
+	 * The cached value of the '{@link #getBehaviorRules() <em>Behavior Rules</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBehaviorRules()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<BehaviorRuleInstance> behaviorRules;
+
+	/**
+	 * The cached value of the '{@link #getGenerators() <em>Generators</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getGenerators()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<GeneratorInstance> generators;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -301,6 +325,34 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 	 * @generated
 	 */
 	@Override
+	public EList<BehaviorRuleInstance> getBehaviorRules() {
+		if (behaviorRules == null) {
+			behaviorRules = new EObjectContainmentEList<BehaviorRuleInstance>(BehaviorRuleInstance.class, this,
+					Av3instancePackage.COMPONENT_INSTANCE__BEHAVIOR_RULES);
+		}
+		return behaviorRules;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<GeneratorInstance> getGenerators() {
+		if (generators == null) {
+			generators = new EObjectContainmentEList<GeneratorInstance>(GeneratorInstance.class, this,
+					Av3instancePackage.COMPONENT_INSTANCE__GENERATORS);
+		}
+		return generators;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case Av3instancePackage.COMPONENT_INSTANCE__COMPONENTS:
@@ -313,6 +365,10 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 			return ((InternalEList<?>) getFlowspecs()).basicRemove(otherEnd, msgs);
 		case Av3instancePackage.COMPONENT_INSTANCE__PATHS:
 			return ((InternalEList<?>) getPaths()).basicRemove(otherEnd, msgs);
+		case Av3instancePackage.COMPONENT_INSTANCE__BEHAVIOR_RULES:
+			return ((InternalEList<?>) getBehaviorRules()).basicRemove(otherEnd, msgs);
+		case Av3instancePackage.COMPONENT_INSTANCE__GENERATORS:
+			return ((InternalEList<?>) getGenerators()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -341,6 +397,10 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 			return getFlowspecs();
 		case Av3instancePackage.COMPONENT_INSTANCE__PATHS:
 			return getPaths();
+		case Av3instancePackage.COMPONENT_INSTANCE__BEHAVIOR_RULES:
+			return getBehaviorRules();
+		case Av3instancePackage.COMPONENT_INSTANCE__GENERATORS:
+			return getGenerators();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -380,6 +440,14 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 			getPaths().clear();
 			getPaths().addAll((Collection<? extends PathInstance>) newValue);
 			return;
+		case Av3instancePackage.COMPONENT_INSTANCE__BEHAVIOR_RULES:
+			getBehaviorRules().clear();
+			getBehaviorRules().addAll((Collection<? extends BehaviorRuleInstance>) newValue);
+			return;
+		case Av3instancePackage.COMPONENT_INSTANCE__GENERATORS:
+			getGenerators().clear();
+			getGenerators().addAll((Collection<? extends GeneratorInstance>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -413,6 +481,12 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 		case Av3instancePackage.COMPONENT_INSTANCE__PATHS:
 			getPaths().clear();
 			return;
+		case Av3instancePackage.COMPONENT_INSTANCE__BEHAVIOR_RULES:
+			getBehaviorRules().clear();
+			return;
+		case Av3instancePackage.COMPONENT_INSTANCE__GENERATORS:
+			getGenerators().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -439,6 +513,10 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 			return flowspecs != null && !flowspecs.isEmpty();
 		case Av3instancePackage.COMPONENT_INSTANCE__PATHS:
 			return paths != null && !paths.isEmpty();
+		case Av3instancePackage.COMPONENT_INSTANCE__BEHAVIOR_RULES:
+			return behaviorRules != null && !behaviorRules.isEmpty();
+		case Av3instancePackage.COMPONENT_INSTANCE__GENERATORS:
+			return generators != null && !generators.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

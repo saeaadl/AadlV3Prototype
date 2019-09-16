@@ -77,6 +77,12 @@ public class Av3instanceFactoryImpl extends EFactoryImpl implements Av3instanceF
 			return createAssociationInstance();
 		case Av3instancePackage.PATH_INSTANCE:
 			return createPathInstance();
+		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE:
+			return createBehaviorRuleInstance();
+		case Av3instancePackage.GENERATOR_INSTANCE:
+			return createGeneratorInstance();
+		case Av3instancePackage.CONSTRAINED_INSTANCE_OBJECT:
+			return createConstrainedInstanceObject();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -124,6 +130,39 @@ public class Av3instanceFactoryImpl extends EFactoryImpl implements Av3instanceF
 	public PathInstance createPathInstance() {
 		PathInstanceImpl pathInstance = new PathInstanceImpl();
 		return pathInstance;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public BehaviorRuleInstance createBehaviorRuleInstance() {
+		BehaviorRuleInstanceImpl behaviorRuleInstance = new BehaviorRuleInstanceImpl();
+		return behaviorRuleInstance;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public GeneratorInstance createGeneratorInstance() {
+		GeneratorInstanceImpl generatorInstance = new GeneratorInstanceImpl();
+		return generatorInstance;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ConstrainedInstanceObject createConstrainedInstanceObject() {
+		ConstrainedInstanceObjectImpl constrainedInstanceObject = new ConstrainedInstanceObjectImpl();
+		return constrainedInstanceObject;
 	}
 
 	/**

@@ -71,6 +71,33 @@ public interface Av3instanceFactory extends EFactory {
 	PathInstance createPathInstance();
 
 	/**
+	 * Returns a new object of class '<em>Behavior Rule Instance</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Behavior Rule Instance</em>'.
+	 * @generated
+	 */
+	BehaviorRuleInstance createBehaviorRuleInstance();
+
+	/**
+	 * Returns a new object of class '<em>Generator Instance</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Generator Instance</em>'.
+	 * @generated
+	 */
+	GeneratorInstance createGeneratorInstance();
+
+	/**
+	 * Returns a new object of class '<em>Constrained Instance Object</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Constrained Instance Object</em>'.
+	 * @generated
+	 */
+	ConstrainedInstanceObject createConstrainedInstanceObject();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

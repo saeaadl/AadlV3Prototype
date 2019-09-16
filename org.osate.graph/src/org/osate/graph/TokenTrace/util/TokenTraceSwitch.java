@@ -6,7 +6,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
-
+import org.osate.aadlv3.aadlv3.ECollection;
+import org.osate.aadlv3.aadlv3.Expression;
+import org.osate.aadlv3.aadlv3.Literal;
+import org.osate.aadlv3.aadlv3.MultiLiteralConstraint;
+import org.osate.aadlv3.aadlv3.MultiOperandExpression;
 import org.osate.graph.TokenTrace.*;
 
 /**
@@ -75,6 +79,11 @@ public class TokenTraceSwitch<T> extends Switch<T> {
 			case TokenTracePackage.TOKEN: {
 				Token token = (Token)theEObject;
 				T result = caseToken(token);
+				if (result == null) result = caseMultiLiteralConstraint(token);
+				if (result == null) result = caseMultiOperandExpression(token);
+				if (result == null) result = caseECollection(token);
+				if (result == null) result = caseLiteral(token);
+				if (result == null) result = caseExpression(token);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -82,6 +91,11 @@ public class TokenTraceSwitch<T> extends Switch<T> {
 				Event event = (Event)theEObject;
 				T result = caseEvent(event);
 				if (result == null) result = caseToken(event);
+				if (result == null) result = caseMultiLiteralConstraint(event);
+				if (result == null) result = caseMultiOperandExpression(event);
+				if (result == null) result = caseECollection(event);
+				if (result == null) result = caseLiteral(event);
+				if (result == null) result = caseExpression(event);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -131,6 +145,81 @@ public class TokenTraceSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseEvent(Event object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Expression</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseExpression(Expression object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Literal</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Literal</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLiteral(Literal object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>ECollection</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>ECollection</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseECollection(ECollection object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Multi Operand Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Multi Operand Expression</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMultiOperandExpression(MultiOperandExpression object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Multi Literal Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Multi Literal Constraint</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMultiLiteralConstraint(MultiLiteralConstraint object) {
 		return null;
 	}
 

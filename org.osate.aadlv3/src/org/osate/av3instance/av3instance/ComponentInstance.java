@@ -35,6 +35,8 @@ import org.osate.aadlv3.aadlv3.Subcomponent;
  *   <li>{@link org.osate.av3instance.av3instance.ComponentInstance#getFeatures <em>Features</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.ComponentInstance#getFlowspecs <em>Flowspecs</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.ComponentInstance#getPaths <em>Paths</em>}</li>
+ *   <li>{@link org.osate.av3instance.av3instance.ComponentInstance#getBehaviorRules <em>Behavior Rules</em>}</li>
+ *   <li>{@link org.osate.av3instance.av3instance.ComponentInstance#getGenerators <em>Generators</em>}</li>
  * </ul>
  *
  * @see org.osate.av3instance.av3instance.Av3instancePackage#getComponentInstance()
@@ -177,5 +179,29 @@ public interface ComponentInstance extends InstanceObject {
 	 * @generated
 	 */
 	EList<PathInstance> getPaths();
+
+	/**
+	 * Returns the value of the '<em><b>Behavior Rules</b></em>' containment reference list.
+	 * The list contents are of type {@link org.osate.av3instance.av3instance.BehaviorRuleInstance}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Behavior Rules</em>' containment reference list.
+	 * @see org.osate.av3instance.av3instance.Av3instancePackage#getComponentInstance_BehaviorRules()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<BehaviorRuleInstance> getBehaviorRules();
+
+	/**
+	 * Returns the value of the '<em><b>Generators</b></em>' containment reference list.
+	 * The list contents are of type {@link org.osate.av3instance.av3instance.GeneratorInstance}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Generators</em>' containment reference list.
+	 * @see org.osate.av3instance.av3instance.Av3instancePackage#getComponentInstance_Generators()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<GeneratorInstance> getGenerators();
 
 } // ComponentInstance

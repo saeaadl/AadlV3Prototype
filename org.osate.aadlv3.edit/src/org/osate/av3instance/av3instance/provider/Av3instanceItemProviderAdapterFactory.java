@@ -178,6 +178,75 @@ public class Av3instanceItemProviderAdapterFactory extends Av3instanceAdapterFac
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.osate.av3instance.av3instance.BehaviorRuleInstance} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected BehaviorRuleInstanceItemProvider behaviorRuleInstanceItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.osate.av3instance.av3instance.BehaviorRuleInstance}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createBehaviorRuleInstanceAdapter() {
+		if (behaviorRuleInstanceItemProvider == null) {
+			behaviorRuleInstanceItemProvider = new BehaviorRuleInstanceItemProvider(this);
+		}
+
+		return behaviorRuleInstanceItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.osate.av3instance.av3instance.GeneratorInstance} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected GeneratorInstanceItemProvider generatorInstanceItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.osate.av3instance.av3instance.GeneratorInstance}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createGeneratorInstanceAdapter() {
+		if (generatorInstanceItemProvider == null) {
+			generatorInstanceItemProvider = new GeneratorInstanceItemProvider(this);
+		}
+
+		return generatorInstanceItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.osate.av3instance.av3instance.ConstrainedInstanceObject} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ConstrainedInstanceObjectItemProvider constrainedInstanceObjectItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.osate.av3instance.av3instance.ConstrainedInstanceObject}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createConstrainedInstanceObjectAdapter() {
+		if (constrainedInstanceObjectItemProvider == null) {
+			constrainedInstanceObjectItemProvider = new ConstrainedInstanceObjectItemProvider(this);
+		}
+
+		return constrainedInstanceObjectItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -290,6 +359,12 @@ public class Av3instanceItemProviderAdapterFactory extends Av3instanceAdapterFac
 			associationInstanceItemProvider.dispose();
 		if (pathInstanceItemProvider != null)
 			pathInstanceItemProvider.dispose();
+		if (behaviorRuleInstanceItemProvider != null)
+			behaviorRuleInstanceItemProvider.dispose();
+		if (generatorInstanceItemProvider != null)
+			generatorInstanceItemProvider.dispose();
+		if (constrainedInstanceObjectItemProvider != null)
+			constrainedInstanceObjectItemProvider.dispose();
 	}
 
 }

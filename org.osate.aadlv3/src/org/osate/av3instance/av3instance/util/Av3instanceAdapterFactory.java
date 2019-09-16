@@ -21,7 +21,8 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
-
+import org.osate.aadlv3.aadlv3.Expression;
+import org.osate.aadlv3.aadlv3.Literal;
 import org.osate.aadlv3.aadlv3.NamedElement;
 import org.osate.av3instance.av3instance.*;
 
@@ -106,8 +107,33 @@ public class Av3instanceAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseBehaviorRuleInstance(BehaviorRuleInstance object) {
+			return createBehaviorRuleInstanceAdapter();
+		}
+
+		@Override
+		public Adapter caseGeneratorInstance(GeneratorInstance object) {
+			return createGeneratorInstanceAdapter();
+		}
+
+		@Override
+		public Adapter caseConstrainedInstanceObject(ConstrainedInstanceObject object) {
+			return createConstrainedInstanceObjectAdapter();
+		}
+
+		@Override
 		public Adapter caseNamedElement(NamedElement object) {
 			return createNamedElementAdapter();
+		}
+
+		@Override
+		public Adapter caseExpression(Expression object) {
+			return createExpressionAdapter();
+		}
+
+		@Override
+		public Adapter caseLiteral(Literal object) {
+			return createLiteralAdapter();
 		}
 
 		@Override
@@ -200,6 +226,48 @@ public class Av3instanceAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.osate.av3instance.av3instance.BehaviorRuleInstance <em>Behavior Rule Instance</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.osate.av3instance.av3instance.BehaviorRuleInstance
+	 * @generated
+	 */
+	public Adapter createBehaviorRuleInstanceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.osate.av3instance.av3instance.GeneratorInstance <em>Generator Instance</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.osate.av3instance.av3instance.GeneratorInstance
+	 * @generated
+	 */
+	public Adapter createGeneratorInstanceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.osate.av3instance.av3instance.ConstrainedInstanceObject <em>Constrained Instance Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.osate.av3instance.av3instance.ConstrainedInstanceObject
+	 * @generated
+	 */
+	public Adapter createConstrainedInstanceObjectAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.NamedElement <em>Named Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -210,6 +278,34 @@ public class Av3instanceAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createNamedElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.Expression <em>Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.osate.aadlv3.aadlv3.Expression
+	 * @generated
+	 */
+	public Adapter createExpressionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.Literal <em>Literal</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.osate.aadlv3.aadlv3.Literal
+	 * @generated
+	 */
+	public Adapter createLiteralAdapter() {
 		return null;
 	}
 

@@ -8,7 +8,11 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
-
+import org.osate.aadlv3.aadlv3.ECollection;
+import org.osate.aadlv3.aadlv3.Expression;
+import org.osate.aadlv3.aadlv3.Literal;
+import org.osate.aadlv3.aadlv3.MultiLiteralConstraint;
+import org.osate.aadlv3.aadlv3.MultiOperandExpression;
 import org.osate.graph.TokenTrace.*;
 
 /**
@@ -80,6 +84,26 @@ public class TokenTraceAdapterFactory extends AdapterFactoryImpl {
 				return createEventAdapter();
 			}
 			@Override
+			public Adapter caseExpression(Expression object) {
+				return createExpressionAdapter();
+			}
+			@Override
+			public Adapter caseLiteral(Literal object) {
+				return createLiteralAdapter();
+			}
+			@Override
+			public Adapter caseECollection(ECollection object) {
+				return createECollectionAdapter();
+			}
+			@Override
+			public Adapter caseMultiOperandExpression(MultiOperandExpression object) {
+				return createMultiOperandExpressionAdapter();
+			}
+			@Override
+			public Adapter caseMultiLiteralConstraint(MultiLiteralConstraint object) {
+				return createMultiLiteralConstraintAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -138,6 +162,76 @@ public class TokenTraceAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createEventAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.Expression <em>Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.osate.aadlv3.aadlv3.Expression
+	 * @generated
+	 */
+	public Adapter createExpressionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.Literal <em>Literal</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.osate.aadlv3.aadlv3.Literal
+	 * @generated
+	 */
+	public Adapter createLiteralAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.ECollection <em>ECollection</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.osate.aadlv3.aadlv3.ECollection
+	 * @generated
+	 */
+	public Adapter createECollectionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.MultiOperandExpression <em>Multi Operand Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.osate.aadlv3.aadlv3.MultiOperandExpression
+	 * @generated
+	 */
+	public Adapter createMultiOperandExpressionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.MultiLiteralConstraint <em>Multi Literal Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.osate.aadlv3.aadlv3.MultiLiteralConstraint
+	 * @generated
+	 */
+	public Adapter createMultiLiteralConstraintAdapter() {
 		return null;
 	}
 

@@ -34,6 +34,7 @@ import org.osate.aadlv3.aadlv3.MultiOperandExpression;
  * </p>
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.MultiOperandExpressionImpl#getOperator <em>Operator</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.MultiOperandExpressionImpl#getK <em>K</em>}</li>
  * </ul>
  *
  * @generated
@@ -58,6 +59,26 @@ public class MultiOperandExpressionImpl extends ECollectionImpl implements Multi
 	 * @ordered
 	 */
 	protected EOperator operator = OPERATOR_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getK() <em>K</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getK()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int K_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getK() <em>K</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getK()
+	 * @generated
+	 * @ordered
+	 */
+	protected int k = K_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -108,10 +129,35 @@ public class MultiOperandExpressionImpl extends ECollectionImpl implements Multi
 	 * @generated
 	 */
 	@Override
+	public int getK() {
+		return k;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setK(int newK) {
+		int oldK = k;
+		k = newK;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.MULTI_OPERAND_EXPRESSION__K, oldK, k));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case Aadlv3Package.MULTI_OPERAND_EXPRESSION__OPERATOR:
 			return getOperator();
+		case Aadlv3Package.MULTI_OPERAND_EXPRESSION__K:
+			return getK();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -126,6 +172,9 @@ public class MultiOperandExpressionImpl extends ECollectionImpl implements Multi
 		switch (featureID) {
 		case Aadlv3Package.MULTI_OPERAND_EXPRESSION__OPERATOR:
 			setOperator((EOperator) newValue);
+			return;
+		case Aadlv3Package.MULTI_OPERAND_EXPRESSION__K:
+			setK((Integer) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -142,6 +191,9 @@ public class MultiOperandExpressionImpl extends ECollectionImpl implements Multi
 		case Aadlv3Package.MULTI_OPERAND_EXPRESSION__OPERATOR:
 			setOperator(OPERATOR_EDEFAULT);
 			return;
+		case Aadlv3Package.MULTI_OPERAND_EXPRESSION__K:
+			setK(K_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -156,6 +208,8 @@ public class MultiOperandExpressionImpl extends ECollectionImpl implements Multi
 		switch (featureID) {
 		case Aadlv3Package.MULTI_OPERAND_EXPRESSION__OPERATOR:
 			return operator != OPERATOR_EDEFAULT;
+		case Aadlv3Package.MULTI_OPERAND_EXPRESSION__K:
+			return k != K_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -173,6 +227,8 @@ public class MultiOperandExpressionImpl extends ECollectionImpl implements Multi
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (operator: ");
 		result.append(operator);
+		result.append(", k: ");
+		result.append(k);
 		result.append(')');
 		return result.toString();
 	}

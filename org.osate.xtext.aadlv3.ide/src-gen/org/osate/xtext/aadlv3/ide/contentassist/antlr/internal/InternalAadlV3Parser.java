@@ -43238,22 +43238,22 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__StateTransitionRule__Group_5__1__Impl"
-    // InternalAadlV3.g:13122:1: rule__StateTransitionRule__Group_5__1__Impl : ( ( rule__StateTransitionRule__ActionAssignment_5_1 )* ) ;
+    // InternalAadlV3.g:13122:1: rule__StateTransitionRule__Group_5__1__Impl : ( ( rule__StateTransitionRule__ActionsAssignment_5_1 )* ) ;
     public final void rule__StateTransitionRule__Group_5__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAadlV3.g:13126:1: ( ( ( rule__StateTransitionRule__ActionAssignment_5_1 )* ) )
-            // InternalAadlV3.g:13127:1: ( ( rule__StateTransitionRule__ActionAssignment_5_1 )* )
+            // InternalAadlV3.g:13126:1: ( ( ( rule__StateTransitionRule__ActionsAssignment_5_1 )* ) )
+            // InternalAadlV3.g:13127:1: ( ( rule__StateTransitionRule__ActionsAssignment_5_1 )* )
             {
-            // InternalAadlV3.g:13127:1: ( ( rule__StateTransitionRule__ActionAssignment_5_1 )* )
-            // InternalAadlV3.g:13128:2: ( rule__StateTransitionRule__ActionAssignment_5_1 )*
+            // InternalAadlV3.g:13127:1: ( ( rule__StateTransitionRule__ActionsAssignment_5_1 )* )
+            // InternalAadlV3.g:13128:2: ( rule__StateTransitionRule__ActionsAssignment_5_1 )*
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getStateTransitionRuleAccess().getActionAssignment_5_1()); 
+               before(grammarAccess.getStateTransitionRuleAccess().getActionsAssignment_5_1()); 
             }
-            // InternalAadlV3.g:13129:2: ( rule__StateTransitionRule__ActionAssignment_5_1 )*
+            // InternalAadlV3.g:13129:2: ( rule__StateTransitionRule__ActionsAssignment_5_1 )*
             loop102:
             do {
                 int alt102=2;
@@ -43266,10 +43266,10 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
 
                 switch (alt102) {
             	case 1 :
-            	    // InternalAadlV3.g:13129:3: rule__StateTransitionRule__ActionAssignment_5_1
+            	    // InternalAadlV3.g:13129:3: rule__StateTransitionRule__ActionsAssignment_5_1
             	    {
             	    pushFollow(FOLLOW_61);
-            	    rule__StateTransitionRule__ActionAssignment_5_1();
+            	    rule__StateTransitionRule__ActionsAssignment_5_1();
 
             	    state._fsp--;
             	    if (state.failed) return ;
@@ -43283,7 +43283,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             } while (true);
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getStateTransitionRuleAccess().getActionAssignment_5_1()); 
+               after(grammarAccess.getStateTransitionRuleAccess().getActionsAssignment_5_1()); 
             }
 
             }
@@ -43598,22 +43598,22 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__StatelessRule__Group__2__Impl"
-    // InternalAadlV3.g:13230:1: rule__StatelessRule__Group__2__Impl : ( ( rule__StatelessRule__ActionAssignment_2 )* ) ;
+    // InternalAadlV3.g:13230:1: rule__StatelessRule__Group__2__Impl : ( ( rule__StatelessRule__ActionsAssignment_2 )* ) ;
     public final void rule__StatelessRule__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAadlV3.g:13234:1: ( ( ( rule__StatelessRule__ActionAssignment_2 )* ) )
-            // InternalAadlV3.g:13235:1: ( ( rule__StatelessRule__ActionAssignment_2 )* )
+            // InternalAadlV3.g:13234:1: ( ( ( rule__StatelessRule__ActionsAssignment_2 )* ) )
+            // InternalAadlV3.g:13235:1: ( ( rule__StatelessRule__ActionsAssignment_2 )* )
             {
-            // InternalAadlV3.g:13235:1: ( ( rule__StatelessRule__ActionAssignment_2 )* )
-            // InternalAadlV3.g:13236:2: ( rule__StatelessRule__ActionAssignment_2 )*
+            // InternalAadlV3.g:13235:1: ( ( rule__StatelessRule__ActionsAssignment_2 )* )
+            // InternalAadlV3.g:13236:2: ( rule__StatelessRule__ActionsAssignment_2 )*
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getStatelessRuleAccess().getActionAssignment_2()); 
+               before(grammarAccess.getStatelessRuleAccess().getActionsAssignment_2()); 
             }
-            // InternalAadlV3.g:13237:2: ( rule__StatelessRule__ActionAssignment_2 )*
+            // InternalAadlV3.g:13237:2: ( rule__StatelessRule__ActionsAssignment_2 )*
             loop104:
             do {
                 int alt104=2;
@@ -43626,10 +43626,10 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
 
                 switch (alt104) {
             	case 1 :
-            	    // InternalAadlV3.g:13237:3: rule__StatelessRule__ActionAssignment_2
+            	    // InternalAadlV3.g:13237:3: rule__StatelessRule__ActionsAssignment_2
             	    {
             	    pushFollow(FOLLOW_61);
-            	    rule__StatelessRule__ActionAssignment_2();
+            	    rule__StatelessRule__ActionsAssignment_2();
 
             	    state._fsp--;
             	    if (state.failed) return ;
@@ -43643,7 +43643,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             } while (true);
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getStatelessRuleAccess().getActionAssignment_2()); 
+               after(grammarAccess.getStatelessRuleAccess().getActionsAssignment_2()); 
             }
 
             }
@@ -59203,9 +59203,9 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__StateTransitionRule__TargetStateAssignment_4"
 
 
-    // $ANTLR start "rule__StateTransitionRule__ActionAssignment_5_1"
-    // InternalAadlV3.g:18491:1: rule__StateTransitionRule__ActionAssignment_5_1 : ( ruleAssignment ) ;
-    public final void rule__StateTransitionRule__ActionAssignment_5_1() throws RecognitionException {
+    // $ANTLR start "rule__StateTransitionRule__ActionsAssignment_5_1"
+    // InternalAadlV3.g:18491:1: rule__StateTransitionRule__ActionsAssignment_5_1 : ( ruleAssignment ) ;
+    public final void rule__StateTransitionRule__ActionsAssignment_5_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -59217,7 +59217,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             // InternalAadlV3.g:18497:3: ruleAssignment
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getStateTransitionRuleAccess().getActionAssignmentParserRuleCall_5_1_0()); 
+               before(grammarAccess.getStateTransitionRuleAccess().getActionsAssignmentParserRuleCall_5_1_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleAssignment();
@@ -59225,7 +59225,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getStateTransitionRuleAccess().getActionAssignmentParserRuleCall_5_1_0()); 
+               after(grammarAccess.getStateTransitionRuleAccess().getActionsAssignmentParserRuleCall_5_1_0()); 
             }
 
             }
@@ -59245,7 +59245,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__StateTransitionRule__ActionAssignment_5_1"
+    // $ANTLR end "rule__StateTransitionRule__ActionsAssignment_5_1"
 
 
     // $ANTLR start "rule__StatelessRule__ConditionAssignment_0"
@@ -59299,9 +59299,9 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__StatelessRule__ConditionAssignment_0"
 
 
-    // $ANTLR start "rule__StatelessRule__ActionAssignment_2"
-    // InternalAadlV3.g:18521:1: rule__StatelessRule__ActionAssignment_2 : ( ruleAssignment ) ;
-    public final void rule__StatelessRule__ActionAssignment_2() throws RecognitionException {
+    // $ANTLR start "rule__StatelessRule__ActionsAssignment_2"
+    // InternalAadlV3.g:18521:1: rule__StatelessRule__ActionsAssignment_2 : ( ruleAssignment ) ;
+    public final void rule__StatelessRule__ActionsAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -59313,7 +59313,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             // InternalAadlV3.g:18527:3: ruleAssignment
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getStatelessRuleAccess().getActionAssignmentParserRuleCall_2_0()); 
+               before(grammarAccess.getStatelessRuleAccess().getActionsAssignmentParserRuleCall_2_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleAssignment();
@@ -59321,7 +59321,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getStatelessRuleAccess().getActionAssignmentParserRuleCall_2_0()); 
+               after(grammarAccess.getStatelessRuleAccess().getActionsAssignmentParserRuleCall_2_0()); 
             }
 
             }
@@ -59341,7 +59341,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__StatelessRule__ActionAssignment_2"
+    // $ANTLR end "rule__StatelessRule__ActionsAssignment_2"
 
 
     // $ANTLR start "rule__ContainsToken__LeftAssignment_0"

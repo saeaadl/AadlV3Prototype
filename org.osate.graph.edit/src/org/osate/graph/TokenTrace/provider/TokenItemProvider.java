@@ -10,19 +10,15 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.IItemPropertySource;
-import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
-import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
+import org.osate.aadlv3.aadlv3.Aadlv3Package;
+import org.osate.aadlv3.aadlv3.provider.MultiLiteralConstraintItemProvider;
+import org.osate.av3instance.av3instance.Av3instanceFactory;
 import org.osate.graph.TokenTrace.Token;
+import org.osate.graph.TokenTrace.TokenTraceFactory;
 import org.osate.graph.TokenTrace.TokenTracePackage;
 
 /**
@@ -32,13 +28,7 @@ import org.osate.graph.TokenTrace.TokenTracePackage;
  * @generated
  */
 public class TokenItemProvider 
-	extends ItemProviderAdapter
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+	extends MultiLiteralConstraintItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -63,7 +53,6 @@ public class TokenItemProvider
 			addNamePropertyDescriptor(object);
 			addMessagePropertyDescriptor(object);
 			addTokensPropertyDescriptor(object);
-			addKPropertyDescriptor(object);
 			addRelatedInstanceObjectPropertyDescriptor(object);
 			addRelatedTypePropertyDescriptor(object);
 			addReferenceCountPropertyDescriptor(object);
@@ -134,28 +123,6 @@ public class TokenItemProvider
 				 false,
 				 true,
 				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the K feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addKPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Token_k_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Token_k_feature", "_UI_Token_type"),
-				 TokenTracePackage.Literals.TOKEN__K,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -288,7 +255,6 @@ public class TokenItemProvider
 		switch (notification.getFeatureID(Token.class)) {
 			case TokenTracePackage.TOKEN__NAME:
 			case TokenTracePackage.TOKEN__MESSAGE:
-			case TokenTracePackage.TOKEN__K:
 			case TokenTracePackage.TOKEN__REFERENCE_COUNT:
 			case TokenTracePackage.TOKEN__TOKEN_LOGIC:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
@@ -307,6 +273,21 @@ public class TokenItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Aadlv3Package.Literals.ECOLLECTION__ELEMENTS,
+				 TokenTraceFactory.eINSTANCE.createToken()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Aadlv3Package.Literals.ECOLLECTION__ELEMENTS,
+				 TokenTraceFactory.eINSTANCE.createEvent()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Aadlv3Package.Literals.ECOLLECTION__ELEMENTS,
+				 Av3instanceFactory.eINSTANCE.createConstrainedInstanceObject()));
 	}
 
 	/**

@@ -5,17 +5,15 @@ package org.osate.graph.TokenTrace.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.osate.aadlv3.aadlv3.TypeReference;
+import org.osate.aadlv3.aadlv3.impl.MultiLiteralConstraintImpl;
 import org.osate.av3instance.av3instance.InstanceObject;
 import org.osate.graph.TokenTrace.LogicOperation;
 import org.osate.graph.TokenTrace.Token;
@@ -32,7 +30,6 @@ import org.osate.graph.TokenTrace.TokenTracePackage;
  *   <li>{@link org.osate.graph.TokenTrace.impl.TokenImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.impl.TokenImpl#getMessage <em>Message</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.impl.TokenImpl#getTokens <em>Tokens</em>}</li>
- *   <li>{@link org.osate.graph.TokenTrace.impl.TokenImpl#getK <em>K</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.impl.TokenImpl#getRelatedInstanceObject <em>Related Instance Object</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.impl.TokenImpl#getRelatedType <em>Related Type</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.impl.TokenImpl#getReferenceCount <em>Reference Count</em>}</li>
@@ -41,7 +38,7 @@ import org.osate.graph.TokenTrace.TokenTracePackage;
  *
  * @generated
  */
-public class TokenImpl extends MinimalEObjectImpl.Container implements Token {
+public class TokenImpl extends MultiLiteralConstraintImpl implements Token {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -91,26 +88,6 @@ public class TokenImpl extends MinimalEObjectImpl.Container implements Token {
 	 * @ordered
 	 */
 	protected EList<Token> tokens;
-
-	/**
-	 * The default value of the '{@link #getK() <em>K</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getK()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int K_EDEFAULT = 1;
-
-	/**
-	 * The cached value of the '{@link #getK() <em>K</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getK()
-	 * @generated
-	 * @ordered
-	 */
-	protected int k = K_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getRelatedInstanceObject() <em>Related Instance Object</em>}' reference.
@@ -256,29 +233,6 @@ public class TokenImpl extends MinimalEObjectImpl.Container implements Token {
 	 * @generated
 	 */
 	@Override
-	public int getK() {
-		return k;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setK(int newK) {
-		int oldK = k;
-		k = newK;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TokenTracePackage.TOKEN__K, oldK, k));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public InstanceObject getRelatedInstanceObject() {
 		if (relatedInstanceObject != null && relatedInstanceObject.eIsProxy()) {
 			InternalEObject oldRelatedInstanceObject = (InternalEObject)relatedInstanceObject;
@@ -413,8 +367,6 @@ public class TokenImpl extends MinimalEObjectImpl.Container implements Token {
 				return getMessage();
 			case TokenTracePackage.TOKEN__TOKENS:
 				return getTokens();
-			case TokenTracePackage.TOKEN__K:
-				return getK();
 			case TokenTracePackage.TOKEN__RELATED_INSTANCE_OBJECT:
 				if (resolve) return getRelatedInstanceObject();
 				return basicGetRelatedInstanceObject();
@@ -447,9 +399,6 @@ public class TokenImpl extends MinimalEObjectImpl.Container implements Token {
 			case TokenTracePackage.TOKEN__TOKENS:
 				getTokens().clear();
 				getTokens().addAll((Collection<? extends Token>)newValue);
-				return;
-			case TokenTracePackage.TOKEN__K:
-				setK((Integer)newValue);
 				return;
 			case TokenTracePackage.TOKEN__RELATED_INSTANCE_OBJECT:
 				setRelatedInstanceObject((InstanceObject)newValue);
@@ -484,9 +433,6 @@ public class TokenImpl extends MinimalEObjectImpl.Container implements Token {
 			case TokenTracePackage.TOKEN__TOKENS:
 				getTokens().clear();
 				return;
-			case TokenTracePackage.TOKEN__K:
-				setK(K_EDEFAULT);
-				return;
 			case TokenTracePackage.TOKEN__RELATED_INSTANCE_OBJECT:
 				setRelatedInstanceObject((InstanceObject)null);
 				return;
@@ -517,8 +463,6 @@ public class TokenImpl extends MinimalEObjectImpl.Container implements Token {
 				return MESSAGE_EDEFAULT == null ? message != null : !MESSAGE_EDEFAULT.equals(message);
 			case TokenTracePackage.TOKEN__TOKENS:
 				return tokens != null && !tokens.isEmpty();
-			case TokenTracePackage.TOKEN__K:
-				return k != K_EDEFAULT;
 			case TokenTracePackage.TOKEN__RELATED_INSTANCE_OBJECT:
 				return relatedInstanceObject != null;
 			case TokenTracePackage.TOKEN__RELATED_TYPE:
@@ -545,8 +489,6 @@ public class TokenImpl extends MinimalEObjectImpl.Container implements Token {
 		result.append(name);
 		result.append(", message: ");
 		result.append(message);
-		result.append(", k: ");
-		result.append(k);
 		result.append(", referenceCount: ");
 		result.append(referenceCount);
 		result.append(", tokenLogic: ");

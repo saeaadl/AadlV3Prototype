@@ -13,7 +13,7 @@
  * 
  * See COPYRIGHT file for full details.
  */
-package org.osate.aadlv3.aadlv3.provider;
+package org.osate.av3instance.av3instance.provider;
 
 import java.util.Collection;
 import java.util.List;
@@ -21,29 +21,29 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.osate.aadlv3.aadlv3.Aadlv3Package;
-import org.osate.aadlv3.aadlv3.EOperator;
-import org.osate.aadlv3.aadlv3.MultiOperandExpression;
+import org.osate.av3instance.av3instance.Av3instancePackage;
+import org.osate.av3instance.av3instance.GeneratorInstance;
 
 /**
- * This is the item provider adapter for a {@link org.osate.aadlv3.aadlv3.MultiOperandExpression} object.
+ * This is the item provider adapter for a {@link org.osate.av3instance.av3instance.GeneratorInstance} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class MultiOperandExpressionItemProvider extends ECollectionItemProvider {
+public class GeneratorInstanceItemProvider extends InstanceObjectItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MultiOperandExpressionItemProvider(AdapterFactory adapterFactory) {
+	public GeneratorInstanceItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -58,53 +58,75 @@ public class MultiOperandExpressionItemProvider extends ECollectionItemProvider 
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addOperatorPropertyDescriptor(object);
-			addKPropertyDescriptor(object);
+			addGeneratorPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Operator feature.
+	 * This adds a property descriptor for the Generator feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addOperatorPropertyDescriptor(Object object) {
+	protected void addGeneratorPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
 				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_MultiOperandExpression_operator_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_MultiOperandExpression_operator_feature",
-						"_UI_MultiOperandExpression_type"),
-				Aadlv3Package.Literals.MULTI_OPERAND_EXPRESSION__OPERATOR, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+				getString("_UI_GeneratorInstance_generator_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_GeneratorInstance_generator_feature", //$NON-NLS-1$//$NON-NLS-2$
+						"_UI_GeneratorInstance_type"), //$NON-NLS-1$
+				Av3instancePackage.Literals.GENERATOR_INSTANCE__GENERATOR, true, false, true, null, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the K feature.
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addKPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_MultiOperandExpression_k_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_MultiOperandExpression_k_feature",
-								"_UI_MultiOperandExpression_type"),
-						Aadlv3Package.Literals.MULTI_OPERAND_EXPRESSION__K, true, false, false,
-						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+	@Override
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
+			super.getChildrenFeatures(object);
+			childrenFeatures.add(Av3instancePackage.Literals.GENERATOR_INSTANCE__VALUE);
+		}
+		return childrenFeatures;
 	}
 
 	/**
-	 * This returns MultiOperandExpression.gif.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EStructuralFeature getChildFeature(Object object, Object child) {
+		// Check the type of the specified child object and return the proper feature to use for
+		// adding (see {@link AddCommand}) it as a child.
+
+		return super.getChildFeature(object, child);
+	}
+
+	/**
+	 * This returns GeneratorInstance.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/MultiOperandExpression"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/GeneratorInstance")); //$NON-NLS-1$
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected boolean shouldComposeCreationImage() {
+		return true;
 	}
 
 	/**
@@ -115,10 +137,9 @@ public class MultiOperandExpressionItemProvider extends ECollectionItemProvider 
 	 */
 	@Override
 	public String getText(Object object) {
-		EOperator labelValue = ((MultiOperandExpression) object).getOperator();
-		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ? getString("_UI_MultiOperandExpression_type")
-				: getString("_UI_MultiOperandExpression_type") + " " + label;
+		String label = ((GeneratorInstance) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_GeneratorInstance_type") : //$NON-NLS-1$
+				getString("_UI_GeneratorInstance_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -132,25 +153,12 @@ public class MultiOperandExpressionItemProvider extends ECollectionItemProvider 
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(MultiOperandExpression.class)) {
-		case Aadlv3Package.MULTI_OPERAND_EXPRESSION__OPERATOR:
-		case Aadlv3Package.MULTI_OPERAND_EXPRESSION__K:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+		switch (notification.getFeatureID(GeneratorInstance.class)) {
+		case Av3instancePackage.GENERATOR_INSTANCE__VALUE:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
-	}
-
-	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
-		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
 }

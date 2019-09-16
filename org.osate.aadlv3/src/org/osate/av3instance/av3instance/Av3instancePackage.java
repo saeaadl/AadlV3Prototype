@@ -327,13 +327,31 @@ public interface Av3instancePackage extends EPackage {
 	int COMPONENT_INSTANCE__PATHS = INSTANCE_OBJECT_FEATURE_COUNT + 6;
 
 	/**
+	 * The feature id for the '<em><b>Behavior Rules</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_INSTANCE__BEHAVIOR_RULES = INSTANCE_OBJECT_FEATURE_COUNT + 7;
+
+	/**
+	 * The feature id for the '<em><b>Generators</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_INSTANCE__GENERATORS = INSTANCE_OBJECT_FEATURE_COUNT + 8;
+
+	/**
 	 * The number of structural features of the '<em>Component Instance</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_INSTANCE_FEATURE_COUNT = INSTANCE_OBJECT_FEATURE_COUNT + 7;
+	int COMPONENT_INSTANCE_FEATURE_COUNT = INSTANCE_OBJECT_FEATURE_COUNT + 9;
 
 	/**
 	 * The meta object id for the '{@link org.osate.av3instance.av3instance.impl.AssociationInstanceImpl <em>Association Instance</em>}' class.
@@ -536,6 +554,234 @@ public interface Av3instancePackage extends EPackage {
 	int PATH_INSTANCE_FEATURE_COUNT = INSTANCE_OBJECT_FEATURE_COUNT + 2;
 
 	/**
+	 * The meta object id for the '{@link org.osate.av3instance.av3instance.impl.BehaviorRuleInstanceImpl <em>Behavior Rule Instance</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.osate.av3instance.av3instance.impl.BehaviorRuleInstanceImpl
+	 * @see org.osate.av3instance.av3instance.impl.Av3instancePackageImpl#getBehaviorRuleInstance()
+	 * @generated
+	 */
+	int BEHAVIOR_RULE_INSTANCE = 5;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEHAVIOR_RULE_INSTANCE__NAME = INSTANCE_OBJECT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Property Associations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEHAVIOR_RULE_INSTANCE__OWNED_PROPERTY_ASSOCIATIONS = INSTANCE_OBJECT__OWNED_PROPERTY_ASSOCIATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Associations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEHAVIOR_RULE_INSTANCE__INCOMING_ASSOCIATIONS = INSTANCE_OBJECT__INCOMING_ASSOCIATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Outgoing Associations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEHAVIOR_RULE_INSTANCE__OUTGOING_ASSOCIATIONS = INSTANCE_OBJECT__OUTGOING_ASSOCIATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Behavior Rule</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEHAVIOR_RULE_INSTANCE__BEHAVIOR_RULE = INSTANCE_OBJECT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Condition</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEHAVIOR_RULE_INSTANCE__CONDITION = INSTANCE_OBJECT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Actions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEHAVIOR_RULE_INSTANCE__ACTIONS = INSTANCE_OBJECT_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Behavior Rule Instance</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEHAVIOR_RULE_INSTANCE_FEATURE_COUNT = INSTANCE_OBJECT_FEATURE_COUNT + 3;
+
+	/**
+	 * The meta object id for the '{@link org.osate.av3instance.av3instance.impl.GeneratorInstanceImpl <em>Generator Instance</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.osate.av3instance.av3instance.impl.GeneratorInstanceImpl
+	 * @see org.osate.av3instance.av3instance.impl.Av3instancePackageImpl#getGeneratorInstance()
+	 * @generated
+	 */
+	int GENERATOR_INSTANCE = 6;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERATOR_INSTANCE__NAME = INSTANCE_OBJECT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Property Associations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERATOR_INSTANCE__OWNED_PROPERTY_ASSOCIATIONS = INSTANCE_OBJECT__OWNED_PROPERTY_ASSOCIATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Associations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERATOR_INSTANCE__INCOMING_ASSOCIATIONS = INSTANCE_OBJECT__INCOMING_ASSOCIATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Outgoing Associations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERATOR_INSTANCE__OUTGOING_ASSOCIATIONS = INSTANCE_OBJECT__OUTGOING_ASSOCIATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Generator</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERATOR_INSTANCE__GENERATOR = INSTANCE_OBJECT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERATOR_INSTANCE__VALUE = INSTANCE_OBJECT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Generator Instance</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERATOR_INSTANCE_FEATURE_COUNT = INSTANCE_OBJECT_FEATURE_COUNT + 2;
+
+	/**
+	 * The meta object id for the '{@link org.osate.av3instance.av3instance.impl.ConstrainedInstanceObjectImpl <em>Constrained Instance Object</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.osate.av3instance.av3instance.impl.ConstrainedInstanceObjectImpl
+	 * @see org.osate.av3instance.av3instance.impl.Av3instancePackageImpl#getConstrainedInstanceObject()
+	 * @generated
+	 */
+	int CONSTRAINED_INSTANCE_OBJECT = 7;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINED_INSTANCE_OBJECT__NAME = INSTANCE_OBJECT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Property Associations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINED_INSTANCE_OBJECT__OWNED_PROPERTY_ASSOCIATIONS = INSTANCE_OBJECT__OWNED_PROPERTY_ASSOCIATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Associations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINED_INSTANCE_OBJECT__INCOMING_ASSOCIATIONS = INSTANCE_OBJECT__INCOMING_ASSOCIATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Outgoing Associations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINED_INSTANCE_OBJECT__OUTGOING_ASSOCIATIONS = INSTANCE_OBJECT__OUTGOING_ASSOCIATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Instance Object</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINED_INSTANCE_OBJECT__INSTANCE_OBJECT = INSTANCE_OBJECT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Constraint</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINED_INSTANCE_OBJECT__CONSTRAINT = INSTANCE_OBJECT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Constrained Instance Object</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINED_INSTANCE_OBJECT_FEATURE_COUNT = INSTANCE_OBJECT_FEATURE_COUNT + 2;
+
+	/**
 	 * Returns the meta object for class '{@link org.osate.av3instance.av3instance.InstanceObject <em>Instance Object</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -709,6 +955,28 @@ public interface Av3instancePackage extends EPackage {
 	EReference getComponentInstance_Paths();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link org.osate.av3instance.av3instance.ComponentInstance#getBehaviorRules <em>Behavior Rules</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Behavior Rules</em>'.
+	 * @see org.osate.av3instance.av3instance.ComponentInstance#getBehaviorRules()
+	 * @see #getComponentInstance()
+	 * @generated
+	 */
+	EReference getComponentInstance_BehaviorRules();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.osate.av3instance.av3instance.ComponentInstance#getGenerators <em>Generators</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Generators</em>'.
+	 * @see org.osate.av3instance.av3instance.ComponentInstance#getGenerators()
+	 * @see #getComponentInstance()
+	 * @generated
+	 */
+	EReference getComponentInstance_Generators();
+
+	/**
 	 * Returns the meta object for class '{@link org.osate.av3instance.av3instance.AssociationInstance <em>Association Instance</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -837,6 +1105,113 @@ public interface Av3instancePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getPathInstance_Path();
+
+	/**
+	 * Returns the meta object for class '{@link org.osate.av3instance.av3instance.BehaviorRuleInstance <em>Behavior Rule Instance</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Behavior Rule Instance</em>'.
+	 * @see org.osate.av3instance.av3instance.BehaviorRuleInstance
+	 * @generated
+	 */
+	EClass getBehaviorRuleInstance();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.osate.av3instance.av3instance.BehaviorRuleInstance#getBehaviorRule <em>Behavior Rule</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Behavior Rule</em>'.
+	 * @see org.osate.av3instance.av3instance.BehaviorRuleInstance#getBehaviorRule()
+	 * @see #getBehaviorRuleInstance()
+	 * @generated
+	 */
+	EReference getBehaviorRuleInstance_BehaviorRule();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.osate.av3instance.av3instance.BehaviorRuleInstance#getActions <em>Actions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Actions</em>'.
+	 * @see org.osate.av3instance.av3instance.BehaviorRuleInstance#getActions()
+	 * @see #getBehaviorRuleInstance()
+	 * @generated
+	 */
+	EReference getBehaviorRuleInstance_Actions();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.osate.av3instance.av3instance.BehaviorRuleInstance#getCondition <em>Condition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Condition</em>'.
+	 * @see org.osate.av3instance.av3instance.BehaviorRuleInstance#getCondition()
+	 * @see #getBehaviorRuleInstance()
+	 * @generated
+	 */
+	EReference getBehaviorRuleInstance_Condition();
+
+	/**
+	 * Returns the meta object for class '{@link org.osate.av3instance.av3instance.GeneratorInstance <em>Generator Instance</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Generator Instance</em>'.
+	 * @see org.osate.av3instance.av3instance.GeneratorInstance
+	 * @generated
+	 */
+	EClass getGeneratorInstance();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.osate.av3instance.av3instance.GeneratorInstance#getGenerator <em>Generator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Generator</em>'.
+	 * @see org.osate.av3instance.av3instance.GeneratorInstance#getGenerator()
+	 * @see #getGeneratorInstance()
+	 * @generated
+	 */
+	EReference getGeneratorInstance_Generator();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.osate.av3instance.av3instance.GeneratorInstance#getValue <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Value</em>'.
+	 * @see org.osate.av3instance.av3instance.GeneratorInstance#getValue()
+	 * @see #getGeneratorInstance()
+	 * @generated
+	 */
+	EReference getGeneratorInstance_Value();
+
+	/**
+	 * Returns the meta object for class '{@link org.osate.av3instance.av3instance.ConstrainedInstanceObject <em>Constrained Instance Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Constrained Instance Object</em>'.
+	 * @see org.osate.av3instance.av3instance.ConstrainedInstanceObject
+	 * @generated
+	 */
+	EClass getConstrainedInstanceObject();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.osate.av3instance.av3instance.ConstrainedInstanceObject#getInstanceObject <em>Instance Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Instance Object</em>'.
+	 * @see org.osate.av3instance.av3instance.ConstrainedInstanceObject#getInstanceObject()
+	 * @see #getConstrainedInstanceObject()
+	 * @generated
+	 */
+	EReference getConstrainedInstanceObject_InstanceObject();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.osate.av3instance.av3instance.ConstrainedInstanceObject#getConstraint <em>Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Constraint</em>'.
+	 * @see org.osate.av3instance.av3instance.ConstrainedInstanceObject#getConstraint()
+	 * @see #getConstrainedInstanceObject()
+	 * @generated
+	 */
+	EReference getConstrainedInstanceObject_Constraint();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -996,6 +1371,22 @@ public interface Av3instancePackage extends EPackage {
 		EReference COMPONENT_INSTANCE__PATHS = eINSTANCE.getComponentInstance_Paths();
 
 		/**
+		 * The meta object literal for the '<em><b>Behavior Rules</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPONENT_INSTANCE__BEHAVIOR_RULES = eINSTANCE.getComponentInstance_BehaviorRules();
+
+		/**
+		 * The meta object literal for the '<em><b>Generators</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPONENT_INSTANCE__GENERATORS = eINSTANCE.getComponentInstance_Generators();
+
+		/**
 		 * The meta object literal for the '{@link org.osate.av3instance.av3instance.impl.AssociationInstanceImpl <em>Association Instance</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1095,6 +1486,93 @@ public interface Av3instancePackage extends EPackage {
 		 * @generated
 		 */
 		EReference PATH_INSTANCE__PATH = eINSTANCE.getPathInstance_Path();
+
+		/**
+		 * The meta object literal for the '{@link org.osate.av3instance.av3instance.impl.BehaviorRuleInstanceImpl <em>Behavior Rule Instance</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.osate.av3instance.av3instance.impl.BehaviorRuleInstanceImpl
+		 * @see org.osate.av3instance.av3instance.impl.Av3instancePackageImpl#getBehaviorRuleInstance()
+		 * @generated
+		 */
+		EClass BEHAVIOR_RULE_INSTANCE = eINSTANCE.getBehaviorRuleInstance();
+
+		/**
+		 * The meta object literal for the '<em><b>Behavior Rule</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BEHAVIOR_RULE_INSTANCE__BEHAVIOR_RULE = eINSTANCE.getBehaviorRuleInstance_BehaviorRule();
+
+		/**
+		 * The meta object literal for the '<em><b>Actions</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BEHAVIOR_RULE_INSTANCE__ACTIONS = eINSTANCE.getBehaviorRuleInstance_Actions();
+
+		/**
+		 * The meta object literal for the '<em><b>Condition</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BEHAVIOR_RULE_INSTANCE__CONDITION = eINSTANCE.getBehaviorRuleInstance_Condition();
+
+		/**
+		 * The meta object literal for the '{@link org.osate.av3instance.av3instance.impl.GeneratorInstanceImpl <em>Generator Instance</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.osate.av3instance.av3instance.impl.GeneratorInstanceImpl
+		 * @see org.osate.av3instance.av3instance.impl.Av3instancePackageImpl#getGeneratorInstance()
+		 * @generated
+		 */
+		EClass GENERATOR_INSTANCE = eINSTANCE.getGeneratorInstance();
+
+		/**
+		 * The meta object literal for the '<em><b>Generator</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GENERATOR_INSTANCE__GENERATOR = eINSTANCE.getGeneratorInstance_Generator();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GENERATOR_INSTANCE__VALUE = eINSTANCE.getGeneratorInstance_Value();
+
+		/**
+		 * The meta object literal for the '{@link org.osate.av3instance.av3instance.impl.ConstrainedInstanceObjectImpl <em>Constrained Instance Object</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.osate.av3instance.av3instance.impl.ConstrainedInstanceObjectImpl
+		 * @see org.osate.av3instance.av3instance.impl.Av3instancePackageImpl#getConstrainedInstanceObject()
+		 * @generated
+		 */
+		EClass CONSTRAINED_INSTANCE_OBJECT = eINSTANCE.getConstrainedInstanceObject();
+
+		/**
+		 * The meta object literal for the '<em><b>Instance Object</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONSTRAINED_INSTANCE_OBJECT__INSTANCE_OBJECT = eINSTANCE
+				.getConstrainedInstanceObject_InstanceObject();
+
+		/**
+		 * The meta object literal for the '<em><b>Constraint</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONSTRAINED_INSTANCE_OBJECT__CONSTRAINT = eINSTANCE.getConstrainedInstanceObject_Constraint();
 
 	}
 

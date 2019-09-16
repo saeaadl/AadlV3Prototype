@@ -44,7 +44,7 @@ import org.osate.aadlv3.aadlv3.StateSpecification;
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.BehaviorRuleImpl#getGuard <em>Guard</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.BehaviorRuleImpl#getTargetState <em>Target State</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.BehaviorRuleImpl#getCondition <em>Condition</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.BehaviorRuleImpl#getAction <em>Action</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.BehaviorRuleImpl#getActions <em>Actions</em>}</li>
  * </ul>
  *
  * @generated
@@ -81,14 +81,14 @@ public class BehaviorRuleImpl extends ModelElementImpl implements BehaviorRule {
 	protected Literal condition;
 
 	/**
-	 * The cached value of the '{@link #getAction() <em>Action</em>}' containment reference list.
+	 * The cached value of the '{@link #getActions() <em>Actions</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAction()
+	 * @see #getActions()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Assignment> action;
+	protected EList<Assignment> actions;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -271,12 +271,12 @@ public class BehaviorRuleImpl extends ModelElementImpl implements BehaviorRule {
 	 * @generated
 	 */
 	@Override
-	public EList<Assignment> getAction() {
-		if (action == null) {
-			action = new EObjectContainmentEList<Assignment>(Assignment.class, this,
-					Aadlv3Package.BEHAVIOR_RULE__ACTION);
+	public EList<Assignment> getActions() {
+		if (actions == null) {
+			actions = new EObjectContainmentEList<Assignment>(Assignment.class, this,
+					Aadlv3Package.BEHAVIOR_RULE__ACTIONS);
 		}
-		return action;
+		return actions;
 	}
 
 	/**
@@ -293,8 +293,8 @@ public class BehaviorRuleImpl extends ModelElementImpl implements BehaviorRule {
 			return basicSetTargetState(null, msgs);
 		case Aadlv3Package.BEHAVIOR_RULE__CONDITION:
 			return basicSetCondition(null, msgs);
-		case Aadlv3Package.BEHAVIOR_RULE__ACTION:
-			return ((InternalEList<?>) getAction()).basicRemove(otherEnd, msgs);
+		case Aadlv3Package.BEHAVIOR_RULE__ACTIONS:
+			return ((InternalEList<?>) getActions()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -313,8 +313,8 @@ public class BehaviorRuleImpl extends ModelElementImpl implements BehaviorRule {
 			return getTargetState();
 		case Aadlv3Package.BEHAVIOR_RULE__CONDITION:
 			return getCondition();
-		case Aadlv3Package.BEHAVIOR_RULE__ACTION:
-			return getAction();
+		case Aadlv3Package.BEHAVIOR_RULE__ACTIONS:
+			return getActions();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -337,9 +337,9 @@ public class BehaviorRuleImpl extends ModelElementImpl implements BehaviorRule {
 		case Aadlv3Package.BEHAVIOR_RULE__CONDITION:
 			setCondition((Literal) newValue);
 			return;
-		case Aadlv3Package.BEHAVIOR_RULE__ACTION:
-			getAction().clear();
-			getAction().addAll((Collection<? extends Assignment>) newValue);
+		case Aadlv3Package.BEHAVIOR_RULE__ACTIONS:
+			getActions().clear();
+			getActions().addAll((Collection<? extends Assignment>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -362,8 +362,8 @@ public class BehaviorRuleImpl extends ModelElementImpl implements BehaviorRule {
 		case Aadlv3Package.BEHAVIOR_RULE__CONDITION:
 			setCondition((Literal) null);
 			return;
-		case Aadlv3Package.BEHAVIOR_RULE__ACTION:
-			getAction().clear();
+		case Aadlv3Package.BEHAVIOR_RULE__ACTIONS:
+			getActions().clear();
 			return;
 		}
 		super.eUnset(featureID);
@@ -383,8 +383,8 @@ public class BehaviorRuleImpl extends ModelElementImpl implements BehaviorRule {
 			return targetState != null;
 		case Aadlv3Package.BEHAVIOR_RULE__CONDITION:
 			return condition != null;
-		case Aadlv3Package.BEHAVIOR_RULE__ACTION:
-			return action != null && !action.isEmpty();
+		case Aadlv3Package.BEHAVIOR_RULE__ACTIONS:
+			return actions != null && !actions.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

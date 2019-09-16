@@ -190,7 +190,7 @@ public class PackageElementReferenceImpl extends NamedElementImpl implements Pac
 
 	@Override
 	public String toString() {
-		return element != null?element.getName():"" ;
+		return element != null ? element.getName() : "";
 	}
 
 } //PackageElementReferenceImpl

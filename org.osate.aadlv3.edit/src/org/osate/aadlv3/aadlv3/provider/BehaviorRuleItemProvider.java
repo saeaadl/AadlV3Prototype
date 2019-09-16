@@ -77,7 +77,7 @@ public class BehaviorRuleItemProvider extends ModelElementItemProvider {
 			childrenFeatures.add(Aadlv3Package.Literals.BEHAVIOR_RULE__GUARD);
 			childrenFeatures.add(Aadlv3Package.Literals.BEHAVIOR_RULE__TARGET_STATE);
 			childrenFeatures.add(Aadlv3Package.Literals.BEHAVIOR_RULE__CONDITION);
-			childrenFeatures.add(Aadlv3Package.Literals.BEHAVIOR_RULE__ACTION);
+			childrenFeatures.add(Aadlv3Package.Literals.BEHAVIOR_RULE__ACTIONS);
 		}
 		return childrenFeatures;
 	}
@@ -134,7 +134,7 @@ public class BehaviorRuleItemProvider extends ModelElementItemProvider {
 		case Aadlv3Package.BEHAVIOR_RULE__GUARD:
 		case Aadlv3Package.BEHAVIOR_RULE__TARGET_STATE:
 		case Aadlv3Package.BEHAVIOR_RULE__CONDITION:
-		case Aadlv3Package.BEHAVIOR_RULE__ACTION:
+		case Aadlv3Package.BEHAVIOR_RULE__ACTIONS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -206,7 +206,7 @@ public class BehaviorRuleItemProvider extends ModelElementItemProvider {
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.BEHAVIOR_RULE__CONDITION,
 				Aadlv3Factory.eINSTANCE.createPackageElementReference()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.BEHAVIOR_RULE__ACTION,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.BEHAVIOR_RULE__ACTIONS,
 				Aadlv3Factory.eINSTANCE.createAssignment()));
 	}
 
