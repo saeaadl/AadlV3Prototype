@@ -91,6 +91,9 @@ public class AIJGraphTUtil {
 					if (dst != null) {
 						directedGraph.addVertex(dst);
 					}
+					if (src == null || dst == null) {
+						directedGraph.addVertex(ci);
+					}
 					directedGraph.addEdge(src != null ? src : ci, dst != null ? dst : ci);
 				}
 			}

@@ -59,10 +59,10 @@ public class InstantiateWorkingSetHandler extends AbstractHandler {
 //						AIJGraphXUtil.showGraph(ng);
 //						Graph topo =AIJGraphTUtil.generateConnectionTopology(rootinstance);
 //						AIJGraphXUtil.showGraph(topo);
-//						Graph Prop =AIJGraphTUtil.generatePropagationPaths(rootinstance);
-//						AIJGraphXUtil.showGraph(Prop);
-						Graph Prop =AIJGraphTUtil.generateBehaviorPropagationPaths(rootinstance,"EM");
+						Graph Prop =AIJGraphTUtil.generatePropagationPaths(rootinstance);
 						AIJGraphXUtil.showGraph(Prop);
+//						Graph Prop =AIJGraphTUtil.generateBehaviorPropagationPaths(rootinstance,"EM");
+//						AIJGraphXUtil.showGraph(Prop);
 //						Graph token =AIJGraphTUtil.generateTokenTrace(rootinstance);
 //						AIJGraphXUtil.showGraph(token);
 					}

@@ -9,29 +9,30 @@ package PortConnectionExample is
 	
 	interface actuator is
 		inp: in port;
-		fea: feature;
-		action: flow sink  inp ;
+		effect: out feature;
+//		action: flow sink  inp ;
 	end;
 	interface sensor is
 		outp: out port;
 		fea: feature;
-		reading: flow source outp;
+//		reading: flow source outp;
 	end;
 	
 	abstract sensor.i  is
 		senset1: thread sense;
 		upmap: connection senset1.p1 -> outp;
-		reading => flow upmap -> senset1.reading;
+//		reading => flow upmap -> senset1.reading;
 	end;
 	abstract actuator.i  is
 		actt2: thread actuate;
 		downmap: connection inp -> actt2.p1;
-		action=> flow actt2.taction;
+		effectmap: connection actt2.effect -> effect;
+//		action=> flow actt2.taction;
 	end;
 	
 	thread interface sense  is
 		p1: out port ;
-		reading: flow  source p1;
+//		reading: flow  source p1;
 		#TokenSource => (t1);
 	@EM{
 		e1: error event ServiceOmission ;
@@ -42,26 +43,28 @@ package PortConnectionExample is
 	thread interface actuate  is
 		p1: in port ;
 		effect: out feature ;
-		taction: flow  sink p1;
+//		taction: flow  sink p1;
 	@EM{
 		actuate2:  p1 in ServiceOmission ->  effect(ServiceOmission);
 	};
 	end;
 	
 	thread interface filter is
-	insignal : in port;
+	insignal1 : in port;
+	insignal2 : in port;
 	outsignal : out port;
-	filterpath: flow insignal -> outsignal;
+//	filterpath1: flow insignal1 -> outsignal;
+//	filterpath2: flow insignal2 -> outsignal;
 	#Period => 20 ;
 	@EM{
-		filter2: insignal in ServiceOmission ->  outsignal(ServiceOmission);
+		filter2: all (insignal1 in ServiceOmission, insignal2 in ServiceOmission )->  outsignal(ServiceOmission);
 	};
 	end;
 	
 	thread interface compute is
 	insignal : in port;
 	outsignal : out port;
-	computepath: flow insignal -> outsignal;
+//	computepath: flow insignal -> outsignal;
 //	@BA{
 //		f1: insignal -> outsignal; 
 //	};
@@ -69,7 +72,7 @@ package PortConnectionExample is
 //		use states threestate;
 //		e1: error event;
 //		r1: s0 -[e1 ]-> s1 {outsignal(ServiceOmission)};
-		r2: insignal in ServiceOmission ->  outsignal(ServiceOmission);
+		computer2: insignal in ServiceOmission ->  outsignal(ServiceOmission);
 //		r3: insignal in ServiceOmission-> ;
 	};
 	end;
@@ -79,9 +82,10 @@ package PortConnectionExample is
 	end;
 	
 	interface control is
-	insignal: in port;
+	insignal1: in port;
+	insignal2: in port;
 	outaction: out port;
-	processflow: flow insignal -> outaction;
+//	processflow: flow insignal1 -> outaction;
 	end;
 	
 	process interface controlProcess extends control 
@@ -91,7 +95,8 @@ package PortConnectionExample is
 		dofilter: thread filter;
 		docompute: thread compute;
 //		dolog: thread logger;
-		extin: connection insignal -> dofilter.insignal;
+		extin1: connection insignal1 -> dofilter.insignal1;
+		extin2: connection insignal2 -> dofilter.insignal2;
 //		login: connection insignal -> dolog.insignal;
 		ftoc: connection dofilter.outsignal -> docompute.insignal;
 		extout: connection docompute.outsignal -> outaction ;
@@ -102,14 +107,17 @@ package PortConnectionExample is
 	end;
 	
 	system conntop.i is
-		sense: abstract sensor.i;
+		sense1: abstract sensor.i;
+		sense2: abstract sensor.i;
 		processing: process controlProcess.impl;
 		actuate: abstract actuator.i;
 		hw : system hardwareplatform.impl;
-		sensetocontrol: connection sense.outp -> processing.insignal;
+		sensetocontrol1: connection sense1.outp -> processing.insignal1;
+		sensetocontrol2: connection sense2.outp -> processing.insignal2;
 		controltoactuate: connection processing.outaction -> actuate.inp;
+		effectprop: connection actuate.effect -> effect;
 	@EM{
-		filter2: actuate.actt2.effect in ServiceOmission ->  effect(ServiceOmission);
+		effect2: actuate.actt2.effect in ServiceOmission ->  effect(ServiceOmission);
 	};
 	end;
 	
@@ -127,7 +135,7 @@ package PortConnectionExample is
 	system hardwareplatform.impl is
 	cpu: processor x86;
 	mybus: bus canbus;
-	busconn: connection cpu.canbusaccess <-> mybus;
+//	busconn: connection cpu.canbusaccess <-> mybus;
 //	extbusaccess: connection canbusaccess <-> mybus;
 	end;
 	

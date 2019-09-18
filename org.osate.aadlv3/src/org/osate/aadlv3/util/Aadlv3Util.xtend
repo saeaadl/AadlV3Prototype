@@ -418,7 +418,7 @@ class Aadlv3Util {
 	static def Iterable<AnnexSubclause> getAllSubclauses(Iterable<TypeReference> trs) {
 		// features from classifier
 		val cls = trs.allClassifiers
-		return cls.filter[ccl|ccl instanceof ComponentInterface].map[cif|cif.eContents.typeSelect(AnnexSubclause)].flatten
+		return cls.map[cif|cif.eContents.typeSelect(AnnexSubclause)].flatten
 	}
 
 
