@@ -15,6 +15,8 @@
  */
 package org.osate.av3instance.av3instance.impl;
 
+import static org.osate.aadlv3.util.AIv3API.getInstanceObjectPath;
+
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -613,15 +615,8 @@ public class AssociationInstanceImpl extends InstanceObjectImpl implements Assoc
 		if (eIsProxy())
 			return super.toString();
 
-		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (associationType: "); //$NON-NLS-1$
-		result.append(associationType);
-		result.append(", external: "); //$NON-NLS-1$
-		result.append(external);
-		result.append(", bidirectional: "); //$NON-NLS-1$
-		result.append(bidirectional);
-		result.append(')');
-		return result.toString();
+		String result = getAssociationType().toString() + " " + getInstanceObjectPath(this);
+		return result;
 	}
 
 } //AssociationInstanceImpl

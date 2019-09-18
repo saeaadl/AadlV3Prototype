@@ -163,11 +163,16 @@ class Instantiator {
 			}
 		}
 		// now we handle Generators and Behavior Rules in annexes
-		for (subclause: ci.getAllSubclauses){
+		val subcls = ci.getAllSubclauses
+		for (subclause: subcls){
 			if (subclause instanceof BehaviorSpecification){
 				for (gen : subclause.generators){
 					gen.instantiateGenerator(ci)
 				}
+			}
+		}
+		for (subclause: subcls){
+			if (subclause instanceof BehaviorSpecification){
 				for (br: subclause.rules){
 					br.instantiateBehaviorRule(ci)
 				}
@@ -292,7 +297,7 @@ class Instantiator {
 	}
 	
 	def void expandSourceFeatureDelegates(AssociationInstance conni, Collection<AssociationInstance> result){
-		val srccxt = conni.source.containingComponentInstance
+		val srccxt = conni.source.connectionEndComponentInstance
 		val srcconftrs = srccxt.configuredTypeReferences
 		if (srcconftrs === null) return
 		// TODO handle expansion in nested declarations
@@ -330,7 +335,7 @@ class Instantiator {
 	}
 	
 	def void expandDestinationFeatureDelegates(AssociationInstance conni, Collection<AssociationInstance> result){
-		val dstcxt = conni.destination.containingComponentInstance
+		val dstcxt = conni.destination.connectionEndComponentInstance
 		val dstconftrs = dstcxt.configuredTypeReferences
 		if (dstconftrs === null) return
 		val dstmappings = dstcxt.allAssociations.filter[conn| conn.isDestinationFeatureDelegation(conni)]
@@ -411,7 +416,7 @@ class Instantiator {
  						if (fsi !== null){
  							psi.elements += fsi
  						} else {
- 							psi.elements += (previousflowelementinstance as AssociationInstance).destination.containingComponentInstance
+ 							psi.elements += (previousflowelementinstance as AssociationInstance).destination.connectionEndComponentInstance
  						}
  					}
 					psi.elements += conni
@@ -590,7 +595,7 @@ class Instantiator {
 	}
 	
 	def static PropertyAssociation findDefaultPropertyValue(InstanceObject io, PropertyDefinition pd){
-		var ci = io.containingComponentInstance
+		var ci = io.connectionEndComponentInstance
 		while (ci !== null) {
 			for (pa : ci.configuredTypeReferences.allPropertyAssociations) {
 				if (pa.propertyAssociationType === PropertyAssociationType.DEFAULT_VALUE &&
@@ -607,7 +612,7 @@ class Instantiator {
 	// Behavior Rules
 	def void instantiateBehaviorRule(BehaviorRule br, ComponentInstance context){
 		val bri = br.createBehaviorRuleInstance
-		val behaviorCondition = br.condition.copy
+		var behaviorCondition = br.condition.copy
 		// now replace ConditionElements by respective instances
 		val cos = EcoreUtil2.eAllOfType(behaviorCondition, ConditionOperation);
 		for (co: cos){
@@ -619,6 +624,9 @@ class Instantiator {
 			if (container instanceof ECollection){
 				container.elements.remove(co)
 				container.elements.add(cio)
+			} else if (container === null){
+				// single condition element as condition
+				behaviorCondition = cio
 			}
 		}
 		// do the same for Generator references
@@ -629,6 +637,9 @@ class Instantiator {
 			if (container instanceof ECollection){
 				container.elements.remove(mer)
 				container.elements.add(cio)
+			} else if (container === null){
+				// single condition element as condition
+				behaviorCondition = cio
 			}
 		}
 		bri.condition = behaviorCondition
@@ -644,9 +655,12 @@ class Instantiator {
 		context.behaviorRules += bri
 	}
 
-	// Behavior Rules
+	// Generator
 	def void instantiateGenerator(Generator g, ComponentInstance context){
 		val gi = g.createGeneratorInstance
+			if (g.value !== null){
+				gi.value = g.value.copy
+			}
 		context.generators += gi
 	}
 

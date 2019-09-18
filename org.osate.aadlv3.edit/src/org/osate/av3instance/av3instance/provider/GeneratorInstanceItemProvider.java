@@ -84,13 +84,13 @@ public class GeneratorInstanceItemProvider extends InstanceObjectItemProvider {
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(Av3instancePackage.Literals.GENERATOR_INSTANCE__VALUE);
+//			childrenFeatures.add(Av3instancePackage.Literals.GENERATOR_INSTANCE__VALUE);
 		}
 		return childrenFeatures;
 	}
@@ -133,13 +133,17 @@ public class GeneratorInstanceItemProvider extends InstanceObjectItemProvider {
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((GeneratorInstance) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_GeneratorInstance_type") : //$NON-NLS-1$
-				getString("_UI_GeneratorInstance_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		String label = "Generator "+((GeneratorInstance) object).getName();
+		String type = "Generator";
+		if (((GeneratorInstance) object).getValue() != null) {
+			type = ((GeneratorInstance) object).getValue().toString();
+		}
+		return type == null || label.length() == 0 ?  label : //$NON-NLS-1$
+				label +":"+ type; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**

@@ -15,6 +15,8 @@
  */
 package org.osate.av3instance.av3instance.impl;
 
+import static org.osate.aadlv3.util.AIv3API.getInstanceObjectPath;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -259,6 +261,20 @@ public class GeneratorInstanceImpl extends InstanceObjectImpl implements Generat
 			return value != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy())
+			return super.toString();
+
+		String result = "Generator " + getInstanceObjectPath(this);
+		return result;
 	}
 
 } //GeneratorInstanceImpl

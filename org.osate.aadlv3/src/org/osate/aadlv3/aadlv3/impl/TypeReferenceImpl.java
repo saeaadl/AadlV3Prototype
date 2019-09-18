@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.ConfigurationActual;
 import org.osate.aadlv3.aadlv3.NamedType;
+import org.osate.aadlv3.aadlv3.PackageElementReference;
 import org.osate.aadlv3.aadlv3.TypeReference;
 
 /**
@@ -304,13 +305,24 @@ public class TypeReferenceImpl extends TypeImpl implements TypeReference {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		TypeReferenceImpl other = (TypeReferenceImpl) obj;
-		if (type == null) {
-			if (other.type != null)
+		if (obj instanceof TypeReference) {
+			TypeReferenceImpl other = (TypeReferenceImpl) obj;
+			if (type == null) {
+				if (other.type != null)
+					return false;
+			} else if (this.getType() != other.getType())
 				return false;
-		} else if (this.getType() != other.getType())
-			return false;
-		return true;
+			return true;
+		} else if (obj instanceof PackageElementReference) {
+			PackageElementReferenceImpl other = (PackageElementReferenceImpl) obj;
+			if (type == null) {
+				if (other.element != null)
+					return false;
+			} else if (this.getType() != other.getElement())
+				return false;
+			return true;
+		}
+		return false;
 	}
 
 } //TypeReferenceImpl

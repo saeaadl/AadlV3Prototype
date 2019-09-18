@@ -85,13 +85,13 @@ public class ConstrainedInstanceObjectItemProvider extends InstanceObjectItemPro
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(Av3instancePackage.Literals.CONSTRAINED_INSTANCE_OBJECT__CONSTRAINT);
+//			childrenFeatures.add(Av3instancePackage.Literals.CONSTRAINED_INSTANCE_OBJECT__CONSTRAINT);
 		}
 		return childrenFeatures;
 	}

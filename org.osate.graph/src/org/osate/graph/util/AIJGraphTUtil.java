@@ -1,9 +1,6 @@
 package org.osate.graph.util;
 
 import static org.osate.aadlv3.util.AIv3API.*;
-import static org.osate.aadlv3.util.AIv3API.getAllComponents;
-import static org.osate.aadlv3.util.AIv3API.getAllConnections;
-import static org.osate.aadlv3.util.AIv3API.isLeafComponent;
 
 import java.util.List;
 
@@ -15,7 +12,9 @@ import org.jgrapht.graph.DefaultDirectedGraph;
 import org.jgrapht.graph.DefaultEdge;
 import org.jgrapht.graph.SimpleDirectedGraph;
 import org.osate.av3instance.av3instance.AssociationInstance;
+import org.osate.av3instance.av3instance.BehaviorRuleInstance;
 import org.osate.av3instance.av3instance.ComponentInstance;
+import org.osate.av3instance.av3instance.ConstrainedInstanceObject;
 import org.osate.av3instance.av3instance.FeatureInstance;
 import org.osate.av3instance.av3instance.InstanceObject;
 import org.osate.graph.TokenTrace.Token;
@@ -40,8 +39,8 @@ public class AIJGraphTUtil {
 		List<AssociationInstance> connis = getAllConnections(root);
 		for (AssociationInstance conni : connis) {
 			if (isConnection(conni)) {
-				ComponentInstance src = containingComponentInstance(conni.getSource());
-				ComponentInstance dst = containingComponentInstance(conni.getDestination());
+				ComponentInstance src = connectionEndComponentInstance(conni.getSource());
+				ComponentInstance dst = connectionEndComponentInstance(conni.getDestination());
 				directedGraph.addVertex(dst);
 				directedGraph.addVertex(src);
 				directedGraph.addEdge(src, dst, conni);
@@ -93,6 +92,37 @@ public class AIJGraphTUtil {
 						directedGraph.addVertex(dst);
 					}
 					directedGraph.addEdge(src != null ? src : ci, dst != null ? dst : ci);
+				}
+			}
+		}
+		return directedGraph;
+	}
+
+	public static Graph<InstanceObject, DefaultEdge> generateBehaviorPropagationPaths(ComponentInstance root, String subclauseName) {
+		Graph<InstanceObject, DefaultEdge> directedGraph = new DefaultDirectedGraph<InstanceObject, DefaultEdge>(
+				DefaultEdge.class);
+		List<AssociationInstance> connis = getAllConnections(root);
+		for (AssociationInstance conni : connis) {
+			String s = conni.toString();
+			InstanceObject src = conni.getSource();
+			InstanceObject dst = conni.getDestination();
+			ComponentInstance dstComp = connectionEndComponentInstance(dst);
+			Iterable<ConstrainedInstanceObject> sources = findConnectionSourceCIOs(src, subclauseName);
+			for (ConstrainedInstanceObject srccio : sources) {
+				// create edges between actions of connection source and condition elements of connection destination
+				Iterable<ConstrainedInstanceObject> dests = findConnectionDestinationCIOs(dstComp, srccio, subclauseName);
+				for (ConstrainedInstanceObject dstcio : dests) {
+					directedGraph.addVertex(dstcio);
+					directedGraph.addVertex(srccio);
+					directedGraph.addEdge(srccio, dstcio);
+				}
+				// create edges between condition element and actions
+				BehaviorRuleInstance bri = containingBehaviorRuleInstance(srccio);
+				Iterable<ConstrainedInstanceObject> condcios = getAllConstrainedInstanceObjects(bri.getCondition());
+				for (ConstrainedInstanceObject ce : condcios) {
+					directedGraph.addVertex(srccio);
+					directedGraph.addVertex(ce);
+					directedGraph.addEdge(ce, srccio);
 				}
 			}
 		}

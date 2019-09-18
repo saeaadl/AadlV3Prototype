@@ -19,23 +19,33 @@ package PortConnectionExample is
 	end;
 	
 	abstract sensor.i  is
-		sub1: thread sense;
-		upmap: connection sub1.p1 -> outp;
-		reading => flow upmap -> sub1.reading;
+		senset1: thread sense;
+		upmap: connection senset1.p1 -> outp;
+		reading => flow upmap -> senset1.reading;
 	end;
 	abstract actuator.i  is
-		sub2: thread actuate;
-		downmap: connection inp -> sub2.p1;
-		action=> flow sub2.taction;
+		actt2: thread actuate;
+		downmap: connection inp -> actt2.p1;
+		action=> flow actt2.taction;
 	end;
+	
 	thread interface sense  is
 		p1: out port ;
 		reading: flow  source p1;
 		#TokenSource => (t1);
+	@EM{
+		e1: error event ServiceOmission ;
+		sense2:  e1 in ServiceOmission ->  p1(ServiceOmission);
+	};
 	end;
+	
 	thread interface actuate  is
 		p1: in port ;
+		effect: out feature ;
 		taction: flow  sink p1;
+	@EM{
+		actuate2:  p1 in ServiceOmission ->  effect(ServiceOmission);
+	};
 	end;
 	
 	thread interface filter is
@@ -43,6 +53,9 @@ package PortConnectionExample is
 	outsignal : out port;
 	filterpath: flow insignal -> outsignal;
 	#Period => 20 ;
+	@EM{
+		filter2: insignal in ServiceOmission ->  outsignal(ServiceOmission);
+	};
 	end;
 	
 	thread interface compute is
@@ -56,7 +69,7 @@ package PortConnectionExample is
 //		use states threestate;
 //		e1: error event;
 //		r1: s0 -[e1 ]-> s1 {outsignal(ServiceOmission)};
-		r2: any(insignal in ServiceOmission, insignal in ServiceOmission) ->  outsignal(ServiceOmission);
+		r2: insignal in ServiceOmission ->  outsignal(ServiceOmission);
 //		r3: insignal in ServiceOmission-> ;
 	};
 	end;
@@ -77,14 +90,16 @@ package PortConnectionExample is
 	process controlProcess.impl is
 		dofilter: thread filter;
 		docompute: thread compute;
-		dolog: thread logger;
+//		dolog: thread logger;
 		extin: connection insignal -> dofilter.insignal;
-		login: connection insignal -> dolog.insignal;
+//		login: connection insignal -> dolog.insignal;
 		ftoc: connection dofilter.outsignal -> docompute.insignal;
 		extout: connection docompute.outsignal -> outaction ;
 	end;
 	
-	system interface conntop is end;
+	system interface conntop is 
+		effect : out feature;
+	end;
 	
 	system conntop.i is
 		sense: abstract sensor.i;
@@ -93,6 +108,9 @@ package PortConnectionExample is
 		hw : system hardwareplatform.impl;
 		sensetocontrol: connection sense.outp -> processing.insignal;
 		controltoactuate: connection processing.outaction -> actuate.inp;
+	@EM{
+		filter2: actuate.actt2.effect in ServiceOmission ->  effect(ServiceOmission);
+	};
 	end;
 	
 	bus interface canbus 

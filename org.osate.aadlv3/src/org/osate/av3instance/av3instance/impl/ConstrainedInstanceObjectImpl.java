@@ -285,5 +285,13 @@ public class ConstrainedInstanceObjectImpl extends InstanceObjectImpl implements
 			return false;
 		return true;
 	}
+	
+	@Override
+	public String getName() {
+		if (this.instanceObject != null) {
+			return this.instanceObject.getName();
+		}
+		return "";
+	}
 
 } //ConstrainedInstanceObjectImpl

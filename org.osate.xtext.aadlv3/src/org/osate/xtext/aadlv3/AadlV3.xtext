@@ -376,7 +376,7 @@ FeatureInput returns av3::ConditionOperation:
 // expression/constraint language
 
 Literal returns av3::Literal:
-	IntegerLiteral | RealLiteral | StringLiteral | BooleanLiteral | PropertyReference | PackageElementReference | DirectionalLiteral | ListLiteral | MultiLiteralOperation
+	IntegerLiteral | RealLiteral | StringLiteral | BooleanLiteral | PropertyReference | TypeReference | DirectionalLiteral | ListLiteral | MultiLiteralOperation
 	| ContainsToken | EnumerationLiteral  | ModelElementReference //| FeatureInput
 ;
 

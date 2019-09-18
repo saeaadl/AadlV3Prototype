@@ -6044,11 +6044,11 @@ ruleLiteral returns [EObject current=null]
 			/* */
 		}
 		{
-			newCompositeNode(grammarAccess.getLiteralAccess().getPackageElementReferenceParserRuleCall_5());
+			newCompositeNode(grammarAccess.getLiteralAccess().getTypeReferenceParserRuleCall_5());
 		}
-		this_PackageElementReference_5=rulePackageElementReference
+		this_TypeReference_5=ruleTypeReference
 		{
-			$current = $this_PackageElementReference_5.current;
+			$current = $this_TypeReference_5.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
@@ -6123,42 +6123,6 @@ ruleLiteral returns [EObject current=null]
 			$current = $this_ModelElementReference_11.current;
 			afterParserOrEnumRuleCall();
 		}
-	)
-;
-
-// Entry rule entryRulePackageElementReference
-entryRulePackageElementReference returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getPackageElementReferenceRule()); }
-	iv_rulePackageElementReference=rulePackageElementReference
-	{ $current=$iv_rulePackageElementReference.current; }
-	EOF;
-
-// Rule PackageElementReference
-rulePackageElementReference returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		(
-			{
-				/* */
-			}
-			{
-				if ($current==null) {
-					$current = createModelElement(grammarAccess.getPackageElementReferenceRule());
-				}
-			}
-			{
-				newCompositeNode(grammarAccess.getPackageElementReferenceAccess().getElementPackageElementCrossReference_0());
-			}
-			ruleQualifiedName
-			{
-				afterParserOrEnumRuleCall();
-			}
-		)
 	)
 ;
 

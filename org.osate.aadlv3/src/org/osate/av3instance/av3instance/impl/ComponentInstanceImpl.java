@@ -531,7 +531,7 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 		if (eIsProxy())
 			return super.toString();
 
-		String result = category.toString() + " " + getInstanceObjectPath(this);
+		String result = getCategory().toString() + " " + getInstanceObjectPath(this);
 		return result;
 	}
 

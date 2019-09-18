@@ -1538,6 +1538,12 @@ class Aadlv3Util {
 		return false
 	}
 	
+	def static boolean contains(Literal collection, Literal element){
+		if (collection instanceof ECollection){
+			return collection.contains(element)
+		}
+		return collection.sameAs(element)
+	}
 	
 	/**
 	 * subcollection is contained in collection

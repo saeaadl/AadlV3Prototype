@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.PackageElement;
 import org.osate.aadlv3.aadlv3.PackageElementReference;
+import org.osate.aadlv3.aadlv3.TypeReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -179,18 +180,29 @@ public class PackageElementReferenceImpl extends NamedElementImpl implements Pac
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		PackageElementReferenceImpl other = (PackageElementReferenceImpl) obj;
-		if (element == null) {
-			if (other.element != null)
+		if (obj instanceof PackageElementReference) {
+			PackageElementReferenceImpl other = (PackageElementReferenceImpl) obj;
+			if (element == null) {
+				if (other.element != null)
+					return false;
+			} else if (this.getElement() != other.getElement())
 				return false;
-		} else if (!element.equals(other.element))
-			return false;
-		return true;
+			return true;
+		} else if (obj instanceof TypeReference) {
+			TypeReferenceImpl other = (TypeReferenceImpl) obj;
+			if (element == null) {
+				if (other.type != null)
+					return false;
+			} else if (this.getElement() != other.getType())
+				return false;
+			return true;
+		}
+		return false;
 	}
 
 	@Override
 	public String toString() {
-		return element != null ? element.getName() : "";
+		return element != null ? getElement().getName() : "";
 	}
 
 } //PackageElementReferenceImpl

@@ -1686,31 +1686,6 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-// Entry rule entryRulePackageElementReference
-entryRulePackageElementReference
-:
-{ before(grammarAccess.getPackageElementReferenceRule()); }
-	 rulePackageElementReference
-{ after(grammarAccess.getPackageElementReferenceRule()); } 
-	 EOF 
-;
-
-// Rule PackageElementReference
-rulePackageElementReference 
-	@init {
-		int stackSize = keepStackSize();
-	}
-	:
-	(
-		{ before(grammarAccess.getPackageElementReferenceAccess().getElementAssignment()); }
-		(rule__PackageElementReference__ElementAssignment)
-		{ after(grammarAccess.getPackageElementReferenceAccess().getElementAssignment()); }
-	)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
 // Entry rule entryRulePropertyReference
 entryRulePropertyReference
 :
@@ -3680,9 +3655,9 @@ rule__Literal__Alternatives
 	)
 	|
 	(
-		{ before(grammarAccess.getLiteralAccess().getPackageElementReferenceParserRuleCall_5()); }
-		rulePackageElementReference
-		{ after(grammarAccess.getLiteralAccess().getPackageElementReferenceParserRuleCall_5()); }
+		{ before(grammarAccess.getLiteralAccess().getTypeReferenceParserRuleCall_5()); }
+		ruleTypeReference
+		{ after(grammarAccess.getLiteralAccess().getTypeReferenceParserRuleCall_5()); }
 	)
 	|
 	(
@@ -18572,25 +18547,6 @@ rule__ContainsToken__RightAssignment_2
 		{ before(grammarAccess.getContainsTokenAccess().getRightLiteralParserRuleCall_2_0()); }
 		ruleLiteral
 		{ after(grammarAccess.getContainsTokenAccess().getRightLiteralParserRuleCall_2_0()); }
-	)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__PackageElementReference__ElementAssignment
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-	(
-		{ before(grammarAccess.getPackageElementReferenceAccess().getElementPackageElementCrossReference_0()); }
-		(
-			{ before(grammarAccess.getPackageElementReferenceAccess().getElementPackageElementQualifiedNameParserRuleCall_0_1()); }
-			ruleQualifiedName
-			{ after(grammarAccess.getPackageElementReferenceAccess().getElementPackageElementQualifiedNameParserRuleCall_0_1()); }
-		)
-		{ after(grammarAccess.getPackageElementReferenceAccess().getElementPackageElementCrossReference_0()); }
 	)
 ;
 finally {

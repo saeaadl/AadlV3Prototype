@@ -354,7 +354,7 @@ public class FeatureInstanceImpl extends InstanceObjectImpl implements FeatureIn
 		if (eIsProxy())
 			return super.toString();
 
-		String result = category.toString() + " " + getInstanceObjectPath(this);
+		String result = getCategory().toString() + " " + getInstanceObjectPath(this);
 		return result;
 	}
 

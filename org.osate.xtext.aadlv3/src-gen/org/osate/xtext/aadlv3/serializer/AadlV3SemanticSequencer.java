@@ -213,11 +213,8 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 					sequence_PackageElementReference(context, (PackageElementReference) semanticObject); 
 					return; 
 				}
-				else if (rule == grammarAccess.getLiteralRule()) {
-					sequence_PackageElementReference_PropertyReference(context, (PackageElementReference) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getPropertyReferenceRule()) {
+				else if (rule == grammarAccess.getLiteralRule()
+						|| rule == grammarAccess.getPropertyReferenceRule()) {
 					sequence_PropertyReference(context, (PackageElementReference) semanticObject); 
 					return; 
 				}
@@ -284,7 +281,8 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 					return; 
 				}
 				else if (rule == grammarAccess.getTypeReferenceRule()
-						|| rule == grammarAccess.getTypeRule()) {
+						|| rule == grammarAccess.getTypeRule()
+						|| rule == grammarAccess.getLiteralRule()) {
 					sequence_TypeReference(context, (TypeReference) semanticObject); 
 					return; 
 				}
@@ -1034,18 +1032,6 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
-	 *     Literal returns PackageElementReference
-	 *
-	 * Constraint:
-	 *     (element=[PackageElement|QualifiedName] | element=[PackageElement|QualifiedName])
-	 */
-	protected void sequence_PackageElementReference_PropertyReference(ISerializationContext context, PackageElementReference semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
 	 *     PathElement returns PathElement
 	 *     PathElement.PathElement_1_0_0 returns PathElement
 	 *
@@ -1139,6 +1125,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
+	 *     Literal returns PackageElementReference
 	 *     PropertyReference returns PackageElementReference
 	 *
 	 * Constraint:
@@ -1228,6 +1215,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 * Contexts:
 	 *     TypeReference returns TypeReference
 	 *     Type returns TypeReference
+	 *     Literal returns TypeReference
 	 *
 	 * Constraint:
 	 *     type=[NamedType|QualifiedName]

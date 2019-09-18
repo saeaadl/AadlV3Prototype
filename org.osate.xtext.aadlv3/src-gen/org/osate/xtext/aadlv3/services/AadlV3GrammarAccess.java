@@ -3355,7 +3355,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cStringLiteralParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		private final RuleCall cBooleanLiteralParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		private final RuleCall cPropertyReferenceParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
-		private final RuleCall cPackageElementReferenceParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
+		private final RuleCall cTypeReferenceParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
 		private final RuleCall cDirectionalLiteralParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
 		private final RuleCall cListLiteralParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
 		private final RuleCall cMultiLiteralOperationParserRuleCall_8 = (RuleCall)cAlternatives.eContents().get(8);
@@ -3365,14 +3365,14 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		
 		//// expression/constraint language
 		// Literal av3::Literal:
-		//	IntegerLiteral | RealLiteral | StringLiteral | BooleanLiteral | PropertyReference | PackageElementReference |
+		//	IntegerLiteral | RealLiteral | StringLiteral | BooleanLiteral | PropertyReference | TypeReference |
 		//	DirectionalLiteral | ListLiteral | MultiLiteralOperation | ContainsToken | EnumerationLiteral | ModelElementReference
 		//	//| FeatureInput
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//IntegerLiteral | RealLiteral | StringLiteral | BooleanLiteral | PropertyReference | PackageElementReference |
-		//DirectionalLiteral | ListLiteral | MultiLiteralOperation | ContainsToken | EnumerationLiteral | ModelElementReference
+		//IntegerLiteral | RealLiteral | StringLiteral | BooleanLiteral | PropertyReference | TypeReference | DirectionalLiteral |
+		//ListLiteral | MultiLiteralOperation | ContainsToken | EnumerationLiteral | ModelElementReference
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//IntegerLiteral
@@ -3390,8 +3390,8 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		//PropertyReference
 		public RuleCall getPropertyReferenceParserRuleCall_4() { return cPropertyReferenceParserRuleCall_4; }
 		
-		//PackageElementReference
-		public RuleCall getPackageElementReferenceParserRuleCall_5() { return cPackageElementReferenceParserRuleCall_5; }
+		//TypeReference
+		public RuleCall getTypeReferenceParserRuleCall_5() { return cTypeReferenceParserRuleCall_5; }
 		
 		//DirectionalLiteral
 		public RuleCall getDirectionalLiteralParserRuleCall_6() { return cDirectionalLiteralParserRuleCall_6; }
@@ -5773,7 +5773,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	
 	//// expression/constraint language
 	// Literal av3::Literal:
-	//	IntegerLiteral | RealLiteral | StringLiteral | BooleanLiteral | PropertyReference | PackageElementReference |
+	//	IntegerLiteral | RealLiteral | StringLiteral | BooleanLiteral | PropertyReference | TypeReference |
 	//	DirectionalLiteral | ListLiteral | MultiLiteralOperation | ContainsToken | EnumerationLiteral | ModelElementReference
 	//	//| FeatureInput
 	//;
