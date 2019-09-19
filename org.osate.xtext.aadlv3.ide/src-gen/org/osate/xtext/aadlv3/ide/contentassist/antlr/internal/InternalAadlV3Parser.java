@@ -39536,26 +39536,26 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ProductLineConstraint__Group__1__Impl"
-    // InternalAadlV3.g:11936:1: rule__ProductLineConstraint__Group__1__Impl : ( ( rule__ProductLineConstraint__LeftAssignment_1 ) ) ;
+    // InternalAadlV3.g:11936:1: rule__ProductLineConstraint__Group__1__Impl : ( ( rule__ProductLineConstraint__ElementAssignment_1 ) ) ;
     public final void rule__ProductLineConstraint__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAadlV3.g:11940:1: ( ( ( rule__ProductLineConstraint__LeftAssignment_1 ) ) )
-            // InternalAadlV3.g:11941:1: ( ( rule__ProductLineConstraint__LeftAssignment_1 ) )
+            // InternalAadlV3.g:11940:1: ( ( ( rule__ProductLineConstraint__ElementAssignment_1 ) ) )
+            // InternalAadlV3.g:11941:1: ( ( rule__ProductLineConstraint__ElementAssignment_1 ) )
             {
-            // InternalAadlV3.g:11941:1: ( ( rule__ProductLineConstraint__LeftAssignment_1 ) )
-            // InternalAadlV3.g:11942:2: ( rule__ProductLineConstraint__LeftAssignment_1 )
+            // InternalAadlV3.g:11941:1: ( ( rule__ProductLineConstraint__ElementAssignment_1 ) )
+            // InternalAadlV3.g:11942:2: ( rule__ProductLineConstraint__ElementAssignment_1 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getProductLineConstraintAccess().getLeftAssignment_1()); 
+               before(grammarAccess.getProductLineConstraintAccess().getElementAssignment_1()); 
             }
-            // InternalAadlV3.g:11943:2: ( rule__ProductLineConstraint__LeftAssignment_1 )
-            // InternalAadlV3.g:11943:3: rule__ProductLineConstraint__LeftAssignment_1
+            // InternalAadlV3.g:11943:2: ( rule__ProductLineConstraint__ElementAssignment_1 )
+            // InternalAadlV3.g:11943:3: rule__ProductLineConstraint__ElementAssignment_1
             {
             pushFollow(FOLLOW_2);
-            rule__ProductLineConstraint__LeftAssignment_1();
+            rule__ProductLineConstraint__ElementAssignment_1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -39563,7 +39563,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getProductLineConstraintAccess().getLeftAssignment_1()); 
+               after(grammarAccess.getProductLineConstraintAccess().getElementAssignment_1()); 
             }
 
             }
@@ -39709,26 +39709,26 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ProductLineConstraint__Group__3__Impl"
-    // InternalAadlV3.g:11989:1: rule__ProductLineConstraint__Group__3__Impl : ( ( rule__ProductLineConstraint__RightAssignment_3 ) ) ;
+    // InternalAadlV3.g:11989:1: rule__ProductLineConstraint__Group__3__Impl : ( ( rule__ProductLineConstraint__ConstraintAssignment_3 ) ) ;
     public final void rule__ProductLineConstraint__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAadlV3.g:11993:1: ( ( ( rule__ProductLineConstraint__RightAssignment_3 ) ) )
-            // InternalAadlV3.g:11994:1: ( ( rule__ProductLineConstraint__RightAssignment_3 ) )
+            // InternalAadlV3.g:11993:1: ( ( ( rule__ProductLineConstraint__ConstraintAssignment_3 ) ) )
+            // InternalAadlV3.g:11994:1: ( ( rule__ProductLineConstraint__ConstraintAssignment_3 ) )
             {
-            // InternalAadlV3.g:11994:1: ( ( rule__ProductLineConstraint__RightAssignment_3 ) )
-            // InternalAadlV3.g:11995:2: ( rule__ProductLineConstraint__RightAssignment_3 )
+            // InternalAadlV3.g:11994:1: ( ( rule__ProductLineConstraint__ConstraintAssignment_3 ) )
+            // InternalAadlV3.g:11995:2: ( rule__ProductLineConstraint__ConstraintAssignment_3 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getProductLineConstraintAccess().getRightAssignment_3()); 
+               before(grammarAccess.getProductLineConstraintAccess().getConstraintAssignment_3()); 
             }
-            // InternalAadlV3.g:11996:2: ( rule__ProductLineConstraint__RightAssignment_3 )
-            // InternalAadlV3.g:11996:3: rule__ProductLineConstraint__RightAssignment_3
+            // InternalAadlV3.g:11996:2: ( rule__ProductLineConstraint__ConstraintAssignment_3 )
+            // InternalAadlV3.g:11996:3: rule__ProductLineConstraint__ConstraintAssignment_3
             {
             pushFollow(FOLLOW_2);
-            rule__ProductLineConstraint__RightAssignment_3();
+            rule__ProductLineConstraint__ConstraintAssignment_3();
 
             state._fsp--;
             if (state.failed) return ;
@@ -39736,7 +39736,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getProductLineConstraintAccess().getRightAssignment_3()); 
+               after(grammarAccess.getProductLineConstraintAccess().getConstraintAssignment_3()); 
             }
 
             }
@@ -42475,26 +42475,26 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__StateTransitionRule__Group__0__Impl"
-    // InternalAadlV3.g:12881:1: rule__StateTransitionRule__Group__0__Impl : ( ( rule__StateTransitionRule__GuardAssignment_0 ) ) ;
+    // InternalAadlV3.g:12881:1: rule__StateTransitionRule__Group__0__Impl : ( ( rule__StateTransitionRule__CurrentStateAssignment_0 ) ) ;
     public final void rule__StateTransitionRule__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAadlV3.g:12885:1: ( ( ( rule__StateTransitionRule__GuardAssignment_0 ) ) )
-            // InternalAadlV3.g:12886:1: ( ( rule__StateTransitionRule__GuardAssignment_0 ) )
+            // InternalAadlV3.g:12885:1: ( ( ( rule__StateTransitionRule__CurrentStateAssignment_0 ) ) )
+            // InternalAadlV3.g:12886:1: ( ( rule__StateTransitionRule__CurrentStateAssignment_0 ) )
             {
-            // InternalAadlV3.g:12886:1: ( ( rule__StateTransitionRule__GuardAssignment_0 ) )
-            // InternalAadlV3.g:12887:2: ( rule__StateTransitionRule__GuardAssignment_0 )
+            // InternalAadlV3.g:12886:1: ( ( rule__StateTransitionRule__CurrentStateAssignment_0 ) )
+            // InternalAadlV3.g:12887:2: ( rule__StateTransitionRule__CurrentStateAssignment_0 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getStateTransitionRuleAccess().getGuardAssignment_0()); 
+               before(grammarAccess.getStateTransitionRuleAccess().getCurrentStateAssignment_0()); 
             }
-            // InternalAadlV3.g:12888:2: ( rule__StateTransitionRule__GuardAssignment_0 )
-            // InternalAadlV3.g:12888:3: rule__StateTransitionRule__GuardAssignment_0
+            // InternalAadlV3.g:12888:2: ( rule__StateTransitionRule__CurrentStateAssignment_0 )
+            // InternalAadlV3.g:12888:3: rule__StateTransitionRule__CurrentStateAssignment_0
             {
             pushFollow(FOLLOW_2);
-            rule__StateTransitionRule__GuardAssignment_0();
+            rule__StateTransitionRule__CurrentStateAssignment_0();
 
             state._fsp--;
             if (state.failed) return ;
@@ -42502,7 +42502,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getStateTransitionRuleAccess().getGuardAssignment_0()); 
+               after(grammarAccess.getStateTransitionRuleAccess().getCurrentStateAssignment_0()); 
             }
 
             }
@@ -43694,26 +43694,26 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ContainsToken__Group__0__Impl"
-    // InternalAadlV3.g:13259:1: rule__ContainsToken__Group__0__Impl : ( ( rule__ContainsToken__LeftAssignment_0 ) ) ;
+    // InternalAadlV3.g:13259:1: rule__ContainsToken__Group__0__Impl : ( ( rule__ContainsToken__ElementAssignment_0 ) ) ;
     public final void rule__ContainsToken__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAadlV3.g:13263:1: ( ( ( rule__ContainsToken__LeftAssignment_0 ) ) )
-            // InternalAadlV3.g:13264:1: ( ( rule__ContainsToken__LeftAssignment_0 ) )
+            // InternalAadlV3.g:13263:1: ( ( ( rule__ContainsToken__ElementAssignment_0 ) ) )
+            // InternalAadlV3.g:13264:1: ( ( rule__ContainsToken__ElementAssignment_0 ) )
             {
-            // InternalAadlV3.g:13264:1: ( ( rule__ContainsToken__LeftAssignment_0 ) )
-            // InternalAadlV3.g:13265:2: ( rule__ContainsToken__LeftAssignment_0 )
+            // InternalAadlV3.g:13264:1: ( ( rule__ContainsToken__ElementAssignment_0 ) )
+            // InternalAadlV3.g:13265:2: ( rule__ContainsToken__ElementAssignment_0 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getContainsTokenAccess().getLeftAssignment_0()); 
+               before(grammarAccess.getContainsTokenAccess().getElementAssignment_0()); 
             }
-            // InternalAadlV3.g:13266:2: ( rule__ContainsToken__LeftAssignment_0 )
-            // InternalAadlV3.g:13266:3: rule__ContainsToken__LeftAssignment_0
+            // InternalAadlV3.g:13266:2: ( rule__ContainsToken__ElementAssignment_0 )
+            // InternalAadlV3.g:13266:3: rule__ContainsToken__ElementAssignment_0
             {
             pushFollow(FOLLOW_2);
-            rule__ContainsToken__LeftAssignment_0();
+            rule__ContainsToken__ElementAssignment_0();
 
             state._fsp--;
             if (state.failed) return ;
@@ -43721,7 +43721,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getContainsTokenAccess().getLeftAssignment_0()); 
+               after(grammarAccess.getContainsTokenAccess().getElementAssignment_0()); 
             }
 
             }
@@ -43867,26 +43867,26 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ContainsToken__Group__2__Impl"
-    // InternalAadlV3.g:13312:1: rule__ContainsToken__Group__2__Impl : ( ( rule__ContainsToken__RightAssignment_2 ) ) ;
+    // InternalAadlV3.g:13312:1: rule__ContainsToken__Group__2__Impl : ( ( rule__ContainsToken__ConstraintAssignment_2 ) ) ;
     public final void rule__ContainsToken__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAadlV3.g:13316:1: ( ( ( rule__ContainsToken__RightAssignment_2 ) ) )
-            // InternalAadlV3.g:13317:1: ( ( rule__ContainsToken__RightAssignment_2 ) )
+            // InternalAadlV3.g:13316:1: ( ( ( rule__ContainsToken__ConstraintAssignment_2 ) ) )
+            // InternalAadlV3.g:13317:1: ( ( rule__ContainsToken__ConstraintAssignment_2 ) )
             {
-            // InternalAadlV3.g:13317:1: ( ( rule__ContainsToken__RightAssignment_2 ) )
-            // InternalAadlV3.g:13318:2: ( rule__ContainsToken__RightAssignment_2 )
+            // InternalAadlV3.g:13317:1: ( ( rule__ContainsToken__ConstraintAssignment_2 ) )
+            // InternalAadlV3.g:13318:2: ( rule__ContainsToken__ConstraintAssignment_2 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getContainsTokenAccess().getRightAssignment_2()); 
+               before(grammarAccess.getContainsTokenAccess().getConstraintAssignment_2()); 
             }
-            // InternalAadlV3.g:13319:2: ( rule__ContainsToken__RightAssignment_2 )
-            // InternalAadlV3.g:13319:3: rule__ContainsToken__RightAssignment_2
+            // InternalAadlV3.g:13319:2: ( rule__ContainsToken__ConstraintAssignment_2 )
+            // InternalAadlV3.g:13319:3: rule__ContainsToken__ConstraintAssignment_2
             {
             pushFollow(FOLLOW_2);
-            rule__ContainsToken__RightAssignment_2();
+            rule__ContainsToken__ConstraintAssignment_2();
 
             state._fsp--;
             if (state.failed) return ;
@@ -43894,7 +43894,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getContainsTokenAccess().getRightAssignment_2()); 
+               after(grammarAccess.getContainsTokenAccess().getConstraintAssignment_2()); 
             }
 
             }
@@ -58276,9 +58276,9 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__InstanceConfiguration__ProductlineConstraintAssignment_5"
 
 
-    // $ANTLR start "rule__ProductLineConstraint__LeftAssignment_1"
-    // InternalAadlV3.g:18184:1: rule__ProductLineConstraint__LeftAssignment_1 : ( rulePropertyReference ) ;
-    public final void rule__ProductLineConstraint__LeftAssignment_1() throws RecognitionException {
+    // $ANTLR start "rule__ProductLineConstraint__ElementAssignment_1"
+    // InternalAadlV3.g:18184:1: rule__ProductLineConstraint__ElementAssignment_1 : ( rulePropertyReference ) ;
+    public final void rule__ProductLineConstraint__ElementAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -58290,7 +58290,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             // InternalAadlV3.g:18190:3: rulePropertyReference
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getProductLineConstraintAccess().getLeftPropertyReferenceParserRuleCall_1_0()); 
+               before(grammarAccess.getProductLineConstraintAccess().getElementPropertyReferenceParserRuleCall_1_0()); 
             }
             pushFollow(FOLLOW_2);
             rulePropertyReference();
@@ -58298,7 +58298,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getProductLineConstraintAccess().getLeftPropertyReferenceParserRuleCall_1_0()); 
+               after(grammarAccess.getProductLineConstraintAccess().getElementPropertyReferenceParserRuleCall_1_0()); 
             }
 
             }
@@ -58318,7 +58318,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ProductLineConstraint__LeftAssignment_1"
+    // $ANTLR end "rule__ProductLineConstraint__ElementAssignment_1"
 
 
     // $ANTLR start "rule__ProductLineConstraint__OperatorAssignment_2"
@@ -58366,9 +58366,9 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__ProductLineConstraint__OperatorAssignment_2"
 
 
-    // $ANTLR start "rule__ProductLineConstraint__RightAssignment_3"
-    // InternalAadlV3.g:18214:1: rule__ProductLineConstraint__RightAssignment_3 : ( ruleListLiteral ) ;
-    public final void rule__ProductLineConstraint__RightAssignment_3() throws RecognitionException {
+    // $ANTLR start "rule__ProductLineConstraint__ConstraintAssignment_3"
+    // InternalAadlV3.g:18214:1: rule__ProductLineConstraint__ConstraintAssignment_3 : ( ruleListLiteral ) ;
+    public final void rule__ProductLineConstraint__ConstraintAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -58380,7 +58380,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             // InternalAadlV3.g:18220:3: ruleListLiteral
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getProductLineConstraintAccess().getRightListLiteralParserRuleCall_3_0()); 
+               before(grammarAccess.getProductLineConstraintAccess().getConstraintListLiteralParserRuleCall_3_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleListLiteral();
@@ -58388,7 +58388,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getProductLineConstraintAccess().getRightListLiteralParserRuleCall_3_0()); 
+               after(grammarAccess.getProductLineConstraintAccess().getConstraintListLiteralParserRuleCall_3_0()); 
             }
 
             }
@@ -58408,7 +58408,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ProductLineConstraint__RightAssignment_3"
+    // $ANTLR end "rule__ProductLineConstraint__ConstraintAssignment_3"
 
 
     // $ANTLR start "rule__EMSubclause__NameAssignment_1"
@@ -58977,9 +58977,9 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__CurrentState__CurrentStateAssignment"
 
 
-    // $ANTLR start "rule__StateTransitionRule__GuardAssignment_0"
-    // InternalAadlV3.g:18421:1: rule__StateTransitionRule__GuardAssignment_0 : ( ruleCurrentState ) ;
-    public final void rule__StateTransitionRule__GuardAssignment_0() throws RecognitionException {
+    // $ANTLR start "rule__StateTransitionRule__CurrentStateAssignment_0"
+    // InternalAadlV3.g:18421:1: rule__StateTransitionRule__CurrentStateAssignment_0 : ( ruleCurrentState ) ;
+    public final void rule__StateTransitionRule__CurrentStateAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -58991,7 +58991,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             // InternalAadlV3.g:18427:3: ruleCurrentState
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getStateTransitionRuleAccess().getGuardCurrentStateParserRuleCall_0_0()); 
+               before(grammarAccess.getStateTransitionRuleAccess().getCurrentStateCurrentStateParserRuleCall_0_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleCurrentState();
@@ -58999,7 +58999,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getStateTransitionRuleAccess().getGuardCurrentStateParserRuleCall_0_0()); 
+               after(grammarAccess.getStateTransitionRuleAccess().getCurrentStateCurrentStateParserRuleCall_0_0()); 
             }
 
             }
@@ -59019,7 +59019,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__StateTransitionRule__GuardAssignment_0"
+    // $ANTLR end "rule__StateTransitionRule__CurrentStateAssignment_0"
 
 
     // $ANTLR start "rule__StateTransitionRule__ConditionAssignment_2"
@@ -59259,9 +59259,9 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__StatelessRule__ActionsAssignment_2"
 
 
-    // $ANTLR start "rule__ContainsToken__LeftAssignment_0"
-    // InternalAadlV3.g:18511:1: rule__ContainsToken__LeftAssignment_0 : ( ruleModelElementReference ) ;
-    public final void rule__ContainsToken__LeftAssignment_0() throws RecognitionException {
+    // $ANTLR start "rule__ContainsToken__ElementAssignment_0"
+    // InternalAadlV3.g:18511:1: rule__ContainsToken__ElementAssignment_0 : ( ruleModelElementReference ) ;
+    public final void rule__ContainsToken__ElementAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -59273,7 +59273,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             // InternalAadlV3.g:18517:3: ruleModelElementReference
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getContainsTokenAccess().getLeftModelElementReferenceParserRuleCall_0_0()); 
+               before(grammarAccess.getContainsTokenAccess().getElementModelElementReferenceParserRuleCall_0_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleModelElementReference();
@@ -59281,7 +59281,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getContainsTokenAccess().getLeftModelElementReferenceParserRuleCall_0_0()); 
+               after(grammarAccess.getContainsTokenAccess().getElementModelElementReferenceParserRuleCall_0_0()); 
             }
 
             }
@@ -59301,7 +59301,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ContainsToken__LeftAssignment_0"
+    // $ANTLR end "rule__ContainsToken__ElementAssignment_0"
 
 
     // $ANTLR start "rule__ContainsToken__OperatorAssignment_1"
@@ -59349,9 +59349,9 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__ContainsToken__OperatorAssignment_1"
 
 
-    // $ANTLR start "rule__ContainsToken__RightAssignment_2"
-    // InternalAadlV3.g:18541:1: rule__ContainsToken__RightAssignment_2 : ( ruleLiteral ) ;
-    public final void rule__ContainsToken__RightAssignment_2() throws RecognitionException {
+    // $ANTLR start "rule__ContainsToken__ConstraintAssignment_2"
+    // InternalAadlV3.g:18541:1: rule__ContainsToken__ConstraintAssignment_2 : ( ruleLiteral ) ;
+    public final void rule__ContainsToken__ConstraintAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -59363,7 +59363,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             // InternalAadlV3.g:18547:3: ruleLiteral
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getContainsTokenAccess().getRightLiteralParserRuleCall_2_0()); 
+               before(grammarAccess.getContainsTokenAccess().getConstraintLiteralParserRuleCall_2_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleLiteral();
@@ -59371,7 +59371,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getContainsTokenAccess().getRightLiteralParserRuleCall_2_0()); 
+               after(grammarAccess.getContainsTokenAccess().getConstraintLiteralParserRuleCall_2_0()); 
             }
 
             }
@@ -59391,7 +59391,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ContainsToken__RightAssignment_2"
+    // $ANTLR end "rule__ContainsToken__ConstraintAssignment_2"
 
 
     // $ANTLR start "rule__PropertyReference__ElementAssignment_1"

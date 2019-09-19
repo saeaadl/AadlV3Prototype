@@ -24,9 +24,9 @@ package org.osate.aadlv3.aadlv3;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.osate.aadlv3.aadlv3.ConditionOperation#getLeft <em>Left</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.ConditionOperation#getElement <em>Element</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.ConditionOperation#getOperator <em>Operator</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.ConditionOperation#getRight <em>Right</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.ConditionOperation#getConstraint <em>Constraint</em>}</li>
  * </ul>
  *
  * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getConditionOperation()
@@ -35,26 +35,26 @@ package org.osate.aadlv3.aadlv3;
  */
 public interface ConditionOperation extends Literal {
 	/**
-	 * Returns the value of the '<em><b>Left</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Element</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Left</em>' containment reference.
-	 * @see #setLeft(Literal)
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getConditionOperation_Left()
+	 * @return the value of the '<em>Element</em>' containment reference.
+	 * @see #setElement(Literal)
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getConditionOperation_Element()
 	 * @model containment="true"
 	 * @generated
 	 */
-	Literal getLeft();
+	Literal getElement();
 
 	/**
-	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.ConditionOperation#getLeft <em>Left</em>}' containment reference.
+	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.ConditionOperation#getElement <em>Element</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Left</em>' containment reference.
-	 * @see #getLeft()
+	 * @param value the new value of the '<em>Element</em>' containment reference.
+	 * @see #getElement()
 	 * @generated
 	 */
-	void setLeft(Literal value);
+	void setElement(Literal value);
 
 	/**
 	 * Returns the value of the '<em><b>Operator</b></em>' attribute.
@@ -82,25 +82,25 @@ public interface ConditionOperation extends Literal {
 	void setOperator(COperator value);
 
 	/**
-	 * Returns the value of the '<em><b>Right</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Constraint</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Right</em>' containment reference.
-	 * @see #setRight(Literal)
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getConditionOperation_Right()
+	 * @return the value of the '<em>Constraint</em>' containment reference.
+	 * @see #setConstraint(Literal)
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getConditionOperation_Constraint()
 	 * @model containment="true"
 	 * @generated
 	 */
-	Literal getRight();
+	Literal getConstraint();
 
 	/**
-	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.ConditionOperation#getRight <em>Right</em>}' containment reference.
+	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.ConditionOperation#getConstraint <em>Constraint</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Right</em>' containment reference.
-	 * @see #getRight()
+	 * @param value the new value of the '<em>Constraint</em>' containment reference.
+	 * @see #getConstraint()
 	 * @generated
 	 */
-	void setRight(Literal value);
+	void setConstraint(Literal value);
 
 } // ConditionOperation

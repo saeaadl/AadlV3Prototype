@@ -41,7 +41,7 @@ import org.osate.aadlv3.aadlv3.StateSpecification;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.BehaviorRuleImpl#getGuard <em>Guard</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.BehaviorRuleImpl#getCurrentState <em>Current State</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.BehaviorRuleImpl#getTargetState <em>Target State</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.BehaviorRuleImpl#getCondition <em>Condition</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.BehaviorRuleImpl#getActions <em>Actions</em>}</li>
@@ -51,14 +51,14 @@ import org.osate.aadlv3.aadlv3.StateSpecification;
  */
 public class BehaviorRuleImpl extends ModelElementImpl implements BehaviorRule {
 	/**
-	 * The cached value of the '{@link #getGuard() <em>Guard</em>}' containment reference.
+	 * The cached value of the '{@link #getCurrentState() <em>Current State</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getGuard()
+	 * @see #getCurrentState()
 	 * @generated
 	 * @ordered
 	 */
-	protected StateSpecification guard;
+	protected StateSpecification currentState;
 
 	/**
 	 * The cached value of the '{@link #getTargetState() <em>Target State</em>}' containment reference.
@@ -115,8 +115,8 @@ public class BehaviorRuleImpl extends ModelElementImpl implements BehaviorRule {
 	 * @generated
 	 */
 	@Override
-	public StateSpecification getGuard() {
-		return guard;
+	public StateSpecification getCurrentState() {
+		return currentState;
 	}
 
 	/**
@@ -124,12 +124,12 @@ public class BehaviorRuleImpl extends ModelElementImpl implements BehaviorRule {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetGuard(StateSpecification newGuard, NotificationChain msgs) {
-		StateSpecification oldGuard = guard;
-		guard = newGuard;
+	public NotificationChain basicSetCurrentState(StateSpecification newCurrentState, NotificationChain msgs) {
+		StateSpecification oldCurrentState = currentState;
+		currentState = newCurrentState;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					Aadlv3Package.BEHAVIOR_RULE__GUARD, oldGuard, newGuard);
+					Aadlv3Package.BEHAVIOR_RULE__CURRENT_STATE, oldCurrentState, newCurrentState);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -144,21 +144,21 @@ public class BehaviorRuleImpl extends ModelElementImpl implements BehaviorRule {
 	 * @generated
 	 */
 	@Override
-	public void setGuard(StateSpecification newGuard) {
-		if (newGuard != guard) {
+	public void setCurrentState(StateSpecification newCurrentState) {
+		if (newCurrentState != currentState) {
 			NotificationChain msgs = null;
-			if (guard != null)
-				msgs = ((InternalEObject) guard).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE - Aadlv3Package.BEHAVIOR_RULE__GUARD, null, msgs);
-			if (newGuard != null)
-				msgs = ((InternalEObject) newGuard).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE - Aadlv3Package.BEHAVIOR_RULE__GUARD, null, msgs);
-			msgs = basicSetGuard(newGuard, msgs);
+			if (currentState != null)
+				msgs = ((InternalEObject) currentState).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE - Aadlv3Package.BEHAVIOR_RULE__CURRENT_STATE, null, msgs);
+			if (newCurrentState != null)
+				msgs = ((InternalEObject) newCurrentState).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE - Aadlv3Package.BEHAVIOR_RULE__CURRENT_STATE, null, msgs);
+			msgs = basicSetCurrentState(newCurrentState, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.BEHAVIOR_RULE__GUARD, newGuard,
-					newGuard));
+			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.BEHAVIOR_RULE__CURRENT_STATE,
+					newCurrentState, newCurrentState));
 	}
 
 	/**
@@ -287,8 +287,8 @@ public class BehaviorRuleImpl extends ModelElementImpl implements BehaviorRule {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case Aadlv3Package.BEHAVIOR_RULE__GUARD:
-			return basicSetGuard(null, msgs);
+		case Aadlv3Package.BEHAVIOR_RULE__CURRENT_STATE:
+			return basicSetCurrentState(null, msgs);
 		case Aadlv3Package.BEHAVIOR_RULE__TARGET_STATE:
 			return basicSetTargetState(null, msgs);
 		case Aadlv3Package.BEHAVIOR_RULE__CONDITION:
@@ -307,8 +307,8 @@ public class BehaviorRuleImpl extends ModelElementImpl implements BehaviorRule {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case Aadlv3Package.BEHAVIOR_RULE__GUARD:
-			return getGuard();
+		case Aadlv3Package.BEHAVIOR_RULE__CURRENT_STATE:
+			return getCurrentState();
 		case Aadlv3Package.BEHAVIOR_RULE__TARGET_STATE:
 			return getTargetState();
 		case Aadlv3Package.BEHAVIOR_RULE__CONDITION:
@@ -328,8 +328,8 @@ public class BehaviorRuleImpl extends ModelElementImpl implements BehaviorRule {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case Aadlv3Package.BEHAVIOR_RULE__GUARD:
-			setGuard((StateSpecification) newValue);
+		case Aadlv3Package.BEHAVIOR_RULE__CURRENT_STATE:
+			setCurrentState((StateSpecification) newValue);
 			return;
 		case Aadlv3Package.BEHAVIOR_RULE__TARGET_STATE:
 			setTargetState((StateSpecification) newValue);
@@ -353,8 +353,8 @@ public class BehaviorRuleImpl extends ModelElementImpl implements BehaviorRule {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case Aadlv3Package.BEHAVIOR_RULE__GUARD:
-			setGuard((StateSpecification) null);
+		case Aadlv3Package.BEHAVIOR_RULE__CURRENT_STATE:
+			setCurrentState((StateSpecification) null);
 			return;
 		case Aadlv3Package.BEHAVIOR_RULE__TARGET_STATE:
 			setTargetState((StateSpecification) null);
@@ -377,8 +377,8 @@ public class BehaviorRuleImpl extends ModelElementImpl implements BehaviorRule {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case Aadlv3Package.BEHAVIOR_RULE__GUARD:
-			return guard != null;
+		case Aadlv3Package.BEHAVIOR_RULE__CURRENT_STATE:
+			return currentState != null;
 		case Aadlv3Package.BEHAVIOR_RULE__TARGET_STATE:
 			return targetState != null;
 		case Aadlv3Package.BEHAVIOR_RULE__CONDITION:

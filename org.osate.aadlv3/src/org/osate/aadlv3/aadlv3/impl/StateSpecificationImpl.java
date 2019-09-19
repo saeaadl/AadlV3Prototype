@@ -26,8 +26,8 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.EnumerationLiteral;
+import org.osate.aadlv3.aadlv3.Literal;
 import org.osate.aadlv3.aadlv3.StateSpecification;
-import org.osate.aadlv3.aadlv3.TypeReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,7 +38,7 @@ import org.osate.aadlv3.aadlv3.TypeReference;
  * </p>
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.StateSpecificationImpl#getCurrentState <em>Current State</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.StateSpecificationImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.StateSpecificationImpl#getConstraint <em>Constraint</em>}</li>
  * </ul>
  *
  * @generated
@@ -55,14 +55,14 @@ public class StateSpecificationImpl extends MinimalEObjectImpl.Container impleme
 	protected EnumerationLiteral currentState;
 
 	/**
-	 * The cached value of the '{@link #getType() <em>Type</em>}' reference.
+	 * The cached value of the '{@link #getConstraint() <em>Constraint</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getType()
+	 * @see #getConstraint()
 	 * @generated
 	 * @ordered
 	 */
-	protected TypeReference type;
+	protected Literal constraint;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -141,17 +141,17 @@ public class StateSpecificationImpl extends MinimalEObjectImpl.Container impleme
 	 * @generated
 	 */
 	@Override
-	public TypeReference getType() {
-		if (type != null && type.eIsProxy()) {
-			InternalEObject oldType = (InternalEObject) type;
-			type = (TypeReference) eResolveProxy(oldType);
-			if (type != oldType) {
+	public Literal getConstraint() {
+		if (constraint != null && constraint.eIsProxy()) {
+			InternalEObject oldConstraint = (InternalEObject) constraint;
+			constraint = (Literal) eResolveProxy(oldConstraint);
+			if (constraint != oldConstraint) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Aadlv3Package.STATE_SPECIFICATION__TYPE,
-							oldType, type));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							Aadlv3Package.STATE_SPECIFICATION__CONSTRAINT, oldConstraint, constraint));
 			}
 		}
-		return type;
+		return constraint;
 	}
 
 	/**
@@ -159,8 +159,8 @@ public class StateSpecificationImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TypeReference basicGetType() {
-		return type;
+	public Literal basicGetConstraint() {
+		return constraint;
 	}
 
 	/**
@@ -169,12 +169,12 @@ public class StateSpecificationImpl extends MinimalEObjectImpl.Container impleme
 	 * @generated
 	 */
 	@Override
-	public void setType(TypeReference newType) {
-		TypeReference oldType = type;
-		type = newType;
+	public void setConstraint(Literal newConstraint) {
+		Literal oldConstraint = constraint;
+		constraint = newConstraint;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.STATE_SPECIFICATION__TYPE, oldType,
-					type));
+			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.STATE_SPECIFICATION__CONSTRAINT,
+					oldConstraint, constraint));
 	}
 
 	/**
@@ -201,10 +201,10 @@ public class StateSpecificationImpl extends MinimalEObjectImpl.Container impleme
 		switch (featureID) {
 		case Aadlv3Package.STATE_SPECIFICATION__CURRENT_STATE:
 			return getCurrentState();
-		case Aadlv3Package.STATE_SPECIFICATION__TYPE:
+		case Aadlv3Package.STATE_SPECIFICATION__CONSTRAINT:
 			if (resolve)
-				return getType();
-			return basicGetType();
+				return getConstraint();
+			return basicGetConstraint();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -220,8 +220,8 @@ public class StateSpecificationImpl extends MinimalEObjectImpl.Container impleme
 		case Aadlv3Package.STATE_SPECIFICATION__CURRENT_STATE:
 			setCurrentState((EnumerationLiteral) newValue);
 			return;
-		case Aadlv3Package.STATE_SPECIFICATION__TYPE:
-			setType((TypeReference) newValue);
+		case Aadlv3Package.STATE_SPECIFICATION__CONSTRAINT:
+			setConstraint((Literal) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -238,8 +238,8 @@ public class StateSpecificationImpl extends MinimalEObjectImpl.Container impleme
 		case Aadlv3Package.STATE_SPECIFICATION__CURRENT_STATE:
 			setCurrentState((EnumerationLiteral) null);
 			return;
-		case Aadlv3Package.STATE_SPECIFICATION__TYPE:
-			setType((TypeReference) null);
+		case Aadlv3Package.STATE_SPECIFICATION__CONSTRAINT:
+			setConstraint((Literal) null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -255,8 +255,8 @@ public class StateSpecificationImpl extends MinimalEObjectImpl.Container impleme
 		switch (featureID) {
 		case Aadlv3Package.STATE_SPECIFICATION__CURRENT_STATE:
 			return currentState != null;
-		case Aadlv3Package.STATE_SPECIFICATION__TYPE:
-			return type != null;
+		case Aadlv3Package.STATE_SPECIFICATION__CONSTRAINT:
+			return constraint != null;
 		}
 		return super.eIsSet(featureID);
 	}

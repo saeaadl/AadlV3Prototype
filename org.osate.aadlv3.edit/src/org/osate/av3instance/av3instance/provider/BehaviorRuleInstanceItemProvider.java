@@ -93,6 +93,8 @@ public class BehaviorRuleInstanceItemProvider extends InstanceObjectItemProvider
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(Av3instancePackage.Literals.BEHAVIOR_RULE_INSTANCE__CONDITION);
 			childrenFeatures.add(Av3instancePackage.Literals.BEHAVIOR_RULE_INSTANCE__ACTIONS);
+			childrenFeatures.add(Av3instancePackage.Literals.BEHAVIOR_RULE_INSTANCE__CURRENT_STATE);
+			childrenFeatures.add(Av3instancePackage.Literals.BEHAVIOR_RULE_INSTANCE__TARGET_STATE);
 		}
 		return childrenFeatures;
 	}
@@ -158,6 +160,8 @@ public class BehaviorRuleInstanceItemProvider extends InstanceObjectItemProvider
 		switch (notification.getFeatureID(BehaviorRuleInstance.class)) {
 		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE__CONDITION:
 		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE__ACTIONS:
+		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE__CURRENT_STATE:
+		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE__TARGET_STATE:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}

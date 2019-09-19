@@ -34,6 +34,7 @@ import org.osate.av3instance.av3instance.FeatureInstance;
 import org.osate.av3instance.av3instance.GeneratorInstance;
 import org.osate.av3instance.av3instance.InstanceObject;
 import org.osate.av3instance.av3instance.PathInstance;
+import org.osate.av3instance.av3instance.StateInstance;
 
 /**
  * <!-- begin-user-doc -->
@@ -97,6 +98,13 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 	 * @generated
 	 */
 	private EClass constrainedInstanceObjectEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass stateInstanceEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -501,6 +509,26 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 	 * @generated
 	 */
 	@Override
+	public EReference getBehaviorRuleInstance_CurrentState() {
+		return (EReference) behaviorRuleInstanceEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getBehaviorRuleInstance_TargetState() {
+		return (EReference) behaviorRuleInstanceEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EReference getBehaviorRuleInstance_Condition() {
 		return (EReference) behaviorRuleInstanceEClass.getEStructuralFeatures().get(1);
 	}
@@ -563,6 +591,36 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 	@Override
 	public EReference getConstrainedInstanceObject_Constraint() {
 		return (EReference) constrainedInstanceObjectEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getStateInstance() {
+		return stateInstanceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getStateInstance_CurrentState() {
+		return (EReference) stateInstanceEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getStateInstance_Constraint() {
+		return (EReference) stateInstanceEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -634,6 +692,8 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 		createEReference(behaviorRuleInstanceEClass, BEHAVIOR_RULE_INSTANCE__BEHAVIOR_RULE);
 		createEReference(behaviorRuleInstanceEClass, BEHAVIOR_RULE_INSTANCE__CONDITION);
 		createEReference(behaviorRuleInstanceEClass, BEHAVIOR_RULE_INSTANCE__ACTIONS);
+		createEReference(behaviorRuleInstanceEClass, BEHAVIOR_RULE_INSTANCE__CURRENT_STATE);
+		createEReference(behaviorRuleInstanceEClass, BEHAVIOR_RULE_INSTANCE__TARGET_STATE);
 
 		generatorInstanceEClass = createEClass(GENERATOR_INSTANCE);
 		createEReference(generatorInstanceEClass, GENERATOR_INSTANCE__GENERATOR);
@@ -642,6 +702,10 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 		constrainedInstanceObjectEClass = createEClass(CONSTRAINED_INSTANCE_OBJECT);
 		createEReference(constrainedInstanceObjectEClass, CONSTRAINED_INSTANCE_OBJECT__INSTANCE_OBJECT);
 		createEReference(constrainedInstanceObjectEClass, CONSTRAINED_INSTANCE_OBJECT__CONSTRAINT);
+
+		stateInstanceEClass = createEClass(STATE_INSTANCE);
+		createEReference(stateInstanceEClass, STATE_INSTANCE__CURRENT_STATE);
+		createEReference(stateInstanceEClass, STATE_INSTANCE__CONSTRAINT);
 	}
 
 	/**
@@ -685,6 +749,7 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 		generatorInstanceEClass.getESuperTypes().add(this.getInstanceObject());
 		constrainedInstanceObjectEClass.getESuperTypes().add(this.getInstanceObject());
 		constrainedInstanceObjectEClass.getESuperTypes().add(theAadlv3Package.getLiteral());
+		stateInstanceEClass.getESuperTypes().add(this.getInstanceObject());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(instanceObjectEClass, InstanceObject.class, "InstanceObject", IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
@@ -792,6 +857,12 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 		initEReference(getBehaviorRuleInstance_Actions(), this.getConstrainedInstanceObject(), null, "actions", null, 0, //$NON-NLS-1$
 				-1, BehaviorRuleInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBehaviorRuleInstance_CurrentState(), this.getStateInstance(), null, "currentState", null, 0, //$NON-NLS-1$
+				1, BehaviorRuleInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBehaviorRuleInstance_TargetState(), this.getStateInstance(), null, "targetState", null, 0, 1, //$NON-NLS-1$
+				BehaviorRuleInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(generatorInstanceEClass, GeneratorInstance.class, "GeneratorInstance", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
 				IS_GENERATED_INSTANCE_CLASS);
@@ -810,6 +881,15 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 		initEReference(getConstrainedInstanceObject_Constraint(), theAadlv3Package.getLiteral(), null, "constraint", //$NON-NLS-1$
 				null, 0, 1, ConstrainedInstanceObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(stateInstanceEClass, StateInstance.class, "StateInstance", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
+				IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getStateInstance_CurrentState(), theAadlv3Package.getEnumerationLiteral(), null, "currentState", //$NON-NLS-1$
+				null, 0, 1, StateInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getStateInstance_Constraint(), theAadlv3Package.getLiteral(), null, "constraint", null, 0, 1, //$NON-NLS-1$
+				StateInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

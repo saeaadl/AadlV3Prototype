@@ -266,9 +266,9 @@
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//Action"/>
     <genClasses ecoreClass="Aadlv3.ecore#//ConditionOperation">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ConditionOperation/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ConditionOperation/element"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//ConditionOperation/operator"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ConditionOperation/right"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ConditionOperation/constraint"/>
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//PropertyAssociation">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//PropertyAssociation/target"/>
@@ -282,12 +282,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//DefaultAnnexSubclause/body"/>
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//AnnexLibrary"/>
-    <genClasses ecoreClass="Aadlv3.ecore#//BehaviorRule">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//BehaviorRule/guard"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//BehaviorRule/targetState"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//BehaviorRule/condition"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//BehaviorRule/actions"/>
-    </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//EMSubclause"/>
     <genClasses ecoreClass="Aadlv3.ecore#//BASubclause"/>
     <genClasses ecoreClass="Aadlv3.ecore#//BehaviorSpecification">
@@ -295,9 +289,15 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//BehaviorSpecification/states"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//BehaviorSpecification/generators"/>
     </genClasses>
+    <genClasses ecoreClass="Aadlv3.ecore#//BehaviorRule">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//BehaviorRule/currentState"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//BehaviorRule/targetState"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//BehaviorRule/condition"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//BehaviorRule/actions"/>
+    </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//StateSpecification">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//StateSpecification/currentState"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//StateSpecification/type"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//StateSpecification/constraint"/>
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//Generator">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//Generator/type"/>

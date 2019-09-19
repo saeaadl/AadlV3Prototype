@@ -5,17 +5,15 @@ import java.util.Collection
 import org.eclipse.xtext.EcoreUtil2
 import org.osate.aadlv3.aadlv3.ComponentInterface
 import org.osate.aadlv3.aadlv3.ComponentRealization
-import org.osate.aadlv3.aadlv3.InstanceConfiguration
 import org.osate.aadlv3.aadlv3.ECollection
-import org.osate.aadlv3.aadlv3.MultiLiteralConstraint
+import org.osate.aadlv3.aadlv3.InstanceConfiguration
+import org.osate.aadlv3.aadlv3.ListLiteral
 import org.osate.aadlv3.aadlv3.NamedElement
 import org.osate.aadlv3.aadlv3.NamedType
 import org.osate.aadlv3.aadlv3.TypeReference
 import org.osate.av3instance.av3instance.ComponentInstance
 
 import static extension org.osate.aadlv3.util.Aadlv3Util.*
-import org.osate.aadlv3.aadlv3.Literal
-import org.osate.aadlv3.aadlv3.ListLiteral
 
 class ProductLineConstraint {
 	
@@ -63,7 +61,7 @@ class ProductLineConstraint {
 	val static String FeatureLabels = "FeatureLabels";
 	
 	def static ListLiteral getProductLineConstraint(InstanceConfiguration ic){
-		return ic.productlineConstraint?.right as ListLiteral
+		return ic.productlineConstraint?.constraint as ListLiteral
 	}
 	
 	def static ECollection getFeatureLabels(NamedElement cl){

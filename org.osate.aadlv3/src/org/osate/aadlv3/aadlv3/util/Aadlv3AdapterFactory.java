@@ -340,11 +340,6 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseBehaviorRule(BehaviorRule object) {
-			return createBehaviorRuleAdapter();
-		}
-
-		@Override
 		public Adapter caseEMSubclause(EMSubclause object) {
 			return createEMSubclauseAdapter();
 		}
@@ -357,6 +352,11 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseBehaviorSpecification(BehaviorSpecification object) {
 			return createBehaviorSpecificationAdapter();
+		}
+
+		@Override
+		public Adapter caseBehaviorRule(BehaviorRule object) {
+			return createBehaviorRuleAdapter();
 		}
 
 		@Override

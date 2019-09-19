@@ -3,8 +3,7 @@ package org.osate.graph.util;
 import static org.osate.aadlv3.util.AIv3API.*;
 
 import java.util.List;
-
-import javax.swing.text.html.HTMLDocument.HTMLReader.IsindexAction;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
 import org.jgrapht.Graph;
@@ -39,8 +38,8 @@ public class AIJGraphTUtil {
 		List<AssociationInstance> connis = getAllConnections(root);
 		for (AssociationInstance conni : connis) {
 			if (isConnection(conni)) {
-				ComponentInstance src = connectionEndComponentInstance(conni.getSource());
-				ComponentInstance dst = connectionEndComponentInstance(conni.getDestination());
+				ComponentInstance src = containingComponentInstanceOrSelf(conni.getSource());
+				ComponentInstance dst = containingComponentInstanceOrSelf(conni.getDestination());
 				directedGraph.addVertex(dst);
 				directedGraph.addVertex(src);
 				directedGraph.addEdge(src, dst, conni);
@@ -106,29 +105,54 @@ public class AIJGraphTUtil {
 				DefaultEdge.class);
 		List<AssociationInstance> connis = getAllConnections(root);
 		for (AssociationInstance conni : connis) {
-			String s = conni.toString();
 			InstanceObject src = conni.getSource();
 			InstanceObject dst = conni.getDestination();
-			ComponentInstance dstComp = connectionEndComponentInstance(dst);
-			Iterable<ConstrainedInstanceObject> sources = findConnectionSourceCIOs(src, subclauseName);
-			for (ConstrainedInstanceObject srccio : sources) {
-				// create edges between actions of connection source and condition elements of connection destination
-				Iterable<ConstrainedInstanceObject> dests = findConnectionDestinationCIOs(dstComp, srccio, subclauseName);
-				for (ConstrainedInstanceObject dstcio : dests) {
-					directedGraph.addVertex(dstcio);
-					directedGraph.addVertex(srccio);
-					directedGraph.addEdge(srccio, dstcio);
-				}
-				// create edges between condition element and actions
-				BehaviorRuleInstance bri = containingBehaviorRuleInstance(srccio);
-				Iterable<ConstrainedInstanceObject> condcios = getAllConstrainedInstanceObjects(bri.getCondition());
-				for (ConstrainedInstanceObject ce : condcios) {
-					directedGraph.addVertex(srccio);
-					directedGraph.addVertex(ce);
-					directedGraph.addEdge(ce, srccio);
+			if (!conni.isExternal()) {
+				// from outgoing feature to incoming feature instance
+				Iterable<ConstrainedInstanceObject> actions = findActionCIOs(src, subclauseName);
+				for (ConstrainedInstanceObject actioncio : actions) {
+					// create edges between actions of connection source and condition elements of connection destination
+					Iterable<ConstrainedInstanceObject> dests = findContainingConditionCIOs(dst, actioncio.getConstraint(), subclauseName);
+					for (ConstrainedInstanceObject dstcio : dests) {
+						directedGraph.addVertex(dstcio);
+						directedGraph.addVertex(actioncio);
+						directedGraph.addEdge(actioncio, dstcio);
+					}
 				}
 			}
 		}
+		List<ComponentInstance> cis = getAllComponents(root);
+		for (ComponentInstance ci : cis) {
+			EList<BehaviorRuleInstance> bris = ci.getBehaviorRules();
+			for (BehaviorRuleInstance bri: bris) {
+				for (ConstrainedInstanceObject action: bri.getActions()) {
+					Iterable<ConstrainedInstanceObject> condcios = getAllConstrainedInstanceObjects(bri.getCondition());
+					for (ConstrainedInstanceObject ce : condcios) {
+						InstanceObject srcio = ce.getInstanceObject();
+						InstanceObject dstio = action.getInstanceObject();
+						ComponentInstance srcCi = containingComponentInstanceOrSelf(srcio);
+						ComponentInstance dstCi = containingComponentInstanceOrSelf(dstio);
+						if (isAncestor(dstCi,srcCi)) {
+							// Subcomponent to external feature instance rule (Composite)
+							Iterable<ConstrainedInstanceObject> subactions = findContainedActionCIOs(srcio, action.getConstraint(), subclauseName);
+							for (ConstrainedInstanceObject subcio: subactions) {
+								directedGraph.addVertex(action);
+								directedGraph.addVertex(subcio);
+								directedGraph.addEdge(subcio, action);
+							}
+						} else {
+							// incoming to outgoing feature instance rule
+							directedGraph.addVertex(action);
+							directedGraph.addVertex(ce);
+							directedGraph.addEdge(ce, action);
+						}
+					}
+				}
+			}
+		}
+		Set<InstanceObject> vertexes = directedGraph.vertexSet();
+		Set<DefaultEdge> edges = directedGraph.edgeSet();
+		
 		return directedGraph;
 	}
 

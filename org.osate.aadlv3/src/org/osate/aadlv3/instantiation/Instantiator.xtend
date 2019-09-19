@@ -4,14 +4,20 @@ import java.util.ArrayList
 import java.util.Collection
 import java.util.Collections
 import java.util.Stack
+import org.eclipse.xtext.EcoreUtil2
 import org.osate.aadlv3.aadlv3.Association
+import org.osate.aadlv3.aadlv3.BehaviorRule
+import org.osate.aadlv3.aadlv3.BehaviorSpecification
 import org.osate.aadlv3.aadlv3.Classifier
 import org.osate.aadlv3.aadlv3.ClassifierAssignment
 import org.osate.aadlv3.aadlv3.ComponentInterface
+import org.osate.aadlv3.aadlv3.ConditionOperation
+import org.osate.aadlv3.aadlv3.ECollection
 import org.osate.aadlv3.aadlv3.Feature
 import org.osate.aadlv3.aadlv3.FeatureCategory
-import org.osate.aadlv3.aadlv3.ECollection
-import org.osate.aadlv3.aadlv3.MultiLiteralConstraint
+import org.osate.aadlv3.aadlv3.Generator
+import org.osate.aadlv3.aadlv3.ListLiteral
+import org.osate.aadlv3.aadlv3.ModelElementReference
 import org.osate.aadlv3.aadlv3.PathElement
 import org.osate.aadlv3.aadlv3.PathSequence
 import org.osate.aadlv3.aadlv3.PropertyAssociation
@@ -31,13 +37,6 @@ import static org.osate.aadlv3.util.ProductLineConstraint.*
 import static extension org.eclipse.emf.ecore.util.EcoreUtil.*
 import static extension org.osate.aadlv3.util.AIv3API.*
 import static extension org.osate.aadlv3.util.Aadlv3Util.*
-import org.osate.aadlv3.aadlv3.ListLiteral
-import org.osate.aadlv3.aadlv3.BehaviorRule
-import org.eclipse.xtext.EcoreUtil2
-import org.osate.aadlv3.aadlv3.ConditionOperation
-import org.osate.aadlv3.aadlv3.ModelElementReference
-import org.osate.aadlv3.aadlv3.Generator
-import org.osate.aadlv3.aadlv3.BehaviorSpecification
 
 class Instantiator {
 	
@@ -297,7 +296,7 @@ class Instantiator {
 	}
 	
 	def void expandSourceFeatureDelegates(AssociationInstance conni, Collection<AssociationInstance> result){
-		val srccxt = conni.source.connectionEndComponentInstance
+		val srccxt = conni.source.containingComponentInstanceOrSelf
 		val srcconftrs = srccxt.configuredTypeReferences
 		if (srcconftrs === null) return
 		// TODO handle expansion in nested declarations
@@ -335,7 +334,7 @@ class Instantiator {
 	}
 	
 	def void expandDestinationFeatureDelegates(AssociationInstance conni, Collection<AssociationInstance> result){
-		val dstcxt = conni.destination.connectionEndComponentInstance
+		val dstcxt = conni.destination.containingComponentInstanceOrSelf
 		val dstconftrs = dstcxt.configuredTypeReferences
 		if (dstconftrs === null) return
 		val dstmappings = dstcxt.allAssociations.filter[conn| conn.isDestinationFeatureDelegation(conni)]
@@ -416,7 +415,7 @@ class Instantiator {
  						if (fsi !== null){
  							psi.elements += fsi
  						} else {
- 							psi.elements += (previousflowelementinstance as AssociationInstance).destination.connectionEndComponentInstance
+ 							psi.elements += (previousflowelementinstance as AssociationInstance).destination.containingComponentInstanceOrSelf
  						}
  					}
 					psi.elements += conni
@@ -595,7 +594,7 @@ class Instantiator {
 	}
 	
 	def static PropertyAssociation findDefaultPropertyValue(InstanceObject io, PropertyDefinition pd){
-		var ci = io.connectionEndComponentInstance
+		var ci = io.containingComponentInstanceOrSelf
 		while (ci !== null) {
 			for (pa : ci.configuredTypeReferences.allPropertyAssociations) {
 				if (pa.propertyAssociationType === PropertyAssociationType.DEFAULT_VALUE &&
@@ -616,10 +615,7 @@ class Instantiator {
 		// now replace ConditionElements by respective instances
 		val cos = EcoreUtil2.eAllOfType(behaviorCondition, ConditionOperation);
 		for (co: cos){
-			val cio = (co.left as ModelElementReference).createConstrainedInstanceObject(context)
-			if (co.right !== null){
-				cio.constraint = co.right.copy
-			}
+			val cio = co.createConstrainedInstanceObject(context)
 			val container = co.eContainer
 			if (container instanceof ECollection){
 				container.elements.remove(co)
@@ -651,7 +647,13 @@ class Instantiator {
 			}
 			bri.actions += tio
 		}
-		
+		// now states
+		if (br.currentState !== null){
+			bri.currentState = br.currentState.createStateInstance()
+		}
+		if (br.targetState !== null){
+			bri.targetState = br.targetState.createStateInstance()
+		}
 		context.behaviorRules += bri
 	}
 

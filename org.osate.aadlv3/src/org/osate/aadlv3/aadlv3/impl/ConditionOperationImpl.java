@@ -36,23 +36,23 @@ import org.osate.aadlv3.aadlv3.Literal;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.ConditionOperationImpl#getLeft <em>Left</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.ConditionOperationImpl#getElement <em>Element</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ConditionOperationImpl#getOperator <em>Operator</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.ConditionOperationImpl#getRight <em>Right</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.ConditionOperationImpl#getConstraint <em>Constraint</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class ConditionOperationImpl extends LiteralImpl implements ConditionOperation {
 	/**
-	 * The cached value of the '{@link #getLeft() <em>Left</em>}' containment reference.
+	 * The cached value of the '{@link #getElement() <em>Element</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getLeft()
+	 * @see #getElement()
 	 * @generated
 	 * @ordered
 	 */
-	protected Literal left;
+	protected Literal element;
 
 	/**
 	 * The default value of the '{@link #getOperator() <em>Operator</em>}' attribute.
@@ -75,14 +75,14 @@ public class ConditionOperationImpl extends LiteralImpl implements ConditionOper
 	protected COperator operator = OPERATOR_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getRight() <em>Right</em>}' containment reference.
+	 * The cached value of the '{@link #getConstraint() <em>Constraint</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getRight()
+	 * @see #getConstraint()
 	 * @generated
 	 * @ordered
 	 */
-	protected Literal right;
+	protected Literal constraint;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -109,8 +109,8 @@ public class ConditionOperationImpl extends LiteralImpl implements ConditionOper
 	 * @generated
 	 */
 	@Override
-	public Literal getLeft() {
-		return left;
+	public Literal getElement() {
+		return element;
 	}
 
 	/**
@@ -118,12 +118,12 @@ public class ConditionOperationImpl extends LiteralImpl implements ConditionOper
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetLeft(Literal newLeft, NotificationChain msgs) {
-		Literal oldLeft = left;
-		left = newLeft;
+	public NotificationChain basicSetElement(Literal newElement, NotificationChain msgs) {
+		Literal oldElement = element;
+		element = newElement;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					Aadlv3Package.CONDITION_OPERATION__LEFT, oldLeft, newLeft);
+					Aadlv3Package.CONDITION_OPERATION__ELEMENT, oldElement, newElement);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -138,21 +138,21 @@ public class ConditionOperationImpl extends LiteralImpl implements ConditionOper
 	 * @generated
 	 */
 	@Override
-	public void setLeft(Literal newLeft) {
-		if (newLeft != left) {
+	public void setElement(Literal newElement) {
+		if (newElement != element) {
 			NotificationChain msgs = null;
-			if (left != null)
-				msgs = ((InternalEObject) left).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE - Aadlv3Package.CONDITION_OPERATION__LEFT, null, msgs);
-			if (newLeft != null)
-				msgs = ((InternalEObject) newLeft).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE - Aadlv3Package.CONDITION_OPERATION__LEFT, null, msgs);
-			msgs = basicSetLeft(newLeft, msgs);
+			if (element != null)
+				msgs = ((InternalEObject) element).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE - Aadlv3Package.CONDITION_OPERATION__ELEMENT, null, msgs);
+			if (newElement != null)
+				msgs = ((InternalEObject) newElement).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE - Aadlv3Package.CONDITION_OPERATION__ELEMENT, null, msgs);
+			msgs = basicSetElement(newElement, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.CONDITION_OPERATION__LEFT, newLeft,
-					newLeft));
+			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.CONDITION_OPERATION__ELEMENT,
+					newElement, newElement));
 	}
 
 	/**
@@ -185,8 +185,8 @@ public class ConditionOperationImpl extends LiteralImpl implements ConditionOper
 	 * @generated
 	 */
 	@Override
-	public Literal getRight() {
-		return right;
+	public Literal getConstraint() {
+		return constraint;
 	}
 
 	/**
@@ -194,12 +194,12 @@ public class ConditionOperationImpl extends LiteralImpl implements ConditionOper
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetRight(Literal newRight, NotificationChain msgs) {
-		Literal oldRight = right;
-		right = newRight;
+	public NotificationChain basicSetConstraint(Literal newConstraint, NotificationChain msgs) {
+		Literal oldConstraint = constraint;
+		constraint = newConstraint;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					Aadlv3Package.CONDITION_OPERATION__RIGHT, oldRight, newRight);
+					Aadlv3Package.CONDITION_OPERATION__CONSTRAINT, oldConstraint, newConstraint);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -214,21 +214,21 @@ public class ConditionOperationImpl extends LiteralImpl implements ConditionOper
 	 * @generated
 	 */
 	@Override
-	public void setRight(Literal newRight) {
-		if (newRight != right) {
+	public void setConstraint(Literal newConstraint) {
+		if (newConstraint != constraint) {
 			NotificationChain msgs = null;
-			if (right != null)
-				msgs = ((InternalEObject) right).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE - Aadlv3Package.CONDITION_OPERATION__RIGHT, null, msgs);
-			if (newRight != null)
-				msgs = ((InternalEObject) newRight).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE - Aadlv3Package.CONDITION_OPERATION__RIGHT, null, msgs);
-			msgs = basicSetRight(newRight, msgs);
+			if (constraint != null)
+				msgs = ((InternalEObject) constraint).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE - Aadlv3Package.CONDITION_OPERATION__CONSTRAINT, null, msgs);
+			if (newConstraint != null)
+				msgs = ((InternalEObject) newConstraint).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE - Aadlv3Package.CONDITION_OPERATION__CONSTRAINT, null, msgs);
+			msgs = basicSetConstraint(newConstraint, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.CONDITION_OPERATION__RIGHT, newRight,
-					newRight));
+			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.CONDITION_OPERATION__CONSTRAINT,
+					newConstraint, newConstraint));
 	}
 
 	/**
@@ -239,10 +239,10 @@ public class ConditionOperationImpl extends LiteralImpl implements ConditionOper
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case Aadlv3Package.CONDITION_OPERATION__LEFT:
-			return basicSetLeft(null, msgs);
-		case Aadlv3Package.CONDITION_OPERATION__RIGHT:
-			return basicSetRight(null, msgs);
+		case Aadlv3Package.CONDITION_OPERATION__ELEMENT:
+			return basicSetElement(null, msgs);
+		case Aadlv3Package.CONDITION_OPERATION__CONSTRAINT:
+			return basicSetConstraint(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -255,12 +255,12 @@ public class ConditionOperationImpl extends LiteralImpl implements ConditionOper
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case Aadlv3Package.CONDITION_OPERATION__LEFT:
-			return getLeft();
+		case Aadlv3Package.CONDITION_OPERATION__ELEMENT:
+			return getElement();
 		case Aadlv3Package.CONDITION_OPERATION__OPERATOR:
 			return getOperator();
-		case Aadlv3Package.CONDITION_OPERATION__RIGHT:
-			return getRight();
+		case Aadlv3Package.CONDITION_OPERATION__CONSTRAINT:
+			return getConstraint();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -273,14 +273,14 @@ public class ConditionOperationImpl extends LiteralImpl implements ConditionOper
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case Aadlv3Package.CONDITION_OPERATION__LEFT:
-			setLeft((Literal) newValue);
+		case Aadlv3Package.CONDITION_OPERATION__ELEMENT:
+			setElement((Literal) newValue);
 			return;
 		case Aadlv3Package.CONDITION_OPERATION__OPERATOR:
 			setOperator((COperator) newValue);
 			return;
-		case Aadlv3Package.CONDITION_OPERATION__RIGHT:
-			setRight((Literal) newValue);
+		case Aadlv3Package.CONDITION_OPERATION__CONSTRAINT:
+			setConstraint((Literal) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -294,14 +294,14 @@ public class ConditionOperationImpl extends LiteralImpl implements ConditionOper
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case Aadlv3Package.CONDITION_OPERATION__LEFT:
-			setLeft((Literal) null);
+		case Aadlv3Package.CONDITION_OPERATION__ELEMENT:
+			setElement((Literal) null);
 			return;
 		case Aadlv3Package.CONDITION_OPERATION__OPERATOR:
 			setOperator(OPERATOR_EDEFAULT);
 			return;
-		case Aadlv3Package.CONDITION_OPERATION__RIGHT:
-			setRight((Literal) null);
+		case Aadlv3Package.CONDITION_OPERATION__CONSTRAINT:
+			setConstraint((Literal) null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -315,12 +315,12 @@ public class ConditionOperationImpl extends LiteralImpl implements ConditionOper
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case Aadlv3Package.CONDITION_OPERATION__LEFT:
-			return left != null;
+		case Aadlv3Package.CONDITION_OPERATION__ELEMENT:
+			return element != null;
 		case Aadlv3Package.CONDITION_OPERATION__OPERATOR:
 			return operator != OPERATOR_EDEFAULT;
-		case Aadlv3Package.CONDITION_OPERATION__RIGHT:
-			return right != null;
+		case Aadlv3Package.CONDITION_OPERATION__CONSTRAINT:
+			return constraint != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -351,17 +351,17 @@ public class ConditionOperationImpl extends LiteralImpl implements ConditionOper
 		if (getClass() != obj.getClass())
 			return false;
 		ConditionOperationImpl other = (ConditionOperationImpl) obj;
-		if (left == null) {
-			if (other.left != null)
+		if (element == null) {
+			if (other.element != null)
 				return false;
-		} else if (!left.equals(other.left))
+		} else if (!element.equals(other.element))
 			return false;
 		if (operator != other.operator)
 			return false;
-		if (right == null) {
-			if (other.right != null)
+		if (constraint == null) {
+			if (other.constraint != null)
 				return false;
-		} else if (!right.equals(other.right))
+		} else if (!constraint.equals(other.constraint))
 			return false;
 		return true;
 	}

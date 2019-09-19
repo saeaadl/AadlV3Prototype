@@ -311,7 +311,7 @@ InstanceConfiguration returns av3::InstanceConfiguration:
 
 ProductLineConstraint returns av3::ConditionOperation:
 	{av3::ConditionOperation}
-	left=PropertyReference operator=SatisfiesOperation right=ListLiteral
+	element=PropertyReference operator=SatisfiesOperation constraint=ListLiteral
 ;
 
 // Behavior specification including error behavior
@@ -357,18 +357,18 @@ CurrentState returns av3::StateSpecification:
 ;
 
 fragment StateTransitionRule *:
-	guard=CurrentState '-[' condition =  (MultiLiteralOperation | ContainsToken | ModelElementReference)  ']->' targetState=CurrentState ('{' actions+=Assignment* '}')?';';
+	currentState=CurrentState '-[' condition =  (MultiLiteralOperation | ContainsToken | ModelElementReference)  ']->' targetState=CurrentState ('{' actions+=Assignment* '}')?';';
 
 fragment StatelessRule *:
 	condition = (MultiLiteralOperation | ContainsToken | ModelElementReference)? '->'  actions+=Assignment* ';';
 
 
 ContainsToken returns av3::ConditionOperation:
-	 left=ModelElementReference operator=InOperation right=Literal
+	 element=ModelElementReference operator=InOperation constraint=Literal
 ;
 
 FeatureInput returns av3::ConditionOperation:
-	 left=ModelElementReference operator=InputOperation 
+	 element=ModelElementReference operator=InputOperation 
 ;
 
 

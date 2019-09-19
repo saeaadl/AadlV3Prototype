@@ -90,7 +90,7 @@ public class GeneratorInstanceItemProvider extends InstanceObjectItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-//			childrenFeatures.add(Av3instancePackage.Literals.GENERATOR_INSTANCE__VALUE);
+			//			childrenFeatures.add(Av3instancePackage.Literals.GENERATOR_INSTANCE__VALUE);
 		}
 		return childrenFeatures;
 	}
@@ -137,13 +137,13 @@ public class GeneratorInstanceItemProvider extends InstanceObjectItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = "Generator "+((GeneratorInstance) object).getName();
+		String label = "Generator " + ((GeneratorInstance) object).getName();
 		String type = "Generator";
 		if (((GeneratorInstance) object).getValue() != null) {
 			type = ((GeneratorInstance) object).getValue().toString();
 		}
-		return type == null || label.length() == 0 ?  label : //$NON-NLS-1$
-				label +":"+ type; //$NON-NLS-1$ //$NON-NLS-2$
+		return type == null || label.length() == 0 ? label : //$NON-NLS-1$
+				label + ":" + type; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**

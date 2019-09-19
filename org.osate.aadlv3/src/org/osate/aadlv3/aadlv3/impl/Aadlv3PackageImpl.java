@@ -1794,7 +1794,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getConditionOperation_Left() {
+	public EReference getConditionOperation_Element() {
 		return (EReference) conditionOperationEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -1814,7 +1814,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getConditionOperation_Right() {
+	public EReference getConditionOperation_Constraint() {
 		return (EReference) conditionOperationEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -1934,7 +1934,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getBehaviorRule_Guard() {
+	public EReference getBehaviorRule_CurrentState() {
 		return (EReference) behaviorRuleEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -2054,7 +2054,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getStateSpecification_Type() {
+	public EReference getStateSpecification_Constraint() {
 		return (EReference) stateSpecificationEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -2672,9 +2672,9 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		actionEClass = createEClass(ACTION);
 
 		conditionOperationEClass = createEClass(CONDITION_OPERATION);
-		createEReference(conditionOperationEClass, CONDITION_OPERATION__LEFT);
+		createEReference(conditionOperationEClass, CONDITION_OPERATION__ELEMENT);
 		createEAttribute(conditionOperationEClass, CONDITION_OPERATION__OPERATOR);
-		createEReference(conditionOperationEClass, CONDITION_OPERATION__RIGHT);
+		createEReference(conditionOperationEClass, CONDITION_OPERATION__CONSTRAINT);
 
 		propertyAssociationEClass = createEClass(PROPERTY_ASSOCIATION);
 		createEReference(propertyAssociationEClass, PROPERTY_ASSOCIATION__TARGET);
@@ -2690,12 +2690,6 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 
 		annexLibraryEClass = createEClass(ANNEX_LIBRARY);
 
-		behaviorRuleEClass = createEClass(BEHAVIOR_RULE);
-		createEReference(behaviorRuleEClass, BEHAVIOR_RULE__GUARD);
-		createEReference(behaviorRuleEClass, BEHAVIOR_RULE__TARGET_STATE);
-		createEReference(behaviorRuleEClass, BEHAVIOR_RULE__CONDITION);
-		createEReference(behaviorRuleEClass, BEHAVIOR_RULE__ACTIONS);
-
 		emSubclauseEClass = createEClass(EM_SUBCLAUSE);
 
 		baSubclauseEClass = createEClass(BA_SUBCLAUSE);
@@ -2705,9 +2699,15 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		createEReference(behaviorSpecificationEClass, BEHAVIOR_SPECIFICATION__STATES);
 		createEReference(behaviorSpecificationEClass, BEHAVIOR_SPECIFICATION__GENERATORS);
 
+		behaviorRuleEClass = createEClass(BEHAVIOR_RULE);
+		createEReference(behaviorRuleEClass, BEHAVIOR_RULE__CURRENT_STATE);
+		createEReference(behaviorRuleEClass, BEHAVIOR_RULE__TARGET_STATE);
+		createEReference(behaviorRuleEClass, BEHAVIOR_RULE__CONDITION);
+		createEReference(behaviorRuleEClass, BEHAVIOR_RULE__ACTIONS);
+
 		stateSpecificationEClass = createEClass(STATE_SPECIFICATION);
 		createEReference(stateSpecificationEClass, STATE_SPECIFICATION__CURRENT_STATE);
-		createEReference(stateSpecificationEClass, STATE_SPECIFICATION__TYPE);
+		createEReference(stateSpecificationEClass, STATE_SPECIFICATION__CONSTRAINT);
 
 		generatorEClass = createEClass(GENERATOR);
 		createEAttribute(generatorEClass, GENERATOR__TYPE);
@@ -2807,12 +2807,12 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		annexSubclauseEClass.getESuperTypes().add(this.getModelElement());
 		defaultAnnexSubclauseEClass.getESuperTypes().add(this.getAnnexSubclause());
 		annexLibraryEClass.getESuperTypes().add(this.getPackageDeclaration());
-		behaviorRuleEClass.getESuperTypes().add(this.getModelElement());
 		emSubclauseEClass.getESuperTypes().add(this.getAnnexSubclause());
 		emSubclauseEClass.getESuperTypes().add(this.getBehaviorSpecification());
 		baSubclauseEClass.getESuperTypes().add(this.getBehaviorSpecification());
 		baSubclauseEClass.getESuperTypes().add(this.getAnnexSubclause());
 		behaviorSpecificationEClass.getESuperTypes().add(this.getModelElement());
+		behaviorRuleEClass.getESuperTypes().add(this.getModelElement());
 		generatorEClass.getESuperTypes().add(this.getModelElement());
 		constantEClass.getESuperTypes().add(this.getPackageElement());
 		packageElementReferenceEClass.getESuperTypes().add(this.getNamedElement());
@@ -3214,13 +3214,13 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 
 		initEClass(conditionOperationEClass, ConditionOperation.class, "ConditionOperation", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getConditionOperation_Left(), this.getLiteral(), null, "left", null, 0, 1,
+		initEReference(getConditionOperation_Element(), this.getLiteral(), null, "element", null, 0, 1,
 				ConditionOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getConditionOperation_Operator(), this.getCOperator(), "operator", null, 0, 1,
 				ConditionOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
-		initEReference(getConditionOperation_Right(), this.getLiteral(), null, "right", null, 0, 1,
+		initEReference(getConditionOperation_Constraint(), this.getLiteral(), null, "constraint", null, 0, 1,
 				ConditionOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -3254,21 +3254,6 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		initEClass(annexLibraryEClass, AnnexLibrary.class, "AnnexLibrary", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(behaviorRuleEClass, BehaviorRule.class, "BehaviorRule", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getBehaviorRule_Guard(), this.getStateSpecification(), null, "guard", null, 0, 1,
-				BehaviorRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getBehaviorRule_TargetState(), this.getStateSpecification(), null, "targetState", null, 0, 1,
-				BehaviorRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getBehaviorRule_Condition(), this.getLiteral(), null, "condition", null, 0, 1,
-				BehaviorRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getBehaviorRule_Actions(), this.getAssignment(), null, "actions", null, 0, -1,
-				BehaviorRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
 		initEClass(emSubclauseEClass, EMSubclause.class, "EMSubclause", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
 
@@ -3287,12 +3272,27 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 				BehaviorSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(behaviorRuleEClass, BehaviorRule.class, "BehaviorRule", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getBehaviorRule_CurrentState(), this.getStateSpecification(), null, "currentState", null, 0, 1,
+				BehaviorRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBehaviorRule_TargetState(), this.getStateSpecification(), null, "targetState", null, 0, 1,
+				BehaviorRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getBehaviorRule_Condition(), this.getLiteral(), null, "condition", null, 0, 1,
+				BehaviorRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBehaviorRule_Actions(), this.getAssignment(), null, "actions", null, 0, -1,
+				BehaviorRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		initEClass(stateSpecificationEClass, StateSpecification.class, "StateSpecification", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getStateSpecification_CurrentState(), this.getEnumerationLiteral(), null, "currentState", null,
 				0, 1, StateSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getStateSpecification_Type(), this.getTypeReference(), null, "type", null, 0, 1,
+		initEReference(getStateSpecification_Constraint(), this.getLiteral(), null, "constraint", null, 0, 1,
 				StateSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

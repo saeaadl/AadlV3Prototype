@@ -17,10 +17,8 @@ package org.osate.av3instance.av3instance.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.osate.aadlv3.aadlv3.Literal;
 import org.osate.av3instance.av3instance.Av3instancePackage;
@@ -273,25 +271,30 @@ public class ConstrainedInstanceObjectImpl extends InstanceObjectImpl implements
 		if (getClass() != obj.getClass())
 			return false;
 		ConstrainedInstanceObjectImpl other = (ConstrainedInstanceObjectImpl) obj;
-		if (constraint == null) {
-			if (other.constraint != null)
-				return false;
-		} else if (!constraint.equals(other.constraint))
-			return false;
 		if (instanceObject == null) {
 			if (other.instanceObject != null)
 				return false;
-		} else if (!instanceObject.equals(other.instanceObject))
+		} else if (this.getInstanceObject() != other.getInstanceObject())
+			return false;
+		if (constraint == null) {
+			if (other.constraint != null)
+				return false;
+		} else if (!constraint.sameAs(other.constraint))
 			return false;
 		return true;
 	}
-	
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	@Override
-	public String getName() {
-		if (this.instanceObject != null) {
-			return this.instanceObject.getName();
-		}
-		return "";
+	public String toString() {
+		if (eIsProxy())
+			return super.toString();
+		return  this.getInstanceObject().toString()+":"+this.getConstraint().toString();
 	}
 
 } //ConstrainedInstanceObjectImpl

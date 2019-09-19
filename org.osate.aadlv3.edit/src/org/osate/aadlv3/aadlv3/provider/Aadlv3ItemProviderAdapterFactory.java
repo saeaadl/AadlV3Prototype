@@ -1449,14 +1449,14 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 			defaultAnnexSubclauseItemProvider.dispose();
 		if (annexLibraryItemProvider != null)
 			annexLibraryItemProvider.dispose();
-		if (behaviorRuleItemProvider != null)
-			behaviorRuleItemProvider.dispose();
 		if (emSubclauseItemProvider != null)
 			emSubclauseItemProvider.dispose();
 		if (baSubclauseItemProvider != null)
 			baSubclauseItemProvider.dispose();
 		if (behaviorSpecificationItemProvider != null)
 			behaviorSpecificationItemProvider.dispose();
+		if (behaviorRuleItemProvider != null)
+			behaviorRuleItemProvider.dispose();
 		if (stateSpecificationItemProvider != null)
 			stateSpecificationItemProvider.dispose();
 		if (generatorItemProvider != null)

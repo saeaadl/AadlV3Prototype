@@ -10,7 +10,6 @@ import org.osate.aadlv3.aadlv3.ComponentImplementation;
 import org.osate.aadlv3.aadlv3.ComponentInterface;
 import org.osate.aadlv3.aadlv3.ComponentRealization;
 import org.osate.aadlv3.aadlv3.Import;
-import org.osate.aadlv3.aadlv3.MultiLiteralConstraint;
 import org.osate.aadlv3.aadlv3.PackageDeclaration;
 import org.osate.aadlv3.aadlv3.PackageElement;
 import org.osate.aadlv3.aadlv3.PropertyDefinition;

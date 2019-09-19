@@ -2714,13 +2714,13 @@ public interface Aadlv3Package extends EPackage {
 	int CONDITION_OPERATION = 47;
 
 	/**
-	 * The feature id for the '<em><b>Left</b></em>' containment reference.
+	 * The feature id for the '<em><b>Element</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONDITION_OPERATION__LEFT = LITERAL_FEATURE_COUNT + 0;
+	int CONDITION_OPERATION__ELEMENT = LITERAL_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Operator</b></em>' attribute.
@@ -2732,13 +2732,13 @@ public interface Aadlv3Package extends EPackage {
 	int CONDITION_OPERATION__OPERATOR = LITERAL_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Right</b></em>' containment reference.
+	 * The feature id for the '<em><b>Constraint</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONDITION_OPERATION__RIGHT = LITERAL_FEATURE_COUNT + 2;
+	int CONDITION_OPERATION__CONSTRAINT = LITERAL_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Condition Operation</em>' class.
@@ -2956,79 +2956,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getBehaviorRule()
 	 * @generated
 	 */
-	int BEHAVIOR_RULE = 52;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BEHAVIOR_RULE__NAME = MODEL_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Owned Property Associations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BEHAVIOR_RULE__OWNED_PROPERTY_ASSOCIATIONS = MODEL_ELEMENT__OWNED_PROPERTY_ASSOCIATIONS;
-
-	/**
-	 * The feature id for the '<em><b>In Modes</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BEHAVIOR_RULE__IN_MODES = MODEL_ELEMENT__IN_MODES;
-
-	/**
-	 * The feature id for the '<em><b>Guard</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BEHAVIOR_RULE__GUARD = MODEL_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Target State</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BEHAVIOR_RULE__TARGET_STATE = MODEL_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Condition</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BEHAVIOR_RULE__CONDITION = MODEL_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Actions</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BEHAVIOR_RULE__ACTIONS = MODEL_ELEMENT_FEATURE_COUNT + 3;
-
-	/**
-	 * The number of structural features of the '<em>Behavior Rule</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BEHAVIOR_RULE_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 4;
+	int BEHAVIOR_RULE = 55;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.EMSubclauseImpl <em>EM Subclause</em>}' class.
@@ -3038,7 +2966,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getEMSubclause()
 	 * @generated
 	 */
-	int EM_SUBCLAUSE = 53;
+	int EM_SUBCLAUSE = 52;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3111,7 +3039,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getBehaviorSpecification()
 	 * @generated
 	 */
-	int BEHAVIOR_SPECIFICATION = 55;
+	int BEHAVIOR_SPECIFICATION = 54;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3184,7 +3112,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getBASubclause()
 	 * @generated
 	 */
-	int BA_SUBCLAUSE = 54;
+	int BA_SUBCLAUSE = 53;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3250,6 +3178,78 @@ public interface Aadlv3Package extends EPackage {
 	int BA_SUBCLAUSE_FEATURE_COUNT = BEHAVIOR_SPECIFICATION_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEHAVIOR_RULE__NAME = MODEL_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Property Associations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEHAVIOR_RULE__OWNED_PROPERTY_ASSOCIATIONS = MODEL_ELEMENT__OWNED_PROPERTY_ASSOCIATIONS;
+
+	/**
+	 * The feature id for the '<em><b>In Modes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEHAVIOR_RULE__IN_MODES = MODEL_ELEMENT__IN_MODES;
+
+	/**
+	 * The feature id for the '<em><b>Current State</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEHAVIOR_RULE__CURRENT_STATE = MODEL_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Target State</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEHAVIOR_RULE__TARGET_STATE = MODEL_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Condition</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEHAVIOR_RULE__CONDITION = MODEL_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Actions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEHAVIOR_RULE__ACTIONS = MODEL_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of structural features of the '<em>Behavior Rule</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEHAVIOR_RULE_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.StateSpecificationImpl <em>State Specification</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3269,13 +3269,13 @@ public interface Aadlv3Package extends EPackage {
 	int STATE_SPECIFICATION__CURRENT_STATE = 0;
 
 	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * The feature id for the '<em><b>Constraint</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_SPECIFICATION__TYPE = 1;
+	int STATE_SPECIFICATION__CONSTRAINT = 1;
 
 	/**
 	 * The number of structural features of the '<em>State Specification</em>' class.
@@ -4764,15 +4764,15 @@ public interface Aadlv3Package extends EPackage {
 	EClass getConditionOperation();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.osate.aadlv3.aadlv3.ConditionOperation#getLeft <em>Left</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.osate.aadlv3.aadlv3.ConditionOperation#getElement <em>Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Left</em>'.
-	 * @see org.osate.aadlv3.aadlv3.ConditionOperation#getLeft()
+	 * @return the meta object for the containment reference '<em>Element</em>'.
+	 * @see org.osate.aadlv3.aadlv3.ConditionOperation#getElement()
 	 * @see #getConditionOperation()
 	 * @generated
 	 */
-	EReference getConditionOperation_Left();
+	EReference getConditionOperation_Element();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.osate.aadlv3.aadlv3.ConditionOperation#getOperator <em>Operator</em>}'.
@@ -4786,15 +4786,15 @@ public interface Aadlv3Package extends EPackage {
 	EAttribute getConditionOperation_Operator();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.osate.aadlv3.aadlv3.ConditionOperation#getRight <em>Right</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.osate.aadlv3.aadlv3.ConditionOperation#getConstraint <em>Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Right</em>'.
-	 * @see org.osate.aadlv3.aadlv3.ConditionOperation#getRight()
+	 * @return the meta object for the containment reference '<em>Constraint</em>'.
+	 * @see org.osate.aadlv3.aadlv3.ConditionOperation#getConstraint()
 	 * @see #getConditionOperation()
 	 * @generated
 	 */
-	EReference getConditionOperation_Right();
+	EReference getConditionOperation_Constraint();
 
 	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.PropertyAssociation <em>Property Association</em>}'.
@@ -4913,15 +4913,15 @@ public interface Aadlv3Package extends EPackage {
 	EClass getBehaviorRule();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.osate.aadlv3.aadlv3.BehaviorRule#getGuard <em>Guard</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.osate.aadlv3.aadlv3.BehaviorRule#getCurrentState <em>Current State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Guard</em>'.
-	 * @see org.osate.aadlv3.aadlv3.BehaviorRule#getGuard()
+	 * @return the meta object for the containment reference '<em>Current State</em>'.
+	 * @see org.osate.aadlv3.aadlv3.BehaviorRule#getCurrentState()
 	 * @see #getBehaviorRule()
 	 * @generated
 	 */
-	EReference getBehaviorRule_Guard();
+	EReference getBehaviorRule_CurrentState();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link org.osate.aadlv3.aadlv3.BehaviorRule#getTargetState <em>Target State</em>}'.
@@ -5041,15 +5041,15 @@ public interface Aadlv3Package extends EPackage {
 	EReference getStateSpecification_CurrentState();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.osate.aadlv3.aadlv3.StateSpecification#getType <em>Type</em>}'.
+	 * Returns the meta object for the reference '{@link org.osate.aadlv3.aadlv3.StateSpecification#getConstraint <em>Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Type</em>'.
-	 * @see org.osate.aadlv3.aadlv3.StateSpecification#getType()
+	 * @return the meta object for the reference '<em>Constraint</em>'.
+	 * @see org.osate.aadlv3.aadlv3.StateSpecification#getConstraint()
 	 * @see #getStateSpecification()
 	 * @generated
 	 */
-	EReference getStateSpecification_Type();
+	EReference getStateSpecification_Constraint();
 
 	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.Generator <em>Generator</em>}'.
@@ -6490,12 +6490,12 @@ public interface Aadlv3Package extends EPackage {
 		EClass CONDITION_OPERATION = eINSTANCE.getConditionOperation();
 
 		/**
-		 * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Element</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CONDITION_OPERATION__LEFT = eINSTANCE.getConditionOperation_Left();
+		EReference CONDITION_OPERATION__ELEMENT = eINSTANCE.getConditionOperation_Element();
 
 		/**
 		 * The meta object literal for the '<em><b>Operator</b></em>' attribute feature.
@@ -6506,12 +6506,12 @@ public interface Aadlv3Package extends EPackage {
 		EAttribute CONDITION_OPERATION__OPERATOR = eINSTANCE.getConditionOperation_Operator();
 
 		/**
-		 * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Constraint</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CONDITION_OPERATION__RIGHT = eINSTANCE.getConditionOperation_Right();
+		EReference CONDITION_OPERATION__CONSTRAINT = eINSTANCE.getConditionOperation_Constraint();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.PropertyAssociationImpl <em>Property Association</em>}' class.
@@ -6613,12 +6613,12 @@ public interface Aadlv3Package extends EPackage {
 		EClass BEHAVIOR_RULE = eINSTANCE.getBehaviorRule();
 
 		/**
-		 * The meta object literal for the '<em><b>Guard</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Current State</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference BEHAVIOR_RULE__GUARD = eINSTANCE.getBehaviorRule_Guard();
+		EReference BEHAVIOR_RULE__CURRENT_STATE = eINSTANCE.getBehaviorRule_CurrentState();
 
 		/**
 		 * The meta object literal for the '<em><b>Target State</b></em>' containment reference feature.
@@ -6717,12 +6717,12 @@ public interface Aadlv3Package extends EPackage {
 		EReference STATE_SPECIFICATION__CURRENT_STATE = eINSTANCE.getStateSpecification_CurrentState();
 
 		/**
-		 * The meta object literal for the '<em><b>Type</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Constraint</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference STATE_SPECIFICATION__TYPE = eINSTANCE.getStateSpecification_Type();
+		EReference STATE_SPECIFICATION__CONSTRAINT = eINSTANCE.getStateSpecification_Constraint();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.GeneratorImpl <em>Generator</em>}' class.

@@ -27,7 +27,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.StateSpecification#getCurrentState <em>Current State</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.StateSpecification#getType <em>Type</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.StateSpecification#getConstraint <em>Constraint</em>}</li>
  * </ul>
  *
  * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getStateSpecification()
@@ -58,25 +58,25 @@ public interface StateSpecification extends EObject {
 	void setCurrentState(EnumerationLiteral value);
 
 	/**
-	 * Returns the value of the '<em><b>Type</b></em>' reference.
+	 * Returns the value of the '<em><b>Constraint</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Type</em>' reference.
-	 * @see #setType(TypeReference)
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getStateSpecification_Type()
+	 * @return the value of the '<em>Constraint</em>' reference.
+	 * @see #setConstraint(Literal)
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getStateSpecification_Constraint()
 	 * @model
 	 * @generated
 	 */
-	TypeReference getType();
+	Literal getConstraint();
 
 	/**
-	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.StateSpecification#getType <em>Type</em>}' reference.
+	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.StateSpecification#getConstraint <em>Constraint</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Type</em>' reference.
-	 * @see #getType()
+	 * @param value the new value of the '<em>Constraint</em>' reference.
+	 * @see #getConstraint()
 	 * @generated
 	 */
-	void setType(TypeReference value);
+	void setConstraint(Literal value);
 
 } // StateSpecification

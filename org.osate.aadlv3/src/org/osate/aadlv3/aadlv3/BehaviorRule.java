@@ -26,7 +26,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.osate.aadlv3.aadlv3.BehaviorRule#getGuard <em>Guard</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.BehaviorRule#getCurrentState <em>Current State</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.BehaviorRule#getTargetState <em>Target State</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.BehaviorRule#getCondition <em>Condition</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.BehaviorRule#getActions <em>Actions</em>}</li>
@@ -38,26 +38,26 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface BehaviorRule extends ModelElement {
 	/**
-	 * Returns the value of the '<em><b>Guard</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Current State</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Guard</em>' containment reference.
-	 * @see #setGuard(StateSpecification)
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getBehaviorRule_Guard()
+	 * @return the value of the '<em>Current State</em>' containment reference.
+	 * @see #setCurrentState(StateSpecification)
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getBehaviorRule_CurrentState()
 	 * @model containment="true"
 	 * @generated
 	 */
-	StateSpecification getGuard();
+	StateSpecification getCurrentState();
 
 	/**
-	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.BehaviorRule#getGuard <em>Guard</em>}' containment reference.
+	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.BehaviorRule#getCurrentState <em>Current State</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Guard</em>' containment reference.
-	 * @see #getGuard()
+	 * @param value the new value of the '<em>Current State</em>' containment reference.
+	 * @see #getCurrentState()
 	 * @generated
 	 */
-	void setGuard(StateSpecification value);
+	void setCurrentState(StateSpecification value);
 
 	/**
 	 * Returns the value of the '<em><b>Target State</b></em>' containment reference.

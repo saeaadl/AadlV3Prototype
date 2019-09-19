@@ -16,6 +16,7 @@
 package org.osate.aadlv3.aadlv3.impl;
 
 import java.util.Collection;
+import java.util.Iterator;
 
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -30,6 +31,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.ECollection;
 import org.osate.aadlv3.aadlv3.Expression;
+import org.osate.aadlv3.aadlv3.Literal;
 
 /**
  * <!-- begin-user-doc -->
@@ -172,11 +174,23 @@ public class ECollectionImpl extends LiteralImpl implements ECollection {
 			return false;
 		ECollectionImpl other = (ECollectionImpl) obj;
 		if (elements == null) {
-			if (other.elements != null)
+			if (other.elements != null) {
 				return false;
-		} else if (!elements.equals(other.elements))
-			return false;
-		return true;
+			} else {
+				//both are false
+				return true;
+			}
+		} else {
+			Iterator<Expression> it1 = elements.iterator();
+			Iterator<Expression> it2 = other.elements.iterator();
+			while (it1.hasNext() && it2.hasNext()) {
+				Expression arg1 = it1.next();
+				Expression arg2 = it2.next();
+				if (!(arg1 instanceof Literal && arg2 instanceof Literal && ((Literal)arg1).sameAs((Literal)arg2)))
+					return false;
+			}
+			return true;
+		}
 	}
 
 } //ECollectionImpl

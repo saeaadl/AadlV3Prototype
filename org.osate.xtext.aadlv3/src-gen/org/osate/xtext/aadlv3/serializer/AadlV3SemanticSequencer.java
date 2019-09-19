@@ -365,7 +365,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *         name=ID 
 	 *         (
 	 *             (
-	 *                 guard=CurrentState 
+	 *                 currentState=CurrentState 
 	 *                 (condition=MultiLiteralOperation | condition=ContainsToken | condition=ModelElementReference) 
 	 *                 targetState=CurrentState 
 	 *                 actions+=Assignment*
@@ -675,21 +675,21 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     Literal returns ConditionOperation
 	 *
 	 * Constraint:
-	 *     (left=ModelElementReference operator=InOperation right=Literal)
+	 *     (element=ModelElementReference operator=InOperation constraint=Literal)
 	 */
 	protected void sequence_ContainsToken(ISerializationContext context, ConditionOperation semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, Aadlv3Package.Literals.CONDITION_OPERATION__LEFT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, Aadlv3Package.Literals.CONDITION_OPERATION__LEFT));
+			if (transientValues.isValueTransient(semanticObject, Aadlv3Package.Literals.CONDITION_OPERATION__ELEMENT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, Aadlv3Package.Literals.CONDITION_OPERATION__ELEMENT));
 			if (transientValues.isValueTransient(semanticObject, Aadlv3Package.Literals.CONDITION_OPERATION__OPERATOR) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, Aadlv3Package.Literals.CONDITION_OPERATION__OPERATOR));
-			if (transientValues.isValueTransient(semanticObject, Aadlv3Package.Literals.CONDITION_OPERATION__RIGHT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, Aadlv3Package.Literals.CONDITION_OPERATION__RIGHT));
+			if (transientValues.isValueTransient(semanticObject, Aadlv3Package.Literals.CONDITION_OPERATION__CONSTRAINT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, Aadlv3Package.Literals.CONDITION_OPERATION__CONSTRAINT));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getContainsTokenAccess().getLeftModelElementReferenceParserRuleCall_0_0(), semanticObject.getLeft());
+		feeder.accept(grammarAccess.getContainsTokenAccess().getElementModelElementReferenceParserRuleCall_0_0(), semanticObject.getElement());
 		feeder.accept(grammarAccess.getContainsTokenAccess().getOperatorInOperationParserRuleCall_1_0(), semanticObject.getOperator());
-		feeder.accept(grammarAccess.getContainsTokenAccess().getRightLiteralParserRuleCall_2_0(), semanticObject.getRight());
+		feeder.accept(grammarAccess.getContainsTokenAccess().getConstraintLiteralParserRuleCall_2_0(), semanticObject.getConstraint());
 		feeder.finish();
 	}
 	
@@ -805,17 +805,17 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     FeatureInput returns ConditionOperation
 	 *
 	 * Constraint:
-	 *     (left=ModelElementReference operator=InputOperation)
+	 *     (element=ModelElementReference operator=InputOperation)
 	 */
 	protected void sequence_FeatureInput(ISerializationContext context, ConditionOperation semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, Aadlv3Package.Literals.CONDITION_OPERATION__LEFT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, Aadlv3Package.Literals.CONDITION_OPERATION__LEFT));
+			if (transientValues.isValueTransient(semanticObject, Aadlv3Package.Literals.CONDITION_OPERATION__ELEMENT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, Aadlv3Package.Literals.CONDITION_OPERATION__ELEMENT));
 			if (transientValues.isValueTransient(semanticObject, Aadlv3Package.Literals.CONDITION_OPERATION__OPERATOR) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, Aadlv3Package.Literals.CONDITION_OPERATION__OPERATOR));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getFeatureInputAccess().getLeftModelElementReferenceParserRuleCall_0_0(), semanticObject.getLeft());
+		feeder.accept(grammarAccess.getFeatureInputAccess().getElementModelElementReferenceParserRuleCall_0_0(), semanticObject.getElement());
 		feeder.accept(grammarAccess.getFeatureInputAccess().getOperatorInputOperationParserRuleCall_1_0(), semanticObject.getOperator());
 		feeder.finish();
 	}
@@ -1079,21 +1079,21 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     ProductLineConstraint returns ConditionOperation
 	 *
 	 * Constraint:
-	 *     (left=PropertyReference operator=SatisfiesOperation right=ListLiteral)
+	 *     (element=PropertyReference operator=SatisfiesOperation constraint=ListLiteral)
 	 */
 	protected void sequence_ProductLineConstraint(ISerializationContext context, ConditionOperation semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, Aadlv3Package.Literals.CONDITION_OPERATION__LEFT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, Aadlv3Package.Literals.CONDITION_OPERATION__LEFT));
+			if (transientValues.isValueTransient(semanticObject, Aadlv3Package.Literals.CONDITION_OPERATION__ELEMENT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, Aadlv3Package.Literals.CONDITION_OPERATION__ELEMENT));
 			if (transientValues.isValueTransient(semanticObject, Aadlv3Package.Literals.CONDITION_OPERATION__OPERATOR) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, Aadlv3Package.Literals.CONDITION_OPERATION__OPERATOR));
-			if (transientValues.isValueTransient(semanticObject, Aadlv3Package.Literals.CONDITION_OPERATION__RIGHT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, Aadlv3Package.Literals.CONDITION_OPERATION__RIGHT));
+			if (transientValues.isValueTransient(semanticObject, Aadlv3Package.Literals.CONDITION_OPERATION__CONSTRAINT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, Aadlv3Package.Literals.CONDITION_OPERATION__CONSTRAINT));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getProductLineConstraintAccess().getLeftPropertyReferenceParserRuleCall_1_0(), semanticObject.getLeft());
+		feeder.accept(grammarAccess.getProductLineConstraintAccess().getElementPropertyReferenceParserRuleCall_1_0(), semanticObject.getElement());
 		feeder.accept(grammarAccess.getProductLineConstraintAccess().getOperatorSatisfiesOperationParserRuleCall_2_0(), semanticObject.getOperator());
-		feeder.accept(grammarAccess.getProductLineConstraintAccess().getRightListLiteralParserRuleCall_3_0(), semanticObject.getRight());
+		feeder.accept(grammarAccess.getProductLineConstraintAccess().getConstraintListLiteralParserRuleCall_3_0(), semanticObject.getConstraint());
 		feeder.finish();
 	}
 	

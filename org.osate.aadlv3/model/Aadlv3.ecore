@@ -305,10 +305,10 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Action"/>
   <eClassifiers xsi:type="ecore:EClass" name="ConditionOperation" eSuperTypes="#//Literal">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//Literal"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="element" eType="#//Literal"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="#//COperator"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//Literal"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="constraint" eType="#//Literal"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="COperator">
@@ -338,16 +338,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="body" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AnnexLibrary" eSuperTypes="#//PackageDeclaration"/>
-  <eClassifiers xsi:type="ecore:EClass" name="BehaviorRule" eSuperTypes="#//ModelElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="guard" eType="#//StateSpecification"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="targetState" ordered="false"
-        eType="#//StateSpecification" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//Literal"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="actions" upperBound="-1"
-        eType="#//Assignment" containment="true"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EMSubclause" eSuperTypes="#//AnnexSubclause #//BehaviorSpecification"/>
   <eClassifiers xsi:type="ecore:EClass" name="BASubclause" eSuperTypes="#//BehaviorSpecification #//AnnexSubclause"/>
   <eClassifiers xsi:type="ecore:EClass" name="BehaviorSpecification" eSuperTypes="#//ModelElement">
@@ -357,10 +347,20 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="generators" upperBound="-1"
         eType="#//Generator" containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BehaviorRule" eSuperTypes="#//ModelElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="currentState" eType="#//StateSpecification"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="targetState" ordered="false"
+        eType="#//StateSpecification" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//Literal"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="actions" upperBound="-1"
+        eType="#//Assignment" containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StateSpecification">
     <eStructuralFeatures xsi:type="ecore:EReference" name="currentState" eType="#//EnumerationLiteral"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//TypeReference"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="constraint" eType="#//Literal"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Generator" eSuperTypes="#//ModelElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

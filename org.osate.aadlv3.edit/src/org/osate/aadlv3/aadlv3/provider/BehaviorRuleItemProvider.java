@@ -74,7 +74,7 @@ public class BehaviorRuleItemProvider extends ModelElementItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(Aadlv3Package.Literals.BEHAVIOR_RULE__GUARD);
+			childrenFeatures.add(Aadlv3Package.Literals.BEHAVIOR_RULE__CURRENT_STATE);
 			childrenFeatures.add(Aadlv3Package.Literals.BEHAVIOR_RULE__TARGET_STATE);
 			childrenFeatures.add(Aadlv3Package.Literals.BEHAVIOR_RULE__CONDITION);
 			childrenFeatures.add(Aadlv3Package.Literals.BEHAVIOR_RULE__ACTIONS);
@@ -131,7 +131,7 @@ public class BehaviorRuleItemProvider extends ModelElementItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(BehaviorRule.class)) {
-		case Aadlv3Package.BEHAVIOR_RULE__GUARD:
+		case Aadlv3Package.BEHAVIOR_RULE__CURRENT_STATE:
 		case Aadlv3Package.BEHAVIOR_RULE__TARGET_STATE:
 		case Aadlv3Package.BEHAVIOR_RULE__CONDITION:
 		case Aadlv3Package.BEHAVIOR_RULE__ACTIONS:
@@ -152,7 +152,7 @@ public class BehaviorRuleItemProvider extends ModelElementItemProvider {
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.BEHAVIOR_RULE__GUARD,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.BEHAVIOR_RULE__CURRENT_STATE,
 				Aadlv3Factory.eINSTANCE.createStateSpecification()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.BEHAVIOR_RULE__TARGET_STATE,
@@ -221,7 +221,7 @@ public class BehaviorRuleItemProvider extends ModelElementItemProvider {
 		Object childFeature = feature;
 		Object childObject = child;
 
-		boolean qualify = childFeature == Aadlv3Package.Literals.BEHAVIOR_RULE__GUARD
+		boolean qualify = childFeature == Aadlv3Package.Literals.BEHAVIOR_RULE__CURRENT_STATE
 				|| childFeature == Aadlv3Package.Literals.BEHAVIOR_RULE__TARGET_STATE;
 
 		if (qualify) {

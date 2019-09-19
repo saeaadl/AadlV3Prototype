@@ -111,7 +111,7 @@ package PortConnectionExample is
 		sense2: abstract sensor.i;
 		processing: process controlProcess.impl;
 		actuate: abstract actuator.i;
-		hw : system hardwareplatform.impl;
+//		hw : system hardwareplatform.impl;
 		sensetocontrol1: connection sense1.outp -> processing.insignal1;
 		sensetocontrol2: connection sense2.outp -> processing.insignal2;
 		controltoactuate: connection processing.outaction -> actuate.inp;

@@ -5072,17 +5072,17 @@ ruleProductLineConstraint returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getProductLineConstraintAccess().getLeftPropertyReferenceParserRuleCall_1_0());
+					newCompositeNode(grammarAccess.getProductLineConstraintAccess().getElementPropertyReferenceParserRuleCall_1_0());
 				}
-				lv_left_1_0=rulePropertyReference
+				lv_element_1_0=rulePropertyReference
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getProductLineConstraintRule());
 					}
 					set(
 						$current,
-						"left",
-						lv_left_1_0,
+						"element",
+						lv_element_1_0,
 						"org.osate.xtext.aadlv3.AadlV3.PropertyReference");
 					afterParserOrEnumRuleCall();
 				}
@@ -5110,17 +5110,17 @@ ruleProductLineConstraint returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getProductLineConstraintAccess().getRightListLiteralParserRuleCall_3_0());
+					newCompositeNode(grammarAccess.getProductLineConstraintAccess().getConstraintListLiteralParserRuleCall_3_0());
 				}
-				lv_right_3_0=ruleListLiteral
+				lv_constraint_3_0=ruleListLiteral
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getProductLineConstraintRule());
 					}
 					set(
 						$current,
-						"right",
-						lv_right_3_0,
+						"constraint",
+						lv_constraint_3_0,
 						"org.osate.xtext.aadlv3.AadlV3.ListLiteral");
 					afterParserOrEnumRuleCall();
 				}
@@ -5663,17 +5663,17 @@ ruleStateTransitionRule[EObject in_current]  returns [EObject current=in_current
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getStateTransitionRuleAccess().getGuardCurrentStateParserRuleCall_0_0());
+					newCompositeNode(grammarAccess.getStateTransitionRuleAccess().getCurrentStateCurrentStateParserRuleCall_0_0());
 				}
-				lv_guard_0_0=ruleCurrentState
+				lv_currentState_0_0=ruleCurrentState
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getStateTransitionRuleRule());
 					}
 					set(
 						$current,
-						"guard",
-						lv_guard_0_0,
+						"currentState",
+						lv_currentState_0_0,
 						"org.osate.xtext.aadlv3.AadlV3.CurrentState");
 					afterParserOrEnumRuleCall();
 				}
@@ -5907,17 +5907,17 @@ ruleContainsToken returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getContainsTokenAccess().getLeftModelElementReferenceParserRuleCall_0_0());
+					newCompositeNode(grammarAccess.getContainsTokenAccess().getElementModelElementReferenceParserRuleCall_0_0());
 				}
-				lv_left_0_0=ruleModelElementReference
+				lv_element_0_0=ruleModelElementReference
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getContainsTokenRule());
 					}
 					set(
 						$current,
-						"left",
-						lv_left_0_0,
+						"element",
+						lv_element_0_0,
 						"org.osate.xtext.aadlv3.AadlV3.ModelElementReference");
 					afterParserOrEnumRuleCall();
 				}
@@ -5945,17 +5945,17 @@ ruleContainsToken returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getContainsTokenAccess().getRightLiteralParserRuleCall_2_0());
+					newCompositeNode(grammarAccess.getContainsTokenAccess().getConstraintLiteralParserRuleCall_2_0());
 				}
-				lv_right_2_0=ruleLiteral
+				lv_constraint_2_0=ruleLiteral
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getContainsTokenRule());
 					}
 					set(
 						$current,
-						"right",
-						lv_right_2_0,
+						"constraint",
+						lv_constraint_2_0,
 						"org.osate.xtext.aadlv3.AadlV3.Literal");
 					afterParserOrEnumRuleCall();
 				}

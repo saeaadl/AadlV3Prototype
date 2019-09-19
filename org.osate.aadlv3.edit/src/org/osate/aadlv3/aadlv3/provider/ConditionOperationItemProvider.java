@@ -94,8 +94,8 @@ public class ConditionOperationItemProvider extends LiteralItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(Aadlv3Package.Literals.CONDITION_OPERATION__LEFT);
-			childrenFeatures.add(Aadlv3Package.Literals.CONDITION_OPERATION__RIGHT);
+			childrenFeatures.add(Aadlv3Package.Literals.CONDITION_OPERATION__ELEMENT);
+			childrenFeatures.add(Aadlv3Package.Literals.CONDITION_OPERATION__CONSTRAINT);
 		}
 		return childrenFeatures;
 	}
@@ -153,8 +153,8 @@ public class ConditionOperationItemProvider extends LiteralItemProvider {
 		case Aadlv3Package.CONDITION_OPERATION__OPERATOR:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
-		case Aadlv3Package.CONDITION_OPERATION__LEFT:
-		case Aadlv3Package.CONDITION_OPERATION__RIGHT:
+		case Aadlv3Package.CONDITION_OPERATION__ELEMENT:
+		case Aadlv3Package.CONDITION_OPERATION__CONSTRAINT:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -172,100 +172,100 @@ public class ConditionOperationItemProvider extends LiteralItemProvider {
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__LEFT,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__ELEMENT,
 				Aadlv3Factory.eINSTANCE.createModelElementReference()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__LEFT,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__ELEMENT,
 				Aadlv3Factory.eINSTANCE.createPathElement()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__LEFT,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__ELEMENT,
 				Aadlv3Factory.eINSTANCE.createTypeReference()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__LEFT,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__ELEMENT,
 				Aadlv3Factory.eINSTANCE.createIntegerLiteral()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__LEFT,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__ELEMENT,
 				Aadlv3Factory.eINSTANCE.createRealLiteral()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__LEFT,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__ELEMENT,
 				Aadlv3Factory.eINSTANCE.createStringLiteral()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__LEFT,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__ELEMENT,
 				Aadlv3Factory.eINSTANCE.createBooleanLiteral()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__LEFT,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__ELEMENT,
 				Aadlv3Factory.eINSTANCE.createEnumerationLiteral()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__LEFT,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__ELEMENT,
 				Aadlv3Factory.eINSTANCE.createDirectionalLiteral()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__LEFT,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__ELEMENT,
 				Aadlv3Factory.eINSTANCE.createECollection()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__LEFT,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__ELEMENT,
 				Aadlv3Factory.eINSTANCE.createListLiteral()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__LEFT,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__ELEMENT,
 				Aadlv3Factory.eINSTANCE.createSetLiteral()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__LEFT,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__ELEMENT,
 				Aadlv3Factory.eINSTANCE.createMultiOperandExpression()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__LEFT,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__ELEMENT,
 				Aadlv3Factory.eINSTANCE.createMultiLiteralConstraint()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__LEFT,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__ELEMENT,
 				Aadlv3Factory.eINSTANCE.createConditionOperation()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__LEFT,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__ELEMENT,
 				Aadlv3Factory.eINSTANCE.createPackageElementReference()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__RIGHT,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__CONSTRAINT,
 				Aadlv3Factory.eINSTANCE.createModelElementReference()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__RIGHT,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__CONSTRAINT,
 				Aadlv3Factory.eINSTANCE.createPathElement()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__RIGHT,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__CONSTRAINT,
 				Aadlv3Factory.eINSTANCE.createTypeReference()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__RIGHT,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__CONSTRAINT,
 				Aadlv3Factory.eINSTANCE.createIntegerLiteral()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__RIGHT,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__CONSTRAINT,
 				Aadlv3Factory.eINSTANCE.createRealLiteral()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__RIGHT,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__CONSTRAINT,
 				Aadlv3Factory.eINSTANCE.createStringLiteral()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__RIGHT,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__CONSTRAINT,
 				Aadlv3Factory.eINSTANCE.createBooleanLiteral()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__RIGHT,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__CONSTRAINT,
 				Aadlv3Factory.eINSTANCE.createEnumerationLiteral()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__RIGHT,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__CONSTRAINT,
 				Aadlv3Factory.eINSTANCE.createDirectionalLiteral()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__RIGHT,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__CONSTRAINT,
 				Aadlv3Factory.eINSTANCE.createECollection()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__RIGHT,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__CONSTRAINT,
 				Aadlv3Factory.eINSTANCE.createListLiteral()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__RIGHT,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__CONSTRAINT,
 				Aadlv3Factory.eINSTANCE.createSetLiteral()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__RIGHT,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__CONSTRAINT,
 				Aadlv3Factory.eINSTANCE.createMultiOperandExpression()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__RIGHT,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__CONSTRAINT,
 				Aadlv3Factory.eINSTANCE.createMultiLiteralConstraint()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__RIGHT,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__CONSTRAINT,
 				Aadlv3Factory.eINSTANCE.createConditionOperation()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__RIGHT,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__CONSTRAINT,
 				Aadlv3Factory.eINSTANCE.createPackageElementReference()));
 	}
 
@@ -280,8 +280,8 @@ public class ConditionOperationItemProvider extends LiteralItemProvider {
 		Object childFeature = feature;
 		Object childObject = child;
 
-		boolean qualify = childFeature == Aadlv3Package.Literals.CONDITION_OPERATION__LEFT
-				|| childFeature == Aadlv3Package.Literals.CONDITION_OPERATION__RIGHT;
+		boolean qualify = childFeature == Aadlv3Package.Literals.CONDITION_OPERATION__ELEMENT
+				|| childFeature == Aadlv3Package.Literals.CONDITION_OPERATION__CONSTRAINT;
 
 		if (qualify) {
 			return getString("_UI_CreateChild_text2",

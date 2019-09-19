@@ -98,6 +98,15 @@ public interface Av3instanceFactory extends EFactory {
 	ConstrainedInstanceObject createConstrainedInstanceObject();
 
 	/**
+	 * Returns a new object of class '<em>State Instance</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>State Instance</em>'.
+	 * @generated
+	 */
+	StateInstance createStateInstance();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

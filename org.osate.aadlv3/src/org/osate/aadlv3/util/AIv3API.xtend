@@ -35,6 +35,9 @@ import org.osate.av3instance.av3instance.GeneratorInstance
 import org.osate.aadlv3.aadlv3.Generator
 import org.osate.aadlv3.aadlv3.BehaviorSpecification
 import org.osate.aadlv3.aadlv3.impl.BehaviorRuleImpl
+import org.osate.aadlv3.aadlv3.StateSpecification
+import org.osate.av3instance.av3instance.StateInstance
+import org.osate.aadlv3.aadlv3.ConditionOperation
 
 class AIv3API {
 	
@@ -91,9 +94,22 @@ class AIv3API {
 		return bri
 	}
 	
+	def static ConstrainedInstanceObject createConstrainedInstanceObject(ConditionOperation co, ComponentInstance context) {
+		val cio = Av3instanceFactory.eINSTANCE.createConstrainedInstanceObject
+		cio.instanceObject = context.getInstanceElement(co.element as ModelElementReference)
+		if (co.constraint !== null){
+			cio.constraint = co.constraint.copy
+			cio.name = cio.getInstanceObject().instanceObjectPath+":"+cio.getConstraint().toString()
+		} else {
+			cio.name = cio.getInstanceObject().instanceObjectPath
+		}
+		return cio
+	}
+	
 	def static ConstrainedInstanceObject createConstrainedInstanceObject(ModelElementReference mer, ComponentInstance context) {
 		val cio = Av3instanceFactory.eINSTANCE.createConstrainedInstanceObject
 		cio.instanceObject = context.getInstanceElement(mer)
+		cio.name = cio.getInstanceObject().toString()
 		return cio
 	}
 
@@ -104,6 +120,13 @@ class AIv3API {
 		gi.generator = g
 		gi.value = g.value.copy
 		return gi
+	}
+
+	def static StateInstance createStateInstance(StateSpecification ss) {
+		val si = Av3instanceFactory.eINSTANCE.createStateInstance
+		si.name = ss.currentState.value
+		si.constraint = ss.constraint.copy
+		return si
 	}
 
 	/**
@@ -187,9 +210,8 @@ class AIv3API {
 		}
 	}
 	
-	// return the component of the conenction end. For a feature instance it is the containing component instance,
-	//  for a component instance it is the instance itself
-	def static connectionEndComponentInstance(InstanceObject io){
+	// Return the component instance if io is a component isntance (self) or the containing component isntance
+	def static containingComponentInstanceOrSelf(InstanceObject io){
 		var res = io
 		while (!(res instanceof ComponentInstance) && res.eContainer !== null){
 			res = res.eContainer as InstanceObject
@@ -222,10 +244,10 @@ class AIv3API {
 	 */
 	def static containingInstanceObject(InstanceObject io){
 		var res = io.eContainer
-		while (!(res instanceof InstanceObject) && res.eContainer !== null){
+		while (!(res instanceof InstanceObject) && res !== null){
 			res = res.eContainer as InstanceObject
 		}
-		res
+		res as InstanceObject
 	}
 
 	
@@ -449,71 +471,44 @@ class AIv3API {
 	
 	// methods related to behavior rules, constrained instance objects
 	
-	/**
-	 * find Behavior rule instances that have the constrained instance object (CIO) as target (action).
-	 * The CIO can represent a token.
-	 */
-	def static Iterable<BehaviorRuleInstance> findConnectionSourceBehaviorRules(ComponentInstance srcCi, ConstrainedInstanceObject cio, String behaviorSpecName){
-		val bris = srcCi.behaviorRules.filter[bri|bri.behaviorRule.containingBehaviorSpecification.name.equals(behaviorSpecName)]
-		val res = bris.filter[bri|bri.matchingAction(cio)]
-		return res
+	def static Iterable<ConstrainedInstanceObject> findContainedActionCIOs(InstanceObject desiredTarget, Literal constraint, String behaviorSpecName){
+		val briContext = desiredTarget.containingComponentInstanceOrSelf
+		val bris = briContext.behaviorRules.filter[bri|bri.behaviorRule.containingBehaviorSpecification.name.equals(behaviorSpecName)]
+		return bris.map[bri|bri.actions].flatten.filter[target|target.instanceObject === desiredTarget && constraint.contains(target.constraint)]
 	}
 	
 	/**
-	 * find all behavior rule instances whose target (assignment action) is the instance object
+	 * return all action CIOs that refer to the instance object io
 	 */
-	def static Iterable<BehaviorRuleInstance> findConnectionSourceBehaviorRules(InstanceObject io, String behaviorSpecName){
-		val ci = io.connectionEndComponentInstance
-		val bris = ci.behaviorRules.filter[bri|bri.behaviorRule.containingBehaviorSpecification.name.equals(behaviorSpecName)]
-		val res = bris.filter[bri|bri.matchingActionInstance(io)]
-		return res
-	}
-	
-	def static boolean matchingAction(BehaviorRuleInstance bri, ConstrainedInstanceObject cio){
-		bri.actions.exists[action|action.sameAs(cio)]
-	}
-	
-	def static boolean matchingActionInstance(BehaviorRuleInstance bri, InstanceObject io){
-		bri.actions.exists[action|action.instanceObject === io]
-	}
-	
-	
-	def static Iterable<ConstrainedInstanceObject> findConnectionSourceCIOs(ComponentInstance srcCi, ConstrainedInstanceObject cio, String behaviorSpecName){
-		val bris = srcCi.behaviorRules.filter[bri|bri.behaviorRule.containingBehaviorSpecification.name.equals(behaviorSpecName)]
-		return bris.map[bri|bri.actions].flatten.filter[target|target.sameAs(cio)]
-	}
-	
-	def static Iterable<ConstrainedInstanceObject> findConnectionSourceCIOs(InstanceObject io, String behaviorSpecName){
-		val srcCi = io.connectionEndComponentInstance
-		val bris = srcCi.behaviorRules.filter[bri|bri.behaviorRule.containingBehaviorSpecification.name.equals(behaviorSpecName)]
+	def static Iterable<ConstrainedInstanceObject> findActionCIOs(InstanceObject io, String behaviorSpecName){
+		val briContext = io.containingComponentInstanceOrSelf
+		val bris = briContext.behaviorRules.filter[bri|bri.behaviorRule.containingBehaviorSpecification.name.equals(behaviorSpecName)]
 		return bris.map[bri|bri.actions].flatten.filter[target|target.instanceObject === io]
 	}
-
-	
-	def static Iterable<BehaviorRuleInstance> findConnectionDestinationBehaviorRules(ComponentInstance dstCi, ConstrainedInstanceObject cio, String behaviorSpecName){
-		val bris = dstCi.behaviorRules.filter[bri|bri.behaviorRule.containingBehaviorSpecification.name.equals(behaviorSpecName)]
-		val res = bris.filter[bri|bri.matchingConditionElement(cio)]
-		return res
-	}
-	
-	def static boolean matchingConditionElement(BehaviorRuleInstance bri, ConstrainedInstanceObject cio){
-		bri.condition.eAllOfType(ConstrainedInstanceObject).exists[match|match.contains(cio)]
-	}
-	
-	def static boolean contains(ConstrainedInstanceObject constraint, ConstrainedInstanceObject token){
-		return constraint.constraint.contains(token.constraint)
-	}
 	
 	
-	def static Iterable<ConstrainedInstanceObject> findConnectionDestinationCIOs(ComponentInstance dstCi, ConstrainedInstanceObject cio, String behaviorSpecName){
+	/**
+	 * find all CIOs in condition whose instance object reference points to desriredTarget and whose constraint contains the target literal
+	 */
+	def static Iterable<ConstrainedInstanceObject> findContainingConditionCIOs(InstanceObject desiredTarget, Literal targetLiteral, String behaviorSpecName){
+		val dstCi = containingComponentInstanceOrSelf(desiredTarget);
 		val bris = dstCi.behaviorRules.filter[bri|bri.behaviorRule.containingBehaviorSpecification.name.equals(behaviorSpecName)]
 		val cios = bris.map[bri|bri.condition.eAllOfType(ConstrainedInstanceObject)].flatten
-
-		return cios.filter[target|target.contains(cio)]
-//		return bris.map[bri|bri.condition.eAllOfType(ConstrainedInstanceObject)].flatten.filter[target|target.contains(cio)]
+		return cios.filter[target|target.instanceObject === desiredTarget && target.constraint.contains(targetLiteral)]
 	}
 	
 	def static Iterable<ConstrainedInstanceObject> getAllConstrainedInstanceObjects(Literal lit){
 		return lit.eAllOfType(ConstrainedInstanceObject)
+	}
+	
+	def static boolean isAncestor(InstanceObject ancestor, InstanceObject descendent){
+		var desc = descendent.containingInstanceObject
+		while (desc !== null){
+			if (desc === ancestor){
+				return true
+			}
+			desc = desc.containingInstanceObject
+		}
+		return false
 	}
 }

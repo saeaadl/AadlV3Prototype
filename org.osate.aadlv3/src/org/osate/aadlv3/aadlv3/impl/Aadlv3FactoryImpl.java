@@ -156,14 +156,14 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 			return createDefaultAnnexSubclause();
 		case Aadlv3Package.ANNEX_LIBRARY:
 			return createAnnexLibrary();
-		case Aadlv3Package.BEHAVIOR_RULE:
-			return createBehaviorRule();
 		case Aadlv3Package.EM_SUBCLAUSE:
 			return createEMSubclause();
 		case Aadlv3Package.BA_SUBCLAUSE:
 			return createBASubclause();
 		case Aadlv3Package.BEHAVIOR_SPECIFICATION:
 			return createBehaviorSpecification();
+		case Aadlv3Package.BEHAVIOR_RULE:
+			return createBehaviorRule();
 		case Aadlv3Package.STATE_SPECIFICATION:
 			return createStateSpecification();
 		case Aadlv3Package.GENERATOR:

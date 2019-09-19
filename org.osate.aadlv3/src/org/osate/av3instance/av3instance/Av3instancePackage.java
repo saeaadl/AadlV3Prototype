@@ -627,13 +627,31 @@ public interface Av3instancePackage extends EPackage {
 	int BEHAVIOR_RULE_INSTANCE__ACTIONS = INSTANCE_OBJECT_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Current State</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEHAVIOR_RULE_INSTANCE__CURRENT_STATE = INSTANCE_OBJECT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Target State</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEHAVIOR_RULE_INSTANCE__TARGET_STATE = INSTANCE_OBJECT_FEATURE_COUNT + 4;
+
+	/**
 	 * The number of structural features of the '<em>Behavior Rule Instance</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BEHAVIOR_RULE_INSTANCE_FEATURE_COUNT = INSTANCE_OBJECT_FEATURE_COUNT + 3;
+	int BEHAVIOR_RULE_INSTANCE_FEATURE_COUNT = INSTANCE_OBJECT_FEATURE_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link org.osate.av3instance.av3instance.impl.GeneratorInstanceImpl <em>Generator Instance</em>}' class.
@@ -780,6 +798,79 @@ public interface Av3instancePackage extends EPackage {
 	 * @ordered
 	 */
 	int CONSTRAINED_INSTANCE_OBJECT_FEATURE_COUNT = INSTANCE_OBJECT_FEATURE_COUNT + 2;
+
+	/**
+	 * The meta object id for the '{@link org.osate.av3instance.av3instance.impl.StateInstanceImpl <em>State Instance</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.osate.av3instance.av3instance.impl.StateInstanceImpl
+	 * @see org.osate.av3instance.av3instance.impl.Av3instancePackageImpl#getStateInstance()
+	 * @generated
+	 */
+	int STATE_INSTANCE = 8;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_INSTANCE__NAME = INSTANCE_OBJECT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Property Associations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_INSTANCE__OWNED_PROPERTY_ASSOCIATIONS = INSTANCE_OBJECT__OWNED_PROPERTY_ASSOCIATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Associations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_INSTANCE__INCOMING_ASSOCIATIONS = INSTANCE_OBJECT__INCOMING_ASSOCIATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Outgoing Associations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_INSTANCE__OUTGOING_ASSOCIATIONS = INSTANCE_OBJECT__OUTGOING_ASSOCIATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Current State</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_INSTANCE__CURRENT_STATE = INSTANCE_OBJECT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Constraint</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_INSTANCE__CONSTRAINT = INSTANCE_OBJECT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>State Instance</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_INSTANCE_FEATURE_COUNT = INSTANCE_OBJECT_FEATURE_COUNT + 2;
 
 	/**
 	 * Returns the meta object for class '{@link org.osate.av3instance.av3instance.InstanceObject <em>Instance Object</em>}'.
@@ -1139,6 +1230,28 @@ public interface Av3instancePackage extends EPackage {
 	EReference getBehaviorRuleInstance_Actions();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link org.osate.av3instance.av3instance.BehaviorRuleInstance#getCurrentState <em>Current State</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Current State</em>'.
+	 * @see org.osate.av3instance.av3instance.BehaviorRuleInstance#getCurrentState()
+	 * @see #getBehaviorRuleInstance()
+	 * @generated
+	 */
+	EReference getBehaviorRuleInstance_CurrentState();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.osate.av3instance.av3instance.BehaviorRuleInstance#getTargetState <em>Target State</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Target State</em>'.
+	 * @see org.osate.av3instance.av3instance.BehaviorRuleInstance#getTargetState()
+	 * @see #getBehaviorRuleInstance()
+	 * @generated
+	 */
+	EReference getBehaviorRuleInstance_TargetState();
+
+	/**
 	 * Returns the meta object for the containment reference '{@link org.osate.av3instance.av3instance.BehaviorRuleInstance#getCondition <em>Condition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1212,6 +1325,38 @@ public interface Av3instancePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getConstrainedInstanceObject_Constraint();
+
+	/**
+	 * Returns the meta object for class '{@link org.osate.av3instance.av3instance.StateInstance <em>State Instance</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>State Instance</em>'.
+	 * @see org.osate.av3instance.av3instance.StateInstance
+	 * @generated
+	 */
+	EClass getStateInstance();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.osate.av3instance.av3instance.StateInstance#getCurrentState <em>Current State</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Current State</em>'.
+	 * @see org.osate.av3instance.av3instance.StateInstance#getCurrentState()
+	 * @see #getStateInstance()
+	 * @generated
+	 */
+	EReference getStateInstance_CurrentState();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.osate.av3instance.av3instance.StateInstance#getConstraint <em>Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Constraint</em>'.
+	 * @see org.osate.av3instance.av3instance.StateInstance#getConstraint()
+	 * @see #getStateInstance()
+	 * @generated
+	 */
+	EReference getStateInstance_Constraint();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1514,6 +1659,22 @@ public interface Av3instancePackage extends EPackage {
 		EReference BEHAVIOR_RULE_INSTANCE__ACTIONS = eINSTANCE.getBehaviorRuleInstance_Actions();
 
 		/**
+		 * The meta object literal for the '<em><b>Current State</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BEHAVIOR_RULE_INSTANCE__CURRENT_STATE = eINSTANCE.getBehaviorRuleInstance_CurrentState();
+
+		/**
+		 * The meta object literal for the '<em><b>Target State</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BEHAVIOR_RULE_INSTANCE__TARGET_STATE = eINSTANCE.getBehaviorRuleInstance_TargetState();
+
+		/**
 		 * The meta object literal for the '<em><b>Condition</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1573,6 +1734,32 @@ public interface Av3instancePackage extends EPackage {
 		 * @generated
 		 */
 		EReference CONSTRAINED_INSTANCE_OBJECT__CONSTRAINT = eINSTANCE.getConstrainedInstanceObject_Constraint();
+
+		/**
+		 * The meta object literal for the '{@link org.osate.av3instance.av3instance.impl.StateInstanceImpl <em>State Instance</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.osate.av3instance.av3instance.impl.StateInstanceImpl
+		 * @see org.osate.av3instance.av3instance.impl.Av3instancePackageImpl#getStateInstance()
+		 * @generated
+		 */
+		EClass STATE_INSTANCE = eINSTANCE.getStateInstance();
+
+		/**
+		 * The meta object literal for the '<em><b>Current State</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STATE_INSTANCE__CURRENT_STATE = eINSTANCE.getStateInstance_CurrentState();
+
+		/**
+		 * The meta object literal for the '<em><b>Constraint</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STATE_INSTANCE__CONSTRAINT = eINSTANCE.getStateInstance_Constraint();
 
 	}
 

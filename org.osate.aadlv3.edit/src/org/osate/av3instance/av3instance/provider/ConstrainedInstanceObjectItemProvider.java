@@ -91,7 +91,7 @@ public class ConstrainedInstanceObjectItemProvider extends InstanceObjectItemPro
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-//			childrenFeatures.add(Av3instancePackage.Literals.CONSTRAINED_INSTANCE_OBJECT__CONSTRAINT);
+			//			childrenFeatures.add(Av3instancePackage.Literals.CONSTRAINED_INSTANCE_OBJECT__CONSTRAINT);
 		}
 		return childrenFeatures;
 	}

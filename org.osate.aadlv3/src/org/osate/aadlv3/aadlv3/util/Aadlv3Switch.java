@@ -669,17 +669,6 @@ public class Aadlv3Switch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case Aadlv3Package.BEHAVIOR_RULE: {
-			BehaviorRule behaviorRule = (BehaviorRule) theEObject;
-			T result = caseBehaviorRule(behaviorRule);
-			if (result == null)
-				result = caseModelElement(behaviorRule);
-			if (result == null)
-				result = caseNamedElement(behaviorRule);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
 		case Aadlv3Package.EM_SUBCLAUSE: {
 			EMSubclause emSubclause = (EMSubclause) theEObject;
 			T result = caseEMSubclause(emSubclause);
@@ -717,6 +706,17 @@ public class Aadlv3Switch<T> extends Switch<T> {
 				result = caseModelElement(behaviorSpecification);
 			if (result == null)
 				result = caseNamedElement(behaviorSpecification);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Aadlv3Package.BEHAVIOR_RULE: {
+			BehaviorRule behaviorRule = (BehaviorRule) theEObject;
+			T result = caseBehaviorRule(behaviorRule);
+			if (result == null)
+				result = caseModelElement(behaviorRule);
+			if (result == null)
+				result = caseNamedElement(behaviorRule);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;

@@ -71,8 +71,8 @@ public class Services {
 		 Collection<ComponentInstance> neighbors = new ArrayList<ComponentInstance>();
 		 neighbors.add(ci);
 		 for (AssociationInstance conni : connis) {
-				ComponentInstance srcci = connectionEndComponentInstance(conni.getSource());
-				ComponentInstance dstci = connectionEndComponentInstance(conni.getDestination());
+				ComponentInstance srcci = containingComponentInstanceOrSelf(conni.getSource());
+				ComponentInstance dstci = containingComponentInstanceOrSelf(conni.getDestination());
 			if (srcci == ci) {
 				neighbors.add(dstci);
 			} else if (dstci == ci) {
