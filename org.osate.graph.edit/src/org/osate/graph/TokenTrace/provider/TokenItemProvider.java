@@ -56,7 +56,6 @@ public class TokenItemProvider
 			addRelatedInstanceObjectPropertyDescriptor(object);
 			addRelatedTypePropertyDescriptor(object);
 			addReferenceCountPropertyDescriptor(object);
-			addTokenLogicPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -194,28 +193,6 @@ public class TokenItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Token Logic feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addTokenLogicPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Token_tokenLogic_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Token_tokenLogic_feature", "_UI_Token_type"),
-				 TokenTracePackage.Literals.TOKEN__TOKEN_LOGIC,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
 	 * This returns Token.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -256,7 +233,6 @@ public class TokenItemProvider
 			case TokenTracePackage.TOKEN__NAME:
 			case TokenTracePackage.TOKEN__MESSAGE:
 			case TokenTracePackage.TOKEN__REFERENCE_COUNT:
-			case TokenTracePackage.TOKEN__TOKEN_LOGIC:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

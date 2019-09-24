@@ -33,6 +33,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//ComponentInstance/paths"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//ComponentInstance/behaviorRules"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//ComponentInstance/generators"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//ComponentInstance/states"/>
     </genClasses>
     <genClasses ecoreClass="AV3Instance.ecore#//AssociationInstance">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AV3Instance.ecore#//AssociationInstance/associationType"/>
@@ -63,10 +64,8 @@
     <genClasses ecoreClass="AV3Instance.ecore#//ConstrainedInstanceObject">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//ConstrainedInstanceObject/instanceObject"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//ConstrainedInstanceObject/constraint"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AV3Instance.ecore#//ConstrainedInstanceObject/outgoing"/>
     </genClasses>
-    <genClasses ecoreClass="AV3Instance.ecore#//StateInstance">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//StateInstance/currentState"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//StateInstance/constraint"/>
-    </genClasses>
+    <genClasses ecoreClass="AV3Instance.ecore#//StateInstance"/>
   </genPackages>
 </genmodel:GenModel>

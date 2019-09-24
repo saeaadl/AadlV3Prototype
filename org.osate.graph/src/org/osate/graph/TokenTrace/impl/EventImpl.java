@@ -5,9 +5,6 @@ package org.osate.graph.TokenTrace.impl;
 import java.lang.reflect.InvocationTargetException;
 
 import java.math.BigDecimal;
-
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.EList;
@@ -15,9 +12,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-
 import org.osate.graph.TokenTrace.Event;
 import org.osate.graph.TokenTrace.EventType;
 import org.osate.graph.TokenTrace.TokenTracePackage;
@@ -30,7 +24,6 @@ import org.osate.graph.TokenTrace.TokenTracePackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.osate.graph.TokenTrace.impl.EventImpl#getSubEvents <em>Sub Events</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.impl.EventImpl#getAssignedProbability <em>Assigned Probability</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.impl.EventImpl#getComputedProbability <em>Computed Probability</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.impl.EventImpl#getType <em>Type</em>}</li>
@@ -40,16 +33,6 @@ import org.osate.graph.TokenTrace.TokenTracePackage;
  * @generated
  */
 public class EventImpl extends TokenImpl implements Event {
-	/**
-	 * The cached value of the '{@link #getSubEvents() <em>Sub Events</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSubEvents()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Event> subEvents;
-
 	/**
 	 * The default value of the '{@link #getAssignedProbability() <em>Assigned Probability</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -147,19 +130,6 @@ public class EventImpl extends TokenImpl implements Event {
 	@Override
 	protected EClass eStaticClass() {
 		return TokenTracePackage.Literals.EVENT;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<Event> getSubEvents() {
-		if (subEvents == null) {
-			subEvents = new EObjectResolvingEList<Event>(Event.class, this, TokenTracePackage.EVENT__SUB_EVENTS);
-		}
-		return subEvents;
 	}
 
 	/**
@@ -274,8 +244,6 @@ public class EventImpl extends TokenImpl implements Event {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case TokenTracePackage.EVENT__SUB_EVENTS:
-				return getSubEvents();
 			case TokenTracePackage.EVENT__ASSIGNED_PROBABILITY:
 				return getAssignedProbability();
 			case TokenTracePackage.EVENT__COMPUTED_PROBABILITY:
@@ -297,10 +265,6 @@ public class EventImpl extends TokenImpl implements Event {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case TokenTracePackage.EVENT__SUB_EVENTS:
-				getSubEvents().clear();
-				getSubEvents().addAll((Collection<? extends Event>)newValue);
-				return;
 			case TokenTracePackage.EVENT__ASSIGNED_PROBABILITY:
 				setAssignedProbability((BigDecimal)newValue);
 				return;
@@ -325,9 +289,6 @@ public class EventImpl extends TokenImpl implements Event {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case TokenTracePackage.EVENT__SUB_EVENTS:
-				getSubEvents().clear();
-				return;
 			case TokenTracePackage.EVENT__ASSIGNED_PROBABILITY:
 				setAssignedProbability(ASSIGNED_PROBABILITY_EDEFAULT);
 				return;
@@ -352,8 +313,6 @@ public class EventImpl extends TokenImpl implements Event {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case TokenTracePackage.EVENT__SUB_EVENTS:
-				return subEvents != null && !subEvents.isEmpty();
 			case TokenTracePackage.EVENT__ASSIGNED_PROBABILITY:
 				return ASSIGNED_PROBABILITY_EDEFAULT == null ? assignedProbability != null : !ASSIGNED_PROBABILITY_EDEFAULT.equals(assignedProbability);
 			case TokenTracePackage.EVENT__COMPUTED_PROBABILITY:

@@ -16,6 +16,7 @@ import org.osate.av3instance.av3instance.ComponentInstance;
 import org.osate.av3instance.av3instance.ConstrainedInstanceObject;
 import org.osate.av3instance.av3instance.FeatureInstance;
 import org.osate.av3instance.av3instance.InstanceObject;
+import org.osate.av3instance.av3instance.StateInstance;
 import org.osate.graph.TokenTrace.Token;
 import org.osate.graph.TokenTrace.util.TokenTraceUtil;
 
@@ -47,6 +48,12 @@ public class AIJGraphTUtil {
 		}
 		return directedGraph;
 	}
+	
+	private static void addPath(Graph<InstanceObject, DefaultEdge> g, InstanceObject src, InstanceObject dst) {
+		g.addVertex(dst);
+		g.addVertex(src);
+		g.addEdge(src, dst);
+	}
 
 	public static Graph<InstanceObject, DefaultEdge> generatePropagationPaths(ComponentInstance root) {
 		Graph<InstanceObject, DefaultEdge> directedGraph = new DefaultDirectedGraph<InstanceObject, DefaultEdge>(
@@ -55,9 +62,7 @@ public class AIJGraphTUtil {
 		for (AssociationInstance conni : connis) {
 			InstanceObject src = conni.getSource();
 			InstanceObject dst = conni.getDestination();
-			directedGraph.addVertex(dst);
-			directedGraph.addVertex(src);
-			directedGraph.addEdge(src, dst);
+			addPath(directedGraph, src, dst);
 		}
 		List<ComponentInstance> cis = getAllComponents(root);
 		for (ComponentInstance ci : cis) {
@@ -114,9 +119,7 @@ public class AIJGraphTUtil {
 					// create edges between actions of connection source and condition elements of connection destination
 					Iterable<ConstrainedInstanceObject> dests = findContainingConditionCIOs(dst, actioncio.getConstraint(), subclauseName);
 					for (ConstrainedInstanceObject dstcio : dests) {
-						directedGraph.addVertex(dstcio);
-						directedGraph.addVertex(actioncio);
-						directedGraph.addEdge(actioncio, dstcio);
+						addPath(directedGraph, actioncio, dstcio);
 					}
 				}
 			}
@@ -126,6 +129,12 @@ public class AIJGraphTUtil {
 			EList<BehaviorRuleInstance> bris = ci.getBehaviorRules();
 			for (BehaviorRuleInstance bri: bris) {
 				for (ConstrainedInstanceObject action: bri.getActions()) {
+//					// path to the current state from which to trace back.
+//					StateInstance cs = bri.getCurrentState();
+//					if (cs != null) {
+//						addPath(directedGraph, cs, action);
+//					}
+					// process conditions
 					Iterable<ConstrainedInstanceObject> condcios = getAllConstrainedInstanceObjects(bri.getCondition());
 					for (ConstrainedInstanceObject ce : condcios) {
 						InstanceObject srcio = ce.getInstanceObject();
@@ -136,36 +145,42 @@ public class AIJGraphTUtil {
 							// Subcomponent to external feature instance rule (Composite)
 							Iterable<ConstrainedInstanceObject> subactions = findContainedActionCIOs(srcio, action.getConstraint(), subclauseName);
 							for (ConstrainedInstanceObject subcio: subactions) {
-								directedGraph.addVertex(action);
-								directedGraph.addVertex(subcio);
-								directedGraph.addEdge(subcio, action);
+								addPath(directedGraph, subcio, action);
 							}
 						} else {
 							// incoming to outgoing feature instance rule
-							directedGraph.addVertex(action);
-							directedGraph.addVertex(ce);
-							directedGraph.addEdge(ce, action);
+							addPath(directedGraph, ce, action);
 						}
 					}
 				}
+//				if (bri.getActions().isEmpty() && bri.getTargetState() != null) {
+//					// we have a rule that represents a state transition without actions
+//					StateInstance ts = bri.getTargetState();
+//					StateInstance cs = bri.getCurrentState();
+//					if (cs != null && !ts.getCurrentState().sameAs(cs.getCurrentState())) {
+//						addPath(directedGraph,cs,ts);
+//					}
+//					// process conditions
+//					Iterable<ConstrainedInstanceObject> condcios = getAllConstrainedInstanceObjects(bri.getCondition());
+//					for (ConstrainedInstanceObject ce : condcios) {
+//						InstanceObject srcio = ce.getInstanceObject();
+//						ComponentInstance srcCi = containingComponentInstanceOrSelf(srcio);
+//						if (isAncestor(ci,srcCi)) {
+//							// Subcomponent composite rule 
+//							Iterable<ConstrainedInstanceObject> subactions = findContainedActionCIOs(srcio, ce.getConstraint(), subclauseName);
+//							for (ConstrainedInstanceObject subcio: subactions) {
+//								addPath(directedGraph, subcio, ts);
+//							}
+//						} else {
+//							// incoming to outgoing feature instance rule
+//							addPath(directedGraph, ce, ts);
+//						}
+//					}
+//				}
 			}
 		}
-		Set<InstanceObject> vertexes = directedGraph.vertexSet();
-		Set<DefaultEdge> edges = directedGraph.edgeSet();
-		
 		return directedGraph;
 	}
 
-	public static Graph<Token, DefaultEdge> generateTokenTrace(ComponentInstance root) {
-		Graph<Token, DefaultEdge> directedGraph = new DefaultDirectedGraph<Token, DefaultEdge>(DefaultEdge.class);
-		List<ComponentInstance> cis = getAllComponents(root);
-		for (ComponentInstance ci : cis) {
-			if (isLeafComponent(ci)) {
-				Token t = TokenTraceUtil.createToken(ci, null);
-				directedGraph.addVertex(t);
-			}
-		}
-		return directedGraph;
-	}
 
 }

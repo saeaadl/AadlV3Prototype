@@ -22,7 +22,6 @@ import org.osate.av3instance.av3instance.InstanceObject;
  *   <li>{@link org.osate.graph.TokenTrace.Token#getRelatedInstanceObject <em>Related Instance Object</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.Token#getRelatedType <em>Related Type</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.Token#getReferenceCount <em>Reference Count</em>}</li>
- *   <li>{@link org.osate.graph.TokenTrace.Token#getTokenLogic <em>Token Logic</em>}</li>
  * </ul>
  *
  * @see org.osate.graph.TokenTrace.TokenTracePackage#getToken()
@@ -152,30 +151,5 @@ public interface Token extends MultiLiteralConstraint {
 	 * @generated
 	 */
 	void setReferenceCount(int value);
-
-	/**
-	 * Returns the value of the '<em><b>Token Logic</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.osate.graph.TokenTrace.LogicOperation}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Token Logic</em>' attribute.
-	 * @see org.osate.graph.TokenTrace.LogicOperation
-	 * @see #setTokenLogic(LogicOperation)
-	 * @see org.osate.graph.TokenTrace.TokenTracePackage#getToken_TokenLogic()
-	 * @model
-	 * @generated
-	 */
-	LogicOperation getTokenLogic();
-
-	/**
-	 * Sets the value of the '{@link org.osate.graph.TokenTrace.Token#getTokenLogic <em>Token Logic</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Token Logic</em>' attribute.
-	 * @see org.osate.graph.TokenTrace.LogicOperation
-	 * @see #getTokenLogic()
-	 * @generated
-	 */
-	void setTokenLogic(LogicOperation value);
 
 } // Token

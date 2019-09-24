@@ -9,13 +9,17 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.osate.aadlv3.aadlv3.EOperator;
+import org.osate.aadlv3.aadlv3.MultiLiteralConstraint;
 import org.osate.aadlv3.aadlv3.NamedElement;
 import org.osate.aadlv3.aadlv3.TypeReference;
 import org.osate.aadlv3.util.AIv3API;
 import org.osate.aadlv3.util.Aadlv3Util;
 import org.osate.av3instance.av3instance.AssociationInstance;
 import org.osate.av3instance.av3instance.ComponentInstance;
+import org.osate.av3instance.av3instance.ConstrainedInstanceObject;
 import org.osate.av3instance.av3instance.InstanceObject;
+import org.osate.graph.TokenTrace.Event;
+import org.osate.graph.TokenTrace.EventType;
 import org.osate.graph.TokenTrace.LogicOperation;
 import org.osate.graph.TokenTrace.Token;
 import org.osate.graph.TokenTrace.TokenTrace;
@@ -23,7 +27,10 @@ import org.osate.graph.TokenTrace.TokenTraceFactory;
 
 public class TokenTraceUtil {
 
-
+	public static TokenTrace getTokenTrace(Token t) {
+		return (TokenTrace)t.eContainer();
+	}
+	
 	public static String buildName(InstanceObject io,  TypeReference typeref) {
 		String identifier;
 		if (io == null) {
@@ -43,39 +50,89 @@ public class TokenTraceUtil {
 		return identifier;
 	}
 
-	public static Token createToken( ComponentInstance component, TypeReference type) {
-		Token newToken = TokenTraceFactory.eINSTANCE.createToken();
-		String name = buildName(component, type);
+	public static Token initializeToken(Token newToken, InstanceObject io, TypeReference type) {
+		String name = buildName(io, type);
 		newToken.setName(name);
-		newToken.setRelatedInstanceObject(component);
+		newToken.setRelatedInstanceObject(io);
 		newToken.setRelatedType(type);
 		return newToken;
 	}
+	
+	static int uniqueCount = 0;
+	
+	private static String getUniqueName() {
+		uniqueCount = uniqueCount+1;
+		return "Event-"+uniqueCount;
+	}
 
-	public static void addToken(Token parent, ComponentInstance component, NamedElement namedElement,
-			TypeReference type) {
-		Token newToken = createToken( component, type);
+	public static Token createToken(TokenTrace tt, InstanceObject io, TypeReference type) {
+		Token newToken = TokenTraceFactory.eINSTANCE.createToken();
+		initializeToken(newToken, io, type);
+		tt.getTokens().add(newToken);
+		return newToken;
+	}
+
+	public static void addToken(Token parent, InstanceObject io, TypeReference type) {
+		Token newToken = createToken(getTokenTrace(parent),io, type);
+		getTokenTrace(parent).getTokens().add(newToken);
 		parent.getTokens().add(newToken);
 	}
 
+	public static Event createEvent(TokenTrace tt, InstanceObject io, TypeReference type, EventType et) {
+		Event newToken = TokenTraceFactory.eINSTANCE.createEvent();
+		initializeToken(newToken, io, type);
+		newToken.setType(et);
+		tt.getTokens().add(newToken);
+		return newToken;
+	}
 
-	public static Token findToken(Collection<Token> tokens, String tokenName) {
-		for (Token token : tokens) {
-			if (token.getName().equalsIgnoreCase(tokenName)) {
+	public static Event createEvent(TokenTrace tt, ConstrainedInstanceObject outcio, EventType et) {
+		Event newToken = TokenTraceFactory.eINSTANCE.createEvent();
+		initializeToken(newToken, outcio.getInstanceObject(), (TypeReference)outcio.getConstraint());
+		newToken.setType(et);
+		tt.getTokens().add(newToken);
+		return newToken;
+	}
+	
+	public static Event createEvent(TokenTrace tt,ConstrainedInstanceObject outcio, MultiLiteralConstraint mlc) {
+		Event newToken = TokenTraceFactory.eINSTANCE.createEvent();
+		initializeToken(newToken, outcio.getInstanceObject(), (TypeReference)outcio.getConstraint() );
+		newToken.setType(EventType.INTERMEDIATE);
+		newToken.setOperator(mlc.getOperator());
+		newToken.setK(mlc.getK());
+		tt.getTokens().add(newToken);
+		return newToken;
+	}
+
+	public static Event createUniqueIntermediateEvent(TokenTrace tt, EOperator op, InstanceObject io) {
+		Event newToken = TokenTraceFactory.eINSTANCE.createEvent();
+		newToken.setName(getUniqueName());
+		newToken.setOperator(op);
+		newToken.setRelatedInstanceObject(io);
+		tt.getTokens().add(newToken);
+		return newToken;
+	}
+
+
+	public static Token findToken(TokenTrace tt, ConstrainedInstanceObject cio) {
+		for (Token token : tt.getTokens()) {
+			if (token.getRelatedInstanceObject() == cio.getInstanceObject() && token.getRelatedType().sameAs(cio.getConstraint())) {
 				return token;
 			}
 		}
 		return null;
 	}
 
-	public static Token findSharedSubtree(TokenTrace tokenTrace, List<EObject> tokens, EOperator optype,
-			ComponentInstance component,  TypeReference type) {
+	public static Event findSharedEventSubtree(TokenTrace tokenTrace, Iterable<Event> tokens, EOperator optype, InstanceObject io) {
 		for (Token token : tokenTrace.getTokens()) {
-			if (token.getRelatedInstanceObject() == component && token.getRelatedType() == type) {
-				if (!token.getTokens().isEmpty() && token.getOperator() == optype
-						&& token.getTokens().size() == tokens.size() && tokens.containsAll(token.getTokens())) {
-					return token;
+			if (((Event) token).getType() == EventType.INTERMEDIATE && token.getOperator() == optype
+					&& io == token.getRelatedInstanceObject() && !token.getTokens().isEmpty()) {
+				for (Event t : tokens) {
+					if (!token.getTokens().contains(t)) {
+						continue;
+					}
 				}
+				return (Event) token;
 			}
 		}
 		return null;

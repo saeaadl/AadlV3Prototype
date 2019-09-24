@@ -35,8 +35,9 @@ package PortConnectionExample is
 //		reading: flow  source p1;
 		#TokenSource => (t1);
 	@EM{
+		use states threestate;
 		e1: error event ServiceOmission ;
-		sense2:  e1 in ServiceOmission ->  p1(ServiceOmission);
+		sense2:  s0 -[e1 in ServiceOmission ]->  s1 {p1(ServiceOmission)};
 	};
 	end;
 	
@@ -45,7 +46,11 @@ package PortConnectionExample is
 		effect: out feature ;
 //		taction: flow  sink p1;
 	@EM{
-		actuate2:  p1 in ServiceOmission ->  effect(ServiceOmission);
+		use states threestate;
+		eact1: error event ServiceOmission ;
+		actuate1: s0-[eact1 in ServiceOmission]-> s1;
+		actuate2: s0-[ p1 in ServiceOmission]-> { effect(ServiceOmission)};
+		actuate3: s1-[ ]-> { effect(ServiceOmission)};
 	};
 	end;
 	

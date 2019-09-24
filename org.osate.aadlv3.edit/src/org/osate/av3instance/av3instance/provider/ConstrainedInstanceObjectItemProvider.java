@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.osate.av3instance.av3instance.Av3instancePackage;
@@ -59,6 +60,7 @@ public class ConstrainedInstanceObjectItemProvider extends InstanceObjectItemPro
 			super.getPropertyDescriptors(object);
 
 			addInstanceObjectPropertyDescriptor(object);
+			addOutgoingPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -77,6 +79,22 @@ public class ConstrainedInstanceObjectItemProvider extends InstanceObjectItemPro
 						"_UI_ConstrainedInstanceObject_type"), //$NON-NLS-1$
 				Av3instancePackage.Literals.CONSTRAINED_INSTANCE_OBJECT__INSTANCE_OBJECT, true, false, true, null, null,
 				null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Outgoing feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addOutgoingPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_ConstrainedInstanceObject_outgoing_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", //$NON-NLS-1$
+								"_UI_ConstrainedInstanceObject_outgoing_feature", "_UI_ConstrainedInstanceObject_type"), //$NON-NLS-1$ //$NON-NLS-2$
+						Av3instancePackage.Literals.CONSTRAINED_INSTANCE_OBJECT__OUTGOING, true, false, false,
+						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -140,8 +158,7 @@ public class ConstrainedInstanceObjectItemProvider extends InstanceObjectItemPro
 	public String getText(Object object) {
 		String label = ((ConstrainedInstanceObject) object).getInstanceObject().getName();
 		String type = ((ConstrainedInstanceObject) object).getConstraint().toString();
-		return type == null || type.length() == 0 ? label : //$NON-NLS-1$
-				label + ":" + type; //$NON-NLS-1$ //$NON-NLS-2$
+		return type == null || type.length() == 0 ? label : label + ":" + type; //$NON-NLS-1$ 
 	}
 
 	/**
@@ -156,6 +173,9 @@ public class ConstrainedInstanceObjectItemProvider extends InstanceObjectItemPro
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ConstrainedInstanceObject.class)) {
+		case Av3instancePackage.CONSTRAINED_INSTANCE_OBJECT__OUTGOING:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
 		case Av3instancePackage.CONSTRAINED_INSTANCE_OBJECT__CONSTRAINT:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;

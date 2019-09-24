@@ -32,7 +32,6 @@ import org.osate.aadlv3.aadlv3.Literal;
 import org.osate.av3instance.av3instance.Av3instancePackage;
 import org.osate.av3instance.av3instance.BehaviorRuleInstance;
 import org.osate.av3instance.av3instance.ConstrainedInstanceObject;
-import org.osate.av3instance.av3instance.StateInstance;
 
 /**
  * <!-- begin-user-doc -->
@@ -90,7 +89,7 @@ public class BehaviorRuleInstanceImpl extends InstanceObjectImpl implements Beha
 	 * @generated
 	 * @ordered
 	 */
-	protected StateInstance currentState;
+	protected ConstrainedInstanceObject currentState;
 
 	/**
 	 * The cached value of the '{@link #getTargetState() <em>Target State</em>}' containment reference.
@@ -100,7 +99,7 @@ public class BehaviorRuleInstanceImpl extends InstanceObjectImpl implements Beha
 	 * @generated
 	 * @ordered
 	 */
-	protected StateInstance targetState;
+	protected ConstrainedInstanceObject targetState;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -183,7 +182,7 @@ public class BehaviorRuleInstanceImpl extends InstanceObjectImpl implements Beha
 	 * @generated
 	 */
 	@Override
-	public StateInstance getCurrentState() {
+	public ConstrainedInstanceObject getCurrentState() {
 		return currentState;
 	}
 
@@ -192,8 +191,8 @@ public class BehaviorRuleInstanceImpl extends InstanceObjectImpl implements Beha
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetCurrentState(StateInstance newCurrentState, NotificationChain msgs) {
-		StateInstance oldCurrentState = currentState;
+	public NotificationChain basicSetCurrentState(ConstrainedInstanceObject newCurrentState, NotificationChain msgs) {
+		ConstrainedInstanceObject oldCurrentState = currentState;
 		currentState = newCurrentState;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
@@ -212,7 +211,7 @@ public class BehaviorRuleInstanceImpl extends InstanceObjectImpl implements Beha
 	 * @generated
 	 */
 	@Override
-	public void setCurrentState(StateInstance newCurrentState) {
+	public void setCurrentState(ConstrainedInstanceObject newCurrentState) {
 		if (newCurrentState != currentState) {
 			NotificationChain msgs = null;
 			if (currentState != null)
@@ -235,7 +234,7 @@ public class BehaviorRuleInstanceImpl extends InstanceObjectImpl implements Beha
 	 * @generated
 	 */
 	@Override
-	public StateInstance getTargetState() {
+	public ConstrainedInstanceObject getTargetState() {
 		return targetState;
 	}
 
@@ -244,8 +243,8 @@ public class BehaviorRuleInstanceImpl extends InstanceObjectImpl implements Beha
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetTargetState(StateInstance newTargetState, NotificationChain msgs) {
-		StateInstance oldTargetState = targetState;
+	public NotificationChain basicSetTargetState(ConstrainedInstanceObject newTargetState, NotificationChain msgs) {
+		ConstrainedInstanceObject oldTargetState = targetState;
 		targetState = newTargetState;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
@@ -264,7 +263,7 @@ public class BehaviorRuleInstanceImpl extends InstanceObjectImpl implements Beha
 	 * @generated
 	 */
 	@Override
-	public void setTargetState(StateInstance newTargetState) {
+	public void setTargetState(ConstrainedInstanceObject newTargetState) {
 		if (newTargetState != targetState) {
 			NotificationChain msgs = null;
 			if (targetState != null)
@@ -397,10 +396,10 @@ public class BehaviorRuleInstanceImpl extends InstanceObjectImpl implements Beha
 			getActions().addAll((Collection<? extends ConstrainedInstanceObject>) newValue);
 			return;
 		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE__CURRENT_STATE:
-			setCurrentState((StateInstance) newValue);
+			setCurrentState((ConstrainedInstanceObject) newValue);
 			return;
 		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE__TARGET_STATE:
-			setTargetState((StateInstance) newValue);
+			setTargetState((ConstrainedInstanceObject) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -424,10 +423,10 @@ public class BehaviorRuleInstanceImpl extends InstanceObjectImpl implements Beha
 			getActions().clear();
 			return;
 		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE__CURRENT_STATE:
-			setCurrentState((StateInstance) null);
+			setCurrentState((ConstrainedInstanceObject) null);
 			return;
 		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE__TARGET_STATE:
-			setTargetState((StateInstance) null);
+			setTargetState((ConstrainedInstanceObject) null);
 			return;
 		}
 		super.eUnset(featureID);

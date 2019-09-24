@@ -5735,7 +5735,7 @@ ruleStateTransitionRule[EObject in_current]  returns [EObject current=in_current
 					}
 				)
 			)
-		)
+		)?
 		otherlv_3=']->'
 		{
 			newLeafNode(otherlv_3, grammarAccess.getStateTransitionRuleAccess().getRightSquareBracketHyphenMinusGreaterThanSignKeyword_3());
@@ -5758,7 +5758,7 @@ ruleStateTransitionRule[EObject in_current]  returns [EObject current=in_current
 					afterParserOrEnumRuleCall();
 				}
 			)
-		)
+		)?
 		(
 			otherlv_5='{'
 			{

@@ -37,6 +37,7 @@ import org.osate.aadlv3.aadlv3.Subcomponent;
  *   <li>{@link org.osate.av3instance.av3instance.ComponentInstance#getPaths <em>Paths</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.ComponentInstance#getBehaviorRules <em>Behavior Rules</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.ComponentInstance#getGenerators <em>Generators</em>}</li>
+ *   <li>{@link org.osate.av3instance.av3instance.ComponentInstance#getStates <em>States</em>}</li>
  * </ul>
  *
  * @see org.osate.av3instance.av3instance.Av3instancePackage#getComponentInstance()
@@ -203,5 +204,17 @@ public interface ComponentInstance extends InstanceObject {
 	 * @generated
 	 */
 	EList<GeneratorInstance> getGenerators();
+
+	/**
+	 * Returns the value of the '<em><b>States</b></em>' containment reference list.
+	 * The list contents are of type {@link org.osate.av3instance.av3instance.StateInstance}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>States</em>' containment reference list.
+	 * @see org.osate.av3instance.av3instance.Av3instancePackage#getComponentInstance_States()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<StateInstance> getStates();
 
 } // ComponentInstance

@@ -4,8 +4,6 @@ package org.osate.graph.TokenTrace;
 
 import java.math.BigDecimal;
 
-import org.eclipse.emf.common.util.EList;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Event</b></em>'.
@@ -15,7 +13,6 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.osate.graph.TokenTrace.Event#getSubEvents <em>Sub Events</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.Event#getAssignedProbability <em>Assigned Probability</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.Event#getComputedProbability <em>Computed Probability</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.Event#getType <em>Type</em>}</li>
@@ -27,18 +24,6 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface Event extends Token {
-	/**
-	 * Returns the value of the '<em><b>Sub Events</b></em>' reference list.
-	 * The list contents are of type {@link org.osate.graph.TokenTrace.Event}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Sub Events</em>' reference list.
-	 * @see org.osate.graph.TokenTrace.TokenTracePackage#getEvent_SubEvents()
-	 * @model
-	 * @generated
-	 */
-	EList<Event> getSubEvents();
-
 	/**
 	 * Returns the value of the '<em><b>Assigned Probability</b></em>' attribute.
 	 * <!-- begin-user-doc -->

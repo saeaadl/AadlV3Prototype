@@ -15,7 +15,6 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.osate.aadlv3.aadlv3.TypeReference;
 import org.osate.aadlv3.aadlv3.impl.MultiLiteralConstraintImpl;
 import org.osate.av3instance.av3instance.InstanceObject;
-import org.osate.graph.TokenTrace.LogicOperation;
 import org.osate.graph.TokenTrace.Token;
 import org.osate.graph.TokenTrace.TokenTracePackage;
 
@@ -33,7 +32,6 @@ import org.osate.graph.TokenTrace.TokenTracePackage;
  *   <li>{@link org.osate.graph.TokenTrace.impl.TokenImpl#getRelatedInstanceObject <em>Related Instance Object</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.impl.TokenImpl#getRelatedType <em>Related Type</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.impl.TokenImpl#getReferenceCount <em>Reference Count</em>}</li>
- *   <li>{@link org.osate.graph.TokenTrace.impl.TokenImpl#getTokenLogic <em>Token Logic</em>}</li>
  * </ul>
  *
  * @generated
@@ -128,26 +126,6 @@ public class TokenImpl extends MultiLiteralConstraintImpl implements Token {
 	 * @ordered
 	 */
 	protected int referenceCount = REFERENCE_COUNT_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getTokenLogic() <em>Token Logic</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTokenLogic()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final LogicOperation TOKEN_LOGIC_EDEFAULT = LogicOperation.OR;
-
-	/**
-	 * The cached value of the '{@link #getTokenLogic() <em>Token Logic</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTokenLogic()
-	 * @generated
-	 * @ordered
-	 */
-	protected LogicOperation tokenLogic = TOKEN_LOGIC_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -336,29 +314,6 @@ public class TokenImpl extends MultiLiteralConstraintImpl implements Token {
 	 * @generated
 	 */
 	@Override
-	public LogicOperation getTokenLogic() {
-		return tokenLogic;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setTokenLogic(LogicOperation newTokenLogic) {
-		LogicOperation oldTokenLogic = tokenLogic;
-		tokenLogic = newTokenLogic == null ? TOKEN_LOGIC_EDEFAULT : newTokenLogic;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TokenTracePackage.TOKEN__TOKEN_LOGIC, oldTokenLogic, tokenLogic));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case TokenTracePackage.TOKEN__NAME:
@@ -375,8 +330,6 @@ public class TokenImpl extends MultiLiteralConstraintImpl implements Token {
 				return basicGetRelatedType();
 			case TokenTracePackage.TOKEN__REFERENCE_COUNT:
 				return getReferenceCount();
-			case TokenTracePackage.TOKEN__TOKEN_LOGIC:
-				return getTokenLogic();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -409,9 +362,6 @@ public class TokenImpl extends MultiLiteralConstraintImpl implements Token {
 			case TokenTracePackage.TOKEN__REFERENCE_COUNT:
 				setReferenceCount((Integer)newValue);
 				return;
-			case TokenTracePackage.TOKEN__TOKEN_LOGIC:
-				setTokenLogic((LogicOperation)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -442,9 +392,6 @@ public class TokenImpl extends MultiLiteralConstraintImpl implements Token {
 			case TokenTracePackage.TOKEN__REFERENCE_COUNT:
 				setReferenceCount(REFERENCE_COUNT_EDEFAULT);
 				return;
-			case TokenTracePackage.TOKEN__TOKEN_LOGIC:
-				setTokenLogic(TOKEN_LOGIC_EDEFAULT);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -469,8 +416,6 @@ public class TokenImpl extends MultiLiteralConstraintImpl implements Token {
 				return relatedType != null;
 			case TokenTracePackage.TOKEN__REFERENCE_COUNT:
 				return referenceCount != REFERENCE_COUNT_EDEFAULT;
-			case TokenTracePackage.TOKEN__TOKEN_LOGIC:
-				return tokenLogic != TOKEN_LOGIC_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -491,8 +436,6 @@ public class TokenImpl extends MultiLiteralConstraintImpl implements Token {
 		result.append(message);
 		result.append(", referenceCount: ");
 		result.append(referenceCount);
-		result.append(", tokenLogic: ");
-		result.append(tokenLogic);
 		result.append(')');
 		return result.toString();
 	}

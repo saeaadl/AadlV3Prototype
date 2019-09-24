@@ -28,6 +28,7 @@ import org.osate.aadlv3.aadlv3.Literal;
  * <ul>
  *   <li>{@link org.osate.av3instance.av3instance.ConstrainedInstanceObject#getInstanceObject <em>Instance Object</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.ConstrainedInstanceObject#getConstraint <em>Constraint</em>}</li>
+ *   <li>{@link org.osate.av3instance.av3instance.ConstrainedInstanceObject#isOutgoing <em>Outgoing</em>}</li>
  * </ul>
  *
  * @see org.osate.av3instance.av3instance.Av3instancePackage#getConstrainedInstanceObject()
@@ -78,5 +79,27 @@ public interface ConstrainedInstanceObject extends InstanceObject, Literal {
 	 * @generated
 	 */
 	void setConstraint(Literal value);
+
+	/**
+	 * Returns the value of the '<em><b>Outgoing</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Outgoing</em>' attribute.
+	 * @see #setOutgoing(boolean)
+	 * @see org.osate.av3instance.av3instance.Av3instancePackage#getConstrainedInstanceObject_Outgoing()
+	 * @model
+	 * @generated
+	 */
+	boolean isOutgoing();
+
+	/**
+	 * Sets the value of the '{@link org.osate.av3instance.av3instance.ConstrainedInstanceObject#isOutgoing <em>Outgoing</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Outgoing</em>' attribute.
+	 * @see #isOutgoing()
+	 * @generated
+	 */
+	void setOutgoing(boolean value);
 
 } // ConstrainedInstanceObject

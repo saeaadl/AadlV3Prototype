@@ -3179,12 +3179,12 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
 		//fragment StateTransitionRule *:
-		//	currentState=CurrentState '-[' condition=(MultiLiteralOperation | ContainsToken | ModelElementReference) ']->'
-		//	targetState=CurrentState ('{' actions+=Assignment* '}')? ';';
+		//	currentState=CurrentState '-[' condition=(MultiLiteralOperation | ContainsToken | ModelElementReference)? ']->'
+		//	targetState=CurrentState? ('{' actions+=Assignment* '}')? ';';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//currentState=CurrentState '-[' condition=(MultiLiteralOperation | ContainsToken | ModelElementReference) ']->'
-		//targetState=CurrentState ('{' actions+=Assignment* '}')? ';'
+		//currentState=CurrentState '-[' condition=(MultiLiteralOperation | ContainsToken | ModelElementReference)? ']->'
+		//targetState=CurrentState? ('{' actions+=Assignment* '}')? ';'
 		public Group getGroup() { return cGroup; }
 		
 		//currentState=CurrentState
@@ -3196,7 +3196,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		//'-['
 		public Keyword getHyphenMinusLeftSquareBracketKeyword_1() { return cHyphenMinusLeftSquareBracketKeyword_1; }
 		
-		//condition=(MultiLiteralOperation | ContainsToken | ModelElementReference)
+		//condition=(MultiLiteralOperation | ContainsToken | ModelElementReference)?
 		public Assignment getConditionAssignment_2() { return cConditionAssignment_2; }
 		
 		//(MultiLiteralOperation | ContainsToken | ModelElementReference)
@@ -3214,7 +3214,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		//']->'
 		public Keyword getRightSquareBracketHyphenMinusGreaterThanSignKeyword_3() { return cRightSquareBracketHyphenMinusGreaterThanSignKeyword_3; }
 		
-		//targetState=CurrentState
+		//targetState=CurrentState?
 		public Assignment getTargetStateAssignment_4() { return cTargetStateAssignment_4; }
 		
 		//CurrentState
@@ -5731,8 +5731,8 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//fragment StateTransitionRule *:
-	//	currentState=CurrentState '-[' condition=(MultiLiteralOperation | ContainsToken | ModelElementReference) ']->'
-	//	targetState=CurrentState ('{' actions+=Assignment* '}')? ';';
+	//	currentState=CurrentState '-[' condition=(MultiLiteralOperation | ContainsToken | ModelElementReference)? ']->'
+	//	targetState=CurrentState? ('{' actions+=Assignment* '}')? ';';
 	public StateTransitionRuleElements getStateTransitionRuleAccess() {
 		return pStateTransitionRule;
 	}

@@ -88,13 +88,13 @@ public interface TokenTracePackage extends EPackage {
 	int TOKEN_TRACE__MESSAGE = 1;
 
 	/**
-	 * The feature id for the '<em><b>Fault Tree Type</b></em>' attribute.
+	 * The feature id for the '<em><b>Token Trace Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TOKEN_TRACE__FAULT_TREE_TYPE = 2;
+	int TOKEN_TRACE__TOKEN_TRACE_TYPE = 2;
 
 	/**
 	 * The feature id for the '<em><b>Root</b></em>' reference.
@@ -233,22 +233,13 @@ public interface TokenTracePackage extends EPackage {
 	int TOKEN__REFERENCE_COUNT = Aadlv3Package.MULTI_LITERAL_CONSTRAINT_FEATURE_COUNT + 5;
 
 	/**
-	 * The feature id for the '<em><b>Token Logic</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TOKEN__TOKEN_LOGIC = Aadlv3Package.MULTI_LITERAL_CONSTRAINT_FEATURE_COUNT + 6;
-
-	/**
 	 * The number of structural features of the '<em>Token</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TOKEN_FEATURE_COUNT = Aadlv3Package.MULTI_LITERAL_CONSTRAINT_FEATURE_COUNT + 7;
+	int TOKEN_FEATURE_COUNT = Aadlv3Package.MULTI_LITERAL_CONSTRAINT_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of operations of the '<em>Token</em>' class.
@@ -351,31 +342,13 @@ public interface TokenTracePackage extends EPackage {
 	int EVENT__REFERENCE_COUNT = TOKEN__REFERENCE_COUNT;
 
 	/**
-	 * The feature id for the '<em><b>Token Logic</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EVENT__TOKEN_LOGIC = TOKEN__TOKEN_LOGIC;
-
-	/**
-	 * The feature id for the '<em><b>Sub Events</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EVENT__SUB_EVENTS = TOKEN_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Assigned Probability</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT__ASSIGNED_PROBABILITY = TOKEN_FEATURE_COUNT + 1;
+	int EVENT__ASSIGNED_PROBABILITY = TOKEN_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Computed Probability</b></em>' attribute.
@@ -384,7 +357,7 @@ public interface TokenTracePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT__COMPUTED_PROBABILITY = TOKEN_FEATURE_COUNT + 2;
+	int EVENT__COMPUTED_PROBABILITY = TOKEN_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -393,7 +366,7 @@ public interface TokenTracePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT__TYPE = TOKEN_FEATURE_COUNT + 3;
+	int EVENT__TYPE = TOKEN_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Scale</b></em>' attribute.
@@ -402,7 +375,7 @@ public interface TokenTracePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT__SCALE = TOKEN_FEATURE_COUNT + 4;
+	int EVENT__SCALE = TOKEN_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Event</em>' class.
@@ -411,7 +384,7 @@ public interface TokenTracePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT_FEATURE_COUNT = TOKEN_FEATURE_COUNT + 5;
+	int EVENT_FEATURE_COUNT = TOKEN_FEATURE_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Get Probability</em>' operation.
@@ -442,16 +415,6 @@ public interface TokenTracePackage extends EPackage {
 	int EVENT_TYPE = 3;
 
 	/**
-	 * The meta object id for the '{@link org.osate.graph.TokenTrace.LogicOperation <em>Logic Operation</em>}' enum.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.osate.graph.TokenTrace.LogicOperation
-	 * @see org.osate.graph.TokenTrace.impl.TokenTracePackageImpl#getLogicOperation()
-	 * @generated
-	 */
-	int LOGIC_OPERATION = 4;
-
-	/**
 	 * The meta object id for the '{@link org.osate.graph.TokenTrace.TokenTraceType <em>Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -459,7 +422,7 @@ public interface TokenTracePackage extends EPackage {
 	 * @see org.osate.graph.TokenTrace.impl.TokenTracePackageImpl#getTokenTraceType()
 	 * @generated
 	 */
-	int TOKEN_TRACE_TYPE = 5;
+	int TOKEN_TRACE_TYPE = 4;
 
 
 	/**
@@ -495,15 +458,15 @@ public interface TokenTracePackage extends EPackage {
 	EAttribute getTokenTrace_Message();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.osate.graph.TokenTrace.TokenTrace#getFaultTreeType <em>Fault Tree Type</em>}'.
+	 * Returns the meta object for the attribute '{@link org.osate.graph.TokenTrace.TokenTrace#getTokenTraceType <em>Token Trace Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Fault Tree Type</em>'.
-	 * @see org.osate.graph.TokenTrace.TokenTrace#getFaultTreeType()
+	 * @return the meta object for the attribute '<em>Token Trace Type</em>'.
+	 * @see org.osate.graph.TokenTrace.TokenTrace#getTokenTraceType()
 	 * @see #getTokenTrace()
 	 * @generated
 	 */
-	EAttribute getTokenTrace_FaultTreeType();
+	EAttribute getTokenTrace_TokenTraceType();
 
 	/**
 	 * Returns the meta object for the reference '{@link org.osate.graph.TokenTrace.TokenTrace#getRoot <em>Root</em>}'.
@@ -615,17 +578,6 @@ public interface TokenTracePackage extends EPackage {
 	EAttribute getToken_ReferenceCount();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.osate.graph.TokenTrace.Token#getTokenLogic <em>Token Logic</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Token Logic</em>'.
-	 * @see org.osate.graph.TokenTrace.Token#getTokenLogic()
-	 * @see #getToken()
-	 * @generated
-	 */
-	EAttribute getToken_TokenLogic();
-
-	/**
 	 * Returns the meta object for class '{@link org.osate.graph.TokenTrace.Event <em>Event</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -634,17 +586,6 @@ public interface TokenTracePackage extends EPackage {
 	 * @generated
 	 */
 	EClass getEvent();
-
-	/**
-	 * Returns the meta object for the reference list '{@link org.osate.graph.TokenTrace.Event#getSubEvents <em>Sub Events</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Sub Events</em>'.
-	 * @see org.osate.graph.TokenTrace.Event#getSubEvents()
-	 * @see #getEvent()
-	 * @generated
-	 */
-	EReference getEvent_SubEvents();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.osate.graph.TokenTrace.Event#getAssignedProbability <em>Assigned Probability</em>}'.
@@ -711,16 +652,6 @@ public interface TokenTracePackage extends EPackage {
 	EEnum getEventType();
 
 	/**
-	 * Returns the meta object for enum '{@link org.osate.graph.TokenTrace.LogicOperation <em>Logic Operation</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Logic Operation</em>'.
-	 * @see org.osate.graph.TokenTrace.LogicOperation
-	 * @generated
-	 */
-	EEnum getLogicOperation();
-
-	/**
 	 * Returns the meta object for enum '{@link org.osate.graph.TokenTrace.TokenTraceType <em>Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -780,12 +711,12 @@ public interface TokenTracePackage extends EPackage {
 		EAttribute TOKEN_TRACE__MESSAGE = eINSTANCE.getTokenTrace_Message();
 
 		/**
-		 * The meta object literal for the '<em><b>Fault Tree Type</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Token Trace Type</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute TOKEN_TRACE__FAULT_TREE_TYPE = eINSTANCE.getTokenTrace_FaultTreeType();
+		EAttribute TOKEN_TRACE__TOKEN_TRACE_TYPE = eINSTANCE.getTokenTrace_TokenTraceType();
 
 		/**
 		 * The meta object literal for the '<em><b>Root</b></em>' reference feature.
@@ -870,14 +801,6 @@ public interface TokenTracePackage extends EPackage {
 		EAttribute TOKEN__REFERENCE_COUNT = eINSTANCE.getToken_ReferenceCount();
 
 		/**
-		 * The meta object literal for the '<em><b>Token Logic</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TOKEN__TOKEN_LOGIC = eINSTANCE.getToken_TokenLogic();
-
-		/**
 		 * The meta object literal for the '{@link org.osate.graph.TokenTrace.impl.EventImpl <em>Event</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -886,14 +809,6 @@ public interface TokenTracePackage extends EPackage {
 		 * @generated
 		 */
 		EClass EVENT = eINSTANCE.getEvent();
-
-		/**
-		 * The meta object literal for the '<em><b>Sub Events</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference EVENT__SUB_EVENTS = eINSTANCE.getEvent_SubEvents();
 
 		/**
 		 * The meta object literal for the '<em><b>Assigned Probability</b></em>' attribute feature.
@@ -944,16 +859,6 @@ public interface TokenTracePackage extends EPackage {
 		 * @generated
 		 */
 		EEnum EVENT_TYPE = eINSTANCE.getEventType();
-
-		/**
-		 * The meta object literal for the '{@link org.osate.graph.TokenTrace.LogicOperation <em>Logic Operation</em>}' enum.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.osate.graph.TokenTrace.LogicOperation
-		 * @see org.osate.graph.TokenTrace.impl.TokenTracePackageImpl#getLogicOperation()
-		 * @generated
-		 */
-		EEnum LOGIC_OPERATION = eINSTANCE.getLogicOperation();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.graph.TokenTrace.TokenTraceType <em>Type</em>}' enum.

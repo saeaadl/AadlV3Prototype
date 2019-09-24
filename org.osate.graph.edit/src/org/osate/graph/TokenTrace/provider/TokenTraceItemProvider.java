@@ -65,7 +65,7 @@ public class TokenTraceItemProvider
 
 			addNamePropertyDescriptor(object);
 			addMessagePropertyDescriptor(object);
-			addFaultTreeTypePropertyDescriptor(object);
+			addTokenTraceTypePropertyDescriptor(object);
 			addRootPropertyDescriptor(object);
 			addInstanceRootPropertyDescriptor(object);
 		}
@@ -117,19 +117,19 @@ public class TokenTraceItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Fault Tree Type feature.
+	 * This adds a property descriptor for the Token Trace Type feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addFaultTreeTypePropertyDescriptor(Object object) {
+	protected void addTokenTraceTypePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_TokenTrace_faultTreeType_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_TokenTrace_faultTreeType_feature", "_UI_TokenTrace_type"),
-				 TokenTracePackage.Literals.TOKEN_TRACE__FAULT_TREE_TYPE,
+				 getString("_UI_TokenTrace_tokenTraceType_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TokenTrace_tokenTraceType_feature", "_UI_TokenTrace_type"),
+				 TokenTracePackage.Literals.TOKEN_TRACE__TOKEN_TRACE_TYPE,
 				 true,
 				 false,
 				 false,
@@ -252,7 +252,7 @@ public class TokenTraceItemProvider
 		switch (notification.getFeatureID(TokenTrace.class)) {
 			case TokenTracePackage.TOKEN_TRACE__NAME:
 			case TokenTracePackage.TOKEN_TRACE__MESSAGE:
-			case TokenTracePackage.TOKEN_TRACE__FAULT_TREE_TYPE:
+			case TokenTracePackage.TOKEN_TRACE__TOKEN_TRACE_TYPE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case TokenTracePackage.TOKEN_TRACE__TOKENS:

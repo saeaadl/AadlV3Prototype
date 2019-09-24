@@ -35,6 +35,8 @@
         eType="#//BehaviorRuleInstance" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="generators" upperBound="-1"
         eType="#//GeneratorInstance" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="states" upperBound="-1"
+        eType="#//StateInstance" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AssociationInstance" eSuperTypes="#//InstanceObject">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="associationType" eType="ecore:EEnum Aadlv3.ecore#//AssociationType"/>
@@ -61,9 +63,9 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="actions" upperBound="-1"
         eType="#//ConstrainedInstanceObject" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="currentState" eType="#//StateInstance"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="currentState" eType="#//ConstrainedInstanceObject"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="targetState" eType="#//StateInstance"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="targetState" eType="#//ConstrainedInstanceObject"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GeneratorInstance" eSuperTypes="#//InstanceObject">
@@ -75,11 +77,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="instanceObject" eType="#//InstanceObject"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="constraint" eType="ecore:EClass Aadlv3.ecore#//Literal"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="outgoing" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="StateInstance" eSuperTypes="#//InstanceObject">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="currentState" eType="ecore:EClass Aadlv3.ecore#//EnumerationLiteral"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="constraint" eType="ecore:EClass Aadlv3.ecore#//Literal"
-        containment="true"/>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StateInstance" eSuperTypes="#//InstanceObject"/>
 </ecore:EPackage>

@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link org.osate.graph.TokenTrace.TokenTrace#getName <em>Name</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.TokenTrace#getMessage <em>Message</em>}</li>
- *   <li>{@link org.osate.graph.TokenTrace.TokenTrace#getFaultTreeType <em>Fault Tree Type</em>}</li>
+ *   <li>{@link org.osate.graph.TokenTrace.TokenTrace#getTokenTraceType <em>Token Trace Type</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.TokenTrace#getRoot <em>Root</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.TokenTrace#getInstanceRoot <em>Instance Root</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.TokenTrace#getTokens <em>Tokens</em>}</li>
@@ -73,29 +73,29 @@ public interface TokenTrace extends EObject {
 	void setMessage(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Fault Tree Type</b></em>' attribute.
+	 * Returns the value of the '<em><b>Token Trace Type</b></em>' attribute.
 	 * The literals are from the enumeration {@link org.osate.graph.TokenTrace.TokenTraceType}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Fault Tree Type</em>' attribute.
+	 * @return the value of the '<em>Token Trace Type</em>' attribute.
 	 * @see org.osate.graph.TokenTrace.TokenTraceType
-	 * @see #setFaultTreeType(TokenTraceType)
-	 * @see org.osate.graph.TokenTrace.TokenTracePackage#getTokenTrace_FaultTreeType()
+	 * @see #setTokenTraceType(TokenTraceType)
+	 * @see org.osate.graph.TokenTrace.TokenTracePackage#getTokenTrace_TokenTraceType()
 	 * @model
 	 * @generated
 	 */
-	TokenTraceType getFaultTreeType();
+	TokenTraceType getTokenTraceType();
 
 	/**
-	 * Sets the value of the '{@link org.osate.graph.TokenTrace.TokenTrace#getFaultTreeType <em>Fault Tree Type</em>}' attribute.
+	 * Sets the value of the '{@link org.osate.graph.TokenTrace.TokenTrace#getTokenTraceType <em>Token Trace Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Fault Tree Type</em>' attribute.
+	 * @param value the new value of the '<em>Token Trace Type</em>' attribute.
 	 * @see org.osate.graph.TokenTrace.TokenTraceType
-	 * @see #getFaultTreeType()
+	 * @see #getTokenTraceType()
 	 * @generated
 	 */
-	void setFaultTreeType(TokenTraceType value);
+	void setTokenTraceType(TokenTraceType value);
 
 	/**
 	 * Returns the value of the '<em><b>Root</b></em>' reference.

@@ -75,8 +75,6 @@ public class TokenTraceFactoryImpl extends EFactoryImpl implements TokenTraceFac
 		switch (eDataType.getClassifierID()) {
 			case TokenTracePackage.EVENT_TYPE:
 				return createEventTypeFromString(eDataType, initialValue);
-			case TokenTracePackage.LOGIC_OPERATION:
-				return createLogicOperationFromString(eDataType, initialValue);
 			case TokenTracePackage.TOKEN_TRACE_TYPE:
 				return createTokenTraceTypeFromString(eDataType, initialValue);
 			default:
@@ -94,8 +92,6 @@ public class TokenTraceFactoryImpl extends EFactoryImpl implements TokenTraceFac
 		switch (eDataType.getClassifierID()) {
 			case TokenTracePackage.EVENT_TYPE:
 				return convertEventTypeToString(eDataType, instanceValue);
-			case TokenTracePackage.LOGIC_OPERATION:
-				return convertLogicOperationToString(eDataType, instanceValue);
 			case TokenTracePackage.TOKEN_TRACE_TYPE:
 				return convertTokenTraceTypeToString(eDataType, instanceValue);
 			default:
@@ -153,26 +149,6 @@ public class TokenTraceFactoryImpl extends EFactoryImpl implements TokenTraceFac
 	 * @generated
 	 */
 	public String convertEventTypeToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public LogicOperation createLogicOperationFromString(EDataType eDataType, String initialValue) {
-		LogicOperation result = LogicOperation.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertLogicOperationToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

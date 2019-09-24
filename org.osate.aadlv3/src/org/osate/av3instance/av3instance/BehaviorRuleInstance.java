@@ -79,12 +79,12 @@ public interface BehaviorRuleInstance extends InstanceObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Current State</em>' containment reference.
-	 * @see #setCurrentState(StateInstance)
+	 * @see #setCurrentState(ConstrainedInstanceObject)
 	 * @see org.osate.av3instance.av3instance.Av3instancePackage#getBehaviorRuleInstance_CurrentState()
 	 * @model containment="true"
 	 * @generated
 	 */
-	StateInstance getCurrentState();
+	ConstrainedInstanceObject getCurrentState();
 
 	/**
 	 * Sets the value of the '{@link org.osate.av3instance.av3instance.BehaviorRuleInstance#getCurrentState <em>Current State</em>}' containment reference.
@@ -94,19 +94,19 @@ public interface BehaviorRuleInstance extends InstanceObject {
 	 * @see #getCurrentState()
 	 * @generated
 	 */
-	void setCurrentState(StateInstance value);
+	void setCurrentState(ConstrainedInstanceObject value);
 
 	/**
 	 * Returns the value of the '<em><b>Target State</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Target State</em>' containment reference.
-	 * @see #setTargetState(StateInstance)
+	 * @see #setTargetState(ConstrainedInstanceObject)
 	 * @see org.osate.av3instance.av3instance.Av3instancePackage#getBehaviorRuleInstance_TargetState()
 	 * @model containment="true"
 	 * @generated
 	 */
-	StateInstance getTargetState();
+	ConstrainedInstanceObject getTargetState();
 
 	/**
 	 * Sets the value of the '{@link org.osate.av3instance.av3instance.BehaviorRuleInstance#getTargetState <em>Target State</em>}' containment reference.
@@ -116,7 +116,7 @@ public interface BehaviorRuleInstance extends InstanceObject {
 	 * @see #getTargetState()
 	 * @generated
 	 */
-	void setTargetState(StateInstance value);
+	void setTargetState(ConstrainedInstanceObject value);
 
 	/**
 	 * Returns the value of the '<em><b>Condition</b></em>' containment reference.

@@ -37,6 +37,8 @@ import static org.osate.aadlv3.util.ProductLineConstraint.*
 import static extension org.eclipse.emf.ecore.util.EcoreUtil.*
 import static extension org.osate.aadlv3.util.AIv3API.*
 import static extension org.osate.aadlv3.util.Aadlv3Util.*
+import org.osate.aadlv3.aadlv3.TypeDef
+import org.osate.aadlv3.aadlv3.EnumerationType
 
 class Instantiator {
 	
@@ -172,6 +174,9 @@ class Instantiator {
 		}
 		for (subclause: subcls){
 			if (subclause instanceof BehaviorSpecification){
+				if (subclause.states !== null){
+					subclause.states.instantiateStates(ci)
+				}
 				for (br: subclause.rules){
 					br.instantiateBehaviorRule(ci)
 				}
@@ -606,53 +611,63 @@ class Instantiator {
 		}
 		return null
 	}
+	
+	def void instantiateStates(TypeDef stateType, ComponentInstance context){
+		val enum = stateType.baseType
+		if (enum instanceof EnumerationType){
+			for (lit : enum.literals){
+				context.states += createStateInstance(lit);
+			}
+		}
+	}
 
 
 	// Behavior Rules
-	def void instantiateBehaviorRule(BehaviorRule br, ComponentInstance context){
+	def void instantiateBehaviorRule(BehaviorRule br, ComponentInstance context) {
 		val bri = br.createBehaviorRuleInstance
-		var behaviorCondition = br.condition.copy
-		// now replace ConditionElements by respective instances
-		val cos = EcoreUtil2.eAllOfType(behaviorCondition, ConditionOperation);
-		for (co: cos){
-			val cio = co.createConstrainedInstanceObject(context)
-			val container = co.eContainer
-			if (container instanceof ECollection){
-				container.elements.remove(co)
-				container.elements.add(cio)
-			} else if (container === null){
-				// single condition element as condition
-				behaviorCondition = cio
+		if (br.condition !== null) {
+			var behaviorCondition = br.condition.copy
+			// now replace ConditionElements by respective instances
+			val cos = EcoreUtil2.eAllOfType(behaviorCondition, ConditionOperation);
+			for (co : cos) {
+				val cio = co.createConstrainedInstanceObject(context, false)
+				val container = co.eContainer
+				if (container instanceof ECollection) {
+					container.elements.remove(co)
+					container.elements.add(cio)
+				} else if (container === null) {
+					// single condition element as condition
+					behaviorCondition = cio
+				}
 			}
-		}
-		// do the same for Generator references
-		val mers = EcoreUtil2.eAllOfType(behaviorCondition, ModelElementReference);
-		for (mer: mers){
-			val cio = mer.createConstrainedInstanceObject(context)
-			val container = mer.eContainer
-			if (container instanceof ECollection){
-				container.elements.remove(mer)
-				container.elements.add(cio)
-			} else if (container === null){
-				// single condition element as condition
-				behaviorCondition = cio
+			// do the same for Generator references without types
+			val mers = EcoreUtil2.eAllOfType(behaviorCondition, ModelElementReference);
+			for (mer : mers) {
+				val cio = mer.createConstrainedInstanceObject(context, false)
+				val container = mer.eContainer
+				if (container instanceof ECollection) {
+					container.elements.remove(mer)
+					container.elements.add(cio)
+				} else if (container === null) {
+					// single condition element as condition
+					behaviorCondition = cio
+				}
 			}
+			if (br.currentState !== null){
+				bri.currentState = br.currentState.createConstrainedInstanceObject(context)
+			}
+			if (br.targetState !== null){
+				bri.targetState = br.targetState.createConstrainedInstanceObject(context)
+			}
+			bri.condition = behaviorCondition
 		}
-		bri.condition = behaviorCondition
 		// now actions
-		for ( action: br.actions){
-			val tio = action.target.createConstrainedInstanceObject(context)
-			if (action.value !== null){
+		for (action : br.actions) {
+			val tio = action.target.createConstrainedInstanceObject(context, true)
+			if (action.value !== null) {
 				tio.constraint = action.value.copy
 			}
 			bri.actions += tio
-		}
-		// now states
-		if (br.currentState !== null){
-			bri.currentState = br.currentState.createStateInstance()
-		}
-		if (br.targetState !== null){
-			bri.targetState = br.targetState.createStateInstance()
 		}
 		context.behaviorRules += bri
 	}

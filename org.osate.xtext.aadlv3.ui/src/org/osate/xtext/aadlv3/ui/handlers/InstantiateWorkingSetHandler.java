@@ -25,6 +25,7 @@ import org.osate.aadlv3.util.ProductLineConstraint;
 import org.osate.av3instance.av3instance.ComponentInstance;
 import org.osate.graph.util.AIJGraphTUtil;
 import org.osate.graph.util.AIJGraphXUtil;
+import org.osate.graph.TokenTrace.util.FaultGraph;
 import org.osate.graph.TokenTrace.util.TokenPaths;
 
 public class InstantiateWorkingSetHandler extends AbstractHandler {
@@ -61,10 +62,12 @@ public class InstantiateWorkingSetHandler extends AbstractHandler {
 //						AIJGraphXUtil.showGraph(topo);
 //						Graph Prop =AIJGraphTUtil.generatePropagationPaths(rootinstance);
 //						AIJGraphXUtil.showGraph(Prop);
-						Graph Prop =AIJGraphTUtil.generateBehaviorPropagationPaths(rootinstance,"EM");
-						AIJGraphXUtil.showGraph(Prop);
+//						Graph Prop =AIJGraphTUtil.generateBehaviorPropagationPaths(rootinstance,"EM");
+//						AIJGraphXUtil.showGraph(Prop);
 //						Graph token =AIJGraphTUtil.generateTokenTrace(rootinstance);
 //						AIJGraphXUtil.showGraph(token);
+						FaultGraph fg = new FaultGraph();
+						fg.generateFaultGraph(rootinstance);
 					}
 				}
 			});

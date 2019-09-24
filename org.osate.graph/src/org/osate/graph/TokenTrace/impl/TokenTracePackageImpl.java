@@ -17,7 +17,6 @@ import org.osate.av3instance.av3instance.Av3instancePackage;
 
 import org.osate.graph.TokenTrace.Event;
 import org.osate.graph.TokenTrace.EventType;
-import org.osate.graph.TokenTrace.LogicOperation;
 import org.osate.graph.TokenTrace.Token;
 import org.osate.graph.TokenTrace.TokenTrace;
 import org.osate.graph.TokenTrace.TokenTraceFactory;
@@ -58,13 +57,6 @@ public class TokenTracePackageImpl extends EPackageImpl implements TokenTracePac
 	 * @generated
 	 */
 	private EEnum eventTypeEEnum = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EEnum logicOperationEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -174,7 +166,7 @@ public class TokenTracePackageImpl extends EPackageImpl implements TokenTracePac
 	 * @generated
 	 */
 	@Override
-	public EAttribute getTokenTrace_FaultTreeType() {
+	public EAttribute getTokenTrace_TokenTraceType() {
 		return (EAttribute)tokenTraceEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -284,16 +276,6 @@ public class TokenTracePackageImpl extends EPackageImpl implements TokenTracePac
 	 * @generated
 	 */
 	@Override
-	public EAttribute getToken_TokenLogic() {
-		return (EAttribute)tokenEClass.getEStructuralFeatures().get(6);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getEvent() {
 		return eventEClass;
 	}
@@ -304,18 +286,8 @@ public class TokenTracePackageImpl extends EPackageImpl implements TokenTracePac
 	 * @generated
 	 */
 	@Override
-	public EReference getEvent_SubEvents() {
-		return (EReference)eventEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EAttribute getEvent_AssignedProbability() {
-		return (EAttribute)eventEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)eventEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -325,7 +297,7 @@ public class TokenTracePackageImpl extends EPackageImpl implements TokenTracePac
 	 */
 	@Override
 	public EAttribute getEvent_ComputedProbability() {
-		return (EAttribute)eventEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)eventEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -335,7 +307,7 @@ public class TokenTracePackageImpl extends EPackageImpl implements TokenTracePac
 	 */
 	@Override
 	public EAttribute getEvent_Type() {
-		return (EAttribute)eventEClass.getEStructuralFeatures().get(3);
+		return (EAttribute)eventEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -345,7 +317,7 @@ public class TokenTracePackageImpl extends EPackageImpl implements TokenTracePac
 	 */
 	@Override
 	public EAttribute getEvent_Scale() {
-		return (EAttribute)eventEClass.getEStructuralFeatures().get(4);
+		return (EAttribute)eventEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -366,16 +338,6 @@ public class TokenTracePackageImpl extends EPackageImpl implements TokenTracePac
 	@Override
 	public EEnum getEventType() {
 		return eventTypeEEnum;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EEnum getLogicOperation() {
-		return logicOperationEEnum;
 	}
 
 	/**
@@ -420,7 +382,7 @@ public class TokenTracePackageImpl extends EPackageImpl implements TokenTracePac
 		tokenTraceEClass = createEClass(TOKEN_TRACE);
 		createEAttribute(tokenTraceEClass, TOKEN_TRACE__NAME);
 		createEAttribute(tokenTraceEClass, TOKEN_TRACE__MESSAGE);
-		createEAttribute(tokenTraceEClass, TOKEN_TRACE__FAULT_TREE_TYPE);
+		createEAttribute(tokenTraceEClass, TOKEN_TRACE__TOKEN_TRACE_TYPE);
 		createEReference(tokenTraceEClass, TOKEN_TRACE__ROOT);
 		createEReference(tokenTraceEClass, TOKEN_TRACE__INSTANCE_ROOT);
 		createEReference(tokenTraceEClass, TOKEN_TRACE__TOKENS);
@@ -432,10 +394,8 @@ public class TokenTracePackageImpl extends EPackageImpl implements TokenTracePac
 		createEReference(tokenEClass, TOKEN__RELATED_INSTANCE_OBJECT);
 		createEReference(tokenEClass, TOKEN__RELATED_TYPE);
 		createEAttribute(tokenEClass, TOKEN__REFERENCE_COUNT);
-		createEAttribute(tokenEClass, TOKEN__TOKEN_LOGIC);
 
 		eventEClass = createEClass(EVENT);
-		createEReference(eventEClass, EVENT__SUB_EVENTS);
 		createEAttribute(eventEClass, EVENT__ASSIGNED_PROBABILITY);
 		createEAttribute(eventEClass, EVENT__COMPUTED_PROBABILITY);
 		createEAttribute(eventEClass, EVENT__TYPE);
@@ -444,7 +404,6 @@ public class TokenTracePackageImpl extends EPackageImpl implements TokenTracePac
 
 		// Create enums
 		eventTypeEEnum = createEEnum(EVENT_TYPE);
-		logicOperationEEnum = createEEnum(LOGIC_OPERATION);
 		tokenTraceTypeEEnum = createEEnum(TOKEN_TRACE_TYPE);
 	}
 
@@ -487,7 +446,7 @@ public class TokenTracePackageImpl extends EPackageImpl implements TokenTracePac
 		initEClass(tokenTraceEClass, TokenTrace.class, "TokenTrace", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getTokenTrace_Name(), ecorePackage.getEString(), "name", null, 0, 1, TokenTrace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTokenTrace_Message(), ecorePackage.getEString(), "message", null, 0, 1, TokenTrace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTokenTrace_FaultTreeType(), this.getTokenTraceType(), "faultTreeType", null, 0, 1, TokenTrace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTokenTrace_TokenTraceType(), this.getTokenTraceType(), "tokenTraceType", null, 0, 1, TokenTrace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTokenTrace_Root(), this.getToken(), null, "root", null, 0, 1, TokenTrace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTokenTrace_InstanceRoot(), ecorePackage.getEObject(), null, "instanceRoot", null, 0, 1, TokenTrace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTokenTrace_Tokens(), this.getToken(), null, "tokens", null, 0, -1, TokenTrace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -499,10 +458,8 @@ public class TokenTracePackageImpl extends EPackageImpl implements TokenTracePac
 		initEReference(getToken_RelatedInstanceObject(), theAv3instancePackage.getInstanceObject(), null, "relatedInstanceObject", null, 0, 1, Token.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getToken_RelatedType(), theAadlv3Package.getTypeReference(), null, "relatedType", null, 0, 1, Token.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getToken_ReferenceCount(), ecorePackage.getEInt(), "referenceCount", "0", 0, 1, Token.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getToken_TokenLogic(), this.getLogicOperation(), "tokenLogic", null, 0, 1, Token.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(eventEClass, Event.class, "Event", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getEvent_SubEvents(), this.getEvent(), null, "subEvents", null, 0, -1, Event.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEvent_AssignedProbability(), ecorePackage.getEBigDecimal(), "assignedProbability", null, 0, 1, Event.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEvent_ComputedProbability(), ecorePackage.getEBigDecimal(), "computedProbability", null, 0, 1, Event.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEvent_Type(), this.getEventType(), "type", null, 0, 1, Event.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -516,15 +473,6 @@ public class TokenTracePackageImpl extends EPackageImpl implements TokenTracePac
 		addEEnumLiteral(eventTypeEEnum, EventType.EXTERNAL);
 		addEEnumLiteral(eventTypeEEnum, EventType.UNDEVELOPED);
 		addEEnumLiteral(eventTypeEEnum, EventType.INTERMEDIATE);
-
-		initEEnum(logicOperationEEnum, LogicOperation.class, "LogicOperation");
-		addEEnumLiteral(logicOperationEEnum, LogicOperation.OR);
-		addEEnumLiteral(logicOperationEEnum, LogicOperation.AND);
-		addEEnumLiteral(logicOperationEEnum, LogicOperation.XOR);
-		addEEnumLiteral(logicOperationEEnum, LogicOperation.PRIORITY_AND);
-		addEEnumLiteral(logicOperationEEnum, LogicOperation.KOF);
-		addEEnumLiteral(logicOperationEEnum, LogicOperation.KORMORE);
-		addEEnumLiteral(logicOperationEEnum, LogicOperation.KORLESS);
 
 		initEEnum(tokenTraceTypeEEnum, TokenTraceType.class, "TokenTraceType");
 		addEEnumLiteral(tokenTraceTypeEEnum, TokenTraceType.TRACE_GRAPH);

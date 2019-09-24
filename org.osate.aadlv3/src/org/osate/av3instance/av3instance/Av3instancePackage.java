@@ -345,13 +345,22 @@ public interface Av3instancePackage extends EPackage {
 	int COMPONENT_INSTANCE__GENERATORS = INSTANCE_OBJECT_FEATURE_COUNT + 8;
 
 	/**
+	 * The feature id for the '<em><b>States</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_INSTANCE__STATES = INSTANCE_OBJECT_FEATURE_COUNT + 9;
+
+	/**
 	 * The number of structural features of the '<em>Component Instance</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_INSTANCE_FEATURE_COUNT = INSTANCE_OBJECT_FEATURE_COUNT + 9;
+	int COMPONENT_INSTANCE_FEATURE_COUNT = INSTANCE_OBJECT_FEATURE_COUNT + 10;
 
 	/**
 	 * The meta object id for the '{@link org.osate.av3instance.av3instance.impl.AssociationInstanceImpl <em>Association Instance</em>}' class.
@@ -791,13 +800,22 @@ public interface Av3instancePackage extends EPackage {
 	int CONSTRAINED_INSTANCE_OBJECT__CONSTRAINT = INSTANCE_OBJECT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Outgoing</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINED_INSTANCE_OBJECT__OUTGOING = INSTANCE_OBJECT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Constrained Instance Object</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINED_INSTANCE_OBJECT_FEATURE_COUNT = INSTANCE_OBJECT_FEATURE_COUNT + 2;
+	int CONSTRAINED_INSTANCE_OBJECT_FEATURE_COUNT = INSTANCE_OBJECT_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.osate.av3instance.av3instance.impl.StateInstanceImpl <em>State Instance</em>}' class.
@@ -846,31 +864,13 @@ public interface Av3instancePackage extends EPackage {
 	int STATE_INSTANCE__OUTGOING_ASSOCIATIONS = INSTANCE_OBJECT__OUTGOING_ASSOCIATIONS;
 
 	/**
-	 * The feature id for the '<em><b>Current State</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE_INSTANCE__CURRENT_STATE = INSTANCE_OBJECT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Constraint</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE_INSTANCE__CONSTRAINT = INSTANCE_OBJECT_FEATURE_COUNT + 1;
-
-	/**
 	 * The number of structural features of the '<em>State Instance</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_INSTANCE_FEATURE_COUNT = INSTANCE_OBJECT_FEATURE_COUNT + 2;
+	int STATE_INSTANCE_FEATURE_COUNT = INSTANCE_OBJECT_FEATURE_COUNT + 0;
 
 	/**
 	 * Returns the meta object for class '{@link org.osate.av3instance.av3instance.InstanceObject <em>Instance Object</em>}'.
@@ -1066,6 +1066,17 @@ public interface Av3instancePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getComponentInstance_Generators();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.osate.av3instance.av3instance.ComponentInstance#getStates <em>States</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>States</em>'.
+	 * @see org.osate.av3instance.av3instance.ComponentInstance#getStates()
+	 * @see #getComponentInstance()
+	 * @generated
+	 */
+	EReference getComponentInstance_States();
 
 	/**
 	 * Returns the meta object for class '{@link org.osate.av3instance.av3instance.AssociationInstance <em>Association Instance</em>}'.
@@ -1327,6 +1338,17 @@ public interface Av3instancePackage extends EPackage {
 	EReference getConstrainedInstanceObject_Constraint();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.osate.av3instance.av3instance.ConstrainedInstanceObject#isOutgoing <em>Outgoing</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Outgoing</em>'.
+	 * @see org.osate.av3instance.av3instance.ConstrainedInstanceObject#isOutgoing()
+	 * @see #getConstrainedInstanceObject()
+	 * @generated
+	 */
+	EAttribute getConstrainedInstanceObject_Outgoing();
+
+	/**
 	 * Returns the meta object for class '{@link org.osate.av3instance.av3instance.StateInstance <em>State Instance</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1335,28 +1357,6 @@ public interface Av3instancePackage extends EPackage {
 	 * @generated
 	 */
 	EClass getStateInstance();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.osate.av3instance.av3instance.StateInstance#getCurrentState <em>Current State</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Current State</em>'.
-	 * @see org.osate.av3instance.av3instance.StateInstance#getCurrentState()
-	 * @see #getStateInstance()
-	 * @generated
-	 */
-	EReference getStateInstance_CurrentState();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.osate.av3instance.av3instance.StateInstance#getConstraint <em>Constraint</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Constraint</em>'.
-	 * @see org.osate.av3instance.av3instance.StateInstance#getConstraint()
-	 * @see #getStateInstance()
-	 * @generated
-	 */
-	EReference getStateInstance_Constraint();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1530,6 +1530,14 @@ public interface Av3instancePackage extends EPackage {
 		 * @generated
 		 */
 		EReference COMPONENT_INSTANCE__GENERATORS = eINSTANCE.getComponentInstance_Generators();
+
+		/**
+		 * The meta object literal for the '<em><b>States</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPONENT_INSTANCE__STATES = eINSTANCE.getComponentInstance_States();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.av3instance.av3instance.impl.AssociationInstanceImpl <em>Association Instance</em>}' class.
@@ -1736,6 +1744,14 @@ public interface Av3instancePackage extends EPackage {
 		EReference CONSTRAINED_INSTANCE_OBJECT__CONSTRAINT = eINSTANCE.getConstrainedInstanceObject_Constraint();
 
 		/**
+		 * The meta object literal for the '<em><b>Outgoing</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONSTRAINED_INSTANCE_OBJECT__OUTGOING = eINSTANCE.getConstrainedInstanceObject_Outgoing();
+
+		/**
 		 * The meta object literal for the '{@link org.osate.av3instance.av3instance.impl.StateInstanceImpl <em>State Instance</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1744,22 +1760,6 @@ public interface Av3instancePackage extends EPackage {
 		 * @generated
 		 */
 		EClass STATE_INSTANCE = eINSTANCE.getStateInstance();
-
-		/**
-		 * The meta object literal for the '<em><b>Current State</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference STATE_INSTANCE__CURRENT_STATE = eINSTANCE.getStateInstance_CurrentState();
-
-		/**
-		 * The meta object literal for the '<em><b>Constraint</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference STATE_INSTANCE__CONSTRAINT = eINSTANCE.getStateInstance_Constraint();
 
 	}
 

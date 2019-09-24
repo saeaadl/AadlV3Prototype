@@ -64,6 +64,10 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ('{' '}')?
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     condition=ContainsToken ']->' (ambiguity) ';' (rule end)
+	 *     condition=ModelElementReference ']->' (ambiguity) ';' (rule end)
+	 *     condition=MultiLiteralOperation ']->' (ambiguity) ';' (rule end)
+	 *     currentState=CurrentState '-[' ']->' (ambiguity) ';' (rule end)
 	 *     targetState=CurrentState (ambiguity) ';' (rule end)
 	 */
 	protected void emit_StateTransitionRule___LeftCurlyBracketKeyword_5_0_RightCurlyBracketKeyword_5_2__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {

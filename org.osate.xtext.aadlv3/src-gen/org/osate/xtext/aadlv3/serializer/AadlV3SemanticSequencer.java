@@ -366,8 +366,8 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *         (
 	 *             (
 	 *                 currentState=CurrentState 
-	 *                 (condition=MultiLiteralOperation | condition=ContainsToken | condition=ModelElementReference) 
-	 *                 targetState=CurrentState 
+	 *                 (condition=MultiLiteralOperation | condition=ContainsToken | condition=ModelElementReference)? 
+	 *                 targetState=CurrentState? 
 	 *                 actions+=Assignment*
 	 *             ) | 
 	 *             ((condition=MultiLiteralOperation | condition=ContainsToken | condition=ModelElementReference)? actions+=Assignment*)

@@ -12939,7 +12939,7 @@ rule__StateTransitionRule__Group__2__Impl
 :
 (
 	{ before(grammarAccess.getStateTransitionRuleAccess().getConditionAssignment_2()); }
-	(rule__StateTransitionRule__ConditionAssignment_2)
+	(rule__StateTransitionRule__ConditionAssignment_2)?
 	{ after(grammarAccess.getStateTransitionRuleAccess().getConditionAssignment_2()); }
 )
 ;
@@ -12993,7 +12993,7 @@ rule__StateTransitionRule__Group__4__Impl
 :
 (
 	{ before(grammarAccess.getStateTransitionRuleAccess().getTargetStateAssignment_4()); }
-	(rule__StateTransitionRule__TargetStateAssignment_4)
+	(rule__StateTransitionRule__TargetStateAssignment_4)?
 	{ after(grammarAccess.getStateTransitionRuleAccess().getTargetStateAssignment_4()); }
 )
 ;

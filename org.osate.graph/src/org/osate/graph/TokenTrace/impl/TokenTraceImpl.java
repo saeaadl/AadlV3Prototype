@@ -34,7 +34,7 @@ import org.osate.graph.TokenTrace.TokenTraceType;
  * <ul>
  *   <li>{@link org.osate.graph.TokenTrace.impl.TokenTraceImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.impl.TokenTraceImpl#getMessage <em>Message</em>}</li>
- *   <li>{@link org.osate.graph.TokenTrace.impl.TokenTraceImpl#getFaultTreeType <em>Fault Tree Type</em>}</li>
+ *   <li>{@link org.osate.graph.TokenTrace.impl.TokenTraceImpl#getTokenTraceType <em>Token Trace Type</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.impl.TokenTraceImpl#getRoot <em>Root</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.impl.TokenTraceImpl#getInstanceRoot <em>Instance Root</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.impl.TokenTraceImpl#getTokens <em>Tokens</em>}</li>
@@ -84,24 +84,24 @@ public class TokenTraceImpl extends MinimalEObjectImpl.Container implements Toke
 	protected String message = MESSAGE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getFaultTreeType() <em>Fault Tree Type</em>}' attribute.
+	 * The default value of the '{@link #getTokenTraceType() <em>Token Trace Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getFaultTreeType()
+	 * @see #getTokenTraceType()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final TokenTraceType FAULT_TREE_TYPE_EDEFAULT = TokenTraceType.TRACE_GRAPH;
+	protected static final TokenTraceType TOKEN_TRACE_TYPE_EDEFAULT = TokenTraceType.TRACE_GRAPH;
 
 	/**
-	 * The cached value of the '{@link #getFaultTreeType() <em>Fault Tree Type</em>}' attribute.
+	 * The cached value of the '{@link #getTokenTraceType() <em>Token Trace Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getFaultTreeType()
+	 * @see #getTokenTraceType()
 	 * @generated
 	 * @ordered
 	 */
-	protected TokenTraceType faultTreeType = FAULT_TREE_TYPE_EDEFAULT;
+	protected TokenTraceType tokenTraceType = TOKEN_TRACE_TYPE_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getRoot() <em>Root</em>}' reference.
@@ -204,8 +204,8 @@ public class TokenTraceImpl extends MinimalEObjectImpl.Container implements Toke
 	 * @generated
 	 */
 	@Override
-	public TokenTraceType getFaultTreeType() {
-		return faultTreeType;
+	public TokenTraceType getTokenTraceType() {
+		return tokenTraceType;
 	}
 
 	/**
@@ -214,11 +214,11 @@ public class TokenTraceImpl extends MinimalEObjectImpl.Container implements Toke
 	 * @generated
 	 */
 	@Override
-	public void setFaultTreeType(TokenTraceType newFaultTreeType) {
-		TokenTraceType oldFaultTreeType = faultTreeType;
-		faultTreeType = newFaultTreeType == null ? FAULT_TREE_TYPE_EDEFAULT : newFaultTreeType;
+	public void setTokenTraceType(TokenTraceType newTokenTraceType) {
+		TokenTraceType oldTokenTraceType = tokenTraceType;
+		tokenTraceType = newTokenTraceType == null ? TOKEN_TRACE_TYPE_EDEFAULT : newTokenTraceType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TokenTracePackage.TOKEN_TRACE__FAULT_TREE_TYPE, oldFaultTreeType, faultTreeType));
+			eNotify(new ENotificationImpl(this, Notification.SET, TokenTracePackage.TOKEN_TRACE__TOKEN_TRACE_TYPE, oldTokenTraceType, tokenTraceType));
 	}
 
 	/**
@@ -340,8 +340,8 @@ public class TokenTraceImpl extends MinimalEObjectImpl.Container implements Toke
 				return getName();
 			case TokenTracePackage.TOKEN_TRACE__MESSAGE:
 				return getMessage();
-			case TokenTracePackage.TOKEN_TRACE__FAULT_TREE_TYPE:
-				return getFaultTreeType();
+			case TokenTracePackage.TOKEN_TRACE__TOKEN_TRACE_TYPE:
+				return getTokenTraceType();
 			case TokenTracePackage.TOKEN_TRACE__ROOT:
 				if (resolve) return getRoot();
 				return basicGetRoot();
@@ -369,8 +369,8 @@ public class TokenTraceImpl extends MinimalEObjectImpl.Container implements Toke
 			case TokenTracePackage.TOKEN_TRACE__MESSAGE:
 				setMessage((String)newValue);
 				return;
-			case TokenTracePackage.TOKEN_TRACE__FAULT_TREE_TYPE:
-				setFaultTreeType((TokenTraceType)newValue);
+			case TokenTracePackage.TOKEN_TRACE__TOKEN_TRACE_TYPE:
+				setTokenTraceType((TokenTraceType)newValue);
 				return;
 			case TokenTracePackage.TOKEN_TRACE__ROOT:
 				setRoot((Token)newValue);
@@ -400,8 +400,8 @@ public class TokenTraceImpl extends MinimalEObjectImpl.Container implements Toke
 			case TokenTracePackage.TOKEN_TRACE__MESSAGE:
 				setMessage(MESSAGE_EDEFAULT);
 				return;
-			case TokenTracePackage.TOKEN_TRACE__FAULT_TREE_TYPE:
-				setFaultTreeType(FAULT_TREE_TYPE_EDEFAULT);
+			case TokenTracePackage.TOKEN_TRACE__TOKEN_TRACE_TYPE:
+				setTokenTraceType(TOKEN_TRACE_TYPE_EDEFAULT);
 				return;
 			case TokenTracePackage.TOKEN_TRACE__ROOT:
 				setRoot((Token)null);
@@ -428,8 +428,8 @@ public class TokenTraceImpl extends MinimalEObjectImpl.Container implements Toke
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case TokenTracePackage.TOKEN_TRACE__MESSAGE:
 				return MESSAGE_EDEFAULT == null ? message != null : !MESSAGE_EDEFAULT.equals(message);
-			case TokenTracePackage.TOKEN_TRACE__FAULT_TREE_TYPE:
-				return faultTreeType != FAULT_TREE_TYPE_EDEFAULT;
+			case TokenTracePackage.TOKEN_TRACE__TOKEN_TRACE_TYPE:
+				return tokenTraceType != TOKEN_TRACE_TYPE_EDEFAULT;
 			case TokenTracePackage.TOKEN_TRACE__ROOT:
 				return root != null;
 			case TokenTracePackage.TOKEN_TRACE__INSTANCE_ROOT:
@@ -454,8 +454,8 @@ public class TokenTraceImpl extends MinimalEObjectImpl.Container implements Toke
 		result.append(name);
 		result.append(", message: ");
 		result.append(message);
-		result.append(", faultTreeType: ");
-		result.append(faultTreeType);
+		result.append(", tokenTraceType: ");
+		result.append(tokenTraceType);
 		result.append(')');
 		return result.toString();
 	}

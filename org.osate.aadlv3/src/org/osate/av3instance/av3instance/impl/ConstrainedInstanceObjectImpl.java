@@ -35,6 +35,7 @@ import org.osate.av3instance.av3instance.InstanceObject;
  * <ul>
  *   <li>{@link org.osate.av3instance.av3instance.impl.ConstrainedInstanceObjectImpl#getInstanceObject <em>Instance Object</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.impl.ConstrainedInstanceObjectImpl#getConstraint <em>Constraint</em>}</li>
+ *   <li>{@link org.osate.av3instance.av3instance.impl.ConstrainedInstanceObjectImpl#isOutgoing <em>Outgoing</em>}</li>
  * </ul>
  *
  * @generated
@@ -59,6 +60,26 @@ public class ConstrainedInstanceObjectImpl extends InstanceObjectImpl implements
 	 * @ordered
 	 */
 	protected Literal constraint;
+
+	/**
+	 * The default value of the '{@link #isOutgoing() <em>Outgoing</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isOutgoing()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean OUTGOING_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isOutgoing() <em>Outgoing</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isOutgoing()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean outgoing = OUTGOING_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -183,6 +204,30 @@ public class ConstrainedInstanceObjectImpl extends InstanceObjectImpl implements
 	 * @generated
 	 */
 	@Override
+	public boolean isOutgoing() {
+		return outgoing;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setOutgoing(boolean newOutgoing) {
+		boolean oldOutgoing = outgoing;
+		outgoing = newOutgoing;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					Av3instancePackage.CONSTRAINED_INSTANCE_OBJECT__OUTGOING, oldOutgoing, outgoing));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case Av3instancePackage.CONSTRAINED_INSTANCE_OBJECT__CONSTRAINT:
@@ -205,6 +250,8 @@ public class ConstrainedInstanceObjectImpl extends InstanceObjectImpl implements
 			return basicGetInstanceObject();
 		case Av3instancePackage.CONSTRAINED_INSTANCE_OBJECT__CONSTRAINT:
 			return getConstraint();
+		case Av3instancePackage.CONSTRAINED_INSTANCE_OBJECT__OUTGOING:
+			return isOutgoing();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -222,6 +269,9 @@ public class ConstrainedInstanceObjectImpl extends InstanceObjectImpl implements
 			return;
 		case Av3instancePackage.CONSTRAINED_INSTANCE_OBJECT__CONSTRAINT:
 			setConstraint((Literal) newValue);
+			return;
+		case Av3instancePackage.CONSTRAINED_INSTANCE_OBJECT__OUTGOING:
+			setOutgoing((Boolean) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -241,6 +291,9 @@ public class ConstrainedInstanceObjectImpl extends InstanceObjectImpl implements
 		case Av3instancePackage.CONSTRAINED_INSTANCE_OBJECT__CONSTRAINT:
 			setConstraint((Literal) null);
 			return;
+		case Av3instancePackage.CONSTRAINED_INSTANCE_OBJECT__OUTGOING:
+			setOutgoing(OUTGOING_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -257,6 +310,8 @@ public class ConstrainedInstanceObjectImpl extends InstanceObjectImpl implements
 			return instanceObject != null;
 		case Av3instancePackage.CONSTRAINED_INSTANCE_OBJECT__CONSTRAINT:
 			return constraint != null;
+		case Av3instancePackage.CONSTRAINED_INSTANCE_OBJECT__OUTGOING:
+			return outgoing != OUTGOING_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -284,7 +339,6 @@ public class ConstrainedInstanceObjectImpl extends InstanceObjectImpl implements
 		return true;
 	}
 
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -294,7 +348,7 @@ public class ConstrainedInstanceObjectImpl extends InstanceObjectImpl implements
 	public String toString() {
 		if (eIsProxy())
 			return super.toString();
-		return  this.getInstanceObject().toString()+":"+this.getConstraint().toString();
+		return this.getInstanceObject().toString() + ":" + this.getConstraint().toString();
 	}
 
 } //ConstrainedInstanceObjectImpl

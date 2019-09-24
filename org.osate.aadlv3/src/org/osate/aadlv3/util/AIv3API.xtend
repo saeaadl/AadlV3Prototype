@@ -38,6 +38,8 @@ import org.osate.aadlv3.aadlv3.impl.BehaviorRuleImpl
 import org.osate.aadlv3.aadlv3.StateSpecification
 import org.osate.av3instance.av3instance.StateInstance
 import org.osate.aadlv3.aadlv3.ConditionOperation
+import java.util.Collections
+import org.osate.aadlv3.aadlv3.EnumerationLiteral
 
 class AIv3API {
 	
@@ -94,7 +96,7 @@ class AIv3API {
 		return bri
 	}
 	
-	def static ConstrainedInstanceObject createConstrainedInstanceObject(ConditionOperation co, ComponentInstance context) {
+	def static ConstrainedInstanceObject createConstrainedInstanceObject(ConditionOperation co, ComponentInstance context, boolean outgoing) {
 		val cio = Av3instanceFactory.eINSTANCE.createConstrainedInstanceObject
 		cio.instanceObject = context.getInstanceElement(co.element as ModelElementReference)
 		if (co.constraint !== null){
@@ -103,13 +105,26 @@ class AIv3API {
 		} else {
 			cio.name = cio.getInstanceObject().instanceObjectPath
 		}
+		cio.outgoing = outgoing;
 		return cio
 	}
 	
-	def static ConstrainedInstanceObject createConstrainedInstanceObject(ModelElementReference mer, ComponentInstance context) {
+	def static ConstrainedInstanceObject createConstrainedInstanceObject(ModelElementReference mer, ComponentInstance context, boolean outgoing) {
 		val cio = Av3instanceFactory.eINSTANCE.createConstrainedInstanceObject
 		cio.instanceObject = context.getInstanceElement(mer)
 		cio.name = cio.getInstanceObject().toString()
+		cio.outgoing = outgoing;
+		return cio
+	}
+
+	
+	def static ConstrainedInstanceObject createConstrainedInstanceObject(StateSpecification ss, ComponentInstance context) {
+		val cio = Av3instanceFactory.eINSTANCE.createConstrainedInstanceObject
+		cio.instanceObject = context.findStateInstance(ss)
+		cio.name = ss.currentState.value
+		if (ss.constraint !== null){
+			cio.constraint = ss.constraint.copy
+		}
 		return cio
 	}
 
@@ -122,10 +137,9 @@ class AIv3API {
 		return gi
 	}
 
-	def static StateInstance createStateInstance(StateSpecification ss) {
+	def static StateInstance createStateInstance(EnumerationLiteral ss) {
 		val si = Av3instanceFactory.eINSTANCE.createStateInstance
-		si.name = ss.currentState.value
-		si.constraint = ss.constraint.copy
+		si.name = ss.value
 		return si
 	}
 
@@ -492,12 +506,13 @@ class AIv3API {
 	 */
 	def static Iterable<ConstrainedInstanceObject> findContainingConditionCIOs(InstanceObject desiredTarget, Literal targetLiteral, String behaviorSpecName){
 		val dstCi = containingComponentInstanceOrSelf(desiredTarget);
-		val bris = dstCi.behaviorRules.filter[bri|bri.behaviorRule.containingBehaviorSpecification.name.equals(behaviorSpecName)]
+		val bris = dstCi.behaviorRules.filter[bri|bri.behaviorRule.containingBehaviorSpecification.name.equals(behaviorSpecName) && bri.condition !== null]
 		val cios = bris.map[bri|bri.condition.eAllOfType(ConstrainedInstanceObject)].flatten
 		return cios.filter[target|target.instanceObject === desiredTarget && target.constraint.contains(targetLiteral)]
 	}
 	
 	def static Iterable<ConstrainedInstanceObject> getAllConstrainedInstanceObjects(Literal lit){
+		if (lit === null) return Collections.EMPTY_LIST
 		return lit.eAllOfType(ConstrainedInstanceObject)
 	}
 	
@@ -511,4 +526,14 @@ class AIv3API {
 		}
 		return false
 	}
+	
+	def static StateInstance findStateInstance( ComponentInstance context,StateSpecification ss){
+		for (si : context.states){
+			if (si.name.equals(ss.currentState.value)){
+				return si;
+			}
+		}
+		return null;
+	}
+	
 }

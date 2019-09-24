@@ -4,7 +4,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="TokenTrace">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="message" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="faultTreeType" eType="#//TokenTraceType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tokenTraceType" eType="#//TokenTraceType"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="root" eType="#//Token"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="instanceRoot" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="tokens" upperBound="-1"
@@ -20,12 +20,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="relatedType" eType="ecore:EClass ../../org.osate.aadlv3/model/Aadlv3.ecore#//TypeReference"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="referenceCount" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
         defaultValueLiteral="0"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tokenLogic" eType="#//LogicOperation"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Event" eSuperTypes="#//Token">
     <eOperations name="getProbability" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigDecimal"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="subEvents" upperBound="-1"
-        eType="#//Event"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="assignedProbability" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigDecimal"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="computedProbability" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigDecimal"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//EventType"/>
@@ -37,15 +34,6 @@
     <eLiterals name="External" value="1"/>
     <eLiterals name="Undeveloped" value="2"/>
     <eLiterals name="Intermediate" value="3"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="LogicOperation">
-    <eLiterals name="Or"/>
-    <eLiterals name="And" value="1"/>
-    <eLiterals name="Xor" value="2"/>
-    <eLiterals name="PriorityAnd" value="3"/>
-    <eLiterals name="kOf" value="4"/>
-    <eLiterals name="kOrmore" value="5"/>
-    <eLiterals name="kOrless" value="6"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="TokenTraceType">
     <eLiterals name="TraceGraph"/>

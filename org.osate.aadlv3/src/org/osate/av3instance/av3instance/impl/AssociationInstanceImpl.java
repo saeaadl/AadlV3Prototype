@@ -615,7 +615,8 @@ public class AssociationInstanceImpl extends InstanceObjectImpl implements Assoc
 		if (eIsProxy())
 			return super.toString();
 
-		String result = getAssociationType().toString() + " " + this.getName()+ ": "+ getInstanceObjectPath(this.getSource())+"->"+getInstanceObjectPath(this.getDestination());
+		String result = getAssociationType().toString() + " " + this.getName() + ": "
+				+ getInstanceObjectPath(this.getSource()) + "->" + getInstanceObjectPath(this.getDestination());
 		return result;
 	}
 
