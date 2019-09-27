@@ -91,7 +91,7 @@ public class TokenTraceImpl extends MinimalEObjectImpl.Container implements Toke
 	 * @generated
 	 * @ordered
 	 */
-	protected static final TokenTraceType TOKEN_TRACE_TYPE_EDEFAULT = TokenTraceType.TRACE_GRAPH;
+	protected static final TokenTraceType TOKEN_TRACE_TYPE_EDEFAULT = TokenTraceType.TOKEN_GRAPH;
 
 	/**
 	 * The cached value of the '{@link #getTokenTraceType() <em>Token Trace Type</em>}' attribute.

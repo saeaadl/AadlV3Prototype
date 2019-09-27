@@ -108,7 +108,7 @@ public class Services {
 	}
 
 	public String getErrorDescription(EObject context) {
-		return ((Event) context).getRelatedType().getType().getName();
+		return ((Event) context).getRelatedType() != null? ((Event) context).getRelatedType().getType().getName():"";
 	}
 
 	public String getSpecifiedProbability(EObject context) {

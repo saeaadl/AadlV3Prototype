@@ -47,6 +47,11 @@ public class FaultGraph {
 		for (FeatureInstance fi : root.getFeatures()) {
 			for (ConstrainedInstanceObject eroot: findActionCIOs(fi)) {
 				TokenTrace eTrace = generateEventTrace(revgraph, root, eroot);
+				TokenTraceOptimization tto = new TokenTraceOptimization(eTrace);
+				tto.optimizeFaultTrace(TokenTraceType.TOKEN_GRAPH);
+				TokenTraceUtil.fillProbabilities(eTrace);
+				TokenTraceUtil.computeProbabilities((Event)eTrace.getRoot());
+
 				String rootname = eTrace.getName()
 						+ (eTrace.getTokenTraceType().equals(TokenTraceType.MINIMAL_CUT_SET) ? "_cutset"
 								: (eTrace.getTokenTraceType().equals(TokenTraceType.TOKEN_TRACE) ? "_trace"

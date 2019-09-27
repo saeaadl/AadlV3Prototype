@@ -36,7 +36,7 @@
     <eLiterals name="Intermediate" value="3"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="TokenTraceType">
-    <eLiterals name="TraceGraph"/>
+    <eLiterals name="TokenGraph"/>
     <eLiterals name="TokenTrace" value="1"/>
     <eLiterals name="CompositeParts" value="2"/>
     <eLiterals name="MinimalCutSet" value="3"/>
