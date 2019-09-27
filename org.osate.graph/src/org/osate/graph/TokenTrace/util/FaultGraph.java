@@ -83,26 +83,28 @@ public class FaultGraph {
 		// outcio is an action in one or more bri
 		// we need to have an event for the outcio and a separate subevent for each bri action
 		Event found = (Event)findToken(eventTrace, outcio);
-		if (found == null) {
+		if (found != null) {
 			return (Event)found;
 		}
 		
 		Event outcioEvent = createEvent(eventTrace, outcio.getInstanceObject(), (TypeReference)outcio.getConstraint(), EventType.INTERMEDIATE);
-		BehaviorRuleInstance bri = containingBehaviorRuleInstance(outcio);
-		Event condEvent = processCondition(bri.getCondition(),outcio);
-		Event stateEvent = bri.getCurrentState() != null?processState(bri.getCurrentState(), (TypeReference)outcio.getConstraint()):null;
-		if (condEvent != null&& stateEvent != null){
-			EList<Event> subEvents = new BasicEList<Event>();
-			subEvents.add(stateEvent);
-			subEvents.add(condEvent);
-			outcioEvent.getTokens().add( processEventSubgraph(subEvents, EOperator.ALL, null));
-		} else if (condEvent == null&& stateEvent != null){
-			outcioEvent.getTokens().add( stateEvent);
-		} else if (condEvent == null&& stateEvent == null){
-				outcioEvent.setType(EventType.UNDEVELOPED);
-		} else if (condEvent != null&& stateEvent == null){
-				outcioEvent.getTokens().add(condEvent);
+		Iterable<BehaviorRuleInstance> bris = findMatchingBehaviorRuleInstances(outcio);
+		for (BehaviorRuleInstance bri : bris) {
+			Event condEvent = processCondition(bri.getCondition(),outcio);
+			Event stateEvent = bri.getCurrentState() != null?processState(bri.getCurrentState(), (TypeReference)outcio.getConstraint()):null;
+			if (condEvent != null&& stateEvent != null){
+				EList<Event> subEvents = new BasicEList<Event>();
+				subEvents.add(stateEvent);
+				subEvents.add(condEvent);
+				outcioEvent.getTokens().add( processEventSubgraph(subEvents, EOperator.ALL, null));
+			} else if (condEvent == null&& stateEvent != null){
+				outcioEvent.getTokens().add( stateEvent);
+			} else if (condEvent == null&& stateEvent == null){
+					outcioEvent.setType(EventType.UNDEVELOPED);
+			} else if (condEvent != null&& stateEvent == null){
+					outcioEvent.getTokens().add(condEvent);
 			}
+		}
 		return outcioEvent;
 	}
 	
@@ -199,18 +201,6 @@ public class FaultGraph {
 	
 	}
 	
-	
-	public EList<ConstrainedInstanceObject> findOutCIOs(ConstrainedInstanceObject innercio,ConstrainedInstanceObject outercio){
-		Set<DefaultEdge> edges = graph.outgoingEdgesOf(outercio);
-		EList<ConstrainedInstanceObject> result = new BasicEList<ConstrainedInstanceObject>();
-		for (DefaultEdge edge: edges){
-			ConstrainedInstanceObject innerout = (ConstrainedInstanceObject)graph.getEdgeTarget(edge);
-			if (innercio.sameAs(innerout)){
-				result.add( innerout);
-			}
-		}	
-		return result	;
-	}
 	
 	/**
 	 * generate collection of events one for each type in constraint

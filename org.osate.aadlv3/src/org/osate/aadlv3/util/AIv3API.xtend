@@ -40,6 +40,7 @@ import org.osate.av3instance.av3instance.StateInstance
 import org.osate.aadlv3.aadlv3.ConditionOperation
 import java.util.Collections
 import org.osate.aadlv3.aadlv3.EnumerationLiteral
+import org.eclipse.emf.common.util.EList
 
 class AIv3API {
 	
@@ -225,7 +226,7 @@ class AIv3API {
 	}
 	
 	// Return the component instance if io is a component isntance (self) or the containing component isntance
-	def static containingComponentInstanceOrSelf(InstanceObject io){
+	def static ComponentInstance containingComponentInstanceOrSelf(InstanceObject io){
 		var res = io
 		while (!(res instanceof ComponentInstance) && res.eContainer !== null){
 			res = res.eContainer as InstanceObject
@@ -235,7 +236,7 @@ class AIv3API {
 	
 	// return containing component instance 
 	// for component instance as input return its containing component instance
-	def static containingComponentInstance(InstanceObject io){
+	def static ComponentInstance containingComponentInstance(InstanceObject io){
 		var res = io.eContainer
 		while (!(res instanceof ComponentInstance) && res.eContainer !== null){
 			res = res.eContainer as InstanceObject
@@ -244,19 +245,20 @@ class AIv3API {
 	}
 	
 	/**
-	 * return containing BehaviorRuleInstance
+	 * return BehaviorRuleInstances that have the specified action
 	 */
-	def static containingBehaviorRuleInstance(EObject io){
-		var EObject res = io
-		while (!(res instanceof BehaviorRuleInstance) && res.eContainer !== null){
-			res = res.eContainer 
-		}
-		res as BehaviorRuleInstance
+	def static Iterable<BehaviorRuleInstance> findMatchingBehaviorRuleInstances(ConstrainedInstanceObject action){
+		val ci = action.containingComponentInstance
+		ci.behaviorRules.filter[bri|bri.actions.contains(action)]
 	}
+//	
+//	def static boolean contains (EList<ConstrainedInstanceObject> actions, ConstrainedInstanceObject action){
+//		return actions.exists[a|a.sameAs(action)];
+//	}
 	/**
 	 * get containing InstanceObject. 
 	 */
-	def static containingInstanceObject(InstanceObject io){
+	def static InstanceObject containingInstanceObject(InstanceObject io){
 		var res = io.eContainer
 		while (!(res instanceof InstanceObject) && res !== null){
 			res = res.eContainer as InstanceObject

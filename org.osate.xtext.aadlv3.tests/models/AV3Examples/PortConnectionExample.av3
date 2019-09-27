@@ -113,14 +113,14 @@ package PortConnectionExample is
 	end;
 	
 	system conntop.i is
-		sense1: abstract sensor.i;
-		sense2: abstract sensor.i;
-		processing: process controlProcess.impl;
+//		sense1: abstract sensor.i;
+//		sense2: abstract sensor.i;
+//		processing: process controlProcess.impl;
 		actuate: abstract actuator.i;
 //		hw : system hardwareplatform.impl;
-		sensetocontrol1: connection sense1.outp -> processing.insignal1;
-		sensetocontrol2: connection sense2.outp -> processing.insignal2;
-		controltoactuate: connection processing.outaction -> actuate.inp;
+//		sensetocontrol1: connection sense1.outp -> processing.insignal1;
+//		sensetocontrol2: connection sense2.outp -> processing.insignal2;
+//		controltoactuate: connection processing.outaction -> actuate.inp;
 		effectprop: connection actuate.effect -> effect;
 	@EM{
 		effect2: actuate.actt2.effect in ServiceOmission ->  effect(ServiceOmission);

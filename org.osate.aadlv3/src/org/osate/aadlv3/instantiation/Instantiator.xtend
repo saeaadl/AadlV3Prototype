@@ -665,7 +665,7 @@ class Instantiator {
 		// now actions
 		for (action : br.actions) {
 			val tio = context.getInstanceElement(action.target);
-			val foundcio = findMatchingActionCIO(tio,action.value);
+			val foundcio = findMatchingActionCIO(tio,action.value).head();
 			if (foundcio !== null){
 				bri.actions +=foundcio;
 			} else {

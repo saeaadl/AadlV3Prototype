@@ -27,7 +27,7 @@ import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
+import org.osate.aadlv3.aadlv3.Literal;
 import org.osate.av3instance.av3instance.Av3instancePackage;
 import org.osate.av3instance.av3instance.ConstrainedInstanceObject;
 
@@ -157,8 +157,9 @@ public class ConstrainedInstanceObjectItemProvider extends InstanceObjectItemPro
 	@Override
 	public String getText(Object object) {
 		String label = ((ConstrainedInstanceObject) object).getInstanceObject().getName();
-		String type = ((ConstrainedInstanceObject) object).getConstraint().toString();
-		return type == null || type.length() == 0 ? label : label + ":" + type; //$NON-NLS-1$ 
+		Literal constraint = ((ConstrainedInstanceObject) object).getConstraint();
+		String type = constraint != null ? constraint.toString() : "";
+		return type.length() == 0 ? label : label + ":" + type; //$NON-NLS-1$ 
 	}
 
 	/**
