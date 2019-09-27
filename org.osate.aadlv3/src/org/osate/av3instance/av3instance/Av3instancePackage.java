@@ -354,13 +354,22 @@ public interface Av3instancePackage extends EPackage {
 	int COMPONENT_INSTANCE__STATES = INSTANCE_OBJECT_FEATURE_COUNT + 9;
 
 	/**
+	 * The feature id for the '<em><b>Actions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_INSTANCE__ACTIONS = INSTANCE_OBJECT_FEATURE_COUNT + 10;
+
+	/**
 	 * The number of structural features of the '<em>Component Instance</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_INSTANCE_FEATURE_COUNT = INSTANCE_OBJECT_FEATURE_COUNT + 10;
+	int COMPONENT_INSTANCE_FEATURE_COUNT = INSTANCE_OBJECT_FEATURE_COUNT + 11;
 
 	/**
 	 * The meta object id for the '{@link org.osate.av3instance.av3instance.impl.AssociationInstanceImpl <em>Association Instance</em>}' class.
@@ -627,7 +636,7 @@ public interface Av3instancePackage extends EPackage {
 	int BEHAVIOR_RULE_INSTANCE__CONDITION = INSTANCE_OBJECT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Actions</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Actions</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1079,6 +1088,17 @@ public interface Av3instancePackage extends EPackage {
 	EReference getComponentInstance_States();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link org.osate.av3instance.av3instance.ComponentInstance#getActions <em>Actions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Actions</em>'.
+	 * @see org.osate.av3instance.av3instance.ComponentInstance#getActions()
+	 * @see #getComponentInstance()
+	 * @generated
+	 */
+	EReference getComponentInstance_Actions();
+
+	/**
 	 * Returns the meta object for class '{@link org.osate.av3instance.av3instance.AssociationInstance <em>Association Instance</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1230,10 +1250,10 @@ public interface Av3instancePackage extends EPackage {
 	EReference getBehaviorRuleInstance_BehaviorRule();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.osate.av3instance.av3instance.BehaviorRuleInstance#getActions <em>Actions</em>}'.
+	 * Returns the meta object for the reference list '{@link org.osate.av3instance.av3instance.BehaviorRuleInstance#getActions <em>Actions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Actions</em>'.
+	 * @return the meta object for the reference list '<em>Actions</em>'.
 	 * @see org.osate.av3instance.av3instance.BehaviorRuleInstance#getActions()
 	 * @see #getBehaviorRuleInstance()
 	 * @generated
@@ -1540,6 +1560,14 @@ public interface Av3instancePackage extends EPackage {
 		EReference COMPONENT_INSTANCE__STATES = eINSTANCE.getComponentInstance_States();
 
 		/**
+		 * The meta object literal for the '<em><b>Actions</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPONENT_INSTANCE__ACTIONS = eINSTANCE.getComponentInstance_Actions();
+
+		/**
 		 * The meta object literal for the '{@link org.osate.av3instance.av3instance.impl.AssociationInstanceImpl <em>Association Instance</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1659,7 +1687,7 @@ public interface Av3instancePackage extends EPackage {
 		EReference BEHAVIOR_RULE_INSTANCE__BEHAVIOR_RULE = eINSTANCE.getBehaviorRuleInstance_BehaviorRule();
 
 		/**
-		 * The meta object literal for the '<em><b>Actions</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Actions</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

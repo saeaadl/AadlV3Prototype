@@ -24,8 +24,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.osate.aadlv3.aadlv3.BehaviorRule;
 
 import org.osate.aadlv3.aadlv3.Literal;
@@ -72,7 +71,7 @@ public class BehaviorRuleInstanceImpl extends InstanceObjectImpl implements Beha
 	protected Literal condition;
 
 	/**
-	 * The cached value of the '{@link #getActions() <em>Actions</em>}' containment reference list.
+	 * The cached value of the '{@link #getActions() <em>Actions</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getActions()
@@ -170,7 +169,7 @@ public class BehaviorRuleInstanceImpl extends InstanceObjectImpl implements Beha
 	@Override
 	public EList<ConstrainedInstanceObject> getActions() {
 		if (actions == null) {
-			actions = new EObjectContainmentEList<ConstrainedInstanceObject>(ConstrainedInstanceObject.class, this,
+			actions = new EObjectResolvingEList<ConstrainedInstanceObject>(ConstrainedInstanceObject.class, this,
 					Av3instancePackage.BEHAVIOR_RULE_INSTANCE__ACTIONS);
 		}
 		return actions;
@@ -342,8 +341,6 @@ public class BehaviorRuleInstanceImpl extends InstanceObjectImpl implements Beha
 		switch (featureID) {
 		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE__CONDITION:
 			return basicSetCondition(null, msgs);
-		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE__ACTIONS:
-			return ((InternalEList<?>) getActions()).basicRemove(otherEnd, msgs);
 		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE__CURRENT_STATE:
 			return basicSetCurrentState(null, msgs);
 		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE__TARGET_STATE:

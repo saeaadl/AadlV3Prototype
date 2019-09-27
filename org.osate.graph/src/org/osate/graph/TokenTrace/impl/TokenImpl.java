@@ -440,14 +440,4 @@ public class TokenImpl extends MultiLiteralConstraintImpl implements Token {
 		return result.toString();
 	}
 
-	@Override
-	public boolean equals(Object second) {
-		return this.name.equals(((Token) second).getName());
-	}
-
-	@Override
-	public int hashCode() {
-		return this.name != null ? this.name.hashCode() : 0;
-	}
-
 } //TokenImpl

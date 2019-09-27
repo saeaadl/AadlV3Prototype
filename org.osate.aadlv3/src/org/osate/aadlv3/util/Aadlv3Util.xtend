@@ -53,6 +53,7 @@ import org.osate.av3instance.av3instance.InstanceObject
 
 import static extension org.eclipse.xtext.EcoreUtil2.*
 import static extension org.osate.aadlv3.util.Av3API.*
+import org.osate.aadlv3.aadlv3.SetLiteral
 
 class Aadlv3Util {
 	
@@ -1572,6 +1573,16 @@ class Aadlv3Util {
 			}
 		}
 		coll.elements.removeAll(removeme)
+	}
+	
+	def static SetLiteral createSet(Iterable<? extends Literal> literals){
+		val set = Aadlv3Factory.eINSTANCE.createSetLiteral;
+		for (lit : literals){
+			if (!set.contains(lit)){
+				set.elements.add(lit)
+			}
+		}
+		return set;
 	}
 	
 	

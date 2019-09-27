@@ -105,8 +105,8 @@ public class AIJGraphTUtil {
 		return directedGraph;
 	}
 
-	public static Graph<InstanceObject, DefaultEdge> generateBehaviorPropagationPaths(ComponentInstance root, String subclauseName) {
-		Graph<InstanceObject, DefaultEdge> directedGraph = new DefaultDirectedGraph<InstanceObject, DefaultEdge>(
+	public static DefaultDirectedGraph<InstanceObject, DefaultEdge> generateBehaviorPropagationPaths(ComponentInstance root, String subclauseName) {
+		DefaultDirectedGraph<InstanceObject, DefaultEdge> directedGraph = new DefaultDirectedGraph<InstanceObject, DefaultEdge>(
 				DefaultEdge.class);
 		List<AssociationInstance> connis = getAllConnections(root);
 		for (AssociationInstance conni : connis) {
@@ -114,7 +114,7 @@ public class AIJGraphTUtil {
 			InstanceObject dst = conni.getDestination();
 			if (!conni.isExternal()) {
 				// from outgoing feature to incoming feature instance
-				Iterable<ConstrainedInstanceObject> actions = findActionCIOs(src, subclauseName);
+				Iterable<ConstrainedInstanceObject> actions = findActionCIOs(src);
 				for (ConstrainedInstanceObject actioncio : actions) {
 					// create edges between actions of connection source and condition elements of connection destination
 					Iterable<ConstrainedInstanceObject> dests = findContainingConditionCIOs(dst, actioncio.getConstraint(), subclauseName);
@@ -129,10 +129,13 @@ public class AIJGraphTUtil {
 			EList<BehaviorRuleInstance> bris = ci.getBehaviorRules();
 			for (BehaviorRuleInstance bri: bris) {
 				for (ConstrainedInstanceObject action: bri.getActions()) {
-//					// path to the current state from which to trace back.
-//					StateInstance cs = bri.getCurrentState();
+					// path to the current state from which to trace back.
+//					ConstrainedInstanceObject cs = bri.getCurrentState();
 //					if (cs != null) {
-//						addPath(directedGraph, cs, action);
+//						Iterable<ConstrainedInstanceObject> tss = findTargetStateCIOs(cs, subclauseName);
+//						for (ConstrainedInstanceObject ts: tss) {
+//							addPath(directedGraph, ts, action);
+//						}
 //					}
 					// process conditions
 					Iterable<ConstrainedInstanceObject> condcios = getAllConstrainedInstanceObjects(bri.getCondition());
@@ -141,24 +144,26 @@ public class AIJGraphTUtil {
 						InstanceObject dstio = action.getInstanceObject();
 						ComponentInstance srcCi = containingComponentInstanceOrSelf(srcio);
 						ComponentInstance dstCi = containingComponentInstanceOrSelf(dstio);
+						// incoming to outgoing feature instance rule
+						addPath(directedGraph, ce, action);
 						if (isAncestor(dstCi,srcCi)) {
-							// Subcomponent to external feature instance rule (Composite)
-							Iterable<ConstrainedInstanceObject> subactions = findContainedActionCIOs(srcio, action.getConstraint(), subclauseName);
+							// edges from action cio of subcomponent to cond cio in parent bri
+							Iterable<ConstrainedInstanceObject> subactions = findContainedActionCIOs(srcio, action.getConstraint());
 							for (ConstrainedInstanceObject subcio: subactions) {
-								addPath(directedGraph, subcio, action);
+								addPath(directedGraph, subcio, ce);
 							}
-						} else {
-							// incoming to outgoing feature instance rule
-							addPath(directedGraph, ce, action);
 						}
 					}
 				}
 //				if (bri.getActions().isEmpty() && bri.getTargetState() != null) {
 //					// we have a rule that represents a state transition without actions
-//					StateInstance ts = bri.getTargetState();
-//					StateInstance cs = bri.getCurrentState();
-//					if (cs != null && !ts.getCurrentState().sameAs(cs.getCurrentState())) {
-//						addPath(directedGraph,cs,ts);
+//					ConstrainedInstanceObject ts = bri.getTargetState();
+//					ConstrainedInstanceObject cs = bri.getCurrentState();
+//					if (cs != null && ts != null && !cs.sameAs(ts)) {
+//						Iterable<ConstrainedInstanceObject> tss = findTargetStateCIOs(cs, subclauseName);
+//						for (ConstrainedInstanceObject nts: tss) {
+//							addPath(directedGraph, nts, ts);
+//						}
 //					}
 //					// process conditions
 //					Iterable<ConstrainedInstanceObject> condcios = getAllConstrainedInstanceObjects(bri.getCondition());

@@ -36,6 +36,7 @@ import org.osate.av3instance.av3instance.AssociationInstance;
 import org.osate.av3instance.av3instance.Av3instancePackage;
 import org.osate.av3instance.av3instance.BehaviorRuleInstance;
 import org.osate.av3instance.av3instance.ComponentInstance;
+import org.osate.av3instance.av3instance.ConstrainedInstanceObject;
 import org.osate.av3instance.av3instance.FeatureInstance;
 import org.osate.av3instance.av3instance.GeneratorInstance;
 import org.osate.av3instance.av3instance.PathInstance;
@@ -61,6 +62,7 @@ import static org.osate.aadlv3.util.AIv3API.*;
  *   <li>{@link org.osate.av3instance.av3instance.impl.ComponentInstanceImpl#getBehaviorRules <em>Behavior Rules</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.impl.ComponentInstanceImpl#getGenerators <em>Generators</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.impl.ComponentInstanceImpl#getStates <em>States</em>}</li>
+ *   <li>{@link org.osate.av3instance.av3instance.impl.ComponentInstanceImpl#getActions <em>Actions</em>}</li>
  * </ul>
  *
  * @generated
@@ -175,6 +177,16 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 	 * @ordered
 	 */
 	protected EList<StateInstance> states;
+
+	/**
+	 * The cached value of the '{@link #getActions() <em>Actions</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getActions()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ConstrainedInstanceObject> actions;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -379,6 +391,20 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 	 * @generated
 	 */
 	@Override
+	public EList<ConstrainedInstanceObject> getActions() {
+		if (actions == null) {
+			actions = new EObjectContainmentEList<ConstrainedInstanceObject>(ConstrainedInstanceObject.class, this,
+					Av3instancePackage.COMPONENT_INSTANCE__ACTIONS);
+		}
+		return actions;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case Av3instancePackage.COMPONENT_INSTANCE__COMPONENTS:
@@ -397,6 +423,8 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 			return ((InternalEList<?>) getGenerators()).basicRemove(otherEnd, msgs);
 		case Av3instancePackage.COMPONENT_INSTANCE__STATES:
 			return ((InternalEList<?>) getStates()).basicRemove(otherEnd, msgs);
+		case Av3instancePackage.COMPONENT_INSTANCE__ACTIONS:
+			return ((InternalEList<?>) getActions()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -431,6 +459,8 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 			return getGenerators();
 		case Av3instancePackage.COMPONENT_INSTANCE__STATES:
 			return getStates();
+		case Av3instancePackage.COMPONENT_INSTANCE__ACTIONS:
+			return getActions();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -482,6 +512,10 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 			getStates().clear();
 			getStates().addAll((Collection<? extends StateInstance>) newValue);
 			return;
+		case Av3instancePackage.COMPONENT_INSTANCE__ACTIONS:
+			getActions().clear();
+			getActions().addAll((Collection<? extends ConstrainedInstanceObject>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -524,6 +558,9 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 		case Av3instancePackage.COMPONENT_INSTANCE__STATES:
 			getStates().clear();
 			return;
+		case Av3instancePackage.COMPONENT_INSTANCE__ACTIONS:
+			getActions().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -556,6 +593,8 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 			return generators != null && !generators.isEmpty();
 		case Av3instancePackage.COMPONENT_INSTANCE__STATES:
 			return states != null && !states.isEmpty();
+		case Av3instancePackage.COMPONENT_INSTANCE__ACTIONS:
+			return actions != null && !actions.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

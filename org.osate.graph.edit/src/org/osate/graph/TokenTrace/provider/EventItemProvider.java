@@ -8,12 +8,13 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.osate.aadlv3.aadlv3.EOperator;
 import org.osate.graph.TokenTrace.Event;
+import org.osate.graph.TokenTrace.EventType;
 import org.osate.graph.TokenTrace.TokenTracePackage;
 
 /**
@@ -144,10 +145,41 @@ public class EventItemProvider extends TokenItemProvider {
 	 * This returns Event.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Object getImage(Object object) {
+		Event ev = (Event) object;
+		if (ev.getType() == EventType.BASIC) {
+			return overlayImage(object, getResourceLocator().getImage("full/obj16/BasicEventBW"));
+		}
+		if (ev.getType() == EventType.UNDEVELOPED) {
+			return overlayImage(object, getResourceLocator().getImage("full/obj16/UndevelopedEventBW"));
+		}
+		if (ev.getType() == EventType.EXTERNAL) {
+			return overlayImage(object, getResourceLocator().getImage("full/obj16/ExternalEventBW"));
+		}
+//		if (ev.getType() == EventType.INTERMEDIATE && ev.getTokens().size() < 2) {
+//			return overlayImage(object, getResourceLocator().getImage("full/obj16/IntermediateEventBW"));
+//		}
+		if (ev.getOperator() == EOperator.ALL) {
+			return overlayImage(object, getResourceLocator().getImage("full/obj16/AllOpBW"));
+		}
+		if (ev.getOperator() == EOperator.ANY) {
+			return overlayImage(object, getResourceLocator().getImage("full/obj16/AnyOpBW"));
+		}
+		if (ev.getOperator() == EOperator.ONEOF) {
+			return overlayImage(object, getResourceLocator().getImage("full/obj16/OneOfOpBW"));
+		}
+		if (ev.getOperator() == EOperator.KOFN) {
+			return overlayImage(object, getResourceLocator().getImage("full/obj16/KOfOpBW"));
+		}
+		if (ev.getOperator() == EOperator.KORLESS) {
+			return overlayImage(object, getResourceLocator().getImage("full/obj16/OrLessOpBW"));
+		}
+		if (ev.getOperator() == EOperator.KORMORE) {
+			return overlayImage(object, getResourceLocator().getImage("full/obj16/OrMoreOpBW"));
+		}
 		return overlayImage(object, getResourceLocator().getImage("full/obj16/Event"));
 	}
 

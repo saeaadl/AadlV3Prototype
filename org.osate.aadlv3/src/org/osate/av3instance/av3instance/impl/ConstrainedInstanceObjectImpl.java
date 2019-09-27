@@ -318,7 +318,6 @@ public class ConstrainedInstanceObjectImpl extends InstanceObjectImpl implements
 
 	@Override
 	public boolean sameAs(Object obj) {
-		// TODO possibly fix sameAs to not use equals
 		if (this == obj)
 			return true;
 		if (obj == null)
@@ -348,7 +347,8 @@ public class ConstrainedInstanceObjectImpl extends InstanceObjectImpl implements
 	public String toString() {
 		if (eIsProxy())
 			return super.toString();
-		return this.getInstanceObject().toString() + ":" + this.getConstraint().toString();
+		return this.getInstanceObject().toString()
+				+ (this.getConstraint() != null ? ":" + this.getConstraint().toString() : "");
 	}
 
 } //ConstrainedInstanceObjectImpl

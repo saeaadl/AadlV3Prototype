@@ -1,7 +1,5 @@
 package org.osate.xtext.aadlv3.ui.handlers;
 
-import java.util.Collections;
-
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -16,17 +14,14 @@ import org.eclipse.xtext.ui.editor.XtextEditor;
 import org.eclipse.xtext.ui.editor.model.IXtextDocument;
 import org.eclipse.xtext.util.concurrent.IUnitOfWork;
 import org.jgrapht.Graph;
-import org.osate.aadlv3.aadlv3.ListLiteral;
 import org.osate.aadlv3.aadlv3.PackageDeclaration;
-import org.osate.aadlv3.aadlv3.PropertyDefinition;
 import org.osate.aadlv3.aadlv3.Workingset;
 import org.osate.aadlv3.instantiation.Instantiator;
-import org.osate.aadlv3.util.ProductLineConstraint;
 import org.osate.av3instance.av3instance.ComponentInstance;
-import org.osate.graph.util.AIJGraphTUtil;
-import org.osate.graph.util.AIJGraphXUtil;
 import org.osate.graph.TokenTrace.util.FaultGraph;
 import org.osate.graph.TokenTrace.util.TokenPaths;
+import org.osate.graph.util.AIJGraphTUtil;
+import org.osate.graph.util.AIJGraphXUtil;
 
 public class InstantiateWorkingSetHandler extends AbstractHandler {
 
@@ -54,20 +49,18 @@ public class InstantiateWorkingSetHandler extends AbstractHandler {
 						ComponentInstance rootinstance = new Instantiator().instantiate(ws);
 						// XXX TODO 
 //						ComponentInstance subci = rootinstance.getComponents().get(2).getComponents().get(0);
-//						TokenPaths.validateTokenPropagation(rootinstance, subci);
-						
+//						new TokenPaths().validateTokenPropagation(rootinstance, subci);
+//						
 //						Graph ng = AIJGraphTUtil.generateComponentInstanceHierarchy(rootinstance);
 //						AIJGraphXUtil.showGraph(ng);
 //						Graph topo =AIJGraphTUtil.generateConnectionTopology(rootinstance);
 //						AIJGraphXUtil.showGraph(topo);
 //						Graph Prop =AIJGraphTUtil.generatePropagationPaths(rootinstance);
 //						AIJGraphXUtil.showGraph(Prop);
-//						Graph Prop =AIJGraphTUtil.generateBehaviorPropagationPaths(rootinstance,"EM");
-//						AIJGraphXUtil.showGraph(Prop);
-//						Graph token =AIJGraphTUtil.generateTokenTrace(rootinstance);
-//						AIJGraphXUtil.showGraph(token);
+//						Graph BProp =AIJGraphTUtil.generateBehaviorPropagationPaths(rootinstance,"EM");
+//						AIJGraphXUtil.showGraph(BProp);
 						FaultGraph fg = new FaultGraph();
-						fg.generateFaultGraph(rootinstance);
+						fg.generateCauseGraph(rootinstance);
 					}
 				}
 			});

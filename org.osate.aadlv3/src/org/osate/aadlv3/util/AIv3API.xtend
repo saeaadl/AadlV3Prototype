@@ -109,9 +109,9 @@ class AIv3API {
 		return cio
 	}
 	
-	def static ConstrainedInstanceObject createConstrainedInstanceObject(ModelElementReference mer, ComponentInstance context, boolean outgoing) {
+	def static ConstrainedInstanceObject createConstrainedInstanceObject(InstanceObject io, ComponentInstance context, boolean outgoing) {
 		val cio = Av3instanceFactory.eINSTANCE.createConstrainedInstanceObject
-		cio.instanceObject = context.getInstanceElement(mer)
+		cio.instanceObject = io
 		cio.name = cio.getInstanceObject().toString()
 		cio.outgoing = outgoing;
 		return cio
@@ -246,10 +246,10 @@ class AIv3API {
 	/**
 	 * return containing BehaviorRuleInstance
 	 */
-	def static containingBehaviorRuleInstance(InstanceObject io){
-		var res = io
+	def static containingBehaviorRuleInstance(EObject io){
+		var EObject res = io
 		while (!(res instanceof BehaviorRuleInstance) && res.eContainer !== null){
-			res = res.eContainer as InstanceObject
+			res = res.eContainer 
 		}
 		res as BehaviorRuleInstance
 	}
@@ -484,25 +484,38 @@ class AIv3API {
 	}
 	
 	// methods related to behavior rules, constrained instance objects
-	
-	def static Iterable<ConstrainedInstanceObject> findContainedActionCIOs(InstanceObject desiredTarget, Literal constraint, String behaviorSpecName){
-		val briContext = desiredTarget.containingComponentInstanceOrSelf
-		val bris = briContext.behaviorRules.filter[bri|bri.behaviorRule.containingBehaviorSpecification.name.equals(behaviorSpecName)]
-		return bris.map[bri|bri.actions].flatten.filter[target|target.instanceObject === desiredTarget && constraint.contains(target.constraint)]
+	/**
+	 * return action cios of desired target whose type reference is contained in constraint.
+	 * Used for finding the connection source cio of an external connection where the outer type reference must contain the inner type reference
+	 */
+	def static Iterable<ConstrainedInstanceObject> findContainedActionCIOs(InstanceObject desiredTarget, Literal constraint){
+		val ci = desiredTarget.containingComponentInstanceOrSelf
+		return ci.actions.filter[target|target.instanceObject === desiredTarget && constraint.contains(target.constraint)]
 	}
+	/**
+	 * return action cios of desired target whose type reference is contained in constraint.
+	 * Used for finding the connection source cio of an external connection where the outer type reference must contain the inner type reference
+	 */
+	def static Iterable<ConstrainedInstanceObject> findMatchingActionCIO(InstanceObject desiredTarget, Literal constraint){
+		val ci = desiredTarget.containingComponentInstanceOrSelf
+		return ci.actions.filter[action|action.instanceObject === desiredTarget && constraint.sameAs(action.constraint)]
+	}
+
+
+
 	
 	/**
 	 * return all action CIOs that refer to the instance object io
 	 */
-	def static Iterable<ConstrainedInstanceObject> findActionCIOs(InstanceObject io, String behaviorSpecName){
-		val briContext = io.containingComponentInstanceOrSelf
-		val bris = briContext.behaviorRules.filter[bri|bri.behaviorRule.containingBehaviorSpecification.name.equals(behaviorSpecName)]
-		return bris.map[bri|bri.actions].flatten.filter[target|target.instanceObject === io]
+	def static Iterable<ConstrainedInstanceObject> findActionCIOs(InstanceObject io){
+		val ci = io.containingComponentInstanceOrSelf
+		return ci.actions.filter[target|target.instanceObject === io]
 	}
 	
 	
 	/**
 	 * find all CIOs in condition whose instance object reference points to desriredTarget and whose constraint contains the target literal
+	 * Used for matching incoming conditions of desiredTarget with outgoing type reference
 	 */
 	def static Iterable<ConstrainedInstanceObject> findContainingConditionCIOs(InstanceObject desiredTarget, Literal targetLiteral, String behaviorSpecName){
 		val dstCi = containingComponentInstanceOrSelf(desiredTarget);
@@ -516,7 +529,8 @@ class AIv3API {
 		return lit.eAllOfType(ConstrainedInstanceObject)
 	}
 	
-	def static boolean isAncestor(InstanceObject ancestor, InstanceObject descendent){
+	def static boolean isAncestor(ComponentInstance ancestor, ComponentInstance descendent){
+		
 		var desc = descendent.containingInstanceObject
 		while (desc !== null){
 			if (desc === ancestor){
@@ -534,6 +548,15 @@ class AIv3API {
 			}
 		}
 		return null;
+	}
+
+	/**
+	 * return all target state CIOs that refer to the constrained state cs
+	 */
+	def static Iterable<ConstrainedInstanceObject> findTargetStateCIOs(ConstrainedInstanceObject cs, String behaviorSpecName){
+		val briContext = cs.containingComponentInstanceOrSelf
+		val bris = briContext.behaviorRules.filter[bri|bri.behaviorRule.containingBehaviorSpecification.name.equals(behaviorSpecName) && bri.targetState !== null]
+		return bris.map[bri|bri.targetState].filter[target|target.instanceObject === cs.instanceObject && ((target.constraint === null && cs.constraint === null) || (target.constraint !== null && cs.constraint !== null  &&target.constraint.contains(cs.constraint))) ]
 	}
 	
 }

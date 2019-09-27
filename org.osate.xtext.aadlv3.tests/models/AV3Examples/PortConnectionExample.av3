@@ -8,12 +8,12 @@ package PortConnectionExample is
 	type t1;
 	
 	interface actuator is
-		inp: in port;
+		inp: in feature;
 		effect: out feature;
 //		action: flow sink  inp ;
 	end;
 	interface sensor is
-		outp: out port;
+		outp: out feature;
 		fea: feature;
 //		reading: flow source outp;
 	end;
@@ -31,33 +31,34 @@ package PortConnectionExample is
 	end;
 	
 	thread interface sense  is
-		p1: out port ;
+		p1: out feature ;
 //		reading: flow  source p1;
 		#TokenSource => (t1);
 	@EM{
 		use states threestate;
 		e1: error event ServiceOmission ;
-		sense2:  s0 -[e1 in ServiceOmission ]->  s1 {p1(ServiceOmission)};
+		sense2:  s0 -[e1 in ServiceOmission ]->  //s1 
+		{p1(ServiceOmission)};
 	};
 	end;
 	
 	thread interface actuate  is
-		p1: in port ;
+		p1: in feature ;
 		effect: out feature ;
 //		taction: flow  sink p1;
 	@EM{
 		use states threestate;
 		eact1: error event ServiceOmission ;
 		actuate1: s0-[eact1 in ServiceOmission]-> s1;
-		actuate2: s0-[ p1 in ServiceOmission]-> { effect(ServiceOmission)};
 		actuate3: s1-[ ]-> { effect(ServiceOmission)};
+		actuate2: s0-[ p1 in ServiceOmission]-> { effect(ServiceOmission)};
 	};
 	end;
 	
 	thread interface filter is
-	insignal1 : in port;
-	insignal2 : in port;
-	outsignal : out port;
+	insignal1 : in feature;
+	insignal2 : in feature;
+	outsignal : out feature;
 //	filterpath1: flow insignal1 -> outsignal;
 //	filterpath2: flow insignal2 -> outsignal;
 	#Period => 20 ;
@@ -67,8 +68,8 @@ package PortConnectionExample is
 	end;
 	
 	thread interface compute is
-	insignal : in port;
-	outsignal : out port;
+	insignal : in feature;
+	outsignal : out feature;
 //	computepath: flow insignal -> outsignal;
 //	@BA{
 //		f1: insignal -> outsignal; 
@@ -83,13 +84,13 @@ package PortConnectionExample is
 	end;
 	
 	thread interface logger is
-	insignal : in port;
+	insignal : in feature;
 	end;
 	
 	interface control is
-	insignal1: in port;
-	insignal2: in port;
-	outaction: out port;
+	insignal1: in feature;
+	insignal2: in feature;
+	outaction: out feature;
 //	processflow: flow insignal1 -> outaction;
 	end;
 	

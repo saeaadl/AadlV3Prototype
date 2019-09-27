@@ -63,13 +63,13 @@ public interface BehaviorRuleInstance extends InstanceObject {
 	void setBehaviorRule(BehaviorRule value);
 
 	/**
-	 * Returns the value of the '<em><b>Actions</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Actions</b></em>' reference list.
 	 * The list contents are of type {@link org.osate.av3instance.av3instance.ConstrainedInstanceObject}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Actions</em>' containment reference list.
+	 * @return the value of the '<em>Actions</em>' reference list.
 	 * @see org.osate.av3instance.av3instance.Av3instancePackage#getBehaviorRuleInstance_Actions()
-	 * @model containment="true"
+	 * @model
 	 * @generated
 	 */
 	EList<ConstrainedInstanceObject> getActions();

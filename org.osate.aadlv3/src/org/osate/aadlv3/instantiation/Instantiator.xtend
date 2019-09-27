@@ -643,7 +643,8 @@ class Instantiator {
 			// do the same for Generator references without types
 			val mers = EcoreUtil2.eAllOfType(behaviorCondition, ModelElementReference);
 			for (mer : mers) {
-				val cio = mer.createConstrainedInstanceObject(context, false)
+				val tio = context.getInstanceElement(mer);
+				val cio = tio.createConstrainedInstanceObject(context, false)
 				val container = mer.eContainer
 				if (container instanceof ECollection) {
 					container.elements.remove(mer)
@@ -653,21 +654,28 @@ class Instantiator {
 					behaviorCondition = cio
 				}
 			}
-			if (br.currentState !== null){
-				bri.currentState = br.currentState.createConstrainedInstanceObject(context)
-			}
-			if (br.targetState !== null){
-				bri.targetState = br.targetState.createConstrainedInstanceObject(context)
-			}
 			bri.condition = behaviorCondition
+		}
+		if (br.currentState !== null) {
+			bri.currentState = br.currentState.createConstrainedInstanceObject(context)
+		}
+		if (br.targetState !== null) {
+			bri.targetState = br.targetState.createConstrainedInstanceObject(context)
 		}
 		// now actions
 		for (action : br.actions) {
-			val tio = action.target.createConstrainedInstanceObject(context, true)
-			if (action.value !== null) {
-				tio.constraint = action.value.copy
+			val tio = context.getInstanceElement(action.target);
+			val foundcio = findMatchingActionCIO(tio,action.value);
+			if (foundcio !== null){
+				bri.actions +=foundcio;
+			} else {
+				val tcio = tio.createConstrainedInstanceObject(context, true)
+				if (action.value !== null) {
+					tcio.constraint = action.value.copy
+				}
+				context.actions += tcio;
+				bri.actions += tcio;
 			}
-			bri.actions += tio
 		}
 		context.behaviorRules += bri
 	}

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:description_2="http://www.eclipse.org/sirius/tree/description/1.0.0" xmlns:filter="http://www.eclipse.org/sirius/diagram/description/filter/1.1.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:tool="http://www.eclipse.org/sirius/description/tool/1.1.0" xmlns:tool_1="http://www.eclipse.org/sirius/diagram/description/tool/1.1.0" name="aadlv3" version="12.0.0.2017041100">
+<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:description_2="http://www.eclipse.org/sirius/tree/description/1.0.0" xmlns:description_3="http://www.eclipse.org/sirius/table/description/1.1.0" xmlns:filter="http://www.eclipse.org/sirius/diagram/description/filter/1.1.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:tool="http://www.eclipse.org/sirius/description/tool/1.1.0" xmlns:tool_1="http://www.eclipse.org/sirius/diagram/description/tool/1.1.0" name="aadlv3" version="12.0.0.2017041100">
   <ownedViewpoints name="Av3InstanceViewpoint" modelFileExtension="aiv3">
     <ownedRepresentations xsi:type="description_1:DiagramDescription" name="ComponentHierarchy" titleExpression="aql:'Component Hierarchy of '+self.name" domainClass="av3instance::ComponentInstance" rootExpression="aql:self" enablePopupBars="true">
       <metamodel href="../../org.osate.aadlv3/model/AV3Instance.ecore#/"/>
@@ -164,6 +164,17 @@
     </ownedRepresentations>
     <ownedJavaExtensions qualifiedClassName="org.osate.aadlv3.design.Services"/>
     <ownedJavaExtensions qualifiedClassName="org.osate.aadlv3.util.AIv3API"/>
+  </ownedViewpoints>
+  <ownedViewpoints name="FaultGraph" modelFileExtension="fg">
+    <ownedRepresentations xsi:type="description_3:EditionTableDescription" name="FaultGraphTable" domainClass="TokenTrace::TokenTrace">
+      <metamodel href="../../org.osate.graph/model/TokenTrace.ecore#/"/>
+      <ownedLineMappings name="EventLine" label="Event" reusedSubLines="//@ownedViewpoints[name='FaultGraph']/@ownedRepresentations[name='FaultGraphTable']/@ownedLineMappings[name='EventLine']" reusedInMappings="//@ownedViewpoints[name='FaultGraph']/@ownedRepresentations[name='FaultGraphTable']/@ownedLineMappings[name='EventLine']" domainClass="TokenTrace::Event" semanticCandidatesExpression="service:getEvents()" headerLabelExpression="service:getEventDescription()"/>
+      <ownedColumnMappings name="ErrorColumn" label="Propagated Error" headerLabelExpression="Error type" featureName="*" labelExpression="service:getErrorDescription()"/>
+      <ownedColumnMappings name="EventTypeColumn" label="Event type/Gate" headerLabelExpression="Type/Gate" featureName="*" labelExpression="service:getEventTypeLogic()"/>
+      <ownedColumnMappings name="CalcProbColumn" label="Calc Prob" headerLabelExpression="Calc Prob" featureName="*" labelExpression="service:getCalculatedProbability()"/>
+      <ownedColumnMappings name="SpecProbColumn" label="Spec Prob" headerLabelExpression="Spec Prob" featureName="*" labelExpression="service:getSpecifiedProbability()"/>
+      <ownedColumnMappings name="DependentEventColumn" label="Dependent" headerLabelExpression="Dependent" featureName="*" labelExpression="service:getDependentEventLabel()"/>
+    </ownedRepresentations>
   </ownedViewpoints>
   <userColorsPalettes name="Aadl Color Palette">
     <entries xsi:type="description:UserFixedColor" red="238" green="255" blue="208" name="ETEFColor"/>

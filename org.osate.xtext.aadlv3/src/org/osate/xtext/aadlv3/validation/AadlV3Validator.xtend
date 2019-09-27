@@ -477,7 +477,8 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	 */
 	def checkLocalPAOverridesSuperClassifierLocalFinalPA(PropertyAssociation pa) {
 		// for all model elements the enclosing classifier's super classifiers can have assigned a FINAL value
-		if(pa.target.modelElementReferenceReachDown) return
+		if (pa.target === null) return;
+		if(pa.target.modelElementReferenceReachDown) return;
 		// target is null or to a local ME
 		val me = pa.target?.element
 		val supercls = pa.containingClassifier.allSuperClassifiers
@@ -497,6 +498,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	 * check duplicate PA via {} and local enclosing PA 
 	 */
 	def checkDuplicatePropertyAssociationForLocalModelElementTarget(PropertyAssociation pa) {
+		if (pa.target === null) return;
 		if ( !pa.target.modelElementReferenceReachDown) {
 			val context = pa.containingClassifier
 			val targetme = pa.target.element
@@ -516,6 +518,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	 * check duplicate PA via =>{} and reachdown PA 
 	 */
 	def checkDuplicatePropertyAssociationForReachDownModelElementTarget(PropertyAssociation pa) {
+		if (pa.target === null) return;
 		if ( !pa.target.modelElementReferenceReachDown) {
 			val context = pa.containingClassifier
 			val targetme = pa.target.element
@@ -1287,7 +1290,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	}
 
 	def checkFeatureEvent(Feature fea) {
-		if (fea.typeReference.type.name === 'event') {
+		if (fea.typeReference?.type?.name === 'event') {
 			if (!(fea.category == FeatureCategory.PORT && fea.direction.incomingPort)) {
 				error('Event trigger can only be specified for incoming ports', fea,
 					Aadlv3Package.Literals.FEATURE__TYPE_REFERENCE, NoEvent)
@@ -1420,6 +1423,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	 * Checks that the assigned classifier implementations do not extend the implementation of the subcomponent
 	 */
 	def void checkExtendsSubcomponentImplementation(ClassifierAssignment ca) {
+		if (ca.target === null) return;
 		val sub = ca.target.element
 		if (sub instanceof Subcomponent) {
 			val subimpl = sub.typeReferences.componentImplementation

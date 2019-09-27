@@ -34,6 +34,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//ComponentInstance/behaviorRules"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//ComponentInstance/generators"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//ComponentInstance/states"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//ComponentInstance/actions"/>
     </genClasses>
     <genClasses ecoreClass="AV3Instance.ecore#//AssociationInstance">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AV3Instance.ecore#//AssociationInstance/associationType"/>
