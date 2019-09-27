@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.osate.graph.TokenTrace.Event;
 import org.osate.graph.TokenTrace.EventType;
 import org.osate.graph.TokenTrace.TokenTracePackage;
+import org.osate.graph.TokenTrace.util.TokenTraceUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -227,13 +228,18 @@ public class EventImpl extends TokenImpl implements Event {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public BigDecimal getProbability() {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		if (this.getComputedProbability() == null || this.getComputedProbability().compareTo(TokenTraceUtil.BigZero) == 0) {
+			if (this.getAssignedProbability() != null) {
+				return this.getAssignedProbability();
+			} else {
+				return TokenTraceUtil.BigZero;
+			}
+		}
+		return this.getComputedProbability();
 	}
 
 	/**

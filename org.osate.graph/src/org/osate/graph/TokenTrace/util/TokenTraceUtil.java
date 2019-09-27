@@ -3,6 +3,8 @@ package org.osate.graph.TokenTrace.util;
 import static org.osate.aadlv3.util.AIv3API.getInstanceObjectPath;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -247,5 +249,164 @@ public class TokenTraceUtil {
 			" '"+cipath+"' "+label+ " '"+io.getName()+ "'";
 	}
 
+	/**
+	 * return sum of probabilities of direct subevents.
+	 * @param event
+	 * @return double
+	 */
+	public static BigDecimal getSubeventProbabilities(Event event) {
+		if (!event.getTokens().isEmpty()) {
+			switch (event.getOperator()) {
+			case ALL: {
+				return pANDEvents(event);
+			}
+			case ONEOF: {
+				// P(1of(A,B,..) = SUM (PEi)*P(Ek k <>i k in 1..n)
+				return p1OFEvents(event);
+			}
+			case ANY: {
+				return pOREvents(event);
+			}
+			case KORMORE: {
+				return pORMOREEvents(event);
+			}
+
+			default: {
+				System.out.println("[Utils] Unsupported operator for now: " + event.getOperator());
+				return BigOne;
+			}
+			}
+		} else {
+			return getScaledProbability(event);
+		}
+	}
+
+	public static BigDecimal pOREvents(Event event) {
+		// From equation (VI-17) from NRC guide, Fault Tree Handbook NUREG-0492
+		// P (E1 or E2 or E3 .. En) = 1 - ( (1-P(E1)) * (1-P(E2)) * (1-P(E3)) * ... * (1-P(En)) )
+
+		BigDecimal inverseProb = BigOne;
+		for (Token subEvent : event.getTokens()) {
+			inverseProb = inverseProb.multiply((BigOne.subtract(getScaledProbability((Event)subEvent))));
+		}
+		return BigOne.subtract(inverseProb);
+	}
+
+	public static BigDecimal pORMOREEvents(Event event) {
+		// For this computation, we use the algorithm presented in
+		// "Computing k-out-of-n System Reliability", by R. E. Barlow and K. D. Heidtmann
+		// in IEEE Transactions on Reliability, Vol R-33, No 4, October 1984
+		//
+		// The general intuition of this algorithm goes as follows, using LaTex notation for the equations
+		// Conventions:
+		// $q_i$ is the failure rate of component i
+		// $p_i$ is the reliability rate of component i, $p_i = 1 - q_i$
+		// Re(k, n) is the probability that there are exactly k working components out of n
+		//
+		// Borderline cases as managed by the following conventions:
+		// $\forall j \in \{1 .. n\}, Re(-1, j) = Re(j+1, j) = 0$
+		// $Re(0, 0) = 0$
+		//
+		// Barlow and Heidtmann propose the following generating function
+		//
+		// g(z)=\prod_{i=1}^n (q_i + p_i z)
+		//
+		// By recurrence, one can establish that $g(z)=\prod_{i=1}^n (q_i + p_i z)=\sum_{i=0}^ n Re(i,n) z^i$
+		// using $Re(i,j) = q_j * Re(i, j - 1) + p_j * Re(i-1, j-1)$.
+		//
+		// It follows that computing $Re(k, n)$ for some $k \leq n$ is equivalent to computing the k-th element in the polynom
+		// g (z) = \sum_{i=0}^ n g_i z^i$ and perform term identification
+
+		// For simplicity, we implement PROGRAM 1
+		// Note: to match the original algorithm, we start with index at 1, up-to index n + 1
+
+		int n = event.getTokens().size();
+		BigDecimal[] probabilities = new BigDecimal[n + 2];
+		Arrays.fill(probabilities, BigDecimal.ZERO);
+
+		BigDecimal[] A = new BigDecimal[n + 2];
+		Arrays.fill(A, BigDecimal.ZERO);
+
+		A[1] = BigOne;
+
+		int k = 1;
+		for (Token subEvent : event.getTokens()) {
+			probabilities[k] = BigOne.subtract(getScaledProbability((Event)subEvent));
+			k++;
+		}
+
+		for (int j = 1; j <= n; j++) {
+			for (int i = j + 1; i >= 1; i--) {
+				// At each step, we perform A(i) = A(i) + P(j) * (A(i - 1) - A(i))
+				A[i] = A[i].add(probabilities[j].multiply(A[i - 1].subtract(A[i])));
+			}
+		}
+
+		// The associated failure probability of k or more is $1 - \Sum_{j=k}^n Re(j, n)$
+		BigDecimal R = BigZero;
+
+		for (int j = event.getK() + 1; j <= n + 1; j++) {
+			R = R.add(A[j]);
+		}
+
+		R = BigOne.subtract(R);
+		return R;
+	}
+
+	public static BigDecimal pANDEvents(Event event) {
+		BigDecimal result = BigOne;
+		for (Token subEvent : event.getTokens()) {
+			result = result.multiply(getScaledProbability((Event)subEvent));
+		}
+		return result;
+	}
+
+	// Sum P(Xi)*P(!Xk) for k <> i k in 1..n
+	public static BigDecimal p1OFEvents(Event event) {
+		BigDecimal result = BigZero;
+		for (Token subEvent : event.getTokens()) {
+			BigDecimal subresult = BigOne;
+			for (Token notEvent : event.getTokens()) {
+				if (subEvent == notEvent) {
+					subresult = subresult.multiply(getScaledProbability((Event)subEvent));
+				} else {
+					subresult = subresult.multiply((BigOne.subtract(getScaledProbability((Event)subEvent))));
+				}
+			}
+			result = result.add(subresult);
+		}
+		return result;
+	}
+
+	public static BigDecimal getScaledProbability(Event event) {
+		return event.getProbability().multiply(event.getScale());
+	}
+
+	public static void fillProbabilities(TokenTrace tt) {
+		for (Token event : tt.getTokens()) {
+			EObject element = event.getRelatedInstanceObject();
+			if (element instanceof InstanceObject) {
+				fillProbability((Event)event);
+			}
+		}
+
+	}
+
+	public static void computeProbabilities(Event event) {
+		if (!event.getTokens().isEmpty()) {
+			for (Token e : event.getTokens()) {
+				computeProbabilities((Event)e);
+			}
+			BigDecimal subtotalprobability = getSubeventProbabilities(event);
+			event.setComputedProbability(subtotalprobability);
+		}
+	}
+
+	public static void fillProbability(Event event) {
+		InstanceObject io = (InstanceObject) event.getRelatedInstanceObject();
+		TypeReference type = (TypeReference) event.getRelatedType();
+		event.setAssignedProbability(
+				new BigDecimal(0.1/*getProbability(io, type)*/, MathContext.UNLIMITED));
+	}
 
 }

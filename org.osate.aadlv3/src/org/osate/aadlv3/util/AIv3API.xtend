@@ -227,7 +227,7 @@ class AIv3API {
 	
 	// Return the component instance if io is a component isntance (self) or the containing component isntance
 	def static ComponentInstance containingComponentInstanceOrSelf(InstanceObject io){
-		var res = io
+		var InstanceObject res = io
 		while (!(res instanceof ComponentInstance) && res.eContainer !== null){
 			res = res.eContainer as InstanceObject
 		}

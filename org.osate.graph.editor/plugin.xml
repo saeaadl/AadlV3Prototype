@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated TokenTrace -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.osate.graph.TokenTrace.presentation.TokenTraceModelWizardID"
+            name="%_UI_TokenTraceModelWizard_label"
+            class="org.osate.graph.TokenTrace.presentation.TokenTraceModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/TokenTraceModelFile.gif">
+         <description>%_UI_TokenTraceModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated TokenTrace -->
+      <editor
+            id="org.osate.graph.TokenTrace.presentation.TokenTraceEditorID"
+            name="%_UI_TokenTraceEditor_label"
+            icon="icons/full/obj16/TokenTraceModelFile.gif"
+            extensions="tokentrace"
+            class="org.osate.graph.TokenTrace.presentation.TokenTraceEditor"
+            contributorClass="org.osate.graph.TokenTrace.presentation.TokenTraceActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

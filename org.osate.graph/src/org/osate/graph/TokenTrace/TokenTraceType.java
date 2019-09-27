@@ -19,16 +19,14 @@ import org.eclipse.emf.common.util.Enumerator;
  */
 public enum TokenTraceType implements Enumerator {
 	/**
-	 * The '<em><b>Trace Graph</b></em>' literal object.
+	 * The '<em><b>Token Graph</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #TRACE_GRAPH_VALUE
+	 * @see #TOKEN_GRAPH_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	TRACE_GRAPH(0, "TraceGraph", "TraceGraph"),
-
-	/**
+	TOKEN_GRAPH(0, "TokenGraph", "TokenGraph"), /**
 	 * The '<em><b>Token Trace</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -59,15 +57,15 @@ public enum TokenTraceType implements Enumerator {
 	MINIMAL_CUT_SET(3, "MinimalCutSet", "MinimalCutSet");
 
 	/**
-	 * The '<em><b>Trace Graph</b></em>' literal value.
+	 * The '<em><b>Token Graph</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #TRACE_GRAPH
-	 * @model name="TraceGraph"
+	 * @see #TOKEN_GRAPH
+	 * @model name="TokenGraph"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TRACE_GRAPH_VALUE = 0;
+	public static final int TOKEN_GRAPH_VALUE = 0;
 
 	/**
 	 * The '<em><b>Token Trace</b></em>' literal value.
@@ -110,7 +108,7 @@ public enum TokenTraceType implements Enumerator {
 	 */
 	private static final TokenTraceType[] VALUES_ARRAY =
 		new TokenTraceType[] {
-			TRACE_GRAPH,
+			TOKEN_GRAPH,
 			TOKEN_TRACE,
 			COMPOSITE_PARTS,
 			MINIMAL_CUT_SET,
@@ -170,7 +168,7 @@ public enum TokenTraceType implements Enumerator {
 	 */
 	public static TokenTraceType get(int value) {
 		switch (value) {
-			case TRACE_GRAPH_VALUE: return TRACE_GRAPH;
+			case TOKEN_GRAPH_VALUE: return TOKEN_GRAPH;
 			case TOKEN_TRACE_VALUE: return TOKEN_TRACE;
 			case COMPOSITE_PARTS_VALUE: return COMPOSITE_PARTS;
 			case MINIMAL_CUT_SET_VALUE: return MINIMAL_CUT_SET;
