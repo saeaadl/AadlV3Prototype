@@ -18,6 +18,7 @@ package org.osate.aadlv3.aadlv3.impl;
 import org.eclipse.emf.ecore.EClass;
 
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
+import org.osate.aadlv3.aadlv3.ECollection;
 import org.osate.aadlv3.aadlv3.Literal;
 
 /**
@@ -45,6 +46,16 @@ public abstract class LiteralImpl extends ExpressionImpl implements Literal {
 	@Override
 	protected EClass eStaticClass() {
 		return Aadlv3Package.Literals.LITERAL;
+	}
+
+	@Override
+	public boolean contains(Literal element) {
+		if (element == null)
+			return false;
+		if (this instanceof ECollection) {
+			return ((ECollection) this).contains(element);
+		}
+		return this.sameAs(element);
 	}
 
 } //LiteralImpl

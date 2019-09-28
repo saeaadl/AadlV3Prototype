@@ -35,7 +35,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface TypeReference extends Type, Literal {
+public interface TypeReference extends Literal, Type {
 	/**
 	 * Returns the value of the '<em><b>Reverse</b></em>' attribute.
 	 * <!-- begin-user-doc -->

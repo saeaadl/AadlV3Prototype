@@ -335,7 +335,11 @@ public class ConditionOperationImpl extends LiteralImpl implements ConditionOper
 		if (eIsProxy())
 			return super.toString();
 
-		return getElement().toString()+getOperator().getName()+getConstraint().toString();
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (operator: ");
+		result.append(operator);
+		result.append(')');
+		return result.toString();
 	}
 
 	@Override

@@ -31,7 +31,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.ECollection;
 import org.osate.aadlv3.aadlv3.Expression;
-import org.osate.aadlv3.aadlv3.Literal;
 
 /**
  * <!-- begin-user-doc -->
@@ -186,14 +185,14 @@ public class ECollectionImpl extends LiteralImpl implements ECollection {
 			while (it1.hasNext() && it2.hasNext()) {
 				Expression arg1 = it1.next();
 				Expression arg2 = it2.next();
-				if (!(arg1 instanceof Literal && arg2 instanceof Literal && ((Literal)arg1).sameAs((Literal)arg2)))
+				//				if (!(arg1 instanceof Literal && arg2 instanceof Literal && ((Literal)arg1).sameAs((Literal)arg2)))
+				if (!(arg1.sameAs(arg2)))
 					return false;
 			}
 			return true;
 		}
 	}
-	
-	
+
 	@Override
 	public String toString() {
 		String values = "";
@@ -201,6 +200,75 @@ public class ECollectionImpl extends LiteralImpl implements ECollection {
 			values = values.isEmpty() ? elem.toString() : ", " + elem.toString();
 		}
 		return "(" + values + ")";
+	}
+
+	@Override
+	public boolean add(Expression obj) {
+		return this.getElements().add(obj);
+	}
+
+	@Override
+	public boolean add(EList<Expression> obj) {
+		boolean res = true;
+		for (Expression el : obj) {
+			if (!this.add(el)) {
+				res = false;
+			}
+		}
+		return res;
+	}
+
+	@Override
+	public boolean add(ECollection obj) {
+		return this.add(obj.getElements());
+	}
+
+	@Override
+	public boolean remove(Expression obj) {
+		return this.getElements().remove(obj);
+	}
+
+	@Override
+	public boolean remove(EList<Expression> obj) {
+		boolean res = true;
+		for (Expression el : obj) {
+			if (!this.remove(el)) {
+				res = false;
+			}
+		}
+		return res;
+	}
+
+	@Override
+	public boolean remove(ECollection obj) {
+		return this.getElements().remove(obj);
+	}
+
+	@Override
+	public boolean contains(Expression obj) {
+		for (Expression el : this.getElements()) {
+			if (el.sameAs(obj))
+				return true;
+		}
+		return false;
+	}
+
+	@Override
+	public boolean contains(EList<Expression> obj) {
+		for (Expression el : obj) {
+			if (!this.sameAs(el))
+				return false;
+		}
+		return true;
+	}
+
+	@Override
+	public boolean contains(ECollection obj) {
+		for (Expression el : obj.getElements()) {
+			if (!this.sameAs(el))
+				return false;
+		}
+		return true;
 	}
 
 } //ECollectionImpl

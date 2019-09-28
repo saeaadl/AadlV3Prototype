@@ -260,7 +260,7 @@ public class DirectionalLiteralImpl extends LiteralImpl implements DirectionalLi
 		if (eIsProxy())
 			return super.toString();
 
-		return (direction!=null?direction.getName()+" ":"")+value.toString();
+		return (direction != null ? direction.getName() + " " : "") + value.toString();
 	}
 
 	@Override

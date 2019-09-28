@@ -27,5 +27,6 @@ package org.osate.aadlv3.aadlv3;
  */
 public interface Literal extends Expression {
 
-	public boolean sameAs(Object obj);
+	public boolean contains(Literal element);
+
 } // Literal

@@ -163,7 +163,7 @@ public class EnumerationLiteralImpl extends LiteralImpl implements EnumerationLi
 	 */
 	@Override
 	public String toString() {
-		return value!=null?value:"";
+		return value != null ? value : "";
 	}
 
 	@Override

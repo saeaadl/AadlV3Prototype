@@ -169,7 +169,7 @@ public class IntegerLiteralImpl extends NumberLiteralImpl implements IntegerLite
 		if (eIsProxy())
 			return super.toString();
 
-		return value+ (unit!=null?unit:"");
+		return value + (unit != null ? unit : "");
 	}
 
 	@Override

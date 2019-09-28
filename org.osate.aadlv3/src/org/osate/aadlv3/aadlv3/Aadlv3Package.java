@@ -2268,7 +2268,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_REFERENCE__REVERSE = TYPE_FEATURE_COUNT + 0;
+	int TYPE_REFERENCE__REVERSE = LITERAL_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -2277,7 +2277,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_REFERENCE__TYPE = TYPE_FEATURE_COUNT + 1;
+	int TYPE_REFERENCE__TYPE = LITERAL_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Actuals</b></em>' containment reference list.
@@ -2286,7 +2286,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_REFERENCE__ACTUALS = TYPE_FEATURE_COUNT + 2;
+	int TYPE_REFERENCE__ACTUALS = LITERAL_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Type Reference</em>' class.
@@ -2295,7 +2295,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_REFERENCE_FEATURE_COUNT = TYPE_FEATURE_COUNT + 3;
+	int TYPE_REFERENCE_FEATURE_COUNT = LITERAL_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Unit</b></em>' attribute.

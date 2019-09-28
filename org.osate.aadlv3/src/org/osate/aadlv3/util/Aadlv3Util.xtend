@@ -1521,72 +1521,15 @@ class Aadlv3Util {
 		}
 		return false
 	}
-	
-	/**
-	 * collection contains element, where element can be a single element or a collection, i.e., element collection is a sub-collection of collection
-	 */
-	def static boolean contains(ECollection collection, Literal element){
-		if (element instanceof ECollection){
-			return collection.contains(element)
-		}
-		return collection.elements.exists[elem| elem instanceof Literal?elem.sameAs(element):false]
-	}
-	
-	def static boolean contains(ECollection collection, Expression element){
-		if (element instanceof Literal){
-			return collection.contains(element)
-		}
-		return false
-	}
-	
-	def static boolean contains(Literal collection, Literal element){
-		if (collection === null && element === null) return true;
-		if (element === null || collection === null) return false;
-		if (collection instanceof ECollection){
-			return collection.contains(element)
-		}
-		return collection.sameAs(element)
-	}
-	
-	/**
-	 * subcollection is contained in collection
-	 */
-	def static boolean contains(ECollection coll, ECollection subCollection){
-		return subCollection.elements.forall[elem| coll.contains(elem)]
-	}
-
-
-	/**
-	 * remove elements from subCollection that are sameAs from collection
-	 * collection is modified.
-	 */
-	def static remove(ECollection coll, ECollection subCollection){
-		if (coll === null || coll.elements.empty || subCollection === null) return
-		val removeme = new ArrayList() 
-		for (subelement: subCollection.elements){
-			for(elem:coll.elements){
-				if (subelement instanceof Literal){
-					if (elem instanceof Literal){
-						if (elem.sameAs(subelement)){
-							removeme.add(elem);
-						}
-					}
-				}
-			}
-		}
-		coll.elements.removeAll(removeme)
-	}
-	
-	def static SetLiteral createSet(Iterable<? extends Literal> literals){
-		val set = Aadlv3Factory.eINSTANCE.createSetLiteral;
-		for (lit : literals){
-			if (!set.contains(lit)){
-				set.elements.add(lit)
-			}
-		}
-		return set;
-	}
-	
+//	
+//	def static boolean contains(Literal collection, Literal element){
+//		if (collection === null && element === null) return true;
+//		if (element === null || collection === null) return false;
+//		if (collection instanceof ECollection){
+//			return collection.contains(element)
+//		}
+//		return collection.sameAs(element)
+//	}
 	
 /*
  * property value retrieval

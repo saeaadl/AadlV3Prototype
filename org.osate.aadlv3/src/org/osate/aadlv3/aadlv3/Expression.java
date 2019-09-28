@@ -28,4 +28,7 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface Expression extends EObject {
+
+	public boolean sameAs(Object obj);
+
 } // Expression

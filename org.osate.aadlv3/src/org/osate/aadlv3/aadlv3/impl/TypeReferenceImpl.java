@@ -50,7 +50,7 @@ import org.osate.aadlv3.aadlv3.TypeReference;
  *
  * @generated
  */
-public class TypeReferenceImpl extends TypeImpl implements TypeReference {
+public class TypeReferenceImpl extends LiteralImpl implements TypeReference {
 	/**
 	 * The default value of the '{@link #isReverse() <em>Reverse</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -301,6 +301,7 @@ public class TypeReferenceImpl extends TypeImpl implements TypeReference {
 		return "";
 	}
 
+	@Override
 	public boolean sameAs(Object obj) {
 		if (this == obj)
 			return true;

@@ -16,13 +16,12 @@
 package org.osate.aadlv3.aadlv3.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
+import org.osate.aadlv3.aadlv3.Literal;
 import org.osate.aadlv3.aadlv3.PackageElement;
 import org.osate.aadlv3.aadlv3.PackageElementReference;
 import org.osate.aadlv3.aadlv3.TypeReference;
@@ -133,6 +132,7 @@ public class PackageElementReferenceImpl extends NamedElementImpl implements Pac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -203,6 +203,12 @@ public class PackageElementReferenceImpl extends NamedElementImpl implements Pac
 	@Override
 	public String toString() {
 		return element != null ? getElement().getName() : "";
+	}
+
+	@Override
+	public boolean contains(Literal element) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 } //PackageElementReferenceImpl

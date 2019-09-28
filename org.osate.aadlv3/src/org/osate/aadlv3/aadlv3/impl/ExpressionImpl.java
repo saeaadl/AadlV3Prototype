@@ -49,4 +49,9 @@ public class ExpressionImpl extends MinimalEObjectImpl.Container implements Expr
 		return Aadlv3Package.Literals.EXPRESSION;
 	}
 
+	@Override
+	public boolean sameAs(Object obj) {
+		return this.equals(obj);
+	}
+
 } //ExpressionImpl

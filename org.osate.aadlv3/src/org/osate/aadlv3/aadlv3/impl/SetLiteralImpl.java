@@ -15,6 +15,10 @@
  */
 package org.osate.aadlv3.aadlv3.impl;
 
+import java.util.Collection;
+
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.Expression;
@@ -46,6 +50,7 @@ public class SetLiteralImpl extends ECollectionImpl implements SetLiteral {
 	protected EClass eStaticClass() {
 		return Aadlv3Package.Literals.SET_LITERAL;
 	}
+
 	@Override
 	public String toString() {
 		String values = "";
@@ -53,6 +58,29 @@ public class SetLiteralImpl extends ECollectionImpl implements SetLiteral {
 			values = values.isEmpty() ? elem.toString() : ", " + elem.toString();
 		}
 		return "{" + values + "}";
+	}
+
+	@Override
+	public boolean add(Expression obj) {
+		if (!this.contains(obj)) {
+			this.getElements().add(obj);
+		}
+		return false;
+	}
+
+	@Override
+	public boolean remove(EList<Expression> subCollection) {
+		if (this.getElements().isEmpty() || subCollection.isEmpty())
+			return false;
+		Collection<Expression> removeme = new UniqueEList<Expression>();
+		for (Expression subelement : subCollection) {
+			for (Expression elem : this.getElements()) {
+				if (elem.sameAs(subelement)) {
+					removeme.add(elem);
+				}
+			}
+		}
+		return this.getElements().removeAll(removeme);
 	}
 
 } //SetLiteralImpl

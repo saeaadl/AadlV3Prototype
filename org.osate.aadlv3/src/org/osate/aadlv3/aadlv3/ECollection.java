@@ -46,4 +46,22 @@ public interface ECollection extends Literal {
 	 */
 	EList<Expression> getElements();
 
+	public boolean add(Expression obj);
+
+	public boolean add(EList<Expression> obj);
+
+	public boolean add(ECollection obj);
+
+	public boolean remove(Expression obj);
+
+	public boolean remove(EList<Expression> obj);
+
+	public boolean remove(ECollection obj);
+
+	public boolean contains(Expression obj);
+
+	public boolean contains(EList<Expression> obj);
+
+	public boolean contains(ECollection obj);
+
 } // ECollection

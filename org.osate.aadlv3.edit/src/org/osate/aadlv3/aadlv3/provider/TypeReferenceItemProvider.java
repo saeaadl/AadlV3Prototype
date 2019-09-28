@@ -37,7 +37,7 @@ import org.osate.aadlv3.aadlv3.TypeReference;
  * <!-- end-user-doc -->
  * @generated
  */
-public class TypeReferenceItemProvider extends TypeItemProvider {
+public class TypeReferenceItemProvider extends LiteralItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

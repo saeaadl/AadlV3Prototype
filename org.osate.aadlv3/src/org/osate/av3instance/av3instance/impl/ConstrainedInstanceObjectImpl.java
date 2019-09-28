@@ -351,4 +351,9 @@ public class ConstrainedInstanceObjectImpl extends InstanceObjectImpl implements
 				+ (this.getConstraint() != null ? ":" + this.getConstraint().toString() : "");
 	}
 
+	@Override
+	public boolean contains(Literal element) {
+		return sameAs(element);
+	}
+
 } //ConstrainedInstanceObjectImpl

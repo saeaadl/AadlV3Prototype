@@ -168,7 +168,11 @@ public class RealLiteralImpl extends NumberLiteralImpl implements RealLiteral {
 		if (eIsProxy())
 			return super.toString();
 
-		return value+ (unit!=null?unit:"");
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (value: ");
+		result.append(value);
+		result.append(')');
+		return result.toString();
 	}
 
 	@Override
