@@ -110,6 +110,21 @@ public class FaultGraph {
 					outcioEvent.getTokens().add(condEvent);
 			}
 		}
+		// now we look for edges that represent implicit flows not modeled by bris
+		if (graph.containsVertex(io)) {
+			Set<DefaultEdge> edges = graph.outgoingEdgesOf(io);
+			for (DefaultEdge edge : edges) {
+				InstanceObject target = graph.getEdgeTarget(edge);
+				Literal tlit = null;
+				if (target instanceof ConstrainedInstanceObject) {
+					ConstrainedInstanceObject tcio = (ConstrainedInstanceObject)target;
+					target = tcio.getInstanceObject();
+					tlit = tcio.getConstraint();
+				}
+				// process incoming
+				outcioEvent.getTokens().add(processIncomingCIO(target, tlit));
+			}
+		}
 		return outcioEvent;
 	}
 	
@@ -187,35 +202,46 @@ public class FaultGraph {
 					return generateEvents(cio.getInstanceObject(), cio.getConstraint());
 				} else {
 					// incoming cio
-					Set<DefaultEdge> edges = graph.outgoingEdgesOf(cio);
-					if (edges.isEmpty()){
-						return generateEvents(cio.getInstanceObject(), cio.getConstraint());
-					} else {
-						// process outgoing
-						EList<Token> subEvents = new BasicEList<Token>();
-						for (DefaultEdge edge : edges) {
-							InstanceObject target = graph.getEdgeTarget(edge);
-							Literal tlit = null;
-							if (target instanceof ConstrainedInstanceObject) {
-								ConstrainedInstanceObject tcio = (ConstrainedInstanceObject)target;
-								target = tcio.getInstanceObject();
-								tlit = tcio.getConstraint();
-							}
-							
-							Token res = processOutgoingCIO(target, tlit);
-							if (res != null) {
-								subEvents.add(res);
-							}
-						}
-						Token combined = processEventSubgraph(subEvents, EOperator.ANY, cio.getInstanceObject());  // incoming
-						return combined;
-					}
+					return processIncomingCIO(cio, null);
 				}
 //			}
 		} else {
 			return null;
 		}
 	
+	}
+	
+	public Token processIncomingCIO(InstanceObject io, Literal lit) {
+		// incoming cio
+		Set<DefaultEdge> edges = graph.outgoingEdgesOf(io);
+		if (edges.isEmpty()){
+			InstanceObject target = io;
+			Literal tlit = null;
+			if (target instanceof ConstrainedInstanceObject) {
+				ConstrainedInstanceObject tcio = (ConstrainedInstanceObject)target;
+				target = tcio.getInstanceObject();
+				tlit = tcio.getConstraint();
+			}
+			return generateEvents(target, tlit);
+		} else {
+			// process outgoing
+			EList<Token> subEvents = new BasicEList<Token>();
+			for (DefaultEdge edge : edges) {
+				InstanceObject target = graph.getEdgeTarget(edge);
+				Literal tlit = lit;
+				if (target instanceof ConstrainedInstanceObject) {
+					ConstrainedInstanceObject tcio = (ConstrainedInstanceObject)target;
+					target = tcio.getInstanceObject();
+					tlit = tcio.getConstraint();
+				}
+				Token res = processOutgoingCIO(target, tlit);
+				if (res != null) {
+					subEvents.add(res);
+				}
+			}
+			Token combined = processEventSubgraph(subEvents, EOperator.ANY, io);  // incoming
+			return combined;
+		}
 	}
 	
 	
