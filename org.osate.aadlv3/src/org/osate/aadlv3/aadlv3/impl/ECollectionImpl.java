@@ -192,5 +192,15 @@ public class ECollectionImpl extends LiteralImpl implements ECollection {
 			return true;
 		}
 	}
+	
+	
+	@Override
+	public String toString() {
+		String values = "";
+		for (Expression elem : this.elements) {
+			values = values.isEmpty() ? elem.toString() : ", " + elem.toString();
+		}
+		return "(" + values + ")";
+	}
 
 } //ECollectionImpl

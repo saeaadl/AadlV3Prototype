@@ -17,6 +17,7 @@ package org.osate.aadlv3.aadlv3.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
+import org.osate.aadlv3.aadlv3.Expression;
 import org.osate.aadlv3.aadlv3.SetLiteral;
 
 /**
@@ -44,6 +45,14 @@ public class SetLiteralImpl extends ECollectionImpl implements SetLiteral {
 	@Override
 	protected EClass eStaticClass() {
 		return Aadlv3Package.Literals.SET_LITERAL;
+	}
+	@Override
+	public String toString() {
+		String values = "";
+		for (Expression elem : this.elements) {
+			values = values.isEmpty() ? elem.toString() : ", " + elem.toString();
+		}
+		return "{" + values + "}";
 	}
 
 } //SetLiteralImpl

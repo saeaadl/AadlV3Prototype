@@ -118,29 +118,6 @@ public class TokenTraceItemProviderAdapterFactory extends TokenTraceAdapterFacto
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.osate.graph.TokenTrace.Event} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected EventItemProvider eventItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.osate.graph.TokenTrace.Event}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createEventAdapter() {
-		if (eventItemProvider == null) {
-			eventItemProvider = new EventItemProvider(this);
-		}
-
-		return eventItemProvider;
-	}
-
-	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -247,7 +224,6 @@ public class TokenTraceItemProviderAdapterFactory extends TokenTraceAdapterFacto
 	public void dispose() {
 		if (tokenTraceItemProvider != null) tokenTraceItemProvider.dispose();
 		if (tokenItemProvider != null) tokenItemProvider.dispose();
-		if (eventItemProvider != null) eventItemProvider.dispose();
 	}
 
 }

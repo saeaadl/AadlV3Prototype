@@ -7,12 +7,12 @@
     operationReflection="true" importOrganizing="true">
   <foreignModel>TokenTrace.ecore</foreignModel>
   <genPackages prefix="TokenTrace" basePackage="org.osate.graph" disposableProviderFactory="true"
-      ecorePackage="TokenTrace.ecore#/">
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="TokenTrace.ecore#//EventType">
-      <genEnumLiterals ecoreEnumLiteral="TokenTrace.ecore#//EventType/Basic"/>
-      <genEnumLiterals ecoreEnumLiteral="TokenTrace.ecore#//EventType/External"/>
-      <genEnumLiterals ecoreEnumLiteral="TokenTrace.ecore#//EventType/Undeveloped"/>
-      <genEnumLiterals ecoreEnumLiteral="TokenTrace.ecore#//EventType/Intermediate"/>
+      fileExtensions="tt" ecorePackage="TokenTrace.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="TokenTrace.ecore#//TokenType">
+      <genEnumLiterals ecoreEnumLiteral="TokenTrace.ecore#//TokenType/Basic"/>
+      <genEnumLiterals ecoreEnumLiteral="TokenTrace.ecore#//TokenType/External"/>
+      <genEnumLiterals ecoreEnumLiteral="TokenTrace.ecore#//TokenType/Undeveloped"/>
+      <genEnumLiterals ecoreEnumLiteral="TokenTrace.ecore#//TokenType/Intermediate"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="TokenTrace.ecore#//TokenTraceType">
       <genEnumLiterals ecoreEnumLiteral="TokenTrace.ecore#//TokenTraceType/TokenGraph"/>
@@ -32,16 +32,14 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TokenTrace.ecore#//Token/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TokenTrace.ecore#//Token/message"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TokenTrace.ecore#//Token/tokens"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TokenTrace.ecore#//Token/tokenType"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TokenTrace.ecore#//Token/relatedInstanceObject"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TokenTrace.ecore#//Token/relatedType"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TokenTrace.ecore#//Token/relatedLiteral"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TokenTrace.ecore#//Token/referenceCount"/>
-    </genClasses>
-    <genClasses ecoreClass="TokenTrace.ecore#//Event">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TokenTrace.ecore#//Event/assignedProbability"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TokenTrace.ecore#//Event/computedProbability"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TokenTrace.ecore#//Event/type"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TokenTrace.ecore#//Event/scale"/>
-      <genOperations ecoreOperation="TokenTrace.ecore#//Event/getProbability"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TokenTrace.ecore#//Token/assignedProbability"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TokenTrace.ecore#//Token/computedProbability"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TokenTrace.ecore#//Token/scale"/>
+      <genOperations ecoreOperation="TokenTrace.ecore#//Token/getProbability"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

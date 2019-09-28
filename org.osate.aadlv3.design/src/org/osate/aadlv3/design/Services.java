@@ -18,8 +18,7 @@ import org.osate.av3instance.av3instance.AssociationInstance;
 import org.osate.av3instance.av3instance.ComponentInstance;
 import org.osate.av3instance.av3instance.InstanceObject;
 import org.osate.av3instance.av3instance.PathInstance;
-import org.osate.graph.TokenTrace.Event;
-import org.osate.graph.TokenTrace.EventType;
+import org.osate.graph.TokenTrace.TokenType;
 import org.osate.graph.TokenTrace.Token;
 import org.osate.graph.TokenTrace.TokenTrace;
 import org.osate.graph.TokenTrace.util.TokenTraceUtil;
@@ -91,24 +90,24 @@ public class Services {
 	// Fault Graph services
 	
 
-	public Collection<Event> getEvents(EObject context) {
-		Collection<Event> eventsToReturn = new ArrayList<Event>();
+	public Collection<Token> getTokens(EObject context) {
+		Collection<Token> eventsToReturn = new ArrayList<Token>();
 		if (context instanceof TokenTrace) {
-			eventsToReturn.add((Event)((TokenTrace) context).getRoot());
-		} else if (context instanceof Event) {
-			for (Token token : ((Event) context).getTokens()) {
-				eventsToReturn.add((Event)token);
+			eventsToReturn.add((Token)((TokenTrace) context).getRoot());
+		} else if (context instanceof Token) {
+			for (Token token : ((Token) context).getTokens()) {
+				eventsToReturn.add((Token)token);
 			};
 		}
 		return eventsToReturn;
 	}
 
-	public String getEventDescription(EObject context) {
-		return TokenTraceUtil.getInstanceDescription((Event) context);
+	public String getTokenTarget(EObject context) {
+		return TokenTraceUtil.getInstanceDescription((Token) context);
 	}
 
-	public String getErrorDescription(EObject context) {
-		return ((Event) context).getRelatedType() != null? ((Event) context).getRelatedType().getType().getName():"";
+	public String getPropagatedType(EObject context) {
+		return ((Token) context).getRelatedLiteral() != null? ((Token) context).getRelatedLiteral().toString():"";
 	}
 
 	public String getSpecifiedProbability(EObject context) {
@@ -121,16 +120,19 @@ public class Services {
 
 
 	public String getDependentEventLabel(EObject context) {
-		return TokenTraceUtil.isASharedToken((Event) context) ? "yes" : "no";
+		return TokenTraceUtil.isASharedToken((Token) context) ? "yes" : "no";
 	}
 
 
-	public String getEventTypeLogic(EObject context) {
-		Event ev = (Event) context;
-		if (ev.getType() == EventType.INTERMEDIATE && ev.getTokens().size() > 1) {
+	public String getTokenKindOperator(EObject context) {
+		Token ev = (Token) context;
+		if ( ev.getTokens().size() > 1) {
 			return ev.getOperator().getName() ;
-		}
-		return ev.getType().getName() ;
+		} 
+		if ( ev.getTokens().size() == 1) {
+			return "Intermediate" ;
+		} 
+		return ev.getTokenType().getName() ;
 	}
 
 

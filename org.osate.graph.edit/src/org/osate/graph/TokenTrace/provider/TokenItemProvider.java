@@ -15,11 +15,13 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
+import org.osate.aadlv3.aadlv3.EOperator;
 import org.osate.aadlv3.aadlv3.provider.MultiLiteralConstraintItemProvider;
 import org.osate.av3instance.av3instance.Av3instanceFactory;
 import org.osate.graph.TokenTrace.Token;
 import org.osate.graph.TokenTrace.TokenTraceFactory;
 import org.osate.graph.TokenTrace.TokenTracePackage;
+import org.osate.graph.TokenTrace.TokenType;
 
 /**
  * This is the item provider adapter for a {@link org.osate.graph.TokenTrace.Token} object.
@@ -53,9 +55,13 @@ public class TokenItemProvider
 			addNamePropertyDescriptor(object);
 			addMessagePropertyDescriptor(object);
 			addTokensPropertyDescriptor(object);
+			addTokenTypePropertyDescriptor(object);
 			addRelatedInstanceObjectPropertyDescriptor(object);
-			addRelatedTypePropertyDescriptor(object);
+			addRelatedLiteralPropertyDescriptor(object);
 			addReferenceCountPropertyDescriptor(object);
+			addAssignedProbabilityPropertyDescriptor(object);
+			addComputedProbabilityPropertyDescriptor(object);
+			addScalePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -127,6 +133,28 @@ public class TokenItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Token Type feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTokenTypePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Token_tokenType_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Token_tokenType_feature", "_UI_Token_type"),
+				 TokenTracePackage.Literals.TOKEN__TOKEN_TYPE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This adds a property descriptor for the Related Instance Object feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -149,19 +177,19 @@ public class TokenItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Related Type feature.
+	 * This adds a property descriptor for the Related Literal feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addRelatedTypePropertyDescriptor(Object object) {
+	protected void addRelatedLiteralPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Token_relatedType_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Token_relatedType_feature", "_UI_Token_type"),
-				 TokenTracePackage.Literals.TOKEN__RELATED_TYPE,
+				 getString("_UI_Token_relatedLiteral_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Token_relatedLiteral_feature", "_UI_Token_type"),
+				 TokenTracePackage.Literals.TOKEN__RELATED_LITERAL,
 				 true,
 				 false,
 				 true,
@@ -193,13 +221,110 @@ public class TokenItemProvider
 	}
 
 	/**
-	 * This returns Token.gif.
+	 * This adds a property descriptor for the Assigned Probability feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	protected void addAssignedProbabilityPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Token_assignedProbability_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Token_assignedProbability_feature", "_UI_Token_type"),
+				 TokenTracePackage.Literals.TOKEN__ASSIGNED_PROBABILITY,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Computed Probability feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addComputedProbabilityPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Token_computedProbability_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Token_computedProbability_feature", "_UI_Token_type"),
+				 TokenTracePackage.Literals.TOKEN__COMPUTED_PROBABILITY,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Scale feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addScalePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Token_scale_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Token_scale_feature", "_UI_Token_type"),
+				 TokenTracePackage.Literals.TOKEN__SCALE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This returns Token.gif.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	@Override
 	public Object getImage(Object object) {
+		Token ev = (Token) object;
+		if (ev.getTokenType() == TokenType.BASIC) {
+			return overlayImage(object, getResourceLocator().getImage("full/obj16/BasicTokenBW"));
+		}
+		if (ev.getTokenType() == TokenType.UNDEVELOPED) {
+			return overlayImage(object, getResourceLocator().getImage("full/obj16/UndevelopedTokenBW"));
+		}
+		if (ev.getTokenType() == TokenType.EXTERNAL) {
+			return overlayImage(object, getResourceLocator().getImage("full/obj16/ExternalTokenBW"));
+		}
+		if (ev.getTokens().size() == 1) {
+			return overlayImage(object, getResourceLocator().getImage("full/obj16/IntermediateTokenBW"));
+		}
+		if (ev.getOperator() == EOperator.ALL) {
+			return overlayImage(object, getResourceLocator().getImage("full/obj16/AllOpBW"));
+		}
+		if (ev.getOperator() == EOperator.ANY) {
+			return overlayImage(object, getResourceLocator().getImage("full/obj16/AnyOpBW"));
+		}
+		if (ev.getOperator() == EOperator.ONEOF) {
+			return overlayImage(object, getResourceLocator().getImage("full/obj16/OneOfOpBW"));
+		}
+		if (ev.getOperator() == EOperator.KOFN) {
+			return overlayImage(object, getResourceLocator().getImage("full/obj16/KOfOpBW"));
+		}
+		if (ev.getOperator() == EOperator.KORLESS) {
+			return overlayImage(object, getResourceLocator().getImage("full/obj16/OrLessOpBW"));
+		}
+		if (ev.getOperator() == EOperator.KORMORE) {
+			return overlayImage(object, getResourceLocator().getImage("full/obj16/OrMoreOpBW"));
+		}
 		return overlayImage(object, getResourceLocator().getImage("full/obj16/Token"));
 	}
 
@@ -232,7 +357,11 @@ public class TokenItemProvider
 		switch (notification.getFeatureID(Token.class)) {
 			case TokenTracePackage.TOKEN__NAME:
 			case TokenTracePackage.TOKEN__MESSAGE:
+			case TokenTracePackage.TOKEN__TOKEN_TYPE:
 			case TokenTracePackage.TOKEN__REFERENCE_COUNT:
+			case TokenTracePackage.TOKEN__ASSIGNED_PROBABILITY:
+			case TokenTracePackage.TOKEN__COMPUTED_PROBABILITY:
+			case TokenTracePackage.TOKEN__SCALE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
@@ -254,11 +383,6 @@ public class TokenItemProvider
 			(createChildParameter
 				(Aadlv3Package.Literals.ECOLLECTION__ELEMENTS,
 				 TokenTraceFactory.eINSTANCE.createToken()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(Aadlv3Package.Literals.ECOLLECTION__ELEMENTS,
-				 TokenTraceFactory.eINSTANCE.createEvent()));
 
 		newChildDescriptors.add
 			(createChildParameter

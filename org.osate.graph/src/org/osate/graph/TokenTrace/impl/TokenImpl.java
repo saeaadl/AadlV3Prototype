@@ -2,6 +2,8 @@
  */
 package org.osate.graph.TokenTrace.impl;
 
+import java.lang.reflect.InvocationTargetException;
+import java.math.BigDecimal;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -12,11 +14,14 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-import org.osate.aadlv3.aadlv3.TypeReference;
+import org.osate.aadlv3.aadlv3.Literal;
 import org.osate.aadlv3.aadlv3.impl.MultiLiteralConstraintImpl;
+import org.osate.aadlv3.util.AIv3API;
 import org.osate.av3instance.av3instance.InstanceObject;
 import org.osate.graph.TokenTrace.Token;
 import org.osate.graph.TokenTrace.TokenTracePackage;
+import org.osate.graph.TokenTrace.TokenType;
+import org.osate.graph.TokenTrace.util.TokenTraceUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,9 +34,13 @@ import org.osate.graph.TokenTrace.TokenTracePackage;
  *   <li>{@link org.osate.graph.TokenTrace.impl.TokenImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.impl.TokenImpl#getMessage <em>Message</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.impl.TokenImpl#getTokens <em>Tokens</em>}</li>
+ *   <li>{@link org.osate.graph.TokenTrace.impl.TokenImpl#getTokenType <em>Token Type</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.impl.TokenImpl#getRelatedInstanceObject <em>Related Instance Object</em>}</li>
- *   <li>{@link org.osate.graph.TokenTrace.impl.TokenImpl#getRelatedType <em>Related Type</em>}</li>
+ *   <li>{@link org.osate.graph.TokenTrace.impl.TokenImpl#getRelatedLiteral <em>Related Literal</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.impl.TokenImpl#getReferenceCount <em>Reference Count</em>}</li>
+ *   <li>{@link org.osate.graph.TokenTrace.impl.TokenImpl#getAssignedProbability <em>Assigned Probability</em>}</li>
+ *   <li>{@link org.osate.graph.TokenTrace.impl.TokenImpl#getComputedProbability <em>Computed Probability</em>}</li>
+ *   <li>{@link org.osate.graph.TokenTrace.impl.TokenImpl#getScale <em>Scale</em>}</li>
  * </ul>
  *
  * @generated
@@ -88,6 +97,26 @@ public class TokenImpl extends MultiLiteralConstraintImpl implements Token {
 	protected EList<Token> tokens;
 
 	/**
+	 * The default value of the '{@link #getTokenType() <em>Token Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTokenType()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final TokenType TOKEN_TYPE_EDEFAULT = TokenType.BASIC;
+
+	/**
+	 * The cached value of the '{@link #getTokenType() <em>Token Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTokenType()
+	 * @generated
+	 * @ordered
+	 */
+	protected TokenType tokenType = TOKEN_TYPE_EDEFAULT;
+
+	/**
 	 * The cached value of the '{@link #getRelatedInstanceObject() <em>Related Instance Object</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -98,14 +127,14 @@ public class TokenImpl extends MultiLiteralConstraintImpl implements Token {
 	protected InstanceObject relatedInstanceObject;
 
 	/**
-	 * The cached value of the '{@link #getRelatedType() <em>Related Type</em>}' reference.
+	 * The cached value of the '{@link #getRelatedLiteral() <em>Related Literal</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getRelatedType()
+	 * @see #getRelatedLiteral()
 	 * @generated
 	 * @ordered
 	 */
-	protected TypeReference relatedType;
+	protected Literal relatedLiteral;
 
 	/**
 	 * The default value of the '{@link #getReferenceCount() <em>Reference Count</em>}' attribute.
@@ -126,6 +155,66 @@ public class TokenImpl extends MultiLiteralConstraintImpl implements Token {
 	 * @ordered
 	 */
 	protected int referenceCount = REFERENCE_COUNT_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getAssignedProbability() <em>Assigned Probability</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAssignedProbability()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final BigDecimal ASSIGNED_PROBABILITY_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getAssignedProbability() <em>Assigned Probability</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAssignedProbability()
+	 * @generated
+	 * @ordered
+	 */
+	protected BigDecimal assignedProbability = ASSIGNED_PROBABILITY_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getComputedProbability() <em>Computed Probability</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getComputedProbability()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final BigDecimal COMPUTED_PROBABILITY_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getComputedProbability() <em>Computed Probability</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getComputedProbability()
+	 * @generated
+	 * @ordered
+	 */
+	protected BigDecimal computedProbability = COMPUTED_PROBABILITY_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getScale() <em>Scale</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getScale()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final BigDecimal SCALE_EDEFAULT = new BigDecimal("1.0");
+
+	/**
+	 * The cached value of the '{@link #getScale() <em>Scale</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getScale()
+	 * @generated
+	 * @ordered
+	 */
+	protected BigDecimal scale = SCALE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -211,6 +300,29 @@ public class TokenImpl extends MultiLiteralConstraintImpl implements Token {
 	 * @generated
 	 */
 	@Override
+	public TokenType getTokenType() {
+		return tokenType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setTokenType(TokenType newTokenType) {
+		TokenType oldTokenType = tokenType;
+		tokenType = newTokenType == null ? TOKEN_TYPE_EDEFAULT : newTokenType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TokenTracePackage.TOKEN__TOKEN_TYPE, oldTokenType, tokenType));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public InstanceObject getRelatedInstanceObject() {
 		if (relatedInstanceObject != null && relatedInstanceObject.eIsProxy()) {
 			InternalEObject oldRelatedInstanceObject = (InternalEObject)relatedInstanceObject;
@@ -251,16 +363,16 @@ public class TokenImpl extends MultiLiteralConstraintImpl implements Token {
 	 * @generated
 	 */
 	@Override
-	public TypeReference getRelatedType() {
-		if (relatedType != null && relatedType.eIsProxy()) {
-			InternalEObject oldRelatedType = (InternalEObject)relatedType;
-			relatedType = (TypeReference)eResolveProxy(oldRelatedType);
-			if (relatedType != oldRelatedType) {
+	public Literal getRelatedLiteral() {
+		if (relatedLiteral != null && relatedLiteral.eIsProxy()) {
+			InternalEObject oldRelatedLiteral = (InternalEObject)relatedLiteral;
+			relatedLiteral = (Literal)eResolveProxy(oldRelatedLiteral);
+			if (relatedLiteral != oldRelatedLiteral) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TokenTracePackage.TOKEN__RELATED_TYPE, oldRelatedType, relatedType));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TokenTracePackage.TOKEN__RELATED_LITERAL, oldRelatedLiteral, relatedLiteral));
 			}
 		}
-		return relatedType;
+		return relatedLiteral;
 	}
 
 	/**
@@ -268,8 +380,8 @@ public class TokenImpl extends MultiLiteralConstraintImpl implements Token {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TypeReference basicGetRelatedType() {
-		return relatedType;
+	public Literal basicGetRelatedLiteral() {
+		return relatedLiteral;
 	}
 
 	/**
@@ -278,11 +390,11 @@ public class TokenImpl extends MultiLiteralConstraintImpl implements Token {
 	 * @generated
 	 */
 	@Override
-	public void setRelatedType(TypeReference newRelatedType) {
-		TypeReference oldRelatedType = relatedType;
-		relatedType = newRelatedType;
+	public void setRelatedLiteral(Literal newRelatedLiteral) {
+		Literal oldRelatedLiteral = relatedLiteral;
+		relatedLiteral = newRelatedLiteral;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TokenTracePackage.TOKEN__RELATED_TYPE, oldRelatedType, relatedType));
+			eNotify(new ENotificationImpl(this, Notification.SET, TokenTracePackage.TOKEN__RELATED_LITERAL, oldRelatedLiteral, relatedLiteral));
 	}
 
 	/**
@@ -314,6 +426,92 @@ public class TokenImpl extends MultiLiteralConstraintImpl implements Token {
 	 * @generated
 	 */
 	@Override
+	public BigDecimal getAssignedProbability() {
+		return assignedProbability;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setAssignedProbability(BigDecimal newAssignedProbability) {
+		BigDecimal oldAssignedProbability = assignedProbability;
+		assignedProbability = newAssignedProbability;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TokenTracePackage.TOKEN__ASSIGNED_PROBABILITY, oldAssignedProbability, assignedProbability));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public BigDecimal getComputedProbability() {
+		return computedProbability;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setComputedProbability(BigDecimal newComputedProbability) {
+		BigDecimal oldComputedProbability = computedProbability;
+		computedProbability = newComputedProbability;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TokenTracePackage.TOKEN__COMPUTED_PROBABILITY, oldComputedProbability, computedProbability));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public BigDecimal getScale() {
+		return scale;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setScale(BigDecimal newScale) {
+		BigDecimal oldScale = scale;
+		scale = newScale;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TokenTracePackage.TOKEN__SCALE, oldScale, scale));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public BigDecimal getProbability() {
+		if (this.getComputedProbability() == null || this.getComputedProbability().compareTo(TokenTraceUtil.BigZero) == 0) {
+			if (this.getAssignedProbability() != null) {
+				return this.getAssignedProbability();
+			} else {
+				return TokenTraceUtil.BigZero;
+			}
+		}
+		return this.getComputedProbability();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case TokenTracePackage.TOKEN__NAME:
@@ -322,14 +520,22 @@ public class TokenImpl extends MultiLiteralConstraintImpl implements Token {
 				return getMessage();
 			case TokenTracePackage.TOKEN__TOKENS:
 				return getTokens();
+			case TokenTracePackage.TOKEN__TOKEN_TYPE:
+				return getTokenType();
 			case TokenTracePackage.TOKEN__RELATED_INSTANCE_OBJECT:
 				if (resolve) return getRelatedInstanceObject();
 				return basicGetRelatedInstanceObject();
-			case TokenTracePackage.TOKEN__RELATED_TYPE:
-				if (resolve) return getRelatedType();
-				return basicGetRelatedType();
+			case TokenTracePackage.TOKEN__RELATED_LITERAL:
+				if (resolve) return getRelatedLiteral();
+				return basicGetRelatedLiteral();
 			case TokenTracePackage.TOKEN__REFERENCE_COUNT:
 				return getReferenceCount();
+			case TokenTracePackage.TOKEN__ASSIGNED_PROBABILITY:
+				return getAssignedProbability();
+			case TokenTracePackage.TOKEN__COMPUTED_PROBABILITY:
+				return getComputedProbability();
+			case TokenTracePackage.TOKEN__SCALE:
+				return getScale();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -353,14 +559,26 @@ public class TokenImpl extends MultiLiteralConstraintImpl implements Token {
 				getTokens().clear();
 				getTokens().addAll((Collection<? extends Token>)newValue);
 				return;
+			case TokenTracePackage.TOKEN__TOKEN_TYPE:
+				setTokenType((TokenType)newValue);
+				return;
 			case TokenTracePackage.TOKEN__RELATED_INSTANCE_OBJECT:
 				setRelatedInstanceObject((InstanceObject)newValue);
 				return;
-			case TokenTracePackage.TOKEN__RELATED_TYPE:
-				setRelatedType((TypeReference)newValue);
+			case TokenTracePackage.TOKEN__RELATED_LITERAL:
+				setRelatedLiteral((Literal)newValue);
 				return;
 			case TokenTracePackage.TOKEN__REFERENCE_COUNT:
 				setReferenceCount((Integer)newValue);
+				return;
+			case TokenTracePackage.TOKEN__ASSIGNED_PROBABILITY:
+				setAssignedProbability((BigDecimal)newValue);
+				return;
+			case TokenTracePackage.TOKEN__COMPUTED_PROBABILITY:
+				setComputedProbability((BigDecimal)newValue);
+				return;
+			case TokenTracePackage.TOKEN__SCALE:
+				setScale((BigDecimal)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -383,14 +601,26 @@ public class TokenImpl extends MultiLiteralConstraintImpl implements Token {
 			case TokenTracePackage.TOKEN__TOKENS:
 				getTokens().clear();
 				return;
+			case TokenTracePackage.TOKEN__TOKEN_TYPE:
+				setTokenType(TOKEN_TYPE_EDEFAULT);
+				return;
 			case TokenTracePackage.TOKEN__RELATED_INSTANCE_OBJECT:
 				setRelatedInstanceObject((InstanceObject)null);
 				return;
-			case TokenTracePackage.TOKEN__RELATED_TYPE:
-				setRelatedType((TypeReference)null);
+			case TokenTracePackage.TOKEN__RELATED_LITERAL:
+				setRelatedLiteral((Literal)null);
 				return;
 			case TokenTracePackage.TOKEN__REFERENCE_COUNT:
 				setReferenceCount(REFERENCE_COUNT_EDEFAULT);
+				return;
+			case TokenTracePackage.TOKEN__ASSIGNED_PROBABILITY:
+				setAssignedProbability(ASSIGNED_PROBABILITY_EDEFAULT);
+				return;
+			case TokenTracePackage.TOKEN__COMPUTED_PROBABILITY:
+				setComputedProbability(COMPUTED_PROBABILITY_EDEFAULT);
+				return;
+			case TokenTracePackage.TOKEN__SCALE:
+				setScale(SCALE_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -410,12 +640,20 @@ public class TokenImpl extends MultiLiteralConstraintImpl implements Token {
 				return MESSAGE_EDEFAULT == null ? message != null : !MESSAGE_EDEFAULT.equals(message);
 			case TokenTracePackage.TOKEN__TOKENS:
 				return tokens != null && !tokens.isEmpty();
+			case TokenTracePackage.TOKEN__TOKEN_TYPE:
+				return tokenType != TOKEN_TYPE_EDEFAULT;
 			case TokenTracePackage.TOKEN__RELATED_INSTANCE_OBJECT:
 				return relatedInstanceObject != null;
-			case TokenTracePackage.TOKEN__RELATED_TYPE:
-				return relatedType != null;
+			case TokenTracePackage.TOKEN__RELATED_LITERAL:
+				return relatedLiteral != null;
 			case TokenTracePackage.TOKEN__REFERENCE_COUNT:
 				return referenceCount != REFERENCE_COUNT_EDEFAULT;
+			case TokenTracePackage.TOKEN__ASSIGNED_PROBABILITY:
+				return ASSIGNED_PROBABILITY_EDEFAULT == null ? assignedProbability != null : !ASSIGNED_PROBABILITY_EDEFAULT.equals(assignedProbability);
+			case TokenTracePackage.TOKEN__COMPUTED_PROBABILITY:
+				return COMPUTED_PROBABILITY_EDEFAULT == null ? computedProbability != null : !COMPUTED_PROBABILITY_EDEFAULT.equals(computedProbability);
+			case TokenTracePackage.TOKEN__SCALE:
+				return SCALE_EDEFAULT == null ? scale != null : !SCALE_EDEFAULT.equals(scale);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -426,18 +664,24 @@ public class TokenImpl extends MultiLiteralConstraintImpl implements Token {
 	 * @generated
 	 */
 	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case TokenTracePackage.TOKEN___GET_PROBABILITY:
+				return getProbability();
+		}
+		return super.eInvoke(operationID, arguments);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (name: ");
-		result.append(name);
-		result.append(", message: ");
-		result.append(message);
-		result.append(", referenceCount: ");
-		result.append(referenceCount);
-		result.append(')');
-		return result.toString();
+		return AIv3API.getInstanceObjectPath(this.getRelatedInstanceObject())+(this.getRelatedLiteral()!=null?":"+this.getRelatedLiteral().toString():"");
 	}
 
 } //TokenImpl

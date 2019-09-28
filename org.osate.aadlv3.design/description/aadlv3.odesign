@@ -165,12 +165,12 @@
     <ownedJavaExtensions qualifiedClassName="org.osate.aadlv3.design.Services"/>
     <ownedJavaExtensions qualifiedClassName="org.osate.aadlv3.util.AIv3API"/>
   </ownedViewpoints>
-  <ownedViewpoints name="FaultGraph" modelFileExtension="fg">
+  <ownedViewpoints name="FaultGraph" modelFileExtension="tt">
     <ownedRepresentations xsi:type="description_3:EditionTableDescription" name="FaultGraphTable" domainClass="TokenTrace::TokenTrace">
       <metamodel href="../../org.osate.graph/model/TokenTrace.ecore#/"/>
-      <ownedLineMappings name="EventLine" label="Event" reusedSubLines="//@ownedViewpoints[name='FaultGraph']/@ownedRepresentations[name='FaultGraphTable']/@ownedLineMappings[name='EventLine']" reusedInMappings="//@ownedViewpoints[name='FaultGraph']/@ownedRepresentations[name='FaultGraphTable']/@ownedLineMappings[name='EventLine']" domainClass="TokenTrace::Event" semanticCandidatesExpression="service:getEvents()" headerLabelExpression="service:getEventDescription()"/>
-      <ownedColumnMappings name="ErrorColumn" label="Propagated Error" headerLabelExpression="Error type" featureName="*" labelExpression="service:getErrorDescription()"/>
-      <ownedColumnMappings name="EventTypeColumn" label="Event type/Gate" headerLabelExpression="Type/Gate" featureName="*" labelExpression="service:getEventTypeLogic()"/>
+      <ownedLineMappings name="TokenLine" label="Token" reusedSubLines="//@ownedViewpoints[name='FaultGraph']/@ownedRepresentations[name='FaultGraphTable']/@ownedLineMappings[name='TokenLine']" reusedInMappings="//@ownedViewpoints[name='FaultGraph']/@ownedRepresentations[name='FaultGraphTable']/@ownedLineMappings[name='TokenLine']" domainClass="TokenTrace::Token" semanticCandidatesExpression="service:getTokens()" headerLabelExpression="service:getTokenTarget()"/>
+      <ownedColumnMappings name="ErrorColumn" label="Propagated Type" headerLabelExpression="Propagated type" featureName="*" labelExpression="service:getPropagatedType()"/>
+      <ownedColumnMappings name="TokenKindOperatorColumn" label="Token kind/Operator" headerLabelExpression="Token/Operator" featureName="*" labelExpression="service:getTokenKindOperator()"/>
       <ownedColumnMappings name="CalcProbColumn" label="Calc Prob" headerLabelExpression="Calc Prob" featureName="*" labelExpression="service:getCalculatedProbability()"/>
       <ownedColumnMappings name="SpecProbColumn" label="Spec Prob" headerLabelExpression="Spec Prob" featureName="*" labelExpression="service:getSpecifiedProbability()"/>
       <ownedColumnMappings name="DependentEventColumn" label="Dependent" headerLabelExpression="Dependent" featureName="*" labelExpression="service:getDependentEventLabel()"/>

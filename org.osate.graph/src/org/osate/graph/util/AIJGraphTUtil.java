@@ -2,10 +2,13 @@ package org.osate.graph.util;
 
 import static org.osate.aadlv3.util.AIv3API.*;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.UniqueEList;
 import org.jgrapht.Graph;
 import org.jgrapht.graph.DefaultDirectedGraph;
 import org.jgrapht.graph.DefaultEdge;
@@ -112,80 +115,105 @@ public class AIJGraphTUtil {
 		for (AssociationInstance conni : connis) {
 			InstanceObject src = conni.getSource();
 			InstanceObject dst = conni.getDestination();
-			if (!conni.isExternal()) {
-				// from outgoing feature to incoming feature instance
-				Iterable<ConstrainedInstanceObject> actions = findActionCIOs(src);
-				for (ConstrainedInstanceObject actioncio : actions) {
-					// create edges between actions of connection source and condition elements of connection destination
-					Iterable<ConstrainedInstanceObject> dests = findContainingConditionCIOs(dst, actioncio.getConstraint(), subclauseName);
+			// from outgoing feature to incoming feature instance
+			Collection<ConstrainedInstanceObject> actions = findActionCIOs(src);
+			if (actions.isEmpty()) {
+				// src component has no bri
+				Collection<ConstrainedInstanceObject> dests = conni.isExternal()? findContainingConditionCIOs(dst, src,null, subclauseName)://findContainedActionCIOs(dst, null):
+						 findContainingConditionCIOs(dst, null, subclauseName);
+				if (dests.isEmpty()) {
+					// dst has no bri
+					addPath(directedGraph, src, dst);
+
+				} else {
 					for (ConstrainedInstanceObject dstcio : dests) {
-						addPath(directedGraph, actioncio, dstcio);
+						addPath(directedGraph, src, dstcio);
+					}
+				}
+			} else {
+				for (ConstrainedInstanceObject actioncio : actions) {
+					// create edges between actions of connection source and condition elements of
+					// connection destination
+					Collection<ConstrainedInstanceObject> dests = conni.isExternal()? findContainingConditionCIOs(dst, src,actioncio.getConstraint(), subclauseName): //findContainedActionCIOs(dst, actioncio.getConstraint()):
+							findContainingConditionCIOs(dst, actioncio.getConstraint(), subclauseName);
+					if (dests.isEmpty()) {
+						// dst has no bri
+						addPath(directedGraph, actioncio, dst);
+
+					} else {
+						for (ConstrainedInstanceObject dstcio : dests) {
+							addPath(directedGraph, actioncio, dstcio);
+						}
 					}
 				}
 			}
 		}
 		List<ComponentInstance> cis = getAllComponents(root);
 		for (ComponentInstance ci : cis) {
-			EList<BehaviorRuleInstance> bris = ci.getBehaviorRules();
-			for (BehaviorRuleInstance bri: bris) {
-				for (ConstrainedInstanceObject action: bri.getActions()) {
-					// path to the current state from which to trace back.
-//					ConstrainedInstanceObject cs = bri.getCurrentState();
-//					if (cs != null) {
-//						Iterable<ConstrainedInstanceObject> tss = findTargetStateCIOs(cs, subclauseName);
-//						for (ConstrainedInstanceObject ts: tss) {
-//							addPath(directedGraph, ts, action);
-//						}
-//					}
-					// process conditions
-					Iterable<ConstrainedInstanceObject> condcios = getAllConstrainedInstanceObjects(bri.getCondition());
-					for (ConstrainedInstanceObject ce : condcios) {
-						InstanceObject srcio = ce.getInstanceObject();
-						InstanceObject dstio = action.getInstanceObject();
-						ComponentInstance srcCi = containingComponentInstanceOrSelf(srcio);
-						ComponentInstance dstCi = containingComponentInstanceOrSelf(dstio);
-						// incoming to outgoing feature instance rule
-						addPath(directedGraph, ce, action);
-						if (isAncestor(dstCi,srcCi)) {
-							// edges from action cio of subcomponent to cond cio in parent bri
-							Iterable<ConstrainedInstanceObject> subactions = findContainedActionCIOs(srcio, action.getConstraint());
-							for (ConstrainedInstanceObject subcio: subactions) {
-								addPath(directedGraph, subcio, ce);
-							}
+			EList<ConstrainedInstanceObject> actions = ci.getActions();
+			EList<InstanceObject> outfiAsAction = new UniqueEList<InstanceObject>();
+			for (ConstrainedInstanceObject action : actions) {
+				outfiAsAction.add(action.getInstanceObject());
+			}
+			for (FeatureInstance outfi : getAllOutgoingFeatures(ci)) {
+				if (!outfiAsAction.contains(outfi)) {
+					for (FeatureInstance infi : getAllIncomingFeatures(ci)) {
+						if (isConnected(infi) || isConnected(outfi)) {
+							addPath(directedGraph, infi, outfi);
 						}
 					}
 				}
-//				if (bri.getActions().isEmpty() && bri.getTargetState() != null) {
-//					// we have a rule that represents a state transition without actions
-//					ConstrainedInstanceObject ts = bri.getTargetState();
-//					ConstrainedInstanceObject cs = bri.getCurrentState();
-//					if (cs != null && ts != null && !cs.sameAs(ts)) {
-//						Iterable<ConstrainedInstanceObject> tss = findTargetStateCIOs(cs, subclauseName);
-//						for (ConstrainedInstanceObject nts: tss) {
-//							addPath(directedGraph, nts, ts);
-//						}
-//					}
-//					// process conditions
-//					Iterable<ConstrainedInstanceObject> condcios = getAllConstrainedInstanceObjects(bri.getCondition());
-//					for (ConstrainedInstanceObject ce : condcios) {
-//						InstanceObject srcio = ce.getInstanceObject();
-//						ComponentInstance srcCi = containingComponentInstanceOrSelf(srcio);
-//						if (isAncestor(ci,srcCi)) {
-//							// Subcomponent composite rule 
-//							Iterable<ConstrainedInstanceObject> subactions = findContainedActionCIOs(srcio, ce.getConstraint(), subclauseName);
-//							for (ConstrainedInstanceObject subcio: subactions) {
-//								addPath(directedGraph, subcio, ts);
+			}
+			EList<BehaviorRuleInstance> bris = ci.getBehaviorRules();
+			for (BehaviorRuleInstance bri : bris) {
+				for (ConstrainedInstanceObject action : bri.getActions()) {
+					// path to the current state from which to trace back.
+//						ConstrainedInstanceObject cs = bri.getCurrentState();
+//						if (cs != null) {
+//							Iterable<ConstrainedInstanceObject> tss = findTargetStateCIOs(cs, subclauseName);
+//							for (ConstrainedInstanceObject ts: tss) {
+//								addPath(directedGraph, ts, action);
 //							}
-//						} else {
-//							// incoming to outgoing feature instance rule
-//							addPath(directedGraph, ce, ts);
+//						}
+					// process conditions
+					Iterable<ConstrainedInstanceObject> condcios = getAllConstrainedInstanceObjects(bri.getCondition());
+					for (ConstrainedInstanceObject ce : condcios) {
+//						if (!isAncestor(containingComponentInstanceOrSelf(action.getInstanceObject()),containingComponentInstanceOrSelf(ce.getInstanceObject()))) {
+							// incoming to outgoing feature instance rule
+							addPath(directedGraph, ce, action);
+//						}
+					}
+				}
+//					if (bri.getActions().isEmpty() && bri.getTargetState() != null) {
+//						// we have a rule that represents a state transition without actions
+//						ConstrainedInstanceObject ts = bri.getTargetState();
+//						ConstrainedInstanceObject cs = bri.getCurrentState();
+//						if (cs != null && ts != null && !cs.sameAs(ts)) {
+//							Iterable<ConstrainedInstanceObject> tss = findTargetStateCIOs(cs, subclauseName);
+//							for (ConstrainedInstanceObject nts: tss) {
+//								addPath(directedGraph, nts, ts);
+//							}
+//						}
+//						// process conditions
+//						Iterable<ConstrainedInstanceObject> condcios = getAllConstrainedInstanceObjects(bri.getCondition());
+//						for (ConstrainedInstanceObject ce : condcios) {
+//							InstanceObject srcio = ce.getInstanceObject();
+//							ComponentInstance srcCi = containingComponentInstanceOrSelf(srcio);
+//							if (isAncestor(ci,srcCi)) {
+//								// Subcomponent composite rule 
+//								Iterable<ConstrainedInstanceObject> subactions = findContainedActionCIOs(srcio, ce.getConstraint(), subclauseName);
+//								for (ConstrainedInstanceObject subcio: subactions) {
+//									addPath(directedGraph, subcio, ts);
+//								}
+//							} else {
+//								// incoming to outgoing feature instance rule
+//								addPath(directedGraph, ce, ts);
+//							}
 //						}
 //					}
-//				}
 			}
 		}
 		return directedGraph;
 	}
-
 
 }

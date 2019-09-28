@@ -59,7 +59,6 @@ public class TokenTraceFactoryImpl extends EFactoryImpl implements TokenTraceFac
 		switch (eClass.getClassifierID()) {
 			case TokenTracePackage.TOKEN_TRACE: return createTokenTrace();
 			case TokenTracePackage.TOKEN: return createToken();
-			case TokenTracePackage.EVENT: return createEvent();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -73,8 +72,8 @@ public class TokenTraceFactoryImpl extends EFactoryImpl implements TokenTraceFac
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
-			case TokenTracePackage.EVENT_TYPE:
-				return createEventTypeFromString(eDataType, initialValue);
+			case TokenTracePackage.TOKEN_TYPE:
+				return createTokenTypeFromString(eDataType, initialValue);
 			case TokenTracePackage.TOKEN_TRACE_TYPE:
 				return createTokenTraceTypeFromString(eDataType, initialValue);
 			default:
@@ -90,8 +89,8 @@ public class TokenTraceFactoryImpl extends EFactoryImpl implements TokenTraceFac
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
-			case TokenTracePackage.EVENT_TYPE:
-				return convertEventTypeToString(eDataType, instanceValue);
+			case TokenTracePackage.TOKEN_TYPE:
+				return convertTokenTypeToString(eDataType, instanceValue);
 			case TokenTracePackage.TOKEN_TRACE_TYPE:
 				return convertTokenTraceTypeToString(eDataType, instanceValue);
 			default:
@@ -126,19 +125,8 @@ public class TokenTraceFactoryImpl extends EFactoryImpl implements TokenTraceFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Event createEvent() {
-		EventImpl event = new EventImpl();
-		return event;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EventType createEventTypeFromString(EDataType eDataType, String initialValue) {
-		EventType result = EventType.get(initialValue);
+	public TokenType createTokenTypeFromString(EDataType eDataType, String initialValue) {
+		TokenType result = TokenType.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
@@ -148,7 +136,7 @@ public class TokenTraceFactoryImpl extends EFactoryImpl implements TokenTraceFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertEventTypeToString(EDataType eDataType, Object instanceValue) {
+	public String convertTokenTypeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

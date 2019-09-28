@@ -295,7 +295,10 @@ public class TypeReferenceImpl extends TypeImpl implements TypeReference {
 		if (eIsProxy())
 			return super.toString();
 
-		return this.getType().getName();
+		if (this.getType().getName() != null) {
+			return this.getType().getName();
+		}
+		return "";
 	}
 
 	public boolean sameAs(Object obj) {

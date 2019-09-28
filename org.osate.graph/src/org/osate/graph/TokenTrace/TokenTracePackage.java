@@ -206,113 +206,13 @@ public interface TokenTracePackage extends EPackage {
 	int TOKEN__TOKENS = Aadlv3Package.MULTI_LITERAL_CONSTRAINT_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Related Instance Object</b></em>' reference.
+	 * The feature id for the '<em><b>Token Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TOKEN__RELATED_INSTANCE_OBJECT = Aadlv3Package.MULTI_LITERAL_CONSTRAINT_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Related Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TOKEN__RELATED_TYPE = Aadlv3Package.MULTI_LITERAL_CONSTRAINT_FEATURE_COUNT + 4;
-
-	/**
-	 * The feature id for the '<em><b>Reference Count</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TOKEN__REFERENCE_COUNT = Aadlv3Package.MULTI_LITERAL_CONSTRAINT_FEATURE_COUNT + 5;
-
-	/**
-	 * The number of structural features of the '<em>Token</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TOKEN_FEATURE_COUNT = Aadlv3Package.MULTI_LITERAL_CONSTRAINT_FEATURE_COUNT + 6;
-
-	/**
-	 * The number of operations of the '<em>Token</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TOKEN_OPERATION_COUNT = Aadlv3Package.MULTI_LITERAL_CONSTRAINT_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.osate.graph.TokenTrace.impl.EventImpl <em>Event</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.osate.graph.TokenTrace.impl.EventImpl
-	 * @see org.osate.graph.TokenTrace.impl.TokenTracePackageImpl#getEvent()
-	 * @generated
-	 */
-	int EVENT = 2;
-
-	/**
-	 * The feature id for the '<em><b>Elements</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EVENT__ELEMENTS = TOKEN__ELEMENTS;
-
-	/**
-	 * The feature id for the '<em><b>Operator</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EVENT__OPERATOR = TOKEN__OPERATOR;
-
-	/**
-	 * The feature id for the '<em><b>K</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EVENT__K = TOKEN__K;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EVENT__NAME = TOKEN__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Message</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EVENT__MESSAGE = TOKEN__MESSAGE;
-
-	/**
-	 * The feature id for the '<em><b>Tokens</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EVENT__TOKENS = TOKEN__TOKENS;
+	int TOKEN__TOKEN_TYPE = Aadlv3Package.MULTI_LITERAL_CONSTRAINT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Related Instance Object</b></em>' reference.
@@ -321,16 +221,16 @@ public interface TokenTracePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT__RELATED_INSTANCE_OBJECT = TOKEN__RELATED_INSTANCE_OBJECT;
+	int TOKEN__RELATED_INSTANCE_OBJECT = Aadlv3Package.MULTI_LITERAL_CONSTRAINT_FEATURE_COUNT + 4;
 
 	/**
-	 * The feature id for the '<em><b>Related Type</b></em>' reference.
+	 * The feature id for the '<em><b>Related Literal</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT__RELATED_TYPE = TOKEN__RELATED_TYPE;
+	int TOKEN__RELATED_LITERAL = Aadlv3Package.MULTI_LITERAL_CONSTRAINT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Reference Count</b></em>' attribute.
@@ -339,7 +239,7 @@ public interface TokenTracePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT__REFERENCE_COUNT = TOKEN__REFERENCE_COUNT;
+	int TOKEN__REFERENCE_COUNT = Aadlv3Package.MULTI_LITERAL_CONSTRAINT_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Assigned Probability</b></em>' attribute.
@@ -348,7 +248,7 @@ public interface TokenTracePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT__ASSIGNED_PROBABILITY = TOKEN_FEATURE_COUNT + 0;
+	int TOKEN__ASSIGNED_PROBABILITY = Aadlv3Package.MULTI_LITERAL_CONSTRAINT_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Computed Probability</b></em>' attribute.
@@ -357,16 +257,7 @@ public interface TokenTracePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT__COMPUTED_PROBABILITY = TOKEN_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EVENT__TYPE = TOKEN_FEATURE_COUNT + 2;
+	int TOKEN__COMPUTED_PROBABILITY = Aadlv3Package.MULTI_LITERAL_CONSTRAINT_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Scale</b></em>' attribute.
@@ -375,16 +266,16 @@ public interface TokenTracePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT__SCALE = TOKEN_FEATURE_COUNT + 3;
+	int TOKEN__SCALE = Aadlv3Package.MULTI_LITERAL_CONSTRAINT_FEATURE_COUNT + 9;
 
 	/**
-	 * The number of structural features of the '<em>Event</em>' class.
+	 * The number of structural features of the '<em>Token</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT_FEATURE_COUNT = TOKEN_FEATURE_COUNT + 4;
+	int TOKEN_FEATURE_COUNT = Aadlv3Package.MULTI_LITERAL_CONSTRAINT_FEATURE_COUNT + 10;
 
 	/**
 	 * The operation id for the '<em>Get Probability</em>' operation.
@@ -393,26 +284,26 @@ public interface TokenTracePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT___GET_PROBABILITY = TOKEN_OPERATION_COUNT + 0;
+	int TOKEN___GET_PROBABILITY = Aadlv3Package.MULTI_LITERAL_CONSTRAINT_OPERATION_COUNT + 0;
 
 	/**
-	 * The number of operations of the '<em>Event</em>' class.
+	 * The number of operations of the '<em>Token</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT_OPERATION_COUNT = TOKEN_OPERATION_COUNT + 1;
+	int TOKEN_OPERATION_COUNT = Aadlv3Package.MULTI_LITERAL_CONSTRAINT_OPERATION_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.osate.graph.TokenTrace.EventType <em>Event Type</em>}' enum.
+	 * The meta object id for the '{@link org.osate.graph.TokenTrace.TokenType <em>Token Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.osate.graph.TokenTrace.EventType
-	 * @see org.osate.graph.TokenTrace.impl.TokenTracePackageImpl#getEventType()
+	 * @see org.osate.graph.TokenTrace.TokenType
+	 * @see org.osate.graph.TokenTrace.impl.TokenTracePackageImpl#getTokenType()
 	 * @generated
 	 */
-	int EVENT_TYPE = 3;
+	int TOKEN_TYPE = 2;
 
 	/**
 	 * The meta object id for the '{@link org.osate.graph.TokenTrace.TokenTraceType <em>Type</em>}' enum.
@@ -422,7 +313,7 @@ public interface TokenTracePackage extends EPackage {
 	 * @see org.osate.graph.TokenTrace.impl.TokenTracePackageImpl#getTokenTraceType()
 	 * @generated
 	 */
-	int TOKEN_TRACE_TYPE = 4;
+	int TOKEN_TRACE_TYPE = 3;
 
 
 	/**
@@ -545,6 +436,17 @@ public interface TokenTracePackage extends EPackage {
 	EReference getToken_Tokens();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.osate.graph.TokenTrace.Token#getTokenType <em>Token Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Token Type</em>'.
+	 * @see org.osate.graph.TokenTrace.Token#getTokenType()
+	 * @see #getToken()
+	 * @generated
+	 */
+	EAttribute getToken_TokenType();
+
+	/**
 	 * Returns the meta object for the reference '{@link org.osate.graph.TokenTrace.Token#getRelatedInstanceObject <em>Related Instance Object</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -556,15 +458,15 @@ public interface TokenTracePackage extends EPackage {
 	EReference getToken_RelatedInstanceObject();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.osate.graph.TokenTrace.Token#getRelatedType <em>Related Type</em>}'.
+	 * Returns the meta object for the reference '{@link org.osate.graph.TokenTrace.Token#getRelatedLiteral <em>Related Literal</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Related Type</em>'.
-	 * @see org.osate.graph.TokenTrace.Token#getRelatedType()
+	 * @return the meta object for the reference '<em>Related Literal</em>'.
+	 * @see org.osate.graph.TokenTrace.Token#getRelatedLiteral()
 	 * @see #getToken()
 	 * @generated
 	 */
-	EReference getToken_RelatedType();
+	EReference getToken_RelatedLiteral();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.osate.graph.TokenTrace.Token#getReferenceCount <em>Reference Count</em>}'.
@@ -578,78 +480,57 @@ public interface TokenTracePackage extends EPackage {
 	EAttribute getToken_ReferenceCount();
 
 	/**
-	 * Returns the meta object for class '{@link org.osate.graph.TokenTrace.Event <em>Event</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Event</em>'.
-	 * @see org.osate.graph.TokenTrace.Event
-	 * @generated
-	 */
-	EClass getEvent();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.osate.graph.TokenTrace.Event#getAssignedProbability <em>Assigned Probability</em>}'.
+	 * Returns the meta object for the attribute '{@link org.osate.graph.TokenTrace.Token#getAssignedProbability <em>Assigned Probability</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Assigned Probability</em>'.
-	 * @see org.osate.graph.TokenTrace.Event#getAssignedProbability()
-	 * @see #getEvent()
+	 * @see org.osate.graph.TokenTrace.Token#getAssignedProbability()
+	 * @see #getToken()
 	 * @generated
 	 */
-	EAttribute getEvent_AssignedProbability();
+	EAttribute getToken_AssignedProbability();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.osate.graph.TokenTrace.Event#getComputedProbability <em>Computed Probability</em>}'.
+	 * Returns the meta object for the attribute '{@link org.osate.graph.TokenTrace.Token#getComputedProbability <em>Computed Probability</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Computed Probability</em>'.
-	 * @see org.osate.graph.TokenTrace.Event#getComputedProbability()
-	 * @see #getEvent()
+	 * @see org.osate.graph.TokenTrace.Token#getComputedProbability()
+	 * @see #getToken()
 	 * @generated
 	 */
-	EAttribute getEvent_ComputedProbability();
+	EAttribute getToken_ComputedProbability();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.osate.graph.TokenTrace.Event#getType <em>Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Type</em>'.
-	 * @see org.osate.graph.TokenTrace.Event#getType()
-	 * @see #getEvent()
-	 * @generated
-	 */
-	EAttribute getEvent_Type();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.osate.graph.TokenTrace.Event#getScale <em>Scale</em>}'.
+	 * Returns the meta object for the attribute '{@link org.osate.graph.TokenTrace.Token#getScale <em>Scale</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Scale</em>'.
-	 * @see org.osate.graph.TokenTrace.Event#getScale()
-	 * @see #getEvent()
+	 * @see org.osate.graph.TokenTrace.Token#getScale()
+	 * @see #getToken()
 	 * @generated
 	 */
-	EAttribute getEvent_Scale();
+	EAttribute getToken_Scale();
 
 	/**
-	 * Returns the meta object for the '{@link org.osate.graph.TokenTrace.Event#getProbability() <em>Get Probability</em>}' operation.
+	 * Returns the meta object for the '{@link org.osate.graph.TokenTrace.Token#getProbability() <em>Get Probability</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Get Probability</em>' operation.
-	 * @see org.osate.graph.TokenTrace.Event#getProbability()
+	 * @see org.osate.graph.TokenTrace.Token#getProbability()
 	 * @generated
 	 */
-	EOperation getEvent__GetProbability();
+	EOperation getToken__GetProbability();
 
 	/**
-	 * Returns the meta object for enum '{@link org.osate.graph.TokenTrace.EventType <em>Event Type</em>}'.
+	 * Returns the meta object for enum '{@link org.osate.graph.TokenTrace.TokenType <em>Token Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Event Type</em>'.
-	 * @see org.osate.graph.TokenTrace.EventType
+	 * @return the meta object for enum '<em>Token Type</em>'.
+	 * @see org.osate.graph.TokenTrace.TokenType
 	 * @generated
 	 */
-	EEnum getEventType();
+	EEnum getTokenType();
 
 	/**
 	 * Returns the meta object for enum '{@link org.osate.graph.TokenTrace.TokenTraceType <em>Type</em>}'.
@@ -777,6 +658,14 @@ public interface TokenTracePackage extends EPackage {
 		EReference TOKEN__TOKENS = eINSTANCE.getToken_Tokens();
 
 		/**
+		 * The meta object literal for the '<em><b>Token Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TOKEN__TOKEN_TYPE = eINSTANCE.getToken_TokenType();
+
+		/**
 		 * The meta object literal for the '<em><b>Related Instance Object</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -785,12 +674,12 @@ public interface TokenTracePackage extends EPackage {
 		EReference TOKEN__RELATED_INSTANCE_OBJECT = eINSTANCE.getToken_RelatedInstanceObject();
 
 		/**
-		 * The meta object literal for the '<em><b>Related Type</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Related Literal</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TOKEN__RELATED_TYPE = eINSTANCE.getToken_RelatedType();
+		EReference TOKEN__RELATED_LITERAL = eINSTANCE.getToken_RelatedLiteral();
 
 		/**
 		 * The meta object literal for the '<em><b>Reference Count</b></em>' attribute feature.
@@ -801,22 +690,12 @@ public interface TokenTracePackage extends EPackage {
 		EAttribute TOKEN__REFERENCE_COUNT = eINSTANCE.getToken_ReferenceCount();
 
 		/**
-		 * The meta object literal for the '{@link org.osate.graph.TokenTrace.impl.EventImpl <em>Event</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.osate.graph.TokenTrace.impl.EventImpl
-		 * @see org.osate.graph.TokenTrace.impl.TokenTracePackageImpl#getEvent()
-		 * @generated
-		 */
-		EClass EVENT = eINSTANCE.getEvent();
-
-		/**
 		 * The meta object literal for the '<em><b>Assigned Probability</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute EVENT__ASSIGNED_PROBABILITY = eINSTANCE.getEvent_AssignedProbability();
+		EAttribute TOKEN__ASSIGNED_PROBABILITY = eINSTANCE.getToken_AssignedProbability();
 
 		/**
 		 * The meta object literal for the '<em><b>Computed Probability</b></em>' attribute feature.
@@ -824,15 +703,7 @@ public interface TokenTracePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute EVENT__COMPUTED_PROBABILITY = eINSTANCE.getEvent_ComputedProbability();
-
-		/**
-		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute EVENT__TYPE = eINSTANCE.getEvent_Type();
+		EAttribute TOKEN__COMPUTED_PROBABILITY = eINSTANCE.getToken_ComputedProbability();
 
 		/**
 		 * The meta object literal for the '<em><b>Scale</b></em>' attribute feature.
@@ -840,7 +711,7 @@ public interface TokenTracePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute EVENT__SCALE = eINSTANCE.getEvent_Scale();
+		EAttribute TOKEN__SCALE = eINSTANCE.getToken_Scale();
 
 		/**
 		 * The meta object literal for the '<em><b>Get Probability</b></em>' operation.
@@ -848,17 +719,17 @@ public interface TokenTracePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation EVENT___GET_PROBABILITY = eINSTANCE.getEvent__GetProbability();
+		EOperation TOKEN___GET_PROBABILITY = eINSTANCE.getToken__GetProbability();
 
 		/**
-		 * The meta object literal for the '{@link org.osate.graph.TokenTrace.EventType <em>Event Type</em>}' enum.
+		 * The meta object literal for the '{@link org.osate.graph.TokenTrace.TokenType <em>Token Type</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.osate.graph.TokenTrace.EventType
-		 * @see org.osate.graph.TokenTrace.impl.TokenTracePackageImpl#getEventType()
+		 * @see org.osate.graph.TokenTrace.TokenType
+		 * @see org.osate.graph.TokenTrace.impl.TokenTracePackageImpl#getTokenType()
 		 * @generated
 		 */
-		EEnum EVENT_TYPE = eINSTANCE.getEventType();
+		EEnum TOKEN_TYPE = eINSTANCE.getTokenType();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.graph.TokenTrace.TokenTraceType <em>Type</em>}' enum.

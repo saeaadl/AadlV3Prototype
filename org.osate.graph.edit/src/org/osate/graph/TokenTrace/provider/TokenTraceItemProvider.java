@@ -277,11 +277,6 @@ public class TokenTraceItemProvider
 			(createChildParameter
 				(TokenTracePackage.Literals.TOKEN_TRACE__TOKENS,
 				 TokenTraceFactory.eINSTANCE.createToken()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(TokenTracePackage.Literals.TOKEN_TRACE__TOKENS,
-				 TokenTraceFactory.eINSTANCE.createEvent()));
 	}
 
 	/**

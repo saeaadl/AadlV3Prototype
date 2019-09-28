@@ -87,18 +87,6 @@ public class TokenTraceSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case TokenTracePackage.EVENT: {
-				Event event = (Event)theEObject;
-				T result = caseEvent(event);
-				if (result == null) result = caseToken(event);
-				if (result == null) result = caseMultiLiteralConstraint(event);
-				if (result == null) result = caseMultiOperandExpression(event);
-				if (result == null) result = caseECollection(event);
-				if (result == null) result = caseLiteral(event);
-				if (result == null) result = caseExpression(event);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -130,21 +118,6 @@ public class TokenTraceSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseToken(Token object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Event</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Event</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseEvent(Event object) {
 		return null;
 	}
 

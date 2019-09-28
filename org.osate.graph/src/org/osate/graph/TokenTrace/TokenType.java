@@ -10,14 +10,14 @@ import org.eclipse.emf.common.util.Enumerator;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the literals of the enumeration '<em><b>Event Type</b></em>',
+ * A representation of the literals of the enumeration '<em><b>Token Type</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see org.osate.graph.TokenTrace.TokenTracePackage#getEventType()
+ * @see org.osate.graph.TokenTrace.TokenTracePackage#getTokenType()
  * @model
  * @generated
  */
-public enum EventType implements Enumerator {
+public enum TokenType implements Enumerator {
 	/**
 	 * The '<em><b>Basic</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -46,9 +46,7 @@ public enum EventType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	UNDEVELOPED(2, "Undeveloped", "Undeveloped"),
-
-	/**
+	UNDEVELOPED(2, "Undeveloped", "Undeveloped"), /**
 	 * The '<em><b>Intermediate</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -103,13 +101,13 @@ public enum EventType implements Enumerator {
 	public static final int INTERMEDIATE_VALUE = 3;
 
 	/**
-	 * An array of all the '<em><b>Event Type</b></em>' enumerators.
+	 * An array of all the '<em><b>Token Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final EventType[] VALUES_ARRAY =
-		new EventType[] {
+	private static final TokenType[] VALUES_ARRAY =
+		new TokenType[] {
 			BASIC,
 			EXTERNAL,
 			UNDEVELOPED,
@@ -117,24 +115,24 @@ public enum EventType implements Enumerator {
 		};
 
 	/**
-	 * A public read-only list of all the '<em><b>Event Type</b></em>' enumerators.
+	 * A public read-only list of all the '<em><b>Token Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<EventType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<TokenType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Event Type</b></em>' literal with the specified literal value.
+	 * Returns the '<em><b>Token Type</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param literal the literal.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
-	public static EventType get(String literal) {
+	public static TokenType get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			EventType result = VALUES_ARRAY[i];
+			TokenType result = VALUES_ARRAY[i];
 			if (result.toString().equals(literal)) {
 				return result;
 			}
@@ -143,16 +141,16 @@ public enum EventType implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Event Type</b></em>' literal with the specified name.
+	 * Returns the '<em><b>Token Type</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param name the name.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
-	public static EventType getByName(String name) {
+	public static TokenType getByName(String name) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			EventType result = VALUES_ARRAY[i];
+			TokenType result = VALUES_ARRAY[i];
 			if (result.getName().equals(name)) {
 				return result;
 			}
@@ -161,14 +159,14 @@ public enum EventType implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Event Type</b></em>' literal with the specified integer value.
+	 * Returns the '<em><b>Token Type</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the integer value.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
-	public static EventType get(int value) {
+	public static TokenType get(int value) {
 		switch (value) {
 			case BASIC_VALUE: return BASIC;
 			case EXTERNAL_VALUE: return EXTERNAL;
@@ -205,7 +203,7 @@ public enum EventType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EventType(int value, String name, String literal) {
+	private TokenType(int value, String name, String literal) {
 		this.value = value;
 		this.name = name;
 		this.literal = literal;
@@ -252,4 +250,4 @@ public enum EventType implements Enumerator {
 		return literal;
 	}
 	
-} //EventType
+} //TokenType

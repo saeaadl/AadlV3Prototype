@@ -1540,6 +1540,8 @@ class Aadlv3Util {
 	}
 	
 	def static boolean contains(Literal collection, Literal element){
+		if (collection === null && element === null) return true;
+		if (element === null || collection === null) return false;
 		if (collection instanceof ECollection){
 			return collection.contains(element)
 		}

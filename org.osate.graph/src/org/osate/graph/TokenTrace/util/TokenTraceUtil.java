@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.osate.aadlv3.aadlv3.EOperator;
 import org.osate.aadlv3.aadlv3.Generator;
+import org.osate.aadlv3.aadlv3.Literal;
 import org.osate.aadlv3.aadlv3.MultiLiteralConstraint;
 import org.osate.aadlv3.aadlv3.TypeReference;
 import org.osate.aadlv3.util.AIv3API;
@@ -24,8 +25,7 @@ import org.osate.av3instance.av3instance.FeatureInstance;
 import org.osate.av3instance.av3instance.GeneratorInstance;
 import org.osate.av3instance.av3instance.InstanceObject;
 import org.osate.av3instance.av3instance.StateInstance;
-import org.osate.graph.TokenTrace.Event;
-import org.osate.graph.TokenTrace.EventType;
+import org.osate.graph.TokenTrace.TokenType;
 import org.osate.graph.TokenTrace.Token;
 import org.osate.graph.TokenTrace.TokenTrace;
 import org.osate.graph.TokenTrace.TokenTraceFactory;
@@ -36,15 +36,13 @@ public class TokenTraceUtil {
 		return (TokenTrace)t.eContainer();
 	}
 	
-	public static String buildName(InstanceObject io,  TypeReference typeref) {
+	public static String buildName(InstanceObject io,  Literal typeref) {
 		String identifier = io!=null?getInstanceObjectPath(io):getUniqueName();
 
 		if (typeref == null) {
 			// no type added
-		} else if (typeref.getType().getName() != null) {
-			identifier += "-" + typeref.getType().getName();
 		} else {
-			identifier += "-" + Aadlv3Util.getName(typeref);
+			identifier += "-" + typeref.toString();
 		}
 		return identifier;
 	}
@@ -57,25 +55,8 @@ public class TokenTraceUtil {
 		return "Event_"+uniqueCount;
 	}
 	
-	// token creation
-
-	public static Token createToken(TokenTrace tt, InstanceObject io, TypeReference type) {
-		Token newToken = TokenTraceFactory.eINSTANCE.createToken();
-		String name = buildName(io, type);
-		newToken.setName(name);
-		newToken.setRelatedInstanceObject(io);
-		newToken.setRelatedType(type);
-		tt.getTokens().add(newToken);
-		return newToken;
-	}
-
-	public static void addToken(Token parent, InstanceObject io, TypeReference type) {
-		Token newToken = createToken(getTokenTrace(parent),io, type);
-		getTokenTrace(parent).getTokens().add(newToken);
-		parent.getTokens().add(newToken);
-	}
 	
-	// Event creation
+	// Token creation
 
 	/**
 	 * create Event and initialize io and type.
@@ -86,13 +67,13 @@ public class TokenTraceUtil {
 	 * @param et
 	 * @return
 	 */
-	public static Event createEvent(TokenTrace tt, InstanceObject io, TypeReference type, EventType et) {
-		Event newToken = TokenTraceFactory.eINSTANCE.createEvent();
+	public static Token createToken(TokenTrace tt, InstanceObject io, Literal type, TokenType et) {
+		Token newToken = TokenTraceFactory.eINSTANCE.createToken();
 		String name = buildName(io, type);
 		newToken.setName(name);
-		newToken.setType(et);
+		newToken.setTokenType(et);
 		newToken.setRelatedInstanceObject(io);
-		newToken.setRelatedType(type);
+		newToken.setRelatedLiteral(type);
 		tt.getTokens().add(newToken);
 		return newToken;
 	}
@@ -100,26 +81,26 @@ public class TokenTraceUtil {
 
 // dealing with shared tokens
 
-	public static Token findToken(TokenTrace tt, ConstrainedInstanceObject cio) {
+	public static Token findToken(TokenTrace tt, InstanceObject io, Literal lit) {
 		for (Token token : tt.getTokens()) {
-			if (token.getRelatedInstanceObject() == cio.getInstanceObject() && 
-					((token.getRelatedType() == null &&  cio.getConstraint() == null) || (token.getRelatedType() != null && token.getRelatedType().sameAs(cio.getConstraint())))) {
+			if (token.getRelatedInstanceObject() == io && 
+					((token.getRelatedLiteral() == null &&  lit == null) || (token.getRelatedLiteral() != null && token.getRelatedLiteral().sameAs(lit)))) {
 				return token;
 			}
 		}
 		return null;
 	}
 
-	public static Event findSharedEventSubtree(TokenTrace tokenTrace, Iterable<Event> tokens, EOperator optype, InstanceObject io) {
+	public static Token findSharedEventSubtree(TokenTrace tokenTrace, Iterable<Token> tokens, EOperator optype, InstanceObject io) {
 		for (Token token : tokenTrace.getTokens()) {
-			if (((Event) token).getType() == EventType.INTERMEDIATE && token.getOperator() == optype
+			if (isIntermediate(token) && token.getOperator() == optype
 					&& io == token.getRelatedInstanceObject() && !token.getTokens().isEmpty()) {
-				for (Event t : tokens) {
+				for (Token t : tokens) {
 					if (!token.getTokens().contains(t)) {
 						continue;
 					}
 				}
-				return (Event) token;
+				return token;
 			}
 		}
 		return null;
@@ -141,17 +122,6 @@ public class TokenTraceUtil {
 
 	public static String getDescription(Token token) {
 		return getInstanceDescription(token) + " " + token.getMessage() != null ? token.getMessage() : "";
-	}
-
-	public static String getInstanceDescription(Token token) {
-		InstanceObject io = (InstanceObject) token.getRelatedInstanceObject();
-		String description = "";
-		if (io instanceof ComponentInstance) {
-			description = "'" + AIv3API.getInstanceObjectPath((ComponentInstance) io) + "'";
-		} else if (io instanceof AssociationInstance) {
-			description = "Connection '" + ((AssociationInstance) io).getName() + "'";
-		}
-		return description;
 	}
 
 	
@@ -196,6 +166,10 @@ public class TokenTraceUtil {
 		return token.getReferenceCount() > 1;
 	}
 
+	public static boolean isIntermediate(Token token) {
+		return !token.getTokens().isEmpty();
+	}
+
 	
 
 	public static BigDecimal BigZero = new BigDecimal(0.0);
@@ -207,7 +181,7 @@ public class TokenTraceUtil {
 	 * @return
 	 */
 	public static String getSpecifiedProbability(EObject context) {
-		Event ev = (Event) context;
+		Token ev = (Token) context;
 		if (ev.getAssignedProbability() == null || ev.getAssignedProbability().compareTo(BigZero) == 0) {
 			return "";
 		}
@@ -220,7 +194,7 @@ public class TokenTraceUtil {
 	 * @return
 	 */
 	public static String getCalculatedProbability(EObject context) {
-		Event ev = (Event) context;
+		Token ev = (Token) context;
 		if (ev.getComputedProbability() == null || ev.getComputedProbability().compareTo(BigZero) == 0) {
 			return "";
 		}
@@ -230,21 +204,21 @@ public class TokenTraceUtil {
 
 	// return scaling factor if different from 1.0, otherwise empty string
 	public static String getScale(EObject context) {
-		Event ev = (Event) context;
+		Token ev = (Token) context;
 		if (ev.getScale() == null || ev.getScale().compareTo(BigOne) == 0) {
 			return "";
 		}
 		return String.format(" * %1$.1f", ev.getScale());
 	}
 	
-	public static String getInstanceDescription(Event event) {
+	public static String getInstanceDescription(Token event) {
 		InstanceObject io = (InstanceObject) event.getRelatedInstanceObject();
 		if (io == null) {
 			return event.getName();
 		}
 		ComponentInstance ci = AIv3API.containingComponentInstanceOrSelf(io);
 		String cipath = AIv3API.getInstanceObjectPath(ci);
-		String label = io instanceof FeatureInstance ? (Aadlv3Util.isOutgoing(((FeatureInstance)io).getDirection()) ? "out" : "in"):(io instanceof StateInstance?"state":io instanceof GeneratorInstance?"event":io instanceof BehaviorRuleInstance?"rule":"");
+		String label = io instanceof FeatureInstance ? (Aadlv3Util.isOutgoing(((FeatureInstance)io).getDirection()) ? "out" : "in"):(io instanceof StateInstance?"state":io instanceof GeneratorInstance?"source":io instanceof BehaviorRuleInstance?"rule":"");
 		return io == ci ? " '" +cipath+ "'":
 			" '"+cipath+"' "+label+ " '"+io.getName()+ "'";
 	}
@@ -254,7 +228,7 @@ public class TokenTraceUtil {
 	 * @param event
 	 * @return double
 	 */
-	public static BigDecimal getSubeventProbabilities(Event event) {
+	public static BigDecimal getSubeventProbabilities(Token event) {
 		if (!event.getTokens().isEmpty()) {
 			switch (event.getOperator()) {
 			case ALL: {
@@ -281,18 +255,18 @@ public class TokenTraceUtil {
 		}
 	}
 
-	public static BigDecimal pOREvents(Event event) {
+	public static BigDecimal pOREvents(Token event) {
 		// From equation (VI-17) from NRC guide, Fault Tree Handbook NUREG-0492
 		// P (E1 or E2 or E3 .. En) = 1 - ( (1-P(E1)) * (1-P(E2)) * (1-P(E3)) * ... * (1-P(En)) )
 
 		BigDecimal inverseProb = BigOne;
 		for (Token subEvent : event.getTokens()) {
-			inverseProb = inverseProb.multiply((BigOne.subtract(getScaledProbability((Event)subEvent))));
+			inverseProb = inverseProb.multiply((BigOne.subtract(getScaledProbability(subEvent))));
 		}
 		return BigOne.subtract(inverseProb);
 	}
 
-	public static BigDecimal pORMOREEvents(Event event) {
+	public static BigDecimal pORMOREEvents(Token event) {
 		// For this computation, we use the algorithm presented in
 		// "Computing k-out-of-n System Reliability", by R. E. Barlow and K. D. Heidtmann
 		// in IEEE Transactions on Reliability, Vol R-33, No 4, October 1984
@@ -331,7 +305,7 @@ public class TokenTraceUtil {
 
 		int k = 1;
 		for (Token subEvent : event.getTokens()) {
-			probabilities[k] = BigOne.subtract(getScaledProbability((Event)subEvent));
+			probabilities[k] = BigOne.subtract(getScaledProbability(subEvent));
 			k++;
 		}
 
@@ -353,24 +327,24 @@ public class TokenTraceUtil {
 		return R;
 	}
 
-	public static BigDecimal pANDEvents(Event event) {
+	public static BigDecimal pANDEvents(Token event) {
 		BigDecimal result = BigOne;
 		for (Token subEvent : event.getTokens()) {
-			result = result.multiply(getScaledProbability((Event)subEvent));
+			result = result.multiply(getScaledProbability(subEvent));
 		}
 		return result;
 	}
 
 	// Sum P(Xi)*P(!Xk) for k <> i k in 1..n
-	public static BigDecimal p1OFEvents(Event event) {
+	public static BigDecimal p1OFEvents(Token event) {
 		BigDecimal result = BigZero;
 		for (Token subEvent : event.getTokens()) {
 			BigDecimal subresult = BigOne;
 			for (Token notEvent : event.getTokens()) {
 				if (subEvent == notEvent) {
-					subresult = subresult.multiply(getScaledProbability((Event)subEvent));
+					subresult = subresult.multiply(getScaledProbability(subEvent));
 				} else {
-					subresult = subresult.multiply((BigOne.subtract(getScaledProbability((Event)subEvent))));
+					subresult = subresult.multiply((BigOne.subtract(getScaledProbability(subEvent))));
 				}
 			}
 			result = result.add(subresult);
@@ -378,7 +352,7 @@ public class TokenTraceUtil {
 		return result;
 	}
 
-	public static BigDecimal getScaledProbability(Event event) {
+	public static BigDecimal getScaledProbability(Token event) {
 		return event.getProbability().multiply(event.getScale());
 	}
 
@@ -386,25 +360,25 @@ public class TokenTraceUtil {
 		for (Token event : tt.getTokens()) {
 			EObject element = event.getRelatedInstanceObject();
 			if (element instanceof InstanceObject) {
-				fillProbability((Event)event);
+				fillProbability(event);
 			}
 		}
 
 	}
 
-	public static void computeProbabilities(Event event) {
+	public static void computeProbabilities(Token event) {
 		if (!event.getTokens().isEmpty()) {
 			for (Token e : event.getTokens()) {
-				computeProbabilities((Event)e);
+				computeProbabilities(e);
 			}
 			BigDecimal subtotalprobability = getSubeventProbabilities(event);
 			event.setComputedProbability(subtotalprobability);
 		}
 	}
 
-	public static void fillProbability(Event event) {
-		InstanceObject io = (InstanceObject) event.getRelatedInstanceObject();
-		TypeReference type = (TypeReference) event.getRelatedType();
+	public static void fillProbability(Token event) {
+		InstanceObject io = event.getRelatedInstanceObject();
+		Literal type = event.getRelatedLiteral();
 		event.setAssignedProbability(
 				new BigDecimal(0.1/*getProbability(io, type)*/, MathContext.UNLIMITED));
 	}

@@ -28,7 +28,7 @@
             id="org.osate.graph.TokenTrace.presentation.TokenTraceEditorID"
             name="%_UI_TokenTraceEditor_label"
             icon="icons/full/obj16/TokenTraceModelFile.gif"
-            extensions="tokentrace"
+            extensions="tt"
             class="org.osate.graph.TokenTrace.presentation.TokenTraceEditor"
             contributorClass="org.osate.graph.TokenTrace.presentation.TokenTraceActionBarContributor">
       </editor>

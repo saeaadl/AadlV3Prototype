@@ -41,6 +41,7 @@ import org.osate.aadlv3.aadlv3.ConditionOperation
 import java.util.Collections
 import org.osate.aadlv3.aadlv3.EnumerationLiteral
 import org.eclipse.emf.common.util.EList
+import java.util.Collection
 
 class AIv3API {
 	
@@ -247,9 +248,9 @@ class AIv3API {
 	/**
 	 * return BehaviorRuleInstances that have the specified action
 	 */
-	def static Iterable<BehaviorRuleInstance> findMatchingBehaviorRuleInstances(ConstrainedInstanceObject action){
-		val ci = action.containingComponentInstance
-		ci.behaviorRules.filter[bri|bri.actions.contains(action)]
+	def static Iterable<BehaviorRuleInstance> findMatchingBehaviorRuleInstances( InstanceObject io, Literal lit){
+		val ci = io.containingComponentInstance
+		ci.behaviorRules.filter[bri|bri.actions.findCIO(io, lit) !== null]
 	}
 //	
 //	def static boolean contains (EList<ConstrainedInstanceObject> actions, ConstrainedInstanceObject action){
@@ -373,6 +374,10 @@ class AIv3API {
 	def static Iterable<FeatureInstance> getAllOutgoingFeatures(ComponentInstance ci) {
 		return ci.features.filter[f|f.direction.outgoing];
 	}
+	
+	def static isConnected(InstanceObject io){
+		return !(io.incomingAssociations.isEmpty&&io.outgoingAssociations.isEmpty)
+	}
 
 	def static boolean isFlowSource(FeatureInstance fi, Iterable<AssociationInstance> flows) {
 		return flows.exists[f|f.source === fi];
@@ -490,9 +495,9 @@ class AIv3API {
 	 * return action cios of desired target whose type reference is contained in constraint.
 	 * Used for finding the connection source cio of an external connection where the outer type reference must contain the inner type reference
 	 */
-	def static Iterable<ConstrainedInstanceObject> findContainedActionCIOs(InstanceObject desiredTarget, Literal constraint){
+	def static Collection<ConstrainedInstanceObject> findContainedActionCIOs(InstanceObject desiredTarget, Literal constraint){
 		val ci = desiredTarget.containingComponentInstanceOrSelf
-		return ci.actions.filter[target|target.instanceObject === desiredTarget && constraint.contains(target.constraint)]
+		return ci.actions.filter[target|target.instanceObject === desiredTarget && constraint.contains(target.constraint)].toList
 	}
 	/**
 	 * return action cios of desired target whose type reference is contained in constraint.
@@ -504,14 +509,21 @@ class AIv3API {
 	}
 
 
-
+	def static ConstrainedInstanceObject findCIO(EList<ConstrainedInstanceObject> ciolist, InstanceObject io, Literal lit){
+		for (cio: ciolist){
+			if (cio.instanceObject === io && cio.constraint.contains(lit)){
+				return cio;
+			}
+		}
+		return null;
+	}
 	
 	/**
 	 * return all action CIOs that refer to the instance object io
 	 */
-	def static Iterable<ConstrainedInstanceObject> findActionCIOs(InstanceObject io){
+	def static Collection<ConstrainedInstanceObject> findActionCIOs(InstanceObject io){
 		val ci = io.containingComponentInstanceOrSelf
-		return ci.actions.filter[target|target.instanceObject === io]
+		return ci.actions.filter[target|target.instanceObject === io].toList
 	}
 	
 	
@@ -519,11 +531,18 @@ class AIv3API {
 	 * find all CIOs in condition whose instance object reference points to desriredTarget and whose constraint contains the target literal
 	 * Used for matching incoming conditions of desiredTarget with outgoing type reference
 	 */
-	def static Iterable<ConstrainedInstanceObject> findContainingConditionCIOs(InstanceObject desiredTarget, Literal targetLiteral, String behaviorSpecName){
+	def static Collection<ConstrainedInstanceObject> findContainingConditionCIOs(InstanceObject desiredTarget, Literal targetLiteral, String behaviorSpecName){
 		val dstCi = containingComponentInstanceOrSelf(desiredTarget);
 		val bris = dstCi.behaviorRules.filter[bri|bri.behaviorRule.containingBehaviorSpecification.name.equals(behaviorSpecName) && bri.condition !== null]
 		val cios = bris.map[bri|bri.condition.eAllOfType(ConstrainedInstanceObject)].flatten
-		return cios.filter[target|target.instanceObject === desiredTarget && target.constraint.contains(targetLiteral)]
+		return cios.filter[target|target.instanceObject === desiredTarget && target.constraint.contains(targetLiteral)].toList
+	}
+	
+	def static Collection<ConstrainedInstanceObject> findContainingConditionCIOs(InstanceObject context, InstanceObject desiredTarget, Literal targetLiteral, String behaviorSpecName){
+		val dstCi = containingComponentInstanceOrSelf(context);
+		val bris = dstCi.behaviorRules.filter[bri|bri.behaviorRule.containingBehaviorSpecification.name.equals(behaviorSpecName) && bri.condition !== null]
+		val cios = bris.map[bri|bri.condition.eAllOfType(ConstrainedInstanceObject)].flatten
+		return cios.filter[target|target.instanceObject === desiredTarget && target.constraint.contains(targetLiteral)].toList
 	}
 	
 	def static Iterable<ConstrainedInstanceObject> getAllConstrainedInstanceObjects(Literal lit){
