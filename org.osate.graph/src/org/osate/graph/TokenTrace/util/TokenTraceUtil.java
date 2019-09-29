@@ -1,6 +1,6 @@
 package org.osate.graph.TokenTrace.util;
 
-import static org.osate.aadlv3.util.AIv3API.getInstanceObjectPath;
+import static org.osate.aadlv3.util.AIv3API.*;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -67,7 +67,9 @@ public class TokenTraceUtil {
 	 * @param et
 	 * @return
 	 */
-	public static Token createToken(TokenTrace tt, InstanceObject io, Literal type, TokenType et) {
+	public static Token createToken(TokenTrace tt, InstanceObject cioio, TokenType et) {
+		InstanceObject io = getRealInstanceObject(cioio);
+		Literal type = getRealConstraint(cioio);
 		Token newToken = TokenTraceFactory.eINSTANCE.createToken();
 		String name = buildName(io, type);
 		newToken.setName(name);
@@ -77,11 +79,23 @@ public class TokenTraceUtil {
 		tt.getTokens().add(newToken);
 		return newToken;
 	}
+	public static Token createToken(TokenTrace tt, InstanceObject io, Literal lit, TokenType et) {
+		Token newToken = TokenTraceFactory.eINSTANCE.createToken();
+		String name = buildName(io, lit);
+		newToken.setName(name);
+		newToken.setTokenType(et);
+		newToken.setRelatedInstanceObject(io);
+		newToken.setRelatedLiteral(lit);
+		tt.getTokens().add(newToken);
+		return newToken;
+	}
 	
 
 // dealing with shared tokens
 
-	public static Token findToken(TokenTrace tt, InstanceObject io, Literal lit) {
+	public static Token findToken(TokenTrace tt, InstanceObject cioio) {
+		InstanceObject io = getRealInstanceObject(cioio);
+		Literal lit = getRealConstraint(cioio);
 		for (Token token : tt.getTokens()) {
 			if (token.getRelatedInstanceObject() == io && 
 					((token.getRelatedLiteral() == null &&  lit == null) || (token.getRelatedLiteral() != null && token.getRelatedLiteral().sameAs(lit)))) {

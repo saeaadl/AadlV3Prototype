@@ -18,6 +18,7 @@ import org.osate.aadlv3.aadlv3.PackageDeclaration;
 import org.osate.aadlv3.aadlv3.Workingset;
 import org.osate.aadlv3.instantiation.Instantiator;
 import org.osate.av3instance.av3instance.ComponentInstance;
+import org.osate.graph.TokenTrace.TokenTraceType;
 import org.osate.graph.TokenTrace.util.FaultGraph;
 import org.osate.graph.TokenTrace.util.TokenPaths;
 import org.osate.graph.util.AIJGraphTUtil;
@@ -60,7 +61,7 @@ public class InstantiateWorkingSetHandler extends AbstractHandler {
 //						Graph BProp =AIJGraphTUtil.generateBehaviorPropagationPaths(rootinstance,"EM");
 //						AIJGraphXUtil.showGraph(BProp);
 						FaultGraph fg = new FaultGraph();
-						fg.generateCauseGraph(rootinstance);
+						fg.generateCauseGraphs(rootinstance, TokenTraceType.TOKEN_TRACE,"EM");
 					}
 				}
 			});

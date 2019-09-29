@@ -61,10 +61,7 @@ public class TokenPaths {
 			List<GraphPath<InstanceObject, AssociationInstance>> dps = adps.getAllPaths(source, target, true, null);
 			for (GraphPath<InstanceObject, AssociationInstance> dp : dps){
 				for (InstanceObject vt: dp.getVertexList()){
-					  EList<Expression> sink = getTokenSink(vt).getElements();
-					 for ( Expression se: sink) {
-						 tokens.getElements().remove(se);
-					 }
+					 tokens.remove(getTokenSink(vt));
 				}
 			}
 			if (!tokens.getElements().isEmpty()){

@@ -3,6 +3,7 @@ import static org.osate.aadlv3.util.AIv3API.*;
 import static org.osate.graph.TokenTrace.util.TokenTraceUtil.*;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.BasicEList;
@@ -38,65 +39,81 @@ public class FaultGraph {
 	TokenTrace eventTrace = null;
 	Graph<InstanceObject, DefaultEdge> graph = null;
 	
-	public void generateCauseGraph(ComponentInstance root) {
+	public void generateCauseGraphs(ComponentInstance root, TokenTraceType ttt, String subclauseName) {
 		DefaultDirectedGraph<InstanceObject, DefaultEdge> bgraph = AIJGraphTUtil.generateBehaviorPropagationPaths(root,
-				"EM");
+				subclauseName);
 		EdgeReversedGraph<InstanceObject, DefaultEdge> revgraph = new EdgeReversedGraph<InstanceObject, DefaultEdge>(
 				bgraph);
 
 		for (FeatureInstance fi : root.getFeatures()) {
-			for (ConstrainedInstanceObject eroot: findActionCIOs(fi)) {
-				TokenTrace eTrace = generateEventTrace(revgraph, root, eroot);
-				TokenTraceOptimization tto = new TokenTraceOptimization(eTrace);
-				tto.optimizeFaultTrace(TokenTraceType.TOKEN_TRACE);
-				TokenTraceUtil.fillProbabilities(eTrace);
-				TokenTraceUtil.computeProbabilities(eTrace.getRoot());
-
-				String rootname = eTrace.getName()
-						+ (eTrace.getTokenTraceType().equals(TokenTraceType.MINIMAL_CUT_SET) ? "_cutset"
-								: (eTrace.getTokenTraceType().equals(TokenTraceType.TOKEN_TRACE) ? "_trace"
-										: (eTrace.getTokenTraceType().equals(TokenTraceType.COMPOSITE_PARTS) ? "_parts"
-												: "_tree")));
-				URI ftaURI = EcoreUtil.getURI(eTrace.getInstanceRoot()).trimFragment().trimFileExtension().trimSegments(1)
-						.appendSegment("reports").appendSegment("fta").appendSegment(rootname).appendFileExtension("tt");
-				Resource res = eTrace.getInstanceRoot().eResource().getResourceSet().getResource(ftaURI, false);
-				if (res == null) {
-					res = eTrace.getInstanceRoot().eResource().getResourceSet().createResource(ftaURI);
-				}
-				res.getContents().clear();
-				res.getContents().add(eTrace);
-				try {
-					res.save(null);
-				} catch (IOException e) {
+			Collection<ConstrainedInstanceObject> cios = findActionCIOs(fi);
+			if (cios.isEmpty()) {
+				TokenTrace eTrace = generateCauseGraph(revgraph,fi, ttt);
+				save(eTrace);
+			} else {
+				for (ConstrainedInstanceObject eroot: findActionCIOs(fi)) {
+					TokenTrace eTrace = generateCauseGraph(revgraph,eroot, ttt);
+					save(eTrace);
 				}
 			}
 		}
-	}			
+	}
+
+	public TokenTrace generateCauseGraph(Graph<InstanceObject, DefaultEdge> graph, InstanceObject graphRoot,
+			 TokenTraceType ttt) {
+		TokenTrace eTrace = generateCauseTrace(graph, graphRoot, ttt);
+		TokenTraceOptimization tto = new TokenTraceOptimization();
+		tto.optimizeTokenTrace(eTrace);
+		TokenTraceUtil.fillProbabilities(eTrace);
+		TokenTraceUtil.computeProbabilities(eTrace.getRoot());
+		return eTrace;
+	}
 	
-	public TokenTrace generateEventTrace(Graph<InstanceObject, DefaultEdge> graph, ComponentInstance root, ConstrainedInstanceObject eRoot){
+	public void save(TokenTrace eTrace) {
+		String rootname = eTrace.getName()
+				+ (eTrace.getTokenTraceType().equals(TokenTraceType.MINIMAL_CUT_SET) ? "_cutset"
+						: (eTrace.getTokenTraceType().equals(TokenTraceType.TOKEN_TRACE) ? "_trace"
+								: (eTrace.getTokenTraceType().equals(TokenTraceType.COMPOSITE_PARTS) ? "_parts"
+										: "_tree")));
+		URI ftaURI = EcoreUtil.getURI(eTrace.getInstanceRoot()).trimFragment().trimFileExtension().trimSegments(1)
+				.appendSegment("reports").appendSegment("fta").appendSegment(rootname).appendFileExtension("tt");
+		Resource res = eTrace.getInstanceRoot().eResource().getResourceSet().getResource(ftaURI, false);
+		if (res == null) {
+			res = eTrace.getInstanceRoot().eResource().getResourceSet().createResource(ftaURI);
+		}
+		res.getContents().clear();
+		res.getContents().add(eTrace);
+		try {
+			res.save(null);
+		} catch (IOException e) {
+		}
+
+	}
+	
+	public TokenTrace generateCauseTrace(Graph<InstanceObject, DefaultEdge> graph, InstanceObject fiRoot, TokenTraceType ttt){
 		this.graph = graph;
 		eventTrace = TokenTraceFactory.eINSTANCE.createTokenTrace();
-		eventTrace.setInstanceRoot(root);
-		eventTrace.setTokenTraceType(TokenTraceType.TOKEN_TRACE);
+		eventTrace.setInstanceRoot(getRoot(fiRoot));
+		eventTrace.setTokenTraceType(ttt);
 		// add root event
-		eventTrace.setRoot(processOutgoingCIO(eRoot.getInstanceObject(), eRoot.getConstraint()));
+		eventTrace.setRoot(processOutgoingCIO(fiRoot));
 		eventTrace.setName( eventTrace.getRoot().getName());
 		return eventTrace;
 	}
 
-	public Token processOutgoingCIO(InstanceObject io, Literal lit){
+	public Token processOutgoingCIO(InstanceObject cioio){
 		// outcio is an action in one or more bri
 		// we need to have an event for the outcio and a separate subevent for each bri action
-		Token found = findToken(eventTrace, io, lit);
+		Token found = findToken(eventTrace, cioio);
 		if (found != null) {
 			return found;
 		}
 		
-		Token outcioEvent = createToken(eventTrace, io, lit, TokenType.INTERMEDIATE);
-		Iterable<BehaviorRuleInstance> bris = findMatchingBehaviorRuleInstances(io,lit);
+		Token outcioEvent = createToken(eventTrace, cioio, TokenType.INTERMEDIATE);
+		Iterable<BehaviorRuleInstance> bris = findMatchingBehaviorRuleInstances(cioio);
 		for (BehaviorRuleInstance bri : bris) {
-			Token condEvent = processCondition(bri.getCondition(),io, lit);
-			Token stateEvent = bri.getCurrentState() != null?processState(bri.getCurrentState(), lit):null;
+			Token condEvent = processCondition(bri.getCondition(),cioio);
+			Token stateEvent = bri.getCurrentState() != null?processState(bri.getCurrentState()):null;
 			if (condEvent != null&& stateEvent != null){
 				EList<Token> subEvents = new BasicEList<Token>();
 				subEvents.add(stateEvent);
@@ -111,30 +128,25 @@ public class FaultGraph {
 			}
 		}
 		// now we look for edges that represent implicit flows not modeled by bris
-		if (graph.containsVertex(io)) {
-			Set<DefaultEdge> edges = graph.outgoingEdgesOf(io);
+		if (!(cioio instanceof ConstrainedInstanceObject)&&graph.containsVertex(cioio)) {
+			Set<DefaultEdge> edges = graph.outgoingEdgesOf(cioio);
 			for (DefaultEdge edge : edges) {
-				InstanceObject target = graph.getEdgeTarget(edge);
-				Literal tlit = null;
-				if (target instanceof ConstrainedInstanceObject) {
-					ConstrainedInstanceObject tcio = (ConstrainedInstanceObject)target;
-					target = tcio.getInstanceObject();
-					tlit = tcio.getConstraint();
+				InstanceObject edgeTarget = graph.getEdgeTarget(edge);
+				InstanceObject target = getRealInstanceObject(edgeTarget);
+				if (target instanceof FeatureInstance || target instanceof ComponentInstance) {
+					// process incoming
+					outcioEvent.getTokens().add(processIncomingCIO(edgeTarget));
 				}
-				// process incoming
-				outcioEvent.getTokens().add(processIncomingCIO(target, tlit));
 			}
 		}
+		// XXX set type if not already set to handle propagated types
 		return outcioEvent;
 	}
 	
-	public Token stateTransition(BehaviorRuleInstance bri, Literal tref) {
-		ConstrainedInstanceObject targetState = bri.getTargetState();
-		if (targetState == null) {
-			return null;
-		}
-		Token condEvent = processCondition(bri.getCondition(),targetState.getInstanceObject(), targetState.getConstraint());
-		Token stateEvent = bri.getCurrentState() != null ? processState(bri.getCurrentState(), tref) : null;
+	public Token stateTransition(InstanceObject targetState) {
+		BehaviorRuleInstance bri = containingBehaviorRuleInstance(targetState);
+		Token condEvent = processCondition(bri.getCondition(),targetState);
+		Token stateEvent = bri.getCurrentState() != null ? processState(bri.getCurrentState()) : null;
 		if (condEvent != null && stateEvent != null) {
 			EList<Token> subEvents = new BasicEList<Token>();
 			subEvents.add(stateEvent);
@@ -150,96 +162,73 @@ public class FaultGraph {
 		return null;
 	}
 	
-	public Token processState(ConstrainedInstanceObject currentState, Literal tref){
-		ComponentInstance context = containingComponentInstance(currentState);
-		 EList<BehaviorRuleInstance> sTrans = context.getBehaviorRules();
-		 Token csEvent = createToken(eventTrace, currentState.getInstanceObject(),tref, TokenType.INTERMEDIATE);
-		for (BehaviorRuleInstance bri : sTrans){
-			if (currentState.sameAs(bri.getTargetState())) {
-				csEvent.getTokens().add( stateTransition(bri,tref));
+	public Token processState(ConstrainedInstanceObject currentState){
+		Set<DefaultEdge> targetStates = graph.outgoingEdgesOf(currentState);
+		EList<Token> subEvents = new BasicEList<Token>();
+		for (DefaultEdge targetStateEdge: targetStates){
+			InstanceObject ts = graph.getEdgeTarget(targetStateEdge);
+			Token transEvent = stateTransition(ts);
+			if (transEvent != null) {
+				Token tsToken = createToken(eventTrace, ts, TokenType.INTERMEDIATE);
+				tsToken.getTokens().add(transEvent);
+				subEvents.add(tsToken);
 			}
 		}
-		if (csEvent.getTokens().isEmpty()) {
+		if (subEvents.isEmpty()) {
 			return null;
 		}
-		return csEvent;
+		Token combined = processEventSubgraph(subEvents, EOperator.ANY, currentState.getInstanceObject());  // incoming
+		return combined;
 	}
 	
-	public Token processCondition(Literal cond, InstanceObject io, Literal constraint){
+	public Token processCondition(Literal cond, InstanceObject io){
 		if (cond instanceof MultiLiteralConstraint){
 			EList<Token> subEvents = new BasicEList<Token>();
 			for (Expression el : ((MultiLiteralConstraint) cond).getElements()) {
 				if (el instanceof Literal) {
 					Literal literal = (Literal) el;
-					Token res = processCondition(literal, io, constraint);
+					Token res = processCondition(literal, io);
 					if (res != null) {
 						subEvents.add(res);
 					}
 				}
 			}
-			Token combined = processEventSubgraph(subEvents, (MultiLiteralConstraint) cond);// AIv3API.containingBehaviorRuleInstance(cond));
+			Token combined = processEventSubgraph(subEvents, (MultiLiteralConstraint) cond);
 			return combined;
-		} else if (cond instanceof ConstrainedInstanceObject){
-			ConstrainedInstanceObject cio = (ConstrainedInstanceObject)cond;
-//			if (isAncestor(containingComponentInstanceOrSelf(outcio.getInstanceObject()),containingComponentInstanceOrSelf(cio.getInstanceObject()))) {
-//				// an outgoing
-//				EList<ConstrainedInstanceObject> nextoutcios = findOutCIOs(cio,outcio);
-//				if (nextoutcios.isEmpty()) {
-//					return null;
-//				}
-//				EList<Event> subEvents = new BasicEList<Event>();
-//				for (ConstrainedInstanceObject nextoutcio : nextoutcios) {
-//					Event res = processOutgoingCIO(nextoutcio);
-//					if (res != null) {
-//						subEvents.add(res);
-//					}
-//				}
-//				return processEventSubgraph(subEvents, EOperator.ANY, cio.getInstanceObject());  // multiple bris with outcio
-//			} else {
-				// an incoming or generator
-				if (cio.getInstanceObject() instanceof GeneratorInstance) {
-					// generator
-					return generateEvents(cio.getInstanceObject(), cio.getConstraint());
-				} else {
-					// incoming cio
-					return processIncomingCIO(cio, null);
-				}
-//			}
+		} else if (cond instanceof ConstrainedInstanceObject) {
+			ConstrainedInstanceObject cio = (ConstrainedInstanceObject) cond;
+			// an incoming or generator
+			if (cio.getInstanceObject() instanceof GeneratorInstance) {
+				// generator
+				return generateEvents(cio.getInstanceObject(), cio.getConstraint());
+			} else {
+				// incoming cio
+				return processIncomingCIO(cio);
+			}
 		} else {
 			return null;
 		}
 	
 	}
 	
-	public Token processIncomingCIO(InstanceObject io, Literal lit) {
+	public Token processIncomingCIO(InstanceObject cioio) {
 		// incoming cio
-		Set<DefaultEdge> edges = graph.outgoingEdgesOf(io);
+		Set<DefaultEdge> edges = graph.outgoingEdgesOf(cioio);
 		if (edges.isEmpty()){
-			InstanceObject target = io;
-			Literal tlit = null;
-			if (target instanceof ConstrainedInstanceObject) {
-				ConstrainedInstanceObject tcio = (ConstrainedInstanceObject)target;
-				target = tcio.getInstanceObject();
-				tlit = tcio.getConstraint();
-			}
+			InstanceObject target = getRealInstanceObject(cioio);
+			Literal tlit = getRealConstraint(cioio);
 			return generateEvents(target, tlit);
 		} else {
 			// process outgoing
 			EList<Token> subEvents = new BasicEList<Token>();
 			for (DefaultEdge edge : edges) {
 				InstanceObject target = graph.getEdgeTarget(edge);
-				Literal tlit = lit;
-				if (target instanceof ConstrainedInstanceObject) {
-					ConstrainedInstanceObject tcio = (ConstrainedInstanceObject)target;
-					target = tcio.getInstanceObject();
-					tlit = tcio.getConstraint();
-				}
-				Token res = processOutgoingCIO(target, tlit);
+				Token res = processOutgoingCIO(target);
 				if (res != null) {
 					subEvents.add(res);
 				}
 			}
-			Token combined = processEventSubgraph(subEvents, EOperator.ANY, io);  // incoming
+			Token combined = processEventSubgraph(subEvents, EOperator.ANY, cioio);  // incoming
 			return combined;
 		}
 	}
@@ -276,7 +265,7 @@ public class FaultGraph {
 //		if (subevents.size() == 1){
 //			return subevents.get(0);
 //		}
-		Token mlcEvent = createToken(eventTrace,io,null,TokenType.INTERMEDIATE);
+		Token mlcEvent = createToken(eventTrace,io,TokenType.INTERMEDIATE);
 		mlcEvent.setOperator(optype);
 		mlcEvent.getTokens().addAll(subevents);
 		return mlcEvent;

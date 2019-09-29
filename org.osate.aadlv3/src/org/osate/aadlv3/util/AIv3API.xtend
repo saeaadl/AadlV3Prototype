@@ -245,17 +245,25 @@ class AIv3API {
 		res as ComponentInstance
 	}
 	
+	// return containing behavior rule instance 
+	def static BehaviorRuleInstance containingBehaviorRuleInstance(InstanceObject io){
+		var res = io.eContainer
+		while (!(res instanceof BehaviorRuleInstance) && res.eContainer !== null){
+			res = res.eContainer as InstanceObject
+		}
+		res as BehaviorRuleInstance
+	}
+	
 	/**
 	 * return BehaviorRuleInstances that have the specified action
 	 */
-	def static Iterable<BehaviorRuleInstance> findMatchingBehaviorRuleInstances( InstanceObject io, Literal lit){
+	def static Iterable<BehaviorRuleInstance> findMatchingBehaviorRuleInstances( InstanceObject cioio){
+		val io = getRealInstanceObject(cioio);
+		val lit = getRealConstraint(cioio);
 		val ci = io.containingComponentInstance
 		ci.behaviorRules.filter[bri|bri.actions.findCIO(io, lit) !== null]
 	}
-//	
-//	def static boolean contains (EList<ConstrainedInstanceObject> actions, ConstrainedInstanceObject action){
-//		return actions.exists[a|a.sameAs(action)];
-//	}
+
 	/**
 	 * get containing InstanceObject. 
 	 */
@@ -400,12 +408,12 @@ class AIv3API {
 	}
 	
 	
-	def static ComponentInstance getRoot(ComponentInstance ci) {
-		var top = ci;
+	def static ComponentInstance getRoot(InstanceObject io) {
+		var top = io;
 		while (top.eContainer() !== null) {
-			top = top.eContainer() as ComponentInstance;
+			top = top.eContainer() as InstanceObject;
 		}
-		return top;
+		return top as ComponentInstance;
 	}
 
 	def static boolean noHardware(InstanceObject io) {
@@ -579,5 +587,14 @@ class AIv3API {
 		val bris = briContext.behaviorRules.filter[bri|bri.behaviorRule.containingBehaviorSpecification.name.equals(behaviorSpecName) && bri.targetState !== null]
 		return bris.map[bri|bri.targetState].filter[target|target.instanceObject === cs.instanceObject && ((target.constraint === null && cs.constraint === null) || (target.constraint !== null && cs.constraint !== null  &&target.constraint.contains(cs.constraint))) ]
 	}
+	
+	def static InstanceObject getRealInstanceObject(InstanceObject cioio){
+		return cioio instanceof ConstrainedInstanceObject? cioio.getInstanceObject():cioio;
+	}
+	
+	def static Literal getRealConstraint(InstanceObject cioio){
+		return cioio instanceof ConstrainedInstanceObject? cioio.constraint:null;
+	}
+	
 	
 }

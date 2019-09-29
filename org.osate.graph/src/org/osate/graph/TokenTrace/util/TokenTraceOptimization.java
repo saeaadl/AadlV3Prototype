@@ -21,13 +21,10 @@ public class TokenTraceOptimization {
 	
 	private TokenTrace tt;
 
-	public TokenTraceOptimization(TokenTrace tt) {
-		super();
+	public void optimizeTokenTrace(TokenTrace tt ) {
 		this.tt = tt;
-	}
-
-	public void optimizeFaultTrace( TokenTraceType tokenTraceType) {
 		Token rootEvent = tt.getRoot();
+		TokenTraceType tokenTraceType = tt.getTokenTraceType();
 		if (!tokenTraceType.equals(TokenTraceType.TOKEN_TRACE)
 				&& !tokenTraceType.equals(TokenTraceType.COMPOSITE_PARTS)) {
 			flattenGates(rootEvent);
@@ -54,7 +51,6 @@ public class TokenTraceOptimization {
 			}
 		}
 		tt.setRoot(rootEvent);
-		tt.setTokenTraceType(tokenTraceType);
 		TokenTraceUtil.removeTokenOrphans(tt);
 
 	}
