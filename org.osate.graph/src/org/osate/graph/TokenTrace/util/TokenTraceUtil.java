@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.osate.aadlv3.aadlv3.EOperator;
@@ -96,7 +97,15 @@ public class TokenTraceUtil {
 	public static Token findToken(TokenTrace tt, InstanceObject cioio) {
 		InstanceObject io = getRealInstanceObject(cioio);
 		Literal lit = getRealConstraint(cioio);
-		for (Token token : tt.getTokens()) {
+		return findToken(tt, io, lit);
+	}
+
+	public static Token findToken(TokenTrace tt, InstanceObject io, Literal lit) {
+		return findToken(tt.getTokens(), io, lit);
+	}
+	
+	public static Token findToken(EList<Token> tokens, InstanceObject io, Literal lit) {
+		for (Token token : tokens) {
 			if (token.getRelatedInstanceObject() == io && 
 					((token.getRelatedLiteral() == null &&  lit == null) || (token.getRelatedLiteral() != null && token.getRelatedLiteral().sameAs(lit)))) {
 				return token;

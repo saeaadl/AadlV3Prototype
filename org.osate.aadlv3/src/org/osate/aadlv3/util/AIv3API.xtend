@@ -247,8 +247,8 @@ class AIv3API {
 	
 	// return containing behavior rule instance 
 	def static BehaviorRuleInstance containingBehaviorRuleInstance(InstanceObject io){
-		var res = io.eContainer
-		while (!(res instanceof BehaviorRuleInstance) && res.eContainer !== null){
+		var res = io
+		while (!(res instanceof BehaviorRuleInstance) && res !== null){
 			res = res.eContainer as InstanceObject
 		}
 		res as BehaviorRuleInstance

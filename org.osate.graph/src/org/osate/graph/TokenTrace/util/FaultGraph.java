@@ -295,45 +295,93 @@ public class FaultGraph {
 	// impact processing
 	
 	
-	public void generateEffectGraph(ComponentInstance root) {
-		DefaultDirectedGraph<InstanceObject, DefaultEdge> bgraph = AIJGraphTUtil.generateBehaviorPropagationPaths(root, "EM");
-		 
-		 //		 outprops = root.getBehaviorRules().filter[bri|!bri.actions.empty].map[bri|bri.actions].flatten;
-		for ( GeneratorInstance gi : root.getGenerators()) {
-				TokenTrace eTrace = generateEventTrace(bgraph,root, gi);
-				String rootname = eTrace.getName() + (eTrace.getTokenTraceType().equals(TokenTraceType.MINIMAL_CUT_SET) ? "_cutset"
-						: (eTrace.getTokenTraceType().equals(TokenTraceType.TOKEN_TRACE) ? "_trace"
-								: (eTrace.getTokenTraceType().equals(TokenTraceType.COMPOSITE_PARTS) ? "_parts" : "_tree")));
-				URI ftaURI = EcoreUtil.getURI(eTrace.getInstanceRoot()).trimFragment().trimFileExtension().
-						trimSegments(1).appendSegment("reports").appendSegment("fta").appendSegment(rootname).
-						appendFileExtension("fg");
-				Resource res = eTrace.getInstanceRoot().eResource().getResourceSet().getResource(ftaURI, false);
-				if (res == null){
-					res = eTrace.getInstanceRoot().eResource().getResourceSet().createResource(ftaURI);
-				}
-				res.getContents().clear();
-				res.getContents().add(eTrace);
-				try {
-					res.save(null);
-				} catch (IOException e) {
-				}
-			}
-	}
-
-	
-	public TokenTrace generateEventTrace(Graph<InstanceObject, DefaultEdge> graph, ComponentInstance root, GeneratorInstance gi){
-		this.graph = graph;
+	public void generateEffectGraph(ComponentInstance root, TokenTraceType ttt, String subclauseName) {
+		DefaultDirectedGraph<InstanceObject, DefaultEdge> bgraph = AIJGraphTUtil.generateBehaviorPropagationPaths(root, subclauseName);
+		this.graph = bgraph;
 		eventTrace = TokenTraceFactory.eINSTANCE.createTokenTrace();
 		eventTrace.setInstanceRoot(root);
-		eventTrace.setTokenTraceType(TokenTraceType.TOKEN_TRACE);
-		// add root event
-		Token eventRoot = generateEvents(gi, gi.getValue());
-		eventTrace.setRoot(eventRoot);
-		eventTrace.setName( eventTrace.getRoot().getName());
-		return eventTrace;
+		eventTrace.setTokenTraceType(ttt);
+		Token rootToken = createToken(eventTrace, root, TokenType.INTERMEDIATE);
+		Iterable<ComponentInstance> cis = getAllLeafComponents(root);
+		for (ComponentInstance ci : cis) {
+			Token ciToken = createToken(eventTrace, ci, TokenType.INTERMEDIATE);
+			rootToken.getTokens().add(ciToken);
+			for ( GeneratorInstance gi : ci.getGenerators()) {
+				processGeneratorEffects(ciToken, gi);
+			}
+		}
+		setLeafTokensType();
+		eventTrace.setRoot(rootToken);
+		eventTrace.setName( eventTrace.getRoot().getName()+"_Effects");
+		save(eventTrace);
 	}
 
-	
+	private void processGeneratorEffects(Token parent, GeneratorInstance gi) {
+		if (graph.containsVertex(gi)) {
+			Set<DefaultEdge> edges = graph.outgoingEdgesOf(gi);
+			for (DefaultEdge edge : edges) {
+				InstanceObject nextCioio = graph.getEdgeTarget(edge);
+				processEffect(parent, nextCioio);
+			}
+		}
+	}
 
+	private void processEffect(Token step, InstanceObject cioio) {
+		InstanceObject target = getRealInstanceObject(cioio);
+		Literal constraint = getRealConstraint(cioio);
+		if (constraint instanceof ECollection) {
+			Token nextStep = addNextStep(step, target, step.getRelatedLiteral());
+			if (nextStep != null) {
+				if (graph.containsVertex(cioio)) {
+					Set<DefaultEdge> edges = graph.outgoingEdgesOf(cioio);
+					for (DefaultEdge edge : edges) {
+						InstanceObject nextCioio = graph.getEdgeTarget(edge);
+						processEffect(nextStep, nextCioio);
+					}
+				}
+			}
+		} else {
+			// do next step
+			Token nextStep = addNextStep(step, target, constraint);
+			if (nextStep != null) {
+				if (graph.containsVertex(cioio)) {
+					Set<DefaultEdge> edges = graph.outgoingEdgesOf(cioio);
+					for (DefaultEdge edge : edges) {
+						InstanceObject nextCioio = graph.getEdgeTarget(edge);
+						processEffect(nextStep, nextCioio);
+					}
+				}
+			}
+		}
+	}
+	
+	private Token addNextStep(Token parent, InstanceObject io, Literal lit) {
+		if (findToken(parent.getTokens(), io, lit) == null) {
+			Token nextToken = findToken(eventTrace, io, lit);
+			if (nextToken == parent) {
+				return parent;
+			}
+			if (nextToken == null){
+				nextToken = createToken(eventTrace, io, lit, TokenType.INTERMEDIATE);
+			}
+			parent.getTokens().add( nextToken);
+			return nextToken;
+		}
+		return null;
+	}
+	
+	private void setLeafTokensType() {
+		for (Token t: eventTrace.getTokens()) {
+			if (t.getTokens().isEmpty()) {
+				if (containingComponentInstanceOrSelf(t.getRelatedInstanceObject()) == eventTrace.getInstanceRoot()) {
+					t.setTokenType(TokenType.EXTERNAL);
+				} else if (t.getRelatedInstanceObject() instanceof FeatureInstance || t.getRelatedInstanceObject() instanceof ComponentInstance) {
+					t.setTokenType(TokenType.UNDEVELOPED);
+				} else {
+					t.setTokenType(TokenType.BASIC);
+				}
+			}
+		}
+	}
 
 }

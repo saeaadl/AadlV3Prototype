@@ -18,6 +18,7 @@ import org.osate.av3instance.av3instance.BehaviorRuleInstance;
 import org.osate.av3instance.av3instance.ComponentInstance;
 import org.osate.av3instance.av3instance.ConstrainedInstanceObject;
 import org.osate.av3instance.av3instance.FeatureInstance;
+import org.osate.av3instance.av3instance.GeneratorInstance;
 import org.osate.av3instance.av3instance.InstanceObject;
 import org.osate.av3instance.av3instance.StateInstance;
 import org.osate.graph.TokenTrace.Token;
@@ -183,8 +184,12 @@ public class AIJGraphTUtil {
 					// process conditions
 					Iterable<ConstrainedInstanceObject> condcios = getAllConstrainedInstanceObjects(bri.getCondition());
 					for (ConstrainedInstanceObject ce : condcios) {
-							// incoming to outgoing feature instance rule
-							addPath(directedGraph, ce, action);
+						// all cond to outgoing feature instance rule
+						addPath(directedGraph, ce, action);
+						// generator to generator cond
+						if (ce.getInstanceObject() instanceof GeneratorInstance) {
+							addPath(directedGraph,ce.getInstanceObject(),ce);
+						}
 					}
 				}
 				if (bri.getActions().isEmpty() && bri.getTargetState() != null) {
@@ -205,6 +210,10 @@ public class AIJGraphTUtil {
 					for (ConstrainedInstanceObject ce : condcios) {
 						// edge from condition elements to target state
 						addPath(directedGraph, ce, ts);
+						// generator to generator cond
+						if (ce.getInstanceObject() instanceof GeneratorInstance) {
+							addPath(directedGraph,ce.getInstanceObject(),ce);
+						}
 						InstanceObject srcio = ce.getInstanceObject();
 						// Subcomponent composite rule
 						Iterable<ConstrainedInstanceObject> subactions = findContainedActionCIOs(srcio,ce.getConstraint());
