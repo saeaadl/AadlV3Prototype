@@ -295,6 +295,12 @@ public class TokenItemProvider
 	@Override
 	public Object getImage(Object object) {
 		Token ev = (Token) object;
+		if (ev.getTokenType() == TokenType.SYSTEM) {
+			return overlayImage(object, getResourceLocator().getImage("full/obj16/System"));
+		}
+		if (ev.getTokenType() == TokenType.COMPONENT) {
+			return overlayImage(object, getResourceLocator().getImage("full/obj16/BasicTokenBW"));
+		}
 		if (ev.getTokenType() == TokenType.BASIC) {
 			return overlayImage(object, getResourceLocator().getImage("full/obj16/BasicTokenBW"));
 		}

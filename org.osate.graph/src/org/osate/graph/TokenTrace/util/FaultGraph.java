@@ -20,7 +20,6 @@ import org.osate.aadlv3.aadlv3.EOperator;
 import org.osate.aadlv3.aadlv3.Expression;
 import org.osate.aadlv3.aadlv3.Literal;
 import org.osate.aadlv3.aadlv3.MultiLiteralConstraint;
-import org.osate.aadlv3.aadlv3.TypeReference;
 import org.osate.av3instance.av3instance.BehaviorRuleInstance;
 import org.osate.av3instance.av3instance.ComponentInstance;
 import org.osate.av3instance.av3instance.ConstrainedInstanceObject;
@@ -246,14 +245,14 @@ public class FaultGraph {
 			ECollection types = (ECollection)constraint;
 			Token inEvent = createToken(eventTrace, io, null, TokenType.INTERMEDIATE);
 			for (Expression el : types.getElements()) {
-				if (el instanceof TypeReference) {
-					TypeReference tr = (TypeReference) el;
+				if (el instanceof Literal) {
+					Literal tr = (Literal) el;
 					inEvent.getTokens().add(createToken(eventTrace, io, tr, eventType));
 				}
 			}
 			return inEvent;
 		} else {
-			return createToken(eventTrace, io,(TypeReference)constraint, eventType);
+			return createToken(eventTrace, io,constraint, eventType);
 		}
 	}
 	
@@ -301,10 +300,10 @@ public class FaultGraph {
 		eventTrace = TokenTraceFactory.eINSTANCE.createTokenTrace();
 		eventTrace.setInstanceRoot(root);
 		eventTrace.setTokenTraceType(ttt);
-		Token rootToken = createToken(eventTrace, root, TokenType.INTERMEDIATE);
+		Token rootToken = createToken(eventTrace, root, TokenType.SYSTEM);
 		Iterable<ComponentInstance> cis = getAllLeafComponents(root);
 		for (ComponentInstance ci : cis) {
-			Token ciToken = createToken(eventTrace, ci, TokenType.INTERMEDIATE);
+			Token ciToken = createToken(eventTrace, ci, TokenType.COMPONENT);
 			rootToken.getTokens().add(ciToken);
 			for ( GeneratorInstance gi : ci.getGenerators()) {
 				processGeneratorEffects(ciToken, gi);
@@ -341,6 +340,9 @@ public class FaultGraph {
 				}
 			}
 		} else {
+			if (constraint == null) {
+				constraint = step.getRelatedLiteral();
+			}
 			// do next step
 			Token nextStep = addNextStep(step, target, constraint);
 			if (nextStep != null) {

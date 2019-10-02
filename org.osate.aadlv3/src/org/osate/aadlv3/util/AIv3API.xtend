@@ -505,7 +505,7 @@ class AIv3API {
 	 */
 	def static Collection<ConstrainedInstanceObject> findContainedActionCIOs(InstanceObject desiredTarget, Literal constraint){
 		val ci = desiredTarget.containingComponentInstanceOrSelf
-		return ci.actions.filter[target|target.instanceObject === desiredTarget && constraint.contains(target.constraint)].toList
+		return ci.actions.filter[target|target.instanceObject === desiredTarget && (constraint !== null ? constraint.contains(target.constraint): target.constraint === null)].toList
 	}
 	/**
 	 * return action cios of desired target whose type reference is contained in constraint.
@@ -513,13 +513,13 @@ class AIv3API {
 	 */
 	def static Iterable<ConstrainedInstanceObject> findMatchingActionCIO(InstanceObject desiredTarget, Literal constraint){
 		val ci = desiredTarget.containingComponentInstanceOrSelf
-		return ci.actions.filter[action|action.instanceObject === desiredTarget && constraint.sameAs(action.constraint)]
+		return ci.actions.filter[action|action.instanceObject === desiredTarget && (constraint !== null ? constraint.sameAs(action.constraint): action.constraint === null)]
 	}
 
 
 	def static ConstrainedInstanceObject findCIO(EList<ConstrainedInstanceObject> ciolist, InstanceObject io, Literal lit){
 		for (cio: ciolist){
-			if (cio.instanceObject === io && cio.constraint.contains(lit)){
+			if (cio.instanceObject === io && (cio.constraint !== null ? cio.constraint.contains(lit): lit === null)){
 				return cio;
 			}
 		}
@@ -543,14 +543,14 @@ class AIv3API {
 		val dstCi = containingComponentInstanceOrSelf(desiredTarget);
 		val bris = dstCi.behaviorRules.filter[bri|bri.behaviorRule.containingBehaviorSpecification.name.equals(behaviorSpecName) && bri.condition !== null]
 		val cios = bris.map[bri|bri.condition.eAllOfType(ConstrainedInstanceObject)].flatten
-		return cios.filter[target|target.instanceObject === desiredTarget && target.constraint.contains(targetLiteral)].toList
+		return cios.filter[target|target.instanceObject === desiredTarget && (target.constraint !== null?target.constraint.contains(targetLiteral):targetLiteral === null)].toList
 	}
 	
 	def static Collection<ConstrainedInstanceObject> findContainingConditionCIOs(InstanceObject context, InstanceObject desiredTarget, Literal targetLiteral, String behaviorSpecName){
 		val dstCi = containingComponentInstanceOrSelf(context);
 		val bris = dstCi.behaviorRules.filter[bri|bri.behaviorRule.containingBehaviorSpecification.name.equals(behaviorSpecName) && bri.condition !== null]
 		val cios = bris.map[bri|bri.condition.eAllOfType(ConstrainedInstanceObject)].flatten
-		return cios.filter[target|target.instanceObject === desiredTarget && target.constraint.contains(targetLiteral)].toList
+		return cios.filter[target|target.instanceObject === desiredTarget && (target.constraint !== null?target.constraint.contains(targetLiteral):targetLiteral === null)].toList
 	}
 	
 	def static Iterable<ConstrainedInstanceObject> getAllConstrainedInstanceObjects(Literal lit){
@@ -585,7 +585,7 @@ class AIv3API {
 	def static Iterable<ConstrainedInstanceObject> findTargetStateCIOs(ConstrainedInstanceObject cs, String behaviorSpecName){
 		val briContext = cs.containingComponentInstanceOrSelf
 		val bris = briContext.behaviorRules.filter[bri|bri.behaviorRule.containingBehaviorSpecification.name.equals(behaviorSpecName) && bri.targetState !== null]
-		return bris.map[bri|bri.targetState].filter[target|target.instanceObject === cs.instanceObject && ((target.constraint === null && cs.constraint === null) || (target.constraint !== null && cs.constraint !== null  &&target.constraint.contains(cs.constraint))) ]
+		return bris.map[bri|bri.targetState].filter[target|target.instanceObject === cs.instanceObject && (target.constraint !== null ?target.constraint.contains(cs.constraint): cs.constraint === null) ]
 	}
 	
 	def static InstanceObject getRealInstanceObject(InstanceObject cioio){

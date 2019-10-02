@@ -32,6 +32,8 @@
     <eLiterals name="External" value="1"/>
     <eLiterals name="Undeveloped" value="2"/>
     <eLiterals name="Intermediate" value="3"/>
+    <eLiterals name="Component" value="4"/>
+    <eLiterals name="System" value="5"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="TokenTraceType">
     <eLiterals name="TokenGraph"/>

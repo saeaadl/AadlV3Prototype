@@ -13,6 +13,8 @@
       <genEnumLiterals ecoreEnumLiteral="TokenTrace.ecore#//TokenType/External"/>
       <genEnumLiterals ecoreEnumLiteral="TokenTrace.ecore#//TokenType/Undeveloped"/>
       <genEnumLiterals ecoreEnumLiteral="TokenTrace.ecore#//TokenType/Intermediate"/>
+      <genEnumLiterals ecoreEnumLiteral="TokenTrace.ecore#//TokenType/Component"/>
+      <genEnumLiterals ecoreEnumLiteral="TokenTrace.ecore#//TokenType/System"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="TokenTrace.ecore#//TokenTraceType">
       <genEnumLiterals ecoreEnumLiteral="TokenTrace.ecore#//TokenTraceType/TokenGraph"/>

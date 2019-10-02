@@ -254,7 +254,8 @@ ImplementationReference returns av3::TypeReference :
 ;
 
 AnnexSubclause returns av3::AnnexSubclause :
-	EMSubclause | BASubclause | DefaultAnnexSubclause
+	EMSubclause | BASubclause 
+	| DefaultAnnexSubclause
 ;
 
 DefaultAnnexSubclause returns av3::DefaultAnnexSubclause :
@@ -328,6 +329,7 @@ BASubclause returns av3::BASubclause :
 		BehaviorSpecificationBlock
 	 '}'';'
 ;
+
 
 fragment BehaviorSpecificationBlock*:
 	('use''states' states=[av3::TypeDef|QualifiedName] ';')?

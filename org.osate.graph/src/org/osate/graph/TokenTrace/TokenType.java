@@ -54,7 +54,23 @@ public enum TokenType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	INTERMEDIATE(3, "Intermediate", "Intermediate");
+	INTERMEDIATE(3, "Intermediate", "Intermediate"), /**
+	 * The '<em><b>Component</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #COMPONENT_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	COMPONENT(4, "Component", "Component"), /**
+	 * The '<em><b>System</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #SYSTEM_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	SYSTEM(5, "System", "System");
 
 	/**
 	 * The '<em><b>Basic</b></em>' literal value.
@@ -101,6 +117,28 @@ public enum TokenType implements Enumerator {
 	public static final int INTERMEDIATE_VALUE = 3;
 
 	/**
+	 * The '<em><b>Component</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #COMPONENT
+	 * @model name="Component"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int COMPONENT_VALUE = 4;
+
+	/**
+	 * The '<em><b>System</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #SYSTEM
+	 * @model name="System"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SYSTEM_VALUE = 5;
+
+	/**
 	 * An array of all the '<em><b>Token Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -112,6 +150,8 @@ public enum TokenType implements Enumerator {
 			EXTERNAL,
 			UNDEVELOPED,
 			INTERMEDIATE,
+			COMPONENT,
+			SYSTEM,
 		};
 
 	/**
@@ -172,6 +212,8 @@ public enum TokenType implements Enumerator {
 			case EXTERNAL_VALUE: return EXTERNAL;
 			case UNDEVELOPED_VALUE: return UNDEVELOPED;
 			case INTERMEDIATE_VALUE: return INTERMEDIATE;
+			case COMPONENT_VALUE: return COMPONENT;
+			case SYSTEM_VALUE: return SYSTEM;
 		}
 		return null;
 	}

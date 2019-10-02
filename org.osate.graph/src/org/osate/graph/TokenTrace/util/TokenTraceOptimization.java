@@ -8,8 +8,6 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
 import org.osate.aadlv3.aadlv3.EOperator;
-import org.osate.aadlv3.aadlv3.TypeReference;
-import org.osate.av3instance.av3instance.ComponentInstance;
 import org.osate.graph.TokenTrace.TokenType;
 import org.osate.graph.TokenTrace.Token;
 import org.osate.graph.TokenTrace.TokenTrace;
@@ -145,7 +143,7 @@ public class TokenTraceOptimization {
 			List<Token> toAdd = new LinkedList<Token>();
 			// alternatives : collection of minimal cutsets
 			Token alternatives = createToken(tt,
-					rootevent.getRelatedInstanceObject(), (TypeReference) rootevent.getRelatedLiteral(), TokenType.INTERMEDIATE);
+					rootevent.getRelatedInstanceObject(),  rootevent.getRelatedLiteral(), TokenType.INTERMEDIATE);
 			alternatives.setName("Alternatives");
 			if (rootevent.getOperator() == EOperator.ONEOF) {
 				alternatives.setOperator(EOperator.ONEOF);
@@ -158,7 +156,7 @@ public class TokenTraceOptimization {
 				for (Token alt : rootevent.getTokens()) {
 					// if top-level is OR, XOR, KORMORE each of the sub-events become the starting point of a cutset
 					Token alternative = createToken(tt,
-							rootevent.getRelatedInstanceObject(), (TypeReference) rootevent.getRelatedLiteral(),TokenType.INTERMEDIATE);
+							rootevent.getRelatedInstanceObject(),  rootevent.getRelatedLiteral(),TokenType.INTERMEDIATE);
 					alternative.setOperator(EOperator.ALL);
 					toAdd.add(alternative);
 					// normalize each of the subevents
@@ -171,7 +169,7 @@ public class TokenTraceOptimization {
 			} else if (rootevent.getOperator() == EOperator.ALL) {
 				// in case of AND or P-AND we take the root as starting point
 				Token alternative = createToken(tt,
-						rootevent.getRelatedInstanceObject(), (TypeReference) rootevent.getRelatedLiteral(),TokenType.INTERMEDIATE);
+						rootevent.getRelatedInstanceObject(),  rootevent.getRelatedLiteral(),TokenType.INTERMEDIATE);
 				alternative.setOperator(EOperator.ALL);
 				toAdd.add(alternative);
 				normalizeEvent(rootevent, toAdd, alternatives);
@@ -466,7 +464,7 @@ public class TokenTraceOptimization {
 						// remove from lower OR and create an OR above top gate
 						Token newtopevent = createToken(tt,
 								topevent.getRelatedInstanceObject(),
-								(TypeReference) topevent.getRelatedLiteral(),TokenType.INTERMEDIATE);
+								 topevent.getRelatedLiteral(),TokenType.INTERMEDIATE);
 						newtopevent.setOperator(gt);
 						newtopevent.getTokens().add(topevent);
 						for (Token event : intersection) {
@@ -485,7 +483,7 @@ public class TokenTraceOptimization {
 						// transformed subtree to top gate replacing subset of events involved in transformation
 						Token newtopevent = createToken(tt,
 								topevent.getRelatedInstanceObject(),
-								(TypeReference) topevent.getRelatedLiteral(),TokenType.INTERMEDIATE);
+								 topevent.getRelatedLiteral(),TokenType.INTERMEDIATE);
 						newtopevent.setOperator(gt);
 						topevent.getTokens().add(newtopevent);
 						// remove intersection fro subset of gates

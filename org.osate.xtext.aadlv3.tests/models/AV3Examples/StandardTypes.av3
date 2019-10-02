@@ -1,3 +1,5 @@
 package StandardTypes is
 	type time : real;
+	
+	type cycles;
 end;

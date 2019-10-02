@@ -1565,8 +1565,8 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 			}
 		} else if (assoc.associationType.isFlowSpec) {
 			if (assoc.source !== null && assoc.destination !== null &&
-				!(!assoc.source.modelElementReferenceIncludesComponent &&
-					!assoc.destination.modelElementReferenceIncludesComponent)) {
+				!(assoc.source.modelElementReferenceIncludesComponent &&
+					assoc.destination.modelElementReferenceIncludesComponent)) {
 				error('Flow path must not be between features of subcomponents', assoc, null, BetweenFeatures)
 			} else // } else if (assoc.associationType === AssociationType.FLOWSINK) {
 			if (assoc.source !== null && assoc.destination === null &&
@@ -1580,8 +1580,8 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 					Aadlv3Package.Literals.ASSOCIATION__DESTINATION, NotSubcomponentFeature)
 			}
 		} else if (assoc.associationType.isBinding) {
-			if (!(!assoc.source.modelElementReferenceIncludesComponent &&
-				!assoc.destination.modelElementReferenceIncludesComponent)) {
+			if (!(assoc.source.modelElementReferenceIncludesComponent &&
+				assoc.destination.modelElementReferenceIncludesComponent)) {
 				error('Binding must be between subcomponents', assoc, null, BetweenSubcomponents)
 			}
 		}
