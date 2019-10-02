@@ -45,6 +45,7 @@ import org.osate.aadlv3.aadlv3.StateSpecification;
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.BehaviorRuleImpl#getTargetState <em>Target State</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.BehaviorRuleImpl#getCondition <em>Condition</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.BehaviorRuleImpl#getActions <em>Actions</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.BehaviorRuleImpl#isSink <em>Sink</em>}</li>
  * </ul>
  *
  * @generated
@@ -89,6 +90,26 @@ public class BehaviorRuleImpl extends ModelElementImpl implements BehaviorRule {
 	 * @ordered
 	 */
 	protected EList<Assignment> actions;
+
+	/**
+	 * The default value of the '{@link #isSink() <em>Sink</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSink()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean SINK_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isSink() <em>Sink</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSink()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean sink = SINK_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -285,6 +306,29 @@ public class BehaviorRuleImpl extends ModelElementImpl implements BehaviorRule {
 	 * @generated
 	 */
 	@Override
+	public boolean isSink() {
+		return sink;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setSink(boolean newSink) {
+		boolean oldSink = sink;
+		sink = newSink;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.BEHAVIOR_RULE__SINK, oldSink, sink));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case Aadlv3Package.BEHAVIOR_RULE__CURRENT_STATE:
@@ -315,6 +359,8 @@ public class BehaviorRuleImpl extends ModelElementImpl implements BehaviorRule {
 			return getCondition();
 		case Aadlv3Package.BEHAVIOR_RULE__ACTIONS:
 			return getActions();
+		case Aadlv3Package.BEHAVIOR_RULE__SINK:
+			return isSink();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -341,6 +387,9 @@ public class BehaviorRuleImpl extends ModelElementImpl implements BehaviorRule {
 			getActions().clear();
 			getActions().addAll((Collection<? extends Assignment>) newValue);
 			return;
+		case Aadlv3Package.BEHAVIOR_RULE__SINK:
+			setSink((Boolean) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -365,6 +414,9 @@ public class BehaviorRuleImpl extends ModelElementImpl implements BehaviorRule {
 		case Aadlv3Package.BEHAVIOR_RULE__ACTIONS:
 			getActions().clear();
 			return;
+		case Aadlv3Package.BEHAVIOR_RULE__SINK:
+			setSink(SINK_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -385,8 +437,27 @@ public class BehaviorRuleImpl extends ModelElementImpl implements BehaviorRule {
 			return condition != null;
 		case Aadlv3Package.BEHAVIOR_RULE__ACTIONS:
 			return actions != null && !actions.isEmpty();
+		case Aadlv3Package.BEHAVIOR_RULE__SINK:
+			return sink != SINK_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy())
+			return super.toString();
+
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (sink: ");
+		result.append(sink);
+		result.append(')');
+		return result.toString();
 	}
 
 } //BehaviorRuleImpl

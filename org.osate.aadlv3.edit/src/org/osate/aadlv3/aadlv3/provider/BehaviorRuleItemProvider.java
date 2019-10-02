@@ -23,7 +23,9 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.osate.aadlv3.aadlv3.Aadlv3Factory;
@@ -58,8 +60,25 @@ public class BehaviorRuleItemProvider extends ModelElementItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addSinkPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Sink feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSinkPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_BehaviorRule_sink_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_BehaviorRule_sink_feature",
+								"_UI_BehaviorRule_type"),
+						Aadlv3Package.Literals.BEHAVIOR_RULE__SINK, true, false, false,
+						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -131,6 +150,9 @@ public class BehaviorRuleItemProvider extends ModelElementItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(BehaviorRule.class)) {
+		case Aadlv3Package.BEHAVIOR_RULE__SINK:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
 		case Aadlv3Package.BEHAVIOR_RULE__CURRENT_STATE:
 		case Aadlv3Package.BEHAVIOR_RULE__TARGET_STATE:
 		case Aadlv3Package.BEHAVIOR_RULE__CONDITION:

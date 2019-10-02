@@ -49,9 +49,9 @@ package PortConnectionExample is
 	@EM{
 		use states threestate;
 		eact1: error event ServiceOmission ;
-		actuate1: s0-[eact1 in ServiceOmission]-> s1;
+		actuate1: s0-[eact1 in (ServiceOmission)]-> s1;
 		actuate3: s1-[ ]-> { effect(ServiceOmission)};
-		actuate2: s0-[ p1 in ServiceOmission]-> { effect};//(ServiceOmission)};
+		actuate2: s0-[ p1 in (ServiceOmission)]-> { effect};//(ServiceOmission)};
 	};
 	end;
 	
@@ -66,7 +66,7 @@ package PortConnectionExample is
 	#Period => 20 ;
 	@EM{
 //		filter2: all (insignal1 in ServiceOmission, insignal2 in ServiceOmission ) ->  outsignal!(ServiceOmission);
-		filter2: all (insignal1 in (ServiceOmission), insignal2  in ServiceOmission) ->  outsignal(ServiceOmission);
+		filter2: all (insignal1 in (ServiceOmission), insignal2  in (ServiceOmission)) ->  outsignal(ServiceOmission);
 	};
 	end;
 	
@@ -129,7 +129,7 @@ package PortConnectionExample is
 		
 //		cpubinding: cycles binding processing.dofilter.cpu -> hw.cpu;
 	@EM{
-		effect1: actuate.actt2.effect in cycles ->  effect(cycles);
+		effect1: actuate.actt2.effect in (cycles) ->  effect(cycles);
 //		effect2: actuate.actt2.effect in ServiceOmission ->  effect(ServiceOmission);
 	};
 	end;

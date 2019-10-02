@@ -3241,13 +3241,22 @@ public interface Aadlv3Package extends EPackage {
 	int BEHAVIOR_RULE__ACTIONS = MODEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Sink</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEHAVIOR_RULE__SINK = MODEL_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
 	 * The number of structural features of the '<em>Behavior Rule</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BEHAVIOR_RULE_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 4;
+	int BEHAVIOR_RULE_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.StateSpecificationImpl <em>State Specification</em>}' class.
@@ -4957,6 +4966,17 @@ public interface Aadlv3Package extends EPackage {
 	EReference getBehaviorRule_Actions();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.osate.aadlv3.aadlv3.BehaviorRule#isSink <em>Sink</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Sink</em>'.
+	 * @see org.osate.aadlv3.aadlv3.BehaviorRule#isSink()
+	 * @see #getBehaviorRule()
+	 * @generated
+	 */
+	EAttribute getBehaviorRule_Sink();
+
+	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.EMSubclause <em>EM Subclause</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6643,6 +6663,14 @@ public interface Aadlv3Package extends EPackage {
 		 * @generated
 		 */
 		EReference BEHAVIOR_RULE__ACTIONS = eINSTANCE.getBehaviorRule_Actions();
+
+		/**
+		 * The meta object literal for the '<em><b>Sink</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BEHAVIOR_RULE__SINK = eINSTANCE.getBehaviorRule_Sink();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.EMSubclauseImpl <em>EM Subclause</em>}' class.

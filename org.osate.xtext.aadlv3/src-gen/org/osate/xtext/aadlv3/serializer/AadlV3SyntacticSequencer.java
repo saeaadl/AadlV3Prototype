@@ -33,12 +33,12 @@ import org.osate.xtext.aadlv3.services.AadlV3GrammarAccess;
 public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected AadlV3GrammarAccess grammarAccess;
-	protected AbstractElementAlias match_StateTransitionRule___LeftCurlyBracketKeyword_5_0_RightCurlyBracketKeyword_5_2__q;
+	protected AbstractElementAlias match_StateTransitionRule___LeftCurlyBracketKeyword_4_1_1_0_RightCurlyBracketKeyword_4_1_1_2__q;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (AadlV3GrammarAccess) access;
-		match_StateTransitionRule___LeftCurlyBracketKeyword_5_0_RightCurlyBracketKeyword_5_2__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getStateTransitionRuleAccess().getLeftCurlyBracketKeyword_5_0()), new TokenAlias(false, false, grammarAccess.getStateTransitionRuleAccess().getRightCurlyBracketKeyword_5_2()));
+		match_StateTransitionRule___LeftCurlyBracketKeyword_4_1_1_0_RightCurlyBracketKeyword_4_1_1_2__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getStateTransitionRuleAccess().getLeftCurlyBracketKeyword_4_1_1_0()), new TokenAlias(false, false, grammarAccess.getStateTransitionRuleAccess().getRightCurlyBracketKeyword_4_1_1_2()));
 	}
 	
 	@Override
@@ -53,8 +53,8 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if (match_StateTransitionRule___LeftCurlyBracketKeyword_5_0_RightCurlyBracketKeyword_5_2__q.equals(syntax))
-				emit_StateTransitionRule___LeftCurlyBracketKeyword_5_0_RightCurlyBracketKeyword_5_2__q(semanticObject, getLastNavigableState(), syntaxNodes);
+			if (match_StateTransitionRule___LeftCurlyBracketKeyword_4_1_1_0_RightCurlyBracketKeyword_4_1_1_2__q.equals(syntax))
+				emit_StateTransitionRule___LeftCurlyBracketKeyword_4_1_1_0_RightCurlyBracketKeyword_4_1_1_2__q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
 		}
 	}
@@ -70,7 +70,7 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     currentState=CurrentState '-[' ']->' (ambiguity) ';' (rule end)
 	 *     targetState=CurrentState (ambiguity) ';' (rule end)
 	 */
-	protected void emit_StateTransitionRule___LeftCurlyBracketKeyword_5_0_RightCurlyBracketKeyword_5_2__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_StateTransitionRule___LeftCurlyBracketKeyword_4_1_1_0_RightCurlyBracketKeyword_4_1_1_2__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

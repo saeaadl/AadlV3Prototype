@@ -367,10 +367,9 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *             (
 	 *                 currentState=CurrentState 
 	 *                 (condition=MultiLiteralOperation | condition=ContainsToken | condition=ModelElementReference)? 
-	 *                 targetState=CurrentState? 
-	 *                 actions+=Assignment*
+	 *                 (sink?='sink' | (targetState=CurrentState? actions+=Assignment*))?
 	 *             ) | 
-	 *             ((condition=MultiLiteralOperation | condition=ContainsToken | condition=ModelElementReference)? actions+=Assignment*)
+	 *             ((condition=MultiLiteralOperation | condition=ContainsToken | condition=ModelElementReference)? (sink?='sink' | actions+=Assignment+)?)
 	 *         )
 	 *     )
 	 */
@@ -675,7 +674,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     Literal returns ConditionOperation
 	 *
 	 * Constraint:
-	 *     (element=ModelElementReference operator=InOperation constraint=Literal)
+	 *     (element=ModelElementReference operator=InOperation constraint=ListLiteral)
 	 */
 	protected void sequence_ContainsToken(ISerializationContext context, ConditionOperation semanticObject) {
 		if (errorAcceptor != null) {
@@ -689,7 +688,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getContainsTokenAccess().getElementModelElementReferenceParserRuleCall_0_0(), semanticObject.getElement());
 		feeder.accept(grammarAccess.getContainsTokenAccess().getOperatorInOperationParserRuleCall_1_0(), semanticObject.getOperator());
-		feeder.accept(grammarAccess.getContainsTokenAccess().getConstraintLiteralParserRuleCall_2_0(), semanticObject.getConstraint());
+		feeder.accept(grammarAccess.getContainsTokenAccess().getConstraintListLiteralParserRuleCall_2_0(), semanticObject.getConstraint());
 		feeder.finish();
 	}
 	

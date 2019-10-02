@@ -1,0 +1,155 @@
+package TokenPropagationExample is
+// connections without and with reach down into is
+// shared data component
+	import StandardProperties::*;
+	import StandardTypes::*;
+	import StateTypes::*;
+	import ErrorTypes::*;
+
+//	type t1;
+//	
+//	interface actuator is
+//		inp: in feature;
+//		effect: out feature;
+////		action: flow sink  inp ;
+//	end;
+//	interface sensor is
+//		outp: out feature;
+//		fea: feature;
+////		reading: flow source outp;
+//	end;
+//	
+//	abstract sensor.i  is
+//		senset1: thread sense;
+//		upmap: connection senset1.p1 -> outp;
+////		reading => flow upmap -> senset1.reading;
+//	end;
+//	abstract actuator.i  is
+//		actt2: thread actuate;
+//		downmap: connection inp -> actt2.p1;
+//		effectmap: connection actt2.effect -> effect;
+////		action=> flow actt2.taction;
+//	end;
+//	
+//	thread interface sense  is
+//		p1: out feature ;
+////		reading: flow  source p1;
+//		#TokenSource => (t1);
+//	@EM{
+//		use states threestate;
+//		e1: error event (ServiceOmission, cycles) ;
+//		sense2:  s0 -[e1  ]->  {p1};
+//	};
+//	end;
+//	
+//	thread interface actuate  is
+//		p1: in feature ;
+//		effect: out feature ;
+////		taction: flow  sink p1;
+//	@EM{
+//		use states threestate;
+//		eact1: error event ServiceOmission ;
+//		actuate1: s0-[eact1 ]-> s1;
+//		actuate3: s1-[ ]-> { effect(ServiceOmission)};
+//		actuate2: s0-[ p1 ]-> { effect};//(ServiceOmission)};
+//	};
+//	end;
+	
+	thread interface filter is
+	insignal1 : in feature;
+	insignal2 : in feature;
+	outsignal : out feature;
+	
+//	cpu: requires binding x86;
+//	filterpath1: flow insignal1 -> outsignal;
+//	filterpath2: flow insignal2 -> outsignal;
+	#Period => 20 ;
+	@EM{
+//		filter2: all (insignal1 in ServiceOmission, insignal2 in ServiceOmission ) ->  outsignal!(ServiceOmission);
+		filter2: all (insignal1 , insignal2) ->  outsignal(ServiceOmission);
+	};
+	end;
+	
+//	thread interface compute is
+//	insignal : in feature;
+//	outsignal : out feature;
+////	computepath: flow insignal -> outsignal;
+////	@BA{
+////		f1: insignal -> outsignal; 
+////	};
+//	@EM{
+////		use states threestate;
+////		e1: error event;
+////		r1: s0 -[e1 ]-> s1 {outsignal(ServiceOmission)};
+////		computer2: insignal in ServiceOmission ->  outsignal(ServiceOmission);
+//		computer2: insignal ->  outsignal;
+////		r3: insignal in ServiceOmission-> ;
+//	};
+//	end;
+//	
+//	thread interface logger is
+//	insignal : in feature;
+//	end;
+//	
+//	interface control is
+//	insignal1: in feature;
+//	insignal2: in feature;
+//	outaction: out feature;
+////	processflow: flow insignal1 -> outaction;
+//	end;
+//	
+//	process interface controlProcess extends control 
+//	is end;
+//	
+//	process controlProcess.impl is
+//		dofilter: thread filter;
+//		docompute: thread compute;
+////		dolog: thread logger;
+//		extin1: connection insignal1 -> dofilter.insignal1;
+//		extin2: connection insignal2 -> dofilter.insignal2;
+////		login: connection insignal -> dolog.insignal;
+//		ftoc: connection dofilter.outsignal -> docompute.insignal;
+//		extout: connection docompute.outsignal -> outaction ;
+//	end;
+//	
+//	system interface conntop is 
+//		effect : out feature;
+//	end;
+//	
+//	system conntop.i is
+//		sense1: abstract sensor.i;
+//		sense2: abstract sensor.i;
+//		processing: process controlProcess.impl;
+//		actuate: abstract actuator.i;
+//		hw : system hardwareplatform.impl;
+//		sensetocontrol1: connection sense1.outp -> processing.insignal1;
+//		sensetocontrol2: connection sense2.outp -> processing.insignal2;
+//		controltoactuate: connection processing.outaction -> actuate.inp;
+//		effectprop: connection actuate.effect -> effect;
+//		
+////		cpubinding: cycles binding processing.dofilter.cpu -> hw.cpu;
+//	@EM{
+//		effect1: actuate.actt2.effect  ->  effect(cycles);
+////		effect2: actuate.actt2.effect in ServiceOmission ->  effect(ServiceOmission);
+//	};
+//	end;
+//	
+//	bus interface canbus 
+//	is end;
+//	
+//	processor interface x86 is
+//	canbusaccess: requires bus access canbus;
+//	end;
+//	
+//	system interface hardwareplatform is
+//		canbusaccess: provides bus access canbus;
+//	end;
+//	
+//	system hardwareplatform.impl is
+//	cpu: processor x86;
+//	mybus: bus canbus;
+////	busconn: connection cpu.canbusaccess <-> mybus;
+////	extbusaccess: connection canbusaccess <-> mybus;
+//	end;
+	
+end;

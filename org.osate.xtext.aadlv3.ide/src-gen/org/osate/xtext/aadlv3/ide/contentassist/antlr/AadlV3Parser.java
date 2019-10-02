@@ -63,7 +63,9 @@ public class AadlV3Parser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getEventAccess().getTypeAlternatives_2_0(), "rule__Event__TypeAlternatives_2_0");
 			builder.put(grammarAccess.getBehaviorRuleAccess().getAlternatives_2(), "rule__BehaviorRule__Alternatives_2");
 			builder.put(grammarAccess.getStateTransitionRuleAccess().getConditionAlternatives_2_0(), "rule__StateTransitionRule__ConditionAlternatives_2_0");
+			builder.put(grammarAccess.getStateTransitionRuleAccess().getAlternatives_4(), "rule__StateTransitionRule__Alternatives_4");
 			builder.put(grammarAccess.getStatelessRuleAccess().getConditionAlternatives_0_0(), "rule__StatelessRule__ConditionAlternatives_0_0");
+			builder.put(grammarAccess.getStatelessRuleAccess().getAlternatives_2(), "rule__StatelessRule__Alternatives_2");
 			builder.put(grammarAccess.getLiteralAccess().getAlternatives(), "rule__Literal__Alternatives");
 			builder.put(grammarAccess.getBooleanLiteralAccess().getAlternatives_1(), "rule__BooleanLiteral__Alternatives_1");
 			builder.put(grammarAccess.getComponentCategoryAccess().getAlternatives(), "rule__ComponentCategory__Alternatives");
@@ -162,7 +164,8 @@ public class AadlV3Parser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getAssignmentAccess().getGroup(), "rule__Assignment__Group__0");
 			builder.put(grammarAccess.getAssignmentAccess().getGroup_1(), "rule__Assignment__Group_1__0");
 			builder.put(grammarAccess.getStateTransitionRuleAccess().getGroup(), "rule__StateTransitionRule__Group__0");
-			builder.put(grammarAccess.getStateTransitionRuleAccess().getGroup_5(), "rule__StateTransitionRule__Group_5__0");
+			builder.put(grammarAccess.getStateTransitionRuleAccess().getGroup_4_1(), "rule__StateTransitionRule__Group_4_1__0");
+			builder.put(grammarAccess.getStateTransitionRuleAccess().getGroup_4_1_1(), "rule__StateTransitionRule__Group_4_1_1__0");
 			builder.put(grammarAccess.getStatelessRuleAccess().getGroup(), "rule__StatelessRule__Group__0");
 			builder.put(grammarAccess.getContainsTokenAccess().getGroup(), "rule__ContainsToken__Group__0");
 			builder.put(grammarAccess.getFeatureInputAccess().getGroup(), "rule__FeatureInput__Group__0");
@@ -370,10 +373,12 @@ public class AadlV3Parser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getCurrentStateAccess().getCurrentStateAssignment(), "rule__CurrentState__CurrentStateAssignment");
 			builder.put(grammarAccess.getStateTransitionRuleAccess().getCurrentStateAssignment_0(), "rule__StateTransitionRule__CurrentStateAssignment_0");
 			builder.put(grammarAccess.getStateTransitionRuleAccess().getConditionAssignment_2(), "rule__StateTransitionRule__ConditionAssignment_2");
-			builder.put(grammarAccess.getStateTransitionRuleAccess().getTargetStateAssignment_4(), "rule__StateTransitionRule__TargetStateAssignment_4");
-			builder.put(grammarAccess.getStateTransitionRuleAccess().getActionsAssignment_5_1(), "rule__StateTransitionRule__ActionsAssignment_5_1");
+			builder.put(grammarAccess.getStateTransitionRuleAccess().getSinkAssignment_4_0(), "rule__StateTransitionRule__SinkAssignment_4_0");
+			builder.put(grammarAccess.getStateTransitionRuleAccess().getTargetStateAssignment_4_1_0(), "rule__StateTransitionRule__TargetStateAssignment_4_1_0");
+			builder.put(grammarAccess.getStateTransitionRuleAccess().getActionsAssignment_4_1_1_1(), "rule__StateTransitionRule__ActionsAssignment_4_1_1_1");
 			builder.put(grammarAccess.getStatelessRuleAccess().getConditionAssignment_0(), "rule__StatelessRule__ConditionAssignment_0");
-			builder.put(grammarAccess.getStatelessRuleAccess().getActionsAssignment_2(), "rule__StatelessRule__ActionsAssignment_2");
+			builder.put(grammarAccess.getStatelessRuleAccess().getSinkAssignment_2_0(), "rule__StatelessRule__SinkAssignment_2_0");
+			builder.put(grammarAccess.getStatelessRuleAccess().getActionsAssignment_2_1(), "rule__StatelessRule__ActionsAssignment_2_1");
 			builder.put(grammarAccess.getContainsTokenAccess().getElementAssignment_0(), "rule__ContainsToken__ElementAssignment_0");
 			builder.put(grammarAccess.getContainsTokenAccess().getOperatorAssignment_1(), "rule__ContainsToken__OperatorAssignment_1");
 			builder.put(grammarAccess.getContainsTokenAccess().getConstraintAssignment_2(), "rule__ContainsToken__ConstraintAssignment_2");
