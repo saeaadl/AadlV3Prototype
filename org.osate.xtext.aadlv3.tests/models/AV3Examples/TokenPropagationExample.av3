@@ -37,7 +37,7 @@ package TokenPropagationExample is
 		#TokenSource => (t1);
 	@EM{
 		use states threestate;
-		e1: error event (ServiceOmission, cycles) ;
+		e1: error event (ServiceOmission, cycles) ; 
 		sense2:  s0 -[e1  ]->  {p1};
 	};
 	end;
