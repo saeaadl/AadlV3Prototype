@@ -98,8 +98,8 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 			return createClassifierAssignment();
 		case Aadlv3Package.CLASSIFIER_ASSIGNMENT_PATTERN:
 			return createClassifierAssignmentPattern();
-		case Aadlv3Package.MODEL_ELEMENT_REFERENCE:
-			return createModelElementReference();
+		case Aadlv3Package.NAMED_ELEMENT_REFERENCE:
+			return createNamedElementReference();
 		case Aadlv3Package.CONFIGURATION_PARAMETER:
 			return createConfigurationParameter();
 		case Aadlv3Package.CONFIGURATION_ACTUAL:
@@ -347,17 +347,6 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 	public Association createAssociation() {
 		AssociationImpl association = new AssociationImpl();
 		return association;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ModelElementReference createModelElementReference() {
-		ModelElementReferenceImpl modelElementReference = new ModelElementReferenceImpl();
-		return modelElementReference;
 	}
 
 	/**
@@ -787,6 +776,17 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 	public ClassifierAssignmentPattern createClassifierAssignmentPattern() {
 		ClassifierAssignmentPatternImpl classifierAssignmentPattern = new ClassifierAssignmentPatternImpl();
 		return classifierAssignmentPattern;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NamedElementReference createNamedElementReference() {
+		NamedElementReferenceImpl namedElementReference = new NamedElementReferenceImpl();
+		return namedElementReference;
 	}
 
 	/**

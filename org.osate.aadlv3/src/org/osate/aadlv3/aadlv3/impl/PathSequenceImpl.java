@@ -31,7 +31,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
-import org.osate.aadlv3.aadlv3.ModelElementReference;
+import org.osate.aadlv3.aadlv3.NamedElementReference;
 import org.osate.aadlv3.aadlv3.PathElement;
 import org.osate.aadlv3.aadlv3.PathSequence;
 
@@ -58,7 +58,7 @@ public class PathSequenceImpl extends ModelElementImpl implements PathSequence {
 	 * @generated
 	 * @ordered
 	 */
-	protected ModelElementReference target;
+	protected NamedElementReference target;
 
 	/**
 	 * The cached value of the '{@link #getElements() <em>Elements</em>}' containment reference list.
@@ -95,7 +95,7 @@ public class PathSequenceImpl extends ModelElementImpl implements PathSequence {
 	 * @generated
 	 */
 	@Override
-	public ModelElementReference getTarget() {
+	public NamedElementReference getTarget() {
 		return target;
 	}
 
@@ -104,8 +104,8 @@ public class PathSequenceImpl extends ModelElementImpl implements PathSequence {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetTarget(ModelElementReference newTarget, NotificationChain msgs) {
-		ModelElementReference oldTarget = target;
+	public NotificationChain basicSetTarget(NamedElementReference newTarget, NotificationChain msgs) {
+		NamedElementReference oldTarget = target;
 		target = newTarget;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
@@ -124,7 +124,7 @@ public class PathSequenceImpl extends ModelElementImpl implements PathSequence {
 	 * @generated
 	 */
 	@Override
-	public void setTarget(ModelElementReference newTarget) {
+	public void setTarget(NamedElementReference newTarget) {
 		if (newTarget != target) {
 			NotificationChain msgs = null;
 			if (target != null)
@@ -197,7 +197,7 @@ public class PathSequenceImpl extends ModelElementImpl implements PathSequence {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 		case Aadlv3Package.PATH_SEQUENCE__TARGET:
-			setTarget((ModelElementReference) newValue);
+			setTarget((NamedElementReference) newValue);
 			return;
 		case Aadlv3Package.PATH_SEQUENCE__ELEMENTS:
 			getElements().clear();
@@ -216,7 +216,7 @@ public class PathSequenceImpl extends ModelElementImpl implements PathSequence {
 	public void eUnset(int featureID) {
 		switch (featureID) {
 		case Aadlv3Package.PATH_SEQUENCE__TARGET:
-			setTarget((ModelElementReference) null);
+			setTarget((NamedElementReference) null);
 			return;
 		case Aadlv3Package.PATH_SEQUENCE__ELEMENTS:
 			getElements().clear();

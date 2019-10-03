@@ -215,13 +215,13 @@ public class PropertyAssociationItemProvider extends ItemProviderAdapter impleme
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__TARGET,
-				Aadlv3Factory.eINSTANCE.createModelElementReference()));
+				Aadlv3Factory.eINSTANCE.createNamedElementReference()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__TARGET,
 				Aadlv3Factory.eINSTANCE.createPathElement()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
-				Aadlv3Factory.eINSTANCE.createModelElementReference()));
+				Aadlv3Factory.eINSTANCE.createNamedElementReference()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
 				Aadlv3Factory.eINSTANCE.createPathElement()));

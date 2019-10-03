@@ -148,7 +148,7 @@ public class ECollectionItemProvider extends LiteralItemProvider {
 				Aadlv3Factory.eINSTANCE.createExpression()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ECOLLECTION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createModelElementReference()));
+				Aadlv3Factory.eINSTANCE.createNamedElementReference()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ECOLLECTION__ELEMENTS,
 				Aadlv3Factory.eINSTANCE.createPathElement()));

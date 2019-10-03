@@ -34,7 +34,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface PathElement extends ModelElementReference {
+public interface PathElement extends NamedElementReference {
 	/**
 	 * Returns the value of the '<em><b>Previous</b></em>' reference list.
 	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.PathElement}.

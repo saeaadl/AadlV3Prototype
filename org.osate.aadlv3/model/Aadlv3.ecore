@@ -105,27 +105,27 @@
   <eClassifiers xsi:type="ecore:EClass" name="Association" eSuperTypes="#//ModelElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="associationType" eType="#//AssociationType"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="bindingType" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//ModelElementReference"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//NamedElementReference"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="destination" eType="#//ModelElementReference"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="destination" eType="#//NamedElementReference"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="bidirectional" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="annexSubclause" upperBound="-1"
         eType="#//AnnexSubclause"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PathSequence" eSuperTypes="#//ModelElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//ModelElementReference"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//NamedElementReference"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
         eType="#//PathElement" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PathElement" eSuperTypes="#//ModelElementReference">
+  <eClassifiers xsi:type="ecore:EClass" name="PathElement" eSuperTypes="#//NamedElementReference">
     <eStructuralFeatures xsi:type="ecore:EReference" name="previous" upperBound="-1"
         eType="#//PathElement"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="next" upperBound="-1" eType="#//PathElement"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ClassifierAssignment">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//ModelElementReference"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//NamedElementReference"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="classifierAssignments"
         upperBound="-1" eType="#//ClassifierAssignment" containment="true"/>
@@ -141,9 +141,9 @@
   <eClassifiers xsi:type="ecore:EClass" name="ClassifierAssignmentPattern" eSuperTypes="#//ClassifierAssignment">
     <eStructuralFeatures xsi:type="ecore:EReference" name="targetPattern" eType="#//Type"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ModelElementReference" eSuperTypes="#//Literal">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="element" eType="#//ModelElement"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="#//ModelElementReference"
+  <eClassifiers xsi:type="ecore:EClass" name="NamedElementReference" eSuperTypes="#//Literal">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="element" eType="#//NamedElement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="#//NamedElementReference"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConfigurationParameter" eSuperTypes="#//NamedType">
@@ -298,7 +298,7 @@
     <eLiterals name="KORLESS" value="5" literal="korless"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Assignment" eSuperTypes="#//Action">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//ModelElementReference"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//NamedElementReference"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Literal"
         containment="true"/>
@@ -319,7 +319,7 @@
     <eLiterals name="QUESTIONMARK" value="4" literal="?"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PropertyAssociation">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//ModelElementReference"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//NamedElementReference"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="property" eType="#//PropertyDefinition"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Literal"

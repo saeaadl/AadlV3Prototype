@@ -17,7 +17,7 @@ import org.osate.aadlv3.aadlv3.Feature
 import org.osate.aadlv3.aadlv3.FeatureCategory
 import org.osate.aadlv3.aadlv3.Generator
 import org.osate.aadlv3.aadlv3.ListLiteral
-import org.osate.aadlv3.aadlv3.ModelElementReference
+import org.osate.aadlv3.aadlv3.NamedElementReference
 import org.osate.aadlv3.aadlv3.PathElement
 import org.osate.aadlv3.aadlv3.PathSequence
 import org.osate.aadlv3.aadlv3.PropertyAssociation
@@ -645,7 +645,7 @@ class Instantiator {
 			}
 			// do the same for condition elements without types
 			for (co : cos) {
-				if (co instanceof ModelElementReference){
+				if (co instanceof NamedElementReference){
 				val tio = context.getInstanceElement(co);
 				val cio = tio.createConstrainedInstanceObject(context, false)
 				val container = co.eContainer

@@ -38,12 +38,12 @@ public interface Assignment extends Action {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Target</em>' containment reference.
-	 * @see #setTarget(ModelElementReference)
+	 * @see #setTarget(NamedElementReference)
 	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getAssignment_Target()
 	 * @model containment="true"
 	 * @generated
 	 */
-	ModelElementReference getTarget();
+	NamedElementReference getTarget();
 
 	/**
 	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.Assignment#getTarget <em>Target</em>}' containment reference.
@@ -53,7 +53,7 @@ public interface Assignment extends Action {
 	 * @see #getTarget()
 	 * @generated
 	 */
-	void setTarget(ModelElementReference value);
+	void setTarget(NamedElementReference value);
 
 	/**
 	 * Returns the value of the '<em><b>Value</b></em>' containment reference.

@@ -100,12 +100,12 @@ public interface Association extends ModelElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Source</em>' containment reference.
-	 * @see #setSource(ModelElementReference)
+	 * @see #setSource(NamedElementReference)
 	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getAssociation_Source()
 	 * @model containment="true"
 	 * @generated
 	 */
-	ModelElementReference getSource();
+	NamedElementReference getSource();
 
 	/**
 	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.Association#getSource <em>Source</em>}' containment reference.
@@ -115,7 +115,7 @@ public interface Association extends ModelElement {
 	 * @see #getSource()
 	 * @generated
 	 */
-	void setSource(ModelElementReference value);
+	void setSource(NamedElementReference value);
 
 	/**
 	 * Returns the value of the '<em><b>Destination</b></em>' containment reference.
@@ -126,12 +126,12 @@ public interface Association extends ModelElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Destination</em>' containment reference.
-	 * @see #setDestination(ModelElementReference)
+	 * @see #setDestination(NamedElementReference)
 	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getAssociation_Destination()
 	 * @model containment="true"
 	 * @generated
 	 */
-	ModelElementReference getDestination();
+	NamedElementReference getDestination();
 
 	/**
 	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.Association#getDestination <em>Destination</em>}' containment reference.
@@ -141,7 +141,7 @@ public interface Association extends ModelElement {
 	 * @see #getDestination()
 	 * @generated
 	 */
-	void setDestination(ModelElementReference value);
+	void setDestination(NamedElementReference value);
 
 	/**
 	 * Returns the value of the '<em><b>Bidirectional</b></em>' attribute.

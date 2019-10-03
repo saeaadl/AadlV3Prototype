@@ -181,7 +181,7 @@ public class BehaviorRuleItemProvider extends ModelElementItemProvider {
 				Aadlv3Factory.eINSTANCE.createStateSpecification()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.BEHAVIOR_RULE__CONDITION,
-				Aadlv3Factory.eINSTANCE.createModelElementReference()));
+				Aadlv3Factory.eINSTANCE.createNamedElementReference()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.BEHAVIOR_RULE__CONDITION,
 				Aadlv3Factory.eINSTANCE.createPathElement()));

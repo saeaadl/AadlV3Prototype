@@ -29,7 +29,7 @@ import org.osate.aadlv3.aadlv3.ConfigurationActual
 import org.osate.aadlv3.aadlv3.ClassifierAssignment
 import org.osate.aadlv3.aadlv3.Feature
 import org.osate.aadlv3.aadlv3.Import
-import org.osate.aadlv3.aadlv3.ModelElementReference
+import org.osate.aadlv3.aadlv3.NamedElementReference
 import org.osate.aadlv3.aadlv3.PackageElement
 import org.osate.aadlv3.aadlv3.PathSequence
 import org.osate.aadlv3.aadlv3.PropertyAssociation
@@ -52,13 +52,13 @@ class AadlV3ScopeProvider extends AbstractAadlV3ScopeProvider {
 
 	override getScope(EObject context, EReference reference) {
 		// We want to define the Scope for the Element's superElement cross-reference
-		if (context instanceof ModelElementReference &&
-			reference == Aadlv3Package.Literals.MODEL_ELEMENT_REFERENCE__ELEMENT) {
+		if (context instanceof NamedElementReference &&
+			reference == Aadlv3Package.Literals.NAMED_ELEMENT_REFERENCE__ELEMENT) {
 			// Create IEObjectDescriptions and puts them into an IScope instance
-			val mer = context as ModelElementReference
+			val mer = context as NamedElementReference
 			val modelElements = if (mer.context === null) {
 					// container is connection or configuration assignment
-					switch cc: mer.modelElementReferenceContext {
+					switch cc: mer.namedElementReferenceContext {
 						Association,
 						PathSequence: {
 							switch container : cc.eContainer {
@@ -150,10 +150,15 @@ class AadlV3ScopeProvider extends AbstractAadlV3ScopeProvider {
 						}
 					}
 				}
-			if (modelElements === null || modelElements.empty) {
-				return IScope::NULLSCOPE
+			var classifierscope = super.getScope(context, reference)
+			val aliases = scopedElementsForImportAlias(context.containingPackage.imports);
+			if (!aliases.empty) {
+				classifierscope = new SimpleScope(classifierscope, aliases, false)
 			}
-			return new SimpleScope(IScope::NULLSCOPE, Scopes::scopedElementsFor(modelElements,
+			if (modelElements === null || modelElements.empty) {
+				return classifierscope
+			}
+			return new SimpleScope(classifierscope, Scopes::scopedElementsFor(modelElements,
 				QualifiedName::wrapper(SimpleAttributeResolver::NAME_RESOLVER)), false)
 		} // ModelElement Reference
 		if (context instanceof TypeReference) {

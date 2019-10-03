@@ -125,15 +125,6 @@ public interface Aadlv3Factory extends EFactory {
 	Association createAssociation();
 
 	/**
-	 * Returns a new object of class '<em>Model Element Reference</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Model Element Reference</em>'.
-	 * @generated
-	 */
-	ModelElementReference createModelElementReference();
-
-	/**
 	 * Returns a new object of class '<em>Configuration Parameter</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -483,6 +474,15 @@ public interface Aadlv3Factory extends EFactory {
 	 * @generated
 	 */
 	ClassifierAssignmentPattern createClassifierAssignmentPattern();
+
+	/**
+	 * Returns a new object of class '<em>Named Element Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Named Element Reference</em>'.
+	 * @generated
+	 */
+	NamedElementReference createNamedElementReference();
 
 	/**
 	 * Returns a new object of class '<em>Path Sequence</em>'.

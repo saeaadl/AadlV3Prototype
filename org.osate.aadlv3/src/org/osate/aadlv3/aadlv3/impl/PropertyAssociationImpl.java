@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.Literal;
-import org.osate.aadlv3.aadlv3.ModelElementReference;
+import org.osate.aadlv3.aadlv3.NamedElementReference;
 import org.osate.aadlv3.aadlv3.PropertyAssociation;
 import org.osate.aadlv3.aadlv3.PropertyAssociationType;
 import org.osate.aadlv3.aadlv3.PropertyDefinition;
@@ -57,7 +57,7 @@ public class PropertyAssociationImpl extends MinimalEObjectImpl.Container implem
 	 * @generated
 	 * @ordered
 	 */
-	protected ModelElementReference target;
+	protected NamedElementReference target;
 
 	/**
 	 * The cached value of the '{@link #getProperty() <em>Property</em>}' reference.
@@ -134,7 +134,7 @@ public class PropertyAssociationImpl extends MinimalEObjectImpl.Container implem
 	 * @generated
 	 */
 	@Override
-	public ModelElementReference getTarget() {
+	public NamedElementReference getTarget() {
 		return target;
 	}
 
@@ -143,8 +143,8 @@ public class PropertyAssociationImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetTarget(ModelElementReference newTarget, NotificationChain msgs) {
-		ModelElementReference oldTarget = target;
+	public NotificationChain basicSetTarget(NamedElementReference newTarget, NotificationChain msgs) {
+		NamedElementReference oldTarget = target;
 		target = newTarget;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
@@ -163,7 +163,7 @@ public class PropertyAssociationImpl extends MinimalEObjectImpl.Container implem
 	 * @generated
 	 */
 	@Override
-	public void setTarget(ModelElementReference newTarget) {
+	public void setTarget(NamedElementReference newTarget) {
 		if (newTarget != target) {
 			NotificationChain msgs = null;
 			if (target != null)
@@ -395,7 +395,7 @@ public class PropertyAssociationImpl extends MinimalEObjectImpl.Container implem
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 		case Aadlv3Package.PROPERTY_ASSOCIATION__TARGET:
-			setTarget((ModelElementReference) newValue);
+			setTarget((NamedElementReference) newValue);
 			return;
 		case Aadlv3Package.PROPERTY_ASSOCIATION__PROPERTY:
 			setProperty((PropertyDefinition) newValue);
@@ -422,7 +422,7 @@ public class PropertyAssociationImpl extends MinimalEObjectImpl.Container implem
 	public void eUnset(int featureID) {
 		switch (featureID) {
 		case Aadlv3Package.PROPERTY_ASSOCIATION__TARGET:
-			setTarget((ModelElementReference) null);
+			setTarget((NamedElementReference) null);
 			return;
 		case Aadlv3Package.PROPERTY_ASSOCIATION__PROPERTY:
 			setProperty((PropertyDefinition) null);

@@ -316,29 +316,6 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.ModelElementReference} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ModelElementReferenceItemProvider modelElementReferenceItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.ModelElementReference}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createModelElementReferenceAdapter() {
-		if (modelElementReferenceItemProvider == null) {
-			modelElementReferenceItemProvider = new ModelElementReferenceItemProvider(this);
-		}
-
-		return modelElementReferenceItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.ConfigurationParameter} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1236,6 +1213,29 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.NamedElementReference} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected NamedElementReferenceItemProvider namedElementReferenceItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.NamedElementReference}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createNamedElementReferenceAdapter() {
+		if (namedElementReferenceItemProvider == null) {
+			namedElementReferenceItemProvider = new NamedElementReferenceItemProvider(this);
+		}
+
+		return namedElementReferenceItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.PathSequence} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1391,8 +1391,8 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 			classifierAssignmentItemProvider.dispose();
 		if (classifierAssignmentPatternItemProvider != null)
 			classifierAssignmentPatternItemProvider.dispose();
-		if (modelElementReferenceItemProvider != null)
-			modelElementReferenceItemProvider.dispose();
+		if (namedElementReferenceItemProvider != null)
+			namedElementReferenceItemProvider.dispose();
 		if (configurationParameterItemProvider != null)
 			configurationParameterItemProvider.dispose();
 		if (configurationActualItemProvider != null)

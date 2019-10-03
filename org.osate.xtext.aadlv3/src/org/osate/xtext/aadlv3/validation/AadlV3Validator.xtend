@@ -26,7 +26,7 @@ import org.osate.aadlv3.aadlv3.Feature
 import org.osate.aadlv3.aadlv3.FeatureCategory
 import org.osate.aadlv3.aadlv3.FeatureDirection
 import org.osate.aadlv3.aadlv3.ModelElement
-import org.osate.aadlv3.aadlv3.ModelElementReference
+import org.osate.aadlv3.aadlv3.NamedElementReference
 import org.osate.aadlv3.aadlv3.PathElement
 import org.osate.aadlv3.aadlv3.PathSequence
 import org.osate.aadlv3.aadlv3.PropertyAssociation
@@ -46,6 +46,7 @@ import java.util.Collection
 import org.osate.aadlv3.aadlv3.ListLiteral
 import org.osate.aadlv3.aadlv3.CompositeType
 import org.osate.aadlv3.aadlv3.Composite
+import org.osate.aadlv3.aadlv3.NamedElement
 
 /**
  * This class contains custom validation rules. 
@@ -414,7 +415,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 		}
 	}
 
-	def hasLocalFinalPropertyAssociation(ModelElement ne, PropertyDefinition pd) {
+	def hasLocalFinalPropertyAssociation(NamedElement ne, PropertyDefinition pd) {
 		if (ne instanceof Subcomponent) {
 			// all PA in classifiers listed in component & PA in {} of component
 			val pas = ne.typeReferences.allPropertyAssociations + ne.ownedPropertyAssociations
@@ -707,13 +708,13 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 		val reachdownPAS = new Stack<Iterable<PropertyAssociation>>()
 		reachdownPAS.push(cl.allPropertyAssociations.filter[pa|pa.target.modelElementReferenceReachDown])
 		for (sub : subs) {
-			val rootmer = Aadlv3Factory.eINSTANCE.createModelElementReference
+			val rootmer = Aadlv3Factory.eINSTANCE.createNamedElementReference
 			rootmer.element = sub
 			checkNestedPAS(rootmer, casscopes, reachdownPAS, cl)
 		}
 	}
 
-	def void checkNestedPAS(ModelElementReference context, Stack<Iterable<ClassifierAssignment>> casscopes,
+	def void checkNestedPAS(NamedElementReference context, Stack<Iterable<ClassifierAssignment>> casscopes,
 		Stack<Iterable<PropertyAssociation>> reachdownPAS, ComponentRealization rootcl) {
 		val comp = context.element as Subcomponent
 		var Iterable<TypeReference> trefs = null
@@ -748,7 +749,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	/**
 	 * conflict between reachdown and configured PA
 	 */
-	def void checkReachDownConflict(Stack<Iterable<PropertyAssociation>> reachdownPAS, ModelElementReference context,
+	def void checkReachDownConflict(Stack<Iterable<PropertyAssociation>> reachdownPAS, NamedElementReference context,
 		Iterable<PropertyAssociation> configuredPAS, Classifier rootcl) {
 		val n = reachdownPAS.size
 		if(n === 0) return;
@@ -774,7 +775,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	}
 
 	def void checkReachDownConfiguredPasConflict(Stack<Iterable<ClassifierAssignment>> casscopes,
-		ModelElementReference context, Iterable<PropertyAssociation> configuredPAS, Classifier rootcl) {
+		NamedElementReference context, Iterable<PropertyAssociation> configuredPAS, Classifier rootcl) {
 		val n = casscopes.size
 		if(n === 0) return;
 		for (k : n - 1 .. 0) {
@@ -807,7 +808,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	}
 
 	def void checkReachDownCasPasConflict(Stack<Iterable<ClassifierAssignment>> casscopes,
-		ModelElementReference context, Iterable<PropertyAssociation> casPAS, Classifier rootcl) {
+		NamedElementReference context, Iterable<PropertyAssociation> casPAS, Classifier rootcl) {
 		val n = casscopes.size
 		if(n === 0) return;
 		for (k : n - 1 .. 0) {
@@ -1542,8 +1543,8 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	def checkConsistentTargets(Association assoc) {
 		if (assoc.isConnection) {
 			if(assoc.source === null || assoc.destination === null) return;
-			if (!(assoc.source.modelElementReferenceIncludesComponent &&
-				assoc.destination.modelElementReferenceIncludesComponent)) {
+			if (!(assoc.source.namedElementReferenceIncludesComponent &&
+				assoc.destination.namedElementReferenceIncludesComponent)) {
 				error('Connection must be between subcomponents', assoc, null, BetweenSubcomponents)
 			}
 		}
@@ -1551,37 +1552,37 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 			if(assoc.source === null || assoc.destination === null) return;
 			val srcdir = assoc.source.realFeatureDirection
 			if (srcdir?.outgoing) {
-				if (!(assoc.source.modelElementReferenceIncludesComponent &&
-					!assoc.destination.modelElementReferenceIncludesComponent)) {
+				if (!(assoc.source.namedElementReferenceIncludesComponent &&
+					!assoc.destination.namedElementReferenceIncludesComponent)) {
 					error('Outgoing feature delegation must be from feature in subcomponent to feature', assoc, null,
 						AadlV3Validator.FeatureAndSubcomponent)
 				}
 			} else {
-				if (!(!assoc.source.modelElementReferenceIncludesComponent &&
-					assoc.destination.modelElementReferenceIncludesComponent)) {
+				if (!(!assoc.source.namedElementReferenceIncludesComponent &&
+					assoc.destination.namedElementReferenceIncludesComponent)) {
 					error('Feature delegation must be from feature to feature in subcomponent', assoc, null,
 						AadlV3Validator.FeatureAndSubcomponent)
 				}
 			}
 		} else if (assoc.associationType.isFlowSpec) {
 			if (assoc.source !== null && assoc.destination !== null &&
-				!(assoc.source.modelElementReferenceIncludesComponent &&
-					assoc.destination.modelElementReferenceIncludesComponent)) {
+				!(assoc.source.namedElementReferenceIncludesComponent &&
+					assoc.destination.namedElementReferenceIncludesComponent)) {
 				error('Flow path must not be between features of subcomponents', assoc, null, BetweenFeatures)
 			} else // } else if (assoc.associationType === AssociationType.FLOWSINK) {
 			if (assoc.source !== null && assoc.destination === null &&
-				!(!assoc.source.modelElementReferenceIncludesComponent)) {
+				!(!assoc.source.namedElementReferenceIncludesComponent)) {
 				error('Flow sink must not be a subcomponent feature', assoc, Aadlv3Package.Literals.ASSOCIATION__SOURCE,
 					NotSubcomponentFeature)
 			} else // } else if (assoc.associationType === AssociationType.FLOWSOURCE) {
 			if (assoc.source === null && assoc.destination !== null &&
-				!(!assoc.destination.modelElementReferenceIncludesComponent)) {
+				!(!assoc.destination.namedElementReferenceIncludesComponent)) {
 				error('Flow source must not be a subcomponent feature', assoc,
 					Aadlv3Package.Literals.ASSOCIATION__DESTINATION, NotSubcomponentFeature)
 			}
 		} else if (assoc.associationType.isBinding) {
-			if (!(assoc.source.modelElementReferenceIncludesComponent &&
-				assoc.destination.modelElementReferenceIncludesComponent)) {
+			if (!(assoc.source.namedElementReferenceIncludesComponent &&
+				assoc.destination.namedElementReferenceIncludesComponent)) {
 				error('Binding must be between subcomponents', assoc, null, BetweenSubcomponents)
 			}
 		}

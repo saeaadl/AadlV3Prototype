@@ -279,7 +279,7 @@ public class Aadlv3Switch<T> extends Switch<T> {
 			PathElement pathElement = (PathElement) theEObject;
 			T result = casePathElement(pathElement);
 			if (result == null)
-				result = caseModelElementReference(pathElement);
+				result = caseNamedElementReference(pathElement);
 			if (result == null)
 				result = caseLiteral(pathElement);
 			if (result == null)
@@ -304,13 +304,13 @@ public class Aadlv3Switch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case Aadlv3Package.MODEL_ELEMENT_REFERENCE: {
-			ModelElementReference modelElementReference = (ModelElementReference) theEObject;
-			T result = caseModelElementReference(modelElementReference);
+		case Aadlv3Package.NAMED_ELEMENT_REFERENCE: {
+			NamedElementReference namedElementReference = (NamedElementReference) theEObject;
+			T result = caseNamedElementReference(namedElementReference);
 			if (result == null)
-				result = caseLiteral(modelElementReference);
+				result = caseLiteral(namedElementReference);
 			if (result == null)
-				result = caseExpression(modelElementReference);
+				result = caseExpression(namedElementReference);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -979,21 +979,6 @@ public class Aadlv3Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Model Element Reference</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Model Element Reference</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseModelElementReference(ModelElementReference object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Configuration Parameter</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1635,6 +1620,21 @@ public class Aadlv3Switch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseClassifierAssignmentPattern(ClassifierAssignmentPattern object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Named Element Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Named Element Reference</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNamedElementReference(NamedElementReference object) {
 		return null;
 	}
 

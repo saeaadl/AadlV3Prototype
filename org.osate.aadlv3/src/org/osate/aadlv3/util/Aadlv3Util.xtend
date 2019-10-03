@@ -35,7 +35,6 @@ import org.osate.aadlv3.aadlv3.FeatureDirection
 import org.osate.aadlv3.aadlv3.Import
 import org.osate.aadlv3.aadlv3.Literal
 import org.osate.aadlv3.aadlv3.ModelElement
-import org.osate.aadlv3.aadlv3.ModelElementReference
 import org.osate.aadlv3.aadlv3.NamedElement
 import org.osate.aadlv3.aadlv3.PackageDeclaration
 import org.osate.aadlv3.aadlv3.PathSequence
@@ -54,6 +53,7 @@ import org.osate.av3instance.av3instance.InstanceObject
 import static extension org.eclipse.xtext.EcoreUtil2.*
 import static extension org.osate.aadlv3.util.Av3API.*
 import org.osate.aadlv3.aadlv3.SetLiteral
+import org.osate.aadlv3.aadlv3.NamedElementReference
 
 class Aadlv3Util {
 	
@@ -490,7 +490,7 @@ class Aadlv3Util {
 		false
 	}
 	
-	static def FeatureDirection getRealFeatureDirection(ModelElementReference mer){
+	static def FeatureDirection getRealFeatureDirection(NamedElementReference mer){
 		val fea = mer.element
 		if (fea instanceof Feature){
 			val fd = fea.direction
@@ -757,7 +757,7 @@ class Aadlv3Util {
 
 
 	// depth indicates the target path length to be considered
-	def static boolean matchesTarget(ClassifierAssignment ca, ModelElement match, int depth, ComponentInstance context) {
+	def static boolean matchesTarget(ClassifierAssignment ca, NamedElement match, int depth, ComponentInstance context) {
 		if (ca instanceof ClassifierAssignmentPattern){
 			return ca.matchesTargetPattern(match)
 		} else {
@@ -766,7 +766,7 @@ class Aadlv3Util {
 	}
 
 	// depth indicates the target path length to be considered
-	private def static boolean matchesTarget(ModelElementReference mer, ModelElement match, int depth, ComponentInstance context) {
+	private def static boolean matchesTarget(NamedElementReference mer, NamedElement match, int depth, ComponentInstance context) {
 		if(mer === null || mer?.element.name != match.name) return false
 		if(depth == 1) return true // we found a match
 		if (context !== null) {
@@ -776,7 +776,7 @@ class Aadlv3Util {
 				return mer.context.matchesTarget(context.component, depth - 1, context.eContainer as ComponentInstance)
 			} else {
 				// end of path in mer path; check to see if there is an enclosing configuration assignment
-				val cxt = mer.modelElementReferenceContext?.eContainer
+				val cxt = mer.namedElementReferenceContext?.eContainer
 				if (cxt instanceof ClassifierAssignment) {
 					// look for enclosing configuration assignment
 					return cxt.target.matchesTarget(context.component, depth - 1,context.eContainer as ComponentInstance)
@@ -787,7 +787,7 @@ class Aadlv3Util {
 	}
 
 	// depth indicates the target path length to be considered
-	private def static boolean matchesTargetPattern(ClassifierAssignment pat, ModelElement match) {
+	private def static boolean matchesTargetPattern(ClassifierAssignment pat, NamedElement match) {
 		if (pat instanceof ClassifierAssignmentPattern){
 			val patternType = pat.targetPattern
 			if (match instanceof Subcomponent){
@@ -1197,14 +1197,14 @@ class Aadlv3Util {
 	// association is connection 
 	def static boolean isConnection(Association assoc){
 		val connType = assoc.associationType
-		connType == AssociationType.CONNECTION &&(assoc.source.firstModelElement instanceof Subcomponent && assoc.destination.firstModelElement instanceof Subcomponent)
+		connType == AssociationType.CONNECTION &&(assoc.source.firstNamedElement instanceof Subcomponent && assoc.destination.firstNamedElement instanceof Subcomponent)
 		 
 	}
 	
 	// mapping from an outer to an inner feature
 	def static boolean isFeatureDelegation(Association conn){
 		conn.associationType === AssociationType.CONNECTION &&
-		(conn.source.firstModelElement instanceof Feature || conn.destination.firstModelElement instanceof Feature)
+		(conn.source.firstNamedElement instanceof Feature || conn.destination.firstNamedElement instanceof Feature)
 	}
 	
 	
@@ -1239,27 +1239,27 @@ class Aadlv3Util {
 	//-------------------------
 
 	// add component to MER
-	def static ModelElementReference addComponent(ModelElementReference path, Subcomponent comp){
-		val cref = Aadlv3Factory.eINSTANCE.createModelElementReference
+	def static NamedElementReference addComponent(NamedElementReference path, Subcomponent comp){
+		val cref = Aadlv3Factory.eINSTANCE.createNamedElementReference
 		cref.element = comp
 		cref.context=path
 		cref
 	}
 	
 	// trim MER by one element
-	def static ModelElementReference removeComponent(ModelElementReference path){
+	def static NamedElementReference removeComponent(NamedElementReference path){
 		val res = path.context
 		path.context=null
-		res
+		res as NamedElementReference
 	}
 
 	// model element reference reaches into a component
-	def static boolean modelElementReferenceIncludesComponent(ModelElementReference mer) {
+	def static boolean namedElementReferenceIncludesComponent(NamedElementReference mer) {
 		mer.getClosestReferencedComponent !== null
 	}
 	
 	// model element reference reaches into a component
-	def static boolean modelElementReferenceReachDown(ModelElementReference mer) {
+	def static boolean modelElementReferenceReachDown(NamedElementReference mer) {
 		if (mer === null) return false
 		val firstcomp = mer.getClosestReferencedComponent
 		firstcomp !== null // reachdown
@@ -1269,7 +1269,7 @@ class Aadlv3Util {
 	/**
 	 * returns the closest component reference in the MER path
 	 */
-	def static Subcomponent getClosestReferencedComponent(ModelElementReference mer) {
+	def static Subcomponent getClosestReferencedComponent(NamedElementReference mer) {
 		var closest = mer
 		if (closest.element instanceof Subcomponent){
 			return closest.element as Subcomponent
@@ -1284,9 +1284,9 @@ class Aadlv3Util {
 	}
 
 	// returns the EObject that contains the Model Element Reference
-	def static EObject getModelElementReferenceContext(ModelElementReference mer) {
+	def static EObject getNamedElementReferenceContext(NamedElementReference mer) {
 		var EObject cxt = mer
-		while (cxt instanceof ModelElementReference) {
+		while (cxt instanceof NamedElementReference) {
 			cxt = cxt.eContainer
 		}
 		cxt
@@ -1294,9 +1294,9 @@ class Aadlv3Util {
 
 	// returns the the Model Element Reference identifying the first element of the path
 	// this is the MER without a context reference
-	def static ModelElementReference getFirstModelElementReference(ModelElementReference mer) {
+	def static NamedElementReference getFirstModelElementReference(NamedElementReference mer) {
 		if(mer === null || mer.element === null) return null
-		var ModelElementReference cxt = mer
+		var NamedElementReference cxt = mer
 		while (cxt.context !== null) {
 			cxt = cxt.context
 		}
@@ -1305,9 +1305,9 @@ class Aadlv3Util {
 
 	// returns the first element of the path
 	// this is the MER without a context reference
-	def static ModelElement getFirstModelElement(ModelElementReference mer) {
+	def static NamedElement getFirstNamedElement(NamedElementReference mer) {
 		if(mer === null || mer.element === null) return null
-		var ModelElementReference cxt = mer
+		var NamedElementReference cxt = mer
 		while (cxt.context !== null) {
 			cxt = cxt.context
 		}
@@ -1342,7 +1342,7 @@ class Aadlv3Util {
 	
 
 	
-	def static String getTargetPath(ModelElementReference mer){
+	def static String getTargetPath(NamedElementReference mer){
 		if (mer === null) return ""
 		var res = mer.element.name
 		var cxt = mer.context
@@ -1357,8 +1357,8 @@ class Aadlv3Util {
 	/**
 	 * return the target of a feature delegate, i.e., the association end that includes a (sub)component or tis feature
 	 */
-	def static ModelElementReference getDelegationTarget(Association assoc){
-		if (assoc.source.modelElementReferenceIncludesComponent){
+	def static NamedElementReference getDelegationTarget(Association assoc){
+		if (assoc.source.namedElementReferenceIncludesComponent){
 			assoc.source
 		} else {
 			assoc.destination
@@ -1367,7 +1367,7 @@ class Aadlv3Util {
 	
 	
 	// depth indicates the target path length to be considered
-	def static boolean matchesReachDown(ModelElementReference reachdown, ModelElementReference target, int depth, ModelElementReference context) {
+	def static boolean matchesReachDown(NamedElementReference reachdown, NamedElementReference target, int depth, NamedElementReference context) {
 		var trgt = target
 		var rd = reachdown
 		while (trgt !== null && rd !== null){

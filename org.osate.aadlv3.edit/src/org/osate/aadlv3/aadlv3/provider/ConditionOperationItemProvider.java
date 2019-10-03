@@ -173,7 +173,7 @@ public class ConditionOperationItemProvider extends LiteralItemProvider {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__ELEMENT,
-				Aadlv3Factory.eINSTANCE.createModelElementReference()));
+				Aadlv3Factory.eINSTANCE.createNamedElementReference()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__ELEMENT,
 				Aadlv3Factory.eINSTANCE.createPathElement()));
@@ -221,7 +221,7 @@ public class ConditionOperationItemProvider extends LiteralItemProvider {
 				Aadlv3Factory.eINSTANCE.createPackageElementReference()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__CONSTRAINT,
-				Aadlv3Factory.eINSTANCE.createModelElementReference()));
+				Aadlv3Factory.eINSTANCE.createNamedElementReference()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONDITION_OPERATION__CONSTRAINT,
 				Aadlv3Factory.eINSTANCE.createPathElement()));

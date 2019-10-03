@@ -162,7 +162,7 @@ public class AssignmentItemProvider extends ActionItemProvider {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ASSIGNMENT__VALUE,
-				Aadlv3Factory.eINSTANCE.createModelElementReference()));
+				Aadlv3Factory.eINSTANCE.createNamedElementReference()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ASSIGNMENT__VALUE,
 				Aadlv3Factory.eINSTANCE.createPathElement()));

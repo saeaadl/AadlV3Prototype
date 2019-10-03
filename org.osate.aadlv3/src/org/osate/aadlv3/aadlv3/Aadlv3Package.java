@@ -1382,16 +1382,6 @@ public interface Aadlv3Package extends EPackage {
 	int ASSOCIATION_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
-	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.ModelElementReferenceImpl <em>Model Element Reference</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.osate.aadlv3.aadlv3.impl.ModelElementReferenceImpl
-	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getModelElementReference()
-	 * @generated
-	 */
-	int MODEL_ELEMENT_REFERENCE = 19;
-
-	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.ConfigurationParameterImpl <em>Configuration Parameter</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1704,31 +1694,14 @@ public interface Aadlv3Package extends EPackage {
 	int LITERAL_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Element</b></em>' reference.
+	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.NamedElementReferenceImpl <em>Named Element Reference</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see org.osate.aadlv3.aadlv3.impl.NamedElementReferenceImpl
+	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getNamedElementReference()
 	 * @generated
-	 * @ordered
 	 */
-	int MODEL_ELEMENT_REFERENCE__ELEMENT = LITERAL_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Context</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ELEMENT_REFERENCE__CONTEXT = LITERAL_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Model Element Reference</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ELEMENT_REFERENCE_FEATURE_COUNT = LITERAL_FEATURE_COUNT + 2;
+	int NAMED_ELEMENT_REFERENCE = 19;
 
 	/**
 	 * The feature id for the '<em><b>Element</b></em>' reference.
@@ -1737,7 +1710,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PATH_ELEMENT__ELEMENT = MODEL_ELEMENT_REFERENCE__ELEMENT;
+	int NAMED_ELEMENT_REFERENCE__ELEMENT = LITERAL_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Context</b></em>' containment reference.
@@ -1746,7 +1719,34 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PATH_ELEMENT__CONTEXT = MODEL_ELEMENT_REFERENCE__CONTEXT;
+	int NAMED_ELEMENT_REFERENCE__CONTEXT = LITERAL_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Named Element Reference</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMED_ELEMENT_REFERENCE_FEATURE_COUNT = LITERAL_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATH_ELEMENT__ELEMENT = NAMED_ELEMENT_REFERENCE__ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Context</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATH_ELEMENT__CONTEXT = NAMED_ELEMENT_REFERENCE__CONTEXT;
 
 	/**
 	 * The feature id for the '<em><b>Previous</b></em>' reference list.
@@ -1755,7 +1755,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PATH_ELEMENT__PREVIOUS = MODEL_ELEMENT_REFERENCE_FEATURE_COUNT + 0;
+	int PATH_ELEMENT__PREVIOUS = NAMED_ELEMENT_REFERENCE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Next</b></em>' reference list.
@@ -1764,7 +1764,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PATH_ELEMENT__NEXT = MODEL_ELEMENT_REFERENCE_FEATURE_COUNT + 1;
+	int PATH_ELEMENT__NEXT = NAMED_ELEMENT_REFERENCE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Path Element</em>' class.
@@ -1773,7 +1773,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PATH_ELEMENT_FEATURE_COUNT = MODEL_ELEMENT_REFERENCE_FEATURE_COUNT + 2;
+	int PATH_ELEMENT_FEATURE_COUNT = NAMED_ELEMENT_REFERENCE_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' containment reference.
@@ -4206,38 +4206,6 @@ public interface Aadlv3Package extends EPackage {
 	EReference getAssociation_AnnexSubclause();
 
 	/**
-	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.ModelElementReference <em>Model Element Reference</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Model Element Reference</em>'.
-	 * @see org.osate.aadlv3.aadlv3.ModelElementReference
-	 * @generated
-	 */
-	EClass getModelElementReference();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.osate.aadlv3.aadlv3.ModelElementReference#getElement <em>Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Element</em>'.
-	 * @see org.osate.aadlv3.aadlv3.ModelElementReference#getElement()
-	 * @see #getModelElementReference()
-	 * @generated
-	 */
-	EReference getModelElementReference_Element();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.osate.aadlv3.aadlv3.ModelElementReference#getContext <em>Context</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Context</em>'.
-	 * @see org.osate.aadlv3.aadlv3.ModelElementReference#getContext()
-	 * @see #getModelElementReference()
-	 * @generated
-	 */
-	EReference getModelElementReference_Context();
-
-	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.ConfigurationParameter <em>Configuration Parameter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5339,6 +5307,38 @@ public interface Aadlv3Package extends EPackage {
 	EReference getClassifierAssignmentPattern_TargetPattern();
 
 	/**
+	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.NamedElementReference <em>Named Element Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Named Element Reference</em>'.
+	 * @see org.osate.aadlv3.aadlv3.NamedElementReference
+	 * @generated
+	 */
+	EClass getNamedElementReference();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.osate.aadlv3.aadlv3.NamedElementReference#getElement <em>Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Element</em>'.
+	 * @see org.osate.aadlv3.aadlv3.NamedElementReference#getElement()
+	 * @see #getNamedElementReference()
+	 * @generated
+	 */
+	EReference getNamedElementReference_Element();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.osate.aadlv3.aadlv3.NamedElementReference#getContext <em>Context</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Context</em>'.
+	 * @see org.osate.aadlv3.aadlv3.NamedElementReference#getContext()
+	 * @see #getNamedElementReference()
+	 * @generated
+	 */
+	EReference getNamedElementReference_Context();
+
+	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.PathSequence <em>Path Sequence</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6021,32 +6021,6 @@ public interface Aadlv3Package extends EPackage {
 		 * @generated
 		 */
 		EReference ASSOCIATION__ANNEX_SUBCLAUSE = eINSTANCE.getAssociation_AnnexSubclause();
-
-		/**
-		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.ModelElementReferenceImpl <em>Model Element Reference</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.osate.aadlv3.aadlv3.impl.ModelElementReferenceImpl
-		 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getModelElementReference()
-		 * @generated
-		 */
-		EClass MODEL_ELEMENT_REFERENCE = eINSTANCE.getModelElementReference();
-
-		/**
-		 * The meta object literal for the '<em><b>Element</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference MODEL_ELEMENT_REFERENCE__ELEMENT = eINSTANCE.getModelElementReference_Element();
-
-		/**
-		 * The meta object literal for the '<em><b>Context</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference MODEL_ELEMENT_REFERENCE__CONTEXT = eINSTANCE.getModelElementReference_Context();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.ConfigurationParameterImpl <em>Configuration Parameter</em>}' class.
@@ -6971,6 +6945,32 @@ public interface Aadlv3Package extends EPackage {
 		 */
 		EReference CLASSIFIER_ASSIGNMENT_PATTERN__TARGET_PATTERN = eINSTANCE
 				.getClassifierAssignmentPattern_TargetPattern();
+
+		/**
+		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.NamedElementReferenceImpl <em>Named Element Reference</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.osate.aadlv3.aadlv3.impl.NamedElementReferenceImpl
+		 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getNamedElementReference()
+		 * @generated
+		 */
+		EClass NAMED_ELEMENT_REFERENCE = eINSTANCE.getNamedElementReference();
+
+		/**
+		 * The meta object literal for the '<em><b>Element</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference NAMED_ELEMENT_REFERENCE__ELEMENT = eINSTANCE.getNamedElementReference_Element();
+
+		/**
+		 * The meta object literal for the '<em><b>Context</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference NAMED_ELEMENT_REFERENCE__CONTEXT = eINSTANCE.getNamedElementReference_Context();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.PathSequenceImpl <em>Path Sequence</em>}' class.

@@ -148,7 +148,7 @@ public class PathSequenceItemProvider extends ModelElementItemProvider {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PATH_SEQUENCE__TARGET,
-				Aadlv3Factory.eINSTANCE.createModelElementReference()));
+				Aadlv3Factory.eINSTANCE.createNamedElementReference()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PATH_SEQUENCE__TARGET,
 				Aadlv3Factory.eINSTANCE.createPathElement()));

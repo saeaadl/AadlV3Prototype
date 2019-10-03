@@ -65,9 +65,13 @@ PropertyAssociationType returns av3::PropertyAssociationType:
 	'=>' | '=' | '*=>' 
 ;
 
-ModelElementReference returns av3::ModelElementReference:
+ModelElementReference returns av3::NamedElementReference:
 	// => or -> both work
-	element=[av3::ModelElement|ID] -> ({av3::ModelElementReference.context=current} '.' element=[av3::ModelElement|ID])*;
+	element=[av3::ModelElement|ID] -> ({av3::NamedElementReference.context=current} '.' element=[av3::ModelElement|ID])*;
+
+NamedElementReference returns av3::NamedElementReference:
+	// => or -> both work
+	element=[av3::NamedElement|QualifiedReference] -> ({av3::NamedElementReference.context=current} '.' element=[av3::ModelElement|ID])*;
 
 
 ComponentInterface returns av3::ComponentInterface:
@@ -379,7 +383,7 @@ FeatureInput returns av3::ConditionOperation:
 
 Literal returns av3::Literal:
 	IntegerLiteral | RealLiteral | StringLiteral | BooleanLiteral | PropertyReference  | DirectionalLiteral | ListLiteral | MultiLiteralOperation
-	| ContainsToken   | TypeReference //| ModelElementReference| EnumerationLiteral //| FeatureInput
+	| ContainsToken   | NamedElementReference //| EnumerationLiteral //| FeatureInput
 ;
 
 

@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.Assignment;
 import org.osate.aadlv3.aadlv3.Literal;
-import org.osate.aadlv3.aadlv3.ModelElementReference;
+import org.osate.aadlv3.aadlv3.NamedElementReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -51,7 +51,7 @@ public class AssignmentImpl extends ActionImpl implements Assignment {
 	 * @generated
 	 * @ordered
 	 */
-	protected ModelElementReference target;
+	protected NamedElementReference target;
 
 	/**
 	 * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
@@ -88,7 +88,7 @@ public class AssignmentImpl extends ActionImpl implements Assignment {
 	 * @generated
 	 */
 	@Override
-	public ModelElementReference getTarget() {
+	public NamedElementReference getTarget() {
 		return target;
 	}
 
@@ -97,8 +97,8 @@ public class AssignmentImpl extends ActionImpl implements Assignment {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetTarget(ModelElementReference newTarget, NotificationChain msgs) {
-		ModelElementReference oldTarget = target;
+	public NotificationChain basicSetTarget(NamedElementReference newTarget, NotificationChain msgs) {
+		NamedElementReference oldTarget = target;
 		target = newTarget;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
@@ -117,7 +117,7 @@ public class AssignmentImpl extends ActionImpl implements Assignment {
 	 * @generated
 	 */
 	@Override
-	public void setTarget(ModelElementReference newTarget) {
+	public void setTarget(NamedElementReference newTarget) {
 		if (newTarget != target) {
 			NotificationChain msgs = null;
 			if (target != null)
@@ -226,7 +226,7 @@ public class AssignmentImpl extends ActionImpl implements Assignment {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 		case Aadlv3Package.ASSIGNMENT__TARGET:
-			setTarget((ModelElementReference) newValue);
+			setTarget((NamedElementReference) newValue);
 			return;
 		case Aadlv3Package.ASSIGNMENT__VALUE:
 			setValue((Literal) newValue);
@@ -244,7 +244,7 @@ public class AssignmentImpl extends ActionImpl implements Assignment {
 	public void eUnset(int featureID) {
 		switch (featureID) {
 		case Aadlv3Package.ASSIGNMENT__TARGET:
-			setTarget((ModelElementReference) null);
+			setTarget((NamedElementReference) null);
 			return;
 		case Aadlv3Package.ASSIGNMENT__VALUE:
 			setValue((Literal) null);

@@ -35,7 +35,7 @@ import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.AnnexSubclause;
 import org.osate.aadlv3.aadlv3.Association;
 import org.osate.aadlv3.aadlv3.ClassifierAssignment;
-import org.osate.aadlv3.aadlv3.ModelElementReference;
+import org.osate.aadlv3.aadlv3.NamedElementReference;
 import org.osate.aadlv3.aadlv3.PropertyAssociation;
 import org.osate.aadlv3.aadlv3.TypeReference;
 
@@ -66,7 +66,7 @@ public class ClassifierAssignmentImpl extends MinimalEObjectImpl.Container imple
 	 * @generated
 	 * @ordered
 	 */
-	protected ModelElementReference target;
+	protected NamedElementReference target;
 
 	/**
 	 * The cached value of the '{@link #getClassifierAssignments() <em>Classifier Assignments</em>}' containment reference list.
@@ -143,7 +143,7 @@ public class ClassifierAssignmentImpl extends MinimalEObjectImpl.Container imple
 	 * @generated
 	 */
 	@Override
-	public ModelElementReference getTarget() {
+	public NamedElementReference getTarget() {
 		return target;
 	}
 
@@ -152,8 +152,8 @@ public class ClassifierAssignmentImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetTarget(ModelElementReference newTarget, NotificationChain msgs) {
-		ModelElementReference oldTarget = target;
+	public NotificationChain basicSetTarget(NamedElementReference newTarget, NotificationChain msgs) {
+		NamedElementReference oldTarget = target;
 		target = newTarget;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
@@ -172,7 +172,7 @@ public class ClassifierAssignmentImpl extends MinimalEObjectImpl.Container imple
 	 * @generated
 	 */
 	@Override
-	public void setTarget(ModelElementReference newTarget) {
+	public void setTarget(NamedElementReference newTarget) {
 		if (newTarget != target) {
 			NotificationChain msgs = null;
 			if (target != null)
@@ -317,7 +317,7 @@ public class ClassifierAssignmentImpl extends MinimalEObjectImpl.Container imple
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__TARGET:
-			setTarget((ModelElementReference) newValue);
+			setTarget((NamedElementReference) newValue);
 			return;
 		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__CLASSIFIER_ASSIGNMENTS:
 			getClassifierAssignments().clear();
@@ -352,7 +352,7 @@ public class ClassifierAssignmentImpl extends MinimalEObjectImpl.Container imple
 	public void eUnset(int featureID) {
 		switch (featureID) {
 		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__TARGET:
-			setTarget((ModelElementReference) null);
+			setTarget((NamedElementReference) null);
 			return;
 		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__CLASSIFIER_ASSIGNMENTS:
 			getClassifierAssignments().clear();

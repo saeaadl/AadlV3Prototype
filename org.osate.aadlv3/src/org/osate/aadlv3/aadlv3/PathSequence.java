@@ -44,12 +44,12 @@ public interface PathSequence extends ModelElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Target</em>' containment reference.
-	 * @see #setTarget(ModelElementReference)
+	 * @see #setTarget(NamedElementReference)
 	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getPathSequence_Target()
 	 * @model containment="true"
 	 * @generated
 	 */
-	ModelElementReference getTarget();
+	NamedElementReference getTarget();
 
 	/**
 	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.PathSequence#getTarget <em>Target</em>}' containment reference.
@@ -59,7 +59,7 @@ public interface PathSequence extends ModelElement {
 	 * @see #getTarget()
 	 * @generated
 	 */
-	void setTarget(ModelElementReference value);
+	void setTarget(NamedElementReference value);
 
 	/**
 	 * Returns the value of the '<em><b>Elements</b></em>' containment reference list.

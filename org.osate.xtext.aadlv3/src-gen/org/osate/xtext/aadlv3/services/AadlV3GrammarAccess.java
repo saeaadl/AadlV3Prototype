@@ -611,18 +611,18 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cElementModelElementIDTerminalRuleCall_0_0_1 = (RuleCall)cElementModelElementCrossReference_0_0.eContents().get(1);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
 		private final Group cGroup_1_0 = (Group)cGroup_1.eContents().get(0);
-		private final Action cModelElementReferenceContextAction_1_0_0 = (Action)cGroup_1_0.eContents().get(0);
+		private final Action cNamedElementReferenceContextAction_1_0_0 = (Action)cGroup_1_0.eContents().get(0);
 		private final Keyword cFullStopKeyword_1_0_1 = (Keyword)cGroup_1_0.eContents().get(1);
 		private final Assignment cElementAssignment_1_0_2 = (Assignment)cGroup_1_0.eContents().get(2);
 		private final CrossReference cElementModelElementCrossReference_1_0_2_0 = (CrossReference)cElementAssignment_1_0_2.eContents().get(0);
 		private final RuleCall cElementModelElementIDTerminalRuleCall_1_0_2_0_1 = (RuleCall)cElementModelElementCrossReference_1_0_2_0.eContents().get(1);
 		
-		//ModelElementReference av3::ModelElementReference:
-		//	element=[av3::ModelElement] -> ({av3::ModelElementReference.context=current} '.' element=[av3::ModelElement])*;
+		//ModelElementReference av3::NamedElementReference:
+		//	element=[av3::ModelElement] -> ({av3::NamedElementReference.context=current} '.' element=[av3::ModelElement])*;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//// => or -> both work
-		// element=[av3::ModelElement] -> ({av3::ModelElementReference.context=current} '.'
+		// element=[av3::ModelElement] -> ({av3::NamedElementReference.context=current} '.'
 		//element=[av3::ModelElement])*
 		public Group getGroup() { return cGroup; }
 		
@@ -636,14 +636,69 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getElementModelElementIDTerminalRuleCall_0_0_1() { return cElementModelElementIDTerminalRuleCall_0_0_1; }
 		
-		//-> ({av3::ModelElementReference.context=current} '.' element=[av3::ModelElement])*
+		//-> ({av3::NamedElementReference.context=current} '.' element=[av3::ModelElement])*
 		public Group getGroup_1() { return cGroup_1; }
 		
-		//{av3::ModelElementReference.context=current} '.' element=[av3::ModelElement]
+		//{av3::NamedElementReference.context=current} '.' element=[av3::ModelElement]
 		public Group getGroup_1_0() { return cGroup_1_0; }
 		
-		//{av3::ModelElementReference.context=current}
-		public Action getModelElementReferenceContextAction_1_0_0() { return cModelElementReferenceContextAction_1_0_0; }
+		//{av3::NamedElementReference.context=current}
+		public Action getNamedElementReferenceContextAction_1_0_0() { return cNamedElementReferenceContextAction_1_0_0; }
+		
+		//'.'
+		public Keyword getFullStopKeyword_1_0_1() { return cFullStopKeyword_1_0_1; }
+		
+		//element=[av3::ModelElement]
+		public Assignment getElementAssignment_1_0_2() { return cElementAssignment_1_0_2; }
+		
+		//[av3::ModelElement]
+		public CrossReference getElementModelElementCrossReference_1_0_2_0() { return cElementModelElementCrossReference_1_0_2_0; }
+		
+		//ID
+		public RuleCall getElementModelElementIDTerminalRuleCall_1_0_2_0_1() { return cElementModelElementIDTerminalRuleCall_1_0_2_0_1; }
+	}
+	public class NamedElementReferenceElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.osate.xtext.aadlv3.AadlV3.NamedElementReference");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cElementAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final CrossReference cElementNamedElementCrossReference_0_0 = (CrossReference)cElementAssignment_0.eContents().get(0);
+		private final RuleCall cElementNamedElementQualifiedReferenceParserRuleCall_0_0_1 = (RuleCall)cElementNamedElementCrossReference_0_0.eContents().get(1);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Group cGroup_1_0 = (Group)cGroup_1.eContents().get(0);
+		private final Action cNamedElementReferenceContextAction_1_0_0 = (Action)cGroup_1_0.eContents().get(0);
+		private final Keyword cFullStopKeyword_1_0_1 = (Keyword)cGroup_1_0.eContents().get(1);
+		private final Assignment cElementAssignment_1_0_2 = (Assignment)cGroup_1_0.eContents().get(2);
+		private final CrossReference cElementModelElementCrossReference_1_0_2_0 = (CrossReference)cElementAssignment_1_0_2.eContents().get(0);
+		private final RuleCall cElementModelElementIDTerminalRuleCall_1_0_2_0_1 = (RuleCall)cElementModelElementCrossReference_1_0_2_0.eContents().get(1);
+		
+		//NamedElementReference av3::NamedElementReference:
+		//	element=[av3::NamedElement|QualifiedReference] -> ({av3::NamedElementReference.context=current} '.'
+		//	element=[av3::ModelElement])*;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//// => or -> both work
+		// element=[av3::NamedElement|QualifiedReference] -> ({av3::NamedElementReference.context=current}
+		//'.' element=[av3::ModelElement])*
+		public Group getGroup() { return cGroup; }
+		
+		//// => or -> both work
+		// element=[av3::NamedElement|QualifiedReference]
+		public Assignment getElementAssignment_0() { return cElementAssignment_0; }
+		
+		//[av3::NamedElement|QualifiedReference]
+		public CrossReference getElementNamedElementCrossReference_0_0() { return cElementNamedElementCrossReference_0_0; }
+		
+		//QualifiedReference
+		public RuleCall getElementNamedElementQualifiedReferenceParserRuleCall_0_0_1() { return cElementNamedElementQualifiedReferenceParserRuleCall_0_0_1; }
+		
+		//-> ({av3::NamedElementReference.context=current} '.' element=[av3::ModelElement])*
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//{av3::NamedElementReference.context=current} '.' element=[av3::ModelElement]
+		public Group getGroup_1_0() { return cGroup_1_0; }
+		
+		//{av3::NamedElementReference.context=current}
+		public Action getNamedElementReferenceContextAction_1_0_0() { return cNamedElementReferenceContextAction_1_0_0; }
 		
 		//'.'
 		public Keyword getFullStopKeyword_1_0_1() { return cFullStopKeyword_1_0_1; }
@@ -3389,18 +3444,17 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cListLiteralParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
 		private final RuleCall cMultiLiteralOperationParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
 		private final RuleCall cContainsTokenParserRuleCall_8 = (RuleCall)cAlternatives.eContents().get(8);
-		private final RuleCall cTypeReferenceParserRuleCall_9 = (RuleCall)cAlternatives.eContents().get(9);
+		private final RuleCall cNamedElementReferenceParserRuleCall_9 = (RuleCall)cAlternatives.eContents().get(9);
 		
 		//// expression/constraint language
 		// Literal av3::Literal:
 		//	IntegerLiteral | RealLiteral | StringLiteral | BooleanLiteral | PropertyReference | DirectionalLiteral | ListLiteral
-		//	| MultiLiteralOperation | ContainsToken | TypeReference
-		//	//| ModelElementReference| EnumerationLiteral //| FeatureInput
+		//	| MultiLiteralOperation | ContainsToken | NamedElementReference // | EnumerationLiteral //| FeatureInput
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//IntegerLiteral | RealLiteral | StringLiteral | BooleanLiteral | PropertyReference | DirectionalLiteral | ListLiteral |
-		//MultiLiteralOperation | ContainsToken | TypeReference
+		//MultiLiteralOperation | ContainsToken | NamedElementReference
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//IntegerLiteral
@@ -3430,8 +3484,8 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		//ContainsToken
 		public RuleCall getContainsTokenParserRuleCall_8() { return cContainsTokenParserRuleCall_8; }
 		
-		//TypeReference
-		public RuleCall getTypeReferenceParserRuleCall_9() { return cTypeReferenceParserRuleCall_9; }
+		//NamedElementReference
+		public RuleCall getNamedElementReferenceParserRuleCall_9() { return cNamedElementReferenceParserRuleCall_9; }
 	}
 	public class PackageElementReferenceElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.osate.xtext.aadlv3.AadlV3.PackageElementReference");
@@ -4742,6 +4796,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	private final PropertyAssociationElements pPropertyAssociation;
 	private final PropertyAssociationTypeElements pPropertyAssociationType;
 	private final ModelElementReferenceElements pModelElementReference;
+	private final NamedElementReferenceElements pNamedElementReference;
 	private final ComponentInterfaceElements pComponentInterface;
 	private final InterfaceBodyElements pInterfaceBody;
 	private final InterfaceElementElements pInterfaceElement;
@@ -4882,6 +4937,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		this.pPropertyAssociation = new PropertyAssociationElements();
 		this.pPropertyAssociationType = new PropertyAssociationTypeElements();
 		this.pModelElementReference = new ModelElementReferenceElements();
+		this.pNamedElementReference = new NamedElementReferenceElements();
 		this.pComponentInterface = new ComponentInterfaceElements();
 		this.pInterfaceBody = new InterfaceBodyElements();
 		this.pInterfaceElement = new InterfaceElementElements();
@@ -5135,14 +5191,25 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		return getPropertyAssociationTypeAccess().getRule();
 	}
 	
-	//ModelElementReference av3::ModelElementReference:
-	//	element=[av3::ModelElement] -> ({av3::ModelElementReference.context=current} '.' element=[av3::ModelElement])*;
+	//ModelElementReference av3::NamedElementReference:
+	//	element=[av3::ModelElement] -> ({av3::NamedElementReference.context=current} '.' element=[av3::ModelElement])*;
 	public ModelElementReferenceElements getModelElementReferenceAccess() {
 		return pModelElementReference;
 	}
 	
 	public ParserRule getModelElementReferenceRule() {
 		return getModelElementReferenceAccess().getRule();
+	}
+	
+	//NamedElementReference av3::NamedElementReference:
+	//	element=[av3::NamedElement|QualifiedReference] -> ({av3::NamedElementReference.context=current} '.'
+	//	element=[av3::ModelElement])*;
+	public NamedElementReferenceElements getNamedElementReferenceAccess() {
+		return pNamedElementReference;
+	}
+	
+	public ParserRule getNamedElementReferenceRule() {
+		return getNamedElementReferenceAccess().getRule();
 	}
 	
 	//ComponentInterface av3::ComponentInterface:
@@ -5797,8 +5864,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	//// expression/constraint language
 	// Literal av3::Literal:
 	//	IntegerLiteral | RealLiteral | StringLiteral | BooleanLiteral | PropertyReference | DirectionalLiteral | ListLiteral
-	//	| MultiLiteralOperation | ContainsToken | TypeReference
-	//	//| ModelElementReference| EnumerationLiteral //| FeatureInput
+	//	| MultiLiteralOperation | ContainsToken | NamedElementReference // | EnumerationLiteral //| FeatureInput
 	//;
 	public LiteralElements getLiteralAccess() {
 		return pLiteral;

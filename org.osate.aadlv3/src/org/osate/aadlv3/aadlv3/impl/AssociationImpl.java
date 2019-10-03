@@ -29,7 +29,7 @@ import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.AnnexSubclause;
 import org.osate.aadlv3.aadlv3.Association;
 import org.osate.aadlv3.aadlv3.AssociationType;
-import org.osate.aadlv3.aadlv3.ModelElementReference;
+import org.osate.aadlv3.aadlv3.NamedElementReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -88,7 +88,7 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	 * @generated
 	 * @ordered
 	 */
-	protected ModelElementReference source;
+	protected NamedElementReference source;
 
 	/**
 	 * The cached value of the '{@link #getDestination() <em>Destination</em>}' containment reference.
@@ -98,7 +98,7 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	 * @generated
 	 * @ordered
 	 */
-	protected ModelElementReference destination;
+	protected NamedElementReference destination;
 
 	/**
 	 * The default value of the '{@link #isBidirectional() <em>Bidirectional</em>}' attribute.
@@ -221,7 +221,7 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	 * @generated
 	 */
 	@Override
-	public ModelElementReference getSource() {
+	public NamedElementReference getSource() {
 		return source;
 	}
 
@@ -230,8 +230,8 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetSource(ModelElementReference newSource, NotificationChain msgs) {
-		ModelElementReference oldSource = source;
+	public NotificationChain basicSetSource(NamedElementReference newSource, NotificationChain msgs) {
+		NamedElementReference oldSource = source;
 		source = newSource;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
@@ -250,7 +250,7 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	 * @generated
 	 */
 	@Override
-	public void setSource(ModelElementReference newSource) {
+	public void setSource(NamedElementReference newSource) {
 		if (newSource != source) {
 			NotificationChain msgs = null;
 			if (source != null)
@@ -273,7 +273,7 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	 * @generated
 	 */
 	@Override
-	public ModelElementReference getDestination() {
+	public NamedElementReference getDestination() {
 		return destination;
 	}
 
@@ -282,8 +282,8 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetDestination(ModelElementReference newDestination, NotificationChain msgs) {
-		ModelElementReference oldDestination = destination;
+	public NotificationChain basicSetDestination(NamedElementReference newDestination, NotificationChain msgs) {
+		NamedElementReference oldDestination = destination;
 		destination = newDestination;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
@@ -302,7 +302,7 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	 * @generated
 	 */
 	@Override
-	public void setDestination(ModelElementReference newDestination) {
+	public void setDestination(NamedElementReference newDestination) {
 		if (newDestination != destination) {
 			NotificationChain msgs = null;
 			if (destination != null)
@@ -415,10 +415,10 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 			setBindingType((EObject) newValue);
 			return;
 		case Aadlv3Package.ASSOCIATION__SOURCE:
-			setSource((ModelElementReference) newValue);
+			setSource((NamedElementReference) newValue);
 			return;
 		case Aadlv3Package.ASSOCIATION__DESTINATION:
-			setDestination((ModelElementReference) newValue);
+			setDestination((NamedElementReference) newValue);
 			return;
 		case Aadlv3Package.ASSOCIATION__BIDIRECTIONAL:
 			setBidirectional((Boolean) newValue);
@@ -446,10 +446,10 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 			setBindingType((EObject) null);
 			return;
 		case Aadlv3Package.ASSOCIATION__SOURCE:
-			setSource((ModelElementReference) null);
+			setSource((NamedElementReference) null);
 			return;
 		case Aadlv3Package.ASSOCIATION__DESTINATION:
-			setDestination((ModelElementReference) null);
+			setDestination((NamedElementReference) null);
 			return;
 		case Aadlv3Package.ASSOCIATION__BIDIRECTIONAL:
 			setBidirectional(BIDIRECTIONAL_EDEFAULT);

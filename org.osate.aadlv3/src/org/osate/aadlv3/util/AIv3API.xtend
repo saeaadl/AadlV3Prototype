@@ -13,7 +13,6 @@ import org.osate.aadlv3.aadlv3.Feature
 import org.osate.aadlv3.aadlv3.FeatureCategory
 import org.osate.aadlv3.aadlv3.Literal
 import org.osate.aadlv3.aadlv3.ModelElement
-import org.osate.aadlv3.aadlv3.ModelElementReference
 import org.osate.aadlv3.aadlv3.PathSequence
 import org.osate.aadlv3.aadlv3.PropertyAssociation
 import org.osate.aadlv3.aadlv3.PropertyDefinition
@@ -42,6 +41,8 @@ import java.util.Collections
 import org.osate.aadlv3.aadlv3.EnumerationLiteral
 import org.eclipse.emf.common.util.EList
 import java.util.Collection
+import org.osate.aadlv3.aadlv3.NamedElementReference
+import org.osate.aadlv3.aadlv3.NamedElement
 
 class AIv3API {
 	
@@ -100,7 +101,7 @@ class AIv3API {
 	
 	def static ConstrainedInstanceObject createConstrainedInstanceObject(ConditionOperation co, ComponentInstance context, boolean outgoing) {
 		val cio = Av3instanceFactory.eINSTANCE.createConstrainedInstanceObject
-		cio.instanceObject = context.getInstanceElement(co.element as ModelElementReference)
+		cio.instanceObject = context.getInstanceElement(co.element as NamedElementReference)
 		if (co.constraint !== null){
 			cio.constraint = co.constraint.copy
 			cio.name = cio.getInstanceObject().instanceObjectPath+":"+cio.getConstraint().toString()
@@ -148,7 +149,7 @@ class AIv3API {
 	/**
 	 * get the instance object pointed to my model element reference using the instance object context as root of the path
 	 */
-	def static InstanceObject getInstanceElement(InstanceObject context, ModelElementReference mer){
+	def static InstanceObject getInstanceElement(InstanceObject context, NamedElementReference mer){
 		if (mer === null || mer.element === null) return context
 		val cxt = if(mer.context !== null) getInstanceElement(context, mer.context) else context
 		cxt.getInstanceElement(mer.element)
@@ -157,7 +158,7 @@ class AIv3API {
 	/**
 	 * get the instance object representing the model element. It is directly contained in the context object
 	 */
-	def static InstanceObject getInstanceElement(InstanceObject context, ModelElement me){
+	def static InstanceObject getInstanceElement(InstanceObject context, NamedElement me){
 		switch (context){
 			ComponentInstance: {
 				switch (me) {

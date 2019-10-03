@@ -21,38 +21,30 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
 
-import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.IItemPropertySource;
-import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
-import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.osate.aadlv3.aadlv3.Aadlv3Factory;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
-import org.osate.aadlv3.aadlv3.ClassifierAssignment;
+import org.osate.aadlv3.aadlv3.NamedElementReference;
 
 /**
- * This is the item provider adapter for a {@link org.osate.aadlv3.aadlv3.ClassifierAssignment} object.
+ * This is the item provider adapter for a {@link org.osate.aadlv3.aadlv3.NamedElementReference} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ClassifierAssignmentItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
-		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class NamedElementReferenceItemProvider extends LiteralItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ClassifierAssignmentItemProvider(AdapterFactory adapterFactory) {
+	public NamedElementReferenceItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -67,8 +59,24 @@ public class ClassifierAssignmentItemProvider extends ItemProviderAdapter implem
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addElementPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Element feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addElementPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_NamedElementReference_element_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_NamedElementReference_element_feature",
+								"_UI_NamedElementReference_type"),
+						Aadlv3Package.Literals.NAMED_ELEMENT_REFERENCE__ELEMENT, true, false, true, null, null, null));
 	}
 
 	/**
@@ -83,12 +91,7 @@ public class ClassifierAssignmentItemProvider extends ItemProviderAdapter implem
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__TARGET);
-			childrenFeatures.add(Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__CLASSIFIER_ASSIGNMENTS);
-			childrenFeatures.add(Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__ASSIGNED_CLASSIFIERS);
-			childrenFeatures.add(Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__OWNED_PROPERTY_ASSOCIATIONS);
-			childrenFeatures.add(Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__BINDINGS);
-			childrenFeatures.add(Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__ANNEX_SUBCLAUSE);
+			childrenFeatures.add(Aadlv3Package.Literals.NAMED_ELEMENT_REFERENCE__CONTEXT);
 		}
 		return childrenFeatures;
 	}
@@ -107,14 +110,14 @@ public class ClassifierAssignmentItemProvider extends ItemProviderAdapter implem
 	}
 
 	/**
-	 * This returns ClassifierAssignment.gif.
+	 * This returns NamedElementReference.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ClassifierAssignment"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/NamedElementReference"));
 	}
 
 	/**
@@ -125,7 +128,7 @@ public class ClassifierAssignmentItemProvider extends ItemProviderAdapter implem
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_ClassifierAssignment_type");
+		return getString("_UI_NamedElementReference_type");
 	}
 
 	/**
@@ -139,13 +142,8 @@ public class ClassifierAssignmentItemProvider extends ItemProviderAdapter implem
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ClassifierAssignment.class)) {
-		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__TARGET:
-		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__CLASSIFIER_ASSIGNMENTS:
-		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__ASSIGNED_CLASSIFIERS:
-		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__OWNED_PROPERTY_ASSOCIATIONS:
-		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__BINDINGS:
-		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__ANNEX_SUBCLAUSE:
+		switch (notification.getFeatureID(NamedElementReference.class)) {
+		case Aadlv3Package.NAMED_ELEMENT_REFERENCE__CONTEXT:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -163,49 +161,11 @@ public class ClassifierAssignmentItemProvider extends ItemProviderAdapter implem
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__TARGET,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.NAMED_ELEMENT_REFERENCE__CONTEXT,
 				Aadlv3Factory.eINSTANCE.createNamedElementReference()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__TARGET,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.NAMED_ELEMENT_REFERENCE__CONTEXT,
 				Aadlv3Factory.eINSTANCE.createPathElement()));
-
-		newChildDescriptors
-				.add(createChildParameter(Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__CLASSIFIER_ASSIGNMENTS,
-						Aadlv3Factory.eINSTANCE.createClassifierAssignment()));
-
-		newChildDescriptors
-				.add(createChildParameter(Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__CLASSIFIER_ASSIGNMENTS,
-						Aadlv3Factory.eINSTANCE.createClassifierAssignmentPattern()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__ASSIGNED_CLASSIFIERS,
-				Aadlv3Factory.eINSTANCE.createTypeReference()));
-
-		newChildDescriptors
-				.add(createChildParameter(Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__OWNED_PROPERTY_ASSOCIATIONS,
-						Aadlv3Factory.eINSTANCE.createPropertyAssociation()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__BINDINGS,
-				Aadlv3Factory.eINSTANCE.createAssociation()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__ANNEX_SUBCLAUSE,
-				Aadlv3Factory.eINSTANCE.createDefaultAnnexSubclause()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__ANNEX_SUBCLAUSE,
-				Aadlv3Factory.eINSTANCE.createEMSubclause()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__ANNEX_SUBCLAUSE,
-				Aadlv3Factory.eINSTANCE.createBASubclause()));
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return Aadlv3EditPlugin.INSTANCE;
 	}
 
 }

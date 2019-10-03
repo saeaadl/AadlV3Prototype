@@ -47,12 +47,12 @@ public interface PropertyAssociation extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Target</em>' containment reference.
-	 * @see #setTarget(ModelElementReference)
+	 * @see #setTarget(NamedElementReference)
 	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getPropertyAssociation_Target()
 	 * @model containment="true"
 	 * @generated
 	 */
-	ModelElementReference getTarget();
+	NamedElementReference getTarget();
 
 	/**
 	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.PropertyAssociation#getTarget <em>Target</em>}' containment reference.
@@ -62,7 +62,7 @@ public interface PropertyAssociation extends EObject {
 	 * @see #getTarget()
 	 * @generated
 	 */
-	void setTarget(ModelElementReference value);
+	void setTarget(NamedElementReference value);
 
 	/**
 	 * Returns the value of the '<em><b>Property</b></em>' reference.

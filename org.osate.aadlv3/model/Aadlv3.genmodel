@@ -187,9 +187,9 @@
     <genClasses ecoreClass="Aadlv3.ecore#//ClassifierAssignmentPattern">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ClassifierAssignmentPattern/targetPattern"/>
     </genClasses>
-    <genClasses ecoreClass="Aadlv3.ecore#//ModelElementReference">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ModelElementReference/element"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ModelElementReference/context"/>
+    <genClasses ecoreClass="Aadlv3.ecore#//NamedElementReference">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//NamedElementReference/element"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//NamedElementReference/context"/>
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//ConfigurationParameter">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ConfigurationParameter/type"/>

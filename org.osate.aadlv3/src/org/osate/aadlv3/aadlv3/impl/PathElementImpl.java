@@ -40,7 +40,7 @@ import org.osate.aadlv3.aadlv3.PathElement;
  *
  * @generated
  */
-public class PathElementImpl extends ModelElementReferenceImpl implements PathElement {
+public class PathElementImpl extends NamedElementReferenceImpl implements PathElement {
 	/**
 	 * The cached value of the '{@link #getPrevious() <em>Previous</em>}' reference list.
 	 * <!-- begin-user-doc -->

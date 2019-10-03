@@ -54,8 +54,8 @@ import org.osate.aadlv3.aadlv3.Import;
 import org.osate.aadlv3.aadlv3.InstanceConfiguration;
 import org.osate.aadlv3.aadlv3.IntegerLiteral;
 import org.osate.aadlv3.aadlv3.ListLiteral;
-import org.osate.aadlv3.aadlv3.ModelElementReference;
 import org.osate.aadlv3.aadlv3.MultiLiteralConstraint;
+import org.osate.aadlv3.aadlv3.NamedElementReference;
 import org.osate.aadlv3.aadlv3.PackageDeclaration;
 import org.osate.aadlv3.aadlv3.PackageElementReference;
 import org.osate.aadlv3.aadlv3.PathElement;
@@ -199,12 +199,22 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 			case Aadlv3Package.LIST_LITERAL:
 				sequence_ListLiteral(context, (ListLiteral) semanticObject); 
 				return; 
-			case Aadlv3Package.MODEL_ELEMENT_REFERENCE:
-				sequence_ModelElementReference(context, (ModelElementReference) semanticObject); 
-				return; 
 			case Aadlv3Package.MULTI_LITERAL_CONSTRAINT:
 				sequence_MultiLiteralOperation(context, (MultiLiteralConstraint) semanticObject); 
 				return; 
+			case Aadlv3Package.NAMED_ELEMENT_REFERENCE:
+				if (rule == grammarAccess.getModelElementReferenceRule()
+						|| action == grammarAccess.getModelElementReferenceAccess().getNamedElementReferenceContextAction_1_0_0()) {
+					sequence_ModelElementReference(context, (NamedElementReference) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getNamedElementReferenceRule()
+						|| action == grammarAccess.getNamedElementReferenceAccess().getNamedElementReferenceContextAction_1_0_0()
+						|| rule == grammarAccess.getLiteralRule()) {
+					sequence_NamedElementReference(context, (NamedElementReference) semanticObject); 
+					return; 
+				}
+				else break;
 			case Aadlv3Package.PACKAGE_DECLARATION:
 				sequence_PackageDeclaration(context, (PackageDeclaration) semanticObject); 
 				return; 
@@ -281,8 +291,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 					return; 
 				}
 				else if (rule == grammarAccess.getTypeReferenceRule()
-						|| rule == grammarAccess.getTypeRule()
-						|| rule == grammarAccess.getLiteralRule()) {
+						|| rule == grammarAccess.getTypeRule()) {
 					sequence_TypeReference(context, (TypeReference) semanticObject); 
 					return; 
 				}
@@ -955,13 +964,13 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
-	 *     ModelElementReference returns ModelElementReference
-	 *     ModelElementReference.ModelElementReference_1_0_0 returns ModelElementReference
+	 *     ModelElementReference returns NamedElementReference
+	 *     ModelElementReference.NamedElementReference_1_0_0 returns NamedElementReference
 	 *
 	 * Constraint:
-	 *     (element=[ModelElement|ID] | (context=ModelElementReference_ModelElementReference_1_0_0 element=[ModelElement|ID]))
+	 *     (element=[ModelElement|ID] | (context=ModelElementReference_NamedElementReference_1_0_0 element=[ModelElement|ID]))
 	 */
-	protected void sequence_ModelElementReference(ISerializationContext context, ModelElementReference semanticObject) {
+	protected void sequence_ModelElementReference(ISerializationContext context, NamedElementReference semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -975,6 +984,20 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     (operator=EOperation (elements+=Literal elements+=Literal*)?)
 	 */
 	protected void sequence_MultiLiteralOperation(ISerializationContext context, MultiLiteralConstraint semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     NamedElementReference returns NamedElementReference
+	 *     NamedElementReference.NamedElementReference_1_0_0 returns NamedElementReference
+	 *     Literal returns NamedElementReference
+	 *
+	 * Constraint:
+	 *     (element=[NamedElement|QualifiedReference] | (context=NamedElementReference_NamedElementReference_1_0_0 element=[ModelElement|ID]))
+	 */
+	protected void sequence_NamedElementReference(ISerializationContext context, NamedElementReference semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1212,7 +1235,6 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 * Contexts:
 	 *     TypeReference returns TypeReference
 	 *     Type returns TypeReference
-	 *     Literal returns TypeReference
 	 *
 	 * Constraint:
 	 *     type=[NamedType|QualifiedName]

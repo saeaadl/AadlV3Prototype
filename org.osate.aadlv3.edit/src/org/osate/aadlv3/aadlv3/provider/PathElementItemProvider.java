@@ -32,7 +32,7 @@ import org.osate.aadlv3.aadlv3.Aadlv3Package;
  * <!-- end-user-doc -->
  * @generated
  */
-public class PathElementItemProvider extends ModelElementReferenceItemProvider {
+public class PathElementItemProvider extends NamedElementReferenceItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
