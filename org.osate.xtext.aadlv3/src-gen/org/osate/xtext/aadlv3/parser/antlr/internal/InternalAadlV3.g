@@ -5452,9 +5452,9 @@ ruleEvent returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getEventAccess().getValueLiteralParserRuleCall_4_0());
+					newCompositeNode(grammarAccess.getEventAccess().getValueListLiteralParserRuleCall_4_0());
 				}
-				lv_value_4_0=ruleLiteral
+				lv_value_4_0=ruleListLiteral
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getEventRule());
@@ -5463,7 +5463,7 @@ ruleEvent returns [EObject current=null]
 						$current,
 						"value",
 						lv_value_4_0,
-						"org.osate.xtext.aadlv3.AadlV3.Literal");
+						"org.osate.xtext.aadlv3.AadlV3.ListLiteral");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -6128,35 +6128,11 @@ ruleLiteral returns [EObject current=null]
 			/* */
 		}
 		{
-			newCompositeNode(grammarAccess.getLiteralAccess().getEnumerationLiteralParserRuleCall_9());
+			newCompositeNode(grammarAccess.getLiteralAccess().getTypeReferenceParserRuleCall_9());
 		}
-		this_EnumerationLiteral_9=ruleEnumerationLiteral
+		this_TypeReference_9=ruleTypeReference
 		{
-			$current = $this_EnumerationLiteral_9.current;
-			afterParserOrEnumRuleCall();
-		}
-		    |
-		{
-			/* */
-		}
-		{
-			newCompositeNode(grammarAccess.getLiteralAccess().getModelElementReferenceParserRuleCall_10());
-		}
-		this_ModelElementReference_10=ruleModelElementReference
-		{
-			$current = $this_ModelElementReference_10.current;
-			afterParserOrEnumRuleCall();
-		}
-		    |
-		{
-			/* */
-		}
-		{
-			newCompositeNode(grammarAccess.getLiteralAccess().getTypeReferenceParserRuleCall_11());
-		}
-		this_TypeReference_11=ruleTypeReference
-		{
-			$current = $this_TypeReference_11.current;
+			$current = $this_TypeReference_9.current;
 			afterParserOrEnumRuleCall();
 		}
 	)

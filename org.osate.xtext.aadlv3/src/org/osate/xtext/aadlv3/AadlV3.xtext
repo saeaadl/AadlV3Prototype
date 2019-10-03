@@ -342,7 +342,7 @@ fragment BehaviorSpecificationElement*:
 
 Event returns av3::Generator:
 	name=ID ':' type=('error'|'recover'|'repair') 'event' 
-	(value=Literal)?	';'
+	(value=ListLiteral)?	';'
 ;
 
 
@@ -379,7 +379,7 @@ FeatureInput returns av3::ConditionOperation:
 
 Literal returns av3::Literal:
 	IntegerLiteral | RealLiteral | StringLiteral | BooleanLiteral | PropertyReference  | DirectionalLiteral | ListLiteral | MultiLiteralOperation
-	| ContainsToken | EnumerationLiteral  | ModelElementReference | TypeReference //| FeatureInput
+	| ContainsToken   | TypeReference //| ModelElementReference| EnumerationLiteral //| FeatureInput
 ;
 
 

@@ -39,6 +39,7 @@ import static extension org.osate.aadlv3.util.AIv3API.*
 import static extension org.osate.aadlv3.util.Aadlv3Util.*
 import org.osate.aadlv3.aadlv3.TypeDef
 import org.osate.aadlv3.aadlv3.EnumerationType
+import org.osate.aadlv3.aadlv3.Literal
 
 class Instantiator {
 	
@@ -628,8 +629,9 @@ class Instantiator {
 		if (br.condition !== null) {
 			var behaviorCondition = br.condition.copy
 			// now replace ConditionElements by respective instances
-			val cos = EcoreUtil2.eAllOfType(behaviorCondition, ConditionOperation);
+			val cos = EcoreUtil2.eAllOfType(behaviorCondition, Literal).filter[lit|!(lit instanceof ECollection)];
 			for (co : cos) {
+				if (co instanceof ConditionOperation){
 				val cio = co.createConstrainedInstanceObject(context, false)
 				val container = co.eContainer
 				if (container instanceof ECollection) {
@@ -639,19 +641,21 @@ class Instantiator {
 					// single condition element as condition
 					behaviorCondition = cio
 				}
+				}
 			}
-			// do the same for Generator references without types
-			val mers = EcoreUtil2.eAllOfType(behaviorCondition, ModelElementReference);
-			for (mer : mers) {
-				val tio = context.getInstanceElement(mer);
+			// do the same for condition elements without types
+			for (co : cos) {
+				if (co instanceof ModelElementReference){
+				val tio = context.getInstanceElement(co);
 				val cio = tio.createConstrainedInstanceObject(context, false)
-				val container = mer.eContainer
+				val container = co.eContainer
 				if (container instanceof ECollection) {
-					container.elements.remove(mer)
+					container.elements.remove(co)
 					container.elements.add(cio)
 				} else if (container === null) {
 					// single condition element as condition
 					behaviorCondition = cio
+				}
 				}
 			}
 			bri.condition = behaviorCondition

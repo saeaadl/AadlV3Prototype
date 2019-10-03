@@ -3721,21 +3721,9 @@ rule__Literal__Alternatives
 	)
 	|
 	(
-		{ before(grammarAccess.getLiteralAccess().getEnumerationLiteralParserRuleCall_9()); }
-		ruleEnumerationLiteral
-		{ after(grammarAccess.getLiteralAccess().getEnumerationLiteralParserRuleCall_9()); }
-	)
-	|
-	(
-		{ before(grammarAccess.getLiteralAccess().getModelElementReferenceParserRuleCall_10()); }
-		ruleModelElementReference
-		{ after(grammarAccess.getLiteralAccess().getModelElementReferenceParserRuleCall_10()); }
-	)
-	|
-	(
-		{ before(grammarAccess.getLiteralAccess().getTypeReferenceParserRuleCall_11()); }
+		{ before(grammarAccess.getLiteralAccess().getTypeReferenceParserRuleCall_9()); }
 		ruleTypeReference
-		{ after(grammarAccess.getLiteralAccess().getTypeReferenceParserRuleCall_11()); }
+		{ after(grammarAccess.getLiteralAccess().getTypeReferenceParserRuleCall_9()); }
 	)
 ;
 finally {
@@ -18418,9 +18406,9 @@ rule__Event__ValueAssignment_4
 	}
 :
 	(
-		{ before(grammarAccess.getEventAccess().getValueLiteralParserRuleCall_4_0()); }
-		ruleLiteral
-		{ after(grammarAccess.getEventAccess().getValueLiteralParserRuleCall_4_0()); }
+		{ before(grammarAccess.getEventAccess().getValueListLiteralParserRuleCall_4_0()); }
+		ruleListLiteral
+		{ after(grammarAccess.getEventAccess().getValueListLiteralParserRuleCall_4_0()); }
 	)
 ;
 finally {

@@ -757,7 +757,6 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
-	 *     Literal returns EnumerationLiteral
 	 *     EnumerationLiteral returns EnumerationLiteral
 	 *
 	 * Constraint:
@@ -792,7 +791,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     Event returns Generator
 	 *
 	 * Constraint:
-	 *     (name=ID (type='error' | type='recover' | type='repair') value=Literal?)
+	 *     (name=ID (type='error' | type='recover' | type='repair') value=ListLiteral?)
 	 */
 	protected void sequence_Event(ISerializationContext context, Generator semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -958,7 +957,6 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 * Contexts:
 	 *     ModelElementReference returns ModelElementReference
 	 *     ModelElementReference.ModelElementReference_1_0_0 returns ModelElementReference
-	 *     Literal returns ModelElementReference
 	 *
 	 * Constraint:
 	 *     (element=[ModelElement|ID] | (context=ModelElementReference_ModelElementReference_1_0_0 element=[ModelElement|ID]))

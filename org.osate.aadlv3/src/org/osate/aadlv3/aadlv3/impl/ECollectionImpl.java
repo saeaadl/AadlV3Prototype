@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.ECollection;
 import org.osate.aadlv3.aadlv3.Expression;
+import org.osate.aadlv3.aadlv3.Literal;
 
 /**
  * <!-- begin-user-doc -->
@@ -256,7 +257,7 @@ public class ECollectionImpl extends LiteralImpl implements ECollection {
 	@Override
 	public boolean contains(EList<Expression> obj) {
 		for (Expression el : obj) {
-			if (!this.sameAs(el))
+			if (!this.contains(el))
 				return false;
 		}
 		return true;
@@ -265,10 +266,21 @@ public class ECollectionImpl extends LiteralImpl implements ECollection {
 	@Override
 	public boolean contains(ECollection obj) {
 		for (Expression el : obj.getElements()) {
-			if (!this.sameAs(el))
+			if (!this.contains(el))
 				return false;
 		}
 		return true;
+	}
+
+	@Override
+	public boolean contains(Literal element) {
+		if (element == null)
+			return false;
+		for (Expression el : this.getElements()) {
+			if (element.sameAs(el))
+				return true;
+		}
+		return false;
 	}
 
 } //ECollectionImpl
