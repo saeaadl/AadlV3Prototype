@@ -48,10 +48,10 @@ package PortConnectionExample is
 //		taction: flow  sink p1;
 	@EM{
 		use states threestate;
-		eact1: error event ServiceOmission ;
+		eact1: error event (ServiceOmission) ;
 		actuate1: s0-[eact1 in (ServiceOmission)]-> s1;
 		actuate3: s1-[ ]-> { effect(ServiceOmission)};
-		actuate2: s0-[ p1 in (ServiceOmission)]-> { effect};//(ServiceOmission)};
+		actuate2: s0-[ p1 in (ServiceOmission)]-> { effect(ServiceOmission)};
 	};
 	end;
 	
@@ -81,8 +81,8 @@ package PortConnectionExample is
 //		use states threestate;
 //		e1: error event;
 //		r1: s0 -[e1 ]-> s1 {outsignal(ServiceOmission)};
-//		computer2: insignal in ServiceOmission ->  outsignal(ServiceOmission);
-		computer2: insignal ->  outsignal;
+		computer2: insignal in (ServiceOmission) ->  outsignal(ServiceOmission);
+//		computer2: insignal ->  outsignal;
 //		r3: insignal in ServiceOmission-> ;
 	};
 	end;
@@ -129,8 +129,8 @@ package PortConnectionExample is
 		
 //		cpubinding: cycles binding processing.dofilter.cpu -> hw.cpu;
 	@EM{
-		effect1: actuate.actt2.effect in (cycles) ->  effect(cycles);
-//		effect2: actuate.actt2.effect in ServiceOmission ->  effect(ServiceOmission);
+//		effect1: actuate.actt2.effect in (cycles) ->  effect(cycles);
+		effect2: actuate.actt2.effect in (ServiceOmission) ->  effect(ServiceOmission);
 	};
 	end;
 	
