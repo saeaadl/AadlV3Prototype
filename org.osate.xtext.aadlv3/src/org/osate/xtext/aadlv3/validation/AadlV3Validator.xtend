@@ -1571,12 +1571,12 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 				error('Flow path must not be between features of subcomponents', assoc, null, BetweenFeatures)
 			} else // } else if (assoc.associationType === AssociationType.FLOWSINK) {
 			if (assoc.source !== null && assoc.destination === null &&
-				!(assoc.source.namedElementReferenceIncludesComponent)) {
+				(assoc.source.namedElementReferenceIncludesComponent)) {
 				error('Flow sink must not be a subcomponent feature', assoc, Aadlv3Package.Literals.ASSOCIATION__SOURCE,
 					NotSubcomponentFeature)
 			} else // } else if (assoc.associationType === AssociationType.FLOWSOURCE) {
 			if (assoc.source === null && assoc.destination !== null &&
-				!(assoc.destination.namedElementReferenceIncludesComponent)) {
+				(assoc.destination.namedElementReferenceIncludesComponent)) {
 				error('Flow source must not be a subcomponent feature', assoc,
 					Aadlv3Package.Literals.ASSOCIATION__DESTINATION, NotSubcomponentFeature)
 			}
