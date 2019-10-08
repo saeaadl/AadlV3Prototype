@@ -62,6 +62,10 @@ public class InstantiateWorkingSetHandler extends AbstractHandler {
 //						AIJGraphXUtil.showGraph(BProp);
 //						FaultGraph fg = new FaultGraph();
 //						fg.generateCauseGraphs(rootinstance, TokenTraceType.TOKEN_TRACE,"EM");
+//						FaultGraph fg = new FaultGraph();
+//						fg.generateCauseGraphs(rootinstance, TokenTraceType.TOKEN_GRAPH,"EM");
+//						FaultGraph fg = new FaultGraph();
+//						fg.generateCauseGraphs(rootinstance, TokenTraceType.MINIMAL_CUT_SET,"EM");
 						FaultGraph fgg = new FaultGraph();
 						fgg.generateEffectGraph(rootinstance, TokenTraceType.TOKEN_TRACE,"EM");
 					}

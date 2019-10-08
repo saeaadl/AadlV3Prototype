@@ -544,11 +544,6 @@ class AIv3API {
 		val dstCi = containingComponentInstanceOrSelf(desiredTarget);
 		val bris = dstCi.behaviorRules.filter[bri|bri.behaviorRule.containingBehaviorSpecification.name.equals(behaviorSpecName) && bri.condition !== null]
 		val cios = bris.map[bri|bri.condition.eAllOfType(ConstrainedInstanceObject)].flatten.toList
-		val first = cios.head
-		val res1 = first.instanceObject === desiredTarget
-		val res2 = if (first.constraint !== null && targetLiteral !== null){
-			first.constraint.contains(targetLiteral)
-		} 
 		return cios.filter[target|target.instanceObject === desiredTarget && ((target.constraint !== null&& targetLiteral !== null)?target.constraint.contains(targetLiteral):true/*targetLiteral === null*/)].toList
 	}
 	
