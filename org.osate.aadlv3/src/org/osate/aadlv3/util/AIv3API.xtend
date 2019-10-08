@@ -543,15 +543,20 @@ class AIv3API {
 	def static Collection<ConstrainedInstanceObject> findContainingConditionCIOs(InstanceObject desiredTarget, Literal targetLiteral, String behaviorSpecName){
 		val dstCi = containingComponentInstanceOrSelf(desiredTarget);
 		val bris = dstCi.behaviorRules.filter[bri|bri.behaviorRule.containingBehaviorSpecification.name.equals(behaviorSpecName) && bri.condition !== null]
-		val cios = bris.map[bri|bri.condition.eAllOfType(ConstrainedInstanceObject)].flatten
-		return cios.filter[target|target.instanceObject === desiredTarget && (target.constraint !== null?target.constraint.contains(targetLiteral):targetLiteral === null)].toList
+		val cios = bris.map[bri|bri.condition.eAllOfType(ConstrainedInstanceObject)].flatten.toList
+		val first = cios.head
+		val res1 = first.instanceObject === desiredTarget
+		val res2 = if (first.constraint !== null && targetLiteral !== null){
+			first.constraint.contains(targetLiteral)
+		} 
+		return cios.filter[target|target.instanceObject === desiredTarget && ((target.constraint !== null&& targetLiteral !== null)?target.constraint.contains(targetLiteral):true/*targetLiteral === null*/)].toList
 	}
 	
 	def static Collection<ConstrainedInstanceObject> findContainingConditionCIOs(InstanceObject context, InstanceObject desiredTarget, Literal targetLiteral, String behaviorSpecName){
 		val dstCi = containingComponentInstanceOrSelf(context);
 		val bris = dstCi.behaviorRules.filter[bri|bri.behaviorRule.containingBehaviorSpecification.name.equals(behaviorSpecName) && bri.condition !== null]
 		val cios = bris.map[bri|bri.condition.eAllOfType(ConstrainedInstanceObject)].flatten
-		return cios.filter[target|target.instanceObject === desiredTarget && (target.constraint !== null?target.constraint.contains(targetLiteral):targetLiteral === null)].toList
+		return cios.filter[target|target.instanceObject === desiredTarget && ((target.constraint !== null&& targetLiteral !== null)?target.constraint.contains(targetLiteral):true/*targetLiteral === null*/)].toList
 	}
 	
 	def static Iterable<ConstrainedInstanceObject> getAllConstrainedInstanceObjects(Literal lit){

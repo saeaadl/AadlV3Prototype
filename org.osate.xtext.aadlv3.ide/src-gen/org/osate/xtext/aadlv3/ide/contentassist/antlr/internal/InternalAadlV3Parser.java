@@ -42978,7 +42978,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             // InternalAadlV3.g:13009:1: ( rule__Assignment__Group_1__0__Impl rule__Assignment__Group_1__1 )
             // InternalAadlV3.g:13010:2: rule__Assignment__Group_1__0__Impl rule__Assignment__Group_1__1
             {
-            pushFollow(FOLLOW_6);
+            pushFollow(FOLLOW_27);
             rule__Assignment__Group_1__0__Impl();
 
             state._fsp--;
@@ -59860,28 +59860,28 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Assignment__ValueAssignment_1_1"
-    // InternalAadlV3.g:18673:1: rule__Assignment__ValueAssignment_1_1 : ( ruleTypeReference ) ;
+    // InternalAadlV3.g:18673:1: rule__Assignment__ValueAssignment_1_1 : ( ruleNamedElementReference ) ;
     public final void rule__Assignment__ValueAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAadlV3.g:18677:1: ( ( ruleTypeReference ) )
-            // InternalAadlV3.g:18678:2: ( ruleTypeReference )
+            // InternalAadlV3.g:18677:1: ( ( ruleNamedElementReference ) )
+            // InternalAadlV3.g:18678:2: ( ruleNamedElementReference )
             {
-            // InternalAadlV3.g:18678:2: ( ruleTypeReference )
-            // InternalAadlV3.g:18679:3: ruleTypeReference
+            // InternalAadlV3.g:18678:2: ( ruleNamedElementReference )
+            // InternalAadlV3.g:18679:3: ruleNamedElementReference
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getAssignmentAccess().getValueTypeReferenceParserRuleCall_1_1_0()); 
+               before(grammarAccess.getAssignmentAccess().getValueNamedElementReferenceParserRuleCall_1_1_0()); 
             }
             pushFollow(FOLLOW_2);
-            ruleTypeReference();
+            ruleNamedElementReference();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getAssignmentAccess().getValueTypeReferenceParserRuleCall_1_1_0()); 
+               after(grammarAccess.getAssignmentAccess().getValueNamedElementReferenceParserRuleCall_1_1_0()); 
             }
 
             }

@@ -355,7 +355,7 @@ BehaviorRule returns av3::BehaviorRule :
 ;
 
 Assignment returns av3::Assignment:
-	target= ModelElementReference ('(' value=TypeReference')')?
+	target= ModelElementReference ('(' value=NamedElementReference')')?
 ;
 
 CurrentState returns av3::StateSpecification:

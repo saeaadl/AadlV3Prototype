@@ -30,6 +30,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.osate.aadlv3.aadlv3.Aadlv3Factory;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.NamedElementReference;
+import org.osate.aadlv3.aadlv3.TypeReference;
 
 /**
  * This is the item provider adapter for a {@link org.osate.aadlv3.aadlv3.NamedElementReference} object.
@@ -124,11 +125,12 @@ public class NamedElementReferenceItemProvider extends LiteralItemProvider {
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_NamedElementReference_type");
+		NamedElementReference typeReference = (NamedElementReference) object;
+		return getString("_UI_NamedElementReference_type") + " " + typeReference.getElement().getName();
 	}
 
 	/**

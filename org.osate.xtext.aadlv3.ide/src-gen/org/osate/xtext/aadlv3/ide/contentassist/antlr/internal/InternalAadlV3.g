@@ -18676,9 +18676,9 @@ rule__Assignment__ValueAssignment_1_1
 	}
 :
 	(
-		{ before(grammarAccess.getAssignmentAccess().getValueTypeReferenceParserRuleCall_1_1_0()); }
-		ruleTypeReference
-		{ after(grammarAccess.getAssignmentAccess().getValueTypeReferenceParserRuleCall_1_1_0()); }
+		{ before(grammarAccess.getAssignmentAccess().getValueNamedElementReferenceParserRuleCall_1_1_0()); }
+		ruleNamedElementReference
+		{ after(grammarAccess.getAssignmentAccess().getValueNamedElementReferenceParserRuleCall_1_1_0()); }
 	)
 ;
 finally {

@@ -299,7 +299,7 @@ public class TokenItemProvider
 			return overlayImage(object, getResourceLocator().getImage("full/obj16/System"));
 		}
 		if (ev.getTokenType() == TokenType.COMPONENT) {
-			return overlayImage(object, getResourceLocator().getImage("full/obj16/BasicTokenBW"));
+			return overlayImage(object, getResourceLocator().getImage("full/obj16/System"));
 		}
 		if (ev.getTokenType() == TokenType.BASIC) {
 			return overlayImage(object, getResourceLocator().getImage("full/obj16/BasicTokenBW"));

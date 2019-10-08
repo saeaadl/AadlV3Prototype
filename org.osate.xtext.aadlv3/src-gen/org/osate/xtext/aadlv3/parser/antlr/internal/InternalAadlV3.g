@@ -5663,9 +5663,9 @@ ruleAssignment returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getAssignmentAccess().getValueTypeReferenceParserRuleCall_1_1_0());
+						newCompositeNode(grammarAccess.getAssignmentAccess().getValueNamedElementReferenceParserRuleCall_1_1_0());
 					}
-					lv_value_2_0=ruleTypeReference
+					lv_value_2_0=ruleNamedElementReference
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getAssignmentRule());
@@ -5674,7 +5674,7 @@ ruleAssignment returns [EObject current=null]
 							$current,
 							"value",
 							lv_value_2_0,
-							"org.osate.xtext.aadlv3.AadlV3.TypeReference");
+							"org.osate.xtext.aadlv3.AadlV3.NamedElementReference");
 						afterParserOrEnumRuleCall();
 					}
 				)

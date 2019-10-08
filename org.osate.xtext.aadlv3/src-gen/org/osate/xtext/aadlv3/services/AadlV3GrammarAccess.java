@@ -3166,14 +3166,14 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
 		private final Keyword cLeftParenthesisKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
 		private final Assignment cValueAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cValueTypeReferenceParserRuleCall_1_1_0 = (RuleCall)cValueAssignment_1_1.eContents().get(0);
+		private final RuleCall cValueNamedElementReferenceParserRuleCall_1_1_0 = (RuleCall)cValueAssignment_1_1.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
 		
 		//Assignment av3::Assignment:
-		//	target=ModelElementReference ('(' value=TypeReference ')')?;
+		//	target=ModelElementReference ('(' value=NamedElementReference ')')?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//target=ModelElementReference ('(' value=TypeReference ')')?
+		//target=ModelElementReference ('(' value=NamedElementReference ')')?
 		public Group getGroup() { return cGroup; }
 		
 		//target=ModelElementReference
@@ -3182,17 +3182,17 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		//ModelElementReference
 		public RuleCall getTargetModelElementReferenceParserRuleCall_0_0() { return cTargetModelElementReferenceParserRuleCall_0_0; }
 		
-		//('(' value=TypeReference ')')?
+		//('(' value=NamedElementReference ')')?
 		public Group getGroup_1() { return cGroup_1; }
 		
 		//'('
 		public Keyword getLeftParenthesisKeyword_1_0() { return cLeftParenthesisKeyword_1_0; }
 		
-		//value=TypeReference
+		//value=NamedElementReference
 		public Assignment getValueAssignment_1_1() { return cValueAssignment_1_1; }
 		
-		//TypeReference
-		public RuleCall getValueTypeReferenceParserRuleCall_1_1_0() { return cValueTypeReferenceParserRuleCall_1_1_0; }
+		//NamedElementReference
+		public RuleCall getValueNamedElementReferenceParserRuleCall_1_1_0() { return cValueNamedElementReferenceParserRuleCall_1_1_0; }
 		
 		//')'
 		public Keyword getRightParenthesisKeyword_1_2() { return cRightParenthesisKeyword_1_2; }
@@ -3449,7 +3449,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		//// expression/constraint language
 		// Literal av3::Literal:
 		//	IntegerLiteral | RealLiteral | StringLiteral | BooleanLiteral | PropertyReference | DirectionalLiteral | ListLiteral
-		//	| MultiLiteralOperation | ContainsToken | NamedElementReference // | EnumerationLiteral //| FeatureInput
+		//	| MultiLiteralOperation | ContainsToken | NamedElementReference //| EnumerationLiteral //| FeatureInput
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -5800,7 +5800,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Assignment av3::Assignment:
-	//	target=ModelElementReference ('(' value=TypeReference ')')?;
+	//	target=ModelElementReference ('(' value=NamedElementReference ')')?;
 	public AssignmentElements getAssignmentAccess() {
 		return pAssignment;
 	}
@@ -5864,7 +5864,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	//// expression/constraint language
 	// Literal av3::Literal:
 	//	IntegerLiteral | RealLiteral | StringLiteral | BooleanLiteral | PropertyReference | DirectionalLiteral | ListLiteral
-	//	| MultiLiteralOperation | ContainsToken | NamedElementReference // | EnumerationLiteral //| FeatureInput
+	//	| MultiLiteralOperation | ContainsToken | NamedElementReference //| EnumerationLiteral //| FeatureInput
 	//;
 	public LiteralElements getLiteralAccess() {
 		return pLiteral;

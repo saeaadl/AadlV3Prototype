@@ -50,7 +50,7 @@ package TokenPropagationExample is
 		use states threestate;
 		eact1: error event (ServiceOmission) ;
 		actuate1: s0-[eact1 ]-> s1;
-		actuate3: s1-[ ]-> { effect(ServiceOmission)};
+		actuate3: s1-[ ]-> { effect};
 		actuate2: s0-[ p1 ]-> { effect};//(ServiceOmission)};
 	};
 	end;

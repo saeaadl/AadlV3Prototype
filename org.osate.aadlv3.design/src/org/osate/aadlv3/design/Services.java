@@ -126,12 +126,11 @@ public class Services {
 
 	public String getTokenKindOperator(EObject context) {
 		Token ev = (Token) context;
-		if ( ev.getTokens().size() > 1) {
-			return ev.getOperator().getName() ;
-		} 
-		if ( ev.getTokens().size() == 1) {
-			return "Intermediate" ;
-		} 
+		if (ev.getTokenType() == TokenType.INTERMEDIATE) {
+			if ( ev.getTokens().size() > 1) {
+				return ev.getOperator().getName() ;
+			} 
+		}
 		return ev.getTokenType().getName() ;
 	}
 

@@ -317,10 +317,22 @@ public class FaultGraph {
 
 	private void processGeneratorEffects(Token parent, GeneratorInstance gi) {
 		if (graph.containsVertex(gi)) {
+			Literal lit = gi.getValue();
 			Set<DefaultEdge> edges = graph.outgoingEdgesOf(gi);
-			for (DefaultEdge edge : edges) {
-				InstanceObject nextCioio = graph.getEdgeTarget(edge);
-				processEffect(parent, nextCioio);
+			if (lit instanceof ECollection) {
+				for (Expression t : ((ECollection) lit).getElements()) {
+					Token nextStep = addNextStep(parent, gi, (Literal)t);
+					for (DefaultEdge edge : edges) {
+						InstanceObject nextCioio = graph.getEdgeTarget(edge);
+						processEffect(nextStep, nextCioio);
+					}
+				}
+			} else {
+				Token nextStep = addNextStep(parent, gi, lit);
+				for (DefaultEdge edge : edges) {
+					InstanceObject nextCioio = graph.getEdgeTarget(edge);
+					processEffect(nextStep, nextCioio);
+				}
 			}
 		}
 	}
@@ -377,13 +389,15 @@ public class FaultGraph {
 			if (t.getTokens().isEmpty()) {
 				if (containingComponentInstanceOrSelf(t.getRelatedInstanceObject()) == eventTrace.getInstanceRoot()) {
 					t.setTokenType(TokenType.EXTERNAL);
-				} else if (t.getRelatedInstanceObject() instanceof FeatureInstance || t.getRelatedInstanceObject() instanceof ComponentInstance) {
-					t.setTokenType(TokenType.UNDEVELOPED);
-				} else {
-					t.setTokenType(TokenType.BASIC);
+				} else if (t.getTokenType() != TokenType.COMPONENT && t.getTokenType() != TokenType.SYSTEM ) {
+					if(t.getRelatedInstanceObject() instanceof FeatureInstance || t.getRelatedInstanceObject() instanceof ComponentInstance) {
+						t.setTokenType(TokenType.UNDEVELOPED);
+					} else {
+						t.setTokenType(TokenType.BASIC);
 				}
 			}
 		}
+	}
 	}
 
 }

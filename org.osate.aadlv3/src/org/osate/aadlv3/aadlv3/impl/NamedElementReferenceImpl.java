@@ -258,6 +258,21 @@ public class NamedElementReferenceImpl extends LiteralImpl implements NamedEleme
 		}
 		return super.eIsSet(featureID);
 	}
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy())
+			return super.toString();
+
+		if (this.getElement().getName() != null) {
+			return this.getElement().getName();
+		}
+		return "";
+	}
 
 	@Override
 	public boolean sameAs(Object obj) {

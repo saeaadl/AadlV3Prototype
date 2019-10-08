@@ -345,7 +345,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     Assignment returns Assignment
 	 *
 	 * Constraint:
-	 *     (target=ModelElementReference value=TypeReference?)
+	 *     (target=ModelElementReference value=NamedElementReference?)
 	 */
 	protected void sequence_Assignment(ISerializationContext context, Assignment semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
