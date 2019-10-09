@@ -186,6 +186,8 @@ public class AIJGraphTUtil {
 					for (ConstrainedInstanceObject ce : condcios) {
 						// all cond to outgoing feature instance rule
 						addPath(directedGraph, ce, action);
+						// add ce io as path source to handle unhandled tokens
+						addPath(directedGraph, ce.getInstanceObject(), action);
 						// generator to generator cond
 						if (ce.getInstanceObject() instanceof GeneratorInstance) {
 							addPath(directedGraph,ce.getInstanceObject(),ce);

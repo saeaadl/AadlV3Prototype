@@ -76,7 +76,7 @@ public class FaultGraph {
 								: (eTrace.getTokenTraceType().equals(TokenTraceType.COMPOSITE_PARTS) ? "_parts"
 										: "_tree")));
 		URI ftaURI = EcoreUtil.getURI(eTrace.getInstanceRoot()).trimFragment().trimFileExtension().trimSegments(1)
-				.appendSegment("reports").appendSegment("TokenTrace").appendSegment(rootname).appendFileExtension("tt");
+				.appendSegment("reports").appendSegment("TokenTraces").appendSegment(rootname).appendFileExtension("tt");
 		Resource res = eTrace.getInstanceRoot().eResource().getResourceSet().getResource(ftaURI, false);
 		if (res == null) {
 			res = eTrace.getInstanceRoot().eResource().getResourceSet().createResource(ftaURI);
