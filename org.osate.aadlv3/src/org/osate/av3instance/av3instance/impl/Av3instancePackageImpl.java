@@ -34,6 +34,7 @@ import org.osate.av3instance.av3instance.FeatureInstance;
 import org.osate.av3instance.av3instance.GeneratorInstance;
 import org.osate.av3instance.av3instance.InstanceObject;
 import org.osate.av3instance.av3instance.PathInstance;
+import org.osate.av3instance.av3instance.SinkInstance;
 import org.osate.av3instance.av3instance.StateInstance;
 
 /**
@@ -105,6 +106,13 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 	 * @generated
 	 */
 	private EClass stateInstanceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass sinkInstanceEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -379,6 +387,16 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 	 * @generated
 	 */
 	@Override
+	public EReference getComponentInstance_Sinks() {
+		return (EReference) componentInstanceEClass.getEStructuralFeatures().get(11);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getAssociationInstance() {
 		return associationInstanceEClass;
 	}
@@ -639,6 +657,16 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 	 * @generated
 	 */
 	@Override
+	public EClass getSinkInstance() {
+		return sinkInstanceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Av3instanceFactory getAv3instanceFactory() {
 		return (Av3instanceFactory) getEFactoryInstance();
 	}
@@ -685,6 +713,7 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 		createEReference(componentInstanceEClass, COMPONENT_INSTANCE__GENERATORS);
 		createEReference(componentInstanceEClass, COMPONENT_INSTANCE__STATES);
 		createEReference(componentInstanceEClass, COMPONENT_INSTANCE__ACTIONS);
+		createEReference(componentInstanceEClass, COMPONENT_INSTANCE__SINKS);
 
 		associationInstanceEClass = createEClass(ASSOCIATION_INSTANCE);
 		createEAttribute(associationInstanceEClass, ASSOCIATION_INSTANCE__ASSOCIATION_TYPE);
@@ -717,6 +746,8 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 		createEAttribute(constrainedInstanceObjectEClass, CONSTRAINED_INSTANCE_OBJECT__OUTGOING);
 
 		stateInstanceEClass = createEClass(STATE_INSTANCE);
+
+		sinkInstanceEClass = createEClass(SINK_INSTANCE);
 	}
 
 	/**
@@ -761,6 +792,7 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 		constrainedInstanceObjectEClass.getESuperTypes().add(this.getInstanceObject());
 		constrainedInstanceObjectEClass.getESuperTypes().add(theAadlv3Package.getLiteral());
 		stateInstanceEClass.getESuperTypes().add(this.getInstanceObject());
+		sinkInstanceEClass.getESuperTypes().add(this.getInstanceObject());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(instanceObjectEClass, InstanceObject.class, "InstanceObject", IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
@@ -824,6 +856,9 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 		initEReference(getComponentInstance_Actions(), this.getConstrainedInstanceObject(), null, "actions", null, 0, //$NON-NLS-1$
 				-1, ComponentInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getComponentInstance_Sinks(), this.getSinkInstance(), null, "sinks", null, 0, 1, //$NON-NLS-1$
+				ComponentInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(associationInstanceEClass, AssociationInstance.class, "AssociationInstance", !IS_ABSTRACT, //$NON-NLS-1$
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -903,6 +938,9 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(stateInstanceEClass, StateInstance.class, "StateInstance", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
+				IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(sinkInstanceEClass, SinkInstance.class, "SinkInstance", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
 				IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource

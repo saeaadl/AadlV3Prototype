@@ -169,6 +169,7 @@ public class AIJGraphTUtil {
 			}
 			EList<BehaviorRuleInstance> bris = ci.getBehaviorRules();
 			for (BehaviorRuleInstance bri : bris) {
+				Iterable<ConstrainedInstanceObject> condcios = getAllConstrainedInstanceObjects(bri.getCondition());
 				for (ConstrainedInstanceObject action : bri.getActions()) {
 					// path to the current state from which to trace back.
 						ConstrainedInstanceObject cs = bri.getCurrentState();
@@ -182,7 +183,6 @@ public class AIJGraphTUtil {
 							}
 						}
 					// process conditions
-					Iterable<ConstrainedInstanceObject> condcios = getAllConstrainedInstanceObjects(bri.getCondition());
 					for (ConstrainedInstanceObject ce : condcios) {
 						// all cond to outgoing feature instance rule
 						addPath(directedGraph, ce, action);
@@ -206,7 +206,6 @@ public class AIJGraphTUtil {
 						}
 					}
 					// process conditions
-					Iterable<ConstrainedInstanceObject> condcios = getAllConstrainedInstanceObjects(bri.getCondition());
 					for (ConstrainedInstanceObject ce : condcios) {
 						// edge from condition elements to target state
 						addPath(directedGraph, ce, ts);
@@ -220,6 +219,15 @@ public class AIJGraphTUtil {
 						for (ConstrainedInstanceObject subaction : subactions) {
 							// edge from matching action to cond cio
 							addPath(directedGraph, subaction, ce);
+						}
+					}
+				}
+				// deal with sinks
+				if (isASink(bri)) {
+					for (ConstrainedInstanceObject ce : condcios) {
+						// edge from condition elements to sink
+						if (ci.getSinks() != null) {
+							addPath(directedGraph, ce, ci.getSinks());
 						}
 					}
 				}

@@ -40,6 +40,7 @@ import static extension org.osate.aadlv3.util.Aadlv3Util.*
 import org.osate.aadlv3.aadlv3.TypeDef
 import org.osate.aadlv3.aadlv3.EnumerationType
 import org.osate.aadlv3.aadlv3.Literal
+import org.osate.av3instance.av3instance.Av3instanceFactory
 
 class Instantiator {
 	
@@ -679,6 +680,14 @@ class Instantiator {
 				}
 				context.actions += tcio;
 				bri.actions += tcio;
+			}
+		}
+		// deal with sink
+		if (br.isSink){
+			if (context.sinks === null){
+				val sink =Av3instanceFactory.eINSTANCE.createSinkInstance
+				sink.name = br.containingSubclause.name
+				context.sinks = sink
 			}
 		}
 		context.behaviorRules += bri

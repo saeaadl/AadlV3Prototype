@@ -70,7 +70,23 @@ public enum TokenType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	SYSTEM(5, "System", "System");
+	SYSTEM(5, "System", "System"), /**
+	 * The '<em><b>Unhandled</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #UNHANDLED_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	UNHANDLED(6, "Unhandled", "Unhandled"), /**
+	 * The '<em><b>Sink</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #SINK_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	SINK(7, "Sink", "Sink");
 
 	/**
 	 * The '<em><b>Basic</b></em>' literal value.
@@ -139,6 +155,28 @@ public enum TokenType implements Enumerator {
 	public static final int SYSTEM_VALUE = 5;
 
 	/**
+	 * The '<em><b>Unhandled</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #UNHANDLED
+	 * @model name="Unhandled"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int UNHANDLED_VALUE = 6;
+
+	/**
+	 * The '<em><b>Sink</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #SINK
+	 * @model name="Sink"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SINK_VALUE = 7;
+
+	/**
 	 * An array of all the '<em><b>Token Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -152,6 +190,8 @@ public enum TokenType implements Enumerator {
 			INTERMEDIATE,
 			COMPONENT,
 			SYSTEM,
+			UNHANDLED,
+			SINK,
 		};
 
 	/**
@@ -214,6 +254,8 @@ public enum TokenType implements Enumerator {
 			case INTERMEDIATE_VALUE: return INTERMEDIATE;
 			case COMPONENT_VALUE: return COMPONENT;
 			case SYSTEM_VALUE: return SYSTEM;
+			case UNHANDLED_VALUE: return UNHANDLED;
+			case SINK_VALUE: return SINK;
 		}
 		return null;
 	}

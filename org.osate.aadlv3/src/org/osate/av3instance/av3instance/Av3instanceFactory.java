@@ -107,6 +107,15 @@ public interface Av3instanceFactory extends EFactory {
 	StateInstance createStateInstance();
 
 	/**
+	 * Returns a new object of class '<em>Sink Instance</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Sink Instance</em>'.
+	 * @generated
+	 */
+	SinkInstance createSinkInstance();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

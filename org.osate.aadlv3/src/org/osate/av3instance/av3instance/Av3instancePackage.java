@@ -363,13 +363,22 @@ public interface Av3instancePackage extends EPackage {
 	int COMPONENT_INSTANCE__ACTIONS = INSTANCE_OBJECT_FEATURE_COUNT + 10;
 
 	/**
+	 * The feature id for the '<em><b>Sinks</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_INSTANCE__SINKS = INSTANCE_OBJECT_FEATURE_COUNT + 11;
+
+	/**
 	 * The number of structural features of the '<em>Component Instance</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_INSTANCE_FEATURE_COUNT = INSTANCE_OBJECT_FEATURE_COUNT + 11;
+	int COMPONENT_INSTANCE_FEATURE_COUNT = INSTANCE_OBJECT_FEATURE_COUNT + 12;
 
 	/**
 	 * The meta object id for the '{@link org.osate.av3instance.av3instance.impl.AssociationInstanceImpl <em>Association Instance</em>}' class.
@@ -882,6 +891,61 @@ public interface Av3instancePackage extends EPackage {
 	int STATE_INSTANCE_FEATURE_COUNT = INSTANCE_OBJECT_FEATURE_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.osate.av3instance.av3instance.impl.SinkInstanceImpl <em>Sink Instance</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.osate.av3instance.av3instance.impl.SinkInstanceImpl
+	 * @see org.osate.av3instance.av3instance.impl.Av3instancePackageImpl#getSinkInstance()
+	 * @generated
+	 */
+	int SINK_INSTANCE = 9;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SINK_INSTANCE__NAME = INSTANCE_OBJECT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Property Associations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SINK_INSTANCE__OWNED_PROPERTY_ASSOCIATIONS = INSTANCE_OBJECT__OWNED_PROPERTY_ASSOCIATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Associations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SINK_INSTANCE__INCOMING_ASSOCIATIONS = INSTANCE_OBJECT__INCOMING_ASSOCIATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Outgoing Associations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SINK_INSTANCE__OUTGOING_ASSOCIATIONS = INSTANCE_OBJECT__OUTGOING_ASSOCIATIONS;
+
+	/**
+	 * The number of structural features of the '<em>Sink Instance</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SINK_INSTANCE_FEATURE_COUNT = INSTANCE_OBJECT_FEATURE_COUNT + 0;
+
+	/**
 	 * Returns the meta object for class '{@link org.osate.av3instance.av3instance.InstanceObject <em>Instance Object</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1097,6 +1161,17 @@ public interface Av3instancePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getComponentInstance_Actions();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.osate.av3instance.av3instance.ComponentInstance#getSinks <em>Sinks</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Sinks</em>'.
+	 * @see org.osate.av3instance.av3instance.ComponentInstance#getSinks()
+	 * @see #getComponentInstance()
+	 * @generated
+	 */
+	EReference getComponentInstance_Sinks();
 
 	/**
 	 * Returns the meta object for class '{@link org.osate.av3instance.av3instance.AssociationInstance <em>Association Instance</em>}'.
@@ -1379,6 +1454,16 @@ public interface Av3instancePackage extends EPackage {
 	EClass getStateInstance();
 
 	/**
+	 * Returns the meta object for class '{@link org.osate.av3instance.av3instance.SinkInstance <em>Sink Instance</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Sink Instance</em>'.
+	 * @see org.osate.av3instance.av3instance.SinkInstance
+	 * @generated
+	 */
+	EClass getSinkInstance();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1566,6 +1651,14 @@ public interface Av3instancePackage extends EPackage {
 		 * @generated
 		 */
 		EReference COMPONENT_INSTANCE__ACTIONS = eINSTANCE.getComponentInstance_Actions();
+
+		/**
+		 * The meta object literal for the '<em><b>Sinks</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPONENT_INSTANCE__SINKS = eINSTANCE.getComponentInstance_Sinks();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.av3instance.av3instance.impl.AssociationInstanceImpl <em>Association Instance</em>}' class.
@@ -1788,6 +1881,16 @@ public interface Av3instancePackage extends EPackage {
 		 * @generated
 		 */
 		EClass STATE_INSTANCE = eINSTANCE.getStateInstance();
+
+		/**
+		 * The meta object literal for the '{@link org.osate.av3instance.av3instance.impl.SinkInstanceImpl <em>Sink Instance</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.osate.av3instance.av3instance.impl.SinkInstanceImpl
+		 * @see org.osate.av3instance.av3instance.impl.Av3instancePackageImpl#getSinkInstance()
+		 * @generated
+		 */
+		EClass SINK_INSTANCE = eINSTANCE.getSinkInstance();
 
 	}
 

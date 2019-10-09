@@ -85,6 +85,8 @@ public class Av3instanceFactoryImpl extends EFactoryImpl implements Av3instanceF
 			return createConstrainedInstanceObject();
 		case Av3instancePackage.STATE_INSTANCE:
 			return createStateInstance();
+		case Av3instancePackage.SINK_INSTANCE:
+			return createSinkInstance();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -176,6 +178,17 @@ public class Av3instanceFactoryImpl extends EFactoryImpl implements Av3instanceF
 	public StateInstance createStateInstance() {
 		StateInstanceImpl stateInstance = new StateInstanceImpl();
 		return stateInstance;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public SinkInstance createSinkInstance() {
+		SinkInstanceImpl sinkInstance = new SinkInstanceImpl();
+		return sinkInstance;
 	}
 
 	/**

@@ -597,5 +597,13 @@ class AIv3API {
 		return cioio instanceof ConstrainedInstanceObject? cioio.constraint:null;
 	}
 	
+		/**
+	 * return all action CIOs that refer to the instance object io
+	 */
+	def static boolean isASink(InstanceObject io){
+		return io.containingBehaviorRuleInstance.behaviorRule.isSink  //actions.empty
+	}
+	
+	
 	
 }

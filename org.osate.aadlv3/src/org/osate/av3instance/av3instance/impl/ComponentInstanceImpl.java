@@ -41,6 +41,7 @@ import org.osate.av3instance.av3instance.FeatureInstance;
 import org.osate.av3instance.av3instance.GeneratorInstance;
 import org.osate.av3instance.av3instance.PathInstance;
 
+import org.osate.av3instance.av3instance.SinkInstance;
 import org.osate.av3instance.av3instance.StateInstance;
 import static org.osate.aadlv3.util.AIv3API.*;
 
@@ -63,6 +64,7 @@ import static org.osate.aadlv3.util.AIv3API.*;
  *   <li>{@link org.osate.av3instance.av3instance.impl.ComponentInstanceImpl#getGenerators <em>Generators</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.impl.ComponentInstanceImpl#getStates <em>States</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.impl.ComponentInstanceImpl#getActions <em>Actions</em>}</li>
+ *   <li>{@link org.osate.av3instance.av3instance.impl.ComponentInstanceImpl#getSinks <em>Sinks</em>}</li>
  * </ul>
  *
  * @generated
@@ -187,6 +189,16 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 	 * @ordered
 	 */
 	protected EList<ConstrainedInstanceObject> actions;
+
+	/**
+	 * The cached value of the '{@link #getSinks() <em>Sinks</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSinks()
+	 * @generated
+	 * @ordered
+	 */
+	protected SinkInstance sinks;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -405,6 +417,58 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 	 * @generated
 	 */
 	@Override
+	public SinkInstance getSinks() {
+		return sinks;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetSinks(SinkInstance newSinks, NotificationChain msgs) {
+		SinkInstance oldSinks = sinks;
+		sinks = newSinks;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					Av3instancePackage.COMPONENT_INSTANCE__SINKS, oldSinks, newSinks);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setSinks(SinkInstance newSinks) {
+		if (newSinks != sinks) {
+			NotificationChain msgs = null;
+			if (sinks != null)
+				msgs = ((InternalEObject) sinks).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE - Av3instancePackage.COMPONENT_INSTANCE__SINKS, null, msgs);
+			if (newSinks != null)
+				msgs = ((InternalEObject) newSinks).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE - Av3instancePackage.COMPONENT_INSTANCE__SINKS, null, msgs);
+			msgs = basicSetSinks(newSinks, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, Av3instancePackage.COMPONENT_INSTANCE__SINKS,
+					newSinks, newSinks));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case Av3instancePackage.COMPONENT_INSTANCE__COMPONENTS:
@@ -425,6 +489,8 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 			return ((InternalEList<?>) getStates()).basicRemove(otherEnd, msgs);
 		case Av3instancePackage.COMPONENT_INSTANCE__ACTIONS:
 			return ((InternalEList<?>) getActions()).basicRemove(otherEnd, msgs);
+		case Av3instancePackage.COMPONENT_INSTANCE__SINKS:
+			return basicSetSinks(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -461,6 +527,8 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 			return getStates();
 		case Av3instancePackage.COMPONENT_INSTANCE__ACTIONS:
 			return getActions();
+		case Av3instancePackage.COMPONENT_INSTANCE__SINKS:
+			return getSinks();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -516,6 +584,9 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 			getActions().clear();
 			getActions().addAll((Collection<? extends ConstrainedInstanceObject>) newValue);
 			return;
+		case Av3instancePackage.COMPONENT_INSTANCE__SINKS:
+			setSinks((SinkInstance) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -561,6 +632,9 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 		case Av3instancePackage.COMPONENT_INSTANCE__ACTIONS:
 			getActions().clear();
 			return;
+		case Av3instancePackage.COMPONENT_INSTANCE__SINKS:
+			setSinks((SinkInstance) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -595,6 +669,8 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 			return states != null && !states.isEmpty();
 		case Av3instancePackage.COMPONENT_INSTANCE__ACTIONS:
 			return actions != null && !actions.isEmpty();
+		case Av3instancePackage.COMPONENT_INSTANCE__SINKS:
+			return sinks != null;
 		}
 		return super.eIsSet(featureID);
 	}

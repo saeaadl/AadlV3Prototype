@@ -451,6 +451,8 @@ public class TokenTracePackageImpl extends EPackageImpl implements TokenTracePac
 		addEEnumLiteral(tokenTypeEEnum, TokenType.INTERMEDIATE);
 		addEEnumLiteral(tokenTypeEEnum, TokenType.COMPONENT);
 		addEEnumLiteral(tokenTypeEEnum, TokenType.SYSTEM);
+		addEEnumLiteral(tokenTypeEEnum, TokenType.UNHANDLED);
+		addEEnumLiteral(tokenTypeEEnum, TokenType.SINK);
 
 		initEEnum(tokenTraceTypeEEnum, TokenTraceType.class, "TokenTraceType");
 		addEEnumLiteral(tokenTraceTypeEEnum, TokenTraceType.TOKEN_GRAPH);

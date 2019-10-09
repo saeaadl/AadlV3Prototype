@@ -127,6 +127,11 @@ public class Av3instanceAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseSinkInstance(SinkInstance object) {
+			return createSinkInstanceAdapter();
+		}
+
+		@Override
 		public Adapter caseNamedElement(NamedElement object) {
 			return createNamedElementAdapter();
 		}
@@ -283,6 +288,20 @@ public class Av3instanceAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createStateInstanceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.osate.av3instance.av3instance.SinkInstance <em>Sink Instance</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.osate.av3instance.av3instance.SinkInstance
+	 * @generated
+	 */
+	public Adapter createSinkInstanceAdapter() {
 		return null;
 	}
 

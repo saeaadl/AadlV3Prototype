@@ -270,6 +270,29 @@ public class Av3instanceItemProviderAdapterFactory extends Av3instanceAdapterFac
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.osate.av3instance.av3instance.SinkInstance} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SinkInstanceItemProvider sinkInstanceItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.osate.av3instance.av3instance.SinkInstance}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSinkInstanceAdapter() {
+		if (sinkInstanceItemProvider == null) {
+			sinkInstanceItemProvider = new SinkInstanceItemProvider(this);
+		}
+
+		return sinkInstanceItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -390,6 +413,8 @@ public class Av3instanceItemProviderAdapterFactory extends Av3instanceAdapterFac
 			constrainedInstanceObjectItemProvider.dispose();
 		if (stateInstanceItemProvider != null)
 			stateInstanceItemProvider.dispose();
+		if (sinkInstanceItemProvider != null)
+			sinkInstanceItemProvider.dispose();
 	}
 
 }

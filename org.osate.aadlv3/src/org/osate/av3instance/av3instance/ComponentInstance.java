@@ -39,6 +39,7 @@ import org.osate.aadlv3.aadlv3.Subcomponent;
  *   <li>{@link org.osate.av3instance.av3instance.ComponentInstance#getGenerators <em>Generators</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.ComponentInstance#getStates <em>States</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.ComponentInstance#getActions <em>Actions</em>}</li>
+ *   <li>{@link org.osate.av3instance.av3instance.ComponentInstance#getSinks <em>Sinks</em>}</li>
  * </ul>
  *
  * @see org.osate.av3instance.av3instance.Av3instancePackage#getComponentInstance()
@@ -229,5 +230,27 @@ public interface ComponentInstance extends InstanceObject {
 	 * @generated
 	 */
 	EList<ConstrainedInstanceObject> getActions();
+
+	/**
+	 * Returns the value of the '<em><b>Sinks</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Sinks</em>' containment reference.
+	 * @see #setSinks(SinkInstance)
+	 * @see org.osate.av3instance.av3instance.Av3instancePackage#getComponentInstance_Sinks()
+	 * @model containment="true"
+	 * @generated
+	 */
+	SinkInstance getSinks();
+
+	/**
+	 * Sets the value of the '{@link org.osate.av3instance.av3instance.ComponentInstance#getSinks <em>Sinks</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Sinks</em>' containment reference.
+	 * @see #getSinks()
+	 * @generated
+	 */
+	void setSinks(SinkInstance value);
 
 } // ComponentInstance

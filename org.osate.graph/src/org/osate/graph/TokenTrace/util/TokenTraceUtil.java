@@ -20,6 +20,7 @@ import org.osate.av3instance.av3instance.ComponentInstance;
 import org.osate.av3instance.av3instance.FeatureInstance;
 import org.osate.av3instance.av3instance.GeneratorInstance;
 import org.osate.av3instance.av3instance.InstanceObject;
+import org.osate.av3instance.av3instance.SinkInstance;
 import org.osate.av3instance.av3instance.StateInstance;
 import org.osate.graph.TokenTrace.TokenType;
 import org.osate.graph.TokenTrace.Token;
@@ -236,9 +237,10 @@ public class TokenTraceUtil {
 		}
 		ComponentInstance ci = AIv3API.containingComponentInstanceOrSelf(io);
 		String cipath = AIv3API.getInstanceObjectPath(ci);
-		String label = io instanceof FeatureInstance ? (Aadlv3Util.isOutgoing(((FeatureInstance)io).getDirection()) ? "out" : "in"):(io instanceof StateInstance?"state":io instanceof GeneratorInstance?"source":io instanceof BehaviorRuleInstance?"rule":"");
+		String label = io instanceof FeatureInstance ? (Aadlv3Util.isOutgoing(((FeatureInstance)io).getDirection()) ? "out" : "in"):
+			(io instanceof StateInstance?"state":io instanceof GeneratorInstance?"source":io instanceof BehaviorRuleInstance?"rule":io instanceof SinkInstance?"sink":"");
 		return io == ci ? " '" +cipath+ "'":
-			" '"+cipath+"' "+label+ " '"+io.getName()+ "'";
+			" '"+cipath+"' "+label+ (io instanceof SinkInstance?"":" '"+io.getName()+ "'");
 	}
 
 	/**

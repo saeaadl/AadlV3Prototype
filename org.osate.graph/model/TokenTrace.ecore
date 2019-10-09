@@ -34,6 +34,8 @@
     <eLiterals name="Intermediate" value="3"/>
     <eLiterals name="Component" value="4"/>
     <eLiterals name="System" value="5"/>
+    <eLiterals name="Unhandled" value="6"/>
+    <eLiterals name="Sink" value="7"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="TokenTraceType">
     <eLiterals name="TokenGraph"/>

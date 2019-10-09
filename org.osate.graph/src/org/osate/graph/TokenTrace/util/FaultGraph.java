@@ -26,6 +26,7 @@ import org.osate.av3instance.av3instance.ConstrainedInstanceObject;
 import org.osate.av3instance.av3instance.FeatureInstance;
 import org.osate.av3instance.av3instance.GeneratorInstance;
 import org.osate.av3instance.av3instance.InstanceObject;
+import org.osate.av3instance.av3instance.SinkInstance;
 import org.osate.av3instance.av3instance.StateInstance;
 import org.osate.graph.TokenTrace.TokenType;
 import org.osate.graph.TokenTrace.Token;
@@ -75,7 +76,7 @@ public class FaultGraph {
 								: (eTrace.getTokenTraceType().equals(TokenTraceType.COMPOSITE_PARTS) ? "_parts"
 										: "_tree")));
 		URI ftaURI = EcoreUtil.getURI(eTrace.getInstanceRoot()).trimFragment().trimFileExtension().trimSegments(1)
-				.appendSegment("reports").appendSegment("fta").appendSegment(rootname).appendFileExtension("tt");
+				.appendSegment("reports").appendSegment("TokenTrace").appendSegment(rootname).appendFileExtension("tt");
 		Resource res = eTrace.getInstanceRoot().eResource().getResourceSet().getResource(ftaURI, false);
 		if (res == null) {
 			res = eTrace.getInstanceRoot().eResource().getResourceSet().createResource(ftaURI);
@@ -340,35 +341,50 @@ public class FaultGraph {
 	private void processEffect(Token step, InstanceObject cioio) {
 		InstanceObject target = getRealInstanceObject(cioio);
 		Literal constraint = getRealConstraint(cioio);
+		InstanceObject outVertex = cioio;
+		boolean unhandled = false;
 		if (constraint instanceof ECollection) {
-			Token nextStep = addNextStep(step, target, step.getRelatedLiteral());
-			if (nextStep != null) {
-				if (graph.containsVertex(cioio)) {
-					Set<DefaultEdge> edges = graph.outgoingEdgesOf(cioio);
-					for (DefaultEdge edge : edges) {
-						InstanceObject nextCioio = graph.getEdgeTarget(edge);
-						processEffect(nextStep, nextCioio);
+			if (constraint.contains(step.getRelatedLiteral())) {
+				// constraint contains propagated literal
+				Token nextStep = addNextStep(step, target, step.getRelatedLiteral());
+				if (nextStep != null) {
+					if (graph.containsVertex(cioio)) {
+						Set<DefaultEdge> edges = graph.outgoingEdgesOf(cioio);
+						for (DefaultEdge edge : edges) {
+							InstanceObject nextCioio = graph.getEdgeTarget(edge);
+							processEffect(nextStep, nextCioio);
+						}
 					}
 				}
+				return;
+			} else {
+				// propagated literal is not contained. Needs to be propagated as unhandled via target io
+				if (isLiteralSink(target, step.getRelatedLiteral())) {
+					return;
+				}
+				outVertex = target;
+				unhandled = true;
 			}
-		} else {
-			if (constraint == null) {
-				constraint = step.getRelatedLiteral();
-			}
-			// do next step
-			Token nextStep = addNextStep(step, target, constraint);
-			if (nextStep != null) {
-				if (graph.containsVertex(cioio)) {
-					Set<DefaultEdge> edges = graph.outgoingEdgesOf(cioio);
-					for (DefaultEdge edge : edges) {
-						InstanceObject nextCioio = graph.getEdgeTarget(edge);
-						processEffect(nextStep, nextCioio);
-					}
+		}
+		// we have either cioio as instance object, or as Constrained IO with a single literal or no literal
+		if (constraint == null|| constraint instanceof ECollection) {
+			// use previous literal if cioio does not set a single literal
+			constraint = step.getRelatedLiteral();
+		}
+		// do next step
+		Token nextStep = unhandled ? addUnhandledNextStep(step, target, constraint):addNextStep(step, target, constraint);
+		if (nextStep != null) {
+			if (graph.containsVertex(outVertex)) {
+				Set<DefaultEdge> edges = graph.outgoingEdgesOf(outVertex);
+				for (DefaultEdge edge : edges) {
+					InstanceObject nextCioio = graph.getEdgeTarget(edge);
+					processEffect(nextStep, nextCioio);
 				}
 			}
 		}
+		return ;
 	}
-	
+
 	private Token addNextStep(Token parent, InstanceObject io, Literal lit) {
 		if (findToken(parent.getTokens(), io, lit) == null) {
 			Token nextToken = findToken(eventTrace, io, lit);
@@ -384,6 +400,32 @@ public class FaultGraph {
 		return null;
 	}
 	
+	private Token addUnhandledNextStep(Token parent, InstanceObject io, Literal lit) {
+		Token next = addNextStep(parent, io, lit);
+		if (next != null) {
+			next.setTokenType(TokenType.UNHANDLED);
+		}
+		return next;
+	}
+	
+	private boolean isLiteralSink(InstanceObject io, Literal lit) {
+		SinkInstance sink = containingComponentInstanceOrSelf(io).getSinks();
+		if (graph.containsVertex(sink)) {
+			Set<DefaultEdge> edges = graph.incomingEdgesOf(sink);
+			for (DefaultEdge edge : edges) {
+				InstanceObject sinkCondIO = graph.getEdgeSource(edge);
+				if (sinkCondIO instanceof ConstrainedInstanceObject) {
+					Literal constraint = ((ConstrainedInstanceObject)sinkCondIO).getConstraint();
+					if (constraint == null || constraint.contains(lit)){
+						// handled by CIO without constraint, i.e., all tokens
+						return true;
+					}
+				}
+			}
+		}
+		return false;
+	}
+	
 	private void setLeafTokensType() {
 		for (Token t: eventTrace.getTokens()) {
 			if (t.getTokens().isEmpty()) {
@@ -392,12 +434,14 @@ public class FaultGraph {
 				} else if (t.getTokenType() != TokenType.COMPONENT && t.getTokenType() != TokenType.SYSTEM ) {
 					if(t.getRelatedInstanceObject() instanceof FeatureInstance || t.getRelatedInstanceObject() instanceof ComponentInstance) {
 						t.setTokenType(TokenType.UNDEVELOPED);
+					} else if (t.getRelatedInstanceObject() instanceof SinkInstance){
+						t.setTokenType(TokenType.SINK);
 					} else {
 						t.setTokenType(TokenType.BASIC);
+					}
 				}
 			}
 		}
-	}
 	}
 
 }

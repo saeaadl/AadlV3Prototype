@@ -363,7 +363,7 @@ CurrentState returns av3::StateSpecification:
 ;
 
 fragment StateTransitionRule *:
-	currentState=CurrentState '-[' (condition =  (MultiLiteralOperation | ContainsToken | ModelElementReference))?  ']->' (sink?='sink' | (targetState=CurrentState)? ('{' actions+=Assignment* '}')? ) ';';
+	currentState=CurrentState '-[' (condition =  (MultiLiteralOperation | ContainsToken | ModelElementReference))?  ']->' (sink?='sink' | ((targetState=CurrentState)? ('{' actions+=Assignment* '}')? )) ';';
 
 fragment StatelessRule *:
 	condition = (MultiLiteralOperation | ContainsToken | ModelElementReference)? '->'  (sink?='sink' | actions+=Assignment*) ';';
