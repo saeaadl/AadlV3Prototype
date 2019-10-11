@@ -48,9 +48,9 @@ public interface ECollection extends Literal {
 
 	public boolean add(Expression obj);
 
-	public boolean add(EList<Expression> obj);
+	public boolean addAll(EList<Expression> obj);
 
-	public boolean add(ECollection obj);
+	public boolean addAll(ECollection obj);
 
 	public boolean remove(Expression obj);
 

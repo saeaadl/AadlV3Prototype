@@ -24,6 +24,8 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import org.osate.aadlv3.aadlv3.Aadlv3Factory;
+import org.osate.av3instance.av3instance.Av3instanceFactory;
 import org.osate.graph.TokenTrace.TokenTrace;
 import org.osate.graph.TokenTrace.TokenTraceFactory;
 import org.osate.graph.TokenTrace.TokenTracePackage;
@@ -195,6 +197,7 @@ public class TokenTraceItemProvider
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(TokenTracePackage.Literals.TOKEN_TRACE__TOKENS);
+			childrenFeatures.add(TokenTracePackage.Literals.TOKEN_TRACE__INFERRED_ROOT_LITERAL);
 		}
 		return childrenFeatures;
 	}
@@ -256,6 +259,7 @@ public class TokenTraceItemProvider
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case TokenTracePackage.TOKEN_TRACE__TOKENS:
+			case TokenTracePackage.TOKEN_TRACE__INFERRED_ROOT_LITERAL:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -277,6 +281,119 @@ public class TokenTraceItemProvider
 			(createChildParameter
 				(TokenTracePackage.Literals.TOKEN_TRACE__TOKENS,
 				 TokenTraceFactory.eINSTANCE.createToken()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(TokenTracePackage.Literals.TOKEN_TRACE__INFERRED_ROOT_LITERAL,
+				 TokenTraceFactory.eINSTANCE.createToken()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(TokenTracePackage.Literals.TOKEN_TRACE__INFERRED_ROOT_LITERAL,
+				 Av3instanceFactory.eINSTANCE.createConstrainedInstanceObject()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(TokenTracePackage.Literals.TOKEN_TRACE__INFERRED_ROOT_LITERAL,
+				 Aadlv3Factory.eINSTANCE.createNamedElementReference()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(TokenTracePackage.Literals.TOKEN_TRACE__INFERRED_ROOT_LITERAL,
+				 Aadlv3Factory.eINSTANCE.createPathElement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(TokenTracePackage.Literals.TOKEN_TRACE__INFERRED_ROOT_LITERAL,
+				 Aadlv3Factory.eINSTANCE.createTypeReference()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(TokenTracePackage.Literals.TOKEN_TRACE__INFERRED_ROOT_LITERAL,
+				 Aadlv3Factory.eINSTANCE.createIntegerLiteral()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(TokenTracePackage.Literals.TOKEN_TRACE__INFERRED_ROOT_LITERAL,
+				 Aadlv3Factory.eINSTANCE.createRealLiteral()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(TokenTracePackage.Literals.TOKEN_TRACE__INFERRED_ROOT_LITERAL,
+				 Aadlv3Factory.eINSTANCE.createStringLiteral()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(TokenTracePackage.Literals.TOKEN_TRACE__INFERRED_ROOT_LITERAL,
+				 Aadlv3Factory.eINSTANCE.createBooleanLiteral()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(TokenTracePackage.Literals.TOKEN_TRACE__INFERRED_ROOT_LITERAL,
+				 Aadlv3Factory.eINSTANCE.createEnumerationLiteral()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(TokenTracePackage.Literals.TOKEN_TRACE__INFERRED_ROOT_LITERAL,
+				 Aadlv3Factory.eINSTANCE.createDirectionalLiteral()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(TokenTracePackage.Literals.TOKEN_TRACE__INFERRED_ROOT_LITERAL,
+				 Aadlv3Factory.eINSTANCE.createECollection()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(TokenTracePackage.Literals.TOKEN_TRACE__INFERRED_ROOT_LITERAL,
+				 Aadlv3Factory.eINSTANCE.createListLiteral()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(TokenTracePackage.Literals.TOKEN_TRACE__INFERRED_ROOT_LITERAL,
+				 Aadlv3Factory.eINSTANCE.createSetLiteral()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(TokenTracePackage.Literals.TOKEN_TRACE__INFERRED_ROOT_LITERAL,
+				 Aadlv3Factory.eINSTANCE.createMultiOperandExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(TokenTracePackage.Literals.TOKEN_TRACE__INFERRED_ROOT_LITERAL,
+				 Aadlv3Factory.eINSTANCE.createMultiLiteralConstraint()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(TokenTracePackage.Literals.TOKEN_TRACE__INFERRED_ROOT_LITERAL,
+				 Aadlv3Factory.eINSTANCE.createConditionOperation()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(TokenTracePackage.Literals.TOKEN_TRACE__INFERRED_ROOT_LITERAL,
+				 Aadlv3Factory.eINSTANCE.createPackageElementReference()));
+	}
+
+	/**
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
+		Object childFeature = feature;
+		Object childObject = child;
+
+		boolean qualify =
+			childFeature == TokenTracePackage.Literals.TOKEN_TRACE__TOKENS ||
+			childFeature == TokenTracePackage.Literals.TOKEN_TRACE__INFERRED_ROOT_LITERAL;
+
+		if (qualify) {
+			return getString
+				("_UI_CreateChild_text2",
+				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+		}
+		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 	/**

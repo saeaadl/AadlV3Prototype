@@ -5,6 +5,7 @@ package org.osate.graph.TokenTrace;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
+import org.osate.aadlv3.aadlv3.Literal;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,6 +22,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.osate.graph.TokenTrace.TokenTrace#getRoot <em>Root</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.TokenTrace#getInstanceRoot <em>Instance Root</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.TokenTrace#getTokens <em>Tokens</em>}</li>
+ *   <li>{@link org.osate.graph.TokenTrace.TokenTrace#getInferredRootLiteral <em>Inferred Root Literal</em>}</li>
  * </ul>
  *
  * @see org.osate.graph.TokenTrace.TokenTracePackage#getTokenTrace()
@@ -152,5 +154,27 @@ public interface TokenTrace extends EObject {
 	 * @generated
 	 */
 	EList<Token> getTokens();
+
+	/**
+	 * Returns the value of the '<em><b>Inferred Root Literal</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Inferred Root Literal</em>' containment reference.
+	 * @see #setInferredRootLiteral(Literal)
+	 * @see org.osate.graph.TokenTrace.TokenTracePackage#getTokenTrace_InferredRootLiteral()
+	 * @model containment="true"
+	 * @generated
+	 */
+	Literal getInferredRootLiteral();
+
+	/**
+	 * Sets the value of the '{@link org.osate.graph.TokenTrace.TokenTrace#getInferredRootLiteral <em>Inferred Root Literal</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Inferred Root Literal</em>' containment reference.
+	 * @see #getInferredRootLiteral()
+	 * @generated
+	 */
+	void setInferredRootLiteral(Literal value);
 
 } // TokenTrace

@@ -124,13 +124,22 @@ public interface TokenTracePackage extends EPackage {
 	int TOKEN_TRACE__TOKENS = 5;
 
 	/**
+	 * The feature id for the '<em><b>Inferred Root Literal</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOKEN_TRACE__INFERRED_ROOT_LITERAL = 6;
+
+	/**
 	 * The number of structural features of the '<em>Token Trace</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TOKEN_TRACE_FEATURE_COUNT = 6;
+	int TOKEN_TRACE_FEATURE_COUNT = 7;
 
 	/**
 	 * The number of operations of the '<em>Token Trace</em>' class.
@@ -233,13 +242,22 @@ public interface TokenTracePackage extends EPackage {
 	int TOKEN__RELATED_LITERAL = Aadlv3Package.MULTI_LITERAL_CONSTRAINT_FEATURE_COUNT + 5;
 
 	/**
+	 * The feature id for the '<em><b>Literal Sink</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOKEN__LITERAL_SINK = Aadlv3Package.MULTI_LITERAL_CONSTRAINT_FEATURE_COUNT + 6;
+
+	/**
 	 * The feature id for the '<em><b>Reference Count</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TOKEN__REFERENCE_COUNT = Aadlv3Package.MULTI_LITERAL_CONSTRAINT_FEATURE_COUNT + 6;
+	int TOKEN__REFERENCE_COUNT = Aadlv3Package.MULTI_LITERAL_CONSTRAINT_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Assigned Probability</b></em>' attribute.
@@ -248,7 +266,7 @@ public interface TokenTracePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TOKEN__ASSIGNED_PROBABILITY = Aadlv3Package.MULTI_LITERAL_CONSTRAINT_FEATURE_COUNT + 7;
+	int TOKEN__ASSIGNED_PROBABILITY = Aadlv3Package.MULTI_LITERAL_CONSTRAINT_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Computed Probability</b></em>' attribute.
@@ -257,7 +275,7 @@ public interface TokenTracePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TOKEN__COMPUTED_PROBABILITY = Aadlv3Package.MULTI_LITERAL_CONSTRAINT_FEATURE_COUNT + 8;
+	int TOKEN__COMPUTED_PROBABILITY = Aadlv3Package.MULTI_LITERAL_CONSTRAINT_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>Scale</b></em>' attribute.
@@ -266,7 +284,7 @@ public interface TokenTracePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TOKEN__SCALE = Aadlv3Package.MULTI_LITERAL_CONSTRAINT_FEATURE_COUNT + 9;
+	int TOKEN__SCALE = Aadlv3Package.MULTI_LITERAL_CONSTRAINT_FEATURE_COUNT + 10;
 
 	/**
 	 * The number of structural features of the '<em>Token</em>' class.
@@ -275,7 +293,7 @@ public interface TokenTracePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TOKEN_FEATURE_COUNT = Aadlv3Package.MULTI_LITERAL_CONSTRAINT_FEATURE_COUNT + 10;
+	int TOKEN_FEATURE_COUNT = Aadlv3Package.MULTI_LITERAL_CONSTRAINT_FEATURE_COUNT + 11;
 
 	/**
 	 * The operation id for the '<em>Get Probability</em>' operation.
@@ -393,6 +411,17 @@ public interface TokenTracePackage extends EPackage {
 	EReference getTokenTrace_Tokens();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link org.osate.graph.TokenTrace.TokenTrace#getInferredRootLiteral <em>Inferred Root Literal</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Inferred Root Literal</em>'.
+	 * @see org.osate.graph.TokenTrace.TokenTrace#getInferredRootLiteral()
+	 * @see #getTokenTrace()
+	 * @generated
+	 */
+	EReference getTokenTrace_InferredRootLiteral();
+
+	/**
 	 * Returns the meta object for class '{@link org.osate.graph.TokenTrace.Token <em>Token</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -467,6 +496,17 @@ public interface TokenTracePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getToken_RelatedLiteral();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.osate.graph.TokenTrace.Token#getLiteralSink <em>Literal Sink</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Literal Sink</em>'.
+	 * @see org.osate.graph.TokenTrace.Token#getLiteralSink()
+	 * @see #getToken()
+	 * @generated
+	 */
+	EReference getToken_LiteralSink();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.osate.graph.TokenTrace.Token#getReferenceCount <em>Reference Count</em>}'.
@@ -624,6 +664,14 @@ public interface TokenTracePackage extends EPackage {
 		EReference TOKEN_TRACE__TOKENS = eINSTANCE.getTokenTrace_Tokens();
 
 		/**
+		 * The meta object literal for the '<em><b>Inferred Root Literal</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TOKEN_TRACE__INFERRED_ROOT_LITERAL = eINSTANCE.getTokenTrace_InferredRootLiteral();
+
+		/**
 		 * The meta object literal for the '{@link org.osate.graph.TokenTrace.impl.TokenImpl <em>Token</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -680,6 +728,14 @@ public interface TokenTracePackage extends EPackage {
 		 * @generated
 		 */
 		EReference TOKEN__RELATED_LITERAL = eINSTANCE.getToken_RelatedLiteral();
+
+		/**
+		 * The meta object literal for the '<em><b>Literal Sink</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TOKEN__LITERAL_SINK = eINSTANCE.getToken_LiteralSink();
 
 		/**
 		 * The meta object literal for the '<em><b>Reference Count</b></em>' attribute feature.

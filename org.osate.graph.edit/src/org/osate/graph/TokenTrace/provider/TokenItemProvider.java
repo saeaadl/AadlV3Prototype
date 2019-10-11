@@ -58,6 +58,7 @@ public class TokenItemProvider
 			addTokenTypePropertyDescriptor(object);
 			addRelatedInstanceObjectPropertyDescriptor(object);
 			addRelatedLiteralPropertyDescriptor(object);
+			addLiteralSinkPropertyDescriptor(object);
 			addReferenceCountPropertyDescriptor(object);
 			addAssignedProbabilityPropertyDescriptor(object);
 			addComputedProbabilityPropertyDescriptor(object);
@@ -190,6 +191,28 @@ public class TokenItemProvider
 				 getString("_UI_Token_relatedLiteral_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Token_relatedLiteral_feature", "_UI_Token_type"),
 				 TokenTracePackage.Literals.TOKEN__RELATED_LITERAL,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Literal Sink feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addLiteralSinkPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Token_literalSink_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Token_literalSink_feature", "_UI_Token_type"),
+				 TokenTracePackage.Literals.TOKEN__LITERAL_SINK,
 				 true,
 				 false,
 				 true,

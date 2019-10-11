@@ -9,6 +9,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="instanceRoot" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="tokens" upperBound="-1"
         eType="#//Token" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inferredRootLiteral" eType="ecore:EClass ../../org.osate.aadlv3/model/Aadlv3.ecore#//Literal"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Token" eSuperTypes="../../org.osate.aadlv3/model/Aadlv3.ecore#//MultiLiteralConstraint">
     <eOperations name="getProbability" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigDecimal"/>
@@ -20,6 +22,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="relatedInstanceObject"
         eType="ecore:EClass ../../org.osate.aadlv3/model/AV3Instance.ecore#//InstanceObject"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="relatedLiteral" eType="ecore:EClass ../../org.osate.aadlv3/model/Aadlv3.ecore#//Literal"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="literalSink" upperBound="-1"
+        eType="ecore:EClass ../../org.osate.aadlv3/model/Aadlv3.ecore#//Literal" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="referenceCount" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
         defaultValueLiteral="0"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="assignedProbability" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigDecimal"/>

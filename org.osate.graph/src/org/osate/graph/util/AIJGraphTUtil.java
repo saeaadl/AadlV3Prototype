@@ -123,15 +123,15 @@ public class AIJGraphTUtil {
 				// for external connection find src condition CIO in context of dst. In case of cross connection find dst condition CIOs in context of dst
 				Collection<ConstrainedInstanceObject> dests = conni.isExternal()? findContainingConditionCIOs(dst, src,null, subclauseName)://findContainedActionCIOs(dst, null):
 						 findContainingConditionCIOs(dst, null, subclauseName);
-				if (dests.isEmpty()) {
-					// dst has no bri
+//				if (dests.isEmpty()) {
+//					// dst has no bri
 					addPath(directedGraph, src, dst);
-
-				} else {
+//
+//				} else {
 					for (ConstrainedInstanceObject dstcio : dests) {
 						addPath(directedGraph, src, dstcio);
 					}
-				}
+//				}
 			} else {
 				for (ConstrainedInstanceObject actioncio : actions) {
 					// create edges between actions of connection source and condition elements of

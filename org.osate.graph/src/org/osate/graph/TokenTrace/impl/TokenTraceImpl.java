@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.osate.aadlv3.aadlv3.Literal;
 import org.osate.graph.TokenTrace.Token;
 import org.osate.graph.TokenTrace.TokenTrace;
 import org.osate.graph.TokenTrace.TokenTracePackage;
@@ -38,6 +39,7 @@ import org.osate.graph.TokenTrace.TokenTraceType;
  *   <li>{@link org.osate.graph.TokenTrace.impl.TokenTraceImpl#getRoot <em>Root</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.impl.TokenTraceImpl#getInstanceRoot <em>Instance Root</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.impl.TokenTraceImpl#getTokens <em>Tokens</em>}</li>
+ *   <li>{@link org.osate.graph.TokenTrace.impl.TokenTraceImpl#getInferredRootLiteral <em>Inferred Root Literal</em>}</li>
  * </ul>
  *
  * @generated
@@ -132,6 +134,16 @@ public class TokenTraceImpl extends MinimalEObjectImpl.Container implements Toke
 	 * @ordered
 	 */
 	protected EList<Token> tokens;
+
+	/**
+	 * The cached value of the '{@link #getInferredRootLiteral() <em>Inferred Root Literal</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInferredRootLiteral()
+	 * @generated
+	 * @ordered
+	 */
+	protected Literal inferredRootLiteral;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -320,10 +332,57 @@ public class TokenTraceImpl extends MinimalEObjectImpl.Container implements Toke
 	 * @generated
 	 */
 	@Override
+	public Literal getInferredRootLiteral() {
+		return inferredRootLiteral;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetInferredRootLiteral(Literal newInferredRootLiteral, NotificationChain msgs) {
+		Literal oldInferredRootLiteral = inferredRootLiteral;
+		inferredRootLiteral = newInferredRootLiteral;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TokenTracePackage.TOKEN_TRACE__INFERRED_ROOT_LITERAL, oldInferredRootLiteral, newInferredRootLiteral);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setInferredRootLiteral(Literal newInferredRootLiteral) {
+		if (newInferredRootLiteral != inferredRootLiteral) {
+			NotificationChain msgs = null;
+			if (inferredRootLiteral != null)
+				msgs = ((InternalEObject)inferredRootLiteral).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TokenTracePackage.TOKEN_TRACE__INFERRED_ROOT_LITERAL, null, msgs);
+			if (newInferredRootLiteral != null)
+				msgs = ((InternalEObject)newInferredRootLiteral).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TokenTracePackage.TOKEN_TRACE__INFERRED_ROOT_LITERAL, null, msgs);
+			msgs = basicSetInferredRootLiteral(newInferredRootLiteral, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TokenTracePackage.TOKEN_TRACE__INFERRED_ROOT_LITERAL, newInferredRootLiteral, newInferredRootLiteral));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case TokenTracePackage.TOKEN_TRACE__TOKENS:
 				return ((InternalEList<?>)getTokens()).basicRemove(otherEnd, msgs);
+			case TokenTracePackage.TOKEN_TRACE__INFERRED_ROOT_LITERAL:
+				return basicSetInferredRootLiteral(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -350,6 +409,8 @@ public class TokenTraceImpl extends MinimalEObjectImpl.Container implements Toke
 				return basicGetInstanceRoot();
 			case TokenTracePackage.TOKEN_TRACE__TOKENS:
 				return getTokens();
+			case TokenTracePackage.TOKEN_TRACE__INFERRED_ROOT_LITERAL:
+				return getInferredRootLiteral();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -382,6 +443,9 @@ public class TokenTraceImpl extends MinimalEObjectImpl.Container implements Toke
 				getTokens().clear();
 				getTokens().addAll((Collection<? extends Token>)newValue);
 				return;
+			case TokenTracePackage.TOKEN_TRACE__INFERRED_ROOT_LITERAL:
+				setInferredRootLiteral((Literal)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -412,6 +476,9 @@ public class TokenTraceImpl extends MinimalEObjectImpl.Container implements Toke
 			case TokenTracePackage.TOKEN_TRACE__TOKENS:
 				getTokens().clear();
 				return;
+			case TokenTracePackage.TOKEN_TRACE__INFERRED_ROOT_LITERAL:
+				setInferredRootLiteral((Literal)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -436,6 +503,8 @@ public class TokenTraceImpl extends MinimalEObjectImpl.Container implements Toke
 				return instanceRoot != null;
 			case TokenTracePackage.TOKEN_TRACE__TOKENS:
 				return tokens != null && !tokens.isEmpty();
+			case TokenTracePackage.TOKEN_TRACE__INFERRED_ROOT_LITERAL:
+				return inferredRootLiteral != null;
 		}
 		return super.eIsSet(featureID);
 	}

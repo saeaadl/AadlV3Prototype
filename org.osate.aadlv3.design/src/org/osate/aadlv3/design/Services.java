@@ -107,7 +107,7 @@ public class Services {
 	}
 
 	public String getPropagatedType(EObject context) {
-		return ((Token) context).getRelatedLiteral() != null? ((Token) context).getRelatedLiteral().toString():"";
+		return TokenTraceUtil.getTokenLiteral((Token) context);
 	}
 
 	public String getSpecifiedProbability(EObject context) {

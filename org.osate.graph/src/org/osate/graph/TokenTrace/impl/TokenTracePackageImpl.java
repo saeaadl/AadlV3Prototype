@@ -197,6 +197,16 @@ public class TokenTracePackageImpl extends EPackageImpl implements TokenTracePac
 	 * @generated
 	 */
 	@Override
+	public EReference getTokenTrace_InferredRootLiteral() {
+		return (EReference)tokenTraceEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getToken() {
 		return tokenEClass;
 	}
@@ -267,8 +277,8 @@ public class TokenTracePackageImpl extends EPackageImpl implements TokenTracePac
 	 * @generated
 	 */
 	@Override
-	public EAttribute getToken_ReferenceCount() {
-		return (EAttribute)tokenEClass.getEStructuralFeatures().get(6);
+	public EReference getToken_LiteralSink() {
+		return (EReference)tokenEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -277,7 +287,7 @@ public class TokenTracePackageImpl extends EPackageImpl implements TokenTracePac
 	 * @generated
 	 */
 	@Override
-	public EAttribute getToken_AssignedProbability() {
+	public EAttribute getToken_ReferenceCount() {
 		return (EAttribute)tokenEClass.getEStructuralFeatures().get(7);
 	}
 
@@ -287,7 +297,7 @@ public class TokenTracePackageImpl extends EPackageImpl implements TokenTracePac
 	 * @generated
 	 */
 	@Override
-	public EAttribute getToken_ComputedProbability() {
+	public EAttribute getToken_AssignedProbability() {
 		return (EAttribute)tokenEClass.getEStructuralFeatures().get(8);
 	}
 
@@ -297,8 +307,18 @@ public class TokenTracePackageImpl extends EPackageImpl implements TokenTracePac
 	 * @generated
 	 */
 	@Override
-	public EAttribute getToken_Scale() {
+	public EAttribute getToken_ComputedProbability() {
 		return (EAttribute)tokenEClass.getEStructuralFeatures().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getToken_Scale() {
+		return (EAttribute)tokenEClass.getEStructuralFeatures().get(10);
 	}
 
 	/**
@@ -367,6 +387,7 @@ public class TokenTracePackageImpl extends EPackageImpl implements TokenTracePac
 		createEReference(tokenTraceEClass, TOKEN_TRACE__ROOT);
 		createEReference(tokenTraceEClass, TOKEN_TRACE__INSTANCE_ROOT);
 		createEReference(tokenTraceEClass, TOKEN_TRACE__TOKENS);
+		createEReference(tokenTraceEClass, TOKEN_TRACE__INFERRED_ROOT_LITERAL);
 
 		tokenEClass = createEClass(TOKEN);
 		createEAttribute(tokenEClass, TOKEN__NAME);
@@ -375,6 +396,7 @@ public class TokenTracePackageImpl extends EPackageImpl implements TokenTracePac
 		createEAttribute(tokenEClass, TOKEN__TOKEN_TYPE);
 		createEReference(tokenEClass, TOKEN__RELATED_INSTANCE_OBJECT);
 		createEReference(tokenEClass, TOKEN__RELATED_LITERAL);
+		createEReference(tokenEClass, TOKEN__LITERAL_SINK);
 		createEAttribute(tokenEClass, TOKEN__REFERENCE_COUNT);
 		createEAttribute(tokenEClass, TOKEN__ASSIGNED_PROBABILITY);
 		createEAttribute(tokenEClass, TOKEN__COMPUTED_PROBABILITY);
@@ -428,6 +450,7 @@ public class TokenTracePackageImpl extends EPackageImpl implements TokenTracePac
 		initEReference(getTokenTrace_Root(), this.getToken(), null, "root", null, 0, 1, TokenTrace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTokenTrace_InstanceRoot(), ecorePackage.getEObject(), null, "instanceRoot", null, 0, 1, TokenTrace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTokenTrace_Tokens(), this.getToken(), null, "tokens", null, 0, -1, TokenTrace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTokenTrace_InferredRootLiteral(), theAadlv3Package.getLiteral(), null, "inferredRootLiteral", null, 0, 1, TokenTrace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(tokenEClass, Token.class, "Token", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getToken_Name(), ecorePackage.getEString(), "name", null, 0, 1, Token.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -436,6 +459,7 @@ public class TokenTracePackageImpl extends EPackageImpl implements TokenTracePac
 		initEAttribute(getToken_TokenType(), this.getTokenType(), "tokenType", null, 0, 1, Token.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getToken_RelatedInstanceObject(), theAv3instancePackage.getInstanceObject(), null, "relatedInstanceObject", null, 0, 1, Token.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getToken_RelatedLiteral(), theAadlv3Package.getLiteral(), null, "relatedLiteral", null, 0, 1, Token.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getToken_LiteralSink(), theAadlv3Package.getLiteral(), null, "literalSink", null, 0, -1, Token.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getToken_ReferenceCount(), ecorePackage.getEInt(), "referenceCount", "0", 0, 1, Token.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getToken_AssignedProbability(), ecorePackage.getEBigDecimal(), "assignedProbability", null, 0, 1, Token.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getToken_ComputedProbability(), ecorePackage.getEBigDecimal(), "computedProbability", null, 0, 1, Token.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

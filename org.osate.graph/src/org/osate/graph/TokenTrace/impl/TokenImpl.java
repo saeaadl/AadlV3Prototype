@@ -7,13 +7,16 @@ import java.math.BigDecimal;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.osate.aadlv3.aadlv3.Literal;
 import org.osate.aadlv3.aadlv3.impl.MultiLiteralConstraintImpl;
 import org.osate.aadlv3.util.AIv3API;
@@ -37,6 +40,7 @@ import org.osate.graph.TokenTrace.util.TokenTraceUtil;
  *   <li>{@link org.osate.graph.TokenTrace.impl.TokenImpl#getTokenType <em>Token Type</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.impl.TokenImpl#getRelatedInstanceObject <em>Related Instance Object</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.impl.TokenImpl#getRelatedLiteral <em>Related Literal</em>}</li>
+ *   <li>{@link org.osate.graph.TokenTrace.impl.TokenImpl#getLiteralSink <em>Literal Sink</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.impl.TokenImpl#getReferenceCount <em>Reference Count</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.impl.TokenImpl#getAssignedProbability <em>Assigned Probability</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.impl.TokenImpl#getComputedProbability <em>Computed Probability</em>}</li>
@@ -135,6 +139,16 @@ public class TokenImpl extends MultiLiteralConstraintImpl implements Token {
 	 * @ordered
 	 */
 	protected Literal relatedLiteral;
+
+	/**
+	 * The cached value of the '{@link #getLiteralSink() <em>Literal Sink</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLiteralSink()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Literal> literalSink;
 
 	/**
 	 * The default value of the '{@link #getReferenceCount() <em>Reference Count</em>}' attribute.
@@ -403,6 +417,19 @@ public class TokenImpl extends MultiLiteralConstraintImpl implements Token {
 	 * @generated
 	 */
 	@Override
+	public EList<Literal> getLiteralSink() {
+		if (literalSink == null) {
+			literalSink = new EObjectContainmentEList<Literal>(Literal.class, this, TokenTracePackage.TOKEN__LITERAL_SINK);
+		}
+		return literalSink;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public int getReferenceCount() {
 		return referenceCount;
 	}
@@ -512,6 +539,20 @@ public class TokenImpl extends MultiLiteralConstraintImpl implements Token {
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case TokenTracePackage.TOKEN__LITERAL_SINK:
+				return ((InternalEList<?>)getLiteralSink()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case TokenTracePackage.TOKEN__NAME:
@@ -528,6 +569,8 @@ public class TokenImpl extends MultiLiteralConstraintImpl implements Token {
 			case TokenTracePackage.TOKEN__RELATED_LITERAL:
 				if (resolve) return getRelatedLiteral();
 				return basicGetRelatedLiteral();
+			case TokenTracePackage.TOKEN__LITERAL_SINK:
+				return getLiteralSink();
 			case TokenTracePackage.TOKEN__REFERENCE_COUNT:
 				return getReferenceCount();
 			case TokenTracePackage.TOKEN__ASSIGNED_PROBABILITY:
@@ -567,6 +610,10 @@ public class TokenImpl extends MultiLiteralConstraintImpl implements Token {
 				return;
 			case TokenTracePackage.TOKEN__RELATED_LITERAL:
 				setRelatedLiteral((Literal)newValue);
+				return;
+			case TokenTracePackage.TOKEN__LITERAL_SINK:
+				getLiteralSink().clear();
+				getLiteralSink().addAll((Collection<? extends Literal>)newValue);
 				return;
 			case TokenTracePackage.TOKEN__REFERENCE_COUNT:
 				setReferenceCount((Integer)newValue);
@@ -610,6 +657,9 @@ public class TokenImpl extends MultiLiteralConstraintImpl implements Token {
 			case TokenTracePackage.TOKEN__RELATED_LITERAL:
 				setRelatedLiteral((Literal)null);
 				return;
+			case TokenTracePackage.TOKEN__LITERAL_SINK:
+				getLiteralSink().clear();
+				return;
 			case TokenTracePackage.TOKEN__REFERENCE_COUNT:
 				setReferenceCount(REFERENCE_COUNT_EDEFAULT);
 				return;
@@ -646,6 +696,8 @@ public class TokenImpl extends MultiLiteralConstraintImpl implements Token {
 				return relatedInstanceObject != null;
 			case TokenTracePackage.TOKEN__RELATED_LITERAL:
 				return relatedLiteral != null;
+			case TokenTracePackage.TOKEN__LITERAL_SINK:
+				return literalSink != null && !literalSink.isEmpty();
 			case TokenTracePackage.TOKEN__REFERENCE_COUNT:
 				return referenceCount != REFERENCE_COUNT_EDEFAULT;
 			case TokenTracePackage.TOKEN__ASSIGNED_PROBABILITY:

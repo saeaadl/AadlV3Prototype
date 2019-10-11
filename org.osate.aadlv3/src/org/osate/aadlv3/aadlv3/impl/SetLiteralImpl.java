@@ -54,8 +54,8 @@ public class SetLiteralImpl extends ECollectionImpl implements SetLiteral {
 	@Override
 	public String toString() {
 		String values = "";
-		for (Expression elem : this.elements) {
-			values = values.isEmpty() ? elem.toString() : ", " + elem.toString();
+		for (Expression elem : this.getElements()) {
+			values = values + (values.isEmpty() ? elem.toString() : ", " + elem.toString());
 		}
 		return "{" + values + "}";
 	}
@@ -64,6 +64,7 @@ public class SetLiteralImpl extends ECollectionImpl implements SetLiteral {
 	public boolean add(Expression obj) {
 		if (!this.contains(obj)) {
 			this.getElements().add(obj);
+			return true;
 		}
 		return false;
 	}

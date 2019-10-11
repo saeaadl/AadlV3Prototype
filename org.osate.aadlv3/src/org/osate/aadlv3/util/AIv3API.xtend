@@ -597,11 +597,33 @@ class AIv3API {
 		return cioio instanceof ConstrainedInstanceObject? cioio.constraint:null;
 	}
 	
-		/**
-	 * return all action CIOs that refer to the instance object io
+	/**
+	 * is BRI a sink 
 	 */
-	def static boolean isASink(InstanceObject io){
-		return io.containingBehaviorRuleInstance.behaviorRule.isSink  //actions.empty
+	def static boolean isASink(BehaviorRuleInstance bri){
+		return bri.behaviorRule.isSink  //actions.empty
+	}
+	
+	/**
+	 * is containing component a sink for a given literal coming in on io
+	 */
+	def static boolean isASink(InstanceObject io, Literal lit){
+		if (io === null) return false;
+		val bris = io.containingComponentInstanceOrSelf.behaviorRules
+		for (bri : bris){
+			if (bri.behaviorRule.isSink){
+				val ces = bri.condition.eAllOfType(ConstrainedInstanceObject)
+				for (ce:ces){
+					if(ce.instanceObject === io && ((ce.constraint !== null&& lit !== null)?ce.constraint.contains(lit):true)){
+						return true;
+					}
+				}
+			}
+		}
+		return false;
+//		bris.exists[bri|bri.behaviorRule.sink&&bri.condition.eAllOfType(ConstrainedInstanceObject).
+//			   exists[target|target.instanceObject === io && ((target.constraint !== null&& lit !== null)?target.constraint.contains(lit):true)]
+//		]
 	}
 	
 	

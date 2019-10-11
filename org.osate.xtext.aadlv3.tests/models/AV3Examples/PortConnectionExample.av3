@@ -65,7 +65,6 @@ package PortConnectionExample is
 //	filterpath2: flow insignal2 -> outsignal;
 	#Period => 20 ;
 	@EM{
-//		filter2: all (insignal1 in ServiceOmission, insignal2 in ServiceOmission ) ->  outsignal!(ServiceOmission);
 		filter2: all (insignal1 in (ServiceOmission), insignal2  in (ServiceOmission)) ->  outsignal(ServiceOmission);
 	};
 	end;

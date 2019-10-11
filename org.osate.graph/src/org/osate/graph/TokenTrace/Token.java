@@ -23,6 +23,7 @@ import org.osate.av3instance.av3instance.InstanceObject;
  *   <li>{@link org.osate.graph.TokenTrace.Token#getTokenType <em>Token Type</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.Token#getRelatedInstanceObject <em>Related Instance Object</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.Token#getRelatedLiteral <em>Related Literal</em>}</li>
+ *   <li>{@link org.osate.graph.TokenTrace.Token#getLiteralSink <em>Literal Sink</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.Token#getReferenceCount <em>Reference Count</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.Token#getAssignedProbability <em>Assigned Probability</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.Token#getComputedProbability <em>Computed Probability</em>}</li>
@@ -158,6 +159,18 @@ public interface Token extends MultiLiteralConstraint {
 	 * @generated
 	 */
 	void setRelatedLiteral(Literal value);
+
+	/**
+	 * Returns the value of the '<em><b>Literal Sink</b></em>' containment reference list.
+	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.Literal}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Literal Sink</em>' containment reference list.
+	 * @see org.osate.graph.TokenTrace.TokenTracePackage#getToken_LiteralSink()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<Literal> getLiteralSink();
 
 	/**
 	 * Returns the value of the '<em><b>Reference Count</b></em>' attribute.

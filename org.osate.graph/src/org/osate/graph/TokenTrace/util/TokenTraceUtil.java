@@ -242,6 +242,25 @@ public class TokenTraceUtil {
 		return io == ci ? " '" +cipath+ "'":
 			" '"+cipath+"' "+label+ (io instanceof SinkInstance?"":" '"+io.getName()+ "'");
 	}
+	
+	public static String getTokenLiteral(Token context) {
+		if(context.getRelatedLiteral() != null) {
+			return context.getRelatedLiteral().toString();
+		}
+		if (!context.getLiteralSink().isEmpty()) {
+			String label = "sink ";
+			String litlabels = "";
+			for (Literal li : context.getLiteralSink()) {
+				if (litlabels.isEmpty()) {
+					litlabels = li.toString();
+				} else {
+					litlabels = litlabels + ", "+li.toString();
+				}
+			}
+			return label + "("+litlabels+")";
+		}
+		return "";
+	}
 
 	/**
 	 * return sum of probabilities of direct subevents.

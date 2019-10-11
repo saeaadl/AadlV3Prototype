@@ -129,7 +129,7 @@ package TokenNoConstraintExample is
 		
 //		cpubinding: cycles binding processing.dofilter.cpu -> hw.cpu;
 	@EM{
-		effect1: actuate.actt2.effect  ->  effect(cycles);
+		effect1: actuate.actt2.effect  ->  effect;
 //		effect2: actuate.actt2.effect in ServiceOmission ->  effect(ServiceOmission);
 	};
 	end;

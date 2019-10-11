@@ -15,11 +15,13 @@ import org.jgrapht.Graph;
 import org.jgrapht.graph.DefaultDirectedGraph;
 import org.jgrapht.graph.DefaultEdge;
 import org.jgrapht.graph.EdgeReversedGraph;
+import org.osate.aadlv3.aadlv3.Aadlv3Factory;
 import org.osate.aadlv3.aadlv3.ECollection;
 import org.osate.aadlv3.aadlv3.EOperator;
 import org.osate.aadlv3.aadlv3.Expression;
 import org.osate.aadlv3.aadlv3.Literal;
 import org.osate.aadlv3.aadlv3.MultiLiteralConstraint;
+import org.osate.aadlv3.aadlv3.SetLiteral;
 import org.osate.av3instance.av3instance.BehaviorRuleInstance;
 import org.osate.av3instance.av3instance.ComponentInstance;
 import org.osate.av3instance.av3instance.ConstrainedInstanceObject;
@@ -96,7 +98,11 @@ public class FaultGraph {
 		eventTrace.setInstanceRoot(getRoot(fiRoot));
 		eventTrace.setTokenTraceType(ttt);
 		// add root event
-		eventTrace.setRoot(processOutgoingCIO(fiRoot));
+		Token rootToken = processOutgoingCIO(fiRoot);
+		eventTrace.setRoot(rootToken);
+		Literal lit = inferLiterals(rootToken);
+		eventTrace.setInferredRootLiteral(lit);
+		rootToken.setRelatedLiteral(lit);
 		eventTrace.setName( eventTrace.getRoot().getName());
 		return eventTrace;
 	}
@@ -241,6 +247,13 @@ public class FaultGraph {
 	 */
 	public Token generateEvents(InstanceObject io, Literal constraint) {
 		TokenType eventType = io instanceof GeneratorInstance || io instanceof StateInstance  ? TokenType.BASIC : TokenType.UNDEVELOPED;
+		if (constraint == null) {
+			if (io instanceof GeneratorInstance) {
+				if (((GeneratorInstance)io).getValue() != null) {
+					constraint = ((GeneratorInstance)io).getValue();
+				}
+			}
+		}
 		if (constraint instanceof ECollection) {
 			// one sub event for each type in the constraint
 			ECollection types = (ECollection)constraint;
@@ -290,6 +303,39 @@ public class FaultGraph {
 		mlcEvent.setK(mlc.getK());
 		mlcEvent.getTokens().addAll(subevents);
 		return mlcEvent;
+	}
+	
+	
+	// populate intermediate tokens
+	
+	public Literal inferLiterals(Token current) {
+		if (current.getRelatedLiteral() == null) {
+			SetLiteral result = Aadlv3Factory.eINSTANCE.createSetLiteral();
+			InstanceObject currentio = current.getRelatedInstanceObject();
+			for (Token subt : current.getTokens()) {
+				Literal res = inferLiterals(subt);
+				if (res != null) {
+					if (res instanceof ECollection) {
+						for (Expression lit : ((ECollection)res).getElements()) {
+							if (!isASink(currentio,(Literal)lit)) {
+								result.add(EcoreUtil.copy(lit));
+							} else {
+								current.getLiteralSink().add((Literal)EcoreUtil.copy(lit));
+							}
+						}
+					} else {
+						if (!isASink(currentio,res)) {
+							result.add(res);
+						} else {
+							current.getLiteralSink().add(EcoreUtil.copy(res));
+						}
+					}
+				}
+			}
+			return result;
+		} else {
+			return EcoreUtil.copy(current.getRelatedLiteral());
+		}
 	}
 	
 	// impact processing

@@ -1,6 +1,5 @@
 package ErrorTypes is
 	type ServiceOmission;
-	type ServiceCOmmission;
 	type ValueError;
 	type TimingError;
 end;

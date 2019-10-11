@@ -197,8 +197,8 @@ public class ECollectionImpl extends LiteralImpl implements ECollection {
 	@Override
 	public String toString() {
 		String values = "";
-		for (Expression elem : this.elements) {
-			values = values.isEmpty() ? elem.toString() : ", " + elem.toString();
+		for (Expression elem : this.getElements()) {
+			values = values + (values.isEmpty() ? elem.toString() : ", " + elem.toString());
 		}
 		return "(" + values + ")";
 	}
@@ -209,7 +209,7 @@ public class ECollectionImpl extends LiteralImpl implements ECollection {
 	}
 
 	@Override
-	public boolean add(EList<Expression> obj) {
+	public boolean addAll(EList<Expression> obj) {
 		boolean res = true;
 		for (Expression el : obj) {
 			if (!this.add(el)) {
@@ -220,8 +220,8 @@ public class ECollectionImpl extends LiteralImpl implements ECollection {
 	}
 
 	@Override
-	public boolean add(ECollection obj) {
-		return this.add(obj.getElements());
+	public boolean addAll(ECollection obj) {
+		return this.addAll(obj.getElements());
 	}
 
 	@Override
