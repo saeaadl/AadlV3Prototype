@@ -3,7 +3,7 @@ workingset testinstances is
 	
 //	paex: system PropertyAssociationExample::conntop.c1;
 //	portex: system PortConnectionExample::conntop.i;
-	tokenex: system TokenPropagationExample::conntop.i;
+	tokenex: system TokenPropagationExample::conntop.i "effecttrace";
 //	noconstraintex: system TokenNoConstraintExample::conntop.i;
 	
 //	connex: system ConnectionExamples::conntop.i;
