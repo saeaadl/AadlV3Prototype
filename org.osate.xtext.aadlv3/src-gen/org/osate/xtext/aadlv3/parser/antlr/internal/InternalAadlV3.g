@@ -5092,10 +5092,28 @@ ruleInstanceConfiguration returns [EObject current=null]
 		)
 		(
 			(
+				lv_actions_5_0=RULE_STRING
 				{
-					newCompositeNode(grammarAccess.getInstanceConfigurationAccess().getProductlineConstraintProductLineConstraintParserRuleCall_5_0());
+					newLeafNode(lv_actions_5_0, grammarAccess.getInstanceConfigurationAccess().getActionsSTRINGTerminalRuleCall_5_0());
 				}
-				lv_productlineConstraint_5_0=ruleProductLineConstraint
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getInstanceConfigurationRule());
+					}
+					addWithLastConsumed(
+						$current,
+						"actions",
+						lv_actions_5_0,
+						"org.eclipse.xtext.common.Terminals.STRING");
+				}
+			)
+		)*
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getInstanceConfigurationAccess().getProductlineConstraintProductLineConstraintParserRuleCall_6_0());
+				}
+				lv_productlineConstraint_6_0=ruleProductLineConstraint
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getInstanceConfigurationRule());
@@ -5103,15 +5121,15 @@ ruleInstanceConfiguration returns [EObject current=null]
 					set(
 						$current,
 						"productlineConstraint",
-						lv_productlineConstraint_5_0,
+						lv_productlineConstraint_6_0,
 						"org.osate.xtext.aadlv3.AadlV3.ProductLineConstraint");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)?
-		otherlv_6=';'
+		otherlv_7=';'
 		{
-			newLeafNode(otherlv_6, grammarAccess.getInstanceConfigurationAccess().getSemicolonKeyword_6());
+			newLeafNode(otherlv_7, grammarAccess.getInstanceConfigurationAccess().getSemicolonKeyword_7());
 		}
 	)
 ;
@@ -5142,12 +5160,16 @@ ruleProductLineConstraint returns [EObject current=null]
 					$current);
 			}
 		)
+		otherlv_1='plc'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getProductLineConstraintAccess().getPlcKeyword_1());
+		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getProductLineConstraintAccess().getElementPropertyReferenceParserRuleCall_1_0());
+					newCompositeNode(grammarAccess.getProductLineConstraintAccess().getElementPropertyReferenceParserRuleCall_2_0());
 				}
-				lv_element_1_0=rulePropertyReference
+				lv_element_2_0=rulePropertyReference
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getProductLineConstraintRule());
@@ -5155,7 +5177,7 @@ ruleProductLineConstraint returns [EObject current=null]
 					set(
 						$current,
 						"element",
-						lv_element_1_0,
+						lv_element_2_0,
 						"org.osate.xtext.aadlv3.AadlV3.PropertyReference");
 					afterParserOrEnumRuleCall();
 				}
@@ -5164,9 +5186,9 @@ ruleProductLineConstraint returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getProductLineConstraintAccess().getOperatorSatisfiesOperationParserRuleCall_2_0());
+					newCompositeNode(grammarAccess.getProductLineConstraintAccess().getOperatorSatisfiesOperationParserRuleCall_3_0());
 				}
-				lv_operator_2_0=ruleSatisfiesOperation
+				lv_operator_3_0=ruleSatisfiesOperation
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getProductLineConstraintRule());
@@ -5174,7 +5196,7 @@ ruleProductLineConstraint returns [EObject current=null]
 					set(
 						$current,
 						"operator",
-						lv_operator_2_0,
+						lv_operator_3_0,
 						"org.osate.xtext.aadlv3.AadlV3.SatisfiesOperation");
 					afterParserOrEnumRuleCall();
 				}
@@ -5183,9 +5205,9 @@ ruleProductLineConstraint returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getProductLineConstraintAccess().getConstraintListLiteralParserRuleCall_3_0());
+					newCompositeNode(grammarAccess.getProductLineConstraintAccess().getConstraintListLiteralParserRuleCall_4_0());
 				}
-				lv_constraint_3_0=ruleListLiteral
+				lv_constraint_4_0=ruleListLiteral
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getProductLineConstraintRule());
@@ -5193,7 +5215,7 @@ ruleProductLineConstraint returns [EObject current=null]
 					set(
 						$current,
 						"constraint",
-						lv_constraint_3_0,
+						lv_constraint_4_0,
 						"org.osate.xtext.aadlv3.AadlV3.ListLiteral");
 					afterParserOrEnumRuleCall();
 				}
@@ -5339,13 +5361,9 @@ ruleBehaviorSpecificationBlock[EObject in_current]  returns [EObject current=in_
 }:
 	(
 		(
-			otherlv_0='use'
+			otherlv_0='states'
 			{
-				newLeafNode(otherlv_0, grammarAccess.getBehaviorSpecificationBlockAccess().getUseKeyword_0_0());
-			}
-			otherlv_1='states'
-			{
-				newLeafNode(otherlv_1, grammarAccess.getBehaviorSpecificationBlockAccess().getStatesKeyword_0_1());
+				newLeafNode(otherlv_0, grammarAccess.getBehaviorSpecificationBlockAccess().getStatesKeyword_0_0());
 			}
 			(
 				(
@@ -5358,7 +5376,7 @@ ruleBehaviorSpecificationBlock[EObject in_current]  returns [EObject current=in_
 						}
 					}
 					{
-						newCompositeNode(grammarAccess.getBehaviorSpecificationBlockAccess().getStatesTypeDefCrossReference_0_2_0());
+						newCompositeNode(grammarAccess.getBehaviorSpecificationBlockAccess().getStatesTypeDefCrossReference_0_1_0());
 					}
 					ruleQualifiedName
 					{
@@ -5366,9 +5384,9 @@ ruleBehaviorSpecificationBlock[EObject in_current]  returns [EObject current=in_
 					}
 				)
 			)
-			otherlv_3=';'
+			otherlv_2=';'
 			{
-				newLeafNode(otherlv_3, grammarAccess.getBehaviorSpecificationBlockAccess().getSemicolonKeyword_0_3());
+				newLeafNode(otherlv_2, grammarAccess.getBehaviorSpecificationBlockAccess().getSemicolonKeyword_0_2());
 			}
 		)?
 		(
@@ -5381,9 +5399,9 @@ ruleBehaviorSpecificationBlock[EObject in_current]  returns [EObject current=in_
 				}
 				newCompositeNode(grammarAccess.getBehaviorSpecificationBlockAccess().getBehaviorSpecificationElementParserRuleCall_1());
 			}
-			this_BehaviorSpecificationElement_4=ruleBehaviorSpecificationElement[$current]
+			this_BehaviorSpecificationElement_3=ruleBehaviorSpecificationElement[$current]
 			{
-				$current = $this_BehaviorSpecificationElement_4.current;
+				$current = $this_BehaviorSpecificationElement_3.current;
 				afterParserOrEnumRuleCall();
 			}
 		)*

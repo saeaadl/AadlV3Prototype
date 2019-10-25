@@ -15,13 +15,16 @@
  */
 package org.osate.aadlv3.aadlv3.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.ConditionOperation;
 import org.osate.aadlv3.aadlv3.InstanceConfiguration;
@@ -35,6 +38,7 @@ import org.osate.aadlv3.aadlv3.InstanceConfiguration;
  * </p>
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.InstanceConfigurationImpl#getProductlineConstraint <em>Productline Constraint</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.InstanceConfigurationImpl#getActions <em>Actions</em>}</li>
  * </ul>
  *
  * @generated
@@ -49,6 +53,16 @@ public class InstanceConfigurationImpl extends SubcomponentImpl implements Insta
 	 * @ordered
 	 */
 	protected ConditionOperation productlineConstraint;
+
+	/**
+	 * The cached value of the '{@link #getActions() <em>Actions</em>}' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getActions()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<String> actions;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -132,6 +146,20 @@ public class InstanceConfigurationImpl extends SubcomponentImpl implements Insta
 	 * @generated
 	 */
 	@Override
+	public EList<String> getActions() {
+		if (actions == null) {
+			actions = new EDataTypeUniqueEList<String>(String.class, this,
+					Aadlv3Package.INSTANCE_CONFIGURATION__ACTIONS);
+		}
+		return actions;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case Aadlv3Package.INSTANCE_CONFIGURATION__PRODUCTLINE_CONSTRAINT:
@@ -150,6 +178,8 @@ public class InstanceConfigurationImpl extends SubcomponentImpl implements Insta
 		switch (featureID) {
 		case Aadlv3Package.INSTANCE_CONFIGURATION__PRODUCTLINE_CONSTRAINT:
 			return getProductlineConstraint();
+		case Aadlv3Package.INSTANCE_CONFIGURATION__ACTIONS:
+			return getActions();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -159,11 +189,16 @@ public class InstanceConfigurationImpl extends SubcomponentImpl implements Insta
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 		case Aadlv3Package.INSTANCE_CONFIGURATION__PRODUCTLINE_CONSTRAINT:
 			setProductlineConstraint((ConditionOperation) newValue);
+			return;
+		case Aadlv3Package.INSTANCE_CONFIGURATION__ACTIONS:
+			getActions().clear();
+			getActions().addAll((Collection<? extends String>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -180,6 +215,9 @@ public class InstanceConfigurationImpl extends SubcomponentImpl implements Insta
 		case Aadlv3Package.INSTANCE_CONFIGURATION__PRODUCTLINE_CONSTRAINT:
 			setProductlineConstraint((ConditionOperation) null);
 			return;
+		case Aadlv3Package.INSTANCE_CONFIGURATION__ACTIONS:
+			getActions().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -194,8 +232,27 @@ public class InstanceConfigurationImpl extends SubcomponentImpl implements Insta
 		switch (featureID) {
 		case Aadlv3Package.INSTANCE_CONFIGURATION__PRODUCTLINE_CONSTRAINT:
 			return productlineConstraint != null;
+		case Aadlv3Package.INSTANCE_CONFIGURATION__ACTIONS:
+			return actions != null && !actions.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy())
+			return super.toString();
+
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (actions: ");
+		result.append(actions);
+		result.append(')');
+		return result.toString();
 	}
 
 } //InstanceConfigurationImpl

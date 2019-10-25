@@ -929,7 +929,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     InstanceConfiguration returns InstanceConfiguration
 	 *
 	 * Constraint:
-	 *     (name=ID category=ComponentCategory typeReferences+=ClassifierOrTypeReference productlineConstraint=ProductLineConstraint?)
+	 *     (name=ID category=ComponentCategory typeReferences+=ClassifierOrTypeReference actions+=STRING* productlineConstraint=ProductLineConstraint?)
 	 */
 	protected void sequence_InstanceConfiguration(ISerializationContext context, InstanceConfiguration semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1111,9 +1111,9 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, Aadlv3Package.Literals.CONDITION_OPERATION__CONSTRAINT));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getProductLineConstraintAccess().getElementPropertyReferenceParserRuleCall_1_0(), semanticObject.getElement());
-		feeder.accept(grammarAccess.getProductLineConstraintAccess().getOperatorSatisfiesOperationParserRuleCall_2_0(), semanticObject.getOperator());
-		feeder.accept(grammarAccess.getProductLineConstraintAccess().getConstraintListLiteralParserRuleCall_3_0(), semanticObject.getConstraint());
+		feeder.accept(grammarAccess.getProductLineConstraintAccess().getElementPropertyReferenceParserRuleCall_2_0(), semanticObject.getElement());
+		feeder.accept(grammarAccess.getProductLineConstraintAccess().getOperatorSatisfiesOperationParserRuleCall_3_0(), semanticObject.getOperator());
+		feeder.accept(grammarAccess.getProductLineConstraintAccess().getConstraintListLiteralParserRuleCall_4_0(), semanticObject.getConstraint());
 		feeder.finish();
 	}
 	

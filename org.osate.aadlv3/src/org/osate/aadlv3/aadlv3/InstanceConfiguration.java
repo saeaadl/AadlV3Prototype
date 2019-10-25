@@ -15,6 +15,8 @@
  */
 package org.osate.aadlv3.aadlv3;
 
+import org.eclipse.emf.common.util.EList;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Instance Configuration</b></em>'.
@@ -25,6 +27,7 @@ package org.osate.aadlv3.aadlv3;
  * </p>
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.InstanceConfiguration#getProductlineConstraint <em>Productline Constraint</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.InstanceConfiguration#getActions <em>Actions</em>}</li>
  * </ul>
  *
  * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getInstanceConfiguration()
@@ -53,5 +56,17 @@ public interface InstanceConfiguration extends Subcomponent {
 	 * @generated
 	 */
 	void setProductlineConstraint(ConditionOperation value);
+
+	/**
+	 * Returns the value of the '<em><b>Actions</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.String}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Actions</em>' attribute list.
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getInstanceConfiguration_Actions()
+	 * @model
+	 * @generated
+	 */
+	EList<String> getActions();
 
 } // InstanceConfiguration

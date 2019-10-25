@@ -258,6 +258,7 @@ public class NamedElementReferenceImpl extends LiteralImpl implements NamedEleme
 		}
 		return super.eIsSet(featureID);
 	}
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

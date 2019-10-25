@@ -41,29 +41,21 @@ import org.osate.aadlv3.aadlv3.TypeDef
 import org.osate.aadlv3.aadlv3.EnumerationType
 import org.osate.aadlv3.aadlv3.Literal
 import org.osate.av3instance.av3instance.Av3instanceFactory
+import org.osate.aadlv3.aadlv3.InstanceConfiguration
+import org.osate.av3instance.util.AIv3Validation
+import org.osate.aadlv3.util.Aadlv3Util
 
 class Instantiator {
 	
-	static var Iterable<PropertyDefinition> expectedProperties = Collections.EMPTY_LIST
-	
-	static var ListLiteral configurationConstraint = null;
-	
-	def instantiate(Workingset ws) {
-		expectedProperties = ws.expectedProperties
-		var ComponentInstance root = null
-		for (iroot : ws.instanceRoots) {
-			configurationConstraint = getProductLineConstraint(iroot);
-			val rootinstance = iroot.instantiateRoot
-			rootinstance.eResource.save(null)
-			root = rootinstance
-// XXX TODO 
-//		//  check whether all expected properties have been set
-//			val PVissues = validateExpectedPropertyValues(rootinstance,expectedProperties)
-//		// validate product line constraint
-//		val PLCissues = validateProductLineConstraint(rootinstance,configurationConstraint)
-		// analyze token paths
-		}
-		return root
+	var Iterable<PropertyDefinition> expectedProperties = Collections.EMPTY_LIST
+		
+	def instantiate(InstanceConfiguration iroot, Iterable<PropertyDefinition> expectedProperties){
+		this.expectedProperties = expectedProperties
+		val rootinstance = iroot.instantiateRoot
+		rootinstance.eResource.save(null)
+		//  check whether all expected properties have been set
+			val PVissues = AIv3Validation.validateExpectedPropertyValues(rootinstance,expectedProperties)
+		return rootinstance
 	}
 	
 	def getInstanceURI(Workingset ws, Subcomponent root){

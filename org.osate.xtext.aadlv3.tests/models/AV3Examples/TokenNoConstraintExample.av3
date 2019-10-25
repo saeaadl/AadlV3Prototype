@@ -36,7 +36,7 @@ package TokenNoConstraintExample is
 //		reading: flow  source p1;
 		#TokenSource => (t1);
 	@EM{
-		use states threestate;
+		states threestate;
 		e1: error event (ServiceOmission, cycles) ; 
 		sense2:  s0 -[e1  ]->  {p1};
 	};
@@ -47,7 +47,7 @@ package TokenNoConstraintExample is
 		effect: out feature ;
 //		taction: flow  sink p1;
 	@EM{
-		use states threestate;
+		states threestate;
 		eact1: error event (ServiceOmission) ;
 		actuate1: s0-[eact1 ]-> s1;
 		actuate3: s1-[ ]-> { effect};
@@ -78,7 +78,7 @@ package TokenNoConstraintExample is
 //		f1: insignal -> outsignal; 
 //	};
 	@EM{
-//		use states threestate;
+//		states threestate;
 //		e1: error event;
 //		r1: s0 -[e1 ]-> s1 {outsignal(ServiceOmission)};
 //		computer2: insignal in ServiceOmission ->  outsignal(ServiceOmission);

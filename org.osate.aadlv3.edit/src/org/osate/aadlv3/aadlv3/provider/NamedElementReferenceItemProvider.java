@@ -30,7 +30,6 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.osate.aadlv3.aadlv3.Aadlv3Factory;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.NamedElementReference;
-import org.osate.aadlv3.aadlv3.TypeReference;
 
 /**
  * This is the item provider adapter for a {@link org.osate.aadlv3.aadlv3.NamedElementReference} object.

@@ -2127,13 +2127,22 @@ public interface Aadlv3Package extends EPackage {
 	int INSTANCE_CONFIGURATION__PRODUCTLINE_CONSTRAINT = SUBCOMPONENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Actions</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_CONFIGURATION__ACTIONS = SUBCOMPONENT_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Instance Configuration</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_CONFIGURATION_FEATURE_COUNT = SUBCOMPONENT_FEATURE_COUNT + 1;
+	int INSTANCE_CONFIGURATION_FEATURE_COUNT = SUBCOMPONENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Type</em>' class.
@@ -4428,6 +4437,17 @@ public interface Aadlv3Package extends EPackage {
 	EReference getInstanceConfiguration_ProductlineConstraint();
 
 	/**
+	 * Returns the meta object for the attribute list '{@link org.osate.aadlv3.aadlv3.InstanceConfiguration#getActions <em>Actions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Actions</em>'.
+	 * @see org.osate.aadlv3.aadlv3.InstanceConfiguration#getActions()
+	 * @see #getInstanceConfiguration()
+	 * @generated
+	 */
+	EAttribute getInstanceConfiguration_Actions();
+
+	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.NumberLiteral <em>Number Literal</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6208,6 +6228,14 @@ public interface Aadlv3Package extends EPackage {
 		 */
 		EReference INSTANCE_CONFIGURATION__PRODUCTLINE_CONSTRAINT = eINSTANCE
 				.getInstanceConfiguration_ProductlineConstraint();
+
+		/**
+		 * The meta object literal for the '<em><b>Actions</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute INSTANCE_CONFIGURATION__ACTIONS = eINSTANCE.getInstanceConfiguration_Actions();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.NumberLiteralImpl <em>Number Literal</em>}' class.

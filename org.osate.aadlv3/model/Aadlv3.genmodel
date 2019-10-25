@@ -204,6 +204,7 @@
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//InstanceConfiguration">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//InstanceConfiguration/productlineConstraint"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//InstanceConfiguration/actions"/>
     </genClasses>
     <genClasses image="false" ecoreClass="Aadlv3.ecore#//Type"/>
     <genClasses ecoreClass="Aadlv3.ecore#//NamedType"/>

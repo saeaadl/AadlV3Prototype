@@ -2830,17 +2830,19 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cCategoryComponentCategoryParserRuleCall_3_0 = (RuleCall)cCategoryAssignment_3.eContents().get(0);
 		private final Assignment cTypeReferencesAssignment_4 = (Assignment)cGroup.eContents().get(4);
 		private final RuleCall cTypeReferencesClassifierOrTypeReferenceParserRuleCall_4_0 = (RuleCall)cTypeReferencesAssignment_4.eContents().get(0);
-		private final Assignment cProductlineConstraintAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cProductlineConstraintProductLineConstraintParserRuleCall_5_0 = (RuleCall)cProductlineConstraintAssignment_5.eContents().get(0);
-		private final Keyword cSemicolonKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Assignment cActionsAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cActionsSTRINGTerminalRuleCall_5_0 = (RuleCall)cActionsAssignment_5.eContents().get(0);
+		private final Assignment cProductlineConstraintAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final RuleCall cProductlineConstraintProductLineConstraintParserRuleCall_6_0 = (RuleCall)cProductlineConstraintAssignment_6.eContents().get(0);
+		private final Keyword cSemicolonKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		
 		//InstanceConfiguration av3::InstanceConfiguration:
 		//	{av3::InstanceConfiguration} name=ID ':' category=ComponentCategory typeReferences+=ClassifierOrTypeReference
-		//	productlineConstraint=ProductLineConstraint? ';';
+		//	actions+=STRING* productlineConstraint=ProductLineConstraint? ';';
 		@Override public ParserRule getRule() { return rule; }
 		
 		//{av3::InstanceConfiguration} name=ID ':' category=ComponentCategory typeReferences+=ClassifierOrTypeReference
-		//productlineConstraint=ProductLineConstraint? ';'
+		//actions+=STRING* productlineConstraint=ProductLineConstraint? ';'
 		public Group getGroup() { return cGroup; }
 		
 		//{av3::InstanceConfiguration}
@@ -2867,53 +2869,63 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		//ClassifierOrTypeReference
 		public RuleCall getTypeReferencesClassifierOrTypeReferenceParserRuleCall_4_0() { return cTypeReferencesClassifierOrTypeReferenceParserRuleCall_4_0; }
 		
+		//actions+=STRING*
+		public Assignment getActionsAssignment_5() { return cActionsAssignment_5; }
+		
+		//STRING
+		public RuleCall getActionsSTRINGTerminalRuleCall_5_0() { return cActionsSTRINGTerminalRuleCall_5_0; }
+		
 		//productlineConstraint=ProductLineConstraint?
-		public Assignment getProductlineConstraintAssignment_5() { return cProductlineConstraintAssignment_5; }
+		public Assignment getProductlineConstraintAssignment_6() { return cProductlineConstraintAssignment_6; }
 		
 		//ProductLineConstraint
-		public RuleCall getProductlineConstraintProductLineConstraintParserRuleCall_5_0() { return cProductlineConstraintProductLineConstraintParserRuleCall_5_0; }
+		public RuleCall getProductlineConstraintProductLineConstraintParserRuleCall_6_0() { return cProductlineConstraintProductLineConstraintParserRuleCall_6_0; }
 		
 		//';'
-		public Keyword getSemicolonKeyword_6() { return cSemicolonKeyword_6; }
+		public Keyword getSemicolonKeyword_7() { return cSemicolonKeyword_7; }
 	}
 	public class ProductLineConstraintElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.osate.xtext.aadlv3.AadlV3.ProductLineConstraint");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Action cConditionOperationAction_0 = (Action)cGroup.eContents().get(0);
-		private final Assignment cElementAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cElementPropertyReferenceParserRuleCall_1_0 = (RuleCall)cElementAssignment_1.eContents().get(0);
-		private final Assignment cOperatorAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cOperatorSatisfiesOperationParserRuleCall_2_0 = (RuleCall)cOperatorAssignment_2.eContents().get(0);
-		private final Assignment cConstraintAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cConstraintListLiteralParserRuleCall_3_0 = (RuleCall)cConstraintAssignment_3.eContents().get(0);
+		private final Keyword cPlcKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cElementAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cElementPropertyReferenceParserRuleCall_2_0 = (RuleCall)cElementAssignment_2.eContents().get(0);
+		private final Assignment cOperatorAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cOperatorSatisfiesOperationParserRuleCall_3_0 = (RuleCall)cOperatorAssignment_3.eContents().get(0);
+		private final Assignment cConstraintAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cConstraintListLiteralParserRuleCall_4_0 = (RuleCall)cConstraintAssignment_4.eContents().get(0);
 		
 		//ProductLineConstraint av3::ConditionOperation:
-		//	{av3::ConditionOperation} element=PropertyReference operator=SatisfiesOperation constraint=ListLiteral;
+		//	{av3::ConditionOperation} 'plc' element=PropertyReference operator=SatisfiesOperation constraint=ListLiteral;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{av3::ConditionOperation} element=PropertyReference operator=SatisfiesOperation constraint=ListLiteral
+		//{av3::ConditionOperation} 'plc' element=PropertyReference operator=SatisfiesOperation constraint=ListLiteral
 		public Group getGroup() { return cGroup; }
 		
 		//{av3::ConditionOperation}
 		public Action getConditionOperationAction_0() { return cConditionOperationAction_0; }
 		
+		//'plc'
+		public Keyword getPlcKeyword_1() { return cPlcKeyword_1; }
+		
 		//element=PropertyReference
-		public Assignment getElementAssignment_1() { return cElementAssignment_1; }
+		public Assignment getElementAssignment_2() { return cElementAssignment_2; }
 		
 		//PropertyReference
-		public RuleCall getElementPropertyReferenceParserRuleCall_1_0() { return cElementPropertyReferenceParserRuleCall_1_0; }
+		public RuleCall getElementPropertyReferenceParserRuleCall_2_0() { return cElementPropertyReferenceParserRuleCall_2_0; }
 		
 		//operator=SatisfiesOperation
-		public Assignment getOperatorAssignment_2() { return cOperatorAssignment_2; }
+		public Assignment getOperatorAssignment_3() { return cOperatorAssignment_3; }
 		
 		//SatisfiesOperation
-		public RuleCall getOperatorSatisfiesOperationParserRuleCall_2_0() { return cOperatorSatisfiesOperationParserRuleCall_2_0; }
+		public RuleCall getOperatorSatisfiesOperationParserRuleCall_3_0() { return cOperatorSatisfiesOperationParserRuleCall_3_0; }
 		
 		//constraint=ListLiteral
-		public Assignment getConstraintAssignment_3() { return cConstraintAssignment_3; }
+		public Assignment getConstraintAssignment_4() { return cConstraintAssignment_4; }
 		
 		//ListLiteral
-		public RuleCall getConstraintListLiteralParserRuleCall_3_0() { return cConstraintListLiteralParserRuleCall_3_0; }
+		public RuleCall getConstraintListLiteralParserRuleCall_4_0() { return cConstraintListLiteralParserRuleCall_4_0; }
 	}
 	public class EMSubclauseElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.osate.xtext.aadlv3.AadlV3.EMSubclause");
@@ -2998,41 +3010,37 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.osate.xtext.aadlv3.AadlV3.BehaviorSpecificationBlock");
 		private final Group cGroup = (Group)rule.eContents().get(0);
 		private final Group cGroup_0 = (Group)cGroup.eContents().get(0);
-		private final Keyword cUseKeyword_0_0 = (Keyword)cGroup_0.eContents().get(0);
-		private final Keyword cStatesKeyword_0_1 = (Keyword)cGroup_0.eContents().get(1);
-		private final Assignment cStatesAssignment_0_2 = (Assignment)cGroup_0.eContents().get(2);
-		private final CrossReference cStatesTypeDefCrossReference_0_2_0 = (CrossReference)cStatesAssignment_0_2.eContents().get(0);
-		private final RuleCall cStatesTypeDefQualifiedNameParserRuleCall_0_2_0_1 = (RuleCall)cStatesTypeDefCrossReference_0_2_0.eContents().get(1);
-		private final Keyword cSemicolonKeyword_0_3 = (Keyword)cGroup_0.eContents().get(3);
+		private final Keyword cStatesKeyword_0_0 = (Keyword)cGroup_0.eContents().get(0);
+		private final Assignment cStatesAssignment_0_1 = (Assignment)cGroup_0.eContents().get(1);
+		private final CrossReference cStatesTypeDefCrossReference_0_1_0 = (CrossReference)cStatesAssignment_0_1.eContents().get(0);
+		private final RuleCall cStatesTypeDefQualifiedNameParserRuleCall_0_1_0_1 = (RuleCall)cStatesTypeDefCrossReference_0_1_0.eContents().get(1);
+		private final Keyword cSemicolonKeyword_0_2 = (Keyword)cGroup_0.eContents().get(2);
 		private final RuleCall cBehaviorSpecificationElementParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		
 		//fragment BehaviorSpecificationBlock *:
-		//	('use' 'states' states=[av3::TypeDef|QualifiedName] ';')? BehaviorSpecificationElement*;
+		//	('states' states=[av3::TypeDef|QualifiedName] ';')? BehaviorSpecificationElement*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//('use' 'states' states=[av3::TypeDef|QualifiedName] ';')? BehaviorSpecificationElement*
+		//('states' states=[av3::TypeDef|QualifiedName] ';')? BehaviorSpecificationElement*
 		public Group getGroup() { return cGroup; }
 		
-		//('use' 'states' states=[av3::TypeDef|QualifiedName] ';')?
+		//('states' states=[av3::TypeDef|QualifiedName] ';')?
 		public Group getGroup_0() { return cGroup_0; }
 		
-		//'use'
-		public Keyword getUseKeyword_0_0() { return cUseKeyword_0_0; }
-		
 		//'states'
-		public Keyword getStatesKeyword_0_1() { return cStatesKeyword_0_1; }
+		public Keyword getStatesKeyword_0_0() { return cStatesKeyword_0_0; }
 		
 		//states=[av3::TypeDef|QualifiedName]
-		public Assignment getStatesAssignment_0_2() { return cStatesAssignment_0_2; }
+		public Assignment getStatesAssignment_0_1() { return cStatesAssignment_0_1; }
 		
 		//[av3::TypeDef|QualifiedName]
-		public CrossReference getStatesTypeDefCrossReference_0_2_0() { return cStatesTypeDefCrossReference_0_2_0; }
+		public CrossReference getStatesTypeDefCrossReference_0_1_0() { return cStatesTypeDefCrossReference_0_1_0; }
 		
 		//QualifiedName
-		public RuleCall getStatesTypeDefQualifiedNameParserRuleCall_0_2_0_1() { return cStatesTypeDefQualifiedNameParserRuleCall_0_2_0_1; }
+		public RuleCall getStatesTypeDefQualifiedNameParserRuleCall_0_1_0_1() { return cStatesTypeDefQualifiedNameParserRuleCall_0_1_0_1; }
 		
 		//';'
-		public Keyword getSemicolonKeyword_0_3() { return cSemicolonKeyword_0_3; }
+		public Keyword getSemicolonKeyword_0_2() { return cSemicolonKeyword_0_2; }
 		
 		//BehaviorSpecificationElement*
 		public RuleCall getBehaviorSpecificationElementParserRuleCall_1() { return cBehaviorSpecificationElementParserRuleCall_1; }
@@ -5719,7 +5727,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	
 	//InstanceConfiguration av3::InstanceConfiguration:
 	//	{av3::InstanceConfiguration} name=ID ':' category=ComponentCategory typeReferences+=ClassifierOrTypeReference
-	//	productlineConstraint=ProductLineConstraint? ';';
+	//	actions+=STRING* productlineConstraint=ProductLineConstraint? ';';
 	public InstanceConfigurationElements getInstanceConfigurationAccess() {
 		return pInstanceConfiguration;
 	}
@@ -5729,7 +5737,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//ProductLineConstraint av3::ConditionOperation:
-	//	{av3::ConditionOperation} element=PropertyReference operator=SatisfiesOperation constraint=ListLiteral;
+	//	{av3::ConditionOperation} 'plc' element=PropertyReference operator=SatisfiesOperation constraint=ListLiteral;
 	public ProductLineConstraintElements getProductLineConstraintAccess() {
 		return pProductLineConstraint;
 	}
@@ -5760,7 +5768,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//fragment BehaviorSpecificationBlock *:
-	//	('use' 'states' states=[av3::TypeDef|QualifiedName] ';')? BehaviorSpecificationElement*;
+	//	('states' states=[av3::TypeDef|QualifiedName] ';')? BehaviorSpecificationElement*;
 	public BehaviorSpecificationBlockElements getBehaviorSpecificationBlockAccess() {
 		return pBehaviorSpecificationBlock;
 	}

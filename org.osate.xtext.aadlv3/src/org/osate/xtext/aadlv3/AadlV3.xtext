@@ -310,13 +310,14 @@ Workingset returns av3::Workingset:
 InstanceConfiguration returns av3::InstanceConfiguration:
 	{av3::InstanceConfiguration} name=ID ':' category=ComponentCategory
 	typeReferences+=ClassifierOrTypeReference 
+	(actions+=STRING)*
 	(productlineConstraint=ProductLineConstraint)?
 	';'
 ;
 
 ProductLineConstraint returns av3::ConditionOperation:
 	{av3::ConditionOperation}
-	element=PropertyReference operator=SatisfiesOperation constraint=ListLiteral
+	'plc' element=PropertyReference operator=SatisfiesOperation constraint=ListLiteral
 ;
 
 // Behavior specification including error behavior
@@ -336,7 +337,7 @@ BASubclause returns av3::BASubclause :
 
 
 fragment BehaviorSpecificationBlock*:
-	('use''states' states=[av3::TypeDef|QualifiedName] ';')?
+	('states' states=[av3::TypeDef|QualifiedName] ';')?
 	BehaviorSpecificationElement*
 ;
 

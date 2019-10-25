@@ -1464,6 +1464,16 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
+	public EAttribute getInstanceConfiguration_Actions() {
+		return (EAttribute) instanceConfigurationEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getNumberLiteral() {
 		return numberLiteralEClass;
 	}
@@ -2612,6 +2622,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 
 		instanceConfigurationEClass = createEClass(INSTANCE_CONFIGURATION);
 		createEReference(instanceConfigurationEClass, INSTANCE_CONFIGURATION__PRODUCTLINE_CONSTRAINT);
+		createEAttribute(instanceConfigurationEClass, INSTANCE_CONFIGURATION__ACTIONS);
 
 		typeEClass = createEClass(TYPE);
 
@@ -3096,6 +3107,9 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		initEReference(getInstanceConfiguration_ProductlineConstraint(), this.getConditionOperation(), null,
 				"productlineConstraint", null, 0, 1, InstanceConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getInstanceConfiguration_Actions(), ecorePackage.getEString(), "actions", null, 0, -1,
+				InstanceConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(typeEClass, Type.class, "Type", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

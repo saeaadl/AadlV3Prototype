@@ -17,7 +17,6 @@ package org.osate.aadlv3.aadlv3.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
-import org.osate.aadlv3.aadlv3.Expression;
 import org.osate.aadlv3.aadlv3.ListLiteral;
 
 /**
@@ -46,6 +45,5 @@ public class ListLiteralImpl extends ECollectionImpl implements ListLiteral {
 	protected EClass eStaticClass() {
 		return Aadlv3Package.Literals.LIST_LITERAL;
 	}
-
 
 } //ListLiteralImpl
