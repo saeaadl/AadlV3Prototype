@@ -81,7 +81,7 @@ Currently we assume that implementations can only extend one implementation.
 Currently we expect a configuration with multiple extends (composition) to identify the implementation or configuration that is the common root and all additional elements to be extensions of the common root.
 
 
-To Do:
+Also supported:
 
 validate that configurations can only do classifier assignments that do not extend the present implementation. Implementations as extensions can override a component classifier with a implementation extension.
 
@@ -95,6 +95,4 @@ Configure features (handled without explicit validation)
 
 Configure named interfaces (same as features)
 
-
-Can refined to be replaced by configuration or have override semantics
 
