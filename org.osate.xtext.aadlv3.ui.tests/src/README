@@ -1,0 +1,6 @@
+The src directory requires at least one file in it so that the directory is
+stored in git. This is needed when org.osate.xtext.aadlv3.ui.tests is checked
+out from git because the plugin will not build without the src directory.
+
+If any source files are added to this directory, then this README file can be
+deleted.
