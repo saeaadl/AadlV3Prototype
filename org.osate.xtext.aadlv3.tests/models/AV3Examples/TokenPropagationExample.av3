@@ -68,8 +68,8 @@ package TokenPropagationExample is
 //	};
 	@EM{
 //		filter2: all (insignal1 in ServiceOmission, insignal2 in ServiceOmission ) ->  outsignal!(ServiceOmission);
-		filter2: insignal in (Virus) ->  sink;
-		filter3: insignal in (Classified) ->  sink;
+		filter2: insignal in (Virus,Classified) ->  sink;
+//		filter3: insignal in (Classified) ->  sink;
 	};
 	end;
 	
