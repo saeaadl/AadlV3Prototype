@@ -346,6 +346,7 @@ class AIv3API {
 	}
 
 	def static String getInstanceObjectPath(InstanceObject io) {
+		if (io === null) return "";
 		if (io.eContainer === null) {
 			if (io.getName() !== null){
 				return io.getName();
