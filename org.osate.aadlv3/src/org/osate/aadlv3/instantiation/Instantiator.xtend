@@ -686,12 +686,16 @@ class Instantiator {
 	}
 
 	// Generator
-	def void instantiateGenerator(Generator g, ComponentInstance context){
-		val gi = g.createGeneratorInstance
-			if (g.value !== null){
-				gi.value = g.value.copy
+	def void instantiateGenerator(Generator g, ComponentInstance context) {
+		val literals = g.value
+		if (literals instanceof ECollection) {
+			for (lit : literals.elements) {
+				context.generators += g.createGeneratorInstance(lit as Literal)
 			}
-		context.generators += gi
+		} else {
+			// null or single literal
+			context.generators += g.createGeneratorInstance(literals)
+		}
 	}
 
 

@@ -341,7 +341,7 @@ public class FaultGraph {
 	// impact processing
 	
 	
-	public void generateEffectGraph(ComponentInstance root, TokenTraceType ttt, String subclauseName) {
+	public TokenTrace generateEffectGraph(ComponentInstance root, TokenTraceType ttt, String subclauseName) {
 		DefaultDirectedGraph<InstanceObject, DefaultEdge> bgraph = AIJGraphTUtil.generateBehaviorPropagationPaths(root, subclauseName);
 		this.graph = bgraph;
 		eventTrace = TokenTraceFactory.eINSTANCE.createTokenTrace();
@@ -359,8 +359,26 @@ public class FaultGraph {
 		setLeafTokensType();
 		eventTrace.setRoot(rootToken);
 		eventTrace.setName( eventTrace.getRoot().getName()+"_Effects");
-		save(eventTrace);
+		return eventTrace;
 	}
+	
+	
+	public TokenTrace generateEffectTrace(GeneratorInstance gi, TokenTraceType ttt, String subclauseName) {
+		ComponentInstance root = getRoot(gi);
+		ComponentInstance ci = containingComponentInstance(gi);
+		DefaultDirectedGraph<InstanceObject, DefaultEdge> bgraph = AIJGraphTUtil.generateBehaviorPropagationPaths(root, subclauseName);
+		this.graph = bgraph;
+		eventTrace = TokenTraceFactory.eINSTANCE.createTokenTrace();
+		eventTrace.setInstanceRoot(root);
+		eventTrace.setTokenTraceType(ttt);
+		Token ciToken = createToken(eventTrace, ci, TokenType.COMPONENT);
+		processGeneratorEffects(ciToken, gi);
+		setLeafTokensType();
+		eventTrace.setRoot(ciToken);
+		eventTrace.setName( eventTrace.getRoot().getName()+"_Effects");
+		return eventTrace;
+	}
+
 
 	private void processGeneratorEffects(Token parent, GeneratorInstance gi) {
 		if (graph.containsVertex(gi)) {

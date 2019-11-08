@@ -16,11 +16,14 @@ import org.eclipse.sirius.business.api.session.SessionManager;
 import org.eclipse.sirius.viewpoint.DRepresentation;
 import org.osate.av3instance.av3instance.AssociationInstance;
 import org.osate.av3instance.av3instance.ComponentInstance;
+import org.osate.av3instance.av3instance.GeneratorInstance;
 import org.osate.av3instance.av3instance.InstanceObject;
 import org.osate.av3instance.av3instance.PathInstance;
 import org.osate.graph.TokenTrace.TokenType;
 import org.osate.graph.TokenTrace.Token;
 import org.osate.graph.TokenTrace.TokenTrace;
+import org.osate.graph.TokenTrace.TokenTraceType;
+import org.osate.graph.TokenTrace.util.FaultGraph;
 import org.osate.graph.TokenTrace.util.TokenTraceUtil;
 
 /**
@@ -31,15 +34,21 @@ public class Services {
 
 	static String selected;
 	static InstanceObject io;
+	static TokenTrace tt;
 
 	public static void setSelection(InstanceObject eo) {
 		String target = getInstanceObjectPath(eo);
 		if (selected != null && selected.equals(target)) {
 			selected = null;
 			io = null;
+			tt = null;
 		} else {
 			selected = getInstanceObjectPath(eo);
 			io = eo;
+//			if (io instanceof GeneratorInstance) {
+//				FaultGraph fgg = new FaultGraph();
+//				tt = fgg.generateEffectTrace((GeneratorInstance) io, TokenTraceType.TOKEN_TRACE,"EM");
+//			}
 		}
 		Session session = SessionManager.INSTANCE.getSession(eo); // the semantic EObject
 		TransactionalEditingDomain domain = session.getTransactionalEditingDomain();
@@ -48,11 +57,12 @@ public class Services {
 		domain.getCommandStack().execute(cmd);
 	}
 
-	public static boolean isSelection(InstanceObject eo) {
-		return (selected != null && selected.equals(getInstanceObjectPath(eo)));
+	public boolean isSelection(InstanceObject eo) {
+		return io == eo;
+//		return (selected != null && selected.equals(getInstanceObjectPath(eo)));
 	}
 
-	public static boolean isETEFElement(InstanceObject eo) {
+	public boolean isETEFElement(InstanceObject eo) {
 		if (io instanceof PathInstance) {
 			PathInstance etefi = (PathInstance) io;
 			for (InstanceObject efel : etefi.getElements()) {
@@ -69,6 +79,31 @@ public class Services {
 		}
 		return false;
 	}
+	
+	public boolean isInTokenTrace(InstanceObject eo) {
+		if (io instanceof GeneratorInstance && tt != null) {
+			Token tok = tt.getRoot();
+			if (isInToken(tok, io)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean isInToken(Token tok, InstanceObject io) {
+		if (tok.getRelatedInstanceObject() == io) {
+			return true;
+		}
+		for (Token subtok : tok.getTokens()) {
+			if (isInToken(subtok, io)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	
+
 	
 	public Collection<ComponentInstance> getNeighbors(ComponentInstance ci){
 		 ComponentInstance root = getRoot(ci);
@@ -132,6 +167,14 @@ public class Services {
 			} 
 		}
 		return ev.getTokenType().getName() ;
+	}
+	
+	public String getGeneratorLabel(GeneratorInstance gi) {
+		if (gi.getValue() != null) {
+			return gi.getValue().toString();
+		} else {
+			return gi.getName();
+		}
 	}
 
 

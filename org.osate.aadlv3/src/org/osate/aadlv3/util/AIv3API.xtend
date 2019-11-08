@@ -132,11 +132,13 @@ class AIv3API {
 	}
 
 
-	def static GeneratorInstance createGeneratorInstance(Generator g) {
+	def static GeneratorInstance createGeneratorInstance(Generator g, Literal value) {
 		val gi = Av3instanceFactory.eINSTANCE.createGeneratorInstance
-		gi.name = g.name
+		gi.name = g.name + value == null?"":value.toString
 		gi.generator = g
-		gi.value = g.value.copy
+		if (value !== null){
+			gi.value = value.copy
+		}
 		return gi
 	}
 
@@ -227,13 +229,21 @@ class AIv3API {
 		}
 	}
 	
-	// Return the component instance if io is a component isntance (self) or the containing component isntance
+	// Return the component instance if io is a component instance (self) or the containing component isntance
 	def static ComponentInstance containingComponentInstanceOrSelf(InstanceObject io){
 		var InstanceObject res = io
 		while (!(res instanceof ComponentInstance) && res.eContainer !== null){
 			res = res.eContainer as InstanceObject
 		}
 		res as ComponentInstance
+	}
+	
+	def static ComponentInstance sourceComponent(AssociationInstance conni){
+		conni.source.containingComponentInstanceOrSelf
+	}
+	
+	def static ComponentInstance destinationComponent(AssociationInstance conni){
+		conni.destination.containingComponentInstanceOrSelf
 	}
 	
 	// return containing component instance 
@@ -362,6 +372,11 @@ class AIv3API {
 		return if (path.empty ) localname else path + "." + localname;
 	}
 	
+
+	def static List<GeneratorInstance> getAllGenerators(ComponentInstance root) {
+		return EcoreUtil2.eAllOfType(root, GeneratorInstance);
+	}
+
 
 	def static List<ComponentInstance> getAllComponents(ComponentInstance root) {
 		return EcoreUtil2.eAllOfType(root, ComponentInstance);

@@ -21,6 +21,7 @@ import org.osate.aadlv3.aadlv3.Workingset;
 import org.osate.aadlv3.instantiation.Instantiator;
 import org.osate.aadlv3.util.Aadlv3Util;
 import org.osate.av3instance.av3instance.ComponentInstance;
+import org.osate.graph.TokenTrace.TokenTrace;
 import org.osate.graph.TokenTrace.TokenTraceType;
 import org.osate.graph.TokenTrace.util.FaultGraph;
 import org.osate.graph.TokenTrace.util.TokenPaths;
@@ -82,7 +83,9 @@ public class InstantiateWorkingSetHandler extends AbstractHandler {
 			}
 			case "effecttrace": {
 				FaultGraph fgg = new FaultGraph();
-				fgg.generateEffectGraph(rootinstance, TokenTraceType.TOKEN_TRACE,"EM");
+				TokenTrace eventTrace = fgg.generateEffectGraph(rootinstance, TokenTraceType.TOKEN_TRACE,"EM");
+				fgg.save(eventTrace);
+
 				break;
 			}
 			case "tokenpropagation":{

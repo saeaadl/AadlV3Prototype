@@ -20,7 +20,7 @@ package FlowExamples is
 	abstract sensor.i  is
 		sub1: thread sense;
 		upmap: connection sub1.p1 -> outp ;
-		reading => flow upmap -> sub1.reading;
+		reading => flow  sub1.reading ;
 	end;
 	abstract actuator.i  is
 		sub2: thread actuate;

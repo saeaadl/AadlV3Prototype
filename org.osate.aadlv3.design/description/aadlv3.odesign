@@ -142,6 +142,16 @@
           </vsmElementCustomizations>
         </customization>
       </additionalLayers>
+      <additionalLayers name="TokenGenerators" reusedMappings="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='LeafConnectivity']/@additionalLayers[name='TokenGenerators']/@nodeMappings[name='TokenGeneratorMap']">
+        <edgeMappings name="GeneratorContainmentEdge" sourceMapping="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='ComponentHierarchy']/@defaultLayer/@nodeMappings[name='ComponentInstanceMap']" targetFinderExpression="feature:generators">
+          <style lineStyle="dash" sizeComputationExpression="2" endsCentering="Both">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='purple']"/>
+            <centerLabelStyleDescription>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+      </additionalLayers>
     </ownedRepresentations>
     <ownedRepresentations xsi:type="description_1:DiagramDescription" name="ConnectedNeighbors" titleExpression="aql:'Neighbors of '+self.name" domainClass="av3instance::ComponentInstance">
       <metamodel href="../../org.osate.aadlv3/model/AV3Instance.ecore#/"/>
@@ -161,6 +171,136 @@
           </vsmElementCustomizations>
         </customization>
       </defaultLayer>
+    </ownedRepresentations>
+    <ownedRepresentations xsi:type="description_1:DiagramDescription" documentation="Show component topology without ports (called component connectivity)" name="LeafConnectivity" titleExpression="aql:'Connectivity of '+self.name" domainClass="av3instance::ComponentInstance" enablePopupBars="true">
+      <metamodel href="../../org.osate.aadlv3/model/AV3Instance.ecore#/"/>
+      <filters xsi:type="filter:CompositeFilterDescription" name="Nohardware">
+        <filters xsi:type="filter:MappingFilter" mappings="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='ComponentHierarchy']/@defaultLayer/@nodeMappings[name='ComponentInstanceMap']/@borderedNodeMappings[name='FeatureInstanceMap'] //@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='LeafConnectivity']/@defaultLayer/@edgeMappings[name='ConnectionMap']" semanticConditionExpression="service:noHardware()"/>
+      </filters>
+      <layout xsi:type="description_1:CompositeLayout"/>
+      <diagramInitialisation>
+        <firstModelOperations xsi:type="tool:ChangeContext"/>
+      </diagramInitialisation>
+      <defaultLayer name="Default">
+        <nodeMappings name="ComponentNoPortMap" preconditionExpression="service:isLeafComponent()" semanticCandidatesExpression="service:getAllComponents()" domainClass="av3instance::ComponentInstance">
+          <style xsi:type="style:SquareDescription" tooltipExpression="service:getInstanceObjectPath()" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" width="10" height="3">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelFormat>bold</labelFormat>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_blue']"/>
+          </style>
+        </nodeMappings>
+        <edgeMappings name="ConnectionMap" semanticCandidatesExpression="service:getAllConnections()" sourceMapping="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='LeafConnectivity']/@defaultLayer/@nodeMappings[name='ComponentNoPortMap']" targetMapping="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='LeafConnectivity']/@defaultLayer/@nodeMappings[name='ComponentNoPortMap']" targetFinderExpression="service:destinationComponent()" sourceFinderExpression="service:sourceComponent()" domainClass="av3instance::AssociationInstance" useDomainElement="true">
+          <style sizeComputationExpression="2">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='dark_gray']"/>
+            <centerLabelStyleDescription>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <toolSections name="TopologyTools">
+          <ownedTools xsi:type="tool:OperationAction" name="OpenInstanceSource" label="Open Source">
+            <view name="views"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:ExternalJavaAction" name="OpenSourceAction" id="org.osate.aadlv3.design.OpenInstanceSourceAction"/>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool_1:DoubleClickDescription" name="DoubleClickOpenSource">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:ExternalJavaActionCall" name="DoubleClickOpenSource" action="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='LeafConnectivity']/@defaultLayer/@toolSections.0/@ownedTools[name='OpenInstanceSource']/@initialOperation/@firstModelOperations"/>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:OperationAction" name="OpenInstance" label="Open Instance">
+            <view name="views"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:ExternalJavaAction" name="OpenInstanceAction" id="org.osate.aadlv3.design.OpenInstanceAction"/>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+      </defaultLayer>
+      <additionalLayers name="EndToEndFlows">
+        <containerMappings name="ETEFContainer" semanticCandidatesExpression="aql:self" domainClass="av3instance::ComponentInstance">
+          <subNodeMappings name="ETEFInstance" semanticCandidatesExpression="feature:eAllContents" doubleClickDescription="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='LeafConnectivity']/@additionalLayers[name='EndToEndFlows']/@toolSections.0/@ownedTools[name='DoubleClickETEF']" domainClass="av3instance::PathInstance">
+            <style xsi:type="style:SquareDescription" tooltipExpression="aql:'End To End Flow '+self.name" sizeComputationExpression="" labelPosition="node" resizeKind="NSEW" width="30" height="3" color="//@userColorsPalettes[name='Aadl%20Color%20Palette']/@entries[name='ETEFColor']">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </style>
+          </subNodeMappings>
+          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelExpression="aql:'End to end flows of '+self.name" tooltipExpression="aql:'Select end to end flow '+self.name+' to be highlighted'">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+          </style>
+        </containerMappings>
+        <toolSections name="ETEFTools">
+          <ownedTools xsi:type="tool_1:DoubleClickDescription" name="DoubleClickETEF" mappings="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='LeafConnectivity']/@additionalLayers[name='EndToEndFlows']/@containerMappings[name='ETEFContainer']/@subNodeMappings[name='ETEFInstance']">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:ExternalJavaAction" name="DoubleClickSelectAction" id="org.osate.aadlv3.design.DoubleClickSelectAction"/>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+        <customization>
+          <vsmElementCustomizations xsi:type="description:VSMElementCustomization" predicateExpression="service:isETEFElement()">
+            <featureCustomizations xsi:type="description:EAttributeCustomization" appliedOn="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='ComponentHierarchy']/@defaultLayer/@nodeMappings[name='ComponentInstanceMap']/@style" attributeName="labelFormat" value="bold"/>
+            <featureCustomizations xsi:type="description:EReferenceCustomization" appliedOn="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='ComponentHierarchy']/@defaultLayer/@nodeMappings[name='ComponentInstanceMap']/@style" referenceName="labelColor">
+              <value href="environment:/viewpoint#//@systemColors/@entries[name='blue']"/>
+            </featureCustomizations>
+            <featureCustomizations xsi:type="description:EReferenceCustomization" appliedOn="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='LeafConnectivity']/@defaultLayer/@edgeMappings[name='ConnectionMap']/@style" referenceName="strokeColor">
+              <value href="environment:/viewpoint#//@systemColors/@entries[name='orange']"/>
+            </featureCustomizations>
+          </vsmElementCustomizations>
+          <vsmElementCustomizations xsi:type="description:VSMElementCustomization" predicateExpression="service:isSelection()">
+            <featureCustomizations xsi:type="description:EReferenceCustomization" appliedOn="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='LeafConnectivity']/@additionalLayers[name='EndToEndFlows']/@containerMappings[name='ETEFContainer']/@subNodeMappings[name='ETEFInstance']/@style" referenceName="color" value="//@userColorsPalettes[name='Aadl%20Color%20Palette']/@entries[name='ETEFSelectedColor']"/>
+          </vsmElementCustomizations>
+        </customization>
+      </additionalLayers>
+      <additionalLayers name="TokenGenerators">
+        <nodeMappings name="TokenGeneratorMap" semanticCandidatesExpression="service:getAllGenerators()" doubleClickDescription="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='LeafConnectivity']/@additionalLayers[name='TokenGenerators']/@toolSections.0/@ownedTools[name='DoubleClickToken']" domainClass="av3instance::GeneratorInstance">
+          <style xsi:type="style:EllipseNodeDescription" showIcon="false" labelExpression="service:getGeneratorLabel()" labelPosition="node" resizeKind="NSEW" horizontalDiameterComputationExpression="10" verticalDiameterComputationExpression="3">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_purple']"/>
+          </style>
+        </nodeMappings>
+        <edgeMappings name="GeneratorContainmentNoPortEdge" sourceMapping="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='LeafConnectivity']/@defaultLayer/@nodeMappings[name='ComponentNoPortMap']" targetMapping="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='LeafConnectivity']/@additionalLayers[name='TokenGenerators']/@nodeMappings[name='TokenGeneratorMap']" targetFinderExpression="feature:generators">
+          <style lineStyle="dash" sizeComputationExpression="2" endsCentering="Both">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='purple']"/>
+            <centerLabelStyleDescription>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <toolSections name="TokenTools">
+          <ownedTools xsi:type="tool_1:DoubleClickDescription" name="DoubleClickToken" mappings="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='LeafConnectivity']/@additionalLayers[name='TokenGenerators']/@nodeMappings[name='TokenGeneratorMap']">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:ExternalJavaAction" name="DoubleClickSelectAction" id="org.osate.aadlv3.design.DoubleClickSelectAction"/>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+        <customization>
+          <vsmElementCustomizations xsi:type="description:VSMElementCustomization" predicateExpression="service:isInTokenTrace()">
+            <featureCustomizations xsi:type="description:EAttributeCustomization" appliedOn="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='ComponentHierarchy']/@defaultLayer/@nodeMappings[name='ComponentInstanceMap']/@style" attributeName="labelFormat" value="bold"/>
+            <featureCustomizations xsi:type="description:EReferenceCustomization" appliedOn="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='ComponentHierarchy']/@defaultLayer/@nodeMappings[name='ComponentInstanceMap']/@style" referenceName="labelColor">
+              <value href="environment:/viewpoint#//@systemColors/@entries[name='blue']"/>
+            </featureCustomizations>
+            <featureCustomizations xsi:type="description:EReferenceCustomization" appliedOn="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='LeafConnectivity']/@defaultLayer/@edgeMappings[name='ConnectionMap']/@style" referenceName="strokeColor">
+              <value href="environment:/viewpoint#//@systemColors/@entries[name='orange']"/>
+            </featureCustomizations>
+          </vsmElementCustomizations>
+          <vsmElementCustomizations xsi:type="description:VSMElementCustomization" predicateExpression="service:isSelection()">
+            <featureCustomizations xsi:type="description:EReferenceCustomization" appliedOn="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='LeafConnectivity']/@additionalLayers[name='TokenGenerators']/@nodeMappings[name='TokenGeneratorMap']/@style" referenceName="color">
+              <value href="environment:/viewpoint#//@systemColors/@entries[name='purple']"/>
+            </featureCustomizations>
+          </vsmElementCustomizations>
+        </customization>
+      </additionalLayers>
     </ownedRepresentations>
     <ownedJavaExtensions qualifiedClassName="org.osate.aadlv3.design.Services"/>
     <ownedJavaExtensions qualifiedClassName="org.osate.aadlv3.util.AIv3API"/>
