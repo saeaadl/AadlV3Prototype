@@ -597,7 +597,7 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 	 * @generated
 	 */
 	@Override
-	public EReference getGeneratorInstance_Value() {
+	public EReference getGeneratorInstance_GeneratedLiterals() {
 		return (EReference) generatorInstanceEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -738,7 +738,7 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 
 		generatorInstanceEClass = createEClass(GENERATOR_INSTANCE);
 		createEReference(generatorInstanceEClass, GENERATOR_INSTANCE__GENERATOR);
-		createEReference(generatorInstanceEClass, GENERATOR_INSTANCE__VALUE);
+		createEReference(generatorInstanceEClass, GENERATOR_INSTANCE__GENERATED_LITERALS);
 
 		constrainedInstanceObjectEClass = createEClass(CONSTRAINED_INSTANCE_OBJECT);
 		createEReference(constrainedInstanceObjectEClass, CONSTRAINED_INSTANCE_OBJECT__INSTANCE_OBJECT);
@@ -921,9 +921,9 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 		initEReference(getGeneratorInstance_Generator(), theAadlv3Package.getGenerator(), null, "generator", null, 0, 1, //$NON-NLS-1$
 				GeneratorInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getGeneratorInstance_Value(), theAadlv3Package.getLiteral(), null, "value", null, 0, 1, //$NON-NLS-1$
-				GeneratorInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGeneratorInstance_GeneratedLiterals(), this.getConstrainedInstanceObject(), null,
+				"generatedLiterals", null, 0, -1, GeneratorInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, //$NON-NLS-1$
+				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(constrainedInstanceObjectEClass, ConstrainedInstanceObject.class, "ConstrainedInstanceObject", //$NON-NLS-1$
 				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

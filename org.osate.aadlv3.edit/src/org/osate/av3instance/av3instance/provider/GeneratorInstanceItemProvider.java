@@ -138,12 +138,11 @@ public class GeneratorInstanceItemProvider extends InstanceObjectItemProvider {
 	@Override
 	public String getText(Object object) {
 		String label = "Generator " + ((GeneratorInstance) object).getName();
-		String type = "Generator";
-		if (((GeneratorInstance) object).getValue() != null) {
-			type = ((GeneratorInstance) object).getValue().toString();
-		}
-		return type == null || label.length() == 0 ? label : //$NON-NLS-1$
-				label + ":" + type; //$NON-NLS-1$ //$NON-NLS-2$
+		String type = "";
+//		if (((GeneratorInstance) object).getGenerator().getValue() != null) {
+//			type = ((GeneratorInstance) object).getGenerator().getValue().toString();
+//		}
+		return  type.length() == 0 ? label : label + ":" + type; //$NON-NLS-1$ 
 	}
 
 	/**
@@ -158,7 +157,7 @@ public class GeneratorInstanceItemProvider extends InstanceObjectItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(GeneratorInstance.class)) {
-		case Av3instancePackage.GENERATOR_INSTANCE__VALUE:
+		case Av3instancePackage.GENERATOR_INSTANCE__GENERATED_LITERALS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}

@@ -174,9 +174,6 @@
     </ownedRepresentations>
     <ownedRepresentations xsi:type="description_1:DiagramDescription" documentation="Show component topology without ports (called component connectivity)" name="LeafConnectivity" titleExpression="aql:'Connectivity of '+self.name" domainClass="av3instance::ComponentInstance" enablePopupBars="true">
       <metamodel href="../../org.osate.aadlv3/model/AV3Instance.ecore#/"/>
-      <filters xsi:type="filter:CompositeFilterDescription" name="Nohardware">
-        <filters xsi:type="filter:MappingFilter" mappings="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='ComponentHierarchy']/@defaultLayer/@nodeMappings[name='ComponentInstanceMap']/@borderedNodeMappings[name='FeatureInstanceMap'] //@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='LeafConnectivity']/@defaultLayer/@edgeMappings[name='ConnectionMap']" semanticConditionExpression="service:noHardware()"/>
-      </filters>
       <layout xsi:type="description_1:CompositeLayout"/>
       <diagramInitialisation>
         <firstModelOperations xsi:type="tool:ChangeContext"/>
@@ -286,12 +283,12 @@
         </toolSections>
         <customization>
           <vsmElementCustomizations xsi:type="description:VSMElementCustomization" predicateExpression="service:isInTokenTrace()">
-            <featureCustomizations xsi:type="description:EAttributeCustomization" appliedOn="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='ComponentHierarchy']/@defaultLayer/@nodeMappings[name='ComponentInstanceMap']/@style" attributeName="labelFormat" value="bold"/>
-            <featureCustomizations xsi:type="description:EReferenceCustomization" appliedOn="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='ComponentHierarchy']/@defaultLayer/@nodeMappings[name='ComponentInstanceMap']/@style" referenceName="labelColor">
-              <value href="environment:/viewpoint#//@systemColors/@entries[name='blue']"/>
-            </featureCustomizations>
-            <featureCustomizations xsi:type="description:EReferenceCustomization" appliedOn="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='LeafConnectivity']/@defaultLayer/@edgeMappings[name='ConnectionMap']/@style" referenceName="strokeColor">
+            <featureCustomizations xsi:type="description:EAttributeCustomization" appliedOn="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='LeafConnectivity']/@defaultLayer/@nodeMappings[name='ComponentNoPortMap']/@style" attributeName="labelFormat" value="bold"/>
+            <featureCustomizations xsi:type="description:EReferenceCustomization" appliedOn="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='LeafConnectivity']/@defaultLayer/@edgeMappings[name='ConnectionMap']/@style //@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='LeafConnectivity']/@additionalLayers[name='TokenGenerators']/@edgeMappings[name='GeneratorContainmentNoPortEdge']/@style" referenceName="strokeColor">
               <value href="environment:/viewpoint#//@systemColors/@entries[name='orange']"/>
+            </featureCustomizations>
+            <featureCustomizations xsi:type="description:EReferenceCustomization" appliedOn="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='LeafConnectivity']/@defaultLayer/@nodeMappings[name='ComponentNoPortMap']/@style" referenceName="color">
+              <value href="environment:/viewpoint#//@systemColors/@entries[name='red']"/>
             </featureCustomizations>
           </vsmElementCustomizations>
           <vsmElementCustomizations xsi:type="description:VSMElementCustomization" predicateExpression="service:isSelection()">

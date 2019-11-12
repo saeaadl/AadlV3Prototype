@@ -15,20 +15,23 @@
  */
 package org.osate.av3instance.av3instance.impl;
 
+import java.util.Collection;
 import static org.osate.aadlv3.util.AIv3API.getInstanceObjectPath;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.osate.aadlv3.aadlv3.Generator;
-import org.osate.aadlv3.aadlv3.Literal;
-
 import org.osate.av3instance.av3instance.Av3instancePackage;
+import org.osate.av3instance.av3instance.ConstrainedInstanceObject;
 import org.osate.av3instance.av3instance.GeneratorInstance;
 
 /**
@@ -40,7 +43,7 @@ import org.osate.av3instance.av3instance.GeneratorInstance;
  * </p>
  * <ul>
  *   <li>{@link org.osate.av3instance.av3instance.impl.GeneratorInstanceImpl#getGenerator <em>Generator</em>}</li>
- *   <li>{@link org.osate.av3instance.av3instance.impl.GeneratorInstanceImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link org.osate.av3instance.av3instance.impl.GeneratorInstanceImpl#getGeneratedLiterals <em>Generated Literals</em>}</li>
  * </ul>
  *
  * @generated
@@ -57,14 +60,14 @@ public class GeneratorInstanceImpl extends InstanceObjectImpl implements Generat
 	protected Generator generator;
 
 	/**
-	 * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
+	 * The cached value of the '{@link #getGeneratedLiterals() <em>Generated Literals</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getValue()
+	 * @see #getGeneratedLiterals()
 	 * @generated
 	 * @ordered
 	 */
-	protected Literal value;
+	protected EList<ConstrainedInstanceObject> generatedLiterals;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -133,50 +136,12 @@ public class GeneratorInstanceImpl extends InstanceObjectImpl implements Generat
 	 * @generated
 	 */
 	@Override
-	public Literal getValue() {
-		return value;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetValue(Literal newValue, NotificationChain msgs) {
-		Literal oldValue = value;
-		value = newValue;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					Av3instancePackage.GENERATOR_INSTANCE__VALUE, oldValue, newValue);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
+	public EList<ConstrainedInstanceObject> getGeneratedLiterals() {
+		if (generatedLiterals == null) {
+			generatedLiterals = new EObjectContainmentEList<ConstrainedInstanceObject>(ConstrainedInstanceObject.class,
+					this, Av3instancePackage.GENERATOR_INSTANCE__GENERATED_LITERALS);
 		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setValue(Literal newValue) {
-		if (newValue != value) {
-			NotificationChain msgs = null;
-			if (value != null)
-				msgs = ((InternalEObject) value).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE - Av3instancePackage.GENERATOR_INSTANCE__VALUE, null, msgs);
-			if (newValue != null)
-				msgs = ((InternalEObject) newValue).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE - Av3instancePackage.GENERATOR_INSTANCE__VALUE, null, msgs);
-			msgs = basicSetValue(newValue, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Av3instancePackage.GENERATOR_INSTANCE__VALUE,
-					newValue, newValue));
+		return generatedLiterals;
 	}
 
 	/**
@@ -187,8 +152,8 @@ public class GeneratorInstanceImpl extends InstanceObjectImpl implements Generat
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case Av3instancePackage.GENERATOR_INSTANCE__VALUE:
-			return basicSetValue(null, msgs);
+		case Av3instancePackage.GENERATOR_INSTANCE__GENERATED_LITERALS:
+			return ((InternalEList<?>) getGeneratedLiterals()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -205,8 +170,8 @@ public class GeneratorInstanceImpl extends InstanceObjectImpl implements Generat
 			if (resolve)
 				return getGenerator();
 			return basicGetGenerator();
-		case Av3instancePackage.GENERATOR_INSTANCE__VALUE:
-			return getValue();
+		case Av3instancePackage.GENERATOR_INSTANCE__GENERATED_LITERALS:
+			return getGeneratedLiterals();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -216,14 +181,16 @@ public class GeneratorInstanceImpl extends InstanceObjectImpl implements Generat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 		case Av3instancePackage.GENERATOR_INSTANCE__GENERATOR:
 			setGenerator((Generator) newValue);
 			return;
-		case Av3instancePackage.GENERATOR_INSTANCE__VALUE:
-			setValue((Literal) newValue);
+		case Av3instancePackage.GENERATOR_INSTANCE__GENERATED_LITERALS:
+			getGeneratedLiterals().clear();
+			getGeneratedLiterals().addAll((Collection<? extends ConstrainedInstanceObject>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -240,8 +207,8 @@ public class GeneratorInstanceImpl extends InstanceObjectImpl implements Generat
 		case Av3instancePackage.GENERATOR_INSTANCE__GENERATOR:
 			setGenerator((Generator) null);
 			return;
-		case Av3instancePackage.GENERATOR_INSTANCE__VALUE:
-			setValue((Literal) null);
+		case Av3instancePackage.GENERATOR_INSTANCE__GENERATED_LITERALS:
+			getGeneratedLiterals().clear();
 			return;
 		}
 		super.eUnset(featureID);
@@ -257,8 +224,8 @@ public class GeneratorInstanceImpl extends InstanceObjectImpl implements Generat
 		switch (featureID) {
 		case Av3instancePackage.GENERATOR_INSTANCE__GENERATOR:
 			return generator != null;
-		case Av3instancePackage.GENERATOR_INSTANCE__VALUE:
-			return value != null;
+		case Av3instancePackage.GENERATOR_INSTANCE__GENERATED_LITERALS:
+			return generatedLiterals != null && !generatedLiterals.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

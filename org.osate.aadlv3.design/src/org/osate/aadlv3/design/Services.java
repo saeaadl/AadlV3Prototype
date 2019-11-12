@@ -14,6 +14,7 @@ import org.eclipse.sirius.business.api.dialect.command.RefreshRepresentationsCom
 import org.eclipse.sirius.business.api.session.Session;
 import org.eclipse.sirius.business.api.session.SessionManager;
 import org.eclipse.sirius.viewpoint.DRepresentation;
+import org.osate.aadlv3.util.AIv3API;
 import org.osate.av3instance.av3instance.AssociationInstance;
 import org.osate.av3instance.av3instance.ComponentInstance;
 import org.osate.av3instance.av3instance.GeneratorInstance;
@@ -33,22 +34,22 @@ public class Services {
     
 
 	static String selected;
-	static InstanceObject io;
+	static InstanceObject selectedio;
 	static TokenTrace tt;
 
 	public static void setSelection(InstanceObject eo) {
 		String target = getInstanceObjectPath(eo);
 		if (selected != null && selected.equals(target)) {
 			selected = null;
-			io = null;
+			selectedio = null;
 			tt = null;
 		} else {
 			selected = getInstanceObjectPath(eo);
-			io = eo;
-//			if (io instanceof GeneratorInstance) {
-//				FaultGraph fgg = new FaultGraph();
-//				tt = fgg.generateEffectTrace((GeneratorInstance) io, TokenTraceType.TOKEN_TRACE,"EM");
-//			}
+			selectedio = eo;
+			if (selectedio instanceof GeneratorInstance) {
+				FaultGraph fgg = new FaultGraph();
+				tt = fgg.generateEffectTrace((GeneratorInstance) selectedio, TokenTraceType.TOKEN_TRACE,"EM");
+			}
 		}
 		Session session = SessionManager.INSTANCE.getSession(eo); // the semantic EObject
 		TransactionalEditingDomain domain = session.getTransactionalEditingDomain();
@@ -58,13 +59,13 @@ public class Services {
 	}
 
 	public boolean isSelection(InstanceObject eo) {
-		return io == eo;
+		return selectedio == eo;
 //		return (selected != null && selected.equals(getInstanceObjectPath(eo)));
 	}
 
 	public boolean isETEFElement(InstanceObject eo) {
-		if (io instanceof PathInstance) {
-			PathInstance etefi = (PathInstance) io;
+		if (selectedio instanceof PathInstance) {
+			PathInstance etefi = (PathInstance) selectedio;
 			for (InstanceObject efel : etefi.getElements()) {
 				if (efel == eo) {
 					return true;
@@ -81,17 +82,23 @@ public class Services {
 	}
 	
 	public boolean isInTokenTrace(InstanceObject eo) {
-		if (io instanceof GeneratorInstance && tt != null) {
+//		System.out.println("iTT "+eo.toString());
+		if (selectedio instanceof GeneratorInstance && tt != null) {
 			Token tok = tt.getRoot();
-			if (isInToken(tok, io)) {
+			if (isInToken(tok, eo)) {
+//				System.out.println("Found "+eo.toString());
 				return true;
 			}
+//			System.out.println("Not found "+eo.toString());
 		}
 		return false;
 	}
 	
 	public boolean isInToken(Token tok, InstanceObject io) {
-		if (tok.getRelatedInstanceObject() == io) {
+		//selected.equals(getInstanceObjectPath(eo)))
+		InstanceObject tio = AIv3API.containingComponentInstanceOrSelf(tok.getRelatedInstanceObject());
+//		System.out.println(io.toString()+": "+tio.toString());
+		if (AIv3API.getInstanceObjectPath(tio).equals(AIv3API.getInstanceObjectPath(io))) {
 			return true;
 		}
 		for (Token subtok : tok.getTokens()) {

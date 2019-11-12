@@ -206,7 +206,7 @@ public class FaultGraph {
 			// an incoming or generator
 			if (cio.getInstanceObject() instanceof GeneratorInstance) {
 				// generator
-				return generateEvents(cio.getInstanceObject(), cio.getConstraint());
+				return generateEvents((GeneratorInstance)cio.getInstanceObject(), cio.getConstraint());
 			} else {
 				// incoming cio
 				return processIncomingCIO(cio);
@@ -221,9 +221,7 @@ public class FaultGraph {
 		// incoming cio
 		Set<DefaultEdge> edges = graph.outgoingEdgesOf(cioio);
 		if (edges.isEmpty()){
-			InstanceObject target = getRealInstanceObject(cioio);
-			Literal tlit = getRealConstraint(cioio);
-			return generateEvents(target, tlit);
+			return generateEvents(cioio);
 		} else {
 			// process outgoing
 			EList<Token> subEvents = new BasicEList<Token>();
@@ -245,15 +243,55 @@ public class FaultGraph {
 	 * @param cio
 	 * @return
 	 */
-	public Token generateEvents(InstanceObject io, Literal constraint) {
-		TokenType eventType = io instanceof GeneratorInstance || io instanceof StateInstance  ? TokenType.BASIC : TokenType.UNDEVELOPED;
+	public Token generateEvents(GeneratorInstance io, Literal constraint) {
 		if (constraint == null) {
-			if (io instanceof GeneratorInstance) {
-				if (((GeneratorInstance)io).getValue() != null) {
-					constraint = ((GeneratorInstance)io).getValue();
+				if (((GeneratorInstance)io).getGeneratedLiterals() != null) {
+					Token gentok = createToken(eventTrace, io,null, TokenType.INTERMEDIATE);
+					for (ConstrainedInstanceObject cio : io.getGeneratedLiterals()) {
+						gentok.getTokens().add(createToken(eventTrace, cio, TokenType.BASIC));
+					}
+					return gentok;
+				} else {
+					return createToken(eventTrace, io,null, TokenType.BASIC);
+				}
+		} else if (constraint instanceof ECollection) {
+			// one sub event for each type in the constraint
+			ECollection types = (ECollection)constraint;
+			Token inEvent = createToken(eventTrace, io, null, TokenType.INTERMEDIATE);
+			for (Expression el : types.getElements()) {
+				if (el instanceof Literal) {
+					Literal tr = (Literal) el;
+					inEvent.getTokens().add(createToken(eventTrace, io, tr, TokenType.BASIC));
 				}
 			}
+			return inEvent;
+		} else {
+			return createToken(eventTrace, io,constraint, TokenType.BASIC);
 		}
+	}
+	
+	public Token generateEvents(StateInstance io, Literal constraint) {
+		TokenType eventType =  TokenType.BASIC ;
+		if (constraint instanceof ECollection) {
+			// one sub event for each type in the constraint
+			ECollection types = (ECollection)constraint;
+			Token inEvent = createToken(eventTrace, io, null, TokenType.INTERMEDIATE);
+			for (Expression el : types.getElements()) {
+				if (el instanceof Literal) {
+					Literal tr = (Literal) el;
+					inEvent.getTokens().add(createToken(eventTrace, io, tr, eventType));
+				}
+			}
+			return inEvent;
+		} else {
+			return createToken(eventTrace, io,constraint, eventType);
+		}
+	}
+	
+	public Token generateEvents(InstanceObject cio) {
+		TokenType eventType =  TokenType.BASIC ;
+		InstanceObject io = getRealInstanceObject(cio);
+		Literal constraint = getRealConstraint(cio);
 		if (constraint instanceof ECollection) {
 			// one sub event for each type in the constraint
 			ECollection types = (ECollection)constraint;
@@ -372,6 +410,7 @@ public class FaultGraph {
 		eventTrace.setInstanceRoot(root);
 		eventTrace.setTokenTraceType(ttt);
 		Token ciToken = createToken(eventTrace, ci, TokenType.COMPONENT);
+		System.out.println("Sel: "+gi.toString());
 		processGeneratorEffects(ciToken, gi);
 		setLeafTokensType();
 		eventTrace.setRoot(ciToken);
@@ -381,23 +420,21 @@ public class FaultGraph {
 
 
 	private void processGeneratorEffects(Token parent, GeneratorInstance gi) {
-		if (graph.containsVertex(gi)) {
-			Literal lit = gi.getValue();
-			Set<DefaultEdge> edges = graph.outgoingEdgesOf(gi);
-			if (lit instanceof ECollection) {
-				for (Expression t : ((ECollection) lit).getElements()) {
-					Token nextStep = addNextStep(parent, gi, (Literal)t);
-					for (DefaultEdge edge : edges) {
-						InstanceObject nextCioio = graph.getEdgeTarget(edge);
-						processEffect(nextStep, nextCioio);
-					}
-				}
-			} else {
-				Token nextStep = addNextStep(parent, gi, lit);
+		if (!gi.getGeneratedLiterals().isEmpty()) {
+			for (ConstrainedInstanceObject cio : gi.getGeneratedLiterals()) {
+				Set<DefaultEdge> edges = graph.outgoingEdgesOf(cio);
+				Token nextStep = addNextStep(parent, gi, cio.getConstraint());
 				for (DefaultEdge edge : edges) {
 					InstanceObject nextCioio = graph.getEdgeTarget(edge);
 					processEffect(nextStep, nextCioio);
 				}
+			}
+		} else {
+			Token nextStep = addNextStep(parent, gi, null);
+			Set<DefaultEdge> giedges = graph.outgoingEdgesOf(gi);
+			for (DefaultEdge edge : giedges) {
+				InstanceObject nextCioio = graph.getEdgeTarget(edge);
+				processEffect(nextStep, nextCioio);
 			}
 		}
 	}

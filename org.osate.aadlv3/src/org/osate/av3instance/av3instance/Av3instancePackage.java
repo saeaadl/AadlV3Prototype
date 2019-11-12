@@ -736,13 +736,13 @@ public interface Av3instancePackage extends EPackage {
 	int GENERATOR_INSTANCE__GENERATOR = INSTANCE_OBJECT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Value</b></em>' containment reference.
+	 * The feature id for the '<em><b>Generated Literals</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GENERATOR_INSTANCE__VALUE = INSTANCE_OBJECT_FEATURE_COUNT + 1;
+	int GENERATOR_INSTANCE__GENERATED_LITERALS = INSTANCE_OBJECT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Generator Instance</em>' class.
@@ -1390,15 +1390,15 @@ public interface Av3instancePackage extends EPackage {
 	EReference getGeneratorInstance_Generator();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.osate.av3instance.av3instance.GeneratorInstance#getValue <em>Value</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.osate.av3instance.av3instance.GeneratorInstance#getGeneratedLiterals <em>Generated Literals</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Value</em>'.
-	 * @see org.osate.av3instance.av3instance.GeneratorInstance#getValue()
+	 * @return the meta object for the containment reference list '<em>Generated Literals</em>'.
+	 * @see org.osate.av3instance.av3instance.GeneratorInstance#getGeneratedLiterals()
 	 * @see #getGeneratorInstance()
 	 * @generated
 	 */
-	EReference getGeneratorInstance_Value();
+	EReference getGeneratorInstance_GeneratedLiterals();
 
 	/**
 	 * Returns the meta object for class '{@link org.osate.av3instance.av3instance.ConstrainedInstanceObject <em>Constrained Instance Object</em>}'.
@@ -1830,12 +1830,12 @@ public interface Av3instancePackage extends EPackage {
 		EReference GENERATOR_INSTANCE__GENERATOR = eINSTANCE.getGeneratorInstance_Generator();
 
 		/**
-		 * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Generated Literals</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference GENERATOR_INSTANCE__VALUE = eINSTANCE.getGeneratorInstance_Value();
+		EReference GENERATOR_INSTANCE__GENERATED_LITERALS = eINSTANCE.getGeneratorInstance_GeneratedLiterals();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.av3instance.av3instance.impl.ConstrainedInstanceObjectImpl <em>Constrained Instance Object</em>}' class.

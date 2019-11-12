@@ -130,15 +130,20 @@ class AIv3API {
 		}
 		return cio
 	}
+	
+	def static ConstrainedInstanceObject createConstrainedInstanceObject(Literal lit, GeneratorInstance context) {
+		val cio = Av3instanceFactory.eINSTANCE.createConstrainedInstanceObject
+		cio.name = context.name + ":"+ lit.toString()
+		cio.instanceObject = context
+		cio.constraint = lit.copy
+		return cio
+	}
 
 
-	def static GeneratorInstance createGeneratorInstance(Generator g, Literal value) {
+	def static GeneratorInstance createGeneratorInstance(Generator g) {
 		val gi = Av3instanceFactory.eINSTANCE.createGeneratorInstance
-		gi.name = g.name + value == null?"":value.toString
+		gi.name = g.name 
 		gi.generator = g
-		if (value !== null){
-			gi.value = value.copy
-		}
 		return gi
 	}
 

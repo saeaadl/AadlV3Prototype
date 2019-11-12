@@ -74,8 +74,8 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GeneratorInstance" eSuperTypes="#//InstanceObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="generator" eType="ecore:EClass Aadlv3.ecore#//Generator"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="ecore:EClass Aadlv3.ecore#//Literal"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="generatedLiterals" upperBound="-1"
+        eType="#//ConstrainedInstanceObject" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConstrainedInstanceObject" eSuperTypes="#//InstanceObject Aadlv3.ecore#//Literal">
     <eStructuralFeatures xsi:type="ecore:EReference" name="instanceObject" eType="#//InstanceObject"/>

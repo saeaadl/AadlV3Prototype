@@ -15,8 +15,8 @@
  */
 package org.osate.av3instance.av3instance;
 
+import org.eclipse.emf.common.util.EList;
 import org.osate.aadlv3.aadlv3.Generator;
-import org.osate.aadlv3.aadlv3.Literal;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,7 +28,7 @@ import org.osate.aadlv3.aadlv3.Literal;
  * </p>
  * <ul>
  *   <li>{@link org.osate.av3instance.av3instance.GeneratorInstance#getGenerator <em>Generator</em>}</li>
- *   <li>{@link org.osate.av3instance.av3instance.GeneratorInstance#getValue <em>Value</em>}</li>
+ *   <li>{@link org.osate.av3instance.av3instance.GeneratorInstance#getGeneratedLiterals <em>Generated Literals</em>}</li>
  * </ul>
  *
  * @see org.osate.av3instance.av3instance.Av3instancePackage#getGeneratorInstance()
@@ -59,25 +59,15 @@ public interface GeneratorInstance extends InstanceObject {
 	void setGenerator(Generator value);
 
 	/**
-	 * Returns the value of the '<em><b>Value</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Generated Literals</b></em>' containment reference list.
+	 * The list contents are of type {@link org.osate.av3instance.av3instance.ConstrainedInstanceObject}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Value</em>' containment reference.
-	 * @see #setValue(Literal)
-	 * @see org.osate.av3instance.av3instance.Av3instancePackage#getGeneratorInstance_Value()
+	 * @return the value of the '<em>Generated Literals</em>' containment reference list.
+	 * @see org.osate.av3instance.av3instance.Av3instancePackage#getGeneratorInstance_GeneratedLiterals()
 	 * @model containment="true"
 	 * @generated
 	 */
-	Literal getValue();
-
-	/**
-	 * Sets the value of the '{@link org.osate.av3instance.av3instance.GeneratorInstance#getValue <em>Value</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Value</em>' containment reference.
-	 * @see #getValue()
-	 * @generated
-	 */
-	void setValue(Literal value);
+	EList<ConstrainedInstanceObject> getGeneratedLiterals();
 
 } // GeneratorInstance

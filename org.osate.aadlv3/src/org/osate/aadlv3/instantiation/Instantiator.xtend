@@ -44,6 +44,7 @@ import org.osate.av3instance.av3instance.Av3instanceFactory
 import org.osate.aadlv3.aadlv3.InstanceConfiguration
 import org.osate.av3instance.util.AIv3Validation
 import org.osate.aadlv3.util.Aadlv3Util
+import org.osate.aadlv3.aadlv3.ModelElement
 
 class Instantiator {
 	
@@ -622,33 +623,36 @@ class Instantiator {
 		if (br.condition !== null) {
 			var behaviorCondition = br.condition.copy
 			// now replace ConditionElements by respective instances
-			val cos = EcoreUtil2.eAllOfType(behaviorCondition, Literal).filter[lit|!(lit instanceof ECollection)];
+			val cos = EcoreUtil2.eAllOfType(behaviorCondition, ConditionOperation);
 			for (co : cos) {
-				if (co instanceof ConditionOperation){
-				val cio = co.createConstrainedInstanceObject(context, false)
-				val container = co.eContainer
-				if (container instanceof ECollection) {
-					container.elements.remove(co)
-					container.elements.add(cio)
-				} else if (container === null) {
-					// single condition element as condition
-					behaviorCondition = cio
-				}
+				if ((co.element as NamedElementReference).element instanceof ModelElement) {
+					// resolve only model element references
+					val cio = co.createConstrainedInstanceObject(context, false)
+					val container = co.eContainer
+					if (container instanceof ECollection) {
+						container.elements.remove(co)
+						container.elements.add(cio)
+					} else if (container === null) {
+						// single condition element as condition
+						behaviorCondition = cio
+					}
 				}
 			}
 			// do the same for condition elements without types
-			for (co : cos) {
-				if (co instanceof NamedElementReference){
-				val tio = context.getInstanceElement(co);
-				val cio = tio.createConstrainedInstanceObject(context, false)
-				val container = co.eContainer
-				if (container instanceof ECollection) {
-					container.elements.remove(co)
-					container.elements.add(cio)
-				} else if (container === null) {
-					// single condition element as condition
-					behaviorCondition = cio
-				}
+			val ners = EcoreUtil2.eAllOfType(behaviorCondition, NamedElementReference);
+			for (ner : ners) {
+				if (ner.element instanceof ModelElement) {
+					// resolve only model element references
+					val tio = context.getInstanceElement(ner);
+					val cio = tio.createConstrainedInstanceObject(context, false)
+					val container = ner.eContainer
+					if (container instanceof ECollection) {
+						container.elements.remove(ner)
+						container.elements.add(cio)
+					} else if (container === null) {
+						// single condition element as condition
+						behaviorCondition = cio
+					}
 				}
 			}
 			bri.condition = behaviorCondition
@@ -687,14 +691,16 @@ class Instantiator {
 
 	// Generator
 	def void instantiateGenerator(Generator g, ComponentInstance context) {
+		val gi = g.createGeneratorInstance()
+		context.generators += gi
 		val literals = g.value
 		if (literals instanceof ECollection) {
 			for (lit : literals.elements) {
-				context.generators += g.createGeneratorInstance(lit as Literal)
+				gi.generatedLiterals += (lit as Literal).createConstrainedInstanceObject(gi)
 			}
-		} else {
-			// null or single literal
-			context.generators += g.createGeneratorInstance(literals)
+		} else if (literals !== null){
+			// single literal
+			gi.generatedLiterals += literals.createConstrainedInstanceObject(gi)
 		}
 	}
 

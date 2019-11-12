@@ -100,6 +100,7 @@ public class SinkInstanceItemProvider extends InstanceObjectItemProvider {
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
+		super.notifyChanged(notification);
 	}
 
 }
