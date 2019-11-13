@@ -131,7 +131,7 @@
           <vsmElementCustomizations xsi:type="description:VSMElementCustomization" predicateExpression="service:isETEFElement()">
             <featureCustomizations xsi:type="description:EAttributeCustomization" appliedOn="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='ComponentHierarchy']/@defaultLayer/@nodeMappings[name='ComponentInstanceMap']/@style" attributeName="labelFormat" value="bold"/>
             <featureCustomizations xsi:type="description:EReferenceCustomization" appliedOn="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='ComponentHierarchy']/@defaultLayer/@nodeMappings[name='ComponentInstanceMap']/@style" referenceName="labelColor">
-              <value href="environment:/viewpoint#//@systemColors/@entries[name='blue']"/>
+              <value href="environment:/viewpoint#//@systemColors/@entries[name='orange']"/>
             </featureCustomizations>
             <featureCustomizations xsi:type="description:EReferenceCustomization" appliedOn="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='LeafTopology']/@defaultLayer/@edgeMappings[name='ConnectionMap']/@style" referenceName="strokeColor">
               <value href="environment:/viewpoint#//@systemColors/@entries[name='orange']"/>
@@ -244,8 +244,8 @@
         <customization>
           <vsmElementCustomizations xsi:type="description:VSMElementCustomization" predicateExpression="service:isETEFElement()">
             <featureCustomizations xsi:type="description:EAttributeCustomization" appliedOn="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='ComponentHierarchy']/@defaultLayer/@nodeMappings[name='ComponentInstanceMap']/@style" attributeName="labelFormat" value="bold"/>
-            <featureCustomizations xsi:type="description:EReferenceCustomization" appliedOn="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='ComponentHierarchy']/@defaultLayer/@nodeMappings[name='ComponentInstanceMap']/@style" referenceName="labelColor">
-              <value href="environment:/viewpoint#//@systemColors/@entries[name='blue']"/>
+            <featureCustomizations xsi:type="description:EReferenceCustomization" appliedOn="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='LeafConnectivity']/@defaultLayer/@nodeMappings[name='ComponentNoPortMap']/@style" referenceName="labelColor">
+              <value href="environment:/viewpoint#//@systemColors/@entries[name='orange']"/>
             </featureCustomizations>
             <featureCustomizations xsi:type="description:EReferenceCustomization" appliedOn="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='LeafConnectivity']/@defaultLayer/@edgeMappings[name='ConnectionMap']/@style" referenceName="strokeColor">
               <value href="environment:/viewpoint#//@systemColors/@entries[name='orange']"/>
@@ -257,14 +257,14 @@
         </customization>
       </additionalLayers>
       <additionalLayers name="TokenGenerators">
-        <nodeMappings name="TokenGeneratorMap" semanticCandidatesExpression="service:getAllGenerators()" doubleClickDescription="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='LeafConnectivity']/@additionalLayers[name='TokenGenerators']/@toolSections.0/@ownedTools[name='DoubleClickToken']" domainClass="av3instance::GeneratorInstance">
-          <style xsi:type="style:EllipseNodeDescription" showIcon="false" labelExpression="service:getGeneratorLabel()" labelPosition="node" resizeKind="NSEW" horizontalDiameterComputationExpression="10" verticalDiameterComputationExpression="3">
+        <nodeMappings name="TokenGeneratorMap" semanticCandidatesExpression="service:getAllGeneratedLiterals()" doubleClickDescription="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='LeafConnectivity']/@additionalLayers[name='TokenGenerators']/@toolSections.0/@ownedTools[name='DoubleClickToken']" domainClass="av3instance::InstanceObject">
+          <style xsi:type="style:EllipseNodeDescription" showIcon="false" labelPosition="node" resizeKind="NSEW" horizontalDiameterComputationExpression="10" verticalDiameterComputationExpression="3">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_purple']"/>
           </style>
         </nodeMappings>
-        <edgeMappings name="GeneratorContainmentNoPortEdge" sourceMapping="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='LeafConnectivity']/@defaultLayer/@nodeMappings[name='ComponentNoPortMap']" targetMapping="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='LeafConnectivity']/@additionalLayers[name='TokenGenerators']/@nodeMappings[name='TokenGeneratorMap']" targetFinderExpression="feature:generators">
+        <edgeMappings name="GeneratorContainmentNoPortEdge" sourceMapping="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='LeafConnectivity']/@additionalLayers[name='TokenGenerators']/@nodeMappings[name='TokenGeneratorMap']" targetMapping="//@ownedViewpoints[name='Av3InstanceViewpoint']/@ownedRepresentations[name='LeafConnectivity']/@defaultLayer/@nodeMappings[name='ComponentNoPortMap']" targetFinderExpression="service:containingComponentInstanceOrSelf()">
           <style lineStyle="dash" sizeComputationExpression="2" endsCentering="Both">
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='purple']"/>
             <centerLabelStyleDescription>

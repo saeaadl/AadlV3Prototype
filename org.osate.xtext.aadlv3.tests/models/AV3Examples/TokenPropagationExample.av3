@@ -57,9 +57,6 @@ package TokenPropagationExample is
 //	filterpath1: flow insignal1 -> outsignal;
 //	filterpath2: flow insignal2 -> outsignal;
 	#Period => 20 ;
-	@EM{
-		filter2: all (insignal1 in (Classified), insignal2, insignal2  in (Classified)) ->  outsignal(Classified);
-	};
 	end;
 	
 	thread interface compute is

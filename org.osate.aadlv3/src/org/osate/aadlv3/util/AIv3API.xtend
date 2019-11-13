@@ -12,7 +12,6 @@ import org.osate.aadlv3.aadlv3.ComponentCategory
 import org.osate.aadlv3.aadlv3.Feature
 import org.osate.aadlv3.aadlv3.FeatureCategory
 import org.osate.aadlv3.aadlv3.Literal
-import org.osate.aadlv3.aadlv3.ModelElement
 import org.osate.aadlv3.aadlv3.PathSequence
 import org.osate.aadlv3.aadlv3.PropertyAssociation
 import org.osate.aadlv3.aadlv3.PropertyDefinition
@@ -32,8 +31,6 @@ import static extension org.eclipse.emf.ecore.util.EcoreUtil.*
 import static extension org.osate.aadlv3.util.Aadlv3Util.*
 import org.osate.av3instance.av3instance.GeneratorInstance
 import org.osate.aadlv3.aadlv3.Generator
-import org.osate.aadlv3.aadlv3.BehaviorSpecification
-import org.osate.aadlv3.aadlv3.impl.BehaviorRuleImpl
 import org.osate.aadlv3.aadlv3.StateSpecification
 import org.osate.av3instance.av3instance.StateInstance
 import org.osate.aadlv3.aadlv3.ConditionOperation
@@ -380,6 +377,19 @@ class AIv3API {
 
 	def static List<GeneratorInstance> getAllGenerators(ComponentInstance root) {
 		return EcoreUtil2.eAllOfType(root, GeneratorInstance);
+	}
+
+	def static List<InstanceObject> getAllGeneratedLiterals(ComponentInstance root) {
+		val gis = root.getAllGenerators
+		val result = new ArrayList<InstanceObject>
+		for (gi: gis){
+			if (gi.generatedLiterals.empty){
+				result += gi
+			} else {
+				result += gi.generatedLiterals
+			}
+		}
+		return result
 	}
 
 

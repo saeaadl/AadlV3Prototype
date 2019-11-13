@@ -391,7 +391,8 @@ public class FaultGraph {
 			Token ciToken = createToken(eventTrace, ci, TokenType.COMPONENT);
 			rootToken.getTokens().add(ciToken);
 			for ( GeneratorInstance gi : ci.getGenerators()) {
-				processGeneratorEffects(ciToken, gi);
+				Token gtoken = processGeneratorEffects( gi);
+				ciToken.getTokens().add(gtoken);
 			}
 		}
 		setLeafTokensType();
@@ -410,36 +411,55 @@ public class FaultGraph {
 		eventTrace.setInstanceRoot(root);
 		eventTrace.setTokenTraceType(ttt);
 		Token ciToken = createToken(eventTrace, ci, TokenType.COMPONENT);
-		System.out.println("Sel: "+gi.toString());
-		processGeneratorEffects(ciToken, gi);
+		Token gtoken = processGeneratorEffects( gi);
+		ciToken.getTokens().add(gtoken);
 		setLeafTokensType();
 		eventTrace.setRoot(ciToken);
 		eventTrace.setName( eventTrace.getRoot().getName()+"_Effects");
 		return eventTrace;
 	}
 
-
-	private void processGeneratorEffects(Token parent, GeneratorInstance gi) {
-		if (!gi.getGeneratedLiterals().isEmpty()) {
-			for (ConstrainedInstanceObject cio : gi.getGeneratedLiterals()) {
-				Set<DefaultEdge> edges = graph.outgoingEdgesOf(cio);
-				Token nextStep = addNextStep(parent, gi, cio.getConstraint());
-				for (DefaultEdge edge : edges) {
-					InstanceObject nextCioio = graph.getEdgeTarget(edge);
-					processEffect(nextStep, nextCioio);
-				}
-			}
-		} else {
-			Token nextStep = addNextStep(parent, gi, null);
-			Set<DefaultEdge> giedges = graph.outgoingEdgesOf(gi);
-			for (DefaultEdge edge : giedges) {
-				InstanceObject nextCioio = graph.getEdgeTarget(edge);
-				processEffect(nextStep, nextCioio);
-			}
-		}
+	
+	public TokenTrace generateEffectTrace(ConstrainedInstanceObject startcio, TokenTraceType ttt, String subclauseName) {
+		ComponentInstance root = getRoot(startcio);
+		DefaultDirectedGraph<InstanceObject, DefaultEdge> bgraph = AIJGraphTUtil.generateBehaviorPropagationPaths(root, subclauseName);
+		this.graph = bgraph;
+		eventTrace = TokenTraceFactory.eINSTANCE.createTokenTrace();
+		eventTrace.setInstanceRoot(root);
+		eventTrace.setTokenTraceType(ttt);
+		Token startToken = processEffects(startcio);
+		setLeafTokensType();
+		eventTrace.setRoot(startToken);
+		eventTrace.setName( eventTrace.getRoot().getName()+"_Effects");
+		return eventTrace;
 	}
 
-	private void processEffect(Token step, InstanceObject cioio) {
+
+	private Token processGeneratorEffects( GeneratorInstance gi) {
+		if (!gi.getGeneratedLiterals().isEmpty()) {
+			Token startToken = createToken(eventTrace, gi, TokenType.INTERMEDIATE);
+			for (ConstrainedInstanceObject cio : gi.getGeneratedLiterals()) {
+				startToken.getTokens().add(processEffects(cio));
+			}
+			return startToken;
+		} else {
+			Token startToken = createToken(eventTrace, gi, TokenType.INTERMEDIATE);
+			startToken.getTokens().add(processEffects(gi));
+			return startToken;
+		}
+	}
+	
+	private Token processEffects(InstanceObject startcio) {
+		Token startToken = createToken(eventTrace, startcio, TokenType.INTERMEDIATE);
+		Set<DefaultEdge> edges = graph.outgoingEdgesOf(startcio);
+		for (DefaultEdge edge : edges) {
+			InstanceObject nextCioio = graph.getEdgeTarget(edge);
+			processNextEffect(startToken, nextCioio);
+		}
+		return startToken;
+	}
+
+	private void processNextEffect(Token step, InstanceObject cioio) {
 		InstanceObject target = getRealInstanceObject(cioio);
 		Literal constraint = getRealConstraint(cioio);
 		InstanceObject outVertex = cioio;
@@ -453,7 +473,7 @@ public class FaultGraph {
 						Set<DefaultEdge> edges = graph.outgoingEdgesOf(cioio);
 						for (DefaultEdge edge : edges) {
 							InstanceObject nextCioio = graph.getEdgeTarget(edge);
-							processEffect(nextStep, nextCioio);
+							processNextEffect(nextStep, nextCioio);
 						}
 					}
 				}
@@ -479,7 +499,7 @@ public class FaultGraph {
 				Set<DefaultEdge> edges = graph.outgoingEdgesOf(outVertex);
 				for (DefaultEdge edge : edges) {
 					InstanceObject nextCioio = graph.getEdgeTarget(edge);
-					processEffect(nextStep, nextCioio);
+					processNextEffect(nextStep, nextCioio);
 				}
 			}
 		}

@@ -1,6 +1,5 @@
 package org.osate.graph.TokenTrace.util;
 import org.osate.aadlv3.aadlv3.ECollection;
-import org.osate.aadlv3.aadlv3.Expression;
 import org.osate.aadlv3.aadlv3.NamedElement;
 import org.osate.av3instance.av3instance.AssociationInstance;
 import org.osate.av3instance.av3instance.ComponentInstance;
@@ -20,9 +19,7 @@ import java.util.List;
 
 import org.osate.aadlv3.util.Diagnostic;
 import java.util.ArrayList;
-import static  org.eclipse.emf.ecore.util.EcoreUtil.*;
 import org.osate.aadlv3.util.DiagnosticUtil;
-import org.osate.aadlv3.util.Aadlv3Util;
 
 public class TokenPaths {
 

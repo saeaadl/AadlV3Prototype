@@ -2,7 +2,6 @@ package org.osate.aadlv3.util
 
 import com.google.common.collect.HashMultimap
 import com.google.common.collect.SetMultimap
-import java.util.ArrayList
 import java.util.Collection
 import java.util.Collections
 import java.util.HashMap
@@ -27,8 +26,6 @@ import org.osate.aadlv3.aadlv3.ComponentImplementation
 import org.osate.aadlv3.aadlv3.ComponentInterface
 import org.osate.aadlv3.aadlv3.ConfigurationActual
 import org.osate.aadlv3.aadlv3.ConfigurationParameter
-import org.osate.aadlv3.aadlv3.ECollection
-import org.osate.aadlv3.aadlv3.Expression
 import org.osate.aadlv3.aadlv3.Feature
 import org.osate.aadlv3.aadlv3.FeatureCategory
 import org.osate.aadlv3.aadlv3.FeatureDirection
@@ -52,7 +49,6 @@ import org.osate.av3instance.av3instance.InstanceObject
 
 import static extension org.eclipse.xtext.EcoreUtil2.*
 import static extension org.osate.aadlv3.util.Av3API.*
-import org.osate.aadlv3.aadlv3.SetLiteral
 import org.osate.aadlv3.aadlv3.NamedElementReference
 
 class Aadlv3Util {

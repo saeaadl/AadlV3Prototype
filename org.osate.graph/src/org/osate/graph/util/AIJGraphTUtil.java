@@ -13,6 +13,7 @@ import org.jgrapht.Graph;
 import org.jgrapht.graph.DefaultDirectedGraph;
 import org.jgrapht.graph.DefaultEdge;
 import org.jgrapht.graph.SimpleDirectedGraph;
+import org.osate.aadlv3.aadlv3.Literal;
 import org.osate.av3instance.av3instance.AssociationInstance;
 import org.osate.av3instance.av3instance.BehaviorRuleInstance;
 import org.osate.av3instance.av3instance.ComponentInstance;
@@ -117,21 +118,21 @@ public class AIJGraphTUtil {
 			InstanceObject src = conni.getSource();
 			InstanceObject dst = conni.getDestination();
 			// from outgoing feature to incoming feature instance
+			addPath(directedGraph, src, dst);
+			
+			// now edges from/to CIOs related to the source and destination
 			Collection<ConstrainedInstanceObject> actions = findActionCIOs(src);
 			if (actions.isEmpty()) {
 				// src component has no bri
-				// for external connection find src condition CIO in context of dst. In case of cross connection find dst condition CIOs in context of dst
-				Collection<ConstrainedInstanceObject> dests = conni.isExternal()? findContainingConditionCIOs(dst, src,null, subclauseName)://findContainedActionCIOs(dst, null):
-						 findContainingConditionCIOs(dst, null, subclauseName);
-//				if (dests.isEmpty()) {
-//					// dst has no bri
-					addPath(directedGraph, src, dst);
-//
-//				} else {
-					for (ConstrainedInstanceObject dstcio : dests) {
-						addPath(directedGraph, src, dstcio);
-					}
-//				}
+				// for external connection find src condition CIO in context of dst. In case of
+				// cross connection find dst condition CIOs in context of dst
+				Collection<ConstrainedInstanceObject> dests = conni.isExternal()
+						? findContainingConditionCIOs(dst, src, null, subclauseName)
+						: // findContainedActionCIOs(dst, null):
+						findContainingConditionCIOs(dst, null, subclauseName);
+				for (ConstrainedInstanceObject dstcio : dests) {
+					addPath(directedGraph, src, dstcio);
+				}
 			} else {
 				for (ConstrainedInstanceObject actioncio : actions) {
 					// create edges between actions of connection source and condition elements of
@@ -152,46 +153,35 @@ public class AIJGraphTUtil {
 		}
 		List<ComponentInstance> cis = getAllComponents(root);
 		for (ComponentInstance ci : cis) {
-			EList<ConstrainedInstanceObject> actions = ci.getActions();
-			EList<InstanceObject> outfiAsAction = new UniqueEList<InstanceObject>();
-			for (ConstrainedInstanceObject action : actions) {
-				outfiAsAction.add(action.getInstanceObject());
-			}
-			for (FeatureInstance outfi : getAllOutgoingFeatures(ci)) {
-				if (!outfiAsAction.contains(outfi)) {
-					for (FeatureInstance infi : getAllIncomingFeatures(ci)) {
-						if (isConnected(infi) || isConnected(outfi)) {
-							// edge to represent flow from incoming feature to outgoing feature when not handled by bri
-							addPath(directedGraph, infi, outfi);
-						}
-					}
-				}
-			}
+			// for each component add edges for flows from incoming to outgoing
+			EList<InstanceObject> outfiAsBehavior = new UniqueEList<InstanceObject>();
 			EList<BehaviorRuleInstance> bris = ci.getBehaviorRules();
 			for (BehaviorRuleInstance bri : bris) {
 				Iterable<ConstrainedInstanceObject> condcios = getAllConstrainedInstanceObjects(bri.getCondition());
 				for (ConstrainedInstanceObject action : bri.getActions()) {
 					// path to the current state from which to trace back.
-						ConstrainedInstanceObject cs = bri.getCurrentState();
-						if (cs != null) {
-							// edge from current state to action
-							addPath(directedGraph, cs,action );
-							Iterable<ConstrainedInstanceObject> tss = findTargetStateCIOs(cs, subclauseName);
-							for (ConstrainedInstanceObject ts: tss) {
-								// edge from target state of different BRI to current state in current bri
-								addPath(directedGraph, ts, cs);
-							}
+					ConstrainedInstanceObject cs = bri.getCurrentState();
+					if (cs != null) {
+						// edge from current state to action
+						addPath(directedGraph, cs, action);
+						Iterable<ConstrainedInstanceObject> tss = findTargetStateCIOs(cs, subclauseName);
+						for (ConstrainedInstanceObject ts : tss) {
+							// edge from target state of different BRI to current state in current bri
+							addPath(directedGraph, ts, cs);
 						}
-					// process conditions
+					}
+					// flows from condition elements to action (cio) 
+					// doing the cio lets us deal with condition expressions even when no tokens are involved
 					for (ConstrainedInstanceObject ce : condcios) {
 						// all cond to outgoing feature instance rule
 						addPath(directedGraph, ce, action);
 						// add ce io as path source to handle unhandled tokens
 						addPath(directedGraph, ce.getInstanceObject(), action);
 						// generator to generator cond
-						if (ce.getInstanceObject() instanceof GeneratorInstance) {
-							addPath(directedGraph,ce.getInstanceObject(),ce);
-						}
+						handleGenerators(directedGraph, ce);
+					}
+					if (action.getConstraint() == null) {
+						outfiAsBehavior.add(action.getInstanceObject());
 					}
 				}
 				if (bri.getActions().isEmpty() && bri.getTargetState() != null) {
@@ -212,9 +202,7 @@ public class AIJGraphTUtil {
 						// edge from condition elements to target state
 						addPath(directedGraph, ce, ts);
 						// generator to generator cond
-						if (ce.getInstanceObject() instanceof GeneratorInstance) {
-							addPath(directedGraph,ce.getInstanceObject(),ce);
-						}
+						handleGenerators(directedGraph, ce);
 						InstanceObject srcio = ce.getInstanceObject();
 						// Subcomponent composite rule
 						Iterable<ConstrainedInstanceObject> subactions = findContainedActionCIOs(srcio,ce.getConstraint());
@@ -234,8 +222,43 @@ public class AIJGraphTUtil {
 					}
 				}
 			}
+			for (FeatureInstance outfi : getAllOutgoingFeatures(ci)) {
+				if (!outfiAsBehavior.contains(outfi)) {
+					for (FeatureInstance infi : getAllIncomingFeatures(ci)) {
+						if (isConnected(infi) || isConnected(outfi)) {
+							// edge to represent flow from incoming feature to outgoing feature when not handled by bri without token
+							addPath(directedGraph, infi, outfi);
+						}
+					}
+				}
+			}
+
 		}
 		return directedGraph;
+	}
+	
+	private static void handleGenerators(DefaultDirectedGraph<InstanceObject, DefaultEdge> directedGraph, ConstrainedInstanceObject ce) {
+		if (ce.getInstanceObject() instanceof GeneratorInstance) {
+			GeneratorInstance gi = (GeneratorInstance) getRealInstanceObject(ce);
+			EList<ConstrainedInstanceObject> cios = gi.getGeneratedLiterals(); 
+			Literal constraint = getRealConstraint(ce);
+			if (constraint == null) {
+				if (cios.isEmpty()) {
+					addPath(directedGraph, gi, ce);
+				} else {
+					for (ConstrainedInstanceObject cio : cios) {
+						addPath(directedGraph, cio, ce);
+					}
+				}
+			} else {
+				// only those satisfying the constraint
+				for (ConstrainedInstanceObject cio : cios) {
+					if (constraint.contains(cio.getConstraint())) {
+						addPath(directedGraph, cio, ce);
+					}
+				}
+			}
+		}
 	}
 
 }

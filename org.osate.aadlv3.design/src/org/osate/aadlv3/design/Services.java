@@ -17,6 +17,7 @@ import org.eclipse.sirius.viewpoint.DRepresentation;
 import org.osate.aadlv3.util.AIv3API;
 import org.osate.av3instance.av3instance.AssociationInstance;
 import org.osate.av3instance.av3instance.ComponentInstance;
+import org.osate.av3instance.av3instance.ConstrainedInstanceObject;
 import org.osate.av3instance.av3instance.GeneratorInstance;
 import org.osate.av3instance.av3instance.InstanceObject;
 import org.osate.av3instance.av3instance.PathInstance;
@@ -49,6 +50,9 @@ public class Services {
 			if (selectedio instanceof GeneratorInstance) {
 				FaultGraph fgg = new FaultGraph();
 				tt = fgg.generateEffectTrace((GeneratorInstance) selectedio, TokenTraceType.TOKEN_TRACE,"EM");
+			} else if (selectedio instanceof ConstrainedInstanceObject) {
+				FaultGraph fgg = new FaultGraph();
+				tt = fgg.generateEffectTrace((ConstrainedInstanceObject) selectedio, TokenTraceType.TOKEN_TRACE,"EM");
 			}
 		}
 		Session session = SessionManager.INSTANCE.getSession(eo); // the semantic EObject
@@ -82,22 +86,26 @@ public class Services {
 	}
 	
 	public boolean isInTokenTrace(InstanceObject eo) {
-//		System.out.println("iTT "+eo.toString());
-		if (selectedio instanceof GeneratorInstance && tt != null) {
+		System.out.println("iTT "+eo.toString());
+		if ((selectedio instanceof GeneratorInstance || selectedio.eContainer() instanceof GeneratorInstance )&& tt != null) {
 			Token tok = tt.getRoot();
-			if (isInToken(tok, eo)) {
-//				System.out.println("Found "+eo.toString());
-				return true;
+			if (eo instanceof AssociationInstance) {
+				if (isInToken(tok, containingComponentInstanceOrSelf(((AssociationInstance)eo).getSource())) && isInToken(tok, containingComponentInstanceOrSelf(((AssociationInstance)eo).getDestination()))) {
+					return true;
+				}
+			} else {
+				if (isInToken(tok, eo)) {
+					return true;
+				}
 			}
-//			System.out.println("Not found "+eo.toString());
 		}
 		return false;
 	}
 	
 	public boolean isInToken(Token tok, InstanceObject io) {
 		//selected.equals(getInstanceObjectPath(eo)))
-		InstanceObject tio = AIv3API.containingComponentInstanceOrSelf(tok.getRelatedInstanceObject());
-//		System.out.println(io.toString()+": "+tio.toString());
+		InstanceObject tio = containingComponentInstanceOrSelf(tok.getRelatedInstanceObject());
+		System.out.println(io.toString()+": "+tio.toString());
 		if (AIv3API.getInstanceObjectPath(tio).equals(AIv3API.getInstanceObjectPath(io))) {
 			return true;
 		}
@@ -177,12 +185,13 @@ public class Services {
 	}
 	
 	public String getGeneratorLabel(GeneratorInstance gi) {
-		if (gi.getValue() != null) {
-			return gi.getValue().toString();
+		if (gi.getGenerator().getValue() != null) {
+			return gi.getGenerator().getValue().toString();
 		} else {
 			return gi.getName();
 		}
 	}
+	
 
 
 }
