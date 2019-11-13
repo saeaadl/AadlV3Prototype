@@ -672,13 +672,22 @@ public interface Av3instancePackage extends EPackage {
 	int BEHAVIOR_RULE_INSTANCE__TARGET_STATE = INSTANCE_OBJECT_FEATURE_COUNT + 4;
 
 	/**
+	 * The feature id for the '<em><b>Sink</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEHAVIOR_RULE_INSTANCE__SINK = INSTANCE_OBJECT_FEATURE_COUNT + 5;
+
+	/**
 	 * The number of structural features of the '<em>Behavior Rule Instance</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BEHAVIOR_RULE_INSTANCE_FEATURE_COUNT = INSTANCE_OBJECT_FEATURE_COUNT + 5;
+	int BEHAVIOR_RULE_INSTANCE_FEATURE_COUNT = INSTANCE_OBJECT_FEATURE_COUNT + 6;
 
 	/**
 	 * The meta object id for the '{@link org.osate.av3instance.av3instance.impl.GeneratorInstanceImpl <em>Generator Instance</em>}' class.
@@ -1358,6 +1367,17 @@ public interface Av3instancePackage extends EPackage {
 	EReference getBehaviorRuleInstance_TargetState();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.osate.av3instance.av3instance.BehaviorRuleInstance#isSink <em>Sink</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Sink</em>'.
+	 * @see org.osate.av3instance.av3instance.BehaviorRuleInstance#isSink()
+	 * @see #getBehaviorRuleInstance()
+	 * @generated
+	 */
+	EAttribute getBehaviorRuleInstance_Sink();
+
+	/**
 	 * Returns the meta object for the containment reference '{@link org.osate.av3instance.av3instance.BehaviorRuleInstance#getCondition <em>Condition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1802,6 +1822,14 @@ public interface Av3instancePackage extends EPackage {
 		 * @generated
 		 */
 		EReference BEHAVIOR_RULE_INSTANCE__TARGET_STATE = eINSTANCE.getBehaviorRuleInstance_TargetState();
+
+		/**
+		 * The meta object literal for the '<em><b>Sink</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BEHAVIOR_RULE_INSTANCE__SINK = eINSTANCE.getBehaviorRuleInstance_Sink();
 
 		/**
 		 * The meta object literal for the '<em><b>Condition</b></em>' containment reference feature.

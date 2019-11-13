@@ -213,7 +213,7 @@ public class AIJGraphTUtil {
 					}
 				}
 				// deal with sinks
-				if (isASink(bri)) {
+				if (bri.isSink()) {
 					for (ConstrainedInstanceObject ce : condcios) {
 						// edge from condition elements to sink
 						if (ci.getSinks() != null) {

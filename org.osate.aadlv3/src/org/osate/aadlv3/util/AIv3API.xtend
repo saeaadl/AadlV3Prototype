@@ -585,6 +585,13 @@ class AIv3API {
 		return cios.filter[target|target.instanceObject === desiredTarget && ((target.constraint !== null&& targetLiteral !== null)?target.constraint.contains(targetLiteral):true/*targetLiteral === null*/)].toList
 	}
 	
+	def static Collection<ConstrainedInstanceObject> findSinkCIOs(InstanceObject desiredTarget, Literal targetLiteral, String behaviorSpecName){
+		val dstCi = containingComponentInstanceOrSelf(desiredTarget);
+		val bris = dstCi.behaviorRules.filter[bri|bri.behaviorRule.containingBehaviorSpecification.name.equals(behaviorSpecName) && bri.condition !== null && bri.sink]
+		val cios = bris.map[bri|bri.condition.eAllOfType(ConstrainedInstanceObject)].flatten
+		return cios.filter[target|target.instanceObject === desiredTarget && ((target.constraint !== null&& targetLiteral !== null)?target.constraint.contains(targetLiteral):true/*targetLiteral === null*/)].toList
+	}
+	
 	def static Iterable<ConstrainedInstanceObject> getAllConstrainedInstanceObjects(Literal lit){
 		if (lit === null) return Collections.EMPTY_LIST
 		return lit.eAllOfType(ConstrainedInstanceObject)
@@ -628,12 +635,6 @@ class AIv3API {
 		return cioio instanceof ConstrainedInstanceObject? cioio.constraint:null;
 	}
 	
-	/**
-	 * is BRI a sink 
-	 */
-	def static boolean isASink(BehaviorRuleInstance bri){
-		return bri.behaviorRule.isSink  //actions.empty
-	}
 	
 	/**
 	 * is containing component a sink for a given literal coming in on io
@@ -642,7 +643,7 @@ class AIv3API {
 		if (io === null) return false;
 		val bris = io.containingComponentInstanceOrSelf.behaviorRules
 		for (bri : bris){
-			if (bri.behaviorRule.isSink){
+			if (bri.isSink){
 				val ces = bri.condition.eAllOfType(ConstrainedInstanceObject)
 				for (ce:ces){
 					if(ce.instanceObject === io && ((ce.constraint !== null&& lit !== null)?ce.constraint.contains(lit):true)){
@@ -652,9 +653,6 @@ class AIv3API {
 			}
 		}
 		return false;
-//		bris.exists[bri|bri.behaviorRule.sink&&bri.condition.eAllOfType(ConstrainedInstanceObject).
-//			   exists[target|target.instanceObject === io && ((target.constraint !== null&& lit !== null)?target.constraint.contains(lit):true)]
-//		]
 	}
 	
 	

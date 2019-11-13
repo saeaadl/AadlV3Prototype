@@ -45,6 +45,7 @@ import org.osate.av3instance.av3instance.ConstrainedInstanceObject;
  *   <li>{@link org.osate.av3instance.av3instance.impl.BehaviorRuleInstanceImpl#getActions <em>Actions</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.impl.BehaviorRuleInstanceImpl#getCurrentState <em>Current State</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.impl.BehaviorRuleInstanceImpl#getTargetState <em>Target State</em>}</li>
+ *   <li>{@link org.osate.av3instance.av3instance.impl.BehaviorRuleInstanceImpl#isSink <em>Sink</em>}</li>
  * </ul>
  *
  * @generated
@@ -99,6 +100,26 @@ public class BehaviorRuleInstanceImpl extends InstanceObjectImpl implements Beha
 	 * @ordered
 	 */
 	protected ConstrainedInstanceObject targetState;
+
+	/**
+	 * The default value of the '{@link #isSink() <em>Sink</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSink()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean SINK_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isSink() <em>Sink</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSink()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean sink = SINK_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -285,6 +306,30 @@ public class BehaviorRuleInstanceImpl extends InstanceObjectImpl implements Beha
 	 * @generated
 	 */
 	@Override
+	public boolean isSink() {
+		return sink;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setSink(boolean newSink) {
+		boolean oldSink = sink;
+		sink = newSink;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, Av3instancePackage.BEHAVIOR_RULE_INSTANCE__SINK,
+					oldSink, sink));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Literal getCondition() {
 		return condition;
 	}
@@ -369,6 +414,8 @@ public class BehaviorRuleInstanceImpl extends InstanceObjectImpl implements Beha
 			return getCurrentState();
 		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE__TARGET_STATE:
 			return getTargetState();
+		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE__SINK:
+			return isSink();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -398,6 +445,9 @@ public class BehaviorRuleInstanceImpl extends InstanceObjectImpl implements Beha
 		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE__TARGET_STATE:
 			setTargetState((ConstrainedInstanceObject) newValue);
 			return;
+		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE__SINK:
+			setSink((Boolean) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -425,6 +475,9 @@ public class BehaviorRuleInstanceImpl extends InstanceObjectImpl implements Beha
 		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE__TARGET_STATE:
 			setTargetState((ConstrainedInstanceObject) null);
 			return;
+		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE__SINK:
+			setSink(SINK_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -447,8 +500,27 @@ public class BehaviorRuleInstanceImpl extends InstanceObjectImpl implements Beha
 			return currentState != null;
 		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE__TARGET_STATE:
 			return targetState != null;
+		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE__SINK:
+			return sink != SINK_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy())
+			return super.toString();
+
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (sink: "); //$NON-NLS-1$
+		result.append(sink);
+		result.append(')');
+		return result.toString();
 	}
 
 } //BehaviorRuleInstanceImpl

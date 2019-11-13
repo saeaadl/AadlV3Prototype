@@ -139,10 +139,10 @@ public class GeneratorInstanceItemProvider extends InstanceObjectItemProvider {
 	public String getText(Object object) {
 		String label = "Generator " + ((GeneratorInstance) object).getName();
 		String type = "";
-//		if (((GeneratorInstance) object).getGenerator().getValue() != null) {
-//			type = ((GeneratorInstance) object).getGenerator().getValue().toString();
-//		}
-		return  type.length() == 0 ? label : label + ":" + type; //$NON-NLS-1$ 
+		//		if (((GeneratorInstance) object).getGenerator().getValue() != null) {
+		//			type = ((GeneratorInstance) object).getGenerator().getValue().toString();
+		//		}
+		return type.length() == 0 ? label : label + ":" + type; //$NON-NLS-1$ 
 	}
 
 	/**

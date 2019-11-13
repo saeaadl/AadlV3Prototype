@@ -619,7 +619,8 @@ class Instantiator {
 
 	// Behavior Rules
 	def void instantiateBehaviorRule(BehaviorRule br, ComponentInstance context) {
-		val bri = br.createBehaviorRuleInstance
+		val bri = br.createBehaviorRuleInstance;
+		bri.sink = br.sink;
 		if (br.condition !== null) {
 			var behaviorCondition = br.condition.copy
 			// now replace ConditionElements by respective instances

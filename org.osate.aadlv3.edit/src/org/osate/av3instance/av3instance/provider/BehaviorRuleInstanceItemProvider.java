@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.osate.av3instance.av3instance.Av3instancePackage;
@@ -59,6 +60,7 @@ public class BehaviorRuleInstanceItemProvider extends InstanceObjectItemProvider
 			super.getPropertyDescriptors(object);
 
 			addBehaviorRulePropertyDescriptor(object);
+			addSinkPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -77,6 +79,22 @@ public class BehaviorRuleInstanceItemProvider extends InstanceObjectItemProvider
 								"_UI_BehaviorRuleInstance_type"), //$NON-NLS-1$
 						Av3instancePackage.Literals.BEHAVIOR_RULE_INSTANCE__BEHAVIOR_RULE, true, false, true, null,
 						null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Sink feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSinkPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_BehaviorRuleInstance_sink_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_BehaviorRuleInstance_sink_feature", //$NON-NLS-1$//$NON-NLS-2$
+								"_UI_BehaviorRuleInstance_type"), //$NON-NLS-1$
+						Av3instancePackage.Literals.BEHAVIOR_RULE_INSTANCE__SINK, true, false, false,
+						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -158,6 +176,9 @@ public class BehaviorRuleInstanceItemProvider extends InstanceObjectItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(BehaviorRuleInstance.class)) {
+		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE__SINK:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
 		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE__CONDITION:
 		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE__ACTIONS:
 		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE__CURRENT_STATE:

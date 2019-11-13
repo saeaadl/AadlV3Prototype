@@ -50,11 +50,13 @@ public class InstantiateWorkingSetHandler extends AbstractHandler {
 					EObject rootObject = ((Resource) state).getContents().get(0);
 					if (rootObject instanceof PackageDeclaration) {
 						PackageDeclaration pkg = (PackageDeclaration) rootObject;
-						Workingset ws = (Workingset) pkg.getElements().get(0);
-						Iterable<PropertyDefinition> expectedProperties = Aadlv3Util.getExpectedProperties(ws);
-						for (InstanceConfiguration iroot : ws.getInstanceRoots()) {
-							ComponentInstance rootinstance = new Instantiator().instantiate(iroot,expectedProperties);
-							analyze(rootinstance, iroot.getActions());
+						if (pkg.getElements().get(0) instanceof Workingset) {
+							Workingset ws = (Workingset) pkg.getElements().get(0);
+							Iterable<PropertyDefinition> expectedProperties = Aadlv3Util.getExpectedProperties(ws);
+							for (InstanceConfiguration iroot : ws.getInstanceRoots()) {
+								ComponentInstance rootinstance = new Instantiator().instantiate(iroot,expectedProperties);
+								analyze(rootinstance, iroot.getActions());
+							}
 						}
 					}
 				}

@@ -567,6 +567,16 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 	 * @generated
 	 */
 	@Override
+	public EAttribute getBehaviorRuleInstance_Sink() {
+		return (EAttribute) behaviorRuleInstanceEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EReference getBehaviorRuleInstance_Condition() {
 		return (EReference) behaviorRuleInstanceEClass.getEStructuralFeatures().get(1);
 	}
@@ -735,6 +745,7 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 		createEReference(behaviorRuleInstanceEClass, BEHAVIOR_RULE_INSTANCE__ACTIONS);
 		createEReference(behaviorRuleInstanceEClass, BEHAVIOR_RULE_INSTANCE__CURRENT_STATE);
 		createEReference(behaviorRuleInstanceEClass, BEHAVIOR_RULE_INSTANCE__TARGET_STATE);
+		createEAttribute(behaviorRuleInstanceEClass, BEHAVIOR_RULE_INSTANCE__SINK);
 
 		generatorInstanceEClass = createEClass(GENERATOR_INSTANCE);
 		createEReference(generatorInstanceEClass, GENERATOR_INSTANCE__GENERATOR);
@@ -915,6 +926,9 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 		initEReference(getBehaviorRuleInstance_TargetState(), this.getConstrainedInstanceObject(), null, "targetState", //$NON-NLS-1$
 				null, 0, 1, BehaviorRuleInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBehaviorRuleInstance_Sink(), ecorePackage.getEBoolean(), "sink", null, 0, 1, //$NON-NLS-1$
+				BehaviorRuleInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(generatorInstanceEClass, GeneratorInstance.class, "GeneratorInstance", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
 				IS_GENERATED_INSTANCE_CLASS);

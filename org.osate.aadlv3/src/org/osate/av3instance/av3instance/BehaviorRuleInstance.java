@@ -33,6 +33,7 @@ import org.osate.aadlv3.aadlv3.Literal;
  *   <li>{@link org.osate.av3instance.av3instance.BehaviorRuleInstance#getActions <em>Actions</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.BehaviorRuleInstance#getCurrentState <em>Current State</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.BehaviorRuleInstance#getTargetState <em>Target State</em>}</li>
+ *   <li>{@link org.osate.av3instance.av3instance.BehaviorRuleInstance#isSink <em>Sink</em>}</li>
  * </ul>
  *
  * @see org.osate.av3instance.av3instance.Av3instancePackage#getBehaviorRuleInstance()
@@ -117,6 +118,28 @@ public interface BehaviorRuleInstance extends InstanceObject {
 	 * @generated
 	 */
 	void setTargetState(ConstrainedInstanceObject value);
+
+	/**
+	 * Returns the value of the '<em><b>Sink</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Sink</em>' attribute.
+	 * @see #setSink(boolean)
+	 * @see org.osate.av3instance.av3instance.Av3instancePackage#getBehaviorRuleInstance_Sink()
+	 * @model
+	 * @generated
+	 */
+	boolean isSink();
+
+	/**
+	 * Sets the value of the '{@link org.osate.av3instance.av3instance.BehaviorRuleInstance#isSink <em>Sink</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Sink</em>' attribute.
+	 * @see #isSink()
+	 * @generated
+	 */
+	void setSink(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Condition</b></em>' containment reference.

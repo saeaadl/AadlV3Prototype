@@ -3,7 +3,9 @@ import static org.osate.aadlv3.util.AIv3API.*;
 import static org.osate.graph.TokenTrace.util.TokenTraceUtil.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.BasicEList;
@@ -11,11 +13,13 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.xtext.EcoreUtil2;
 import org.jgrapht.Graph;
 import org.jgrapht.graph.DefaultDirectedGraph;
 import org.jgrapht.graph.DefaultEdge;
 import org.jgrapht.graph.EdgeReversedGraph;
 import org.osate.aadlv3.aadlv3.Aadlv3Factory;
+import org.osate.aadlv3.aadlv3.ConditionOperation;
 import org.osate.aadlv3.aadlv3.ECollection;
 import org.osate.aadlv3.aadlv3.EOperator;
 import org.osate.aadlv3.aadlv3.Expression;
@@ -206,7 +210,7 @@ public class FaultGraph {
 			// an incoming or generator
 			if (cio.getInstanceObject() instanceof GeneratorInstance) {
 				// generator
-				return generateEvents((GeneratorInstance)cio.getInstanceObject(), cio.getConstraint());
+				return generateTokens((GeneratorInstance)cio.getInstanceObject(), cio.getConstraint());
 			} else {
 				// incoming cio
 				return processIncomingCIO(cio);
@@ -221,7 +225,7 @@ public class FaultGraph {
 		// incoming cio
 		Set<DefaultEdge> edges = graph.outgoingEdgesOf(cioio);
 		if (edges.isEmpty()){
-			return generateEvents(cioio);
+			return generateTokens(cioio);
 		} else {
 			// process outgoing
 			EList<Token> subEvents = new BasicEList<Token>();
@@ -229,7 +233,24 @@ public class FaultGraph {
 				InstanceObject target = graph.getEdgeTarget(edge);
 				Token res = processOutgoingCIO(target);
 				if (res != null) {
-					subEvents.add(res);
+					if (cioio instanceof ConstrainedInstanceObject) {
+						Token masked = isSinkFiltered(res, cioio);
+						if (masked != null) {
+							subEvents.add(masked);
+						}
+					} else {
+						Collection<ConstrainedInstanceObject> sinkcios = findSinkCIOs(cioio, null, "EM");
+						if (sinkcios.isEmpty()) {
+							subEvents.add(res);
+						} else {
+							for (ConstrainedInstanceObject sinkcio : sinkcios) {
+								Token masked = isSinkFiltered(res, sinkcio);
+								if (masked != null) {
+									subEvents.add(masked);
+								}
+							}
+						}
+					}
 				}
 			}
 			Token combined = processEventSubgraph(subEvents, EOperator.ANY, cioio);  // incoming
@@ -243,7 +264,7 @@ public class FaultGraph {
 	 * @param cio
 	 * @return
 	 */
-	public Token generateEvents(GeneratorInstance io, Literal constraint) {
+	public Token generateTokens(GeneratorInstance io, Literal constraint) {
 		if (constraint == null) {
 				if (((GeneratorInstance)io).getGeneratedLiterals() != null) {
 					Token gentok = createToken(eventTrace, io,null, TokenType.INTERMEDIATE);
@@ -270,7 +291,7 @@ public class FaultGraph {
 		}
 	}
 	
-	public Token generateEvents(StateInstance io, Literal constraint) {
+	public Token generateTokens(StateInstance io, Literal constraint) {
 		TokenType eventType =  TokenType.BASIC ;
 		if (constraint instanceof ECollection) {
 			// one sub event for each type in the constraint
@@ -288,7 +309,7 @@ public class FaultGraph {
 		}
 	}
 	
-	public Token generateEvents(InstanceObject cio) {
+	public Token generateTokens(InstanceObject cio) {
 		TokenType eventType =  TokenType.BASIC ;
 		InstanceObject io = getRealInstanceObject(cio);
 		Literal constraint = getRealConstraint(cio);
@@ -462,6 +483,13 @@ public class FaultGraph {
 	private void processNextEffect(Token step, InstanceObject cioio) {
 		InstanceObject target = getRealInstanceObject(cioio);
 		Literal constraint = getRealConstraint(cioio);
+		if (isSinkConstraint(cioio)) {
+			Token nextStep = addNextStep(step, target, step.getRelatedLiteral());
+			if (nextStep != null) {
+				nextStep.setTokenType(TokenType.SINK);
+			}
+			return;
+		}
 		InstanceObject outVertex = cioio;
 		boolean unhandled = false;
 		if (constraint instanceof ECollection) {
@@ -479,10 +507,6 @@ public class FaultGraph {
 				}
 				return;
 			} else {
-				// propagated literal is not contained. Needs to be propagated as unhandled via target io
-				if (isLiteralSink(target, step.getRelatedLiteral())) {
-					return;
-				}
 				outVertex = target;
 				unhandled = true;
 			}
@@ -493,8 +517,11 @@ public class FaultGraph {
 			constraint = step.getRelatedLiteral();
 		}
 		// do next step
-		Token nextStep = unhandled ? addUnhandledNextStep(step, target, constraint):addNextStep(step, target, constraint);
+		Token nextStep = addNextStep(step, target, constraint);
 		if (nextStep != null) {
+			if (unhandled) {
+				nextStep.setTokenType(TokenType.UNHANDLED);
+			}
 			if (graph.containsVertex(outVertex)) {
 				Set<DefaultEdge> edges = graph.outgoingEdgesOf(outVertex);
 				for (DefaultEdge edge : edges) {
@@ -521,42 +548,51 @@ public class FaultGraph {
 		return null;
 	}
 	
-	private Token addUnhandledNextStep(Token parent, InstanceObject io, Literal lit) {
-		Token next = addNextStep(parent, io, lit);
-		if (next != null) {
-			next.setTokenType(TokenType.UNHANDLED);
-		}
-		return next;
-	}
 	
-	private boolean isLiteralSink(InstanceObject io, Literal lit) {
-		SinkInstance sink = containingComponentInstanceOrSelf(io).getSinks();
-		if (graph.containsVertex(sink)) {
-			Set<DefaultEdge> edges = graph.incomingEdgesOf(sink);
-			for (DefaultEdge edge : edges) {
-				InstanceObject sinkCondIO = graph.getEdgeSource(edge);
-				if (sinkCondIO instanceof ConstrainedInstanceObject) {
-					Literal constraint = ((ConstrainedInstanceObject)sinkCondIO).getConstraint();
-					if (constraint == null || constraint.contains(lit)){
-						// handled by CIO without constraint, i.e., all tokens
-						return true;
+	private Token isSinkFiltered(Token tok, InstanceObject io) {
+		if (isSinkConstraint(io)) {
+			Literal constraint = getRealConstraint(io);
+			if (constraint == null) {
+				return null;
+			}
+			if (tok.getRelatedLiteral() != null) {
+				if (constraint.contains(tok.getRelatedLiteral())) {
+					return null;
+				} else {
+					return tok;
+				}
+			} else {
+				// filter out sub tokens
+				List<Token> toKeep = new ArrayList<Token>();
+				for (Token subtok : tok.getTokens()) {
+					Token res = isSinkFiltered(subtok, io);
+					if (res != null) {
+						toKeep.add(res);
 					}
 				}
-			}
+				tok.getTokens().clear();
+				tok.getTokens().addAll(toKeep);
+				if (tok.getTokens().isEmpty()) {
+					return null;
+				}
 		}
-		return false;
+		}
+		return tok;
+	}
+	
+	private boolean isSinkConstraint(InstanceObject cio) {
+		BehaviorRuleInstance bri = containingBehaviorRuleInstance(cio);
+		return bri != null && bri.isSink();
 	}
 	
 	private void setLeafTokensType() {
 		for (Token t: eventTrace.getTokens()) {
-			if (t.getTokens().isEmpty()) {
+			if (t.getTokens().isEmpty() && t.getTokenType() == TokenType.INTERMEDIATE) {
 				if (containingComponentInstanceOrSelf(t.getRelatedInstanceObject()) == eventTrace.getInstanceRoot()) {
 					t.setTokenType(TokenType.EXTERNAL);
 				} else if (t.getTokenType() != TokenType.COMPONENT && t.getTokenType() != TokenType.SYSTEM ) {
 					if(t.getRelatedInstanceObject() instanceof FeatureInstance || t.getRelatedInstanceObject() instanceof ComponentInstance) {
 						t.setTokenType(TokenType.UNDEVELOPED);
-					} else if (t.getRelatedInstanceObject() instanceof SinkInstance){
-						t.setTokenType(TokenType.SINK);
 					} else {
 						t.setTokenType(TokenType.BASIC);
 					}
