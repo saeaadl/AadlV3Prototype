@@ -10,6 +10,7 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.jgrapht.Graph;
+import org.jgrapht.graph.AsSubgraph;
 import org.jgrapht.graph.DefaultDirectedGraph;
 import org.jgrapht.graph.DefaultEdge;
 import org.jgrapht.graph.SimpleDirectedGraph;
@@ -261,4 +262,12 @@ public class AIJGraphTUtil {
 		}
 	}
 
+	public static AsSubgraph<InstanceObject, DefaultEdge> generateBehaviorPropagationPaths(DefaultDirectedGraph<InstanceObject, DefaultEdge> originalGraph) {
+		Set<InstanceObject> vs = originalGraph.vertexSet();
+		AsSubgraph<InstanceObject, DefaultEdge> subgraph = new AsSubgraph<InstanceObject, DefaultEdge>(originalGraph,vs);
+	       return subgraph;
+
+	}
+	
+	
 }
