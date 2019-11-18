@@ -679,14 +679,6 @@ class Instantiator {
 				bri.actions += tcio;
 			}
 		}
-		// deal with sink
-		if (br.isSink){
-			if (context.sinks === null){
-				val sink =Av3instanceFactory.eINSTANCE.createSinkInstance
-				sink.name = br.containingSubclause.name
-				context.sinks = sink
-			}
-		}
 		context.behaviorRules += bri
 	}
 

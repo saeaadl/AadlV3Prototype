@@ -35,7 +35,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//ComponentInstance/generators"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//ComponentInstance/states"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//ComponentInstance/actions"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//ComponentInstance/sinks"/>
     </genClasses>
     <genClasses ecoreClass="AV3Instance.ecore#//AssociationInstance">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AV3Instance.ecore#//AssociationInstance/associationType"/>
@@ -72,6 +71,5 @@
     <genClasses ecoreClass="AV3Instance.ecore#//StateInstance">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//StateInstance/literal"/>
     </genClasses>
-    <genClasses ecoreClass="AV3Instance.ecore#//SinkInstance"/>
   </genPackages>
 </genmodel:GenModel>

@@ -213,15 +213,6 @@ public class AIJGraphTUtil {
 						}
 					}
 				}
-				// deal with sinks
-				if (bri.isSink()) {
-					for (ConstrainedInstanceObject ce : condcios) {
-						// edge from condition elements to sink
-						if (ci.getSinks() != null) {
-							addPath(directedGraph, ce, ci.getSinks());
-						}
-					}
-				}
 			}
 			for (FeatureInstance outfi : getAllOutgoingFeatures(ci)) {
 				if (!outfiAsBehavior.contains(outfi)) {

@@ -39,8 +39,6 @@
         eType="#//StateInstance" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="actions" upperBound="-1"
         eType="#//ConstrainedInstanceObject" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="sinks" eType="#//SinkInstance"
-        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AssociationInstance" eSuperTypes="#//InstanceObject">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="associationType" eType="ecore:EEnum Aadlv3.ecore#//AssociationType"/>
@@ -88,5 +86,4 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="literal" eType="ecore:EClass Aadlv3.ecore#//Literal"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SinkInstance" eSuperTypes="#//InstanceObject"/>
 </ecore:EPackage>

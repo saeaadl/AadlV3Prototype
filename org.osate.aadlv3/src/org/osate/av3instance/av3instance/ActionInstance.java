@@ -13,38 +13,17 @@
  * 
  * See COPYRIGHT file for full details.
  */
-package org.osate.av3instance.av3instance.impl;
-
-import org.eclipse.emf.ecore.EClass;
-
-import org.osate.av3instance.av3instance.Av3instancePackage;
-import org.osate.av3instance.av3instance.SinkInstance;
+package org.osate.av3instance.av3instance;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Sink Instance</b></em>'.
+ * A representation of the model object '<em><b>Action Instance</b></em>'.
  * <!-- end-user-doc -->
  *
+ *
+ * @see org.osate.av3instance.av3instance.Av3instancePackage#getActionInstance()
+ * @model
  * @generated
  */
-public class SinkInstanceImpl extends InstanceObjectImpl implements SinkInstance {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected SinkInstanceImpl() {
-		super();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return Av3instancePackage.Literals.SINK_INSTANCE;
-	}
-
-} //SinkInstanceImpl
+public interface ActionInstance extends ConstrainedInstanceObject {
+} // ActionInstance

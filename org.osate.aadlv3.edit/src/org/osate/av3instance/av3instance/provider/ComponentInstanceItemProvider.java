@@ -117,7 +117,6 @@ public class ComponentInstanceItemProvider extends InstanceObjectItemProvider {
 			childrenFeatures.add(Av3instancePackage.Literals.COMPONENT_INSTANCE__GENERATORS);
 			childrenFeatures.add(Av3instancePackage.Literals.COMPONENT_INSTANCE__STATES);
 			childrenFeatures.add(Av3instancePackage.Literals.COMPONENT_INSTANCE__ACTIONS);
-			childrenFeatures.add(Av3instancePackage.Literals.COMPONENT_INSTANCE__SINKS);
 		}
 		return childrenFeatures;
 	}
@@ -201,7 +200,6 @@ public class ComponentInstanceItemProvider extends InstanceObjectItemProvider {
 		case Av3instancePackage.COMPONENT_INSTANCE__GENERATORS:
 		case Av3instancePackage.COMPONENT_INSTANCE__STATES:
 		case Av3instancePackage.COMPONENT_INSTANCE__ACTIONS:
-		case Av3instancePackage.COMPONENT_INSTANCE__SINKS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
