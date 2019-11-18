@@ -15,16 +15,46 @@
  */
 package org.osate.av3instance.av3instance;
 
+import org.osate.aadlv3.aadlv3.Literal;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>State Instance</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <p>
+ * The following features are supported:
+ * </p>
+ * <ul>
+ *   <li>{@link org.osate.av3instance.av3instance.StateInstance#getLiteral <em>Literal</em>}</li>
+ * </ul>
  *
  * @see org.osate.av3instance.av3instance.Av3instancePackage#getStateInstance()
  * @model
  * @generated
  */
 public interface StateInstance extends InstanceObject {
+
+	/**
+	 * Returns the value of the '<em><b>Literal</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Literal</em>' containment reference.
+	 * @see #setLiteral(Literal)
+	 * @see org.osate.av3instance.av3instance.Av3instancePackage#getStateInstance_Literal()
+	 * @model containment="true"
+	 * @generated
+	 */
+	Literal getLiteral();
+
+	/**
+	 * Sets the value of the '{@link org.osate.av3instance.av3instance.StateInstance#getLiteral <em>Literal</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Literal</em>' containment reference.
+	 * @see #getLiteral()
+	 * @generated
+	 */
+	void setLiteral(Literal value);
 
 } // StateInstance

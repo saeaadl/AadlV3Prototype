@@ -5,6 +5,7 @@ import static org.osate.graph.TokenTrace.util.TokenTraceUtil.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -15,6 +16,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.xtext.EcoreUtil2;
 import org.jgrapht.Graph;
+import org.jgrapht.graph.AsSubgraph;
 import org.jgrapht.graph.DefaultDirectedGraph;
 import org.jgrapht.graph.DefaultEdge;
 import org.jgrapht.graph.EdgeReversedGraph;
@@ -599,6 +601,90 @@ public class FaultGraph {
 				}
 			}
 		}
+	}
+	
+// effects as subgraph	
+	
+	public Set<InstanceObject> generateEffectSubGraph(DefaultDirectedGraph<InstanceObject, DefaultEdge> bgraph) {
+		this.graph = bgraph;
+		Set<InstanceObject> vsubset = new HashSet<InstanceObject>();
+		Set<InstanceObject> vset = bgraph.vertexSet();
+		for (InstanceObject vertex : vset) {
+			if (vertex instanceof GeneratorInstance) {
+				vsubset.add(vertex);
+			}
+		}
+		return vsubset;
+	}
+	
+//	DepthFirstIterator<V,E>
+	
+	
+	// effects as subgraph
+	
+	public Graph <InstanceObject, DefaultEdge> generateEffectsSubgraph(InstanceObject startio) {
+		ComponentInstance root = getRoot(startio);
+		DefaultDirectedGraph<InstanceObject, DefaultEdge> bgraph = AIJGraphTUtil.generateBehaviorPropagationPaths(root,
+				"EM");
+		Set<InstanceObject> effectvset = generateEffectVertices(bgraph, startio);
+		AsSubgraph<InstanceObject, DefaultEdge> subgraph = new AsSubgraph<InstanceObject, DefaultEdge>(bgraph,effectvset);
+        return subgraph;
+	}
+	
+	
+	public Set<InstanceObject> generateEffectVertices(DefaultDirectedGraph<InstanceObject, DefaultEdge> bgraph, InstanceObject startio) {
+		Set<InstanceObject> vsubset = new HashSet<InstanceObject>();
+		vsubset.add(startio);
+		Set<DefaultEdge> edges = graph.outgoingEdgesOf(startio);
+		for (DefaultEdge edge : edges) {
+			InstanceObject nextCioio = graph.getEdgeTarget(edge);
+			processNextEffect(vsubset, nextCioio,getRealConstraint(startio));
+		}
+		return vsubset;
+	}
+
+	// deal with the cioio
+	private void processNextEffect(Set<InstanceObject> vsubset, InstanceObject cioio, Literal effect) {
+		InstanceObject target = getRealInstanceObject(cioio);
+		Literal constraint = getRealConstraint(cioio);
+		if (isSinkConstraint(cioio)) {
+			vsubset.add(cioio);
+			return;
+		}
+		InstanceObject outVertex = cioio;
+		Literal outEffect = effect;
+		if (constraint != null && cioio instanceof ConstrainedInstanceObject && cioio.eContainer() instanceof ComponentInstance) {
+			outEffect = constraint;
+		}
+		if (constraint instanceof ECollection) {
+			if (constraint.contains(effect)) {
+				// constraint contains propagated literal
+				if (vsubset.add(cioio)) {
+					if (graph.containsVertex(cioio)) {
+						Set<DefaultEdge> edges = graph.outgoingEdgesOf(cioio);
+						for (DefaultEdge edge : edges) {
+							InstanceObject nextCioio = graph.getEdgeTarget(edge);
+							processNextEffect(vsubset, nextCioio, outEffect); 
+						}
+					}
+				}
+				return;
+			} else {
+				outVertex = target;
+			}
+		}
+		// we have either cioio as instance object, or as Constrained IO with a single literal or no literal
+		// do next step
+		if (vsubset.add(cioio)) {
+			if (graph.containsVertex(outVertex)) {
+				Set<DefaultEdge> edges = graph.outgoingEdgesOf(outVertex);
+				for (DefaultEdge edge : edges) {
+					InstanceObject nextCioio = graph.getEdgeTarget(edge);
+					processNextEffect(vsubset, nextCioio, outEffect);
+				}
+			}
+		}
+		return ;
 	}
 
 }

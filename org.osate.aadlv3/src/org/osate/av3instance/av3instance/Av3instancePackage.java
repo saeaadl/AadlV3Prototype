@@ -891,13 +891,22 @@ public interface Av3instancePackage extends EPackage {
 	int STATE_INSTANCE__OUTGOING_ASSOCIATIONS = INSTANCE_OBJECT__OUTGOING_ASSOCIATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Literal</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_INSTANCE__LITERAL = INSTANCE_OBJECT_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>State Instance</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_INSTANCE_FEATURE_COUNT = INSTANCE_OBJECT_FEATURE_COUNT + 0;
+	int STATE_INSTANCE_FEATURE_COUNT = INSTANCE_OBJECT_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.osate.av3instance.av3instance.impl.SinkInstanceImpl <em>Sink Instance</em>}' class.
@@ -1474,6 +1483,17 @@ public interface Av3instancePackage extends EPackage {
 	EClass getStateInstance();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link org.osate.av3instance.av3instance.StateInstance#getLiteral <em>Literal</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Literal</em>'.
+	 * @see org.osate.av3instance.av3instance.StateInstance#getLiteral()
+	 * @see #getStateInstance()
+	 * @generated
+	 */
+	EReference getStateInstance_Literal();
+
+	/**
 	 * Returns the meta object for class '{@link org.osate.av3instance.av3instance.SinkInstance <em>Sink Instance</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1909,6 +1929,14 @@ public interface Av3instancePackage extends EPackage {
 		 * @generated
 		 */
 		EClass STATE_INSTANCE = eINSTANCE.getStateInstance();
+
+		/**
+		 * The meta object literal for the '<em><b>Literal</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STATE_INSTANCE__LITERAL = eINSTANCE.getStateInstance_Literal();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.av3instance.av3instance.impl.SinkInstanceImpl <em>Sink Instance</em>}' class.

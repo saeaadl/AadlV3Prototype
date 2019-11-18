@@ -667,6 +667,16 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 	 * @generated
 	 */
 	@Override
+	public EReference getStateInstance_Literal() {
+		return (EReference) stateInstanceEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getSinkInstance() {
 		return sinkInstanceEClass;
 	}
@@ -757,6 +767,7 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 		createEAttribute(constrainedInstanceObjectEClass, CONSTRAINED_INSTANCE_OBJECT__OUTGOING);
 
 		stateInstanceEClass = createEClass(STATE_INSTANCE);
+		createEReference(stateInstanceEClass, STATE_INSTANCE__LITERAL);
 
 		sinkInstanceEClass = createEClass(SINK_INSTANCE);
 	}
@@ -953,6 +964,9 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 
 		initEClass(stateInstanceEClass, StateInstance.class, "StateInstance", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
 				IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getStateInstance_Literal(), theAadlv3Package.getLiteral(), null, "literal", null, 0, 1, //$NON-NLS-1$
+				StateInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(sinkInstanceEClass, SinkInstance.class, "SinkInstance", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
 				IS_GENERATED_INSTANCE_CLASS);

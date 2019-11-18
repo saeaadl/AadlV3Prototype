@@ -69,7 +69,9 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//ConstrainedInstanceObject/constraint"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AV3Instance.ecore#//ConstrainedInstanceObject/outgoing"/>
     </genClasses>
-    <genClasses ecoreClass="AV3Instance.ecore#//StateInstance"/>
+    <genClasses ecoreClass="AV3Instance.ecore#//StateInstance">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//StateInstance/literal"/>
+    </genClasses>
     <genClasses ecoreClass="AV3Instance.ecore#//SinkInstance"/>
   </genPackages>
 </genmodel:GenModel>
