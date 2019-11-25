@@ -97,6 +97,7 @@
     <genClasses ecoreClass="Aadlv3.ecore#//NamedElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//NamedElement/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//NamedElement/ownedPropertyAssociations"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//NamedElement/annotations"/>
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//PackageElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//PackageElement/private"/>
@@ -117,8 +118,9 @@
     <genClasses image="false" ecoreClass="Aadlv3.ecore#//Classifier">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//Classifier/category"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Classifier/superClassifiers"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Classifier/useModes"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//Classifier/inheritsModes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Classifier/behaviorRules"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Classifier/stateVariables"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Classifier/generators"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Classifier/annexSubclause"/>
     </genClasses>
     <genClasses image="false" ecoreClass="Aadlv3.ecore#//ComponentRealization">
@@ -243,9 +245,7 @@
     <genClasses ecoreClass="Aadlv3.ecore#//BooleanLiteral">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//BooleanLiteral/value"/>
     </genClasses>
-    <genClasses ecoreClass="Aadlv3.ecore#//EnumerationLiteral">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//EnumerationLiteral/value"/>
-    </genClasses>
+    <genClasses ecoreClass="Aadlv3.ecore#//EnumerationLiteral"/>
     <genClasses ecoreClass="Aadlv3.ecore#//DirectionalLiteral">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//DirectionalLiteral/direction"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//DirectionalLiteral/value"/>
@@ -283,11 +283,9 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//DefaultAnnexSubclause/body"/>
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//AnnexLibrary"/>
-    <genClasses ecoreClass="Aadlv3.ecore#//EMSubclause"/>
-    <genClasses ecoreClass="Aadlv3.ecore#//BASubclause"/>
     <genClasses ecoreClass="Aadlv3.ecore#//BehaviorSpecification">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//BehaviorSpecification/rules"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//BehaviorSpecification/states"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//BehaviorSpecification/stateVariables"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//BehaviorSpecification/generators"/>
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//BehaviorRule">
@@ -299,7 +297,11 @@
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//StateSpecification">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//StateSpecification/currentState"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//StateSpecification/constraint"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//StateSpecification/stateVariable"/>
+    </genClasses>
+    <genClasses ecoreClass="Aadlv3.ecore#//StateVariable">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//StateVariable/initialState"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//StateVariable/stateType"/>
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//Generator">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//Generator/type"/>
@@ -311,6 +313,14 @@
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//PackageElementReference">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//PackageElementReference/element"/>
+    </genClasses>
+    <genClasses ecoreClass="Aadlv3.ecore#//Annotation">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Annotation/value"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Annotation/nameValuePairs"/>
+    </genClasses>
+    <genClasses ecoreClass="Aadlv3.ecore#//NameValuePair">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//NameValuePair/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//NameValuePair/value"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

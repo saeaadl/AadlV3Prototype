@@ -32,9 +32,11 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.AnnexSubclause;
+import org.osate.aadlv3.aadlv3.BehaviorRule;
 import org.osate.aadlv3.aadlv3.Classifier;
 import org.osate.aadlv3.aadlv3.ComponentCategory;
-import org.osate.aadlv3.aadlv3.EnumerationType;
+import org.osate.aadlv3.aadlv3.Generator;
+import org.osate.aadlv3.aadlv3.StateVariable;
 import org.osate.aadlv3.aadlv3.TypeReference;
 
 /**
@@ -47,8 +49,9 @@ import org.osate.aadlv3.aadlv3.TypeReference;
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ClassifierImpl#getCategory <em>Category</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ClassifierImpl#getSuperClassifiers <em>Super Classifiers</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.ClassifierImpl#getUseModes <em>Use Modes</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.ClassifierImpl#isInheritsModes <em>Inherits Modes</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.ClassifierImpl#getBehaviorRules <em>Behavior Rules</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.ClassifierImpl#getStateVariables <em>State Variables</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.ClassifierImpl#getGenerators <em>Generators</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ClassifierImpl#getAnnexSubclause <em>Annex Subclause</em>}</li>
  * </ul>
  *
@@ -86,34 +89,34 @@ public abstract class ClassifierImpl extends NamedTypeImpl implements Classifier
 	protected EList<TypeReference> superClassifiers;
 
 	/**
-	 * The cached value of the '{@link #getUseModes() <em>Use Modes</em>}' reference.
+	 * The cached value of the '{@link #getBehaviorRules() <em>Behavior Rules</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getUseModes()
+	 * @see #getBehaviorRules()
 	 * @generated
 	 * @ordered
 	 */
-	protected EnumerationType useModes;
+	protected EList<BehaviorRule> behaviorRules;
 
 	/**
-	 * The default value of the '{@link #isInheritsModes() <em>Inherits Modes</em>}' attribute.
+	 * The cached value of the '{@link #getStateVariables() <em>State Variables</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isInheritsModes()
+	 * @see #getStateVariables()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean INHERITS_MODES_EDEFAULT = false;
+	protected EList<StateVariable> stateVariables;
 
 	/**
-	 * The cached value of the '{@link #isInheritsModes() <em>Inherits Modes</em>}' attribute.
+	 * The cached value of the '{@link #getGenerators() <em>Generators</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isInheritsModes()
+	 * @see #getGenerators()
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean inheritsModes = INHERITS_MODES_EDEFAULT;
+	protected EList<Generator> generators;
 
 	/**
 	 * The cached value of the '{@link #getAnnexSubclause() <em>Annex Subclause</em>}' containment reference list.
@@ -188,26 +191,12 @@ public abstract class ClassifierImpl extends NamedTypeImpl implements Classifier
 	 * @generated
 	 */
 	@Override
-	public EnumerationType getUseModes() {
-		if (useModes != null && useModes.eIsProxy()) {
-			InternalEObject oldUseModes = (InternalEObject) useModes;
-			useModes = (EnumerationType) eResolveProxy(oldUseModes);
-			if (useModes != oldUseModes) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Aadlv3Package.CLASSIFIER__USE_MODES,
-							oldUseModes, useModes));
-			}
+	public EList<BehaviorRule> getBehaviorRules() {
+		if (behaviorRules == null) {
+			behaviorRules = new EObjectContainmentEList<BehaviorRule>(BehaviorRule.class, this,
+					Aadlv3Package.CLASSIFIER__BEHAVIOR_RULES);
 		}
-		return useModes;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EnumerationType basicGetUseModes() {
-		return useModes;
+		return behaviorRules;
 	}
 
 	/**
@@ -216,12 +205,12 @@ public abstract class ClassifierImpl extends NamedTypeImpl implements Classifier
 	 * @generated
 	 */
 	@Override
-	public void setUseModes(EnumerationType newUseModes) {
-		EnumerationType oldUseModes = useModes;
-		useModes = newUseModes;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.CLASSIFIER__USE_MODES, oldUseModes,
-					useModes));
+	public EList<StateVariable> getStateVariables() {
+		if (stateVariables == null) {
+			stateVariables = new EObjectContainmentEList<StateVariable>(StateVariable.class, this,
+					Aadlv3Package.CLASSIFIER__STATE_VARIABLES);
+		}
+		return stateVariables;
 	}
 
 	/**
@@ -230,22 +219,12 @@ public abstract class ClassifierImpl extends NamedTypeImpl implements Classifier
 	 * @generated
 	 */
 	@Override
-	public boolean isInheritsModes() {
-		return inheritsModes;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setInheritsModes(boolean newInheritsModes) {
-		boolean oldInheritsModes = inheritsModes;
-		inheritsModes = newInheritsModes;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.CLASSIFIER__INHERITS_MODES,
-					oldInheritsModes, inheritsModes));
+	public EList<Generator> getGenerators() {
+		if (generators == null) {
+			generators = new EObjectContainmentEList<Generator>(Generator.class, this,
+					Aadlv3Package.CLASSIFIER__GENERATORS);
+		}
+		return generators;
 	}
 
 	/**
@@ -272,6 +251,12 @@ public abstract class ClassifierImpl extends NamedTypeImpl implements Classifier
 		switch (featureID) {
 		case Aadlv3Package.CLASSIFIER__SUPER_CLASSIFIERS:
 			return ((InternalEList<?>) getSuperClassifiers()).basicRemove(otherEnd, msgs);
+		case Aadlv3Package.CLASSIFIER__BEHAVIOR_RULES:
+			return ((InternalEList<?>) getBehaviorRules()).basicRemove(otherEnd, msgs);
+		case Aadlv3Package.CLASSIFIER__STATE_VARIABLES:
+			return ((InternalEList<?>) getStateVariables()).basicRemove(otherEnd, msgs);
+		case Aadlv3Package.CLASSIFIER__GENERATORS:
+			return ((InternalEList<?>) getGenerators()).basicRemove(otherEnd, msgs);
 		case Aadlv3Package.CLASSIFIER__ANNEX_SUBCLAUSE:
 			return ((InternalEList<?>) getAnnexSubclause()).basicRemove(otherEnd, msgs);
 		}
@@ -290,12 +275,12 @@ public abstract class ClassifierImpl extends NamedTypeImpl implements Classifier
 			return getCategory();
 		case Aadlv3Package.CLASSIFIER__SUPER_CLASSIFIERS:
 			return getSuperClassifiers();
-		case Aadlv3Package.CLASSIFIER__USE_MODES:
-			if (resolve)
-				return getUseModes();
-			return basicGetUseModes();
-		case Aadlv3Package.CLASSIFIER__INHERITS_MODES:
-			return isInheritsModes();
+		case Aadlv3Package.CLASSIFIER__BEHAVIOR_RULES:
+			return getBehaviorRules();
+		case Aadlv3Package.CLASSIFIER__STATE_VARIABLES:
+			return getStateVariables();
+		case Aadlv3Package.CLASSIFIER__GENERATORS:
+			return getGenerators();
 		case Aadlv3Package.CLASSIFIER__ANNEX_SUBCLAUSE:
 			return getAnnexSubclause();
 		}
@@ -318,11 +303,17 @@ public abstract class ClassifierImpl extends NamedTypeImpl implements Classifier
 			getSuperClassifiers().clear();
 			getSuperClassifiers().addAll((Collection<? extends TypeReference>) newValue);
 			return;
-		case Aadlv3Package.CLASSIFIER__USE_MODES:
-			setUseModes((EnumerationType) newValue);
+		case Aadlv3Package.CLASSIFIER__BEHAVIOR_RULES:
+			getBehaviorRules().clear();
+			getBehaviorRules().addAll((Collection<? extends BehaviorRule>) newValue);
 			return;
-		case Aadlv3Package.CLASSIFIER__INHERITS_MODES:
-			setInheritsModes((Boolean) newValue);
+		case Aadlv3Package.CLASSIFIER__STATE_VARIABLES:
+			getStateVariables().clear();
+			getStateVariables().addAll((Collection<? extends StateVariable>) newValue);
+			return;
+		case Aadlv3Package.CLASSIFIER__GENERATORS:
+			getGenerators().clear();
+			getGenerators().addAll((Collection<? extends Generator>) newValue);
 			return;
 		case Aadlv3Package.CLASSIFIER__ANNEX_SUBCLAUSE:
 			getAnnexSubclause().clear();
@@ -346,11 +337,14 @@ public abstract class ClassifierImpl extends NamedTypeImpl implements Classifier
 		case Aadlv3Package.CLASSIFIER__SUPER_CLASSIFIERS:
 			getSuperClassifiers().clear();
 			return;
-		case Aadlv3Package.CLASSIFIER__USE_MODES:
-			setUseModes((EnumerationType) null);
+		case Aadlv3Package.CLASSIFIER__BEHAVIOR_RULES:
+			getBehaviorRules().clear();
 			return;
-		case Aadlv3Package.CLASSIFIER__INHERITS_MODES:
-			setInheritsModes(INHERITS_MODES_EDEFAULT);
+		case Aadlv3Package.CLASSIFIER__STATE_VARIABLES:
+			getStateVariables().clear();
+			return;
+		case Aadlv3Package.CLASSIFIER__GENERATORS:
+			getGenerators().clear();
 			return;
 		case Aadlv3Package.CLASSIFIER__ANNEX_SUBCLAUSE:
 			getAnnexSubclause().clear();
@@ -371,10 +365,12 @@ public abstract class ClassifierImpl extends NamedTypeImpl implements Classifier
 			return category != CATEGORY_EDEFAULT;
 		case Aadlv3Package.CLASSIFIER__SUPER_CLASSIFIERS:
 			return superClassifiers != null && !superClassifiers.isEmpty();
-		case Aadlv3Package.CLASSIFIER__USE_MODES:
-			return useModes != null;
-		case Aadlv3Package.CLASSIFIER__INHERITS_MODES:
-			return inheritsModes != INHERITS_MODES_EDEFAULT;
+		case Aadlv3Package.CLASSIFIER__BEHAVIOR_RULES:
+			return behaviorRules != null && !behaviorRules.isEmpty();
+		case Aadlv3Package.CLASSIFIER__STATE_VARIABLES:
+			return stateVariables != null && !stateVariables.isEmpty();
+		case Aadlv3Package.CLASSIFIER__GENERATORS:
+			return generators != null && !generators.isEmpty();
 		case Aadlv3Package.CLASSIFIER__ANNEX_SUBCLAUSE:
 			return annexSubclause != null && !annexSubclause.isEmpty();
 		}
@@ -394,8 +390,6 @@ public abstract class ClassifierImpl extends NamedTypeImpl implements Classifier
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (category: ");
 		result.append(category);
-		result.append(", inheritsModes: ");
-		result.append(inheritsModes);
 		result.append(')');
 		return result.toString();
 	}

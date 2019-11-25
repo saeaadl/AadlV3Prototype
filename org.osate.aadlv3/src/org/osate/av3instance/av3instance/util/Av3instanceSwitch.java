@@ -171,6 +171,17 @@ public class Av3instanceSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case Av3instancePackage.STATE_VARIABLE_INSTANCE: {
+			StateVariableInstance stateVariableInstance = (StateVariableInstance) theEObject;
+			T result = caseStateVariableInstance(stateVariableInstance);
+			if (result == null)
+				result = caseInstanceObject(stateVariableInstance);
+			if (result == null)
+				result = caseNamedElement(stateVariableInstance);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		case Av3instancePackage.STATE_INSTANCE: {
 			StateInstance stateInstance = (StateInstance) theEObject;
 			T result = caseStateInstance(stateInstance);
@@ -304,6 +315,21 @@ public class Av3instanceSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseConstrainedInstanceObject(ConstrainedInstanceObject object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>State Variable Instance</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>State Variable Instance</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStateVariableInstance(StateVariableInstance object) {
 		return null;
 	}
 

@@ -937,52 +937,6 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.EMSubclause} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected EMSubclauseItemProvider emSubclauseItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.EMSubclause}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createEMSubclauseAdapter() {
-		if (emSubclauseItemProvider == null) {
-			emSubclauseItemProvider = new EMSubclauseItemProvider(this);
-		}
-
-		return emSubclauseItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.BASubclause} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected BASubclauseItemProvider baSubclauseItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.BASubclause}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createBASubclauseAdapter() {
-		if (baSubclauseItemProvider == null) {
-			baSubclauseItemProvider = new BASubclauseItemProvider(this);
-		}
-
-		return baSubclauseItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.BehaviorSpecification} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1026,6 +980,29 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 		}
 
 		return stateSpecificationItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.StateVariable} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected StateVariableItemProvider stateVariableItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.StateVariable}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createStateVariableAdapter() {
+		if (stateVariableItemProvider == null) {
+			stateVariableItemProvider = new StateVariableItemProvider(this);
+		}
+
+		return stateVariableItemProvider;
 	}
 
 	/**
@@ -1095,6 +1072,52 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 		}
 
 		return packageElementReferenceItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.Annotation} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AnnotationItemProvider annotationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.Annotation}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createAnnotationAdapter() {
+		if (annotationItemProvider == null) {
+			annotationItemProvider = new AnnotationItemProvider(this);
+		}
+
+		return annotationItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.NameValuePair} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected NameValuePairItemProvider nameValuePairItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.NameValuePair}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createNameValuePairAdapter() {
+		if (nameValuePairItemProvider == null) {
+			nameValuePairItemProvider = new NameValuePairItemProvider(this);
+		}
+
+		return nameValuePairItemProvider;
 	}
 
 	/**
@@ -1449,22 +1472,24 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 			defaultAnnexSubclauseItemProvider.dispose();
 		if (annexLibraryItemProvider != null)
 			annexLibraryItemProvider.dispose();
-		if (emSubclauseItemProvider != null)
-			emSubclauseItemProvider.dispose();
-		if (baSubclauseItemProvider != null)
-			baSubclauseItemProvider.dispose();
 		if (behaviorSpecificationItemProvider != null)
 			behaviorSpecificationItemProvider.dispose();
 		if (behaviorRuleItemProvider != null)
 			behaviorRuleItemProvider.dispose();
 		if (stateSpecificationItemProvider != null)
 			stateSpecificationItemProvider.dispose();
+		if (stateVariableItemProvider != null)
+			stateVariableItemProvider.dispose();
 		if (generatorItemProvider != null)
 			generatorItemProvider.dispose();
 		if (constantItemProvider != null)
 			constantItemProvider.dispose();
 		if (packageElementReferenceItemProvider != null)
 			packageElementReferenceItemProvider.dispose();
+		if (annotationItemProvider != null)
+			annotationItemProvider.dispose();
+		if (nameValuePairItemProvider != null)
+			nameValuePairItemProvider.dispose();
 	}
 
 }

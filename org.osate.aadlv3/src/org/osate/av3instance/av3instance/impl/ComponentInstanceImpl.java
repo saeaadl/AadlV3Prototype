@@ -40,7 +40,7 @@ import org.osate.av3instance.av3instance.ConstrainedInstanceObject;
 import org.osate.av3instance.av3instance.FeatureInstance;
 import org.osate.av3instance.av3instance.GeneratorInstance;
 import org.osate.av3instance.av3instance.PathInstance;
-import org.osate.av3instance.av3instance.StateInstance;
+import org.osate.av3instance.av3instance.StateVariableInstance;
 import static org.osate.aadlv3.util.AIv3API.*;
 
 /**
@@ -60,7 +60,7 @@ import static org.osate.aadlv3.util.AIv3API.*;
  *   <li>{@link org.osate.av3instance.av3instance.impl.ComponentInstanceImpl#getPaths <em>Paths</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.impl.ComponentInstanceImpl#getBehaviorRules <em>Behavior Rules</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.impl.ComponentInstanceImpl#getGenerators <em>Generators</em>}</li>
- *   <li>{@link org.osate.av3instance.av3instance.impl.ComponentInstanceImpl#getStates <em>States</em>}</li>
+ *   <li>{@link org.osate.av3instance.av3instance.impl.ComponentInstanceImpl#getStateVariables <em>State Variables</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.impl.ComponentInstanceImpl#getActions <em>Actions</em>}</li>
  * </ul>
  *
@@ -168,14 +168,14 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 	protected EList<GeneratorInstance> generators;
 
 	/**
-	 * The cached value of the '{@link #getStates() <em>States</em>}' containment reference list.
+	 * The cached value of the '{@link #getStateVariables() <em>State Variables</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getStates()
+	 * @see #getStateVariables()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<StateInstance> states;
+	protected EList<StateVariableInstance> stateVariables;
 
 	/**
 	 * The cached value of the '{@link #getActions() <em>Actions</em>}' containment reference list.
@@ -376,12 +376,12 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 	 * @generated
 	 */
 	@Override
-	public EList<StateInstance> getStates() {
-		if (states == null) {
-			states = new EObjectContainmentEList<StateInstance>(StateInstance.class, this,
-					Av3instancePackage.COMPONENT_INSTANCE__STATES);
+	public EList<StateVariableInstance> getStateVariables() {
+		if (stateVariables == null) {
+			stateVariables = new EObjectContainmentEList<StateVariableInstance>(StateVariableInstance.class, this,
+					Av3instancePackage.COMPONENT_INSTANCE__STATE_VARIABLES);
 		}
-		return states;
+		return stateVariables;
 	}
 
 	/**
@@ -420,8 +420,8 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 			return ((InternalEList<?>) getBehaviorRules()).basicRemove(otherEnd, msgs);
 		case Av3instancePackage.COMPONENT_INSTANCE__GENERATORS:
 			return ((InternalEList<?>) getGenerators()).basicRemove(otherEnd, msgs);
-		case Av3instancePackage.COMPONENT_INSTANCE__STATES:
-			return ((InternalEList<?>) getStates()).basicRemove(otherEnd, msgs);
+		case Av3instancePackage.COMPONENT_INSTANCE__STATE_VARIABLES:
+			return ((InternalEList<?>) getStateVariables()).basicRemove(otherEnd, msgs);
 		case Av3instancePackage.COMPONENT_INSTANCE__ACTIONS:
 			return ((InternalEList<?>) getActions()).basicRemove(otherEnd, msgs);
 		}
@@ -456,8 +456,8 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 			return getBehaviorRules();
 		case Av3instancePackage.COMPONENT_INSTANCE__GENERATORS:
 			return getGenerators();
-		case Av3instancePackage.COMPONENT_INSTANCE__STATES:
-			return getStates();
+		case Av3instancePackage.COMPONENT_INSTANCE__STATE_VARIABLES:
+			return getStateVariables();
 		case Av3instancePackage.COMPONENT_INSTANCE__ACTIONS:
 			return getActions();
 		}
@@ -507,9 +507,9 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 			getGenerators().clear();
 			getGenerators().addAll((Collection<? extends GeneratorInstance>) newValue);
 			return;
-		case Av3instancePackage.COMPONENT_INSTANCE__STATES:
-			getStates().clear();
-			getStates().addAll((Collection<? extends StateInstance>) newValue);
+		case Av3instancePackage.COMPONENT_INSTANCE__STATE_VARIABLES:
+			getStateVariables().clear();
+			getStateVariables().addAll((Collection<? extends StateVariableInstance>) newValue);
 			return;
 		case Av3instancePackage.COMPONENT_INSTANCE__ACTIONS:
 			getActions().clear();
@@ -554,8 +554,8 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 		case Av3instancePackage.COMPONENT_INSTANCE__GENERATORS:
 			getGenerators().clear();
 			return;
-		case Av3instancePackage.COMPONENT_INSTANCE__STATES:
-			getStates().clear();
+		case Av3instancePackage.COMPONENT_INSTANCE__STATE_VARIABLES:
+			getStateVariables().clear();
 			return;
 		case Av3instancePackage.COMPONENT_INSTANCE__ACTIONS:
 			getActions().clear();
@@ -590,8 +590,8 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 			return behaviorRules != null && !behaviorRules.isEmpty();
 		case Av3instancePackage.COMPONENT_INSTANCE__GENERATORS:
 			return generators != null && !generators.isEmpty();
-		case Av3instancePackage.COMPONENT_INSTANCE__STATES:
-			return states != null && !states.isEmpty();
+		case Av3instancePackage.COMPONENT_INSTANCE__STATE_VARIABLES:
+			return stateVariables != null && !stateVariables.isEmpty();
 		case Av3instancePackage.COMPONENT_INSTANCE__ACTIONS:
 			return actions != null && !actions.isEmpty();
 		}

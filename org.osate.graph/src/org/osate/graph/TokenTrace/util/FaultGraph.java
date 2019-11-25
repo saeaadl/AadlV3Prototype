@@ -233,25 +233,18 @@ public class FaultGraph {
 			EList<Token> subEvents = new BasicEList<Token>();
 			for (DefaultEdge edge : edges) {
 				InstanceObject target = graph.getEdgeTarget(edge);
+				// generate token subgraph coming to the condition
 				Token res = processOutgoingCIO(target);
 				if (res != null) {
-					if (cioio instanceof ConstrainedInstanceObject) {
-						Token masked = isSinkFiltered(res, cioio);
-						if (masked != null) {
-							subEvents.add(masked);
+					// incoming CIO has literals and is part of a sink specification
+					if (isSinkConstraint(cioio)) {
+						// filter out tokens masked by sink
+						Token notMasked = sinkFilteredToken(res, cioio);
+						if (notMasked != null) {
+							subEvents.add(notMasked);
 						}
 					} else {
-						Collection<ConstrainedInstanceObject> sinkcios = findSinkCIOs(cioio, null, "EM");
-						if (sinkcios.isEmpty()) {
-							subEvents.add(res);
-						} else {
-							for (ConstrainedInstanceObject sinkcio : sinkcios) {
-								Token masked = isSinkFiltered(res, sinkcio);
-								if (masked != null) {
-									subEvents.add(masked);
-								}
-							}
-						}
+						subEvents.add(res);
 					}
 				}
 			}
@@ -551,33 +544,41 @@ public class FaultGraph {
 	}
 	
 	
-	private Token isSinkFiltered(Token tok, InstanceObject io) {
-		if (isSinkConstraint(io)) {
-			Literal constraint = getRealConstraint(io);
-			if (constraint == null) {
+	/**
+	 * return token if its literals are not masked.
+	 * If the token has no literals then check all subtokens and remove those whose literals are masked by the sink.
+	 * Effectively we look for the first set of tokens/subtokens with literals to check.
+	 * return null if  
+	 * @param tok
+	 * @param io
+	 * @return
+	 */
+	private Token sinkFilteredToken(Token tok, InstanceObject io) {
+		Literal constraint = getRealConstraint(io);
+		if (constraint == null) {
+			// all tokens are masked by sink
+			return null;
+		}
+		if (tok.getRelatedLiteral() != null) {
+			if (constraint.contains(tok.getRelatedLiteral())) {
+				return null;
+			} else {
+				return tok;
+			}
+		} else {
+			// filter out sub tokens
+			List<Token> toKeep = new ArrayList<Token>();
+			for (Token subtok : tok.getTokens()) {
+				Token res = sinkFilteredToken(subtok, io);
+				if (res != null) {
+					toKeep.add(res);
+				}
+			}
+			tok.getTokens().clear();
+			tok.getTokens().addAll(toKeep);
+			if (tok.getTokens().isEmpty()) {
 				return null;
 			}
-			if (tok.getRelatedLiteral() != null) {
-				if (constraint.contains(tok.getRelatedLiteral())) {
-					return null;
-				} else {
-					return tok;
-				}
-			} else {
-				// filter out sub tokens
-				List<Token> toKeep = new ArrayList<Token>();
-				for (Token subtok : tok.getTokens()) {
-					Token res = isSinkFiltered(subtok, io);
-					if (res != null) {
-						toKeep.add(res);
-					}
-				}
-				tok.getTokens().clear();
-				tok.getTokens().addAll(toKeep);
-				if (tok.getTokens().isEmpty()) {
-					return null;
-				}
-		}
 		}
 		return tok;
 	}
@@ -622,17 +623,14 @@ public class FaultGraph {
 	
 	// effects as subgraph
 	
-	public Graph <InstanceObject, DefaultEdge> generateEffectsSubgraph(InstanceObject startio) {
-		ComponentInstance root = getRoot(startio);
-		DefaultDirectedGraph<InstanceObject, DefaultEdge> bgraph = AIJGraphTUtil.generateBehaviorPropagationPaths(root,
-				"EM");
+	public Graph <InstanceObject, DefaultEdge> generateEffectsSubgraph(Graph <InstanceObject, DefaultEdge> bgraph, InstanceObject startio) {
 		Set<InstanceObject> effectvset = generateEffectVertices(bgraph, startio);
 		AsSubgraph<InstanceObject, DefaultEdge> subgraph = new AsSubgraph<InstanceObject, DefaultEdge>(bgraph,effectvset);
         return subgraph;
 	}
 	
 	
-	public Set<InstanceObject> generateEffectVertices(DefaultDirectedGraph<InstanceObject, DefaultEdge> bgraph, InstanceObject startio) {
+	public Set<InstanceObject> generateEffectVertices(Graph<InstanceObject, DefaultEdge> bgraph, InstanceObject startio) {
 		Set<InstanceObject> vsubset = new HashSet<InstanceObject>();
 		vsubset.add(startio);
 		Set<DefaultEdge> edges = graph.outgoingEdgesOf(startio);

@@ -33,7 +33,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//ComponentInstance/paths"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//ComponentInstance/behaviorRules"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//ComponentInstance/generators"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//ComponentInstance/states"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//ComponentInstance/stateVariables"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//ComponentInstance/actions"/>
     </genClasses>
     <genClasses ecoreClass="AV3Instance.ecore#//AssociationInstance">
@@ -68,8 +68,11 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//ConstrainedInstanceObject/constraint"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AV3Instance.ecore#//ConstrainedInstanceObject/outgoing"/>
     </genClasses>
-    <genClasses ecoreClass="AV3Instance.ecore#//StateInstance">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//StateInstance/literal"/>
+    <genClasses ecoreClass="AV3Instance.ecore#//StateVariableInstance">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//StateVariableInstance/currentState"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//StateVariableInstance/stateVariable"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//StateVariableInstance/states"/>
     </genClasses>
+    <genClasses ecoreClass="AV3Instance.ecore#//StateInstance"/>
   </genPackages>
 </genmodel:GenModel>

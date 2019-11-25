@@ -39,6 +39,10 @@ import org.osate.aadlv3.util.Av3API
 import static extension org.osate.aadlv3.util.Aadlv3Util.*
 import org.osate.xtext.aadlv3.naming.AadlV3QualifiedNameConverter
 import org.osate.aadlv3.aadlv3.ComponentRealization
+import org.osate.aadlv3.aadlv3.BehaviorSpecification
+import org.osate.aadlv3.aadlv3.util.Aadlv3AdapterFactory
+import org.osate.aadlv3.aadlv3.StateSpecification
+import org.osate.aadlv3.aadlv3.ComponentImplementation
 
 /**
  * This class contains custom scoping description.
@@ -119,7 +123,7 @@ class AadlV3ScopeProvider extends AbstractAadlV3ScopeProvider {
 						}
 						default: {
 							val bs = cc.containingBehaviorSpecification
-							val bsElements = bs === null? Collections.EMPTY_LIST: bs.generators
+							val bsElements = bs === null? Collections.EMPTY_LIST: (bs.generators + bs.stateVariables)
 							cc.containingClassifier.allModelElements+bsElements
 							
 						}
@@ -161,6 +165,23 @@ class AadlV3ScopeProvider extends AbstractAadlV3ScopeProvider {
 			return new SimpleScope(classifierscope, Scopes::scopedElementsFor(modelElements,
 				QualifiedName::wrapper(SimpleAttributeResolver::NAME_RESOLVER)), false)
 		} // ModelElement Reference
+		if (context instanceof StateSpecification){
+			if (reference == Aadlv3Package.Literals.STATE_SPECIFICATION__STATE_VARIABLE){
+				val bs = context.containingBehaviorSpecification
+				val cl = context.containingClassifier
+				if (bs !== null){
+					return new SimpleScope(IScope.NULLSCOPE,
+						Scopes::scopedElementsFor(bs.getStateVariables,
+							QualifiedName::wrapper(SimpleAttributeResolver::NAME_RESOLVER)), false)
+				} else if (cl !== null ) {
+					return new SimpleScope(IScope.NULLSCOPE,
+						Scopes::scopedElementsFor(cl.getStateVariables,
+							QualifiedName::wrapper(SimpleAttributeResolver::NAME_RESOLVER)), false)
+				} else {
+					return IScope.NULLSCOPE
+				}
+			}
+		}
 		if (context instanceof TypeReference) {
 			if (reference == Aadlv3Package.Literals.TYPE_REFERENCE__TYPE) {
 				// we have a primitive type, component interface, or configuration parameter reference

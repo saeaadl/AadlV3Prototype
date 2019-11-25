@@ -35,24 +35,24 @@ package PortConnectionExample is
 		p1: out feature ;
 //		reading: flow  source p1;
 		#TokenSource => (t1);
-	@EM{
-		states threestate;
-		e1: error event (ServiceOmission, cycles) ;
-		sense2:  s0 -[e1  ]->  {p1};
-	};
+//	@EM{
+//		s: state threestate;
+//		e1: error event (ServiceOmission, cycles) ;
+//		sense2:  transition s0 -> s1 when e1 in (ServiceOmission);
+//	};
 	end;
 	
 	thread interface actuate  is
 		p1: in feature ;
 		effect: out feature ;
 //		taction: flow  sink p1;
-	@EM{
-		states threestate;
+//	@EM{
+		s : state threestate;
 		eact1: error event (ServiceOmission) ;
-		actuate1: s0-[eact1 in (ServiceOmission)]-> s1;
-		actuate3: s1-[ ]-> { effect(ServiceOmission)};
-		actuate2: s0-[ p1 in (ServiceOmission)]-> { effect(ServiceOmission)};
-	};
+		actuate1: transition s == s0 -> s == s1 when eact1 in (ServiceOmission);
+		actuate2: flow p1 in (ServiceOmission) -> effect(ServiceOmission) when s == s0;
+//		actuate3: flow x -> { effect(ServiceOmission)} when s == s1;
+//	};
 	end;
 	
 	thread interface filter is
@@ -65,7 +65,7 @@ package PortConnectionExample is
 //	filterpath2: flow insignal2 -> outsignal;
 	#Period => 20 ;
 	@EM{
-		filter2: all (insignal1 in (ServiceOmission), insignal2  in (ServiceOmission)) ->  outsignal(ServiceOmission);
+		filter2: flow all (insignal1 in (ServiceOmission), insignal2  in (ServiceOmission)) ->  outsignal(ServiceOmission);
 	};
 	end;
 	
@@ -80,7 +80,7 @@ package PortConnectionExample is
 //		states threestate;
 //		e1: error event;
 //		r1: s0 -[e1 ]-> s1 {outsignal(ServiceOmission)};
-		computer2: insignal in (ServiceOmission) ->  outsignal(ServiceOmission);
+		computer2: flow insignal in (ServiceOmission) ->  outsignal(ServiceOmission);
 //		computer2: insignal ->  outsignal;
 //		r3: insignal in ServiceOmission-> ;
 	};
@@ -129,7 +129,7 @@ package PortConnectionExample is
 //		cpubinding: cycles binding processing.dofilter.cpu -> hw.cpu;
 	@EM{
 //		effect1: actuate.actt2.effect in (cycles) ->  effect(cycles);
-		effect2: actuate.actt2.effect in (ServiceOmission) ->  effect(ServiceOmission);
+		effect2:flow actuate.actt2.effect in (ServiceOmission) ->  effect(ServiceOmission);
 	};
 	end;
 	

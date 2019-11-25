@@ -50,6 +50,9 @@ import org.osate.av3instance.av3instance.InstanceObject
 import static extension org.eclipse.xtext.EcoreUtil2.*
 import static extension org.osate.aadlv3.util.Av3API.*
 import org.osate.aadlv3.aadlv3.NamedElementReference
+import org.osate.aadlv3.aadlv3.Generator
+import org.osate.aadlv3.aadlv3.StateVariable
+import org.osate.aadlv3.aadlv3.BehaviorRule
 
 class Aadlv3Util {
 	
@@ -560,6 +563,50 @@ class Aadlv3Util {
 		}
 	}
 
+
+	/**
+	 * return collection of generators of a component instance.
+	 * These are associations declared as part of the classifier or as part of the nested declaration
+	 */
+	static def Iterable<Generator> getAllGenerators(ComponentInstance ci) {
+		val conftrs = ci.configuredTypeReferences
+		if (conftrs.empty){
+			// connections in nested declaration
+			return Collections.EMPTY_LIST //ci.component.generators
+		} else {
+			val cls = conftrs.allClassifiers
+			return cls.map[cl|cl.eContents.typeSelect(Generator)].flatten
+		}
+	}
+
+	/**
+	 * return collection of state variables of a component instance.
+	 * These are associations declared as part of the classifier or as part of the nested declaration
+	 */
+	static def Iterable<StateVariable> getAllStateVariables(ComponentInstance ci) {
+		val conftrs = ci.configuredTypeReferences
+		if (conftrs.empty){
+			// connections in nested declaration
+			return Collections.EMPTY_LIST //ci.component.generators
+		} else {
+			val cls = conftrs.allClassifiers
+			return cls.map[cl|cl.eContents.typeSelect(StateVariable)].flatten
+		}
+	}
+	/**
+	 * return collection of behavior rules of a component instance.
+	 * These are associations declared as part of the classifier or as part of the nested declaration
+	 */
+	static def Iterable<BehaviorRule> getAllBehaviorRules(ComponentInstance ci) {
+		val conftrs = ci.configuredTypeReferences
+		if (conftrs.empty){
+			// connections in nested declaration
+			return Collections.EMPTY_LIST //ci.component.generators
+		} else {
+			val cls = conftrs.allClassifiers
+			return cls.map[cl|cl.eContents.typeSelect(BehaviorRule)].flatten
+		}
+	}
 	
 	// return all configuration assignments and nested CAs including those of super configurations 
 	static def Iterable<ClassifierAssignment> getAllClassifierAssignments(Iterable<TypeReference> trs) {
@@ -1583,6 +1630,12 @@ class Aadlv3Util {
 	
 	def static String getName(TypeReference type){
 		type.type.name
+	}
+	
+	def static void replicateAnnotations(NamedElement source, NamedElement target){
+		for (ann: source.annotations){
+			target.annotations += ann.copy
+		}
 	}
 	
 

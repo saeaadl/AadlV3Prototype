@@ -37,7 +37,7 @@ import org.osate.aadlv3.aadlv3.BehaviorSpecification;
  * <!-- end-user-doc -->
  * @generated
  */
-public class BehaviorSpecificationItemProvider extends ModelElementItemProvider {
+public class BehaviorSpecificationItemProvider extends AnnexSubclauseItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -59,25 +59,25 @@ public class BehaviorSpecificationItemProvider extends ModelElementItemProvider 
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addStatesPropertyDescriptor(object);
+			addStateVariablesPropertyDescriptor(object);
 			addGeneratorsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the States feature.
+	 * This adds a property descriptor for the State Variables feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addStatesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_BehaviorSpecification_states_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_BehaviorSpecification_states_feature",
-								"_UI_BehaviorSpecification_type"),
-						Aadlv3Package.Literals.BEHAVIOR_SPECIFICATION__STATES, true, false, true, null, null, null));
+	protected void addStateVariablesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_BehaviorSpecification_stateVariables_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_BehaviorSpecification_stateVariables_feature",
+						"_UI_BehaviorSpecification_type"),
+				Aadlv3Package.Literals.BEHAVIOR_SPECIFICATION__STATE_VARIABLES, true, false, true, null, null, null));
 	}
 
 	/**

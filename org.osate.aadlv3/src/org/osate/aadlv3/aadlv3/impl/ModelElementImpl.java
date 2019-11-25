@@ -15,13 +15,13 @@
  */
 package org.osate.aadlv3.aadlv3.impl;
 
-import java.util.Collection;
-import org.eclipse.emf.common.util.EList;
-
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
-import org.osate.aadlv3.aadlv3.EnumerationLiteral;
+import org.osate.aadlv3.aadlv3.ConditionOperation;
 import org.osate.aadlv3.aadlv3.ModelElement;
 
 /**
@@ -39,14 +39,14 @@ import org.osate.aadlv3.aadlv3.ModelElement;
  */
 public abstract class ModelElementImpl extends NamedElementImpl implements ModelElement {
 	/**
-	 * The cached value of the '{@link #getInModes() <em>In Modes</em>}' reference list.
+	 * The cached value of the '{@link #getInModes() <em>In Modes</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getInModes()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<EnumerationLiteral> inModes;
+	protected ConditionOperation inModes;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -73,12 +73,64 @@ public abstract class ModelElementImpl extends NamedElementImpl implements Model
 	 * @generated
 	 */
 	@Override
-	public EList<EnumerationLiteral> getInModes() {
-		if (inModes == null) {
-			inModes = new EObjectResolvingEList<EnumerationLiteral>(EnumerationLiteral.class, this,
-					Aadlv3Package.MODEL_ELEMENT__IN_MODES);
-		}
+	public ConditionOperation getInModes() {
 		return inModes;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetInModes(ConditionOperation newInModes, NotificationChain msgs) {
+		ConditionOperation oldInModes = inModes;
+		inModes = newInModes;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					Aadlv3Package.MODEL_ELEMENT__IN_MODES, oldInModes, newInModes);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setInModes(ConditionOperation newInModes) {
+		if (newInModes != inModes) {
+			NotificationChain msgs = null;
+			if (inModes != null)
+				msgs = ((InternalEObject) inModes).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE - Aadlv3Package.MODEL_ELEMENT__IN_MODES, null, msgs);
+			if (newInModes != null)
+				msgs = ((InternalEObject) newInModes).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE - Aadlv3Package.MODEL_ELEMENT__IN_MODES, null, msgs);
+			msgs = basicSetInModes(newInModes, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.MODEL_ELEMENT__IN_MODES, newInModes,
+					newInModes));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case Aadlv3Package.MODEL_ELEMENT__IN_MODES:
+			return basicSetInModes(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -105,8 +157,7 @@ public abstract class ModelElementImpl extends NamedElementImpl implements Model
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 		case Aadlv3Package.MODEL_ELEMENT__IN_MODES:
-			getInModes().clear();
-			getInModes().addAll((Collection<? extends EnumerationLiteral>) newValue);
+			setInModes((ConditionOperation) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -121,7 +172,7 @@ public abstract class ModelElementImpl extends NamedElementImpl implements Model
 	public void eUnset(int featureID) {
 		switch (featureID) {
 		case Aadlv3Package.MODEL_ELEMENT__IN_MODES:
-			getInModes().clear();
+			setInModes((ConditionOperation) null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -136,7 +187,7 @@ public abstract class ModelElementImpl extends NamedElementImpl implements Model
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case Aadlv3Package.MODEL_ELEMENT__IN_MODES:
-			return inModes != null && !inModes.isEmpty();
+			return inModes != null;
 		}
 		return super.eIsSet(featureID);
 	}

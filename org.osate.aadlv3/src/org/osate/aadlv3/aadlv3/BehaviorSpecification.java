@@ -27,7 +27,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.BehaviorSpecification#getRules <em>Rules</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.BehaviorSpecification#getStates <em>States</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.BehaviorSpecification#getStateVariables <em>State Variables</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.BehaviorSpecification#getGenerators <em>Generators</em>}</li>
  * </ul>
  *
@@ -35,7 +35,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface BehaviorSpecification extends ModelElement {
+public interface BehaviorSpecification extends AnnexSubclause {
 	/**
 	 * Returns the value of the '<em><b>Rules</b></em>' containment reference list.
 	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.BehaviorRule}.
@@ -49,26 +49,16 @@ public interface BehaviorSpecification extends ModelElement {
 	EList<BehaviorRule> getRules();
 
 	/**
-	 * Returns the value of the '<em><b>States</b></em>' reference.
+	 * Returns the value of the '<em><b>State Variables</b></em>' containment reference list.
+	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.StateVariable}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>States</em>' reference.
-	 * @see #setStates(TypeDef)
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getBehaviorSpecification_States()
-	 * @model
+	 * @return the value of the '<em>State Variables</em>' containment reference list.
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getBehaviorSpecification_StateVariables()
+	 * @model containment="true"
 	 * @generated
 	 */
-	TypeDef getStates();
-
-	/**
-	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.BehaviorSpecification#getStates <em>States</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>States</em>' reference.
-	 * @see #getStates()
-	 * @generated
-	 */
-	void setStates(TypeDef value);
+	EList<StateVariable> getStateVariables();
 
 	/**
 	 * Returns the value of the '<em><b>Generators</b></em>' containment reference list.

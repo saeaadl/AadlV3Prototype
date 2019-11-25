@@ -83,6 +83,7 @@ public class TypeItemProvider extends ItemProviderAdapter implements IEditingDom
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
+		super.notifyChanged(notification);
 	}
 
 	/**

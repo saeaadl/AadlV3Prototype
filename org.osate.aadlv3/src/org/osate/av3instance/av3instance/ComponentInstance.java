@@ -37,7 +37,7 @@ import org.osate.aadlv3.aadlv3.Subcomponent;
  *   <li>{@link org.osate.av3instance.av3instance.ComponentInstance#getPaths <em>Paths</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.ComponentInstance#getBehaviorRules <em>Behavior Rules</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.ComponentInstance#getGenerators <em>Generators</em>}</li>
- *   <li>{@link org.osate.av3instance.av3instance.ComponentInstance#getStates <em>States</em>}</li>
+ *   <li>{@link org.osate.av3instance.av3instance.ComponentInstance#getStateVariables <em>State Variables</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.ComponentInstance#getActions <em>Actions</em>}</li>
  * </ul>
  *
@@ -207,16 +207,16 @@ public interface ComponentInstance extends InstanceObject {
 	EList<GeneratorInstance> getGenerators();
 
 	/**
-	 * Returns the value of the '<em><b>States</b></em>' containment reference list.
-	 * The list contents are of type {@link org.osate.av3instance.av3instance.StateInstance}.
+	 * Returns the value of the '<em><b>State Variables</b></em>' containment reference list.
+	 * The list contents are of type {@link org.osate.av3instance.av3instance.StateVariableInstance}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>States</em>' containment reference list.
-	 * @see org.osate.av3instance.av3instance.Av3instancePackage#getComponentInstance_States()
+	 * @return the value of the '<em>State Variables</em>' containment reference list.
+	 * @see org.osate.av3instance.av3instance.Av3instancePackage#getComponentInstance_StateVariables()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<StateInstance> getStates();
+	EList<StateVariableInstance> getStateVariables();
 
 	/**
 	 * Returns the value of the '<em><b>Actions</b></em>' containment reference list.

@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
+import org.osate.aadlv3.aadlv3.Annotation;
 import org.osate.aadlv3.aadlv3.NamedElement;
 import org.osate.aadlv3.aadlv3.PropertyAssociation;
 
@@ -42,6 +43,7 @@ import org.osate.aadlv3.aadlv3.PropertyAssociation;
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.NamedElementImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.NamedElementImpl#getOwnedPropertyAssociations <em>Owned Property Associations</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.NamedElementImpl#getAnnotations <em>Annotations</em>}</li>
  * </ul>
  *
  * @generated
@@ -76,6 +78,16 @@ public abstract class NamedElementImpl extends MinimalEObjectImpl.Container impl
 	 * @ordered
 	 */
 	protected EList<PropertyAssociation> ownedPropertyAssociations;
+
+	/**
+	 * The cached value of the '{@link #getAnnotations() <em>Annotations</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAnnotations()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Annotation> annotations;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -139,10 +151,26 @@ public abstract class NamedElementImpl extends MinimalEObjectImpl.Container impl
 	 * @generated
 	 */
 	@Override
+	public EList<Annotation> getAnnotations() {
+		if (annotations == null) {
+			annotations = new EObjectContainmentEList<Annotation>(Annotation.class, this,
+					Aadlv3Package.NAMED_ELEMENT__ANNOTATIONS);
+		}
+		return annotations;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case Aadlv3Package.NAMED_ELEMENT__OWNED_PROPERTY_ASSOCIATIONS:
 			return ((InternalEList<?>) getOwnedPropertyAssociations()).basicRemove(otherEnd, msgs);
+		case Aadlv3Package.NAMED_ELEMENT__ANNOTATIONS:
+			return ((InternalEList<?>) getAnnotations()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -159,6 +187,8 @@ public abstract class NamedElementImpl extends MinimalEObjectImpl.Container impl
 			return getName();
 		case Aadlv3Package.NAMED_ELEMENT__OWNED_PROPERTY_ASSOCIATIONS:
 			return getOwnedPropertyAssociations();
+		case Aadlv3Package.NAMED_ELEMENT__ANNOTATIONS:
+			return getAnnotations();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -179,6 +209,10 @@ public abstract class NamedElementImpl extends MinimalEObjectImpl.Container impl
 			getOwnedPropertyAssociations().clear();
 			getOwnedPropertyAssociations().addAll((Collection<? extends PropertyAssociation>) newValue);
 			return;
+		case Aadlv3Package.NAMED_ELEMENT__ANNOTATIONS:
+			getAnnotations().clear();
+			getAnnotations().addAll((Collection<? extends Annotation>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -197,6 +231,9 @@ public abstract class NamedElementImpl extends MinimalEObjectImpl.Container impl
 		case Aadlv3Package.NAMED_ELEMENT__OWNED_PROPERTY_ASSOCIATIONS:
 			getOwnedPropertyAssociations().clear();
 			return;
+		case Aadlv3Package.NAMED_ELEMENT__ANNOTATIONS:
+			getAnnotations().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -213,6 +250,8 @@ public abstract class NamedElementImpl extends MinimalEObjectImpl.Container impl
 			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		case Aadlv3Package.NAMED_ELEMENT__OWNED_PROPERTY_ASSOCIATIONS:
 			return ownedPropertyAssociations != null && !ownedPropertyAssociations.isEmpty();
+		case Aadlv3Package.NAMED_ELEMENT__ANNOTATIONS:
+			return annotations != null && !annotations.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

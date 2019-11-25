@@ -15,8 +15,6 @@
  */
 package org.osate.aadlv3.aadlv3;
 
-import org.eclipse.emf.common.util.EList;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Model Element</b></em>'.
@@ -35,15 +33,25 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface ModelElement extends NamedElement {
 	/**
-	 * Returns the value of the '<em><b>In Modes</b></em>' reference list.
-	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.EnumerationLiteral}.
+	 * Returns the value of the '<em><b>In Modes</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>In Modes</em>' reference list.
+	 * @return the value of the '<em>In Modes</em>' containment reference.
+	 * @see #setInModes(ConditionOperation)
 	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getModelElement_InModes()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
-	EList<EnumerationLiteral> getInModes();
+	ConditionOperation getInModes();
+
+	/**
+	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.ModelElement#getInModes <em>In Modes</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>In Modes</em>' containment reference.
+	 * @see #getInModes()
+	 * @generated
+	 */
+	void setInModes(ConditionOperation value);
 
 } // ModelElement

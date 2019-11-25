@@ -45,6 +45,9 @@ import org.osate.aadlv3.aadlv3.InstanceConfiguration
 import org.osate.av3instance.util.AIv3Validation
 import org.osate.aadlv3.util.Aadlv3Util
 import org.osate.aadlv3.aadlv3.ModelElement
+import org.osate.aadlv3.aadlv3.StateVariable
+import org.osate.av3instance.av3instance.StateVariableInstance
+import org.osate.aadlv3.aadlv3.Aadlv3Factory
 
 class Instantiator {
 	
@@ -158,6 +161,18 @@ class Instantiator {
 				ci.processClassifierAssignmentPropertyAssociations(ca)
 			}
 		}
+		// Generators, state variables, behavior rules in core
+		for (gen : ci.allGenerators) {
+			gen.instantiateGenerator(ci)
+		}
+		for (sv : ci.allStateVariables) {
+			sv.instantiateStateVariables(ci)
+		}
+		for (br : ci.allBehaviorRules) {
+			br.instantiateBehaviorRule(ci)
+		}
+		
+		
 		// now we handle Generators and Behavior Rules in annexes
 		val subcls = ci.getAllSubclauses
 		for (subclause: subcls){
@@ -169,8 +184,9 @@ class Instantiator {
 		}
 		for (subclause: subcls){
 			if (subclause instanceof BehaviorSpecification){
-				if (subclause.states !== null){
-					subclause.states.instantiateStates(ci)
+				if (subclause.stateVariables !== null){
+					for (sv: subclause.stateVariables)
+					sv.instantiateStateVariables(ci)
 				}
 				for (br: subclause.rules){
 					br.instantiateBehaviorRule(ci)
@@ -607,19 +623,37 @@ class Instantiator {
 		return null
 	}
 	
-	def void instantiateStates(TypeDef stateType, ComponentInstance context){
-		val enum = stateType.baseType
+	def void instantiateStateVariables(StateVariable sv, ComponentInstance context){
+		val svi = createStateVariableInstance(sv);
+		replicateAnnotations(sv,svi)
+		val bs = sv.containingBehaviorSpecification
+		if (bs !== null){
+			val an = Aadlv3Factory.eINSTANCE.createAnnotation
+			an.name = bs.name
+			svi.annotations.add(an)
+		}
+		context.stateVariables += svi;
+		val enum = sv.stateType.baseType
 		if (enum instanceof EnumerationType){
 			for (lit : enum.literals){
-				context.states += createStateInstance(lit);
+				svi.states += createStateInstance(lit);
 			}
 		}
+		val isi = findStateInstance(svi,sv.initialState);
+		svi.currentState = isi;
 	}
 
 
 	// Behavior Rules
 	def void instantiateBehaviorRule(BehaviorRule br, ComponentInstance context) {
 		val bri = br.createBehaviorRuleInstance;
+		replicateAnnotations(br,bri)
+		val bs = br.containingBehaviorSpecification
+		if (bs !== null){
+			val an = Aadlv3Factory.eINSTANCE.createAnnotation
+			an.name = bs.name
+			bri.annotations.add(an)
+		}
 		bri.sink = br.sink;
 		if (br.condition !== null) {
 			var behaviorCondition = br.condition.copy
@@ -685,6 +719,13 @@ class Instantiator {
 	// Generator
 	def void instantiateGenerator(Generator g, ComponentInstance context) {
 		val gi = g.createGeneratorInstance()
+		replicateAnnotations(g,gi)
+		val bs = g.containingBehaviorSpecification
+		if (bs !== null){
+			val an = Aadlv3Factory.eINSTANCE.createAnnotation
+			an.name = bs.name
+			gi.annotations.add(an)
+		}
 		context.generators += gi
 		val literals = g.value
 		if (literals instanceof ECollection) {

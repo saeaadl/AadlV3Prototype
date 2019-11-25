@@ -22,9 +22,6 @@ import org.eclipse.xtext.IGrammarAccess;
 import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.serializer.analysis.GrammarAlias.AbstractElementAlias;
-import org.eclipse.xtext.serializer.analysis.GrammarAlias.GroupAlias;
-import org.eclipse.xtext.serializer.analysis.GrammarAlias.TokenAlias;
-import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynNavigable;
 import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynTransition;
 import org.eclipse.xtext.serializer.sequencer.AbstractSyntacticSequencer;
 import org.osate.xtext.aadlv3.services.AadlV3GrammarAccess;
@@ -33,12 +30,10 @@ import org.osate.xtext.aadlv3.services.AadlV3GrammarAccess;
 public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected AadlV3GrammarAccess grammarAccess;
-	protected AbstractElementAlias match_StateTransitionRule___LeftCurlyBracketKeyword_4_1_1_0_RightCurlyBracketKeyword_4_1_1_2__q;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (AadlV3GrammarAccess) access;
-		match_StateTransitionRule___LeftCurlyBracketKeyword_4_1_1_0_RightCurlyBracketKeyword_4_1_1_2__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getStateTransitionRuleAccess().getLeftCurlyBracketKeyword_4_1_1_0()), new TokenAlias(false, false, grammarAccess.getStateTransitionRuleAccess().getRightCurlyBracketKeyword_4_1_1_2()));
 	}
 	
 	@Override
@@ -53,25 +48,8 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if (match_StateTransitionRule___LeftCurlyBracketKeyword_4_1_1_0_RightCurlyBracketKeyword_4_1_1_2__q.equals(syntax))
-				emit_StateTransitionRule___LeftCurlyBracketKeyword_4_1_1_0_RightCurlyBracketKeyword_4_1_1_2__q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else acceptNodes(getLastNavigableState(), syntaxNodes);
+			acceptNodes(getLastNavigableState(), syntaxNodes);
 		}
 	}
 
-	/**
-	 * Ambiguous syntax:
-	 *     ('{' '}')?
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     condition=ContainsToken ']->' (ambiguity) ';' (rule end)
-	 *     condition=ModelElementReference ']->' (ambiguity) ';' (rule end)
-	 *     condition=MultiLiteralOperation ']->' (ambiguity) ';' (rule end)
-	 *     currentState=CurrentState '-[' ']->' (ambiguity) ';' (rule end)
-	 *     targetState=CurrentState (ambiguity) ';' (rule end)
-	 */
-	protected void emit_StateTransitionRule___LeftCurlyBracketKeyword_4_1_1_0_RightCurlyBracketKeyword_4_1_1_2__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
 }

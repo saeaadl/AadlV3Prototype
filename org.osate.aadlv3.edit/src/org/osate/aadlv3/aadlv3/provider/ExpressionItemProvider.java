@@ -96,6 +96,7 @@ public class ExpressionItemProvider extends ItemProviderAdapter implements IEdit
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
+		super.notifyChanged(notification);
 	}
 
 	/**

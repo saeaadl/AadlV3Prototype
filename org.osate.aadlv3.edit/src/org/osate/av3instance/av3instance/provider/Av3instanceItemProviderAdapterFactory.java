@@ -247,6 +247,29 @@ public class Av3instanceItemProviderAdapterFactory extends Av3instanceAdapterFac
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.osate.av3instance.av3instance.StateVariableInstance} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected StateVariableInstanceItemProvider stateVariableInstanceItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.osate.av3instance.av3instance.StateVariableInstance}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createStateVariableInstanceAdapter() {
+		if (stateVariableInstanceItemProvider == null) {
+			stateVariableInstanceItemProvider = new StateVariableInstanceItemProvider(this);
+		}
+
+		return stateVariableInstanceItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.osate.av3instance.av3instance.StateInstance} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -388,6 +411,8 @@ public class Av3instanceItemProviderAdapterFactory extends Av3instanceAdapterFac
 			generatorInstanceItemProvider.dispose();
 		if (constrainedInstanceObjectItemProvider != null)
 			constrainedInstanceObjectItemProvider.dispose();
+		if (stateVariableInstanceItemProvider != null)
+			stateVariableInstanceItemProvider.dispose();
 		if (stateInstanceItemProvider != null)
 			stateInstanceItemProvider.dispose();
 	}

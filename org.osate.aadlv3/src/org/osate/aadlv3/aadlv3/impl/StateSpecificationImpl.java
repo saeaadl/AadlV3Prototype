@@ -17,7 +17,6 @@ package org.osate.aadlv3.aadlv3.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -26,8 +25,8 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.EnumerationLiteral;
-import org.osate.aadlv3.aadlv3.Literal;
 import org.osate.aadlv3.aadlv3.StateSpecification;
+import org.osate.aadlv3.aadlv3.StateVariable;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,7 +37,7 @@ import org.osate.aadlv3.aadlv3.StateSpecification;
  * </p>
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.StateSpecificationImpl#getCurrentState <em>Current State</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.StateSpecificationImpl#getConstraint <em>Constraint</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.StateSpecificationImpl#getStateVariable <em>State Variable</em>}</li>
  * </ul>
  *
  * @generated
@@ -55,14 +54,14 @@ public class StateSpecificationImpl extends MinimalEObjectImpl.Container impleme
 	protected EnumerationLiteral currentState;
 
 	/**
-	 * The cached value of the '{@link #getConstraint() <em>Constraint</em>}' reference.
+	 * The cached value of the '{@link #getStateVariable() <em>State Variable</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getConstraint()
+	 * @see #getStateVariable()
 	 * @generated
 	 * @ordered
 	 */
-	protected Literal constraint;
+	protected StateVariable stateVariable;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -141,17 +140,17 @@ public class StateSpecificationImpl extends MinimalEObjectImpl.Container impleme
 	 * @generated
 	 */
 	@Override
-	public Literal getConstraint() {
-		if (constraint != null && constraint.eIsProxy()) {
-			InternalEObject oldConstraint = (InternalEObject) constraint;
-			constraint = (Literal) eResolveProxy(oldConstraint);
-			if (constraint != oldConstraint) {
+	public StateVariable getStateVariable() {
+		if (stateVariable != null && stateVariable.eIsProxy()) {
+			InternalEObject oldStateVariable = (InternalEObject) stateVariable;
+			stateVariable = (StateVariable) eResolveProxy(oldStateVariable);
+			if (stateVariable != oldStateVariable) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							Aadlv3Package.STATE_SPECIFICATION__CONSTRAINT, oldConstraint, constraint));
+							Aadlv3Package.STATE_SPECIFICATION__STATE_VARIABLE, oldStateVariable, stateVariable));
 			}
 		}
-		return constraint;
+		return stateVariable;
 	}
 
 	/**
@@ -159,8 +158,8 @@ public class StateSpecificationImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Literal basicGetConstraint() {
-		return constraint;
+	public StateVariable basicGetStateVariable() {
+		return stateVariable;
 	}
 
 	/**
@@ -169,12 +168,12 @@ public class StateSpecificationImpl extends MinimalEObjectImpl.Container impleme
 	 * @generated
 	 */
 	@Override
-	public void setConstraint(Literal newConstraint) {
-		Literal oldConstraint = constraint;
-		constraint = newConstraint;
+	public void setStateVariable(StateVariable newStateVariable) {
+		StateVariable oldStateVariable = stateVariable;
+		stateVariable = newStateVariable;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.STATE_SPECIFICATION__CONSTRAINT,
-					oldConstraint, constraint));
+			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.STATE_SPECIFICATION__STATE_VARIABLE,
+					oldStateVariable, stateVariable));
 	}
 
 	/**
@@ -201,10 +200,10 @@ public class StateSpecificationImpl extends MinimalEObjectImpl.Container impleme
 		switch (featureID) {
 		case Aadlv3Package.STATE_SPECIFICATION__CURRENT_STATE:
 			return getCurrentState();
-		case Aadlv3Package.STATE_SPECIFICATION__CONSTRAINT:
+		case Aadlv3Package.STATE_SPECIFICATION__STATE_VARIABLE:
 			if (resolve)
-				return getConstraint();
-			return basicGetConstraint();
+				return getStateVariable();
+			return basicGetStateVariable();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -220,8 +219,8 @@ public class StateSpecificationImpl extends MinimalEObjectImpl.Container impleme
 		case Aadlv3Package.STATE_SPECIFICATION__CURRENT_STATE:
 			setCurrentState((EnumerationLiteral) newValue);
 			return;
-		case Aadlv3Package.STATE_SPECIFICATION__CONSTRAINT:
-			setConstraint((Literal) newValue);
+		case Aadlv3Package.STATE_SPECIFICATION__STATE_VARIABLE:
+			setStateVariable((StateVariable) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -238,8 +237,8 @@ public class StateSpecificationImpl extends MinimalEObjectImpl.Container impleme
 		case Aadlv3Package.STATE_SPECIFICATION__CURRENT_STATE:
 			setCurrentState((EnumerationLiteral) null);
 			return;
-		case Aadlv3Package.STATE_SPECIFICATION__CONSTRAINT:
-			setConstraint((Literal) null);
+		case Aadlv3Package.STATE_SPECIFICATION__STATE_VARIABLE:
+			setStateVariable((StateVariable) null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -255,8 +254,8 @@ public class StateSpecificationImpl extends MinimalEObjectImpl.Container impleme
 		switch (featureID) {
 		case Aadlv3Package.STATE_SPECIFICATION__CURRENT_STATE:
 			return currentState != null;
-		case Aadlv3Package.STATE_SPECIFICATION__CONSTRAINT:
-			return constraint != null;
+		case Aadlv3Package.STATE_SPECIFICATION__STATE_VARIABLE:
+			return stateVariable != null;
 		}
 		return super.eIsSet(featureID);
 	}

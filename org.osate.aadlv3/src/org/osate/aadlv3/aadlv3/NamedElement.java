@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.NamedElement#getName <em>Name</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.NamedElement#getOwnedPropertyAssociations <em>Owned Property Associations</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.NamedElement#getAnnotations <em>Annotations</em>}</li>
  * </ul>
  *
  * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getNamedElement()
@@ -73,6 +74,18 @@ public interface NamedElement extends EObject {
 	 * @generated
 	 */
 	EList<PropertyAssociation> getOwnedPropertyAssociations();
+
+	/**
+	 * Returns the value of the '<em><b>Annotations</b></em>' containment reference list.
+	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.Annotation}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Annotations</em>' containment reference list.
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getNamedElement_Annotations()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<Annotation> getAnnotations();
 
 	String getQualifiedName();
 

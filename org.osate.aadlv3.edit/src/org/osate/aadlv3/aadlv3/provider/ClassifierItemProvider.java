@@ -61,8 +61,6 @@ public class ClassifierItemProvider extends NamedTypeItemProvider {
 			super.getPropertyDescriptors(object);
 
 			addCategoryPropertyDescriptor(object);
-			addUseModesPropertyDescriptor(object);
-			addInheritsModesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -84,37 +82,6 @@ public class ClassifierItemProvider extends NamedTypeItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Use Modes feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addUseModesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Classifier_useModes_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Classifier_useModes_feature",
-								"_UI_Classifier_type"),
-						Aadlv3Package.Literals.CLASSIFIER__USE_MODES, true, false, true, null, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Inherits Modes feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addInheritsModesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Classifier_inheritsModes_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Classifier_inheritsModes_feature",
-								"_UI_Classifier_type"),
-						Aadlv3Package.Literals.CLASSIFIER__INHERITS_MODES, true, false, false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
-	}
-
-	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -127,6 +94,9 @@ public class ClassifierItemProvider extends NamedTypeItemProvider {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(Aadlv3Package.Literals.CLASSIFIER__SUPER_CLASSIFIERS);
+			childrenFeatures.add(Aadlv3Package.Literals.CLASSIFIER__BEHAVIOR_RULES);
+			childrenFeatures.add(Aadlv3Package.Literals.CLASSIFIER__STATE_VARIABLES);
+			childrenFeatures.add(Aadlv3Package.Literals.CLASSIFIER__GENERATORS);
 			childrenFeatures.add(Aadlv3Package.Literals.CLASSIFIER__ANNEX_SUBCLAUSE);
 		}
 		return childrenFeatures;
@@ -171,10 +141,12 @@ public class ClassifierItemProvider extends NamedTypeItemProvider {
 
 		switch (notification.getFeatureID(Classifier.class)) {
 		case Aadlv3Package.CLASSIFIER__CATEGORY:
-		case Aadlv3Package.CLASSIFIER__INHERITS_MODES:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		case Aadlv3Package.CLASSIFIER__SUPER_CLASSIFIERS:
+		case Aadlv3Package.CLASSIFIER__BEHAVIOR_RULES:
+		case Aadlv3Package.CLASSIFIER__STATE_VARIABLES:
+		case Aadlv3Package.CLASSIFIER__GENERATORS:
 		case Aadlv3Package.CLASSIFIER__ANNEX_SUBCLAUSE:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
@@ -196,14 +168,20 @@ public class ClassifierItemProvider extends NamedTypeItemProvider {
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CLASSIFIER__SUPER_CLASSIFIERS,
 				Aadlv3Factory.eINSTANCE.createTypeReference()));
 
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CLASSIFIER__BEHAVIOR_RULES,
+				Aadlv3Factory.eINSTANCE.createBehaviorRule()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CLASSIFIER__STATE_VARIABLES,
+				Aadlv3Factory.eINSTANCE.createStateVariable()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CLASSIFIER__GENERATORS,
+				Aadlv3Factory.eINSTANCE.createGenerator()));
+
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CLASSIFIER__ANNEX_SUBCLAUSE,
 				Aadlv3Factory.eINSTANCE.createDefaultAnnexSubclause()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CLASSIFIER__ANNEX_SUBCLAUSE,
-				Aadlv3Factory.eINSTANCE.createEMSubclause()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CLASSIFIER__ANNEX_SUBCLAUSE,
-				Aadlv3Factory.eINSTANCE.createBASubclause()));
+				Aadlv3Factory.eINSTANCE.createBehaviorSpecification()));
 	}
 
 }

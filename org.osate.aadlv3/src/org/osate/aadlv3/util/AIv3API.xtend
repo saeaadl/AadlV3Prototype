@@ -40,6 +40,8 @@ import org.eclipse.emf.common.util.EList
 import java.util.Collection
 import org.osate.aadlv3.aadlv3.NamedElementReference
 import org.osate.aadlv3.aadlv3.NamedElement
+import org.osate.aadlv3.aadlv3.StateVariable
+import org.osate.av3instance.av3instance.StateVariableInstance
 
 class AIv3API {
 	
@@ -121,10 +123,7 @@ class AIv3API {
 	def static ConstrainedInstanceObject createConstrainedInstanceObject(StateSpecification ss, ComponentInstance context) {
 		val cio = Av3instanceFactory.eINSTANCE.createConstrainedInstanceObject
 		cio.instanceObject = context.findStateInstance(ss)
-		cio.name = ss.currentState.value
-		if (ss.constraint !== null){
-			cio.constraint = ss.constraint.copy
-		}
+		cio.name = ss.currentState.name
 		return cio
 	}
 	
@@ -146,8 +145,15 @@ class AIv3API {
 
 	def static StateInstance createStateInstance(EnumerationLiteral ss) {
 		val si = Av3instanceFactory.eINSTANCE.createStateInstance
-		si.name = ss.value
+		si.name = ss.name
 		return si
+	}
+
+	def static StateVariableInstance createStateVariableInstance(StateVariable sv) {
+		val svi = Av3instanceFactory.eINSTANCE.createStateVariableInstance
+		svi.name = sv.name
+		svi.stateVariable = sv
+		return svi
 	}
 
 	/**
@@ -375,12 +381,12 @@ class AIv3API {
 	}
 	
 
-	def static List<GeneratorInstance> getAllGenerators(ComponentInstance root) {
+	def static List<GeneratorInstance> getAllGeneratorInstances(ComponentInstance root) {
 		return EcoreUtil2.eAllOfType(root, GeneratorInstance);
 	}
 
 	def static List<InstanceObject> getAllGeneratedLiterals(ComponentInstance root) {
-		val gis = root.getAllGenerators
+		val gis = root.getAllGeneratorInstances
 		val result = new ArrayList<InstanceObject>
 		for (gi: gis){
 			if (gi.generatedLiterals.empty){
@@ -585,13 +591,6 @@ class AIv3API {
 		return cios.filter[target|target.instanceObject === desiredTarget && ((target.constraint !== null&& targetLiteral !== null)?target.constraint.contains(targetLiteral):true/*targetLiteral === null*/)].toList
 	}
 	
-	def static Collection<ConstrainedInstanceObject> findSinkCIOs(InstanceObject desiredTarget, Literal targetLiteral, String behaviorSpecName){
-		val dstCi = containingComponentInstanceOrSelf(desiredTarget);
-		val bris = dstCi.behaviorRules.filter[bri|bri.behaviorRule.containingBehaviorSpecification.name.equals(behaviorSpecName) && bri.condition !== null && bri.sink]
-		val cios = bris.map[bri|bri.condition.eAllOfType(ConstrainedInstanceObject)].flatten
-		return cios.filter[target|target.instanceObject === desiredTarget && ((target.constraint !== null&& targetLiteral !== null)?target.constraint.contains(targetLiteral):true/*targetLiteral === null*/)].toList
-	}
-	
 	def static Iterable<ConstrainedInstanceObject> getAllConstrainedInstanceObjects(Literal lit){
 		if (lit === null) return Collections.EMPTY_LIST
 		return lit.eAllOfType(ConstrainedInstanceObject)
@@ -609,9 +608,21 @@ class AIv3API {
 		return false
 	}
 	
-	def static StateInstance findStateInstance( ComponentInstance context,StateSpecification ss){
-		for (si : context.states){
-			if (si.name.equals(ss.currentState.value)){
+	def static StateInstance findStateInstance(ComponentInstance context, StateSpecification ss) {
+		for (svi : context.stateVariables) {
+			if (svi.stateVariable == ss.stateVariable) {
+				val si = findStateInstance(svi,ss.currentState);
+				if (si !== null){
+					return si;
+				}
+			}
+		}
+		return null;
+	}
+	
+	def static StateInstance findStateInstance(StateVariableInstance svi, EnumerationLiteral state) {
+		for (si : svi.states) {
+			if (si.name.equals(state.name)) {
 				return si;
 			}
 		}

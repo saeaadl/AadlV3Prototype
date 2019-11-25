@@ -34,6 +34,7 @@ import org.osate.av3instance.av3instance.GeneratorInstance;
 import org.osate.av3instance.av3instance.InstanceObject;
 import org.osate.av3instance.av3instance.PathInstance;
 import org.osate.av3instance.av3instance.StateInstance;
+import org.osate.av3instance.av3instance.StateVariableInstance;
 
 /**
  * <!-- begin-user-doc -->
@@ -97,6 +98,13 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 	 * @generated
 	 */
 	private EClass constrainedInstanceObjectEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass stateVariableInstanceEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -358,7 +366,7 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 	 * @generated
 	 */
 	@Override
-	public EReference getComponentInstance_States() {
+	public EReference getComponentInstance_StateVariables() {
 		return (EReference) componentInstanceEClass.getEStructuralFeatures().get(9);
 	}
 
@@ -638,8 +646,8 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 	 * @generated
 	 */
 	@Override
-	public EClass getStateInstance() {
-		return stateInstanceEClass;
+	public EClass getStateVariableInstance() {
+		return stateVariableInstanceEClass;
 	}
 
 	/**
@@ -648,8 +656,38 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 	 * @generated
 	 */
 	@Override
-	public EReference getStateInstance_Literal() {
-		return (EReference) stateInstanceEClass.getEStructuralFeatures().get(0);
+	public EReference getStateVariableInstance_CurrentState() {
+		return (EReference) stateVariableInstanceEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getStateVariableInstance_StateVariable() {
+		return (EReference) stateVariableInstanceEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getStateVariableInstance_States() {
+		return (EReference) stateVariableInstanceEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getStateInstance() {
+		return stateInstanceEClass;
 	}
 
 	/**
@@ -702,7 +740,7 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 		createEReference(componentInstanceEClass, COMPONENT_INSTANCE__PATHS);
 		createEReference(componentInstanceEClass, COMPONENT_INSTANCE__BEHAVIOR_RULES);
 		createEReference(componentInstanceEClass, COMPONENT_INSTANCE__GENERATORS);
-		createEReference(componentInstanceEClass, COMPONENT_INSTANCE__STATES);
+		createEReference(componentInstanceEClass, COMPONENT_INSTANCE__STATE_VARIABLES);
 		createEReference(componentInstanceEClass, COMPONENT_INSTANCE__ACTIONS);
 
 		associationInstanceEClass = createEClass(ASSOCIATION_INSTANCE);
@@ -736,8 +774,12 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 		createEReference(constrainedInstanceObjectEClass, CONSTRAINED_INSTANCE_OBJECT__CONSTRAINT);
 		createEAttribute(constrainedInstanceObjectEClass, CONSTRAINED_INSTANCE_OBJECT__OUTGOING);
 
+		stateVariableInstanceEClass = createEClass(STATE_VARIABLE_INSTANCE);
+		createEReference(stateVariableInstanceEClass, STATE_VARIABLE_INSTANCE__CURRENT_STATE);
+		createEReference(stateVariableInstanceEClass, STATE_VARIABLE_INSTANCE__STATE_VARIABLE);
+		createEReference(stateVariableInstanceEClass, STATE_VARIABLE_INSTANCE__STATES);
+
 		stateInstanceEClass = createEClass(STATE_INSTANCE);
-		createEReference(stateInstanceEClass, STATE_INSTANCE__LITERAL);
 	}
 
 	/**
@@ -781,6 +823,7 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 		generatorInstanceEClass.getESuperTypes().add(this.getInstanceObject());
 		constrainedInstanceObjectEClass.getESuperTypes().add(this.getInstanceObject());
 		constrainedInstanceObjectEClass.getESuperTypes().add(theAadlv3Package.getLiteral());
+		stateVariableInstanceEClass.getESuperTypes().add(this.getInstanceObject());
 		stateInstanceEClass.getESuperTypes().add(this.getInstanceObject());
 
 		// Initialize classes and features; add operations and parameters
@@ -839,9 +882,9 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 		initEReference(getComponentInstance_Generators(), this.getGeneratorInstance(), null, "generators", null, 0, -1, //$NON-NLS-1$
 				ComponentInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getComponentInstance_States(), this.getStateInstance(), null, "states", null, 0, -1, //$NON-NLS-1$
-				ComponentInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getComponentInstance_StateVariables(), this.getStateVariableInstance(), null, "stateVariables", //$NON-NLS-1$
+				null, 0, -1, ComponentInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getComponentInstance_Actions(), this.getConstrainedInstanceObject(), null, "actions", null, 0, //$NON-NLS-1$
 				-1, ComponentInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -926,11 +969,20 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 				ConstrainedInstanceObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(stateVariableInstanceEClass, StateVariableInstance.class, "StateVariableInstance", !IS_ABSTRACT, //$NON-NLS-1$
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getStateVariableInstance_CurrentState(), this.getStateInstance(), null, "currentState", null, 0, //$NON-NLS-1$
+				1, StateVariableInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getStateVariableInstance_StateVariable(), theAadlv3Package.getStateVariable(), null,
+				"stateVariable", null, 0, 1, StateVariableInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, //$NON-NLS-1$
+				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getStateVariableInstance_States(), this.getStateInstance(), null, "states", null, 0, -1, //$NON-NLS-1$
+				StateVariableInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		initEClass(stateInstanceEClass, StateInstance.class, "StateInstance", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
 				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getStateInstance_Literal(), theAadlv3Package.getLiteral(), null, "literal", null, 0, 1, //$NON-NLS-1$
-				StateInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

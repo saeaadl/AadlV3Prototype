@@ -508,6 +508,8 @@ public class Aadlv3Switch<T> extends Switch<T> {
 			EnumerationLiteral enumerationLiteral = (EnumerationLiteral) theEObject;
 			T result = caseEnumerationLiteral(enumerationLiteral);
 			if (result == null)
+				result = caseNamedElement(enumerationLiteral);
+			if (result == null)
 				result = caseLiteral(enumerationLiteral);
 			if (result == null)
 				result = caseExpression(enumerationLiteral);
@@ -669,39 +671,11 @@ public class Aadlv3Switch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case Aadlv3Package.EM_SUBCLAUSE: {
-			EMSubclause emSubclause = (EMSubclause) theEObject;
-			T result = caseEMSubclause(emSubclause);
-			if (result == null)
-				result = caseAnnexSubclause(emSubclause);
-			if (result == null)
-				result = caseBehaviorSpecification(emSubclause);
-			if (result == null)
-				result = caseModelElement(emSubclause);
-			if (result == null)
-				result = caseNamedElement(emSubclause);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Aadlv3Package.BA_SUBCLAUSE: {
-			BASubclause baSubclause = (BASubclause) theEObject;
-			T result = caseBASubclause(baSubclause);
-			if (result == null)
-				result = caseBehaviorSpecification(baSubclause);
-			if (result == null)
-				result = caseAnnexSubclause(baSubclause);
-			if (result == null)
-				result = caseModelElement(baSubclause);
-			if (result == null)
-				result = caseNamedElement(baSubclause);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
 		case Aadlv3Package.BEHAVIOR_SPECIFICATION: {
 			BehaviorSpecification behaviorSpecification = (BehaviorSpecification) theEObject;
 			T result = caseBehaviorSpecification(behaviorSpecification);
+			if (result == null)
+				result = caseAnnexSubclause(behaviorSpecification);
 			if (result == null)
 				result = caseModelElement(behaviorSpecification);
 			if (result == null)
@@ -724,6 +698,17 @@ public class Aadlv3Switch<T> extends Switch<T> {
 		case Aadlv3Package.STATE_SPECIFICATION: {
 			StateSpecification stateSpecification = (StateSpecification) theEObject;
 			T result = caseStateSpecification(stateSpecification);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Aadlv3Package.STATE_VARIABLE: {
+			StateVariable stateVariable = (StateVariable) theEObject;
+			T result = caseStateVariable(stateVariable);
+			if (result == null)
+				result = caseModelElement(stateVariable);
+			if (result == null)
+				result = caseNamedElement(stateVariable);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -759,6 +744,22 @@ public class Aadlv3Switch<T> extends Switch<T> {
 				result = caseLiteral(packageElementReference);
 			if (result == null)
 				result = caseExpression(packageElementReference);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Aadlv3Package.ANNOTATION: {
+			Annotation annotation = (Annotation) theEObject;
+			T result = caseAnnotation(annotation);
+			if (result == null)
+				result = caseNamedElement(annotation);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Aadlv3Package.NAME_VALUE_PAIR: {
+			NameValuePair nameValuePair = (NameValuePair) theEObject;
+			T result = caseNameValuePair(nameValuePair);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -1444,36 +1445,6 @@ public class Aadlv3Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>EM Subclause</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>EM Subclause</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseEMSubclause(EMSubclause object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>BA Subclause</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>BA Subclause</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseBASubclause(BASubclause object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Behavior Specification</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1500,6 +1471,21 @@ public class Aadlv3Switch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseStateSpecification(StateSpecification object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>State Variable</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>State Variable</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStateVariable(StateVariable object) {
 		return null;
 	}
 
@@ -1545,6 +1531,36 @@ public class Aadlv3Switch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T casePackageElementReference(PackageElementReference object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Annotation</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Annotation</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAnnotation(Annotation object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Name Value Pair</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Name Value Pair</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNameValuePair(NameValuePair object) {
 		return null;
 	}
 

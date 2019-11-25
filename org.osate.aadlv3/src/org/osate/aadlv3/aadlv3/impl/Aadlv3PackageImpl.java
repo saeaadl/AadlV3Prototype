@@ -27,10 +27,10 @@ import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.Action;
 import org.osate.aadlv3.aadlv3.AnnexLibrary;
 import org.osate.aadlv3.aadlv3.AnnexSubclause;
+import org.osate.aadlv3.aadlv3.Annotation;
 import org.osate.aadlv3.aadlv3.Assignment;
 import org.osate.aadlv3.aadlv3.Association;
 import org.osate.aadlv3.aadlv3.AssociationType;
-import org.osate.aadlv3.aadlv3.BASubclause;
 import org.osate.aadlv3.aadlv3.BehaviorRule;
 import org.osate.aadlv3.aadlv3.BehaviorSpecification;
 import org.osate.aadlv3.aadlv3.BooleanLiteral;
@@ -52,7 +52,6 @@ import org.osate.aadlv3.aadlv3.Constant;
 import org.osate.aadlv3.aadlv3.DefaultAnnexSubclause;
 import org.osate.aadlv3.aadlv3.DirectionalLiteral;
 import org.osate.aadlv3.aadlv3.ECollection;
-import org.osate.aadlv3.aadlv3.EMSubclause;
 import org.osate.aadlv3.aadlv3.EOperator;
 import org.osate.aadlv3.aadlv3.EnumerationLiteral;
 import org.osate.aadlv3.aadlv3.EnumerationType;
@@ -69,6 +68,7 @@ import org.osate.aadlv3.aadlv3.Literal;
 import org.osate.aadlv3.aadlv3.ModelElement;
 import org.osate.aadlv3.aadlv3.MultiLiteralConstraint;
 import org.osate.aadlv3.aadlv3.MultiOperandExpression;
+import org.osate.aadlv3.aadlv3.NameValuePair;
 import org.osate.aadlv3.aadlv3.NamedElement;
 import org.osate.aadlv3.aadlv3.NamedElementReference;
 import org.osate.aadlv3.aadlv3.NamedType;
@@ -87,6 +87,7 @@ import org.osate.aadlv3.aadlv3.PropertySet;
 import org.osate.aadlv3.aadlv3.RealLiteral;
 import org.osate.aadlv3.aadlv3.SetLiteral;
 import org.osate.aadlv3.aadlv3.StateSpecification;
+import org.osate.aadlv3.aadlv3.StateVariable;
 import org.osate.aadlv3.aadlv3.StringLiteral;
 import org.osate.aadlv3.aadlv3.Subcomponent;
 import org.osate.aadlv3.aadlv3.Type;
@@ -421,20 +422,6 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass emSubclauseEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass baSubclauseEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass behaviorSpecificationEClass = null;
 
 	/**
@@ -443,6 +430,13 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	private EClass stateSpecificationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass stateVariableEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -464,6 +458,20 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	private EClass packageElementReferenceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass annotationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass nameValuePairEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -714,6 +722,16 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
+	public EReference getNamedElement_Annotations() {
+		return (EReference) namedElementEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getPackageElement() {
 		return packageElementEClass;
 	}
@@ -864,7 +882,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getClassifier_UseModes() {
+	public EReference getClassifier_BehaviorRules() {
 		return (EReference) classifierEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -874,8 +892,18 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getClassifier_InheritsModes() {
-		return (EAttribute) classifierEClass.getEStructuralFeatures().get(3);
+	public EReference getClassifier_StateVariables() {
+		return (EReference) classifierEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getClassifier_Generators() {
+		return (EReference) classifierEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -885,7 +913,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 */
 	@Override
 	public EReference getClassifier_AnnexSubclause() {
-		return (EReference) classifierEClass.getEStructuralFeatures().get(4);
+		return (EReference) classifierEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -1584,16 +1612,6 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getEnumerationLiteral_Value() {
-		return (EAttribute) enumerationLiteralEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getListLiteral() {
 		return listLiteralEClass;
 	}
@@ -1964,26 +1982,6 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EClass getEMSubclause() {
-		return emSubclauseEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getBASubclause() {
-		return baSubclauseEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getBehaviorSpecification() {
 		return behaviorSpecificationEClass;
 	}
@@ -2004,7 +2002,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getBehaviorSpecification_States() {
+	public EReference getBehaviorSpecification_StateVariables() {
 		return (EReference) behaviorSpecificationEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -2044,8 +2042,38 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getStateSpecification_Constraint() {
+	public EReference getStateSpecification_StateVariable() {
 		return (EReference) stateSpecificationEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getStateVariable() {
+		return stateVariableEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getStateVariable_InitialState() {
+		return (EReference) stateVariableEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getStateVariable_StateType() {
+		return (EReference) stateVariableEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -2126,6 +2154,66 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	@Override
 	public EReference getPackageElementReference_Element() {
 		return (EReference) packageElementReferenceEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getAnnotation() {
+		return annotationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getAnnotation_Value() {
+		return (EReference) annotationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getAnnotation_NameValuePairs() {
+		return (EReference) annotationEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getNameValuePair() {
+		return nameValuePairEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getNameValuePair_Name() {
+		return (EAttribute) nameValuePairEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getNameValuePair_Value() {
+		return (EReference) nameValuePairEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -2515,6 +2603,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		namedElementEClass = createEClass(NAMED_ELEMENT);
 		createEAttribute(namedElementEClass, NAMED_ELEMENT__NAME);
 		createEReference(namedElementEClass, NAMED_ELEMENT__OWNED_PROPERTY_ASSOCIATIONS);
+		createEReference(namedElementEClass, NAMED_ELEMENT__ANNOTATIONS);
 
 		packageElementEClass = createEClass(PACKAGE_ELEMENT);
 		createEAttribute(packageElementEClass, PACKAGE_ELEMENT__PRIVATE);
@@ -2535,8 +2624,9 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		classifierEClass = createEClass(CLASSIFIER);
 		createEAttribute(classifierEClass, CLASSIFIER__CATEGORY);
 		createEReference(classifierEClass, CLASSIFIER__SUPER_CLASSIFIERS);
-		createEReference(classifierEClass, CLASSIFIER__USE_MODES);
-		createEAttribute(classifierEClass, CLASSIFIER__INHERITS_MODES);
+		createEReference(classifierEClass, CLASSIFIER__BEHAVIOR_RULES);
+		createEReference(classifierEClass, CLASSIFIER__STATE_VARIABLES);
+		createEReference(classifierEClass, CLASSIFIER__GENERATORS);
 		createEReference(classifierEClass, CLASSIFIER__ANNEX_SUBCLAUSE);
 
 		componentRealizationEClass = createEClass(COMPONENT_REALIZATION);
@@ -2665,7 +2755,6 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		createEAttribute(booleanLiteralEClass, BOOLEAN_LITERAL__VALUE);
 
 		enumerationLiteralEClass = createEClass(ENUMERATION_LITERAL);
-		createEAttribute(enumerationLiteralEClass, ENUMERATION_LITERAL__VALUE);
 
 		directionalLiteralEClass = createEClass(DIRECTIONAL_LITERAL);
 		createEAttribute(directionalLiteralEClass, DIRECTIONAL_LITERAL__DIRECTION);
@@ -2711,13 +2800,9 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 
 		annexLibraryEClass = createEClass(ANNEX_LIBRARY);
 
-		emSubclauseEClass = createEClass(EM_SUBCLAUSE);
-
-		baSubclauseEClass = createEClass(BA_SUBCLAUSE);
-
 		behaviorSpecificationEClass = createEClass(BEHAVIOR_SPECIFICATION);
 		createEReference(behaviorSpecificationEClass, BEHAVIOR_SPECIFICATION__RULES);
-		createEReference(behaviorSpecificationEClass, BEHAVIOR_SPECIFICATION__STATES);
+		createEReference(behaviorSpecificationEClass, BEHAVIOR_SPECIFICATION__STATE_VARIABLES);
 		createEReference(behaviorSpecificationEClass, BEHAVIOR_SPECIFICATION__GENERATORS);
 
 		behaviorRuleEClass = createEClass(BEHAVIOR_RULE);
@@ -2729,7 +2814,11 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 
 		stateSpecificationEClass = createEClass(STATE_SPECIFICATION);
 		createEReference(stateSpecificationEClass, STATE_SPECIFICATION__CURRENT_STATE);
-		createEReference(stateSpecificationEClass, STATE_SPECIFICATION__CONSTRAINT);
+		createEReference(stateSpecificationEClass, STATE_SPECIFICATION__STATE_VARIABLE);
+
+		stateVariableEClass = createEClass(STATE_VARIABLE);
+		createEReference(stateVariableEClass, STATE_VARIABLE__INITIAL_STATE);
+		createEReference(stateVariableEClass, STATE_VARIABLE__STATE_TYPE);
 
 		generatorEClass = createEClass(GENERATOR);
 		createEAttribute(generatorEClass, GENERATOR__TYPE);
@@ -2741,6 +2830,14 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 
 		packageElementReferenceEClass = createEClass(PACKAGE_ELEMENT_REFERENCE);
 		createEReference(packageElementReferenceEClass, PACKAGE_ELEMENT_REFERENCE__ELEMENT);
+
+		annotationEClass = createEClass(ANNOTATION);
+		createEReference(annotationEClass, ANNOTATION__VALUE);
+		createEReference(annotationEClass, ANNOTATION__NAME_VALUE_PAIRS);
+
+		nameValuePairEClass = createEClass(NAME_VALUE_PAIR);
+		createEAttribute(nameValuePairEClass, NAME_VALUE_PAIR__NAME);
+		createEReference(nameValuePairEClass, NAME_VALUE_PAIR__VALUE);
 
 		// Create enums
 		componentCategoryEEnum = createEEnum(COMPONENT_CATEGORY);
@@ -2817,6 +2914,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		realLiteralEClass.getESuperTypes().add(this.getNumberLiteral());
 		stringLiteralEClass.getESuperTypes().add(this.getLiteral());
 		booleanLiteralEClass.getESuperTypes().add(this.getLiteral());
+		enumerationLiteralEClass.getESuperTypes().add(this.getNamedElement());
 		enumerationLiteralEClass.getESuperTypes().add(this.getLiteral());
 		directionalLiteralEClass.getESuperTypes().add(this.getLiteral());
 		eCollectionEClass.getESuperTypes().add(this.getLiteral());
@@ -2829,16 +2927,14 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		annexSubclauseEClass.getESuperTypes().add(this.getModelElement());
 		defaultAnnexSubclauseEClass.getESuperTypes().add(this.getAnnexSubclause());
 		annexLibraryEClass.getESuperTypes().add(this.getPackageDeclaration());
-		emSubclauseEClass.getESuperTypes().add(this.getAnnexSubclause());
-		emSubclauseEClass.getESuperTypes().add(this.getBehaviorSpecification());
-		baSubclauseEClass.getESuperTypes().add(this.getBehaviorSpecification());
-		baSubclauseEClass.getESuperTypes().add(this.getAnnexSubclause());
-		behaviorSpecificationEClass.getESuperTypes().add(this.getModelElement());
+		behaviorSpecificationEClass.getESuperTypes().add(this.getAnnexSubclause());
 		behaviorRuleEClass.getESuperTypes().add(this.getModelElement());
+		stateVariableEClass.getESuperTypes().add(this.getModelElement());
 		generatorEClass.getESuperTypes().add(this.getModelElement());
 		constantEClass.getESuperTypes().add(this.getPackageElement());
 		packageElementReferenceEClass.getESuperTypes().add(this.getNamedElement());
 		packageElementReferenceEClass.getESuperTypes().add(this.getLiteral());
+		annotationEClass.getESuperTypes().add(this.getNamedElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(packageDeclarationEClass, PackageDeclaration.class, "PackageDeclaration", !IS_ABSTRACT,
@@ -2857,6 +2953,9 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		initEReference(getNamedElement_OwnedPropertyAssociations(), this.getPropertyAssociation(), null,
 				"ownedPropertyAssociations", null, 0, -1, NamedElement.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getNamedElement_Annotations(), this.getAnnotation(), null, "annotations", null, 0, -1,
+				NamedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(packageElementEClass, PackageElement.class, "PackageElement", IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
@@ -2890,8 +2989,8 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 
 		initEClass(modelElementEClass, ModelElement.class, "ModelElement", IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getModelElement_InModes(), this.getEnumerationLiteral(), null, "inModes", null, 0, -1,
-				ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+		initEReference(getModelElement_InModes(), this.getConditionOperation(), null, "inModes", null, 0, 1,
+				ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(classifierEClass, Classifier.class, "Classifier", IS_ABSTRACT, !IS_INTERFACE,
@@ -2902,12 +3001,15 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		initEReference(getClassifier_SuperClassifiers(), this.getTypeReference(), null, "superClassifiers", null, 0, -1,
 				Classifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getClassifier_UseModes(), this.getEnumerationType(), null, "useModes", null, 0, 1,
-				Classifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+		initEReference(getClassifier_BehaviorRules(), this.getBehaviorRule(), null, "behaviorRules", null, 0, -1,
+				Classifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getClassifier_InheritsModes(), ecorePackage.getEBoolean(), "inheritsModes", null, 0, 1,
-				Classifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
+		initEReference(getClassifier_StateVariables(), this.getStateVariable(), null, "stateVariables", null, 0, -1,
+				Classifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getClassifier_Generators(), this.getGenerator(), null, "generators", null, 0, -1,
+				Classifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getClassifier_AnnexSubclause(), this.getAnnexSubclause(), null, "annexSubclause", null, 0, -1,
 				Classifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3186,9 +3288,6 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 
 		initEClass(enumerationLiteralEClass, EnumerationLiteral.class, "EnumerationLiteral", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getEnumerationLiteral_Value(), ecorePackage.getEString(), "value", null, 0, 1,
-				EnumerationLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
 
 		initEClass(directionalLiteralEClass, DirectionalLiteral.class, "DirectionalLiteral", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -3279,20 +3378,14 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		initEClass(annexLibraryEClass, AnnexLibrary.class, "AnnexLibrary", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(emSubclauseEClass, EMSubclause.class, "EMSubclause", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(baSubclauseEClass, BASubclause.class, "BASubclause", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-
 		initEClass(behaviorSpecificationEClass, BehaviorSpecification.class, "BehaviorSpecification", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBehaviorSpecification_Rules(), this.getBehaviorRule(), null, "rules", null, 0, -1,
 				BehaviorSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getBehaviorSpecification_States(), this.getTypeDef(), null, "states", null, 0, 1,
-				BehaviorSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBehaviorSpecification_StateVariables(), this.getStateVariable(), null, "stateVariables", null,
+				0, -1, BehaviorSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getBehaviorSpecification_Generators(), this.getGenerator(), null, "generators", null, 0, -1,
 				BehaviorSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3319,8 +3412,17 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		initEReference(getStateSpecification_CurrentState(), this.getEnumerationLiteral(), null, "currentState", null,
 				0, 1, StateSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getStateSpecification_Constraint(), this.getLiteral(), null, "constraint", null, 0, 1,
-				StateSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+		initEReference(getStateSpecification_StateVariable(), this.getStateVariable(), null, "stateVariable", null, 0,
+				1, StateSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(stateVariableEClass, StateVariable.class, "StateVariable", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getStateVariable_InitialState(), this.getEnumerationLiteral(), null, "initialState", null, 0, 1,
+				StateVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getStateVariable_StateType(), this.getTypeDef(), null, "stateType", null, 0, 1,
+				StateVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(generatorEClass, Generator.class, "Generator", !IS_ABSTRACT, !IS_INTERFACE,
@@ -3345,6 +3447,23 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		initEReference(getPackageElementReference_Element(), this.getPackageElement(), null, "element", null, 0, 1,
 				PackageElementReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(annotationEClass, Annotation.class, "Annotation", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getAnnotation_Value(), this.getLiteral(), null, "value", null, 0, 1, Annotation.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAnnotation_NameValuePairs(), this.getNameValuePair(), null, "nameValuePairs", null, 0, -1,
+				Annotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(nameValuePairEClass, NameValuePair.class, "NameValuePair", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getNameValuePair_Name(), ecorePackage.getEString(), "name", null, 0, 1, NameValuePair.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getNameValuePair_Value(), this.getLiteral(), null, "value", null, 0, 1, NameValuePair.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(componentCategoryEEnum, ComponentCategory.class, "ComponentCategory");

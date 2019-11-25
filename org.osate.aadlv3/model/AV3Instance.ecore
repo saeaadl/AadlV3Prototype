@@ -35,8 +35,8 @@
         eType="#//BehaviorRuleInstance" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="generators" upperBound="-1"
         eType="#//GeneratorInstance" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="states" upperBound="-1"
-        eType="#//StateInstance" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stateVariables" upperBound="-1"
+        eType="#//StateVariableInstance" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="actions" upperBound="-1"
         eType="#//ConstrainedInstanceObject" containment="true"/>
   </eClassifiers>
@@ -82,8 +82,11 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="outgoing" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="StateInstance" eSuperTypes="#//InstanceObject">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="literal" eType="ecore:EClass Aadlv3.ecore#//Literal"
-        containment="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="StateVariableInstance" eSuperTypes="#//InstanceObject">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="currentState" eType="#//StateInstance"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stateVariable" eType="ecore:EClass Aadlv3.ecore#//StateVariable"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="states" upperBound="-1"
+        eType="#//StateInstance" containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StateInstance" eSuperTypes="#//InstanceObject"/>
 </ecore:EPackage>

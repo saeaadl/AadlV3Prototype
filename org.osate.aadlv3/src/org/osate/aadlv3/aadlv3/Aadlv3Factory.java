@@ -368,24 +368,6 @@ public interface Aadlv3Factory extends EFactory {
 	BehaviorRule createBehaviorRule();
 
 	/**
-	 * Returns a new object of class '<em>EM Subclause</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>EM Subclause</em>'.
-	 * @generated
-	 */
-	EMSubclause createEMSubclause();
-
-	/**
-	 * Returns a new object of class '<em>BA Subclause</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>BA Subclause</em>'.
-	 * @generated
-	 */
-	BASubclause createBASubclause();
-
-	/**
 	 * Returns a new object of class '<em>Behavior Specification</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -402,6 +384,15 @@ public interface Aadlv3Factory extends EFactory {
 	 * @generated
 	 */
 	StateSpecification createStateSpecification();
+
+	/**
+	 * Returns a new object of class '<em>State Variable</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>State Variable</em>'.
+	 * @generated
+	 */
+	StateVariable createStateVariable();
 
 	/**
 	 * Returns a new object of class '<em>Generator</em>'.
@@ -429,6 +420,24 @@ public interface Aadlv3Factory extends EFactory {
 	 * @generated
 	 */
 	PackageElementReference createPackageElementReference();
+
+	/**
+	 * Returns a new object of class '<em>Annotation</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Annotation</em>'.
+	 * @generated
+	 */
+	Annotation createAnnotation();
+
+	/**
+	 * Returns a new object of class '<em>Name Value Pair</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Name Value Pair</em>'.
+	 * @generated
+	 */
+	NameValuePair createNameValuePair();
 
 	/**
 	 * Returns a new object of class '<em>Primitive Type</em>'.

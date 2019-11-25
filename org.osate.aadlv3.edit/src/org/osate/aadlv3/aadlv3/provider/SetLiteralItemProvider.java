@@ -86,6 +86,7 @@ public class SetLiteralItemProvider extends ECollectionItemProvider {
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
+		super.notifyChanged(notification);
 	}
 
 	/**

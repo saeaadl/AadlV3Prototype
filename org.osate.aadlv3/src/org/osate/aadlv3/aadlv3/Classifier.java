@@ -28,8 +28,9 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.Classifier#getCategory <em>Category</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.Classifier#getSuperClassifiers <em>Super Classifiers</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.Classifier#getUseModes <em>Use Modes</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.Classifier#isInheritsModes <em>Inherits Modes</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.Classifier#getBehaviorRules <em>Behavior Rules</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.Classifier#getStateVariables <em>State Variables</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.Classifier#getGenerators <em>Generators</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.Classifier#getAnnexSubclause <em>Annex Subclause</em>}</li>
  * </ul>
  *
@@ -77,48 +78,40 @@ public interface Classifier extends NamedType {
 	EList<TypeReference> getSuperClassifiers();
 
 	/**
-	 * Returns the value of the '<em><b>Use Modes</b></em>' reference.
+	 * Returns the value of the '<em><b>Behavior Rules</b></em>' containment reference list.
+	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.BehaviorRule}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Use Modes</em>' reference.
-	 * @see #setUseModes(EnumerationType)
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getClassifier_UseModes()
-	 * @model
+	 * @return the value of the '<em>Behavior Rules</em>' containment reference list.
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getClassifier_BehaviorRules()
+	 * @model containment="true"
 	 * @generated
 	 */
-	EnumerationType getUseModes();
+	EList<BehaviorRule> getBehaviorRules();
 
 	/**
-	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.Classifier#getUseModes <em>Use Modes</em>}' reference.
+	 * Returns the value of the '<em><b>State Variables</b></em>' containment reference list.
+	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.StateVariable}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Use Modes</em>' reference.
-	 * @see #getUseModes()
+	 * @return the value of the '<em>State Variables</em>' containment reference list.
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getClassifier_StateVariables()
+	 * @model containment="true"
 	 * @generated
 	 */
-	void setUseModes(EnumerationType value);
+	EList<StateVariable> getStateVariables();
 
 	/**
-	 * Returns the value of the '<em><b>Inherits Modes</b></em>' attribute.
+	 * Returns the value of the '<em><b>Generators</b></em>' containment reference list.
+	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.Generator}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Inherits Modes</em>' attribute.
-	 * @see #setInheritsModes(boolean)
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getClassifier_InheritsModes()
-	 * @model
+	 * @return the value of the '<em>Generators</em>' containment reference list.
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getClassifier_Generators()
+	 * @model containment="true"
 	 * @generated
 	 */
-	boolean isInheritsModes();
-
-	/**
-	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.Classifier#isInheritsModes <em>Inherits Modes</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Inherits Modes</em>' attribute.
-	 * @see #isInheritsModes()
-	 * @generated
-	 */
-	void setInheritsModes(boolean value);
+	EList<Generator> getGenerators();
 
 	/**
 	 * Returns the value of the '<em><b>Annex Subclause</b></em>' containment reference list.

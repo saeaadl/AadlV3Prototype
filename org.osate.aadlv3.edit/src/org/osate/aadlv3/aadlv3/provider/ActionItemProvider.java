@@ -96,6 +96,7 @@ public class ActionItemProvider extends ItemProviderAdapter implements IEditingD
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
+		super.notifyChanged(notification);
 	}
 
 	/**

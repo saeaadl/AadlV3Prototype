@@ -102,6 +102,7 @@ public class NamedElementItemProvider extends ItemProviderAdapter implements IEd
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(Aadlv3Package.Literals.NAMED_ELEMENT__OWNED_PROPERTY_ASSOCIATIONS);
+			childrenFeatures.add(Aadlv3Package.Literals.NAMED_ELEMENT__ANNOTATIONS);
 		}
 		return childrenFeatures;
 	}
@@ -159,6 +160,7 @@ public class NamedElementItemProvider extends ItemProviderAdapter implements IEd
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		case Aadlv3Package.NAMED_ELEMENT__OWNED_PROPERTY_ASSOCIATIONS:
+		case Aadlv3Package.NAMED_ELEMENT__ANNOTATIONS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -178,6 +180,9 @@ public class NamedElementItemProvider extends ItemProviderAdapter implements IEd
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.NAMED_ELEMENT__OWNED_PROPERTY_ASSOCIATIONS,
 				Aadlv3Factory.eINSTANCE.createPropertyAssociation()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.NAMED_ELEMENT__ANNOTATIONS,
+				Aadlv3Factory.eINSTANCE.createAnnotation()));
 	}
 
 	/**

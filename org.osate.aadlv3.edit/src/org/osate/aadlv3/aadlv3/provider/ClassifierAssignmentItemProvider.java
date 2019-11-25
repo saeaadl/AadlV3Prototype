@@ -191,10 +191,7 @@ public class ClassifierAssignmentItemProvider extends ItemProviderAdapter implem
 				Aadlv3Factory.eINSTANCE.createDefaultAnnexSubclause()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__ANNEX_SUBCLAUSE,
-				Aadlv3Factory.eINSTANCE.createEMSubclause()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__ANNEX_SUBCLAUSE,
-				Aadlv3Factory.eINSTANCE.createBASubclause()));
+				Aadlv3Factory.eINSTANCE.createBehaviorSpecification()));
 	}
 
 	/**
