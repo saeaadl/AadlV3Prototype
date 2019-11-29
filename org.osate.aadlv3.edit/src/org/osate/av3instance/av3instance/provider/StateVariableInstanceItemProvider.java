@@ -13,7 +13,7 @@
  * 
  * See COPYRIGHT file for full details.
  */
-package org.osate.aadlv3.aadlv3.provider;
+package org.osate.av3instance.av3instance.provider;
 
 import java.util.Collection;
 import java.util.List;
@@ -22,29 +22,27 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.osate.aadlv3.aadlv3.Aadlv3Factory;
-import org.osate.aadlv3.aadlv3.Aadlv3Package;
-import org.osate.aadlv3.aadlv3.EMSubclause;
+import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.osate.av3instance.av3instance.Av3instancePackage;
+import org.osate.av3instance.av3instance.StateVariableInstance;
 
 /**
- * This is the item provider adapter for a {@link org.osate.aadlv3.aadlv3.EMSubclause} object.
+ * This is the item provider adapter for a {@link org.osate.av3instance.av3instance.StateVariableInstance} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class EMSubclauseItemProvider extends AnnexSubclauseItemProvider {
+public class StateVariableInstanceItemProvider extends InstanceObjectItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EMSubclauseItemProvider(AdapterFactory adapterFactory) {
+	public StateVariableInstanceItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -59,40 +57,42 @@ public class EMSubclauseItemProvider extends AnnexSubclauseItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addStatesPropertyDescriptor(object);
-			addGeneratorsPropertyDescriptor(object);
+			addCurrentStatePropertyDescriptor(object);
+			addStateVariablePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the States feature.
+	 * This adds a property descriptor for the Current State feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addStatesPropertyDescriptor(Object object) {
+	protected void addCurrentStatePropertyDescriptor(Object object) {
 		itemPropertyDescriptors
 				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_BehaviorSpecification_states_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_BehaviorSpecification_states_feature",
-								"_UI_BehaviorSpecification_type"),
-						Aadlv3Package.Literals.BEHAVIOR_SPECIFICATION__STATES, true, false, true, null, null, null));
+						getResourceLocator(), getString("_UI_StateVariableInstance_currentState_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", //$NON-NLS-1$
+								"_UI_StateVariableInstance_currentState_feature", "_UI_StateVariableInstance_type"), //$NON-NLS-1$ //$NON-NLS-2$
+						Av3instancePackage.Literals.STATE_VARIABLE_INSTANCE__CURRENT_STATE, true, false, true, null,
+						null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Generators feature.
+	 * This adds a property descriptor for the State Variable feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addGeneratorsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_BehaviorSpecification_generators_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_BehaviorSpecification_generators_feature",
-						"_UI_BehaviorSpecification_type"),
-				Aadlv3Package.Literals.BEHAVIOR_SPECIFICATION__GENERATORS, true, false, true, null, null, null));
+	protected void addStateVariablePropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_StateVariableInstance_stateVariable_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", //$NON-NLS-1$
+								"_UI_StateVariableInstance_stateVariable_feature", "_UI_StateVariableInstance_type"), //$NON-NLS-1$ //$NON-NLS-2$
+						Av3instancePackage.Literals.STATE_VARIABLE_INSTANCE__STATE_VARIABLE, true, false, true, null,
+						null, null));
 	}
 
 	/**
@@ -107,7 +107,7 @@ public class EMSubclauseItemProvider extends AnnexSubclauseItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(Aadlv3Package.Literals.BEHAVIOR_SPECIFICATION__RULES);
+			childrenFeatures.add(Av3instancePackage.Literals.STATE_VARIABLE_INSTANCE__STATES);
 		}
 		return childrenFeatures;
 	}
@@ -126,14 +126,24 @@ public class EMSubclauseItemProvider extends AnnexSubclauseItemProvider {
 	}
 
 	/**
-	 * This returns EMSubclause.gif.
+	 * This returns StateVariableInstance.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/EMSubclause"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/StateVariableInstance")); //$NON-NLS-1$
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected boolean shouldComposeCreationImage() {
+		return true;
 	}
 
 	/**
@@ -144,9 +154,9 @@ public class EMSubclauseItemProvider extends AnnexSubclauseItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((EMSubclause) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_EMSubclause_type")
-				: getString("_UI_EMSubclause_type") + " " + label;
+		String label = ((StateVariableInstance) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_StateVariableInstance_type") : //$NON-NLS-1$
+				getString("_UI_StateVariableInstance_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -160,27 +170,12 @@ public class EMSubclauseItemProvider extends AnnexSubclauseItemProvider {
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(EMSubclause.class)) {
-		case Aadlv3Package.EM_SUBCLAUSE__RULES:
+		switch (notification.getFeatureID(StateVariableInstance.class)) {
+		case Av3instancePackage.STATE_VARIABLE_INSTANCE__STATES:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
-	}
-
-	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
-		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.BEHAVIOR_SPECIFICATION__RULES,
-				Aadlv3Factory.eINSTANCE.createBehaviorRule()));
 	}
 
 }
