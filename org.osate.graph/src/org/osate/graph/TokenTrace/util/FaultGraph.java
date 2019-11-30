@@ -12,6 +12,7 @@ import java.util.Set;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.xtext.EcoreUtil2;
@@ -45,12 +46,12 @@ import org.osate.graph.util.AIJGraphTUtil;
 
 public class FaultGraph {
 	TokenTrace eventTrace = null;
-	Graph<InstanceObject, DefaultEdge> graph = null;
+	Graph<EObject, DefaultEdge> graph = null;
 	
 	public void generateCauseGraphs(ComponentInstance root, TokenTraceType ttt, String subclauseName) {
-		DefaultDirectedGraph<InstanceObject, DefaultEdge> bgraph = AIJGraphTUtil.generateBehaviorPropagationPaths(root,
+		Graph<EObject, DefaultEdge> bgraph = AIJGraphTUtil.generateBehaviorPropagationPaths(root,
 				subclauseName);
-		EdgeReversedGraph<InstanceObject, DefaultEdge> revgraph = new EdgeReversedGraph<InstanceObject, DefaultEdge>(
+		Graph<EObject, DefaultEdge> revgraph = new EdgeReversedGraph<EObject, DefaultEdge>(
 				bgraph);
 
 		for (FeatureInstance fi : root.getFeatures()) {
@@ -67,7 +68,7 @@ public class FaultGraph {
 		}
 	}
 
-	public TokenTrace generateCauseGraph(Graph<InstanceObject, DefaultEdge> graph, InstanceObject graphRoot,
+	public TokenTrace generateCauseGraph(Graph<EObject, DefaultEdge> graph, InstanceObject graphRoot,
 			 TokenTraceType ttt) {
 		TokenTrace eTrace = generateCauseTrace(graph, graphRoot, ttt);
 		TokenTraceOptimization tto = new TokenTraceOptimization();
@@ -98,7 +99,7 @@ public class FaultGraph {
 
 	}
 	
-	public TokenTrace generateCauseTrace(Graph<InstanceObject, DefaultEdge> graph, InstanceObject fiRoot, TokenTraceType ttt){
+	public TokenTrace generateCauseTrace(Graph<EObject, DefaultEdge> graph, InstanceObject fiRoot, TokenTraceType ttt){
 		this.graph = graph;
 		eventTrace = TokenTraceFactory.eINSTANCE.createTokenTrace();
 		eventTrace.setInstanceRoot(getRoot(fiRoot));
@@ -115,7 +116,7 @@ public class FaultGraph {
 
 	public Token processOutgoingCIO(InstanceObject cioio){
 		// outcio is an action in one or more bri
-		// we need to have an event for the outcio and a separate subevent for each bri action
+		// we need to have a token for the outcio and a separate subtoken for each bri action
 		Token found = findToken(eventTrace, cioio);
 		if (found != null) {
 			return found;
@@ -143,7 +144,7 @@ public class FaultGraph {
 		if (!(cioio instanceof ConstrainedInstanceObject)&&graph.containsVertex(cioio)) {
 			Set<DefaultEdge> edges = graph.outgoingEdgesOf(cioio);
 			for (DefaultEdge edge : edges) {
-				InstanceObject edgeTarget = graph.getEdgeTarget(edge);
+				EObject edgeTarget = graph.getEdgeTarget(edge);
 				InstanceObject target = getRealInstanceObject(edgeTarget);
 				if (target instanceof FeatureInstance || target instanceof ComponentInstance) {
 					// process incoming
@@ -155,7 +156,10 @@ public class FaultGraph {
 		return outcioEvent;
 	}
 	
-	public Token stateTransition(InstanceObject targetState) {
+	public Token stateTransition(EObject targetState) {
+		if (!(targetState instanceof StateInstance)) {
+			return null;
+		}
 		BehaviorRuleInstance bri = containingBehaviorRuleInstance(targetState);
 		Token condEvent = processCondition(bri.getCondition(),targetState);
 		Token stateEvent = bri.getCurrentState() != null ? processState(bri.getCurrentState()) : null;
@@ -178,11 +182,11 @@ public class FaultGraph {
 		Set<DefaultEdge> targetStates = graph.outgoingEdgesOf(currentState);
 		EList<Token> subEvents = new BasicEList<Token>();
 		for (DefaultEdge targetStateEdge: targetStates){
-			InstanceObject ts = graph.getEdgeTarget(targetStateEdge);
-			Token transEvent = stateTransition(ts);
-			if (transEvent != null) {
-				Token tsToken = createToken(eventTrace, ts, TokenType.INTERMEDIATE);
-				tsToken.getTokens().add(transEvent);
+			EObject ts = graph.getEdgeTarget(targetStateEdge);
+			Token transToken = stateTransition(ts);
+			if (transToken != null) {
+				Token tsToken = createToken(eventTrace, (ConstrainedInstanceObject)ts, TokenType.INTERMEDIATE);
+				tsToken.getTokens().add(transToken);
 				subEvents.add(tsToken);
 			}
 		}
@@ -193,7 +197,7 @@ public class FaultGraph {
 		return combined;
 	}
 	
-	public Token processCondition(Literal cond, InstanceObject io){
+	public Token processCondition(Literal cond, EObject io){
 		if (cond instanceof MultiLiteralConstraint){
 			EList<Token> subEvents = new BasicEList<Token>();
 			for (Expression el : ((MultiLiteralConstraint) cond).getElements()) {
@@ -223,18 +227,19 @@ public class FaultGraph {
 	
 	}
 	
-	public Token processIncomingCIO(InstanceObject cioio) {
+	public Token processIncomingCIO(EObject cioio) {
 		// incoming cio
 		Set<DefaultEdge> edges = graph.outgoingEdgesOf(cioio);
 		if (edges.isEmpty()){
-			return generateTokens(cioio);
+			return generateTokens((InstanceObject)cioio);
 		} else {
 			// process outgoing
 			EList<Token> subEvents = new BasicEList<Token>();
 			for (DefaultEdge edge : edges) {
-				InstanceObject target = graph.getEdgeTarget(edge);
+				// outgoing cioio, representing a connection
+				EObject target = graph.getEdgeTarget(edge);
 				// generate token subgraph coming to the condition
-				Token res = processOutgoingCIO(target);
+				Token res = processOutgoingCIO((InstanceObject)target);
 				if (res != null) {
 					// incoming CIO has literals and is part of a sink specification
 					if (isSinkConstraint(cioio)) {
@@ -248,7 +253,7 @@ public class FaultGraph {
 					}
 				}
 			}
-			Token combined = processEventSubgraph(subEvents, EOperator.ANY, cioio);  // incoming
+			Token combined = processEventSubgraph(subEvents, EOperator.ANY,(InstanceObject) cioio);  // incoming
 			return combined;
 		}
 	}
@@ -396,7 +401,7 @@ public class FaultGraph {
 	
 	
 	public TokenTrace generateEffectGraph(ComponentInstance root, TokenTraceType ttt, String subclauseName) {
-		DefaultDirectedGraph<InstanceObject, DefaultEdge> bgraph = AIJGraphTUtil.generateBehaviorPropagationPaths(root, subclauseName);
+		Graph<EObject, DefaultEdge> bgraph = AIJGraphTUtil.generateBehaviorPropagationPaths(root, subclauseName);
 		this.graph = bgraph;
 		eventTrace = TokenTraceFactory.eINSTANCE.createTokenTrace();
 		eventTrace.setInstanceRoot(root);
@@ -421,7 +426,7 @@ public class FaultGraph {
 	public TokenTrace generateEffectTrace(GeneratorInstance gi, TokenTraceType ttt, String subclauseName) {
 		ComponentInstance root = getRoot(gi);
 		ComponentInstance ci = containingComponentInstance(gi);
-		DefaultDirectedGraph<InstanceObject, DefaultEdge> bgraph = AIJGraphTUtil.generateBehaviorPropagationPaths(root, subclauseName);
+		Graph<EObject, DefaultEdge> bgraph = AIJGraphTUtil.generateBehaviorPropagationPaths(root, subclauseName);
 		this.graph = bgraph;
 		eventTrace = TokenTraceFactory.eINSTANCE.createTokenTrace();
 		eventTrace.setInstanceRoot(root);
@@ -438,7 +443,7 @@ public class FaultGraph {
 	
 	public TokenTrace generateEffectTrace(ConstrainedInstanceObject startcio, TokenTraceType ttt, String subclauseName) {
 		ComponentInstance root = getRoot(startcio);
-		DefaultDirectedGraph<InstanceObject, DefaultEdge> bgraph = AIJGraphTUtil.generateBehaviorPropagationPaths(root, subclauseName);
+		Graph<EObject, DefaultEdge> bgraph = AIJGraphTUtil.generateBehaviorPropagationPaths(root, subclauseName);
 		this.graph = bgraph;
 		eventTrace = TokenTraceFactory.eINSTANCE.createTokenTrace();
 		eventTrace.setInstanceRoot(root);
@@ -469,13 +474,13 @@ public class FaultGraph {
 		Token startToken = createToken(eventTrace, startcio, TokenType.INTERMEDIATE);
 		Set<DefaultEdge> edges = graph.outgoingEdgesOf(startcio);
 		for (DefaultEdge edge : edges) {
-			InstanceObject nextCioio = graph.getEdgeTarget(edge);
+			EObject nextCioio = graph.getEdgeTarget(edge);
 			processNextEffect(startToken, nextCioio);
 		}
 		return startToken;
 	}
 
-	private void processNextEffect(Token step, InstanceObject cioio) {
+	private void processNextEffect(Token step, EObject cioio) {
 		InstanceObject target = getRealInstanceObject(cioio);
 		Literal constraint = getRealConstraint(cioio);
 		if (isSinkConstraint(cioio)) {
@@ -485,7 +490,7 @@ public class FaultGraph {
 			}
 			return;
 		}
-		InstanceObject outVertex = cioio;
+		EObject outVertex = cioio;
 		boolean unhandled = false;
 		if (constraint instanceof ECollection) {
 			if (constraint.contains(step.getRelatedLiteral())) {
@@ -495,7 +500,7 @@ public class FaultGraph {
 					if (graph.containsVertex(cioio)) {
 						Set<DefaultEdge> edges = graph.outgoingEdgesOf(cioio);
 						for (DefaultEdge edge : edges) {
-							InstanceObject nextCioio = graph.getEdgeTarget(edge);
+							EObject nextCioio = graph.getEdgeTarget(edge);
 							processNextEffect(nextStep, nextCioio);
 						}
 					}
@@ -520,7 +525,7 @@ public class FaultGraph {
 			if (graph.containsVertex(outVertex)) {
 				Set<DefaultEdge> edges = graph.outgoingEdgesOf(outVertex);
 				for (DefaultEdge edge : edges) {
-					InstanceObject nextCioio = graph.getEdgeTarget(edge);
+					EObject nextCioio = graph.getEdgeTarget(edge);
 					processNextEffect(nextStep, nextCioio);
 				}
 			}
@@ -553,7 +558,7 @@ public class FaultGraph {
 	 * @param io
 	 * @return
 	 */
-	private Token sinkFilteredToken(Token tok, InstanceObject io) {
+	private Token sinkFilteredToken(Token tok, EObject io) {
 		Literal constraint = getRealConstraint(io);
 		if (constraint == null) {
 			// all tokens are masked by sink
@@ -583,7 +588,7 @@ public class FaultGraph {
 		return tok;
 	}
 	
-	private boolean isSinkConstraint(InstanceObject cio) {
+	private boolean isSinkConstraint(EObject cio) {
 		BehaviorRuleInstance bri = containingBehaviorRuleInstance(cio);
 		return bri != null && bri.isSink();
 	}
@@ -606,11 +611,11 @@ public class FaultGraph {
 	
 // effects as subgraph	
 	
-	public Set<InstanceObject> generateEffectSubGraph(DefaultDirectedGraph<InstanceObject, DefaultEdge> bgraph) {
+	public Set<EObject> generateEffectSubGraph(Graph<EObject, DefaultEdge> bgraph) {
 		this.graph = bgraph;
-		Set<InstanceObject> vsubset = new HashSet<InstanceObject>();
-		Set<InstanceObject> vset = bgraph.vertexSet();
-		for (InstanceObject vertex : vset) {
+		Set<EObject> vsubset = new HashSet<EObject>();
+		Set<EObject> vset = bgraph.vertexSet();
+		for (EObject vertex : vset) {
 			if (vertex instanceof GeneratorInstance) {
 				vsubset.add(vertex);
 			}
@@ -623,33 +628,33 @@ public class FaultGraph {
 	
 	// effects as subgraph
 	
-	public Graph <InstanceObject, DefaultEdge> generateEffectsSubgraph(Graph <InstanceObject, DefaultEdge> bgraph, InstanceObject startio) {
-		Set<InstanceObject> effectvset = generateEffectVertices(bgraph, startio);
-		AsSubgraph<InstanceObject, DefaultEdge> subgraph = new AsSubgraph<InstanceObject, DefaultEdge>(bgraph,effectvset);
+	public Graph <EObject, DefaultEdge> generateEffectsSubgraph(Graph <EObject, DefaultEdge> bgraph, InstanceObject startio) {
+		Set<EObject> effectvset = generateEffectVertices(bgraph, startio);
+		AsSubgraph<EObject, DefaultEdge> subgraph = new AsSubgraph<EObject, DefaultEdge>(bgraph,effectvset);
         return subgraph;
 	}
 	
 	
-	public Set<InstanceObject> generateEffectVertices(Graph<InstanceObject, DefaultEdge> bgraph, InstanceObject startio) {
-		Set<InstanceObject> vsubset = new HashSet<InstanceObject>();
+	public Set<EObject> generateEffectVertices(Graph<EObject, DefaultEdge> bgraph, InstanceObject startio) {
+		Set<EObject> vsubset = new HashSet<EObject>();
 		vsubset.add(startio);
 		Set<DefaultEdge> edges = graph.outgoingEdgesOf(startio);
 		for (DefaultEdge edge : edges) {
-			InstanceObject nextCioio = graph.getEdgeTarget(edge);
+			EObject nextCioio = graph.getEdgeTarget(edge);
 			processNextEffect(vsubset, nextCioio,getRealConstraint(startio));
 		}
 		return vsubset;
 	}
 
 	// deal with the cioio
-	private void processNextEffect(Set<InstanceObject> vsubset, InstanceObject cioio, Literal effect) {
+	private void processNextEffect(Set<EObject> vsubset, EObject cioio, Literal effect) {
 		InstanceObject target = getRealInstanceObject(cioio);
 		Literal constraint = getRealConstraint(cioio);
 		if (isSinkConstraint(cioio)) {
 			vsubset.add(cioio);
 			return;
 		}
-		InstanceObject outVertex = cioio;
+		EObject outVertex = cioio;
 		Literal outEffect = effect;
 		if (constraint != null && cioio instanceof ConstrainedInstanceObject && cioio.eContainer() instanceof ComponentInstance) {
 			outEffect = constraint;
@@ -661,7 +666,7 @@ public class FaultGraph {
 					if (graph.containsVertex(cioio)) {
 						Set<DefaultEdge> edges = graph.outgoingEdgesOf(cioio);
 						for (DefaultEdge edge : edges) {
-							InstanceObject nextCioio = graph.getEdgeTarget(edge);
+							EObject nextCioio = graph.getEdgeTarget(edge);
 							processNextEffect(vsubset, nextCioio, outEffect); 
 						}
 					}
@@ -677,7 +682,7 @@ public class FaultGraph {
 			if (graph.containsVertex(outVertex)) {
 				Set<DefaultEdge> edges = graph.outgoingEdgesOf(outVertex);
 				for (DefaultEdge edge : edges) {
-					InstanceObject nextCioio = graph.getEdgeTarget(edge);
+					EObject nextCioio = graph.getEdgeTarget(edge);
 					processNextEffect(vsubset, nextCioio, outEffect);
 				}
 			}

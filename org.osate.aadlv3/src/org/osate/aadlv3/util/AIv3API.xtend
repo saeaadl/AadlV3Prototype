@@ -265,7 +265,7 @@ class AIv3API {
 	}
 	
 	// return containing behavior rule instance 
-	def static BehaviorRuleInstance containingBehaviorRuleInstance(InstanceObject io){
+	def static BehaviorRuleInstance containingBehaviorRuleInstance(EObject io){
 		var res = io
 		while (!(res instanceof BehaviorRuleInstance) && res !== null){
 			res = res.eContainer as InstanceObject
@@ -638,8 +638,8 @@ class AIv3API {
 		return bris.map[bri|bri.targetState].filter[target|target.instanceObject === cs.instanceObject && (target.constraint !== null ?target.constraint.contains(cs.constraint): cs.constraint === null) ]
 	}
 	
-	def static InstanceObject getRealInstanceObject(InstanceObject cioio){
-		return cioio instanceof ConstrainedInstanceObject? cioio.getInstanceObject():cioio;
+	def static InstanceObject getRealInstanceObject(EObject cioio){
+		return cioio instanceof ConstrainedInstanceObject? cioio.getInstanceObject():(cioio instanceof InstanceObject?cioio:null);
 	}
 	
 	def static Literal getRealConstraint(InstanceObject cioio){

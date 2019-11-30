@@ -9,6 +9,7 @@ import java.util.Set;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
+import org.eclipse.emf.ecore.EObject;
 import org.jgrapht.Graph;
 import org.jgrapht.graph.AsSubgraph;
 import org.jgrapht.graph.DefaultDirectedGraph;
@@ -55,14 +56,14 @@ public class AIJGraphTUtil {
 		return directedGraph;
 	}
 	
-	private static void addPath(Graph<InstanceObject, DefaultEdge> g, InstanceObject src, InstanceObject dst) {
+	private static void addPath(Graph<EObject, DefaultEdge> g, EObject src, EObject dst) {
 		g.addVertex(dst);
 		g.addVertex(src);
 		g.addEdge(src, dst);
 	}
 
-	public static Graph<InstanceObject, DefaultEdge> generatePropagationPaths(ComponentInstance root) {
-		Graph<InstanceObject, DefaultEdge> directedGraph = new DefaultDirectedGraph<InstanceObject, DefaultEdge>(
+	public static Graph<EObject, DefaultEdge> generatePropagationPaths(ComponentInstance root) {
+		Graph<EObject, DefaultEdge> directedGraph = new DefaultDirectedGraph<EObject, DefaultEdge>(
 				DefaultEdge.class);
 		List<AssociationInstance> connis = getAllConnections(root);
 		for (AssociationInstance conni : connis) {
@@ -111,8 +112,8 @@ public class AIJGraphTUtil {
 		return directedGraph;
 	}
 
-	public static DefaultDirectedGraph<InstanceObject, DefaultEdge> generateBehaviorPropagationPaths(ComponentInstance root, String subclauseName) {
-		DefaultDirectedGraph<InstanceObject, DefaultEdge> directedGraph = new DefaultDirectedGraph<InstanceObject, DefaultEdge>(
+	public static Graph<EObject, DefaultEdge> generateBehaviorPropagationPaths(ComponentInstance root, String subclauseName) {
+		Graph<EObject, DefaultEdge> directedGraph = new DefaultDirectedGraph<EObject, DefaultEdge>(
 				DefaultEdge.class);
 		List<AssociationInstance> connis = getAllConnections(root);
 		for (AssociationInstance conni : connis) {
@@ -129,8 +130,7 @@ public class AIJGraphTUtil {
 				// cross connection find dst condition CIOs in context of dst
 				Collection<ConstrainedInstanceObject> dests = conni.isExternal()
 						? findContainingConditionCIOs(dst, src, null, subclauseName)
-						: // findContainedActionCIOs(dst, null):
-						findContainingConditionCIOs(dst, null, subclauseName);
+						: findContainingConditionCIOs(dst, null, subclauseName);
 				for (ConstrainedInstanceObject dstcio : dests) {
 					addPath(directedGraph, src, dstcio);
 				}
@@ -175,7 +175,7 @@ public class AIJGraphTUtil {
 					// doing the cio lets us deal with condition expressions even when no tokens are involved
 					for (ConstrainedInstanceObject ce : condcios) {
 						// all cond to outgoing feature instance rule
-						addPath(directedGraph, ce, action);
+						handleConditionExpression(directedGraph, ce, action);
 						// add ce io as path source to handle unhandled tokens
 						addPath(directedGraph, ce.getInstanceObject(), action);
 						// generator to generator cond
@@ -201,7 +201,7 @@ public class AIJGraphTUtil {
 					// process conditions
 					for (ConstrainedInstanceObject ce : condcios) {
 						// edge from condition elements to target state
-						addPath(directedGraph, ce, ts);
+						handleConditionExpression(directedGraph, ce, ts);
 						// generator to generator cond
 						handleGenerators(directedGraph, ce);
 						InstanceObject srcio = ce.getInstanceObject();
@@ -229,7 +229,7 @@ public class AIJGraphTUtil {
 		return directedGraph;
 	}
 	
-	private static void handleGenerators(DefaultDirectedGraph<InstanceObject, DefaultEdge> directedGraph, ConstrainedInstanceObject ce) {
+	private static void handleGenerators(Graph<EObject, DefaultEdge> directedGraph, ConstrainedInstanceObject ce) {
 		if (ce.getInstanceObject() instanceof GeneratorInstance) {
 			GeneratorInstance gi = (GeneratorInstance) getRealInstanceObject(ce);
 			EList<ConstrainedInstanceObject> cios = gi.getGeneratedLiterals(); 
@@ -251,6 +251,15 @@ public class AIJGraphTUtil {
 				}
 			}
 		}
+	}
+	
+	private static void handleConditionExpression(Graph<EObject, DefaultEdge> directedGraph, ConstrainedInstanceObject ce, ConstrainedInstanceObject target) {
+		Literal current = ce;
+		while (current.eContainer() instanceof Literal) {
+			addPath(directedGraph, current, (Literal)current.eContainer());
+			current = (Literal)current.eContainer();
+		}
+		addPath(directedGraph,current,target);
 	}
 
 	public static AsSubgraph<InstanceObject, DefaultEdge> generateBehaviorPropagationPaths(DefaultDirectedGraph<InstanceObject, DefaultEdge> originalGraph) {
