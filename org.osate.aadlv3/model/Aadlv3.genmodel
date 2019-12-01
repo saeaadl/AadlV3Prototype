@@ -293,6 +293,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//BehaviorRule/targetState"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//BehaviorRule/condition"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//BehaviorRule/actions"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//BehaviorRule/source"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//BehaviorRule/sink"/>
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//StateSpecification">

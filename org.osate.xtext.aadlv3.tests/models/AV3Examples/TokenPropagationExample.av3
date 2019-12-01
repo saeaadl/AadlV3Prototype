@@ -38,7 +38,7 @@ package TokenPropagationExample is
 		#TokenSource => (Virus);
 	@EM{
 		e1: error event (Virus, DirtyWord, Classified) ; 
-		sense2:  e1 ->  p1;
+		sense2:  flow e1 ->  p1;
 	};
 	end;
 	
@@ -67,9 +67,9 @@ package TokenPropagationExample is
 //		f1: insignal -> outsignal; 
 //	};
 	@EM{
-//		filter2: all (insignal1 in ServiceOmission, insignal2 in ServiceOmission ) ->  outsignal!(ServiceOmission);
-		filter2: insignal in (Virus,Classified) ->  sink;
-//		filter3: insignal in (Classified) ->  sink;
+//		filter2: flow all (insignal1 in ServiceOmission, insignal2 in ServiceOmission ) ->  outsignal!(ServiceOmission);
+		filter2: flow insignal in (Virus,Classified) ->  sink;
+//		filter3: flow insignal in (Classified) ->  sink;
 	};
 	end;
 	
@@ -115,8 +115,8 @@ package TokenPropagationExample is
 		
 //		cpubinding: cycles binding processing.dofilter.cpu -> hw.cpu;
 	@EM{
-		effect1: actuate.actt2.effect  ->  effect;
-//		effect2: actuate.actt2.effect in ServiceOmission ->  effect(ServiceOmission);
+		effect1: flow actuate.actt2.effect  ->  effect;
+//		effect2: flow actuate.actt2.effect in ServiceOmission ->  effect(ServiceOmission);
 	};
 	end;
 	

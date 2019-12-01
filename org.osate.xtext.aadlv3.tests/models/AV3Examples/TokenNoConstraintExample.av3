@@ -36,9 +36,9 @@ package TokenNoConstraintExample is
 //		reading: flow  source p1;
 		#TokenSource => (t1);
 	@EM{
-		states threestate;
+		es : state threestate;
 		e1: error event (ServiceOmission, cycles) ; 
-		sense2:  s0 -[e1  ]->  {p1};
+		sense2: flow e1  ->  p1 when es = s0;
 	};
 	end;
 	
@@ -47,11 +47,11 @@ package TokenNoConstraintExample is
 		effect: out feature ;
 //		taction: flow  sink p1;
 	@EM{
-		states threestate;
+		es: state threestate;
 		eact1: error event (ServiceOmission) ;
-		actuate1: s0-[eact1 ]-> s1;
-		actuate3: s1-[ ]-> { effect};
-		actuate2: s0-[ p1 ]-> { effect};//(ServiceOmission)};
+		actuate1: transition es = s0 -> es = s1 when eact1;
+		actuate3: flow source ->  effect when es = s1;
+		actuate2: flow p1 ->  effect when es =s1;//(ServiceOmission)};
 	};
 	end;
 	
@@ -66,7 +66,7 @@ package TokenNoConstraintExample is
 	#Period => 20 ;
 	@EM{
 //		filter2: all (insignal1 in ServiceOmission, insignal2 in ServiceOmission ) ->  outsignal!(ServiceOmission);
-		filter2: all (insignal1 , insignal2) ->  outsignal;
+		filter2: flow all (insignal1 , insignal2) ->  outsignal;
 	};
 	end;
 	
@@ -82,7 +82,7 @@ package TokenNoConstraintExample is
 //		e1: error event;
 //		r1: s0 -[e1 ]-> s1 {outsignal(ServiceOmission)};
 //		computer2: insignal in ServiceOmission ->  outsignal(ServiceOmission);
-		computer2: insignal ->  outsignal;
+		computer2: flow insignal ->  outsignal;
 //		r3: insignal in ServiceOmission-> ;
 	};
 	end;
@@ -129,7 +129,7 @@ package TokenNoConstraintExample is
 		
 //		cpubinding: cycles binding processing.dofilter.cpu -> hw.cpu;
 	@EM{
-		effect1: actuate.actt2.effect  ->  effect;
+		effect1: flow actuate.actt2.effect  ->  effect;
 //		effect2: actuate.actt2.effect in ServiceOmission ->  effect(ServiceOmission);
 	};
 	end;

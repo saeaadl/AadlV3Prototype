@@ -123,79 +123,61 @@ public class FaultGraph {
 		}
 		
 		Token outcioEvent = createToken(eventTrace, cioio, TokenType.INTERMEDIATE);
-		Iterable<BehaviorRuleInstance> bris = findMatchingBehaviorRuleInstances(cioio);
-		for (BehaviorRuleInstance bri : bris) {
-			Token condEvent = processCondition(bri.getCondition(),cioio);
-			Token stateEvent = bri.getCurrentState() != null?processState(bri.getCurrentState()):null;
-			if (condEvent != null&& stateEvent != null){
-				EList<Token> subEvents = new BasicEList<Token>();
-				subEvents.add(stateEvent);
-				subEvents.add(condEvent);
-				outcioEvent.getTokens().add( processEventSubgraph(subEvents, EOperator.ALL, null));
-			} else if (condEvent == null&& stateEvent != null){
-				outcioEvent.getTokens().add( stateEvent);
-			} else if (condEvent == null&& stateEvent == null){
-					outcioEvent.setTokenType(TokenType.UNDEVELOPED);
-			} else if (condEvent != null&& stateEvent == null){
-					outcioEvent.getTokens().add(condEvent);
-			}
-		}
-		// now we look for edges that represent implicit flows not modeled by bris
-		if (!(cioio instanceof ConstrainedInstanceObject)&&graph.containsVertex(cioio)) {
-			Set<DefaultEdge> edges = graph.outgoingEdgesOf(cioio);
-			for (DefaultEdge edge : edges) {
-				EObject edgeTarget = graph.getEdgeTarget(edge);
-				InstanceObject target = getRealInstanceObject(edgeTarget);
-				if (target instanceof FeatureInstance || target instanceof ComponentInstance) {
-					// process incoming
-					outcioEvent.getTokens().add(processIncomingCIO(edgeTarget));
+		
+		Set<DefaultEdge> edges = graph.outgoingEdgesOf(cioio);
+		for (DefaultEdge edge : edges) {
+			EObject edgeTarget = graph.getEdgeTarget(edge);
+			InstanceObject target = getRealInstanceObject(edgeTarget);
+			if (target instanceof StateInstance) {
+				Token st = processFlow((ConstrainedInstanceObject)edgeTarget);
+				if (st != null) {
+					outcioEvent.add(st);
 				}
+			} else if (edgeTarget instanceof Literal){
+				// condition literal
+				Token cond = processCondition((Literal)edgeTarget, cioio);
+				if (cond != null) {
+					outcioEvent.add(cond);
+				}
+			} else if (target instanceof FeatureInstance || target instanceof ComponentInstance) {
+				// process incoming
+				outcioEvent.getTokens().add(processIncomingCIO(edgeTarget));
 			}
 		}
 		// XXX set type if not already set to handle propagated types
 		return outcioEvent;
 	}
 	
-	public Token stateTransition(EObject targetState) {
-		if (!(targetState instanceof StateInstance)) {
+	public Token processFlow(ConstrainedInstanceObject eo) {
+		
+		Set<DefaultEdge> edges = graph.outgoingEdgesOf(eo);
+		if (edges.isEmpty()) {
 			return null;
 		}
-		BehaviorRuleInstance bri = containingBehaviorRuleInstance(targetState);
-		Token condEvent = processCondition(bri.getCondition(),targetState);
-		Token stateEvent = bri.getCurrentState() != null ? processState(bri.getCurrentState()) : null;
-		if (condEvent != null && stateEvent != null) {
-			EList<Token> subEvents = new BasicEList<Token>();
-			subEvents.add(stateEvent);
-			subEvents.add(condEvent);
-			return processEventSubgraph(subEvents, EOperator.ALL, null);
-		}
-		if (condEvent == null && stateEvent != null) {
-			return stateEvent;
-		}
-		if (condEvent != null && stateEvent == null) {
-			return condEvent;
-		}
-		return null;
-	}
-	
-	public Token processState(ConstrainedInstanceObject currentState){
-		Set<DefaultEdge> targetStates = graph.outgoingEdgesOf(currentState);
 		EList<Token> subEvents = new BasicEList<Token>();
-		for (DefaultEdge targetStateEdge: targetStates){
-			EObject ts = graph.getEdgeTarget(targetStateEdge);
-			Token transToken = stateTransition(ts);
-			if (transToken != null) {
-				Token tsToken = createToken(eventTrace, (ConstrainedInstanceObject)ts, TokenType.INTERMEDIATE);
-				tsToken.getTokens().add(transToken);
-				subEvents.add(tsToken);
+		for (DefaultEdge edge : edges) {
+			EObject edgeTarget = graph.getEdgeTarget(edge);
+			InstanceObject target = getRealInstanceObject(edgeTarget);
+			if (target instanceof StateInstance) {
+				Token st = processFlow((ConstrainedInstanceObject)edgeTarget);
+				if (st != null) {
+					subEvents.add(st);
+				}
+			} else if (edgeTarget instanceof Literal){
+				// condition literal
+				Token cond = processCondition((Literal)edgeTarget, target);
+				if (cond != null) {
+					subEvents.add(cond);
+				}
+			} else if (target instanceof FeatureInstance || target instanceof ComponentInstance) {
+				// process incoming
+				subEvents.add(processIncomingCIO(edgeTarget));
 			}
 		}
-		if (subEvents.isEmpty()) {
-			return null;
-		}
-		Token combined = processEventSubgraph(subEvents, EOperator.ANY, currentState.getInstanceObject());  // incoming
-		return combined;
+		return processEventSubgraph(subEvents, EOperator.ALL, null);
+
 	}
+	
 	
 	public Token processCondition(Literal cond, EObject io){
 		if (cond instanceof MultiLiteralConstraint){

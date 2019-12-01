@@ -6513,9 +6513,9 @@ ruleCurrentState returns [EObject current=null]
 				}
 			)
 		)
-		otherlv_1='=='
+		otherlv_1='='
 		{
-			newLeafNode(otherlv_1, grammarAccess.getCurrentStateAccess().getEqualsSignEqualsSignKeyword_1());
+			newLeafNode(otherlv_1, grammarAccess.getCurrentStateAccess().getEqualsSignKeyword_1());
 		}
 		(
 			(
@@ -6571,9 +6571,9 @@ ruleTargetState returns [EObject current=null]
 				}
 			)
 		)
-		otherlv_1='=='
+		otherlv_1='='
 		{
-			newLeafNode(otherlv_1, grammarAccess.getTargetStateAccess().getEqualsSignEqualsSignKeyword_1());
+			newLeafNode(otherlv_1, grammarAccess.getTargetStateAccess().getEqualsSignKeyword_1());
 		}
 		(
 			(

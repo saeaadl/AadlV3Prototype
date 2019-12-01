@@ -30,6 +30,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.osate.aadlv3.aadlv3.BehaviorRule#getTargetState <em>Target State</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.BehaviorRule#getCondition <em>Condition</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.BehaviorRule#getActions <em>Actions</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.BehaviorRule#isSource <em>Source</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.BehaviorRule#isSink <em>Sink</em>}</li>
  * </ul>
  *
@@ -115,6 +116,28 @@ public interface BehaviorRule extends ModelElement {
 	 * @generated
 	 */
 	EList<Assignment> getActions();
+
+	/**
+	 * Returns the value of the '<em><b>Source</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Source</em>' attribute.
+	 * @see #setSource(boolean)
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getBehaviorRule_Source()
+	 * @model
+	 * @generated
+	 */
+	boolean isSource();
+
+	/**
+	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.BehaviorRule#isSource <em>Source</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Source</em>' attribute.
+	 * @see #isSource()
+	 * @generated
+	 */
+	void setSource(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Sink</b></em>' attribute.

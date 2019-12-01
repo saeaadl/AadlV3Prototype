@@ -642,7 +642,7 @@ class AIv3API {
 		return cioio instanceof ConstrainedInstanceObject? cioio.getInstanceObject():(cioio instanceof InstanceObject?cioio:null);
 	}
 	
-	def static Literal getRealConstraint(InstanceObject cioio){
+	def static Literal getRealConstraint(EObject cioio){
 		return cioio instanceof ConstrainedInstanceObject? cioio.constraint:null;
 	}
 	

@@ -160,33 +160,39 @@ public class AIJGraphTUtil {
 			for (BehaviorRuleInstance bri : bris) {
 				Iterable<ConstrainedInstanceObject> condcios = getAllConstrainedInstanceObjects(bri.getCondition());
 				for (ConstrainedInstanceObject action : bri.getActions()) {
-					// path to the current state from which to trace back.
-					ConstrainedInstanceObject cs = bri.getCurrentState();
-					if (cs != null) {
-						// edge from current state to action
-						addPath(directedGraph, cs, action);
-						Iterable<ConstrainedInstanceObject> tss = findTargetStateCIOs(cs, subclauseName);
-						for (ConstrainedInstanceObject ts : tss) {
-							// edge from target state of different BRI to current state in current bri
-							addPath(directedGraph, ts, cs);
+					if (bri.getTargetState() != null) {
+						addPath(directedGraph, bri.getTargetState(), action);
+					} else {
+						// we need both the current state and the condition
+						// path to the current state from which to trace back.
+						ConstrainedInstanceObject cs = bri.getCurrentState();
+						if (cs != null) {
+							// edge from current state to action
+							addPath(directedGraph, cs, action);
+							Iterable<ConstrainedInstanceObject> tss = findTargetStateCIOs(cs, subclauseName);
+							for (ConstrainedInstanceObject ts : tss) {
+								// edge from target state of different BRI to current state in current bri
+								addPath(directedGraph, ts, cs);
+							}
 						}
-					}
-					// flows from condition elements to action (cio) 
-					// doing the cio lets us deal with condition expressions even when no tokens are involved
-					for (ConstrainedInstanceObject ce : condcios) {
-						// all cond to outgoing feature instance rule
-						handleConditionExpression(directedGraph, ce, action);
-						// add ce io as path source to handle unhandled tokens
-						addPath(directedGraph, ce.getInstanceObject(), action);
-						// generator to generator cond
-						handleGenerators(directedGraph, ce);
+						// flows from condition elements to action (cio) 
+						// doing the cio lets us deal with condition expressions even when no tokens are involved
+						for (ConstrainedInstanceObject ce : condcios) {
+							// all cond to outgoing feature instance rule
+							handleConditionExpression(directedGraph, ce, action);
+							// add ce io as path source to handle unhandled tokens
+							addPath(directedGraph, ce.getInstanceObject(), action);
+							// generator to generator cond
+							handleGenerators(directedGraph, ce);
+						}
 					}
 					if (action.getConstraint() == null) {
 						outfiAsBehavior.add(action.getInstanceObject());
 					}
 				}
-				if (bri.getActions().isEmpty() && bri.getTargetState() != null) {
-					// we have a rule that represents a state transition without actions
+				if (bri.getTargetState() != null) {
+					// we have a rule that represents a state transition with or without actions
+					// the target state to action edge is already taken care of
 					ConstrainedInstanceObject ts = bri.getTargetState();
 					ConstrainedInstanceObject cs = bri.getCurrentState();
 					if (cs != null && ts != null && !cs.sameAs(ts)) {

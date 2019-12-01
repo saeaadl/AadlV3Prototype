@@ -3572,15 +3572,15 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cStateVariableAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final CrossReference cStateVariableStateVariableCrossReference_0_0 = (CrossReference)cStateVariableAssignment_0.eContents().get(0);
 		private final RuleCall cStateVariableStateVariableIDTerminalRuleCall_0_0_1 = (RuleCall)cStateVariableStateVariableCrossReference_0_0.eContents().get(1);
-		private final Keyword cEqualsSignEqualsSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Keyword cEqualsSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cCurrentStateAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cCurrentStateEnumerationLiteralParserRuleCall_2_0 = (RuleCall)cCurrentStateAssignment_2.eContents().get(0);
 		
 		//CurrentState av3::StateSpecification:
-		//	stateVariable=[av3::StateVariable] '==' currentState=EnumerationLiteral;
+		//	stateVariable=[av3::StateVariable] '=' currentState=EnumerationLiteral;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//stateVariable=[av3::StateVariable] '==' currentState=EnumerationLiteral
+		//stateVariable=[av3::StateVariable] '=' currentState=EnumerationLiteral
 		public Group getGroup() { return cGroup; }
 		
 		//stateVariable=[av3::StateVariable]
@@ -3592,8 +3592,8 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getStateVariableStateVariableIDTerminalRuleCall_0_0_1() { return cStateVariableStateVariableIDTerminalRuleCall_0_0_1; }
 		
-		//'=='
-		public Keyword getEqualsSignEqualsSignKeyword_1() { return cEqualsSignEqualsSignKeyword_1; }
+		//'='
+		public Keyword getEqualsSignKeyword_1() { return cEqualsSignKeyword_1; }
 		
 		//currentState=EnumerationLiteral
 		public Assignment getCurrentStateAssignment_2() { return cCurrentStateAssignment_2; }
@@ -3607,15 +3607,15 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cStateVariableAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final CrossReference cStateVariableStateVariableCrossReference_0_0 = (CrossReference)cStateVariableAssignment_0.eContents().get(0);
 		private final RuleCall cStateVariableStateVariableIDTerminalRuleCall_0_0_1 = (RuleCall)cStateVariableStateVariableCrossReference_0_0.eContents().get(1);
-		private final Keyword cEqualsSignEqualsSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Keyword cEqualsSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cCurrentStateAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cCurrentStateEnumerationLiteralParserRuleCall_2_0 = (RuleCall)cCurrentStateAssignment_2.eContents().get(0);
 		
 		//TargetState av3::StateSpecification:
-		//	stateVariable=[av3::StateVariable] '==' currentState=EnumerationLiteral;
+		//	stateVariable=[av3::StateVariable] '=' currentState=EnumerationLiteral;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//stateVariable=[av3::StateVariable] '==' currentState=EnumerationLiteral
+		//stateVariable=[av3::StateVariable] '=' currentState=EnumerationLiteral
 		public Group getGroup() { return cGroup; }
 		
 		//stateVariable=[av3::StateVariable]
@@ -3627,8 +3627,8 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getStateVariableStateVariableIDTerminalRuleCall_0_0_1() { return cStateVariableStateVariableIDTerminalRuleCall_0_0_1; }
 		
-		//'=='
-		public Keyword getEqualsSignEqualsSignKeyword_1() { return cEqualsSignEqualsSignKeyword_1; }
+		//'='
+		public Keyword getEqualsSignKeyword_1() { return cEqualsSignKeyword_1; }
 		
 		//currentState=EnumerationLiteral
 		public Assignment getCurrentStateAssignment_2() { return cCurrentStateAssignment_2; }
@@ -6199,7 +6199,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//CurrentState av3::StateSpecification:
-	//	stateVariable=[av3::StateVariable] '==' currentState=EnumerationLiteral;
+	//	stateVariable=[av3::StateVariable] '=' currentState=EnumerationLiteral;
 	public CurrentStateElements getCurrentStateAccess() {
 		return pCurrentState;
 	}
@@ -6209,7 +6209,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//TargetState av3::StateSpecification:
-	//	stateVariable=[av3::StateVariable] '==' currentState=EnumerationLiteral;
+	//	stateVariable=[av3::StateVariable] '=' currentState=EnumerationLiteral;
 	public TargetStateElements getTargetStateAccess() {
 		return pTargetState;
 	}

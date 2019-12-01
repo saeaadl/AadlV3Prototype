@@ -60,9 +60,26 @@ public class BehaviorRuleItemProvider extends ModelElementItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addSourcePropertyDescriptor(object);
 			addSinkPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Source feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSourcePropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_BehaviorRule_source_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_BehaviorRule_source_feature",
+								"_UI_BehaviorRule_type"),
+						Aadlv3Package.Literals.BEHAVIOR_RULE__SOURCE, true, false, false,
+						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -150,6 +167,7 @@ public class BehaviorRuleItemProvider extends ModelElementItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(BehaviorRule.class)) {
+		case Aadlv3Package.BEHAVIOR_RULE__SOURCE:
 		case Aadlv3Package.BEHAVIOR_RULE__SINK:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;

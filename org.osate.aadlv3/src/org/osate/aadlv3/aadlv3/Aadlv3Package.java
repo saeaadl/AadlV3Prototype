@@ -3392,13 +3392,22 @@ public interface Aadlv3Package extends EPackage {
 	int BEHAVIOR_RULE__ACTIONS = MODEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Source</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEHAVIOR_RULE__SOURCE = MODEL_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
 	 * The feature id for the '<em><b>Sink</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BEHAVIOR_RULE__SINK = MODEL_ELEMENT_FEATURE_COUNT + 4;
+	int BEHAVIOR_RULE__SINK = MODEL_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>Behavior Rule</em>' class.
@@ -3407,7 +3416,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BEHAVIOR_RULE_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 5;
+	int BEHAVIOR_RULE_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.StateSpecificationImpl <em>State Specification</em>}' class.
@@ -5308,6 +5317,17 @@ public interface Aadlv3Package extends EPackage {
 	EReference getBehaviorRule_Actions();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.osate.aadlv3.aadlv3.BehaviorRule#isSource <em>Source</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Source</em>'.
+	 * @see org.osate.aadlv3.aadlv3.BehaviorRule#isSource()
+	 * @see #getBehaviorRule()
+	 * @generated
+	 */
+	EAttribute getBehaviorRule_Source();
+
+	/**
 	 * Returns the meta object for the attribute '{@link org.osate.aadlv3.aadlv3.BehaviorRule#isSink <em>Sink</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7103,6 +7123,14 @@ public interface Aadlv3Package extends EPackage {
 		 * @generated
 		 */
 		EReference BEHAVIOR_RULE__ACTIONS = eINSTANCE.getBehaviorRule_Actions();
+
+		/**
+		 * The meta object literal for the '<em><b>Source</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BEHAVIOR_RULE__SOURCE = eINSTANCE.getBehaviorRule_Source();
 
 		/**
 		 * The meta object literal for the '<em><b>Sink</b></em>' attribute feature.

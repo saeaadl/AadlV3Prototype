@@ -14082,9 +14082,9 @@ rule__CurrentState__Group__1__Impl
 	}
 :
 (
-	{ before(grammarAccess.getCurrentStateAccess().getEqualsSignEqualsSignKeyword_1()); }
-	'=='
-	{ after(grammarAccess.getCurrentStateAccess().getEqualsSignEqualsSignKeyword_1()); }
+	{ before(grammarAccess.getCurrentStateAccess().getEqualsSignKeyword_1()); }
+	'='
+	{ after(grammarAccess.getCurrentStateAccess().getEqualsSignKeyword_1()); }
 )
 ;
 finally {
@@ -14163,9 +14163,9 @@ rule__TargetState__Group__1__Impl
 	}
 :
 (
-	{ before(grammarAccess.getTargetStateAccess().getEqualsSignEqualsSignKeyword_1()); }
-	'=='
-	{ after(grammarAccess.getTargetStateAccess().getEqualsSignEqualsSignKeyword_1()); }
+	{ before(grammarAccess.getTargetStateAccess().getEqualsSignKeyword_1()); }
+	'='
+	{ after(grammarAccess.getTargetStateAccess().getEqualsSignKeyword_1()); }
 )
 ;
 finally {

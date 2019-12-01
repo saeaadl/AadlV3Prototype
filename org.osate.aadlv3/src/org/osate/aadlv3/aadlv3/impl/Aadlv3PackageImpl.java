@@ -1972,8 +1972,18 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getBehaviorRule_Sink() {
+	public EAttribute getBehaviorRule_Source() {
 		return (EAttribute) behaviorRuleEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getBehaviorRule_Sink() {
+		return (EAttribute) behaviorRuleEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -2810,6 +2820,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		createEReference(behaviorRuleEClass, BEHAVIOR_RULE__TARGET_STATE);
 		createEReference(behaviorRuleEClass, BEHAVIOR_RULE__CONDITION);
 		createEReference(behaviorRuleEClass, BEHAVIOR_RULE__ACTIONS);
+		createEAttribute(behaviorRuleEClass, BEHAVIOR_RULE__SOURCE);
 		createEAttribute(behaviorRuleEClass, BEHAVIOR_RULE__SINK);
 
 		stateSpecificationEClass = createEClass(STATE_SPECIFICATION);
@@ -3404,6 +3415,8 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		initEReference(getBehaviorRule_Actions(), this.getAssignment(), null, "actions", null, 0, -1,
 				BehaviorRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBehaviorRule_Source(), ecorePackage.getEBoolean(), "source", null, 0, 1, BehaviorRule.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBehaviorRule_Sink(), ecorePackage.getEBoolean(), "sink", null, 0, 1, BehaviorRule.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

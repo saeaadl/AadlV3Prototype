@@ -45,6 +45,7 @@ import org.osate.aadlv3.aadlv3.StateSpecification;
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.BehaviorRuleImpl#getTargetState <em>Target State</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.BehaviorRuleImpl#getCondition <em>Condition</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.BehaviorRuleImpl#getActions <em>Actions</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.BehaviorRuleImpl#isSource <em>Source</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.BehaviorRuleImpl#isSink <em>Sink</em>}</li>
  * </ul>
  *
@@ -90,6 +91,26 @@ public class BehaviorRuleImpl extends ModelElementImpl implements BehaviorRule {
 	 * @ordered
 	 */
 	protected EList<Assignment> actions;
+
+	/**
+	 * The default value of the '{@link #isSource() <em>Source</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSource()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean SOURCE_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isSource() <em>Source</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSource()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean source = SOURCE_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #isSink() <em>Sink</em>}' attribute.
@@ -306,6 +327,30 @@ public class BehaviorRuleImpl extends ModelElementImpl implements BehaviorRule {
 	 * @generated
 	 */
 	@Override
+	public boolean isSource() {
+		return source;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setSource(boolean newSource) {
+		boolean oldSource = source;
+		source = newSource;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.BEHAVIOR_RULE__SOURCE, oldSource,
+					source));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public boolean isSink() {
 		return sink;
 	}
@@ -359,6 +404,8 @@ public class BehaviorRuleImpl extends ModelElementImpl implements BehaviorRule {
 			return getCondition();
 		case Aadlv3Package.BEHAVIOR_RULE__ACTIONS:
 			return getActions();
+		case Aadlv3Package.BEHAVIOR_RULE__SOURCE:
+			return isSource();
 		case Aadlv3Package.BEHAVIOR_RULE__SINK:
 			return isSink();
 		}
@@ -387,6 +434,9 @@ public class BehaviorRuleImpl extends ModelElementImpl implements BehaviorRule {
 			getActions().clear();
 			getActions().addAll((Collection<? extends Assignment>) newValue);
 			return;
+		case Aadlv3Package.BEHAVIOR_RULE__SOURCE:
+			setSource((Boolean) newValue);
+			return;
 		case Aadlv3Package.BEHAVIOR_RULE__SINK:
 			setSink((Boolean) newValue);
 			return;
@@ -414,6 +464,9 @@ public class BehaviorRuleImpl extends ModelElementImpl implements BehaviorRule {
 		case Aadlv3Package.BEHAVIOR_RULE__ACTIONS:
 			getActions().clear();
 			return;
+		case Aadlv3Package.BEHAVIOR_RULE__SOURCE:
+			setSource(SOURCE_EDEFAULT);
+			return;
 		case Aadlv3Package.BEHAVIOR_RULE__SINK:
 			setSink(SINK_EDEFAULT);
 			return;
@@ -437,6 +490,8 @@ public class BehaviorRuleImpl extends ModelElementImpl implements BehaviorRule {
 			return condition != null;
 		case Aadlv3Package.BEHAVIOR_RULE__ACTIONS:
 			return actions != null && !actions.isEmpty();
+		case Aadlv3Package.BEHAVIOR_RULE__SOURCE:
+			return source != SOURCE_EDEFAULT;
 		case Aadlv3Package.BEHAVIOR_RULE__SINK:
 			return sink != SINK_EDEFAULT;
 		}
@@ -454,7 +509,9 @@ public class BehaviorRuleImpl extends ModelElementImpl implements BehaviorRule {
 			return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (sink: ");
+		result.append(" (source: ");
+		result.append(source);
+		result.append(", sink: ");
 		result.append(sink);
 		result.append(')');
 		return result.toString();
