@@ -120,13 +120,6 @@ class AIv3API {
 	}
 
 	
-	def static ConstrainedInstanceObject createConstrainedInstanceObject(StateSpecification ss, ComponentInstance context) {
-		val cio = Av3instanceFactory.eINSTANCE.createConstrainedInstanceObject
-		cio.instanceObject = context.findStateInstance(ss)
-		cio.name = ss.currentState.name
-		return cio
-	}
-	
 	def static ConstrainedInstanceObject createConstrainedInstanceObject(Literal lit, GeneratorInstance context) {
 		val cio = Av3instanceFactory.eINSTANCE.createConstrainedInstanceObject
 		cio.name = context.name + ":"+ lit.toString()
@@ -629,14 +622,6 @@ class AIv3API {
 		return null;
 	}
 
-	/**
-	 * return all target state CIOs that refer to the constrained state cs
-	 */
-	def static Iterable<ConstrainedInstanceObject> findTargetStateCIOs(ConstrainedInstanceObject cs, String behaviorSpecName){
-		val briContext = cs.containingComponentInstanceOrSelf
-		val bris = briContext.behaviorRules.filter[bri|bri.behaviorRule.containingBehaviorSpecification.name.equals(behaviorSpecName) && bri.targetState !== null]
-		return bris.map[bri|bri.targetState].filter[target|target.instanceObject === cs.instanceObject && (target.constraint !== null ?target.constraint.contains(cs.constraint): cs.constraint === null) ]
-	}
 	
 	def static InstanceObject getRealInstanceObject(EObject cioio){
 		return cioio instanceof ConstrainedInstanceObject? cioio.getInstanceObject():(cioio instanceof InstanceObject?cioio:null);

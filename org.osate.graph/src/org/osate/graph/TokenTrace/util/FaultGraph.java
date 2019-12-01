@@ -105,7 +105,7 @@ public class FaultGraph {
 		eventTrace.setInstanceRoot(getRoot(fiRoot));
 		eventTrace.setTokenTraceType(ttt);
 		// add root event
-		Token rootToken = processOutgoingCIO(fiRoot);
+		Token rootToken = processCause(fiRoot);
 		eventTrace.setRoot(rootToken);
 		Literal lit = inferLiterals(rootToken);
 		eventTrace.setInferredRootLiteral(lit);
@@ -114,181 +114,37 @@ public class FaultGraph {
 		return eventTrace;
 	}
 
-	public Token processOutgoingCIO(InstanceObject cioio){
-		// outcio is an action in one or more bri
-		// we need to have a token for the outcio and a separate subtoken for each bri action
-		Token found = findToken(eventTrace, cioio);
-		if (found != null) {
-			return found;
-		}
-		
-		Token outcioEvent = createToken(eventTrace, cioio, TokenType.INTERMEDIATE);
-		
-		Set<DefaultEdge> edges = graph.outgoingEdgesOf(cioio);
-		for (DefaultEdge edge : edges) {
-			EObject edgeTarget = graph.getEdgeTarget(edge);
-			InstanceObject target = getRealInstanceObject(edgeTarget);
-			if (target instanceof StateInstance) {
-				Token st = processFlow((ConstrainedInstanceObject)edgeTarget);
-				if (st != null) {
-					outcioEvent.add(st);
-				}
-			} else if (edgeTarget instanceof Literal){
-				// condition literal
-				Token cond = processCondition((Literal)edgeTarget, cioio);
-				if (cond != null) {
-					outcioEvent.add(cond);
-				}
-			} else if (target instanceof FeatureInstance || target instanceof ComponentInstance) {
-				// process incoming
-				outcioEvent.getTokens().add(processIncomingCIO(edgeTarget));
+	
+	public Token processCause(EObject eo) {
+		if (eo instanceof InstanceObject) {
+			Token found = findToken(eventTrace, (InstanceObject)eo);
+			if (found != null) {
+				return found;
 			}
 		}
-		// XXX set type if not already set to handle propagated types
-		return outcioEvent;
-	}
-	
-	public Token processFlow(ConstrainedInstanceObject eo) {
 		
 		Set<DefaultEdge> edges = graph.outgoingEdgesOf(eo);
-		if (edges.isEmpty()) {
-			return null;
-		}
+//		if (edges.isEmpty()) {
+//			return null;
+//		}
 		EList<Token> subEvents = new BasicEList<Token>();
 		for (DefaultEdge edge : edges) {
 			EObject edgeTarget = graph.getEdgeTarget(edge);
-			InstanceObject target = getRealInstanceObject(edgeTarget);
-			if (target instanceof StateInstance) {
-				Token st = processFlow((ConstrainedInstanceObject)edgeTarget);
-				if (st != null) {
-					subEvents.add(st);
-				}
-			} else if (edgeTarget instanceof Literal){
-				// condition literal
-				Token cond = processCondition((Literal)edgeTarget, target);
-				if (cond != null) {
-					subEvents.add(cond);
-				}
-			} else if (target instanceof FeatureInstance || target instanceof ComponentInstance) {
-				// process incoming
-				subEvents.add(processIncomingCIO(edgeTarget));
-			}
-		}
-		return processEventSubgraph(subEvents, EOperator.ALL, null);
-
-	}
-	
-	
-	public Token processCondition(Literal cond, EObject io){
-		if (cond instanceof MultiLiteralConstraint){
-			EList<Token> subEvents = new BasicEList<Token>();
-			for (Expression el : ((MultiLiteralConstraint) cond).getElements()) {
-				if (el instanceof Literal) {
-					Literal literal = (Literal) el;
-					Token res = processCondition(literal, io);
-					if (res != null) {
-						subEvents.add(res);
+			Token res = processCause(edgeTarget);
+			if (res != null) {
+				// incoming CIO has literals and is part of a sink specification
+				if (isSinkConstraint(edgeTarget)) {
+					// filter out tokens masked by sink
+					Token notMasked = sinkFilteredToken(res, edgeTarget);
+					if (notMasked != null) {
+						subEvents.add(notMasked);
 					}
-				}
-			}
-			Token combined = processEventSubgraph(subEvents, (MultiLiteralConstraint) cond);
-			return combined;
-		} else if (cond instanceof ConstrainedInstanceObject) {
-			ConstrainedInstanceObject cio = (ConstrainedInstanceObject) cond;
-			// an incoming or generator
-			if (cio.getInstanceObject() instanceof GeneratorInstance) {
-				// generator
-				return generateTokens((GeneratorInstance)cio.getInstanceObject(), cio.getConstraint());
-			} else {
-				// incoming cio
-				return processIncomingCIO(cio);
-			}
-		} else {
-			return null;
-		}
-	
-	}
-	
-	public Token processIncomingCIO(EObject cioio) {
-		// incoming cio
-		Set<DefaultEdge> edges = graph.outgoingEdgesOf(cioio);
-		if (edges.isEmpty()){
-			return generateTokens((InstanceObject)cioio);
-		} else {
-			// process outgoing
-			EList<Token> subEvents = new BasicEList<Token>();
-			for (DefaultEdge edge : edges) {
-				// outgoing cioio, representing a connection
-				EObject target = graph.getEdgeTarget(edge);
-				// generate token subgraph coming to the condition
-				Token res = processOutgoingCIO((InstanceObject)target);
-				if (res != null) {
-					// incoming CIO has literals and is part of a sink specification
-					if (isSinkConstraint(cioio)) {
-						// filter out tokens masked by sink
-						Token notMasked = sinkFilteredToken(res, cioio);
-						if (notMasked != null) {
-							subEvents.add(notMasked);
-						}
-					} else {
-						subEvents.add(res);
-					}
-				}
-			}
-			Token combined = processEventSubgraph(subEvents, EOperator.ANY,(InstanceObject) cioio);  // incoming
-			return combined;
-		}
-	}
-	
-	
-	/**
-	 * generate collection of events one for each type in constraint
-	 * @param cio
-	 * @return
-	 */
-	public Token generateTokens(GeneratorInstance io, Literal constraint) {
-		if (constraint == null) {
-				if (((GeneratorInstance)io).getGeneratedLiterals() != null) {
-					Token gentok = createToken(eventTrace, io,null, TokenType.INTERMEDIATE);
-					for (ConstrainedInstanceObject cio : io.getGeneratedLiterals()) {
-						gentok.getTokens().add(createToken(eventTrace, cio, TokenType.BASIC));
-					}
-					return gentok;
 				} else {
-					return createToken(eventTrace, io,null, TokenType.BASIC);
-				}
-		} else if (constraint instanceof ECollection) {
-			// one sub event for each type in the constraint
-			ECollection types = (ECollection)constraint;
-			Token inEvent = createToken(eventTrace, io, null, TokenType.INTERMEDIATE);
-			for (Expression el : types.getElements()) {
-				if (el instanceof Literal) {
-					Literal tr = (Literal) el;
-					inEvent.getTokens().add(createToken(eventTrace, io, tr, TokenType.BASIC));
+					subEvents.add(res);
 				}
 			}
-			return inEvent;
-		} else {
-			return createToken(eventTrace, io,constraint, TokenType.BASIC);
 		}
-	}
-	
-	public Token generateTokens(StateInstance io, Literal constraint) {
-		TokenType eventType =  TokenType.BASIC ;
-		if (constraint instanceof ECollection) {
-			// one sub event for each type in the constraint
-			ECollection types = (ECollection)constraint;
-			Token inEvent = createToken(eventTrace, io, null, TokenType.INTERMEDIATE);
-			for (Expression el : types.getElements()) {
-				if (el instanceof Literal) {
-					Literal tr = (Literal) el;
-					inEvent.getTokens().add(createToken(eventTrace, io, tr, eventType));
-				}
-			}
-			return inEvent;
-		} else {
-			return createToken(eventTrace, io,constraint, eventType);
-		}
+		return processTokenSubgraph(subEvents, eo);
 	}
 	
 	public Token generateTokens(InstanceObject cio) {
@@ -307,32 +163,39 @@ public class FaultGraph {
 			}
 			return inEvent;
 		} else {
+			if (io instanceof GeneratorInstance) {
+				if (!((GeneratorInstance) io).getGeneratedLiterals().isEmpty()) {
+					Token gentok = createToken(eventTrace, io, null, TokenType.INTERMEDIATE);
+					for (ConstrainedInstanceObject glit : ((GeneratorInstance) io).getGeneratedLiterals()) {
+						gentok.getTokens().add(createToken(eventTrace, cio, TokenType.BASIC));
+					}
+					return gentok;
+				}
+			}
 			return createToken(eventTrace, io,constraint, eventType);
 		}
 	}
 	
-	public Token processEventSubgraph(EList<Token> subevents, EOperator optype, InstanceObject io) {
-		Token combined = findSharedEventSubtree(eventTrace, subevents, optype, io);
-		if (combined != null) {
-			return combined;
-		}
-//		if (subevents.size() == 1){
-//			return subevents.get(0);
-//		}
-		Token mlcEvent = createToken(eventTrace,io,TokenType.INTERMEDIATE);
-		mlcEvent.setOperator(optype);
-		mlcEvent.getTokens().addAll(subevents);
-		return mlcEvent;
-	}
 	
 	/**
 	 * process logical multi literal expression
-	 * @param subevents
+	 * @param subtokens
 	 * @param mlc
 	 * @return
 	 */
-	public Token processEventSubgraph(EList<Token> subevents, MultiLiteralConstraint mlc) {
-		Token combined = findSharedEventSubtree(eventTrace, subevents, mlc.getOperator(), null);
+	public Token processTokenSubgraph(EList<Token> subtokens, EObject eo) {
+		if (subtokens.isEmpty()) {
+			if (eo instanceof StateInstance) {
+				return null;
+			}
+			if (eo instanceof ConstrainedInstanceObject) {
+				ConstrainedInstanceObject cio = (ConstrainedInstanceObject) eo;
+				return generateTokens(cio);
+			}
+			return createToken(eventTrace, (InstanceObject)eo,null, TokenType.BASIC);
+		}
+		EOperator operator = eo instanceof MultiLiteralConstraint? ((MultiLiteralConstraint)eo).getOperator():EOperator.ANY;
+		Token combined = findSharedEventSubtree(eventTrace, subtokens,operator, null);
 		if (combined != null) {
 			return combined;
 		}
@@ -340,9 +203,11 @@ public class FaultGraph {
 //			return subevents.get(0);
 //		}
 		Token mlcEvent = createToken(eventTrace,null,null,TokenType.INTERMEDIATE);
-		mlcEvent.setOperator(mlc.getOperator());
-		mlcEvent.setK(mlc.getK());
-		mlcEvent.getTokens().addAll(subevents);
+		mlcEvent.setOperator(operator);
+		if (eo instanceof MultiLiteralConstraint) {
+			mlcEvent.setK(((MultiLiteralConstraint)eo).getK());
+		}
+		mlcEvent.getTokens().addAll(subtokens);
 		return mlcEvent;
 	}
 	

@@ -58,6 +58,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//BehaviorRuleInstance/currentState"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//BehaviorRuleInstance/targetState"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AV3Instance.ecore#//BehaviorRuleInstance/sink"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AV3Instance.ecore#//BehaviorRuleInstance/source"/>
     </genClasses>
     <genClasses ecoreClass="AV3Instance.ecore#//GeneratorInstance">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference AV3Instance.ecore#//GeneratorInstance/generator"/>

@@ -31,6 +31,7 @@ import org.osate.aadlv3.aadlv3.Literal;
 import org.osate.av3instance.av3instance.Av3instancePackage;
 import org.osate.av3instance.av3instance.BehaviorRuleInstance;
 import org.osate.av3instance.av3instance.ConstrainedInstanceObject;
+import org.osate.av3instance.av3instance.StateInstance;
 
 /**
  * <!-- begin-user-doc -->
@@ -46,6 +47,7 @@ import org.osate.av3instance.av3instance.ConstrainedInstanceObject;
  *   <li>{@link org.osate.av3instance.av3instance.impl.BehaviorRuleInstanceImpl#getCurrentState <em>Current State</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.impl.BehaviorRuleInstanceImpl#getTargetState <em>Target State</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.impl.BehaviorRuleInstanceImpl#isSink <em>Sink</em>}</li>
+ *   <li>{@link org.osate.av3instance.av3instance.impl.BehaviorRuleInstanceImpl#isSource <em>Source</em>}</li>
  * </ul>
  *
  * @generated
@@ -82,24 +84,24 @@ public class BehaviorRuleInstanceImpl extends InstanceObjectImpl implements Beha
 	protected EList<ConstrainedInstanceObject> actions;
 
 	/**
-	 * The cached value of the '{@link #getCurrentState() <em>Current State</em>}' containment reference.
+	 * The cached value of the '{@link #getCurrentState() <em>Current State</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getCurrentState()
 	 * @generated
 	 * @ordered
 	 */
-	protected ConstrainedInstanceObject currentState;
+	protected StateInstance currentState;
 
 	/**
-	 * The cached value of the '{@link #getTargetState() <em>Target State</em>}' containment reference.
+	 * The cached value of the '{@link #getTargetState() <em>Target State</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getTargetState()
 	 * @generated
 	 * @ordered
 	 */
-	protected ConstrainedInstanceObject targetState;
+	protected StateInstance targetState;
 
 	/**
 	 * The default value of the '{@link #isSink() <em>Sink</em>}' attribute.
@@ -120,6 +122,26 @@ public class BehaviorRuleInstanceImpl extends InstanceObjectImpl implements Beha
 	 * @ordered
 	 */
 	protected boolean sink = SINK_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isSource() <em>Source</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSource()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean SOURCE_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isSource() <em>Source</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSource()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean source = SOURCE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -202,7 +224,16 @@ public class BehaviorRuleInstanceImpl extends InstanceObjectImpl implements Beha
 	 * @generated
 	 */
 	@Override
-	public ConstrainedInstanceObject getCurrentState() {
+	public StateInstance getCurrentState() {
+		if (currentState != null && currentState.eIsProxy()) {
+			InternalEObject oldCurrentState = (InternalEObject) currentState;
+			currentState = (StateInstance) eResolveProxy(oldCurrentState);
+			if (currentState != oldCurrentState) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							Av3instancePackage.BEHAVIOR_RULE_INSTANCE__CURRENT_STATE, oldCurrentState, currentState));
+			}
+		}
 		return currentState;
 	}
 
@@ -211,41 +242,22 @@ public class BehaviorRuleInstanceImpl extends InstanceObjectImpl implements Beha
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetCurrentState(ConstrainedInstanceObject newCurrentState, NotificationChain msgs) {
-		ConstrainedInstanceObject oldCurrentState = currentState;
+	public StateInstance basicGetCurrentState() {
+		return currentState;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setCurrentState(StateInstance newCurrentState) {
+		StateInstance oldCurrentState = currentState;
 		currentState = newCurrentState;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					Av3instancePackage.BEHAVIOR_RULE_INSTANCE__CURRENT_STATE, oldCurrentState, newCurrentState);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setCurrentState(ConstrainedInstanceObject newCurrentState) {
-		if (newCurrentState != currentState) {
-			NotificationChain msgs = null;
-			if (currentState != null)
-				msgs = ((InternalEObject) currentState).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE - Av3instancePackage.BEHAVIOR_RULE_INSTANCE__CURRENT_STATE, null, msgs);
-			if (newCurrentState != null)
-				msgs = ((InternalEObject) newCurrentState).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE - Av3instancePackage.BEHAVIOR_RULE_INSTANCE__CURRENT_STATE, null, msgs);
-			msgs = basicSetCurrentState(newCurrentState, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-					Av3instancePackage.BEHAVIOR_RULE_INSTANCE__CURRENT_STATE, newCurrentState, newCurrentState));
+					Av3instancePackage.BEHAVIOR_RULE_INSTANCE__CURRENT_STATE, oldCurrentState, currentState));
 	}
 
 	/**
@@ -254,7 +266,16 @@ public class BehaviorRuleInstanceImpl extends InstanceObjectImpl implements Beha
 	 * @generated
 	 */
 	@Override
-	public ConstrainedInstanceObject getTargetState() {
+	public StateInstance getTargetState() {
+		if (targetState != null && targetState.eIsProxy()) {
+			InternalEObject oldTargetState = (InternalEObject) targetState;
+			targetState = (StateInstance) eResolveProxy(oldTargetState);
+			if (targetState != oldTargetState) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							Av3instancePackage.BEHAVIOR_RULE_INSTANCE__TARGET_STATE, oldTargetState, targetState));
+			}
+		}
 		return targetState;
 	}
 
@@ -263,18 +284,8 @@ public class BehaviorRuleInstanceImpl extends InstanceObjectImpl implements Beha
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetTargetState(ConstrainedInstanceObject newTargetState, NotificationChain msgs) {
-		ConstrainedInstanceObject oldTargetState = targetState;
-		targetState = newTargetState;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					Av3instancePackage.BEHAVIOR_RULE_INSTANCE__TARGET_STATE, oldTargetState, newTargetState);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
-		}
-		return msgs;
+	public StateInstance basicGetTargetState() {
+		return targetState;
 	}
 
 	/**
@@ -283,21 +294,12 @@ public class BehaviorRuleInstanceImpl extends InstanceObjectImpl implements Beha
 	 * @generated
 	 */
 	@Override
-	public void setTargetState(ConstrainedInstanceObject newTargetState) {
-		if (newTargetState != targetState) {
-			NotificationChain msgs = null;
-			if (targetState != null)
-				msgs = ((InternalEObject) targetState).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE - Av3instancePackage.BEHAVIOR_RULE_INSTANCE__TARGET_STATE, null, msgs);
-			if (newTargetState != null)
-				msgs = ((InternalEObject) newTargetState).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE - Av3instancePackage.BEHAVIOR_RULE_INSTANCE__TARGET_STATE, null, msgs);
-			msgs = basicSetTargetState(newTargetState, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
+	public void setTargetState(StateInstance newTargetState) {
+		StateInstance oldTargetState = targetState;
+		targetState = newTargetState;
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-					Av3instancePackage.BEHAVIOR_RULE_INSTANCE__TARGET_STATE, newTargetState, newTargetState));
+					Av3instancePackage.BEHAVIOR_RULE_INSTANCE__TARGET_STATE, oldTargetState, targetState));
 	}
 
 	/**
@@ -322,6 +324,30 @@ public class BehaviorRuleInstanceImpl extends InstanceObjectImpl implements Beha
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Av3instancePackage.BEHAVIOR_RULE_INSTANCE__SINK,
 					oldSink, sink));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isSource() {
+		return source;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setSource(boolean newSource) {
+		boolean oldSource = source;
+		source = newSource;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, Av3instancePackage.BEHAVIOR_RULE_INSTANCE__SOURCE,
+					oldSource, source));
 	}
 
 	/**
@@ -386,10 +412,6 @@ public class BehaviorRuleInstanceImpl extends InstanceObjectImpl implements Beha
 		switch (featureID) {
 		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE__CONDITION:
 			return basicSetCondition(null, msgs);
-		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE__CURRENT_STATE:
-			return basicSetCurrentState(null, msgs);
-		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE__TARGET_STATE:
-			return basicSetTargetState(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -411,11 +433,17 @@ public class BehaviorRuleInstanceImpl extends InstanceObjectImpl implements Beha
 		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE__ACTIONS:
 			return getActions();
 		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE__CURRENT_STATE:
-			return getCurrentState();
+			if (resolve)
+				return getCurrentState();
+			return basicGetCurrentState();
 		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE__TARGET_STATE:
-			return getTargetState();
+			if (resolve)
+				return getTargetState();
+			return basicGetTargetState();
 		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE__SINK:
 			return isSink();
+		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE__SOURCE:
+			return isSource();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -440,13 +468,16 @@ public class BehaviorRuleInstanceImpl extends InstanceObjectImpl implements Beha
 			getActions().addAll((Collection<? extends ConstrainedInstanceObject>) newValue);
 			return;
 		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE__CURRENT_STATE:
-			setCurrentState((ConstrainedInstanceObject) newValue);
+			setCurrentState((StateInstance) newValue);
 			return;
 		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE__TARGET_STATE:
-			setTargetState((ConstrainedInstanceObject) newValue);
+			setTargetState((StateInstance) newValue);
 			return;
 		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE__SINK:
 			setSink((Boolean) newValue);
+			return;
+		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE__SOURCE:
+			setSource((Boolean) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -470,13 +501,16 @@ public class BehaviorRuleInstanceImpl extends InstanceObjectImpl implements Beha
 			getActions().clear();
 			return;
 		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE__CURRENT_STATE:
-			setCurrentState((ConstrainedInstanceObject) null);
+			setCurrentState((StateInstance) null);
 			return;
 		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE__TARGET_STATE:
-			setTargetState((ConstrainedInstanceObject) null);
+			setTargetState((StateInstance) null);
 			return;
 		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE__SINK:
 			setSink(SINK_EDEFAULT);
+			return;
+		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE__SOURCE:
+			setSource(SOURCE_EDEFAULT);
 			return;
 		}
 		super.eUnset(featureID);
@@ -502,6 +536,8 @@ public class BehaviorRuleInstanceImpl extends InstanceObjectImpl implements Beha
 			return targetState != null;
 		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE__SINK:
 			return sink != SINK_EDEFAULT;
+		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE__SOURCE:
+			return source != SOURCE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -519,6 +555,8 @@ public class BehaviorRuleInstanceImpl extends InstanceObjectImpl implements Beha
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (sink: "); //$NON-NLS-1$
 		result.append(sink);
+		result.append(", source: "); //$NON-NLS-1$
+		result.append(source);
 		result.append(')');
 		return result.toString();
 	}

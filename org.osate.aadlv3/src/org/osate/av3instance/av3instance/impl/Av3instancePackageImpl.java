@@ -566,6 +566,16 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 	 * @generated
 	 */
 	@Override
+	public EAttribute getBehaviorRuleInstance_Source() {
+		return (EAttribute) behaviorRuleInstanceEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EReference getBehaviorRuleInstance_Condition() {
 		return (EReference) behaviorRuleInstanceEClass.getEStructuralFeatures().get(1);
 	}
@@ -764,6 +774,7 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 		createEReference(behaviorRuleInstanceEClass, BEHAVIOR_RULE_INSTANCE__CURRENT_STATE);
 		createEReference(behaviorRuleInstanceEClass, BEHAVIOR_RULE_INSTANCE__TARGET_STATE);
 		createEAttribute(behaviorRuleInstanceEClass, BEHAVIOR_RULE_INSTANCE__SINK);
+		createEAttribute(behaviorRuleInstanceEClass, BEHAVIOR_RULE_INSTANCE__SOURCE);
 
 		generatorInstanceEClass = createEClass(GENERATOR_INSTANCE);
 		createEReference(generatorInstanceEClass, GENERATOR_INSTANCE__GENERATOR);
@@ -938,13 +949,16 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 		initEReference(getBehaviorRuleInstance_Actions(), this.getConstrainedInstanceObject(), null, "actions", null, 0, //$NON-NLS-1$
 				-1, BehaviorRuleInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getBehaviorRuleInstance_CurrentState(), this.getConstrainedInstanceObject(), null,
-				"currentState", null, 0, 1, BehaviorRuleInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, //$NON-NLS-1$
-				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getBehaviorRuleInstance_TargetState(), this.getConstrainedInstanceObject(), null, "targetState", //$NON-NLS-1$
-				null, 0, 1, BehaviorRuleInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBehaviorRuleInstance_CurrentState(), this.getStateInstance(), null, "currentState", null, 0, //$NON-NLS-1$
+				1, BehaviorRuleInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBehaviorRuleInstance_TargetState(), this.getStateInstance(), null, "targetState", null, 0, 1, //$NON-NLS-1$
+				BehaviorRuleInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBehaviorRuleInstance_Sink(), ecorePackage.getEBoolean(), "sink", null, 0, 1, //$NON-NLS-1$
+				BehaviorRuleInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBehaviorRuleInstance_Source(), ecorePackage.getEBoolean(), "source", null, 0, 1, //$NON-NLS-1$
 				BehaviorRuleInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

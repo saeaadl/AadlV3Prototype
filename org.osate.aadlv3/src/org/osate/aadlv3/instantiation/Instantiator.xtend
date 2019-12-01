@@ -693,10 +693,10 @@ class Instantiator {
 			bri.condition = behaviorCondition
 		}
 		if (br.currentState !== null) {
-			bri.currentState = br.currentState.createConstrainedInstanceObject(context)
+			bri.currentState = context.findStateInstance(br.currentState)
 		}
 		if (br.targetState !== null) {
-			bri.targetState = br.targetState.createConstrainedInstanceObject(context)
+			bri.targetState = context.findStateInstance(br.targetState)
 		}
 		// now actions
 		for (action : br.actions) {

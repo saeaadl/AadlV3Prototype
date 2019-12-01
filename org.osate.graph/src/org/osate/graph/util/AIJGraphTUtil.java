@@ -165,15 +165,10 @@ public class AIJGraphTUtil {
 					} else {
 						// we need both the current state and the condition
 						// path to the current state from which to trace back.
-						ConstrainedInstanceObject cs = bri.getCurrentState();
+						StateInstance cs = bri.getCurrentState();
 						if (cs != null) {
 							// edge from current state to action
 							addPath(directedGraph, cs, action);
-							Iterable<ConstrainedInstanceObject> tss = findTargetStateCIOs(cs, subclauseName);
-							for (ConstrainedInstanceObject ts : tss) {
-								// edge from target state of different BRI to current state in current bri
-								addPath(directedGraph, ts, cs);
-							}
 						}
 						// flows from condition elements to action (cio) 
 						// doing the cio lets us deal with condition expressions even when no tokens are involved
@@ -193,16 +188,11 @@ public class AIJGraphTUtil {
 				if (bri.getTargetState() != null) {
 					// we have a rule that represents a state transition with or without actions
 					// the target state to action edge is already taken care of
-					ConstrainedInstanceObject ts = bri.getTargetState();
-					ConstrainedInstanceObject cs = bri.getCurrentState();
-					if (cs != null && ts != null && !cs.sameAs(ts)) {
+					StateInstance ts = bri.getTargetState();
+					StateInstance cs = bri.getCurrentState();
+					if (cs != null && ts != null && cs != ts) {
 						// edge from cs to ts
 						addPath(directedGraph, cs, ts);
-						Iterable<ConstrainedInstanceObject> tss = findTargetStateCIOs(cs, subclauseName);
-						for (ConstrainedInstanceObject nts : tss) {
-							// from target state in different BRI to same state as current state in current bri
-							addPath(directedGraph, nts, cs);
-						}
 					}
 					// process conditions
 					for (ConstrainedInstanceObject ce : condcios) {
@@ -259,7 +249,7 @@ public class AIJGraphTUtil {
 		}
 	}
 	
-	private static void handleConditionExpression(Graph<EObject, DefaultEdge> directedGraph, ConstrainedInstanceObject ce, ConstrainedInstanceObject target) {
+	private static void handleConditionExpression(Graph<EObject, DefaultEdge> directedGraph, ConstrainedInstanceObject ce, InstanceObject target) {
 		Literal current = ce;
 		while (current.eContainer() instanceof Literal) {
 			addPath(directedGraph, current, (Literal)current.eContainer());

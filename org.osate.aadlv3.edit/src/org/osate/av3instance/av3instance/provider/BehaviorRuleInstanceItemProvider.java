@@ -61,6 +61,7 @@ public class BehaviorRuleInstanceItemProvider extends InstanceObjectItemProvider
 
 			addBehaviorRulePropertyDescriptor(object);
 			addSinkPropertyDescriptor(object);
+			addSourcePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -94,6 +95,22 @@ public class BehaviorRuleInstanceItemProvider extends InstanceObjectItemProvider
 						getString("_UI_PropertyDescriptor_description", "_UI_BehaviorRuleInstance_sink_feature", //$NON-NLS-1$//$NON-NLS-2$
 								"_UI_BehaviorRuleInstance_type"), //$NON-NLS-1$
 						Av3instancePackage.Literals.BEHAVIOR_RULE_INSTANCE__SINK, true, false, false,
+						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Source feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSourcePropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_BehaviorRuleInstance_source_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_BehaviorRuleInstance_source_feature", //$NON-NLS-1$//$NON-NLS-2$
+								"_UI_BehaviorRuleInstance_type"), //$NON-NLS-1$
+						Av3instancePackage.Literals.BEHAVIOR_RULE_INSTANCE__SOURCE, true, false, false,
 						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
@@ -177,6 +194,7 @@ public class BehaviorRuleInstanceItemProvider extends InstanceObjectItemProvider
 
 		switch (notification.getFeatureID(BehaviorRuleInstance.class)) {
 		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE__SINK:
+		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE__SOURCE:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE__CONDITION:
