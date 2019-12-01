@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.osate.aadlv3.aadlv3.EOperator;
 import org.osate.aadlv3.aadlv3.Literal;
+import org.osate.aadlv3.aadlv3.MultiLiteralConstraint;
 import org.osate.aadlv3.util.AIv3API;
 import org.osate.aadlv3.util.Aadlv3Util;
 import org.osate.av3instance.av3instance.BehaviorRuleInstance;
@@ -33,8 +34,8 @@ public class TokenTraceUtil {
 		return (TokenTrace)t.eContainer();
 	}
 	
-	public static String buildName(InstanceObject io,  Literal typeref) {
-		String identifier = io!=null?getInstanceObjectPath(io):getUniqueName();
+	public static String buildName(EObject io,  Literal typeref) {
+		String identifier = io instanceof InstanceObject?getInstanceObjectPath((InstanceObject)io):getUniqueName();
 
 		if (typeref == null) {
 			// no type added
@@ -64,25 +65,21 @@ public class TokenTraceUtil {
 	 * @param et
 	 * @return
 	 */
-	public static Token createToken(TokenTrace tt, InstanceObject cioio, TokenType et) {
-		InstanceObject io = getRealInstanceObject(cioio);
+	public static Token createToken(TokenTrace tt, EObject cioio, TokenType et) {
 		Literal type = getRealConstraint(cioio);
-		Token newToken = TokenTraceFactory.eINSTANCE.createToken();
-		String name = buildName(io, type);
-		newToken.setName(name);
-		newToken.setTokenType(et);
-		newToken.setRelatedInstanceObject(io);
-		newToken.setRelatedLiteral(type);
-		tt.getTokens().add(newToken);
-		return newToken;
+		if (type instanceof MultiLiteralConstraint) {
+			return createToken(tt, cioio, type,et);
+		}
+		return createToken(tt, cioio, null,et);
 	}
-	public static Token createToken(TokenTrace tt, InstanceObject io, Literal lit, TokenType et) {
+	
+	public static Token createToken(TokenTrace tt, EObject io, Literal lit, TokenType et) {
 		Token newToken = TokenTraceFactory.eINSTANCE.createToken();
 		String name = buildName(io, lit);
 		newToken.setName(name);
 		newToken.setTokenType(et);
-		newToken.setRelatedInstanceObject(io);
-		newToken.setRelatedLiteral(lit);
+		newToken.setRelatedEObject(io);
+		newToken.setTokenLiteral(lit);
 		tt.getTokens().add(newToken);
 		return newToken;
 	}
@@ -102,8 +99,8 @@ public class TokenTraceUtil {
 	
 	public static Token findToken(EList<Token> tokens, InstanceObject io, Literal lit) {
 		for (Token token : tokens) {
-			if (token.getRelatedInstanceObject() == io && 
-					((token.getRelatedLiteral() == null &&  lit == null) || (token.getRelatedLiteral() != null && token.getRelatedLiteral().sameAs(lit)))) {
+			if (token.getRelatedEObject() == io && 
+					((token.getTokenLiteral() == null &&  lit == null) || (token.getTokenLiteral() != null && token.getTokenLiteral().sameAs(lit)))) {
 				return token;
 			}
 		}
@@ -113,7 +110,7 @@ public class TokenTraceUtil {
 	public static Token findSharedEventSubtree(TokenTrace tokenTrace, Iterable<Token> tokens, EOperator optype, InstanceObject io) {
 		for (Token token : tokenTrace.getTokens()) {
 			if (isIntermediate(token) && token.getOperator() == optype
-					&& io == token.getRelatedInstanceObject() && !token.getTokens().isEmpty()) {
+					&& io == token.getRelatedEObject() && !token.getTokens().isEmpty()) {
 				for (Token t : tokens) {
 					if (!token.getTokens().contains(t)) {
 						continue;
@@ -231,7 +228,7 @@ public class TokenTraceUtil {
 	}
 	
 	public static String getInstanceDescription(Token event) {
-		InstanceObject io = (InstanceObject) event.getRelatedInstanceObject();
+		InstanceObject io = (InstanceObject) event.getRelatedEObject();
 		if (io == null) {
 			return event.getName();
 		}
@@ -244,8 +241,8 @@ public class TokenTraceUtil {
 	}
 	
 	public static String getTokenLiteral(Token context) {
-		if(context.getRelatedLiteral() != null) {
-			return context.getRelatedLiteral().toString();
+		if(context.getTokenLiteral() != null) {
+			return context.getTokenLiteral().toString();
 		}
 		if (!context.getLiteralSink().isEmpty()) {
 			String label = "sink ";
@@ -397,7 +394,7 @@ public class TokenTraceUtil {
 
 	public static void fillProbabilities(TokenTrace tt) {
 		for (Token event : tt.getTokens()) {
-			EObject element = event.getRelatedInstanceObject();
+			EObject element = event.getRelatedEObject();
 			if (element instanceof InstanceObject) {
 				fillProbability(event);
 			}
@@ -416,8 +413,8 @@ public class TokenTraceUtil {
 	}
 
 	public static void fillProbability(Token event) {
-		InstanceObject io = event.getRelatedInstanceObject();
-		Literal type = event.getRelatedLiteral();
+		EObject io = event.getRelatedEObject();
+		Literal type = event.getTokenLiteral();
 		event.setAssignedProbability(
 				new BigDecimal(0.1/*getProbability(io, type)*/, MathContext.UNLIMITED));
 	}

@@ -224,22 +224,22 @@ public interface TokenTracePackage extends EPackage {
 	int TOKEN__TOKEN_TYPE = Aadlv3Package.MULTI_LITERAL_CONSTRAINT_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Related Instance Object</b></em>' reference.
+	 * The feature id for the '<em><b>Related EObject</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TOKEN__RELATED_INSTANCE_OBJECT = Aadlv3Package.MULTI_LITERAL_CONSTRAINT_FEATURE_COUNT + 4;
+	int TOKEN__RELATED_EOBJECT = Aadlv3Package.MULTI_LITERAL_CONSTRAINT_FEATURE_COUNT + 4;
 
 	/**
-	 * The feature id for the '<em><b>Related Literal</b></em>' reference.
+	 * The feature id for the '<em><b>Token Literal</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TOKEN__RELATED_LITERAL = Aadlv3Package.MULTI_LITERAL_CONSTRAINT_FEATURE_COUNT + 5;
+	int TOKEN__TOKEN_LITERAL = Aadlv3Package.MULTI_LITERAL_CONSTRAINT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Literal Sink</b></em>' containment reference list.
@@ -476,26 +476,26 @@ public interface TokenTracePackage extends EPackage {
 	EAttribute getToken_TokenType();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.osate.graph.TokenTrace.Token#getRelatedInstanceObject <em>Related Instance Object</em>}'.
+	 * Returns the meta object for the reference '{@link org.osate.graph.TokenTrace.Token#getRelatedEObject <em>Related EObject</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Related Instance Object</em>'.
-	 * @see org.osate.graph.TokenTrace.Token#getRelatedInstanceObject()
+	 * @return the meta object for the reference '<em>Related EObject</em>'.
+	 * @see org.osate.graph.TokenTrace.Token#getRelatedEObject()
 	 * @see #getToken()
 	 * @generated
 	 */
-	EReference getToken_RelatedInstanceObject();
+	EReference getToken_RelatedEObject();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.osate.graph.TokenTrace.Token#getRelatedLiteral <em>Related Literal</em>}'.
+	 * Returns the meta object for the reference '{@link org.osate.graph.TokenTrace.Token#getTokenLiteral <em>Token Literal</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Related Literal</em>'.
-	 * @see org.osate.graph.TokenTrace.Token#getRelatedLiteral()
+	 * @return the meta object for the reference '<em>Token Literal</em>'.
+	 * @see org.osate.graph.TokenTrace.Token#getTokenLiteral()
 	 * @see #getToken()
 	 * @generated
 	 */
-	EReference getToken_RelatedLiteral();
+	EReference getToken_TokenLiteral();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link org.osate.graph.TokenTrace.Token#getLiteralSink <em>Literal Sink</em>}'.
@@ -714,20 +714,20 @@ public interface TokenTracePackage extends EPackage {
 		EAttribute TOKEN__TOKEN_TYPE = eINSTANCE.getToken_TokenType();
 
 		/**
-		 * The meta object literal for the '<em><b>Related Instance Object</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Related EObject</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TOKEN__RELATED_INSTANCE_OBJECT = eINSTANCE.getToken_RelatedInstanceObject();
+		EReference TOKEN__RELATED_EOBJECT = eINSTANCE.getToken_RelatedEObject();
 
 		/**
-		 * The meta object literal for the '<em><b>Related Literal</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Token Literal</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TOKEN__RELATED_LITERAL = eINSTANCE.getToken_RelatedLiteral();
+		EReference TOKEN__TOKEN_LITERAL = eINSTANCE.getToken_TokenLiteral();
 
 		/**
 		 * The meta object literal for the '<em><b>Literal Sink</b></em>' containment reference list feature.

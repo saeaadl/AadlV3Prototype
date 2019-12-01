@@ -11,6 +11,7 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -18,6 +19,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.osate.aadlv3.aadlv3.Literal;
+import org.osate.aadlv3.aadlv3.MultiLiteralConstraint;
 import org.osate.aadlv3.aadlv3.impl.MultiLiteralConstraintImpl;
 import org.osate.aadlv3.util.AIv3API;
 import org.osate.av3instance.av3instance.InstanceObject;
@@ -38,8 +40,8 @@ import org.osate.graph.TokenTrace.util.TokenTraceUtil;
  *   <li>{@link org.osate.graph.TokenTrace.impl.TokenImpl#getMessage <em>Message</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.impl.TokenImpl#getTokens <em>Tokens</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.impl.TokenImpl#getTokenType <em>Token Type</em>}</li>
- *   <li>{@link org.osate.graph.TokenTrace.impl.TokenImpl#getRelatedInstanceObject <em>Related Instance Object</em>}</li>
- *   <li>{@link org.osate.graph.TokenTrace.impl.TokenImpl#getRelatedLiteral <em>Related Literal</em>}</li>
+ *   <li>{@link org.osate.graph.TokenTrace.impl.TokenImpl#getRelatedEObject <em>Related EObject</em>}</li>
+ *   <li>{@link org.osate.graph.TokenTrace.impl.TokenImpl#getTokenLiteral <em>Token Literal</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.impl.TokenImpl#getLiteralSink <em>Literal Sink</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.impl.TokenImpl#getReferenceCount <em>Reference Count</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.impl.TokenImpl#getAssignedProbability <em>Assigned Probability</em>}</li>
@@ -121,24 +123,24 @@ public class TokenImpl extends MultiLiteralConstraintImpl implements Token {
 	protected TokenType tokenType = TOKEN_TYPE_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getRelatedInstanceObject() <em>Related Instance Object</em>}' reference.
+	 * The cached value of the '{@link #getRelatedEObject() <em>Related EObject</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getRelatedInstanceObject()
+	 * @see #getRelatedEObject()
 	 * @generated
 	 * @ordered
 	 */
-	protected InstanceObject relatedInstanceObject;
+	protected EObject relatedEObject;
 
 	/**
-	 * The cached value of the '{@link #getRelatedLiteral() <em>Related Literal</em>}' reference.
+	 * The cached value of the '{@link #getTokenLiteral() <em>Token Literal</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getRelatedLiteral()
+	 * @see #getTokenLiteral()
 	 * @generated
 	 * @ordered
 	 */
-	protected Literal relatedLiteral;
+	protected Literal tokenLiteral;
 
 	/**
 	 * The cached value of the '{@link #getLiteralSink() <em>Literal Sink</em>}' containment reference list.
@@ -337,16 +339,16 @@ public class TokenImpl extends MultiLiteralConstraintImpl implements Token {
 	 * @generated
 	 */
 	@Override
-	public InstanceObject getRelatedInstanceObject() {
-		if (relatedInstanceObject != null && relatedInstanceObject.eIsProxy()) {
-			InternalEObject oldRelatedInstanceObject = (InternalEObject)relatedInstanceObject;
-			relatedInstanceObject = (InstanceObject)eResolveProxy(oldRelatedInstanceObject);
-			if (relatedInstanceObject != oldRelatedInstanceObject) {
+	public EObject getRelatedEObject() {
+		if (relatedEObject != null && relatedEObject.eIsProxy()) {
+			InternalEObject oldRelatedEObject = (InternalEObject)relatedEObject;
+			relatedEObject = eResolveProxy(oldRelatedEObject);
+			if (relatedEObject != oldRelatedEObject) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TokenTracePackage.TOKEN__RELATED_INSTANCE_OBJECT, oldRelatedInstanceObject, relatedInstanceObject));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TokenTracePackage.TOKEN__RELATED_EOBJECT, oldRelatedEObject, relatedEObject));
 			}
 		}
-		return relatedInstanceObject;
+		return relatedEObject;
 	}
 
 	/**
@@ -354,8 +356,8 @@ public class TokenImpl extends MultiLiteralConstraintImpl implements Token {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InstanceObject basicGetRelatedInstanceObject() {
-		return relatedInstanceObject;
+	public EObject basicGetRelatedEObject() {
+		return relatedEObject;
 	}
 
 	/**
@@ -364,11 +366,11 @@ public class TokenImpl extends MultiLiteralConstraintImpl implements Token {
 	 * @generated
 	 */
 	@Override
-	public void setRelatedInstanceObject(InstanceObject newRelatedInstanceObject) {
-		InstanceObject oldRelatedInstanceObject = relatedInstanceObject;
-		relatedInstanceObject = newRelatedInstanceObject;
+	public void setRelatedEObject(EObject newRelatedEObject) {
+		EObject oldRelatedEObject = relatedEObject;
+		relatedEObject = newRelatedEObject;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TokenTracePackage.TOKEN__RELATED_INSTANCE_OBJECT, oldRelatedInstanceObject, relatedInstanceObject));
+			eNotify(new ENotificationImpl(this, Notification.SET, TokenTracePackage.TOKEN__RELATED_EOBJECT, oldRelatedEObject, relatedEObject));
 	}
 
 	/**
@@ -377,16 +379,16 @@ public class TokenImpl extends MultiLiteralConstraintImpl implements Token {
 	 * @generated
 	 */
 	@Override
-	public Literal getRelatedLiteral() {
-		if (relatedLiteral != null && relatedLiteral.eIsProxy()) {
-			InternalEObject oldRelatedLiteral = (InternalEObject)relatedLiteral;
-			relatedLiteral = (Literal)eResolveProxy(oldRelatedLiteral);
-			if (relatedLiteral != oldRelatedLiteral) {
+	public Literal getTokenLiteral() {
+		if (tokenLiteral != null && tokenLiteral.eIsProxy()) {
+			InternalEObject oldTokenLiteral = (InternalEObject)tokenLiteral;
+			tokenLiteral = (Literal)eResolveProxy(oldTokenLiteral);
+			if (tokenLiteral != oldTokenLiteral) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TokenTracePackage.TOKEN__RELATED_LITERAL, oldRelatedLiteral, relatedLiteral));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TokenTracePackage.TOKEN__TOKEN_LITERAL, oldTokenLiteral, tokenLiteral));
 			}
 		}
-		return relatedLiteral;
+		return tokenLiteral;
 	}
 
 	/**
@@ -394,8 +396,8 @@ public class TokenImpl extends MultiLiteralConstraintImpl implements Token {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Literal basicGetRelatedLiteral() {
-		return relatedLiteral;
+	public Literal basicGetTokenLiteral() {
+		return tokenLiteral;
 	}
 
 	/**
@@ -404,11 +406,11 @@ public class TokenImpl extends MultiLiteralConstraintImpl implements Token {
 	 * @generated
 	 */
 	@Override
-	public void setRelatedLiteral(Literal newRelatedLiteral) {
-		Literal oldRelatedLiteral = relatedLiteral;
-		relatedLiteral = newRelatedLiteral;
+	public void setTokenLiteral(Literal newTokenLiteral) {
+		Literal oldTokenLiteral = tokenLiteral;
+		tokenLiteral = newTokenLiteral;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TokenTracePackage.TOKEN__RELATED_LITERAL, oldRelatedLiteral, relatedLiteral));
+			eNotify(new ENotificationImpl(this, Notification.SET, TokenTracePackage.TOKEN__TOKEN_LITERAL, oldTokenLiteral, tokenLiteral));
 	}
 
 	/**
@@ -563,12 +565,12 @@ public class TokenImpl extends MultiLiteralConstraintImpl implements Token {
 				return getTokens();
 			case TokenTracePackage.TOKEN__TOKEN_TYPE:
 				return getTokenType();
-			case TokenTracePackage.TOKEN__RELATED_INSTANCE_OBJECT:
-				if (resolve) return getRelatedInstanceObject();
-				return basicGetRelatedInstanceObject();
-			case TokenTracePackage.TOKEN__RELATED_LITERAL:
-				if (resolve) return getRelatedLiteral();
-				return basicGetRelatedLiteral();
+			case TokenTracePackage.TOKEN__RELATED_EOBJECT:
+				if (resolve) return getRelatedEObject();
+				return basicGetRelatedEObject();
+			case TokenTracePackage.TOKEN__TOKEN_LITERAL:
+				if (resolve) return getTokenLiteral();
+				return basicGetTokenLiteral();
 			case TokenTracePackage.TOKEN__LITERAL_SINK:
 				return getLiteralSink();
 			case TokenTracePackage.TOKEN__REFERENCE_COUNT:
@@ -605,11 +607,11 @@ public class TokenImpl extends MultiLiteralConstraintImpl implements Token {
 			case TokenTracePackage.TOKEN__TOKEN_TYPE:
 				setTokenType((TokenType)newValue);
 				return;
-			case TokenTracePackage.TOKEN__RELATED_INSTANCE_OBJECT:
-				setRelatedInstanceObject((InstanceObject)newValue);
+			case TokenTracePackage.TOKEN__RELATED_EOBJECT:
+				setRelatedEObject((EObject)newValue);
 				return;
-			case TokenTracePackage.TOKEN__RELATED_LITERAL:
-				setRelatedLiteral((Literal)newValue);
+			case TokenTracePackage.TOKEN__TOKEN_LITERAL:
+				setTokenLiteral((Literal)newValue);
 				return;
 			case TokenTracePackage.TOKEN__LITERAL_SINK:
 				getLiteralSink().clear();
@@ -651,11 +653,11 @@ public class TokenImpl extends MultiLiteralConstraintImpl implements Token {
 			case TokenTracePackage.TOKEN__TOKEN_TYPE:
 				setTokenType(TOKEN_TYPE_EDEFAULT);
 				return;
-			case TokenTracePackage.TOKEN__RELATED_INSTANCE_OBJECT:
-				setRelatedInstanceObject((InstanceObject)null);
+			case TokenTracePackage.TOKEN__RELATED_EOBJECT:
+				setRelatedEObject((EObject)null);
 				return;
-			case TokenTracePackage.TOKEN__RELATED_LITERAL:
-				setRelatedLiteral((Literal)null);
+			case TokenTracePackage.TOKEN__TOKEN_LITERAL:
+				setTokenLiteral((Literal)null);
 				return;
 			case TokenTracePackage.TOKEN__LITERAL_SINK:
 				getLiteralSink().clear();
@@ -692,10 +694,10 @@ public class TokenImpl extends MultiLiteralConstraintImpl implements Token {
 				return tokens != null && !tokens.isEmpty();
 			case TokenTracePackage.TOKEN__TOKEN_TYPE:
 				return tokenType != TOKEN_TYPE_EDEFAULT;
-			case TokenTracePackage.TOKEN__RELATED_INSTANCE_OBJECT:
-				return relatedInstanceObject != null;
-			case TokenTracePackage.TOKEN__RELATED_LITERAL:
-				return relatedLiteral != null;
+			case TokenTracePackage.TOKEN__RELATED_EOBJECT:
+				return relatedEObject != null;
+			case TokenTracePackage.TOKEN__TOKEN_LITERAL:
+				return tokenLiteral != null;
 			case TokenTracePackage.TOKEN__LITERAL_SINK:
 				return literalSink != null && !literalSink.isEmpty();
 			case TokenTracePackage.TOKEN__REFERENCE_COUNT:
@@ -732,8 +734,8 @@ public class TokenImpl extends MultiLiteralConstraintImpl implements Token {
 	@Override
 	public String toString() {
 		if (eIsProxy()) return super.toString();
-
-		return AIv3API.getInstanceObjectPath(this.getRelatedInstanceObject())+(this.getRelatedLiteral()!=null?":"+this.getRelatedLiteral().toString():"");
+		String eolabel = this.getRelatedEObject() instanceof InstanceObject? AIv3API.getInstanceObjectPath((InstanceObject)this.getRelatedEObject()):((MultiLiteralConstraint)this.getRelatedEObject()).getOperator().getName();
+		return eolabel+(this.getTokenLiteral()!=null?":"+this.getTokenLiteral().toString():"");
 	}
 
 } //TokenImpl

@@ -231,10 +231,10 @@ class AIv3API {
 	}
 	
 	// Return the component instance if io is a component instance (self) or the containing component isntance
-	def static ComponentInstance containingComponentInstanceOrSelf(InstanceObject io){
-		var InstanceObject res = io
+	def static ComponentInstance containingComponentInstanceOrSelf(EObject io){
+		var EObject res = io
 		while (!(res instanceof ComponentInstance) && res.eContainer !== null){
-			res = res.eContainer as InstanceObject
+			res = res.eContainer
 		}
 		res as ComponentInstance
 	}
@@ -635,7 +635,7 @@ class AIv3API {
 	/**
 	 * is containing component a sink for a given literal coming in on io
 	 */
-	def static boolean isASink(InstanceObject io, Literal lit){
+	def static boolean isASink(EObject io, Literal lit){
 		if (io === null) return false;
 		val bris = io.containingComponentInstanceOrSelf.behaviorRules
 		for (bri : bris){

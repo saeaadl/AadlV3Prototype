@@ -56,8 +56,8 @@ public class TokenItemProvider
 			addMessagePropertyDescriptor(object);
 			addTokensPropertyDescriptor(object);
 			addTokenTypePropertyDescriptor(object);
-			addRelatedInstanceObjectPropertyDescriptor(object);
-			addRelatedLiteralPropertyDescriptor(object);
+			addRelatedEObjectPropertyDescriptor(object);
+			addTokenLiteralPropertyDescriptor(object);
 			addLiteralSinkPropertyDescriptor(object);
 			addReferenceCountPropertyDescriptor(object);
 			addAssignedProbabilityPropertyDescriptor(object);
@@ -156,19 +156,19 @@ public class TokenItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Related Instance Object feature.
+	 * This adds a property descriptor for the Related EObject feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addRelatedInstanceObjectPropertyDescriptor(Object object) {
+	protected void addRelatedEObjectPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Token_relatedInstanceObject_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Token_relatedInstanceObject_feature", "_UI_Token_type"),
-				 TokenTracePackage.Literals.TOKEN__RELATED_INSTANCE_OBJECT,
+				 getString("_UI_Token_relatedEObject_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Token_relatedEObject_feature", "_UI_Token_type"),
+				 TokenTracePackage.Literals.TOKEN__RELATED_EOBJECT,
 				 true,
 				 false,
 				 true,
@@ -178,19 +178,19 @@ public class TokenItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Related Literal feature.
+	 * This adds a property descriptor for the Token Literal feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addRelatedLiteralPropertyDescriptor(Object object) {
+	protected void addTokenLiteralPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Token_relatedLiteral_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Token_relatedLiteral_feature", "_UI_Token_type"),
-				 TokenTracePackage.Literals.TOKEN__RELATED_LITERAL,
+				 getString("_UI_Token_tokenLiteral_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Token_tokenLiteral_feature", "_UI_Token_type"),
+				 TokenTracePackage.Literals.TOKEN__TOKEN_LITERAL,
 				 true,
 				 false,
 				 true,

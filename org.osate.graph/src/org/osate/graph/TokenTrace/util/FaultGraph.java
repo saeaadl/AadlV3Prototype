@@ -109,7 +109,7 @@ public class FaultGraph {
 		eventTrace.setRoot(rootToken);
 		Literal lit = inferLiterals(rootToken);
 		eventTrace.setInferredRootLiteral(lit);
-		rootToken.setRelatedLiteral(lit);
+		rootToken.setTokenLiteral(lit);
 		eventTrace.setName( eventTrace.getRoot().getName());
 		return eventTrace;
 	}
@@ -215,9 +215,9 @@ public class FaultGraph {
 	// populate intermediate tokens
 	
 	public Literal inferLiterals(Token current) {
-		if (current.getRelatedLiteral() == null) {
+		if (current.getTokenLiteral() == null) {
 			SetLiteral result = Aadlv3Factory.eINSTANCE.createSetLiteral();
-			InstanceObject currentio = current.getRelatedInstanceObject();
+			EObject currentio = current.getRelatedEObject();
 			for (Token subt : current.getTokens()) {
 				Literal res = inferLiterals(subt);
 				if (res != null) {
@@ -240,7 +240,7 @@ public class FaultGraph {
 			}
 			return result;
 		} else {
-			return EcoreUtil.copy(current.getRelatedLiteral());
+			return EcoreUtil.copy(current.getTokenLiteral());
 		}
 	}
 	
@@ -331,7 +331,7 @@ public class FaultGraph {
 		InstanceObject target = getRealInstanceObject(cioio);
 		Literal constraint = getRealConstraint(cioio);
 		if (isSinkConstraint(cioio)) {
-			Token nextStep = addNextStep(step, target, step.getRelatedLiteral());
+			Token nextStep = addNextStep(step, target, step.getTokenLiteral());
 			if (nextStep != null) {
 				nextStep.setTokenType(TokenType.SINK);
 			}
@@ -340,9 +340,9 @@ public class FaultGraph {
 		EObject outVertex = cioio;
 		boolean unhandled = false;
 		if (constraint instanceof ECollection) {
-			if (constraint.contains(step.getRelatedLiteral())) {
+			if (constraint.contains(step.getTokenLiteral())) {
 				// constraint contains propagated literal
-				Token nextStep = addNextStep(step, target, step.getRelatedLiteral());
+				Token nextStep = addNextStep(step, target, step.getTokenLiteral());
 				if (nextStep != null) {
 					if (graph.containsVertex(cioio)) {
 						Set<DefaultEdge> edges = graph.outgoingEdgesOf(cioio);
@@ -361,7 +361,7 @@ public class FaultGraph {
 		// we have either cioio as instance object, or as Constrained IO with a single literal or no literal
 		if (constraint == null|| constraint instanceof ECollection) {
 			// use previous literal if cioio does not set a single literal
-			constraint = step.getRelatedLiteral();
+			constraint = step.getTokenLiteral();
 		}
 		// do next step
 		Token nextStep = addNextStep(step, target, constraint);
@@ -411,8 +411,8 @@ public class FaultGraph {
 			// all tokens are masked by sink
 			return null;
 		}
-		if (tok.getRelatedLiteral() != null) {
-			if (constraint.contains(tok.getRelatedLiteral())) {
+		if (tok.getTokenLiteral() != null) {
+			if (constraint.contains(tok.getTokenLiteral())) {
 				return null;
 			} else {
 				return tok;
@@ -443,10 +443,10 @@ public class FaultGraph {
 	private void setLeafTokensType() {
 		for (Token t: eventTrace.getTokens()) {
 			if (t.getTokens().isEmpty() && t.getTokenType() == TokenType.INTERMEDIATE) {
-				if (containingComponentInstanceOrSelf(t.getRelatedInstanceObject()) == eventTrace.getInstanceRoot()) {
+				if (containingComponentInstanceOrSelf(t.getRelatedEObject()) == eventTrace.getInstanceRoot()) {
 					t.setTokenType(TokenType.EXTERNAL);
 				} else if (t.getTokenType() != TokenType.COMPONENT && t.getTokenType() != TokenType.SYSTEM ) {
-					if(t.getRelatedInstanceObject() instanceof FeatureInstance || t.getRelatedInstanceObject() instanceof ComponentInstance) {
+					if(t.getRelatedEObject() instanceof FeatureInstance || t.getRelatedEObject() instanceof ComponentInstance) {
 						t.setTokenType(TokenType.UNDEVELOPED);
 					} else {
 						t.setTokenType(TokenType.BASIC);

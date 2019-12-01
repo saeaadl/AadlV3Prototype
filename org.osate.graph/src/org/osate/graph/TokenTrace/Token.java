@@ -4,9 +4,9 @@ package org.osate.graph.TokenTrace;
 
 import java.math.BigDecimal;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.osate.aadlv3.aadlv3.Literal;
 import org.osate.aadlv3.aadlv3.MultiLiteralConstraint;
-import org.osate.av3instance.av3instance.InstanceObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,8 +21,8 @@ import org.osate.av3instance.av3instance.InstanceObject;
  *   <li>{@link org.osate.graph.TokenTrace.Token#getMessage <em>Message</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.Token#getTokens <em>Tokens</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.Token#getTokenType <em>Token Type</em>}</li>
- *   <li>{@link org.osate.graph.TokenTrace.Token#getRelatedInstanceObject <em>Related Instance Object</em>}</li>
- *   <li>{@link org.osate.graph.TokenTrace.Token#getRelatedLiteral <em>Related Literal</em>}</li>
+ *   <li>{@link org.osate.graph.TokenTrace.Token#getRelatedEObject <em>Related EObject</em>}</li>
+ *   <li>{@link org.osate.graph.TokenTrace.Token#getTokenLiteral <em>Token Literal</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.Token#getLiteralSink <em>Literal Sink</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.Token#getReferenceCount <em>Reference Count</em>}</li>
  *   <li>{@link org.osate.graph.TokenTrace.Token#getAssignedProbability <em>Assigned Probability</em>}</li>
@@ -117,48 +117,48 @@ public interface Token extends MultiLiteralConstraint {
 	void setTokenType(TokenType value);
 
 	/**
-	 * Returns the value of the '<em><b>Related Instance Object</b></em>' reference.
+	 * Returns the value of the '<em><b>Related EObject</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Related Instance Object</em>' reference.
-	 * @see #setRelatedInstanceObject(InstanceObject)
-	 * @see org.osate.graph.TokenTrace.TokenTracePackage#getToken_RelatedInstanceObject()
+	 * @return the value of the '<em>Related EObject</em>' reference.
+	 * @see #setRelatedEObject(EObject)
+	 * @see org.osate.graph.TokenTrace.TokenTracePackage#getToken_RelatedEObject()
 	 * @model
 	 * @generated
 	 */
-	InstanceObject getRelatedInstanceObject();
+	EObject getRelatedEObject();
 
 	/**
-	 * Sets the value of the '{@link org.osate.graph.TokenTrace.Token#getRelatedInstanceObject <em>Related Instance Object</em>}' reference.
+	 * Sets the value of the '{@link org.osate.graph.TokenTrace.Token#getRelatedEObject <em>Related EObject</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Related Instance Object</em>' reference.
-	 * @see #getRelatedInstanceObject()
+	 * @param value the new value of the '<em>Related EObject</em>' reference.
+	 * @see #getRelatedEObject()
 	 * @generated
 	 */
-	void setRelatedInstanceObject(InstanceObject value);
+	void setRelatedEObject(EObject value);
 
 	/**
-	 * Returns the value of the '<em><b>Related Literal</b></em>' reference.
+	 * Returns the value of the '<em><b>Token Literal</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Related Literal</em>' reference.
-	 * @see #setRelatedLiteral(Literal)
-	 * @see org.osate.graph.TokenTrace.TokenTracePackage#getToken_RelatedLiteral()
+	 * @return the value of the '<em>Token Literal</em>' reference.
+	 * @see #setTokenLiteral(Literal)
+	 * @see org.osate.graph.TokenTrace.TokenTracePackage#getToken_TokenLiteral()
 	 * @model
 	 * @generated
 	 */
-	Literal getRelatedLiteral();
+	Literal getTokenLiteral();
 
 	/**
-	 * Sets the value of the '{@link org.osate.graph.TokenTrace.Token#getRelatedLiteral <em>Related Literal</em>}' reference.
+	 * Sets the value of the '{@link org.osate.graph.TokenTrace.Token#getTokenLiteral <em>Token Literal</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Related Literal</em>' reference.
-	 * @see #getRelatedLiteral()
+	 * @param value the new value of the '<em>Token Literal</em>' reference.
+	 * @see #getTokenLiteral()
 	 * @generated
 	 */
-	void setRelatedLiteral(Literal value);
+	void setTokenLiteral(Literal value);
 
 	/**
 	 * Returns the value of the '<em><b>Literal Sink</b></em>' containment reference list.

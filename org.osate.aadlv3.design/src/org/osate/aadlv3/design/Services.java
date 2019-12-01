@@ -104,8 +104,7 @@ public class Services {
 	
 	public boolean isInToken(Token tok, InstanceObject io) {
 		//selected.equals(getInstanceObjectPath(eo)))
-		InstanceObject tio = containingComponentInstanceOrSelf(tok.getRelatedInstanceObject());
-		System.out.println(io.toString()+": "+tio.toString());
+		InstanceObject tio = containingComponentInstanceOrSelf(tok.getRelatedEObject());
 		if (AIv3API.getInstanceObjectPath(tio).equals(AIv3API.getInstanceObjectPath(io))) {
 			return true;
 		}

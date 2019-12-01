@@ -257,7 +257,7 @@ public class TokenTracePackageImpl extends EPackageImpl implements TokenTracePac
 	 * @generated
 	 */
 	@Override
-	public EReference getToken_RelatedInstanceObject() {
+	public EReference getToken_RelatedEObject() {
 		return (EReference)tokenEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -267,7 +267,7 @@ public class TokenTracePackageImpl extends EPackageImpl implements TokenTracePac
 	 * @generated
 	 */
 	@Override
-	public EReference getToken_RelatedLiteral() {
+	public EReference getToken_TokenLiteral() {
 		return (EReference)tokenEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -394,8 +394,8 @@ public class TokenTracePackageImpl extends EPackageImpl implements TokenTracePac
 		createEAttribute(tokenEClass, TOKEN__MESSAGE);
 		createEReference(tokenEClass, TOKEN__TOKENS);
 		createEAttribute(tokenEClass, TOKEN__TOKEN_TYPE);
-		createEReference(tokenEClass, TOKEN__RELATED_INSTANCE_OBJECT);
-		createEReference(tokenEClass, TOKEN__RELATED_LITERAL);
+		createEReference(tokenEClass, TOKEN__RELATED_EOBJECT);
+		createEReference(tokenEClass, TOKEN__TOKEN_LITERAL);
 		createEReference(tokenEClass, TOKEN__LITERAL_SINK);
 		createEAttribute(tokenEClass, TOKEN__REFERENCE_COUNT);
 		createEAttribute(tokenEClass, TOKEN__ASSIGNED_PROBABILITY);
@@ -433,7 +433,6 @@ public class TokenTracePackageImpl extends EPackageImpl implements TokenTracePac
 
 		// Obtain other dependent packages
 		Aadlv3Package theAadlv3Package = (Aadlv3Package)EPackage.Registry.INSTANCE.getEPackage(Aadlv3Package.eNS_URI);
-		Av3instancePackage theAv3instancePackage = (Av3instancePackage)EPackage.Registry.INSTANCE.getEPackage(Av3instancePackage.eNS_URI);
 
 		// Create type parameters
 
@@ -457,8 +456,8 @@ public class TokenTracePackageImpl extends EPackageImpl implements TokenTracePac
 		initEAttribute(getToken_Message(), ecorePackage.getEString(), "message", null, 0, 1, Token.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getToken_Tokens(), this.getToken(), null, "tokens", null, 0, -1, Token.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getToken_TokenType(), this.getTokenType(), "tokenType", null, 0, 1, Token.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getToken_RelatedInstanceObject(), theAv3instancePackage.getInstanceObject(), null, "relatedInstanceObject", null, 0, 1, Token.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getToken_RelatedLiteral(), theAadlv3Package.getLiteral(), null, "relatedLiteral", null, 0, 1, Token.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getToken_RelatedEObject(), ecorePackage.getEObject(), null, "relatedEObject", null, 0, 1, Token.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getToken_TokenLiteral(), theAadlv3Package.getLiteral(), null, "tokenLiteral", null, 0, 1, Token.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getToken_LiteralSink(), theAadlv3Package.getLiteral(), null, "literalSink", null, 0, -1, Token.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getToken_ReferenceCount(), ecorePackage.getEInt(), "referenceCount", "0", 0, 1, Token.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getToken_AssignedProbability(), ecorePackage.getEBigDecimal(), "assignedProbability", null, 0, 1, Token.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
