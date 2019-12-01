@@ -5,12 +5,12 @@ package ConnectionExamples is
 	type systemstate;
 	
 	interface actuator is
-		state: provides in data access systemstate;
+		mystate: provides in data access systemstate;
 		inp: in port;
 		fea: feature;
 	end;
 	interface sensor is
-		state: requires in data access systemstate;
+		mystate: requires in data access systemstate;
 		outp: out port;
 		fea: feature;
 	end;
@@ -18,34 +18,35 @@ package ConnectionExamples is
 	abstract sensor.i is
 		sub1: thread sense;
 		upmap: connection sub1.p1 -> outp ;
-		stateaccess: connection state -> sub1.state;
+		stateaccess: connection mystate -> sub1.mystate;
 	end;
 	abstract actuator.i  is
-		mystate: data systemstate ;
+		thestate: data systemstate ;
 		sub2: thread actuate;
 		downmap: connection inp -> sub2.p1;
-//		stateread: connection  mystate -> state ; 
-//		statewrite: connection sub2.state -> mystate ;
+//		stateread: connection  mystate -> thestate ; 
+//		statewrite: connection sub2.state -> thestate ;
 	end;
 	
 	
 	thread interface sense  is
-		state: requires in data access systemstate;
+		mystate: requires in data access systemstate;
 		p1: out port ;
 	end;
 	
 	thread interface actuate  is
 		p1: in port ;
-		state: requires out data access systemstate;
+		mystate: requires out data access systemstate;
 	end;
 	
 	system interface conntop is end;
+	
 	system conntop.i is
 		sense: abstract sensor.i;
 		actuate: abstract actuator.i;
 		hw : system hardwareplatform.impl;
 		conn1: connection sense.sub1.p1 -> actuate.sub2.p1;
-		stateaccess: connection  actuate.state -> sense.state ;
+		stateaccess: connection  actuate.mystate -> sense.mystate ;
 //		fconn: connection sense.fea -> actuate.fea;
 	end;
 	

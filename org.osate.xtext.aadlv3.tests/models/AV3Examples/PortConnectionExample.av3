@@ -49,8 +49,8 @@ package PortConnectionExample is
 //	@EM{
 		s : state threestate;
 		eact1: error event (ServiceOmission) ;
-		actuate1: transition s == s0 -> s == s1 when eact1 in (ServiceOmission);
-		actuate2: flow p1 in (ServiceOmission) -> effect(ServiceOmission) when s == s0;
+		actuate1: transition s = s0 -> s = s1 when eact1 in (ServiceOmission);
+		actuate2: flow p1 in (ServiceOmission) -> effect(ServiceOmission) when s = s0;
 //		actuate3: flow x -> { effect(ServiceOmission)} when s == s1;
 //	};
 	end;
