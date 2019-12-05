@@ -29,6 +29,7 @@ import org.osate.aadlv3.aadlv3.NamedElement;
  * <ul>
  *   <li>{@link org.osate.av3instance.av3instance.InstanceObject#getIncomingAssociations <em>Incoming Associations</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.InstanceObject#getOutgoingAssociations <em>Outgoing Associations</em>}</li>
+ *   <li>{@link org.osate.av3instance.av3instance.InstanceObject#getInStates <em>In States</em>}</li>
  * </ul>
  *
  * @see org.osate.av3instance.av3instance.Av3instancePackage#getInstanceObject()
@@ -71,5 +72,17 @@ public interface InstanceObject extends NamedElement {
 	 * @generated
 	 */
 	EList<AssociationInstance> getOutgoingAssociations();
+
+	/**
+	 * Returns the value of the '<em><b>In States</b></em>' reference list.
+	 * The list contents are of type {@link org.osate.av3instance.av3instance.StateInstance}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>In States</em>' reference list.
+	 * @see org.osate.av3instance.av3instance.Av3instancePackage#getInstanceObject_InStates()
+	 * @model
+	 * @generated
+	 */
+	EList<StateInstance> getInStates();
 
 } // InstanceObject

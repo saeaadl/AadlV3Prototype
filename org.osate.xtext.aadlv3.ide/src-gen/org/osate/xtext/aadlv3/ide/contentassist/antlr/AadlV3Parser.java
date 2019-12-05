@@ -61,7 +61,7 @@ public class AadlV3Parser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getNestedImplementationElementAccess().getAlternatives(), "rule__NestedImplementationElement__Alternatives");
 			builder.put(grammarAccess.getBehaviorSpecificationElementAccess().getAlternatives(), "rule__BehaviorSpecificationElement__Alternatives");
 			builder.put(grammarAccess.getEventAccess().getTypeAlternatives_2_0(), "rule__Event__TypeAlternatives_2_0");
-			builder.put(grammarAccess.getTransitionRuleAccess().getConditionAlternatives_8_0(), "rule__TransitionRule__ConditionAlternatives_8_0");
+			builder.put(grammarAccess.getTransitionRuleAccess().getConditionAlternatives_4_0(), "rule__TransitionRule__ConditionAlternatives_4_0");
 			builder.put(grammarAccess.getBFlowRuleAccess().getAlternatives_4(), "rule__BFlowRule__Alternatives_4");
 			builder.put(grammarAccess.getBFlowRuleAccess().getConditionAlternatives_4_1_0(), "rule__BFlowRule__ConditionAlternatives_4_1_0");
 			builder.put(grammarAccess.getBFlowRuleAccess().getAlternatives_6(), "rule__BFlowRule__Alternatives_6");
@@ -164,6 +164,8 @@ public class AadlV3Parser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getEventAccess().getGroup(), "rule__Event__Group__0");
 			builder.put(grammarAccess.getTransitionRuleAccess().getGroup(), "rule__TransitionRule__Group__0");
 			builder.put(grammarAccess.getBFlowRuleAccess().getGroup(), "rule__BFlowRule__Group__0");
+			builder.put(grammarAccess.getBFlowRuleAccess().getGroup_6_1(), "rule__BFlowRule__Group_6_1__0");
+			builder.put(grammarAccess.getBFlowRuleAccess().getGroup_6_1_1(), "rule__BFlowRule__Group_6_1_1__0");
 			builder.put(grammarAccess.getBFlowRuleAccess().getGroup_7(), "rule__BFlowRule__Group_7__0");
 			builder.put(grammarAccess.getAssignmentAccess().getGroup(), "rule__Assignment__Group__0");
 			builder.put(grammarAccess.getAssignmentAccess().getGroup_1(), "rule__Assignment__Group_1__0");
@@ -400,15 +402,16 @@ public class AadlV3Parser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getEventAccess().getValueAssignment_4(), "rule__Event__ValueAssignment_4");
 			builder.put(grammarAccess.getTransitionRuleAccess().getAnnotationsAssignment_0(), "rule__TransitionRule__AnnotationsAssignment_0");
 			builder.put(grammarAccess.getTransitionRuleAccess().getNameAssignment_1(), "rule__TransitionRule__NameAssignment_1");
-			builder.put(grammarAccess.getTransitionRuleAccess().getCurrentStateAssignment_4(), "rule__TransitionRule__CurrentStateAssignment_4");
+			builder.put(grammarAccess.getTransitionRuleAccess().getConditionAssignment_4(), "rule__TransitionRule__ConditionAssignment_4");
 			builder.put(grammarAccess.getTransitionRuleAccess().getTargetStateAssignment_6(), "rule__TransitionRule__TargetStateAssignment_6");
-			builder.put(grammarAccess.getTransitionRuleAccess().getConditionAssignment_8(), "rule__TransitionRule__ConditionAssignment_8");
+			builder.put(grammarAccess.getTransitionRuleAccess().getCurrentStateAssignment_8(), "rule__TransitionRule__CurrentStateAssignment_8");
 			builder.put(grammarAccess.getBFlowRuleAccess().getAnnotationsAssignment_0(), "rule__BFlowRule__AnnotationsAssignment_0");
 			builder.put(grammarAccess.getBFlowRuleAccess().getNameAssignment_1(), "rule__BFlowRule__NameAssignment_1");
 			builder.put(grammarAccess.getBFlowRuleAccess().getSourceAssignment_4_0(), "rule__BFlowRule__SourceAssignment_4_0");
 			builder.put(grammarAccess.getBFlowRuleAccess().getConditionAssignment_4_1(), "rule__BFlowRule__ConditionAssignment_4_1");
 			builder.put(grammarAccess.getBFlowRuleAccess().getSinkAssignment_6_0(), "rule__BFlowRule__SinkAssignment_6_0");
-			builder.put(grammarAccess.getBFlowRuleAccess().getActionsAssignment_6_1(), "rule__BFlowRule__ActionsAssignment_6_1");
+			builder.put(grammarAccess.getBFlowRuleAccess().getActionsAssignment_6_1_0(), "rule__BFlowRule__ActionsAssignment_6_1_0");
+			builder.put(grammarAccess.getBFlowRuleAccess().getActionsAssignment_6_1_1_1(), "rule__BFlowRule__ActionsAssignment_6_1_1_1");
 			builder.put(grammarAccess.getBFlowRuleAccess().getCurrentStateAssignment_7_1(), "rule__BFlowRule__CurrentStateAssignment_7_1");
 			builder.put(grammarAccess.getAssignmentAccess().getTargetAssignment_0(), "rule__Assignment__TargetAssignment_0");
 			builder.put(grammarAccess.getAssignmentAccess().getValueAssignment_1_1(), "rule__Assignment__ValueAssignment_1_1");

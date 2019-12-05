@@ -370,12 +370,12 @@ Event returns av3::Generator:
 
 TransitionRule returns av3::BehaviorRule :
 	(annotations += Annotation )*
-	name=ID ':' 'transition' currentState=CurrentState '->' targetState=TargetState 'when' condition =  (MultiLiteralOperation | ModelElementContainsLiteral | ModelElementReference) ';'
+	name=ID ':' 'transition' condition =  (MultiLiteralOperation | ModelElementContainsLiteral | ModelElementReference) '->' targetState=TargetState 'when' currentState=CurrentState ';'
 ;
 
 BFlowRule returns av3::BehaviorRule :
 	(annotations += Annotation )*
-	name=ID ':' 'flow'  (source?='source' |condition =(MultiLiteralOperation | ModelElementContainsLiteral | ModelElementReference)) '->'  (sink?='sink' | actions+=Assignment*) ('when' currentState=CurrentState )?';'
+	name=ID ':' 'flow'  (source?='source' |condition =(MultiLiteralOperation | ModelElementContainsLiteral | ModelElementReference)) '->'  (sink?='sink' | (actions+=Assignment (',' actions+=Assignment)*)) ('when' currentState=CurrentState )?';'
 ;
 
 Assignment returns av3::Assignment:

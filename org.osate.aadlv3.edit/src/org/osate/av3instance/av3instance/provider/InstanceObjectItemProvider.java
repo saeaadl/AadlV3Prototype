@@ -59,6 +59,7 @@ public class InstanceObjectItemProvider extends NamedElementItemProvider {
 
 			addIncomingAssociationsPropertyDescriptor(object);
 			addOutgoingAssociationsPropertyDescriptor(object);
+			addInStatesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -93,6 +94,21 @@ public class InstanceObjectItemProvider extends NamedElementItemProvider {
 								"_UI_InstanceObject_outgoingAssociations_feature", "_UI_InstanceObject_type"), //$NON-NLS-1$ //$NON-NLS-2$
 						Av3instancePackage.Literals.INSTANCE_OBJECT__OUTGOING_ASSOCIATIONS, true, false, true, null,
 						null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the In States feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addInStatesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_InstanceObject_inStates_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_InstanceObject_inStates_feature", //$NON-NLS-1$//$NON-NLS-2$
+								"_UI_InstanceObject_type"), //$NON-NLS-1$
+						Av3instancePackage.Literals.INSTANCE_OBJECT__IN_STATES, true, false, true, null, null, null));
 	}
 
 	/**

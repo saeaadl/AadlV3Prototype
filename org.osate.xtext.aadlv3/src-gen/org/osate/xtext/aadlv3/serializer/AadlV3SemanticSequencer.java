@@ -396,7 +396,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *         annotations+=Annotation* 
 	 *         name=ID 
 	 *         (source?='source' | condition=MultiLiteralOperation | condition=ModelElementContainsLiteral | condition=ModelElementReference) 
-	 *         (sink?='sink' | actions+=Assignment+)? 
+	 *         (sink?='sink' | (actions+=Assignment actions+=Assignment*)) 
 	 *         currentState=CurrentState?
 	 *     )
 	 */
@@ -1343,9 +1343,9 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     (
 	 *         annotations+=Annotation* 
 	 *         name=ID 
-	 *         currentState=CurrentState 
+	 *         (condition=MultiLiteralOperation | condition=ModelElementContainsLiteral | condition=ModelElementReference) 
 	 *         targetState=TargetState 
-	 *         (condition=MultiLiteralOperation | condition=ModelElementContainsLiteral | condition=ModelElementReference)
+	 *         currentState=CurrentState
 	 *     )
 	 */
 	protected void sequence_TransitionRule(ISerializationContext context, BehaviorRule semanticObject) {

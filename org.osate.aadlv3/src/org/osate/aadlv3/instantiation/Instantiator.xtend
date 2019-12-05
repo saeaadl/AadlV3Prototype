@@ -655,6 +655,7 @@ class Instantiator {
 			bri.annotations.add(an)
 		}
 		bri.sink = br.sink;
+		bri.source = br.source;
 		if (br.condition !== null) {
 			var behaviorCondition = br.condition.copy
 			// now replace ConditionElements by respective instances

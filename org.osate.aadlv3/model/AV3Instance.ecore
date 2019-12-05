@@ -9,6 +9,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="outgoingAssociations" ordered="false"
         upperBound="-1" eType="#//AssociationInstance" transient="true" derived="true"
         resolveProxies="false" eOpposite="#//AssociationInstance/source"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inStates" upperBound="-1"
+        eType="#//StateInstance"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FeatureInstance" eSuperTypes="#//InstanceObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="feature" eType="ecore:EClass Aadlv3.ecore#//Feature"/>

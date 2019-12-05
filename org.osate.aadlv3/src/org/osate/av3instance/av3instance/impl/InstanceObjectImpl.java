@@ -24,12 +24,14 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.osate.aadlv3.aadlv3.impl.NamedElementImpl;
 import org.osate.av3instance.av3instance.AssociationInstance;
 import org.osate.av3instance.av3instance.Av3instancePackage;
 import org.osate.av3instance.av3instance.InstanceObject;
+import org.osate.av3instance.av3instance.StateInstance;
 
 /**
  * <!-- begin-user-doc -->
@@ -41,6 +43,7 @@ import org.osate.av3instance.av3instance.InstanceObject;
  * <ul>
  *   <li>{@link org.osate.av3instance.av3instance.impl.InstanceObjectImpl#getIncomingAssociations <em>Incoming Associations</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.impl.InstanceObjectImpl#getOutgoingAssociations <em>Outgoing Associations</em>}</li>
+ *   <li>{@link org.osate.av3instance.av3instance.impl.InstanceObjectImpl#getInStates <em>In States</em>}</li>
  * </ul>
  *
  * @generated
@@ -65,6 +68,16 @@ public abstract class InstanceObjectImpl extends NamedElementImpl implements Ins
 	 * @ordered
 	 */
 	protected EList<AssociationInstance> outgoingAssociations;
+
+	/**
+	 * The cached value of the '{@link #getInStates() <em>In States</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInStates()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<StateInstance> inStates;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -120,6 +133,20 @@ public abstract class InstanceObjectImpl extends NamedElementImpl implements Ins
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public EList<StateInstance> getInStates() {
+		if (inStates == null) {
+			inStates = new EObjectResolvingEList<StateInstance>(StateInstance.class, this,
+					Av3instancePackage.INSTANCE_OBJECT__IN_STATES);
+		}
+		return inStates;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -162,6 +189,8 @@ public abstract class InstanceObjectImpl extends NamedElementImpl implements Ins
 			return getIncomingAssociations();
 		case Av3instancePackage.INSTANCE_OBJECT__OUTGOING_ASSOCIATIONS:
 			return getOutgoingAssociations();
+		case Av3instancePackage.INSTANCE_OBJECT__IN_STATES:
+			return getInStates();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -183,6 +212,10 @@ public abstract class InstanceObjectImpl extends NamedElementImpl implements Ins
 			getOutgoingAssociations().clear();
 			getOutgoingAssociations().addAll((Collection<? extends AssociationInstance>) newValue);
 			return;
+		case Av3instancePackage.INSTANCE_OBJECT__IN_STATES:
+			getInStates().clear();
+			getInStates().addAll((Collection<? extends StateInstance>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -201,6 +234,9 @@ public abstract class InstanceObjectImpl extends NamedElementImpl implements Ins
 		case Av3instancePackage.INSTANCE_OBJECT__OUTGOING_ASSOCIATIONS:
 			getOutgoingAssociations().clear();
 			return;
+		case Av3instancePackage.INSTANCE_OBJECT__IN_STATES:
+			getInStates().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -217,6 +253,8 @@ public abstract class InstanceObjectImpl extends NamedElementImpl implements Ins
 			return incomingAssociations != null && !incomingAssociations.isEmpty();
 		case Av3instancePackage.INSTANCE_OBJECT__OUTGOING_ASSOCIATIONS:
 			return outgoingAssociations != null && !outgoingAssociations.isEmpty();
+		case Av3instancePackage.INSTANCE_OBJECT__IN_STATES:
+			return inStates != null && !inStates.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

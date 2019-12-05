@@ -216,6 +216,16 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 	 * @generated
 	 */
 	@Override
+	public EReference getInstanceObject_InStates() {
+		return (EReference) instanceObjectEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getFeatureInstance() {
 		return featureInstanceEClass;
 	}
@@ -733,6 +743,7 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 		instanceObjectEClass = createEClass(INSTANCE_OBJECT);
 		createEReference(instanceObjectEClass, INSTANCE_OBJECT__INCOMING_ASSOCIATIONS);
 		createEReference(instanceObjectEClass, INSTANCE_OBJECT__OUTGOING_ASSOCIATIONS);
+		createEReference(instanceObjectEClass, INSTANCE_OBJECT__IN_STATES);
 
 		featureInstanceEClass = createEClass(FEATURE_INSTANCE);
 		createEReference(featureInstanceEClass, FEATURE_INSTANCE__FEATURE);
@@ -848,6 +859,9 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 				this.getAssociationInstance_Source(), "outgoingAssociations", null, 0, -1, InstanceObject.class, //$NON-NLS-1$
 				IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 				IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEReference(getInstanceObject_InStates(), this.getStateInstance(), null, "inStates", null, 0, -1, //$NON-NLS-1$
+				InstanceObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(featureInstanceEClass, FeatureInstance.class, "FeatureInstance", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
 				IS_GENERATED_INSTANCE_CLASS);

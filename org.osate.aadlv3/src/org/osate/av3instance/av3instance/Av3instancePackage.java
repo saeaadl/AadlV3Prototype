@@ -127,13 +127,22 @@ public interface Av3instancePackage extends EPackage {
 	int INSTANCE_OBJECT__OUTGOING_ASSOCIATIONS = Aadlv3Package.NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>In States</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_OBJECT__IN_STATES = Aadlv3Package.NAMED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Instance Object</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_OBJECT_FEATURE_COUNT = Aadlv3Package.NAMED_ELEMENT_FEATURE_COUNT + 2;
+	int INSTANCE_OBJECT_FEATURE_COUNT = Aadlv3Package.NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.osate.av3instance.av3instance.impl.FeatureInstanceImpl <em>Feature Instance</em>}' class.
@@ -189,6 +198,15 @@ public interface Av3instancePackage extends EPackage {
 	 * @ordered
 	 */
 	int FEATURE_INSTANCE__OUTGOING_ASSOCIATIONS = INSTANCE_OBJECT__OUTGOING_ASSOCIATIONS;
+
+	/**
+	 * The feature id for the '<em><b>In States</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_INSTANCE__IN_STATES = INSTANCE_OBJECT__IN_STATES;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference.
@@ -289,6 +307,15 @@ public interface Av3instancePackage extends EPackage {
 	 * @ordered
 	 */
 	int COMPONENT_INSTANCE__OUTGOING_ASSOCIATIONS = INSTANCE_OBJECT__OUTGOING_ASSOCIATIONS;
+
+	/**
+	 * The feature id for the '<em><b>In States</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_INSTANCE__IN_STATES = INSTANCE_OBJECT__IN_STATES;
 
 	/**
 	 * The feature id for the '<em><b>Category</b></em>' attribute.
@@ -454,6 +481,15 @@ public interface Av3instancePackage extends EPackage {
 	int ASSOCIATION_INSTANCE__OUTGOING_ASSOCIATIONS = INSTANCE_OBJECT__OUTGOING_ASSOCIATIONS;
 
 	/**
+	 * The feature id for the '<em><b>In States</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION_INSTANCE__IN_STATES = INSTANCE_OBJECT__IN_STATES;
+
+	/**
 	 * The feature id for the '<em><b>Association Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -590,6 +626,15 @@ public interface Av3instancePackage extends EPackage {
 	int PATH_INSTANCE__OUTGOING_ASSOCIATIONS = INSTANCE_OBJECT__OUTGOING_ASSOCIATIONS;
 
 	/**
+	 * The feature id for the '<em><b>In States</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATH_INSTANCE__IN_STATES = INSTANCE_OBJECT__IN_STATES;
+
+	/**
 	 * The feature id for the '<em><b>Elements</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -670,6 +715,15 @@ public interface Av3instancePackage extends EPackage {
 	 * @ordered
 	 */
 	int BEHAVIOR_RULE_INSTANCE__OUTGOING_ASSOCIATIONS = INSTANCE_OBJECT__OUTGOING_ASSOCIATIONS;
+
+	/**
+	 * The feature id for the '<em><b>In States</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEHAVIOR_RULE_INSTANCE__IN_STATES = INSTANCE_OBJECT__IN_STATES;
 
 	/**
 	 * The feature id for the '<em><b>Behavior Rule</b></em>' reference.
@@ -799,6 +853,15 @@ public interface Av3instancePackage extends EPackage {
 	int GENERATOR_INSTANCE__OUTGOING_ASSOCIATIONS = INSTANCE_OBJECT__OUTGOING_ASSOCIATIONS;
 
 	/**
+	 * The feature id for the '<em><b>In States</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERATOR_INSTANCE__IN_STATES = INSTANCE_OBJECT__IN_STATES;
+
+	/**
 	 * The feature id for the '<em><b>Generator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -879,6 +942,15 @@ public interface Av3instancePackage extends EPackage {
 	 * @ordered
 	 */
 	int CONSTRAINED_INSTANCE_OBJECT__OUTGOING_ASSOCIATIONS = INSTANCE_OBJECT__OUTGOING_ASSOCIATIONS;
+
+	/**
+	 * The feature id for the '<em><b>In States</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINED_INSTANCE_OBJECT__IN_STATES = INSTANCE_OBJECT__IN_STATES;
 
 	/**
 	 * The feature id for the '<em><b>Instance Object</b></em>' reference.
@@ -972,6 +1044,15 @@ public interface Av3instancePackage extends EPackage {
 	int STATE_VARIABLE_INSTANCE__OUTGOING_ASSOCIATIONS = INSTANCE_OBJECT__OUTGOING_ASSOCIATIONS;
 
 	/**
+	 * The feature id for the '<em><b>In States</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_VARIABLE_INSTANCE__IN_STATES = INSTANCE_OBJECT__IN_STATES;
+
+	/**
 	 * The feature id for the '<em><b>Current State</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1063,6 +1144,15 @@ public interface Av3instancePackage extends EPackage {
 	int STATE_INSTANCE__OUTGOING_ASSOCIATIONS = INSTANCE_OBJECT__OUTGOING_ASSOCIATIONS;
 
 	/**
+	 * The feature id for the '<em><b>In States</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_INSTANCE__IN_STATES = INSTANCE_OBJECT__IN_STATES;
+
+	/**
 	 * The number of structural features of the '<em>State Instance</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1102,6 +1192,17 @@ public interface Av3instancePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getInstanceObject_OutgoingAssociations();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.osate.av3instance.av3instance.InstanceObject#getInStates <em>In States</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>In States</em>'.
+	 * @see org.osate.av3instance.av3instance.InstanceObject#getInStates()
+	 * @see #getInstanceObject()
+	 * @generated
+	 */
+	EReference getInstanceObject_InStates();
 
 	/**
 	 * Returns the meta object for class '{@link org.osate.av3instance.av3instance.FeatureInstance <em>Feature Instance</em>}'.
@@ -1681,6 +1782,14 @@ public interface Av3instancePackage extends EPackage {
 		 * @generated
 		 */
 		EReference INSTANCE_OBJECT__OUTGOING_ASSOCIATIONS = eINSTANCE.getInstanceObject_OutgoingAssociations();
+
+		/**
+		 * The meta object literal for the '<em><b>In States</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference INSTANCE_OBJECT__IN_STATES = eINSTANCE.getInstanceObject_InStates();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.av3instance.av3instance.impl.FeatureInstanceImpl <em>Feature Instance</em>}' class.
