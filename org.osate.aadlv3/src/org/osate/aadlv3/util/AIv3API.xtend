@@ -33,7 +33,7 @@ import org.osate.av3instance.av3instance.GeneratorInstance
 import org.osate.aadlv3.aadlv3.Generator
 import org.osate.aadlv3.aadlv3.StateSpecification
 import org.osate.av3instance.av3instance.StateInstance
-import org.osate.aadlv3.aadlv3.ConditionOperation
+import org.osate.aadlv3.aadlv3.BinaryOperation
 import java.util.Collections
 import org.osate.aadlv3.aadlv3.EnumerationLiteral
 import org.eclipse.emf.common.util.EList
@@ -98,11 +98,11 @@ class AIv3API {
 		return bri
 	}
 	
-	def static ConstrainedInstanceObject createConstrainedInstanceObject(ConditionOperation co, ComponentInstance context, boolean outgoing) {
+	def static ConstrainedInstanceObject createConstrainedInstanceObject(BinaryOperation co, ComponentInstance context, boolean outgoing) {
 		val cio = Av3instanceFactory.eINSTANCE.createConstrainedInstanceObject
-		cio.instanceObject = context.getInstanceElement(co.element as NamedElementReference)
-		if (co.constraint !== null){
-			cio.constraint = co.constraint.copy
+		cio.instanceObject = context.getInstanceElement(co.left as NamedElementReference)
+		if (co.right !== null){
+			cio.constraint = co.right.copy
 			cio.name = cio.getInstanceObject().instanceObjectPath+":"+cio.getConstraint().toString()
 		} else {
 			cio.name = cio.getInstanceObject().instanceObjectPath

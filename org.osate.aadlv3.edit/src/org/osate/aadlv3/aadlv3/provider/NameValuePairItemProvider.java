@@ -220,7 +220,7 @@ public class NameValuePairItemProvider extends ItemProviderAdapter implements IE
 				Aadlv3Factory.eINSTANCE.createMultiLiteralConstraint()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.NAME_VALUE_PAIR__VALUE,
-				Aadlv3Factory.eINSTANCE.createConditionOperation()));
+				Aadlv3Factory.eINSTANCE.createBinaryOperation()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.NAME_VALUE_PAIR__VALUE,
 				Aadlv3Factory.eINSTANCE.createPackageElementReference()));

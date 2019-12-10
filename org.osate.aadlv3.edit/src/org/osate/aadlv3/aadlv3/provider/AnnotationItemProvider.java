@@ -191,7 +191,7 @@ public class AnnotationItemProvider extends NamedElementItemProvider {
 				Aadlv3Factory.eINSTANCE.createMultiLiteralConstraint()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ANNOTATION__VALUE,
-				Aadlv3Factory.eINSTANCE.createConditionOperation()));
+				Aadlv3Factory.eINSTANCE.createBinaryOperation()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ANNOTATION__VALUE,
 				Aadlv3Factory.eINSTANCE.createPackageElementReference()));

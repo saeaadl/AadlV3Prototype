@@ -37,12 +37,12 @@ public interface ModelElement extends NamedElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>In Modes</em>' containment reference.
-	 * @see #setInModes(ConditionOperation)
+	 * @see #setInModes(BinaryOperation)
 	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getModelElement_InModes()
 	 * @model containment="true"
 	 * @generated
 	 */
-	ConditionOperation getInModes();
+	BinaryOperation getInModes();
 
 	/**
 	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.ModelElement#getInModes <em>In Modes</em>}' containment reference.
@@ -52,6 +52,6 @@ public interface ModelElement extends NamedElement {
 	 * @see #getInModes()
 	 * @generated
 	 */
-	void setInModes(ConditionOperation value);
+	void setInModes(BinaryOperation value);
 
 } // ModelElement

@@ -167,7 +167,7 @@ public class InstanceConfigurationItemProvider extends SubcomponentItemProvider 
 
 		newChildDescriptors
 				.add(createChildParameter(Aadlv3Package.Literals.INSTANCE_CONFIGURATION__PRODUCTLINE_CONSTRAINT,
-						Aadlv3Factory.eINSTANCE.createConditionOperation()));
+						Aadlv3Factory.eINSTANCE.createBinaryOperation()));
 	}
 
 	/**

@@ -11,7 +11,7 @@ import org.osate.aadlv3.aadlv3.BehaviorSpecification
 import org.osate.aadlv3.aadlv3.Classifier
 import org.osate.aadlv3.aadlv3.ClassifierAssignment
 import org.osate.aadlv3.aadlv3.ComponentInterface
-import org.osate.aadlv3.aadlv3.ConditionOperation
+import org.osate.aadlv3.aadlv3.BinaryOperation
 import org.osate.aadlv3.aadlv3.ECollection
 import org.osate.aadlv3.aadlv3.Feature
 import org.osate.aadlv3.aadlv3.FeatureCategory
@@ -659,9 +659,9 @@ class Instantiator {
 		if (br.condition !== null) {
 			var behaviorCondition = br.condition.copy
 			// now replace ConditionElements by respective instances
-			val cos = EcoreUtil2.eAllOfType(behaviorCondition, ConditionOperation);
+			val cos = EcoreUtil2.eAllOfType(behaviorCondition, BinaryOperation);
 			for (co : cos) {
-				if ((co.element as NamedElementReference).element instanceof ModelElement) {
+				if ((co.left as NamedElementReference).element instanceof ModelElement) {
 					// resolve only model element references
 					val cio = co.createConstrainedInstanceObject(context, false)
 					val container = co.eContainer
@@ -701,14 +701,14 @@ class Instantiator {
 		}
 		// now actions
 		for (action : br.actions) {
-			val tio = context.getInstanceElement(action.target);
-			val foundcio = findMatchingActionCIO(tio,action.value).head();
+			val tio = context.getInstanceElement(action.left as NamedElementReference);
+			val foundcio = findMatchingActionCIO(tio,action.right).head();
 			if (foundcio !== null){
 				bri.actions +=foundcio;
 			} else {
 				val tcio = tio.createConstrainedInstanceObject(context, true)
-				if (action.value !== null) {
-					tcio.constraint = action.value.copy
+				if (action.right !== null) {
+					tcio.constraint = action.right.copy
 				}
 				context.actions += tcio;
 				bri.actions += tcio;

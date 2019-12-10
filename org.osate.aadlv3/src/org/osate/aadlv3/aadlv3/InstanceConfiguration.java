@@ -40,12 +40,12 @@ public interface InstanceConfiguration extends Subcomponent {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Productline Constraint</em>' containment reference.
-	 * @see #setProductlineConstraint(ConditionOperation)
+	 * @see #setProductlineConstraint(BinaryOperation)
 	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getInstanceConfiguration_ProductlineConstraint()
 	 * @model containment="true"
 	 * @generated
 	 */
-	ConditionOperation getProductlineConstraint();
+	BinaryOperation getProductlineConstraint();
 
 	/**
 	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.InstanceConfiguration#getProductlineConstraint <em>Productline Constraint</em>}' containment reference.
@@ -55,7 +55,7 @@ public interface InstanceConfiguration extends Subcomponent {
 	 * @see #getProductlineConstraint()
 	 * @generated
 	 */
-	void setProductlineConstraint(ConditionOperation value);
+	void setProductlineConstraint(BinaryOperation value);
 
 	/**
 	 * Returns the value of the '<em><b>Actions</b></em>' attribute list.

@@ -190,7 +190,7 @@ public class ECollectionItemProvider extends LiteralItemProvider {
 				Aadlv3Factory.eINSTANCE.createMultiLiteralConstraint()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ECOLLECTION__ELEMENTS,
-				Aadlv3Factory.eINSTANCE.createConditionOperation()));
+				Aadlv3Factory.eINSTANCE.createBinaryOperation()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ECOLLECTION__ELEMENTS,
 				Aadlv3Factory.eINSTANCE.createPackageElementReference()));

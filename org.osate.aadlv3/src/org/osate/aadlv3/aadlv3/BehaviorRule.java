@@ -107,7 +107,7 @@ public interface BehaviorRule extends ModelElement {
 
 	/**
 	 * Returns the value of the '<em><b>Actions</b></em>' containment reference list.
-	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.Assignment}.
+	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.BinaryOperation}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Actions</em>' containment reference list.
@@ -115,7 +115,7 @@ public interface BehaviorRule extends ModelElement {
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Assignment> getActions();
+	EList<BinaryOperation> getActions();
 
 	/**
 	 * Returns the value of the '<em><b>Source</b></em>' attribute.

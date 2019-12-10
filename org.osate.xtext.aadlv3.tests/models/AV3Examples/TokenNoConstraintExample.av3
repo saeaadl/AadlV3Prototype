@@ -37,7 +37,7 @@ package TokenNoConstraintExample is
 		#TokenSource => (t1);
 	@EM{
 		es : state threestate;
-		e1: error event (ServiceOmission, cycles) ; 
+		e1: error  (ServiceOmission, cycles) ; 
 		sense2: flow e1  ->  p1 when es = s0;
 	};
 	end;
@@ -48,9 +48,9 @@ package TokenNoConstraintExample is
 //		taction: flow  sink p1;
 	@EM{
 		es: state threestate;
-		eact1: error event (ServiceOmission) ;
-		actuate1: transition es = s0 -> es = s1 when eact1;
-		actuate3: flow source ->  effect when es = s1;
+		eact1: error  (ServiceOmission) ;
+		actuate1: transition  eact1 -> es = s1 when es = s0 ;
+		actuate3: flow source effect when es = s1;
 		actuate2: flow p1 ->  effect when es =s1;//(ServiceOmission)};
 	};
 	end;
@@ -65,7 +65,7 @@ package TokenNoConstraintExample is
 //	filterpath2: flow insignal2 -> outsignal;
 	#Period => 20 ;
 	@EM{
-//		filter2: all (insignal1 in ServiceOmission, insignal2 in ServiceOmission ) ->  outsignal!(ServiceOmission);
+//		filter2: flow all (insignal1 in ServiceOmission, insignal2 in ServiceOmission ) ->  outsignal!(ServiceOmission);
 		filter2: flow all (insignal1 , insignal2) ->  outsignal;
 	};
 	end;
@@ -73,18 +73,8 @@ package TokenNoConstraintExample is
 	thread interface compute is
 	insignal : in feature;
 	outsignal : out feature;
-//	computepath: flow insignal -> outsignal;
-//	@BA{
-//		f1: insignal -> outsignal; 
-//	};
-	@EM{
-//		states threestate;
-//		e1: error event;
-//		r1: s0 -[e1 ]-> s1 {outsignal(ServiceOmission)};
-//		computer2: insignal in ServiceOmission ->  outsignal(ServiceOmission);
-		computer2: flow insignal ->  outsignal;
-//		r3: insignal in ServiceOmission-> ;
-	};
+
+	computer2: flow insignal ->  outsignal;
 	end;
 	
 	thread interface logger is

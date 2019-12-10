@@ -144,12 +144,8 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 			return createMultiLiteralConstraint();
 		case Aadlv3Package.MULTI_OPERAND_EXPRESSION:
 			return createMultiOperandExpression();
-		case Aadlv3Package.ASSIGNMENT:
-			return createAssignment();
-		case Aadlv3Package.ACTION:
-			return createAction();
-		case Aadlv3Package.CONDITION_OPERATION:
-			return createConditionOperation();
+		case Aadlv3Package.BINARY_OPERATION:
+			return createBinaryOperation();
 		case Aadlv3Package.PROPERTY_ASSOCIATION:
 			return createPropertyAssociation();
 		case Aadlv3Package.DEFAULT_ANNEX_SUBCLAUSE:
@@ -201,8 +197,8 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 			return createCompositeFromString(eDataType, initialValue);
 		case Aadlv3Package.EOPERATOR:
 			return createEOperatorFromString(eDataType, initialValue);
-		case Aadlv3Package.COPERATOR:
-			return createCOperatorFromString(eDataType, initialValue);
+		case Aadlv3Package.BINARY_OPERATOR:
+			return createBinaryOperatorFromString(eDataType, initialValue);
 		case Aadlv3Package.PROPERTY_ASSOCIATION_TYPE:
 			return createPropertyAssociationTypeFromString(eDataType, initialValue);
 		default:
@@ -232,8 +228,8 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 			return convertCompositeToString(eDataType, instanceValue);
 		case Aadlv3Package.EOPERATOR:
 			return convertEOperatorToString(eDataType, instanceValue);
-		case Aadlv3Package.COPERATOR:
-			return convertCOperatorToString(eDataType, instanceValue);
+		case Aadlv3Package.BINARY_OPERATOR:
+			return convertBinaryOperatorToString(eDataType, instanceValue);
 		case Aadlv3Package.PROPERTY_ASSOCIATION_TYPE:
 			return convertPropertyAssociationTypeToString(eDataType, instanceValue);
 		default:
@@ -577,31 +573,9 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 	 * @generated
 	 */
 	@Override
-	public Assignment createAssignment() {
-		AssignmentImpl assignment = new AssignmentImpl();
-		return assignment;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Action createAction() {
-		ActionImpl action = new ActionImpl();
-		return action;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ConditionOperation createConditionOperation() {
-		ConditionOperationImpl conditionOperation = new ConditionOperationImpl();
-		return conditionOperation;
+	public BinaryOperation createBinaryOperation() {
+		BinaryOperationImpl binaryOperation = new BinaryOperationImpl();
+		return binaryOperation;
 	}
 
 	/**
@@ -972,8 +946,8 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public COperator createCOperatorFromString(EDataType eDataType, String initialValue) {
-		COperator result = COperator.get(initialValue);
+	public BinaryOperator createBinaryOperatorFromString(EDataType eDataType, String initialValue) {
+		BinaryOperator result = BinaryOperator.get(initialValue);
 		if (result == null)
 			throw new IllegalArgumentException(
 					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
@@ -985,7 +959,7 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertCOperatorToString(EDataType eDataType, Object instanceValue) {
+	public String convertBinaryOperatorToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

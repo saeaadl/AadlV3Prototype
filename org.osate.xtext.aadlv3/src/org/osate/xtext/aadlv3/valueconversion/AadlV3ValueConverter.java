@@ -4,15 +4,14 @@ import org.eclipse.xtext.common.services.DefaultTerminalConverters;
 import org.eclipse.xtext.conversion.IValueConverter;
 import org.eclipse.xtext.conversion.ValueConverter;
 import org.eclipse.xtext.nodemodel.INode;
+import org.osate.aadlv3.aadlv3.AssociationType;
+import org.osate.aadlv3.aadlv3.BinaryOperator;
 import org.osate.aadlv3.aadlv3.ComponentCategory;
+import org.osate.aadlv3.aadlv3.Composite;
 import org.osate.aadlv3.aadlv3.FeatureCategory;
 import org.osate.aadlv3.aadlv3.FeatureDirection;
-import org.osate.aadlv3.aadlv3.AssociationType;
-import org.osate.aadlv3.aadlv3.PropertyAssociationType;
-import org.osate.aadlv3.aadlv3.Composite;
 import org.osate.aadlv3.aadlv3.Primitive;
-import org.osate.aadlv3.aadlv3.COperator;
-import org.osate.aadlv3.aadlv3.EOperator;
+import org.osate.aadlv3.aadlv3.PropertyAssociationType;
 
 
 public class AadlV3ValueConverter extends DefaultTerminalConverters {
@@ -204,59 +203,80 @@ public class AadlV3ValueConverter extends DefaultTerminalConverters {
 		};
 	}
 
-//	@ValueConverter(rule = "COperation")
-//	public IValueConverter<COperator> COperation() {
-//		return new IValueConverter<COperator>() {
-//			@Override
-//			public COperator toValue(String string, INode node) {
-//				if (string == null) {
-//					return null;
-//				}
-//				return COperator.get(string);
-//			}
-//
-//			@Override
-//			public String toString(COperator value) {
-//				return value.getName();
-//			}
-//		};
-//	}
-//
-//	@ValueConverter(rule = "SatisfiesOperation")
-//	public IValueConverter<COperator> SatisfiesOperation() {
-//		return new IValueConverter<COperator>() {
-//			@Override
-//			public COperator toValue(String string, INode node) {
-//				if (string == null) {
-//					return null;
-//				}
-//				return COperator.get(string);
-//			}
-//
-//			@Override
-//			public String toString(COperator value) {
-//				return value.getName();
-//			}
-//		};
-//	}
-//
-//	@ValueConverter(rule = "EOperation")
-//	public IValueConverter<EOperator> EOperation() {
-//		return new IValueConverter<EOperator>() {
-//			@Override
-//			public EOperator toValue(String string, INode node) {
-//				if (string == null) {
-//					return null;
-//				}
-//				return EOperator.get(string);
-//			}
-//
-//			@Override
-//			public String toString(EOperator value) {
-//				return value.getName();
-//			}
-//		};
-//	}
+	@ValueConverter(rule = "EqualsOperation")
+	public IValueConverter<BinaryOperator> EqualsOperation() {
+		return new IValueConverter<BinaryOperator>() {
+			@Override
+			public BinaryOperator toValue(String string, INode node) {
+				if (string == null) {
+					return null;
+				}
+				if (string.equals("=")) {
+					return BinaryOperator.EQUALS;
+				}
+				return BinaryOperator.get(string);
+			}
+
+			@Override
+			public String toString(BinaryOperator value) {
+				if (value == BinaryOperator.EQUALS) {
+					return "=";
+				}
+				return value.getName();
+			}
+		};
+	}
+	@ValueConverter(rule = "InOperation")
+	public IValueConverter<BinaryOperator> InOperation() {
+		return new IValueConverter<BinaryOperator>() {
+			@Override
+			public BinaryOperator toValue(String string, INode node) {
+				if (string == null) {
+					return null;
+				}
+				return BinaryOperator.get(string);
+			}
+
+			@Override
+			public String toString(BinaryOperator value) {
+				return value.getName();
+			}
+		};
+	}
+	@ValueConverter(rule = "SatisfiesOperation")
+	public IValueConverter<BinaryOperator> SatisfiesOperation() {
+		return new IValueConverter<BinaryOperator>() {
+			@Override
+			public BinaryOperator toValue(String string, INode node) {
+				if (string == null) {
+					return null;
+				}
+				return BinaryOperator.get(string);
+			}
+
+			@Override
+			public String toString(BinaryOperator value) {
+				return value.getName();
+			}
+		};
+	}
+	@ValueConverter(rule = "BinaryOperation")
+	public IValueConverter<BinaryOperator> BinaryOperation() {
+		return new IValueConverter<BinaryOperator>() {
+			@Override
+			public BinaryOperator toValue(String string, INode node) {
+				if (string == null) {
+					return null;
+				}
+				return BinaryOperator.get(string);
+			}
+
+			@Override
+			public String toString(BinaryOperator value) {
+				return value.getName();
+			}
+		};
+	}
 
 	
 	@ValueConverter(rule = "NoQuoteString")

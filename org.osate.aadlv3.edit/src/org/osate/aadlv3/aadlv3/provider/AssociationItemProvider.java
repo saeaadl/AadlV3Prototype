@@ -63,7 +63,6 @@ public class AssociationItemProvider extends ModelElementItemProvider {
 			addAssociationTypePropertyDescriptor(object);
 			addBindingTypePropertyDescriptor(object);
 			addBidirectionalPropertyDescriptor(object);
-			addAnnexSubclausePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -113,21 +112,6 @@ public class AssociationItemProvider extends ModelElementItemProvider {
 								"_UI_Association_type"),
 						Aadlv3Package.Literals.ASSOCIATION__BIDIRECTIONAL, true, false, false,
 						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Annex Subclause feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addAnnexSubclausePropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Association_annexSubclause_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Association_annexSubclause_feature",
-								"_UI_Association_type"),
-						Aadlv3Package.Literals.ASSOCIATION__ANNEX_SUBCLAUSE, true, false, true, null, null, null));
 	}
 
 	/**

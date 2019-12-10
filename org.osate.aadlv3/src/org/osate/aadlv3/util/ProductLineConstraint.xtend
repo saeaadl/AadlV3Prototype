@@ -61,7 +61,7 @@ class ProductLineConstraint {
 	val static String FeatureLabels = "FeatureLabels";
 	
 	def static ListLiteral getProductLineConstraint(InstanceConfiguration ic){
-		return ic.productlineConstraint?.constraint as ListLiteral
+		return ic.productlineConstraint?.right as ListLiteral
 	}
 	
 	def static ECollection getFeatureLabels(NamedElement cl){

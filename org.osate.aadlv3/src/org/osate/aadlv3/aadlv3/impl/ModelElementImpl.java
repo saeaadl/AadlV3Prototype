@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
-import org.osate.aadlv3.aadlv3.ConditionOperation;
+import org.osate.aadlv3.aadlv3.BinaryOperation;
 import org.osate.aadlv3.aadlv3.ModelElement;
 
 /**
@@ -46,7 +46,7 @@ public abstract class ModelElementImpl extends NamedElementImpl implements Model
 	 * @generated
 	 * @ordered
 	 */
-	protected ConditionOperation inModes;
+	protected BinaryOperation inModes;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -73,7 +73,7 @@ public abstract class ModelElementImpl extends NamedElementImpl implements Model
 	 * @generated
 	 */
 	@Override
-	public ConditionOperation getInModes() {
+	public BinaryOperation getInModes() {
 		return inModes;
 	}
 
@@ -82,8 +82,8 @@ public abstract class ModelElementImpl extends NamedElementImpl implements Model
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetInModes(ConditionOperation newInModes, NotificationChain msgs) {
-		ConditionOperation oldInModes = inModes;
+	public NotificationChain basicSetInModes(BinaryOperation newInModes, NotificationChain msgs) {
+		BinaryOperation oldInModes = inModes;
 		inModes = newInModes;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
@@ -102,7 +102,7 @@ public abstract class ModelElementImpl extends NamedElementImpl implements Model
 	 * @generated
 	 */
 	@Override
-	public void setInModes(ConditionOperation newInModes) {
+	public void setInModes(BinaryOperation newInModes) {
 		if (newInModes != inModes) {
 			NotificationChain msgs = null;
 			if (inModes != null)
@@ -157,7 +157,7 @@ public abstract class ModelElementImpl extends NamedElementImpl implements Model
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 		case Aadlv3Package.MODEL_ELEMENT__IN_MODES:
-			setInModes((ConditionOperation) newValue);
+			setInModes((BinaryOperation) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -172,7 +172,7 @@ public abstract class ModelElementImpl extends NamedElementImpl implements Model
 	public void eUnset(int featureID) {
 		switch (featureID) {
 		case Aadlv3Package.MODEL_ELEMENT__IN_MODES:
-			setInModes((ConditionOperation) null);
+			setInModes((BinaryOperation) null);
 			return;
 		}
 		super.eUnset(featureID);

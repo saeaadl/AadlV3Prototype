@@ -27,7 +27,6 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.ComponentInterface#getFeatures <em>Features</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.ComponentInterface#getFlows <em>Flows</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.ComponentInterface#getUseProperties <em>Use Properties</em>}</li>
  * </ul>
  *
@@ -51,22 +50,6 @@ public interface ComponentInterface extends Classifier {
 	 * @generated
 	 */
 	EList<Feature> getFeatures();
-
-	/**
-	 * Returns the value of the '<em><b>Flows</b></em>' containment reference list.
-	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.Association}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Flows</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Flows</em>' containment reference list.
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getComponentInterface_Flows()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<Association> getFlows();
 
 	/**
 	 * Returns the value of the '<em><b>Use Properties</b></em>' reference list.

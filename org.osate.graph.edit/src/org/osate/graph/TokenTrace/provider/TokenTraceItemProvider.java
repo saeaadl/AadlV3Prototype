@@ -365,7 +365,7 @@ public class TokenTraceItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(TokenTracePackage.Literals.TOKEN_TRACE__INFERRED_ROOT_LITERAL,
-				 Aadlv3Factory.eINSTANCE.createConditionOperation()));
+				 Aadlv3Factory.eINSTANCE.createBinaryOperation()));
 
 		newChildDescriptors.add
 			(createChildParameter

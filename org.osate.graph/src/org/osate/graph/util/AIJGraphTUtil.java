@@ -61,7 +61,24 @@ public class AIJGraphTUtil {
 		g.addVertex(src);
 		g.addEdge(src, dst);
 	}
+	
+	private static void addPath(Graph<EObject, DefaultEdge> g, EObject src, EObject dst, EObject refEObject) {
+		g.addVertex(dst);
+		g.addVertex(src);
+		if (refEObject != null) {
+			RefEObjectEdge edge = new RefEObjectEdge(refEObject);
+			g.addEdge(src, dst, edge);
+		} else {
+			g.addEdge(src, dst);
+		}
+	}
 
+	/**
+	 * generate graph based on connections and flows
+	 * edges may reference instance object related to the edge, i.e., object that may have a property related to the edge.
+	 * @param root
+	 * @return
+	 */
 	public static Graph<EObject, DefaultEdge> generatePropagationPaths(ComponentInstance root) {
 		Graph<EObject, DefaultEdge> directedGraph = new DefaultDirectedGraph<EObject, DefaultEdge>(
 				DefaultEdge.class);
@@ -69,7 +86,7 @@ public class AIJGraphTUtil {
 		for (AssociationInstance conni : connis) {
 			InstanceObject src = conni.getSource();
 			InstanceObject dst = conni.getDestination();
-			addPath(directedGraph, src, dst);
+			addPath(directedGraph, src, dst, conni);
 		}
 		List<ComponentInstance> cis = getAllComponents(root);
 		for (ComponentInstance ci : cis) {
@@ -81,7 +98,7 @@ public class AIJGraphTUtil {
 					if (!isFlowSource(ifi, flows)) {
 						// all out features
 						for (FeatureInstance ofi : outfeats){
-							directedGraph.addEdge(ifi, ofi);
+							addPath(directedGraph,ifi, ofi, ci);
 						}
 					}
 				}
@@ -89,23 +106,14 @@ public class AIJGraphTUtil {
 					if (!isFlowDestination(ofi, flows)) {
 						// all in features
 						for (FeatureInstance ifi : infeats){
-							directedGraph.addEdge(ifi, ofi);
+							addPath(directedGraph,ifi, ofi, ci);
 						}
 					}
 				}
 				for (AssociationInstance flow : flows) {
 					InstanceObject src = flow.getSource();
 					InstanceObject dst = flow.getDestination();
-					if (src != null) {
-						directedGraph.addVertex(src);
-					}
-					if (dst != null) {
-						directedGraph.addVertex(dst);
-					}
-					if (src == null || dst == null) {
-						directedGraph.addVertex(ci);
-					}
-					directedGraph.addEdge(src != null ? src : ci, dst != null ? dst : ci);
+					addPath(directedGraph,src != null ? src : ci, dst != null ? dst : ci, flow);
 				}
 			}
 		}

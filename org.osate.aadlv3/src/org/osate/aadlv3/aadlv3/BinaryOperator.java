@@ -23,14 +23,14 @@ import org.eclipse.emf.common.util.Enumerator;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the literals of the enumeration '<em><b>COperator</b></em>',
+ * A representation of the literals of the enumeration '<em><b>Binary Operator</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getCOperator()
+ * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getBinaryOperator()
  * @model
  * @generated
  */
-public enum COperator implements Enumerator {
+public enum BinaryOperator implements Enumerator {
 	/**
 	 * The '<em><b>IN</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -40,19 +40,21 @@ public enum COperator implements Enumerator {
 	 * @ordered
 	 */
 	IN(0, "IN", "in"),
+
 	/**
 	 * The '<em><b>CONTAINS</b></em>' literal object.
 	 * <!-- begin-user-doc -->
-	* <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #CONTAINS_VALUE
 	 * @generated
 	 * @ordered
 	 */
 	CONTAINS(1, "CONTAINS", "contains"),
+
 	/**
 	 * The '<em><b>EQUALS</b></em>' literal object.
 	 * <!-- begin-user-doc -->
-	* <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #EQUALS_VALUE
 	 * @generated
 	 * @ordered
@@ -68,10 +70,11 @@ public enum COperator implements Enumerator {
 	 * @ordered
 	 */
 	SATISFIES(3, "SATISFIES", "satisfies"),
+
 	/**
 	 * The '<em><b>QUESTIONMARK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
-	* <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #QUESTIONMARK_VALUE
 	 * @generated
 	 * @ordered
@@ -134,32 +137,33 @@ public enum COperator implements Enumerator {
 	public static final int QUESTIONMARK_VALUE = 4;
 
 	/**
-	 * An array of all the '<em><b>COperator</b></em>' enumerators.
+	 * An array of all the '<em><b>Binary Operator</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final COperator[] VALUES_ARRAY = new COperator[] { IN, CONTAINS, EQUALS, SATISFIES, QUESTIONMARK, };
+	private static final BinaryOperator[] VALUES_ARRAY = new BinaryOperator[] { IN, CONTAINS, EQUALS, SATISFIES,
+			QUESTIONMARK, };
 
 	/**
-	 * A public read-only list of all the '<em><b>COperator</b></em>' enumerators.
+	 * A public read-only list of all the '<em><b>Binary Operator</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<COperator> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<BinaryOperator> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>COperator</b></em>' literal with the specified literal value.
+	 * Returns the '<em><b>Binary Operator</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param literal the literal.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
-	public static COperator get(String literal) {
+	public static BinaryOperator get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			COperator result = VALUES_ARRAY[i];
+			BinaryOperator result = VALUES_ARRAY[i];
 			if (result.toString().equals(literal)) {
 				return result;
 			}
@@ -168,16 +172,16 @@ public enum COperator implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>COperator</b></em>' literal with the specified name.
+	 * Returns the '<em><b>Binary Operator</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param name the name.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
-	public static COperator getByName(String name) {
+	public static BinaryOperator getByName(String name) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			COperator result = VALUES_ARRAY[i];
+			BinaryOperator result = VALUES_ARRAY[i];
 			if (result.getName().equals(name)) {
 				return result;
 			}
@@ -186,14 +190,14 @@ public enum COperator implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>COperator</b></em>' literal with the specified integer value.
+	 * Returns the '<em><b>Binary Operator</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the integer value.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
-	public static COperator get(int value) {
+	public static BinaryOperator get(int value) {
 		switch (value) {
 		case IN_VALUE:
 			return IN;
@@ -236,7 +240,7 @@ public enum COperator implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private COperator(int value, String name, String literal) {
+	private BinaryOperator(int value, String name, String literal) {
 		this.value = value;
 		this.name = name;
 		this.literal = literal;
@@ -283,4 +287,4 @@ public enum COperator implements Enumerator {
 		return literal;
 	}
 
-} //COperator
+} //BinaryOperator

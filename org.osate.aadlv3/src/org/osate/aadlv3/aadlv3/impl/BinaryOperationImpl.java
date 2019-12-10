@@ -24,35 +24,35 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
-import org.osate.aadlv3.aadlv3.COperator;
-import org.osate.aadlv3.aadlv3.ConditionOperation;
+import org.osate.aadlv3.aadlv3.BinaryOperation;
+import org.osate.aadlv3.aadlv3.BinaryOperator;
 import org.osate.aadlv3.aadlv3.Literal;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Condition Operation</b></em>'.
+ * An implementation of the model object '<em><b>Binary Operation</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.ConditionOperationImpl#getElement <em>Element</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.ConditionOperationImpl#getOperator <em>Operator</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.ConditionOperationImpl#getConstraint <em>Constraint</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.BinaryOperationImpl#getLeft <em>Left</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.BinaryOperationImpl#getOperator <em>Operator</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.BinaryOperationImpl#getRight <em>Right</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ConditionOperationImpl extends LiteralImpl implements ConditionOperation {
+public class BinaryOperationImpl extends LiteralImpl implements BinaryOperation {
 	/**
-	 * The cached value of the '{@link #getElement() <em>Element</em>}' containment reference.
+	 * The cached value of the '{@link #getLeft() <em>Left</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getElement()
+	 * @see #getLeft()
 	 * @generated
 	 * @ordered
 	 */
-	protected Literal element;
+	protected Literal left;
 
 	/**
 	 * The default value of the '{@link #getOperator() <em>Operator</em>}' attribute.
@@ -62,7 +62,7 @@ public class ConditionOperationImpl extends LiteralImpl implements ConditionOper
 	 * @generated
 	 * @ordered
 	 */
-	protected static final COperator OPERATOR_EDEFAULT = COperator.IN;
+	protected static final BinaryOperator OPERATOR_EDEFAULT = BinaryOperator.IN;
 
 	/**
 	 * The cached value of the '{@link #getOperator() <em>Operator</em>}' attribute.
@@ -72,24 +72,24 @@ public class ConditionOperationImpl extends LiteralImpl implements ConditionOper
 	 * @generated
 	 * @ordered
 	 */
-	protected COperator operator = OPERATOR_EDEFAULT;
+	protected BinaryOperator operator = OPERATOR_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getConstraint() <em>Constraint</em>}' containment reference.
+	 * The cached value of the '{@link #getRight() <em>Right</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getConstraint()
+	 * @see #getRight()
 	 * @generated
 	 * @ordered
 	 */
-	protected Literal constraint;
+	protected Literal right;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ConditionOperationImpl() {
+	protected BinaryOperationImpl() {
 		super();
 	}
 
@@ -100,7 +100,7 @@ public class ConditionOperationImpl extends LiteralImpl implements ConditionOper
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return Aadlv3Package.Literals.CONDITION_OPERATION;
+		return Aadlv3Package.Literals.BINARY_OPERATION;
 	}
 
 	/**
@@ -109,8 +109,8 @@ public class ConditionOperationImpl extends LiteralImpl implements ConditionOper
 	 * @generated
 	 */
 	@Override
-	public Literal getElement() {
-		return element;
+	public Literal getLeft() {
+		return left;
 	}
 
 	/**
@@ -118,12 +118,12 @@ public class ConditionOperationImpl extends LiteralImpl implements ConditionOper
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetElement(Literal newElement, NotificationChain msgs) {
-		Literal oldElement = element;
-		element = newElement;
+	public NotificationChain basicSetLeft(Literal newLeft, NotificationChain msgs) {
+		Literal oldLeft = left;
+		left = newLeft;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					Aadlv3Package.CONDITION_OPERATION__ELEMENT, oldElement, newElement);
+					Aadlv3Package.BINARY_OPERATION__LEFT, oldLeft, newLeft);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -138,21 +138,21 @@ public class ConditionOperationImpl extends LiteralImpl implements ConditionOper
 	 * @generated
 	 */
 	@Override
-	public void setElement(Literal newElement) {
-		if (newElement != element) {
+	public void setLeft(Literal newLeft) {
+		if (newLeft != left) {
 			NotificationChain msgs = null;
-			if (element != null)
-				msgs = ((InternalEObject) element).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE - Aadlv3Package.CONDITION_OPERATION__ELEMENT, null, msgs);
-			if (newElement != null)
-				msgs = ((InternalEObject) newElement).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE - Aadlv3Package.CONDITION_OPERATION__ELEMENT, null, msgs);
-			msgs = basicSetElement(newElement, msgs);
+			if (left != null)
+				msgs = ((InternalEObject) left).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE - Aadlv3Package.BINARY_OPERATION__LEFT, null, msgs);
+			if (newLeft != null)
+				msgs = ((InternalEObject) newLeft).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE - Aadlv3Package.BINARY_OPERATION__LEFT, null, msgs);
+			msgs = basicSetLeft(newLeft, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.CONDITION_OPERATION__ELEMENT,
-					newElement, newElement));
+			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.BINARY_OPERATION__LEFT, newLeft,
+					newLeft));
 	}
 
 	/**
@@ -161,7 +161,7 @@ public class ConditionOperationImpl extends LiteralImpl implements ConditionOper
 	 * @generated
 	 */
 	@Override
-	public COperator getOperator() {
+	public BinaryOperator getOperator() {
 		return operator;
 	}
 
@@ -171,12 +171,12 @@ public class ConditionOperationImpl extends LiteralImpl implements ConditionOper
 	 * @generated
 	 */
 	@Override
-	public void setOperator(COperator newOperator) {
-		COperator oldOperator = operator;
+	public void setOperator(BinaryOperator newOperator) {
+		BinaryOperator oldOperator = operator;
 		operator = newOperator == null ? OPERATOR_EDEFAULT : newOperator;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.CONDITION_OPERATION__OPERATOR,
-					oldOperator, operator));
+			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.BINARY_OPERATION__OPERATOR, oldOperator,
+					operator));
 	}
 
 	/**
@@ -185,8 +185,8 @@ public class ConditionOperationImpl extends LiteralImpl implements ConditionOper
 	 * @generated
 	 */
 	@Override
-	public Literal getConstraint() {
-		return constraint;
+	public Literal getRight() {
+		return right;
 	}
 
 	/**
@@ -194,12 +194,12 @@ public class ConditionOperationImpl extends LiteralImpl implements ConditionOper
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetConstraint(Literal newConstraint, NotificationChain msgs) {
-		Literal oldConstraint = constraint;
-		constraint = newConstraint;
+	public NotificationChain basicSetRight(Literal newRight, NotificationChain msgs) {
+		Literal oldRight = right;
+		right = newRight;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					Aadlv3Package.CONDITION_OPERATION__CONSTRAINT, oldConstraint, newConstraint);
+					Aadlv3Package.BINARY_OPERATION__RIGHT, oldRight, newRight);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -214,21 +214,21 @@ public class ConditionOperationImpl extends LiteralImpl implements ConditionOper
 	 * @generated
 	 */
 	@Override
-	public void setConstraint(Literal newConstraint) {
-		if (newConstraint != constraint) {
+	public void setRight(Literal newRight) {
+		if (newRight != right) {
 			NotificationChain msgs = null;
-			if (constraint != null)
-				msgs = ((InternalEObject) constraint).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE - Aadlv3Package.CONDITION_OPERATION__CONSTRAINT, null, msgs);
-			if (newConstraint != null)
-				msgs = ((InternalEObject) newConstraint).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE - Aadlv3Package.CONDITION_OPERATION__CONSTRAINT, null, msgs);
-			msgs = basicSetConstraint(newConstraint, msgs);
+			if (right != null)
+				msgs = ((InternalEObject) right).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE - Aadlv3Package.BINARY_OPERATION__RIGHT, null, msgs);
+			if (newRight != null)
+				msgs = ((InternalEObject) newRight).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE - Aadlv3Package.BINARY_OPERATION__RIGHT, null, msgs);
+			msgs = basicSetRight(newRight, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.CONDITION_OPERATION__CONSTRAINT,
-					newConstraint, newConstraint));
+			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.BINARY_OPERATION__RIGHT, newRight,
+					newRight));
 	}
 
 	/**
@@ -239,10 +239,10 @@ public class ConditionOperationImpl extends LiteralImpl implements ConditionOper
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case Aadlv3Package.CONDITION_OPERATION__ELEMENT:
-			return basicSetElement(null, msgs);
-		case Aadlv3Package.CONDITION_OPERATION__CONSTRAINT:
-			return basicSetConstraint(null, msgs);
+		case Aadlv3Package.BINARY_OPERATION__LEFT:
+			return basicSetLeft(null, msgs);
+		case Aadlv3Package.BINARY_OPERATION__RIGHT:
+			return basicSetRight(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -255,12 +255,12 @@ public class ConditionOperationImpl extends LiteralImpl implements ConditionOper
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case Aadlv3Package.CONDITION_OPERATION__ELEMENT:
-			return getElement();
-		case Aadlv3Package.CONDITION_OPERATION__OPERATOR:
+		case Aadlv3Package.BINARY_OPERATION__LEFT:
+			return getLeft();
+		case Aadlv3Package.BINARY_OPERATION__OPERATOR:
 			return getOperator();
-		case Aadlv3Package.CONDITION_OPERATION__CONSTRAINT:
-			return getConstraint();
+		case Aadlv3Package.BINARY_OPERATION__RIGHT:
+			return getRight();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -273,14 +273,14 @@ public class ConditionOperationImpl extends LiteralImpl implements ConditionOper
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case Aadlv3Package.CONDITION_OPERATION__ELEMENT:
-			setElement((Literal) newValue);
+		case Aadlv3Package.BINARY_OPERATION__LEFT:
+			setLeft((Literal) newValue);
 			return;
-		case Aadlv3Package.CONDITION_OPERATION__OPERATOR:
-			setOperator((COperator) newValue);
+		case Aadlv3Package.BINARY_OPERATION__OPERATOR:
+			setOperator((BinaryOperator) newValue);
 			return;
-		case Aadlv3Package.CONDITION_OPERATION__CONSTRAINT:
-			setConstraint((Literal) newValue);
+		case Aadlv3Package.BINARY_OPERATION__RIGHT:
+			setRight((Literal) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -294,14 +294,14 @@ public class ConditionOperationImpl extends LiteralImpl implements ConditionOper
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case Aadlv3Package.CONDITION_OPERATION__ELEMENT:
-			setElement((Literal) null);
+		case Aadlv3Package.BINARY_OPERATION__LEFT:
+			setLeft((Literal) null);
 			return;
-		case Aadlv3Package.CONDITION_OPERATION__OPERATOR:
+		case Aadlv3Package.BINARY_OPERATION__OPERATOR:
 			setOperator(OPERATOR_EDEFAULT);
 			return;
-		case Aadlv3Package.CONDITION_OPERATION__CONSTRAINT:
-			setConstraint((Literal) null);
+		case Aadlv3Package.BINARY_OPERATION__RIGHT:
+			setRight((Literal) null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -315,12 +315,12 @@ public class ConditionOperationImpl extends LiteralImpl implements ConditionOper
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case Aadlv3Package.CONDITION_OPERATION__ELEMENT:
-			return element != null;
-		case Aadlv3Package.CONDITION_OPERATION__OPERATOR:
+		case Aadlv3Package.BINARY_OPERATION__LEFT:
+			return left != null;
+		case Aadlv3Package.BINARY_OPERATION__OPERATOR:
 			return operator != OPERATOR_EDEFAULT;
-		case Aadlv3Package.CONDITION_OPERATION__CONSTRAINT:
-			return constraint != null;
+		case Aadlv3Package.BINARY_OPERATION__RIGHT:
+			return right != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -342,28 +342,4 @@ public class ConditionOperationImpl extends LiteralImpl implements ConditionOper
 		return result.toString();
 	}
 
-	@Override
-	public boolean sameAs(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		ConditionOperationImpl other = (ConditionOperationImpl) obj;
-		if (element == null) {
-			if (other.element != null)
-				return false;
-		} else if (!element.equals(other.element))
-			return false;
-		if (operator != other.operator)
-			return false;
-		if (constraint == null) {
-			if (other.constraint != null)
-				return false;
-		} else if (!constraint.equals(other.constraint))
-			return false;
-		return true;
-	}
-
-} //ConditionOperationImpl
+} //BinaryOperationImpl

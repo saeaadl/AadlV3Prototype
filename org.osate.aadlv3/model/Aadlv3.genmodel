@@ -78,12 +78,12 @@
       <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//EOperator/KORMORE"/>
       <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//EOperator/KORLESS"/>
     </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Aadlv3.ecore#//COperator">
-      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//COperator/IN"/>
-      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//COperator/CONTAINS"/>
-      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//COperator/EQUALS"/>
-      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//COperator/SATISFIES"/>
-      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//COperator/QUESTIONMARK"/>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Aadlv3.ecore#//BinaryOperator">
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//BinaryOperator/IN"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//BinaryOperator/CONTAINS"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//BinaryOperator/EQUALS"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//BinaryOperator/SATISFIES"/>
+      <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//BinaryOperator/QUESTIONMARK"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Aadlv3.ecore#//PropertyAssociationType">
       <genEnumLiterals ecoreEnumLiteral="Aadlv3.ecore#//PropertyAssociationType/FinalValue"/>
@@ -129,7 +129,6 @@
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//ComponentInterface">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ComponentInterface/features"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ComponentInterface/flows"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ComponentInterface/useProperties"/>
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//ComponentImplementation">
@@ -168,7 +167,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Association/source"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Association/destination"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//Association/bidirectional"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Association/annexSubclause"/>
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//PathSequence">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//PathSequence/target"/>
@@ -261,15 +259,10 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//MultiOperandExpression/operator"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//MultiOperandExpression/k"/>
     </genClasses>
-    <genClasses ecoreClass="Aadlv3.ecore#//Assignment">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Assignment/target"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Assignment/value"/>
-    </genClasses>
-    <genClasses ecoreClass="Aadlv3.ecore#//Action"/>
-    <genClasses ecoreClass="Aadlv3.ecore#//ConditionOperation">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ConditionOperation/element"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//ConditionOperation/operator"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ConditionOperation/constraint"/>
+    <genClasses ecoreClass="Aadlv3.ecore#//BinaryOperation">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//BinaryOperation/left"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//BinaryOperation/operator"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//BinaryOperation/right"/>
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//PropertyAssociation">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//PropertyAssociation/target"/>

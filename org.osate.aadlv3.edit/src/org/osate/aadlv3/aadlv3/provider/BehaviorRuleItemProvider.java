@@ -241,13 +241,13 @@ public class BehaviorRuleItemProvider extends ModelElementItemProvider {
 				Aadlv3Factory.eINSTANCE.createMultiLiteralConstraint()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.BEHAVIOR_RULE__CONDITION,
-				Aadlv3Factory.eINSTANCE.createConditionOperation()));
+				Aadlv3Factory.eINSTANCE.createBinaryOperation()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.BEHAVIOR_RULE__CONDITION,
 				Aadlv3Factory.eINSTANCE.createPackageElementReference()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.BEHAVIOR_RULE__ACTIONS,
-				Aadlv3Factory.eINSTANCE.createAssignment()));
+				Aadlv3Factory.eINSTANCE.createBinaryOperation()));
 	}
 
 	/**
@@ -262,7 +262,9 @@ public class BehaviorRuleItemProvider extends ModelElementItemProvider {
 		Object childObject = child;
 
 		boolean qualify = childFeature == Aadlv3Package.Literals.BEHAVIOR_RULE__CURRENT_STATE
-				|| childFeature == Aadlv3Package.Literals.BEHAVIOR_RULE__TARGET_STATE;
+				|| childFeature == Aadlv3Package.Literals.BEHAVIOR_RULE__TARGET_STATE
+				|| childFeature == Aadlv3Package.Literals.BEHAVIOR_RULE__CONDITION
+				|| childFeature == Aadlv3Package.Literals.BEHAVIOR_RULE__ACTIONS;
 
 		if (qualify) {
 			return getString("_UI_CreateChild_text2",

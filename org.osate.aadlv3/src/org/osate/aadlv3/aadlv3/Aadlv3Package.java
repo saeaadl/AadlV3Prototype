@@ -863,22 +863,13 @@ public interface Aadlv3Package extends EPackage {
 	int COMPONENT_INTERFACE__FEATURES = CLASSIFIER_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Flows</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPONENT_INTERFACE__FLOWS = CLASSIFIER_FEATURE_COUNT + 1;
-
-	/**
 	 * The feature id for the '<em><b>Use Properties</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_INTERFACE__USE_PROPERTIES = CLASSIFIER_FEATURE_COUNT + 2;
+	int COMPONENT_INTERFACE__USE_PROPERTIES = CLASSIFIER_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Component Interface</em>' class.
@@ -887,7 +878,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_INTERFACE_FEATURE_COUNT = CLASSIFIER_FEATURE_COUNT + 3;
+	int COMPONENT_INTERFACE_FEATURE_COUNT = CLASSIFIER_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.ComponentImplementationImpl <em>Component Implementation</em>}' class.
@@ -1544,22 +1535,13 @@ public interface Aadlv3Package extends EPackage {
 	int ASSOCIATION__BIDIRECTIONAL = MODEL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
-	 * The feature id for the '<em><b>Annex Subclause</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATION__ANNEX_SUBCLAUSE = MODEL_ELEMENT_FEATURE_COUNT + 5;
-
-	/**
 	 * The number of structural features of the '<em>Association</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 6;
+	int ASSOCIATION_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.ConfigurationParameterImpl <em>Configuration Parameter</em>}' class.
@@ -1609,7 +1591,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getPropertyAssociation()
 	 * @generated
 	 */
-	int PROPERTY_ASSOCIATION = 48;
+	int PROPERTY_ASSOCIATION = 46;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.PathElementImpl <em>Path Element</em>}' class.
@@ -1812,7 +1794,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getAnnexSubclause()
 	 * @generated
 	 */
-	int ANNEX_SUBCLAUSE = 49;
+	int ANNEX_SUBCLAUSE = 47;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.AnnexLibraryImpl <em>Annex Library</em>}' class.
@@ -1822,7 +1804,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getAnnexLibrary()
 	 * @generated
 	 */
-	int ANNEX_LIBRARY = 51;
+	int ANNEX_LIBRARY = 49;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.PrimitiveTypeImpl <em>Primitive Type</em>}' class.
@@ -2898,81 +2880,24 @@ public interface Aadlv3Package extends EPackage {
 	 */
 	int MULTI_LITERAL_CONSTRAINT_FEATURE_COUNT = MULTI_OPERAND_EXPRESSION_FEATURE_COUNT + 0;
 
-	int MULTI_LITERAL_CONSTRAINT_OPERATION_COUNT = 0;
 	/**
-	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.ActionImpl <em>Action</em>}' class.
+	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.BinaryOperationImpl <em>Binary Operation</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.osate.aadlv3.aadlv3.impl.ActionImpl
-	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getAction()
+	 * @see org.osate.aadlv3.aadlv3.impl.BinaryOperationImpl
+	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getBinaryOperation()
 	 * @generated
 	 */
-	int ACTION = 46;
+	int BINARY_OPERATION = 45;
 
 	/**
-	 * The number of structural features of the '<em>Action</em>' class.
+	 * The feature id for the '<em><b>Left</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ACTION_FEATURE_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.AssignmentImpl <em>Assignment</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.osate.aadlv3.aadlv3.impl.AssignmentImpl
-	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getAssignment()
-	 * @generated
-	 */
-	int ASSIGNMENT = 45;
-
-	/**
-	 * The feature id for the '<em><b>Target</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSIGNMENT__TARGET = ACTION_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Value</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSIGNMENT__VALUE = ACTION_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Assignment</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSIGNMENT_FEATURE_COUNT = ACTION_FEATURE_COUNT + 2;
-
-	/**
-	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.ConditionOperationImpl <em>Condition Operation</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.osate.aadlv3.aadlv3.impl.ConditionOperationImpl
-	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getConditionOperation()
-	 * @generated
-	 */
-	int CONDITION_OPERATION = 47;
-
-	/**
-	 * The feature id for the '<em><b>Element</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONDITION_OPERATION__ELEMENT = LITERAL_FEATURE_COUNT + 0;
+	int BINARY_OPERATION__LEFT = LITERAL_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Operator</b></em>' attribute.
@@ -2981,26 +2906,27 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONDITION_OPERATION__OPERATOR = LITERAL_FEATURE_COUNT + 1;
+	int BINARY_OPERATION__OPERATOR = LITERAL_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Constraint</b></em>' containment reference.
+	 * The feature id for the '<em><b>Right</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONDITION_OPERATION__CONSTRAINT = LITERAL_FEATURE_COUNT + 2;
+	int BINARY_OPERATION__RIGHT = LITERAL_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of structural features of the '<em>Condition Operation</em>' class.
+	 * The number of structural features of the '<em>Binary Operation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONDITION_OPERATION_FEATURE_COUNT = LITERAL_FEATURE_COUNT + 3;
+	int BINARY_OPERATION_FEATURE_COUNT = LITERAL_FEATURE_COUNT + 3;
 
+	int MULTI_LITERAL_CONSTRAINT_OPERATION_COUNT = 0;
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
@@ -3108,7 +3034,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getDefaultAnnexSubclause()
 	 * @generated
 	 */
-	int DEFAULT_ANNEX_SUBCLAUSE = 50;
+	int DEFAULT_ANNEX_SUBCLAUSE = 48;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3235,7 +3161,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getBehaviorRule()
 	 * @generated
 	 */
-	int BEHAVIOR_RULE = 53;
+	int BEHAVIOR_RULE = 51;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.BehaviorSpecificationImpl <em>Behavior Specification</em>}' class.
@@ -3245,7 +3171,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getBehaviorSpecification()
 	 * @generated
 	 */
-	int BEHAVIOR_SPECIFICATION = 52;
+	int BEHAVIOR_SPECIFICATION = 50;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3426,7 +3352,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getStateSpecification()
 	 * @generated
 	 */
-	int STATE_SPECIFICATION = 54;
+	int STATE_SPECIFICATION = 52;
 
 	/**
 	 * The feature id for the '<em><b>Current State</b></em>' containment reference.
@@ -3463,7 +3389,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getStateVariable()
 	 * @generated
 	 */
-	int STATE_VARIABLE = 55;
+	int STATE_VARIABLE = 53;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3536,7 +3462,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getGenerator()
 	 * @generated
 	 */
-	int GENERATOR = 56;
+	int GENERATOR = 54;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3609,7 +3535,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getConstant()
 	 * @generated
 	 */
-	int CONSTANT = 57;
+	int CONSTANT = 55;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3682,7 +3608,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getPackageElementReference()
 	 * @generated
 	 */
-	int PACKAGE_ELEMENT_REFERENCE = 58;
+	int PACKAGE_ELEMENT_REFERENCE = 56;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3737,7 +3663,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getAnnotation()
 	 * @generated
 	 */
-	int ANNOTATION = 59;
+	int ANNOTATION = 57;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3801,7 +3727,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getNameValuePair()
 	 * @generated
 	 */
-	int NAME_VALUE_PAIR = 60;
+	int NAME_VALUE_PAIR = 58;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3838,7 +3764,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getComponentCategory()
 	 * @generated
 	 */
-	int COMPONENT_CATEGORY = 61;
+	int COMPONENT_CATEGORY = 59;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.FeatureCategory <em>Feature Category</em>}' enum.
@@ -3848,7 +3774,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getFeatureCategory()
 	 * @generated
 	 */
-	int FEATURE_CATEGORY = 62;
+	int FEATURE_CATEGORY = 60;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.FeatureDirection <em>Feature Direction</em>}' enum.
@@ -3858,7 +3784,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getFeatureDirection()
 	 * @generated
 	 */
-	int FEATURE_DIRECTION = 63;
+	int FEATURE_DIRECTION = 61;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.AssociationType <em>Association Type</em>}' enum.
@@ -3868,7 +3794,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getAssociationType()
 	 * @generated
 	 */
-	int ASSOCIATION_TYPE = 64;
+	int ASSOCIATION_TYPE = 62;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.Primitive <em>Primitive</em>}' enum.
@@ -3878,7 +3804,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getPrimitive()
 	 * @generated
 	 */
-	int PRIMITIVE = 65;
+	int PRIMITIVE = 63;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.Composite <em>Composite</em>}' enum.
@@ -3888,7 +3814,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getComposite()
 	 * @generated
 	 */
-	int COMPOSITE = 66;
+	int COMPOSITE = 64;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.EOperator <em>EOperator</em>}' enum.
@@ -3898,17 +3824,17 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getEOperator()
 	 * @generated
 	 */
-	int EOPERATOR = 67;
+	int EOPERATOR = 65;
 
 	/**
-	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.COperator <em>COperator</em>}' enum.
+	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.BinaryOperator <em>Binary Operator</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.osate.aadlv3.aadlv3.COperator
-	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getCOperator()
+	 * @see org.osate.aadlv3.aadlv3.BinaryOperator
+	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getBinaryOperator()
 	 * @generated
 	 */
-	int COPERATOR = 68;
+	int BINARY_OPERATOR = 66;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.PropertyAssociationType <em>Property Association Type</em>}' enum.
@@ -3918,7 +3844,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getPropertyAssociationType()
 	 * @generated
 	 */
-	int PROPERTY_ASSOCIATION_TYPE = 69;
+	int PROPERTY_ASSOCIATION_TYPE = 67;
 
 	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.PackageDeclaration <em>Package Declaration</em>}'.
@@ -4219,17 +4145,6 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 */
 	EReference getComponentInterface_Features();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.osate.aadlv3.aadlv3.ComponentInterface#getFlows <em>Flows</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Flows</em>'.
-	 * @see org.osate.aadlv3.aadlv3.ComponentInterface#getFlows()
-	 * @see #getComponentInterface()
-	 * @generated
-	 */
-	EReference getComponentInterface_Flows();
 
 	/**
 	 * Returns the meta object for the reference list '{@link org.osate.aadlv3.aadlv3.ComponentInterface#getUseProperties <em>Use Properties</em>}'.
@@ -4576,17 +4491,6 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 */
 	EAttribute getAssociation_Bidirectional();
-
-	/**
-	 * Returns the meta object for the reference list '{@link org.osate.aadlv3.aadlv3.Association#getAnnexSubclause <em>Annex Subclause</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Annex Subclause</em>'.
-	 * @see org.osate.aadlv3.aadlv3.Association#getAnnexSubclause()
-	 * @see #getAssociation()
-	 * @generated
-	 */
-	EReference getAssociation_AnnexSubclause();
 
 	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.ConfigurationParameter <em>Configuration Parameter</em>}'.
@@ -5072,89 +4976,47 @@ public interface Aadlv3Package extends EPackage {
 	EAttribute getMultiOperandExpression_K();
 
 	/**
-	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.Assignment <em>Assignment</em>}'.
+	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.BinaryOperation <em>Binary Operation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Assignment</em>'.
-	 * @see org.osate.aadlv3.aadlv3.Assignment
+	 * @return the meta object for class '<em>Binary Operation</em>'.
+	 * @see org.osate.aadlv3.aadlv3.BinaryOperation
 	 * @generated
 	 */
-	EClass getAssignment();
+	EClass getBinaryOperation();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.osate.aadlv3.aadlv3.Assignment#getTarget <em>Target</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.osate.aadlv3.aadlv3.BinaryOperation#getLeft <em>Left</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Target</em>'.
-	 * @see org.osate.aadlv3.aadlv3.Assignment#getTarget()
-	 * @see #getAssignment()
+	 * @return the meta object for the containment reference '<em>Left</em>'.
+	 * @see org.osate.aadlv3.aadlv3.BinaryOperation#getLeft()
+	 * @see #getBinaryOperation()
 	 * @generated
 	 */
-	EReference getAssignment_Target();
+	EReference getBinaryOperation_Left();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.osate.aadlv3.aadlv3.Assignment#getValue <em>Value</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Value</em>'.
-	 * @see org.osate.aadlv3.aadlv3.Assignment#getValue()
-	 * @see #getAssignment()
-	 * @generated
-	 */
-	EReference getAssignment_Value();
-
-	/**
-	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.Action <em>Action</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Action</em>'.
-	 * @see org.osate.aadlv3.aadlv3.Action
-	 * @generated
-	 */
-	EClass getAction();
-
-	/**
-	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.ConditionOperation <em>Condition Operation</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Condition Operation</em>'.
-	 * @see org.osate.aadlv3.aadlv3.ConditionOperation
-	 * @generated
-	 */
-	EClass getConditionOperation();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.osate.aadlv3.aadlv3.ConditionOperation#getElement <em>Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Element</em>'.
-	 * @see org.osate.aadlv3.aadlv3.ConditionOperation#getElement()
-	 * @see #getConditionOperation()
-	 * @generated
-	 */
-	EReference getConditionOperation_Element();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.osate.aadlv3.aadlv3.ConditionOperation#getOperator <em>Operator</em>}'.
+	 * Returns the meta object for the attribute '{@link org.osate.aadlv3.aadlv3.BinaryOperation#getOperator <em>Operator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Operator</em>'.
-	 * @see org.osate.aadlv3.aadlv3.ConditionOperation#getOperator()
-	 * @see #getConditionOperation()
+	 * @see org.osate.aadlv3.aadlv3.BinaryOperation#getOperator()
+	 * @see #getBinaryOperation()
 	 * @generated
 	 */
-	EAttribute getConditionOperation_Operator();
+	EAttribute getBinaryOperation_Operator();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.osate.aadlv3.aadlv3.ConditionOperation#getConstraint <em>Constraint</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.osate.aadlv3.aadlv3.BinaryOperation#getRight <em>Right</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Constraint</em>'.
-	 * @see org.osate.aadlv3.aadlv3.ConditionOperation#getConstraint()
-	 * @see #getConditionOperation()
+	 * @return the meta object for the containment reference '<em>Right</em>'.
+	 * @see org.osate.aadlv3.aadlv3.BinaryOperation#getRight()
+	 * @see #getBinaryOperation()
 	 * @generated
 	 */
-	EReference getConditionOperation_Constraint();
+	EReference getBinaryOperation_Right();
 
 	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.PropertyAssociation <em>Property Association</em>}'.
@@ -5943,14 +5805,14 @@ public interface Aadlv3Package extends EPackage {
 	EEnum getEOperator();
 
 	/**
-	 * Returns the meta object for enum '{@link org.osate.aadlv3.aadlv3.COperator <em>COperator</em>}'.
+	 * Returns the meta object for enum '{@link org.osate.aadlv3.aadlv3.BinaryOperator <em>Binary Operator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>COperator</em>'.
-	 * @see org.osate.aadlv3.aadlv3.COperator
+	 * @return the meta object for enum '<em>Binary Operator</em>'.
+	 * @see org.osate.aadlv3.aadlv3.BinaryOperator
 	 * @generated
 	 */
-	EEnum getCOperator();
+	EEnum getBinaryOperator();
 
 	/**
 	 * Returns the meta object for enum '{@link org.osate.aadlv3.aadlv3.PropertyAssociationType <em>Property Association Type</em>}'.
@@ -6225,14 +6087,6 @@ public interface Aadlv3Package extends EPackage {
 		EReference COMPONENT_INTERFACE__FEATURES = eINSTANCE.getComponentInterface_Features();
 
 		/**
-		 * The meta object literal for the '<em><b>Flows</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference COMPONENT_INTERFACE__FLOWS = eINSTANCE.getComponentInterface_Flows();
-
-		/**
 		 * The meta object literal for the '<em><b>Use Properties</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -6499,14 +6353,6 @@ public interface Aadlv3Package extends EPackage {
 		 * @generated
 		 */
 		EAttribute ASSOCIATION__BIDIRECTIONAL = eINSTANCE.getAssociation_Bidirectional();
-
-		/**
-		 * The meta object literal for the '<em><b>Annex Subclause</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ASSOCIATION__ANNEX_SUBCLAUSE = eINSTANCE.getAssociation_AnnexSubclause();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.ConfigurationParameterImpl <em>Configuration Parameter</em>}' class.
@@ -6924,58 +6770,22 @@ public interface Aadlv3Package extends EPackage {
 		EAttribute MULTI_OPERAND_EXPRESSION__K = eINSTANCE.getMultiOperandExpression_K();
 
 		/**
-		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.AssignmentImpl <em>Assignment</em>}' class.
+		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.BinaryOperationImpl <em>Binary Operation</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.osate.aadlv3.aadlv3.impl.AssignmentImpl
-		 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getAssignment()
+		 * @see org.osate.aadlv3.aadlv3.impl.BinaryOperationImpl
+		 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getBinaryOperation()
 		 * @generated
 		 */
-		EClass ASSIGNMENT = eINSTANCE.getAssignment();
+		EClass BINARY_OPERATION = eINSTANCE.getBinaryOperation();
 
 		/**
-		 * The meta object literal for the '<em><b>Target</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ASSIGNMENT__TARGET = eINSTANCE.getAssignment_Target();
-
-		/**
-		 * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ASSIGNMENT__VALUE = eINSTANCE.getAssignment_Value();
-
-		/**
-		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.ActionImpl <em>Action</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.osate.aadlv3.aadlv3.impl.ActionImpl
-		 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getAction()
-		 * @generated
-		 */
-		EClass ACTION = eINSTANCE.getAction();
-
-		/**
-		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.ConditionOperationImpl <em>Condition Operation</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.osate.aadlv3.aadlv3.impl.ConditionOperationImpl
-		 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getConditionOperation()
-		 * @generated
-		 */
-		EClass CONDITION_OPERATION = eINSTANCE.getConditionOperation();
-
-		/**
-		 * The meta object literal for the '<em><b>Element</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CONDITION_OPERATION__ELEMENT = eINSTANCE.getConditionOperation_Element();
+		EReference BINARY_OPERATION__LEFT = eINSTANCE.getBinaryOperation_Left();
 
 		/**
 		 * The meta object literal for the '<em><b>Operator</b></em>' attribute feature.
@@ -6983,15 +6793,15 @@ public interface Aadlv3Package extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute CONDITION_OPERATION__OPERATOR = eINSTANCE.getConditionOperation_Operator();
+		EAttribute BINARY_OPERATION__OPERATOR = eINSTANCE.getBinaryOperation_Operator();
 
 		/**
-		 * The meta object literal for the '<em><b>Constraint</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CONDITION_OPERATION__CONSTRAINT = eINSTANCE.getConditionOperation_Constraint();
+		EReference BINARY_OPERATION__RIGHT = eINSTANCE.getBinaryOperation_Right();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.PropertyAssociationImpl <em>Property Association</em>}' class.
@@ -7649,14 +7459,14 @@ public interface Aadlv3Package extends EPackage {
 		EEnum EOPERATOR = eINSTANCE.getEOperator();
 
 		/**
-		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.COperator <em>COperator</em>}' enum.
+		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.BinaryOperator <em>Binary Operator</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.osate.aadlv3.aadlv3.COperator
-		 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getCOperator()
+		 * @see org.osate.aadlv3.aadlv3.BinaryOperator
+		 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getBinaryOperator()
 		 * @generated
 		 */
-		EEnum COPERATOR = eINSTANCE.getCOperator();
+		EEnum BINARY_OPERATOR = eINSTANCE.getBinaryOperator();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.PropertyAssociationType <em>Property Association Type</em>}' enum.

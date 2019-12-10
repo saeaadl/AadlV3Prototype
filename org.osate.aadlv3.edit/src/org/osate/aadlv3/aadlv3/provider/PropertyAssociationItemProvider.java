@@ -263,7 +263,7 @@ public class PropertyAssociationItemProvider extends ItemProviderAdapter impleme
 				Aadlv3Factory.eINSTANCE.createMultiLiteralConstraint()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
-				Aadlv3Factory.eINSTANCE.createConditionOperation()));
+				Aadlv3Factory.eINSTANCE.createBinaryOperation()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PROPERTY_ASSOCIATION__VALUE,
 				Aadlv3Factory.eINSTANCE.createPackageElementReference()));

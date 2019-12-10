@@ -90,8 +90,7 @@ fragment InterfaceBody*:
 ;
 fragment InterfaceElement*:
 	 features+=Feature 
-	 | flows+=FlowPath |  flows+=FlowSource |  flows+=FlowSink 
-	| stateVariables+= StateVariable | behaviorRules +=TransitionRule | behaviorRules +=BFlowRule| generators += Event
+	| stateVariables+= StateVariable | behaviorRules +=TransitionRule | behaviorRules +=FlowRule| generators += Generator
 	  | ownedPropertyAssociations+=PropertyAssociation | annexSubclause+=AnnexSubclause
 ;
 	
@@ -110,8 +109,9 @@ fragment ImplementationBody*:
 fragment ImplementationElement* :
 	connections+=Connection |
 	 bindings+=Binding | components+=Subcomponent 
-		| paths+= Path | flowAssignments+=FlowAssignment | classifierAssignments+=ClassifierAssignment | classifierAssignments+=ClassifierAssignmentPattern
-		| stateVariables+= StateVariable | behaviorRules +=TransitionRule | behaviorRules +=BFlowRule| generators += Event
+		| paths+= EndToEndFlow 
+		| flowAssignments+=FlowAssignment | classifierAssignments+=ClassifierAssignment | classifierAssignments+=ClassifierAssignmentPattern
+		| stateVariables+= StateVariable | behaviorRules +=TransitionRule | behaviorRules +=FlowRule| generators += Generator
 		| ownedPropertyAssociations+=PropertyAssociation | annexSubclause+=AnnexSubclause
 ;
 
@@ -154,17 +154,17 @@ Binding returns av3::Association:
 	source=ModelElementReference
 	'->' destination=ModelElementReference PropertiesBlock? InModes? ';';
 
-
-FlowPath returns av3::Association:
-	name=ID ':' associationType=IsFlow source=ModelElementReference
-	'->' destination=ModelElementReference PropertiesBlock? ';';
-
-FlowSource returns av3::Association:
-	name=ID ':' associationType=IsFlowSource  destination=ModelElementReference  PropertiesBlock? ';' ;
-
-FlowSink returns av3::Association:
-	name=ID ':' associationType=IsFlowSink  source=ModelElementReference 
-	 PropertiesBlock? ';';
+//
+//FlowPath returns av3::Association:
+//	name=ID ':' associationType=IsFlow source=ModelElementReference
+//	'->' destination=ModelElementReference PropertiesBlock? ';';
+//
+//FlowSource returns av3::Association:
+//	name=ID ':' associationType=IsFlowSource  destination=ModelElementReference  PropertiesBlock? ';' ;
+//
+//FlowSink returns av3::Association:
+//	name=ID ':' associationType=IsFlowSink  source=ModelElementReference 
+//	 PropertiesBlock? ';';
 
 fragment UseProps*:	
 	'use''properties' useProperties += [av3::PropertySet|QualifiedName] (',' useProperties += [av3::PropertySet|QualifiedName])* 
@@ -175,8 +175,8 @@ fragment InModes*:
 	'when' inModes = ModelElementContainsLiteral
 ;
 
-Path returns av3::PathSequence:
-	name=ID ':' 'flow' elements+=PathElement ('->' elements+=PathElement)+
+EndToEndFlow returns av3::PathSequence:
+	name=ID ':' EndToEndFLowKeywords elements+=PathElement ('->' elements+=PathElement)+
 	 PropertiesBlock? ';';
 
 
@@ -332,9 +332,9 @@ InstanceConfiguration returns av3::InstanceConfiguration:
 	';'
 ;
 
-ProductLineConstraint returns av3::ConditionOperation:
-	{av3::ConditionOperation}
-	'plc' element=PropertyReference operator=SatisfiesOperation constraint=ListLiteral
+ProductLineConstraint returns av3::BinaryOperation:
+	{av3::BinaryOperation}
+	'plc' left=PropertyReference operator=SatisfiesOperation right=ListLiteral
 ;
 
 // Behavior specification including error behavior
@@ -351,35 +351,52 @@ fragment BehaviorSpecificationBlock*:
 ;
 
 fragment BehaviorSpecificationElement*:
-	generators+= Event | rules+= TransitionRule| rules+= BFlowRule | stateVariables+= StateVariable
+	generators+= Generator | rules+= TransitionRule| rules+= FlowRule | stateVariables+= StateVariable
 ;
 
 
 StateVariable returns av3::StateVariable:
 	(annotations += Annotation )*
 	name=ID ':' 'state' stateType=[av3::TypeDef|QualifiedName] 
-	(initialState=EnumerationLiteral)?	';'
+	(initialState=EnumerationLiteral)?	PropertiesBlock? ';'
 ;
 
 
-Event returns av3::Generator:
-	name=ID ':' type=('error'|'recover'|'repair') 'event' 
-	(value=ListLiteral)?	';'
+Generator returns av3::Generator:
+	(annotations += Annotation )*
+	name=ID ':' type=('error'|'recover'|'repair')  
+	(value=ListLiteral)?	PropertiesBlock? ';'
 ;
 
 
 TransitionRule returns av3::BehaviorRule :
 	(annotations += Annotation )*
-	name=ID ':' 'transition' condition =  (MultiLiteralOperation | ModelElementContainsLiteral | ModelElementReference) '->' targetState=TargetState 'when' currentState=CurrentState ';'
+	name=ID ':' 'transition' condition =  (MultiLiteralOperation | ModelElementContainsLiteral | ModelElementReference) '->' targetState=TargetState 
+		'when' currentState=CurrentState PropertiesBlock? ';'
 ;
 
-BFlowRule returns av3::BehaviorRule :
+FlowRule returns av3::BehaviorRule :
+	FlowPathRule | FlowSourceRule | FlowSinkRule
+;
+
+FlowPathRule returns av3::BehaviorRule :
 	(annotations += Annotation )*
-	name=ID ':' 'flow'  (source?='source' |condition =(MultiLiteralOperation | ModelElementContainsLiteral | ModelElementReference)) '->'  (sink?='sink' | (actions+=Assignment (',' actions+=Assignment)*)) ('when' currentState=CurrentState )?';'
+	name=ID ':' 'flow' condition =(MultiLiteralOperation | ModelElementContainsLiteral | ModelElementReference) '->'  actions+=Assignment (',' actions+=Assignment)* 
+	('when' currentState=CurrentState )? PropertiesBlock?';'
+;
+FlowSourceRule returns av3::BehaviorRule :
+	(annotations += Annotation )*
+	name=ID ':' 'flow'  source?='source' (condition =(MultiLiteralOperation | ModelElementContainsLiteral | ModelElementReference))? ('->'  (actions+=Assignment (',' actions+=Assignment)*))? 
+	('when' currentState=CurrentState )? PropertiesBlock?';'
+;
+FlowSinkRule returns av3::BehaviorRule :
+	(annotations += Annotation )*
+	name=ID ':' 'flow'  condition =(MultiLiteralOperation | ModelElementContainsLiteral | ModelElementReference) '->' sink?='sink'
+	('when' currentState=CurrentState )? PropertiesBlock?';'
 ;
 
-Assignment returns av3::Assignment:
-	target= ModelElementReference ('(' value=NamedElementReference')')?
+Assignment returns av3::BinaryOperation:
+	left= ModelElementReference (operator=EqualsOperation right=NamedElementReference)?
 ;
 
 CurrentState returns av3::StateSpecification:
@@ -391,12 +408,12 @@ TargetState returns av3::StateSpecification:
 ;
 
 
-ModelElementContainsLiteral returns av3::ConditionOperation:
-	 element=ModelElementReference operator=InOperation constraint=ListLiteral
+ModelElementContainsLiteral returns av3::BinaryOperation:
+	 left=ModelElementReference operator=InOperation right=ListLiteral
 ;
 
-FeatureInput returns av3::ConditionOperation:
-	 element=ModelElementReference operator=InputOperation 
+FeatureInput returns av3::BinaryOperation:
+	 left=ModelElementReference operator=InputOperation 
 ;
 
 // Annotations
@@ -513,16 +530,19 @@ Primitive returns av3::Primitive:
 EOperation returns av3::EOperator:
 	'any' | 'all' | 'oneof' | 'of' | 'ormore' | 'orless' ;
 
-COperation returns av3::COperator:
+BinaryOperation returns av3::BinaryOperator:
 	'in' | 'contains' | 'equals'  | 'satisfies' | '?';
 
-SatisfiesOperation returns av3::COperator:
+SatisfiesOperation returns av3::BinaryOperator:
 	 'satisfies' ;
 
-InOperation returns av3::COperator:
+EqualsOperation returns av3::BinaryOperator:
+	 '=' ;
+
+InOperation returns av3::BinaryOperator:
 	 'in' ;
 
-InputOperation returns av3::COperator:
+InputOperation returns av3::BinaryOperator:
 	 '?' ;
 	
 AssociationType returns  av3::AssociationType:
@@ -534,12 +554,6 @@ IsConnection returns av3::AssociationType:
 
 IsBinding returns av3::AssociationType:
 	'binding' ;
-
-IsFlowSource returns av3::AssociationType:
-	FlowSourceKeywords ;
-
-IsFlowSink returns av3::AssociationType:
-	FlowSinkKeywords ;
 
 IsFlow returns av3::AssociationType:
 	'flow' ;
@@ -569,6 +583,7 @@ SubprogramGroupKeywords:
 	'subprogram' 'group'
 ;
 
+EndToEndFLowKeywords: 'end''to''end''flow';
 FlowSourceKeywords: 'flow''source';
 FlowSinkKeywords: 'flow''sink';
 //FlowPathKeywords: 'flow';

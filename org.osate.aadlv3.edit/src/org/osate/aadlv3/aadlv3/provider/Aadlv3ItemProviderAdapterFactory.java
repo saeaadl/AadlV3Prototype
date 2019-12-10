@@ -776,72 +776,26 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.Assignment} instances.
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.BinaryOperation} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected AssignmentItemProvider assignmentItemProvider;
+	protected BinaryOperationItemProvider binaryOperationItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.Assignment}.
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.BinaryOperation}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createAssignmentAdapter() {
-		if (assignmentItemProvider == null) {
-			assignmentItemProvider = new AssignmentItemProvider(this);
+	public Adapter createBinaryOperationAdapter() {
+		if (binaryOperationItemProvider == null) {
+			binaryOperationItemProvider = new BinaryOperationItemProvider(this);
 		}
 
-		return assignmentItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.Action} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ActionItemProvider actionItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.Action}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createActionAdapter() {
-		if (actionItemProvider == null) {
-			actionItemProvider = new ActionItemProvider(this);
-		}
-
-		return actionItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.ConditionOperation} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ConditionOperationItemProvider conditionOperationItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.ConditionOperation}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createConditionOperationAdapter() {
-		if (conditionOperationItemProvider == null) {
-			conditionOperationItemProvider = new ConditionOperationItemProvider(this);
-		}
-
-		return conditionOperationItemProvider;
+		return binaryOperationItemProvider;
 	}
 
 	/**
@@ -1460,12 +1414,8 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 			multiLiteralConstraintItemProvider.dispose();
 		if (multiOperandExpressionItemProvider != null)
 			multiOperandExpressionItemProvider.dispose();
-		if (assignmentItemProvider != null)
-			assignmentItemProvider.dispose();
-		if (actionItemProvider != null)
-			actionItemProvider.dispose();
-		if (conditionOperationItemProvider != null)
-			conditionOperationItemProvider.dispose();
+		if (binaryOperationItemProvider != null)
+			binaryOperationItemProvider.dispose();
 		if (propertyAssociationItemProvider != null)
 			propertyAssociationItemProvider.dispose();
 		if (defaultAnnexSubclauseItemProvider != null)

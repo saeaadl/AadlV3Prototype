@@ -29,7 +29,6 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
-import org.osate.aadlv3.aadlv3.Association;
 import org.osate.aadlv3.aadlv3.ComponentInterface;
 import org.osate.aadlv3.aadlv3.Feature;
 import org.osate.aadlv3.aadlv3.PropertySet;
@@ -43,7 +42,6 @@ import org.osate.aadlv3.aadlv3.PropertySet;
  * </p>
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentInterfaceImpl#getFeatures <em>Features</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentInterfaceImpl#getFlows <em>Flows</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentInterfaceImpl#getUseProperties <em>Use Properties</em>}</li>
  * </ul>
  *
@@ -59,16 +57,6 @@ public class ComponentInterfaceImpl extends ClassifierImpl implements ComponentI
 	 * @ordered
 	 */
 	protected EList<Feature> features;
-
-	/**
-	 * The cached value of the '{@link #getFlows() <em>Flows</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getFlows()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Association> flows;
 
 	/**
 	 * The cached value of the '{@link #getUseProperties() <em>Use Properties</em>}' reference list.
@@ -119,20 +107,6 @@ public class ComponentInterfaceImpl extends ClassifierImpl implements ComponentI
 	 * @generated
 	 */
 	@Override
-	public EList<Association> getFlows() {
-		if (flows == null) {
-			flows = new EObjectContainmentEList<Association>(Association.class, this,
-					Aadlv3Package.COMPONENT_INTERFACE__FLOWS);
-		}
-		return flows;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EList<PropertySet> getUseProperties() {
 		if (useProperties == null) {
 			useProperties = new EObjectResolvingEList<PropertySet>(PropertySet.class, this,
@@ -151,8 +125,6 @@ public class ComponentInterfaceImpl extends ClassifierImpl implements ComponentI
 		switch (featureID) {
 		case Aadlv3Package.COMPONENT_INTERFACE__FEATURES:
 			return ((InternalEList<?>) getFeatures()).basicRemove(otherEnd, msgs);
-		case Aadlv3Package.COMPONENT_INTERFACE__FLOWS:
-			return ((InternalEList<?>) getFlows()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -167,8 +139,6 @@ public class ComponentInterfaceImpl extends ClassifierImpl implements ComponentI
 		switch (featureID) {
 		case Aadlv3Package.COMPONENT_INTERFACE__FEATURES:
 			return getFeatures();
-		case Aadlv3Package.COMPONENT_INTERFACE__FLOWS:
-			return getFlows();
 		case Aadlv3Package.COMPONENT_INTERFACE__USE_PROPERTIES:
 			return getUseProperties();
 		}
@@ -187,10 +157,6 @@ public class ComponentInterfaceImpl extends ClassifierImpl implements ComponentI
 		case Aadlv3Package.COMPONENT_INTERFACE__FEATURES:
 			getFeatures().clear();
 			getFeatures().addAll((Collection<? extends Feature>) newValue);
-			return;
-		case Aadlv3Package.COMPONENT_INTERFACE__FLOWS:
-			getFlows().clear();
-			getFlows().addAll((Collection<? extends Association>) newValue);
 			return;
 		case Aadlv3Package.COMPONENT_INTERFACE__USE_PROPERTIES:
 			getUseProperties().clear();
@@ -211,9 +177,6 @@ public class ComponentInterfaceImpl extends ClassifierImpl implements ComponentI
 		case Aadlv3Package.COMPONENT_INTERFACE__FEATURES:
 			getFeatures().clear();
 			return;
-		case Aadlv3Package.COMPONENT_INTERFACE__FLOWS:
-			getFlows().clear();
-			return;
 		case Aadlv3Package.COMPONENT_INTERFACE__USE_PROPERTIES:
 			getUseProperties().clear();
 			return;
@@ -231,8 +194,6 @@ public class ComponentInterfaceImpl extends ClassifierImpl implements ComponentI
 		switch (featureID) {
 		case Aadlv3Package.COMPONENT_INTERFACE__FEATURES:
 			return features != null && !features.isEmpty();
-		case Aadlv3Package.COMPONENT_INTERFACE__FLOWS:
-			return flows != null && !flows.isEmpty();
 		case Aadlv3Package.COMPONENT_INTERFACE__USE_PROPERTIES:
 			return useProperties != null && !useProperties.isEmpty();
 		}

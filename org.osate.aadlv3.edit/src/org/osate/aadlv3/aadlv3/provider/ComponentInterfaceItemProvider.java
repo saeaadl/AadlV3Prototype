@@ -92,7 +92,6 @@ public class ComponentInterfaceItemProvider extends ClassifierItemProvider {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(Aadlv3Package.Literals.COMPONENT_INTERFACE__FEATURES);
-			childrenFeatures.add(Aadlv3Package.Literals.COMPONENT_INTERFACE__FLOWS);
 		}
 		return childrenFeatures;
 	}
@@ -147,7 +146,6 @@ public class ComponentInterfaceItemProvider extends ClassifierItemProvider {
 
 		switch (notification.getFeatureID(ComponentInterface.class)) {
 		case Aadlv3Package.COMPONENT_INTERFACE__FEATURES:
-		case Aadlv3Package.COMPONENT_INTERFACE__FLOWS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -167,9 +165,6 @@ public class ComponentInterfaceItemProvider extends ClassifierItemProvider {
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.COMPONENT_INTERFACE__FEATURES,
 				Aadlv3Factory.eINSTANCE.createFeature()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.COMPONENT_INTERFACE__FLOWS,
-				Aadlv3Factory.eINSTANCE.createAssociation()));
 	}
 
 }

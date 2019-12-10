@@ -37,8 +37,8 @@ package TokenPropagationExample is
 //		reading: flow  source p1;
 		#TokenSource => (Virus);
 	@EM{
-		e1: error event (Virus, DirtyWord, Classified) ; 
-		sense2:  flow e1 ->  p1;
+		e1: error (Virus, DirtyWord, Classified) ; 
+		sense2:  flow source e1 ->  p1;
 	};
 	end;
 	

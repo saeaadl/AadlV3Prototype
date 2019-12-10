@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
-import org.osate.aadlv3.aadlv3.ConditionOperation;
+import org.osate.aadlv3.aadlv3.BinaryOperation;
 import org.osate.aadlv3.aadlv3.InstanceConfiguration;
 
 /**
@@ -52,7 +52,7 @@ public class InstanceConfigurationImpl extends SubcomponentImpl implements Insta
 	 * @generated
 	 * @ordered
 	 */
-	protected ConditionOperation productlineConstraint;
+	protected BinaryOperation productlineConstraint;
 
 	/**
 	 * The cached value of the '{@link #getActions() <em>Actions</em>}' attribute list.
@@ -89,7 +89,7 @@ public class InstanceConfigurationImpl extends SubcomponentImpl implements Insta
 	 * @generated
 	 */
 	@Override
-	public ConditionOperation getProductlineConstraint() {
+	public BinaryOperation getProductlineConstraint() {
 		return productlineConstraint;
 	}
 
@@ -98,9 +98,9 @@ public class InstanceConfigurationImpl extends SubcomponentImpl implements Insta
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetProductlineConstraint(ConditionOperation newProductlineConstraint,
+	public NotificationChain basicSetProductlineConstraint(BinaryOperation newProductlineConstraint,
 			NotificationChain msgs) {
-		ConditionOperation oldProductlineConstraint = productlineConstraint;
+		BinaryOperation oldProductlineConstraint = productlineConstraint;
 		productlineConstraint = newProductlineConstraint;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
@@ -120,7 +120,7 @@ public class InstanceConfigurationImpl extends SubcomponentImpl implements Insta
 	 * @generated
 	 */
 	@Override
-	public void setProductlineConstraint(ConditionOperation newProductlineConstraint) {
+	public void setProductlineConstraint(BinaryOperation newProductlineConstraint) {
 		if (newProductlineConstraint != productlineConstraint) {
 			NotificationChain msgs = null;
 			if (productlineConstraint != null)
@@ -194,7 +194,7 @@ public class InstanceConfigurationImpl extends SubcomponentImpl implements Insta
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 		case Aadlv3Package.INSTANCE_CONFIGURATION__PRODUCTLINE_CONSTRAINT:
-			setProductlineConstraint((ConditionOperation) newValue);
+			setProductlineConstraint((BinaryOperation) newValue);
 			return;
 		case Aadlv3Package.INSTANCE_CONFIGURATION__ACTIONS:
 			getActions().clear();
@@ -213,7 +213,7 @@ public class InstanceConfigurationImpl extends SubcomponentImpl implements Insta
 	public void eUnset(int featureID) {
 		switch (featureID) {
 		case Aadlv3Package.INSTANCE_CONFIGURATION__PRODUCTLINE_CONSTRAINT:
-			setProductlineConstraint((ConditionOperation) null);
+			setProductlineConstraint((BinaryOperation) null);
 			return;
 		case Aadlv3Package.INSTANCE_CONFIGURATION__ACTIONS:
 			getActions().clear();

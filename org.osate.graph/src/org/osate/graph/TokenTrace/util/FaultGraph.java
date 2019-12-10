@@ -1,6 +1,16 @@
 package org.osate.graph.TokenTrace.util;
-import static org.osate.aadlv3.util.AIv3API.*;
-import static org.osate.graph.TokenTrace.util.TokenTraceUtil.*;
+import static org.osate.aadlv3.util.AIv3API.containingBehaviorRuleInstance;
+import static org.osate.aadlv3.util.AIv3API.containingComponentInstance;
+import static org.osate.aadlv3.util.AIv3API.containingComponentInstanceOrSelf;
+import static org.osate.aadlv3.util.AIv3API.findActionCIOs;
+import static org.osate.aadlv3.util.AIv3API.getAllLeafComponents;
+import static org.osate.aadlv3.util.AIv3API.getRealConstraint;
+import static org.osate.aadlv3.util.AIv3API.getRealInstanceObject;
+import static org.osate.aadlv3.util.AIv3API.getRoot;
+import static org.osate.aadlv3.util.AIv3API.isASink;
+import static org.osate.graph.TokenTrace.util.TokenTraceUtil.createToken;
+import static org.osate.graph.TokenTrace.util.TokenTraceUtil.findSharedEventSubtree;
+import static org.osate.graph.TokenTrace.util.TokenTraceUtil.findToken;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,14 +25,11 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.xtext.EcoreUtil2;
 import org.jgrapht.Graph;
 import org.jgrapht.graph.AsSubgraph;
-import org.jgrapht.graph.DefaultDirectedGraph;
 import org.jgrapht.graph.DefaultEdge;
 import org.jgrapht.graph.EdgeReversedGraph;
 import org.osate.aadlv3.aadlv3.Aadlv3Factory;
-import org.osate.aadlv3.aadlv3.ConditionOperation;
 import org.osate.aadlv3.aadlv3.ECollection;
 import org.osate.aadlv3.aadlv3.EOperator;
 import org.osate.aadlv3.aadlv3.Expression;
@@ -35,13 +42,12 @@ import org.osate.av3instance.av3instance.ConstrainedInstanceObject;
 import org.osate.av3instance.av3instance.FeatureInstance;
 import org.osate.av3instance.av3instance.GeneratorInstance;
 import org.osate.av3instance.av3instance.InstanceObject;
-import org.osate.av3instance.av3instance.SinkInstance;
 import org.osate.av3instance.av3instance.StateInstance;
-import org.osate.graph.TokenTrace.TokenType;
 import org.osate.graph.TokenTrace.Token;
 import org.osate.graph.TokenTrace.TokenTrace;
 import org.osate.graph.TokenTrace.TokenTraceFactory;
 import org.osate.graph.TokenTrace.TokenTraceType;
+import org.osate.graph.TokenTrace.TokenType;
 import org.osate.graph.util.AIJGraphTUtil;
 
 public class FaultGraph {

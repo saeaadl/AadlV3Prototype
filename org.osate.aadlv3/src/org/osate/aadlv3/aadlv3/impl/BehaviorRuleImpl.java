@@ -28,8 +28,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
-import org.osate.aadlv3.aadlv3.Assignment;
 import org.osate.aadlv3.aadlv3.BehaviorRule;
+import org.osate.aadlv3.aadlv3.BinaryOperation;
 import org.osate.aadlv3.aadlv3.Literal;
 import org.osate.aadlv3.aadlv3.StateSpecification;
 
@@ -90,7 +90,7 @@ public class BehaviorRuleImpl extends ModelElementImpl implements BehaviorRule {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Assignment> actions;
+	protected EList<BinaryOperation> actions;
 
 	/**
 	 * The default value of the '{@link #isSource() <em>Source</em>}' attribute.
@@ -313,9 +313,9 @@ public class BehaviorRuleImpl extends ModelElementImpl implements BehaviorRule {
 	 * @generated
 	 */
 	@Override
-	public EList<Assignment> getActions() {
+	public EList<BinaryOperation> getActions() {
 		if (actions == null) {
-			actions = new EObjectContainmentEList<Assignment>(Assignment.class, this,
+			actions = new EObjectContainmentEList<BinaryOperation>(BinaryOperation.class, this,
 					Aadlv3Package.BEHAVIOR_RULE__ACTIONS);
 		}
 		return actions;
@@ -432,7 +432,7 @@ public class BehaviorRuleImpl extends ModelElementImpl implements BehaviorRule {
 			return;
 		case Aadlv3Package.BEHAVIOR_RULE__ACTIONS:
 			getActions().clear();
-			getActions().addAll((Collection<? extends Assignment>) newValue);
+			getActions().addAll((Collection<? extends BinaryOperation>) newValue);
 			return;
 		case Aadlv3Package.BEHAVIOR_RULE__SOURCE:
 			setSource((Boolean) newValue);

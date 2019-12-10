@@ -38,9 +38,19 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	@Override
 	protected String getUnassignedRuleCallToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (ruleCall.getRule() == grammarAccess.getEndToEndFLowKeywordsRule())
+			return getEndToEndFLowKeywordsToken(semanticObject, ruleCall, node);
 		return "";
 	}
 	
+	/**
+	 * EndToEndFLowKeywords: 'end''to''end''flow';
+	 */
+	protected String getEndToEndFLowKeywordsToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "end to end flow";
+	}
 	
 	@Override
 	protected void emitUnassignedTokens(EObject semanticObject, ISynTransition transition, INode fromNode, INode toNode) {

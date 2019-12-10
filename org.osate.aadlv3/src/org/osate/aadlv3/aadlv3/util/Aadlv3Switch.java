@@ -600,29 +600,13 @@ public class Aadlv3Switch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case Aadlv3Package.ASSIGNMENT: {
-			Assignment assignment = (Assignment) theEObject;
-			T result = caseAssignment(assignment);
+		case Aadlv3Package.BINARY_OPERATION: {
+			BinaryOperation binaryOperation = (BinaryOperation) theEObject;
+			T result = caseBinaryOperation(binaryOperation);
 			if (result == null)
-				result = caseAction(assignment);
+				result = caseLiteral(binaryOperation);
 			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Aadlv3Package.ACTION: {
-			Action action = (Action) theEObject;
-			T result = caseAction(action);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Aadlv3Package.CONDITION_OPERATION: {
-			ConditionOperation conditionOperation = (ConditionOperation) theEObject;
-			T result = caseConditionOperation(conditionOperation);
-			if (result == null)
-				result = caseLiteral(conditionOperation);
-			if (result == null)
-				result = caseExpression(conditionOperation);
+				result = caseExpression(binaryOperation);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -1325,47 +1309,17 @@ public class Aadlv3Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Assignment</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Binary Operation</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Assignment</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Binary Operation</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseAssignment(Assignment object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Action</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Action</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseAction(Action object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Condition Operation</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Condition Operation</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseConditionOperation(ConditionOperation object) {
+	public T caseBinaryOperation(BinaryOperation object) {
 		return null;
 	}
 

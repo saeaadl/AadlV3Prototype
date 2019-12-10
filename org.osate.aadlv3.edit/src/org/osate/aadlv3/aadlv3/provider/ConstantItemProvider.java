@@ -191,7 +191,7 @@ public class ConstantItemProvider extends PackageElementItemProvider {
 				Aadlv3Factory.eINSTANCE.createMultiLiteralConstraint()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONSTANT__VALUE,
-				Aadlv3Factory.eINSTANCE.createConditionOperation()));
+				Aadlv3Factory.eINSTANCE.createBinaryOperation()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CONSTANT__VALUE,
 				Aadlv3Factory.eINSTANCE.createPackageElementReference()));

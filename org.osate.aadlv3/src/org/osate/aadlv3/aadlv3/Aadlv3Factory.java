@@ -305,31 +305,13 @@ public interface Aadlv3Factory extends EFactory {
 	MultiOperandExpression createMultiOperandExpression();
 
 	/**
-	 * Returns a new object of class '<em>Assignment</em>'.
+	 * Returns a new object of class '<em>Binary Operation</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Assignment</em>'.
+	 * @return a new object of class '<em>Binary Operation</em>'.
 	 * @generated
 	 */
-	Assignment createAssignment();
-
-	/**
-	 * Returns a new object of class '<em>Action</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Action</em>'.
-	 * @generated
-	 */
-	Action createAction();
-
-	/**
-	 * Returns a new object of class '<em>Condition Operation</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Condition Operation</em>'.
-	 * @generated
-	 */
-	ConditionOperation createConditionOperation();
+	BinaryOperation createBinaryOperation();
 
 	/**
 	 * Returns a new object of class '<em>Property Association</em>'.
