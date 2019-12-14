@@ -42,7 +42,6 @@ import org.osate.aadlv3.aadlv3.StateSpecification;
  * </p>
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.BehaviorRuleImpl#getCurrentState <em>Current State</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.BehaviorRuleImpl#getTargetState <em>Target State</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.BehaviorRuleImpl#getCondition <em>Condition</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.BehaviorRuleImpl#getActions <em>Actions</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.BehaviorRuleImpl#isSource <em>Source</em>}</li>
@@ -61,16 +60,6 @@ public class BehaviorRuleImpl extends ModelElementImpl implements BehaviorRule {
 	 * @ordered
 	 */
 	protected StateSpecification currentState;
-
-	/**
-	 * The cached value of the '{@link #getTargetState() <em>Target State</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTargetState()
-	 * @generated
-	 * @ordered
-	 */
-	protected StateSpecification targetState;
 
 	/**
 	 * The cached value of the '{@link #getCondition() <em>Condition</em>}' containment reference.
@@ -209,58 +198,6 @@ public class BehaviorRuleImpl extends ModelElementImpl implements BehaviorRule {
 	 * @generated
 	 */
 	@Override
-	public StateSpecification getTargetState() {
-		return targetState;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetTargetState(StateSpecification newTargetState, NotificationChain msgs) {
-		StateSpecification oldTargetState = targetState;
-		targetState = newTargetState;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					Aadlv3Package.BEHAVIOR_RULE__TARGET_STATE, oldTargetState, newTargetState);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setTargetState(StateSpecification newTargetState) {
-		if (newTargetState != targetState) {
-			NotificationChain msgs = null;
-			if (targetState != null)
-				msgs = ((InternalEObject) targetState).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE - Aadlv3Package.BEHAVIOR_RULE__TARGET_STATE, null, msgs);
-			if (newTargetState != null)
-				msgs = ((InternalEObject) newTargetState).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE - Aadlv3Package.BEHAVIOR_RULE__TARGET_STATE, null, msgs);
-			msgs = basicSetTargetState(newTargetState, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.BEHAVIOR_RULE__TARGET_STATE,
-					newTargetState, newTargetState));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public Literal getCondition() {
 		return condition;
 	}
@@ -378,8 +315,6 @@ public class BehaviorRuleImpl extends ModelElementImpl implements BehaviorRule {
 		switch (featureID) {
 		case Aadlv3Package.BEHAVIOR_RULE__CURRENT_STATE:
 			return basicSetCurrentState(null, msgs);
-		case Aadlv3Package.BEHAVIOR_RULE__TARGET_STATE:
-			return basicSetTargetState(null, msgs);
 		case Aadlv3Package.BEHAVIOR_RULE__CONDITION:
 			return basicSetCondition(null, msgs);
 		case Aadlv3Package.BEHAVIOR_RULE__ACTIONS:
@@ -398,8 +333,6 @@ public class BehaviorRuleImpl extends ModelElementImpl implements BehaviorRule {
 		switch (featureID) {
 		case Aadlv3Package.BEHAVIOR_RULE__CURRENT_STATE:
 			return getCurrentState();
-		case Aadlv3Package.BEHAVIOR_RULE__TARGET_STATE:
-			return getTargetState();
 		case Aadlv3Package.BEHAVIOR_RULE__CONDITION:
 			return getCondition();
 		case Aadlv3Package.BEHAVIOR_RULE__ACTIONS:
@@ -423,9 +356,6 @@ public class BehaviorRuleImpl extends ModelElementImpl implements BehaviorRule {
 		switch (featureID) {
 		case Aadlv3Package.BEHAVIOR_RULE__CURRENT_STATE:
 			setCurrentState((StateSpecification) newValue);
-			return;
-		case Aadlv3Package.BEHAVIOR_RULE__TARGET_STATE:
-			setTargetState((StateSpecification) newValue);
 			return;
 		case Aadlv3Package.BEHAVIOR_RULE__CONDITION:
 			setCondition((Literal) newValue);
@@ -455,9 +385,6 @@ public class BehaviorRuleImpl extends ModelElementImpl implements BehaviorRule {
 		case Aadlv3Package.BEHAVIOR_RULE__CURRENT_STATE:
 			setCurrentState((StateSpecification) null);
 			return;
-		case Aadlv3Package.BEHAVIOR_RULE__TARGET_STATE:
-			setTargetState((StateSpecification) null);
-			return;
 		case Aadlv3Package.BEHAVIOR_RULE__CONDITION:
 			setCondition((Literal) null);
 			return;
@@ -484,8 +411,6 @@ public class BehaviorRuleImpl extends ModelElementImpl implements BehaviorRule {
 		switch (featureID) {
 		case Aadlv3Package.BEHAVIOR_RULE__CURRENT_STATE:
 			return currentState != null;
-		case Aadlv3Package.BEHAVIOR_RULE__TARGET_STATE:
-			return targetState != null;
 		case Aadlv3Package.BEHAVIOR_RULE__CONDITION:
 			return condition != null;
 		case Aadlv3Package.BEHAVIOR_RULE__ACTIONS:

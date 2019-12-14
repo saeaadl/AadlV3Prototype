@@ -36,6 +36,7 @@ import org.osate.aadlv3.aadlv3.BehaviorRule;
 import org.osate.aadlv3.aadlv3.Classifier;
 import org.osate.aadlv3.aadlv3.ComponentCategory;
 import org.osate.aadlv3.aadlv3.Generator;
+import org.osate.aadlv3.aadlv3.StateTransition;
 import org.osate.aadlv3.aadlv3.StateVariable;
 import org.osate.aadlv3.aadlv3.TypeReference;
 
@@ -49,7 +50,8 @@ import org.osate.aadlv3.aadlv3.TypeReference;
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ClassifierImpl#getCategory <em>Category</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ClassifierImpl#getSuperClassifiers <em>Super Classifiers</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.ClassifierImpl#getBehaviorRules <em>Behavior Rules</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.ClassifierImpl#getTransitions <em>Transitions</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.ClassifierImpl#getRules <em>Rules</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ClassifierImpl#getStateVariables <em>State Variables</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ClassifierImpl#getGenerators <em>Generators</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ClassifierImpl#getAnnexSubclause <em>Annex Subclause</em>}</li>
@@ -89,14 +91,24 @@ public abstract class ClassifierImpl extends NamedTypeImpl implements Classifier
 	protected EList<TypeReference> superClassifiers;
 
 	/**
-	 * The cached value of the '{@link #getBehaviorRules() <em>Behavior Rules</em>}' containment reference list.
+	 * The cached value of the '{@link #getTransitions() <em>Transitions</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getBehaviorRules()
+	 * @see #getTransitions()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<BehaviorRule> behaviorRules;
+	protected EList<StateTransition> transitions;
+
+	/**
+	 * The cached value of the '{@link #getRules() <em>Rules</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRules()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<BehaviorRule> rules;
 
 	/**
 	 * The cached value of the '{@link #getStateVariables() <em>State Variables</em>}' containment reference list.
@@ -191,12 +203,26 @@ public abstract class ClassifierImpl extends NamedTypeImpl implements Classifier
 	 * @generated
 	 */
 	@Override
-	public EList<BehaviorRule> getBehaviorRules() {
-		if (behaviorRules == null) {
-			behaviorRules = new EObjectContainmentEList<BehaviorRule>(BehaviorRule.class, this,
-					Aadlv3Package.CLASSIFIER__BEHAVIOR_RULES);
+	public EList<StateTransition> getTransitions() {
+		if (transitions == null) {
+			transitions = new EObjectContainmentEList<StateTransition>(StateTransition.class, this,
+					Aadlv3Package.CLASSIFIER__TRANSITIONS);
 		}
-		return behaviorRules;
+		return transitions;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<BehaviorRule> getRules() {
+		if (rules == null) {
+			rules = new EObjectContainmentEList<BehaviorRule>(BehaviorRule.class, this,
+					Aadlv3Package.CLASSIFIER__RULES);
+		}
+		return rules;
 	}
 
 	/**
@@ -251,8 +277,10 @@ public abstract class ClassifierImpl extends NamedTypeImpl implements Classifier
 		switch (featureID) {
 		case Aadlv3Package.CLASSIFIER__SUPER_CLASSIFIERS:
 			return ((InternalEList<?>) getSuperClassifiers()).basicRemove(otherEnd, msgs);
-		case Aadlv3Package.CLASSIFIER__BEHAVIOR_RULES:
-			return ((InternalEList<?>) getBehaviorRules()).basicRemove(otherEnd, msgs);
+		case Aadlv3Package.CLASSIFIER__TRANSITIONS:
+			return ((InternalEList<?>) getTransitions()).basicRemove(otherEnd, msgs);
+		case Aadlv3Package.CLASSIFIER__RULES:
+			return ((InternalEList<?>) getRules()).basicRemove(otherEnd, msgs);
 		case Aadlv3Package.CLASSIFIER__STATE_VARIABLES:
 			return ((InternalEList<?>) getStateVariables()).basicRemove(otherEnd, msgs);
 		case Aadlv3Package.CLASSIFIER__GENERATORS:
@@ -275,8 +303,10 @@ public abstract class ClassifierImpl extends NamedTypeImpl implements Classifier
 			return getCategory();
 		case Aadlv3Package.CLASSIFIER__SUPER_CLASSIFIERS:
 			return getSuperClassifiers();
-		case Aadlv3Package.CLASSIFIER__BEHAVIOR_RULES:
-			return getBehaviorRules();
+		case Aadlv3Package.CLASSIFIER__TRANSITIONS:
+			return getTransitions();
+		case Aadlv3Package.CLASSIFIER__RULES:
+			return getRules();
 		case Aadlv3Package.CLASSIFIER__STATE_VARIABLES:
 			return getStateVariables();
 		case Aadlv3Package.CLASSIFIER__GENERATORS:
@@ -303,9 +333,13 @@ public abstract class ClassifierImpl extends NamedTypeImpl implements Classifier
 			getSuperClassifiers().clear();
 			getSuperClassifiers().addAll((Collection<? extends TypeReference>) newValue);
 			return;
-		case Aadlv3Package.CLASSIFIER__BEHAVIOR_RULES:
-			getBehaviorRules().clear();
-			getBehaviorRules().addAll((Collection<? extends BehaviorRule>) newValue);
+		case Aadlv3Package.CLASSIFIER__TRANSITIONS:
+			getTransitions().clear();
+			getTransitions().addAll((Collection<? extends StateTransition>) newValue);
+			return;
+		case Aadlv3Package.CLASSIFIER__RULES:
+			getRules().clear();
+			getRules().addAll((Collection<? extends BehaviorRule>) newValue);
 			return;
 		case Aadlv3Package.CLASSIFIER__STATE_VARIABLES:
 			getStateVariables().clear();
@@ -337,8 +371,11 @@ public abstract class ClassifierImpl extends NamedTypeImpl implements Classifier
 		case Aadlv3Package.CLASSIFIER__SUPER_CLASSIFIERS:
 			getSuperClassifiers().clear();
 			return;
-		case Aadlv3Package.CLASSIFIER__BEHAVIOR_RULES:
-			getBehaviorRules().clear();
+		case Aadlv3Package.CLASSIFIER__TRANSITIONS:
+			getTransitions().clear();
+			return;
+		case Aadlv3Package.CLASSIFIER__RULES:
+			getRules().clear();
 			return;
 		case Aadlv3Package.CLASSIFIER__STATE_VARIABLES:
 			getStateVariables().clear();
@@ -365,8 +402,10 @@ public abstract class ClassifierImpl extends NamedTypeImpl implements Classifier
 			return category != CATEGORY_EDEFAULT;
 		case Aadlv3Package.CLASSIFIER__SUPER_CLASSIFIERS:
 			return superClassifiers != null && !superClassifiers.isEmpty();
-		case Aadlv3Package.CLASSIFIER__BEHAVIOR_RULES:
-			return behaviorRules != null && !behaviorRules.isEmpty();
+		case Aadlv3Package.CLASSIFIER__TRANSITIONS:
+			return transitions != null && !transitions.isEmpty();
+		case Aadlv3Package.CLASSIFIER__RULES:
+			return rules != null && !rules.isEmpty();
 		case Aadlv3Package.CLASSIFIER__STATE_VARIABLES:
 			return stateVariables != null && !stateVariables.isEmpty();
 		case Aadlv3Package.CLASSIFIER__GENERATORS:

@@ -293,6 +293,29 @@ public class Av3instanceItemProviderAdapterFactory extends Av3instanceAdapterFac
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.osate.av3instance.av3instance.StateTransitionInstance} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected StateTransitionInstanceItemProvider stateTransitionInstanceItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.osate.av3instance.av3instance.StateTransitionInstance}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createStateTransitionInstanceAdapter() {
+		if (stateTransitionInstanceItemProvider == null) {
+			stateTransitionInstanceItemProvider = new StateTransitionInstanceItemProvider(this);
+		}
+
+		return stateTransitionInstanceItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -415,6 +438,8 @@ public class Av3instanceItemProviderAdapterFactory extends Av3instanceAdapterFac
 			stateVariableInstanceItemProvider.dispose();
 		if (stateInstanceItemProvider != null)
 			stateInstanceItemProvider.dispose();
+		if (stateTransitionInstanceItemProvider != null)
+			stateTransitionInstanceItemProvider.dispose();
 	}
 
 }

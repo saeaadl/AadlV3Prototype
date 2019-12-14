@@ -32,7 +32,6 @@ import org.osate.aadlv3.aadlv3.Literal;
  *   <li>{@link org.osate.av3instance.av3instance.BehaviorRuleInstance#getCondition <em>Condition</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.BehaviorRuleInstance#getActions <em>Actions</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.BehaviorRuleInstance#getCurrentState <em>Current State</em>}</li>
- *   <li>{@link org.osate.av3instance.av3instance.BehaviorRuleInstance#getTargetState <em>Target State</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.BehaviorRuleInstance#isSink <em>Sink</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.BehaviorRuleInstance#isSource <em>Source</em>}</li>
  * </ul>
@@ -97,28 +96,6 @@ public interface BehaviorRuleInstance extends InstanceObject {
 	 * @generated
 	 */
 	void setCurrentState(StateInstance value);
-
-	/**
-	 * Returns the value of the '<em><b>Target State</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Target State</em>' reference.
-	 * @see #setTargetState(StateInstance)
-	 * @see org.osate.av3instance.av3instance.Av3instancePackage#getBehaviorRuleInstance_TargetState()
-	 * @model
-	 * @generated
-	 */
-	StateInstance getTargetState();
-
-	/**
-	 * Sets the value of the '{@link org.osate.av3instance.av3instance.BehaviorRuleInstance#getTargetState <em>Target State</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Target State</em>' reference.
-	 * @see #getTargetState()
-	 * @generated
-	 */
-	void setTargetState(StateInstance value);
 
 	/**
 	 * Returns the value of the '<em><b>Sink</b></em>' attribute.

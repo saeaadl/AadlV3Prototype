@@ -154,6 +154,8 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 			return createAnnexLibrary();
 		case Aadlv3Package.BEHAVIOR_SPECIFICATION:
 			return createBehaviorSpecification();
+		case Aadlv3Package.STATE_TRANSITION:
+			return createStateTransition();
 		case Aadlv3Package.BEHAVIOR_RULE:
 			return createBehaviorRule();
 		case Aadlv3Package.STATE_SPECIFICATION:
@@ -166,10 +168,6 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 			return createConstant();
 		case Aadlv3Package.PACKAGE_ELEMENT_REFERENCE:
 			return createPackageElementReference();
-		case Aadlv3Package.ANNOTATION:
-			return createAnnotation();
-		case Aadlv3Package.NAME_VALUE_PAIR:
-			return createNameValuePair();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -639,6 +637,17 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 	 * @generated
 	 */
 	@Override
+	public StateTransition createStateTransition() {
+		StateTransitionImpl stateTransition = new StateTransitionImpl();
+		return stateTransition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public StateSpecification createStateSpecification() {
 		StateSpecificationImpl stateSpecification = new StateSpecificationImpl();
 		return stateSpecification;
@@ -686,28 +695,6 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 	public PackageElementReference createPackageElementReference() {
 		PackageElementReferenceImpl packageElementReference = new PackageElementReferenceImpl();
 		return packageElementReference;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Annotation createAnnotation() {
-		AnnotationImpl annotation = new AnnotationImpl();
-		return annotation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NameValuePair createNameValuePair() {
-		NameValuePairImpl nameValuePair = new NameValuePairImpl();
-		return nameValuePair;
 	}
 
 	/**

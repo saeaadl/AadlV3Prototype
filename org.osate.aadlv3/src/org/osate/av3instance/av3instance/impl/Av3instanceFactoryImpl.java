@@ -87,6 +87,8 @@ public class Av3instanceFactoryImpl extends EFactoryImpl implements Av3instanceF
 			return createStateVariableInstance();
 		case Av3instancePackage.STATE_INSTANCE:
 			return createStateInstance();
+		case Av3instancePackage.STATE_TRANSITION_INSTANCE:
+			return createStateTransitionInstance();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -189,6 +191,17 @@ public class Av3instanceFactoryImpl extends EFactoryImpl implements Av3instanceF
 	public StateInstance createStateInstance() {
 		StateInstanceImpl stateInstance = new StateInstanceImpl();
 		return stateInstance;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public StateTransitionInstance createStateTransitionInstance() {
+		StateTransitionInstanceImpl stateTransitionInstance = new StateTransitionInstanceImpl();
+		return stateTransitionInstance;
 	}
 
 	/**

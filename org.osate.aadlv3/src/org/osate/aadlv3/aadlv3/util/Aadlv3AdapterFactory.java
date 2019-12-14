@@ -335,6 +335,11 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseStateTransition(StateTransition object) {
+			return createStateTransitionAdapter();
+		}
+
+		@Override
 		public Adapter caseBehaviorRule(BehaviorRule object) {
 			return createBehaviorRuleAdapter();
 		}
@@ -362,16 +367,6 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter casePackageElementReference(PackageElementReference object) {
 			return createPackageElementReferenceAdapter();
-		}
-
-		@Override
-		public Adapter caseAnnotation(Annotation object) {
-			return createAnnotationAdapter();
-		}
-
-		@Override
-		public Adapter caseNameValuePair(NameValuePair object) {
-			return createNameValuePairAdapter();
 		}
 
 		@Override
@@ -1010,6 +1005,20 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.StateTransition <em>State Transition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.osate.aadlv3.aadlv3.StateTransition
+	 * @generated
+	 */
+	public Adapter createStateTransitionAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.StateSpecification <em>State Specification</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -1076,34 +1085,6 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createPackageElementReferenceAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.Annotation <em>Annotation</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.osate.aadlv3.aadlv3.Annotation
-	 * @generated
-	 */
-	public Adapter createAnnotationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.NameValuePair <em>Name Value Pair</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.osate.aadlv3.aadlv3.NameValuePair
-	 * @generated
-	 */
-	public Adapter createNameValuePairAdapter() {
 		return null;
 	}
 

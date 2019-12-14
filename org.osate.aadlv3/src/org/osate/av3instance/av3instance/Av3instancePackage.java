@@ -100,7 +100,7 @@ public interface Av3instancePackage extends EPackage {
 	int INSTANCE_OBJECT__OWNED_PROPERTY_ASSOCIATIONS = Aadlv3Package.NAMED_ELEMENT__OWNED_PROPERTY_ASSOCIATIONS;
 
 	/**
-	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -173,7 +173,7 @@ public interface Av3instancePackage extends EPackage {
 	int FEATURE_INSTANCE__OWNED_PROPERTY_ASSOCIATIONS = INSTANCE_OBJECT__OWNED_PROPERTY_ASSOCIATIONS;
 
 	/**
-	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -282,7 +282,7 @@ public interface Av3instancePackage extends EPackage {
 	int COMPONENT_INSTANCE__OWNED_PROPERTY_ASSOCIATIONS = INSTANCE_OBJECT__OWNED_PROPERTY_ASSOCIATIONS;
 
 	/**
-	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -363,22 +363,13 @@ public interface Av3instancePackage extends EPackage {
 	int COMPONENT_INSTANCE__FEATURES = INSTANCE_OBJECT_FEATURE_COUNT + 4;
 
 	/**
-	 * The feature id for the '<em><b>Flowspecs</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPONENT_INSTANCE__FLOWSPECS = INSTANCE_OBJECT_FEATURE_COUNT + 5;
-
-	/**
 	 * The feature id for the '<em><b>Paths</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_INSTANCE__PATHS = INSTANCE_OBJECT_FEATURE_COUNT + 6;
+	int COMPONENT_INSTANCE__PATHS = INSTANCE_OBJECT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Behavior Rules</b></em>' containment reference list.
@@ -387,7 +378,7 @@ public interface Av3instancePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_INSTANCE__BEHAVIOR_RULES = INSTANCE_OBJECT_FEATURE_COUNT + 7;
+	int COMPONENT_INSTANCE__BEHAVIOR_RULES = INSTANCE_OBJECT_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Generators</b></em>' containment reference list.
@@ -396,7 +387,7 @@ public interface Av3instancePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_INSTANCE__GENERATORS = INSTANCE_OBJECT_FEATURE_COUNT + 8;
+	int COMPONENT_INSTANCE__GENERATORS = INSTANCE_OBJECT_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>State Variables</b></em>' containment reference list.
@@ -405,7 +396,7 @@ public interface Av3instancePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_INSTANCE__STATE_VARIABLES = INSTANCE_OBJECT_FEATURE_COUNT + 9;
+	int COMPONENT_INSTANCE__STATE_VARIABLES = INSTANCE_OBJECT_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Actions</b></em>' containment reference list.
@@ -414,7 +405,16 @@ public interface Av3instancePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_INSTANCE__ACTIONS = INSTANCE_OBJECT_FEATURE_COUNT + 10;
+	int COMPONENT_INSTANCE__ACTIONS = INSTANCE_OBJECT_FEATURE_COUNT + 9;
+
+	/**
+	 * The feature id for the '<em><b>State Transitions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_INSTANCE__STATE_TRANSITIONS = INSTANCE_OBJECT_FEATURE_COUNT + 10;
 
 	/**
 	 * The number of structural features of the '<em>Component Instance</em>' class.
@@ -454,7 +454,7 @@ public interface Av3instancePackage extends EPackage {
 	int ASSOCIATION_INSTANCE__OWNED_PROPERTY_ASSOCIATIONS = INSTANCE_OBJECT__OWNED_PROPERTY_ASSOCIATIONS;
 
 	/**
-	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -599,7 +599,7 @@ public interface Av3instancePackage extends EPackage {
 	int PATH_INSTANCE__OWNED_PROPERTY_ASSOCIATIONS = INSTANCE_OBJECT__OWNED_PROPERTY_ASSOCIATIONS;
 
 	/**
-	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -690,7 +690,7 @@ public interface Av3instancePackage extends EPackage {
 	int BEHAVIOR_RULE_INSTANCE__OWNED_PROPERTY_ASSOCIATIONS = INSTANCE_OBJECT__OWNED_PROPERTY_ASSOCIATIONS;
 
 	/**
-	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -762,22 +762,13 @@ public interface Av3instancePackage extends EPackage {
 	int BEHAVIOR_RULE_INSTANCE__CURRENT_STATE = INSTANCE_OBJECT_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Target State</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BEHAVIOR_RULE_INSTANCE__TARGET_STATE = INSTANCE_OBJECT_FEATURE_COUNT + 4;
-
-	/**
 	 * The feature id for the '<em><b>Sink</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BEHAVIOR_RULE_INSTANCE__SINK = INSTANCE_OBJECT_FEATURE_COUNT + 5;
+	int BEHAVIOR_RULE_INSTANCE__SINK = INSTANCE_OBJECT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' attribute.
@@ -786,7 +777,7 @@ public interface Av3instancePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BEHAVIOR_RULE_INSTANCE__SOURCE = INSTANCE_OBJECT_FEATURE_COUNT + 6;
+	int BEHAVIOR_RULE_INSTANCE__SOURCE = INSTANCE_OBJECT_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>Behavior Rule Instance</em>' class.
@@ -795,7 +786,7 @@ public interface Av3instancePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BEHAVIOR_RULE_INSTANCE_FEATURE_COUNT = INSTANCE_OBJECT_FEATURE_COUNT + 7;
+	int BEHAVIOR_RULE_INSTANCE_FEATURE_COUNT = INSTANCE_OBJECT_FEATURE_COUNT + 6;
 
 	/**
 	 * The meta object id for the '{@link org.osate.av3instance.av3instance.impl.GeneratorInstanceImpl <em>Generator Instance</em>}' class.
@@ -826,7 +817,7 @@ public interface Av3instancePackage extends EPackage {
 	int GENERATOR_INSTANCE__OWNED_PROPERTY_ASSOCIATIONS = INSTANCE_OBJECT__OWNED_PROPERTY_ASSOCIATIONS;
 
 	/**
-	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -917,7 +908,7 @@ public interface Av3instancePackage extends EPackage {
 	int CONSTRAINED_INSTANCE_OBJECT__OWNED_PROPERTY_ASSOCIATIONS = INSTANCE_OBJECT__OWNED_PROPERTY_ASSOCIATIONS;
 
 	/**
-	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1017,7 +1008,7 @@ public interface Av3instancePackage extends EPackage {
 	int STATE_VARIABLE_INSTANCE__OWNED_PROPERTY_ASSOCIATIONS = INSTANCE_OBJECT__OWNED_PROPERTY_ASSOCIATIONS;
 
 	/**
-	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1117,7 +1108,7 @@ public interface Av3instancePackage extends EPackage {
 	int STATE_INSTANCE__OWNED_PROPERTY_ASSOCIATIONS = INSTANCE_OBJECT__OWNED_PROPERTY_ASSOCIATIONS;
 
 	/**
-	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1160,6 +1151,115 @@ public interface Av3instancePackage extends EPackage {
 	 * @ordered
 	 */
 	int STATE_INSTANCE_FEATURE_COUNT = INSTANCE_OBJECT_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.osate.av3instance.av3instance.impl.StateTransitionInstanceImpl <em>State Transition Instance</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.osate.av3instance.av3instance.impl.StateTransitionInstanceImpl
+	 * @see org.osate.av3instance.av3instance.impl.Av3instancePackageImpl#getStateTransitionInstance()
+	 * @generated
+	 */
+	int STATE_TRANSITION_INSTANCE = 10;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_TRANSITION_INSTANCE__NAME = INSTANCE_OBJECT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Property Associations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_TRANSITION_INSTANCE__OWNED_PROPERTY_ASSOCIATIONS = INSTANCE_OBJECT__OWNED_PROPERTY_ASSOCIATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_TRANSITION_INSTANCE__ANNOTATIONS = INSTANCE_OBJECT__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Associations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_TRANSITION_INSTANCE__INCOMING_ASSOCIATIONS = INSTANCE_OBJECT__INCOMING_ASSOCIATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Outgoing Associations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_TRANSITION_INSTANCE__OUTGOING_ASSOCIATIONS = INSTANCE_OBJECT__OUTGOING_ASSOCIATIONS;
+
+	/**
+	 * The feature id for the '<em><b>In States</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_TRANSITION_INSTANCE__IN_STATES = INSTANCE_OBJECT__IN_STATES;
+
+	/**
+	 * The feature id for the '<em><b>State Transition</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_TRANSITION_INSTANCE__STATE_TRANSITION = INSTANCE_OBJECT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Condition</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_TRANSITION_INSTANCE__CONDITION = INSTANCE_OBJECT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Current State</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_TRANSITION_INSTANCE__CURRENT_STATE = INSTANCE_OBJECT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Target State</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_TRANSITION_INSTANCE__TARGET_STATE = INSTANCE_OBJECT_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of structural features of the '<em>State Transition Instance</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_TRANSITION_INSTANCE_FEATURE_COUNT = INSTANCE_OBJECT_FEATURE_COUNT + 4;
 
 	/**
 	 * Returns the meta object for class '{@link org.osate.av3instance.av3instance.InstanceObject <em>Instance Object</em>}'.
@@ -1324,17 +1424,6 @@ public interface Av3instancePackage extends EPackage {
 	EReference getComponentInstance_Features();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.osate.av3instance.av3instance.ComponentInstance#getFlowspecs <em>Flowspecs</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Flowspecs</em>'.
-	 * @see org.osate.av3instance.av3instance.ComponentInstance#getFlowspecs()
-	 * @see #getComponentInstance()
-	 * @generated
-	 */
-	EReference getComponentInstance_Flowspecs();
-
-	/**
 	 * Returns the meta object for the containment reference list '{@link org.osate.av3instance.av3instance.ComponentInstance#getPaths <em>Paths</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1388,6 +1477,17 @@ public interface Av3instancePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getComponentInstance_Actions();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.osate.av3instance.av3instance.ComponentInstance#getStateTransitions <em>State Transitions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>State Transitions</em>'.
+	 * @see org.osate.av3instance.av3instance.ComponentInstance#getStateTransitions()
+	 * @see #getComponentInstance()
+	 * @generated
+	 */
+	EReference getComponentInstance_StateTransitions();
 
 	/**
 	 * Returns the meta object for class '{@link org.osate.av3instance.av3instance.AssociationInstance <em>Association Instance</em>}'.
@@ -1563,17 +1663,6 @@ public interface Av3instancePackage extends EPackage {
 	EReference getBehaviorRuleInstance_CurrentState();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.osate.av3instance.av3instance.BehaviorRuleInstance#getTargetState <em>Target State</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Target State</em>'.
-	 * @see org.osate.av3instance.av3instance.BehaviorRuleInstance#getTargetState()
-	 * @see #getBehaviorRuleInstance()
-	 * @generated
-	 */
-	EReference getBehaviorRuleInstance_TargetState();
-
-	/**
 	 * Returns the meta object for the attribute '{@link org.osate.av3instance.av3instance.BehaviorRuleInstance#isSink <em>Sink</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1735,6 +1824,60 @@ public interface Av3instancePackage extends EPackage {
 	EClass getStateInstance();
 
 	/**
+	 * Returns the meta object for class '{@link org.osate.av3instance.av3instance.StateTransitionInstance <em>State Transition Instance</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>State Transition Instance</em>'.
+	 * @see org.osate.av3instance.av3instance.StateTransitionInstance
+	 * @generated
+	 */
+	EClass getStateTransitionInstance();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.osate.av3instance.av3instance.StateTransitionInstance#getStateTransition <em>State Transition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>State Transition</em>'.
+	 * @see org.osate.av3instance.av3instance.StateTransitionInstance#getStateTransition()
+	 * @see #getStateTransitionInstance()
+	 * @generated
+	 */
+	EReference getStateTransitionInstance_StateTransition();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.osate.av3instance.av3instance.StateTransitionInstance#getCondition <em>Condition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Condition</em>'.
+	 * @see org.osate.av3instance.av3instance.StateTransitionInstance#getCondition()
+	 * @see #getStateTransitionInstance()
+	 * @generated
+	 */
+	EReference getStateTransitionInstance_Condition();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.osate.av3instance.av3instance.StateTransitionInstance#getCurrentState <em>Current State</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Current State</em>'.
+	 * @see org.osate.av3instance.av3instance.StateTransitionInstance#getCurrentState()
+	 * @see #getStateTransitionInstance()
+	 * @generated
+	 */
+	EReference getStateTransitionInstance_CurrentState();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.osate.av3instance.av3instance.StateTransitionInstance#getTargetState <em>Target State</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Target State</em>'.
+	 * @see org.osate.av3instance.av3instance.StateTransitionInstance#getTargetState()
+	 * @see #getStateTransitionInstance()
+	 * @generated
+	 */
+	EReference getStateTransitionInstance_TargetState();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1884,14 +2027,6 @@ public interface Av3instancePackage extends EPackage {
 		EReference COMPONENT_INSTANCE__FEATURES = eINSTANCE.getComponentInstance_Features();
 
 		/**
-		 * The meta object literal for the '<em><b>Flowspecs</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference COMPONENT_INSTANCE__FLOWSPECS = eINSTANCE.getComponentInstance_Flowspecs();
-
-		/**
 		 * The meta object literal for the '<em><b>Paths</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1930,6 +2065,14 @@ public interface Av3instancePackage extends EPackage {
 		 * @generated
 		 */
 		EReference COMPONENT_INSTANCE__ACTIONS = eINSTANCE.getComponentInstance_Actions();
+
+		/**
+		 * The meta object literal for the '<em><b>State Transitions</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPONENT_INSTANCE__STATE_TRANSITIONS = eINSTANCE.getComponentInstance_StateTransitions();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.av3instance.av3instance.impl.AssociationInstanceImpl <em>Association Instance</em>}' class.
@@ -2067,14 +2210,6 @@ public interface Av3instancePackage extends EPackage {
 		EReference BEHAVIOR_RULE_INSTANCE__CURRENT_STATE = eINSTANCE.getBehaviorRuleInstance_CurrentState();
 
 		/**
-		 * The meta object literal for the '<em><b>Target State</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference BEHAVIOR_RULE_INSTANCE__TARGET_STATE = eINSTANCE.getBehaviorRuleInstance_TargetState();
-
-		/**
 		 * The meta object literal for the '<em><b>Sink</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2202,6 +2337,48 @@ public interface Av3instancePackage extends EPackage {
 		 * @generated
 		 */
 		EClass STATE_INSTANCE = eINSTANCE.getStateInstance();
+
+		/**
+		 * The meta object literal for the '{@link org.osate.av3instance.av3instance.impl.StateTransitionInstanceImpl <em>State Transition Instance</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.osate.av3instance.av3instance.impl.StateTransitionInstanceImpl
+		 * @see org.osate.av3instance.av3instance.impl.Av3instancePackageImpl#getStateTransitionInstance()
+		 * @generated
+		 */
+		EClass STATE_TRANSITION_INSTANCE = eINSTANCE.getStateTransitionInstance();
+
+		/**
+		 * The meta object literal for the '<em><b>State Transition</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STATE_TRANSITION_INSTANCE__STATE_TRANSITION = eINSTANCE.getStateTransitionInstance_StateTransition();
+
+		/**
+		 * The meta object literal for the '<em><b>Condition</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STATE_TRANSITION_INSTANCE__CONDITION = eINSTANCE.getStateTransitionInstance_Condition();
+
+		/**
+		 * The meta object literal for the '<em><b>Current State</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STATE_TRANSITION_INSTANCE__CURRENT_STATE = eINSTANCE.getStateTransitionInstance_CurrentState();
+
+		/**
+		 * The meta object literal for the '<em><b>Target State</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STATE_TRANSITION_INSTANCE__TARGET_STATE = eINSTANCE.getStateTransitionInstance_TargetState();
 
 	}
 

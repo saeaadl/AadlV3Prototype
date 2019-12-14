@@ -116,6 +116,15 @@ public interface Av3instanceFactory extends EFactory {
 	StateInstance createStateInstance();
 
 	/**
+	 * Returns a new object of class '<em>State Transition Instance</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>State Transition Instance</em>'.
+	 * @generated
+	 */
+	StateTransitionInstance createStateTransitionInstance();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

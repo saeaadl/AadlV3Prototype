@@ -7,8 +7,10 @@ import org.osate.av3instance.av3instance.InstanceObject;
 
 import static org.osate.aadlv3.util.AIv3API.*;
 import org.osate.graph.util.AIJGraphTUtil;
+import org.osate.graph.util.RefEObjectEdge;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.jgrapht.Graph;
 import org.jgrapht.GraphPath;
@@ -49,16 +51,18 @@ public class TokenPaths {
 	
 	public Collection<Diagnostic> validateTokenPropagation(ComponentInstance root, ComponentInstance target){
 		Collection<Diagnostic> issues = new ArrayList<Diagnostic>();
-		Graph<InstanceObject, AssociationInstance> propagationgraph = AIJGraphTUtil.generateConnectionTopology(root);
+		Graph<EObject, RefEObjectEdge> propagationgraph = AIJGraphTUtil.generateConnectionTopology(root);
 		EList<ComponentInstance> sources = getAllTokenSources(root);
 		for (ComponentInstance source : sources){
 			ECollection tokens = EcoreUtil.copy(getTokenSource(source));
 			// path source to target contains vertex whose token sink contains 
-			AllDirectedPaths<InstanceObject, AssociationInstance> adps = new AllDirectedPaths<InstanceObject, AssociationInstance>(propagationgraph);
-			List<GraphPath<InstanceObject, AssociationInstance>> dps = adps.getAllPaths(source, target, true, null);
-			for (GraphPath<InstanceObject, AssociationInstance> dp : dps){
-				for (InstanceObject vt: dp.getVertexList()){
-					 tokens.remove(getTokenSink(vt));
+			AllDirectedPaths<EObject, RefEObjectEdge> adps = new AllDirectedPaths<EObject, RefEObjectEdge>(propagationgraph);
+			List<GraphPath<EObject, RefEObjectEdge>> dps = adps.getAllPaths(source, target, true, null);
+			for (GraphPath<EObject, RefEObjectEdge> dp : dps){
+				for (EObject vt: dp.getVertexList()){
+					if (vt instanceof NamedElement) {
+						 tokens.remove(getTokenSink((NamedElement)vt));
+					}
 				}
 			}
 			if (!tokens.getElements().isEmpty()){

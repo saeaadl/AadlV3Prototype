@@ -359,6 +359,15 @@ public interface Aadlv3Factory extends EFactory {
 	BehaviorSpecification createBehaviorSpecification();
 
 	/**
+	 * Returns a new object of class '<em>State Transition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>State Transition</em>'.
+	 * @generated
+	 */
+	StateTransition createStateTransition();
+
+	/**
 	 * Returns a new object of class '<em>State Specification</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -402,24 +411,6 @@ public interface Aadlv3Factory extends EFactory {
 	 * @generated
 	 */
 	PackageElementReference createPackageElementReference();
-
-	/**
-	 * Returns a new object of class '<em>Annotation</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Annotation</em>'.
-	 * @generated
-	 */
-	Annotation createAnnotation();
-
-	/**
-	 * Returns a new object of class '<em>Name Value Pair</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Name Value Pair</em>'.
-	 * @generated
-	 */
-	NameValuePair createNameValuePair();
 
 	/**
 	 * Returns a new object of class '<em>Primitive Type</em>'.

@@ -26,6 +26,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.osate.aadlv3.aadlv3.BehaviorSpecification#getTransitions <em>Transitions</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.BehaviorSpecification#getRules <em>Rules</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.BehaviorSpecification#getStateVariables <em>State Variables</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.BehaviorSpecification#getGenerators <em>Generators</em>}</li>
@@ -36,6 +37,18 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface BehaviorSpecification extends AnnexSubclause {
+	/**
+	 * Returns the value of the '<em><b>Transitions</b></em>' containment reference list.
+	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.StateTransition}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Transitions</em>' containment reference list.
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getBehaviorSpecification_Transitions()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<StateTransition> getTransitions();
+
 	/**
 	 * Returns the value of the '<em><b>Rules</b></em>' containment reference list.
 	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.BehaviorRule}.

@@ -914,6 +914,29 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.StateTransition} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected StateTransitionItemProvider stateTransitionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.StateTransition}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createStateTransitionAdapter() {
+		if (stateTransitionItemProvider == null) {
+			stateTransitionItemProvider = new StateTransitionItemProvider(this);
+		}
+
+		return stateTransitionItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.StateSpecification} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1026,52 +1049,6 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 		}
 
 		return packageElementReferenceItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.Annotation} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected AnnotationItemProvider annotationItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.Annotation}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createAnnotationAdapter() {
-		if (annotationItemProvider == null) {
-			annotationItemProvider = new AnnotationItemProvider(this);
-		}
-
-		return annotationItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.NameValuePair} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected NameValuePairItemProvider nameValuePairItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.NameValuePair}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createNameValuePairAdapter() {
-		if (nameValuePairItemProvider == null) {
-			nameValuePairItemProvider = new NameValuePairItemProvider(this);
-		}
-
-		return nameValuePairItemProvider;
 	}
 
 	/**
@@ -1424,6 +1401,8 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 			annexLibraryItemProvider.dispose();
 		if (behaviorSpecificationItemProvider != null)
 			behaviorSpecificationItemProvider.dispose();
+		if (stateTransitionItemProvider != null)
+			stateTransitionItemProvider.dispose();
 		if (behaviorRuleItemProvider != null)
 			behaviorRuleItemProvider.dispose();
 		if (stateSpecificationItemProvider != null)
@@ -1436,10 +1415,6 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 			constantItemProvider.dispose();
 		if (packageElementReferenceItemProvider != null)
 			packageElementReferenceItemProvider.dispose();
-		if (annotationItemProvider != null)
-			annotationItemProvider.dispose();
-		if (nameValuePairItemProvider != null)
-			nameValuePairItemProvider.dispose();
 	}
 
 }

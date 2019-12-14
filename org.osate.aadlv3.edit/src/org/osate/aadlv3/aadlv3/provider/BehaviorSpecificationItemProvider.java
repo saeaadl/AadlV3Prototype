@@ -107,6 +107,7 @@ public class BehaviorSpecificationItemProvider extends AnnexSubclauseItemProvide
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
+			childrenFeatures.add(Aadlv3Package.Literals.BEHAVIOR_SPECIFICATION__TRANSITIONS);
 			childrenFeatures.add(Aadlv3Package.Literals.BEHAVIOR_SPECIFICATION__RULES);
 		}
 		return childrenFeatures;
@@ -161,6 +162,7 @@ public class BehaviorSpecificationItemProvider extends AnnexSubclauseItemProvide
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(BehaviorSpecification.class)) {
+		case Aadlv3Package.BEHAVIOR_SPECIFICATION__TRANSITIONS:
 		case Aadlv3Package.BEHAVIOR_SPECIFICATION__RULES:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
@@ -178,6 +180,9 @@ public class BehaviorSpecificationItemProvider extends AnnexSubclauseItemProvide
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.BEHAVIOR_SPECIFICATION__TRANSITIONS,
+				Aadlv3Factory.eINSTANCE.createStateTransition()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.BEHAVIOR_SPECIFICATION__RULES,
 				Aadlv3Factory.eINSTANCE.createBehaviorRule()));

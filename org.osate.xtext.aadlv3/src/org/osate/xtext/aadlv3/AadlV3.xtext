@@ -7,7 +7,7 @@ import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 
 
 PackageDeclaration returns av3::PackageDeclaration:
-	 (annotations += Annotation )*
+	 (Annotation )*
 	(private?='private')? 'package' name=QualifiedName 'is'
 	
 	( elements+=AnnexLibrary |
@@ -26,7 +26,7 @@ PackageElement returns av3::PackageElement:
 	;
 
 PropertyDefinition returns av3::PropertyDefinition:
-	 (annotations += Annotation )*
+	 (Annotation )*
 	(private?='private')? 'property' name=ID ':' type=Type
 	('for' '(' ( forAll?='all' | (AppliesTo (',' AppliesTo)*)) ')'  )? 
 	';' ;
@@ -38,14 +38,14 @@ fragment AppliesTo*:
 ;
 
 PropertySet returns av3::PropertySet:
-	 (annotations += Annotation )*
+	 (Annotation )*
 	(private?='private')? 'properties' name=ID  ':'
 		'{' properties += [av3::PropertyDefinition|QualifiedReference] (',' properties += [av3::PropertyDefinition|QualifiedName])* '}'
 	';'
 ;
 
 TypeDef returns av3::TypeDef:
-	 (annotations += Annotation )*
+	 (Annotation )*
 	(private?='private')? 'type' name=ID ('extends' superType=Type)?
 	(':' baseType=Type)?
 		PropertiesBlock? ';'
@@ -53,7 +53,7 @@ TypeDef returns av3::TypeDef:
 
 
 ConstantDef returns av3::Constant:
-	 (annotations += Annotation )*
+	 (Annotation )*
 	(private?='private')? 'constant' name=ID ':' value=Literal
 		';'
 ;
@@ -80,7 +80,7 @@ NamedElementReference returns av3::NamedElementReference:
 
 
 ComponentInterface returns av3::ComponentInterface:
-	 (annotations += Annotation )*
+	 (Annotation )*
 	(private?='private')? category=ComponentCategory? 'interface'  name=ID ('extends' InterfaceExtensions)? 
 	 InterfaceBody ';'
 	;
@@ -90,13 +90,13 @@ fragment InterfaceBody*:
 ;
 fragment InterfaceElement*:
 	 features+=Feature 
-	| stateVariables+= StateVariable | behaviorRules +=TransitionRule | behaviorRules +=FlowRule| generators += Generator
+	| stateVariables+= StateVariable | transitions +=TransitionRule | rules +=BehaviorRule| generators += Generator
 	  | ownedPropertyAssociations+=PropertyAssociation | annexSubclause+=AnnexSubclause
 ;
 	
 
 ComponentImplementation returns av3::ComponentImplementation:
-	 (annotations += Annotation )*
+	 (Annotation )*
 	(private?='private')? category=ComponentCategory name=DottedName 
 	('extends' ImplementationExtensions)? 
 	 ImplementationBody ';'
@@ -111,12 +111,12 @@ fragment ImplementationElement* :
 	 bindings+=Binding | components+=Subcomponent 
 		| paths+= EndToEndFlow 
 		| flowAssignments+=FlowAssignment | classifierAssignments+=ClassifierAssignment | classifierAssignments+=ClassifierAssignmentPattern
-		| stateVariables+= StateVariable | behaviorRules +=TransitionRule | behaviorRules +=FlowRule| generators += Generator
+		| stateVariables+= StateVariable | transitions +=TransitionRule | rules +=BehaviorRule| generators += Generator
 		| ownedPropertyAssociations+=PropertyAssociation | annexSubclause+=AnnexSubclause
 ;
 
 ComponentConfiguration returns av3::ComponentConfiguration:
-	 (annotations += Annotation )*
+	 (Annotation )*
 	(private?='private')? 'configuration' name=DottedName  
 	Parameters?
 	// optional extension. If no extends then we have a generic configuration with patterns
@@ -127,7 +127,7 @@ ComponentConfiguration returns av3::ComponentConfiguration:
 // (Instance) model elements
 
 Feature returns av3::Feature:
-	 (annotations += Annotation )*
+	 (Annotation )*
 	name=ID ':' direction=FeatureDirection?  
 	category=FeatureCategory 
 	(typeReference=ReversableTypeReference )?
@@ -135,12 +135,9 @@ Feature returns av3::Feature:
 	;
 
 Subcomponent returns av3::Subcomponent:
-{av3::Subcomponent}	 (annotations += Annotation )*
+{av3::Subcomponent}	 (Annotation )*
 	name=ID ':' category=ComponentCategory
-	( typeReferences+=ClassifierOrTypeReference 
-		//(',' typeReferences+=TypeReference?)* 
-		)?
-	NestedComponentImplementationBlock? 
+	( typeReferences+=ClassifierOrTypeReference | NestedComponentImplementationBlock) 
 	InModes? ';'
  ;
 
@@ -154,17 +151,6 @@ Binding returns av3::Association:
 	source=ModelElementReference
 	'->' destination=ModelElementReference PropertiesBlock? InModes? ';';
 
-//
-//FlowPath returns av3::Association:
-//	name=ID ':' associationType=IsFlow source=ModelElementReference
-//	'->' destination=ModelElementReference PropertiesBlock? ';';
-//
-//FlowSource returns av3::Association:
-//	name=ID ':' associationType=IsFlowSource  destination=ModelElementReference  PropertiesBlock? ';' ;
-//
-//FlowSink returns av3::Association:
-//	name=ID ':' associationType=IsFlowSink  source=ModelElementReference 
-//	 PropertiesBlock? ';';
 
 fragment UseProps*:	
 	'use''properties' useProperties += [av3::PropertySet|QualifiedName] (',' useProperties += [av3::PropertySet|QualifiedName])* 
@@ -351,46 +337,46 @@ fragment BehaviorSpecificationBlock*:
 ;
 
 fragment BehaviorSpecificationElement*:
-	generators+= Generator | rules+= TransitionRule| rules+= FlowRule | stateVariables+= StateVariable
+	generators+= Generator | transitions+= TransitionRule| rules+= BehaviorRule | stateVariables+= StateVariable
 ;
 
 
 StateVariable returns av3::StateVariable:
-	(annotations += Annotation )*
+	(Annotation )*
 	name=ID ':' 'state' stateType=[av3::TypeDef|QualifiedName] 
 	(initialState=EnumerationLiteral)?	PropertiesBlock? ';'
 ;
 
 
 Generator returns av3::Generator:
-	(annotations += Annotation )*
+	(Annotation )*
 	name=ID ':' type=('error'|'recover'|'repair')  
 	(value=ListLiteral)?	PropertiesBlock? ';'
 ;
 
 
-TransitionRule returns av3::BehaviorRule :
-	(annotations += Annotation )*
+TransitionRule returns av3::StateTransition :
+	(Annotation )*
 	name=ID ':' 'transition' condition =  (MultiLiteralOperation | ModelElementContainsLiteral | ModelElementReference) '->' targetState=TargetState 
-		'when' currentState=CurrentState PropertiesBlock? ';'
+		('when' currentState=CurrentState)? PropertiesBlock? ';'
 ;
 
-FlowRule returns av3::BehaviorRule :
+BehaviorRule returns av3::BehaviorRule :
 	FlowPathRule | FlowSourceRule | FlowSinkRule
 ;
 
 FlowPathRule returns av3::BehaviorRule :
-	(annotations += Annotation )*
+	(Annotation )*
 	name=ID ':' 'flow' condition =(MultiLiteralOperation | ModelElementContainsLiteral | ModelElementReference) '->'  actions+=Assignment (',' actions+=Assignment)* 
 	('when' currentState=CurrentState )? PropertiesBlock?';'
 ;
 FlowSourceRule returns av3::BehaviorRule :
-	(annotations += Annotation )*
-	name=ID ':' 'flow'  source?='source' (condition =(MultiLiteralOperation | ModelElementContainsLiteral | ModelElementReference))? ('->'  (actions+=Assignment (',' actions+=Assignment)*))? 
+	(Annotation )*
+	name=ID ':' 'flow'  source?='source' (condition =(MultiLiteralOperation | ModelElementContainsLiteral | ModelElementReference) '->' )?  actions+=Assignment (',' actions+=Assignment)* 
 	('when' currentState=CurrentState )? PropertiesBlock?';'
 ;
 FlowSinkRule returns av3::BehaviorRule :
-	(annotations += Annotation )*
+	(Annotation )*
 	name=ID ':' 'flow'  condition =(MultiLiteralOperation | ModelElementContainsLiteral | ModelElementReference) '->' sink?='sink'
 	('when' currentState=CurrentState )? PropertiesBlock?';'
 ;
@@ -418,12 +404,8 @@ FeatureInput returns av3::BinaryOperation:
 
 // Annotations
 
-Annotation returns av3::Annotation:
-	'@' name=ID ('(' (value = Literal | (nameValuePairs+= NameValuePair)+) ')')?
-;
-
-NameValuePair returns av3::NameValuePair:
-	name=ID '=' value = Literal
+fragment Annotation* :
+	'@' annotations+=ID 
 ;
 
 // expression/constraint language

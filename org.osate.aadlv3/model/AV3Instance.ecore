@@ -29,8 +29,6 @@
         eType="#//AssociationInstance" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="features" upperBound="-1"
         eType="#//FeatureInstance" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="flowspecs" upperBound="-1"
-        eType="#//AssociationInstance" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="paths" upperBound="-1"
         eType="#//PathInstance" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="behaviorRules" upperBound="-1"
@@ -41,6 +39,8 @@
         eType="#//StateVariableInstance" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="actions" upperBound="-1"
         eType="#//ConstrainedInstanceObject" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stateTransitions" upperBound="-1"
+        eType="#//StateTransitionInstance" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AssociationInstance" eSuperTypes="#//InstanceObject">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="associationType" eType="ecore:EEnum Aadlv3.ecore#//AssociationType"/>
@@ -68,7 +68,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="actions" upperBound="-1"
         eType="#//ConstrainedInstanceObject"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="currentState" eType="#//StateInstance"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="targetState" eType="#//StateInstance"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="sink" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="source" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
@@ -90,4 +89,11 @@
         eType="#//StateInstance" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StateInstance" eSuperTypes="#//InstanceObject"/>
+  <eClassifiers xsi:type="ecore:EClass" name="StateTransitionInstance" eSuperTypes="#//InstanceObject">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stateTransition" eType="ecore:EClass Aadlv3.ecore#//StateTransition"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="ecore:EClass Aadlv3.ecore#//Literal"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="currentState" eType="#//StateInstance"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="targetState" eType="#//StateInstance"/>
+  </eClassifiers>
 </ecore:EPackage>

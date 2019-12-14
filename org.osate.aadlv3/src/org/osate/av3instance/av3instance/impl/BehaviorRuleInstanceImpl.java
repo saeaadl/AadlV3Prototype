@@ -45,7 +45,6 @@ import org.osate.av3instance.av3instance.StateInstance;
  *   <li>{@link org.osate.av3instance.av3instance.impl.BehaviorRuleInstanceImpl#getCondition <em>Condition</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.impl.BehaviorRuleInstanceImpl#getActions <em>Actions</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.impl.BehaviorRuleInstanceImpl#getCurrentState <em>Current State</em>}</li>
- *   <li>{@link org.osate.av3instance.av3instance.impl.BehaviorRuleInstanceImpl#getTargetState <em>Target State</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.impl.BehaviorRuleInstanceImpl#isSink <em>Sink</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.impl.BehaviorRuleInstanceImpl#isSource <em>Source</em>}</li>
  * </ul>
@@ -92,16 +91,6 @@ public class BehaviorRuleInstanceImpl extends InstanceObjectImpl implements Beha
 	 * @ordered
 	 */
 	protected StateInstance currentState;
-
-	/**
-	 * The cached value of the '{@link #getTargetState() <em>Target State</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTargetState()
-	 * @generated
-	 * @ordered
-	 */
-	protected StateInstance targetState;
 
 	/**
 	 * The default value of the '{@link #isSink() <em>Sink</em>}' attribute.
@@ -266,48 +255,6 @@ public class BehaviorRuleInstanceImpl extends InstanceObjectImpl implements Beha
 	 * @generated
 	 */
 	@Override
-	public StateInstance getTargetState() {
-		if (targetState != null && targetState.eIsProxy()) {
-			InternalEObject oldTargetState = (InternalEObject) targetState;
-			targetState = (StateInstance) eResolveProxy(oldTargetState);
-			if (targetState != oldTargetState) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							Av3instancePackage.BEHAVIOR_RULE_INSTANCE__TARGET_STATE, oldTargetState, targetState));
-			}
-		}
-		return targetState;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public StateInstance basicGetTargetState() {
-		return targetState;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setTargetState(StateInstance newTargetState) {
-		StateInstance oldTargetState = targetState;
-		targetState = newTargetState;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					Av3instancePackage.BEHAVIOR_RULE_INSTANCE__TARGET_STATE, oldTargetState, targetState));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public boolean isSink() {
 		return sink;
 	}
@@ -436,10 +383,6 @@ public class BehaviorRuleInstanceImpl extends InstanceObjectImpl implements Beha
 			if (resolve)
 				return getCurrentState();
 			return basicGetCurrentState();
-		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE__TARGET_STATE:
-			if (resolve)
-				return getTargetState();
-			return basicGetTargetState();
 		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE__SINK:
 			return isSink();
 		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE__SOURCE:
@@ -469,9 +412,6 @@ public class BehaviorRuleInstanceImpl extends InstanceObjectImpl implements Beha
 			return;
 		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE__CURRENT_STATE:
 			setCurrentState((StateInstance) newValue);
-			return;
-		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE__TARGET_STATE:
-			setTargetState((StateInstance) newValue);
 			return;
 		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE__SINK:
 			setSink((Boolean) newValue);
@@ -503,9 +443,6 @@ public class BehaviorRuleInstanceImpl extends InstanceObjectImpl implements Beha
 		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE__CURRENT_STATE:
 			setCurrentState((StateInstance) null);
 			return;
-		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE__TARGET_STATE:
-			setTargetState((StateInstance) null);
-			return;
 		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE__SINK:
 			setSink(SINK_EDEFAULT);
 			return;
@@ -532,8 +469,6 @@ public class BehaviorRuleInstanceImpl extends InstanceObjectImpl implements Beha
 			return actions != null && !actions.isEmpty();
 		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE__CURRENT_STATE:
 			return currentState != null;
-		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE__TARGET_STATE:
-			return targetState != null;
 		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE__SINK:
 			return sink != SINK_EDEFAULT;
 		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE__SOURCE:

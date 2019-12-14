@@ -1477,16 +1477,6 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 					error('Feature delegation source and destination must be bidirectional', assoc, null, MUST_BE_BI)
 				}
 			}
-		} else if (assoc.associationType.isFlowSpec) {
-			if (srcdir !== null && dstdir !== null && !(srcdir.incoming && dstdir.outgoing)) {
-				error('FLow path must be from incoming to outgoing', assoc, null, IN_TO_OUT)
-
-			} else if (srcdir !== null && dstdir === null && !(srcdir.incoming)) {
-				error('Flow sink must be incoming', assoc, Aadlv3Package.Literals.ASSOCIATION__SOURCE, MUST_BE_IN)
-			} else if (srcdir === null && dstdir !== null && !(dstdir.outgoing)) {
-				error('FLow source must be outgoing', assoc, Aadlv3Package.Literals.ASSOCIATION__DESTINATION,
-					MUST_BE_OUT)
-			}
 		} else if (assoc.associationType.isBinding) {
 			if (!(srcdir?.outgoingBinding && dstdir?.incomingBinding)) {
 				error('Binding must be from requires to provides', assoc, null, REQUIRES_TO_PROVIDES)
@@ -1565,22 +1555,6 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 						AadlV3Validator.FeatureAndSubcomponent)
 				}
 			}
-		} else if (assoc.associationType.isFlowSpec) {
-			if (assoc.source !== null && assoc.destination !== null &&
-				(assoc.source.namedElementReferenceIncludesComponent ||
-					assoc.destination.namedElementReferenceIncludesComponent)) {
-				error('Flow path must not be between features of subcomponents', assoc, null, BetweenFeatures)
-			} else // } else if (assoc.associationType === AssociationType.FLOWSINK) {
-			if (assoc.source !== null && assoc.destination === null &&
-				(assoc.source.namedElementReferenceIncludesComponent)) {
-				error('Flow sink must not be a subcomponent feature', assoc, Aadlv3Package.Literals.ASSOCIATION__SOURCE,
-					NotSubcomponentFeature)
-			} else // } else if (assoc.associationType === AssociationType.FLOWSOURCE) {
-			if (assoc.source === null && assoc.destination !== null &&
-				(assoc.destination.namedElementReferenceIncludesComponent)) {
-				error('Flow source must not be a subcomponent feature', assoc,
-					Aadlv3Package.Literals.ASSOCIATION__DESTINATION, NotSubcomponentFeature)
-			}
 		} else if (assoc.associationType.isBinding) {
 			if (!(assoc.source.namedElementReferenceIncludesComponent &&
 				assoc.destination.namedElementReferenceIncludesComponent)) {
@@ -1590,7 +1564,6 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 	}
 
 	def checkMatchingTypes(Association assoc) {
-		if(assoc.associationType.flowSpec) return;
 		if(assoc.source === null || assoc.destination === null) return;
 		val srcelem = assoc.source.element
 		val dstelem = assoc.destination.element
@@ -1638,42 +1611,11 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 			val prevElement = prevPathElement?.element
 			val elementidx = path.elements.indexOf(pathElement)
 			if (prevElement instanceof Association) {
-				if (prevElement.isFlowSpec) {
-					// previous flow spec
-					val prevdstcomp = prevPathElement.getClosestReferencedComponent
-					if (element instanceof Association) {
-						if (element.isFlowSpec) {
-							// there must be a connection between them
-						} else if (element.isConnection) {
-							// connection must start from prev flow spec component
-							val currentsrccomp = element.source.getClosestReferencedComponent
-							if (prevdstcomp !== currentsrccomp) {
-								error(
-									'Connection source component differs from destination component of preceding flow spec',
-									path, Aadlv3Package.Literals.PATH_SEQUENCE__ELEMENTS, elementidx,
-									DifferentComponentInPath)
-							}
-						}
-					} else if (element instanceof Subcomponent) {
-						// connection destination must be the component
-						if (prevdstcomp !== element) {
-							error('Component differs from destination component of preceding connection', path,
-								Aadlv3Package.Literals.PATH_SEQUENCE__ELEMENTS, elementidx, DifferentComponentInPath)
-						}
-					}
-				} else if (prevElement.isConnection) {
+				if (prevElement.isConnection) {
 					// previous connection
 					val prevdstcomp = (prevElement as Association).destination.getClosestReferencedComponent
 					if (element instanceof Association) {
-						if (element.isFlowSpec) {
-							val currentsrccomp = pathElement.getClosestReferencedComponent
-							if (prevdstcomp !== currentsrccomp) {
-								error(
-									'Component of flow spec differs from from destination component of preceding connection',
-									path, Aadlv3Package.Literals.PATH_SEQUENCE__ELEMENTS, elementidx,
-									DifferentComponentInPath)
-							}
-						} else if (element.isConnection) {
+						if (element.isConnection) {
 							// both are connection
 							// they must connect to the same component
 							val currentsrccomp = element.source.getClosestReferencedComponent
@@ -1684,6 +1626,14 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 									DifferentComponentInPath)
 							}
 						}
+					} else if (element instanceof BehaviorRule) {
+							val currentsrccomp = pathElement.getClosestReferencedComponent
+							if (prevdstcomp !== currentsrccomp) {
+								error(
+									'Component of flow spec differs from from destination component of preceding connection',
+									path, Aadlv3Package.Literals.PATH_SEQUENCE__ELEMENTS, elementidx,
+									DifferentComponentInPath)
+							}
 					} else if (element instanceof Subcomponent) {
 						// connection destination must be the component
 						if (prevdstcomp !== element) {
@@ -1692,12 +1642,25 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 						}
 					}
 				}
+			} else if (prevElement instanceof BehaviorRule) {
+				// previous flow spec
+				val prevdstcomp = prevPathElement.getClosestReferencedComponent
+				if (element instanceof Association) {
+					if (element.isConnection) {
+						// connection must start from prev flow spec component
+						val currentsrccomp = element.source.getClosestReferencedComponent
+						if (prevdstcomp !== currentsrccomp) {
+							error(
+								'Connection source component differs from destination component of preceding flow spec',
+								path, Aadlv3Package.Literals.PATH_SEQUENCE__ELEMENTS, elementidx,
+								DifferentComponentInPath)
+						}
+					}
+				}
 			} else if (prevElement instanceof Subcomponent) {
 				// previous component
 				if (element instanceof Association) {
-					if (element.isFlowSpec) {
-						// there must be a connection
-					} else if (element.isConnection) {
+					if (element.isConnection) {
 						// element is a connection
 						// connection source must be same as prev component
 						val currentsrccomp = element.source.getClosestReferencedComponent

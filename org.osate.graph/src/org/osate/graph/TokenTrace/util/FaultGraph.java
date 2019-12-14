@@ -27,7 +27,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.jgrapht.Graph;
 import org.jgrapht.graph.AsSubgraph;
-import org.jgrapht.graph.DefaultEdge;
 import org.jgrapht.graph.EdgeReversedGraph;
 import org.osate.aadlv3.aadlv3.Aadlv3Factory;
 import org.osate.aadlv3.aadlv3.ECollection;
@@ -49,15 +48,16 @@ import org.osate.graph.TokenTrace.TokenTraceFactory;
 import org.osate.graph.TokenTrace.TokenTraceType;
 import org.osate.graph.TokenTrace.TokenType;
 import org.osate.graph.util.AIJGraphTUtil;
+import org.osate.graph.util.RefEObjectEdge;
 
 public class FaultGraph {
 	TokenTrace eventTrace = null;
-	Graph<EObject, DefaultEdge> graph = null;
+	Graph<EObject, RefEObjectEdge> graph = null;
 	
 	public void generateCauseGraphs(ComponentInstance root, TokenTraceType ttt, String subclauseName) {
-		Graph<EObject, DefaultEdge> bgraph = AIJGraphTUtil.generateBehaviorPropagationPaths(root,
+		Graph<EObject, RefEObjectEdge> bgraph = AIJGraphTUtil.generateBehaviorPropagationPaths(root,
 				subclauseName);
-		Graph<EObject, DefaultEdge> revgraph = new EdgeReversedGraph<EObject, DefaultEdge>(
+		Graph<EObject, RefEObjectEdge> revgraph = new EdgeReversedGraph<EObject, RefEObjectEdge>(
 				bgraph);
 
 		for (FeatureInstance fi : root.getFeatures()) {
@@ -74,7 +74,7 @@ public class FaultGraph {
 		}
 	}
 
-	public TokenTrace generateCauseGraph(Graph<EObject, DefaultEdge> graph, InstanceObject graphRoot,
+	public TokenTrace generateCauseGraph(Graph<EObject, RefEObjectEdge> graph, InstanceObject graphRoot,
 			 TokenTraceType ttt) {
 		TokenTrace eTrace = generateCauseTrace(graph, graphRoot, ttt);
 		TokenTraceOptimization tto = new TokenTraceOptimization();
@@ -105,7 +105,7 @@ public class FaultGraph {
 
 	}
 	
-	public TokenTrace generateCauseTrace(Graph<EObject, DefaultEdge> graph, InstanceObject fiRoot, TokenTraceType ttt){
+	public TokenTrace generateCauseTrace(Graph<EObject, RefEObjectEdge> graph, InstanceObject fiRoot, TokenTraceType ttt){
 		this.graph = graph;
 		eventTrace = TokenTraceFactory.eINSTANCE.createTokenTrace();
 		eventTrace.setInstanceRoot(getRoot(fiRoot));
@@ -129,12 +129,12 @@ public class FaultGraph {
 			}
 		}
 		
-		Set<DefaultEdge> edges = graph.outgoingEdgesOf(eo);
+		Set<RefEObjectEdge> edges = graph.outgoingEdgesOf(eo);
 //		if (edges.isEmpty()) {
 //			return null;
 //		}
 		EList<Token> subEvents = new BasicEList<Token>();
-		for (DefaultEdge edge : edges) {
+		for (RefEObjectEdge edge : edges) {
 			EObject edgeTarget = graph.getEdgeTarget(edge);
 			Token res = processCause(edgeTarget);
 			if (res != null) {
@@ -254,7 +254,7 @@ public class FaultGraph {
 	
 	
 	public TokenTrace generateEffectGraph(ComponentInstance root, TokenTraceType ttt, String subclauseName) {
-		Graph<EObject, DefaultEdge> bgraph = AIJGraphTUtil.generateBehaviorPropagationPaths(root, subclauseName);
+		Graph<EObject, RefEObjectEdge> bgraph = AIJGraphTUtil.generateBehaviorPropagationPaths(root, subclauseName);
 		this.graph = bgraph;
 		eventTrace = TokenTraceFactory.eINSTANCE.createTokenTrace();
 		eventTrace.setInstanceRoot(root);
@@ -279,7 +279,7 @@ public class FaultGraph {
 	public TokenTrace generateEffectTrace(GeneratorInstance gi, TokenTraceType ttt, String subclauseName) {
 		ComponentInstance root = getRoot(gi);
 		ComponentInstance ci = containingComponentInstance(gi);
-		Graph<EObject, DefaultEdge> bgraph = AIJGraphTUtil.generateBehaviorPropagationPaths(root, subclauseName);
+		Graph<EObject, RefEObjectEdge> bgraph = AIJGraphTUtil.generateBehaviorPropagationPaths(root, subclauseName);
 		this.graph = bgraph;
 		eventTrace = TokenTraceFactory.eINSTANCE.createTokenTrace();
 		eventTrace.setInstanceRoot(root);
@@ -296,7 +296,7 @@ public class FaultGraph {
 	
 	public TokenTrace generateEffectTrace(ConstrainedInstanceObject startcio, TokenTraceType ttt, String subclauseName) {
 		ComponentInstance root = getRoot(startcio);
-		Graph<EObject, DefaultEdge> bgraph = AIJGraphTUtil.generateBehaviorPropagationPaths(root, subclauseName);
+		Graph<EObject, RefEObjectEdge> bgraph = AIJGraphTUtil.generateBehaviorPropagationPaths(root, subclauseName);
 		this.graph = bgraph;
 		eventTrace = TokenTraceFactory.eINSTANCE.createTokenTrace();
 		eventTrace.setInstanceRoot(root);
@@ -325,8 +325,8 @@ public class FaultGraph {
 	
 	private Token processEffects(InstanceObject startcio) {
 		Token startToken = createToken(eventTrace, startcio, TokenType.INTERMEDIATE);
-		Set<DefaultEdge> edges = graph.outgoingEdgesOf(startcio);
-		for (DefaultEdge edge : edges) {
+		Set<RefEObjectEdge> edges = graph.outgoingEdgesOf(startcio);
+		for (RefEObjectEdge edge : edges) {
 			EObject nextCioio = graph.getEdgeTarget(edge);
 			processNextEffect(startToken, nextCioio);
 		}
@@ -351,8 +351,8 @@ public class FaultGraph {
 				Token nextStep = addNextStep(step, target, step.getTokenLiteral());
 				if (nextStep != null) {
 					if (graph.containsVertex(cioio)) {
-						Set<DefaultEdge> edges = graph.outgoingEdgesOf(cioio);
-						for (DefaultEdge edge : edges) {
+						Set<RefEObjectEdge> edges = graph.outgoingEdgesOf(cioio);
+						for (RefEObjectEdge edge : edges) {
 							EObject nextCioio = graph.getEdgeTarget(edge);
 							processNextEffect(nextStep, nextCioio);
 						}
@@ -376,8 +376,8 @@ public class FaultGraph {
 				nextStep.setTokenType(TokenType.UNHANDLED);
 			}
 			if (graph.containsVertex(outVertex)) {
-				Set<DefaultEdge> edges = graph.outgoingEdgesOf(outVertex);
-				for (DefaultEdge edge : edges) {
+				Set<RefEObjectEdge> edges = graph.outgoingEdgesOf(outVertex);
+				for (RefEObjectEdge edge : edges) {
 					EObject nextCioio = graph.getEdgeTarget(edge);
 					processNextEffect(nextStep, nextCioio);
 				}
@@ -464,7 +464,7 @@ public class FaultGraph {
 	
 // effects as subgraph	
 	
-	public Set<EObject> generateEffectSubGraph(Graph<EObject, DefaultEdge> bgraph) {
+	public Set<EObject> generateEffectSubGraph(Graph<EObject, RefEObjectEdge> bgraph) {
 		this.graph = bgraph;
 		Set<EObject> vsubset = new HashSet<EObject>();
 		Set<EObject> vset = bgraph.vertexSet();
@@ -481,18 +481,18 @@ public class FaultGraph {
 	
 	// effects as subgraph
 	
-	public Graph <EObject, DefaultEdge> generateEffectsSubgraph(Graph <EObject, DefaultEdge> bgraph, InstanceObject startio) {
+	public Graph <EObject, RefEObjectEdge> generateEffectsSubgraph(Graph <EObject, RefEObjectEdge> bgraph, InstanceObject startio) {
 		Set<EObject> effectvset = generateEffectVertices(bgraph, startio);
-		AsSubgraph<EObject, DefaultEdge> subgraph = new AsSubgraph<EObject, DefaultEdge>(bgraph,effectvset);
+		AsSubgraph<EObject, RefEObjectEdge> subgraph = new AsSubgraph<EObject, RefEObjectEdge>(bgraph,effectvset);
         return subgraph;
 	}
 	
 	
-	public Set<EObject> generateEffectVertices(Graph<EObject, DefaultEdge> bgraph, InstanceObject startio) {
+	public Set<EObject> generateEffectVertices(Graph<EObject, RefEObjectEdge> bgraph, InstanceObject startio) {
 		Set<EObject> vsubset = new HashSet<EObject>();
 		vsubset.add(startio);
-		Set<DefaultEdge> edges = graph.outgoingEdgesOf(startio);
-		for (DefaultEdge edge : edges) {
+		Set<RefEObjectEdge> edges = graph.outgoingEdgesOf(startio);
+		for (RefEObjectEdge edge : edges) {
 			EObject nextCioio = graph.getEdgeTarget(edge);
 			processNextEffect(vsubset, nextCioio,getRealConstraint(startio));
 		}
@@ -517,8 +517,8 @@ public class FaultGraph {
 				// constraint contains propagated literal
 				if (vsubset.add(cioio)) {
 					if (graph.containsVertex(cioio)) {
-						Set<DefaultEdge> edges = graph.outgoingEdgesOf(cioio);
-						for (DefaultEdge edge : edges) {
+						Set<RefEObjectEdge> edges = graph.outgoingEdgesOf(cioio);
+						for (RefEObjectEdge edge : edges) {
 							EObject nextCioio = graph.getEdgeTarget(edge);
 							processNextEffect(vsubset, nextCioio, outEffect); 
 						}
@@ -533,8 +533,8 @@ public class FaultGraph {
 		// do next step
 		if (vsubset.add(cioio)) {
 			if (graph.containsVertex(outVertex)) {
-				Set<DefaultEdge> edges = graph.outgoingEdgesOf(outVertex);
-				for (DefaultEdge edge : edges) {
+				Set<RefEObjectEdge> edges = graph.outgoingEdgesOf(outVertex);
+				for (RefEObjectEdge edge : edges) {
 					EObject nextCioio = graph.getEdgeTarget(edge);
 					processNextEffect(vsubset, nextCioio, outEffect);
 				}

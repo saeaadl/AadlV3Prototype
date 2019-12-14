@@ -27,6 +27,7 @@ import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.BehaviorRule;
 import org.osate.aadlv3.aadlv3.BehaviorSpecification;
 import org.osate.aadlv3.aadlv3.Generator;
+import org.osate.aadlv3.aadlv3.StateTransition;
 import org.osate.aadlv3.aadlv3.StateVariable;
 
 /**
@@ -37,6 +38,7 @@ import org.osate.aadlv3.aadlv3.StateVariable;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.BehaviorSpecificationImpl#getTransitions <em>Transitions</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.BehaviorSpecificationImpl#getRules <em>Rules</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.BehaviorSpecificationImpl#getStateVariables <em>State Variables</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.BehaviorSpecificationImpl#getGenerators <em>Generators</em>}</li>
@@ -45,6 +47,16 @@ import org.osate.aadlv3.aadlv3.StateVariable;
  * @generated
  */
 public class BehaviorSpecificationImpl extends AnnexSubclauseImpl implements BehaviorSpecification {
+	/**
+	 * The cached value of the '{@link #getTransitions() <em>Transitions</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTransitions()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<StateTransition> transitions;
+
 	/**
 	 * The cached value of the '{@link #getRules() <em>Rules</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -100,6 +112,20 @@ public class BehaviorSpecificationImpl extends AnnexSubclauseImpl implements Beh
 	 * @generated
 	 */
 	@Override
+	public EList<StateTransition> getTransitions() {
+		if (transitions == null) {
+			transitions = new EObjectContainmentEList<StateTransition>(StateTransition.class, this,
+					Aadlv3Package.BEHAVIOR_SPECIFICATION__TRANSITIONS);
+		}
+		return transitions;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EList<BehaviorRule> getRules() {
 		if (rules == null) {
 			rules = new EObjectContainmentEList<BehaviorRule>(BehaviorRule.class, this,
@@ -144,6 +170,8 @@ public class BehaviorSpecificationImpl extends AnnexSubclauseImpl implements Beh
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+		case Aadlv3Package.BEHAVIOR_SPECIFICATION__TRANSITIONS:
+			return ((InternalEList<?>) getTransitions()).basicRemove(otherEnd, msgs);
 		case Aadlv3Package.BEHAVIOR_SPECIFICATION__RULES:
 			return ((InternalEList<?>) getRules()).basicRemove(otherEnd, msgs);
 		case Aadlv3Package.BEHAVIOR_SPECIFICATION__STATE_VARIABLES:
@@ -162,6 +190,8 @@ public class BehaviorSpecificationImpl extends AnnexSubclauseImpl implements Beh
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+		case Aadlv3Package.BEHAVIOR_SPECIFICATION__TRANSITIONS:
+			return getTransitions();
 		case Aadlv3Package.BEHAVIOR_SPECIFICATION__RULES:
 			return getRules();
 		case Aadlv3Package.BEHAVIOR_SPECIFICATION__STATE_VARIABLES:
@@ -181,6 +211,10 @@ public class BehaviorSpecificationImpl extends AnnexSubclauseImpl implements Beh
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+		case Aadlv3Package.BEHAVIOR_SPECIFICATION__TRANSITIONS:
+			getTransitions().clear();
+			getTransitions().addAll((Collection<? extends StateTransition>) newValue);
+			return;
 		case Aadlv3Package.BEHAVIOR_SPECIFICATION__RULES:
 			getRules().clear();
 			getRules().addAll((Collection<? extends BehaviorRule>) newValue);
@@ -205,6 +239,9 @@ public class BehaviorSpecificationImpl extends AnnexSubclauseImpl implements Beh
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+		case Aadlv3Package.BEHAVIOR_SPECIFICATION__TRANSITIONS:
+			getTransitions().clear();
+			return;
 		case Aadlv3Package.BEHAVIOR_SPECIFICATION__RULES:
 			getRules().clear();
 			return;
@@ -226,6 +263,8 @@ public class BehaviorSpecificationImpl extends AnnexSubclauseImpl implements Beh
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+		case Aadlv3Package.BEHAVIOR_SPECIFICATION__TRANSITIONS:
+			return transitions != null && !transitions.isEmpty();
 		case Aadlv3Package.BEHAVIOR_SPECIFICATION__RULES:
 			return rules != null && !rules.isEmpty();
 		case Aadlv3Package.BEHAVIOR_SPECIFICATION__STATE_VARIABLES:

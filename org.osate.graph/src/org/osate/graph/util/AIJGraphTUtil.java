@@ -24,6 +24,7 @@ import org.osate.av3instance.av3instance.FeatureInstance;
 import org.osate.av3instance.av3instance.GeneratorInstance;
 import org.osate.av3instance.av3instance.InstanceObject;
 import org.osate.av3instance.av3instance.StateInstance;
+import org.osate.av3instance.av3instance.StateTransitionInstance;
 import org.osate.graph.TokenTrace.Token;
 import org.osate.graph.TokenTrace.util.TokenTraceUtil;
 
@@ -40,37 +41,26 @@ public class AIJGraphTUtil {
 		return directedGraph;
 	}
 
-	public static Graph<InstanceObject, AssociationInstance> generateConnectionTopology(ComponentInstance root) {
-		Graph<InstanceObject, AssociationInstance> directedGraph = new DefaultDirectedGraph<InstanceObject, AssociationInstance>(
-				AssociationInstance.class);
+	public static Graph<EObject, RefEObjectEdge> generateConnectionTopology(ComponentInstance root) {
+		Graph<EObject, RefEObjectEdge> directedGraph = new DefaultDirectedGraph<EObject, RefEObjectEdge>(
+				RefEObjectEdge.class);
 		List<AssociationInstance> connis = getAllConnections(root);
 		for (AssociationInstance conni : connis) {
 			if (isConnection(conni)) {
 				ComponentInstance src = containingComponentInstanceOrSelf(conni.getSource());
 				ComponentInstance dst = containingComponentInstanceOrSelf(conni.getDestination());
-				directedGraph.addVertex(dst);
-				directedGraph.addVertex(src);
-				directedGraph.addEdge(src, dst, conni);
+				addPath(directedGraph,src, dst, conni);
 			}
 		}
 		return directedGraph;
 	}
 	
-	private static void addPath(Graph<EObject, DefaultEdge> g, EObject src, EObject dst) {
-		g.addVertex(dst);
-		g.addVertex(src);
-		g.addEdge(src, dst);
-	}
 	
-	private static void addPath(Graph<EObject, DefaultEdge> g, EObject src, EObject dst, EObject refEObject) {
+	private static void addPath(Graph<EObject, RefEObjectEdge> g, EObject src, EObject dst, EObject refEObject) {
 		g.addVertex(dst);
 		g.addVertex(src);
-		if (refEObject != null) {
-			RefEObjectEdge edge = new RefEObjectEdge(refEObject);
-			g.addEdge(src, dst, edge);
-		} else {
-			g.addEdge(src, dst);
-		}
+		RefEObjectEdge edge = new RefEObjectEdge(refEObject);
+		g.addEdge(src, dst, edge);
 	}
 
 	/**
@@ -79,9 +69,9 @@ public class AIJGraphTUtil {
 	 * @param root
 	 * @return
 	 */
-	public static Graph<EObject, DefaultEdge> generatePropagationPaths(ComponentInstance root) {
-		Graph<EObject, DefaultEdge> directedGraph = new DefaultDirectedGraph<EObject, DefaultEdge>(
-				DefaultEdge.class);
+	public static Graph<EObject, RefEObjectEdge> generatePropagationPaths(ComponentInstance root) {
+		Graph<EObject, RefEObjectEdge> directedGraph = new DefaultDirectedGraph<EObject, RefEObjectEdge>(
+				RefEObjectEdge.class);
 		List<AssociationInstance> connis = getAllConnections(root);
 		for (AssociationInstance conni : connis) {
 			InstanceObject src = conni.getSource();
@@ -91,12 +81,12 @@ public class AIJGraphTUtil {
 		List<ComponentInstance> cis = getAllComponents(root);
 		for (ComponentInstance ci : cis) {
 			if (isLeafComponent(ci)) {
-				EList<AssociationInstance> flows = ci.getFlowspecs();
+				EList<BehaviorRuleInstance> flows = ci.getBehaviorRules();
 				Iterable<FeatureInstance> infeats = getAllIncomingFeatures(ci);
 				Iterable<FeatureInstance> outfeats = getAllOutgoingFeatures(ci);
 				for (FeatureInstance ifi : infeats) {
 					if (!isFlowSource(ifi, flows)) {
-						// all out features
+						// all out features if ifi is not in a behavior rule
 						for (FeatureInstance ofi : outfeats){
 							addPath(directedGraph,ifi, ofi, ci);
 						}
@@ -104,31 +94,48 @@ public class AIJGraphTUtil {
 				}
 				for (FeatureInstance ofi : outfeats) {
 					if (!isFlowDestination(ofi, flows)) {
-						// all in features
+						// all in features if ofi is not in a behavior rule
 						for (FeatureInstance ifi : infeats){
 							addPath(directedGraph,ifi, ofi, ci);
 						}
 					}
 				}
-				for (AssociationInstance flow : flows) {
-					InstanceObject src = flow.getSource();
-					InstanceObject dst = flow.getDestination();
-					addPath(directedGraph,src != null ? src : ci, dst != null ? dst : ci, flow);
+				for (BehaviorRuleInstance flow : flows) {
+					Iterable<ConstrainedInstanceObject> srcs =  getAllConstrainedInstanceObjects(flow.getCondition());
+					EList<ConstrainedInstanceObject> dsts = flow.getActions();
+					if (dsts.isEmpty()) {
+						// we have a sink
+						for (ConstrainedInstanceObject src : srcs) {
+								addPath(directedGraph,src.getInstanceObject(),flow,flow);
+						}
+					} else if (!srcs.iterator().hasNext()) {
+						// we have a source without a condition
+							for (ConstrainedInstanceObject dst: dsts) {
+								addPath(directedGraph,flow,dst.getInstanceObject(),flow);
+						}
+						
+					} else {
+						for (ConstrainedInstanceObject src : srcs) {
+							for (ConstrainedInstanceObject dst: dsts) {
+								addPath(directedGraph,src.getInstanceObject(),dst.getInstanceObject(),flow);
+							} 
+						}
+					}
 				}
 			}
 		}
 		return directedGraph;
 	}
 
-	public static Graph<EObject, DefaultEdge> generateBehaviorPropagationPaths(ComponentInstance root, String subclauseName) {
-		Graph<EObject, DefaultEdge> directedGraph = new DefaultDirectedGraph<EObject, DefaultEdge>(
-				DefaultEdge.class);
+	public static Graph<EObject, RefEObjectEdge> generateBehaviorPropagationPaths(ComponentInstance root, String subclauseName) {
+		Graph<EObject, RefEObjectEdge> directedGraph = new DefaultDirectedGraph<EObject, RefEObjectEdge>(
+				RefEObjectEdge.class);
 		List<AssociationInstance> connis = getAllConnections(root);
 		for (AssociationInstance conni : connis) {
 			InstanceObject src = conni.getSource();
 			InstanceObject dst = conni.getDestination();
 			// from outgoing feature to incoming feature instance
-			addPath(directedGraph, src, dst);
+			addPath(directedGraph, src, dst, conni);
 			
 			// now edges from/to CIOs related to the source and destination
 			Collection<ConstrainedInstanceObject> actions = findActionCIOs(src);
@@ -140,7 +147,7 @@ public class AIJGraphTUtil {
 						? findContainingConditionCIOs(dst, src, null, subclauseName)
 						: findContainingConditionCIOs(dst, null, subclauseName);
 				for (ConstrainedInstanceObject dstcio : dests) {
-					addPath(directedGraph, src, dstcio);
+					addPath(directedGraph, src, dstcio,conni);
 				}
 			} else {
 				for (ConstrainedInstanceObject actioncio : actions) {
@@ -150,11 +157,11 @@ public class AIJGraphTUtil {
 							findContainingConditionCIOs(dst, actioncio.getConstraint(), subclauseName);
 					if (dests.isEmpty()) {
 						// dst has no bri
-						addPath(directedGraph, actioncio, dst);
+						addPath(directedGraph, actioncio, dst,conni);
 
 					} else {
 						for (ConstrainedInstanceObject dstcio : dests) {
-							addPath(directedGraph, actioncio, dstcio);
+							addPath(directedGraph, actioncio, dstcio,conni);
 						}
 					}
 				}
@@ -165,55 +172,57 @@ public class AIJGraphTUtil {
 			// for each component add edges for flows from incoming to outgoing
 			EList<InstanceObject> outfiAsBehavior = new UniqueEList<InstanceObject>();
 			EList<BehaviorRuleInstance> bris = ci.getBehaviorRules();
+			// TODO bri filtered by annotation name
 			for (BehaviorRuleInstance bri : bris) {
 				Iterable<ConstrainedInstanceObject> condcios = getAllConstrainedInstanceObjects(bri.getCondition());
 				for (ConstrainedInstanceObject action : bri.getActions()) {
-					if (bri.getTargetState() != null) {
-						addPath(directedGraph, bri.getTargetState(), action);
-					} else {
-						// we need both the current state and the condition
-						// path to the current state from which to trace back.
-						StateInstance cs = bri.getCurrentState();
-						if (cs != null) {
-							// edge from current state to action
-							addPath(directedGraph, cs, action);
-						}
-						// flows from condition elements to action (cio) 
-						// doing the cio lets us deal with condition expressions even when no tokens are involved
-						for (ConstrainedInstanceObject ce : condcios) {
-							// all cond to outgoing feature instance rule
-							handleConditionExpression(directedGraph, ce, action);
-							// add ce io as path source to handle unhandled tokens
-							addPath(directedGraph, ce.getInstanceObject(), action);
-							// generator to generator cond
-							handleGenerators(directedGraph, ce);
-						}
+					// we need both the current state and the condition
+					// path to the current state from which to trace back.
+					StateInstance cs = bri.getCurrentState();
+					if (cs != null) {
+						// edge from current state to action
+						addPath(directedGraph, cs, action, bri);
 					}
-					if (action.getConstraint() == null) {
+					// flows from condition elements to action (cio)
+					// doing the cio lets us deal with condition expressions even when no tokens are
+					// involved
+					for (ConstrainedInstanceObject ce : condcios) {
+						// all cond to outgoing feature instance rule
+						handleConditionExpression(directedGraph, ce, action,bri);
+						// add ce io as path source to handle unhandled tokens
+						addPath(directedGraph, ce.getInstanceObject(), action, bri);
+						// generator to generator cond
+						handleGenerators(directedGraph, ce,bri);
+						// TODO generators if not in bri
+					}
+					if (bri.getAnnotations().isEmpty()) {
 						outfiAsBehavior.add(action.getInstanceObject());
 					}
 				}
-				if (bri.getTargetState() != null) {
+			}
+			for (StateTransitionInstance sti : ci.getStateTransitions()) {
+				Iterable<ConstrainedInstanceObject> condcios = getAllConstrainedInstanceObjects(sti.getCondition());
+				if (sti.getTargetState() != null) {
 					// we have a rule that represents a state transition with or without actions
 					// the target state to action edge is already taken care of
-					StateInstance ts = bri.getTargetState();
-					StateInstance cs = bri.getCurrentState();
+					StateInstance ts = sti.getTargetState();
+					StateInstance cs = sti.getCurrentState();
 					if (cs != null && ts != null && cs != ts) {
 						// edge from cs to ts
-						addPath(directedGraph, cs, ts);
+						addPath(directedGraph, cs, ts,sti);
 					}
 					// process conditions
 					for (ConstrainedInstanceObject ce : condcios) {
 						// edge from condition elements to target state
-						handleConditionExpression(directedGraph, ce, ts);
+						handleConditionExpression(directedGraph, ce, ts,sti);
 						// generator to generator cond
-						handleGenerators(directedGraph, ce);
+						handleGenerators(directedGraph, ce,sti);
 						InstanceObject srcio = ce.getInstanceObject();
 						// Subcomponent composite rule
 						Iterable<ConstrainedInstanceObject> subactions = findContainedActionCIOs(srcio,ce.getConstraint());
 						for (ConstrainedInstanceObject subaction : subactions) {
 							// edge from matching action to cond cio
-							addPath(directedGraph, subaction, ce);
+							addPath(directedGraph, subaction, ce,sti);
 						}
 					}
 				}
@@ -223,7 +232,7 @@ public class AIJGraphTUtil {
 					for (FeatureInstance infi : getAllIncomingFeatures(ci)) {
 						if (isConnected(infi) || isConnected(outfi)) {
 							// edge to represent flow from incoming feature to outgoing feature when not handled by bri without token
-							addPath(directedGraph, infi, outfi);
+							addPath(directedGraph, infi, outfi,ci);
 						}
 					}
 				}
@@ -233,42 +242,42 @@ public class AIJGraphTUtil {
 		return directedGraph;
 	}
 	
-	private static void handleGenerators(Graph<EObject, DefaultEdge> directedGraph, ConstrainedInstanceObject ce) {
+	private static void handleGenerators(Graph<EObject, RefEObjectEdge> directedGraph, ConstrainedInstanceObject ce, InstanceObject context) {
 		if (ce.getInstanceObject() instanceof GeneratorInstance) {
 			GeneratorInstance gi = (GeneratorInstance) getRealInstanceObject(ce);
 			EList<ConstrainedInstanceObject> cios = gi.getGeneratedLiterals(); 
 			Literal constraint = getRealConstraint(ce);
 			if (constraint == null) {
 				if (cios.isEmpty()) {
-					addPath(directedGraph, gi, ce);
+					addPath(directedGraph, gi, ce, context);
 				} else {
 					for (ConstrainedInstanceObject cio : cios) {
-						addPath(directedGraph, cio, ce);
+						addPath(directedGraph, cio, ce, context);
 					}
 				}
 			} else {
 				// only those satisfying the constraint
 				for (ConstrainedInstanceObject cio : cios) {
 					if (constraint.contains(cio.getConstraint())) {
-						addPath(directedGraph, cio, ce);
+						addPath(directedGraph, cio, ce, context);
 					}
 				}
 			}
 		}
 	}
 	
-	private static void handleConditionExpression(Graph<EObject, DefaultEdge> directedGraph, ConstrainedInstanceObject ce, InstanceObject target) {
+	private static void handleConditionExpression(Graph<EObject, RefEObjectEdge> directedGraph, ConstrainedInstanceObject ce, InstanceObject target, InstanceObject context) {
 		Literal current = ce;
 		while (current.eContainer() instanceof Literal) {
-			addPath(directedGraph, current, (Literal)current.eContainer());
+			addPath(directedGraph, current, (Literal)current.eContainer(),context);
 			current = (Literal)current.eContainer();
 		}
-		addPath(directedGraph,current,target);
+		addPath(directedGraph,current,target,context);
 	}
 
-	public static AsSubgraph<InstanceObject, DefaultEdge> generateBehaviorPropagationPaths(DefaultDirectedGraph<InstanceObject, DefaultEdge> originalGraph) {
+	public static AsSubgraph<InstanceObject, RefEObjectEdge> generateBehaviorPropagationPaths(DefaultDirectedGraph<InstanceObject, RefEObjectEdge> originalGraph) {
 		Set<InstanceObject> vs = originalGraph.vertexSet();
-		AsSubgraph<InstanceObject, DefaultEdge> subgraph = new AsSubgraph<InstanceObject, DefaultEdge>(originalGraph,vs);
+		AsSubgraph<InstanceObject, RefEObjectEdge> subgraph = new AsSubgraph<InstanceObject, RefEObjectEdge>(originalGraph,vs);
 	       return subgraph;
 
 	}

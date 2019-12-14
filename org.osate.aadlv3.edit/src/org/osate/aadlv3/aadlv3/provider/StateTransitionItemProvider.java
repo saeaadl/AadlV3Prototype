@@ -28,22 +28,22 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.osate.aadlv3.aadlv3.Aadlv3Factory;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
-import org.osate.aadlv3.aadlv3.Annotation;
+import org.osate.aadlv3.aadlv3.StateTransition;
 
 /**
- * This is the item provider adapter for a {@link org.osate.aadlv3.aadlv3.Annotation} object.
+ * This is the item provider adapter for a {@link org.osate.aadlv3.aadlv3.StateTransition} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class AnnotationItemProvider extends NamedElementItemProvider {
+public class StateTransitionItemProvider extends ModelElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AnnotationItemProvider(AdapterFactory adapterFactory) {
+	public StateTransitionItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -74,8 +74,9 @@ public class AnnotationItemProvider extends NamedElementItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(Aadlv3Package.Literals.ANNOTATION__VALUE);
-			childrenFeatures.add(Aadlv3Package.Literals.ANNOTATION__NAME_VALUE_PAIRS);
+			childrenFeatures.add(Aadlv3Package.Literals.STATE_TRANSITION__CURRENT_STATE);
+			childrenFeatures.add(Aadlv3Package.Literals.STATE_TRANSITION__TARGET_STATE);
+			childrenFeatures.add(Aadlv3Package.Literals.STATE_TRANSITION__CONDITION);
 		}
 		return childrenFeatures;
 	}
@@ -94,14 +95,14 @@ public class AnnotationItemProvider extends NamedElementItemProvider {
 	}
 
 	/**
-	 * This returns Annotation.gif.
+	 * This returns StateTransition.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Annotation"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/StateTransition"));
 	}
 
 	/**
@@ -112,9 +113,9 @@ public class AnnotationItemProvider extends NamedElementItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Annotation) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_Annotation_type")
-				: getString("_UI_Annotation_type") + " " + label;
+		String label = ((StateTransition) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_StateTransition_type")
+				: getString("_UI_StateTransition_type") + " " + label;
 	}
 
 	/**
@@ -128,9 +129,10 @@ public class AnnotationItemProvider extends NamedElementItemProvider {
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Annotation.class)) {
-		case Aadlv3Package.ANNOTATION__VALUE:
-		case Aadlv3Package.ANNOTATION__NAME_VALUE_PAIRS:
+		switch (notification.getFeatureID(StateTransition.class)) {
+		case Aadlv3Package.STATE_TRANSITION__CURRENT_STATE:
+		case Aadlv3Package.STATE_TRANSITION__TARGET_STATE:
+		case Aadlv3Package.STATE_TRANSITION__CONDITION:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -148,56 +150,80 @@ public class AnnotationItemProvider extends NamedElementItemProvider {
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ANNOTATION__VALUE,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.STATE_TRANSITION__CURRENT_STATE,
+				Aadlv3Factory.eINSTANCE.createStateSpecification()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.STATE_TRANSITION__TARGET_STATE,
+				Aadlv3Factory.eINSTANCE.createStateSpecification()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.STATE_TRANSITION__CONDITION,
 				Aadlv3Factory.eINSTANCE.createNamedElementReference()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ANNOTATION__VALUE,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.STATE_TRANSITION__CONDITION,
 				Aadlv3Factory.eINSTANCE.createPathElement()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ANNOTATION__VALUE,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.STATE_TRANSITION__CONDITION,
 				Aadlv3Factory.eINSTANCE.createTypeReference()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ANNOTATION__VALUE,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.STATE_TRANSITION__CONDITION,
 				Aadlv3Factory.eINSTANCE.createIntegerLiteral()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ANNOTATION__VALUE,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.STATE_TRANSITION__CONDITION,
 				Aadlv3Factory.eINSTANCE.createRealLiteral()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ANNOTATION__VALUE,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.STATE_TRANSITION__CONDITION,
 				Aadlv3Factory.eINSTANCE.createStringLiteral()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ANNOTATION__VALUE,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.STATE_TRANSITION__CONDITION,
 				Aadlv3Factory.eINSTANCE.createBooleanLiteral()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ANNOTATION__VALUE,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.STATE_TRANSITION__CONDITION,
 				Aadlv3Factory.eINSTANCE.createEnumerationLiteral()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ANNOTATION__VALUE,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.STATE_TRANSITION__CONDITION,
 				Aadlv3Factory.eINSTANCE.createDirectionalLiteral()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ANNOTATION__VALUE,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.STATE_TRANSITION__CONDITION,
 				Aadlv3Factory.eINSTANCE.createECollection()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ANNOTATION__VALUE,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.STATE_TRANSITION__CONDITION,
 				Aadlv3Factory.eINSTANCE.createListLiteral()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ANNOTATION__VALUE,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.STATE_TRANSITION__CONDITION,
 				Aadlv3Factory.eINSTANCE.createSetLiteral()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ANNOTATION__VALUE,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.STATE_TRANSITION__CONDITION,
 				Aadlv3Factory.eINSTANCE.createMultiOperandExpression()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ANNOTATION__VALUE,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.STATE_TRANSITION__CONDITION,
 				Aadlv3Factory.eINSTANCE.createMultiLiteralConstraint()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ANNOTATION__VALUE,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.STATE_TRANSITION__CONDITION,
 				Aadlv3Factory.eINSTANCE.createBinaryOperation()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ANNOTATION__VALUE,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.STATE_TRANSITION__CONDITION,
 				Aadlv3Factory.eINSTANCE.createPackageElementReference()));
+	}
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ANNOTATION__NAME_VALUE_PAIRS,
-				Aadlv3Factory.eINSTANCE.createNameValuePair()));
+	/**
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
+		Object childFeature = feature;
+		Object childObject = child;
+
+		boolean qualify = childFeature == Aadlv3Package.Literals.STATE_TRANSITION__CURRENT_STATE
+				|| childFeature == Aadlv3Package.Literals.STATE_TRANSITION__TARGET_STATE;
+
+		if (qualify) {
+			return getString("_UI_CreateChild_text2",
+					new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+		}
+		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 }

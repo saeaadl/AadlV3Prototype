@@ -27,7 +27,6 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.BehaviorRule#getCurrentState <em>Current State</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.BehaviorRule#getTargetState <em>Target State</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.BehaviorRule#getCondition <em>Condition</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.BehaviorRule#getActions <em>Actions</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.BehaviorRule#isSource <em>Source</em>}</li>
@@ -60,28 +59,6 @@ public interface BehaviorRule extends ModelElement {
 	 * @generated
 	 */
 	void setCurrentState(StateSpecification value);
-
-	/**
-	 * Returns the value of the '<em><b>Target State</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Target State</em>' containment reference.
-	 * @see #setTargetState(StateSpecification)
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getBehaviorRule_TargetState()
-	 * @model containment="true" ordered="false"
-	 * @generated
-	 */
-	StateSpecification getTargetState();
-
-	/**
-	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.BehaviorRule#getTargetState <em>Target State</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Target State</em>' containment reference.
-	 * @see #getTargetState()
-	 * @generated
-	 */
-	void setTargetState(StateSpecification value);
 
 	/**
 	 * Returns the value of the '<em><b>Condition</b></em>' containment reference.

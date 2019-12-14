@@ -111,7 +111,6 @@ public class BehaviorRuleItemProvider extends ModelElementItemProvider {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(Aadlv3Package.Literals.BEHAVIOR_RULE__CURRENT_STATE);
-			childrenFeatures.add(Aadlv3Package.Literals.BEHAVIOR_RULE__TARGET_STATE);
 			childrenFeatures.add(Aadlv3Package.Literals.BEHAVIOR_RULE__CONDITION);
 			childrenFeatures.add(Aadlv3Package.Literals.BEHAVIOR_RULE__ACTIONS);
 		}
@@ -172,7 +171,6 @@ public class BehaviorRuleItemProvider extends ModelElementItemProvider {
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		case Aadlv3Package.BEHAVIOR_RULE__CURRENT_STATE:
-		case Aadlv3Package.BEHAVIOR_RULE__TARGET_STATE:
 		case Aadlv3Package.BEHAVIOR_RULE__CONDITION:
 		case Aadlv3Package.BEHAVIOR_RULE__ACTIONS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
@@ -193,9 +191,6 @@ public class BehaviorRuleItemProvider extends ModelElementItemProvider {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.BEHAVIOR_RULE__CURRENT_STATE,
-				Aadlv3Factory.eINSTANCE.createStateSpecification()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.BEHAVIOR_RULE__TARGET_STATE,
 				Aadlv3Factory.eINSTANCE.createStateSpecification()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.BEHAVIOR_RULE__CONDITION,
@@ -261,9 +256,7 @@ public class BehaviorRuleItemProvider extends ModelElementItemProvider {
 		Object childFeature = feature;
 		Object childObject = child;
 
-		boolean qualify = childFeature == Aadlv3Package.Literals.BEHAVIOR_RULE__CURRENT_STATE
-				|| childFeature == Aadlv3Package.Literals.BEHAVIOR_RULE__TARGET_STATE
-				|| childFeature == Aadlv3Package.Literals.BEHAVIOR_RULE__CONDITION
+		boolean qualify = childFeature == Aadlv3Package.Literals.BEHAVIOR_RULE__CONDITION
 				|| childFeature == Aadlv3Package.Literals.BEHAVIOR_RULE__ACTIONS;
 
 		if (qualify) {

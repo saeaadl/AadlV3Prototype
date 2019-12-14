@@ -33,12 +33,12 @@ import org.osate.aadlv3.aadlv3.Subcomponent;
  *   <li>{@link org.osate.av3instance.av3instance.ComponentInstance#getComponent <em>Component</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.ComponentInstance#getConnections <em>Connections</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.ComponentInstance#getFeatures <em>Features</em>}</li>
- *   <li>{@link org.osate.av3instance.av3instance.ComponentInstance#getFlowspecs <em>Flowspecs</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.ComponentInstance#getPaths <em>Paths</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.ComponentInstance#getBehaviorRules <em>Behavior Rules</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.ComponentInstance#getGenerators <em>Generators</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.ComponentInstance#getStateVariables <em>State Variables</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.ComponentInstance#getActions <em>Actions</em>}</li>
+ *   <li>{@link org.osate.av3instance.av3instance.ComponentInstance#getStateTransitions <em>State Transitions</em>}</li>
  * </ul>
  *
  * @see org.osate.av3instance.av3instance.Av3instancePackage#getComponentInstance()
@@ -151,22 +151,6 @@ public interface ComponentInstance extends InstanceObject {
 	EList<FeatureInstance> getFeatures();
 
 	/**
-	 * Returns the value of the '<em><b>Flowspecs</b></em>' containment reference list.
-	 * The list contents are of type {@link org.osate.av3instance.av3instance.AssociationInstance}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Flowspecs</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Flowspecs</em>' containment reference list.
-	 * @see org.osate.av3instance.av3instance.Av3instancePackage#getComponentInstance_Flowspecs()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<AssociationInstance> getFlowspecs();
-
-	/**
 	 * Returns the value of the '<em><b>Paths</b></em>' containment reference list.
 	 * The list contents are of type {@link org.osate.av3instance.av3instance.PathInstance}.
 	 * <!-- begin-user-doc -->
@@ -229,5 +213,17 @@ public interface ComponentInstance extends InstanceObject {
 	 * @generated
 	 */
 	EList<ConstrainedInstanceObject> getActions();
+
+	/**
+	 * Returns the value of the '<em><b>State Transitions</b></em>' containment reference list.
+	 * The list contents are of type {@link org.osate.av3instance.av3instance.StateTransitionInstance}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>State Transitions</em>' containment reference list.
+	 * @see org.osate.av3instance.av3instance.Av3instancePackage#getComponentInstance_StateTransitions()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<StateTransitionInstance> getStateTransitions();
 
 } // ComponentInstance

@@ -28,7 +28,8 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.Classifier#getCategory <em>Category</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.Classifier#getSuperClassifiers <em>Super Classifiers</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.Classifier#getBehaviorRules <em>Behavior Rules</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.Classifier#getTransitions <em>Transitions</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.Classifier#getRules <em>Rules</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.Classifier#getStateVariables <em>State Variables</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.Classifier#getGenerators <em>Generators</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.Classifier#getAnnexSubclause <em>Annex Subclause</em>}</li>
@@ -78,16 +79,28 @@ public interface Classifier extends NamedType {
 	EList<TypeReference> getSuperClassifiers();
 
 	/**
-	 * Returns the value of the '<em><b>Behavior Rules</b></em>' containment reference list.
-	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.BehaviorRule}.
+	 * Returns the value of the '<em><b>Transitions</b></em>' containment reference list.
+	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.StateTransition}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Behavior Rules</em>' containment reference list.
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getClassifier_BehaviorRules()
+	 * @return the value of the '<em>Transitions</em>' containment reference list.
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getClassifier_Transitions()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<BehaviorRule> getBehaviorRules();
+	EList<StateTransition> getTransitions();
+
+	/**
+	 * Returns the value of the '<em><b>Rules</b></em>' containment reference list.
+	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.BehaviorRule}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Rules</em>' containment reference list.
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getClassifier_Rules()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<BehaviorRule> getRules();
 
 	/**
 	 * Returns the value of the '<em><b>State Variables</b></em>' containment reference list.

@@ -45,7 +45,6 @@ import org.osate.aadlv3.aadlv3.Workingset
 import org.osate.av3instance.av3instance.AssociationInstance
 import org.osate.av3instance.av3instance.ComponentInstance
 import org.osate.av3instance.av3instance.FeatureInstance
-import org.osate.av3instance.av3instance.InstanceObject
 
 import static extension org.eclipse.xtext.EcoreUtil2.*
 import static extension org.osate.aadlv3.util.Av3API.*
@@ -53,6 +52,8 @@ import org.osate.aadlv3.aadlv3.NamedElementReference
 import org.osate.aadlv3.aadlv3.Generator
 import org.osate.aadlv3.aadlv3.StateVariable
 import org.osate.aadlv3.aadlv3.BehaviorRule
+import org.osate.aadlv3.aadlv3.StateTransition
+import org.osate.av3instance.av3instance.InstanceObject
 
 class Aadlv3Util {
 	
@@ -355,27 +356,10 @@ class Aadlv3Util {
 
 
 	/**
-	 * return collection of flow specs for given classifier
-	 * TODO check whether the same flow spec is added more than once
-	 */
-	static def Iterable<Association> getAllFlowSpecs(ComponentInstance ci) {
-		val conftrs = ci.configuredTypeReferences
-		if (conftrs.empty){
-			// flow specs in nested declaration
-			return Collections.EMPTY_LIST //ci.component.flows
-		} else {
-			// flow specs from classifier
-			val cls = conftrs.allClassifiers
-			return cls.map[cl|cl.eContents.typeSelect(Association)].flatten.filter[a| a.isFlowSpec]
-		}
-	}
-
-	/**
 	 * return collection of end to end flows for given classifier
 	 * TODO check whether the same flow path is added more than once
 	 */
-	static def Iterable<PathSequence> getAllPaths(ComponentInstance ci) {
-		val conftrs = ci.configuredTypeReferences
+	static def Iterable<PathSequence> getAllPaths(Iterable<TypeReference> conftrs) {
 		if (conftrs.empty){
 			// flow paths in nested declaration
 			return Collections.EMPTY_LIST //ci.component.paths
@@ -406,19 +390,8 @@ class Aadlv3Util {
 	 * return collection of features of a component.
 	 * These are features declared as part of the classifier or as part of the nested declaration
 	 */
-	static def Iterable<AnnexSubclause> getAllSubclauses(ComponentInstance ci) {
-		val conftrs = ci.configuredTypeReferences
-		if (conftrs.empty){
-			// features in nested declaration
-			return Collections.EMPTY_LIST //ci.component.annexSubclause
-		} else {
-			return conftrs.getAllSubclauses //+ci.component.annexSubclause in nested subcomponent
-		}
-	}
 	static def Iterable<AnnexSubclause> getAllSubclauses(Iterable<TypeReference> trs) {
-		// features from classifier
-		val cls = trs.allClassifiers
-		return cls.map[cif|cif.eContents.typeSelect(AnnexSubclause)].flatten
+		return trs.map[cif|cif.eContents.typeSelect(AnnexSubclause)].flatten
 	}
 
 
@@ -516,21 +489,11 @@ class Aadlv3Util {
 	 * return collection of sub-components of a component.
 	 * These are sub-components declared as part of the classifier or as part of the nested declaration
 	 */
-	static def Iterable<Subcomponent> getAllSubcomponents(ComponentInstance ci) {
-		val conftrs = ci.configuredTypeReferences
-		if (conftrs.empty){
-			// subcomponents in nested declaration
-			return ci.component.components
-		} else {
-			// subcomponents from classifier
-			val cls = conftrs.allClassifiers
-			return cls.map[cl|cl.eContents.typeSelect(Subcomponent)].flatten
-		}
-	}
 
 	static def Iterable<Subcomponent> getAllSubcomponents(Classifier cl) {
 		// features from classifier
 		val cls = cl.allClassifiers
+		if (cls.empty) return Collections.EMPTY_LIST
 		return cls.filter[ccl|ccl instanceof ComponentImplementation].map[cif|cif.eContents.typeSelect(Subcomponent)].flatten
 	}
 	
@@ -544,6 +507,7 @@ class Aadlv3Util {
 		} else {
 			// subcomponents from classifier
 			val cls = trs.allClassifiers
+			if (cls.empty) return Collections.EMPTY_LIST
 			return cls.map[cl|cl.eContents.typeSelect(Subcomponent)].flatten
 		}
 	}
@@ -552,13 +516,13 @@ class Aadlv3Util {
 	 * return collection of associations of a component instance.
 	 * These are associations declared as part of the classifier or as part of the nested declaration
 	 */
-	static def Iterable<Association> getAllAssociations(ComponentInstance ci) {
-		val conftrs = ci.configuredTypeReferences
+	static def Iterable<Association> getAllAssociations(Iterable<TypeReference> conftrs) {
 		if (conftrs.empty){
 			// connections in nested declaration
-			return ci.component.connections
+			return Collections.EMPTY_LIST//ci.component.connections
 		} else {
 			val cls = conftrs.allClassifiers
+			if (cls.empty) return Collections.EMPTY_LIST
 			return cls.map[cl|cl.eContents.typeSelect(Association)].flatten
 		}
 	}
@@ -568,13 +532,13 @@ class Aadlv3Util {
 	 * return collection of generators of a component instance.
 	 * These are associations declared as part of the classifier or as part of the nested declaration
 	 */
-	static def Iterable<Generator> getAllGenerators(ComponentInstance ci) {
-		val conftrs = ci.configuredTypeReferences
+	static def Iterable<Generator> getAllGenerators(Iterable<TypeReference> conftrs) {
 		if (conftrs.empty){
 			// connections in nested declaration
 			return Collections.EMPTY_LIST //ci.component.generators
 		} else {
 			val cls = conftrs.allClassifiers
+			if (cls.empty) return Collections.EMPTY_LIST
 			return cls.map[cl|cl.eContents.typeSelect(Generator)].flatten
 		}
 	}
@@ -583,13 +547,13 @@ class Aadlv3Util {
 	 * return collection of state variables of a component instance.
 	 * These are associations declared as part of the classifier or as part of the nested declaration
 	 */
-	static def Iterable<StateVariable> getAllStateVariables(ComponentInstance ci) {
-		val conftrs = ci.configuredTypeReferences
+	static def Iterable<StateVariable> getAllStateVariables(Iterable<TypeReference> conftrs) {
 		if (conftrs.empty){
 			// connections in nested declaration
 			return Collections.EMPTY_LIST //ci.component.generators
 		} else {
 			val cls = conftrs.allClassifiers
+			if (cls.empty) return Collections.EMPTY_LIST
 			return cls.map[cl|cl.eContents.typeSelect(StateVariable)].flatten
 		}
 	}
@@ -597,14 +561,28 @@ class Aadlv3Util {
 	 * return collection of behavior rules of a component instance.
 	 * These are associations declared as part of the classifier or as part of the nested declaration
 	 */
-	static def Iterable<BehaviorRule> getAllBehaviorRules(ComponentInstance ci) {
-		val conftrs = ci.configuredTypeReferences
+	static def Iterable<BehaviorRule> getAllBehaviorRules(Iterable<TypeReference> conftrs) {
 		if (conftrs.empty){
 			// connections in nested declaration
 			return Collections.EMPTY_LIST //ci.component.generators
 		} else {
 			val cls = conftrs.allClassifiers
+			if (cls.empty) return Collections.EMPTY_LIST
 			return cls.map[cl|cl.eContents.typeSelect(BehaviorRule)].flatten
+		}
+	}
+	/**
+	 * return collection of behavior rules of a component instance.
+	 * These are associations declared as part of the classifier or as part of the nested declaration
+	 */
+	static def Iterable<StateTransition> getAllStateTransitions(Iterable<TypeReference> conftrs) {
+		if (conftrs.empty){
+			// connections in nested declaration
+			return Collections.EMPTY_LIST //ci.component.generators
+		} else {
+			val cls = conftrs.allClassifiers
+			if (cls.empty) return Collections.EMPTY_LIST
+			return cls.map[cl|cl.eContents.typeSelect(StateTransition)].flatten
 		}
 	}
 	
@@ -1250,13 +1228,6 @@ class Aadlv3Util {
 		(conn.source.firstNamedElement instanceof Feature || conn.destination.firstNamedElement instanceof Feature)
 	}
 	
-	
-	// association represents a flow specification
-	def static boolean isFlowSpec(AssociationType connType){
-		connType == AssociationType.FLOWSINK ||
-		connType == AssociationType.FLOWSOURCE ||
-		connType == AssociationType.FLOW 
-	}
 	// association represents a binding
 	def static boolean isBinding(AssociationType connType){
 		connType == AssociationType.BINDING 
@@ -1272,10 +1243,6 @@ class Aadlv3Util {
 		return (path.name === null) 
 	}
 	
-	// association represents a flow specification
-	def static boolean isFlowSpec(Association conn){
-		isFlowSpec(conn.associationType) 
-	}
 	
 	//-------------------------
 	// ModelElementReference methods
@@ -1630,12 +1597,6 @@ class Aadlv3Util {
 	
 	def static String getName(TypeReference type){
 		type.type.name
-	}
-	
-	def static void replicateAnnotations(NamedElement source, NamedElement target){
-		for (ann: source.annotations){
-			target.annotations += ann.copy
-		}
 	}
 	
 

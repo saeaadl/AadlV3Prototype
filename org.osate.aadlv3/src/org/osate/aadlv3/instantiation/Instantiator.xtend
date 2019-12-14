@@ -5,24 +5,32 @@ import java.util.Collection
 import java.util.Collections
 import java.util.Stack
 import org.eclipse.xtext.EcoreUtil2
+import org.osate.aadlv3.aadlv3.Aadlv3Factory
 import org.osate.aadlv3.aadlv3.Association
 import org.osate.aadlv3.aadlv3.BehaviorRule
 import org.osate.aadlv3.aadlv3.BehaviorSpecification
+import org.osate.aadlv3.aadlv3.BinaryOperation
 import org.osate.aadlv3.aadlv3.Classifier
 import org.osate.aadlv3.aadlv3.ClassifierAssignment
 import org.osate.aadlv3.aadlv3.ComponentInterface
-import org.osate.aadlv3.aadlv3.BinaryOperation
 import org.osate.aadlv3.aadlv3.ECollection
+import org.osate.aadlv3.aadlv3.EnumerationLiteral
+import org.osate.aadlv3.aadlv3.EnumerationType
 import org.osate.aadlv3.aadlv3.Feature
 import org.osate.aadlv3.aadlv3.FeatureCategory
 import org.osate.aadlv3.aadlv3.Generator
+import org.osate.aadlv3.aadlv3.InstanceConfiguration
 import org.osate.aadlv3.aadlv3.ListLiteral
+import org.osate.aadlv3.aadlv3.Literal
+import org.osate.aadlv3.aadlv3.ModelElement
 import org.osate.aadlv3.aadlv3.NamedElementReference
 import org.osate.aadlv3.aadlv3.PathElement
 import org.osate.aadlv3.aadlv3.PathSequence
 import org.osate.aadlv3.aadlv3.PropertyAssociation
 import org.osate.aadlv3.aadlv3.PropertyAssociationType
 import org.osate.aadlv3.aadlv3.PropertyDefinition
+import org.osate.aadlv3.aadlv3.StateTransition
+import org.osate.aadlv3.aadlv3.StateVariable
 import org.osate.aadlv3.aadlv3.Subcomponent
 import org.osate.aadlv3.aadlv3.TypeReference
 import org.osate.aadlv3.aadlv3.Workingset
@@ -31,23 +39,11 @@ import org.osate.av3instance.av3instance.ComponentInstance
 import org.osate.av3instance.av3instance.FeatureInstance
 import org.osate.av3instance.av3instance.InstanceObject
 import org.osate.av3instance.av3instance.PathInstance
-
-import static org.osate.aadlv3.util.ProductLineConstraint.*
+import org.osate.av3instance.util.AIv3Validation
 
 import static extension org.eclipse.emf.ecore.util.EcoreUtil.*
 import static extension org.osate.aadlv3.util.AIv3API.*
 import static extension org.osate.aadlv3.util.Aadlv3Util.*
-import org.osate.aadlv3.aadlv3.TypeDef
-import org.osate.aadlv3.aadlv3.EnumerationType
-import org.osate.aadlv3.aadlv3.Literal
-import org.osate.av3instance.av3instance.Av3instanceFactory
-import org.osate.aadlv3.aadlv3.InstanceConfiguration
-import org.osate.av3instance.util.AIv3Validation
-import org.osate.aadlv3.util.Aadlv3Util
-import org.osate.aadlv3.aadlv3.ModelElement
-import org.osate.aadlv3.aadlv3.StateVariable
-import org.osate.av3instance.av3instance.StateVariableInstance
-import org.osate.aadlv3.aadlv3.Aadlv3Factory
 
 class Instantiator {
 	
@@ -95,20 +91,19 @@ class Instantiator {
 
 	//  component to be instantiated using configured classifier confcl and set of configuration assignments
 	def void instantiateComponent(Subcomponent comp,  Stack<Iterable<ClassifierAssignment>> casscopes, ComponentInstance context) {
-		var Iterable<TypeReference> trefs = null
 		val isRoot = comp.eContainer instanceof Workingset
+		val Iterable<TypeReference> trefs = isRoot?context.configuredTypeReferences:comp.getConfiguredTypeReferences(casscopes, context)
 		val ci = if (isRoot){
 			// root
-			trefs = context.configuredTypeReferences
 			context
 		} else {
 			// subcomponent
-			trefs = comp.getConfiguredTypeReferences(casscopes, context)
 			// set component instance to configured classifier
 			val subci = comp.createComponentInstance(trefs)
 		// XXX TODO check product line constraint
 		//  val issues = validateConfiguredComponentInstance(subci, configurationConstraint)
 			context.components += subci
+			context.attachInModes(subci, comp.inModes)
 			subci
 		}
 		if (trefs === null) {
@@ -118,10 +113,8 @@ class Instantiator {
 			comp.components.forEach[subc|subc.instantiateComponent(casscopes,ci)]
 			casscopes.pop
 		} else {
-			val trs = trefs
-			ci.allFeatures.forEach[f|ci.features += f.instantiateFeature(trs.isReverseFeature(f))]
-			ci.allFlowSpecs.forEach[fs|fs.instantiateFlowSpec(ci)]
-			val comps = ci.allSubcomponents
+			ci.allFeatures.forEach[f|ci.features += f.instantiateFeature(trefs.isReverseFeature(f))]
+			val comps = trefs.getAllSubcomponents(ci.component)
 			val cas = trefs.allClassifierAssignments
 			casscopes.push(cas)
 			comps.forEach[subc|subc.instantiateComponent(casscopes, ci)]
@@ -129,52 +122,54 @@ class Instantiator {
 		}
 		// now we fill in connection instances
 		val ctyperefs = ci.configuredTypeReferences
-		if (ctyperefs !== null){
-			val allassocs = ci.allAssociations
-			val actualConns = allassocs.filter[conn|conn.isConnection]
-			for (conn: actualConns){
-				conn.instantiateConnection(ci)
-			}
-			if (isRoot){
+		val allassocs = ctyperefs !== null ? ctyperefs.allAssociations : ci.component.connections
+		val actualConns = allassocs.filter[conn|conn.isConnection]
+		for (conn : actualConns) {
+			conn.instantiateConnection(ci)
+		}
+		if (isRoot) {
 			// generate external connections - only for the root component
-				val incomingConns = allassocs.filter[conn|conn.isIncomingFeatureDelegation]
-				for (conn : incomingConns){
-					conn.instantiateExternalIncomingConnection(ci)
-				}
-				val outgoingConns = allassocs.filter[conn|conn.isOutgoingFeatureDelegation]
-				for (conn : outgoingConns){
-					conn.instantiateExternalOutgoingConnection(ci)
-				}
+			val incomingConns = allassocs.filter[conn|conn.isIncomingFeatureDelegation]
+			for (conn : incomingConns) {
+				conn.instantiateExternalIncomingConnection(ci)
 			}
-			// now generate all (end to end) flows
-			for (flow : ci.allPaths){
-				flow.instantiatePath(ci)
+			val outgoingConns = allassocs.filter[conn|conn.isOutgoingFeatureDelegation]
+			for (conn : outgoingConns) {
+				conn.instantiateExternalOutgoingConnection(ci)
 			}
-			
-			// finally we fill in property assignments found in list of classifiers for component
-			// this includes property associations from configurations and configuration assignments
-			// NOTE: we to this for contained components. Outer components may still configure us.
-			for (pa : ctyperefs.allPropertyAssociations){
-				ci.addPropertyAssociationInstance(pa)
-			}
-			for (ca : ctyperefs.allClassifierAssignments){
-				ci.processClassifierAssignmentPropertyAssociations(ca)
-			}
+		}
+		// now generate all (end to end) flows
+		for (flow : ctyperefs.allPaths) {
+			flow.instantiatePath(ci)
+		}
+
+		// finally we fill in property assignments found in list of classifiers for component
+		// this includes property associations from configurations and configuration assignments
+		// NOTE: we to this for contained components. Outer components may still configure us.
+		for (pa : ctyperefs.allPropertyAssociations) {
+			ci.addPropertyAssociationInstance(pa)
+		}
+		for (ca : ctyperefs.allClassifierAssignments) {
+			ci.processClassifierAssignmentPropertyAssociations(ca)
 		}
 		// Generators, state variables, behavior rules in core
-		for (gen : ci.allGenerators) {
+		// TODO these items in nested subcomponents
+		for (gen : ctyperefs.allGenerators) {
 			gen.instantiateGenerator(ci)
 		}
-		for (sv : ci.allStateVariables) {
+		for (sv : ctyperefs.allStateVariables) {
 			sv.instantiateStateVariables(ci)
 		}
-		for (br : ci.allBehaviorRules) {
+		for (br : ctyperefs.allBehaviorRules) {
 			br.instantiateBehaviorRule(ci)
+		}
+		for (st : ctyperefs.allStateTransitions) {
+			st.instantiateStateTransition(ci)
 		}
 		
 		
 		// now we handle Generators and Behavior Rules in annexes
-		val subcls = ci.getAllSubclauses
+		val subcls = ctyperefs.getAllSubclauses
 		for (subclause: subcls){
 			if (subclause instanceof BehaviorSpecification){
 				for (gen : subclause.generators){
@@ -232,20 +227,6 @@ class Instantiator {
 		fi
 	}
 
-	
-	def void instantiateFlowSpec(Association conn, ComponentInstance context){
-		val fsi = conn.createAssociationInstance
-		if (conn.source !== null){
-			fsi.source = context.getInstanceElement(conn.source) as FeatureInstance
-		}
-		if (conn.destination !== null){
-			fsi.destination = context.getInstanceElement(conn.destination) as FeatureInstance
-		}
-		for (pa : conn.ownedPropertyAssociations){
-			fsi.addPropertyAssociationInstance(pa)
-		}
-		context.flowspecs += fsi
-	}
 
 	
 	def void instantiateConnection(Association conn, ComponentInstance context){
@@ -258,6 +239,8 @@ class Instantiator {
 		val allconnis = expandFeatureMappings(conni, context)
 		context.connections += allconnis
 		for (finalconni : allconnis){
+			// add in modes
+			context.attachInModes(finalconni,conn.inModes)
 			// add in local property assignment
 			for (pa : conn.ownedPropertyAssociations){
 				finalconni.addPropertyAssociationInstance(pa)
@@ -316,7 +299,7 @@ class Instantiator {
 		val srcconftrs = srccxt.configuredTypeReferences
 		if (srcconftrs === null) return
 		// TODO handle expansion in nested declarations
-		val srcmappings = srccxt.allAssociations.filter[conn| conn.isSourceFeatureDelegation(conni)]
+		val srcmappings = srcconftrs.allAssociations.filter[conn| conn.isSourceFeatureDelegation(conni)]
 		if(srcmappings.size > 1){
 			// need to make a copy of conni
 			val last = srcmappings.last
@@ -353,7 +336,7 @@ class Instantiator {
 		val dstcxt = conni.destination.containingComponentInstanceOrSelf
 		val dstconftrs = dstcxt.configuredTypeReferences
 		if (dstconftrs === null) return
-		val dstmappings = dstcxt.allAssociations.filter[conn| conn.isDestinationFeatureDelegation(conni)]
+		val dstmappings = dstconftrs.allAssociations.filter[conn| conn.isDestinationFeatureDelegation(conni)]
 		if(dstmappings.size > 1){
 			// need to make a copy of conni
 			val last = dstmappings.last
@@ -401,7 +384,7 @@ class Instantiator {
 		for (pe : ps.elements){
 			val InstanceObject previousflowelementinstance = psi.elements.last
 			val flowelement = pe.element
-			if (flowelement instanceof Association && (flowelement as Association).isFlowSpec){
+			if (flowelement instanceof BehaviorRule ){
 					// expand flowspec by its configured flow
 					if (previousflowelementinstance.isFlowSpec){
 						// find the missing connection instance
@@ -427,7 +410,7 @@ class Instantiator {
  				if (conni instanceof AssociationInstance){
  					if (previousflowelementinstance.isConnection){
  						// put in place component/flowspec between two connections
- 						val fsi = findFlowSpecInstance((previousflowelementinstance as AssociationInstance).destination, conni.source)
+ 						val fsi = findBehaviorRuleInstance((previousflowelementinstance as AssociationInstance).destination, conni.source)
  						if (fsi !== null){
  							psi.elements += fsi
  						} else {
@@ -625,12 +608,10 @@ class Instantiator {
 	
 	def void instantiateStateVariables(StateVariable sv, ComponentInstance context){
 		val svi = createStateVariableInstance(sv);
-		replicateAnnotations(sv,svi)
+		svi.annotations.addAll(sv.annotations)
 		val bs = sv.containingBehaviorSpecification
 		if (bs !== null){
-			val an = Aadlv3Factory.eINSTANCE.createAnnotation
-			an.name = bs.name
-			svi.annotations.add(an)
+			svi.annotations.add(bs.name)
 		}
 		context.stateVariables += svi;
 		val enum = sv.stateType.baseType
@@ -647,12 +628,10 @@ class Instantiator {
 	// Behavior Rules
 	def void instantiateBehaviorRule(BehaviorRule br, ComponentInstance context) {
 		val bri = br.createBehaviorRuleInstance;
-		replicateAnnotations(br,bri)
+		bri.annotations.addAll(br.annotations)
 		val bs = br.containingBehaviorSpecification
 		if (bs !== null){
-			val an = Aadlv3Factory.eINSTANCE.createAnnotation
-			an.name = bs.name
-			bri.annotations.add(an)
+			bri.annotations.add(bs.name)
 		}
 		bri.sink = br.sink;
 		bri.source = br.source;
@@ -696,9 +675,6 @@ class Instantiator {
 		if (br.currentState !== null) {
 			bri.currentState = context.findStateInstance(br.currentState)
 		}
-		if (br.targetState !== null) {
-			bri.targetState = context.findStateInstance(br.targetState)
-		}
 		// now actions
 		for (action : br.actions) {
 			val tio = context.getInstanceElement(action.left as NamedElementReference);
@@ -717,15 +693,63 @@ class Instantiator {
 		context.behaviorRules += bri
 	}
 
+	// Behavior Rules
+	def void instantiateStateTransition(StateTransition st, ComponentInstance context) {
+		val sti = st.createStateTransitionInstance;
+		sti.annotations.addAll(st.annotations)
+		val bs = st.containingBehaviorSpecification
+		if (bs !== null) {
+			sti.annotations.add(bs.name)
+		}
+		var behaviorCondition = st.condition.copy
+		// now replace ConditionElements by respective instances
+		val cos = EcoreUtil2.eAllOfType(behaviorCondition, BinaryOperation);
+		for (co : cos) {
+			if ((co.left as NamedElementReference).element instanceof ModelElement) {
+				// resolve only model element references
+				val cio = co.createConstrainedInstanceObject(context, false)
+				val container = co.eContainer
+				if (container instanceof ECollection) {
+					container.elements.remove(co)
+					container.elements.add(cio)
+				} else if (container === null) {
+					// single condition element as condition
+					behaviorCondition = cio
+				}
+			}
+		}
+		// do the same for condition elements without types
+		val ners = EcoreUtil2.eAllOfType(behaviorCondition, NamedElementReference);
+		for (ner : ners) {
+			if (ner.element instanceof ModelElement) {
+				// resolve only model element references
+				val tio = context.getInstanceElement(ner);
+				val cio = tio.createConstrainedInstanceObject(context, false)
+				val container = ner.eContainer
+				if (container instanceof ECollection) {
+					container.elements.remove(ner)
+					container.elements.add(cio)
+				} else if (container === null) {
+					// single condition element as condition
+					behaviorCondition = cio
+				}
+			}
+		}
+		sti.condition = behaviorCondition
+		sti.targetState = context.findStateInstance(st.targetState)
+		context.stateTransitions += sti
+		if (st.currentState !== null) {
+			sti.currentState = context.findStateInstance(st.currentState)
+		}
+	}
+
 	// Generator
 	def void instantiateGenerator(Generator g, ComponentInstance context) {
 		val gi = g.createGeneratorInstance()
-		replicateAnnotations(g,gi)
+		gi.annotations.addAll(g.annotations)
 		val bs = g.containingBehaviorSpecification
 		if (bs !== null){
-			val an = Aadlv3Factory.eINSTANCE.createAnnotation
-			an.name = bs.name
-			gi.annotations.add(an)
+			gi.annotations.add(bs.name)
 		}
 		context.generators += gi
 		val literals = g.value
@@ -736,6 +760,18 @@ class Instantiator {
 		} else if (literals !== null){
 			// single literal
 			gi.generatedLiterals += literals.createConstrainedInstanceObject(gi)
+		}
+	}
+	
+	def void attachInModes(ComponentInstance context, InstanceObject io, BinaryOperation inModes){
+		val sv = (inModes.left as NamedElementReference).element;
+		if (sv instanceof StateVariable){
+			val svi = context.findStateVariableInstance(sv);
+			val states = (inModes.right as ListLiteral).elements
+			for (state : states){
+				val sti = findStateInstance(svi, state as EnumerationLiteral)
+				io.inStates.add(sti)
+			}
 		}
 	}
 

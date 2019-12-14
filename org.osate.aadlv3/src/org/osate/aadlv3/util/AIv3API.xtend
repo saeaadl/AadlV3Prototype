@@ -42,6 +42,8 @@ import org.osate.aadlv3.aadlv3.NamedElementReference
 import org.osate.aadlv3.aadlv3.NamedElement
 import org.osate.aadlv3.aadlv3.StateVariable
 import org.osate.av3instance.av3instance.StateVariableInstance
+import org.osate.av3instance.av3instance.StateTransitionInstance
+import org.osate.aadlv3.aadlv3.StateTransition
 
 class AIv3API {
 	
@@ -96,6 +98,13 @@ class AIv3API {
 		bri.name = br.name
 		bri.behaviorRule = br
 		return bri
+	}
+
+	def static StateTransitionInstance createStateTransitionInstance(StateTransition st) {
+		val sti = Av3instanceFactory.eINSTANCE.createStateTransitionInstance
+		sti.name = st.name
+		sti.stateTransition = st
+		return sti
 	}
 	
 	def static ConstrainedInstanceObject createConstrainedInstanceObject(BinaryOperation co, ComponentInstance context, boolean outgoing) {
@@ -178,9 +187,6 @@ class AIv3API {
 					Association: {
 						for (conni : context.connections) {
 							if (conni.association == me) return conni
-						}
-						for (fsi : context.flowspecs) {
-							if (fsi.association == me) return fsi
 						}
 					}
 					PathSequence: {
@@ -314,9 +320,7 @@ class AIv3API {
 		
 	// association instance represents a flow specification
 	def static boolean isFlowSpec(InstanceObject conn){
-		if (conn instanceof AssociationInstance){
-		   conn.association.associationType.isFlowSpec 
-		} else false
+		return conn instanceof BehaviorRuleInstance
 	}
 
 	// association instance represents a connection
@@ -332,11 +336,13 @@ class AIv3API {
 		} else false
 	}
 	
-	def static AssociationInstance findFlowSpecInstance(InstanceObject infi, InstanceObject outfi){
+	def static BehaviorRuleInstance findBehaviorRuleInstance(InstanceObject infi, InstanceObject outfi){
 		val ci = infi.containingComponentInstance
-		for (fsi : ci.flowspecs){
-			if (fsi.source === infi && fsi.destination === outfi){
-				return fsi
+		for (bri : ci.behaviorRules){
+			if (bri.annotations.empty){
+				if (bri.condition.eAllOfType(ConstrainedInstanceObject).findCIO(infi) !== null && bri.actions.findCIO(outfi)!== null){
+					return bri
+				}
 			}
 		}
 		null
@@ -416,14 +422,6 @@ class AIv3API {
 	
 	def static isConnected(InstanceObject io){
 		return !(io.incomingAssociations.isEmpty&&io.outgoingAssociations.isEmpty)
-	}
-
-	def static boolean isFlowSource(FeatureInstance fi, Iterable<AssociationInstance> flows) {
-		return flows.exists[f|f.source === fi];
-	}
-
-	def static boolean isFlowDestination(FeatureInstance fi, Iterable<AssociationInstance> flows) {
-		return flows.exists[f|f.destination === fi];
 	}
 
 
@@ -530,6 +528,27 @@ class AIv3API {
 	}
 	
 	// methods related to behavior rules, constrained instance objects
+	
+	
+	def static Iterable<BehaviorRuleInstance> getAllBehaviorRules(ComponentInstance ci) {
+		return ci.behaviorRules.filter[bri|bri.annotations.empty];
+	}
+	
+	def static Iterable<BehaviorRuleInstance> getAllBehaviorRules(ComponentInstance ci, String annotationName) {
+		return ci.behaviorRules.filter[bri|bri.annotations.exists[a|a.equals(annotationName)]];
+	}
+	
+	
+	def static boolean isFlowSource(FeatureInstance fi, Iterable<BehaviorRuleInstance> flows) {
+		return flows.exists[f|f.condition.allConstrainedInstanceObjects.findCIO(fi) !== null];
+	}
+
+	def static boolean isFlowDestination(FeatureInstance fi, Iterable<BehaviorRuleInstance> flows) {
+		return flows.exists[f|f.actions.findCIO(fi) !== null];
+	}
+	
+	
+	
 	/**
 	 * return action cios of desired target whose type reference is contained in constraint.
 	 * Used for finding the connection source cio of an external connection where the outer type reference must contain the inner type reference
@@ -551,6 +570,15 @@ class AIv3API {
 	def static ConstrainedInstanceObject findCIO(EList<ConstrainedInstanceObject> ciolist, InstanceObject io, Literal lit){
 		for (cio: ciolist){
 			if (cio.instanceObject === io && (cio.constraint !== null ? cio.constraint.contains(lit): lit === null)){
+				return cio;
+			}
+		}
+		return null;
+	}
+
+	def static ConstrainedInstanceObject findCIO(Iterable<ConstrainedInstanceObject> ciolist, InstanceObject io){
+		for (cio: ciolist){
+			if (cio.instanceObject === io){
 				return cio;
 			}
 		}
@@ -602,16 +630,26 @@ class AIv3API {
 	}
 	
 	def static StateInstance findStateInstance(ComponentInstance context, StateSpecification ss) {
+		return findStateInstance(context, ss.stateVariable, ss.currentState);
+	}
+
+	def static StateInstance findStateInstance(ComponentInstance context, StateVariable sv, EnumerationLiteral state) {
+		val svi = findStateVariableInstance(context, sv);
+		if (svi !== null){
+			return findStateInstance(svi,state);
+		}
+		return null;
+	}
+
+	def static StateVariableInstance findStateVariableInstance(ComponentInstance context, StateVariable sv) {
 		for (svi : context.stateVariables) {
-			if (svi.stateVariable == ss.stateVariable) {
-				val si = findStateInstance(svi,ss.currentState);
-				if (si !== null){
-					return si;
-				}
+			if (svi.stateVariable == sv) {
+				return svi;
 			}
 		}
 		return null;
 	}
+
 	
 	def static StateInstance findStateInstance(StateVariableInstance svi, EnumerationLiteral state) {
 		for (si : svi.states) {

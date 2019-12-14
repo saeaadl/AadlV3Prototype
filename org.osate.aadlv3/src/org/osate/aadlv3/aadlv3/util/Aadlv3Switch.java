@@ -668,6 +668,17 @@ public class Aadlv3Switch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case Aadlv3Package.STATE_TRANSITION: {
+			StateTransition stateTransition = (StateTransition) theEObject;
+			T result = caseStateTransition(stateTransition);
+			if (result == null)
+				result = caseModelElement(stateTransition);
+			if (result == null)
+				result = caseNamedElement(stateTransition);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		case Aadlv3Package.BEHAVIOR_RULE: {
 			BehaviorRule behaviorRule = (BehaviorRule) theEObject;
 			T result = caseBehaviorRule(behaviorRule);
@@ -728,22 +739,6 @@ public class Aadlv3Switch<T> extends Switch<T> {
 				result = caseLiteral(packageElementReference);
 			if (result == null)
 				result = caseExpression(packageElementReference);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Aadlv3Package.ANNOTATION: {
-			Annotation annotation = (Annotation) theEObject;
-			T result = caseAnnotation(annotation);
-			if (result == null)
-				result = caseNamedElement(annotation);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Aadlv3Package.NAME_VALUE_PAIR: {
-			NameValuePair nameValuePair = (NameValuePair) theEObject;
-			T result = caseNameValuePair(nameValuePair);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -1414,6 +1409,21 @@ public class Aadlv3Switch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>State Transition</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>State Transition</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStateTransition(StateTransition object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>State Specification</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1485,36 +1495,6 @@ public class Aadlv3Switch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T casePackageElementReference(PackageElementReference object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Annotation</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Annotation</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseAnnotation(Annotation object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Name Value Pair</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Name Value Pair</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseNameValuePair(NameValuePair object) {
 		return null;
 	}
 

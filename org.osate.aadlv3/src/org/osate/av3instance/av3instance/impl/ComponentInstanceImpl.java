@@ -40,6 +40,7 @@ import org.osate.av3instance.av3instance.ConstrainedInstanceObject;
 import org.osate.av3instance.av3instance.FeatureInstance;
 import org.osate.av3instance.av3instance.GeneratorInstance;
 import org.osate.av3instance.av3instance.PathInstance;
+import org.osate.av3instance.av3instance.StateTransitionInstance;
 import org.osate.av3instance.av3instance.StateVariableInstance;
 import static org.osate.aadlv3.util.AIv3API.*;
 
@@ -56,12 +57,12 @@ import static org.osate.aadlv3.util.AIv3API.*;
  *   <li>{@link org.osate.av3instance.av3instance.impl.ComponentInstanceImpl#getComponent <em>Component</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.impl.ComponentInstanceImpl#getConnections <em>Connections</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.impl.ComponentInstanceImpl#getFeatures <em>Features</em>}</li>
- *   <li>{@link org.osate.av3instance.av3instance.impl.ComponentInstanceImpl#getFlowspecs <em>Flowspecs</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.impl.ComponentInstanceImpl#getPaths <em>Paths</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.impl.ComponentInstanceImpl#getBehaviorRules <em>Behavior Rules</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.impl.ComponentInstanceImpl#getGenerators <em>Generators</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.impl.ComponentInstanceImpl#getStateVariables <em>State Variables</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.impl.ComponentInstanceImpl#getActions <em>Actions</em>}</li>
+ *   <li>{@link org.osate.av3instance.av3instance.impl.ComponentInstanceImpl#getStateTransitions <em>State Transitions</em>}</li>
  * </ul>
  *
  * @generated
@@ -128,16 +129,6 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 	protected EList<FeatureInstance> features;
 
 	/**
-	 * The cached value of the '{@link #getFlowspecs() <em>Flowspecs</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getFlowspecs()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<AssociationInstance> flowspecs;
-
-	/**
 	 * The cached value of the '{@link #getPaths() <em>Paths</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -186,6 +177,16 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 	 * @ordered
 	 */
 	protected EList<ConstrainedInstanceObject> actions;
+
+	/**
+	 * The cached value of the '{@link #getStateTransitions() <em>State Transitions</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStateTransitions()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<StateTransitionInstance> stateTransitions;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -320,20 +321,6 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 	 * @generated
 	 */
 	@Override
-	public EList<AssociationInstance> getFlowspecs() {
-		if (flowspecs == null) {
-			flowspecs = new EObjectContainmentEList<AssociationInstance>(AssociationInstance.class, this,
-					Av3instancePackage.COMPONENT_INSTANCE__FLOWSPECS);
-		}
-		return flowspecs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EList<PathInstance> getPaths() {
 		if (paths == null) {
 			paths = new EObjectContainmentEList<PathInstance>(PathInstance.class, this,
@@ -404,6 +391,20 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 	 * @generated
 	 */
 	@Override
+	public EList<StateTransitionInstance> getStateTransitions() {
+		if (stateTransitions == null) {
+			stateTransitions = new EObjectContainmentEList<StateTransitionInstance>(StateTransitionInstance.class, this,
+					Av3instancePackage.COMPONENT_INSTANCE__STATE_TRANSITIONS);
+		}
+		return stateTransitions;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case Av3instancePackage.COMPONENT_INSTANCE__COMPONENTS:
@@ -412,8 +413,6 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 			return ((InternalEList<?>) getConnections()).basicRemove(otherEnd, msgs);
 		case Av3instancePackage.COMPONENT_INSTANCE__FEATURES:
 			return ((InternalEList<?>) getFeatures()).basicRemove(otherEnd, msgs);
-		case Av3instancePackage.COMPONENT_INSTANCE__FLOWSPECS:
-			return ((InternalEList<?>) getFlowspecs()).basicRemove(otherEnd, msgs);
 		case Av3instancePackage.COMPONENT_INSTANCE__PATHS:
 			return ((InternalEList<?>) getPaths()).basicRemove(otherEnd, msgs);
 		case Av3instancePackage.COMPONENT_INSTANCE__BEHAVIOR_RULES:
@@ -424,6 +423,8 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 			return ((InternalEList<?>) getStateVariables()).basicRemove(otherEnd, msgs);
 		case Av3instancePackage.COMPONENT_INSTANCE__ACTIONS:
 			return ((InternalEList<?>) getActions()).basicRemove(otherEnd, msgs);
+		case Av3instancePackage.COMPONENT_INSTANCE__STATE_TRANSITIONS:
+			return ((InternalEList<?>) getStateTransitions()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -448,8 +449,6 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 			return getConnections();
 		case Av3instancePackage.COMPONENT_INSTANCE__FEATURES:
 			return getFeatures();
-		case Av3instancePackage.COMPONENT_INSTANCE__FLOWSPECS:
-			return getFlowspecs();
 		case Av3instancePackage.COMPONENT_INSTANCE__PATHS:
 			return getPaths();
 		case Av3instancePackage.COMPONENT_INSTANCE__BEHAVIOR_RULES:
@@ -460,6 +459,8 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 			return getStateVariables();
 		case Av3instancePackage.COMPONENT_INSTANCE__ACTIONS:
 			return getActions();
+		case Av3instancePackage.COMPONENT_INSTANCE__STATE_TRANSITIONS:
+			return getStateTransitions();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -491,10 +492,6 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 			getFeatures().clear();
 			getFeatures().addAll((Collection<? extends FeatureInstance>) newValue);
 			return;
-		case Av3instancePackage.COMPONENT_INSTANCE__FLOWSPECS:
-			getFlowspecs().clear();
-			getFlowspecs().addAll((Collection<? extends AssociationInstance>) newValue);
-			return;
 		case Av3instancePackage.COMPONENT_INSTANCE__PATHS:
 			getPaths().clear();
 			getPaths().addAll((Collection<? extends PathInstance>) newValue);
@@ -514,6 +511,10 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 		case Av3instancePackage.COMPONENT_INSTANCE__ACTIONS:
 			getActions().clear();
 			getActions().addAll((Collection<? extends ConstrainedInstanceObject>) newValue);
+			return;
+		case Av3instancePackage.COMPONENT_INSTANCE__STATE_TRANSITIONS:
+			getStateTransitions().clear();
+			getStateTransitions().addAll((Collection<? extends StateTransitionInstance>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -542,9 +543,6 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 		case Av3instancePackage.COMPONENT_INSTANCE__FEATURES:
 			getFeatures().clear();
 			return;
-		case Av3instancePackage.COMPONENT_INSTANCE__FLOWSPECS:
-			getFlowspecs().clear();
-			return;
 		case Av3instancePackage.COMPONENT_INSTANCE__PATHS:
 			getPaths().clear();
 			return;
@@ -559,6 +557,9 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 			return;
 		case Av3instancePackage.COMPONENT_INSTANCE__ACTIONS:
 			getActions().clear();
+			return;
+		case Av3instancePackage.COMPONENT_INSTANCE__STATE_TRANSITIONS:
+			getStateTransitions().clear();
 			return;
 		}
 		super.eUnset(featureID);
@@ -582,8 +583,6 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 			return connections != null && !connections.isEmpty();
 		case Av3instancePackage.COMPONENT_INSTANCE__FEATURES:
 			return features != null && !features.isEmpty();
-		case Av3instancePackage.COMPONENT_INSTANCE__FLOWSPECS:
-			return flowspecs != null && !flowspecs.isEmpty();
 		case Av3instancePackage.COMPONENT_INSTANCE__PATHS:
 			return paths != null && !paths.isEmpty();
 		case Av3instancePackage.COMPONENT_INSTANCE__BEHAVIOR_RULES:
@@ -594,6 +593,8 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 			return stateVariables != null && !stateVariables.isEmpty();
 		case Av3instancePackage.COMPONENT_INSTANCE__ACTIONS:
 			return actions != null && !actions.isEmpty();
+		case Av3instancePackage.COMPONENT_INSTANCE__STATE_TRANSITIONS:
+			return stateTransitions != null && !stateTransitions.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
