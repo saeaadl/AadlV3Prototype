@@ -2,16 +2,16 @@ package testinstances is
 workingset testinstances is
 	
 //	paex: system PropertyAssociationExample::conntop.c1;
-//	portex: system PortConnectionExample::conntop.i;
-//	tokenex: system TokenPropagationExample::conntop.i "causetrace" "causegraph" "effecttrace" 
-//	;
-	Simpletokenex: system SimpleTokenPropagationExample::conntop.i "causetrace" "causegraph" "effecttrace" 
+	portex: system PortConnectionExample::conntop.i;
+	tokenex: system TokenPropagationExample::conntop.i //"causetrace" "causegraph" "effecttrace" 
 	;
-//	noconstraintex: system TokenNoConstraintExample::conntop.i;
+	Simpletokenex: system SimpleTokenPropagationExample::conntop.i //"causetrace" "causegraph" "effecttrace" 
+	;
+	noconstraintex: system TokenNoConstraintExample::conntop.i;
 	
 //	connex: system ConnectionExamples::conntop.i;
 //
-//  flowex: system FlowExamples::conntop.i;
+  flowex: system FlowExamples::conntop.i;
 	
 end ;
 end;

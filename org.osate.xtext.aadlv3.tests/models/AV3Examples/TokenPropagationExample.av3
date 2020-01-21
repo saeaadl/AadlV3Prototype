@@ -37,7 +37,7 @@ package TokenPropagationExample is
 //		reading: flow  source p1;
 		#TokenSource => (Virus);
 	@EM{
-		e1: error (Virus, DirtyWord, Classified) ; 
+		e1: error generator (Virus, DirtyWord, Classified) ; 
 		sense2:  flow source e1 ->  p1;
 	};
 	end;
@@ -45,7 +45,7 @@ package TokenPropagationExample is
 	thread interface actuate  is
 		p1: in feature ;
 		effect: out feature ;
-//		taction: flow  sink p1;
+		taction: flow  p1 -> sink;
 	end;
 	
 	thread interface filter is
@@ -54,22 +54,17 @@ package TokenPropagationExample is
 	outsignal : out feature;
 	
 //	cpu: requires binding x86;
-//	filterpath1: flow insignal1 -> outsignal;
-//	filterpath2: flow insignal2 -> outsignal;
+	filterpath1: flow insignal1 -> outsignal;
+	filterpath2: flow insignal2 -> outsignal;
 	#Period => 20 ;
 	end;
 	
 	thread interface compute is
 	insignal : in feature;
 	outsignal : out feature;
-//	computepath: flow insignal -> outsignal;
-//	@BA{
-//		f1: insignal -> outsignal; 
-//	};
+	computepath: flow insignal -> outsignal;
 	@EM{
-//		filter2: flow all (insignal1 in ServiceOmission, insignal2 in ServiceOmission ) ->  outsignal!(ServiceOmission);
-		filter2: flow insignal in (Virus,Classified) ->  sink;
-//		filter3: flow insignal in (Classified) ->  sink;
+		filter2: token insignal in (Virus,Classified) ->  sink;
 	};
 	end;
 	
