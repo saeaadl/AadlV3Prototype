@@ -74,9 +74,8 @@ public class StateTransitionItemProvider extends ModelElementItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(Aadlv3Package.Literals.STATE_TRANSITION__CURRENT_STATE);
-			childrenFeatures.add(Aadlv3Package.Literals.STATE_TRANSITION__TARGET_STATE);
 			childrenFeatures.add(Aadlv3Package.Literals.STATE_TRANSITION__CONDITION);
+			childrenFeatures.add(Aadlv3Package.Literals.STATE_TRANSITION__TARGET_STATE);
 		}
 		return childrenFeatures;
 	}
@@ -130,9 +129,8 @@ public class StateTransitionItemProvider extends ModelElementItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(StateTransition.class)) {
-		case Aadlv3Package.STATE_TRANSITION__CURRENT_STATE:
-		case Aadlv3Package.STATE_TRANSITION__TARGET_STATE:
 		case Aadlv3Package.STATE_TRANSITION__CONDITION:
+		case Aadlv3Package.STATE_TRANSITION__TARGET_STATE:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -149,12 +147,6 @@ public class StateTransitionItemProvider extends ModelElementItemProvider {
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.STATE_TRANSITION__CURRENT_STATE,
-				Aadlv3Factory.eINSTANCE.createStateSpecification()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.STATE_TRANSITION__TARGET_STATE,
-				Aadlv3Factory.eINSTANCE.createStateSpecification()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.STATE_TRANSITION__CONDITION,
 				Aadlv3Factory.eINSTANCE.createNamedElementReference()));
@@ -203,6 +195,9 @@ public class StateTransitionItemProvider extends ModelElementItemProvider {
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.STATE_TRANSITION__CONDITION,
 				Aadlv3Factory.eINSTANCE.createPackageElementReference()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.STATE_TRANSITION__TARGET_STATE,
+				Aadlv3Factory.eINSTANCE.createBinaryOperation()));
 	}
 
 	/**
@@ -216,7 +211,8 @@ public class StateTransitionItemProvider extends ModelElementItemProvider {
 		Object childFeature = feature;
 		Object childObject = child;
 
-		boolean qualify = childFeature == Aadlv3Package.Literals.STATE_TRANSITION__CURRENT_STATE
+		boolean qualify = childFeature == Aadlv3Package.Literals.MODEL_ELEMENT__IN_STATES
+				|| childFeature == Aadlv3Package.Literals.STATE_TRANSITION__CONDITION
 				|| childFeature == Aadlv3Package.Literals.STATE_TRANSITION__TARGET_STATE;
 
 		if (qualify) {

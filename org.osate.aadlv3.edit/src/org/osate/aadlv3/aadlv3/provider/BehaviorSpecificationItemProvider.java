@@ -108,7 +108,7 @@ public class BehaviorSpecificationItemProvider extends AnnexSubclauseItemProvide
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(Aadlv3Package.Literals.BEHAVIOR_SPECIFICATION__TRANSITIONS);
-			childrenFeatures.add(Aadlv3Package.Literals.BEHAVIOR_SPECIFICATION__RULES);
+			childrenFeatures.add(Aadlv3Package.Literals.BEHAVIOR_SPECIFICATION__BEHAVIORS);
 		}
 		return childrenFeatures;
 	}
@@ -163,7 +163,7 @@ public class BehaviorSpecificationItemProvider extends AnnexSubclauseItemProvide
 
 		switch (notification.getFeatureID(BehaviorSpecification.class)) {
 		case Aadlv3Package.BEHAVIOR_SPECIFICATION__TRANSITIONS:
-		case Aadlv3Package.BEHAVIOR_SPECIFICATION__RULES:
+		case Aadlv3Package.BEHAVIOR_SPECIFICATION__BEHAVIORS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -184,8 +184,8 @@ public class BehaviorSpecificationItemProvider extends AnnexSubclauseItemProvide
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.BEHAVIOR_SPECIFICATION__TRANSITIONS,
 				Aadlv3Factory.eINSTANCE.createStateTransition()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.BEHAVIOR_SPECIFICATION__RULES,
-				Aadlv3Factory.eINSTANCE.createBehaviorRule()));
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.BEHAVIOR_SPECIFICATION__BEHAVIORS,
+				Aadlv3Factory.eINSTANCE.createBehavior()));
 	}
 
 }

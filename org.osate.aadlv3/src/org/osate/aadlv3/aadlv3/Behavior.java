@@ -19,61 +19,39 @@ import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Behavior Rule</b></em>'.
+ * A representation of the model object '<em><b>Behavior</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.osate.aadlv3.aadlv3.BehaviorRule#getCurrentState <em>Current State</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.BehaviorRule#getCondition <em>Condition</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.BehaviorRule#getActions <em>Actions</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.BehaviorRule#isSource <em>Source</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.BehaviorRule#isSink <em>Sink</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.Behavior#getCondition <em>Condition</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.Behavior#getActions <em>Actions</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.Behavior#isSource <em>Source</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.Behavior#isSink <em>Sink</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.Behavior#getCategory <em>Category</em>}</li>
  * </ul>
  *
- * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getBehaviorRule()
+ * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getBehavior()
  * @model
  * @generated
  */
-public interface BehaviorRule extends ModelElement {
-	/**
-	 * Returns the value of the '<em><b>Current State</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Current State</em>' containment reference.
-	 * @see #setCurrentState(StateSpecification)
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getBehaviorRule_CurrentState()
-	 * @model containment="true"
-	 * @generated
-	 */
-	StateSpecification getCurrentState();
-
-	/**
-	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.BehaviorRule#getCurrentState <em>Current State</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Current State</em>' containment reference.
-	 * @see #getCurrentState()
-	 * @generated
-	 */
-	void setCurrentState(StateSpecification value);
-
+public interface Behavior extends ModelElement {
 	/**
 	 * Returns the value of the '<em><b>Condition</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Condition</em>' containment reference.
 	 * @see #setCondition(Literal)
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getBehaviorRule_Condition()
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getBehavior_Condition()
 	 * @model containment="true"
 	 * @generated
 	 */
 	Literal getCondition();
 
 	/**
-	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.BehaviorRule#getCondition <em>Condition</em>}' containment reference.
+	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.Behavior#getCondition <em>Condition</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Condition</em>' containment reference.
@@ -88,7 +66,7 @@ public interface BehaviorRule extends ModelElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Actions</em>' containment reference list.
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getBehaviorRule_Actions()
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getBehavior_Actions()
 	 * @model containment="true"
 	 * @generated
 	 */
@@ -100,14 +78,14 @@ public interface BehaviorRule extends ModelElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Source</em>' attribute.
 	 * @see #setSource(boolean)
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getBehaviorRule_Source()
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getBehavior_Source()
 	 * @model
 	 * @generated
 	 */
 	boolean isSource();
 
 	/**
-	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.BehaviorRule#isSource <em>Source</em>}' attribute.
+	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.Behavior#isSource <em>Source</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Source</em>' attribute.
@@ -122,14 +100,14 @@ public interface BehaviorRule extends ModelElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Sink</em>' attribute.
 	 * @see #setSink(boolean)
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getBehaviorRule_Sink()
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getBehavior_Sink()
 	 * @model
 	 * @generated
 	 */
 	boolean isSink();
 
 	/**
-	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.BehaviorRule#isSink <em>Sink</em>}' attribute.
+	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.Behavior#isSink <em>Sink</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Sink</em>' attribute.
@@ -138,4 +116,30 @@ public interface BehaviorRule extends ModelElement {
 	 */
 	void setSink(boolean value);
 
-} // BehaviorRule
+	/**
+	 * Returns the value of the '<em><b>Category</b></em>' attribute.
+	 * The default value is <code>"flow"</code>.
+	 * The literals are from the enumeration {@link org.osate.aadlv3.aadlv3.BehaviorCategory}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Category</em>' attribute.
+	 * @see org.osate.aadlv3.aadlv3.BehaviorCategory
+	 * @see #setCategory(BehaviorCategory)
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getBehavior_Category()
+	 * @model default="flow"
+	 * @generated
+	 */
+	BehaviorCategory getCategory();
+
+	/**
+	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.Behavior#getCategory <em>Category</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Category</em>' attribute.
+	 * @see org.osate.aadlv3.aadlv3.BehaviorCategory
+	 * @see #getCategory()
+	 * @generated
+	 */
+	void setCategory(BehaviorCategory value);
+
+} // Behavior

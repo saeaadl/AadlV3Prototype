@@ -178,26 +178,26 @@ public class Av3instanceItemProviderAdapterFactory extends Av3instanceAdapterFac
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.osate.av3instance.av3instance.BehaviorRuleInstance} instances.
+	 * This keeps track of the one adapter used for all {@link org.osate.av3instance.av3instance.BehaviorInstance} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected BehaviorRuleInstanceItemProvider behaviorRuleInstanceItemProvider;
+	protected BehaviorInstanceItemProvider behaviorInstanceItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.osate.av3instance.av3instance.BehaviorRuleInstance}.
+	 * This creates an adapter for a {@link org.osate.av3instance.av3instance.BehaviorInstance}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createBehaviorRuleInstanceAdapter() {
-		if (behaviorRuleInstanceItemProvider == null) {
-			behaviorRuleInstanceItemProvider = new BehaviorRuleInstanceItemProvider(this);
+	public Adapter createBehaviorInstanceAdapter() {
+		if (behaviorInstanceItemProvider == null) {
+			behaviorInstanceItemProvider = new BehaviorInstanceItemProvider(this);
 		}
 
-		return behaviorRuleInstanceItemProvider;
+		return behaviorInstanceItemProvider;
 	}
 
 	/**
@@ -428,8 +428,8 @@ public class Av3instanceItemProviderAdapterFactory extends Av3instanceAdapterFac
 			associationInstanceItemProvider.dispose();
 		if (pathInstanceItemProvider != null)
 			pathInstanceItemProvider.dispose();
-		if (behaviorRuleInstanceItemProvider != null)
-			behaviorRuleInstanceItemProvider.dispose();
+		if (behaviorInstanceItemProvider != null)
+			behaviorInstanceItemProvider.dispose();
 		if (generatorInstanceItemProvider != null)
 			generatorInstanceItemProvider.dispose();
 		if (constrainedInstanceObjectItemProvider != null)

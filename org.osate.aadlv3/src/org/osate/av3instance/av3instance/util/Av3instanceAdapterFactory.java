@@ -107,8 +107,8 @@ public class Av3instanceAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseBehaviorRuleInstance(BehaviorRuleInstance object) {
-			return createBehaviorRuleInstanceAdapter();
+		public Adapter caseBehaviorInstance(BehaviorInstance object) {
+			return createBehaviorInstanceAdapter();
 		}
 
 		@Override
@@ -241,16 +241,16 @@ public class Av3instanceAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.osate.av3instance.av3instance.BehaviorRuleInstance <em>Behavior Rule Instance</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.osate.av3instance.av3instance.BehaviorInstance <em>Behavior Instance</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.osate.av3instance.av3instance.BehaviorRuleInstance
+	 * @see org.osate.av3instance.av3instance.BehaviorInstance
 	 * @generated
 	 */
-	public Adapter createBehaviorRuleInstanceAdapter() {
+	public Adapter createBehaviorInstanceAdapter() {
 		return null;
 	}
 

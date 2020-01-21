@@ -112,7 +112,7 @@ public class ComponentInstanceItemProvider extends InstanceObjectItemProvider {
 			childrenFeatures.add(Av3instancePackage.Literals.COMPONENT_INSTANCE__CONNECTIONS);
 			childrenFeatures.add(Av3instancePackage.Literals.COMPONENT_INSTANCE__FEATURES);
 			childrenFeatures.add(Av3instancePackage.Literals.COMPONENT_INSTANCE__PATHS);
-			childrenFeatures.add(Av3instancePackage.Literals.COMPONENT_INSTANCE__BEHAVIOR_RULES);
+			childrenFeatures.add(Av3instancePackage.Literals.COMPONENT_INSTANCE__BEHAVIORS);
 			childrenFeatures.add(Av3instancePackage.Literals.COMPONENT_INSTANCE__GENERATORS);
 			childrenFeatures.add(Av3instancePackage.Literals.COMPONENT_INSTANCE__STATE_VARIABLES);
 			childrenFeatures.add(Av3instancePackage.Literals.COMPONENT_INSTANCE__ACTIONS);
@@ -195,7 +195,7 @@ public class ComponentInstanceItemProvider extends InstanceObjectItemProvider {
 		case Av3instancePackage.COMPONENT_INSTANCE__CONNECTIONS:
 		case Av3instancePackage.COMPONENT_INSTANCE__FEATURES:
 		case Av3instancePackage.COMPONENT_INSTANCE__PATHS:
-		case Av3instancePackage.COMPONENT_INSTANCE__BEHAVIOR_RULES:
+		case Av3instancePackage.COMPONENT_INSTANCE__BEHAVIORS:
 		case Av3instancePackage.COMPONENT_INSTANCE__GENERATORS:
 		case Av3instancePackage.COMPONENT_INSTANCE__STATE_VARIABLES:
 		case Av3instancePackage.COMPONENT_INSTANCE__ACTIONS:

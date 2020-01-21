@@ -24,9 +24,8 @@ package org.osate.aadlv3.aadlv3;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.osate.aadlv3.aadlv3.StateTransition#getCurrentState <em>Current State</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.StateTransition#getTargetState <em>Target State</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.StateTransition#getCondition <em>Condition</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.StateTransition#getTargetState <em>Target State</em>}</li>
  * </ul>
  *
  * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getStateTransition()
@@ -35,38 +34,16 @@ package org.osate.aadlv3.aadlv3;
  */
 public interface StateTransition extends ModelElement {
 	/**
-	 * Returns the value of the '<em><b>Current State</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Current State</em>' containment reference.
-	 * @see #setCurrentState(StateSpecification)
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getStateTransition_CurrentState()
-	 * @model containment="true"
-	 * @generated
-	 */
-	StateSpecification getCurrentState();
-
-	/**
-	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.StateTransition#getCurrentState <em>Current State</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Current State</em>' containment reference.
-	 * @see #getCurrentState()
-	 * @generated
-	 */
-	void setCurrentState(StateSpecification value);
-
-	/**
 	 * Returns the value of the '<em><b>Target State</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Target State</em>' containment reference.
-	 * @see #setTargetState(StateSpecification)
+	 * @see #setTargetState(BinaryOperation)
 	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getStateTransition_TargetState()
 	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
-	StateSpecification getTargetState();
+	BinaryOperation getTargetState();
 
 	/**
 	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.StateTransition#getTargetState <em>Target State</em>}' containment reference.
@@ -76,7 +53,7 @@ public interface StateTransition extends ModelElement {
 	 * @see #getTargetState()
 	 * @generated
 	 */
-	void setTargetState(StateSpecification value);
+	void setTargetState(BinaryOperation value);
 
 	/**
 	 * Returns the value of the '<em><b>Condition</b></em>' containment reference.

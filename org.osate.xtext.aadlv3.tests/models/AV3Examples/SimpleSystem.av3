@@ -3,6 +3,7 @@ package SimpleSystem is
 // property associated with model element and as contained property in classifier
 
 import ConCon::*;
+import StateTypes::*;
 
 	process interface sub is
 		name : in feature ;
@@ -21,7 +22,8 @@ import ConCon::*;
 	system interface gps is end;
 	
 	system gps.i is
-		locator : process sub.i1; 
+	mode : state threestate;
+	locator : process sub.i1 when mode in ( s0 , s1 ) ; 
 	#FeatureLabels =>  ( 2, 3);
 	end;
 	

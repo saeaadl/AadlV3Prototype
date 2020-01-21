@@ -16,10 +16,12 @@
 package org.osate.aadlv3.aadlv3.impl;
 
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -27,40 +29,31 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
-import org.osate.aadlv3.aadlv3.BehaviorRule;
+import org.osate.aadlv3.aadlv3.Behavior;
+import org.osate.aadlv3.aadlv3.BehaviorCategory;
 import org.osate.aadlv3.aadlv3.BinaryOperation;
 import org.osate.aadlv3.aadlv3.Literal;
-import org.osate.aadlv3.aadlv3.StateSpecification;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Behavior Rule</b></em>'.
+ * An implementation of the model object '<em><b>Behavior</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.BehaviorRuleImpl#getCurrentState <em>Current State</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.BehaviorRuleImpl#getCondition <em>Condition</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.BehaviorRuleImpl#getActions <em>Actions</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.BehaviorRuleImpl#isSource <em>Source</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.BehaviorRuleImpl#isSink <em>Sink</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.BehaviorImpl#getCondition <em>Condition</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.BehaviorImpl#getActions <em>Actions</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.BehaviorImpl#isSource <em>Source</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.BehaviorImpl#isSink <em>Sink</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.BehaviorImpl#getCategory <em>Category</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class BehaviorRuleImpl extends ModelElementImpl implements BehaviorRule {
-	/**
-	 * The cached value of the '{@link #getCurrentState() <em>Current State</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCurrentState()
-	 * @generated
-	 * @ordered
-	 */
-	protected StateSpecification currentState;
-
+public class BehaviorImpl extends ModelElementImpl implements Behavior {
 	/**
 	 * The cached value of the '{@link #getCondition() <em>Condition</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -122,11 +115,31 @@ public class BehaviorRuleImpl extends ModelElementImpl implements BehaviorRule {
 	protected boolean sink = SINK_EDEFAULT;
 
 	/**
+	 * The default value of the '{@link #getCategory() <em>Category</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCategory()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final BehaviorCategory CATEGORY_EDEFAULT = BehaviorCategory.FLOW;
+
+	/**
+	 * The cached value of the '{@link #getCategory() <em>Category</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCategory()
+	 * @generated
+	 * @ordered
+	 */
+	protected BehaviorCategory category = CATEGORY_EDEFAULT;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected BehaviorRuleImpl() {
+	protected BehaviorImpl() {
 		super();
 	}
 
@@ -137,59 +150,7 @@ public class BehaviorRuleImpl extends ModelElementImpl implements BehaviorRule {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return Aadlv3Package.Literals.BEHAVIOR_RULE;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public StateSpecification getCurrentState() {
-		return currentState;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetCurrentState(StateSpecification newCurrentState, NotificationChain msgs) {
-		StateSpecification oldCurrentState = currentState;
-		currentState = newCurrentState;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					Aadlv3Package.BEHAVIOR_RULE__CURRENT_STATE, oldCurrentState, newCurrentState);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setCurrentState(StateSpecification newCurrentState) {
-		if (newCurrentState != currentState) {
-			NotificationChain msgs = null;
-			if (currentState != null)
-				msgs = ((InternalEObject) currentState).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE - Aadlv3Package.BEHAVIOR_RULE__CURRENT_STATE, null, msgs);
-			if (newCurrentState != null)
-				msgs = ((InternalEObject) newCurrentState).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE - Aadlv3Package.BEHAVIOR_RULE__CURRENT_STATE, null, msgs);
-			msgs = basicSetCurrentState(newCurrentState, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.BEHAVIOR_RULE__CURRENT_STATE,
-					newCurrentState, newCurrentState));
+		return Aadlv3Package.Literals.BEHAVIOR;
 	}
 
 	/**
@@ -212,7 +173,7 @@ public class BehaviorRuleImpl extends ModelElementImpl implements BehaviorRule {
 		condition = newCondition;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					Aadlv3Package.BEHAVIOR_RULE__CONDITION, oldCondition, newCondition);
+					Aadlv3Package.BEHAVIOR__CONDITION, oldCondition, newCondition);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -232,15 +193,15 @@ public class BehaviorRuleImpl extends ModelElementImpl implements BehaviorRule {
 			NotificationChain msgs = null;
 			if (condition != null)
 				msgs = ((InternalEObject) condition).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE - Aadlv3Package.BEHAVIOR_RULE__CONDITION, null, msgs);
+						EOPPOSITE_FEATURE_BASE - Aadlv3Package.BEHAVIOR__CONDITION, null, msgs);
 			if (newCondition != null)
 				msgs = ((InternalEObject) newCondition).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE - Aadlv3Package.BEHAVIOR_RULE__CONDITION, null, msgs);
+						EOPPOSITE_FEATURE_BASE - Aadlv3Package.BEHAVIOR__CONDITION, null, msgs);
 			msgs = basicSetCondition(newCondition, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.BEHAVIOR_RULE__CONDITION, newCondition,
+			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.BEHAVIOR__CONDITION, newCondition,
 					newCondition));
 	}
 
@@ -253,7 +214,7 @@ public class BehaviorRuleImpl extends ModelElementImpl implements BehaviorRule {
 	public EList<BinaryOperation> getActions() {
 		if (actions == null) {
 			actions = new EObjectContainmentEList<BinaryOperation>(BinaryOperation.class, this,
-					Aadlv3Package.BEHAVIOR_RULE__ACTIONS);
+					Aadlv3Package.BEHAVIOR__ACTIONS);
 		}
 		return actions;
 	}
@@ -278,8 +239,7 @@ public class BehaviorRuleImpl extends ModelElementImpl implements BehaviorRule {
 		boolean oldSource = source;
 		source = newSource;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.BEHAVIOR_RULE__SOURCE, oldSource,
-					source));
+			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.BEHAVIOR__SOURCE, oldSource, source));
 	}
 
 	/**
@@ -302,7 +262,31 @@ public class BehaviorRuleImpl extends ModelElementImpl implements BehaviorRule {
 		boolean oldSink = sink;
 		sink = newSink;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.BEHAVIOR_RULE__SINK, oldSink, sink));
+			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.BEHAVIOR__SINK, oldSink, sink));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public BehaviorCategory getCategory() {
+		return category;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setCategory(BehaviorCategory newCategory) {
+		BehaviorCategory oldCategory = category;
+		category = newCategory == null ? CATEGORY_EDEFAULT : newCategory;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.BEHAVIOR__CATEGORY, oldCategory,
+					category));
 	}
 
 	/**
@@ -313,11 +297,9 @@ public class BehaviorRuleImpl extends ModelElementImpl implements BehaviorRule {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case Aadlv3Package.BEHAVIOR_RULE__CURRENT_STATE:
-			return basicSetCurrentState(null, msgs);
-		case Aadlv3Package.BEHAVIOR_RULE__CONDITION:
+		case Aadlv3Package.BEHAVIOR__CONDITION:
 			return basicSetCondition(null, msgs);
-		case Aadlv3Package.BEHAVIOR_RULE__ACTIONS:
+		case Aadlv3Package.BEHAVIOR__ACTIONS:
 			return ((InternalEList<?>) getActions()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -331,16 +313,16 @@ public class BehaviorRuleImpl extends ModelElementImpl implements BehaviorRule {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case Aadlv3Package.BEHAVIOR_RULE__CURRENT_STATE:
-			return getCurrentState();
-		case Aadlv3Package.BEHAVIOR_RULE__CONDITION:
+		case Aadlv3Package.BEHAVIOR__CONDITION:
 			return getCondition();
-		case Aadlv3Package.BEHAVIOR_RULE__ACTIONS:
+		case Aadlv3Package.BEHAVIOR__ACTIONS:
 			return getActions();
-		case Aadlv3Package.BEHAVIOR_RULE__SOURCE:
+		case Aadlv3Package.BEHAVIOR__SOURCE:
 			return isSource();
-		case Aadlv3Package.BEHAVIOR_RULE__SINK:
+		case Aadlv3Package.BEHAVIOR__SINK:
 			return isSink();
+		case Aadlv3Package.BEHAVIOR__CATEGORY:
+			return getCategory();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -354,21 +336,21 @@ public class BehaviorRuleImpl extends ModelElementImpl implements BehaviorRule {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case Aadlv3Package.BEHAVIOR_RULE__CURRENT_STATE:
-			setCurrentState((StateSpecification) newValue);
-			return;
-		case Aadlv3Package.BEHAVIOR_RULE__CONDITION:
+		case Aadlv3Package.BEHAVIOR__CONDITION:
 			setCondition((Literal) newValue);
 			return;
-		case Aadlv3Package.BEHAVIOR_RULE__ACTIONS:
+		case Aadlv3Package.BEHAVIOR__ACTIONS:
 			getActions().clear();
 			getActions().addAll((Collection<? extends BinaryOperation>) newValue);
 			return;
-		case Aadlv3Package.BEHAVIOR_RULE__SOURCE:
+		case Aadlv3Package.BEHAVIOR__SOURCE:
 			setSource((Boolean) newValue);
 			return;
-		case Aadlv3Package.BEHAVIOR_RULE__SINK:
+		case Aadlv3Package.BEHAVIOR__SINK:
 			setSink((Boolean) newValue);
+			return;
+		case Aadlv3Package.BEHAVIOR__CATEGORY:
+			setCategory((BehaviorCategory) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -382,20 +364,20 @@ public class BehaviorRuleImpl extends ModelElementImpl implements BehaviorRule {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case Aadlv3Package.BEHAVIOR_RULE__CURRENT_STATE:
-			setCurrentState((StateSpecification) null);
-			return;
-		case Aadlv3Package.BEHAVIOR_RULE__CONDITION:
+		case Aadlv3Package.BEHAVIOR__CONDITION:
 			setCondition((Literal) null);
 			return;
-		case Aadlv3Package.BEHAVIOR_RULE__ACTIONS:
+		case Aadlv3Package.BEHAVIOR__ACTIONS:
 			getActions().clear();
 			return;
-		case Aadlv3Package.BEHAVIOR_RULE__SOURCE:
+		case Aadlv3Package.BEHAVIOR__SOURCE:
 			setSource(SOURCE_EDEFAULT);
 			return;
-		case Aadlv3Package.BEHAVIOR_RULE__SINK:
+		case Aadlv3Package.BEHAVIOR__SINK:
 			setSink(SINK_EDEFAULT);
+			return;
+		case Aadlv3Package.BEHAVIOR__CATEGORY:
+			setCategory(CATEGORY_EDEFAULT);
 			return;
 		}
 		super.eUnset(featureID);
@@ -409,16 +391,16 @@ public class BehaviorRuleImpl extends ModelElementImpl implements BehaviorRule {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case Aadlv3Package.BEHAVIOR_RULE__CURRENT_STATE:
-			return currentState != null;
-		case Aadlv3Package.BEHAVIOR_RULE__CONDITION:
+		case Aadlv3Package.BEHAVIOR__CONDITION:
 			return condition != null;
-		case Aadlv3Package.BEHAVIOR_RULE__ACTIONS:
+		case Aadlv3Package.BEHAVIOR__ACTIONS:
 			return actions != null && !actions.isEmpty();
-		case Aadlv3Package.BEHAVIOR_RULE__SOURCE:
+		case Aadlv3Package.BEHAVIOR__SOURCE:
 			return source != SOURCE_EDEFAULT;
-		case Aadlv3Package.BEHAVIOR_RULE__SINK:
+		case Aadlv3Package.BEHAVIOR__SINK:
 			return sink != SINK_EDEFAULT;
+		case Aadlv3Package.BEHAVIOR__CATEGORY:
+			return category != CATEGORY_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -438,8 +420,10 @@ public class BehaviorRuleImpl extends ModelElementImpl implements BehaviorRule {
 		result.append(source);
 		result.append(", sink: ");
 		result.append(sink);
+		result.append(", category: ");
+		result.append(category);
 		result.append(')');
 		return result.toString();
 	}
 
-} //BehaviorRuleImpl
+} //BehaviorImpl

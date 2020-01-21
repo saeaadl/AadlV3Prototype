@@ -17,11 +17,8 @@ package SimpleTokenPropagationExample is
 	interface sensor is
 		outp: out feature;
 		fea: feature;
-//		reading: flow source outp;
-		#TokenSource => (Virus);
-	@EM{
-		e1: error (Virus, DirtyWord, Classified) ; 
-		sense2:  flow e1 ->  outp;
+	@SEC{
+		e1: generator (Virus, DirtyWord, Classified) ; 
 	};
 	end;
 	
@@ -29,8 +26,7 @@ package SimpleTokenPropagationExample is
 	insignal : in feature;
 	outsignal : out feature;
 	@EM{
-		filter2: flow insignal in (Virus,Classified) ->  sink;
-//		filter3: insignal in (Classified) ->  sink;
+		filter2: token insignal in (Virus,Classified) ->  sink;
 	};
 	end;
 	
@@ -45,7 +41,7 @@ package SimpleTokenPropagationExample is
 //	processflow: flow insignal1 -> outaction;
 	@EM{
 //		filter2: all (insignal1 in ServiceOmission, insignal2 in ServiceOmission ) ->  outsignal!(ServiceOmission);
-		filter2: flow insignal1 in (Virus,Classified) ->  sink;
+		filter2: token insignal1 in (Virus,Classified) ->  sink;
 //		filter3: insignal in (Classified) ->  sink;
 	};
 	end;

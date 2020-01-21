@@ -156,10 +156,8 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 			return createBehaviorSpecification();
 		case Aadlv3Package.STATE_TRANSITION:
 			return createStateTransition();
-		case Aadlv3Package.BEHAVIOR_RULE:
-			return createBehaviorRule();
-		case Aadlv3Package.STATE_SPECIFICATION:
-			return createStateSpecification();
+		case Aadlv3Package.BEHAVIOR:
+			return createBehavior();
 		case Aadlv3Package.STATE_VARIABLE:
 			return createStateVariable();
 		case Aadlv3Package.GENERATOR:
@@ -199,6 +197,8 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 			return createBinaryOperatorFromString(eDataType, initialValue);
 		case Aadlv3Package.PROPERTY_ASSOCIATION_TYPE:
 			return createPropertyAssociationTypeFromString(eDataType, initialValue);
+		case Aadlv3Package.BEHAVIOR_CATEGORY:
+			return createBehaviorCategoryFromString(eDataType, initialValue);
 		default:
 			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -230,6 +230,8 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 			return convertBinaryOperatorToString(eDataType, instanceValue);
 		case Aadlv3Package.PROPERTY_ASSOCIATION_TYPE:
 			return convertPropertyAssociationTypeToString(eDataType, instanceValue);
+		case Aadlv3Package.BEHAVIOR_CATEGORY:
+			return convertBehaviorCategoryToString(eDataType, instanceValue);
 		default:
 			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -615,17 +617,6 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 	 * @generated
 	 */
 	@Override
-	public BehaviorRule createBehaviorRule() {
-		BehaviorRuleImpl behaviorRule = new BehaviorRuleImpl();
-		return behaviorRule;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public BehaviorSpecification createBehaviorSpecification() {
 		BehaviorSpecificationImpl behaviorSpecification = new BehaviorSpecificationImpl();
 		return behaviorSpecification;
@@ -648,9 +639,9 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 	 * @generated
 	 */
 	@Override
-	public StateSpecification createStateSpecification() {
-		StateSpecificationImpl stateSpecification = new StateSpecificationImpl();
-		return stateSpecification;
+	public Behavior createBehavior() {
+		BehaviorImpl behavior = new BehaviorImpl();
+		return behavior;
 	}
 
 	/**
@@ -969,6 +960,28 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 	 * @generated
 	 */
 	public String convertPropertyAssociationTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public BehaviorCategory createBehaviorCategoryFromString(EDataType eDataType, String initialValue) {
+		BehaviorCategory result = BehaviorCategory.get(initialValue);
+		if (result == null)
+			throw new IllegalArgumentException(
+					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertBehaviorCategoryToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

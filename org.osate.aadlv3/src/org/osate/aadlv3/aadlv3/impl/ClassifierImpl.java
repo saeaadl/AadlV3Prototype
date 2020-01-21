@@ -32,7 +32,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.AnnexSubclause;
-import org.osate.aadlv3.aadlv3.BehaviorRule;
+import org.osate.aadlv3.aadlv3.Behavior;
 import org.osate.aadlv3.aadlv3.Classifier;
 import org.osate.aadlv3.aadlv3.ComponentCategory;
 import org.osate.aadlv3.aadlv3.Generator;
@@ -51,7 +51,7 @@ import org.osate.aadlv3.aadlv3.TypeReference;
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ClassifierImpl#getCategory <em>Category</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ClassifierImpl#getSuperClassifiers <em>Super Classifiers</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ClassifierImpl#getTransitions <em>Transitions</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.ClassifierImpl#getRules <em>Rules</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.ClassifierImpl#getBehaviors <em>Behaviors</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ClassifierImpl#getStateVariables <em>State Variables</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ClassifierImpl#getGenerators <em>Generators</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ClassifierImpl#getAnnexSubclause <em>Annex Subclause</em>}</li>
@@ -101,14 +101,14 @@ public abstract class ClassifierImpl extends NamedTypeImpl implements Classifier
 	protected EList<StateTransition> transitions;
 
 	/**
-	 * The cached value of the '{@link #getRules() <em>Rules</em>}' containment reference list.
+	 * The cached value of the '{@link #getBehaviors() <em>Behaviors</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getRules()
+	 * @see #getBehaviors()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<BehaviorRule> rules;
+	protected EList<Behavior> behaviors;
 
 	/**
 	 * The cached value of the '{@link #getStateVariables() <em>State Variables</em>}' containment reference list.
@@ -217,12 +217,12 @@ public abstract class ClassifierImpl extends NamedTypeImpl implements Classifier
 	 * @generated
 	 */
 	@Override
-	public EList<BehaviorRule> getRules() {
-		if (rules == null) {
-			rules = new EObjectContainmentEList<BehaviorRule>(BehaviorRule.class, this,
-					Aadlv3Package.CLASSIFIER__RULES);
+	public EList<Behavior> getBehaviors() {
+		if (behaviors == null) {
+			behaviors = new EObjectContainmentEList<Behavior>(Behavior.class, this,
+					Aadlv3Package.CLASSIFIER__BEHAVIORS);
 		}
-		return rules;
+		return behaviors;
 	}
 
 	/**
@@ -279,8 +279,8 @@ public abstract class ClassifierImpl extends NamedTypeImpl implements Classifier
 			return ((InternalEList<?>) getSuperClassifiers()).basicRemove(otherEnd, msgs);
 		case Aadlv3Package.CLASSIFIER__TRANSITIONS:
 			return ((InternalEList<?>) getTransitions()).basicRemove(otherEnd, msgs);
-		case Aadlv3Package.CLASSIFIER__RULES:
-			return ((InternalEList<?>) getRules()).basicRemove(otherEnd, msgs);
+		case Aadlv3Package.CLASSIFIER__BEHAVIORS:
+			return ((InternalEList<?>) getBehaviors()).basicRemove(otherEnd, msgs);
 		case Aadlv3Package.CLASSIFIER__STATE_VARIABLES:
 			return ((InternalEList<?>) getStateVariables()).basicRemove(otherEnd, msgs);
 		case Aadlv3Package.CLASSIFIER__GENERATORS:
@@ -305,8 +305,8 @@ public abstract class ClassifierImpl extends NamedTypeImpl implements Classifier
 			return getSuperClassifiers();
 		case Aadlv3Package.CLASSIFIER__TRANSITIONS:
 			return getTransitions();
-		case Aadlv3Package.CLASSIFIER__RULES:
-			return getRules();
+		case Aadlv3Package.CLASSIFIER__BEHAVIORS:
+			return getBehaviors();
 		case Aadlv3Package.CLASSIFIER__STATE_VARIABLES:
 			return getStateVariables();
 		case Aadlv3Package.CLASSIFIER__GENERATORS:
@@ -337,9 +337,9 @@ public abstract class ClassifierImpl extends NamedTypeImpl implements Classifier
 			getTransitions().clear();
 			getTransitions().addAll((Collection<? extends StateTransition>) newValue);
 			return;
-		case Aadlv3Package.CLASSIFIER__RULES:
-			getRules().clear();
-			getRules().addAll((Collection<? extends BehaviorRule>) newValue);
+		case Aadlv3Package.CLASSIFIER__BEHAVIORS:
+			getBehaviors().clear();
+			getBehaviors().addAll((Collection<? extends Behavior>) newValue);
 			return;
 		case Aadlv3Package.CLASSIFIER__STATE_VARIABLES:
 			getStateVariables().clear();
@@ -374,8 +374,8 @@ public abstract class ClassifierImpl extends NamedTypeImpl implements Classifier
 		case Aadlv3Package.CLASSIFIER__TRANSITIONS:
 			getTransitions().clear();
 			return;
-		case Aadlv3Package.CLASSIFIER__RULES:
-			getRules().clear();
+		case Aadlv3Package.CLASSIFIER__BEHAVIORS:
+			getBehaviors().clear();
 			return;
 		case Aadlv3Package.CLASSIFIER__STATE_VARIABLES:
 			getStateVariables().clear();
@@ -404,8 +404,8 @@ public abstract class ClassifierImpl extends NamedTypeImpl implements Classifier
 			return superClassifiers != null && !superClassifiers.isEmpty();
 		case Aadlv3Package.CLASSIFIER__TRANSITIONS:
 			return transitions != null && !transitions.isEmpty();
-		case Aadlv3Package.CLASSIFIER__RULES:
-			return rules != null && !rules.isEmpty();
+		case Aadlv3Package.CLASSIFIER__BEHAVIORS:
+			return behaviors != null && !behaviors.isEmpty();
 		case Aadlv3Package.CLASSIFIER__STATE_VARIABLES:
 			return stateVariables != null && !stateVariables.isEmpty();
 		case Aadlv3Package.CLASSIFIER__GENERATORS:

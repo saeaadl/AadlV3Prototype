@@ -29,6 +29,7 @@ import org.osate.aadlv3.aadlv3.Generator;
  * <ul>
  *   <li>{@link org.osate.av3instance.av3instance.GeneratorInstance#getGenerator <em>Generator</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.GeneratorInstance#getGeneratedLiterals <em>Generated Literals</em>}</li>
+ *   <li>{@link org.osate.av3instance.av3instance.GeneratorInstance#getType <em>Type</em>}</li>
  * </ul>
  *
  * @see org.osate.av3instance.av3instance.Av3instancePackage#getGeneratorInstance()
@@ -69,5 +70,27 @@ public interface GeneratorInstance extends InstanceObject {
 	 * @generated
 	 */
 	EList<ConstrainedInstanceObject> getGeneratedLiterals();
+
+	/**
+	 * Returns the value of the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Type</em>' attribute.
+	 * @see #setType(String)
+	 * @see org.osate.av3instance.av3instance.Av3instancePackage#getGeneratorInstance_Type()
+	 * @model
+	 * @generated
+	 */
+	String getType();
+
+	/**
+	 * Sets the value of the '{@link org.osate.av3instance.av3instance.GeneratorInstance#getType <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Type</em>' attribute.
+	 * @see #getType()
+	 * @generated
+	 */
+	void setType(String value);
 
 } // GeneratorInstance

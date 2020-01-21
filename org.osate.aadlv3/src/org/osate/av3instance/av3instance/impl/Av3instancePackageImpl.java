@@ -26,7 +26,7 @@ import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.av3instance.av3instance.AssociationInstance;
 import org.osate.av3instance.av3instance.Av3instanceFactory;
 import org.osate.av3instance.av3instance.Av3instancePackage;
-import org.osate.av3instance.av3instance.BehaviorRuleInstance;
+import org.osate.av3instance.av3instance.BehaviorInstance;
 import org.osate.av3instance.av3instance.ComponentInstance;
 import org.osate.av3instance.av3instance.ConstrainedInstanceObject;
 import org.osate.av3instance.av3instance.FeatureInstance;
@@ -84,7 +84,7 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass behaviorRuleInstanceEClass = null;
+	private EClass behaviorInstanceEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -354,7 +354,7 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 	 * @generated
 	 */
 	@Override
-	public EReference getComponentInstance_BehaviorRules() {
+	public EReference getComponentInstance_Behaviors() {
 		return (EReference) componentInstanceEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -524,8 +524,8 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 	 * @generated
 	 */
 	@Override
-	public EClass getBehaviorRuleInstance() {
-		return behaviorRuleInstanceEClass;
+	public EClass getBehaviorInstance() {
+		return behaviorInstanceEClass;
 	}
 
 	/**
@@ -534,8 +534,8 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 	 * @generated
 	 */
 	@Override
-	public EReference getBehaviorRuleInstance_BehaviorRule() {
-		return (EReference) behaviorRuleInstanceEClass.getEStructuralFeatures().get(0);
+	public EReference getBehaviorInstance_Behavior() {
+		return (EReference) behaviorInstanceEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -544,8 +544,8 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 	 * @generated
 	 */
 	@Override
-	public EReference getBehaviorRuleInstance_Actions() {
-		return (EReference) behaviorRuleInstanceEClass.getEStructuralFeatures().get(2);
+	public EReference getBehaviorInstance_Condition() {
+		return (EReference) behaviorInstanceEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -554,8 +554,8 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 	 * @generated
 	 */
 	@Override
-	public EReference getBehaviorRuleInstance_CurrentState() {
-		return (EReference) behaviorRuleInstanceEClass.getEStructuralFeatures().get(3);
+	public EReference getBehaviorInstance_Actions() {
+		return (EReference) behaviorInstanceEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -564,8 +564,8 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 	 * @generated
 	 */
 	@Override
-	public EAttribute getBehaviorRuleInstance_Sink() {
-		return (EAttribute) behaviorRuleInstanceEClass.getEStructuralFeatures().get(4);
+	public EAttribute getBehaviorInstance_Sink() {
+		return (EAttribute) behaviorInstanceEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -574,8 +574,8 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 	 * @generated
 	 */
 	@Override
-	public EAttribute getBehaviorRuleInstance_Source() {
-		return (EAttribute) behaviorRuleInstanceEClass.getEStructuralFeatures().get(5);
+	public EAttribute getBehaviorInstance_Source() {
+		return (EAttribute) behaviorInstanceEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -584,8 +584,8 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 	 * @generated
 	 */
 	@Override
-	public EReference getBehaviorRuleInstance_Condition() {
-		return (EReference) behaviorRuleInstanceEClass.getEStructuralFeatures().get(1);
+	public EAttribute getBehaviorInstance_Category() {
+		return (EAttribute) behaviorInstanceEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -616,6 +616,16 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 	@Override
 	public EReference getGeneratorInstance_GeneratedLiterals() {
 		return (EReference) generatorInstanceEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getGeneratorInstance_Type() {
+		return (EAttribute) generatorInstanceEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -744,18 +754,8 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 	 * @generated
 	 */
 	@Override
-	public EReference getStateTransitionInstance_CurrentState() {
-		return (EReference) stateTransitionInstanceEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EReference getStateTransitionInstance_TargetState() {
-		return (EReference) stateTransitionInstanceEClass.getEStructuralFeatures().get(3);
+		return (EReference) stateTransitionInstanceEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -806,7 +806,7 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 		createEReference(componentInstanceEClass, COMPONENT_INSTANCE__CONNECTIONS);
 		createEReference(componentInstanceEClass, COMPONENT_INSTANCE__FEATURES);
 		createEReference(componentInstanceEClass, COMPONENT_INSTANCE__PATHS);
-		createEReference(componentInstanceEClass, COMPONENT_INSTANCE__BEHAVIOR_RULES);
+		createEReference(componentInstanceEClass, COMPONENT_INSTANCE__BEHAVIORS);
 		createEReference(componentInstanceEClass, COMPONENT_INSTANCE__GENERATORS);
 		createEReference(componentInstanceEClass, COMPONENT_INSTANCE__STATE_VARIABLES);
 		createEReference(componentInstanceEClass, COMPONENT_INSTANCE__ACTIONS);
@@ -826,17 +826,18 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 		createEReference(pathInstanceEClass, PATH_INSTANCE__ELEMENTS);
 		createEReference(pathInstanceEClass, PATH_INSTANCE__PATH);
 
-		behaviorRuleInstanceEClass = createEClass(BEHAVIOR_RULE_INSTANCE);
-		createEReference(behaviorRuleInstanceEClass, BEHAVIOR_RULE_INSTANCE__BEHAVIOR_RULE);
-		createEReference(behaviorRuleInstanceEClass, BEHAVIOR_RULE_INSTANCE__CONDITION);
-		createEReference(behaviorRuleInstanceEClass, BEHAVIOR_RULE_INSTANCE__ACTIONS);
-		createEReference(behaviorRuleInstanceEClass, BEHAVIOR_RULE_INSTANCE__CURRENT_STATE);
-		createEAttribute(behaviorRuleInstanceEClass, BEHAVIOR_RULE_INSTANCE__SINK);
-		createEAttribute(behaviorRuleInstanceEClass, BEHAVIOR_RULE_INSTANCE__SOURCE);
+		behaviorInstanceEClass = createEClass(BEHAVIOR_INSTANCE);
+		createEReference(behaviorInstanceEClass, BEHAVIOR_INSTANCE__BEHAVIOR);
+		createEReference(behaviorInstanceEClass, BEHAVIOR_INSTANCE__CONDITION);
+		createEReference(behaviorInstanceEClass, BEHAVIOR_INSTANCE__ACTIONS);
+		createEAttribute(behaviorInstanceEClass, BEHAVIOR_INSTANCE__SINK);
+		createEAttribute(behaviorInstanceEClass, BEHAVIOR_INSTANCE__SOURCE);
+		createEAttribute(behaviorInstanceEClass, BEHAVIOR_INSTANCE__CATEGORY);
 
 		generatorInstanceEClass = createEClass(GENERATOR_INSTANCE);
 		createEReference(generatorInstanceEClass, GENERATOR_INSTANCE__GENERATOR);
 		createEReference(generatorInstanceEClass, GENERATOR_INSTANCE__GENERATED_LITERALS);
+		createEAttribute(generatorInstanceEClass, GENERATOR_INSTANCE__TYPE);
 
 		constrainedInstanceObjectEClass = createEClass(CONSTRAINED_INSTANCE_OBJECT);
 		createEReference(constrainedInstanceObjectEClass, CONSTRAINED_INSTANCE_OBJECT__INSTANCE_OBJECT);
@@ -853,7 +854,6 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 		stateTransitionInstanceEClass = createEClass(STATE_TRANSITION_INSTANCE);
 		createEReference(stateTransitionInstanceEClass, STATE_TRANSITION_INSTANCE__STATE_TRANSITION);
 		createEReference(stateTransitionInstanceEClass, STATE_TRANSITION_INSTANCE__CONDITION);
-		createEReference(stateTransitionInstanceEClass, STATE_TRANSITION_INSTANCE__CURRENT_STATE);
 		createEReference(stateTransitionInstanceEClass, STATE_TRANSITION_INSTANCE__TARGET_STATE);
 	}
 
@@ -894,7 +894,7 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 		componentInstanceEClass.getESuperTypes().add(this.getInstanceObject());
 		associationInstanceEClass.getESuperTypes().add(this.getInstanceObject());
 		pathInstanceEClass.getESuperTypes().add(this.getInstanceObject());
-		behaviorRuleInstanceEClass.getESuperTypes().add(this.getInstanceObject());
+		behaviorInstanceEClass.getESuperTypes().add(this.getInstanceObject());
 		generatorInstanceEClass.getESuperTypes().add(this.getInstanceObject());
 		constrainedInstanceObjectEClass.getESuperTypes().add(this.getInstanceObject());
 		constrainedInstanceObjectEClass.getESuperTypes().add(theAadlv3Package.getLiteral());
@@ -952,9 +952,9 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 		initEReference(getComponentInstance_Paths(), this.getPathInstance(), null, "paths", null, 0, -1, //$NON-NLS-1$
 				ComponentInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getComponentInstance_BehaviorRules(), this.getBehaviorRuleInstance(), null, "behaviorRules", //$NON-NLS-1$
-				null, 0, -1, ComponentInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getComponentInstance_Behaviors(), this.getBehaviorInstance(), null, "behaviors", null, 0, -1, //$NON-NLS-1$
+				ComponentInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getComponentInstance_Generators(), this.getGeneratorInstance(), null, "generators", null, 0, -1, //$NON-NLS-1$
 				ComponentInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1006,26 +1006,26 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 				PathInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(behaviorRuleInstanceEClass, BehaviorRuleInstance.class, "BehaviorRuleInstance", !IS_ABSTRACT, //$NON-NLS-1$
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getBehaviorRuleInstance_BehaviorRule(), theAadlv3Package.getBehaviorRule(), null, "behaviorRule", //$NON-NLS-1$
-				null, 0, 1, BehaviorRuleInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getBehaviorRuleInstance_Condition(), theAadlv3Package.getLiteral(), null, "condition", null, 0, //$NON-NLS-1$
-				1, BehaviorRuleInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getBehaviorRuleInstance_Actions(), this.getConstrainedInstanceObject(), null, "actions", null, 0, //$NON-NLS-1$
-				-1, BehaviorRuleInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getBehaviorRuleInstance_CurrentState(), this.getStateInstance(), null, "currentState", null, 0, //$NON-NLS-1$
-				1, BehaviorRuleInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBehaviorRuleInstance_Sink(), ecorePackage.getEBoolean(), "sink", null, 0, 1, //$NON-NLS-1$
-				BehaviorRuleInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
-				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBehaviorRuleInstance_Source(), ecorePackage.getEBoolean(), "source", null, 0, 1, //$NON-NLS-1$
-				BehaviorRuleInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
-				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(behaviorInstanceEClass, BehaviorInstance.class, "BehaviorInstance", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
+				IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getBehaviorInstance_Behavior(), theAadlv3Package.getBehavior(), null, "behavior", null, 0, 1, //$NON-NLS-1$
+				BehaviorInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBehaviorInstance_Condition(), theAadlv3Package.getLiteral(), null, "condition", null, 0, 1, //$NON-NLS-1$
+				BehaviorInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBehaviorInstance_Actions(), this.getConstrainedInstanceObject(), null, "actions", null, 0, -1, //$NON-NLS-1$
+				BehaviorInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBehaviorInstance_Sink(), ecorePackage.getEBoolean(), "sink", null, 0, 1, //$NON-NLS-1$
+				BehaviorInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBehaviorInstance_Source(), ecorePackage.getEBoolean(), "source", null, 0, 1, //$NON-NLS-1$
+				BehaviorInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBehaviorInstance_Category(), theAadlv3Package.getBehaviorCategory(), "category", "flow", 0, 1, //$NON-NLS-1$//$NON-NLS-2$
+				BehaviorInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
 
 		initEClass(generatorInstanceEClass, GeneratorInstance.class, "GeneratorInstance", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
 				IS_GENERATED_INSTANCE_CLASS);
@@ -1035,6 +1035,9 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 		initEReference(getGeneratorInstance_GeneratedLiterals(), this.getConstrainedInstanceObject(), null,
 				"generatedLiterals", null, 0, -1, GeneratorInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, //$NON-NLS-1$
 				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getGeneratorInstance_Type(), ecorePackage.getEString(), "type", null, 0, 1, //$NON-NLS-1$
+				GeneratorInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
 
 		initEClass(constrainedInstanceObjectEClass, ConstrainedInstanceObject.class, "ConstrainedInstanceObject", //$NON-NLS-1$
 				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1071,9 +1074,6 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 		initEReference(getStateTransitionInstance_Condition(), theAadlv3Package.getLiteral(), null, "condition", null, //$NON-NLS-1$
 				0, 1, StateTransitionInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getStateTransitionInstance_CurrentState(), this.getStateInstance(), null, "currentState", null, //$NON-NLS-1$
-				0, 1, StateTransitionInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getStateTransitionInstance_TargetState(), this.getStateInstance(), null, "targetState", null, 0, //$NON-NLS-1$
 				1, StateTransitionInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

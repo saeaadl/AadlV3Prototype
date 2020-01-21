@@ -64,7 +64,7 @@ import StandardProperties::*;
 		sense2: abstract sender.i;
 		sense21: abstract sender.isubi;
 		sense3: abstract sender;
-		actuate: abstract receiver {#Period => 23;}; // subcomponent by interface
+		actuate: abstract receiver { #Period => 23; }; // subcomponent by interface
 		sense#Period => 33;
 		sense2.sub1#Period = 44;
 		extconn1: connection eextin -> sense.extin;

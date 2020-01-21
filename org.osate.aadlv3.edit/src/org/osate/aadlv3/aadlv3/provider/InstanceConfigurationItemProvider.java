@@ -181,7 +181,9 @@ public class InstanceConfigurationItemProvider extends SubcomponentItemProvider 
 		Object childFeature = feature;
 		Object childObject = child;
 
-		boolean qualify = childFeature == Aadlv3Package.Literals.SUBCOMPONENT__BINDINGS
+		boolean qualify = childFeature == Aadlv3Package.Literals.MODEL_ELEMENT__IN_STATES
+				|| childFeature == Aadlv3Package.Literals.INSTANCE_CONFIGURATION__PRODUCTLINE_CONSTRAINT
+				|| childFeature == Aadlv3Package.Literals.SUBCOMPONENT__BINDINGS
 				|| childFeature == Aadlv3Package.Literals.SUBCOMPONENT__CONNECTIONS;
 
 		if (qualify) {

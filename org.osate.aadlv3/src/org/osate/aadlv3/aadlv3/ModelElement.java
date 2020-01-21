@@ -24,7 +24,7 @@ package org.osate.aadlv3.aadlv3;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.osate.aadlv3.aadlv3.ModelElement#getInModes <em>In Modes</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.ModelElement#getInStates <em>In States</em>}</li>
  * </ul>
  *
  * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getModelElement()
@@ -33,25 +33,25 @@ package org.osate.aadlv3.aadlv3;
  */
 public interface ModelElement extends NamedElement {
 	/**
-	 * Returns the value of the '<em><b>In Modes</b></em>' containment reference.
+	 * Returns the value of the '<em><b>In States</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>In Modes</em>' containment reference.
-	 * @see #setInModes(BinaryOperation)
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getModelElement_InModes()
+	 * @return the value of the '<em>In States</em>' containment reference.
+	 * @see #setInStates(BinaryOperation)
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getModelElement_InStates()
 	 * @model containment="true"
 	 * @generated
 	 */
-	BinaryOperation getInModes();
+	BinaryOperation getInStates();
 
 	/**
-	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.ModelElement#getInModes <em>In Modes</em>}' containment reference.
+	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.ModelElement#getInStates <em>In States</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>In Modes</em>' containment reference.
-	 * @see #getInModes()
+	 * @param value the new value of the '<em>In States</em>' containment reference.
+	 * @see #getInStates()
 	 * @generated
 	 */
-	void setInModes(BinaryOperation value);
+	void setInStates(BinaryOperation value);
 
 } // ModelElement

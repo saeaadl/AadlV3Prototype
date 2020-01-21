@@ -44,6 +44,7 @@ import org.osate.av3instance.av3instance.GeneratorInstance;
  * <ul>
  *   <li>{@link org.osate.av3instance.av3instance.impl.GeneratorInstanceImpl#getGenerator <em>Generator</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.impl.GeneratorInstanceImpl#getGeneratedLiterals <em>Generated Literals</em>}</li>
+ *   <li>{@link org.osate.av3instance.av3instance.impl.GeneratorInstanceImpl#getType <em>Type</em>}</li>
  * </ul>
  *
  * @generated
@@ -68,6 +69,26 @@ public class GeneratorInstanceImpl extends InstanceObjectImpl implements Generat
 	 * @ordered
 	 */
 	protected EList<ConstrainedInstanceObject> generatedLiterals;
+
+	/**
+	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getType()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String TYPE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getType()
+	 * @generated
+	 * @ordered
+	 */
+	protected String type = TYPE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -150,6 +171,30 @@ public class GeneratorInstanceImpl extends InstanceObjectImpl implements Generat
 	 * @generated
 	 */
 	@Override
+	public String getType() {
+		return type;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setType(String newType) {
+		String oldType = type;
+		type = newType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, Av3instancePackage.GENERATOR_INSTANCE__TYPE, oldType,
+					type));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case Av3instancePackage.GENERATOR_INSTANCE__GENERATED_LITERALS:
@@ -172,6 +217,8 @@ public class GeneratorInstanceImpl extends InstanceObjectImpl implements Generat
 			return basicGetGenerator();
 		case Av3instancePackage.GENERATOR_INSTANCE__GENERATED_LITERALS:
 			return getGeneratedLiterals();
+		case Av3instancePackage.GENERATOR_INSTANCE__TYPE:
+			return getType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -192,6 +239,9 @@ public class GeneratorInstanceImpl extends InstanceObjectImpl implements Generat
 			getGeneratedLiterals().clear();
 			getGeneratedLiterals().addAll((Collection<? extends ConstrainedInstanceObject>) newValue);
 			return;
+		case Av3instancePackage.GENERATOR_INSTANCE__TYPE:
+			setType((String) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -210,6 +260,9 @@ public class GeneratorInstanceImpl extends InstanceObjectImpl implements Generat
 		case Av3instancePackage.GENERATOR_INSTANCE__GENERATED_LITERALS:
 			getGeneratedLiterals().clear();
 			return;
+		case Av3instancePackage.GENERATOR_INSTANCE__TYPE:
+			setType(TYPE_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -226,6 +279,8 @@ public class GeneratorInstanceImpl extends InstanceObjectImpl implements Generat
 			return generator != null;
 		case Av3instancePackage.GENERATOR_INSTANCE__GENERATED_LITERALS:
 			return generatedLiterals != null && !generatedLiterals.isEmpty();
+		case Av3instancePackage.GENERATOR_INSTANCE__TYPE:
+			return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
 		}
 		return super.eIsSet(featureID);
 	}

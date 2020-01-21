@@ -40,7 +40,6 @@ import org.osate.av3instance.av3instance.StateTransitionInstance;
  * <ul>
  *   <li>{@link org.osate.av3instance.av3instance.impl.StateTransitionInstanceImpl#getStateTransition <em>State Transition</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.impl.StateTransitionInstanceImpl#getCondition <em>Condition</em>}</li>
- *   <li>{@link org.osate.av3instance.av3instance.impl.StateTransitionInstanceImpl#getCurrentState <em>Current State</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.impl.StateTransitionInstanceImpl#getTargetState <em>Target State</em>}</li>
  * </ul>
  *
@@ -66,16 +65,6 @@ public class StateTransitionInstanceImpl extends InstanceObjectImpl implements S
 	 * @ordered
 	 */
 	protected Literal condition;
-
-	/**
-	 * The cached value of the '{@link #getCurrentState() <em>Current State</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCurrentState()
-	 * @generated
-	 * @ordered
-	 */
-	protected StateInstance currentState;
 
 	/**
 	 * The cached value of the '{@link #getTargetState() <em>Target State</em>}' reference.
@@ -208,49 +197,6 @@ public class StateTransitionInstanceImpl extends InstanceObjectImpl implements S
 	 * @generated
 	 */
 	@Override
-	public StateInstance getCurrentState() {
-		if (currentState != null && currentState.eIsProxy()) {
-			InternalEObject oldCurrentState = (InternalEObject) currentState;
-			currentState = (StateInstance) eResolveProxy(oldCurrentState);
-			if (currentState != oldCurrentState) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							Av3instancePackage.STATE_TRANSITION_INSTANCE__CURRENT_STATE, oldCurrentState,
-							currentState));
-			}
-		}
-		return currentState;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public StateInstance basicGetCurrentState() {
-		return currentState;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setCurrentState(StateInstance newCurrentState) {
-		StateInstance oldCurrentState = currentState;
-		currentState = newCurrentState;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					Av3instancePackage.STATE_TRANSITION_INSTANCE__CURRENT_STATE, oldCurrentState, currentState));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public StateInstance getTargetState() {
 		if (targetState != null && targetState.eIsProxy()) {
 			InternalEObject oldTargetState = (InternalEObject) targetState;
@@ -315,10 +261,6 @@ public class StateTransitionInstanceImpl extends InstanceObjectImpl implements S
 			return basicGetStateTransition();
 		case Av3instancePackage.STATE_TRANSITION_INSTANCE__CONDITION:
 			return getCondition();
-		case Av3instancePackage.STATE_TRANSITION_INSTANCE__CURRENT_STATE:
-			if (resolve)
-				return getCurrentState();
-			return basicGetCurrentState();
 		case Av3instancePackage.STATE_TRANSITION_INSTANCE__TARGET_STATE:
 			if (resolve)
 				return getTargetState();
@@ -341,9 +283,6 @@ public class StateTransitionInstanceImpl extends InstanceObjectImpl implements S
 		case Av3instancePackage.STATE_TRANSITION_INSTANCE__CONDITION:
 			setCondition((Literal) newValue);
 			return;
-		case Av3instancePackage.STATE_TRANSITION_INSTANCE__CURRENT_STATE:
-			setCurrentState((StateInstance) newValue);
-			return;
 		case Av3instancePackage.STATE_TRANSITION_INSTANCE__TARGET_STATE:
 			setTargetState((StateInstance) newValue);
 			return;
@@ -365,9 +304,6 @@ public class StateTransitionInstanceImpl extends InstanceObjectImpl implements S
 		case Av3instancePackage.STATE_TRANSITION_INSTANCE__CONDITION:
 			setCondition((Literal) null);
 			return;
-		case Av3instancePackage.STATE_TRANSITION_INSTANCE__CURRENT_STATE:
-			setCurrentState((StateInstance) null);
-			return;
 		case Av3instancePackage.STATE_TRANSITION_INSTANCE__TARGET_STATE:
 			setTargetState((StateInstance) null);
 			return;
@@ -387,8 +323,6 @@ public class StateTransitionInstanceImpl extends InstanceObjectImpl implements S
 			return stateTransition != null;
 		case Av3instancePackage.STATE_TRANSITION_INSTANCE__CONDITION:
 			return condition != null;
-		case Av3instancePackage.STATE_TRANSITION_INSTANCE__CURRENT_STATE:
-			return currentState != null;
 		case Av3instancePackage.STATE_TRANSITION_INSTANCE__TARGET_STATE:
 			return targetState != null;
 		}

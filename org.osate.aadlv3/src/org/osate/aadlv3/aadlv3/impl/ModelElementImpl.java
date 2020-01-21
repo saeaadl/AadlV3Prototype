@@ -32,21 +32,21 @@ import org.osate.aadlv3.aadlv3.ModelElement;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.ModelElementImpl#getInModes <em>In Modes</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.ModelElementImpl#getInStates <em>In States</em>}</li>
  * </ul>
  *
  * @generated
  */
 public abstract class ModelElementImpl extends NamedElementImpl implements ModelElement {
 	/**
-	 * The cached value of the '{@link #getInModes() <em>In Modes</em>}' containment reference.
+	 * The cached value of the '{@link #getInStates() <em>In States</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getInModes()
+	 * @see #getInStates()
 	 * @generated
 	 * @ordered
 	 */
-	protected BinaryOperation inModes;
+	protected BinaryOperation inStates;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -73,8 +73,8 @@ public abstract class ModelElementImpl extends NamedElementImpl implements Model
 	 * @generated
 	 */
 	@Override
-	public BinaryOperation getInModes() {
-		return inModes;
+	public BinaryOperation getInStates() {
+		return inStates;
 	}
 
 	/**
@@ -82,12 +82,12 @@ public abstract class ModelElementImpl extends NamedElementImpl implements Model
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetInModes(BinaryOperation newInModes, NotificationChain msgs) {
-		BinaryOperation oldInModes = inModes;
-		inModes = newInModes;
+	public NotificationChain basicSetInStates(BinaryOperation newInStates, NotificationChain msgs) {
+		BinaryOperation oldInStates = inStates;
+		inStates = newInStates;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					Aadlv3Package.MODEL_ELEMENT__IN_MODES, oldInModes, newInModes);
+					Aadlv3Package.MODEL_ELEMENT__IN_STATES, oldInStates, newInStates);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -102,21 +102,21 @@ public abstract class ModelElementImpl extends NamedElementImpl implements Model
 	 * @generated
 	 */
 	@Override
-	public void setInModes(BinaryOperation newInModes) {
-		if (newInModes != inModes) {
+	public void setInStates(BinaryOperation newInStates) {
+		if (newInStates != inStates) {
 			NotificationChain msgs = null;
-			if (inModes != null)
-				msgs = ((InternalEObject) inModes).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE - Aadlv3Package.MODEL_ELEMENT__IN_MODES, null, msgs);
-			if (newInModes != null)
-				msgs = ((InternalEObject) newInModes).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE - Aadlv3Package.MODEL_ELEMENT__IN_MODES, null, msgs);
-			msgs = basicSetInModes(newInModes, msgs);
+			if (inStates != null)
+				msgs = ((InternalEObject) inStates).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE - Aadlv3Package.MODEL_ELEMENT__IN_STATES, null, msgs);
+			if (newInStates != null)
+				msgs = ((InternalEObject) newInStates).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE - Aadlv3Package.MODEL_ELEMENT__IN_STATES, null, msgs);
+			msgs = basicSetInStates(newInStates, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.MODEL_ELEMENT__IN_MODES, newInModes,
-					newInModes));
+			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.MODEL_ELEMENT__IN_STATES, newInStates,
+					newInStates));
 	}
 
 	/**
@@ -127,8 +127,8 @@ public abstract class ModelElementImpl extends NamedElementImpl implements Model
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case Aadlv3Package.MODEL_ELEMENT__IN_MODES:
-			return basicSetInModes(null, msgs);
+		case Aadlv3Package.MODEL_ELEMENT__IN_STATES:
+			return basicSetInStates(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -141,8 +141,8 @@ public abstract class ModelElementImpl extends NamedElementImpl implements Model
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case Aadlv3Package.MODEL_ELEMENT__IN_MODES:
-			return getInModes();
+		case Aadlv3Package.MODEL_ELEMENT__IN_STATES:
+			return getInStates();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -156,8 +156,8 @@ public abstract class ModelElementImpl extends NamedElementImpl implements Model
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case Aadlv3Package.MODEL_ELEMENT__IN_MODES:
-			setInModes((BinaryOperation) newValue);
+		case Aadlv3Package.MODEL_ELEMENT__IN_STATES:
+			setInStates((BinaryOperation) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -171,8 +171,8 @@ public abstract class ModelElementImpl extends NamedElementImpl implements Model
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case Aadlv3Package.MODEL_ELEMENT__IN_MODES:
-			setInModes((BinaryOperation) null);
+		case Aadlv3Package.MODEL_ELEMENT__IN_STATES:
+			setInStates((BinaryOperation) null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -186,8 +186,8 @@ public abstract class ModelElementImpl extends NamedElementImpl implements Model
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case Aadlv3Package.MODEL_ELEMENT__IN_MODES:
-			return inModes != null;
+		case Aadlv3Package.MODEL_ELEMENT__IN_STATES:
+			return inStates != null;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -59,7 +59,6 @@ public class StateTransitionInstanceItemProvider extends InstanceObjectItemProvi
 			super.getPropertyDescriptors(object);
 
 			addStateTransitionPropertyDescriptor(object);
-			addCurrentStatePropertyDescriptor(object);
 			addTargetStatePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -79,22 +78,6 @@ public class StateTransitionInstanceItemProvider extends InstanceObjectItemProvi
 						"_UI_StateTransitionInstance_type"), //$NON-NLS-1$
 				Av3instancePackage.Literals.STATE_TRANSITION_INSTANCE__STATE_TRANSITION, true, false, true, null, null,
 				null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Current State feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addCurrentStatePropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_StateTransitionInstance_currentState_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", //$NON-NLS-1$
-								"_UI_StateTransitionInstance_currentState_feature", "_UI_StateTransitionInstance_type"), //$NON-NLS-1$ //$NON-NLS-2$
-						Av3instancePackage.Literals.STATE_TRANSITION_INSTANCE__CURRENT_STATE, true, false, true, null,
-						null, null));
 	}
 
 	/**

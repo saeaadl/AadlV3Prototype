@@ -341,15 +341,6 @@ public interface Aadlv3Factory extends EFactory {
 	AnnexLibrary createAnnexLibrary();
 
 	/**
-	 * Returns a new object of class '<em>Behavior Rule</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Behavior Rule</em>'.
-	 * @generated
-	 */
-	BehaviorRule createBehaviorRule();
-
-	/**
 	 * Returns a new object of class '<em>Behavior Specification</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -368,13 +359,13 @@ public interface Aadlv3Factory extends EFactory {
 	StateTransition createStateTransition();
 
 	/**
-	 * Returns a new object of class '<em>State Specification</em>'.
+	 * Returns a new object of class '<em>Behavior</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>State Specification</em>'.
+	 * @return a new object of class '<em>Behavior</em>'.
 	 * @generated
 	 */
-	StateSpecification createStateSpecification();
+	Behavior createBehavior();
 
 	/**
 	 * Returns a new object of class '<em>State Variable</em>'.

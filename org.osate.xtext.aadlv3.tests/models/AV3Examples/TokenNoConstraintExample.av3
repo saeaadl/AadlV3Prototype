@@ -37,8 +37,8 @@ package TokenNoConstraintExample is
 		#TokenSource => (t1);
 	@EM{
 		es : state threestate;
-		e1: error  (ServiceOmission, cycles) ; 
-		sense2: flow e1  ->  p1 when es = s0;
+		e1: generator  (ServiceOmission, cycles) ; 
+		sense2: flow e1  ->  p1 when es in(s0);
 	};
 	end;
 	
@@ -48,10 +48,10 @@ package TokenNoConstraintExample is
 //		taction: flow  sink p1;
 	@EM{
 		es: state threestate;
-		eact1: error  (ServiceOmission) ;
-		actuate1: transition  eact1 -> es = s1 when es = s0 ;
-		actuate3: flow source effect when es = s1;
-		actuate2: flow p1 ->  effect when es =s1;//(ServiceOmission)};
+		eact1: generator  (ServiceOmission) ;
+		actuate1: transition  eact1 -> es = s1 when es in(s0) ;
+		actuate3: flow source effect when es in(s0);
+		actuate2: flow p1 ->  effect when es in(s0);
 	};
 	end;
 	
@@ -64,10 +64,7 @@ package TokenNoConstraintExample is
 //	filterpath1: flow insignal1 -> outsignal;
 //	filterpath2: flow insignal2 -> outsignal;
 	#Period => 20 ;
-	@EM{
-//		filter2: flow all (insignal1 in ServiceOmission, insignal2 in ServiceOmission ) ->  outsignal!(ServiceOmission);
-		filter2: flow all (insignal1 , insignal2) ->  outsignal;
-	};
+	filter2: flow (insignal1 , insignal2) ->  outsignal;
 	end;
 	
 	thread interface compute is

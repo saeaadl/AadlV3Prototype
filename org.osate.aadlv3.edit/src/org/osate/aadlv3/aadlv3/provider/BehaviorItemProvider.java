@@ -30,22 +30,22 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.osate.aadlv3.aadlv3.Aadlv3Factory;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
-import org.osate.aadlv3.aadlv3.BehaviorRule;
+import org.osate.aadlv3.aadlv3.Behavior;
 
 /**
- * This is the item provider adapter for a {@link org.osate.aadlv3.aadlv3.BehaviorRule} object.
+ * This is the item provider adapter for a {@link org.osate.aadlv3.aadlv3.Behavior} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class BehaviorRuleItemProvider extends ModelElementItemProvider {
+public class BehaviorItemProvider extends ModelElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BehaviorRuleItemProvider(AdapterFactory adapterFactory) {
+	public BehaviorItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -62,6 +62,7 @@ public class BehaviorRuleItemProvider extends ModelElementItemProvider {
 
 			addSourcePropertyDescriptor(object);
 			addSinkPropertyDescriptor(object);
+			addCategoryPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -75,10 +76,10 @@ public class BehaviorRuleItemProvider extends ModelElementItemProvider {
 	protected void addSourcePropertyDescriptor(Object object) {
 		itemPropertyDescriptors
 				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_BehaviorRule_source_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_BehaviorRule_source_feature",
-								"_UI_BehaviorRule_type"),
-						Aadlv3Package.Literals.BEHAVIOR_RULE__SOURCE, true, false, false,
+						getResourceLocator(), getString("_UI_Behavior_source_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_Behavior_source_feature",
+								"_UI_Behavior_type"),
+						Aadlv3Package.Literals.BEHAVIOR__SOURCE, true, false, false,
 						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
@@ -91,11 +92,27 @@ public class BehaviorRuleItemProvider extends ModelElementItemProvider {
 	protected void addSinkPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
 				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_BehaviorRule_sink_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_BehaviorRule_sink_feature",
-								"_UI_BehaviorRule_type"),
-						Aadlv3Package.Literals.BEHAVIOR_RULE__SINK, true, false, false,
+						getResourceLocator(), getString("_UI_Behavior_sink_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_Behavior_sink_feature",
+								"_UI_Behavior_type"),
+						Aadlv3Package.Literals.BEHAVIOR__SINK, true, false, false,
 						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Category feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addCategoryPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_Behavior_category_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_Behavior_category_feature",
+								"_UI_Behavior_type"),
+						Aadlv3Package.Literals.BEHAVIOR__CATEGORY, true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -110,9 +127,8 @@ public class BehaviorRuleItemProvider extends ModelElementItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(Aadlv3Package.Literals.BEHAVIOR_RULE__CURRENT_STATE);
-			childrenFeatures.add(Aadlv3Package.Literals.BEHAVIOR_RULE__CONDITION);
-			childrenFeatures.add(Aadlv3Package.Literals.BEHAVIOR_RULE__ACTIONS);
+			childrenFeatures.add(Aadlv3Package.Literals.BEHAVIOR__CONDITION);
+			childrenFeatures.add(Aadlv3Package.Literals.BEHAVIOR__ACTIONS);
 		}
 		return childrenFeatures;
 	}
@@ -131,14 +147,14 @@ public class BehaviorRuleItemProvider extends ModelElementItemProvider {
 	}
 
 	/**
-	 * This returns BehaviorRule.gif.
+	 * This returns Behavior.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/BehaviorRule"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Behavior"));
 	}
 
 	/**
@@ -149,9 +165,9 @@ public class BehaviorRuleItemProvider extends ModelElementItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((BehaviorRule) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_BehaviorRule_type")
-				: getString("_UI_BehaviorRule_type") + " " + label;
+		String label = ((Behavior) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_Behavior_type")
+				: getString("_UI_Behavior_type") + " " + label;
 	}
 
 	/**
@@ -165,14 +181,14 @@ public class BehaviorRuleItemProvider extends ModelElementItemProvider {
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(BehaviorRule.class)) {
-		case Aadlv3Package.BEHAVIOR_RULE__SOURCE:
-		case Aadlv3Package.BEHAVIOR_RULE__SINK:
+		switch (notification.getFeatureID(Behavior.class)) {
+		case Aadlv3Package.BEHAVIOR__SOURCE:
+		case Aadlv3Package.BEHAVIOR__SINK:
+		case Aadlv3Package.BEHAVIOR__CATEGORY:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
-		case Aadlv3Package.BEHAVIOR_RULE__CURRENT_STATE:
-		case Aadlv3Package.BEHAVIOR_RULE__CONDITION:
-		case Aadlv3Package.BEHAVIOR_RULE__ACTIONS:
+		case Aadlv3Package.BEHAVIOR__CONDITION:
+		case Aadlv3Package.BEHAVIOR__ACTIONS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -190,58 +206,55 @@ public class BehaviorRuleItemProvider extends ModelElementItemProvider {
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.BEHAVIOR_RULE__CURRENT_STATE,
-				Aadlv3Factory.eINSTANCE.createStateSpecification()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.BEHAVIOR_RULE__CONDITION,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.BEHAVIOR__CONDITION,
 				Aadlv3Factory.eINSTANCE.createNamedElementReference()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.BEHAVIOR_RULE__CONDITION,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.BEHAVIOR__CONDITION,
 				Aadlv3Factory.eINSTANCE.createPathElement()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.BEHAVIOR_RULE__CONDITION,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.BEHAVIOR__CONDITION,
 				Aadlv3Factory.eINSTANCE.createTypeReference()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.BEHAVIOR_RULE__CONDITION,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.BEHAVIOR__CONDITION,
 				Aadlv3Factory.eINSTANCE.createIntegerLiteral()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.BEHAVIOR_RULE__CONDITION,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.BEHAVIOR__CONDITION,
 				Aadlv3Factory.eINSTANCE.createRealLiteral()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.BEHAVIOR_RULE__CONDITION,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.BEHAVIOR__CONDITION,
 				Aadlv3Factory.eINSTANCE.createStringLiteral()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.BEHAVIOR_RULE__CONDITION,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.BEHAVIOR__CONDITION,
 				Aadlv3Factory.eINSTANCE.createBooleanLiteral()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.BEHAVIOR_RULE__CONDITION,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.BEHAVIOR__CONDITION,
 				Aadlv3Factory.eINSTANCE.createEnumerationLiteral()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.BEHAVIOR_RULE__CONDITION,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.BEHAVIOR__CONDITION,
 				Aadlv3Factory.eINSTANCE.createDirectionalLiteral()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.BEHAVIOR_RULE__CONDITION,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.BEHAVIOR__CONDITION,
 				Aadlv3Factory.eINSTANCE.createECollection()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.BEHAVIOR_RULE__CONDITION,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.BEHAVIOR__CONDITION,
 				Aadlv3Factory.eINSTANCE.createListLiteral()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.BEHAVIOR_RULE__CONDITION,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.BEHAVIOR__CONDITION,
 				Aadlv3Factory.eINSTANCE.createSetLiteral()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.BEHAVIOR_RULE__CONDITION,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.BEHAVIOR__CONDITION,
 				Aadlv3Factory.eINSTANCE.createMultiOperandExpression()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.BEHAVIOR_RULE__CONDITION,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.BEHAVIOR__CONDITION,
 				Aadlv3Factory.eINSTANCE.createMultiLiteralConstraint()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.BEHAVIOR_RULE__CONDITION,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.BEHAVIOR__CONDITION,
 				Aadlv3Factory.eINSTANCE.createBinaryOperation()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.BEHAVIOR_RULE__CONDITION,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.BEHAVIOR__CONDITION,
 				Aadlv3Factory.eINSTANCE.createPackageElementReference()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.BEHAVIOR_RULE__ACTIONS,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.BEHAVIOR__ACTIONS,
 				Aadlv3Factory.eINSTANCE.createBinaryOperation()));
 	}
 
@@ -256,8 +269,9 @@ public class BehaviorRuleItemProvider extends ModelElementItemProvider {
 		Object childFeature = feature;
 		Object childObject = child;
 
-		boolean qualify = childFeature == Aadlv3Package.Literals.BEHAVIOR_RULE__CONDITION
-				|| childFeature == Aadlv3Package.Literals.BEHAVIOR_RULE__ACTIONS;
+		boolean qualify = childFeature == Aadlv3Package.Literals.MODEL_ELEMENT__IN_STATES
+				|| childFeature == Aadlv3Package.Literals.BEHAVIOR__CONDITION
+				|| childFeature == Aadlv3Package.Literals.BEHAVIOR__ACTIONS;
 
 		if (qualify) {
 			return getString("_UI_CreateChild_text2",

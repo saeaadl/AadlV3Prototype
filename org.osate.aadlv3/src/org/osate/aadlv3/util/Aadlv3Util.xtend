@@ -51,7 +51,7 @@ import static extension org.osate.aadlv3.util.Av3API.*
 import org.osate.aadlv3.aadlv3.NamedElementReference
 import org.osate.aadlv3.aadlv3.Generator
 import org.osate.aadlv3.aadlv3.StateVariable
-import org.osate.aadlv3.aadlv3.BehaviorRule
+import org.osate.aadlv3.aadlv3.Behavior
 import org.osate.aadlv3.aadlv3.StateTransition
 import org.osate.av3instance.av3instance.InstanceObject
 
@@ -561,14 +561,14 @@ class Aadlv3Util {
 	 * return collection of behavior rules of a component instance.
 	 * These are associations declared as part of the classifier or as part of the nested declaration
 	 */
-	static def Iterable<BehaviorRule> getAllBehaviorRules(Iterable<TypeReference> conftrs) {
+	static def Iterable<Behavior> getAllBehaviors(Iterable<TypeReference> conftrs) {
 		if (conftrs.empty){
 			// connections in nested declaration
 			return Collections.EMPTY_LIST //ci.component.generators
 		} else {
 			val cls = conftrs.allClassifiers
 			if (cls.empty) return Collections.EMPTY_LIST
-			return cls.map[cl|cl.eContents.typeSelect(BehaviorRule)].flatten
+			return cls.map[cl|cl.eContents.typeSelect(Behavior)].flatten
 		}
 	}
 	/**

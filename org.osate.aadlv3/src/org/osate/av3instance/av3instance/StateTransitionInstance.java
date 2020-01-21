@@ -29,7 +29,6 @@ import org.osate.aadlv3.aadlv3.StateTransition;
  * <ul>
  *   <li>{@link org.osate.av3instance.av3instance.StateTransitionInstance#getStateTransition <em>State Transition</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.StateTransitionInstance#getCondition <em>Condition</em>}</li>
- *   <li>{@link org.osate.av3instance.av3instance.StateTransitionInstance#getCurrentState <em>Current State</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.StateTransitionInstance#getTargetState <em>Target State</em>}</li>
  * </ul>
  *
@@ -81,28 +80,6 @@ public interface StateTransitionInstance extends InstanceObject {
 	 * @generated
 	 */
 	void setCondition(Literal value);
-
-	/**
-	 * Returns the value of the '<em><b>Current State</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Current State</em>' reference.
-	 * @see #setCurrentState(StateInstance)
-	 * @see org.osate.av3instance.av3instance.Av3instancePackage#getStateTransitionInstance_CurrentState()
-	 * @model
-	 * @generated
-	 */
-	StateInstance getCurrentState();
-
-	/**
-	 * Sets the value of the '{@link org.osate.av3instance.av3instance.StateTransitionInstance#getCurrentState <em>Current State</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Current State</em>' reference.
-	 * @see #getCurrentState()
-	 * @generated
-	 */
-	void setCurrentState(StateInstance value);
 
 	/**
 	 * Returns the value of the '<em><b>Target State</b></em>' reference.

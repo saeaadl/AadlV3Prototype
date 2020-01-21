@@ -31,8 +31,8 @@
         eType="#//FeatureInstance" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="paths" upperBound="-1"
         eType="#//PathInstance" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="behaviorRules" upperBound="-1"
-        eType="#//BehaviorRuleInstance" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="behaviors" upperBound="-1"
+        eType="#//BehaviorInstance" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="generators" upperBound="-1"
         eType="#//GeneratorInstance" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="stateVariables" upperBound="-1"
@@ -61,20 +61,22 @@
         eType="#//InstanceObject"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="path" eType="ecore:EClass Aadlv3.ecore#//PathSequence"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BehaviorRuleInstance" eSuperTypes="#//InstanceObject">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="behaviorRule" eType="ecore:EClass Aadlv3.ecore#//BehaviorRule"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BehaviorInstance" eSuperTypes="#//InstanceObject">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="behavior" eType="ecore:EClass Aadlv3.ecore#//Behavior"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="ecore:EClass Aadlv3.ecore#//Literal"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="actions" upperBound="-1"
         eType="#//ConstrainedInstanceObject"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="currentState" eType="#//StateInstance"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="sink" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="source" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="category" eType="ecore:EEnum Aadlv3.ecore#//BehaviorCategory"
+        defaultValueLiteral="flow"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GeneratorInstance" eSuperTypes="#//InstanceObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="generator" eType="ecore:EClass Aadlv3.ecore#//Generator"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="generatedLiterals" upperBound="-1"
         eType="#//ConstrainedInstanceObject" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConstrainedInstanceObject" eSuperTypes="#//InstanceObject Aadlv3.ecore#//Literal">
     <eStructuralFeatures xsi:type="ecore:EReference" name="instanceObject" eType="#//InstanceObject"/>
@@ -93,7 +95,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="stateTransition" eType="ecore:EClass Aadlv3.ecore#//StateTransition"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="ecore:EClass Aadlv3.ecore#//Literal"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="currentState" eType="#//StateInstance"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="targetState" eType="#//StateInstance"/>
   </eClassifiers>
 </ecore:EPackage>

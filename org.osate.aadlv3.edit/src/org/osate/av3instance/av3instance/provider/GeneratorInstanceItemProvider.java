@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.osate.av3instance.av3instance.Av3instancePackage;
@@ -59,6 +60,7 @@ public class GeneratorInstanceItemProvider extends InstanceObjectItemProvider {
 			super.getPropertyDescriptors(object);
 
 			addGeneratorPropertyDescriptor(object);
+			addTypePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -76,6 +78,22 @@ public class GeneratorInstanceItemProvider extends InstanceObjectItemProvider {
 				getString("_UI_PropertyDescriptor_description", "_UI_GeneratorInstance_generator_feature", //$NON-NLS-1$//$NON-NLS-2$
 						"_UI_GeneratorInstance_type"), //$NON-NLS-1$
 				Av3instancePackage.Literals.GENERATOR_INSTANCE__GENERATOR, true, false, true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Type feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTypePropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_GeneratorInstance_type_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_GeneratorInstance_type_feature", //$NON-NLS-1$//$NON-NLS-2$
+								"_UI_GeneratorInstance_type"), //$NON-NLS-1$
+						Av3instancePackage.Literals.GENERATOR_INSTANCE__TYPE, true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -157,6 +175,9 @@ public class GeneratorInstanceItemProvider extends InstanceObjectItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(GeneratorInstance.class)) {
+		case Av3instancePackage.GENERATOR_INSTANCE__TYPE:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
 		case Av3instancePackage.GENERATOR_INSTANCE__GENERATED_LITERALS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;

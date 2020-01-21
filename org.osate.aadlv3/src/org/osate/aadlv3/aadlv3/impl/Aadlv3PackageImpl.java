@@ -28,7 +28,8 @@ import org.osate.aadlv3.aadlv3.AnnexLibrary;
 import org.osate.aadlv3.aadlv3.AnnexSubclause;
 import org.osate.aadlv3.aadlv3.Association;
 import org.osate.aadlv3.aadlv3.AssociationType;
-import org.osate.aadlv3.aadlv3.BehaviorRule;
+import org.osate.aadlv3.aadlv3.Behavior;
+import org.osate.aadlv3.aadlv3.BehaviorCategory;
 import org.osate.aadlv3.aadlv3.BehaviorSpecification;
 import org.osate.aadlv3.aadlv3.BinaryOperation;
 import org.osate.aadlv3.aadlv3.BinaryOperator;
@@ -82,7 +83,6 @@ import org.osate.aadlv3.aadlv3.PropertyDefinition;
 import org.osate.aadlv3.aadlv3.PropertySet;
 import org.osate.aadlv3.aadlv3.RealLiteral;
 import org.osate.aadlv3.aadlv3.SetLiteral;
-import org.osate.aadlv3.aadlv3.StateSpecification;
 import org.osate.aadlv3.aadlv3.StateTransition;
 import org.osate.aadlv3.aadlv3.StateVariable;
 import org.osate.aadlv3.aadlv3.StringLiteral;
@@ -398,13 +398,6 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass behaviorRuleEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass behaviorSpecificationEClass = null;
 
 	/**
@@ -419,7 +412,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass stateSpecificationEClass = null;
+	private EClass behaviorEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -567,6 +560,13 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	private EEnum propertyAssociationTypeEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum behaviorCategoryEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -818,7 +818,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getModelElement_InModes() {
+	public EReference getModelElement_InStates() {
 		return (EReference) modelElementEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -868,7 +868,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getClassifier_Rules() {
+	public EReference getClassifier_Behaviors() {
 		return (EReference) classifierEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -1848,66 +1848,6 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EClass getBehaviorRule() {
-		return behaviorRuleEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getBehaviorRule_CurrentState() {
-		return (EReference) behaviorRuleEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getBehaviorRule_Condition() {
-		return (EReference) behaviorRuleEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getBehaviorRule_Actions() {
-		return (EReference) behaviorRuleEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getBehaviorRule_Source() {
-		return (EAttribute) behaviorRuleEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getBehaviorRule_Sink() {
-		return (EAttribute) behaviorRuleEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getBehaviorSpecification() {
 		return behaviorSpecificationEClass;
 	}
@@ -1928,7 +1868,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getBehaviorSpecification_Rules() {
+	public EReference getBehaviorSpecification_Behaviors() {
 		return (EReference) behaviorSpecificationEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -1968,16 +1908,6 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getStateTransition_CurrentState() {
-		return (EReference) stateTransitionEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EReference getStateTransition_TargetState() {
 		return (EReference) stateTransitionEClass.getEStructuralFeatures().get(1);
 	}
@@ -1989,7 +1919,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 */
 	@Override
 	public EReference getStateTransition_Condition() {
-		return (EReference) stateTransitionEClass.getEStructuralFeatures().get(2);
+		return (EReference) stateTransitionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1998,8 +1928,8 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EClass getStateSpecification() {
-		return stateSpecificationEClass;
+	public EClass getBehavior() {
+		return behaviorEClass;
 	}
 
 	/**
@@ -2008,8 +1938,8 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getStateSpecification_CurrentState() {
-		return (EReference) stateSpecificationEClass.getEStructuralFeatures().get(0);
+	public EReference getBehavior_Condition() {
+		return (EReference) behaviorEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -2018,8 +1948,38 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getStateSpecification_StateVariable() {
-		return (EReference) stateSpecificationEClass.getEStructuralFeatures().get(1);
+	public EReference getBehavior_Actions() {
+		return (EReference) behaviorEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getBehavior_Source() {
+		return (EAttribute) behaviorEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getBehavior_Sink() {
+		return (EAttribute) behaviorEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getBehavior_Category() {
+		return (EAttribute) behaviorEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -2488,6 +2448,16 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
+	public EEnum getBehaviorCategory() {
+		return behaviorCategoryEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Aadlv3Factory getAadlv3Factory() {
 		return (Aadlv3Factory) getEFactoryInstance();
 	}
@@ -2535,13 +2505,13 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		createEReference(propertySetEClass, PROPERTY_SET__PROPERTIES);
 
 		modelElementEClass = createEClass(MODEL_ELEMENT);
-		createEReference(modelElementEClass, MODEL_ELEMENT__IN_MODES);
+		createEReference(modelElementEClass, MODEL_ELEMENT__IN_STATES);
 
 		classifierEClass = createEClass(CLASSIFIER);
 		createEAttribute(classifierEClass, CLASSIFIER__CATEGORY);
 		createEReference(classifierEClass, CLASSIFIER__SUPER_CLASSIFIERS);
 		createEReference(classifierEClass, CLASSIFIER__TRANSITIONS);
-		createEReference(classifierEClass, CLASSIFIER__RULES);
+		createEReference(classifierEClass, CLASSIFIER__BEHAVIORS);
 		createEReference(classifierEClass, CLASSIFIER__STATE_VARIABLES);
 		createEReference(classifierEClass, CLASSIFIER__GENERATORS);
 		createEReference(classifierEClass, CLASSIFIER__ANNEX_SUBCLAUSE);
@@ -2711,25 +2681,20 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 
 		behaviorSpecificationEClass = createEClass(BEHAVIOR_SPECIFICATION);
 		createEReference(behaviorSpecificationEClass, BEHAVIOR_SPECIFICATION__TRANSITIONS);
-		createEReference(behaviorSpecificationEClass, BEHAVIOR_SPECIFICATION__RULES);
+		createEReference(behaviorSpecificationEClass, BEHAVIOR_SPECIFICATION__BEHAVIORS);
 		createEReference(behaviorSpecificationEClass, BEHAVIOR_SPECIFICATION__STATE_VARIABLES);
 		createEReference(behaviorSpecificationEClass, BEHAVIOR_SPECIFICATION__GENERATORS);
 
 		stateTransitionEClass = createEClass(STATE_TRANSITION);
-		createEReference(stateTransitionEClass, STATE_TRANSITION__CURRENT_STATE);
-		createEReference(stateTransitionEClass, STATE_TRANSITION__TARGET_STATE);
 		createEReference(stateTransitionEClass, STATE_TRANSITION__CONDITION);
+		createEReference(stateTransitionEClass, STATE_TRANSITION__TARGET_STATE);
 
-		behaviorRuleEClass = createEClass(BEHAVIOR_RULE);
-		createEReference(behaviorRuleEClass, BEHAVIOR_RULE__CURRENT_STATE);
-		createEReference(behaviorRuleEClass, BEHAVIOR_RULE__CONDITION);
-		createEReference(behaviorRuleEClass, BEHAVIOR_RULE__ACTIONS);
-		createEAttribute(behaviorRuleEClass, BEHAVIOR_RULE__SOURCE);
-		createEAttribute(behaviorRuleEClass, BEHAVIOR_RULE__SINK);
-
-		stateSpecificationEClass = createEClass(STATE_SPECIFICATION);
-		createEReference(stateSpecificationEClass, STATE_SPECIFICATION__CURRENT_STATE);
-		createEReference(stateSpecificationEClass, STATE_SPECIFICATION__STATE_VARIABLE);
+		behaviorEClass = createEClass(BEHAVIOR);
+		createEReference(behaviorEClass, BEHAVIOR__CONDITION);
+		createEReference(behaviorEClass, BEHAVIOR__ACTIONS);
+		createEAttribute(behaviorEClass, BEHAVIOR__SOURCE);
+		createEAttribute(behaviorEClass, BEHAVIOR__SINK);
+		createEAttribute(behaviorEClass, BEHAVIOR__CATEGORY);
 
 		stateVariableEClass = createEClass(STATE_VARIABLE);
 		createEReference(stateVariableEClass, STATE_VARIABLE__INITIAL_STATE);
@@ -2756,6 +2721,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		eOperatorEEnum = createEEnum(EOPERATOR);
 		binaryOperatorEEnum = createEEnum(BINARY_OPERATOR);
 		propertyAssociationTypeEEnum = createEEnum(PROPERTY_ASSOCIATION_TYPE);
+		behaviorCategoryEEnum = createEEnum(BEHAVIOR_CATEGORY);
 	}
 
 	/**
@@ -2835,7 +2801,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		annexLibraryEClass.getESuperTypes().add(this.getPackageDeclaration());
 		behaviorSpecificationEClass.getESuperTypes().add(this.getAnnexSubclause());
 		stateTransitionEClass.getESuperTypes().add(this.getModelElement());
-		behaviorRuleEClass.getESuperTypes().add(this.getModelElement());
+		behaviorEClass.getESuperTypes().add(this.getModelElement());
 		stateVariableEClass.getESuperTypes().add(this.getModelElement());
 		generatorEClass.getESuperTypes().add(this.getModelElement());
 		constantEClass.getESuperTypes().add(this.getPackageElement());
@@ -2895,7 +2861,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 
 		initEClass(modelElementEClass, ModelElement.class, "ModelElement", IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getModelElement_InModes(), this.getBinaryOperation(), null, "inModes", null, 0, 1,
+		initEReference(getModelElement_InStates(), this.getBinaryOperation(), null, "inStates", null, 0, 1,
 				ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -2910,7 +2876,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		initEReference(getClassifier_Transitions(), this.getStateTransition(), null, "transitions", null, 0, -1,
 				Classifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getClassifier_Rules(), this.getBehaviorRule(), null, "rules", null, 0, -1, Classifier.class,
+		initEReference(getClassifier_Behaviors(), this.getBehavior(), null, "behaviors", null, 0, -1, Classifier.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getClassifier_StateVariables(), this.getStateVariable(), null, "stateVariables", null, 0, -1,
@@ -3275,7 +3241,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		initEReference(getBehaviorSpecification_Transitions(), this.getStateTransition(), null, "transitions", null, 0,
 				-1, BehaviorSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getBehaviorSpecification_Rules(), this.getBehaviorRule(), null, "rules", null, 0, -1,
+		initEReference(getBehaviorSpecification_Behaviors(), this.getBehavior(), null, "behaviors", null, 0, -1,
 				BehaviorSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getBehaviorSpecification_StateVariables(), this.getStateVariable(), null, "stateVariables", null,
@@ -3287,40 +3253,27 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 
 		initEClass(stateTransitionEClass, StateTransition.class, "StateTransition", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getStateTransition_CurrentState(), this.getStateSpecification(), null, "currentState", null, 0,
-				1, StateTransition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getStateTransition_TargetState(), this.getStateSpecification(), null, "targetState", null, 0, 1,
-				StateTransition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getStateTransition_Condition(), this.getLiteral(), null, "condition", null, 0, 1,
 				StateTransition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getStateTransition_TargetState(), this.getBinaryOperation(), null, "targetState", null, 0, 1,
+				StateTransition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		initEClass(behaviorRuleEClass, BehaviorRule.class, "BehaviorRule", !IS_ABSTRACT, !IS_INTERFACE,
+		initEClass(behaviorEClass, Behavior.class, "Behavior", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getBehaviorRule_CurrentState(), this.getStateSpecification(), null, "currentState", null, 0, 1,
-				BehaviorRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getBehaviorRule_Condition(), this.getLiteral(), null, "condition", null, 0, 1,
-				BehaviorRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getBehaviorRule_Actions(), this.getBinaryOperation(), null, "actions", null, 0, -1,
-				BehaviorRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBehaviorRule_Source(), ecorePackage.getEBoolean(), "source", null, 0, 1, BehaviorRule.class,
+		initEReference(getBehavior_Condition(), this.getLiteral(), null, "condition", null, 0, 1, Behavior.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBehavior_Actions(), this.getBinaryOperation(), null, "actions", null, 0, -1, Behavior.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBehavior_Source(), ecorePackage.getEBoolean(), "source", null, 0, 1, Behavior.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBehaviorRule_Sink(), ecorePackage.getEBoolean(), "sink", null, 0, 1, BehaviorRule.class,
+		initEAttribute(getBehavior_Sink(), ecorePackage.getEBoolean(), "sink", null, 0, 1, Behavior.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(stateSpecificationEClass, StateSpecification.class, "StateSpecification", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getStateSpecification_CurrentState(), this.getEnumerationLiteral(), null, "currentState", null,
-				0, 1, StateSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getStateSpecification_StateVariable(), this.getStateVariable(), null, "stateVariable", null, 0,
-				1, StateSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBehavior_Category(), this.getBehaviorCategory(), "category", "flow", 0, 1, Behavior.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(stateVariableEClass, StateVariable.class, "StateVariable", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
@@ -3437,6 +3390,11 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		addEEnumLiteral(propertyAssociationTypeEEnum, PropertyAssociationType.FINAL_VALUE);
 		addEEnumLiteral(propertyAssociationTypeEEnum, PropertyAssociationType.VARIABLE_VALUE);
 		addEEnumLiteral(propertyAssociationTypeEEnum, PropertyAssociationType.DEFAULT_VALUE);
+
+		initEEnum(behaviorCategoryEEnum, BehaviorCategory.class, "BehaviorCategory");
+		addEEnumLiteral(behaviorCategoryEEnum, BehaviorCategory.FLOW);
+		addEEnumLiteral(behaviorCategoryEEnum, BehaviorCategory.BEHAVIOR);
+		addEEnumLiteral(behaviorCategoryEEnum, BehaviorCategory.TOKEN);
 
 		// Create resource
 		createResource(eNS_URI);

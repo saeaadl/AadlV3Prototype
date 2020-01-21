@@ -24,8 +24,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
+import org.osate.aadlv3.aadlv3.BinaryOperation;
 import org.osate.aadlv3.aadlv3.Literal;
-import org.osate.aadlv3.aadlv3.StateSpecification;
 import org.osate.aadlv3.aadlv3.StateTransition;
 
 /**
@@ -36,34 +36,13 @@ import org.osate.aadlv3.aadlv3.StateTransition;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.StateTransitionImpl#getCurrentState <em>Current State</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.StateTransitionImpl#getTargetState <em>Target State</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.StateTransitionImpl#getCondition <em>Condition</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.StateTransitionImpl#getTargetState <em>Target State</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class StateTransitionImpl extends ModelElementImpl implements StateTransition {
-	/**
-	 * The cached value of the '{@link #getCurrentState() <em>Current State</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCurrentState()
-	 * @generated
-	 * @ordered
-	 */
-	protected StateSpecification currentState;
-
-	/**
-	 * The cached value of the '{@link #getTargetState() <em>Target State</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTargetState()
-	 * @generated
-	 * @ordered
-	 */
-	protected StateSpecification targetState;
-
 	/**
 	 * The cached value of the '{@link #getCondition() <em>Condition</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -73,6 +52,16 @@ public class StateTransitionImpl extends ModelElementImpl implements StateTransi
 	 * @ordered
 	 */
 	protected Literal condition;
+
+	/**
+	 * The cached value of the '{@link #getTargetState() <em>Target State</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTargetState()
+	 * @generated
+	 * @ordered
+	 */
+	protected BinaryOperation targetState;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -99,59 +88,7 @@ public class StateTransitionImpl extends ModelElementImpl implements StateTransi
 	 * @generated
 	 */
 	@Override
-	public StateSpecification getCurrentState() {
-		return currentState;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetCurrentState(StateSpecification newCurrentState, NotificationChain msgs) {
-		StateSpecification oldCurrentState = currentState;
-		currentState = newCurrentState;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					Aadlv3Package.STATE_TRANSITION__CURRENT_STATE, oldCurrentState, newCurrentState);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setCurrentState(StateSpecification newCurrentState) {
-		if (newCurrentState != currentState) {
-			NotificationChain msgs = null;
-			if (currentState != null)
-				msgs = ((InternalEObject) currentState).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE - Aadlv3Package.STATE_TRANSITION__CURRENT_STATE, null, msgs);
-			if (newCurrentState != null)
-				msgs = ((InternalEObject) newCurrentState).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE - Aadlv3Package.STATE_TRANSITION__CURRENT_STATE, null, msgs);
-			msgs = basicSetCurrentState(newCurrentState, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.STATE_TRANSITION__CURRENT_STATE,
-					newCurrentState, newCurrentState));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public StateSpecification getTargetState() {
+	public BinaryOperation getTargetState() {
 		return targetState;
 	}
 
@@ -160,8 +97,8 @@ public class StateTransitionImpl extends ModelElementImpl implements StateTransi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetTargetState(StateSpecification newTargetState, NotificationChain msgs) {
-		StateSpecification oldTargetState = targetState;
+	public NotificationChain basicSetTargetState(BinaryOperation newTargetState, NotificationChain msgs) {
+		BinaryOperation oldTargetState = targetState;
 		targetState = newTargetState;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
@@ -180,7 +117,7 @@ public class StateTransitionImpl extends ModelElementImpl implements StateTransi
 	 * @generated
 	 */
 	@Override
-	public void setTargetState(StateSpecification newTargetState) {
+	public void setTargetState(BinaryOperation newTargetState) {
 		if (newTargetState != targetState) {
 			NotificationChain msgs = null;
 			if (targetState != null)
@@ -257,12 +194,10 @@ public class StateTransitionImpl extends ModelElementImpl implements StateTransi
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case Aadlv3Package.STATE_TRANSITION__CURRENT_STATE:
-			return basicSetCurrentState(null, msgs);
-		case Aadlv3Package.STATE_TRANSITION__TARGET_STATE:
-			return basicSetTargetState(null, msgs);
 		case Aadlv3Package.STATE_TRANSITION__CONDITION:
 			return basicSetCondition(null, msgs);
+		case Aadlv3Package.STATE_TRANSITION__TARGET_STATE:
+			return basicSetTargetState(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -275,12 +210,10 @@ public class StateTransitionImpl extends ModelElementImpl implements StateTransi
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case Aadlv3Package.STATE_TRANSITION__CURRENT_STATE:
-			return getCurrentState();
-		case Aadlv3Package.STATE_TRANSITION__TARGET_STATE:
-			return getTargetState();
 		case Aadlv3Package.STATE_TRANSITION__CONDITION:
 			return getCondition();
+		case Aadlv3Package.STATE_TRANSITION__TARGET_STATE:
+			return getTargetState();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -293,14 +226,11 @@ public class StateTransitionImpl extends ModelElementImpl implements StateTransi
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case Aadlv3Package.STATE_TRANSITION__CURRENT_STATE:
-			setCurrentState((StateSpecification) newValue);
-			return;
-		case Aadlv3Package.STATE_TRANSITION__TARGET_STATE:
-			setTargetState((StateSpecification) newValue);
-			return;
 		case Aadlv3Package.STATE_TRANSITION__CONDITION:
 			setCondition((Literal) newValue);
+			return;
+		case Aadlv3Package.STATE_TRANSITION__TARGET_STATE:
+			setTargetState((BinaryOperation) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -314,14 +244,11 @@ public class StateTransitionImpl extends ModelElementImpl implements StateTransi
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case Aadlv3Package.STATE_TRANSITION__CURRENT_STATE:
-			setCurrentState((StateSpecification) null);
-			return;
-		case Aadlv3Package.STATE_TRANSITION__TARGET_STATE:
-			setTargetState((StateSpecification) null);
-			return;
 		case Aadlv3Package.STATE_TRANSITION__CONDITION:
 			setCondition((Literal) null);
+			return;
+		case Aadlv3Package.STATE_TRANSITION__TARGET_STATE:
+			setTargetState((BinaryOperation) null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -335,12 +262,10 @@ public class StateTransitionImpl extends ModelElementImpl implements StateTransi
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case Aadlv3Package.STATE_TRANSITION__CURRENT_STATE:
-			return currentState != null;
-		case Aadlv3Package.STATE_TRANSITION__TARGET_STATE:
-			return targetState != null;
 		case Aadlv3Package.STATE_TRANSITION__CONDITION:
 			return condition != null;
+		case Aadlv3Package.STATE_TRANSITION__TARGET_STATE:
+			return targetState != null;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -868,29 +868,6 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.BehaviorRule} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected BehaviorRuleItemProvider behaviorRuleItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.BehaviorRule}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createBehaviorRuleAdapter() {
-		if (behaviorRuleItemProvider == null) {
-			behaviorRuleItemProvider = new BehaviorRuleItemProvider(this);
-		}
-
-		return behaviorRuleItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.BehaviorSpecification} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -937,26 +914,26 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.StateSpecification} instances.
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.Behavior} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected StateSpecificationItemProvider stateSpecificationItemProvider;
+	protected BehaviorItemProvider behaviorItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.StateSpecification}.
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.Behavior}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createStateSpecificationAdapter() {
-		if (stateSpecificationItemProvider == null) {
-			stateSpecificationItemProvider = new StateSpecificationItemProvider(this);
+	public Adapter createBehaviorAdapter() {
+		if (behaviorItemProvider == null) {
+			behaviorItemProvider = new BehaviorItemProvider(this);
 		}
 
-		return stateSpecificationItemProvider;
+		return behaviorItemProvider;
 	}
 
 	/**
@@ -1403,10 +1380,8 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 			behaviorSpecificationItemProvider.dispose();
 		if (stateTransitionItemProvider != null)
 			stateTransitionItemProvider.dispose();
-		if (behaviorRuleItemProvider != null)
-			behaviorRuleItemProvider.dispose();
-		if (stateSpecificationItemProvider != null)
-			stateSpecificationItemProvider.dispose();
+		if (behaviorItemProvider != null)
+			behaviorItemProvider.dispose();
 		if (stateVariableItemProvider != null)
 			stateVariableItemProvider.dispose();
 		if (generatorItemProvider != null)

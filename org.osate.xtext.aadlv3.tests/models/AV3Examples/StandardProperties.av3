@@ -1,7 +1,7 @@
 package StandardProperties is
 	import StandardTypes::*;
 		
-	property Period :time for (thread,process,abstract);
+	property Period :time for (thread,process,abstract, system);
 	property Deadline :time for (thread,abstract);
 	property Data_Size :integer for (thread,data,process,port,abstract);
 	

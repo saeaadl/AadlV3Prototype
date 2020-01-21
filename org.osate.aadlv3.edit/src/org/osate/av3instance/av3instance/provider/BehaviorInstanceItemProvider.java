@@ -29,22 +29,22 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.osate.av3instance.av3instance.Av3instancePackage;
-import org.osate.av3instance.av3instance.BehaviorRuleInstance;
+import org.osate.av3instance.av3instance.BehaviorInstance;
 
 /**
- * This is the item provider adapter for a {@link org.osate.av3instance.av3instance.BehaviorRuleInstance} object.
+ * This is the item provider adapter for a {@link org.osate.av3instance.av3instance.BehaviorInstance} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class BehaviorRuleInstanceItemProvider extends InstanceObjectItemProvider {
+public class BehaviorInstanceItemProvider extends InstanceObjectItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BehaviorRuleInstanceItemProvider(AdapterFactory adapterFactory) {
+	public BehaviorInstanceItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -59,27 +59,43 @@ public class BehaviorRuleInstanceItemProvider extends InstanceObjectItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addBehaviorRulePropertyDescriptor(object);
+			addBehaviorPropertyDescriptor(object);
+			addActionsPropertyDescriptor(object);
 			addSinkPropertyDescriptor(object);
 			addSourcePropertyDescriptor(object);
+			addCategoryPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Behavior Rule feature.
+	 * This adds a property descriptor for the Behavior feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addBehaviorRulePropertyDescriptor(Object object) {
+	protected void addBehaviorPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
 				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_BehaviorRuleInstance_behaviorRule_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_BehaviorRuleInstance_behaviorRule_feature", //$NON-NLS-1$//$NON-NLS-2$
-								"_UI_BehaviorRuleInstance_type"), //$NON-NLS-1$
-						Av3instancePackage.Literals.BEHAVIOR_RULE_INSTANCE__BEHAVIOR_RULE, true, false, true, null,
-						null, null));
+						getResourceLocator(), getString("_UI_BehaviorInstance_behavior_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_BehaviorInstance_behavior_feature", //$NON-NLS-1$//$NON-NLS-2$
+								"_UI_BehaviorInstance_type"), //$NON-NLS-1$
+						Av3instancePackage.Literals.BEHAVIOR_INSTANCE__BEHAVIOR, true, false, true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Actions feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addActionsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_BehaviorInstance_actions_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_BehaviorInstance_actions_feature", //$NON-NLS-1$//$NON-NLS-2$
+								"_UI_BehaviorInstance_type"), //$NON-NLS-1$
+						Av3instancePackage.Literals.BEHAVIOR_INSTANCE__ACTIONS, true, false, true, null, null, null));
 	}
 
 	/**
@@ -91,10 +107,10 @@ public class BehaviorRuleInstanceItemProvider extends InstanceObjectItemProvider
 	protected void addSinkPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
 				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_BehaviorRuleInstance_sink_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_BehaviorRuleInstance_sink_feature", //$NON-NLS-1$//$NON-NLS-2$
-								"_UI_BehaviorRuleInstance_type"), //$NON-NLS-1$
-						Av3instancePackage.Literals.BEHAVIOR_RULE_INSTANCE__SINK, true, false, false,
+						getResourceLocator(), getString("_UI_BehaviorInstance_sink_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_BehaviorInstance_sink_feature", //$NON-NLS-1$//$NON-NLS-2$
+								"_UI_BehaviorInstance_type"), //$NON-NLS-1$
+						Av3instancePackage.Literals.BEHAVIOR_INSTANCE__SINK, true, false, false,
 						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
@@ -107,11 +123,27 @@ public class BehaviorRuleInstanceItemProvider extends InstanceObjectItemProvider
 	protected void addSourcePropertyDescriptor(Object object) {
 		itemPropertyDescriptors
 				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_BehaviorRuleInstance_source_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_BehaviorRuleInstance_source_feature", //$NON-NLS-1$//$NON-NLS-2$
-								"_UI_BehaviorRuleInstance_type"), //$NON-NLS-1$
-						Av3instancePackage.Literals.BEHAVIOR_RULE_INSTANCE__SOURCE, true, false, false,
+						getResourceLocator(), getString("_UI_BehaviorInstance_source_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_BehaviorInstance_source_feature", //$NON-NLS-1$//$NON-NLS-2$
+								"_UI_BehaviorInstance_type"), //$NON-NLS-1$
+						Av3instancePackage.Literals.BEHAVIOR_INSTANCE__SOURCE, true, false, false,
 						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Category feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addCategoryPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_BehaviorInstance_category_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_BehaviorInstance_category_feature", //$NON-NLS-1$//$NON-NLS-2$
+								"_UI_BehaviorInstance_type"), //$NON-NLS-1$
+						Av3instancePackage.Literals.BEHAVIOR_INSTANCE__CATEGORY, true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -126,9 +158,7 @@ public class BehaviorRuleInstanceItemProvider extends InstanceObjectItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(Av3instancePackage.Literals.BEHAVIOR_RULE_INSTANCE__CONDITION);
-			childrenFeatures.add(Av3instancePackage.Literals.BEHAVIOR_RULE_INSTANCE__ACTIONS);
-			childrenFeatures.add(Av3instancePackage.Literals.BEHAVIOR_RULE_INSTANCE__CURRENT_STATE);
+			childrenFeatures.add(Av3instancePackage.Literals.BEHAVIOR_INSTANCE__CONDITION);
 		}
 		return childrenFeatures;
 	}
@@ -147,14 +177,14 @@ public class BehaviorRuleInstanceItemProvider extends InstanceObjectItemProvider
 	}
 
 	/**
-	 * This returns BehaviorRuleInstance.gif.
+	 * This returns BehaviorInstance.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/BehaviorRuleInstance")); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/BehaviorInstance")); //$NON-NLS-1$
 	}
 
 	/**
@@ -175,9 +205,9 @@ public class BehaviorRuleInstanceItemProvider extends InstanceObjectItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((BehaviorRuleInstance) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_BehaviorRuleInstance_type") : //$NON-NLS-1$
-				getString("_UI_BehaviorRuleInstance_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		String label = ((BehaviorInstance) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_BehaviorInstance_type") : //$NON-NLS-1$
+				getString("_UI_BehaviorInstance_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -191,14 +221,13 @@ public class BehaviorRuleInstanceItemProvider extends InstanceObjectItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(BehaviorRuleInstance.class)) {
-		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE__SINK:
-		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE__SOURCE:
+		switch (notification.getFeatureID(BehaviorInstance.class)) {
+		case Av3instancePackage.BEHAVIOR_INSTANCE__SINK:
+		case Av3instancePackage.BEHAVIOR_INSTANCE__SOURCE:
+		case Av3instancePackage.BEHAVIOR_INSTANCE__CATEGORY:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
-		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE__CONDITION:
-		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE__ACTIONS:
-		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE__CURRENT_STATE:
+		case Av3instancePackage.BEHAVIOR_INSTANCE__CONDITION:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}

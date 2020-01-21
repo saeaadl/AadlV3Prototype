@@ -372,13 +372,13 @@ public interface Av3instancePackage extends EPackage {
 	int COMPONENT_INSTANCE__PATHS = INSTANCE_OBJECT_FEATURE_COUNT + 5;
 
 	/**
-	 * The feature id for the '<em><b>Behavior Rules</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Behaviors</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_INSTANCE__BEHAVIOR_RULES = INSTANCE_OBJECT_FEATURE_COUNT + 6;
+	int COMPONENT_INSTANCE__BEHAVIORS = INSTANCE_OBJECT_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Generators</b></em>' containment reference list.
@@ -662,14 +662,14 @@ public interface Av3instancePackage extends EPackage {
 	int PATH_INSTANCE_FEATURE_COUNT = INSTANCE_OBJECT_FEATURE_COUNT + 2;
 
 	/**
-	 * The meta object id for the '{@link org.osate.av3instance.av3instance.impl.BehaviorRuleInstanceImpl <em>Behavior Rule Instance</em>}' class.
+	 * The meta object id for the '{@link org.osate.av3instance.av3instance.impl.BehaviorInstanceImpl <em>Behavior Instance</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.osate.av3instance.av3instance.impl.BehaviorRuleInstanceImpl
-	 * @see org.osate.av3instance.av3instance.impl.Av3instancePackageImpl#getBehaviorRuleInstance()
+	 * @see org.osate.av3instance.av3instance.impl.BehaviorInstanceImpl
+	 * @see org.osate.av3instance.av3instance.impl.Av3instancePackageImpl#getBehaviorInstance()
 	 * @generated
 	 */
-	int BEHAVIOR_RULE_INSTANCE = 5;
+	int BEHAVIOR_INSTANCE = 5;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -678,7 +678,7 @@ public interface Av3instancePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BEHAVIOR_RULE_INSTANCE__NAME = INSTANCE_OBJECT__NAME;
+	int BEHAVIOR_INSTANCE__NAME = INSTANCE_OBJECT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Owned Property Associations</b></em>' containment reference list.
@@ -687,7 +687,7 @@ public interface Av3instancePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BEHAVIOR_RULE_INSTANCE__OWNED_PROPERTY_ASSOCIATIONS = INSTANCE_OBJECT__OWNED_PROPERTY_ASSOCIATIONS;
+	int BEHAVIOR_INSTANCE__OWNED_PROPERTY_ASSOCIATIONS = INSTANCE_OBJECT__OWNED_PROPERTY_ASSOCIATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' attribute list.
@@ -696,7 +696,7 @@ public interface Av3instancePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BEHAVIOR_RULE_INSTANCE__ANNOTATIONS = INSTANCE_OBJECT__ANNOTATIONS;
+	int BEHAVIOR_INSTANCE__ANNOTATIONS = INSTANCE_OBJECT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Associations</b></em>' reference list.
@@ -705,7 +705,7 @@ public interface Av3instancePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BEHAVIOR_RULE_INSTANCE__INCOMING_ASSOCIATIONS = INSTANCE_OBJECT__INCOMING_ASSOCIATIONS;
+	int BEHAVIOR_INSTANCE__INCOMING_ASSOCIATIONS = INSTANCE_OBJECT__INCOMING_ASSOCIATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Outgoing Associations</b></em>' reference list.
@@ -714,7 +714,7 @@ public interface Av3instancePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BEHAVIOR_RULE_INSTANCE__OUTGOING_ASSOCIATIONS = INSTANCE_OBJECT__OUTGOING_ASSOCIATIONS;
+	int BEHAVIOR_INSTANCE__OUTGOING_ASSOCIATIONS = INSTANCE_OBJECT__OUTGOING_ASSOCIATIONS;
 
 	/**
 	 * The feature id for the '<em><b>In States</b></em>' reference list.
@@ -723,16 +723,16 @@ public interface Av3instancePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BEHAVIOR_RULE_INSTANCE__IN_STATES = INSTANCE_OBJECT__IN_STATES;
+	int BEHAVIOR_INSTANCE__IN_STATES = INSTANCE_OBJECT__IN_STATES;
 
 	/**
-	 * The feature id for the '<em><b>Behavior Rule</b></em>' reference.
+	 * The feature id for the '<em><b>Behavior</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BEHAVIOR_RULE_INSTANCE__BEHAVIOR_RULE = INSTANCE_OBJECT_FEATURE_COUNT + 0;
+	int BEHAVIOR_INSTANCE__BEHAVIOR = INSTANCE_OBJECT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Condition</b></em>' containment reference.
@@ -741,7 +741,7 @@ public interface Av3instancePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BEHAVIOR_RULE_INSTANCE__CONDITION = INSTANCE_OBJECT_FEATURE_COUNT + 1;
+	int BEHAVIOR_INSTANCE__CONDITION = INSTANCE_OBJECT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Actions</b></em>' reference list.
@@ -750,16 +750,7 @@ public interface Av3instancePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BEHAVIOR_RULE_INSTANCE__ACTIONS = INSTANCE_OBJECT_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Current State</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BEHAVIOR_RULE_INSTANCE__CURRENT_STATE = INSTANCE_OBJECT_FEATURE_COUNT + 3;
+	int BEHAVIOR_INSTANCE__ACTIONS = INSTANCE_OBJECT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Sink</b></em>' attribute.
@@ -768,7 +759,7 @@ public interface Av3instancePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BEHAVIOR_RULE_INSTANCE__SINK = INSTANCE_OBJECT_FEATURE_COUNT + 4;
+	int BEHAVIOR_INSTANCE__SINK = INSTANCE_OBJECT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' attribute.
@@ -777,16 +768,25 @@ public interface Av3instancePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BEHAVIOR_RULE_INSTANCE__SOURCE = INSTANCE_OBJECT_FEATURE_COUNT + 5;
+	int BEHAVIOR_INSTANCE__SOURCE = INSTANCE_OBJECT_FEATURE_COUNT + 4;
 
 	/**
-	 * The number of structural features of the '<em>Behavior Rule Instance</em>' class.
+	 * The feature id for the '<em><b>Category</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BEHAVIOR_RULE_INSTANCE_FEATURE_COUNT = INSTANCE_OBJECT_FEATURE_COUNT + 6;
+	int BEHAVIOR_INSTANCE__CATEGORY = INSTANCE_OBJECT_FEATURE_COUNT + 5;
+
+	/**
+	 * The number of structural features of the '<em>Behavior Instance</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEHAVIOR_INSTANCE_FEATURE_COUNT = INSTANCE_OBJECT_FEATURE_COUNT + 6;
 
 	/**
 	 * The meta object id for the '{@link org.osate.av3instance.av3instance.impl.GeneratorInstanceImpl <em>Generator Instance</em>}' class.
@@ -871,13 +871,22 @@ public interface Av3instancePackage extends EPackage {
 	int GENERATOR_INSTANCE__GENERATED_LITERALS = INSTANCE_OBJECT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERATOR_INSTANCE__TYPE = INSTANCE_OBJECT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Generator Instance</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GENERATOR_INSTANCE_FEATURE_COUNT = INSTANCE_OBJECT_FEATURE_COUNT + 2;
+	int GENERATOR_INSTANCE_FEATURE_COUNT = INSTANCE_OBJECT_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.osate.av3instance.av3instance.impl.ConstrainedInstanceObjectImpl <em>Constrained Instance Object</em>}' class.
@@ -1235,22 +1244,13 @@ public interface Av3instancePackage extends EPackage {
 	int STATE_TRANSITION_INSTANCE__CONDITION = INSTANCE_OBJECT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Current State</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE_TRANSITION_INSTANCE__CURRENT_STATE = INSTANCE_OBJECT_FEATURE_COUNT + 2;
-
-	/**
 	 * The feature id for the '<em><b>Target State</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_TRANSITION_INSTANCE__TARGET_STATE = INSTANCE_OBJECT_FEATURE_COUNT + 3;
+	int STATE_TRANSITION_INSTANCE__TARGET_STATE = INSTANCE_OBJECT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>State Transition Instance</em>' class.
@@ -1259,7 +1259,7 @@ public interface Av3instancePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_TRANSITION_INSTANCE_FEATURE_COUNT = INSTANCE_OBJECT_FEATURE_COUNT + 4;
+	int STATE_TRANSITION_INSTANCE_FEATURE_COUNT = INSTANCE_OBJECT_FEATURE_COUNT + 3;
 
 	/**
 	 * Returns the meta object for class '{@link org.osate.av3instance.av3instance.InstanceObject <em>Instance Object</em>}'.
@@ -1435,15 +1435,15 @@ public interface Av3instancePackage extends EPackage {
 	EReference getComponentInstance_Paths();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.osate.av3instance.av3instance.ComponentInstance#getBehaviorRules <em>Behavior Rules</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.osate.av3instance.av3instance.ComponentInstance#getBehaviors <em>Behaviors</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Behavior Rules</em>'.
-	 * @see org.osate.av3instance.av3instance.ComponentInstance#getBehaviorRules()
+	 * @return the meta object for the containment reference list '<em>Behaviors</em>'.
+	 * @see org.osate.av3instance.av3instance.ComponentInstance#getBehaviors()
 	 * @see #getComponentInstance()
 	 * @generated
 	 */
-	EReference getComponentInstance_BehaviorRules();
+	EReference getComponentInstance_Behaviors();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link org.osate.av3instance.av3instance.ComponentInstance#getGenerators <em>Generators</em>}'.
@@ -1620,80 +1620,80 @@ public interface Av3instancePackage extends EPackage {
 	EReference getPathInstance_Path();
 
 	/**
-	 * Returns the meta object for class '{@link org.osate.av3instance.av3instance.BehaviorRuleInstance <em>Behavior Rule Instance</em>}'.
+	 * Returns the meta object for class '{@link org.osate.av3instance.av3instance.BehaviorInstance <em>Behavior Instance</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Behavior Rule Instance</em>'.
-	 * @see org.osate.av3instance.av3instance.BehaviorRuleInstance
+	 * @return the meta object for class '<em>Behavior Instance</em>'.
+	 * @see org.osate.av3instance.av3instance.BehaviorInstance
 	 * @generated
 	 */
-	EClass getBehaviorRuleInstance();
+	EClass getBehaviorInstance();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.osate.av3instance.av3instance.BehaviorRuleInstance#getBehaviorRule <em>Behavior Rule</em>}'.
+	 * Returns the meta object for the reference '{@link org.osate.av3instance.av3instance.BehaviorInstance#getBehavior <em>Behavior</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Behavior Rule</em>'.
-	 * @see org.osate.av3instance.av3instance.BehaviorRuleInstance#getBehaviorRule()
-	 * @see #getBehaviorRuleInstance()
+	 * @return the meta object for the reference '<em>Behavior</em>'.
+	 * @see org.osate.av3instance.av3instance.BehaviorInstance#getBehavior()
+	 * @see #getBehaviorInstance()
 	 * @generated
 	 */
-	EReference getBehaviorRuleInstance_BehaviorRule();
+	EReference getBehaviorInstance_Behavior();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.osate.av3instance.av3instance.BehaviorRuleInstance#getActions <em>Actions</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Actions</em>'.
-	 * @see org.osate.av3instance.av3instance.BehaviorRuleInstance#getActions()
-	 * @see #getBehaviorRuleInstance()
-	 * @generated
-	 */
-	EReference getBehaviorRuleInstance_Actions();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.osate.av3instance.av3instance.BehaviorRuleInstance#getCurrentState <em>Current State</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Current State</em>'.
-	 * @see org.osate.av3instance.av3instance.BehaviorRuleInstance#getCurrentState()
-	 * @see #getBehaviorRuleInstance()
-	 * @generated
-	 */
-	EReference getBehaviorRuleInstance_CurrentState();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.osate.av3instance.av3instance.BehaviorRuleInstance#isSink <em>Sink</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Sink</em>'.
-	 * @see org.osate.av3instance.av3instance.BehaviorRuleInstance#isSink()
-	 * @see #getBehaviorRuleInstance()
-	 * @generated
-	 */
-	EAttribute getBehaviorRuleInstance_Sink();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.osate.av3instance.av3instance.BehaviorRuleInstance#isSource <em>Source</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Source</em>'.
-	 * @see org.osate.av3instance.av3instance.BehaviorRuleInstance#isSource()
-	 * @see #getBehaviorRuleInstance()
-	 * @generated
-	 */
-	EAttribute getBehaviorRuleInstance_Source();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.osate.av3instance.av3instance.BehaviorRuleInstance#getCondition <em>Condition</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.osate.av3instance.av3instance.BehaviorInstance#getCondition <em>Condition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Condition</em>'.
-	 * @see org.osate.av3instance.av3instance.BehaviorRuleInstance#getCondition()
-	 * @see #getBehaviorRuleInstance()
+	 * @see org.osate.av3instance.av3instance.BehaviorInstance#getCondition()
+	 * @see #getBehaviorInstance()
 	 * @generated
 	 */
-	EReference getBehaviorRuleInstance_Condition();
+	EReference getBehaviorInstance_Condition();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.osate.av3instance.av3instance.BehaviorInstance#getActions <em>Actions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Actions</em>'.
+	 * @see org.osate.av3instance.av3instance.BehaviorInstance#getActions()
+	 * @see #getBehaviorInstance()
+	 * @generated
+	 */
+	EReference getBehaviorInstance_Actions();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.osate.av3instance.av3instance.BehaviorInstance#isSink <em>Sink</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Sink</em>'.
+	 * @see org.osate.av3instance.av3instance.BehaviorInstance#isSink()
+	 * @see #getBehaviorInstance()
+	 * @generated
+	 */
+	EAttribute getBehaviorInstance_Sink();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.osate.av3instance.av3instance.BehaviorInstance#isSource <em>Source</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Source</em>'.
+	 * @see org.osate.av3instance.av3instance.BehaviorInstance#isSource()
+	 * @see #getBehaviorInstance()
+	 * @generated
+	 */
+	EAttribute getBehaviorInstance_Source();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.osate.av3instance.av3instance.BehaviorInstance#getCategory <em>Category</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Category</em>'.
+	 * @see org.osate.av3instance.av3instance.BehaviorInstance#getCategory()
+	 * @see #getBehaviorInstance()
+	 * @generated
+	 */
+	EAttribute getBehaviorInstance_Category();
 
 	/**
 	 * Returns the meta object for class '{@link org.osate.av3instance.av3instance.GeneratorInstance <em>Generator Instance</em>}'.
@@ -1726,6 +1726,17 @@ public interface Av3instancePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getGeneratorInstance_GeneratedLiterals();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.osate.av3instance.av3instance.GeneratorInstance#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type</em>'.
+	 * @see org.osate.av3instance.av3instance.GeneratorInstance#getType()
+	 * @see #getGeneratorInstance()
+	 * @generated
+	 */
+	EAttribute getGeneratorInstance_Type();
 
 	/**
 	 * Returns the meta object for class '{@link org.osate.av3instance.av3instance.ConstrainedInstanceObject <em>Constrained Instance Object</em>}'.
@@ -1854,17 +1865,6 @@ public interface Av3instancePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getStateTransitionInstance_Condition();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.osate.av3instance.av3instance.StateTransitionInstance#getCurrentState <em>Current State</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Current State</em>'.
-	 * @see org.osate.av3instance.av3instance.StateTransitionInstance#getCurrentState()
-	 * @see #getStateTransitionInstance()
-	 * @generated
-	 */
-	EReference getStateTransitionInstance_CurrentState();
 
 	/**
 	 * Returns the meta object for the reference '{@link org.osate.av3instance.av3instance.StateTransitionInstance#getTargetState <em>Target State</em>}'.
@@ -2035,12 +2035,12 @@ public interface Av3instancePackage extends EPackage {
 		EReference COMPONENT_INSTANCE__PATHS = eINSTANCE.getComponentInstance_Paths();
 
 		/**
-		 * The meta object literal for the '<em><b>Behavior Rules</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Behaviors</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference COMPONENT_INSTANCE__BEHAVIOR_RULES = eINSTANCE.getComponentInstance_BehaviorRules();
+		EReference COMPONENT_INSTANCE__BEHAVIORS = eINSTANCE.getComponentInstance_Behaviors();
 
 		/**
 		 * The meta object literal for the '<em><b>Generators</b></em>' containment reference list feature.
@@ -2176,54 +2176,22 @@ public interface Av3instancePackage extends EPackage {
 		EReference PATH_INSTANCE__PATH = eINSTANCE.getPathInstance_Path();
 
 		/**
-		 * The meta object literal for the '{@link org.osate.av3instance.av3instance.impl.BehaviorRuleInstanceImpl <em>Behavior Rule Instance</em>}' class.
+		 * The meta object literal for the '{@link org.osate.av3instance.av3instance.impl.BehaviorInstanceImpl <em>Behavior Instance</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.osate.av3instance.av3instance.impl.BehaviorRuleInstanceImpl
-		 * @see org.osate.av3instance.av3instance.impl.Av3instancePackageImpl#getBehaviorRuleInstance()
+		 * @see org.osate.av3instance.av3instance.impl.BehaviorInstanceImpl
+		 * @see org.osate.av3instance.av3instance.impl.Av3instancePackageImpl#getBehaviorInstance()
 		 * @generated
 		 */
-		EClass BEHAVIOR_RULE_INSTANCE = eINSTANCE.getBehaviorRuleInstance();
+		EClass BEHAVIOR_INSTANCE = eINSTANCE.getBehaviorInstance();
 
 		/**
-		 * The meta object literal for the '<em><b>Behavior Rule</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Behavior</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference BEHAVIOR_RULE_INSTANCE__BEHAVIOR_RULE = eINSTANCE.getBehaviorRuleInstance_BehaviorRule();
-
-		/**
-		 * The meta object literal for the '<em><b>Actions</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference BEHAVIOR_RULE_INSTANCE__ACTIONS = eINSTANCE.getBehaviorRuleInstance_Actions();
-
-		/**
-		 * The meta object literal for the '<em><b>Current State</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference BEHAVIOR_RULE_INSTANCE__CURRENT_STATE = eINSTANCE.getBehaviorRuleInstance_CurrentState();
-
-		/**
-		 * The meta object literal for the '<em><b>Sink</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute BEHAVIOR_RULE_INSTANCE__SINK = eINSTANCE.getBehaviorRuleInstance_Sink();
-
-		/**
-		 * The meta object literal for the '<em><b>Source</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute BEHAVIOR_RULE_INSTANCE__SOURCE = eINSTANCE.getBehaviorRuleInstance_Source();
+		EReference BEHAVIOR_INSTANCE__BEHAVIOR = eINSTANCE.getBehaviorInstance_Behavior();
 
 		/**
 		 * The meta object literal for the '<em><b>Condition</b></em>' containment reference feature.
@@ -2231,7 +2199,39 @@ public interface Av3instancePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference BEHAVIOR_RULE_INSTANCE__CONDITION = eINSTANCE.getBehaviorRuleInstance_Condition();
+		EReference BEHAVIOR_INSTANCE__CONDITION = eINSTANCE.getBehaviorInstance_Condition();
+
+		/**
+		 * The meta object literal for the '<em><b>Actions</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BEHAVIOR_INSTANCE__ACTIONS = eINSTANCE.getBehaviorInstance_Actions();
+
+		/**
+		 * The meta object literal for the '<em><b>Sink</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BEHAVIOR_INSTANCE__SINK = eINSTANCE.getBehaviorInstance_Sink();
+
+		/**
+		 * The meta object literal for the '<em><b>Source</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BEHAVIOR_INSTANCE__SOURCE = eINSTANCE.getBehaviorInstance_Source();
+
+		/**
+		 * The meta object literal for the '<em><b>Category</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BEHAVIOR_INSTANCE__CATEGORY = eINSTANCE.getBehaviorInstance_Category();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.av3instance.av3instance.impl.GeneratorInstanceImpl <em>Generator Instance</em>}' class.
@@ -2258,6 +2258,14 @@ public interface Av3instancePackage extends EPackage {
 		 * @generated
 		 */
 		EReference GENERATOR_INSTANCE__GENERATED_LITERALS = eINSTANCE.getGeneratorInstance_GeneratedLiterals();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute GENERATOR_INSTANCE__TYPE = eINSTANCE.getGeneratorInstance_Type();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.av3instance.av3instance.impl.ConstrainedInstanceObjectImpl <em>Constrained Instance Object</em>}' class.
@@ -2363,14 +2371,6 @@ public interface Av3instancePackage extends EPackage {
 		 * @generated
 		 */
 		EReference STATE_TRANSITION_INSTANCE__CONDITION = eINSTANCE.getStateTransitionInstance_Condition();
-
-		/**
-		 * The meta object literal for the '<em><b>Current State</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference STATE_TRANSITION_INSTANCE__CURRENT_STATE = eINSTANCE.getStateTransitionInstance_CurrentState();
 
 		/**
 		 * The meta object literal for the '<em><b>Target State</b></em>' reference feature.

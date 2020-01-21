@@ -7,7 +7,7 @@ import org.eclipse.xtext.EcoreUtil2
 import org.osate.aadlv3.aadlv3.Aadlv3Factory
 import org.osate.aadlv3.aadlv3.Association
 import org.osate.aadlv3.aadlv3.AssociationType
-import org.osate.aadlv3.aadlv3.BehaviorRule
+import org.osate.aadlv3.aadlv3.Behavior
 import org.osate.aadlv3.aadlv3.ComponentCategory
 import org.osate.aadlv3.aadlv3.Feature
 import org.osate.aadlv3.aadlv3.FeatureCategory
@@ -19,7 +19,7 @@ import org.osate.aadlv3.aadlv3.Subcomponent
 import org.osate.aadlv3.aadlv3.TypeReference
 import org.osate.av3instance.av3instance.AssociationInstance
 import org.osate.av3instance.av3instance.Av3instanceFactory
-import org.osate.av3instance.av3instance.BehaviorRuleInstance
+import org.osate.av3instance.av3instance.BehaviorInstance
 import org.osate.av3instance.av3instance.ComponentInstance
 import org.osate.av3instance.av3instance.ConstrainedInstanceObject
 import org.osate.av3instance.av3instance.FeatureInstance
@@ -31,7 +31,6 @@ import static extension org.eclipse.emf.ecore.util.EcoreUtil.*
 import static extension org.osate.aadlv3.util.Aadlv3Util.*
 import org.osate.av3instance.av3instance.GeneratorInstance
 import org.osate.aadlv3.aadlv3.Generator
-import org.osate.aadlv3.aadlv3.StateSpecification
 import org.osate.av3instance.av3instance.StateInstance
 import org.osate.aadlv3.aadlv3.BinaryOperation
 import java.util.Collections
@@ -44,6 +43,7 @@ import org.osate.aadlv3.aadlv3.StateVariable
 import org.osate.av3instance.av3instance.StateVariableInstance
 import org.osate.av3instance.av3instance.StateTransitionInstance
 import org.osate.aadlv3.aadlv3.StateTransition
+import org.osate.aadlv3.aadlv3.ECollection
 
 class AIv3API {
 	
@@ -93,10 +93,10 @@ class AIv3API {
 		return pai
 	}
 
-	def static BehaviorRuleInstance createBehaviorRuleInstance(BehaviorRule br) {
-		val bri = Av3instanceFactory.eINSTANCE.createBehaviorRuleInstance
+	def static BehaviorInstance createBehaviorInstance(Behavior br) {
+		val bri = Av3instanceFactory.eINSTANCE.createBehaviorInstance
 		bri.name = br.name
-		bri.behaviorRule = br
+		bri.behavior = br
 		return bri
 	}
 
@@ -142,6 +142,7 @@ class AIv3API {
 		val gi = Av3instanceFactory.eINSTANCE.createGeneratorInstance
 		gi.name = g.name 
 		gi.generator = g
+		gi.type = g.type
 		return gi
 	}
 
@@ -199,9 +200,9 @@ class AIv3API {
 							if (gi.generator == me) return gi
 						}
 					}
-					BehaviorRule: {
-						for (bri : context.behaviorRules) {
-							if (bri.behaviorRule == me) return bri
+					Behavior: {
+						for (bri : context.behaviors) {
+							if (bri.behavior == me) return bri
 						}
 					}
 				}
@@ -264,22 +265,22 @@ class AIv3API {
 	}
 	
 	// return containing behavior rule instance 
-	def static BehaviorRuleInstance containingBehaviorRuleInstance(EObject io){
+	def static BehaviorInstance containingBehaviorInstance(EObject io){
 		var res = io
-		while (!(res instanceof BehaviorRuleInstance) && res !== null){
+		while (!(res instanceof BehaviorInstance) && res !== null){
 			res = res.eContainer as InstanceObject
 		}
-		res as BehaviorRuleInstance
+		res as BehaviorInstance
 	}
 	
 	/**
-	 * return BehaviorRuleInstances that have the specified action
+	 * return BehaviorInstances that have the specified action
 	 */
-	def static Iterable<BehaviorRuleInstance> findMatchingBehaviorRuleInstances( InstanceObject cioio){
+	def static Iterable<BehaviorInstance> findMatchingBehaviorInstances( InstanceObject cioio){
 		val io = getRealInstanceObject(cioio);
 		val lit = getRealConstraint(cioio);
 		val ci = io.containingComponentInstance
-		ci.behaviorRules.filter[bri|bri.actions.findCIO(io, lit) !== null]
+		ci.behaviors.filter[bri|bri.actions.findCIO(io, lit) !== null]
 	}
 
 	/**
@@ -320,7 +321,7 @@ class AIv3API {
 		
 	// association instance represents a flow specification
 	def static boolean isFlowSpec(InstanceObject conn){
-		return conn instanceof BehaviorRuleInstance
+		return conn instanceof BehaviorInstance
 	}
 
 	// association instance represents a connection
@@ -336,9 +337,9 @@ class AIv3API {
 		} else false
 	}
 	
-	def static BehaviorRuleInstance findBehaviorRuleInstance(InstanceObject infi, InstanceObject outfi){
+	def static BehaviorInstance findBehaviorInstance(InstanceObject infi, InstanceObject outfi){
 		val ci = infi.containingComponentInstance
-		for (bri : ci.behaviorRules){
+		for (bri : ci.behaviors){
 			if (bri.annotations.empty){
 				if (bri.condition.eAllOfType(ConstrainedInstanceObject).findCIO(infi) !== null && bri.actions.findCIO(outfi)!== null){
 					return bri
@@ -530,20 +531,20 @@ class AIv3API {
 	// methods related to behavior rules, constrained instance objects
 	
 	
-	def static Iterable<BehaviorRuleInstance> getAllBehaviorRules(ComponentInstance ci) {
-		return ci.behaviorRules.filter[bri|bri.annotations.empty];
+	def static Iterable<BehaviorInstance> getAllBehaviors(ComponentInstance ci) {
+		return ci.behaviors.filter[bri|bri.annotations.empty];
 	}
 	
-	def static Iterable<BehaviorRuleInstance> getAllBehaviorRules(ComponentInstance ci, String annotationName) {
-		return ci.behaviorRules.filter[bri|bri.annotations.exists[a|a.equals(annotationName)]];
+	def static Iterable<BehaviorInstance> getAllBehaviors(ComponentInstance ci, String annotationName) {
+		return ci.behaviors.filter[bri|bri.annotations.exists[a|a.equals(annotationName)]];
 	}
 	
 	
-	def static boolean isFlowSource(FeatureInstance fi, Iterable<BehaviorRuleInstance> flows) {
+	def static boolean isFlowSource(FeatureInstance fi, Iterable<BehaviorInstance> flows) {
 		return flows.exists[f|f.condition.allConstrainedInstanceObjects.findCIO(fi) !== null];
 	}
 
-	def static boolean isFlowDestination(FeatureInstance fi, Iterable<BehaviorRuleInstance> flows) {
+	def static boolean isFlowDestination(FeatureInstance fi, Iterable<BehaviorInstance> flows) {
 		return flows.exists[f|f.actions.findCIO(fi) !== null];
 	}
 	
@@ -600,14 +601,14 @@ class AIv3API {
 	 */
 	def static Collection<ConstrainedInstanceObject> findContainingConditionCIOs(InstanceObject desiredTarget, Literal targetLiteral, String behaviorSpecName){
 		val dstCi = containingComponentInstanceOrSelf(desiredTarget);
-		val bris = dstCi.behaviorRules.filter[bri|bri.behaviorRule.containingBehaviorSpecification.name.equals(behaviorSpecName) && bri.condition !== null]
+		val bris = dstCi.behaviors.filter[bri|bri.behavior.containingBehaviorSpecification.name.equals(behaviorSpecName) && bri.condition !== null]
 		val cios = bris.map[bri|bri.condition.eAllOfType(ConstrainedInstanceObject)].flatten.toList
 		return cios.filter[target|target.instanceObject === desiredTarget && ((target.constraint !== null&& targetLiteral !== null)?target.constraint.contains(targetLiteral):true/*targetLiteral === null*/)].toList
 	}
 	
 	def static Collection<ConstrainedInstanceObject> findContainingConditionCIOs(InstanceObject context, InstanceObject desiredTarget, Literal targetLiteral, String behaviorSpecName){
 		val dstCi = containingComponentInstanceOrSelf(context);
-		val bris = dstCi.behaviorRules.filter[bri|bri.behaviorRule.containingBehaviorSpecification.name.equals(behaviorSpecName) && bri.condition !== null]
+		val bris = dstCi.behaviors.filter[bri|bri.behavior.containingBehaviorSpecification.name.equals(behaviorSpecName) && bri.condition !== null]
 		val cios = bris.map[bri|bri.condition.eAllOfType(ConstrainedInstanceObject)].flatten
 		return cios.filter[target|target.instanceObject === desiredTarget && ((target.constraint !== null&& targetLiteral !== null)?target.constraint.contains(targetLiteral):true/*targetLiteral === null*/)].toList
 	}
@@ -629,8 +630,18 @@ class AIv3API {
 		return false
 	}
 	
-	def static StateInstance findStateInstance(ComponentInstance context, StateSpecification ss) {
-		return findStateInstance(context, ss.stateVariable, ss.currentState);
+	def static StateInstance findStateInstance(ComponentInstance context, BinaryOperation ss) {
+		return findStateInstance(context, ss.left as StateVariable, ss.right as EnumerationLiteral);
+	}
+	
+	def static Collection<StateInstance> findStateInstances(ComponentInstance context, BinaryOperation ss) {
+		val result = new ArrayList<StateInstance>
+		val sv = ss.left as StateVariable
+		val states = ss.right as ECollection
+		for (state : states.elements) {
+			result += findStateInstance(context, sv, state as EnumerationLiteral)
+		}
+		return result;
 	}
 
 	def static StateInstance findStateInstance(ComponentInstance context, StateVariable sv, EnumerationLiteral state) {
@@ -675,7 +686,7 @@ class AIv3API {
 	 */
 	def static boolean isASink(EObject io, Literal lit){
 		if (io === null) return false;
-		val bris = io.containingComponentInstanceOrSelf.behaviorRules
+		val bris = io.containingComponentInstanceOrSelf.behaviors
 		for (bri : bris){
 			if (bri.isSink){
 				val ces = bri.condition.eAllOfType(ConstrainedInstanceObject)

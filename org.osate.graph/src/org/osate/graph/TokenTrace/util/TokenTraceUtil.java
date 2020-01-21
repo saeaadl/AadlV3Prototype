@@ -16,7 +16,7 @@ import org.osate.aadlv3.aadlv3.Literal;
 import org.osate.aadlv3.aadlv3.MultiLiteralConstraint;
 import org.osate.aadlv3.util.AIv3API;
 import org.osate.aadlv3.util.Aadlv3Util;
-import org.osate.av3instance.av3instance.BehaviorRuleInstance;
+import org.osate.av3instance.av3instance.BehaviorInstance;
 import org.osate.av3instance.av3instance.ComponentInstance;
 import org.osate.av3instance.av3instance.FeatureInstance;
 import org.osate.av3instance.av3instance.GeneratorInstance;
@@ -235,7 +235,7 @@ public class TokenTraceUtil {
 		ComponentInstance ci = AIv3API.containingComponentInstanceOrSelf(io);
 		String cipath = AIv3API.getInstanceObjectPath(ci);
 		String label = io instanceof FeatureInstance ? (Aadlv3Util.isOutgoing(((FeatureInstance)io).getDirection()) ? "out" : "in"):
-			(io instanceof StateInstance?"state":io instanceof GeneratorInstance?"source":io instanceof BehaviorRuleInstance?"rule":io instanceof SinkInstance?"sink":"");
+			(io instanceof StateInstance?"state":io instanceof GeneratorInstance?"source":io instanceof BehaviorInstance?"rule":io instanceof SinkInstance?"sink":"");
 		return io == ci ? " '" +cipath+ "'":
 			" '"+cipath+"' "+label+ (io instanceof SinkInstance?"":" '"+io.getName()+ "'");
 	}

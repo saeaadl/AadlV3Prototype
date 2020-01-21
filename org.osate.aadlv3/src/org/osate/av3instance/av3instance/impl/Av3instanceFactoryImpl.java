@@ -77,8 +77,8 @@ public class Av3instanceFactoryImpl extends EFactoryImpl implements Av3instanceF
 			return createAssociationInstance();
 		case Av3instancePackage.PATH_INSTANCE:
 			return createPathInstance();
-		case Av3instancePackage.BEHAVIOR_RULE_INSTANCE:
-			return createBehaviorRuleInstance();
+		case Av3instancePackage.BEHAVIOR_INSTANCE:
+			return createBehaviorInstance();
 		case Av3instancePackage.GENERATOR_INSTANCE:
 			return createGeneratorInstance();
 		case Av3instancePackage.CONSTRAINED_INSTANCE_OBJECT:
@@ -144,9 +144,9 @@ public class Av3instanceFactoryImpl extends EFactoryImpl implements Av3instanceF
 	 * @generated
 	 */
 	@Override
-	public BehaviorRuleInstance createBehaviorRuleInstance() {
-		BehaviorRuleInstanceImpl behaviorRuleInstance = new BehaviorRuleInstanceImpl();
-		return behaviorRuleInstance;
+	public BehaviorInstance createBehaviorInstance() {
+		BehaviorInstanceImpl behaviorInstance = new BehaviorInstanceImpl();
+		return behaviorInstance;
 	}
 
 	/**

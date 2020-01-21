@@ -1,5 +1,5 @@
 package org.osate.graph.TokenTrace.util;
-import static org.osate.aadlv3.util.AIv3API.containingBehaviorRuleInstance;
+import static org.osate.aadlv3.util.AIv3API.containingBehaviorInstance;
 import static org.osate.aadlv3.util.AIv3API.containingComponentInstance;
 import static org.osate.aadlv3.util.AIv3API.containingComponentInstanceOrSelf;
 import static org.osate.aadlv3.util.AIv3API.findActionCIOs;
@@ -35,7 +35,7 @@ import org.osate.aadlv3.aadlv3.Expression;
 import org.osate.aadlv3.aadlv3.Literal;
 import org.osate.aadlv3.aadlv3.MultiLiteralConstraint;
 import org.osate.aadlv3.aadlv3.SetLiteral;
-import org.osate.av3instance.av3instance.BehaviorRuleInstance;
+import org.osate.av3instance.av3instance.BehaviorInstance;
 import org.osate.av3instance.av3instance.ComponentInstance;
 import org.osate.av3instance.av3instance.ConstrainedInstanceObject;
 import org.osate.av3instance.av3instance.FeatureInstance;
@@ -442,7 +442,7 @@ public class FaultGraph {
 	}
 	
 	private boolean isSinkConstraint(EObject cio) {
-		BehaviorRuleInstance bri = containingBehaviorRuleInstance(cio);
+		BehaviorInstance bri = containingBehaviorInstance(cio);
 		return bri != null && bri.isSink();
 	}
 	

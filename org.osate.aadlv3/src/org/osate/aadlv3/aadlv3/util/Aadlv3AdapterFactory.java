@@ -340,13 +340,8 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseBehaviorRule(BehaviorRule object) {
-			return createBehaviorRuleAdapter();
-		}
-
-		@Override
-		public Adapter caseStateSpecification(StateSpecification object) {
-			return createStateSpecificationAdapter();
+		public Adapter caseBehavior(Behavior object) {
+			return createBehaviorAdapter();
 		}
 
 		@Override
@@ -977,20 +972,6 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.BehaviorRule <em>Behavior Rule</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.osate.aadlv3.aadlv3.BehaviorRule
-	 * @generated
-	 */
-	public Adapter createBehaviorRuleAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.BehaviorSpecification <em>Behavior Specification</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -1019,16 +1000,16 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.StateSpecification <em>State Specification</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.Behavior <em>Behavior</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.osate.aadlv3.aadlv3.StateSpecification
+	 * @see org.osate.aadlv3.aadlv3.Behavior
 	 * @generated
 	 */
-	public Adapter createStateSpecificationAdapter() {
+	public Adapter createBehaviorAdapter() {
 		return null;
 	}
 

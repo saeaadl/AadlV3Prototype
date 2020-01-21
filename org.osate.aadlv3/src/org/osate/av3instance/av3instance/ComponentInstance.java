@@ -34,7 +34,7 @@ import org.osate.aadlv3.aadlv3.Subcomponent;
  *   <li>{@link org.osate.av3instance.av3instance.ComponentInstance#getConnections <em>Connections</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.ComponentInstance#getFeatures <em>Features</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.ComponentInstance#getPaths <em>Paths</em>}</li>
- *   <li>{@link org.osate.av3instance.av3instance.ComponentInstance#getBehaviorRules <em>Behavior Rules</em>}</li>
+ *   <li>{@link org.osate.av3instance.av3instance.ComponentInstance#getBehaviors <em>Behaviors</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.ComponentInstance#getGenerators <em>Generators</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.ComponentInstance#getStateVariables <em>State Variables</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.ComponentInstance#getActions <em>Actions</em>}</li>
@@ -167,16 +167,16 @@ public interface ComponentInstance extends InstanceObject {
 	EList<PathInstance> getPaths();
 
 	/**
-	 * Returns the value of the '<em><b>Behavior Rules</b></em>' containment reference list.
-	 * The list contents are of type {@link org.osate.av3instance.av3instance.BehaviorRuleInstance}.
+	 * Returns the value of the '<em><b>Behaviors</b></em>' containment reference list.
+	 * The list contents are of type {@link org.osate.av3instance.av3instance.BehaviorInstance}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Behavior Rules</em>' containment reference list.
-	 * @see org.osate.av3instance.av3instance.Av3instancePackage#getComponentInstance_BehaviorRules()
+	 * @return the value of the '<em>Behaviors</em>' containment reference list.
+	 * @see org.osate.av3instance.av3instance.Av3instancePackage#getComponentInstance_Behaviors()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<BehaviorRuleInstance> getBehaviorRules();
+	EList<BehaviorInstance> getBehaviors();
 
 	/**
 	 * Returns the value of the '<em><b>Generators</b></em>' containment reference list.

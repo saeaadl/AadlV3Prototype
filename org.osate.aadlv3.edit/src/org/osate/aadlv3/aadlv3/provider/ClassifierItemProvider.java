@@ -95,7 +95,7 @@ public class ClassifierItemProvider extends NamedTypeItemProvider {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(Aadlv3Package.Literals.CLASSIFIER__SUPER_CLASSIFIERS);
 			childrenFeatures.add(Aadlv3Package.Literals.CLASSIFIER__TRANSITIONS);
-			childrenFeatures.add(Aadlv3Package.Literals.CLASSIFIER__RULES);
+			childrenFeatures.add(Aadlv3Package.Literals.CLASSIFIER__BEHAVIORS);
 			childrenFeatures.add(Aadlv3Package.Literals.CLASSIFIER__STATE_VARIABLES);
 			childrenFeatures.add(Aadlv3Package.Literals.CLASSIFIER__GENERATORS);
 			childrenFeatures.add(Aadlv3Package.Literals.CLASSIFIER__ANNEX_SUBCLAUSE);
@@ -146,7 +146,7 @@ public class ClassifierItemProvider extends NamedTypeItemProvider {
 			return;
 		case Aadlv3Package.CLASSIFIER__SUPER_CLASSIFIERS:
 		case Aadlv3Package.CLASSIFIER__TRANSITIONS:
-		case Aadlv3Package.CLASSIFIER__RULES:
+		case Aadlv3Package.CLASSIFIER__BEHAVIORS:
 		case Aadlv3Package.CLASSIFIER__STATE_VARIABLES:
 		case Aadlv3Package.CLASSIFIER__GENERATORS:
 		case Aadlv3Package.CLASSIFIER__ANNEX_SUBCLAUSE:
@@ -173,8 +173,8 @@ public class ClassifierItemProvider extends NamedTypeItemProvider {
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CLASSIFIER__TRANSITIONS,
 				Aadlv3Factory.eINSTANCE.createStateTransition()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CLASSIFIER__RULES,
-				Aadlv3Factory.eINSTANCE.createBehaviorRule()));
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CLASSIFIER__BEHAVIORS,
+				Aadlv3Factory.eINSTANCE.createBehavior()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CLASSIFIER__STATE_VARIABLES,
 				Aadlv3Factory.eINSTANCE.createStateVariable()));

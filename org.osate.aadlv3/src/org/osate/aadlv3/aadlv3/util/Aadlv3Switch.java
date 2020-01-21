@@ -679,20 +679,13 @@ public class Aadlv3Switch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case Aadlv3Package.BEHAVIOR_RULE: {
-			BehaviorRule behaviorRule = (BehaviorRule) theEObject;
-			T result = caseBehaviorRule(behaviorRule);
+		case Aadlv3Package.BEHAVIOR: {
+			Behavior behavior = (Behavior) theEObject;
+			T result = caseBehavior(behavior);
 			if (result == null)
-				result = caseModelElement(behaviorRule);
+				result = caseModelElement(behavior);
 			if (result == null)
-				result = caseNamedElement(behaviorRule);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Aadlv3Package.STATE_SPECIFICATION: {
-			StateSpecification stateSpecification = (StateSpecification) theEObject;
-			T result = caseStateSpecification(stateSpecification);
+				result = caseNamedElement(behavior);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -1379,21 +1372,6 @@ public class Aadlv3Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Behavior Rule</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Behavior Rule</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseBehaviorRule(BehaviorRule object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Behavior Specification</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1424,17 +1402,17 @@ public class Aadlv3Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>State Specification</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Behavior</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>State Specification</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Behavior</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseStateSpecification(StateSpecification object) {
+	public T caseBehavior(Behavior object) {
 		return null;
 	}
 

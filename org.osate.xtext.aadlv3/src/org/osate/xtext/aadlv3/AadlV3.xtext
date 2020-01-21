@@ -22,7 +22,7 @@ AnnexLibrary returns av3::AnnexLibrary :
 
 PackageElement returns av3::PackageElement:
 	 (PackageDeclaration  | ComponentInterface | ComponentImplementation | ComponentConfiguration | PropertyDefinition | PropertySet | Workingset
-	| TypeDef | ConstantDef )
+	| TypeDef  )
 	;
 
 PropertyDefinition returns av3::PropertyDefinition:
@@ -51,12 +51,6 @@ TypeDef returns av3::TypeDef:
 		PropertiesBlock? ';'
 ;
 
-
-ConstantDef returns av3::Constant:
-	 (Annotation )*
-	(private?='private')? 'constant' name=ID ':' value=Literal
-		';'
-;
 
 
 PropertyAssociation returns av3::PropertyAssociation:
@@ -90,7 +84,7 @@ fragment InterfaceBody*:
 ;
 fragment InterfaceElement*:
 	 features+=Feature 
-	| stateVariables+= StateVariable | transitions +=TransitionRule | rules +=BehaviorRule| generators += Generator
+	| stateVariables+= StateVariable | transitions +=Transition | behaviors +=Behavior| generators += Generator
 	  | ownedPropertyAssociations+=PropertyAssociation | annexSubclause+=AnnexSubclause
 ;
 	
@@ -111,7 +105,7 @@ fragment ImplementationElement* :
 	 bindings+=Binding | components+=Subcomponent 
 		| paths+= EndToEndFlow 
 		| flowAssignments+=FlowAssignment | classifierAssignments+=ClassifierAssignment | classifierAssignments+=ClassifierAssignmentPattern
-		| stateVariables+= StateVariable | transitions +=TransitionRule | rules +=BehaviorRule| generators += Generator
+		| stateVariables+= StateVariable | transitions +=Transition | behaviors +=Behavior| generators += Generator
 		| ownedPropertyAssociations+=PropertyAssociation | annexSubclause+=AnnexSubclause
 ;
 
@@ -137,19 +131,21 @@ Feature returns av3::Feature:
 Subcomponent returns av3::Subcomponent:
 {av3::Subcomponent}	 (Annotation )*
 	name=ID ':' category=ComponentCategory
-	( typeReferences+=ClassifierOrTypeReference | NestedComponentImplementationBlock) 
-	InModes? ';'
+	( ( typeReferences+=ClassifierOrTypeReference InStates? PropertiesBlock?) 
+	| ( InStates? NestedComponentImplementationBlock)
+	) 
+	 ';'
  ;
 
 Connection returns av3::Association:
 	name=ID ':' associationType=IsConnection source=ModelElementReference
-	('->'|bidirectional?='<->') destination=ModelElementReference PropertiesBlock? InModes? ';';
+	('->'|bidirectional?='<->') destination=ModelElementReference InStates? PropertiesBlock? ';';
 
 
 Binding returns av3::Association:
 	name=ID ':' bindingType=[av3::TypeDef|QualifiedName]? associationType=IsBinding 
 	source=ModelElementReference
-	'->' destination=ModelElementReference PropertiesBlock? InModes? ';';
+	'->' destination=ModelElementReference InStates? PropertiesBlock? ';';
 
 
 fragment UseProps*:	
@@ -157,8 +153,8 @@ fragment UseProps*:
 	';'
 ;
 
-fragment InModes*:	
-	'when' inModes = ModelElementContainsLiteral
+fragment InStates*:	
+	'when' inStates = (ModelElementContainsEnumerationLiteral| ModelElementEqualsEnumerationLiteral)
 ;
 
 EndToEndFlow returns av3::PathSequence:
@@ -337,65 +333,90 @@ fragment BehaviorSpecificationBlock*:
 ;
 
 fragment BehaviorSpecificationElement*:
-	generators+= Generator | transitions+= TransitionRule| rules+= BehaviorRule | stateVariables+= StateVariable
+	generators+= Generator | transitions+= Transition| behaviors+= Behavior | stateVariables+= StateVariable
 ;
 
 
 StateVariable returns av3::StateVariable:
 	(Annotation )*
 	name=ID ':' 'state' stateType=[av3::TypeDef|QualifiedName] 
-	(initialState=EnumerationLiteral)?	PropertiesBlock? ';'
+	( '=' initialState=EnumerationLiteral)?	PropertiesBlock? ';'
 ;
 
 
 Generator returns av3::Generator:
 	(Annotation )*
-	name=ID ':' type=('error'|'recover'|'repair')  
-	(value=ListLiteral)?	PropertiesBlock? ';'
+	name=ID ':'  type=ID? 'generator'  
+	(value=ListLiteral)? InStates? PropertiesBlock? ';'
 ;
 
 
-TransitionRule returns av3::StateTransition :
+Transition returns av3::StateTransition :
 	(Annotation )*
-	name=ID ':' 'transition' condition =  (MultiLiteralOperation | ModelElementContainsLiteral | ModelElementReference) '->' targetState=TargetState 
-		('when' currentState=CurrentState)? PropertiesBlock? ';'
+	name=ID ':' 'transition' condition =  (MultiLiteralOperation | ModelElementContainsLiteral | ModelElementReference) '->' targetState=ModelElementEqualsEnumerationLiteral 
+		(InStates)? PropertiesBlock? ';'
 ;
 
-BehaviorRule returns av3::BehaviorRule :
-	FlowPathRule | FlowSourceRule | FlowSinkRule
+Behavior returns av3::Behavior :
+	FlowPath | FlowSource  | TypedToken | ComputationalBehavior
 ;
 
-FlowPathRule returns av3::BehaviorRule :
+FlowPath returns av3::Behavior :
 	(Annotation )*
-	name=ID ':' 'flow' condition =(MultiLiteralOperation | ModelElementContainsLiteral | ModelElementReference) '->'  actions+=Assignment (',' actions+=Assignment)* 
-	('when' currentState=CurrentState )? PropertiesBlock?';'
+	name=ID ':' 'flow' condition =(ListLiteral | ModelElementReference) '->'  ( sink?='sink' | (actions+=FlowOutput (',' actions+=FlowOutput)* ))
+	(InStates )? PropertiesBlock?';'
 ;
-FlowSourceRule returns av3::BehaviorRule :
+FlowSource returns av3::Behavior :
 	(Annotation )*
-	name=ID ':' 'flow'  source?='source' (condition =(MultiLiteralOperation | ModelElementContainsLiteral | ModelElementReference) '->' )?  actions+=Assignment (',' actions+=Assignment)* 
-	('when' currentState=CurrentState )? PropertiesBlock?';'
-;
-FlowSinkRule returns av3::BehaviorRule :
-	(Annotation )*
-	name=ID ':' 'flow'  condition =(MultiLiteralOperation | ModelElementContainsLiteral | ModelElementReference) '->' sink?='sink'
-	('when' currentState=CurrentState )? PropertiesBlock?';'
+	name=ID ':' 'flow'  source?='source' (condition =(ListLiteral | ModelElementReference)? '->' )?  actions+=FlowOutput (',' actions+=FlowOutput)* 
+	(InStates )? PropertiesBlock?';'
 ;
 
-Assignment returns av3::BinaryOperation:
+FlowOutput returns av3::BinaryOperation:
+	left= ModelElementReference 
+;
+
+TypedToken returns av3::Behavior :
+	(Annotation )*
+	name=ID ':' 'token' source?='source'? condition =(MultiLiteralOperation | ModelElementContainsLiteral | ModelElementReference) 
+		'->' ( sink?='sink'| TokenResultBlock )  
+	( InStates )? PropertiesBlock?';'
+;
+
+ComputationalBehavior returns av3::Behavior :
+	(Annotation )*
+	name=ID ':' 'behavior' condition =Literal '->'  TokenResultBlock 
+	( InStates )? PropertiesBlock?';'
+;
+
+fragment TokenResultBlock* : 
+actions+=TokenResult (',' actions+=TokenResult)* ;
+
+TokenResult returns av3::BinaryOperation: TokenOutput | DetectionEvent;
+
+TokenOutput returns av3::BinaryOperation:
 	left= ModelElementReference (operator=EqualsOperation right=NamedElementReference)?
 ;
 
-CurrentState returns av3::StateSpecification:
-	stateVariable=[av3::StateVariable|ID] '=' currentState=EnumerationLiteral 
-;
-
-TargetState returns av3::StateSpecification:
-	stateVariable=[av3::StateVariable|ID] '=' currentState=EnumerationLiteral 
+DetectionEvent returns av3::BinaryOperation:
+	left= ModelElementReference operator=OutputOperation ( right=ListLiteral)?
 ;
 
 
 ModelElementContainsLiteral returns av3::BinaryOperation:
 	 left=ModelElementReference operator=InOperation right=ListLiteral
+;
+
+ModelElementContainsEnumerationLiteral returns av3::BinaryOperation:
+	 left=ModelElementReference operator=InOperation right=EnumerationList
+;
+
+ModelElementEqualsLiteral returns av3::BinaryOperation:
+	 left=ModelElementReference operator=EqualsOperation right=NamedElementReference
+;
+
+ModelElementEqualsEnumerationLiteral returns av3::BinaryOperation:
+	 left=ModelElementReference operator=EqualsOperation right=EnumerationLiteral
 ;
 
 FeatureInput returns av3::BinaryOperation:
@@ -411,8 +432,9 @@ fragment Annotation* :
 // expression/constraint language
 
 Literal returns av3::Literal:
-	IntegerLiteral | RealLiteral | StringLiteral | BooleanLiteral | PropertyReference  | DirectionalLiteral | ListLiteral | MultiLiteralOperation
-	| ModelElementContainsLiteral   | NamedElementReference //| EnumerationLiteral //| FeatureInput
+	IntegerLiteral | RealLiteral | StringLiteral | BooleanLiteral | PropertyReference  | DirectionalLiteral | ListLiteral 
+	| SetLiteral | MultiLiteralOperation
+	| ModelElementContainsLiteral   | NamedElementReference | EnumerationLiteral //| FeatureInput
 ;
 
 
@@ -453,6 +475,14 @@ BooleanLiteral returns av3::Literal:
 
 ListLiteral returns av3::ListLiteral:
 	{av3::ListLiteral} '(' (elements+=Literal (',' elements+=Literal)*)? ')'
+;
+
+EnumerationList returns av3::ListLiteral:
+	{av3::ListLiteral} '(' (elements+=EnumerationLiteral (',' elements+=EnumerationLiteral)*)? ')'
+;
+
+SetLiteral returns av3::SetLiteral:
+	{av3::SetLiteral} '{' (elements+=Literal (',' elements+=Literal)*)? '}'
 ;
 
 DirectionalLiteral returns av3::DirectionalLiteral:
@@ -513,7 +543,7 @@ EOperation returns av3::EOperator:
 	'any' | 'all' | 'oneof' | 'of' | 'ormore' | 'orless' ;
 
 BinaryOperation returns av3::BinaryOperator:
-	'in' | 'contains' | 'equals'  | 'satisfies' | '?';
+	'in' | 'contains' | 'equals'  | 'satisfies' | '!' | '?';
 
 SatisfiesOperation returns av3::BinaryOperator:
 	 'satisfies' ;
@@ -526,6 +556,9 @@ InOperation returns av3::BinaryOperator:
 
 InputOperation returns av3::BinaryOperator:
 	 '?' ;
+
+OutputOperation returns av3::BinaryOperator:
+	 '!' ;
 	
 AssociationType returns  av3::AssociationType:
 	IsConnection | IsBinding | IsFlow 

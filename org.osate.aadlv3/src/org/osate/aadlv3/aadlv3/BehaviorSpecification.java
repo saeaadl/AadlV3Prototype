@@ -27,7 +27,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.BehaviorSpecification#getTransitions <em>Transitions</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.BehaviorSpecification#getRules <em>Rules</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.BehaviorSpecification#getBehaviors <em>Behaviors</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.BehaviorSpecification#getStateVariables <em>State Variables</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.BehaviorSpecification#getGenerators <em>Generators</em>}</li>
  * </ul>
@@ -50,16 +50,16 @@ public interface BehaviorSpecification extends AnnexSubclause {
 	EList<StateTransition> getTransitions();
 
 	/**
-	 * Returns the value of the '<em><b>Rules</b></em>' containment reference list.
-	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.BehaviorRule}.
+	 * Returns the value of the '<em><b>Behaviors</b></em>' containment reference list.
+	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.Behavior}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Rules</em>' containment reference list.
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getBehaviorSpecification_Rules()
+	 * @return the value of the '<em>Behaviors</em>' containment reference list.
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getBehaviorSpecification_Behaviors()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<BehaviorRule> getRules();
+	EList<Behavior> getBehaviors();
 
 	/**
 	 * Returns the value of the '<em><b>State Variables</b></em>' containment reference list.

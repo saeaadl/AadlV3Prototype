@@ -34,7 +34,7 @@ import org.osate.aadlv3.aadlv3.ComponentCategory;
 import org.osate.aadlv3.aadlv3.Subcomponent;
 import org.osate.av3instance.av3instance.AssociationInstance;
 import org.osate.av3instance.av3instance.Av3instancePackage;
-import org.osate.av3instance.av3instance.BehaviorRuleInstance;
+import org.osate.av3instance.av3instance.BehaviorInstance;
 import org.osate.av3instance.av3instance.ComponentInstance;
 import org.osate.av3instance.av3instance.ConstrainedInstanceObject;
 import org.osate.av3instance.av3instance.FeatureInstance;
@@ -58,7 +58,7 @@ import static org.osate.aadlv3.util.AIv3API.*;
  *   <li>{@link org.osate.av3instance.av3instance.impl.ComponentInstanceImpl#getConnections <em>Connections</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.impl.ComponentInstanceImpl#getFeatures <em>Features</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.impl.ComponentInstanceImpl#getPaths <em>Paths</em>}</li>
- *   <li>{@link org.osate.av3instance.av3instance.impl.ComponentInstanceImpl#getBehaviorRules <em>Behavior Rules</em>}</li>
+ *   <li>{@link org.osate.av3instance.av3instance.impl.ComponentInstanceImpl#getBehaviors <em>Behaviors</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.impl.ComponentInstanceImpl#getGenerators <em>Generators</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.impl.ComponentInstanceImpl#getStateVariables <em>State Variables</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.impl.ComponentInstanceImpl#getActions <em>Actions</em>}</li>
@@ -139,14 +139,14 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 	protected EList<PathInstance> paths;
 
 	/**
-	 * The cached value of the '{@link #getBehaviorRules() <em>Behavior Rules</em>}' containment reference list.
+	 * The cached value of the '{@link #getBehaviors() <em>Behaviors</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getBehaviorRules()
+	 * @see #getBehaviors()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<BehaviorRuleInstance> behaviorRules;
+	protected EList<BehaviorInstance> behaviors;
 
 	/**
 	 * The cached value of the '{@link #getGenerators() <em>Generators</em>}' containment reference list.
@@ -335,12 +335,12 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 	 * @generated
 	 */
 	@Override
-	public EList<BehaviorRuleInstance> getBehaviorRules() {
-		if (behaviorRules == null) {
-			behaviorRules = new EObjectContainmentEList<BehaviorRuleInstance>(BehaviorRuleInstance.class, this,
-					Av3instancePackage.COMPONENT_INSTANCE__BEHAVIOR_RULES);
+	public EList<BehaviorInstance> getBehaviors() {
+		if (behaviors == null) {
+			behaviors = new EObjectContainmentEList<BehaviorInstance>(BehaviorInstance.class, this,
+					Av3instancePackage.COMPONENT_INSTANCE__BEHAVIORS);
 		}
-		return behaviorRules;
+		return behaviors;
 	}
 
 	/**
@@ -415,8 +415,8 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 			return ((InternalEList<?>) getFeatures()).basicRemove(otherEnd, msgs);
 		case Av3instancePackage.COMPONENT_INSTANCE__PATHS:
 			return ((InternalEList<?>) getPaths()).basicRemove(otherEnd, msgs);
-		case Av3instancePackage.COMPONENT_INSTANCE__BEHAVIOR_RULES:
-			return ((InternalEList<?>) getBehaviorRules()).basicRemove(otherEnd, msgs);
+		case Av3instancePackage.COMPONENT_INSTANCE__BEHAVIORS:
+			return ((InternalEList<?>) getBehaviors()).basicRemove(otherEnd, msgs);
 		case Av3instancePackage.COMPONENT_INSTANCE__GENERATORS:
 			return ((InternalEList<?>) getGenerators()).basicRemove(otherEnd, msgs);
 		case Av3instancePackage.COMPONENT_INSTANCE__STATE_VARIABLES:
@@ -451,8 +451,8 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 			return getFeatures();
 		case Av3instancePackage.COMPONENT_INSTANCE__PATHS:
 			return getPaths();
-		case Av3instancePackage.COMPONENT_INSTANCE__BEHAVIOR_RULES:
-			return getBehaviorRules();
+		case Av3instancePackage.COMPONENT_INSTANCE__BEHAVIORS:
+			return getBehaviors();
 		case Av3instancePackage.COMPONENT_INSTANCE__GENERATORS:
 			return getGenerators();
 		case Av3instancePackage.COMPONENT_INSTANCE__STATE_VARIABLES:
@@ -496,9 +496,9 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 			getPaths().clear();
 			getPaths().addAll((Collection<? extends PathInstance>) newValue);
 			return;
-		case Av3instancePackage.COMPONENT_INSTANCE__BEHAVIOR_RULES:
-			getBehaviorRules().clear();
-			getBehaviorRules().addAll((Collection<? extends BehaviorRuleInstance>) newValue);
+		case Av3instancePackage.COMPONENT_INSTANCE__BEHAVIORS:
+			getBehaviors().clear();
+			getBehaviors().addAll((Collection<? extends BehaviorInstance>) newValue);
 			return;
 		case Av3instancePackage.COMPONENT_INSTANCE__GENERATORS:
 			getGenerators().clear();
@@ -546,8 +546,8 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 		case Av3instancePackage.COMPONENT_INSTANCE__PATHS:
 			getPaths().clear();
 			return;
-		case Av3instancePackage.COMPONENT_INSTANCE__BEHAVIOR_RULES:
-			getBehaviorRules().clear();
+		case Av3instancePackage.COMPONENT_INSTANCE__BEHAVIORS:
+			getBehaviors().clear();
 			return;
 		case Av3instancePackage.COMPONENT_INSTANCE__GENERATORS:
 			getGenerators().clear();
@@ -585,8 +585,8 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 			return features != null && !features.isEmpty();
 		case Av3instancePackage.COMPONENT_INSTANCE__PATHS:
 			return paths != null && !paths.isEmpty();
-		case Av3instancePackage.COMPONENT_INSTANCE__BEHAVIOR_RULES:
-			return behaviorRules != null && !behaviorRules.isEmpty();
+		case Av3instancePackage.COMPONENT_INSTANCE__BEHAVIORS:
+			return behaviors != null && !behaviors.isEmpty();
 		case Av3instancePackage.COMPONENT_INSTANCE__GENERATORS:
 			return generators != null && !generators.isEmpty();
 		case Av3instancePackage.COMPONENT_INSTANCE__STATE_VARIABLES:

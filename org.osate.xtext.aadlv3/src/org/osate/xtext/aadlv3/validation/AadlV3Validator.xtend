@@ -47,7 +47,7 @@ import org.osate.aadlv3.aadlv3.ListLiteral
 import org.osate.aadlv3.aadlv3.CompositeType
 import org.osate.aadlv3.aadlv3.Composite
 import org.osate.aadlv3.aadlv3.NamedElement
-import org.osate.aadlv3.aadlv3.BehaviorRule
+import org.osate.aadlv3.aadlv3.Behavior
 
 /**
  * This class contains custom validation rules. 
@@ -177,7 +177,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 		// flow assignment or end to end path
 		if (flowa.name === null || flowa.name.empty) {
 			// flow assignment
-			if (!(flowa.target.element instanceof BehaviorRule )) {
+			if (!(flowa.target.element instanceof Behavior )) {
 				error('Flow assignment must be for flow specification', flowa,
 					Aadlv3Package.Literals.PATH_SEQUENCE__TARGET, ToFlowSpec)
 			}
@@ -190,7 +190,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 
 	@Check
 	def checkPathElement(PathElement pe) {
-		if (!(pe.element instanceof BehaviorRule || ( pe.element instanceof Association&&
+		if (!(pe.element instanceof Behavior || ( pe.element instanceof Association&&
 			( (pe.element as Association).isConnection ||
 				(pe.element as Association).isFeatureDelegation)) || pe.element instanceof Subcomponent)) {
 			error('Path element must reference a connection, flow spec, or component', pe, null, ToFlowSpec)
@@ -1626,7 +1626,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 									DifferentComponentInPath)
 							}
 						}
-					} else if (element instanceof BehaviorRule) {
+					} else if (element instanceof Behavior) {
 							val currentsrccomp = pathElement.getClosestReferencedComponent
 							if (prevdstcomp !== currentsrccomp) {
 								error(
@@ -1642,7 +1642,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 						}
 					}
 				}
-			} else if (prevElement instanceof BehaviorRule) {
+			} else if (prevElement instanceof Behavior) {
 				// previous flow spec
 				val prevdstcomp = prevPathElement.getClosestReferencedComponent
 				if (element instanceof Association) {

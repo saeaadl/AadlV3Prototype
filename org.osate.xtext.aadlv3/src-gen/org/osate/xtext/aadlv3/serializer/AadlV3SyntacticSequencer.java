@@ -22,6 +22,8 @@ import org.eclipse.xtext.IGrammarAccess;
 import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.serializer.analysis.GrammarAlias.AbstractElementAlias;
+import org.eclipse.xtext.serializer.analysis.GrammarAlias.TokenAlias;
+import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynNavigable;
 import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynTransition;
 import org.eclipse.xtext.serializer.sequencer.AbstractSyntacticSequencer;
 import org.osate.xtext.aadlv3.services.AadlV3GrammarAccess;
@@ -30,10 +32,12 @@ import org.osate.xtext.aadlv3.services.AadlV3GrammarAccess;
 public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected AadlV3GrammarAccess grammarAccess;
+	protected AbstractElementAlias match_FlowSource_HyphenMinusGreaterThanSignKeyword_5_1_q;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (AadlV3GrammarAccess) access;
+		match_FlowSource_HyphenMinusGreaterThanSignKeyword_5_1_q = new TokenAlias(false, true, grammarAccess.getFlowSourceAccess().getHyphenMinusGreaterThanSignKeyword_5_1());
 	}
 	
 	@Override
@@ -58,8 +62,21 @@ public class AadlV3SyntacticSequencer extends AbstractSyntacticSequencer {
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			acceptNodes(getLastNavigableState(), syntaxNodes);
+			if (match_FlowSource_HyphenMinusGreaterThanSignKeyword_5_1_q.equals(syntax))
+				emit_FlowSource_HyphenMinusGreaterThanSignKeyword_5_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else acceptNodes(getLastNavigableState(), syntaxNodes);
 		}
 	}
 
+	/**
+	 * Ambiguous syntax:
+	 *     '->'?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     source?='source' (ambiguity) actions+=FlowOutput
+	 */
+	protected void emit_FlowSource_HyphenMinusGreaterThanSignKeyword_5_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
 }

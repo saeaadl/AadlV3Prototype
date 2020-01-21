@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
-import org.osate.aadlv3.aadlv3.BehaviorRule;
+import org.osate.aadlv3.aadlv3.Behavior;
 import org.osate.aadlv3.aadlv3.BehaviorSpecification;
 import org.osate.aadlv3.aadlv3.Generator;
 import org.osate.aadlv3.aadlv3.StateTransition;
@@ -39,7 +39,7 @@ import org.osate.aadlv3.aadlv3.StateVariable;
  * </p>
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.BehaviorSpecificationImpl#getTransitions <em>Transitions</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.BehaviorSpecificationImpl#getRules <em>Rules</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.BehaviorSpecificationImpl#getBehaviors <em>Behaviors</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.BehaviorSpecificationImpl#getStateVariables <em>State Variables</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.BehaviorSpecificationImpl#getGenerators <em>Generators</em>}</li>
  * </ul>
@@ -58,14 +58,14 @@ public class BehaviorSpecificationImpl extends AnnexSubclauseImpl implements Beh
 	protected EList<StateTransition> transitions;
 
 	/**
-	 * The cached value of the '{@link #getRules() <em>Rules</em>}' containment reference list.
+	 * The cached value of the '{@link #getBehaviors() <em>Behaviors</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getRules()
+	 * @see #getBehaviors()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<BehaviorRule> rules;
+	protected EList<Behavior> behaviors;
 
 	/**
 	 * The cached value of the '{@link #getStateVariables() <em>State Variables</em>}' containment reference list.
@@ -126,12 +126,12 @@ public class BehaviorSpecificationImpl extends AnnexSubclauseImpl implements Beh
 	 * @generated
 	 */
 	@Override
-	public EList<BehaviorRule> getRules() {
-		if (rules == null) {
-			rules = new EObjectContainmentEList<BehaviorRule>(BehaviorRule.class, this,
-					Aadlv3Package.BEHAVIOR_SPECIFICATION__RULES);
+	public EList<Behavior> getBehaviors() {
+		if (behaviors == null) {
+			behaviors = new EObjectContainmentEList<Behavior>(Behavior.class, this,
+					Aadlv3Package.BEHAVIOR_SPECIFICATION__BEHAVIORS);
 		}
-		return rules;
+		return behaviors;
 	}
 
 	/**
@@ -172,8 +172,8 @@ public class BehaviorSpecificationImpl extends AnnexSubclauseImpl implements Beh
 		switch (featureID) {
 		case Aadlv3Package.BEHAVIOR_SPECIFICATION__TRANSITIONS:
 			return ((InternalEList<?>) getTransitions()).basicRemove(otherEnd, msgs);
-		case Aadlv3Package.BEHAVIOR_SPECIFICATION__RULES:
-			return ((InternalEList<?>) getRules()).basicRemove(otherEnd, msgs);
+		case Aadlv3Package.BEHAVIOR_SPECIFICATION__BEHAVIORS:
+			return ((InternalEList<?>) getBehaviors()).basicRemove(otherEnd, msgs);
 		case Aadlv3Package.BEHAVIOR_SPECIFICATION__STATE_VARIABLES:
 			return ((InternalEList<?>) getStateVariables()).basicRemove(otherEnd, msgs);
 		case Aadlv3Package.BEHAVIOR_SPECIFICATION__GENERATORS:
@@ -192,8 +192,8 @@ public class BehaviorSpecificationImpl extends AnnexSubclauseImpl implements Beh
 		switch (featureID) {
 		case Aadlv3Package.BEHAVIOR_SPECIFICATION__TRANSITIONS:
 			return getTransitions();
-		case Aadlv3Package.BEHAVIOR_SPECIFICATION__RULES:
-			return getRules();
+		case Aadlv3Package.BEHAVIOR_SPECIFICATION__BEHAVIORS:
+			return getBehaviors();
 		case Aadlv3Package.BEHAVIOR_SPECIFICATION__STATE_VARIABLES:
 			return getStateVariables();
 		case Aadlv3Package.BEHAVIOR_SPECIFICATION__GENERATORS:
@@ -215,9 +215,9 @@ public class BehaviorSpecificationImpl extends AnnexSubclauseImpl implements Beh
 			getTransitions().clear();
 			getTransitions().addAll((Collection<? extends StateTransition>) newValue);
 			return;
-		case Aadlv3Package.BEHAVIOR_SPECIFICATION__RULES:
-			getRules().clear();
-			getRules().addAll((Collection<? extends BehaviorRule>) newValue);
+		case Aadlv3Package.BEHAVIOR_SPECIFICATION__BEHAVIORS:
+			getBehaviors().clear();
+			getBehaviors().addAll((Collection<? extends Behavior>) newValue);
 			return;
 		case Aadlv3Package.BEHAVIOR_SPECIFICATION__STATE_VARIABLES:
 			getStateVariables().clear();
@@ -242,8 +242,8 @@ public class BehaviorSpecificationImpl extends AnnexSubclauseImpl implements Beh
 		case Aadlv3Package.BEHAVIOR_SPECIFICATION__TRANSITIONS:
 			getTransitions().clear();
 			return;
-		case Aadlv3Package.BEHAVIOR_SPECIFICATION__RULES:
-			getRules().clear();
+		case Aadlv3Package.BEHAVIOR_SPECIFICATION__BEHAVIORS:
+			getBehaviors().clear();
 			return;
 		case Aadlv3Package.BEHAVIOR_SPECIFICATION__STATE_VARIABLES:
 			getStateVariables().clear();
@@ -265,8 +265,8 @@ public class BehaviorSpecificationImpl extends AnnexSubclauseImpl implements Beh
 		switch (featureID) {
 		case Aadlv3Package.BEHAVIOR_SPECIFICATION__TRANSITIONS:
 			return transitions != null && !transitions.isEmpty();
-		case Aadlv3Package.BEHAVIOR_SPECIFICATION__RULES:
-			return rules != null && !rules.isEmpty();
+		case Aadlv3Package.BEHAVIOR_SPECIFICATION__BEHAVIORS:
+			return behaviors != null && !behaviors.isEmpty();
 		case Aadlv3Package.BEHAVIOR_SPECIFICATION__STATE_VARIABLES:
 			return stateVariables != null && !stateVariables.isEmpty();
 		case Aadlv3Package.BEHAVIOR_SPECIFICATION__GENERATORS:

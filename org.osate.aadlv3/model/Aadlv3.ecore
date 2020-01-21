@@ -32,7 +32,7 @@
         eType="#//PropertyDefinition"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ModelElement" abstract="true" eSuperTypes="#//NamedElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="inModes" eType="#//BinaryOperation"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inStates" eType="#//BinaryOperation"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Classifier" abstract="true" eSuperTypes="#//NamedType">
@@ -42,8 +42,8 @@
         eType="#//TypeReference" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="transitions" upperBound="-1"
         eType="#//StateTransition" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="rules" upperBound="-1"
-        eType="#//BehaviorRule" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="behaviors" upperBound="-1"
+        eType="#//Behavior" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="stateVariables" upperBound="-1"
         eType="#//StateVariable" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="generators" upperBound="-1"
@@ -338,35 +338,28 @@
   <eClassifiers xsi:type="ecore:EClass" name="BehaviorSpecification" eSuperTypes="#//AnnexSubclause">
     <eStructuralFeatures xsi:type="ecore:EReference" name="transitions" upperBound="-1"
         eType="#//StateTransition" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="rules" upperBound="-1"
-        eType="#//BehaviorRule" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="behaviors" upperBound="-1"
+        eType="#//Behavior" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="stateVariables" upperBound="-1"
         eType="#//StateVariable" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="generators" upperBound="-1"
         eType="#//Generator" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StateTransition" eSuperTypes="#//ModelElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="currentState" eType="#//StateSpecification"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="targetState" ordered="false"
-        eType="#//StateSpecification" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//Literal"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="targetState" ordered="false"
+        eType="#//BinaryOperation" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BehaviorRule" eSuperTypes="#//ModelElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="currentState" eType="#//StateSpecification"
-        containment="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Behavior" eSuperTypes="#//ModelElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//Literal"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="actions" upperBound="-1"
         eType="#//BinaryOperation" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="source" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="sink" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="StateSpecification">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="currentState" eType="#//EnumerationLiteral"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="stateVariable" eType="#//StateVariable"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="category" eType="#//BehaviorCategory"
+        defaultValueLiteral="flow"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StateVariable" eSuperTypes="#//ModelElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="initialState" eType="#//EnumerationLiteral"
@@ -386,5 +379,10 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PackageElementReference" eSuperTypes="#//NamedElement #//Literal">
     <eStructuralFeatures xsi:type="ecore:EReference" name="element" eType="#//PackageElement"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="BehaviorCategory">
+    <eLiterals name="flow" literal="flow"/>
+    <eLiterals name="behavior" value="1" literal="behavior"/>
+    <eLiterals name="token" value="2" literal="token"/>
   </eClassifiers>
 </ecore:EPackage>

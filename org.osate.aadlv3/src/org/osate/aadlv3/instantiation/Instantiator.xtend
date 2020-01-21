@@ -7,7 +7,7 @@ import java.util.Stack
 import org.eclipse.xtext.EcoreUtil2
 import org.osate.aadlv3.aadlv3.Aadlv3Factory
 import org.osate.aadlv3.aadlv3.Association
-import org.osate.aadlv3.aadlv3.BehaviorRule
+import org.osate.aadlv3.aadlv3.Behavior
 import org.osate.aadlv3.aadlv3.BehaviorSpecification
 import org.osate.aadlv3.aadlv3.BinaryOperation
 import org.osate.aadlv3.aadlv3.Classifier
@@ -103,7 +103,7 @@ class Instantiator {
 		// XXX TODO check product line constraint
 		//  val issues = validateConfiguredComponentInstance(subci, configurationConstraint)
 			context.components += subci
-			context.attachInModes(subci, comp.inModes)
+			context.attachInModes(subci, comp.inStates)
 			subci
 		}
 		if (trefs === null) {
@@ -160,8 +160,8 @@ class Instantiator {
 		for (sv : ctyperefs.allStateVariables) {
 			sv.instantiateStateVariables(ci)
 		}
-		for (br : ctyperefs.allBehaviorRules) {
-			br.instantiateBehaviorRule(ci)
+		for (br : ctyperefs.allBehaviors) {
+			br.instantiateBehavior(ci)
 		}
 		for (st : ctyperefs.allStateTransitions) {
 			st.instantiateStateTransition(ci)
@@ -183,8 +183,8 @@ class Instantiator {
 					for (sv: subclause.stateVariables)
 					sv.instantiateStateVariables(ci)
 				}
-				for (br: subclause.rules){
-					br.instantiateBehaviorRule(ci)
+				for (br: subclause.behaviors){
+					br.instantiateBehavior(ci)
 				}
 			}
 		}
@@ -240,7 +240,7 @@ class Instantiator {
 		context.connections += allconnis
 		for (finalconni : allconnis){
 			// add in modes
-			context.attachInModes(finalconni,conn.inModes)
+			context.attachInModes(finalconni,conn.inStates)
 			// add in local property assignment
 			for (pa : conn.ownedPropertyAssociations){
 				finalconni.addPropertyAssociationInstance(pa)
@@ -384,7 +384,7 @@ class Instantiator {
 		for (pe : ps.elements){
 			val InstanceObject previousflowelementinstance = psi.elements.last
 			val flowelement = pe.element
-			if (flowelement instanceof BehaviorRule ){
+			if (flowelement instanceof Behavior ){
 					// expand flowspec by its configured flow
 					if (previousflowelementinstance.isFlowSpec){
 						// find the missing connection instance
@@ -410,7 +410,7 @@ class Instantiator {
  				if (conni instanceof AssociationInstance){
  					if (previousflowelementinstance.isConnection){
  						// put in place component/flowspec between two connections
- 						val fsi = findBehaviorRuleInstance((previousflowelementinstance as AssociationInstance).destination, conni.source)
+ 						val fsi = findBehaviorInstance((previousflowelementinstance as AssociationInstance).destination, conni.source)
  						if (fsi !== null){
  							psi.elements += fsi
  						} else {
@@ -626,8 +626,8 @@ class Instantiator {
 
 
 	// Behavior Rules
-	def void instantiateBehaviorRule(BehaviorRule br, ComponentInstance context) {
-		val bri = br.createBehaviorRuleInstance;
+	def void instantiateBehavior(Behavior br, ComponentInstance context) {
+		val bri = br.createBehaviorInstance;
 		bri.annotations.addAll(br.annotations)
 		val bs = br.containingBehaviorSpecification
 		if (bs !== null){
@@ -672,8 +672,8 @@ class Instantiator {
 			}
 			bri.condition = behaviorCondition
 		}
-		if (br.currentState !== null) {
-			bri.currentState = context.findStateInstance(br.currentState)
+		if (br.inStates !== null) {
+			bri.inStates += context.findStateInstances(br.inStates)
 		}
 		// now actions
 		for (action : br.actions) {
@@ -690,7 +690,7 @@ class Instantiator {
 				bri.actions += tcio;
 			}
 		}
-		context.behaviorRules += bri
+		context.behaviors += bri
 	}
 
 	// Behavior Rules
@@ -738,8 +738,8 @@ class Instantiator {
 		sti.condition = behaviorCondition
 		sti.targetState = context.findStateInstance(st.targetState)
 		context.stateTransitions += sti
-		if (st.currentState !== null) {
-			sti.currentState = context.findStateInstance(st.currentState)
+		if (st.inStates !== null) {
+			sti.inStates += context.findStateInstances(st.inStates)
 		}
 	}
 
@@ -764,6 +764,7 @@ class Instantiator {
 	}
 	
 	def void attachInModes(ComponentInstance context, InstanceObject io, BinaryOperation inModes){
+		if (inModes === null) return
 		val sv = (inModes.left as NamedElementReference).element;
 		if (sv instanceof StateVariable){
 			val svi = context.findStateVariableInstance(sv);

@@ -6,7 +6,6 @@ package org.osate.xtext.aadlv3.scoping
 import com.google.common.base.Function
 import com.google.common.base.Predicates
 import com.google.common.collect.Iterables
-import com.google.inject.Inject
 import java.util.Collections
 import java.util.Stack
 import org.eclipse.emf.ecore.EObject
@@ -21,28 +20,27 @@ import org.eclipse.xtext.scoping.impl.SimpleScope
 import org.eclipse.xtext.util.SimpleAttributeResolver
 import org.osate.aadlv3.aadlv3.Aadlv3Package
 import org.osate.aadlv3.aadlv3.Association
-import org.osate.aadlv3.aadlv3.Subcomponent
 import org.osate.aadlv3.aadlv3.Classifier
+import org.osate.aadlv3.aadlv3.ClassifierAssignment
 import org.osate.aadlv3.aadlv3.ComponentConfiguration
 import org.osate.aadlv3.aadlv3.ComponentInterface
 import org.osate.aadlv3.aadlv3.ConfigurationActual
-import org.osate.aadlv3.aadlv3.ClassifierAssignment
 import org.osate.aadlv3.aadlv3.Feature
 import org.osate.aadlv3.aadlv3.Import
 import org.osate.aadlv3.aadlv3.NamedElementReference
 import org.osate.aadlv3.aadlv3.PackageElement
 import org.osate.aadlv3.aadlv3.PathSequence
 import org.osate.aadlv3.aadlv3.PropertyAssociation
+import org.osate.aadlv3.aadlv3.Subcomponent
 import org.osate.aadlv3.aadlv3.TypeReference
 import org.osate.aadlv3.util.Av3API
+import org.osate.xtext.aadlv3.naming.AadlV3QualifiedNameConverter
 
 import static extension org.osate.aadlv3.util.Aadlv3Util.*
-import org.osate.xtext.aadlv3.naming.AadlV3QualifiedNameConverter
-import org.osate.aadlv3.aadlv3.ComponentRealization
-import org.osate.aadlv3.aadlv3.BehaviorSpecification
-import org.osate.aadlv3.aadlv3.util.Aadlv3AdapterFactory
-import org.osate.aadlv3.aadlv3.StateSpecification
-import org.osate.aadlv3.aadlv3.ComponentImplementation
+import org.osate.aadlv3.aadlv3.BinaryOperation
+import org.osate.aadlv3.aadlv3.StateVariable
+import org.osate.aadlv3.aadlv3.EnumerationType
+import org.osate.aadlv3.aadlv3.ListLiteral
 
 /**
  * This class contains custom scoping description.
@@ -165,23 +163,6 @@ class AadlV3ScopeProvider extends AbstractAadlV3ScopeProvider {
 			return new SimpleScope(classifierscope, Scopes::scopedElementsFor(modelElements,
 				QualifiedName::wrapper(SimpleAttributeResolver::NAME_RESOLVER)), false)
 		} // ModelElement Reference
-		if (context instanceof StateSpecification){
-			if (reference == Aadlv3Package.Literals.STATE_SPECIFICATION__STATE_VARIABLE){
-				val bs = context.containingBehaviorSpecification
-				val cl = context.containingClassifier
-				if (bs !== null){
-					return new SimpleScope(IScope.NULLSCOPE,
-						Scopes::scopedElementsFor(bs.getStateVariables,
-							QualifiedName::wrapper(SimpleAttributeResolver::NAME_RESOLVER)), false)
-				} else if (cl !== null ) {
-					return new SimpleScope(IScope.NULLSCOPE,
-						Scopes::scopedElementsFor(cl.getStateVariables,
-							QualifiedName::wrapper(SimpleAttributeResolver::NAME_RESOLVER)), false)
-				} else {
-					return IScope.NULLSCOPE
-				}
-			}
-		}
 		if (context instanceof TypeReference) {
 			if (reference == Aadlv3Package.Literals.TYPE_REFERENCE__TYPE) {
 				// we have a primitive type, component interface, or configuration parameter reference

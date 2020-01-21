@@ -71,13 +71,13 @@ public interface Av3instanceFactory extends EFactory {
 	PathInstance createPathInstance();
 
 	/**
-	 * Returns a new object of class '<em>Behavior Rule Instance</em>'.
+	 * Returns a new object of class '<em>Behavior Instance</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Behavior Rule Instance</em>'.
+	 * @return a new object of class '<em>Behavior Instance</em>'.
 	 * @generated
 	 */
-	BehaviorRuleInstance createBehaviorRuleInstance();
+	BehaviorInstance createBehaviorInstance();
 
 	/**
 	 * Returns a new object of class '<em>Generator Instance</em>'.

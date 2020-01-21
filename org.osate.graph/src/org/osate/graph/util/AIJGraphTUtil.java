@@ -17,7 +17,7 @@ import org.jgrapht.graph.DefaultEdge;
 import org.jgrapht.graph.SimpleDirectedGraph;
 import org.osate.aadlv3.aadlv3.Literal;
 import org.osate.av3instance.av3instance.AssociationInstance;
-import org.osate.av3instance.av3instance.BehaviorRuleInstance;
+import org.osate.av3instance.av3instance.BehaviorInstance;
 import org.osate.av3instance.av3instance.ComponentInstance;
 import org.osate.av3instance.av3instance.ConstrainedInstanceObject;
 import org.osate.av3instance.av3instance.FeatureInstance;
@@ -81,7 +81,7 @@ public class AIJGraphTUtil {
 		List<ComponentInstance> cis = getAllComponents(root);
 		for (ComponentInstance ci : cis) {
 			if (isLeafComponent(ci)) {
-				EList<BehaviorRuleInstance> flows = ci.getBehaviorRules();
+				EList<BehaviorInstance> flows = ci.getBehaviors();
 				Iterable<FeatureInstance> infeats = getAllIncomingFeatures(ci);
 				Iterable<FeatureInstance> outfeats = getAllOutgoingFeatures(ci);
 				for (FeatureInstance ifi : infeats) {
@@ -100,7 +100,7 @@ public class AIJGraphTUtil {
 						}
 					}
 				}
-				for (BehaviorRuleInstance flow : flows) {
+				for (BehaviorInstance flow : flows) {
 					Iterable<ConstrainedInstanceObject> srcs =  getAllConstrainedInstanceObjects(flow.getCondition());
 					EList<ConstrainedInstanceObject> dsts = flow.getActions();
 					if (dsts.isEmpty()) {
@@ -171,15 +171,15 @@ public class AIJGraphTUtil {
 		for (ComponentInstance ci : cis) {
 			// for each component add edges for flows from incoming to outgoing
 			EList<InstanceObject> outfiAsBehavior = new UniqueEList<InstanceObject>();
-			EList<BehaviorRuleInstance> bris = ci.getBehaviorRules();
+			EList<BehaviorInstance> bris = ci.getBehaviors();
 			// TODO bri filtered by annotation name
-			for (BehaviorRuleInstance bri : bris) {
+			for (BehaviorInstance bri : bris) {
 				Iterable<ConstrainedInstanceObject> condcios = getAllConstrainedInstanceObjects(bri.getCondition());
 				for (ConstrainedInstanceObject action : bri.getActions()) {
 					// we need both the current state and the condition
 					// path to the current state from which to trace back.
-					StateInstance cs = bri.getCurrentState();
-					if (cs != null) {
+					EList<StateInstance> css = bri.getInStates();
+					for (StateInstance cs : css) {
 						// edge from current state to action
 						addPath(directedGraph, cs, action, bri);
 					}
@@ -206,10 +206,12 @@ public class AIJGraphTUtil {
 					// we have a rule that represents a state transition with or without actions
 					// the target state to action edge is already taken care of
 					StateInstance ts = sti.getTargetState();
-					StateInstance cs = sti.getCurrentState();
-					if (cs != null && ts != null && cs != ts) {
-						// edge from cs to ts
-						addPath(directedGraph, cs, ts,sti);
+					EList<StateInstance> css = sti.getInStates();
+					for (StateInstance cs : css ) {
+						if (cs != ts) {
+							// edge from cs to ts
+							addPath(directedGraph, cs, ts,sti);
+						}
 					}
 					// process conditions
 					for (ConstrainedInstanceObject ce : condcios) {
