@@ -152,8 +152,12 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 			return createDefaultAnnexSubclause();
 		case Aadlv3Package.ANNEX_LIBRARY:
 			return createAnnexLibrary();
-		case Aadlv3Package.BEHAVIOR_SPECIFICATION:
-			return createBehaviorSpecification();
+		case Aadlv3Package.ANNOTATION_BLOCK:
+			return createAnnotationBlock();
+		case Aadlv3Package.ANNOTATION:
+			return createAnnotation();
+		case Aadlv3Package.NAME_VALUE_PAIR:
+			return createNameValuePair();
 		case Aadlv3Package.STATE_TRANSITION:
 			return createStateTransition();
 		case Aadlv3Package.BEHAVIOR:
@@ -617,9 +621,31 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 	 * @generated
 	 */
 	@Override
-	public BehaviorSpecification createBehaviorSpecification() {
-		BehaviorSpecificationImpl behaviorSpecification = new BehaviorSpecificationImpl();
-		return behaviorSpecification;
+	public AnnotationBlock createAnnotationBlock() {
+		AnnotationBlockImpl annotationBlock = new AnnotationBlockImpl();
+		return annotationBlock;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Annotation createAnnotation() {
+		AnnotationImpl annotation = new AnnotationImpl();
+		return annotation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NameValuePair createNameValuePair() {
+		NameValuePairImpl nameValuePair = new NameValuePairImpl();
+		return nameValuePair;
 	}
 
 	/**

@@ -32,9 +32,8 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
-import org.osate.aadlv3.aadlv3.AnnexSubclause;
-import org.osate.aadlv3.aadlv3.Association;
 import org.osate.aadlv3.aadlv3.ClassifierAssignment;
+import org.osate.aadlv3.aadlv3.ModelElement;
 import org.osate.aadlv3.aadlv3.NamedElementReference;
 import org.osate.aadlv3.aadlv3.PropertyAssociation;
 import org.osate.aadlv3.aadlv3.TypeReference;
@@ -51,8 +50,7 @@ import org.osate.aadlv3.aadlv3.TypeReference;
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ClassifierAssignmentImpl#getClassifierAssignments <em>Classifier Assignments</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ClassifierAssignmentImpl#getAssignedClassifiers <em>Assigned Classifiers</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ClassifierAssignmentImpl#getOwnedPropertyAssociations <em>Owned Property Associations</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.ClassifierAssignmentImpl#getBindings <em>Bindings</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.ClassifierAssignmentImpl#getAnnexSubclause <em>Annex Subclause</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.ClassifierAssignmentImpl#getElements <em>Elements</em>}</li>
  * </ul>
  *
  * @generated
@@ -99,24 +97,14 @@ public class ClassifierAssignmentImpl extends MinimalEObjectImpl.Container imple
 	protected EList<PropertyAssociation> ownedPropertyAssociations;
 
 	/**
-	 * The cached value of the '{@link #getBindings() <em>Bindings</em>}' containment reference list.
+	 * The cached value of the '{@link #getElements() <em>Elements</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getBindings()
+	 * @see #getElements()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Association> bindings;
-
-	/**
-	 * The cached value of the '{@link #getAnnexSubclause() <em>Annex Subclause</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getAnnexSubclause()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<AnnexSubclause> annexSubclause;
+	protected EList<ModelElement> elements;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -237,26 +225,12 @@ public class ClassifierAssignmentImpl extends MinimalEObjectImpl.Container imple
 	 * @generated
 	 */
 	@Override
-	public EList<Association> getBindings() {
-		if (bindings == null) {
-			bindings = new EObjectContainmentEList<Association>(Association.class, this,
-					Aadlv3Package.CLASSIFIER_ASSIGNMENT__BINDINGS);
+	public EList<ModelElement> getElements() {
+		if (elements == null) {
+			elements = new EObjectContainmentEList<ModelElement>(ModelElement.class, this,
+					Aadlv3Package.CLASSIFIER_ASSIGNMENT__ELEMENTS);
 		}
-		return bindings;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<AnnexSubclause> getAnnexSubclause() {
-		if (annexSubclause == null) {
-			annexSubclause = new EObjectContainmentEList<AnnexSubclause>(AnnexSubclause.class, this,
-					Aadlv3Package.CLASSIFIER_ASSIGNMENT__ANNEX_SUBCLAUSE);
-		}
-		return annexSubclause;
+		return elements;
 	}
 
 	/**
@@ -275,10 +249,8 @@ public class ClassifierAssignmentImpl extends MinimalEObjectImpl.Container imple
 			return ((InternalEList<?>) getAssignedClassifiers()).basicRemove(otherEnd, msgs);
 		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__OWNED_PROPERTY_ASSOCIATIONS:
 			return ((InternalEList<?>) getOwnedPropertyAssociations()).basicRemove(otherEnd, msgs);
-		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__BINDINGS:
-			return ((InternalEList<?>) getBindings()).basicRemove(otherEnd, msgs);
-		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__ANNEX_SUBCLAUSE:
-			return ((InternalEList<?>) getAnnexSubclause()).basicRemove(otherEnd, msgs);
+		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__ELEMENTS:
+			return ((InternalEList<?>) getElements()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -299,10 +271,8 @@ public class ClassifierAssignmentImpl extends MinimalEObjectImpl.Container imple
 			return getAssignedClassifiers();
 		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__OWNED_PROPERTY_ASSOCIATIONS:
 			return getOwnedPropertyAssociations();
-		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__BINDINGS:
-			return getBindings();
-		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__ANNEX_SUBCLAUSE:
-			return getAnnexSubclause();
+		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__ELEMENTS:
+			return getElements();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -331,13 +301,9 @@ public class ClassifierAssignmentImpl extends MinimalEObjectImpl.Container imple
 			getOwnedPropertyAssociations().clear();
 			getOwnedPropertyAssociations().addAll((Collection<? extends PropertyAssociation>) newValue);
 			return;
-		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__BINDINGS:
-			getBindings().clear();
-			getBindings().addAll((Collection<? extends Association>) newValue);
-			return;
-		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__ANNEX_SUBCLAUSE:
-			getAnnexSubclause().clear();
-			getAnnexSubclause().addAll((Collection<? extends AnnexSubclause>) newValue);
+		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__ELEMENTS:
+			getElements().clear();
+			getElements().addAll((Collection<? extends ModelElement>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -363,11 +329,8 @@ public class ClassifierAssignmentImpl extends MinimalEObjectImpl.Container imple
 		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__OWNED_PROPERTY_ASSOCIATIONS:
 			getOwnedPropertyAssociations().clear();
 			return;
-		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__BINDINGS:
-			getBindings().clear();
-			return;
-		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__ANNEX_SUBCLAUSE:
-			getAnnexSubclause().clear();
+		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__ELEMENTS:
+			getElements().clear();
 			return;
 		}
 		super.eUnset(featureID);
@@ -389,10 +352,8 @@ public class ClassifierAssignmentImpl extends MinimalEObjectImpl.Container imple
 			return assignedClassifiers != null && !assignedClassifiers.isEmpty();
 		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__OWNED_PROPERTY_ASSOCIATIONS:
 			return ownedPropertyAssociations != null && !ownedPropertyAssociations.isEmpty();
-		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__BINDINGS:
-			return bindings != null && !bindings.isEmpty();
-		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__ANNEX_SUBCLAUSE:
-			return annexSubclause != null && !annexSubclause.isEmpty();
+		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__ELEMENTS:
+			return elements != null && !elements.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

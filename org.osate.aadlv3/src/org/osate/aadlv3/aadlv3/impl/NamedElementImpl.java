@@ -25,11 +25,10 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
+import org.osate.aadlv3.aadlv3.Annotation;
 import org.osate.aadlv3.aadlv3.NamedElement;
 import org.osate.aadlv3.aadlv3.PropertyAssociation;
 
@@ -80,14 +79,14 @@ public abstract class NamedElementImpl extends MinimalEObjectImpl.Container impl
 	protected EList<PropertyAssociation> ownedPropertyAssociations;
 
 	/**
-	 * The cached value of the '{@link #getAnnotations() <em>Annotations</em>}' attribute list.
+	 * The cached value of the '{@link #getAnnotations() <em>Annotations</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getAnnotations()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<String> annotations;
+	protected EList<Annotation> annotations;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -151,9 +150,9 @@ public abstract class NamedElementImpl extends MinimalEObjectImpl.Container impl
 	 * @generated
 	 */
 	@Override
-	public EList<String> getAnnotations() {
+	public EList<Annotation> getAnnotations() {
 		if (annotations == null) {
-			annotations = new EDataTypeUniqueEList<String>(String.class, this,
+			annotations = new EObjectContainmentEList<Annotation>(Annotation.class, this,
 					Aadlv3Package.NAMED_ELEMENT__ANNOTATIONS);
 		}
 		return annotations;
@@ -169,6 +168,8 @@ public abstract class NamedElementImpl extends MinimalEObjectImpl.Container impl
 		switch (featureID) {
 		case Aadlv3Package.NAMED_ELEMENT__OWNED_PROPERTY_ASSOCIATIONS:
 			return ((InternalEList<?>) getOwnedPropertyAssociations()).basicRemove(otherEnd, msgs);
+		case Aadlv3Package.NAMED_ELEMENT__ANNOTATIONS:
+			return ((InternalEList<?>) getAnnotations()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -209,7 +210,7 @@ public abstract class NamedElementImpl extends MinimalEObjectImpl.Container impl
 			return;
 		case Aadlv3Package.NAMED_ELEMENT__ANNOTATIONS:
 			getAnnotations().clear();
-			getAnnotations().addAll((Collection<? extends String>) newValue);
+			getAnnotations().addAll((Collection<? extends Annotation>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -267,8 +268,6 @@ public abstract class NamedElementImpl extends MinimalEObjectImpl.Container impl
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (name: ");
 		result.append(name);
-		result.append(", annotations: ");
-		result.append(annotations);
 		result.append(')');
 		return result.toString();
 	}

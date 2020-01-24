@@ -330,8 +330,18 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseBehaviorSpecification(BehaviorSpecification object) {
-			return createBehaviorSpecificationAdapter();
+		public Adapter caseAnnotationBlock(AnnotationBlock object) {
+			return createAnnotationBlockAdapter();
+		}
+
+		@Override
+		public Adapter caseAnnotation(Annotation object) {
+			return createAnnotationAdapter();
+		}
+
+		@Override
+		public Adapter caseNameValuePair(NameValuePair object) {
+			return createNameValuePairAdapter();
 		}
 
 		@Override
@@ -972,16 +982,44 @@ public class Aadlv3AdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.BehaviorSpecification <em>Behavior Specification</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.AnnotationBlock <em>Annotation Block</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.osate.aadlv3.aadlv3.BehaviorSpecification
+	 * @see org.osate.aadlv3.aadlv3.AnnotationBlock
 	 * @generated
 	 */
-	public Adapter createBehaviorSpecificationAdapter() {
+	public Adapter createAnnotationBlockAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.Annotation <em>Annotation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.osate.aadlv3.aadlv3.Annotation
+	 * @generated
+	 */
+	public Adapter createAnnotationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.osate.aadlv3.aadlv3.NameValuePair <em>Name Value Pair</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.osate.aadlv3.aadlv3.NameValuePair
+	 * @generated
+	 */
+	public Adapter createNameValuePairAdapter() {
 		return null;
 	}
 

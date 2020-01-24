@@ -26,7 +26,6 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.osate.aadlv3.aadlv3.ComponentInterface#getFeatures <em>Features</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.ComponentInterface#getUseProperties <em>Use Properties</em>}</li>
  * </ul>
  *
@@ -35,22 +34,6 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface ComponentInterface extends Classifier {
-	/**
-	 * Returns the value of the '<em><b>Features</b></em>' containment reference list.
-	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.Feature}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Features</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Features</em>' containment reference list.
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getComponentInterface_Features()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<Feature> getFeatures();
-
 	/**
 	 * Returns the value of the '<em><b>Use Properties</b></em>' reference list.
 	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.PropertySet}.

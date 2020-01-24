@@ -76,16 +76,16 @@ public interface NamedElement extends EObject {
 	EList<PropertyAssociation> getOwnedPropertyAssociations();
 
 	/**
-	 * Returns the value of the '<em><b>Annotations</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.String}.
+	 * Returns the value of the '<em><b>Annotations</b></em>' containment reference list.
+	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.Annotation}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Annotations</em>' attribute list.
+	 * @return the value of the '<em>Annotations</em>' containment reference list.
 	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getNamedElement_Annotations()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
-	EList<String> getAnnotations();
+	EList<Annotation> getAnnotations();
 
 	String getQualifiedName();
 

@@ -16,7 +16,6 @@ import org.osate.aadlv3.aadlv3.Aadlv3Factory
 import org.osate.aadlv3.aadlv3.AnnexSubclause
 import org.osate.aadlv3.aadlv3.Association
 import org.osate.aadlv3.aadlv3.AssociationType
-import org.osate.aadlv3.aadlv3.BehaviorSpecification
 import org.osate.aadlv3.aadlv3.Classifier
 import org.osate.aadlv3.aadlv3.ClassifierAssignment
 import org.osate.aadlv3.aadlv3.ClassifierAssignmentPattern
@@ -54,6 +53,9 @@ import org.osate.aadlv3.aadlv3.StateVariable
 import org.osate.aadlv3.aadlv3.Behavior
 import org.osate.aadlv3.aadlv3.StateTransition
 import org.osate.av3instance.av3instance.InstanceObject
+import org.osate.aadlv3.aadlv3.AnnotationBlock
+import org.osate.aadlv3.aadlv3.Annotation
+import java.util.List
 
 class Aadlv3Util {
 	
@@ -366,7 +368,7 @@ class Aadlv3Util {
 		} else {
 			// flow paths from classifier
 			val cls = conftrs.allClassifiers
-			return cls.map[cl|cl.eContents.typeSelect(PathSequence)].flatten.filter[ps|ps.isEndToEndFlow]
+			return cls.map[cl|cl.allElementsOfType(PathSequence)].flatten.filter[ps|ps.isEndToEndFlow]
 		}
 	}
 
@@ -382,16 +384,8 @@ class Aadlv3Util {
 		} else {
 			// flow implementation from classifier
 			val cls = conftrs.allClassifiers
-			return cls.map[cl|cl.eContents.typeSelect(PathSequence)].flatten.filter[ps|ps.isFlowAssignment]
+			return cls.map[cl|cl.allElementsOfType(PathSequence)].flatten.filter[ps|ps.isFlowAssignment]
 		}
-	}
-
-	/**
-	 * return collection of features of a component.
-	 * These are features declared as part of the classifier or as part of the nested declaration
-	 */
-	static def Iterable<AnnexSubclause> getAllSubclauses(Iterable<TypeReference> trs) {
-		return trs.map[cif|cif.eContents.typeSelect(AnnexSubclause)].flatten
 	}
 
 
@@ -417,12 +411,18 @@ class Aadlv3Util {
 	static def Iterable<Feature> getAllFeatures(Iterable<TypeReference> trs) {
 		// features from classifier
 		val cls = trs.allClassifiers
-		return cls.filter[ccl|ccl instanceof ComponentInterface].map[cif|cif.eContents.typeSelect(Feature)].flatten
+		return cls.filter[ccl|ccl instanceof ComponentInterface].map[cif|cif.allElementsOfType(Feature)].flatten
 	}
 	static def Iterable<Feature> getAllFeatures(Classifier cl) {
 		// features from classifier
 		val cls = cl.allClassifiers
-		return cls.filter[ccl|ccl instanceof ComponentInterface].map[cif|cif.eContents.typeSelect(Feature)].flatten
+		return cls.filter[ccl|ccl instanceof ComponentInterface].map[cif|cif.allElementsOfType(Feature)].flatten
+	}
+	
+	static def Iterable<Association> getAllBindings(Classifier cl) {
+		// bindings from classifier
+		val cls = cl.allClassifiers
+		return cls.filter[ccl|ccl instanceof ComponentInterface].map[cif|cif.allElementsOfType(Association)].flatten.filter[bind| bind.associationType.isBinding ]
 	}
 	
 	static def boolean contains(Iterable <Feature> feas, Feature f){
@@ -441,20 +441,20 @@ class Aadlv3Util {
 		Aadlv3Util.isReverseFeature(features,f, false)
 	}
 	
-	static def boolean isReverseFeature(Iterable<Feature> features, Feature f, boolean reverse){
-		for (fea : features) {
+	static def boolean isReverseFeature(Iterable<Feature> modelElements, Feature f, boolean reverse) {
+		for (fea : modelElements) {
 			val typ = fea?.typeReference?.type
-			if(typ instanceof ComponentInterface){
-				if (typ.features.contains(f)){
-					val doreverse = if (reverse) !fea?.typeReference?.reverse else fea?.typeReference?.reverse
+			if (typ instanceof ComponentInterface) {
+				if (typ.elements.contains(f)) {
+					val doreverse = if(reverse) !fea?.typeReference?.reverse else fea?.typeReference?.reverse
 					return doreverse
 				}
 			}
 		}
-		for (fea : features) {
+		for (fea : modelElements) {
 			val typ = fea?.typeReference?.type
 			if (typ instanceof ComponentInterface) {
-				val res = Aadlv3Util.isReverseFeature(typ.features, f, reverse)
+				val res = Aadlv3Util.isReverseFeature(typ.allFeatures, f, reverse)
 				val doreverse = if(reverse) !res else res
 				return doreverse
 			}
@@ -481,6 +481,12 @@ class Aadlv3Util {
 				}
 				return if (doReverse) reverseDirection(fd) else fd
 			}
+		} else if (fea instanceof Subcomponent){
+			if (fea.getCategory() === ComponentCategory.DATA){
+				return FeatureDirection.PROVIDESINOUT
+			} else {
+				return FeatureDirection.PROVIDES
+			}
 		}
 		FeatureDirection.NONE
 	}
@@ -494,7 +500,7 @@ class Aadlv3Util {
 		// features from classifier
 		val cls = cl.allClassifiers
 		if (cls.empty) return Collections.EMPTY_LIST
-		return cls.filter[ccl|ccl instanceof ComponentImplementation].map[cif|cif.eContents.typeSelect(Subcomponent)].flatten
+		return cls.filter[ccl|ccl instanceof ComponentImplementation].map[cif|cif.allElementsOfType(Subcomponent)].flatten
 	}
 	
 	static def Iterable<Subcomponent> getAllSubcomponents(Iterable<TypeReference> trs, Subcomponent component) {
@@ -508,7 +514,7 @@ class Aadlv3Util {
 			// subcomponents from classifier
 			val cls = trs.allClassifiers
 			if (cls.empty) return Collections.EMPTY_LIST
-			return cls.map[cl|cl.eContents.typeSelect(Subcomponent)].flatten
+			return cls.map[cl|cl.allElementsOfType(Subcomponent)].flatten
 		}
 	}
 
@@ -523,7 +529,7 @@ class Aadlv3Util {
 		} else {
 			val cls = conftrs.allClassifiers
 			if (cls.empty) return Collections.EMPTY_LIST
-			return cls.map[cl|cl.eContents.typeSelect(Association)].flatten
+			return cls.map[cl|cl.allElementsOfType(Association)].flatten
 		}
 	}
 
@@ -539,7 +545,7 @@ class Aadlv3Util {
 		} else {
 			val cls = conftrs.allClassifiers
 			if (cls.empty) return Collections.EMPTY_LIST
-			return cls.map[cl|cl.eContents.typeSelect(Generator)].flatten
+			return cls.map[cl|cl.allElementsOfType(Generator)].flatten
 		}
 	}
 
@@ -554,7 +560,7 @@ class Aadlv3Util {
 		} else {
 			val cls = conftrs.allClassifiers
 			if (cls.empty) return Collections.EMPTY_LIST
-			return cls.map[cl|cl.eContents.typeSelect(StateVariable)].flatten
+			return cls.map[cl|cl.allElementsOfType(StateVariable)].flatten
 		}
 	}
 	/**
@@ -568,7 +574,7 @@ class Aadlv3Util {
 		} else {
 			val cls = conftrs.allClassifiers
 			if (cls.empty) return Collections.EMPTY_LIST
-			return cls.map[cl|cl.eContents.typeSelect(Behavior)].flatten
+			return cls.map[cl|cl.allElementsOfType(Behavior)].flatten
 		}
 	}
 	/**
@@ -582,7 +588,7 @@ class Aadlv3Util {
 		} else {
 			val cls = conftrs.allClassifiers
 			if (cls.empty) return Collections.EMPTY_LIST
-			return cls.map[cl|cl.eContents.typeSelect(StateTransition)].flatten
+			return cls.map[cl|cl.allElementsOfType(StateTransition)].flatten
 		}
 	}
 	
@@ -872,11 +878,11 @@ class Aadlv3Util {
 	
 	static def Iterable<ModelElement> getAllModelElements(Classifier cl) {
 		if(cl === null) return Collections.EMPTY_LIST
-		cl.allClassifiers.map[cif|cif.eContents.typeSelect(ModelElement)].flatten
+		cl.allClassifiers.map[cif|cif.allElementsOfType(ModelElement)].flatten
 	}
 
 	static def Iterable<ModelElement> getAllModelElements(Iterable<TypeReference> trs) {
-		trs.allClassifiers.map[cif|cif.eContents.typeSelect(ModelElement)].flatten
+		trs.allClassifiers.map[cif|cif.allElementsOfType(ModelElement)].flatten
 	}
 
 
@@ -887,7 +893,7 @@ class Aadlv3Util {
 	static def Iterable<ModelElement> getAllModelElements(Subcomponent comp) {
 		if (comp.typeReferences.empty || comp.typeReferences.isTypeDef){
 			// model elements in nested declaration
-			return comp.eContents.typeSelect(ModelElement)
+			return comp.allElementsOfType(ModelElement)
 		} else {
 			return getAllModelElements(comp.typeReferences)
 		}
@@ -947,7 +953,7 @@ class Aadlv3Util {
 	}
 	
 	def static boolean isOutgoingDirectionalAccess(FeatureDirection fd){
-		fd == FeatureDirection.PROVIDESIN || fd == FeatureDirection.REQUIRESINOUT 
+		fd == FeatureDirection.PROVIDESIN || fd == FeatureDirection.REQUIRESINOUT || fd == FeatureDirection.PROVIDESINOUT 
 		|| fd == FeatureDirection.REQUIRESOUT 
 	}
 	
@@ -972,7 +978,7 @@ class Aadlv3Util {
 	}
 	
 	def static boolean isIncomingDirectionalAccess(FeatureDirection fd){
-		fd == FeatureDirection.PROVIDESOUT  
+		fd == FeatureDirection.PROVIDESOUT  || fd == FeatureDirection.REQUIRESINOUT
 		|| fd == FeatureDirection.REQUIRESIN || fd == FeatureDirection.PROVIDESINOUT
 	}
 	
@@ -1146,14 +1152,6 @@ class Aadlv3Util {
 			cxt = cxt.eContainer as EObject
 		}
 		return cxt as AnnexSubclause
-	}
-	// returns the enclosing annex subclause. 
-	def static BehaviorSpecification getContainingBehaviorSpecification(EObject elem) {
-		var cxt = elem 
-		while (cxt !== null && !(cxt instanceof BehaviorSpecification)) {
-			cxt = cxt.eContainer as EObject
-		}
-		return cxt as BehaviorSpecification
 	}
 
 	
@@ -1597,6 +1595,38 @@ class Aadlv3Util {
 	
 	def static String getName(TypeReference type){
 		type.type.name
+	}
+	
+	def static boolean hasAnnotation(NamedElement ne, String annotationName) {
+		if (ne.annotations.exists[an|an.name == annotationName]) {
+			return true;
+		}
+		val ab = ne.eContainer
+		if (ab instanceof AnnotationBlock) {
+			if (ab.annotations.exists[an|an.name == annotationName]) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	
+	def static Iterable <Annotation> getAllAnnotations(NamedElement ne) {
+		val ab = ne.eContainer
+		if (ab instanceof AnnotationBlock) {
+			return ab.annotations + ne.annotations
+		} else {
+			return ne.annotations
+		}
+	}
+	
+	def static <T extends EObject> Iterable<T> allElementsOfType(Classifier cl, Class<T> type){
+		cl.eContents.typeSelect(type) + cl.eContents.typeSelect(AnnotationBlock).map[ab|ab.eContents.typeSelect(type)].flatten
+	}
+	
+	// model elements declared nested in a subcomponent declaration
+	def static <T extends EObject> Iterable<T> allElementsOfType(Subcomponent sub, Class<T> type){
+		sub.eContents.typeSelect(type) + sub.eContents.typeSelect(AnnotationBlock).map[ab|ab.eContents.typeSelect(type)].flatten
 	}
 	
 

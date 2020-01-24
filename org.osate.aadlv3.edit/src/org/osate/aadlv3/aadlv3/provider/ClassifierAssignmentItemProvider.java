@@ -87,8 +87,7 @@ public class ClassifierAssignmentItemProvider extends ItemProviderAdapter implem
 			childrenFeatures.add(Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__CLASSIFIER_ASSIGNMENTS);
 			childrenFeatures.add(Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__ASSIGNED_CLASSIFIERS);
 			childrenFeatures.add(Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__OWNED_PROPERTY_ASSOCIATIONS);
-			childrenFeatures.add(Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__BINDINGS);
-			childrenFeatures.add(Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__ANNEX_SUBCLAUSE);
+			childrenFeatures.add(Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__ELEMENTS);
 		}
 		return childrenFeatures;
 	}
@@ -144,8 +143,7 @@ public class ClassifierAssignmentItemProvider extends ItemProviderAdapter implem
 		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__CLASSIFIER_ASSIGNMENTS:
 		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__ASSIGNED_CLASSIFIERS:
 		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__OWNED_PROPERTY_ASSOCIATIONS:
-		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__BINDINGS:
-		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__ANNEX_SUBCLAUSE:
+		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__ELEMENTS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -184,14 +182,38 @@ public class ClassifierAssignmentItemProvider extends ItemProviderAdapter implem
 				.add(createChildParameter(Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__OWNED_PROPERTY_ASSOCIATIONS,
 						Aadlv3Factory.eINSTANCE.createPropertyAssociation()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__BINDINGS,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__ELEMENTS,
+				Aadlv3Factory.eINSTANCE.createFeature()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__ELEMENTS,
+				Aadlv3Factory.eINSTANCE.createSubcomponent()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__ELEMENTS,
 				Aadlv3Factory.eINSTANCE.createAssociation()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__ANNEX_SUBCLAUSE,
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__ELEMENTS,
+				Aadlv3Factory.eINSTANCE.createPathSequence()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__ELEMENTS,
+				Aadlv3Factory.eINSTANCE.createInstanceConfiguration()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__ELEMENTS,
 				Aadlv3Factory.eINSTANCE.createDefaultAnnexSubclause()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__ANNEX_SUBCLAUSE,
-				Aadlv3Factory.eINSTANCE.createBehaviorSpecification()));
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__ELEMENTS,
+				Aadlv3Factory.eINSTANCE.createAnnotationBlock()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__ELEMENTS,
+				Aadlv3Factory.eINSTANCE.createStateTransition()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__ELEMENTS,
+				Aadlv3Factory.eINSTANCE.createBehavior()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__ELEMENTS,
+				Aadlv3Factory.eINSTANCE.createStateVariable()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__ELEMENTS,
+				Aadlv3Factory.eINSTANCE.createGenerator()));
 	}
 
 	/**

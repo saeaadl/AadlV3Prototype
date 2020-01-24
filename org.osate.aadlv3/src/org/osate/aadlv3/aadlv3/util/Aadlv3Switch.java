@@ -655,15 +655,27 @@ public class Aadlv3Switch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case Aadlv3Package.BEHAVIOR_SPECIFICATION: {
-			BehaviorSpecification behaviorSpecification = (BehaviorSpecification) theEObject;
-			T result = caseBehaviorSpecification(behaviorSpecification);
+		case Aadlv3Package.ANNOTATION_BLOCK: {
+			AnnotationBlock annotationBlock = (AnnotationBlock) theEObject;
+			T result = caseAnnotationBlock(annotationBlock);
 			if (result == null)
-				result = caseAnnexSubclause(behaviorSpecification);
+				result = caseModelElement(annotationBlock);
 			if (result == null)
-				result = caseModelElement(behaviorSpecification);
+				result = caseNamedElement(annotationBlock);
 			if (result == null)
-				result = caseNamedElement(behaviorSpecification);
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Aadlv3Package.ANNOTATION: {
+			Annotation annotation = (Annotation) theEObject;
+			T result = caseAnnotation(annotation);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Aadlv3Package.NAME_VALUE_PAIR: {
+			NameValuePair nameValuePair = (NameValuePair) theEObject;
+			T result = caseNameValuePair(nameValuePair);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -1372,17 +1384,47 @@ public class Aadlv3Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Behavior Specification</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Annotation Block</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Behavior Specification</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Annotation Block</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseBehaviorSpecification(BehaviorSpecification object) {
+	public T caseAnnotationBlock(AnnotationBlock object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Annotation</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Annotation</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAnnotation(Annotation object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Name Value Pair</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Name Value Pair</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNameValuePair(NameValuePair object) {
 		return null;
 	}
 

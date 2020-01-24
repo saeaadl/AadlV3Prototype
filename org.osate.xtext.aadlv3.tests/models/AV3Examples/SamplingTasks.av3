@@ -32,7 +32,7 @@
      ISOSConn: connection  External_Samples -> Init_Samples.OrigSet ; 
      CSSSConn: connection Collect_Samples.SampleSet -> Samples;
      CSISConn: connection Input_Sample -> Collect_Samples.Input_Sample;
-     DSSConn: connection  Samples -> Distribute.SampleSet ;
+     DSSConn: connection Samples -> Distribute.SampleSet ;
      DUSConn: connection Distribute.UpdatedSamples -> Result_Sample ;
    end;
 

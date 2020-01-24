@@ -181,7 +181,8 @@ public class NamedElementItemProvider extends ItemProviderAdapter implements IEd
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.NAMED_ELEMENT__OWNED_PROPERTY_ASSOCIATIONS,
 				Aadlv3Factory.eINSTANCE.createPropertyAssociation()));
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.NAMED_ELEMENT__ANNOTATIONS, ""));
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.NAMED_ELEMENT__ANNOTATIONS,
+				Aadlv3Factory.eINSTANCE.createAnnotation()));
 	}
 
 	/**

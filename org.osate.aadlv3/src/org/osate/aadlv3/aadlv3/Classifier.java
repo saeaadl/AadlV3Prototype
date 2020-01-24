@@ -28,11 +28,7 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.Classifier#getCategory <em>Category</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.Classifier#getSuperClassifiers <em>Super Classifiers</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.Classifier#getTransitions <em>Transitions</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.Classifier#getBehaviors <em>Behaviors</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.Classifier#getStateVariables <em>State Variables</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.Classifier#getGenerators <em>Generators</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.Classifier#getAnnexSubclause <em>Annex Subclause</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.Classifier#getElements <em>Elements</em>}</li>
  * </ul>
  *
  * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getClassifier()
@@ -79,63 +75,15 @@ public interface Classifier extends NamedType {
 	EList<TypeReference> getSuperClassifiers();
 
 	/**
-	 * Returns the value of the '<em><b>Transitions</b></em>' containment reference list.
-	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.StateTransition}.
+	 * Returns the value of the '<em><b>Elements</b></em>' containment reference list.
+	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.ModelElement}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Transitions</em>' containment reference list.
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getClassifier_Transitions()
+	 * @return the value of the '<em>Elements</em>' containment reference list.
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getClassifier_Elements()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<StateTransition> getTransitions();
-
-	/**
-	 * Returns the value of the '<em><b>Behaviors</b></em>' containment reference list.
-	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.Behavior}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Behaviors</em>' containment reference list.
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getClassifier_Behaviors()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<Behavior> getBehaviors();
-
-	/**
-	 * Returns the value of the '<em><b>State Variables</b></em>' containment reference list.
-	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.StateVariable}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>State Variables</em>' containment reference list.
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getClassifier_StateVariables()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<StateVariable> getStateVariables();
-
-	/**
-	 * Returns the value of the '<em><b>Generators</b></em>' containment reference list.
-	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.Generator}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Generators</em>' containment reference list.
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getClassifier_Generators()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<Generator> getGenerators();
-
-	/**
-	 * Returns the value of the '<em><b>Annex Subclause</b></em>' containment reference list.
-	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.AnnexSubclause}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Annex Subclause</em>' containment reference list.
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getClassifier_AnnexSubclause()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<AnnexSubclause> getAnnexSubclause();
+	EList<ModelElement> getElements();
 
 } // Classifier

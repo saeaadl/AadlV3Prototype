@@ -868,26 +868,72 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.BehaviorSpecification} instances.
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.AnnotationBlock} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected BehaviorSpecificationItemProvider behaviorSpecificationItemProvider;
+	protected AnnotationBlockItemProvider annotationBlockItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.BehaviorSpecification}.
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.AnnotationBlock}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createBehaviorSpecificationAdapter() {
-		if (behaviorSpecificationItemProvider == null) {
-			behaviorSpecificationItemProvider = new BehaviorSpecificationItemProvider(this);
+	public Adapter createAnnotationBlockAdapter() {
+		if (annotationBlockItemProvider == null) {
+			annotationBlockItemProvider = new AnnotationBlockItemProvider(this);
 		}
 
-		return behaviorSpecificationItemProvider;
+		return annotationBlockItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.Annotation} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AnnotationItemProvider annotationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.Annotation}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createAnnotationAdapter() {
+		if (annotationItemProvider == null) {
+			annotationItemProvider = new AnnotationItemProvider(this);
+		}
+
+		return annotationItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.NameValuePair} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected NameValuePairItemProvider nameValuePairItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.NameValuePair}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createNameValuePairAdapter() {
+		if (nameValuePairItemProvider == null) {
+			nameValuePairItemProvider = new NameValuePairItemProvider(this);
+		}
+
+		return nameValuePairItemProvider;
 	}
 
 	/**
@@ -1376,8 +1422,12 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 			defaultAnnexSubclauseItemProvider.dispose();
 		if (annexLibraryItemProvider != null)
 			annexLibraryItemProvider.dispose();
-		if (behaviorSpecificationItemProvider != null)
-			behaviorSpecificationItemProvider.dispose();
+		if (annotationBlockItemProvider != null)
+			annotationBlockItemProvider.dispose();
+		if (annotationItemProvider != null)
+			annotationItemProvider.dispose();
+		if (nameValuePairItemProvider != null)
+			nameValuePairItemProvider.dispose();
 		if (stateTransitionItemProvider != null)
 			stateTransitionItemProvider.dispose();
 		if (behaviorItemProvider != null)

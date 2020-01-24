@@ -16,16 +16,19 @@
 package org.osate.aadlv3.aadlv3.impl;
 
 import java.util.Collection;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
+import org.osate.aadlv3.aadlv3.AnnotationBlock;
 import org.osate.aadlv3.aadlv3.Import;
 import org.osate.aadlv3.aadlv3.PackageDeclaration;
 import org.osate.aadlv3.aadlv3.PackageElement;
@@ -40,6 +43,7 @@ import org.osate.aadlv3.aadlv3.PackageElement;
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.PackageDeclarationImpl#getImports <em>Imports</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.PackageDeclarationImpl#getElements <em>Elements</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.PackageDeclarationImpl#getAnnotationBlocks <em>Annotation Blocks</em>}</li>
  * </ul>
  *
  * @generated
@@ -64,6 +68,16 @@ public class PackageDeclarationImpl extends PackageElementImpl implements Packag
 	 * @ordered
 	 */
 	protected EList<PackageElement> elements;
+
+	/**
+	 * The cached value of the '{@link #getAnnotationBlocks() <em>Annotation Blocks</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAnnotationBlocks()
+	 * @generated
+	 * @ordered
+	 */
+	protected AnnotationBlock annotationBlocks;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -118,12 +132,66 @@ public class PackageDeclarationImpl extends PackageElementImpl implements Packag
 	 * @generated
 	 */
 	@Override
+	public AnnotationBlock getAnnotationBlocks() {
+		return annotationBlocks;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetAnnotationBlocks(AnnotationBlock newAnnotationBlocks, NotificationChain msgs) {
+		AnnotationBlock oldAnnotationBlocks = annotationBlocks;
+		annotationBlocks = newAnnotationBlocks;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					Aadlv3Package.PACKAGE_DECLARATION__ANNOTATION_BLOCKS, oldAnnotationBlocks, newAnnotationBlocks);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setAnnotationBlocks(AnnotationBlock newAnnotationBlocks) {
+		if (newAnnotationBlocks != annotationBlocks) {
+			NotificationChain msgs = null;
+			if (annotationBlocks != null)
+				msgs = ((InternalEObject) annotationBlocks).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE - Aadlv3Package.PACKAGE_DECLARATION__ANNOTATION_BLOCKS, null, msgs);
+			if (newAnnotationBlocks != null)
+				msgs = ((InternalEObject) newAnnotationBlocks).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE - Aadlv3Package.PACKAGE_DECLARATION__ANNOTATION_BLOCKS, null, msgs);
+			msgs = basicSetAnnotationBlocks(newAnnotationBlocks, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.PACKAGE_DECLARATION__ANNOTATION_BLOCKS,
+					newAnnotationBlocks, newAnnotationBlocks));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case Aadlv3Package.PACKAGE_DECLARATION__IMPORTS:
 			return ((InternalEList<?>) getImports()).basicRemove(otherEnd, msgs);
 		case Aadlv3Package.PACKAGE_DECLARATION__ELEMENTS:
 			return ((InternalEList<?>) getElements()).basicRemove(otherEnd, msgs);
+		case Aadlv3Package.PACKAGE_DECLARATION__ANNOTATION_BLOCKS:
+			return basicSetAnnotationBlocks(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -140,6 +208,8 @@ public class PackageDeclarationImpl extends PackageElementImpl implements Packag
 			return getImports();
 		case Aadlv3Package.PACKAGE_DECLARATION__ELEMENTS:
 			return getElements();
+		case Aadlv3Package.PACKAGE_DECLARATION__ANNOTATION_BLOCKS:
+			return getAnnotationBlocks();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -161,6 +231,9 @@ public class PackageDeclarationImpl extends PackageElementImpl implements Packag
 			getElements().clear();
 			getElements().addAll((Collection<? extends PackageElement>) newValue);
 			return;
+		case Aadlv3Package.PACKAGE_DECLARATION__ANNOTATION_BLOCKS:
+			setAnnotationBlocks((AnnotationBlock) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -179,6 +252,9 @@ public class PackageDeclarationImpl extends PackageElementImpl implements Packag
 		case Aadlv3Package.PACKAGE_DECLARATION__ELEMENTS:
 			getElements().clear();
 			return;
+		case Aadlv3Package.PACKAGE_DECLARATION__ANNOTATION_BLOCKS:
+			setAnnotationBlocks((AnnotationBlock) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -195,6 +271,8 @@ public class PackageDeclarationImpl extends PackageElementImpl implements Packag
 			return imports != null && !imports.isEmpty();
 		case Aadlv3Package.PACKAGE_DECLARATION__ELEMENTS:
 			return elements != null && !elements.isEmpty();
+		case Aadlv3Package.PACKAGE_DECLARATION__ANNOTATION_BLOCKS:
+			return annotationBlocks != null;
 		}
 		return super.eIsSet(featureID);
 	}

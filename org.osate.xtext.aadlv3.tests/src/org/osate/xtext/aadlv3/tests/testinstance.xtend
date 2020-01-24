@@ -73,7 +73,7 @@ class testinstance extends XtextTest{
 			assertEquals(elements.size, 14)
 			elements.get(9) as ComponentInterface => [
 				assertError(testFileResult.issues, issueCollection, "Duplicate model element with name name")
-				features.get(0) => [
+				elements.get(0) => [
 					"name".assertEquals(name)
 					assertError(testFileResult.issues, issueCollection, "Duplicate model element with name name")
 				]

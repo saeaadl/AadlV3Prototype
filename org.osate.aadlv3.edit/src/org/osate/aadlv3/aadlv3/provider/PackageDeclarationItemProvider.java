@@ -75,6 +75,7 @@ public class PackageDeclarationItemProvider extends PackageElementItemProvider {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(Aadlv3Package.Literals.PACKAGE_DECLARATION__IMPORTS);
 			childrenFeatures.add(Aadlv3Package.Literals.PACKAGE_DECLARATION__ELEMENTS);
+			childrenFeatures.add(Aadlv3Package.Literals.PACKAGE_DECLARATION__ANNOTATION_BLOCKS);
 		}
 		return childrenFeatures;
 	}
@@ -130,6 +131,7 @@ public class PackageDeclarationItemProvider extends PackageElementItemProvider {
 		switch (notification.getFeatureID(PackageDeclaration.class)) {
 		case Aadlv3Package.PACKAGE_DECLARATION__IMPORTS:
 		case Aadlv3Package.PACKAGE_DECLARATION__ELEMENTS:
+		case Aadlv3Package.PACKAGE_DECLARATION__ANNOTATION_BLOCKS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -185,6 +187,9 @@ public class PackageDeclarationItemProvider extends PackageElementItemProvider {
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PACKAGE_DECLARATION__ELEMENTS,
 				Aadlv3Factory.eINSTANCE.createConstant()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.PACKAGE_DECLARATION__ANNOTATION_BLOCKS,
+				Aadlv3Factory.eINSTANCE.createAnnotationBlock()));
 	}
 
 }

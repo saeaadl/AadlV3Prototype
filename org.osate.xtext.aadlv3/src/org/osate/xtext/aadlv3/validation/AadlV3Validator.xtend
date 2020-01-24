@@ -939,7 +939,7 @@ class AadlV3Validator extends AbstractAadlV3Validator {
 
 	def checkPattern(ComponentConfiguration config) {
 		if (config.superClassifiers.empty) {
-			if (!config.classifierAssignments.empty && !config.bindings.empty)
+			if (!config.classifierAssignments.empty && !config.allBindings.empty)
 				error('Configurations without extend must only contain configuration assignment patterns', config,
 					Aadlv3Package.Literals.COMPONENT_REALIZATION__CLASSIFIER_ASSIGNMENTS, ConfigurationPattern)
 		}

@@ -31,13 +31,9 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
-import org.osate.aadlv3.aadlv3.AnnexSubclause;
-import org.osate.aadlv3.aadlv3.Behavior;
 import org.osate.aadlv3.aadlv3.Classifier;
 import org.osate.aadlv3.aadlv3.ComponentCategory;
-import org.osate.aadlv3.aadlv3.Generator;
-import org.osate.aadlv3.aadlv3.StateTransition;
-import org.osate.aadlv3.aadlv3.StateVariable;
+import org.osate.aadlv3.aadlv3.ModelElement;
 import org.osate.aadlv3.aadlv3.TypeReference;
 
 /**
@@ -50,11 +46,7 @@ import org.osate.aadlv3.aadlv3.TypeReference;
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ClassifierImpl#getCategory <em>Category</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ClassifierImpl#getSuperClassifiers <em>Super Classifiers</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.ClassifierImpl#getTransitions <em>Transitions</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.ClassifierImpl#getBehaviors <em>Behaviors</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.ClassifierImpl#getStateVariables <em>State Variables</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.ClassifierImpl#getGenerators <em>Generators</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.ClassifierImpl#getAnnexSubclause <em>Annex Subclause</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.ClassifierImpl#getElements <em>Elements</em>}</li>
  * </ul>
  *
  * @generated
@@ -91,54 +83,14 @@ public abstract class ClassifierImpl extends NamedTypeImpl implements Classifier
 	protected EList<TypeReference> superClassifiers;
 
 	/**
-	 * The cached value of the '{@link #getTransitions() <em>Transitions</em>}' containment reference list.
+	 * The cached value of the '{@link #getElements() <em>Elements</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTransitions()
+	 * @see #getElements()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<StateTransition> transitions;
-
-	/**
-	 * The cached value of the '{@link #getBehaviors() <em>Behaviors</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getBehaviors()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Behavior> behaviors;
-
-	/**
-	 * The cached value of the '{@link #getStateVariables() <em>State Variables</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getStateVariables()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<StateVariable> stateVariables;
-
-	/**
-	 * The cached value of the '{@link #getGenerators() <em>Generators</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getGenerators()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Generator> generators;
-
-	/**
-	 * The cached value of the '{@link #getAnnexSubclause() <em>Annex Subclause</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getAnnexSubclause()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<AnnexSubclause> annexSubclause;
+	protected EList<ModelElement> elements;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -203,68 +155,12 @@ public abstract class ClassifierImpl extends NamedTypeImpl implements Classifier
 	 * @generated
 	 */
 	@Override
-	public EList<StateTransition> getTransitions() {
-		if (transitions == null) {
-			transitions = new EObjectContainmentEList<StateTransition>(StateTransition.class, this,
-					Aadlv3Package.CLASSIFIER__TRANSITIONS);
+	public EList<ModelElement> getElements() {
+		if (elements == null) {
+			elements = new EObjectContainmentEList<ModelElement>(ModelElement.class, this,
+					Aadlv3Package.CLASSIFIER__ELEMENTS);
 		}
-		return transitions;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<Behavior> getBehaviors() {
-		if (behaviors == null) {
-			behaviors = new EObjectContainmentEList<Behavior>(Behavior.class, this,
-					Aadlv3Package.CLASSIFIER__BEHAVIORS);
-		}
-		return behaviors;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<StateVariable> getStateVariables() {
-		if (stateVariables == null) {
-			stateVariables = new EObjectContainmentEList<StateVariable>(StateVariable.class, this,
-					Aadlv3Package.CLASSIFIER__STATE_VARIABLES);
-		}
-		return stateVariables;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<Generator> getGenerators() {
-		if (generators == null) {
-			generators = new EObjectContainmentEList<Generator>(Generator.class, this,
-					Aadlv3Package.CLASSIFIER__GENERATORS);
-		}
-		return generators;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<AnnexSubclause> getAnnexSubclause() {
-		if (annexSubclause == null) {
-			annexSubclause = new EObjectContainmentEList<AnnexSubclause>(AnnexSubclause.class, this,
-					Aadlv3Package.CLASSIFIER__ANNEX_SUBCLAUSE);
-		}
-		return annexSubclause;
+		return elements;
 	}
 
 	/**
@@ -277,16 +173,8 @@ public abstract class ClassifierImpl extends NamedTypeImpl implements Classifier
 		switch (featureID) {
 		case Aadlv3Package.CLASSIFIER__SUPER_CLASSIFIERS:
 			return ((InternalEList<?>) getSuperClassifiers()).basicRemove(otherEnd, msgs);
-		case Aadlv3Package.CLASSIFIER__TRANSITIONS:
-			return ((InternalEList<?>) getTransitions()).basicRemove(otherEnd, msgs);
-		case Aadlv3Package.CLASSIFIER__BEHAVIORS:
-			return ((InternalEList<?>) getBehaviors()).basicRemove(otherEnd, msgs);
-		case Aadlv3Package.CLASSIFIER__STATE_VARIABLES:
-			return ((InternalEList<?>) getStateVariables()).basicRemove(otherEnd, msgs);
-		case Aadlv3Package.CLASSIFIER__GENERATORS:
-			return ((InternalEList<?>) getGenerators()).basicRemove(otherEnd, msgs);
-		case Aadlv3Package.CLASSIFIER__ANNEX_SUBCLAUSE:
-			return ((InternalEList<?>) getAnnexSubclause()).basicRemove(otherEnd, msgs);
+		case Aadlv3Package.CLASSIFIER__ELEMENTS:
+			return ((InternalEList<?>) getElements()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -303,16 +191,8 @@ public abstract class ClassifierImpl extends NamedTypeImpl implements Classifier
 			return getCategory();
 		case Aadlv3Package.CLASSIFIER__SUPER_CLASSIFIERS:
 			return getSuperClassifiers();
-		case Aadlv3Package.CLASSIFIER__TRANSITIONS:
-			return getTransitions();
-		case Aadlv3Package.CLASSIFIER__BEHAVIORS:
-			return getBehaviors();
-		case Aadlv3Package.CLASSIFIER__STATE_VARIABLES:
-			return getStateVariables();
-		case Aadlv3Package.CLASSIFIER__GENERATORS:
-			return getGenerators();
-		case Aadlv3Package.CLASSIFIER__ANNEX_SUBCLAUSE:
-			return getAnnexSubclause();
+		case Aadlv3Package.CLASSIFIER__ELEMENTS:
+			return getElements();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -333,25 +213,9 @@ public abstract class ClassifierImpl extends NamedTypeImpl implements Classifier
 			getSuperClassifiers().clear();
 			getSuperClassifiers().addAll((Collection<? extends TypeReference>) newValue);
 			return;
-		case Aadlv3Package.CLASSIFIER__TRANSITIONS:
-			getTransitions().clear();
-			getTransitions().addAll((Collection<? extends StateTransition>) newValue);
-			return;
-		case Aadlv3Package.CLASSIFIER__BEHAVIORS:
-			getBehaviors().clear();
-			getBehaviors().addAll((Collection<? extends Behavior>) newValue);
-			return;
-		case Aadlv3Package.CLASSIFIER__STATE_VARIABLES:
-			getStateVariables().clear();
-			getStateVariables().addAll((Collection<? extends StateVariable>) newValue);
-			return;
-		case Aadlv3Package.CLASSIFIER__GENERATORS:
-			getGenerators().clear();
-			getGenerators().addAll((Collection<? extends Generator>) newValue);
-			return;
-		case Aadlv3Package.CLASSIFIER__ANNEX_SUBCLAUSE:
-			getAnnexSubclause().clear();
-			getAnnexSubclause().addAll((Collection<? extends AnnexSubclause>) newValue);
+		case Aadlv3Package.CLASSIFIER__ELEMENTS:
+			getElements().clear();
+			getElements().addAll((Collection<? extends ModelElement>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -371,20 +235,8 @@ public abstract class ClassifierImpl extends NamedTypeImpl implements Classifier
 		case Aadlv3Package.CLASSIFIER__SUPER_CLASSIFIERS:
 			getSuperClassifiers().clear();
 			return;
-		case Aadlv3Package.CLASSIFIER__TRANSITIONS:
-			getTransitions().clear();
-			return;
-		case Aadlv3Package.CLASSIFIER__BEHAVIORS:
-			getBehaviors().clear();
-			return;
-		case Aadlv3Package.CLASSIFIER__STATE_VARIABLES:
-			getStateVariables().clear();
-			return;
-		case Aadlv3Package.CLASSIFIER__GENERATORS:
-			getGenerators().clear();
-			return;
-		case Aadlv3Package.CLASSIFIER__ANNEX_SUBCLAUSE:
-			getAnnexSubclause().clear();
+		case Aadlv3Package.CLASSIFIER__ELEMENTS:
+			getElements().clear();
 			return;
 		}
 		super.eUnset(featureID);
@@ -402,16 +254,8 @@ public abstract class ClassifierImpl extends NamedTypeImpl implements Classifier
 			return category != CATEGORY_EDEFAULT;
 		case Aadlv3Package.CLASSIFIER__SUPER_CLASSIFIERS:
 			return superClassifiers != null && !superClassifiers.isEmpty();
-		case Aadlv3Package.CLASSIFIER__TRANSITIONS:
-			return transitions != null && !transitions.isEmpty();
-		case Aadlv3Package.CLASSIFIER__BEHAVIORS:
-			return behaviors != null && !behaviors.isEmpty();
-		case Aadlv3Package.CLASSIFIER__STATE_VARIABLES:
-			return stateVariables != null && !stateVariables.isEmpty();
-		case Aadlv3Package.CLASSIFIER__GENERATORS:
-			return generators != null && !generators.isEmpty();
-		case Aadlv3Package.CLASSIFIER__ANNEX_SUBCLAUSE:
-			return annexSubclause != null && !annexSubclause.isEmpty();
+		case Aadlv3Package.CLASSIFIER__ELEMENTS:
+			return elements != null && !elements.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

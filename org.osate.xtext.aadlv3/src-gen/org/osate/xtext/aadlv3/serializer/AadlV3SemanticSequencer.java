@@ -28,9 +28,10 @@ import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequence
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.AnnexLibrary;
+import org.osate.aadlv3.aadlv3.Annotation;
+import org.osate.aadlv3.aadlv3.AnnotationBlock;
 import org.osate.aadlv3.aadlv3.Association;
 import org.osate.aadlv3.aadlv3.Behavior;
-import org.osate.aadlv3.aadlv3.BehaviorSpecification;
 import org.osate.aadlv3.aadlv3.BinaryOperation;
 import org.osate.aadlv3.aadlv3.BooleanLiteral;
 import org.osate.aadlv3.aadlv3.ClassifierAssignment;
@@ -52,6 +53,7 @@ import org.osate.aadlv3.aadlv3.InstanceConfiguration;
 import org.osate.aadlv3.aadlv3.IntegerLiteral;
 import org.osate.aadlv3.aadlv3.ListLiteral;
 import org.osate.aadlv3.aadlv3.MultiLiteralConstraint;
+import org.osate.aadlv3.aadlv3.NameValuePair;
 import org.osate.aadlv3.aadlv3.NamedElementReference;
 import org.osate.aadlv3.aadlv3.PackageDeclaration;
 import org.osate.aadlv3.aadlv3.PackageElementReference;
@@ -89,6 +91,12 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 			case Aadlv3Package.ANNEX_LIBRARY:
 				sequence_AnnexLibrary(context, (AnnexLibrary) semanticObject); 
 				return; 
+			case Aadlv3Package.ANNOTATION:
+				sequence_Annotation(context, (Annotation) semanticObject); 
+				return; 
+			case Aadlv3Package.ANNOTATION_BLOCK:
+				sequence_BehaviorAnnotationBlock_BehaviorAnnotationElement(context, (AnnotationBlock) semanticObject); 
+				return; 
 			case Aadlv3Package.ASSOCIATION:
 				if (rule == grammarAccess.getBindingRule()) {
 					sequence_Binding_InStates_PropertiesBlock(context, (Association) semanticObject); 
@@ -101,29 +109,26 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 				else break;
 			case Aadlv3Package.BEHAVIOR:
 				if (rule == grammarAccess.getBehaviorRule()) {
-					sequence_Annotation_ComputationalBehavior_FlowPath_FlowSource_InStates_PropertiesBlock_TokenResultBlock_TypedToken(context, (Behavior) semanticObject); 
+					sequence_ComputationalBehavior_FlowPath_FlowSource_InStates_PropertiesBlock_TokenResultBlock_TypedToken(context, (Behavior) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getComputationalBehaviorRule()) {
-					sequence_Annotation_ComputationalBehavior_InStates_PropertiesBlock_TokenResultBlock(context, (Behavior) semanticObject); 
+					sequence_ComputationalBehavior_InStates_PropertiesBlock_TokenResultBlock(context, (Behavior) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getFlowPathRule()) {
-					sequence_Annotation_FlowPath_InStates_PropertiesBlock(context, (Behavior) semanticObject); 
+					sequence_FlowPath_InStates_PropertiesBlock(context, (Behavior) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getFlowSourceRule()) {
-					sequence_Annotation_FlowSource_InStates_PropertiesBlock(context, (Behavior) semanticObject); 
+					sequence_FlowSource_InStates_PropertiesBlock(context, (Behavior) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getTypedTokenRule()) {
-					sequence_Annotation_InStates_PropertiesBlock_TokenResultBlock_TypedToken(context, (Behavior) semanticObject); 
+					sequence_InStates_PropertiesBlock_TokenResultBlock_TypedToken(context, (Behavior) semanticObject); 
 					return; 
 				}
 				else break;
-			case Aadlv3Package.BEHAVIOR_SPECIFICATION:
-				sequence_BehaviorSpecification_BehaviorSpecificationElement(context, (BehaviorSpecification) semanticObject); 
-				return; 
 			case Aadlv3Package.BINARY_OPERATION:
 				if (rule == grammarAccess.getDetectionEventRule()) {
 					sequence_DetectionEvent(context, (BinaryOperation) semanticObject); 
@@ -177,20 +182,13 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 				sequence_ClassifierAssignmentPattern_ConfigurationElement_QueryExpression(context, (ClassifierAssignmentPattern) semanticObject); 
 				return; 
 			case Aadlv3Package.COMPONENT_CONFIGURATION:
-				if (rule == grammarAccess.getPackageElementRule()) {
-					sequence_Annotation_ComponentConfiguration_ConfigurationElement_ConfigurationExtensions_Parameters(context, (ComponentConfiguration) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getComponentConfigurationRule()) {
-					sequence_Annotation_ComponentConfiguration_ConfigurationElement_ConfigurationExtensions_Parameters(context, (ComponentConfiguration) semanticObject); 
-					return; 
-				}
-				else break;
+				sequence_ComponentConfiguration_ConfigurationElement_ConfigurationExtensions_Parameters(context, (ComponentConfiguration) semanticObject); 
+				return; 
 			case Aadlv3Package.COMPONENT_IMPLEMENTATION:
-				sequence_Annotation_ComponentImplementation_ImplementationElement_ImplementationExtensions(context, (ComponentImplementation) semanticObject); 
+				sequence_ComponentImplementation_ImplementationElement_ImplementationExtensions(context, (ComponentImplementation) semanticObject); 
 				return; 
 			case Aadlv3Package.COMPONENT_INTERFACE:
-				sequence_Annotation_ComponentInterface_InterfaceElement_InterfaceExtensions(context, (ComponentInterface) semanticObject); 
+				sequence_ComponentInterface_InterfaceElement_InterfaceExtensions(context, (ComponentInterface) semanticObject); 
 				return; 
 			case Aadlv3Package.COMPOSITE_TYPE:
 				sequence_CompositeType(context, (CompositeType) semanticObject); 
@@ -214,10 +212,10 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 				sequence_EnumerationType(context, (EnumerationType) semanticObject); 
 				return; 
 			case Aadlv3Package.FEATURE:
-				sequence_Annotation_Feature_PropertiesBlock(context, (Feature) semanticObject); 
+				sequence_Feature_PropertiesBlock(context, (Feature) semanticObject); 
 				return; 
 			case Aadlv3Package.GENERATOR:
-				sequence_Annotation_Generator_InStates_PropertiesBlock(context, (Generator) semanticObject); 
+				sequence_Generator_InStates_PropertiesBlock(context, (Generator) semanticObject); 
 				return; 
 			case Aadlv3Package.IMPORT:
 				sequence_Import(context, (Import) semanticObject); 
@@ -242,6 +240,9 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 			case Aadlv3Package.MULTI_LITERAL_CONSTRAINT:
 				sequence_MultiLiteralOperation(context, (MultiLiteralConstraint) semanticObject); 
 				return; 
+			case Aadlv3Package.NAME_VALUE_PAIR:
+				sequence_AnnotationParameter(context, (NameValuePair) semanticObject); 
+				return; 
 			case Aadlv3Package.NAMED_ELEMENT_REFERENCE:
 				if (rule == grammarAccess.getModelElementReferenceRule()
 						|| action == grammarAccess.getModelElementReferenceAccess().getNamedElementReferenceContextAction_1_0_0()) {
@@ -256,7 +257,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 				}
 				else break;
 			case Aadlv3Package.PACKAGE_DECLARATION:
-				sequence_Annotation_PackageDeclaration(context, (PackageDeclaration) semanticObject); 
+				sequence_PackageDeclaration(context, (PackageDeclaration) semanticObject); 
 				return; 
 			case Aadlv3Package.PACKAGE_ELEMENT_REFERENCE:
 				if (rule == grammarAccess.getPackageElementReferenceRule()) {
@@ -289,18 +290,11 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 				sequence_PropertyAssociation(context, (PropertyAssociation) semanticObject); 
 				return; 
 			case Aadlv3Package.PROPERTY_DEFINITION:
-				sequence_Annotation_AppliesTo_PropertyDefinition(context, (PropertyDefinition) semanticObject); 
+				sequence_AppliesTo_PropertyDefinition(context, (PropertyDefinition) semanticObject); 
 				return; 
 			case Aadlv3Package.PROPERTY_SET:
-				if (rule == grammarAccess.getPackageElementRule()) {
-					sequence_Annotation_PropertySet(context, (PropertySet) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getPropertySetRule()) {
-					sequence_Annotation_PropertySet(context, (PropertySet) semanticObject); 
-					return; 
-				}
-				else break;
+				sequence_PropertySet(context, (PropertySet) semanticObject); 
+				return; 
 			case Aadlv3Package.REAL_LITERAL:
 				sequence_RealLiteral(context, (RealLiteral) semanticObject); 
 				return; 
@@ -308,19 +302,19 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 				sequence_SetLiteral(context, (SetLiteral) semanticObject); 
 				return; 
 			case Aadlv3Package.STATE_TRANSITION:
-				sequence_Annotation_InStates_PropertiesBlock_Transition(context, (StateTransition) semanticObject); 
+				sequence_InStates_PropertiesBlock_Transition(context, (StateTransition) semanticObject); 
 				return; 
 			case Aadlv3Package.STATE_VARIABLE:
-				sequence_Annotation_PropertiesBlock_StateVariable(context, (StateVariable) semanticObject); 
+				sequence_PropertiesBlock_StateVariable(context, (StateVariable) semanticObject); 
 				return; 
 			case Aadlv3Package.STRING_LITERAL:
 				sequence_StringLiteral(context, (StringLiteral) semanticObject); 
 				return; 
 			case Aadlv3Package.SUBCOMPONENT:
-				sequence_Annotation_InStates_NestedImplementationElement_PropertiesBlock_Subcomponent(context, (Subcomponent) semanticObject); 
+				sequence_InStates_NestedImplementationElement_PropertiesBlock_Subcomponent(context, (Subcomponent) semanticObject); 
 				return; 
 			case Aadlv3Package.TYPE_DEF:
-				sequence_Annotation_PropertiesBlock_TypeDef(context, (TypeDef) semanticObject); 
+				sequence_PropertiesBlock_TypeDef(context, (TypeDef) semanticObject); 
 				return; 
 			case Aadlv3Package.TYPE_REFERENCE:
 				if (rule == grammarAccess.getClassifierOrTypeReferenceRule()) {
@@ -377,404 +371,64 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
+	 *     AnnotationParameter returns NameValuePair
+	 *
+	 * Constraint:
+	 *     (name=ID value=Literal)
+	 */
+	protected void sequence_AnnotationParameter(ISerializationContext context, NameValuePair semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, Aadlv3Package.Literals.NAME_VALUE_PAIR__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, Aadlv3Package.Literals.NAME_VALUE_PAIR__NAME));
+			if (transientValues.isValueTransient(semanticObject, Aadlv3Package.Literals.NAME_VALUE_PAIR__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, Aadlv3Package.Literals.NAME_VALUE_PAIR__VALUE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getAnnotationParameterAccess().getNameIDTerminalRuleCall_0_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getAnnotationParameterAccess().getValueLiteralParserRuleCall_2_0(), semanticObject.getValue());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Annotation returns Annotation
+	 *
+	 * Constraint:
+	 *     (name=ID (parameters+=AnnotationParameter parameters+=AnnotationParameter*)?)
+	 */
+	protected void sequence_Annotation(ISerializationContext context, Annotation semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     PackageElement returns PropertyDefinition
 	 *     PropertyDefinition returns PropertyDefinition
 	 *
 	 * Constraint:
 	 *     (
-	 *         annotations+=ID* 
+	 *         annotations+=Annotation* 
 	 *         private?='private'? 
 	 *         name=ID 
 	 *         type=Type 
 	 *         (forAll?='all' | (componentCategories+=ComponentCategory | featureCategories+=FeatureCategory | associationTypes+=AssociationType)+)?
 	 *     )
 	 */
-	protected void sequence_Annotation_AppliesTo_PropertyDefinition(ISerializationContext context, PropertyDefinition semanticObject) {
+	protected void sequence_AppliesTo_PropertyDefinition(ISerializationContext context, PropertyDefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
 	 * Contexts:
-	 *     PackageElement returns ComponentConfiguration
+	 *     BehaviorAnnotationBlock returns AnnotationBlock
 	 *
 	 * Constraint:
-	 *     (
-	 *         annotations+=ID? 
-	 *         private?='private'? 
-	 *         name=DottedName 
-	 *         (parameterized?='(' (parameters+=ConfigurationParameter parameters+=ConfigurationParameter*)?)? 
-	 *         (superClassifiers+=ClassifierOrTypeReference superClassifiers+=ClassifierOrTypeReference*)? 
-	 *         (
-	 *             ownedPropertyAssociations+=PropertyAssociation | 
-	 *             bindings+=Binding | 
-	 *             classifierAssignments+=ClassifierAssignment | 
-	 *             classifierAssignments+=ClassifierAssignmentPattern | 
-	 *             annexSubclause+=AnnexSubclause
-	 *         )*
-	 *     )
+	 *     (name=ID (elements+=Generator | elements+=Transition | elements+=Behavior | elements+=StateVariable)*)
 	 */
-	protected void sequence_Annotation_ComponentConfiguration_ConfigurationElement_ConfigurationExtensions_Parameters(ISerializationContext context, ComponentConfiguration semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	// This method is commented out because it has the same signature as another method in this class.
-	// This is probably a bug in Xtext's serializer, please report it here: 
-	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
-	//
-	// Contexts:
-	//     ComponentConfiguration returns ComponentConfiguration
-	//
-	// Constraint:
-	//     (
-	//         annotations+=ID* 
-	//         private?='private'? 
-	//         name=DottedName 
-	//         (parameterized?='(' (parameters+=ConfigurationParameter parameters+=ConfigurationParameter*)?)? 
-	//         (superClassifiers+=ClassifierOrTypeReference superClassifiers+=ClassifierOrTypeReference*)? 
-	//         (
-	//             ownedPropertyAssociations+=PropertyAssociation | 
-	//             bindings+=Binding | 
-	//             classifierAssignments+=ClassifierAssignment | 
-	//             classifierAssignments+=ClassifierAssignmentPattern | 
-	//             annexSubclause+=AnnexSubclause
-	//         )*
-	//     )
-	//
-	// protected void sequence_Annotation_ComponentConfiguration_ConfigurationElement_ConfigurationExtensions_Parameters(ISerializationContext context, ComponentConfiguration semanticObject) { }
-	
-	/**
-	 * Contexts:
-	 *     PackageElement returns ComponentImplementation
-	 *     ComponentImplementation returns ComponentImplementation
-	 *
-	 * Constraint:
-	 *     (
-	 *         annotations+=ID* 
-	 *         private?='private'? 
-	 *         category=ComponentCategory 
-	 *         name=DottedName 
-	 *         (superClassifiers+=ImplementationReference superClassifiers+=ImplementationReference*)? 
-	 *         (
-	 *             connections+=Connection | 
-	 *             bindings+=Binding | 
-	 *             components+=Subcomponent | 
-	 *             paths+=EndToEndFlow | 
-	 *             flowAssignments+=FlowAssignment | 
-	 *             classifierAssignments+=ClassifierAssignment | 
-	 *             classifierAssignments+=ClassifierAssignmentPattern | 
-	 *             stateVariables+=StateVariable | 
-	 *             transitions+=Transition | 
-	 *             behaviors+=Behavior | 
-	 *             generators+=Generator | 
-	 *             ownedPropertyAssociations+=PropertyAssociation | 
-	 *             annexSubclause+=AnnexSubclause
-	 *         )*
-	 *     )
-	 */
-	protected void sequence_Annotation_ComponentImplementation_ImplementationElement_ImplementationExtensions(ISerializationContext context, ComponentImplementation semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     PackageElement returns ComponentInterface
-	 *     ComponentInterface returns ComponentInterface
-	 *
-	 * Constraint:
-	 *     (
-	 *         annotations+=ID* 
-	 *         private?='private'? 
-	 *         category=ComponentCategory? 
-	 *         name=ID 
-	 *         (superClassifiers+=ReversableInterfaceReference superClassifiers+=ReversableInterfaceReference*)? 
-	 *         (
-	 *             features+=Feature | 
-	 *             stateVariables+=StateVariable | 
-	 *             transitions+=Transition | 
-	 *             behaviors+=Behavior | 
-	 *             generators+=Generator | 
-	 *             ownedPropertyAssociations+=PropertyAssociation | 
-	 *             annexSubclause+=AnnexSubclause
-	 *         )*
-	 *     )
-	 */
-	protected void sequence_Annotation_ComponentInterface_InterfaceElement_InterfaceExtensions(ISerializationContext context, ComponentInterface semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     Behavior returns Behavior
-	 *
-	 * Constraint:
-	 *     (
-	 *         annotations+=ID* 
-	 *         (
-	 *             (name=ID (condition=ListLiteral | condition=ModelElementReference) (sink?='sink' | (actions+=FlowOutput actions+=FlowOutput*))) | 
-	 *             (name=ID source?='source' (condition=ListLiteral | condition=ModelElementReference)? actions+=FlowOutput actions+=FlowOutput*) | 
-	 *             (
-	 *                 name=ID 
-	 *                 source?='source'? 
-	 *                 (condition=MultiLiteralOperation | condition=ModelElementContainsLiteral | condition=ModelElementReference) 
-	 *                 (sink?='sink' | (actions+=TokenResult actions+=TokenResult*))
-	 *             ) | 
-	 *             (name=ID condition=Literal actions+=TokenResult actions+=TokenResult*)
-	 *         ) 
-	 *         (inStates=ModelElementContainsEnumerationLiteral | inStates=ModelElementEqualsEnumerationLiteral)? 
-	 *         ownedPropertyAssociations+=PropertyAssociation*
-	 *     )
-	 */
-	protected void sequence_Annotation_ComputationalBehavior_FlowPath_FlowSource_InStates_PropertiesBlock_TokenResultBlock_TypedToken(ISerializationContext context, Behavior semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     ComputationalBehavior returns Behavior
-	 *
-	 * Constraint:
-	 *     (
-	 *         annotations+=ID* 
-	 *         name=ID 
-	 *         condition=Literal 
-	 *         actions+=TokenResult 
-	 *         actions+=TokenResult* 
-	 *         (inStates=ModelElementContainsEnumerationLiteral | inStates=ModelElementEqualsEnumerationLiteral)? 
-	 *         ownedPropertyAssociations+=PropertyAssociation*
-	 *     )
-	 */
-	protected void sequence_Annotation_ComputationalBehavior_InStates_PropertiesBlock_TokenResultBlock(ISerializationContext context, Behavior semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     Feature returns Feature
-	 *
-	 * Constraint:
-	 *     (
-	 *         annotations+=ID* 
-	 *         name=ID 
-	 *         direction=FeatureDirection? 
-	 *         category=FeatureCategory 
-	 *         typeReference=ReversableTypeReference? 
-	 *         ownedPropertyAssociations+=PropertyAssociation*
-	 *     )
-	 */
-	protected void sequence_Annotation_Feature_PropertiesBlock(ISerializationContext context, Feature semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     FlowPath returns Behavior
-	 *
-	 * Constraint:
-	 *     (
-	 *         annotations+=ID* 
-	 *         name=ID 
-	 *         (condition=ListLiteral | condition=ModelElementReference) 
-	 *         (sink?='sink' | (actions+=FlowOutput actions+=FlowOutput*)) 
-	 *         (inStates=ModelElementContainsEnumerationLiteral | inStates=ModelElementEqualsEnumerationLiteral)? 
-	 *         ownedPropertyAssociations+=PropertyAssociation*
-	 *     )
-	 */
-	protected void sequence_Annotation_FlowPath_InStates_PropertiesBlock(ISerializationContext context, Behavior semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     FlowSource returns Behavior
-	 *
-	 * Constraint:
-	 *     (
-	 *         annotations+=ID* 
-	 *         name=ID 
-	 *         source?='source' 
-	 *         (condition=ListLiteral | condition=ModelElementReference)? 
-	 *         actions+=FlowOutput 
-	 *         actions+=FlowOutput* 
-	 *         (inStates=ModelElementContainsEnumerationLiteral | inStates=ModelElementEqualsEnumerationLiteral)? 
-	 *         ownedPropertyAssociations+=PropertyAssociation*
-	 *     )
-	 */
-	protected void sequence_Annotation_FlowSource_InStates_PropertiesBlock(ISerializationContext context, Behavior semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     Generator returns Generator
-	 *
-	 * Constraint:
-	 *     (
-	 *         annotations+=ID* 
-	 *         name=ID 
-	 *         type=ID? 
-	 *         value=ListLiteral? 
-	 *         (inStates=ModelElementContainsEnumerationLiteral | inStates=ModelElementEqualsEnumerationLiteral)? 
-	 *         ownedPropertyAssociations+=PropertyAssociation*
-	 *     )
-	 */
-	protected void sequence_Annotation_Generator_InStates_PropertiesBlock(ISerializationContext context, Generator semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     Subcomponent returns Subcomponent
-	 *
-	 * Constraint:
-	 *     (
-	 *         annotations+=ID* 
-	 *         name=ID 
-	 *         category=ComponentCategory 
-	 *         (
-	 *             (typeReferences+=ClassifierOrTypeReference? ownedPropertyAssociations+=PropertyAssociation*) | 
-	 *             (
-	 *                 (typeReferences+=ClassifierOrTypeReference? (inStates=ModelElementContainsEnumerationLiteral | inStates=ModelElementEqualsEnumerationLiteral))? 
-	 *                 (features+=Feature | connections+=Connection | bindings+=Binding | components+=Subcomponent | ownedPropertyAssociations+=PropertyAssociation)+
-	 *             ) | 
-	 *             (
-	 *                 (typeReferences+=ClassifierOrTypeReference? (inStates=ModelElementContainsEnumerationLiteral | inStates=ModelElementEqualsEnumerationLiteral))? 
-	 *                 ownedPropertyAssociations+=PropertyAssociation*
-	 *             )
-	 *         )
-	 *     )
-	 */
-	protected void sequence_Annotation_InStates_NestedImplementationElement_PropertiesBlock_Subcomponent(ISerializationContext context, Subcomponent semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     TypedToken returns Behavior
-	 *
-	 * Constraint:
-	 *     (
-	 *         annotations+=ID* 
-	 *         name=ID 
-	 *         source?='source'? 
-	 *         (condition=MultiLiteralOperation | condition=ModelElementContainsLiteral | condition=ModelElementReference) 
-	 *         (sink?='sink' | (actions+=TokenResult actions+=TokenResult*)) 
-	 *         (inStates=ModelElementContainsEnumerationLiteral | inStates=ModelElementEqualsEnumerationLiteral)? 
-	 *         ownedPropertyAssociations+=PropertyAssociation*
-	 *     )
-	 */
-	protected void sequence_Annotation_InStates_PropertiesBlock_TokenResultBlock_TypedToken(ISerializationContext context, Behavior semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     Transition returns StateTransition
-	 *
-	 * Constraint:
-	 *     (
-	 *         annotations+=ID* 
-	 *         name=ID 
-	 *         (condition=MultiLiteralOperation | condition=ModelElementContainsLiteral | condition=ModelElementReference) 
-	 *         targetState=ModelElementEqualsEnumerationLiteral 
-	 *         (inStates=ModelElementContainsEnumerationLiteral | inStates=ModelElementEqualsEnumerationLiteral)? 
-	 *         ownedPropertyAssociations+=PropertyAssociation*
-	 *     )
-	 */
-	protected void sequence_Annotation_InStates_PropertiesBlock_Transition(ISerializationContext context, StateTransition semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     PackageDeclaration returns PackageDeclaration
-	 *     PackageElement returns PackageDeclaration
-	 *
-	 * Constraint:
-	 *     (annotations+=ID* private?='private'? name=QualifiedName (elements+=AnnexLibrary | (imports+=Import | elements+=PackageElement)+)?)
-	 */
-	protected void sequence_Annotation_PackageDeclaration(ISerializationContext context, PackageDeclaration semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     StateVariable returns StateVariable
-	 *
-	 * Constraint:
-	 *     (annotations+=ID* name=ID stateType=[TypeDef|QualifiedName] initialState=EnumerationLiteral? ownedPropertyAssociations+=PropertyAssociation*)
-	 */
-	protected void sequence_Annotation_PropertiesBlock_StateVariable(ISerializationContext context, StateVariable semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     PackageElement returns TypeDef
-	 *     TypeDef returns TypeDef
-	 *
-	 * Constraint:
-	 *     (
-	 *         annotations+=ID* 
-	 *         private?='private'? 
-	 *         name=ID 
-	 *         superType=Type? 
-	 *         baseType=Type? 
-	 *         ownedPropertyAssociations+=PropertyAssociation*
-	 *     )
-	 */
-	protected void sequence_Annotation_PropertiesBlock_TypeDef(ISerializationContext context, TypeDef semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     PackageElement returns PropertySet
-	 *
-	 * Constraint:
-	 *     (annotations+=ID? private?='private'? name=ID properties+=[PropertyDefinition|QualifiedReference] properties+=[PropertyDefinition|QualifiedName]*)
-	 */
-	protected void sequence_Annotation_PropertySet(ISerializationContext context, PropertySet semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	// This method is commented out because it has the same signature as another method in this class.
-	// This is probably a bug in Xtext's serializer, please report it here: 
-	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
-	//
-	// Contexts:
-	//     PropertySet returns PropertySet
-	//
-	// Constraint:
-	//     (annotations+=ID* private?='private'? name=ID properties+=[PropertyDefinition|QualifiedReference] properties+=[PropertyDefinition|QualifiedName]*)
-	//
-	// protected void sequence_Annotation_PropertySet(ISerializationContext context, PropertySet semanticObject) { }
-	
-	/**
-	 * Contexts:
-	 *     AnnexSubclause returns BehaviorSpecification
-	 *     BehaviorSpecification returns BehaviorSpecification
-	 *
-	 * Constraint:
-	 *     (name=ID (generators+=Generator | transitions+=Transition | behaviors+=Behavior | stateVariables+=StateVariable)*)
-	 */
-	protected void sequence_BehaviorSpecification_BehaviorSpecificationElement(ISerializationContext context, BehaviorSpecification semanticObject) {
+	protected void sequence_BehaviorAnnotationBlock_BehaviorAnnotationElement(ISerializationContext context, AnnotationBlock semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -825,10 +479,11 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *                 (assignedClassifiers+=ClassifierOrTypeReference assignedClassifiers+=ClassifierOrTypeReference*) 
 	 *                 (
 	 *                     ownedPropertyAssociations+=PropertyAssociation | 
-	 *                     bindings+=Binding | 
+	 *                     elements+=BehaviorAnnotationBlock | 
+	 *                     elements+=Binding | 
 	 *                     classifierAssignments+=ClassifierAssignment | 
 	 *                     classifierAssignments+=ClassifierAssignmentPattern | 
-	 *                     annexSubclause+=AnnexSubclause
+	 *                     elements+=AnnexSubclause
 	 *                 )+
 	 *             )
 	 *         )?
@@ -852,10 +507,11 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *                 (assignedClassifiers+=ClassifierOrTypeReference assignedClassifiers+=ClassifierOrTypeReference*) 
 	 *                 (
 	 *                     ownedPropertyAssociations+=PropertyAssociation | 
-	 *                     bindings+=Binding | 
+	 *                     elements+=BehaviorAnnotationBlock | 
+	 *                     elements+=Binding | 
 	 *                     classifierAssignments+=ClassifierAssignment | 
 	 *                     classifierAssignments+=ClassifierAssignmentPattern | 
-	 *                     annexSubclause+=AnnexSubclause
+	 *                     elements+=AnnexSubclause
 	 *                 )+
 	 *             )
 	 *         )?
@@ -880,6 +536,97 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
+	 *     PackageElement returns ComponentConfiguration
+	 *     ComponentConfiguration returns ComponentConfiguration
+	 *
+	 * Constraint:
+	 *     (
+	 *         annotations+=Annotation* 
+	 *         private?='private'? 
+	 *         name=DottedName 
+	 *         (parameterized?='(' (parameters+=ConfigurationParameter parameters+=ConfigurationParameter*)?)? 
+	 *         (superClassifiers+=ClassifierOrTypeReference superClassifiers+=ClassifierOrTypeReference*)? 
+	 *         (
+	 *             ownedPropertyAssociations+=PropertyAssociation | 
+	 *             elements+=BehaviorAnnotationBlock | 
+	 *             elements+=Binding | 
+	 *             classifierAssignments+=ClassifierAssignment | 
+	 *             classifierAssignments+=ClassifierAssignmentPattern | 
+	 *             elements+=AnnexSubclause
+	 *         )*
+	 *     )
+	 */
+	protected void sequence_ComponentConfiguration_ConfigurationElement_ConfigurationExtensions_Parameters(ISerializationContext context, ComponentConfiguration semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     PackageElement returns ComponentImplementation
+	 *     ComponentImplementation returns ComponentImplementation
+	 *
+	 * Constraint:
+	 *     (
+	 *         annotations+=Annotation* 
+	 *         private?='private'? 
+	 *         category=ComponentCategory 
+	 *         name=DottedName 
+	 *         (superClassifiers+=ImplementationReference superClassifiers+=ImplementationReference*)? 
+	 *         (
+	 *             elements+=Connection | 
+	 *             elements+=Binding | 
+	 *             elements+=Subcomponent | 
+	 *             elements+=EndToEndFlow | 
+	 *             elements+=BehaviorAnnotationBlock | 
+	 *             elements+=StateVariable | 
+	 *             elements+=Transition | 
+	 *             elements+=Behavior | 
+	 *             elements+=Generator | 
+	 *             elements+=AnnexSubclause | 
+	 *             flowAssignments+=FlowAssignment | 
+	 *             classifierAssignments+=ClassifierAssignment | 
+	 *             classifierAssignments+=ClassifierAssignmentPattern | 
+	 *             ownedPropertyAssociations+=PropertyAssociation
+	 *         )*
+	 *     )
+	 */
+	protected void sequence_ComponentImplementation_ImplementationElement_ImplementationExtensions(ISerializationContext context, ComponentImplementation semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     PackageElement returns ComponentInterface
+	 *     ComponentInterface returns ComponentInterface
+	 *
+	 * Constraint:
+	 *     (
+	 *         annotations+=Annotation* 
+	 *         private?='private'? 
+	 *         category=ComponentCategory? 
+	 *         name=ID 
+	 *         (superClassifiers+=ReversableInterfaceReference superClassifiers+=ReversableInterfaceReference*)? 
+	 *         (
+	 *             elements+=Feature | 
+	 *             elements+=StateVariable | 
+	 *             elements+=Transition | 
+	 *             elements+=Behavior | 
+	 *             elements+=Generator | 
+	 *             elements+=BehaviorAnnotationBlock | 
+	 *             elements+=AnnexSubclause | 
+	 *             ownedPropertyAssociations+=PropertyAssociation
+	 *         )*
+	 *     )
+	 */
+	protected void sequence_ComponentInterface_InterfaceElement_InterfaceExtensions(ISerializationContext context, ComponentInterface semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Type returns CompositeType
 	 *     CompositeType returns CompositeType
 	 *
@@ -897,6 +644,65 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 		feeder.accept(grammarAccess.getCompositeTypeAccess().getCompositeTypeCompositeParserRuleCall_0_0(), semanticObject.getCompositeType());
 		feeder.accept(grammarAccess.getCompositeTypeAccess().getTypeTypeReferenceParserRuleCall_2_0(), semanticObject.getType());
 		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Behavior returns Behavior
+	 *
+	 * Constraint:
+	 *     (
+	 *         (
+	 *             (
+	 *                 annotations+=Annotation* 
+	 *                 name=ID 
+	 *                 (condition=ListLiteral | condition=ModelElementReference) 
+	 *                 (sink?='sink' | (actions+=FlowOutput actions+=FlowOutput*))
+	 *             ) | 
+	 *             (
+	 *                 annotations+=Annotation* 
+	 *                 name=ID 
+	 *                 source?='source' 
+	 *                 (condition=ListLiteral | condition=ModelElementReference)? 
+	 *                 actions+=FlowOutput 
+	 *                 actions+=FlowOutput*
+	 *             ) | 
+	 *             (
+	 *                 annotations+=Annotation* 
+	 *                 name=ID 
+	 *                 source?='source'? 
+	 *                 (condition=MultiLiteralOperation | condition=ModelElementContainsLiteral | condition=ModelElementReference) 
+	 *                 (sink?='sink' | (actions+=TokenResult actions+=TokenResult*))
+	 *             ) | 
+	 *             (annotations+=Annotation* name=ID condition=Literal actions+=TokenResult actions+=TokenResult*)
+	 *         ) 
+	 *         (inStates=ModelElementContainsEnumerationLiteral | inStates=ModelElementEqualsEnumerationLiteral)? 
+	 *         ownedPropertyAssociations+=PropertyAssociation*
+	 *     )
+	 */
+	protected void sequence_ComputationalBehavior_FlowPath_FlowSource_InStates_PropertiesBlock_TokenResultBlock_TypedToken(ISerializationContext context, Behavior semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     ComputationalBehavior returns Behavior
+	 *
+	 * Constraint:
+	 *     (
+	 *         annotations+=Annotation* 
+	 *         name=ID 
+	 *         condition=Literal 
+	 *         actions+=TokenResult 
+	 *         actions+=TokenResult* 
+	 *         (inStates=ModelElementContainsEnumerationLiteral | inStates=ModelElementEqualsEnumerationLiteral)? 
+	 *         ownedPropertyAssociations+=PropertyAssociation*
+	 *     )
+	 */
+	protected void sequence_ComputationalBehavior_InStates_PropertiesBlock_TokenResultBlock(ISerializationContext context, Behavior semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1115,6 +921,25 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
+	 *     Feature returns Feature
+	 *
+	 * Constraint:
+	 *     (
+	 *         annotations+=Annotation* 
+	 *         name=ID 
+	 *         direction=FeatureDirection? 
+	 *         category=FeatureCategory 
+	 *         typeReference=ReversableTypeReference? 
+	 *         ownedPropertyAssociations+=PropertyAssociation*
+	 *     )
+	 */
+	protected void sequence_Feature_PropertiesBlock(ISerializationContext context, Feature semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     FlowAssignment returns PathSequence
 	 *
 	 * Constraint:
@@ -1145,6 +970,65 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
+	 *     FlowPath returns Behavior
+	 *
+	 * Constraint:
+	 *     (
+	 *         annotations+=Annotation* 
+	 *         name=ID 
+	 *         (condition=ListLiteral | condition=ModelElementReference) 
+	 *         (sink?='sink' | (actions+=FlowOutput actions+=FlowOutput*)) 
+	 *         (inStates=ModelElementContainsEnumerationLiteral | inStates=ModelElementEqualsEnumerationLiteral)? 
+	 *         ownedPropertyAssociations+=PropertyAssociation*
+	 *     )
+	 */
+	protected void sequence_FlowPath_InStates_PropertiesBlock(ISerializationContext context, Behavior semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     FlowSource returns Behavior
+	 *
+	 * Constraint:
+	 *     (
+	 *         annotations+=Annotation* 
+	 *         name=ID 
+	 *         source?='source' 
+	 *         (condition=ListLiteral | condition=ModelElementReference)? 
+	 *         actions+=FlowOutput 
+	 *         actions+=FlowOutput* 
+	 *         (inStates=ModelElementContainsEnumerationLiteral | inStates=ModelElementEqualsEnumerationLiteral)? 
+	 *         ownedPropertyAssociations+=PropertyAssociation*
+	 *     )
+	 */
+	protected void sequence_FlowSource_InStates_PropertiesBlock(ISerializationContext context, Behavior semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Generator returns Generator
+	 *
+	 * Constraint:
+	 *     (
+	 *         annotations+=Annotation* 
+	 *         name=ID 
+	 *         type=ID? 
+	 *         value=ListLiteral? 
+	 *         (inStates=ModelElementContainsEnumerationLiteral | inStates=ModelElementEqualsEnumerationLiteral)? 
+	 *         ownedPropertyAssociations+=PropertyAssociation*
+	 *     )
+	 */
+	protected void sequence_Generator_InStates_PropertiesBlock(ISerializationContext context, Generator semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     ImplementationReference returns TypeReference
 	 *
 	 * Constraint:
@@ -1169,6 +1053,72 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     ((importedNamespace=QualifiedNameWithWildcard | importedNamespace=QualifiedName) alias=ID?)
 	 */
 	protected void sequence_Import(ISerializationContext context, Import semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Subcomponent returns Subcomponent
+	 *
+	 * Constraint:
+	 *     (
+	 *         annotations+=Annotation* 
+	 *         name=ID 
+	 *         category=ComponentCategory 
+	 *         (
+	 *             (typeReferences+=ClassifierOrTypeReference? ownedPropertyAssociations+=PropertyAssociation*) | 
+	 *             (
+	 *                 (typeReferences+=ClassifierOrTypeReference? (inStates=ModelElementContainsEnumerationLiteral | inStates=ModelElementEqualsEnumerationLiteral))? 
+	 *                 (features+=Feature | connections+=Connection | bindings+=Binding | components+=Subcomponent | ownedPropertyAssociations+=PropertyAssociation)+
+	 *             ) | 
+	 *             (
+	 *                 (typeReferences+=ClassifierOrTypeReference? (inStates=ModelElementContainsEnumerationLiteral | inStates=ModelElementEqualsEnumerationLiteral))? 
+	 *                 ownedPropertyAssociations+=PropertyAssociation*
+	 *             )
+	 *         )
+	 *     )
+	 */
+	protected void sequence_InStates_NestedImplementationElement_PropertiesBlock_Subcomponent(ISerializationContext context, Subcomponent semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     TypedToken returns Behavior
+	 *
+	 * Constraint:
+	 *     (
+	 *         annotations+=Annotation* 
+	 *         name=ID 
+	 *         source?='source'? 
+	 *         (condition=MultiLiteralOperation | condition=ModelElementContainsLiteral | condition=ModelElementReference) 
+	 *         (sink?='sink' | (actions+=TokenResult actions+=TokenResult*)) 
+	 *         (inStates=ModelElementContainsEnumerationLiteral | inStates=ModelElementEqualsEnumerationLiteral)? 
+	 *         ownedPropertyAssociations+=PropertyAssociation*
+	 *     )
+	 */
+	protected void sequence_InStates_PropertiesBlock_TokenResultBlock_TypedToken(ISerializationContext context, Behavior semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Transition returns StateTransition
+	 *
+	 * Constraint:
+	 *     (
+	 *         annotations+=Annotation* 
+	 *         name=ID 
+	 *         (condition=MultiLiteralOperation | condition=ModelElementContainsLiteral | condition=ModelElementReference) 
+	 *         targetState=ModelElementEqualsEnumerationLiteral 
+	 *         (inStates=ModelElementContainsEnumerationLiteral | inStates=ModelElementEqualsEnumerationLiteral)? 
+	 *         ownedPropertyAssociations+=PropertyAssociation*
+	 *     )
+	 */
+	protected void sequence_InStates_PropertiesBlock_Transition(ISerializationContext context, StateTransition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1350,6 +1300,19 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
+	 *     PackageDeclaration returns PackageDeclaration
+	 *     PackageElement returns PackageDeclaration
+	 *
+	 * Constraint:
+	 *     (annotations+=Annotation* private?='private'? name=QualifiedName (elements+=AnnexLibrary | (imports+=Import | elements+=PackageElement)+)?)
+	 */
+	protected void sequence_PackageDeclaration(ISerializationContext context, PackageDeclaration semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     PackageElementReference returns PackageElementReference
 	 *
 	 * Constraint:
@@ -1424,6 +1387,44 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
+	 *     StateVariable returns StateVariable
+	 *
+	 * Constraint:
+	 *     (
+	 *         annotations+=Annotation* 
+	 *         name=ID 
+	 *         stateType=[TypeDef|QualifiedName] 
+	 *         initialState=EnumerationLiteral? 
+	 *         ownedPropertyAssociations+=PropertyAssociation*
+	 *     )
+	 */
+	protected void sequence_PropertiesBlock_StateVariable(ISerializationContext context, StateVariable semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     PackageElement returns TypeDef
+	 *     TypeDef returns TypeDef
+	 *
+	 * Constraint:
+	 *     (
+	 *         annotations+=Annotation* 
+	 *         private?='private'? 
+	 *         name=ID 
+	 *         superType=Type? 
+	 *         baseType=Type? 
+	 *         ownedPropertyAssociations+=PropertyAssociation*
+	 *     )
+	 */
+	protected void sequence_PropertiesBlock_TypeDef(ISerializationContext context, TypeDef semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     PropertyAssociation returns PropertyAssociation
 	 *
 	 * Constraint:
@@ -1450,6 +1451,25 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getPropertyReferenceAccess().getElementPackageElementQualifiedNameParserRuleCall_1_0_1(), semanticObject.eGet(Aadlv3Package.Literals.PACKAGE_ELEMENT_REFERENCE__ELEMENT, false));
 		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     PackageElement returns PropertySet
+	 *     PropertySet returns PropertySet
+	 *
+	 * Constraint:
+	 *     (
+	 *         annotations+=Annotation* 
+	 *         private?='private'? 
+	 *         name=ID 
+	 *         properties+=[PropertyDefinition|QualifiedReference] 
+	 *         properties+=[PropertyDefinition|QualifiedName]*
+	 *     )
+	 */
+	protected void sequence_PropertySet(ISerializationContext context, PropertySet semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

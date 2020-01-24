@@ -26,11 +26,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.osate.aadlv3.aadlv3.ComponentImplementation#getComponents <em>Components</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.ComponentImplementation#getConnections <em>Connections</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.ComponentImplementation#getFlowAssignments <em>Flow Assignments</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.ComponentImplementation#getPaths <em>Paths</em>}</li>
- *   <li>{@link org.osate.aadlv3.aadlv3.ComponentImplementation#getBindings <em>Bindings</em>}</li>
  * </ul>
  *
  * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getComponentImplementation()
@@ -38,38 +34,6 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface ComponentImplementation extends ComponentRealization {
-	/**
-	 * Returns the value of the '<em><b>Components</b></em>' containment reference list.
-	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.Subcomponent}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Components</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Components</em>' containment reference list.
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getComponentImplementation_Components()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<Subcomponent> getComponents();
-
-	/**
-	 * Returns the value of the '<em><b>Connections</b></em>' containment reference list.
-	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.Association}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Connections</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Connections</em>' containment reference list.
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getComponentImplementation_Connections()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<Association> getConnections();
-
 	/**
 	 * Returns the value of the '<em><b>Flow Assignments</b></em>' containment reference list.
 	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.PathSequence}.
@@ -85,37 +49,5 @@ public interface ComponentImplementation extends ComponentRealization {
 	 * @generated
 	 */
 	EList<PathSequence> getFlowAssignments();
-
-	/**
-	 * Returns the value of the '<em><b>Paths</b></em>' containment reference list.
-	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.PathSequence}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Paths</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Paths</em>' containment reference list.
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getComponentImplementation_Paths()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<PathSequence> getPaths();
-
-	/**
-	 * Returns the value of the '<em><b>Bindings</b></em>' containment reference list.
-	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.Association}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Bindings</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Bindings</em>' containment reference list.
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getComponentImplementation_Bindings()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<Association> getBindings();
 
 } // ComponentImplementation

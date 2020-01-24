@@ -73,11 +73,7 @@ public class ComponentImplementationItemProvider extends ComponentRealizationIte
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(Aadlv3Package.Literals.COMPONENT_IMPLEMENTATION__COMPONENTS);
-			childrenFeatures.add(Aadlv3Package.Literals.COMPONENT_IMPLEMENTATION__CONNECTIONS);
 			childrenFeatures.add(Aadlv3Package.Literals.COMPONENT_IMPLEMENTATION__FLOW_ASSIGNMENTS);
-			childrenFeatures.add(Aadlv3Package.Literals.COMPONENT_IMPLEMENTATION__PATHS);
-			childrenFeatures.add(Aadlv3Package.Literals.COMPONENT_IMPLEMENTATION__BINDINGS);
 		}
 		return childrenFeatures;
 	}
@@ -131,11 +127,7 @@ public class ComponentImplementationItemProvider extends ComponentRealizationIte
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ComponentImplementation.class)) {
-		case Aadlv3Package.COMPONENT_IMPLEMENTATION__COMPONENTS:
-		case Aadlv3Package.COMPONENT_IMPLEMENTATION__CONNECTIONS:
 		case Aadlv3Package.COMPONENT_IMPLEMENTATION__FLOW_ASSIGNMENTS:
-		case Aadlv3Package.COMPONENT_IMPLEMENTATION__PATHS:
-		case Aadlv3Package.COMPONENT_IMPLEMENTATION__BINDINGS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -153,23 +145,8 @@ public class ComponentImplementationItemProvider extends ComponentRealizationIte
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.COMPONENT_IMPLEMENTATION__COMPONENTS,
-				Aadlv3Factory.eINSTANCE.createSubcomponent()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.COMPONENT_IMPLEMENTATION__COMPONENTS,
-				Aadlv3Factory.eINSTANCE.createInstanceConfiguration()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.COMPONENT_IMPLEMENTATION__CONNECTIONS,
-				Aadlv3Factory.eINSTANCE.createAssociation()));
-
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.COMPONENT_IMPLEMENTATION__FLOW_ASSIGNMENTS,
 				Aadlv3Factory.eINSTANCE.createPathSequence()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.COMPONENT_IMPLEMENTATION__PATHS,
-				Aadlv3Factory.eINSTANCE.createPathSequence()));
-
-		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.COMPONENT_IMPLEMENTATION__BINDINGS,
-				Aadlv3Factory.eINSTANCE.createAssociation()));
 	}
 
 	/**
@@ -183,10 +160,8 @@ public class ComponentImplementationItemProvider extends ComponentRealizationIte
 		Object childFeature = feature;
 		Object childObject = child;
 
-		boolean qualify = childFeature == Aadlv3Package.Literals.COMPONENT_IMPLEMENTATION__CONNECTIONS
-				|| childFeature == Aadlv3Package.Literals.COMPONENT_IMPLEMENTATION__BINDINGS
-				|| childFeature == Aadlv3Package.Literals.COMPONENT_IMPLEMENTATION__FLOW_ASSIGNMENTS
-				|| childFeature == Aadlv3Package.Literals.COMPONENT_IMPLEMENTATION__PATHS;
+		boolean qualify = childFeature == Aadlv3Package.Literals.CLASSIFIER__ELEMENTS
+				|| childFeature == Aadlv3Package.Literals.COMPONENT_IMPLEMENTATION__FLOW_ASSIGNMENTS;
 
 		if (qualify) {
 			return getString("_UI_CreateChild_text2",

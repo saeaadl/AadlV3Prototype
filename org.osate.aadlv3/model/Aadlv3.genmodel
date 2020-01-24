@@ -98,11 +98,12 @@
     <genClasses ecoreClass="Aadlv3.ecore#//PackageDeclaration">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//PackageDeclaration/imports"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//PackageDeclaration/elements"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//PackageDeclaration/annotationBlocks"/>
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//NamedElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//NamedElement/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//NamedElement/ownedPropertyAssociations"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//NamedElement/annotations"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//NamedElement/annotations"/>
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//PackageElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//PackageElement/private"/>
@@ -123,31 +124,21 @@
     <genClasses image="false" ecoreClass="Aadlv3.ecore#//Classifier">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//Classifier/category"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Classifier/superClassifiers"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Classifier/transitions"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Classifier/behaviors"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Classifier/stateVariables"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Classifier/generators"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Classifier/annexSubclause"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Classifier/elements"/>
     </genClasses>
     <genClasses image="false" ecoreClass="Aadlv3.ecore#//ComponentRealization">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ComponentRealization/cachedInterfaceReference"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ComponentRealization/classifierAssignments"/>
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//ComponentInterface">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ComponentInterface/features"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ComponentInterface/useProperties"/>
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//ComponentImplementation">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ComponentImplementation/components"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ComponentImplementation/connections"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ComponentImplementation/flowAssignments"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ComponentImplementation/paths"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ComponentImplementation/bindings"/>
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//ComponentConfiguration">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ComponentConfiguration/parameters"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//ComponentConfiguration/parameterized"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ComponentConfiguration/bindings"/>
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//Feature">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//Feature/direction"/>
@@ -187,8 +178,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ClassifierAssignment/classifierAssignments"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ClassifierAssignment/assignedClassifiers"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ClassifierAssignment/ownedPropertyAssociations"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ClassifierAssignment/bindings"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ClassifierAssignment/annexSubclause"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ClassifierAssignment/elements"/>
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//ClassifierAssignmentPattern">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//ClassifierAssignmentPattern/targetPattern"/>
@@ -282,11 +272,16 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//DefaultAnnexSubclause/body"/>
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//AnnexLibrary"/>
-    <genClasses ecoreClass="Aadlv3.ecore#//BehaviorSpecification">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//BehaviorSpecification/transitions"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//BehaviorSpecification/behaviors"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//BehaviorSpecification/stateVariables"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//BehaviorSpecification/generators"/>
+    <genClasses ecoreClass="Aadlv3.ecore#//AnnotationBlock">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//AnnotationBlock/elements"/>
+    </genClasses>
+    <genClasses ecoreClass="Aadlv3.ecore#//Annotation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//Annotation/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Annotation/parameters"/>
+    </genClasses>
+    <genClasses ecoreClass="Aadlv3.ecore#//NameValuePair">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//NameValuePair/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//NameValuePair/value"/>
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//StateTransition">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//StateTransition/condition"/>

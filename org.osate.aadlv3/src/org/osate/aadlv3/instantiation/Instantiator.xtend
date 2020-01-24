@@ -8,7 +8,6 @@ import org.eclipse.xtext.EcoreUtil2
 import org.osate.aadlv3.aadlv3.Aadlv3Factory
 import org.osate.aadlv3.aadlv3.Association
 import org.osate.aadlv3.aadlv3.Behavior
-import org.osate.aadlv3.aadlv3.BehaviorSpecification
 import org.osate.aadlv3.aadlv3.BinaryOperation
 import org.osate.aadlv3.aadlv3.Classifier
 import org.osate.aadlv3.aadlv3.ClassifierAssignment
@@ -168,26 +167,6 @@ class Instantiator {
 		}
 		
 		
-		// now we handle Generators and Behavior Rules in annexes
-		val subcls = ctyperefs.getAllSubclauses
-		for (subclause: subcls){
-			if (subclause instanceof BehaviorSpecification){
-				for (gen : subclause.generators){
-					gen.instantiateGenerator(ci)
-				}
-			}
-		}
-		for (subclause: subcls){
-			if (subclause instanceof BehaviorSpecification){
-				if (subclause.stateVariables !== null){
-					for (sv: subclause.stateVariables)
-					sv.instantiateStateVariables(ci)
-				}
-				for (br: subclause.behaviors){
-					br.instantiateBehavior(ci)
-				}
-			}
-		}
 		// handle property assignments attached to (sub)component
 		// This is done for nested subcomponent declarations as well
 		for (pa : comp.ownedPropertyAssociations) {
@@ -608,11 +587,7 @@ class Instantiator {
 	
 	def void instantiateStateVariables(StateVariable sv, ComponentInstance context){
 		val svi = createStateVariableInstance(sv);
-		svi.annotations.addAll(sv.annotations)
-		val bs = sv.containingBehaviorSpecification
-		if (bs !== null){
-			svi.annotations.add(bs.name)
-		}
+		svi.annotations.addAll(sv.allAnnotations)
 		context.stateVariables += svi;
 		val enum = sv.stateType.baseType
 		if (enum instanceof EnumerationType){
@@ -628,11 +603,7 @@ class Instantiator {
 	// Behavior Rules
 	def void instantiateBehavior(Behavior br, ComponentInstance context) {
 		val bri = br.createBehaviorInstance;
-		bri.annotations.addAll(br.annotations)
-		val bs = br.containingBehaviorSpecification
-		if (bs !== null){
-			bri.annotations.add(bs.name)
-		}
+		bri.annotations.addAll(br.allAnnotations)
 		bri.sink = br.sink;
 		bri.source = br.source;
 		if (br.condition !== null) {
@@ -696,11 +667,7 @@ class Instantiator {
 	// Behavior Rules
 	def void instantiateStateTransition(StateTransition st, ComponentInstance context) {
 		val sti = st.createStateTransitionInstance;
-		sti.annotations.addAll(st.annotations)
-		val bs = st.containingBehaviorSpecification
-		if (bs !== null) {
-			sti.annotations.add(bs.name)
-		}
+		sti.annotations.addAll(st.allAnnotations)
 		var behaviorCondition = st.condition.copy
 		// now replace ConditionElements by respective instances
 		val cos = EcoreUtil2.eAllOfType(behaviorCondition, BinaryOperation);
@@ -746,11 +713,7 @@ class Instantiator {
 	// Generator
 	def void instantiateGenerator(Generator g, ComponentInstance context) {
 		val gi = g.createGeneratorInstance()
-		gi.annotations.addAll(g.annotations)
-		val bs = g.containingBehaviorSpecification
-		if (bs !== null){
-			gi.annotations.add(bs.name)
-		}
+		gi.annotations.addAll(g.allAnnotations)
 		context.generators += gi
 		val literals = g.value
 		if (literals instanceof ECollection) {

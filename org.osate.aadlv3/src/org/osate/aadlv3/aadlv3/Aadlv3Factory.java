@@ -341,13 +341,31 @@ public interface Aadlv3Factory extends EFactory {
 	AnnexLibrary createAnnexLibrary();
 
 	/**
-	 * Returns a new object of class '<em>Behavior Specification</em>'.
+	 * Returns a new object of class '<em>Annotation Block</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Behavior Specification</em>'.
+	 * @return a new object of class '<em>Annotation Block</em>'.
 	 * @generated
 	 */
-	BehaviorSpecification createBehaviorSpecification();
+	AnnotationBlock createAnnotationBlock();
+
+	/**
+	 * Returns a new object of class '<em>Annotation</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Annotation</em>'.
+	 * @generated
+	 */
+	Annotation createAnnotation();
+
+	/**
+	 * Returns a new object of class '<em>Name Value Pair</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Name Value Pair</em>'.
+	 * @generated
+	 */
+	NameValuePair createNameValuePair();
 
 	/**
 	 * Returns a new object of class '<em>State Transition</em>'.

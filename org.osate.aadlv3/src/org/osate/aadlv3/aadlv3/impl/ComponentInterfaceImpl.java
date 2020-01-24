@@ -16,21 +16,12 @@
 package org.osate.aadlv3.aadlv3.impl;
 
 import java.util.Collection;
-
-import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.ComponentInterface;
-import org.osate.aadlv3.aadlv3.Feature;
 import org.osate.aadlv3.aadlv3.PropertySet;
 
 /**
@@ -41,23 +32,12 @@ import org.osate.aadlv3.aadlv3.PropertySet;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentInterfaceImpl#getFeatures <em>Features</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentInterfaceImpl#getUseProperties <em>Use Properties</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class ComponentInterfaceImpl extends ClassifierImpl implements ComponentInterface {
-	/**
-	 * The cached value of the '{@link #getFeatures() <em>Features</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getFeatures()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Feature> features;
-
 	/**
 	 * The cached value of the '{@link #getUseProperties() <em>Use Properties</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -93,20 +73,6 @@ public class ComponentInterfaceImpl extends ClassifierImpl implements ComponentI
 	 * @generated
 	 */
 	@Override
-	public EList<Feature> getFeatures() {
-		if (features == null) {
-			features = new EObjectContainmentEList<Feature>(Feature.class, this,
-					Aadlv3Package.COMPONENT_INTERFACE__FEATURES);
-		}
-		return features;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EList<PropertySet> getUseProperties() {
 		if (useProperties == null) {
 			useProperties = new EObjectResolvingEList<PropertySet>(PropertySet.class, this,
@@ -121,24 +87,8 @@ public class ComponentInterfaceImpl extends ClassifierImpl implements ComponentI
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-		case Aadlv3Package.COMPONENT_INTERFACE__FEATURES:
-			return ((InternalEList<?>) getFeatures()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case Aadlv3Package.COMPONENT_INTERFACE__FEATURES:
-			return getFeatures();
 		case Aadlv3Package.COMPONENT_INTERFACE__USE_PROPERTIES:
 			return getUseProperties();
 		}
@@ -154,10 +104,6 @@ public class ComponentInterfaceImpl extends ClassifierImpl implements ComponentI
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case Aadlv3Package.COMPONENT_INTERFACE__FEATURES:
-			getFeatures().clear();
-			getFeatures().addAll((Collection<? extends Feature>) newValue);
-			return;
 		case Aadlv3Package.COMPONENT_INTERFACE__USE_PROPERTIES:
 			getUseProperties().clear();
 			getUseProperties().addAll((Collection<? extends PropertySet>) newValue);
@@ -174,9 +120,6 @@ public class ComponentInterfaceImpl extends ClassifierImpl implements ComponentI
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case Aadlv3Package.COMPONENT_INTERFACE__FEATURES:
-			getFeatures().clear();
-			return;
 		case Aadlv3Package.COMPONENT_INTERFACE__USE_PROPERTIES:
 			getUseProperties().clear();
 			return;
@@ -192,8 +135,6 @@ public class ComponentInterfaceImpl extends ClassifierImpl implements ComponentI
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case Aadlv3Package.COMPONENT_INTERFACE__FEATURES:
-			return features != null && !features.isEmpty();
 		case Aadlv3Package.COMPONENT_INTERFACE__USE_PROPERTIES:
 			return useProperties != null && !useProperties.isEmpty();
 		}

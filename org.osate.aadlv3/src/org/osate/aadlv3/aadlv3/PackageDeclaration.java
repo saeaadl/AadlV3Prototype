@@ -28,6 +28,7 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.PackageDeclaration#getImports <em>Imports</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.PackageDeclaration#getElements <em>Elements</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.PackageDeclaration#getAnnotationBlocks <em>Annotation Blocks</em>}</li>
  * </ul>
  *
  * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getPackageDeclaration()
@@ -66,5 +67,27 @@ public interface PackageDeclaration extends PackageElement {
 	 * @generated
 	 */
 	EList<PackageElement> getElements();
+
+	/**
+	 * Returns the value of the '<em><b>Annotation Blocks</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Annotation Blocks</em>' containment reference.
+	 * @see #setAnnotationBlocks(AnnotationBlock)
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getPackageDeclaration_AnnotationBlocks()
+	 * @model containment="true"
+	 * @generated
+	 */
+	AnnotationBlock getAnnotationBlocks();
+
+	/**
+	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.PackageDeclaration#getAnnotationBlocks <em>Annotation Blocks</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Annotation Blocks</em>' containment reference.
+	 * @see #getAnnotationBlocks()
+	 * @generated
+	 */
+	void setAnnotationBlocks(AnnotationBlock value);
 
 } // PackageDeclaration

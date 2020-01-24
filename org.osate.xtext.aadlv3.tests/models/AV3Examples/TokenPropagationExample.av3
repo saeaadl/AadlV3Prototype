@@ -53,7 +53,7 @@ package TokenPropagationExample is
 	insignal2 : in feature;
 	outsignal : out feature;
 	
-//	cpu: requires binding x86;
+	cpu: requires binding x86;
 	filterpath1: flow insignal1 -> outsignal;
 	filterpath2: flow insignal2 -> outsignal;
 	#Period => 20 ;
@@ -109,7 +109,7 @@ package TokenPropagationExample is
 		effectprop: connection actuate.effect -> effect;
 		
 //		cpubinding: cycles binding processing.dofilter.cpu -> hw.cpu;
-	@EM{
+	@EM {
 		effect1: flow actuate.actt2.effect  ->  effect;
 //		effect2: flow actuate.actt2.effect in ServiceOmission ->  effect(ServiceOmission);
 	};

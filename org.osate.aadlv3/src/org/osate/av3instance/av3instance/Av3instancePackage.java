@@ -100,7 +100,7 @@ public interface Av3instancePackage extends EPackage {
 	int INSTANCE_OBJECT__OWNED_PROPERTY_ASSOCIATIONS = Aadlv3Package.NAMED_ELEMENT__OWNED_PROPERTY_ASSOCIATIONS;
 
 	/**
-	 * The feature id for the '<em><b>Annotations</b></em>' attribute list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -173,7 +173,7 @@ public interface Av3instancePackage extends EPackage {
 	int FEATURE_INSTANCE__OWNED_PROPERTY_ASSOCIATIONS = INSTANCE_OBJECT__OWNED_PROPERTY_ASSOCIATIONS;
 
 	/**
-	 * The feature id for the '<em><b>Annotations</b></em>' attribute list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -282,7 +282,7 @@ public interface Av3instancePackage extends EPackage {
 	int COMPONENT_INSTANCE__OWNED_PROPERTY_ASSOCIATIONS = INSTANCE_OBJECT__OWNED_PROPERTY_ASSOCIATIONS;
 
 	/**
-	 * The feature id for the '<em><b>Annotations</b></em>' attribute list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -454,7 +454,7 @@ public interface Av3instancePackage extends EPackage {
 	int ASSOCIATION_INSTANCE__OWNED_PROPERTY_ASSOCIATIONS = INSTANCE_OBJECT__OWNED_PROPERTY_ASSOCIATIONS;
 
 	/**
-	 * The feature id for the '<em><b>Annotations</b></em>' attribute list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -599,7 +599,7 @@ public interface Av3instancePackage extends EPackage {
 	int PATH_INSTANCE__OWNED_PROPERTY_ASSOCIATIONS = INSTANCE_OBJECT__OWNED_PROPERTY_ASSOCIATIONS;
 
 	/**
-	 * The feature id for the '<em><b>Annotations</b></em>' attribute list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -690,7 +690,7 @@ public interface Av3instancePackage extends EPackage {
 	int BEHAVIOR_INSTANCE__OWNED_PROPERTY_ASSOCIATIONS = INSTANCE_OBJECT__OWNED_PROPERTY_ASSOCIATIONS;
 
 	/**
-	 * The feature id for the '<em><b>Annotations</b></em>' attribute list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -817,7 +817,7 @@ public interface Av3instancePackage extends EPackage {
 	int GENERATOR_INSTANCE__OWNED_PROPERTY_ASSOCIATIONS = INSTANCE_OBJECT__OWNED_PROPERTY_ASSOCIATIONS;
 
 	/**
-	 * The feature id for the '<em><b>Annotations</b></em>' attribute list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -917,7 +917,7 @@ public interface Av3instancePackage extends EPackage {
 	int CONSTRAINED_INSTANCE_OBJECT__OWNED_PROPERTY_ASSOCIATIONS = INSTANCE_OBJECT__OWNED_PROPERTY_ASSOCIATIONS;
 
 	/**
-	 * The feature id for the '<em><b>Annotations</b></em>' attribute list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1017,7 +1017,7 @@ public interface Av3instancePackage extends EPackage {
 	int STATE_VARIABLE_INSTANCE__OWNED_PROPERTY_ASSOCIATIONS = INSTANCE_OBJECT__OWNED_PROPERTY_ASSOCIATIONS;
 
 	/**
-	 * The feature id for the '<em><b>Annotations</b></em>' attribute list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1117,7 +1117,7 @@ public interface Av3instancePackage extends EPackage {
 	int STATE_INSTANCE__OWNED_PROPERTY_ASSOCIATIONS = INSTANCE_OBJECT__OWNED_PROPERTY_ASSOCIATIONS;
 
 	/**
-	 * The feature id for the '<em><b>Annotations</b></em>' attribute list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1190,7 +1190,7 @@ public interface Av3instancePackage extends EPackage {
 	int STATE_TRANSITION_INSTANCE__OWNED_PROPERTY_ASSOCIATIONS = INSTANCE_OBJECT__OWNED_PROPERTY_ASSOCIATIONS;
 
 	/**
-	 * The feature id for the '<em><b>Annotations</b></em>' attribute list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
