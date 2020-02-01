@@ -39,6 +39,7 @@ import org.osate.aadlv3.aadlv3.Subcomponent;
  *   <li>{@link org.osate.av3instance.av3instance.ComponentInstance#getStateVariables <em>State Variables</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.ComponentInstance#getActions <em>Actions</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.ComponentInstance#getStateTransitions <em>State Transitions</em>}</li>
+ *   <li>{@link org.osate.av3instance.av3instance.ComponentInstance#getStateSynchronizations <em>State Synchronizations</em>}</li>
  * </ul>
  *
  * @see org.osate.av3instance.av3instance.Av3instancePackage#getComponentInstance()
@@ -225,5 +226,17 @@ public interface ComponentInstance extends InstanceObject {
 	 * @generated
 	 */
 	EList<StateTransitionInstance> getStateTransitions();
+
+	/**
+	 * Returns the value of the '<em><b>State Synchronizations</b></em>' containment reference list.
+	 * The list contents are of type {@link org.osate.av3instance.av3instance.StateSynchronizationInstance}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>State Synchronizations</em>' containment reference list.
+	 * @see org.osate.av3instance.av3instance.Av3instancePackage#getComponentInstance_StateSynchronizations()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<StateSynchronizationInstance> getStateSynchronizations();
 
 } // ComponentInstance

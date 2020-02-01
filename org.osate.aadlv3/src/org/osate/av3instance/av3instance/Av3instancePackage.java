@@ -417,13 +417,22 @@ public interface Av3instancePackage extends EPackage {
 	int COMPONENT_INSTANCE__STATE_TRANSITIONS = INSTANCE_OBJECT_FEATURE_COUNT + 10;
 
 	/**
+	 * The feature id for the '<em><b>State Synchronizations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_INSTANCE__STATE_SYNCHRONIZATIONS = INSTANCE_OBJECT_FEATURE_COUNT + 11;
+
+	/**
 	 * The number of structural features of the '<em>Component Instance</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_INSTANCE_FEATURE_COUNT = INSTANCE_OBJECT_FEATURE_COUNT + 11;
+	int COMPONENT_INSTANCE_FEATURE_COUNT = INSTANCE_OBJECT_FEATURE_COUNT + 12;
 
 	/**
 	 * The meta object id for the '{@link org.osate.av3instance.av3instance.impl.AssociationInstanceImpl <em>Association Instance</em>}' class.
@@ -1262,6 +1271,106 @@ public interface Av3instancePackage extends EPackage {
 	int STATE_TRANSITION_INSTANCE_FEATURE_COUNT = INSTANCE_OBJECT_FEATURE_COUNT + 3;
 
 	/**
+	 * The meta object id for the '{@link org.osate.av3instance.av3instance.impl.StateSynchronizationInstanceImpl <em>State Synchronization Instance</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.osate.av3instance.av3instance.impl.StateSynchronizationInstanceImpl
+	 * @see org.osate.av3instance.av3instance.impl.Av3instancePackageImpl#getStateSynchronizationInstance()
+	 * @generated
+	 */
+	int STATE_SYNCHRONIZATION_INSTANCE = 11;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_SYNCHRONIZATION_INSTANCE__NAME = INSTANCE_OBJECT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Property Associations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_SYNCHRONIZATION_INSTANCE__OWNED_PROPERTY_ASSOCIATIONS = INSTANCE_OBJECT__OWNED_PROPERTY_ASSOCIATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_SYNCHRONIZATION_INSTANCE__ANNOTATIONS = INSTANCE_OBJECT__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Associations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_SYNCHRONIZATION_INSTANCE__INCOMING_ASSOCIATIONS = INSTANCE_OBJECT__INCOMING_ASSOCIATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Outgoing Associations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_SYNCHRONIZATION_INSTANCE__OUTGOING_ASSOCIATIONS = INSTANCE_OBJECT__OUTGOING_ASSOCIATIONS;
+
+	/**
+	 * The feature id for the '<em><b>In States</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_SYNCHRONIZATION_INSTANCE__IN_STATES = INSTANCE_OBJECT__IN_STATES;
+
+	/**
+	 * The feature id for the '<em><b>State Synchronization</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_SYNCHRONIZATION_INSTANCE__STATE_SYNCHRONIZATION = INSTANCE_OBJECT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Condition</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_SYNCHRONIZATION_INSTANCE__CONDITION = INSTANCE_OBJECT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Target State</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_SYNCHRONIZATION_INSTANCE__TARGET_STATE = INSTANCE_OBJECT_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>State Synchronization Instance</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_SYNCHRONIZATION_INSTANCE_FEATURE_COUNT = INSTANCE_OBJECT_FEATURE_COUNT + 3;
+
+	/**
 	 * Returns the meta object for class '{@link org.osate.av3instance.av3instance.InstanceObject <em>Instance Object</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1488,6 +1597,17 @@ public interface Av3instancePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getComponentInstance_StateTransitions();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.osate.av3instance.av3instance.ComponentInstance#getStateSynchronizations <em>State Synchronizations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>State Synchronizations</em>'.
+	 * @see org.osate.av3instance.av3instance.ComponentInstance#getStateSynchronizations()
+	 * @see #getComponentInstance()
+	 * @generated
+	 */
+	EReference getComponentInstance_StateSynchronizations();
 
 	/**
 	 * Returns the meta object for class '{@link org.osate.av3instance.av3instance.AssociationInstance <em>Association Instance</em>}'.
@@ -1878,6 +1998,49 @@ public interface Av3instancePackage extends EPackage {
 	EReference getStateTransitionInstance_TargetState();
 
 	/**
+	 * Returns the meta object for class '{@link org.osate.av3instance.av3instance.StateSynchronizationInstance <em>State Synchronization Instance</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>State Synchronization Instance</em>'.
+	 * @see org.osate.av3instance.av3instance.StateSynchronizationInstance
+	 * @generated
+	 */
+	EClass getStateSynchronizationInstance();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.osate.av3instance.av3instance.StateSynchronizationInstance#getStateSynchronization <em>State Synchronization</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>State Synchronization</em>'.
+	 * @see org.osate.av3instance.av3instance.StateSynchronizationInstance#getStateSynchronization()
+	 * @see #getStateSynchronizationInstance()
+	 * @generated
+	 */
+	EReference getStateSynchronizationInstance_StateSynchronization();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.osate.av3instance.av3instance.StateSynchronizationInstance#getCondition <em>Condition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Condition</em>'.
+	 * @see org.osate.av3instance.av3instance.StateSynchronizationInstance#getCondition()
+	 * @see #getStateSynchronizationInstance()
+	 * @generated
+	 */
+	EReference getStateSynchronizationInstance_Condition();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.osate.av3instance.av3instance.StateSynchronizationInstance#getTargetState <em>Target State</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Target State</em>'.
+	 * @see org.osate.av3instance.av3instance.StateSynchronizationInstance#getTargetState()
+	 * @see #getStateSynchronizationInstance()
+	 * @generated
+	 */
+	EReference getStateSynchronizationInstance_TargetState();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2073,6 +2236,14 @@ public interface Av3instancePackage extends EPackage {
 		 * @generated
 		 */
 		EReference COMPONENT_INSTANCE__STATE_TRANSITIONS = eINSTANCE.getComponentInstance_StateTransitions();
+
+		/**
+		 * The meta object literal for the '<em><b>State Synchronizations</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPONENT_INSTANCE__STATE_SYNCHRONIZATIONS = eINSTANCE.getComponentInstance_StateSynchronizations();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.av3instance.av3instance.impl.AssociationInstanceImpl <em>Association Instance</em>}' class.
@@ -2379,6 +2550,42 @@ public interface Av3instancePackage extends EPackage {
 		 * @generated
 		 */
 		EReference STATE_TRANSITION_INSTANCE__TARGET_STATE = eINSTANCE.getStateTransitionInstance_TargetState();
+
+		/**
+		 * The meta object literal for the '{@link org.osate.av3instance.av3instance.impl.StateSynchronizationInstanceImpl <em>State Synchronization Instance</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.osate.av3instance.av3instance.impl.StateSynchronizationInstanceImpl
+		 * @see org.osate.av3instance.av3instance.impl.Av3instancePackageImpl#getStateSynchronizationInstance()
+		 * @generated
+		 */
+		EClass STATE_SYNCHRONIZATION_INSTANCE = eINSTANCE.getStateSynchronizationInstance();
+
+		/**
+		 * The meta object literal for the '<em><b>State Synchronization</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STATE_SYNCHRONIZATION_INSTANCE__STATE_SYNCHRONIZATION = eINSTANCE
+				.getStateSynchronizationInstance_StateSynchronization();
+
+		/**
+		 * The meta object literal for the '<em><b>Condition</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STATE_SYNCHRONIZATION_INSTANCE__CONDITION = eINSTANCE.getStateSynchronizationInstance_Condition();
+
+		/**
+		 * The meta object literal for the '<em><b>Target State</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STATE_SYNCHRONIZATION_INSTANCE__TARGET_STATE = eINSTANCE
+				.getStateSynchronizationInstance_TargetState();
 
 	}
 

@@ -691,6 +691,17 @@ public class Aadlv3Switch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case Aadlv3Package.STATE_SYNCHRONIZATION: {
+			StateSynchronization stateSynchronization = (StateSynchronization) theEObject;
+			T result = caseStateSynchronization(stateSynchronization);
+			if (result == null)
+				result = caseModelElement(stateSynchronization);
+			if (result == null)
+				result = caseNamedElement(stateSynchronization);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		case Aadlv3Package.BEHAVIOR: {
 			Behavior behavior = (Behavior) theEObject;
 			T result = caseBehavior(behavior);
@@ -1440,6 +1451,21 @@ public class Aadlv3Switch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseStateTransition(StateTransition object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>State Synchronization</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>State Synchronization</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStateSynchronization(StateSynchronization object) {
 		return null;
 	}
 

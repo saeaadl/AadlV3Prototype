@@ -40,6 +40,7 @@ import org.osate.av3instance.av3instance.ConstrainedInstanceObject;
 import org.osate.av3instance.av3instance.FeatureInstance;
 import org.osate.av3instance.av3instance.GeneratorInstance;
 import org.osate.av3instance.av3instance.PathInstance;
+import org.osate.av3instance.av3instance.StateSynchronizationInstance;
 import org.osate.av3instance.av3instance.StateTransitionInstance;
 import org.osate.av3instance.av3instance.StateVariableInstance;
 import static org.osate.aadlv3.util.AIv3API.*;
@@ -63,6 +64,7 @@ import static org.osate.aadlv3.util.AIv3API.*;
  *   <li>{@link org.osate.av3instance.av3instance.impl.ComponentInstanceImpl#getStateVariables <em>State Variables</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.impl.ComponentInstanceImpl#getActions <em>Actions</em>}</li>
  *   <li>{@link org.osate.av3instance.av3instance.impl.ComponentInstanceImpl#getStateTransitions <em>State Transitions</em>}</li>
+ *   <li>{@link org.osate.av3instance.av3instance.impl.ComponentInstanceImpl#getStateSynchronizations <em>State Synchronizations</em>}</li>
  * </ul>
  *
  * @generated
@@ -187,6 +189,16 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 	 * @ordered
 	 */
 	protected EList<StateTransitionInstance> stateTransitions;
+
+	/**
+	 * The cached value of the '{@link #getStateSynchronizations() <em>State Synchronizations</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStateSynchronizations()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<StateSynchronizationInstance> stateSynchronizations;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -405,6 +417,21 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 	 * @generated
 	 */
 	@Override
+	public EList<StateSynchronizationInstance> getStateSynchronizations() {
+		if (stateSynchronizations == null) {
+			stateSynchronizations = new EObjectContainmentEList<StateSynchronizationInstance>(
+					StateSynchronizationInstance.class, this,
+					Av3instancePackage.COMPONENT_INSTANCE__STATE_SYNCHRONIZATIONS);
+		}
+		return stateSynchronizations;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case Av3instancePackage.COMPONENT_INSTANCE__COMPONENTS:
@@ -425,6 +452,8 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 			return ((InternalEList<?>) getActions()).basicRemove(otherEnd, msgs);
 		case Av3instancePackage.COMPONENT_INSTANCE__STATE_TRANSITIONS:
 			return ((InternalEList<?>) getStateTransitions()).basicRemove(otherEnd, msgs);
+		case Av3instancePackage.COMPONENT_INSTANCE__STATE_SYNCHRONIZATIONS:
+			return ((InternalEList<?>) getStateSynchronizations()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -461,6 +490,8 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 			return getActions();
 		case Av3instancePackage.COMPONENT_INSTANCE__STATE_TRANSITIONS:
 			return getStateTransitions();
+		case Av3instancePackage.COMPONENT_INSTANCE__STATE_SYNCHRONIZATIONS:
+			return getStateSynchronizations();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -516,6 +547,10 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 			getStateTransitions().clear();
 			getStateTransitions().addAll((Collection<? extends StateTransitionInstance>) newValue);
 			return;
+		case Av3instancePackage.COMPONENT_INSTANCE__STATE_SYNCHRONIZATIONS:
+			getStateSynchronizations().clear();
+			getStateSynchronizations().addAll((Collection<? extends StateSynchronizationInstance>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -561,6 +596,9 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 		case Av3instancePackage.COMPONENT_INSTANCE__STATE_TRANSITIONS:
 			getStateTransitions().clear();
 			return;
+		case Av3instancePackage.COMPONENT_INSTANCE__STATE_SYNCHRONIZATIONS:
+			getStateSynchronizations().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -595,6 +633,8 @@ public class ComponentInstanceImpl extends InstanceObjectImpl implements Compone
 			return actions != null && !actions.isEmpty();
 		case Av3instancePackage.COMPONENT_INSTANCE__STATE_TRANSITIONS:
 			return stateTransitions != null && !stateTransitions.isEmpty();
+		case Av3instancePackage.COMPONENT_INSTANCE__STATE_SYNCHRONIZATIONS:
+			return stateSynchronizations != null && !stateSynchronizations.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

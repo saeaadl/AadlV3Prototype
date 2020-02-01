@@ -33,6 +33,8 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.osate.aadlv3.aadlv3.ClassifierAssignment#getAssignedClassifiers <em>Assigned Classifiers</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.ClassifierAssignment#getOwnedPropertyAssociations <em>Owned Property Associations</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.ClassifierAssignment#getElements <em>Elements</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.ClassifierAssignment#getFlowAssignments <em>Flow Assignments</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.ClassifierAssignment#getConnectionAssignments <em>Connection Assignments</em>}</li>
  * </ul>
  *
  * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getClassifierAssignment()
@@ -109,5 +111,29 @@ public interface ClassifierAssignment extends EObject {
 	 * @generated
 	 */
 	EList<ModelElement> getElements();
+
+	/**
+	 * Returns the value of the '<em><b>Flow Assignments</b></em>' containment reference list.
+	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.PathSequence}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Flow Assignments</em>' containment reference list.
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getClassifierAssignment_FlowAssignments()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<PathSequence> getFlowAssignments();
+
+	/**
+	 * Returns the value of the '<em><b>Connection Assignments</b></em>' containment reference list.
+	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.PathSequence}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Connection Assignments</em>' containment reference list.
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getClassifierAssignment_ConnectionAssignments()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<PathSequence> getConnectionAssignments();
 
 } // ClassifierAssignment

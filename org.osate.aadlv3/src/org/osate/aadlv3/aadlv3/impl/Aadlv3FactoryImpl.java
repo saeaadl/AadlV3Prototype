@@ -160,6 +160,8 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 			return createNameValuePair();
 		case Aadlv3Package.STATE_TRANSITION:
 			return createStateTransition();
+		case Aadlv3Package.STATE_SYNCHRONIZATION:
+			return createStateSynchronization();
 		case Aadlv3Package.BEHAVIOR:
 			return createBehavior();
 		case Aadlv3Package.STATE_VARIABLE:
@@ -657,6 +659,17 @@ public class Aadlv3FactoryImpl extends EFactoryImpl implements Aadlv3Factory {
 	public StateTransition createStateTransition() {
 		StateTransitionImpl stateTransition = new StateTransitionImpl();
 		return stateTransition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public StateSynchronization createStateSynchronization() {
+		StateSynchronizationImpl stateSynchronization = new StateSynchronizationImpl();
+		return stateSynchronization;
 	}
 
 	/**

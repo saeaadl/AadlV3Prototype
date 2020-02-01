@@ -34,6 +34,7 @@ import org.osate.av3instance.av3instance.GeneratorInstance;
 import org.osate.av3instance.av3instance.InstanceObject;
 import org.osate.av3instance.av3instance.PathInstance;
 import org.osate.av3instance.av3instance.StateInstance;
+import org.osate.av3instance.av3instance.StateSynchronizationInstance;
 import org.osate.av3instance.av3instance.StateTransitionInstance;
 import org.osate.av3instance.av3instance.StateVariableInstance;
 
@@ -120,6 +121,13 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 	 * @generated
 	 */
 	private EClass stateTransitionInstanceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass stateSynchronizationInstanceEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -396,6 +404,16 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 	@Override
 	public EReference getComponentInstance_StateTransitions() {
 		return (EReference) componentInstanceEClass.getEStructuralFeatures().get(10);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getComponentInstance_StateSynchronizations() {
+		return (EReference) componentInstanceEClass.getEStructuralFeatures().get(11);
 	}
 
 	/**
@@ -764,6 +782,46 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 	 * @generated
 	 */
 	@Override
+	public EClass getStateSynchronizationInstance() {
+		return stateSynchronizationInstanceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getStateSynchronizationInstance_StateSynchronization() {
+		return (EReference) stateSynchronizationInstanceEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getStateSynchronizationInstance_Condition() {
+		return (EReference) stateSynchronizationInstanceEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getStateSynchronizationInstance_TargetState() {
+		return (EReference) stateSynchronizationInstanceEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Av3instanceFactory getAv3instanceFactory() {
 		return (Av3instanceFactory) getEFactoryInstance();
 	}
@@ -811,6 +869,7 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 		createEReference(componentInstanceEClass, COMPONENT_INSTANCE__STATE_VARIABLES);
 		createEReference(componentInstanceEClass, COMPONENT_INSTANCE__ACTIONS);
 		createEReference(componentInstanceEClass, COMPONENT_INSTANCE__STATE_TRANSITIONS);
+		createEReference(componentInstanceEClass, COMPONENT_INSTANCE__STATE_SYNCHRONIZATIONS);
 
 		associationInstanceEClass = createEClass(ASSOCIATION_INSTANCE);
 		createEAttribute(associationInstanceEClass, ASSOCIATION_INSTANCE__ASSOCIATION_TYPE);
@@ -855,6 +914,11 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 		createEReference(stateTransitionInstanceEClass, STATE_TRANSITION_INSTANCE__STATE_TRANSITION);
 		createEReference(stateTransitionInstanceEClass, STATE_TRANSITION_INSTANCE__CONDITION);
 		createEReference(stateTransitionInstanceEClass, STATE_TRANSITION_INSTANCE__TARGET_STATE);
+
+		stateSynchronizationInstanceEClass = createEClass(STATE_SYNCHRONIZATION_INSTANCE);
+		createEReference(stateSynchronizationInstanceEClass, STATE_SYNCHRONIZATION_INSTANCE__STATE_SYNCHRONIZATION);
+		createEReference(stateSynchronizationInstanceEClass, STATE_SYNCHRONIZATION_INSTANCE__CONDITION);
+		createEReference(stateSynchronizationInstanceEClass, STATE_SYNCHRONIZATION_INSTANCE__TARGET_STATE);
 	}
 
 	/**
@@ -901,6 +965,7 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 		stateVariableInstanceEClass.getESuperTypes().add(this.getInstanceObject());
 		stateInstanceEClass.getESuperTypes().add(this.getInstanceObject());
 		stateTransitionInstanceEClass.getESuperTypes().add(this.getInstanceObject());
+		stateSynchronizationInstanceEClass.getESuperTypes().add(this.getInstanceObject());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(instanceObjectEClass, InstanceObject.class, "InstanceObject", IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
@@ -967,6 +1032,9 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 		initEReference(getComponentInstance_StateTransitions(), this.getStateTransitionInstance(), null,
 				"stateTransitions", null, 0, -1, ComponentInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, //$NON-NLS-1$
 				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getComponentInstance_StateSynchronizations(), this.getStateSynchronizationInstance(), null,
+				"stateSynchronizations", null, 0, -1, ComponentInstance.class, !IS_TRANSIENT, !IS_VOLATILE, //$NON-NLS-1$
+				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(associationInstanceEClass, AssociationInstance.class, "AssociationInstance", !IS_ABSTRACT, //$NON-NLS-1$
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1077,6 +1145,19 @@ public class Av3instancePackageImpl extends EPackageImpl implements Av3instanceP
 		initEReference(getStateTransitionInstance_TargetState(), this.getStateInstance(), null, "targetState", null, 0, //$NON-NLS-1$
 				1, StateTransitionInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(stateSynchronizationInstanceEClass, StateSynchronizationInstance.class,
+				"StateSynchronizationInstance", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getStateSynchronizationInstance_StateSynchronization(),
+				theAadlv3Package.getStateSynchronization(), null, "stateSynchronization", null, 0, 1, //$NON-NLS-1$
+				StateSynchronizationInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getStateSynchronizationInstance_Condition(), theAadlv3Package.getLiteral(), null, "condition", //$NON-NLS-1$
+				null, 0, 1, StateSynchronizationInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getStateSynchronizationInstance_TargetState(), this.getStateInstance(), null, "targetState", //$NON-NLS-1$
+				null, 0, 1, StateSynchronizationInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

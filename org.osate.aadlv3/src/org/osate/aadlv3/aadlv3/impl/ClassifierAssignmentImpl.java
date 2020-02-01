@@ -35,6 +35,7 @@ import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.ClassifierAssignment;
 import org.osate.aadlv3.aadlv3.ModelElement;
 import org.osate.aadlv3.aadlv3.NamedElementReference;
+import org.osate.aadlv3.aadlv3.PathSequence;
 import org.osate.aadlv3.aadlv3.PropertyAssociation;
 import org.osate.aadlv3.aadlv3.TypeReference;
 
@@ -51,6 +52,8 @@ import org.osate.aadlv3.aadlv3.TypeReference;
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ClassifierAssignmentImpl#getAssignedClassifiers <em>Assigned Classifiers</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ClassifierAssignmentImpl#getOwnedPropertyAssociations <em>Owned Property Associations</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ClassifierAssignmentImpl#getElements <em>Elements</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.ClassifierAssignmentImpl#getFlowAssignments <em>Flow Assignments</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.ClassifierAssignmentImpl#getConnectionAssignments <em>Connection Assignments</em>}</li>
  * </ul>
  *
  * @generated
@@ -105,6 +108,26 @@ public class ClassifierAssignmentImpl extends MinimalEObjectImpl.Container imple
 	 * @ordered
 	 */
 	protected EList<ModelElement> elements;
+
+	/**
+	 * The cached value of the '{@link #getFlowAssignments() <em>Flow Assignments</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFlowAssignments()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<PathSequence> flowAssignments;
+
+	/**
+	 * The cached value of the '{@link #getConnectionAssignments() <em>Connection Assignments</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getConnectionAssignments()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<PathSequence> connectionAssignments;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -239,6 +262,34 @@ public class ClassifierAssignmentImpl extends MinimalEObjectImpl.Container imple
 	 * @generated
 	 */
 	@Override
+	public EList<PathSequence> getFlowAssignments() {
+		if (flowAssignments == null) {
+			flowAssignments = new EObjectContainmentEList<PathSequence>(PathSequence.class, this,
+					Aadlv3Package.CLASSIFIER_ASSIGNMENT__FLOW_ASSIGNMENTS);
+		}
+		return flowAssignments;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<PathSequence> getConnectionAssignments() {
+		if (connectionAssignments == null) {
+			connectionAssignments = new EObjectContainmentEList<PathSequence>(PathSequence.class, this,
+					Aadlv3Package.CLASSIFIER_ASSIGNMENT__CONNECTION_ASSIGNMENTS);
+		}
+		return connectionAssignments;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__TARGET:
@@ -251,6 +302,10 @@ public class ClassifierAssignmentImpl extends MinimalEObjectImpl.Container imple
 			return ((InternalEList<?>) getOwnedPropertyAssociations()).basicRemove(otherEnd, msgs);
 		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__ELEMENTS:
 			return ((InternalEList<?>) getElements()).basicRemove(otherEnd, msgs);
+		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__FLOW_ASSIGNMENTS:
+			return ((InternalEList<?>) getFlowAssignments()).basicRemove(otherEnd, msgs);
+		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__CONNECTION_ASSIGNMENTS:
+			return ((InternalEList<?>) getConnectionAssignments()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -273,6 +328,10 @@ public class ClassifierAssignmentImpl extends MinimalEObjectImpl.Container imple
 			return getOwnedPropertyAssociations();
 		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__ELEMENTS:
 			return getElements();
+		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__FLOW_ASSIGNMENTS:
+			return getFlowAssignments();
+		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__CONNECTION_ASSIGNMENTS:
+			return getConnectionAssignments();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -305,6 +364,14 @@ public class ClassifierAssignmentImpl extends MinimalEObjectImpl.Container imple
 			getElements().clear();
 			getElements().addAll((Collection<? extends ModelElement>) newValue);
 			return;
+		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__FLOW_ASSIGNMENTS:
+			getFlowAssignments().clear();
+			getFlowAssignments().addAll((Collection<? extends PathSequence>) newValue);
+			return;
+		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__CONNECTION_ASSIGNMENTS:
+			getConnectionAssignments().clear();
+			getConnectionAssignments().addAll((Collection<? extends PathSequence>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -332,6 +399,12 @@ public class ClassifierAssignmentImpl extends MinimalEObjectImpl.Container imple
 		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__ELEMENTS:
 			getElements().clear();
 			return;
+		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__FLOW_ASSIGNMENTS:
+			getFlowAssignments().clear();
+			return;
+		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__CONNECTION_ASSIGNMENTS:
+			getConnectionAssignments().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -354,6 +427,10 @@ public class ClassifierAssignmentImpl extends MinimalEObjectImpl.Container imple
 			return ownedPropertyAssociations != null && !ownedPropertyAssociations.isEmpty();
 		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__ELEMENTS:
 			return elements != null && !elements.isEmpty();
+		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__FLOW_ASSIGNMENTS:
+			return flowAssignments != null && !flowAssignments.isEmpty();
+		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__CONNECTION_ASSIGNMENTS:
+			return connectionAssignments != null && !connectionAssignments.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

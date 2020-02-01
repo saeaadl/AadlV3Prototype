@@ -377,6 +377,15 @@ public interface Aadlv3Factory extends EFactory {
 	StateTransition createStateTransition();
 
 	/**
+	 * Returns a new object of class '<em>State Synchronization</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>State Synchronization</em>'.
+	 * @generated
+	 */
+	StateSynchronization createStateSynchronization();
+
+	/**
 	 * Returns a new object of class '<em>Behavior</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

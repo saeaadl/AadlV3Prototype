@@ -207,6 +207,9 @@ public class AnnotationBlockItemProvider extends ModelElementItemProvider {
 				Aadlv3Factory.eINSTANCE.createStateTransition()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ANNOTATION_BLOCK__ELEMENTS,
+				Aadlv3Factory.eINSTANCE.createStateSynchronization()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ANNOTATION_BLOCK__ELEMENTS,
 				Aadlv3Factory.eINSTANCE.createBehavior()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.ANNOTATION_BLOCK__ELEMENTS,

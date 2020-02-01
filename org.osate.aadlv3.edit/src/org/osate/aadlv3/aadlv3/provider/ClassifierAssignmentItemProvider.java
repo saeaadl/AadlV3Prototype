@@ -88,6 +88,8 @@ public class ClassifierAssignmentItemProvider extends ItemProviderAdapter implem
 			childrenFeatures.add(Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__ASSIGNED_CLASSIFIERS);
 			childrenFeatures.add(Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__OWNED_PROPERTY_ASSOCIATIONS);
 			childrenFeatures.add(Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__ELEMENTS);
+			childrenFeatures.add(Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__FLOW_ASSIGNMENTS);
+			childrenFeatures.add(Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__CONNECTION_ASSIGNMENTS);
 		}
 		return childrenFeatures;
 	}
@@ -144,6 +146,8 @@ public class ClassifierAssignmentItemProvider extends ItemProviderAdapter implem
 		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__ASSIGNED_CLASSIFIERS:
 		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__OWNED_PROPERTY_ASSOCIATIONS:
 		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__ELEMENTS:
+		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__FLOW_ASSIGNMENTS:
+		case Aadlv3Package.CLASSIFIER_ASSIGNMENT__CONNECTION_ASSIGNMENTS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -207,6 +211,9 @@ public class ClassifierAssignmentItemProvider extends ItemProviderAdapter implem
 				Aadlv3Factory.eINSTANCE.createStateTransition()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__ELEMENTS,
+				Aadlv3Factory.eINSTANCE.createStateSynchronization()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__ELEMENTS,
 				Aadlv3Factory.eINSTANCE.createBehavior()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__ELEMENTS,
@@ -214,6 +221,35 @@ public class ClassifierAssignmentItemProvider extends ItemProviderAdapter implem
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__ELEMENTS,
 				Aadlv3Factory.eINSTANCE.createGenerator()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__FLOW_ASSIGNMENTS,
+				Aadlv3Factory.eINSTANCE.createPathSequence()));
+
+		newChildDescriptors
+				.add(createChildParameter(Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__CONNECTION_ASSIGNMENTS,
+						Aadlv3Factory.eINSTANCE.createPathSequence()));
+	}
+
+	/**
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
+		Object childFeature = feature;
+		Object childObject = child;
+
+		boolean qualify = childFeature == Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__ELEMENTS
+				|| childFeature == Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__FLOW_ASSIGNMENTS
+				|| childFeature == Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__CONNECTION_ASSIGNMENTS;
+
+		if (qualify) {
+			return getString("_UI_CreateChild_text2",
+					new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+		}
+		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 	/**

@@ -83,7 +83,7 @@ fragment InterfaceBody*:
 	'is' (InterfaceElement )*  'end'
 ;
 fragment InterfaceElement*:
-	 elements+= (Feature| StateVariable | Transition | Behavior| Generator
+	 elements+= (Feature| StateVariable | StateTransition | Behavior| Generator
 	   |  BehaviorAnnotationBlock | AnnexSubclause) | ownedPropertyAssociations+=PropertyAssociation
 ;
 	
@@ -101,15 +101,15 @@ fragment ImplementationBody*:
 
 fragment ImplementationElement* :
 	elements+=(Connection |  Binding | Subcomponent | EndToEndFlow |  BehaviorAnnotationBlock
-		| StateVariable | Transition | Behavior|  Generator | AnnexSubclause)
+		| StateVariable | StateTransition | StateSynchronization | Behavior|  Generator | AnnexSubclause)
 		| flowAssignments+=FlowAssignment | classifierAssignments+=ClassifierAssignment | classifierAssignments+=ClassifierAssignmentPattern
-		| ownedPropertyAssociations+=PropertyAssociation 
+		| connectionAssignments += ConnectionAssignment | ownedPropertyAssociations+=PropertyAssociation 
 ;
 
 ComponentConfiguration returns av3::ComponentConfiguration:
 	 (annotations+=Annotation )*
 	(private?='private')? 'configuration' name=DottedName  
-	Parameters?
+	Parameters? 
 	// optional extension. If no extends then we have a generic configuration with patterns
 	('extends' ConfigurationExtensions)? ConfigurationElementBlock ';'
 	 ;
@@ -192,6 +192,13 @@ FlowAssignment returns av3::PathSequence:
 	;
 
 
+ConnectionAssignment returns av3::PathSequence:
+	target= ModelElementReference '=>' 'connection'
+	elements+=PathElement ('->' elements+=PathElement)*
+	';'
+	;
+
+
 
 fragment ConfigurationElementBlock *:
 	'is' (ConfigurationElement )* 'end';
@@ -200,8 +207,10 @@ fragment CurlyConfigurationElementBlock *:
 	'{' (ConfigurationElement  )+ '}'; 
 
 fragment ConfigurationElement*: 
-	ownedPropertyAssociations+=PropertyAssociation  | elements += BehaviorAnnotationBlock |
-	elements+=Binding | classifierAssignments+=ClassifierAssignment | classifierAssignments+=ClassifierAssignmentPattern | elements+=AnnexSubclause
+	ownedPropertyAssociations+=PropertyAssociation  | 
+	elements += (BehaviorAnnotationBlock | EndToEndFlow |  BehaviorAnnotationBlock
+		| StateVariable | StateTransition | StateSynchronization | Behavior|  Generator | Binding ) 
+	| flowAssignments+=FlowAssignment | classifierAssignments+=ClassifierAssignment | classifierAssignments+=ClassifierAssignmentPattern | elements+=AnnexSubclause
 ;
 
 fragment Parameters *:
@@ -329,7 +338,7 @@ fragment BehaviorAnnotationElements*:
 ;
 
 fragment BehaviorAnnotationElement*:
-	elements+= (Generator | Transition| Behavior | StateVariable )
+	elements+= (Generator | StateTransition| StateSynchronization | Behavior | StateVariable )
 ;
 
 
@@ -342,46 +351,54 @@ StateVariable returns av3::StateVariable:
 
 Generator returns av3::Generator:
 	(annotations+=Annotation )*
-	name=ID ':'  type=ID? 'generator'  
+	name=ID ':'  'generator'  
 	(value=ListLiteral)? InStates? PropertiesBlock? ';'
 ;
 
 
-Transition returns av3::StateTransition :
+StateTransition returns av3::StateTransition :
 	(annotations+=Annotation )*
 	name=ID ':' 'transition' condition =  (MultiLiteralOperation | ModelElementContainsLiteral | ModelElementReference) '->' targetState=ModelElementEqualsEnumerationLiteral 
 		(InStates)? PropertiesBlock? ';'
 ;
 
+StateSynchronization returns av3::StateSynchronization :
+	(annotations+=Annotation )*
+	name=ID ':' 'sync' 
+	(( condition =  (MultiLiteralOperation | ModelElementContainsEnumerationLiteral | ModelElementEqualsEnumerationLiteral ) '->' targetState=ModelElementEqualsEnumerationLiteral) 
+	| targetState=ModelElementEqualsEnumerationLiteral '->' ( condition =  (MultiLiteralOperation | ModelElementContainsEnumerationLiteral | ModelElementEqualsEnumerationLiteral )) 
+	)	(InStates)? PropertiesBlock? ';'
+;
+
 Behavior returns av3::Behavior :
-	FlowPath | FlowSource  | TypedToken | ComputationalBehavior
+	TokenFlow | ComputationalBehavior
 ;
+//
+//FlowPath returns av3::Behavior :
+//	(annotations+=Annotation )*
+//	name=ID ':' 'flow' condition =(ListLiteral | ModelElementReference) '->'  ( sink?='sink' | (actions+=FlowOutput (',' actions+=FlowOutput)* ))
+//	(InStates )? PropertiesBlock?';'
+//;
+//FlowSource returns av3::Behavior :
+//	(annotations+=Annotation )*
+//	name=ID ':' 'flow'  source?='source' (condition =(ListLiteral | ModelElementReference)? '->' )?  actions+=FlowOutput (',' actions+=FlowOutput)* 
+//	(InStates )? PropertiesBlock?';'
+//;
+//
+//FlowOutput returns av3::BinaryOperation:
+//	left= ModelElementReference 
+//;
 
-FlowPath returns av3::Behavior :
+TokenFlow returns av3::Behavior :
 	(annotations+=Annotation )*
-	name=ID ':' 'flow' condition =(ListLiteral | ModelElementReference) '->'  ( sink?='sink' | (actions+=FlowOutput (',' actions+=FlowOutput)* ))
-	(InStates )? PropertiesBlock?';'
-;
-FlowSource returns av3::Behavior :
-	(annotations+=Annotation )*
-	name=ID ':' 'flow'  source?='source' (condition =(ListLiteral | ModelElementReference)? '->' )?  actions+=FlowOutput (',' actions+=FlowOutput)* 
-	(InStates )? PropertiesBlock?';'
-;
-
-FlowOutput returns av3::BinaryOperation:
-	left= ModelElementReference 
-;
-
-TypedToken returns av3::Behavior :
-	(annotations+=Annotation )*
-	name=ID ':' 'token' source?='source'? condition =(MultiLiteralOperation | ModelElementContainsLiteral | ModelElementReference) 
+	name=ID ':' category=IsFlowCategory source?='source'? condition =(MultiLiteralOperation | ModelElementContainsLiteral | ModelElementEqualsLiteral | ModelElementReference) 
 		'->' ( sink?='sink'| TokenResultBlock )  
 	( InStates )? PropertiesBlock?';'
 ;
 
 ComputationalBehavior returns av3::Behavior :
 	(annotations+=Annotation )*
-	name=ID ':' 'behavior' condition =Literal '->'  TokenResultBlock 
+	name=ID ':' category=IsBehaviorCategory condition =Literal '->'  TokenResultBlock 
 	( InStates )? PropertiesBlock?';'
 ;
 
@@ -522,6 +539,18 @@ FeatureCategory returns av3::FeatureCategory:
 	'feature' | 'port' | 'parameter' | DataAccessKeywords 
 	| BusAccessKeywords | VirtualBusAccessKeywords | SubprogramAccessKeywords | SubprogramGroupAccessKeywords
 	| 'binding' | 'interface';
+
+BehaviorCategory returns av3::BehaviorCategory :
+	'flow' | 'token' | 'behavior' | 'sync'
+;
+
+IsFlowCategory returns av3::BehaviorCategory :	'flow' ;
+
+IsSyncCategory returns av3::BehaviorCategory : 'sync';
+
+IsTokenCategory returns av3::BehaviorCategory :	'token';
+
+IsBehaviorCategory returns av3::BehaviorCategory :  'behavior' ;
 
 FeatureDirection returns av3::FeatureDirection:
 	'in' | 'out' 

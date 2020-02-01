@@ -960,6 +960,29 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.StateSynchronization} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected StateSynchronizationItemProvider stateSynchronizationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.osate.aadlv3.aadlv3.StateSynchronization}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createStateSynchronizationAdapter() {
+		if (stateSynchronizationItemProvider == null) {
+			stateSynchronizationItemProvider = new StateSynchronizationItemProvider(this);
+		}
+
+		return stateSynchronizationItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.osate.aadlv3.aadlv3.Behavior} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1430,6 +1453,8 @@ public class Aadlv3ItemProviderAdapterFactory extends Aadlv3AdapterFactory
 			nameValuePairItemProvider.dispose();
 		if (stateTransitionItemProvider != null)
 			stateTransitionItemProvider.dispose();
+		if (stateSynchronizationItemProvider != null)
+			stateSynchronizationItemProvider.dispose();
 		if (behaviorItemProvider != null)
 			behaviorItemProvider.dispose();
 		if (stateVariableItemProvider != null)

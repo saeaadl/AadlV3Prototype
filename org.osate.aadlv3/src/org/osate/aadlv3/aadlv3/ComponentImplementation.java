@@ -15,39 +15,16 @@
  */
 package org.osate.aadlv3.aadlv3;
 
-import org.eclipse.emf.common.util.EList;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Component Implementation</b></em>'.
  * <!-- end-user-doc -->
  *
- * <p>
- * The following features are supported:
- * </p>
- * <ul>
- *   <li>{@link org.osate.aadlv3.aadlv3.ComponentImplementation#getFlowAssignments <em>Flow Assignments</em>}</li>
- * </ul>
  *
  * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getComponentImplementation()
  * @model
  * @generated
  */
 public interface ComponentImplementation extends ComponentRealization {
-	/**
-	 * Returns the value of the '<em><b>Flow Assignments</b></em>' containment reference list.
-	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.PathSequence}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Flow Assignments</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Flow Assignments</em>' containment reference list.
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getComponentImplementation_FlowAssignments()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<PathSequence> getFlowAssignments();
 
 } // ComponentImplementation

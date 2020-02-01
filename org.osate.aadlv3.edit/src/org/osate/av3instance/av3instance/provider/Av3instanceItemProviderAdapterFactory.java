@@ -316,6 +316,29 @@ public class Av3instanceItemProviderAdapterFactory extends Av3instanceAdapterFac
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.osate.av3instance.av3instance.StateSynchronizationInstance} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected StateSynchronizationInstanceItemProvider stateSynchronizationInstanceItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.osate.av3instance.av3instance.StateSynchronizationInstance}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createStateSynchronizationInstanceAdapter() {
+		if (stateSynchronizationInstanceItemProvider == null) {
+			stateSynchronizationInstanceItemProvider = new StateSynchronizationInstanceItemProvider(this);
+		}
+
+		return stateSynchronizationInstanceItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -440,6 +463,8 @@ public class Av3instanceItemProviderAdapterFactory extends Av3instanceAdapterFac
 			stateInstanceItemProvider.dispose();
 		if (stateTransitionInstanceItemProvider != null)
 			stateTransitionInstanceItemProvider.dispose();
+		if (stateSynchronizationInstanceItemProvider != null)
+			stateSynchronizationInstanceItemProvider.dispose();
 	}
 
 }

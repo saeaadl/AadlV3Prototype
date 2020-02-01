@@ -1,18 +1,12 @@
 package SimpleTokenPropagationExample is
-// connections without and with reach down into is
-// shared data component
-	import StandardProperties::*;
-	import StandardTypes::*;
-	import StateTypes::*;
 
-	type Virus;
-	type DirtyWord;
-	type Classified;
+	@SEC type Virus;
+	@SEC type DirtyWord;
+	@SEC type Classified;
 	
 	interface actuator is
 		inp: in feature;
 		effect: out feature;
-//		action: flow sink  inp ;
 	end;
 	interface sensor is
 		outp: out feature;
@@ -21,28 +15,13 @@ package SimpleTokenPropagationExample is
 		e1: generator (Virus, DirtyWord, Classified) ; 
 	};
 	end;
-	
-	thread interface compute is
-	insignal : in feature;
-	outsignal : out feature;
-	@EM{
-		filter2: token insignal in (Virus,Classified) ->  sink;
-	};
-	end;
-	
-	thread interface logger is
-	insignal : in feature;
-	end;
-	
+
 	interface control is
 	insignal1: in feature;
 	insignal2: in feature;
 	outaction: out feature;
-//	processflow: flow insignal1 -> outaction;
-	@EM{
-//		filter2: all (insignal1 in ServiceOmission, insignal2 in ServiceOmission ) ->  outsignal!(ServiceOmission);
-		filter2: token insignal1 in (Virus,Classified) ->  sink;
-//		filter3: insignal in (Classified) ->  sink;
+	@SEC{
+		filter2: flow insignal1 in (Virus,Classified) ->  sink;
 	};
 	end;
 	
@@ -60,12 +39,8 @@ package SimpleTokenPropagationExample is
 		sensetocontrol2: connection sense2.outp -> processing.insignal2;
 		controltoactuate: connection processing.outaction -> actuate.inp;
 		effectprop: connection actuate.effect -> effect;
-		
-//		cpubinding: cycles binding processing.dofilter.cpu -> hw.cpu;
-	@EM{
+
 		effect1: flow actuate.effect  ->  effect;
-//		effect2: actuate.actt2.effect in ServiceOmission ->  effect(ServiceOmission);
-	};
 	end;
 	
 end;

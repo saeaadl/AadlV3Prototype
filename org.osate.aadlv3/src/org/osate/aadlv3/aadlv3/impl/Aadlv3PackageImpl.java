@@ -85,6 +85,7 @@ import org.osate.aadlv3.aadlv3.PropertyDefinition;
 import org.osate.aadlv3.aadlv3.PropertySet;
 import org.osate.aadlv3.aadlv3.RealLiteral;
 import org.osate.aadlv3.aadlv3.SetLiteral;
+import org.osate.aadlv3.aadlv3.StateSynchronization;
 import org.osate.aadlv3.aadlv3.StateTransition;
 import org.osate.aadlv3.aadlv3.StateVariable;
 import org.osate.aadlv3.aadlv3.StringLiteral;
@@ -422,6 +423,13 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	private EClass stateTransitionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass stateSynchronizationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -916,16 +924,6 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	@Override
 	public EClass getComponentImplementation() {
 		return componentImplementationEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getComponentImplementation_FlowAssignments() {
-		return (EReference) componentImplementationEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1874,6 +1872,36 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
+	public EClass getStateSynchronization() {
+		return stateSynchronizationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getStateSynchronization_Condition() {
+		return (EReference) stateSynchronizationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getStateSynchronization_TargetState() {
+		return (EReference) stateSynchronizationEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EReference getStateTransition_Condition() {
 		return (EReference) stateTransitionEClass.getEStructuralFeatures().get(0);
 	}
@@ -2194,6 +2222,26 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
+	public EReference getClassifierAssignment_FlowAssignments() {
+		return (EReference) classifierAssignmentEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getClassifierAssignment_ConnectionAssignments() {
+		return (EReference) classifierAssignmentEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getClassifierAssignmentPattern() {
 		return classifierAssignmentPatternEClass;
 	}
@@ -2296,6 +2344,26 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	@Override
 	public EReference getComponentRealization_ClassifierAssignments() {
 		return (EReference) componentRealizationEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getComponentRealization_FlowAssignments() {
+		return (EReference) componentRealizationEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getComponentRealization_ConnectionAssignments() {
+		return (EReference) componentRealizationEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -2462,12 +2530,13 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		componentRealizationEClass = createEClass(COMPONENT_REALIZATION);
 		createEReference(componentRealizationEClass, COMPONENT_REALIZATION__CACHED_INTERFACE_REFERENCE);
 		createEReference(componentRealizationEClass, COMPONENT_REALIZATION__CLASSIFIER_ASSIGNMENTS);
+		createEReference(componentRealizationEClass, COMPONENT_REALIZATION__FLOW_ASSIGNMENTS);
+		createEReference(componentRealizationEClass, COMPONENT_REALIZATION__CONNECTION_ASSIGNMENTS);
 
 		componentInterfaceEClass = createEClass(COMPONENT_INTERFACE);
 		createEReference(componentInterfaceEClass, COMPONENT_INTERFACE__USE_PROPERTIES);
 
 		componentImplementationEClass = createEClass(COMPONENT_IMPLEMENTATION);
-		createEReference(componentImplementationEClass, COMPONENT_IMPLEMENTATION__FLOW_ASSIGNMENTS);
 
 		componentConfigurationEClass = createEClass(COMPONENT_CONFIGURATION);
 		createEReference(componentConfigurationEClass, COMPONENT_CONFIGURATION__PARAMETERS);
@@ -2512,6 +2581,8 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		createEReference(classifierAssignmentEClass, CLASSIFIER_ASSIGNMENT__ASSIGNED_CLASSIFIERS);
 		createEReference(classifierAssignmentEClass, CLASSIFIER_ASSIGNMENT__OWNED_PROPERTY_ASSOCIATIONS);
 		createEReference(classifierAssignmentEClass, CLASSIFIER_ASSIGNMENT__ELEMENTS);
+		createEReference(classifierAssignmentEClass, CLASSIFIER_ASSIGNMENT__FLOW_ASSIGNMENTS);
+		createEReference(classifierAssignmentEClass, CLASSIFIER_ASSIGNMENT__CONNECTION_ASSIGNMENTS);
 
 		classifierAssignmentPatternEClass = createEClass(CLASSIFIER_ASSIGNMENT_PATTERN);
 		createEReference(classifierAssignmentPatternEClass, CLASSIFIER_ASSIGNMENT_PATTERN__TARGET_PATTERN);
@@ -2630,6 +2701,10 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		createEReference(stateTransitionEClass, STATE_TRANSITION__CONDITION);
 		createEReference(stateTransitionEClass, STATE_TRANSITION__TARGET_STATE);
 
+		stateSynchronizationEClass = createEClass(STATE_SYNCHRONIZATION);
+		createEReference(stateSynchronizationEClass, STATE_SYNCHRONIZATION__CONDITION);
+		createEReference(stateSynchronizationEClass, STATE_SYNCHRONIZATION__TARGET_STATE);
+
 		behaviorEClass = createEClass(BEHAVIOR);
 		createEReference(behaviorEClass, BEHAVIOR__CONDITION);
 		createEReference(behaviorEClass, BEHAVIOR__ACTIONS);
@@ -2742,6 +2817,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		annexLibraryEClass.getESuperTypes().add(this.getPackageDeclaration());
 		annotationBlockEClass.getESuperTypes().add(this.getModelElement());
 		stateTransitionEClass.getESuperTypes().add(this.getModelElement());
+		stateSynchronizationEClass.getESuperTypes().add(this.getModelElement());
 		behaviorEClass.getESuperTypes().add(this.getModelElement());
 		stateVariableEClass.getESuperTypes().add(this.getModelElement());
 		generatorEClass.getESuperTypes().add(this.getModelElement());
@@ -2829,6 +2905,12 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		initEReference(getComponentRealization_ClassifierAssignments(), this.getClassifierAssignment(), null,
 				"classifierAssignments", null, 0, -1, ComponentRealization.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getComponentRealization_FlowAssignments(), this.getPathSequence(), null, "flowAssignments", null,
+				0, -1, ComponentRealization.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getComponentRealization_ConnectionAssignments(), this.getPathSequence(), null,
+				"connectionAssignments", null, 0, -1, ComponentRealization.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(componentInterfaceEClass, ComponentInterface.class, "ComponentInterface", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2838,9 +2920,6 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 
 		initEClass(componentImplementationEClass, ComponentImplementation.class, "ComponentImplementation",
 				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getComponentImplementation_FlowAssignments(), this.getPathSequence(), null, "flowAssignments",
-				null, 0, -1, ComponentImplementation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(componentConfigurationEClass, ComponentConfiguration.class, "ComponentConfiguration", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2944,6 +3023,12 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		initEReference(getClassifierAssignment_Elements(), this.getModelElement(), null, "elements", null, 0, -1,
 				ClassifierAssignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getClassifierAssignment_FlowAssignments(), this.getPathSequence(), null, "flowAssignments", null,
+				0, -1, ClassifierAssignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getClassifierAssignment_ConnectionAssignments(), this.getPathSequence(), null,
+				"connectionAssignments", null, 0, -1, ClassifierAssignment.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(classifierAssignmentPatternEClass, ClassifierAssignmentPattern.class, "ClassifierAssignmentPattern",
 				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -3177,6 +3262,15 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		initEReference(getStateTransition_TargetState(), this.getBinaryOperation(), null, "targetState", null, 0, 1,
 				StateTransition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(stateSynchronizationEClass, StateSynchronization.class, "StateSynchronization", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getStateSynchronization_Condition(), this.getLiteral(), null, "condition", null, 0, 1,
+				StateSynchronization.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getStateSynchronization_TargetState(), this.getBinaryOperation(), null, "targetState", null, 0,
+				1, StateSynchronization.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(behaviorEClass, Behavior.class, "Behavior", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);

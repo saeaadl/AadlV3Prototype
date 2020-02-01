@@ -710,13 +710,31 @@ public interface Aadlv3Package extends EPackage {
 	int COMPONENT_REALIZATION__CLASSIFIER_ASSIGNMENTS = CLASSIFIER_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Flow Assignments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_REALIZATION__FLOW_ASSIGNMENTS = CLASSIFIER_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Connection Assignments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_REALIZATION__CONNECTION_ASSIGNMENTS = CLASSIFIER_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Component Realization</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_REALIZATION_FEATURE_COUNT = CLASSIFIER_FEATURE_COUNT + 2;
+	int COMPONENT_REALIZATION_FEATURE_COUNT = CLASSIFIER_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -897,7 +915,16 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_IMPLEMENTATION__FLOW_ASSIGNMENTS = COMPONENT_REALIZATION_FEATURE_COUNT + 0;
+	int COMPONENT_IMPLEMENTATION__FLOW_ASSIGNMENTS = COMPONENT_REALIZATION__FLOW_ASSIGNMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Connection Assignments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_IMPLEMENTATION__CONNECTION_ASSIGNMENTS = COMPONENT_REALIZATION__CONNECTION_ASSIGNMENTS;
 
 	/**
 	 * The number of structural features of the '<em>Component Implementation</em>' class.
@@ -906,7 +933,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_IMPLEMENTATION_FEATURE_COUNT = COMPONENT_REALIZATION_FEATURE_COUNT + 1;
+	int COMPONENT_IMPLEMENTATION_FEATURE_COUNT = COMPONENT_REALIZATION_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.ComponentConfigurationImpl <em>Component Configuration</em>}' class.
@@ -998,6 +1025,24 @@ public interface Aadlv3Package extends EPackage {
 	 * @ordered
 	 */
 	int COMPONENT_CONFIGURATION__CLASSIFIER_ASSIGNMENTS = COMPONENT_REALIZATION__CLASSIFIER_ASSIGNMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Flow Assignments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_CONFIGURATION__FLOW_ASSIGNMENTS = COMPONENT_REALIZATION__FLOW_ASSIGNMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Connection Assignments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_CONFIGURATION__CONNECTION_ASSIGNMENTS = COMPONENT_REALIZATION__CONNECTION_ASSIGNMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
@@ -1812,13 +1857,31 @@ public interface Aadlv3Package extends EPackage {
 	int CLASSIFIER_ASSIGNMENT__ELEMENTS = 4;
 
 	/**
+	 * The feature id for the '<em><b>Flow Assignments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASSIFIER_ASSIGNMENT__FLOW_ASSIGNMENTS = 5;
+
+	/**
+	 * The feature id for the '<em><b>Connection Assignments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASSIFIER_ASSIGNMENT__CONNECTION_ASSIGNMENTS = 6;
+
+	/**
 	 * The number of structural features of the '<em>Classifier Assignment</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASSIFIER_ASSIGNMENT_FEATURE_COUNT = 5;
+	int CLASSIFIER_ASSIGNMENT_FEATURE_COUNT = 7;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' containment reference.
@@ -1864,6 +1927,24 @@ public interface Aadlv3Package extends EPackage {
 	 * @ordered
 	 */
 	int CLASSIFIER_ASSIGNMENT_PATTERN__ELEMENTS = CLASSIFIER_ASSIGNMENT__ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Flow Assignments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASSIFIER_ASSIGNMENT_PATTERN__FLOW_ASSIGNMENTS = CLASSIFIER_ASSIGNMENT__FLOW_ASSIGNMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Connection Assignments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASSIFIER_ASSIGNMENT_PATTERN__CONNECTION_ASSIGNMENTS = CLASSIFIER_ASSIGNMENT__CONNECTION_ASSIGNMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Target Pattern</b></em>' reference.
@@ -3176,6 +3257,79 @@ public interface Aadlv3Package extends EPackage {
 	int STATE_TRANSITION_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
+	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.StateSynchronizationImpl <em>State Synchronization</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.osate.aadlv3.aadlv3.impl.StateSynchronizationImpl
+	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getStateSynchronization()
+	 * @generated
+	 */
+	int STATE_SYNCHRONIZATION = 54;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_SYNCHRONIZATION__NAME = MODEL_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Property Associations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_SYNCHRONIZATION__OWNED_PROPERTY_ASSOCIATIONS = MODEL_ELEMENT__OWNED_PROPERTY_ASSOCIATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_SYNCHRONIZATION__ANNOTATIONS = MODEL_ELEMENT__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>In States</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_SYNCHRONIZATION__IN_STATES = MODEL_ELEMENT__IN_STATES;
+
+	/**
+	 * The feature id for the '<em><b>Condition</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_SYNCHRONIZATION__CONDITION = MODEL_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Target State</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_SYNCHRONIZATION__TARGET_STATE = MODEL_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>State Synchronization</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_SYNCHRONIZATION_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.impl.BehaviorImpl <em>Behavior</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3183,7 +3337,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getBehavior()
 	 * @generated
 	 */
-	int BEHAVIOR = 54;
+	int BEHAVIOR = 55;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3283,7 +3437,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getStateVariable()
 	 * @generated
 	 */
-	int STATE_VARIABLE = 55;
+	int STATE_VARIABLE = 56;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3356,7 +3510,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getGenerator()
 	 * @generated
 	 */
-	int GENERATOR = 56;
+	int GENERATOR = 57;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3429,7 +3583,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getConstant()
 	 * @generated
 	 */
-	int CONSTANT = 57;
+	int CONSTANT = 58;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3502,7 +3656,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getPackageElementReference()
 	 * @generated
 	 */
-	int PACKAGE_ELEMENT_REFERENCE = 58;
+	int PACKAGE_ELEMENT_REFERENCE = 59;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3557,7 +3711,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getComponentCategory()
 	 * @generated
 	 */
-	int COMPONENT_CATEGORY = 59;
+	int COMPONENT_CATEGORY = 60;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.FeatureCategory <em>Feature Category</em>}' enum.
@@ -3567,7 +3721,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getFeatureCategory()
 	 * @generated
 	 */
-	int FEATURE_CATEGORY = 60;
+	int FEATURE_CATEGORY = 61;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.FeatureDirection <em>Feature Direction</em>}' enum.
@@ -3577,7 +3731,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getFeatureDirection()
 	 * @generated
 	 */
-	int FEATURE_DIRECTION = 61;
+	int FEATURE_DIRECTION = 62;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.AssociationType <em>Association Type</em>}' enum.
@@ -3587,7 +3741,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getAssociationType()
 	 * @generated
 	 */
-	int ASSOCIATION_TYPE = 62;
+	int ASSOCIATION_TYPE = 63;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.Primitive <em>Primitive</em>}' enum.
@@ -3597,7 +3751,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getPrimitive()
 	 * @generated
 	 */
-	int PRIMITIVE = 63;
+	int PRIMITIVE = 64;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.Composite <em>Composite</em>}' enum.
@@ -3607,7 +3761,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getComposite()
 	 * @generated
 	 */
-	int COMPOSITE = 64;
+	int COMPOSITE = 65;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.EOperator <em>EOperator</em>}' enum.
@@ -3617,7 +3771,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getEOperator()
 	 * @generated
 	 */
-	int EOPERATOR = 65;
+	int EOPERATOR = 66;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.BinaryOperator <em>Binary Operator</em>}' enum.
@@ -3627,7 +3781,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getBinaryOperator()
 	 * @generated
 	 */
-	int BINARY_OPERATOR = 66;
+	int BINARY_OPERATOR = 67;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.PropertyAssociationType <em>Property Association Type</em>}' enum.
@@ -3637,7 +3791,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getPropertyAssociationType()
 	 * @generated
 	 */
-	int PROPERTY_ASSOCIATION_TYPE = 67;
+	int PROPERTY_ASSOCIATION_TYPE = 68;
 
 	/**
 	 * The meta object id for the '{@link org.osate.aadlv3.aadlv3.BehaviorCategory <em>Behavior Category</em>}' enum.
@@ -3647,7 +3801,7 @@ public interface Aadlv3Package extends EPackage {
 	 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getBehaviorCategory()
 	 * @generated
 	 */
-	int BEHAVIOR_CATEGORY = 68;
+	int BEHAVIOR_CATEGORY = 69;
 
 	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.PackageDeclaration <em>Package Declaration</em>}'.
@@ -3936,17 +4090,6 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 */
 	EClass getComponentImplementation();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.osate.aadlv3.aadlv3.ComponentImplementation#getFlowAssignments <em>Flow Assignments</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Flow Assignments</em>'.
-	 * @see org.osate.aadlv3.aadlv3.ComponentImplementation#getFlowAssignments()
-	 * @see #getComponentImplementation()
-	 * @generated
-	 */
-	EReference getComponentImplementation_FlowAssignments();
 
 	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.ComponentConfiguration <em>Component Configuration</em>}'.
@@ -4946,6 +5089,38 @@ public interface Aadlv3Package extends EPackage {
 	EReference getStateTransition_TargetState();
 
 	/**
+	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.StateSynchronization <em>State Synchronization</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>State Synchronization</em>'.
+	 * @see org.osate.aadlv3.aadlv3.StateSynchronization
+	 * @generated
+	 */
+	EClass getStateSynchronization();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.osate.aadlv3.aadlv3.StateSynchronization#getCondition <em>Condition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Condition</em>'.
+	 * @see org.osate.aadlv3.aadlv3.StateSynchronization#getCondition()
+	 * @see #getStateSynchronization()
+	 * @generated
+	 */
+	EReference getStateSynchronization_Condition();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.osate.aadlv3.aadlv3.StateSynchronization#getTargetState <em>Target State</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Target State</em>'.
+	 * @see org.osate.aadlv3.aadlv3.StateSynchronization#getTargetState()
+	 * @see #getStateSynchronization()
+	 * @generated
+	 */
+	EReference getStateSynchronization_TargetState();
+
+	/**
 	 * Returns the meta object for the containment reference '{@link org.osate.aadlv3.aadlv3.StateTransition#getCondition <em>Condition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5289,6 +5464,28 @@ public interface Aadlv3Package extends EPackage {
 	EReference getClassifierAssignment_Elements();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link org.osate.aadlv3.aadlv3.ClassifierAssignment#getFlowAssignments <em>Flow Assignments</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Flow Assignments</em>'.
+	 * @see org.osate.aadlv3.aadlv3.ClassifierAssignment#getFlowAssignments()
+	 * @see #getClassifierAssignment()
+	 * @generated
+	 */
+	EReference getClassifierAssignment_FlowAssignments();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.osate.aadlv3.aadlv3.ClassifierAssignment#getConnectionAssignments <em>Connection Assignments</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Connection Assignments</em>'.
+	 * @see org.osate.aadlv3.aadlv3.ClassifierAssignment#getConnectionAssignments()
+	 * @see #getClassifierAssignment()
+	 * @generated
+	 */
+	EReference getClassifierAssignment_ConnectionAssignments();
+
+	/**
 	 * Returns the meta object for class '{@link org.osate.aadlv3.aadlv3.ClassifierAssignmentPattern <em>Classifier Assignment Pattern</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5404,6 +5601,28 @@ public interface Aadlv3Package extends EPackage {
 	 * @generated
 	 */
 	EReference getComponentRealization_ClassifierAssignments();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.osate.aadlv3.aadlv3.ComponentRealization#getFlowAssignments <em>Flow Assignments</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Flow Assignments</em>'.
+	 * @see org.osate.aadlv3.aadlv3.ComponentRealization#getFlowAssignments()
+	 * @see #getComponentRealization()
+	 * @generated
+	 */
+	EReference getComponentRealization_FlowAssignments();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.osate.aadlv3.aadlv3.ComponentRealization#getConnectionAssignments <em>Connection Assignments</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Connection Assignments</em>'.
+	 * @see org.osate.aadlv3.aadlv3.ComponentRealization#getConnectionAssignments()
+	 * @see #getComponentRealization()
+	 * @generated
+	 */
+	EReference getComponentRealization_ConnectionAssignments();
 
 	/**
 	 * Returns the meta object for enum '{@link org.osate.aadlv3.aadlv3.ComponentCategory <em>Component Category</em>}'.
@@ -5760,14 +5979,6 @@ public interface Aadlv3Package extends EPackage {
 		 * @generated
 		 */
 		EClass COMPONENT_IMPLEMENTATION = eINSTANCE.getComponentImplementation();
-
-		/**
-		 * The meta object literal for the '<em><b>Flow Assignments</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference COMPONENT_IMPLEMENTATION__FLOW_ASSIGNMENTS = eINSTANCE.getComponentImplementation_FlowAssignments();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.ComponentConfigurationImpl <em>Component Configuration</em>}' class.
@@ -6598,6 +6809,32 @@ public interface Aadlv3Package extends EPackage {
 		EReference STATE_TRANSITION__TARGET_STATE = eINSTANCE.getStateTransition_TargetState();
 
 		/**
+		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.StateSynchronizationImpl <em>State Synchronization</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.osate.aadlv3.aadlv3.impl.StateSynchronizationImpl
+		 * @see org.osate.aadlv3.aadlv3.impl.Aadlv3PackageImpl#getStateSynchronization()
+		 * @generated
+		 */
+		EClass STATE_SYNCHRONIZATION = eINSTANCE.getStateSynchronization();
+
+		/**
+		 * The meta object literal for the '<em><b>Condition</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STATE_SYNCHRONIZATION__CONDITION = eINSTANCE.getStateSynchronization_Condition();
+
+		/**
+		 * The meta object literal for the '<em><b>Target State</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STATE_SYNCHRONIZATION__TARGET_STATE = eINSTANCE.getStateSynchronization_TargetState();
+
+		/**
 		 * The meta object literal for the '<em><b>Condition</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -6875,6 +7112,23 @@ public interface Aadlv3Package extends EPackage {
 		EReference CLASSIFIER_ASSIGNMENT__ELEMENTS = eINSTANCE.getClassifierAssignment_Elements();
 
 		/**
+		 * The meta object literal for the '<em><b>Flow Assignments</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CLASSIFIER_ASSIGNMENT__FLOW_ASSIGNMENTS = eINSTANCE.getClassifierAssignment_FlowAssignments();
+
+		/**
+		 * The meta object literal for the '<em><b>Connection Assignments</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CLASSIFIER_ASSIGNMENT__CONNECTION_ASSIGNMENTS = eINSTANCE
+				.getClassifierAssignment_ConnectionAssignments();
+
+		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.impl.ClassifierAssignmentPatternImpl <em>Classifier Assignment Pattern</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -6972,6 +7226,23 @@ public interface Aadlv3Package extends EPackage {
 		 */
 		EReference COMPONENT_REALIZATION__CLASSIFIER_ASSIGNMENTS = eINSTANCE
 				.getComponentRealization_ClassifierAssignments();
+
+		/**
+		 * The meta object literal for the '<em><b>Flow Assignments</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPONENT_REALIZATION__FLOW_ASSIGNMENTS = eINSTANCE.getComponentRealization_FlowAssignments();
+
+		/**
+		 * The meta object literal for the '<em><b>Connection Assignments</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPONENT_REALIZATION__CONNECTION_ASSIGNMENTS = eINSTANCE
+				.getComponentRealization_ConnectionAssignments();
 
 		/**
 		 * The meta object literal for the '{@link org.osate.aadlv3.aadlv3.ComponentCategory <em>Component Category</em>}' enum.

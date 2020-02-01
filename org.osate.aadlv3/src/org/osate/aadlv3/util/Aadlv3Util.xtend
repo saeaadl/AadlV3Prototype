@@ -56,6 +56,7 @@ import org.osate.av3instance.av3instance.InstanceObject
 import org.osate.aadlv3.aadlv3.AnnotationBlock
 import org.osate.aadlv3.aadlv3.Annotation
 import java.util.List
+import org.osate.aadlv3.aadlv3.StateSynchronization
 
 class Aadlv3Util {
 	
@@ -591,6 +592,18 @@ class Aadlv3Util {
 			return cls.map[cl|cl.allElementsOfType(StateTransition)].flatten
 		}
 	}
+
+	static def Iterable<StateSynchronization> getAllStateSynchronizations(Iterable<TypeReference> conftrs) {
+		if (conftrs.empty){
+			// connections in nested declaration
+			return Collections.EMPTY_LIST //ci.component.generators
+		} else {
+			val cls = conftrs.allClassifiers
+			if (cls.empty) return Collections.EMPTY_LIST
+			return cls.map[cl|cl.allElementsOfType(StateSynchronization)].flatten
+		}
+	}
+
 	
 	// return all configuration assignments and nested CAs including those of super configurations 
 	static def Iterable<ClassifierAssignment> getAllClassifierAssignments(Iterable<TypeReference> trs) {

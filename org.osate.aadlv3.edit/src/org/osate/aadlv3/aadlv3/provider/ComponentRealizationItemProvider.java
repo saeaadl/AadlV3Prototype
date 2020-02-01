@@ -90,6 +90,8 @@ public class ComponentRealizationItemProvider extends ClassifierItemProvider {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(Aadlv3Package.Literals.COMPONENT_REALIZATION__CLASSIFIER_ASSIGNMENTS);
+			childrenFeatures.add(Aadlv3Package.Literals.COMPONENT_REALIZATION__FLOW_ASSIGNMENTS);
+			childrenFeatures.add(Aadlv3Package.Literals.COMPONENT_REALIZATION__CONNECTION_ASSIGNMENTS);
 		}
 		return childrenFeatures;
 	}
@@ -133,6 +135,8 @@ public class ComponentRealizationItemProvider extends ClassifierItemProvider {
 
 		switch (notification.getFeatureID(ComponentRealization.class)) {
 		case Aadlv3Package.COMPONENT_REALIZATION__CLASSIFIER_ASSIGNMENTS:
+		case Aadlv3Package.COMPONENT_REALIZATION__FLOW_ASSIGNMENTS:
+		case Aadlv3Package.COMPONENT_REALIZATION__CONNECTION_ASSIGNMENTS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -157,6 +161,35 @@ public class ComponentRealizationItemProvider extends ClassifierItemProvider {
 		newChildDescriptors
 				.add(createChildParameter(Aadlv3Package.Literals.COMPONENT_REALIZATION__CLASSIFIER_ASSIGNMENTS,
 						Aadlv3Factory.eINSTANCE.createClassifierAssignmentPattern()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.COMPONENT_REALIZATION__FLOW_ASSIGNMENTS,
+				Aadlv3Factory.eINSTANCE.createPathSequence()));
+
+		newChildDescriptors
+				.add(createChildParameter(Aadlv3Package.Literals.COMPONENT_REALIZATION__CONNECTION_ASSIGNMENTS,
+						Aadlv3Factory.eINSTANCE.createPathSequence()));
+	}
+
+	/**
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
+		Object childFeature = feature;
+		Object childObject = child;
+
+		boolean qualify = childFeature == Aadlv3Package.Literals.CLASSIFIER__ELEMENTS
+				|| childFeature == Aadlv3Package.Literals.COMPONENT_REALIZATION__FLOW_ASSIGNMENTS
+				|| childFeature == Aadlv3Package.Literals.COMPONENT_REALIZATION__CONNECTION_ASSIGNMENTS;
+
+		if (qualify) {
+			return getString("_UI_CreateChild_text2",
+					new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+		}
+		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 }

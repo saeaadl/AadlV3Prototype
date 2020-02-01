@@ -4,6 +4,8 @@ package TokenPropagationExample is
 	import StandardProperties::*;
 	import StandardTypes::*;
 	import StateTypes::*;
+	import ErrorTypes::*;
+	
 
 	type Virus;
 	type DirtyWord;
@@ -34,10 +36,8 @@ package TokenPropagationExample is
 	
 	thread interface sense  is
 		p1: out feature ;
-//		reading: flow  source p1;
-		#TokenSource => (Virus);
-	@EM{
-		e1: error generator (Virus, DirtyWord, Classified) ; 
+	@SEC{
+		e1: generator (Virus, DirtyWord, Classified) ; 
 		sense2:  flow source e1 ->  p1;
 	};
 	end;
@@ -63,8 +63,8 @@ package TokenPropagationExample is
 	insignal : in feature;
 	outsignal : out feature;
 	computepath: flow insignal -> outsignal;
-	@EM{
-		filter2: token insignal in (Virus,Classified) ->  sink;
+	@SEC{
+		filter2: flow insignal in (Virus,Classified) ->  sink;
 	};
 	end;
 	
@@ -76,7 +76,6 @@ package TokenPropagationExample is
 	insignal1: in feature;
 	insignal2: in feature;
 	outaction: out feature;
-//	processflow: flow insignal1 -> outaction;
 	end;
 	
 	process interface controlProcess extends control 
@@ -85,10 +84,8 @@ package TokenPropagationExample is
 	process controlProcess.impl is
 		dofilter: thread filter;
 		docompute: thread compute;
-//		dolog: thread logger;
 		extin1: connection insignal1 -> dofilter.insignal1;
 		extin2: connection insignal2 -> dofilter.insignal2;
-//		login: connection insignal -> dolog.insignal;
 		ftoc: connection dofilter.outsignal -> docompute.insignal;
 		extout: connection docompute.outsignal -> outaction ;
 	end;
@@ -111,7 +108,7 @@ package TokenPropagationExample is
 //		cpubinding: cycles binding processing.dofilter.cpu -> hw.cpu;
 	@EM {
 		effect1: flow actuate.actt2.effect  ->  effect;
-//		effect2: flow actuate.actt2.effect in ServiceOmission ->  effect(ServiceOmission);
+		effect2: flow actuate.actt2.effect in (ServiceOmission) ->  effect=ServiceOmission;
 	};
 	end;
 	

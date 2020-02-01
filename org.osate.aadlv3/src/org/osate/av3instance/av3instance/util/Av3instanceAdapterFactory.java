@@ -137,6 +137,11 @@ public class Av3instanceAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseStateSynchronizationInstance(StateSynchronizationInstance object) {
+			return createStateSynchronizationInstanceAdapter();
+		}
+
+		@Override
 		public Adapter caseNamedElement(NamedElement object) {
 			return createNamedElementAdapter();
 		}
@@ -321,6 +326,20 @@ public class Av3instanceAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createStateTransitionInstanceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.osate.av3instance.av3instance.StateSynchronizationInstance <em>State Synchronization Instance</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.osate.av3instance.av3instance.StateSynchronizationInstance
+	 * @generated
+	 */
+	public Adapter createStateSynchronizationInstanceAdapter() {
 		return null;
 	}
 

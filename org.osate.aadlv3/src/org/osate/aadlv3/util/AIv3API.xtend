@@ -44,6 +44,8 @@ import org.osate.av3instance.av3instance.StateVariableInstance
 import org.osate.av3instance.av3instance.StateTransitionInstance
 import org.osate.aadlv3.aadlv3.StateTransition
 import org.osate.aadlv3.aadlv3.ECollection
+import org.osate.aadlv3.aadlv3.StateSynchronization
+import org.osate.av3instance.av3instance.StateSynchronizationInstance
 
 class AIv3API {
 	
@@ -97,6 +99,7 @@ class AIv3API {
 		val bri = Av3instanceFactory.eINSTANCE.createBehaviorInstance
 		bri.name = br.name
 		bri.behavior = br
+		bri.category = br.category
 		return bri
 	}
 
@@ -104,6 +107,13 @@ class AIv3API {
 		val sti = Av3instanceFactory.eINSTANCE.createStateTransitionInstance
 		sti.name = st.name
 		sti.stateTransition = st
+		return sti
+	}
+
+	def static StateSynchronizationInstance createStateSynchronizationInstance(StateSynchronization st) {
+		val sti = Av3instanceFactory.eINSTANCE.createStateSynchronizationInstance
+		sti.name = st.name
+		sti.stateSynchronization = st
 		return sti
 	}
 	

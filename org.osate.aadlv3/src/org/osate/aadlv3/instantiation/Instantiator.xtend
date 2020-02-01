@@ -43,6 +43,7 @@ import org.osate.av3instance.util.AIv3Validation
 import static extension org.eclipse.emf.ecore.util.EcoreUtil.*
 import static extension org.osate.aadlv3.util.AIv3API.*
 import static extension org.osate.aadlv3.util.Aadlv3Util.*
+import org.osate.aadlv3.aadlv3.StateSynchronization
 
 class Instantiator {
 	
@@ -164,6 +165,9 @@ class Instantiator {
 		}
 		for (st : ctyperefs.allStateTransitions) {
 			st.instantiateStateTransition(ci)
+		}
+		for (st : ctyperefs.allStateSynchronizations) {
+			st.instantiateStateSynchronization(ci)
 		}
 		
 		
@@ -705,6 +709,51 @@ class Instantiator {
 		sti.condition = behaviorCondition
 		sti.targetState = context.findStateInstance(st.targetState)
 		context.stateTransitions += sti
+		if (st.inStates !== null) {
+			sti.inStates += context.findStateInstances(st.inStates)
+		}
+	}
+
+	def void instantiateStateSynchronization(StateSynchronization st, ComponentInstance context) {
+		val sti = st.createStateSynchronizationInstance;
+		sti.annotations.addAll(st.allAnnotations)
+		var behaviorCondition = st.condition.copy
+		// now replace ConditionElements by respective instances
+		val cos = EcoreUtil2.eAllOfType(behaviorCondition, BinaryOperation);
+		for (co : cos) {
+			if ((co.left as NamedElementReference).element instanceof ModelElement) {
+				// resolve only model element references
+				val cio = co.createConstrainedInstanceObject(context, false)
+				val container = co.eContainer
+				if (container instanceof ECollection) {
+					container.elements.remove(co)
+					container.elements.add(cio)
+				} else if (container === null) {
+					// single condition element as condition
+					behaviorCondition = cio
+				}
+			}
+		}
+		// do the same for condition elements without types
+		val ners = EcoreUtil2.eAllOfType(behaviorCondition, NamedElementReference);
+		for (ner : ners) {
+			if (ner.element instanceof ModelElement) {
+				// resolve only model element references
+				val tio = context.getInstanceElement(ner);
+				val cio = tio.createConstrainedInstanceObject(context, false)
+				val container = ner.eContainer
+				if (container instanceof ECollection) {
+					container.elements.remove(ner)
+					container.elements.add(cio)
+				} else if (container === null) {
+					// single condition element as condition
+					behaviorCondition = cio
+				}
+			}
+		}
+		sti.condition = behaviorCondition
+		sti.targetState = context.findStateInstance(st.targetState)
+		context.stateSynchronizations += sti
 		if (st.inStates !== null) {
 			sti.inStates += context.findStateInstances(st.inStates)
 		}

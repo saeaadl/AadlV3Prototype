@@ -11,12 +11,13 @@ package TokenNoConstraintExample is
 	interface actuator is
 		inp: in feature;
 		effect: out feature;
-//		action: flow sink  inp ;
+		action: flow  inp -> sink;
 	end;
 	interface sensor is
 		outp: out feature;
 		fea: feature;
-//		reading: flow source outp;
+		src: generator;
+		reading: flow source src -> outp;
 	end;
 	
 	abstract sensor.i  is
@@ -28,12 +29,13 @@ package TokenNoConstraintExample is
 		actt2: thread actuate;
 		downmap: connection inp -> actt2.p1;
 		effectmap: connection actt2.effect -> effect;
-//		action=> flow actt2.taction;
+		action => flow actt2.taction;
 	end;
 	
 	thread interface sense  is
 		p1: out feature ;
-//		reading: flow  source p1;
+		src: generator;
+		reading: flow  source src -> p1;
 		#TokenSource => (t1);
 	@EM{
 		es : state threestate;
@@ -45,12 +47,12 @@ package TokenNoConstraintExample is
 	thread interface actuate  is
 		p1: in feature ;
 		effect: out feature ;
-//		taction: flow  sink p1;
+		taction: flow  p1 -> sink;
 	@EM{
 		es: state threestate;
 		eact1: generator  (ServiceOmission) ;
 		actuate1: transition  eact1 -> es = s1 when es in(s0) ;
-		actuate3: flow source effect when es in(s0);
+		actuate3: flow source eact1 -> effect when es in(s0);
 		actuate2: flow p1 ->  effect when es in(s0);
 	};
 	end;
@@ -59,12 +61,7 @@ package TokenNoConstraintExample is
 	insignal1 : in feature;
 	insignal2 : in feature;
 	outsignal : out feature;
-	
-//	cpu: requires binding x86;
-//	filterpath1: flow insignal1 -> outsignal;
-//	filterpath2: flow insignal2 -> outsignal;
-	#Period => 20 ;
-	filter2: flow (insignal1 , insignal2) ->  outsignal;
+	filter2: flow all(insignal1 , insignal2) ->  outsignal;
 	end;
 	
 	thread interface compute is
@@ -82,7 +79,7 @@ package TokenNoConstraintExample is
 	insignal1: in feature;
 	insignal2: in feature;
 	outaction: out feature;
-//	processflow: flow insignal1 -> outaction;
+	processflow: flow insignal1 -> outaction;
 	end;
 	
 	process interface controlProcess extends control 
@@ -91,10 +88,8 @@ package TokenNoConstraintExample is
 	process controlProcess.impl is
 		dofilter: thread filter;
 		docompute: thread compute;
-//		dolog: thread logger;
 		extin1: connection insignal1 -> dofilter.insignal1;
 		extin2: connection insignal2 -> dofilter.insignal2;
-//		login: connection insignal -> dolog.insignal;
 		ftoc: connection dofilter.outsignal -> docompute.insignal;
 		extout: connection docompute.outsignal -> outaction ;
 	end;
@@ -117,7 +112,7 @@ package TokenNoConstraintExample is
 //		cpubinding: cycles binding processing.dofilter.cpu -> hw.cpu;
 	@EM{
 		effect1: flow actuate.actt2.effect  ->  effect;
-//		effect2: actuate.actt2.effect in ServiceOmission ->  effect(ServiceOmission);
+		effect2: flow actuate.actt2.effect in (ServiceOmission) ->  effect=ServiceOmission;
 	};
 	end;
 	

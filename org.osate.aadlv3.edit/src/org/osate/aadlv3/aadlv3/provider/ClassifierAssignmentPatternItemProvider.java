@@ -122,4 +122,26 @@ public class ClassifierAssignmentPatternItemProvider extends ClassifierAssignmen
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
+	/**
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
+		Object childFeature = feature;
+		Object childObject = child;
+
+		boolean qualify = childFeature == Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__ELEMENTS
+				|| childFeature == Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__FLOW_ASSIGNMENTS
+				|| childFeature == Aadlv3Package.Literals.CLASSIFIER_ASSIGNMENT__CONNECTION_ASSIGNMENTS;
+
+		if (qualify) {
+			return getString("_UI_CreateChild_text2",
+					new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+		}
+		return super.getCreateChildText(owner, feature, child, selection);
+	}
+
 }

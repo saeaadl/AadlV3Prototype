@@ -187,6 +187,9 @@ public class ClassifierItemProvider extends NamedTypeItemProvider {
 				Aadlv3Factory.eINSTANCE.createStateTransition()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CLASSIFIER__ELEMENTS,
+				Aadlv3Factory.eINSTANCE.createStateSynchronization()));
+
+		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CLASSIFIER__ELEMENTS,
 				Aadlv3Factory.eINSTANCE.createBehavior()));
 
 		newChildDescriptors.add(createChildParameter(Aadlv3Package.Literals.CLASSIFIER__ELEMENTS,

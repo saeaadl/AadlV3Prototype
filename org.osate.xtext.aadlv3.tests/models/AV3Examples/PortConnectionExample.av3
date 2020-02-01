@@ -1,8 +1,6 @@
 package PortConnectionExample is
 // connections without and with reach down into is
 // shared data component
-	import StandardProperties::*;
-	import StandardTypes::*;
 	import StateTypes::*;
 	import ErrorTypes::*;
 
@@ -16,42 +14,42 @@ package PortConnectionExample is
 	interface sensor is
 		outp: out feature;
 		fea: feature;
-//		reading: flow source outp;
+		src: generator;
+		reading: flow source src -> outp;
 	end;
 	
 	abstract sensor.i  is
 		senset1: thread sense;
 		upmap: connection senset1.p1 -> outp;
-//		reading => flow upmap -> senset1.reading;
+		reading => flow upmap -> senset1.reading;
 	end;
 	abstract actuator.i  is
 		actt2: thread actuate;
 		downmap: connection inp -> actt2.p1;
 		effectmap: connection actt2.effect -> effect;
-//		action=> flow actt2.taction;
+		action=> flow actt2.taction;
 	end;
 	
 	thread interface sense  is
 		p1: out feature ;
-//		reading: flow  source p1;
-		#TokenSource => (t1);
-//	@EM{
-//		s: state threestate;
-//		e1: error event (ServiceOmission, cycles) ;
-//		sense2:  transition s0 -> s1 when e1 in (ServiceOmission);
-//	};
+		reading : flow source p1 -> p1;
+	@EM{
+		s: state threestate;
+		e1: generator (ServiceOmission) ;
+		sense2:  flow e1 -> p1 ;
+	};
 	end;
 	
 	thread interface actuate  is
 		p1: in feature ;
 		effect: out feature ;
-//		taction: flow  sink p1;
+		taction: flow  p1 -> sink;
 	@EM{
 		s : state threestate;
 		eact1: generator  (ServiceOmission) ;
 		actuate1: transition eact1 in (ServiceOmission) -> s = s1 when s in (s0) ;
-//		actuate2: flow p1 in (ServiceOmission) -> effect(ServiceOmission) when s = s0;
-//		actuate3: flow x -> { effect(ServiceOmission)} when s == s1;
+		actuate2: flow p1 in (ServiceOmission) -> sink when s in (s0);
+		actuate3: flow p1 in (ServiceOmission) -> effect=ServiceOmission when s in( s1);
 	};
 	end;
 	
@@ -59,13 +57,9 @@ package PortConnectionExample is
 	insignal1 : in feature;
 	insignal2 : in feature;
 	outsignal : out feature;
-	
-//	cpu: requires binding x86;
-//	filterpath1: flow insignal1 -> outsignal;
-//	filterpath2: flow insignal2 -> outsignal;
-	#Period => 20 ;
 	@EM{
-		filter2: token all (insignal1 in (ServiceOmission), insignal2  in (ServiceOmission)) ->  outsignal=ServiceOmission;
+		filter2: flow all (insignal1 in (ServiceOmission), insignal2  in (ServiceOmission)) 
+		  ->  outsignal=ServiceOmission;
 	};
 	end;
 	
@@ -77,21 +71,17 @@ package PortConnectionExample is
 	@EM{
 		es: state threestate;
 		e1: generator ;
-		r1: transition e1 -> es=s1 when es = s0; //{outsignal(ServiceOmission)};
-		computer2: token insignal in (ServiceOmission) ->  outsignal=ServiceOmission;
-		r3: token insignal in (ServiceOmission) -> sink;
+		r1: transition e1 -> es=s1 when es = s0; 
+		computer2: flow insignal in (ServiceOmission) ->  outsignal=ServiceOmission when es in (s1);
+		r3: flow insignal in (ServiceOmission) -> sink when es in (s0);
 	};
-	end;
-	
-	thread interface logger is
-	insignal : in feature;
 	end;
 	
 	interface control is
 	insignal1: in feature;
 	insignal2: in feature;
 	outaction: out feature;
-//	processflow: flow insignal1 -> outaction;
+	processflow: flow insignal1 -> outaction;
 	end;
 	
 	process interface controlProcess extends control 
@@ -100,10 +90,8 @@ package PortConnectionExample is
 	process controlProcess.impl is
 		dofilter: thread filter;
 		docompute: thread compute;
-//		dolog: thread logger;
 		extin1: connection insignal1 -> dofilter.insignal1;
 		extin2: connection insignal2 -> dofilter.insignal2;
-//		login: connection insignal -> dolog.insignal;
 		ftoc: connection dofilter.outsignal -> docompute.insignal;
 		extout: connection docompute.outsignal -> outaction ;
 	end;
@@ -122,11 +110,8 @@ package PortConnectionExample is
 		sensetocontrol2: connection sense2.outp -> processing.insignal2;
 		controltoactuate: connection processing.outaction -> actuate.inp;
 		effectprop: connection actuate.effect -> effect;
-		
-//		cpubinding: cycles binding processing.dofilter.cpu -> hw.cpu;
 	@EM{
-		effect1: token actuate.actt2.effect in (cycles) ->  effect=cycles;
-		effect2:token actuate.actt2.effect in (ServiceOmission) ->  effect=ServiceOmission;
+		effect2:flow actuate.actt2.effect in (ServiceOmission) ->  effect=ServiceOmission;
 	};
 	end;
 	
@@ -144,8 +129,6 @@ package PortConnectionExample is
 	system hardwareplatform.impl is
 	cpu: processor x86;
 	mybus: bus canbus;
-//	busconn: connection cpu.canbusaccess <-> mybus;
-//	extbusaccess: connection canbusaccess <-> mybus;
 	end;
 	
 end;

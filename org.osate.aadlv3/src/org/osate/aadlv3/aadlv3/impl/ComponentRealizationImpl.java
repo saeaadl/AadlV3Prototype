@@ -28,6 +28,7 @@ import org.osate.aadlv3.aadlv3.Aadlv3Package;
 import org.osate.aadlv3.aadlv3.ClassifierAssignment;
 import org.osate.aadlv3.aadlv3.ComponentInterface;
 import org.osate.aadlv3.aadlv3.ComponentRealization;
+import org.osate.aadlv3.aadlv3.PathSequence;
 
 /**
  * <!-- begin-user-doc -->
@@ -39,6 +40,8 @@ import org.osate.aadlv3.aadlv3.ComponentRealization;
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentRealizationImpl#getCachedInterfaceReference <em>Cached Interface Reference</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentRealizationImpl#getClassifierAssignments <em>Classifier Assignments</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentRealizationImpl#getFlowAssignments <em>Flow Assignments</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.ComponentRealizationImpl#getConnectionAssignments <em>Connection Assignments</em>}</li>
  * </ul>
  *
  * @generated
@@ -63,6 +66,26 @@ public abstract class ComponentRealizationImpl extends ClassifierImpl implements
 	 * @ordered
 	 */
 	protected EList<ClassifierAssignment> classifierAssignments;
+
+	/**
+	 * The cached value of the '{@link #getFlowAssignments() <em>Flow Assignments</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFlowAssignments()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<PathSequence> flowAssignments;
+
+	/**
+	 * The cached value of the '{@link #getConnectionAssignments() <em>Connection Assignments</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getConnectionAssignments()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<PathSequence> connectionAssignments;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -128,10 +151,42 @@ public abstract class ComponentRealizationImpl extends ClassifierImpl implements
 	 * @generated
 	 */
 	@Override
+	public EList<PathSequence> getFlowAssignments() {
+		if (flowAssignments == null) {
+			flowAssignments = new EObjectContainmentEList<PathSequence>(PathSequence.class, this,
+					Aadlv3Package.COMPONENT_REALIZATION__FLOW_ASSIGNMENTS);
+		}
+		return flowAssignments;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<PathSequence> getConnectionAssignments() {
+		if (connectionAssignments == null) {
+			connectionAssignments = new EObjectContainmentEList<PathSequence>(PathSequence.class, this,
+					Aadlv3Package.COMPONENT_REALIZATION__CONNECTION_ASSIGNMENTS);
+		}
+		return connectionAssignments;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case Aadlv3Package.COMPONENT_REALIZATION__CLASSIFIER_ASSIGNMENTS:
 			return ((InternalEList<?>) getClassifierAssignments()).basicRemove(otherEnd, msgs);
+		case Aadlv3Package.COMPONENT_REALIZATION__FLOW_ASSIGNMENTS:
+			return ((InternalEList<?>) getFlowAssignments()).basicRemove(otherEnd, msgs);
+		case Aadlv3Package.COMPONENT_REALIZATION__CONNECTION_ASSIGNMENTS:
+			return ((InternalEList<?>) getConnectionAssignments()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -148,6 +203,10 @@ public abstract class ComponentRealizationImpl extends ClassifierImpl implements
 			return getCachedInterfaceReference();
 		case Aadlv3Package.COMPONENT_REALIZATION__CLASSIFIER_ASSIGNMENTS:
 			return getClassifierAssignments();
+		case Aadlv3Package.COMPONENT_REALIZATION__FLOW_ASSIGNMENTS:
+			return getFlowAssignments();
+		case Aadlv3Package.COMPONENT_REALIZATION__CONNECTION_ASSIGNMENTS:
+			return getConnectionAssignments();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -168,6 +227,14 @@ public abstract class ComponentRealizationImpl extends ClassifierImpl implements
 			getClassifierAssignments().clear();
 			getClassifierAssignments().addAll((Collection<? extends ClassifierAssignment>) newValue);
 			return;
+		case Aadlv3Package.COMPONENT_REALIZATION__FLOW_ASSIGNMENTS:
+			getFlowAssignments().clear();
+			getFlowAssignments().addAll((Collection<? extends PathSequence>) newValue);
+			return;
+		case Aadlv3Package.COMPONENT_REALIZATION__CONNECTION_ASSIGNMENTS:
+			getConnectionAssignments().clear();
+			getConnectionAssignments().addAll((Collection<? extends PathSequence>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -186,6 +253,12 @@ public abstract class ComponentRealizationImpl extends ClassifierImpl implements
 		case Aadlv3Package.COMPONENT_REALIZATION__CLASSIFIER_ASSIGNMENTS:
 			getClassifierAssignments().clear();
 			return;
+		case Aadlv3Package.COMPONENT_REALIZATION__FLOW_ASSIGNMENTS:
+			getFlowAssignments().clear();
+			return;
+		case Aadlv3Package.COMPONENT_REALIZATION__CONNECTION_ASSIGNMENTS:
+			getConnectionAssignments().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -202,6 +275,10 @@ public abstract class ComponentRealizationImpl extends ClassifierImpl implements
 			return cachedInterfaceReference != null;
 		case Aadlv3Package.COMPONENT_REALIZATION__CLASSIFIER_ASSIGNMENTS:
 			return classifierAssignments != null && !classifierAssignments.isEmpty();
+		case Aadlv3Package.COMPONENT_REALIZATION__FLOW_ASSIGNMENTS:
+			return flowAssignments != null && !flowAssignments.isEmpty();
+		case Aadlv3Package.COMPONENT_REALIZATION__CONNECTION_ASSIGNMENTS:
+			return connectionAssignments != null && !connectionAssignments.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

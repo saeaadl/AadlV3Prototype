@@ -51,15 +51,16 @@
         ordered="false" eType="#//ComponentInterface" transient="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="classifierAssignments"
         upperBound="-1" eType="#//ClassifierAssignment" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="flowAssignments" upperBound="-1"
+        eType="#//PathSequence" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="connectionAssignments"
+        upperBound="-1" eType="#//PathSequence" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ComponentInterface" eSuperTypes="#//Classifier">
     <eStructuralFeatures xsi:type="ecore:EReference" name="useProperties" upperBound="-1"
         eType="#//PropertySet"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ComponentImplementation" eSuperTypes="#//ComponentRealization">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="flowAssignments" upperBound="-1"
-        eType="#//PathSequence" containment="true"/>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ComponentImplementation" eSuperTypes="#//ComponentRealization"/>
   <eClassifiers xsi:type="ecore:EClass" name="ComponentConfiguration" eSuperTypes="#//ComponentRealization">
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
         eType="#//ConfigurationParameter" containment="true"/>
@@ -121,6 +122,10 @@
         upperBound="-1" eType="#//PropertyAssociation" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
         eType="#//ModelElement" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="flowAssignments" upperBound="-1"
+        eType="#//PathSequence" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="connectionAssignments"
+        upperBound="-1" eType="#//PathSequence" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ClassifierAssignmentPattern" eSuperTypes="#//ClassifierAssignment">
     <eStructuralFeatures xsi:type="ecore:EReference" name="targetPattern" eType="#//Type"/>
@@ -330,6 +335,12 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StateTransition" eSuperTypes="#//ModelElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//Literal"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="targetState" ordered="false"
+        eType="#//BinaryOperation" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StateSynchronization" eSuperTypes="#//ModelElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//Literal"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="targetState" ordered="false"

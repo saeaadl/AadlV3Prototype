@@ -28,6 +28,8 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.osate.aadlv3.aadlv3.ComponentRealization#getCachedInterfaceReference <em>Cached Interface Reference</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.ComponentRealization#getClassifierAssignments <em>Classifier Assignments</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.ComponentRealization#getFlowAssignments <em>Flow Assignments</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.ComponentRealization#getConnectionAssignments <em>Connection Assignments</em>}</li>
  * </ul>
  *
  * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getComponentRealization()
@@ -73,4 +75,28 @@ public interface ComponentRealization extends Classifier {
 	 * @generated
 	 */
 	EList<ClassifierAssignment> getClassifierAssignments();
+
+	/**
+	 * Returns the value of the '<em><b>Flow Assignments</b></em>' containment reference list.
+	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.PathSequence}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Flow Assignments</em>' containment reference list.
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getComponentRealization_FlowAssignments()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<PathSequence> getFlowAssignments();
+
+	/**
+	 * Returns the value of the '<em><b>Connection Assignments</b></em>' containment reference list.
+	 * The list contents are of type {@link org.osate.aadlv3.aadlv3.PathSequence}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Connection Assignments</em>' containment reference list.
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getComponentRealization_ConnectionAssignments()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<PathSequence> getConnectionAssignments();
 } // ComponentRealization
