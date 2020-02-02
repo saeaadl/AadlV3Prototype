@@ -66,35 +66,40 @@ public class InstantiateWorkingSetHandler extends AbstractHandler {
 	}
 	
 	private void analyze (ComponentInstance rootinstance, Iterable<String> actions){
+		String annotation = "";
 		for (String action : actions) {
-			switch( action) {
-			case "causetrace": {
-				FaultGraph fg = new FaultGraph();
-				fg.generateCauseGraphs(rootinstance, TokenTraceType.TOKEN_TRACE,"EM");
-				break;
-			}
-			case "causegraph": {
-				FaultGraph fg = new FaultGraph();
-				fg.generateCauseGraphs(rootinstance, TokenTraceType.TOKEN_GRAPH,"EM");
-				break;
-			}
-			case "causecutset": {
-				FaultGraph fg = new FaultGraph();
-				fg.generateCauseGraphs(rootinstance, TokenTraceType.MINIMAL_CUT_SET,"EM");
-				break;
-			}
-			case "effecttrace": {
-				FaultGraph fgg = new FaultGraph();
-				TokenTrace eventTrace = fgg.generateEffectGraph(rootinstance, TokenTraceType.TOKEN_TRACE,"EM");
-				fgg.save(eventTrace);
+			if (action.startsWith("@")){
+				annotation = action.length() == 1 ? "":action.substring(1);
+			} else {
+				switch( action) {
+				case "causetrace": {
+					FaultGraph fg = new FaultGraph();
+					fg.generateCauseGraphs(rootinstance, TokenTraceType.TOKEN_TRACE,annotation);
+					break;
+				}
+				case "causegraph": {
+					FaultGraph fg = new FaultGraph();
+					fg.generateCauseGraphs(rootinstance, TokenTraceType.TOKEN_GRAPH,annotation);
+					break;
+				}
+				case "causecutset": {
+					FaultGraph fg = new FaultGraph();
+					fg.generateCauseGraphs(rootinstance, TokenTraceType.MINIMAL_CUT_SET,annotation);
+					break;
+				}
+				case "effecttrace": {
+					FaultGraph fgg = new FaultGraph();
+					TokenTrace eventTrace = fgg.generateEffectGraph(rootinstance, TokenTraceType.TOKEN_TRACE,annotation);
+					fgg.save(eventTrace);
 
-				break;
-			}
-			case "tokenpropagation":{
-				ComponentInstance subci = rootinstance.getComponents().get(2).getComponents().get(0);
-				new TokenPaths().validateTokenPropagation(rootinstance, subci);
-				break;
-			}
+					break;
+				}
+				case "tokenpropagation":{
+					ComponentInstance subci = rootinstance.getComponents().get(2).getComponents().get(0);
+					new TokenPaths().validateTokenPropagation(rootinstance, subci);
+					break;
+				}
+				}
 			}
 		}
 		// XXX TODO 
