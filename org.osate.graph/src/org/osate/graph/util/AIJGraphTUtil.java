@@ -6,14 +6,12 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EObject;
 import org.jgrapht.Graph;
 import org.jgrapht.graph.AsSubgraph;
 import org.jgrapht.graph.DefaultDirectedGraph;
-import org.jgrapht.graph.DefaultEdge;
 import org.jgrapht.graph.SimpleDirectedGraph;
 import org.osate.aadlv3.aadlv3.Literal;
 import org.osate.av3instance.av3instance.AssociationInstance;
@@ -24,9 +22,8 @@ import org.osate.av3instance.av3instance.FeatureInstance;
 import org.osate.av3instance.av3instance.GeneratorInstance;
 import org.osate.av3instance.av3instance.InstanceObject;
 import org.osate.av3instance.av3instance.StateInstance;
+import org.osate.av3instance.av3instance.StateSynchronizationInstance;
 import org.osate.av3instance.av3instance.StateTransitionInstance;
-import org.osate.graph.TokenTrace.Token;
-import org.osate.graph.TokenTrace.util.TokenTraceUtil;
 
 public class AIJGraphTUtil {
 
@@ -193,7 +190,6 @@ public class AIJGraphTUtil {
 						addPath(directedGraph, ce.getInstanceObject(), action, bri);
 						// generator to generator cond
 						handleGenerators(directedGraph, ce,bri);
-						// TODO generators if not in bri
 					}
 					if (bri.getAnnotations().isEmpty()) {
 						outfiAsBehavior.add(action.getInstanceObject());
@@ -229,6 +225,19 @@ public class AIJGraphTUtil {
 					}
 				}
 			}
+
+			for (StateSynchronizationInstance sti : ci.getStateSynchronizations()) {
+				Iterable<ConstrainedInstanceObject> condcios = getAllConstrainedInstanceObjects(sti.getCondition());
+				if (sti.getTargetState() != null) {
+					// path from outer state to inner states
+					StateInstance ts = sti.getTargetState();
+					for (ConstrainedInstanceObject ce : condcios) {
+						// edge from condition elements to target state
+						handleConditionExpression(directedGraph, ce, ts,sti);
+					}
+				}
+			}
+
 			for (FeatureInstance outfi : getAllOutgoingFeatures(ci)) {
 				if (!outfiAsBehavior.contains(outfi)) {
 					for (FeatureInstance infi : getAllIncomingFeatures(ci)) {
@@ -237,6 +246,9 @@ public class AIJGraphTUtil {
 							addPath(directedGraph, infi, outfi,ci);
 						}
 					}
+					for (GeneratorInstance gi : getAllGeneratorInstances(ci)) {
+						handleGenerators(directedGraph, gi, outfi, ci);
+					}
 				}
 			}
 
@@ -244,25 +256,31 @@ public class AIJGraphTUtil {
 		return directedGraph;
 	}
 	
-	private static void handleGenerators(Graph<EObject, RefEObjectEdge> directedGraph, ConstrainedInstanceObject ce, InstanceObject context) {
+	private static void handleGenerators(Graph<EObject, RefEObjectEdge> directedGraph, ConstrainedInstanceObject ce,
+			InstanceObject context) {
 		if (ce.getInstanceObject() instanceof GeneratorInstance) {
 			GeneratorInstance gi = (GeneratorInstance) getRealInstanceObject(ce);
-			EList<ConstrainedInstanceObject> cios = gi.getGeneratedLiterals(); 
-			Literal constraint = getRealConstraint(ce);
-			if (constraint == null) {
-				if (cios.isEmpty()) {
-					addPath(directedGraph, gi, ce, context);
-				} else {
-					for (ConstrainedInstanceObject cio : cios) {
-						addPath(directedGraph, cio, ce, context);
-					}
-				}
+			handleGenerators(directedGraph, gi, ce, context);
+		}
+	}
+
+	private static void handleGenerators(Graph<EObject, RefEObjectEdge> directedGraph, GeneratorInstance gi, InstanceObject target,
+			InstanceObject context) {
+		EList<ConstrainedInstanceObject> cios = gi.getGeneratedLiterals();
+		Literal constraint = getRealConstraint(target);
+		if (constraint == null) {
+			if (cios.isEmpty()) {
+				addPath(directedGraph, gi, target, context);
 			} else {
-				// only those satisfying the constraint
 				for (ConstrainedInstanceObject cio : cios) {
-					if (constraint.contains(cio.getConstraint())) {
-						addPath(directedGraph, cio, ce, context);
-					}
+					addPath(directedGraph, cio, target, context);
+				}
+			}
+		} else {
+			// only those satisfying the constraint
+			for (ConstrainedInstanceObject cio : cios) {
+				if (constraint.contains(cio.getConstraint())) {
+					addPath(directedGraph, cio, target, context);
 				}
 			}
 		}
