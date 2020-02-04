@@ -646,7 +646,7 @@ class AIv3API {
 	
 	def static Collection<StateInstance> findStateInstances(ComponentInstance context, BinaryOperation ss) {
 		val result = new ArrayList<StateInstance>
-		val sv = ss.left as StateVariable
+		val sv = (ss.left as NamedElementReference).element as StateVariable
 		val states = ss.right as ECollection
 		for (state : states.elements) {
 			result += findStateInstance(context, sv, state as EnumerationLiteral)

@@ -599,7 +599,13 @@ class Instantiator {
 				svi.states += createStateInstance(lit);
 			}
 		}
-		val isi = findStateInstance(svi,sv.initialState);
+		var isi = findStateInstance(svi, sv.initialState);
+		if (isi === null) {
+			if (enum instanceof EnumerationType) {
+				val initlit = enum.literals.head
+				isi = findStateInstance(svi, initlit);
+			}
+		}
 		svi.currentState = isi;
 	}
 
