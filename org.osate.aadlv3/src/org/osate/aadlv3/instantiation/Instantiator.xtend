@@ -715,8 +715,9 @@ class Instantiator {
 		sti.condition = behaviorCondition
 		sti.targetState = context.findStateInstance(st.targetState)
 		context.stateTransitions += sti
-		if (st.inStates !== null) {
-			sti.inStates += context.findStateInstances(st.inStates)
+		val instates = st.inStates
+		if (instates instanceof BinaryOperation) {
+			sti.inStates += context.findStateInstances(instates)
 		}
 	}
 

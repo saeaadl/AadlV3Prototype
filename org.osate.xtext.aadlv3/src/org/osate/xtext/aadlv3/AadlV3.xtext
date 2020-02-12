@@ -391,8 +391,11 @@ Behavior returns av3::Behavior :
 
 TokenFlow returns av3::Behavior :
 	(annotations+=Annotation )*
-	name=ID ':' category=IsFlowCategory source?='source'? condition =(MultiLiteralOperation | ModelElementContainsLiteral | ModelElementEqualsLiteral | ModelElementReference) 
-		'->' ( sink?='sink'| TokenResultBlock )  
+	name=ID ':' category=IsFlowCategory 
+	(
+		(condition =(MultiLiteralOperation | ModelElementContainsLiteral | ModelElementEqualsLiteral | ModelElementReference)  '->' (sink?='sink' | TokenResultBlock))
+		| (source?='source' (condition =(MultiLiteralOperation | ModelElementContainsLiteral | ModelElementEqualsLiteral | ModelElementReference) )? '->' TokenResultBlock)
+	) 
 	( InStates )? PropertiesBlock?';'
 ;
 

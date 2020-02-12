@@ -66,7 +66,7 @@ public class FaultGraph {
 				TokenTrace eTrace = generateCauseGraph(revgraph,fi, ttt);
 				save(eTrace);
 			} else {
-				for (ConstrainedInstanceObject eroot: findActionCIOs(fi)) {
+				for (ConstrainedInstanceObject eroot: cios) {
 					TokenTrace eTrace = generateCauseGraph(revgraph,eroot, ttt);
 					save(eTrace);
 				}
@@ -208,7 +208,7 @@ public class FaultGraph {
 //		if (subevents.size() == 1){
 //			return subevents.get(0);
 //		}
-		Token mlcEvent = createToken(eventTrace,null,null,TokenType.INTERMEDIATE);
+		Token mlcEvent = createToken(eventTrace,eo,TokenType.INTERMEDIATE);
 		mlcEvent.setOperator(operator);
 		if (eo instanceof MultiLiteralConstraint) {
 			mlcEvent.setK(((MultiLiteralConstraint)eo).getK());
@@ -218,7 +218,12 @@ public class FaultGraph {
 	}
 	
 	
-	// populate intermediate tokens
+	/**
+	 * infer the literals associated with a token. This is useful as tokens are propagated to the root.
+	 * The root may not have had a specification of expected token types
+	 * @param current
+	 * @return
+	 */
 	
 	public Literal inferLiterals(Token current) {
 		if (current.getTokenLiteral() == null) {

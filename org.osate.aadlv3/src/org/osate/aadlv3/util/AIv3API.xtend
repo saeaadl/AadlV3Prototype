@@ -46,6 +46,7 @@ import org.osate.aadlv3.aadlv3.StateTransition
 import org.osate.aadlv3.aadlv3.ECollection
 import org.osate.aadlv3.aadlv3.StateSynchronization
 import org.osate.av3instance.av3instance.StateSynchronizationInstance
+import javax.swing.SwingWorker.StateValue
 
 class AIv3API {
 	
@@ -641,15 +642,20 @@ class AIv3API {
 	}
 	
 	def static StateInstance findStateInstance(ComponentInstance context, BinaryOperation ss) {
-		return findStateInstance(context, ss.left as StateVariable, ss.right as EnumerationLiteral);
+		val sv = (ss.left as NamedElementReference).element as StateVariable;
+		return findStateInstance(context, sv, ss.right as EnumerationLiteral);
 	}
 	
 	def static Collection<StateInstance> findStateInstances(ComponentInstance context, BinaryOperation ss) {
 		val result = new ArrayList<StateInstance>
 		val sv = (ss.left as NamedElementReference).element as StateVariable
-		val states = ss.right as ECollection
+		val states = ss.right
+		if (states instanceof ECollection){
 		for (state : states.elements) {
 			result += findStateInstance(context, sv, state as EnumerationLiteral)
+		}
+		} else if (states instanceof EnumerationLiteral){
+			result += findStateInstance(context, sv, states)
 		}
 		return result;
 	}

@@ -110,8 +110,8 @@ public class InstantiateWorkingSetHandler extends AbstractHandler {
 //		AIJGraphXUtil.showGraph(topo);
 //		Graph Prop =AIJGraphTUtil.generatePropagationPaths(rootinstance);
 //		AIJGraphXUtil.showGraph(Prop);
-//		Graph BProp =AIJGraphTUtil.generateBehaviorPropagationPaths(rootinstance,"EM");
-//		AIJGraphXUtil.showGraph(BProp);
+		Graph BProp =AIJGraphTUtil.generateBehaviorPropagationPaths(rootinstance,"EM");
+		AIJGraphXUtil.showGraph(BProp);
 
 	}
 }

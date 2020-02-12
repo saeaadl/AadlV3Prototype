@@ -9,7 +9,7 @@ package PortConnectionExample is
 	interface actuator is
 		inp: in feature;
 		effect: out feature;
-		action: flow inp -> sink ;
+		action: flow inp -> effect ;
 	end;
 	interface sensor is
 		outp: out feature;
@@ -27,14 +27,14 @@ package PortConnectionExample is
 		actt2: thread actuate;
 		downmap: connection inp -> actt2.p1;
 		effectmap: connection actt2.effect -> effect;
-		action=> flow actt2.taction;
+		action=> flow actt2.taction ;
 	end;
 	
 	thread interface sense  is
 		p1: out feature ;
 		reading : flow source p1 -> p1;
 	@EM{
-		s: state threestate;
+		s: state threestate = s0;
 		e1: generator (ServiceOmission) ;
 		sense2:  flow e1 -> p1 ;
 	};
@@ -43,13 +43,14 @@ package PortConnectionExample is
 	thread interface actuate  is
 		p1: in feature ;
 		effect: out feature ;
-		taction: flow  p1 -> sink;
+		taction: flow  p1 -> effect;
 	@EM{
-		s : state threestate;
+//		s : state threestate = s0;
 		eact1: generator  (ServiceOmission) ;
-		actuate1: transition eact1 in (ServiceOmission) -> s = s1 when s in (s0) ;
-		actuate2: flow p1 in (ServiceOmission) -> sink when s in (s0);
-		actuate3: flow p1 in (ServiceOmission) -> effect=ServiceOmission when s in( s1);
+//		actuate1: transition eact1 in (ServiceOmission) -> s = s1 when s in (s0) ;
+//		actuate2: flow p1 in (ServiceOmission) -> sink when s in (s0);
+//		actuate3: flow p1 in (ServiceOmission) -> effect=ServiceOmission when s in( s1);
+		actuate4: flow any( p1 in (ServiceOmission), eact1 in (ServiceOmission)) -> effect=ServiceOmission;
 	};
 	end;
 	
@@ -69,7 +70,7 @@ package PortConnectionExample is
 	
 	computer3: flow insignal ->  outsignal;
 	@EM{
-		es: state threestate;
+		es: state threestate = s0;
 		e1: generator ;
 		r1: transition e1 -> es=s1 when es = s0; 
 		computer2: flow insignal in (ServiceOmission) ->  outsignal=ServiceOmission when es in (s1);

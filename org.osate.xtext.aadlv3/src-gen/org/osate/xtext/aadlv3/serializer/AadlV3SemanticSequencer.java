@@ -263,7 +263,11 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 				sequence_PathElement(context, (PathElement) semanticObject); 
 				return; 
 			case Aadlv3Package.PATH_SEQUENCE:
-				if (rule == grammarAccess.getEndToEndFlowRule()) {
+				if (rule == grammarAccess.getConnectionAssignmentRule()) {
+					sequence_ConnectionAssignment(context, (PathSequence) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getEndToEndFlowRule()) {
 					sequence_EndToEndFlow_PropertiesBlock(context, (PathSequence) semanticObject); 
 					return; 
 				}
@@ -472,7 +476,15 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *                 (
 	 *                     ownedPropertyAssociations+=PropertyAssociation | 
 	 *                     elements+=BehaviorAnnotationBlock | 
+	 *                     elements+=EndToEndFlow | 
+	 *                     elements+=BehaviorAnnotationBlock | 
+	 *                     elements+=StateVariable | 
+	 *                     elements+=StateTransition | 
+	 *                     elements+=StateSynchronization | 
+	 *                     elements+=Behavior | 
+	 *                     elements+=Generator | 
 	 *                     elements+=Binding | 
+	 *                     flowAssignments+=FlowAssignment | 
 	 *                     classifierAssignments+=ClassifierAssignment | 
 	 *                     classifierAssignments+=ClassifierAssignmentPattern | 
 	 *                     elements+=AnnexSubclause
@@ -500,7 +512,15 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *                 (
 	 *                     ownedPropertyAssociations+=PropertyAssociation | 
 	 *                     elements+=BehaviorAnnotationBlock | 
+	 *                     elements+=EndToEndFlow | 
+	 *                     elements+=BehaviorAnnotationBlock | 
+	 *                     elements+=StateVariable | 
+	 *                     elements+=StateTransition | 
+	 *                     elements+=StateSynchronization | 
+	 *                     elements+=Behavior | 
+	 *                     elements+=Generator | 
 	 *                     elements+=Binding | 
+	 *                     flowAssignments+=FlowAssignment | 
 	 *                     classifierAssignments+=ClassifierAssignment | 
 	 *                     classifierAssignments+=ClassifierAssignmentPattern | 
 	 *                     elements+=AnnexSubclause
@@ -541,7 +561,15 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *         (
 	 *             ownedPropertyAssociations+=PropertyAssociation | 
 	 *             elements+=BehaviorAnnotationBlock | 
+	 *             elements+=EndToEndFlow | 
+	 *             elements+=BehaviorAnnotationBlock | 
+	 *             elements+=StateVariable | 
+	 *             elements+=StateTransition | 
+	 *             elements+=StateSynchronization | 
+	 *             elements+=Behavior | 
+	 *             elements+=Generator | 
 	 *             elements+=Binding | 
+	 *             flowAssignments+=FlowAssignment | 
 	 *             classifierAssignments+=ClassifierAssignment | 
 	 *             classifierAssignments+=ClassifierAssignmentPattern | 
 	 *             elements+=AnnexSubclause
@@ -580,6 +608,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *             flowAssignments+=FlowAssignment | 
 	 *             classifierAssignments+=ClassifierAssignment | 
 	 *             classifierAssignments+=ClassifierAssignmentPattern | 
+	 *             connectionAssignments+=ConnectionAssignment | 
 	 *             ownedPropertyAssociations+=PropertyAssociation
 	 *         )*
 	 *     )
@@ -651,9 +680,18 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *                 annotations+=Annotation* 
 	 *                 name=ID 
 	 *                 category=IsFlowCategory 
-	 *                 source?='source'? 
-	 *                 (condition=MultiLiteralOperation | condition=ModelElementContainsLiteral | condition=ModelElementEqualsLiteral | condition=ModelElementReference) 
-	 *                 (sink?='sink' | (actions+=TokenResult actions+=TokenResult*))
+	 *                 (
+	 *                     (
+	 *                         (condition=MultiLiteralOperation | condition=ModelElementContainsLiteral | condition=ModelElementEqualsLiteral | condition=ModelElementReference) 
+	 *                         (sink?='sink' | (actions+=TokenResult actions+=TokenResult*))
+	 *                     ) | 
+	 *                     (
+	 *                         source?='source' 
+	 *                         (condition=MultiLiteralOperation | condition=ModelElementContainsLiteral | condition=ModelElementEqualsLiteral | condition=ModelElementReference)? 
+	 *                         actions+=TokenResult 
+	 *                         actions+=TokenResult*
+	 *                     )
+	 *                 )
 	 *             ) | 
 	 *             (
 	 *                 annotations+=Annotation* 
@@ -736,6 +774,18 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 		feeder.accept(grammarAccess.getConfigurationParameterAccess().getNameIDTerminalRuleCall_0_0(), semanticObject.getName());
 		feeder.accept(grammarAccess.getConfigurationParameterAccess().getTypeTypeQualifiedNameParserRuleCall_2_0_1(), semanticObject.eGet(Aadlv3Package.Literals.CONFIGURATION_PARAMETER__TYPE, false));
 		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     ConnectionAssignment returns PathSequence
+	 *
+	 * Constraint:
+	 *     (target=ModelElementReference elements+=PathElement elements+=PathElement*)
+	 */
+	protected void sequence_ConnectionAssignment(ISerializationContext context, PathSequence semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1068,9 +1118,18 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *         annotations+=Annotation* 
 	 *         name=ID 
 	 *         category=IsFlowCategory 
-	 *         source?='source'? 
-	 *         (condition=MultiLiteralOperation | condition=ModelElementContainsLiteral | condition=ModelElementEqualsLiteral | condition=ModelElementReference) 
-	 *         (sink?='sink' | (actions+=TokenResult actions+=TokenResult*)) 
+	 *         (
+	 *             (
+	 *                 (condition=MultiLiteralOperation | condition=ModelElementContainsLiteral | condition=ModelElementEqualsLiteral | condition=ModelElementReference) 
+	 *                 (sink?='sink' | (actions+=TokenResult actions+=TokenResult*))
+	 *             ) | 
+	 *             (
+	 *                 source?='source' 
+	 *                 (condition=MultiLiteralOperation | condition=ModelElementContainsLiteral | condition=ModelElementEqualsLiteral | condition=ModelElementReference)? 
+	 *                 actions+=TokenResult 
+	 *                 actions+=TokenResult*
+	 *             )
+	 *         ) 
 	 *         (inStates=ModelElementContainsEnumerationLiteral | inStates=ModelElementEqualsEnumerationLiteral)? 
 	 *         ownedPropertyAssociations+=PropertyAssociation*
 	 *     )
