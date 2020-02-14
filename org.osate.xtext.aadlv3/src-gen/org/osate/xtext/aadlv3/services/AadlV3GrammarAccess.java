@@ -3966,8 +3966,8 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.osate.xtext.aadlv3.AadlV3.Annotation");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cCommercialAtKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Assignment cTagAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cTagIDTerminalRuleCall_1_0 = (RuleCall)cTagAssignment_1.eContents().get(0);
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
 		private final Keyword cLeftParenthesisKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
 		private final Assignment cParametersAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
@@ -3980,20 +3980,20 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 		
 		//// Annotations
 		// Annotation av3::Annotation:
-		//	'@' name=ID ('(' parameters+=AnnotationParameter (',' parameters+=AnnotationParameter)* ')')?;
+		//	'@' tag=ID ('(' parameters+=AnnotationParameter (',' parameters+=AnnotationParameter)* ')')?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'@' name=ID ('(' parameters+=AnnotationParameter (',' parameters+=AnnotationParameter)* ')')?
+		//'@' tag=ID ('(' parameters+=AnnotationParameter (',' parameters+=AnnotationParameter)* ')')?
 		public Group getGroup() { return cGroup; }
 		
 		//'@'
 		public Keyword getCommercialAtKeyword_0() { return cCommercialAtKeyword_0; }
 		
-		//name=ID
-		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		//tag=ID
+		public Assignment getTagAssignment_1() { return cTagAssignment_1; }
 		
 		//ID
-		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+		public RuleCall getTagIDTerminalRuleCall_1_0() { return cTagIDTerminalRuleCall_1_0; }
 		
 		//('(' parameters+=AnnotationParameter (',' parameters+=AnnotationParameter)* ')')?
 		public Group getGroup_2() { return cGroup_2; }
@@ -6808,7 +6808,7 @@ public class AadlV3GrammarAccess extends AbstractGrammarElementFinder {
 	
 	//// Annotations
 	// Annotation av3::Annotation:
-	//	'@' name=ID ('(' parameters+=AnnotationParameter (',' parameters+=AnnotationParameter)* ')')?;
+	//	'@' tag=ID ('(' parameters+=AnnotationParameter (',' parameters+=AnnotationParameter)* ')')?;
 	public AnnotationElements getAnnotationAccess() {
 		return pAnnotation;
 	}

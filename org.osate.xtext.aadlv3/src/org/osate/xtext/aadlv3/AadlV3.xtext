@@ -442,7 +442,7 @@ FeatureInput returns av3::BinaryOperation:
 // Annotations
 
 Annotation returns av3::Annotation :
-	'@' name=ID ( '(' parameters+= AnnotationParameter (',' parameters+= AnnotationParameter)*')')?
+	'@' tag=ID ( '(' parameters+= AnnotationParameter (',' parameters+= AnnotationParameter)*')')?
 ;
 
 AnnotationParameter returns av3::NameValuePair:

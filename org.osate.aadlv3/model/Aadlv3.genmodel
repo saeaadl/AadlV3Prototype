@@ -278,7 +278,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//AnnotationBlock/elements"/>
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//Annotation">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//Annotation/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Aadlv3.ecore#//Annotation/tag"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Aadlv3.ecore#//Annotation/parameters"/>
     </genClasses>
     <genClasses ecoreClass="Aadlv3.ecore#//NameValuePair">

@@ -1802,7 +1802,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getAnnotation_Name() {
+	public EAttribute getAnnotation_Tag() {
 		return (EAttribute) annotationEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -2690,7 +2690,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 		createEReference(annotationBlockEClass, ANNOTATION_BLOCK__ELEMENTS);
 
 		annotationEClass = createEClass(ANNOTATION);
-		createEAttribute(annotationEClass, ANNOTATION__NAME);
+		createEAttribute(annotationEClass, ANNOTATION__TAG);
 		createEReference(annotationEClass, ANNOTATION__PARAMETERS);
 
 		nameValuePairEClass = createEClass(NAME_VALUE_PAIR);
@@ -3240,7 +3240,7 @@ public class Aadlv3PackageImpl extends EPackageImpl implements Aadlv3Package {
 
 		initEClass(annotationEClass, Annotation.class, "Annotation", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getAnnotation_Name(), ecorePackage.getEString(), "name", null, 0, 1, Annotation.class,
+		initEAttribute(getAnnotation_Tag(), ecorePackage.getEString(), "tag", null, 0, 1, Annotation.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAnnotation_Parameters(), this.getNameValuePair(), null, "parameters", null, 0, -1,
 				Annotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,

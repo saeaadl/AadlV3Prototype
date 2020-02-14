@@ -3120,13 +3120,13 @@ public interface Aadlv3Package extends EPackage {
 	int ANNOTATION = 51;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Tag</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ANNOTATION__NAME = 0;
+	int ANNOTATION__TAG = 0;
 
 	/**
 	 * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
@@ -5014,15 +5014,15 @@ public interface Aadlv3Package extends EPackage {
 	EClass getAnnotation();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.osate.aadlv3.aadlv3.Annotation#getName <em>Name</em>}'.
+	 * Returns the meta object for the attribute '{@link org.osate.aadlv3.aadlv3.Annotation#getTag <em>Tag</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see org.osate.aadlv3.aadlv3.Annotation#getName()
+	 * @return the meta object for the attribute '<em>Tag</em>'.
+	 * @see org.osate.aadlv3.aadlv3.Annotation#getTag()
 	 * @see #getAnnotation()
 	 * @generated
 	 */
-	EAttribute getAnnotation_Name();
+	EAttribute getAnnotation_Tag();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link org.osate.aadlv3.aadlv3.Annotation#getParameters <em>Parameters</em>}'.
@@ -6749,12 +6749,12 @@ public interface Aadlv3Package extends EPackage {
 		EClass ANNOTATION = eINSTANCE.getAnnotation();
 
 		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Tag</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ANNOTATION__NAME = eINSTANCE.getAnnotation_Name();
+		EAttribute ANNOTATION__TAG = eINSTANCE.getAnnotation_Tag();
 
 		/**
 		 * The meta object literal for the '<em><b>Parameters</b></em>' containment reference list feature.

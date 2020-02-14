@@ -128,7 +128,7 @@ public class FaultGraph {
 				return found;
 			}
 		}
-		
+		Set<RefEObjectEdge> alledges = graph.edgeSet();
 		Set<RefEObjectEdge> edges = graph.outgoingEdgesOf(eo);
 //		if (edges.isEmpty()) {
 //			return null;

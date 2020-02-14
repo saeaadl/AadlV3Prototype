@@ -7436,9 +7436,9 @@ ruleAnnotation returns [EObject current=null]
 		}
 		(
 			(
-				lv_name_1_0=RULE_ID
+				lv_tag_1_0=RULE_ID
 				{
-					newLeafNode(lv_name_1_0, grammarAccess.getAnnotationAccess().getNameIDTerminalRuleCall_1_0());
+					newLeafNode(lv_tag_1_0, grammarAccess.getAnnotationAccess().getTagIDTerminalRuleCall_1_0());
 				}
 				{
 					if ($current==null) {
@@ -7446,8 +7446,8 @@ ruleAnnotation returns [EObject current=null]
 					}
 					setWithLastConsumed(
 						$current,
-						"name",
-						lv_name_1_0,
+						"tag",
+						lv_tag_1_0,
 						"org.eclipse.xtext.common.Terminals.ID");
 				}
 			)

@@ -27,7 +27,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.osate.aadlv3.aadlv3.Annotation#getName <em>Name</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.Annotation#getTag <em>Tag</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.Annotation#getParameters <em>Parameters</em>}</li>
  * </ul>
  *
@@ -37,26 +37,26 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Annotation extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * Returns the value of the '<em><b>Tag</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Name</em>' attribute.
-	 * @see #setName(String)
-	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getAnnotation_Name()
+	 * @return the value of the '<em>Tag</em>' attribute.
+	 * @see #setTag(String)
+	 * @see org.osate.aadlv3.aadlv3.Aadlv3Package#getAnnotation_Tag()
 	 * @model
 	 * @generated
 	 */
-	String getName();
+	String getTag();
 
 	/**
-	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.Annotation#getName <em>Name</em>}' attribute.
+	 * Sets the value of the '{@link org.osate.aadlv3.aadlv3.Annotation#getTag <em>Tag</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Name</em>' attribute.
-	 * @see #getName()
+	 * @param value the new value of the '<em>Tag</em>' attribute.
+	 * @see #getTag()
 	 * @generated
 	 */
-	void setName(String value);
+	void setTag(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Parameters</b></em>' containment reference list.

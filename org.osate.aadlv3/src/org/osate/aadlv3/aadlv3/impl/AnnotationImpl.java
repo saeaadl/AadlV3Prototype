@@ -40,7 +40,7 @@ import org.osate.aadlv3.aadlv3.NameValuePair;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.osate.aadlv3.aadlv3.impl.AnnotationImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.osate.aadlv3.aadlv3.impl.AnnotationImpl#getTag <em>Tag</em>}</li>
  *   <li>{@link org.osate.aadlv3.aadlv3.impl.AnnotationImpl#getParameters <em>Parameters</em>}</li>
  * </ul>
  *
@@ -48,24 +48,24 @@ import org.osate.aadlv3.aadlv3.NameValuePair;
  */
 public class AnnotationImpl extends MinimalEObjectImpl.Container implements Annotation {
 	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * The default value of the '{@link #getTag() <em>Tag</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getName()
+	 * @see #getTag()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String NAME_EDEFAULT = null;
+	protected static final String TAG_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * The cached value of the '{@link #getTag() <em>Tag</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getName()
+	 * @see #getTag()
 	 * @generated
 	 * @ordered
 	 */
-	protected String name = NAME_EDEFAULT;
+	protected String tag = TAG_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getParameters() <em>Parameters</em>}' containment reference list.
@@ -102,8 +102,8 @@ public class AnnotationImpl extends MinimalEObjectImpl.Container implements Anno
 	 * @generated
 	 */
 	@Override
-	public String getName() {
-		return name;
+	public String getTag() {
+		return tag;
 	}
 
 	/**
@@ -112,11 +112,11 @@ public class AnnotationImpl extends MinimalEObjectImpl.Container implements Anno
 	 * @generated
 	 */
 	@Override
-	public void setName(String newName) {
-		String oldName = name;
-		name = newName;
+	public void setTag(String newTag) {
+		String oldTag = tag;
+		tag = newTag;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.ANNOTATION__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, Aadlv3Package.ANNOTATION__TAG, oldTag, tag));
 	}
 
 	/**
@@ -155,8 +155,8 @@ public class AnnotationImpl extends MinimalEObjectImpl.Container implements Anno
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case Aadlv3Package.ANNOTATION__NAME:
-			return getName();
+		case Aadlv3Package.ANNOTATION__TAG:
+			return getTag();
 		case Aadlv3Package.ANNOTATION__PARAMETERS:
 			return getParameters();
 		}
@@ -172,8 +172,8 @@ public class AnnotationImpl extends MinimalEObjectImpl.Container implements Anno
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case Aadlv3Package.ANNOTATION__NAME:
-			setName((String) newValue);
+		case Aadlv3Package.ANNOTATION__TAG:
+			setTag((String) newValue);
 			return;
 		case Aadlv3Package.ANNOTATION__PARAMETERS:
 			getParameters().clear();
@@ -191,8 +191,8 @@ public class AnnotationImpl extends MinimalEObjectImpl.Container implements Anno
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case Aadlv3Package.ANNOTATION__NAME:
-			setName(NAME_EDEFAULT);
+		case Aadlv3Package.ANNOTATION__TAG:
+			setTag(TAG_EDEFAULT);
 			return;
 		case Aadlv3Package.ANNOTATION__PARAMETERS:
 			getParameters().clear();
@@ -209,8 +209,8 @@ public class AnnotationImpl extends MinimalEObjectImpl.Container implements Anno
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case Aadlv3Package.ANNOTATION__NAME:
-			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+		case Aadlv3Package.ANNOTATION__TAG:
+			return TAG_EDEFAULT == null ? tag != null : !TAG_EDEFAULT.equals(tag);
 		case Aadlv3Package.ANNOTATION__PARAMETERS:
 			return parameters != null && !parameters.isEmpty();
 		}
@@ -228,8 +228,8 @@ public class AnnotationImpl extends MinimalEObjectImpl.Container implements Anno
 			return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (name: ");
-		result.append(name);
+		result.append(" (tag: ");
+		result.append(tag);
 		result.append(')');
 		return result.toString();
 	}

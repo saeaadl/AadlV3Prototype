@@ -51415,26 +51415,26 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Annotation__Group__1__Impl"
-    // InternalAadlV3.g:15430:1: rule__Annotation__Group__1__Impl : ( ( rule__Annotation__NameAssignment_1 ) ) ;
+    // InternalAadlV3.g:15430:1: rule__Annotation__Group__1__Impl : ( ( rule__Annotation__TagAssignment_1 ) ) ;
     public final void rule__Annotation__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAadlV3.g:15434:1: ( ( ( rule__Annotation__NameAssignment_1 ) ) )
-            // InternalAadlV3.g:15435:1: ( ( rule__Annotation__NameAssignment_1 ) )
+            // InternalAadlV3.g:15434:1: ( ( ( rule__Annotation__TagAssignment_1 ) ) )
+            // InternalAadlV3.g:15435:1: ( ( rule__Annotation__TagAssignment_1 ) )
             {
-            // InternalAadlV3.g:15435:1: ( ( rule__Annotation__NameAssignment_1 ) )
-            // InternalAadlV3.g:15436:2: ( rule__Annotation__NameAssignment_1 )
+            // InternalAadlV3.g:15435:1: ( ( rule__Annotation__TagAssignment_1 ) )
+            // InternalAadlV3.g:15436:2: ( rule__Annotation__TagAssignment_1 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getAnnotationAccess().getNameAssignment_1()); 
+               before(grammarAccess.getAnnotationAccess().getTagAssignment_1()); 
             }
-            // InternalAadlV3.g:15437:2: ( rule__Annotation__NameAssignment_1 )
-            // InternalAadlV3.g:15437:3: rule__Annotation__NameAssignment_1
+            // InternalAadlV3.g:15437:2: ( rule__Annotation__TagAssignment_1 )
+            // InternalAadlV3.g:15437:3: rule__Annotation__TagAssignment_1
             {
             pushFollow(FOLLOW_2);
-            rule__Annotation__NameAssignment_1();
+            rule__Annotation__TagAssignment_1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -51442,7 +51442,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getAnnotationAccess().getNameAssignment_1()); 
+               after(grammarAccess.getAnnotationAccess().getTagAssignment_1()); 
             }
 
             }
@@ -70394,9 +70394,9 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__ModelElementEqualsEnumerationLiteral__RightAssignment_2"
 
 
-    // $ANTLR start "rule__Annotation__NameAssignment_1"
-    // InternalAadlV3.g:21769:1: rule__Annotation__NameAssignment_1 : ( RULE_ID ) ;
-    public final void rule__Annotation__NameAssignment_1() throws RecognitionException {
+    // $ANTLR start "rule__Annotation__TagAssignment_1"
+    // InternalAadlV3.g:21769:1: rule__Annotation__TagAssignment_1 : ( RULE_ID ) ;
+    public final void rule__Annotation__TagAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -70408,11 +70408,11 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
             // InternalAadlV3.g:21775:3: RULE_ID
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getAnnotationAccess().getNameIDTerminalRuleCall_1_0()); 
+               before(grammarAccess.getAnnotationAccess().getTagIDTerminalRuleCall_1_0()); 
             }
             match(input,RULE_ID,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getAnnotationAccess().getNameIDTerminalRuleCall_1_0()); 
+               after(grammarAccess.getAnnotationAccess().getTagIDTerminalRuleCall_1_0()); 
             }
 
             }
@@ -70432,7 +70432,7 @@ public class InternalAadlV3Parser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Annotation__NameAssignment_1"
+    // $ANTLR end "rule__Annotation__TagAssignment_1"
 
 
     // $ANTLR start "rule__Annotation__ParametersAssignment_2_1"

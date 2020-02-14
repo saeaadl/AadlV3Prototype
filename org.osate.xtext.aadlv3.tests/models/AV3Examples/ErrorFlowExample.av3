@@ -1,0 +1,94 @@
+package ErrorFlowExample is
+// connections without and with reach down into is
+// shared data component
+	import StateTypes::*;
+	import ErrorTypes::*;
+
+	type t1;
+	
+	abstract interface sense  is
+		p1: out feature ;
+//		reading : flow source p1 -> p1;
+	@EM{
+		s: state threestate = s0;
+		e1: generator (ServiceOmission) ;
+		sense2:  flow e1 -> p1 ;
+	};
+	end;
+	
+	abstract interface actuate  is
+		p1: in feature ;
+		effect: out feature ;
+//		taction: flow  p1 -> effect;
+	@EM{
+//		s : state threestate = s0;
+		eact1: generator  (ServiceOmission) ;
+//		actuate1: transition eact1 in (ServiceOmission) -> s = s1 when s in (s0) ;
+//		actuate2: flow p1 in (ServiceOmission) -> sink when s in (s0);
+//		actuate3: flow p1 in (ServiceOmission) -> effect=ServiceOmission when s in( s1);
+		actuate4: flow any( p1 in (ServiceOmission), eact1 in (ServiceOmission)) -> effect=ServiceOmission;
+	};
+	end;
+	
+	abstract interface filter is
+	insignal1 : in feature;
+	insignal2 : in feature;
+	outsignal : out feature;
+	@EM{
+		filter2: flow all (insignal1 in (ServiceOmission), insignal2  in (ServiceOmission)) 
+		  ->  outsignal=ServiceOmission;
+	};
+	end;
+	
+	abstract interface compute is
+	insignal : in feature;
+	outsignal : out feature;
+	
+	computer3: flow insignal ->  outsignal;
+	@EM{
+//		es: state threestate = s0;
+		e1: generator ;
+//		r1: transition e1 -> es=s1 when es = s0; 
+//		computer2: flow insignal in (ServiceOmission) ->  outsignal=ServiceOmission when es in (s1);
+//		r3: flow insignal in (ServiceOmission) -> sink when es in (s0);
+		compute: flow any(insignal in (ServiceOmission),e1) ->  outsignal=ServiceOmission ;
+	};
+	end;
+	
+	
+	system interface conntop is 
+		effect : out feature;
+	end;
+	
+	system conntop.i is
+		sense1: abstract sense;
+		sense2: abstract sense;
+		processing: abstract filter;
+		actuate: abstract actuate;
+		hw : system hardwareplatform.impl;
+		sensetocontrol1: connection sense1.p1 -> processing.insignal1;
+		sensetocontrol2: connection sense2.p1 -> processing.insignal2;
+		controltoactuate: connection processing.outsignal -> actuate.p1;
+		effectprop: connection actuate.effect -> effect;
+	@EM{
+		effect2:flow actuate.effect in (ServiceOmission) ->  effect=ServiceOmission;
+	};
+	end;
+	
+	bus interface canbus 
+	is end;
+	
+	processor interface x86 is
+	canbusaccess: requires bus access canbus;
+	end;
+	
+	system interface hardwareplatform is
+		canbusaccess: provides bus access canbus;
+	end;
+	
+	system hardwareplatform.impl is
+	cpu: processor x86;
+	mybus: bus canbus;
+	end;
+	
+end;

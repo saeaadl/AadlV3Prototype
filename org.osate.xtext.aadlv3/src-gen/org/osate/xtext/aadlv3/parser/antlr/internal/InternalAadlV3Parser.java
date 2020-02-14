@@ -19334,12 +19334,12 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleAnnotation"
-    // InternalAadlV3.g:7425:1: ruleAnnotation returns [EObject current=null] : (otherlv_0= '@' ( (lv_name_1_0= RULE_ID ) ) (otherlv_2= '(' ( (lv_parameters_3_0= ruleAnnotationParameter ) ) (otherlv_4= ',' ( (lv_parameters_5_0= ruleAnnotationParameter ) ) )* otherlv_6= ')' )? ) ;
+    // InternalAadlV3.g:7425:1: ruleAnnotation returns [EObject current=null] : (otherlv_0= '@' ( (lv_tag_1_0= RULE_ID ) ) (otherlv_2= '(' ( (lv_parameters_3_0= ruleAnnotationParameter ) ) (otherlv_4= ',' ( (lv_parameters_5_0= ruleAnnotationParameter ) ) )* otherlv_6= ')' )? ) ;
     public final EObject ruleAnnotation() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_0=null;
-        Token lv_name_1_0=null;
+        Token lv_tag_1_0=null;
         Token otherlv_2=null;
         Token otherlv_4=null;
         Token otherlv_6=null;
@@ -19352,11 +19352,11 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalAadlV3.g:7431:2: ( (otherlv_0= '@' ( (lv_name_1_0= RULE_ID ) ) (otherlv_2= '(' ( (lv_parameters_3_0= ruleAnnotationParameter ) ) (otherlv_4= ',' ( (lv_parameters_5_0= ruleAnnotationParameter ) ) )* otherlv_6= ')' )? ) )
-            // InternalAadlV3.g:7432:2: (otherlv_0= '@' ( (lv_name_1_0= RULE_ID ) ) (otherlv_2= '(' ( (lv_parameters_3_0= ruleAnnotationParameter ) ) (otherlv_4= ',' ( (lv_parameters_5_0= ruleAnnotationParameter ) ) )* otherlv_6= ')' )? )
+            // InternalAadlV3.g:7431:2: ( (otherlv_0= '@' ( (lv_tag_1_0= RULE_ID ) ) (otherlv_2= '(' ( (lv_parameters_3_0= ruleAnnotationParameter ) ) (otherlv_4= ',' ( (lv_parameters_5_0= ruleAnnotationParameter ) ) )* otherlv_6= ')' )? ) )
+            // InternalAadlV3.g:7432:2: (otherlv_0= '@' ( (lv_tag_1_0= RULE_ID ) ) (otherlv_2= '(' ( (lv_parameters_3_0= ruleAnnotationParameter ) ) (otherlv_4= ',' ( (lv_parameters_5_0= ruleAnnotationParameter ) ) )* otherlv_6= ')' )? )
             {
-            // InternalAadlV3.g:7432:2: (otherlv_0= '@' ( (lv_name_1_0= RULE_ID ) ) (otherlv_2= '(' ( (lv_parameters_3_0= ruleAnnotationParameter ) ) (otherlv_4= ',' ( (lv_parameters_5_0= ruleAnnotationParameter ) ) )* otherlv_6= ')' )? )
-            // InternalAadlV3.g:7433:3: otherlv_0= '@' ( (lv_name_1_0= RULE_ID ) ) (otherlv_2= '(' ( (lv_parameters_3_0= ruleAnnotationParameter ) ) (otherlv_4= ',' ( (lv_parameters_5_0= ruleAnnotationParameter ) ) )* otherlv_6= ')' )?
+            // InternalAadlV3.g:7432:2: (otherlv_0= '@' ( (lv_tag_1_0= RULE_ID ) ) (otherlv_2= '(' ( (lv_parameters_3_0= ruleAnnotationParameter ) ) (otherlv_4= ',' ( (lv_parameters_5_0= ruleAnnotationParameter ) ) )* otherlv_6= ')' )? )
+            // InternalAadlV3.g:7433:3: otherlv_0= '@' ( (lv_tag_1_0= RULE_ID ) ) (otherlv_2= '(' ( (lv_parameters_3_0= ruleAnnotationParameter ) ) (otherlv_4= ',' ( (lv_parameters_5_0= ruleAnnotationParameter ) ) )* otherlv_6= ')' )?
             {
             otherlv_0=(Token)match(input,18,FOLLOW_5); if (state.failed) return current;
             if ( state.backtracking==0 ) {
@@ -19364,16 +19364,16 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
               			newLeafNode(otherlv_0, grammarAccess.getAnnotationAccess().getCommercialAtKeyword_0());
               		
             }
-            // InternalAadlV3.g:7437:3: ( (lv_name_1_0= RULE_ID ) )
-            // InternalAadlV3.g:7438:4: (lv_name_1_0= RULE_ID )
+            // InternalAadlV3.g:7437:3: ( (lv_tag_1_0= RULE_ID ) )
+            // InternalAadlV3.g:7438:4: (lv_tag_1_0= RULE_ID )
             {
-            // InternalAadlV3.g:7438:4: (lv_name_1_0= RULE_ID )
-            // InternalAadlV3.g:7439:5: lv_name_1_0= RULE_ID
+            // InternalAadlV3.g:7438:4: (lv_tag_1_0= RULE_ID )
+            // InternalAadlV3.g:7439:5: lv_tag_1_0= RULE_ID
             {
-            lv_name_1_0=(Token)match(input,RULE_ID,FOLLOW_67); if (state.failed) return current;
+            lv_tag_1_0=(Token)match(input,RULE_ID,FOLLOW_67); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-              					newLeafNode(lv_name_1_0, grammarAccess.getAnnotationAccess().getNameIDTerminalRuleCall_1_0());
+              					newLeafNode(lv_tag_1_0, grammarAccess.getAnnotationAccess().getTagIDTerminalRuleCall_1_0());
               				
             }
             if ( state.backtracking==0 ) {
@@ -19383,8 +19383,8 @@ public class InternalAadlV3Parser extends AbstractInternalAntlrParser {
               					}
               					setWithLastConsumed(
               						current,
-              						"name",
-              						lv_name_1_0,
+              						"tag",
+              						lv_tag_1_0,
               						"org.eclipse.xtext.common.Terminals.ID");
               				
             }

@@ -44,6 +44,8 @@ import static extension org.eclipse.emf.ecore.util.EcoreUtil.*
 import static extension org.osate.aadlv3.util.AIv3API.*
 import static extension org.osate.aadlv3.util.Aadlv3Util.*
 import org.osate.aadlv3.aadlv3.StateSynchronization
+import org.osate.aadlv3.aadlv3.NamedElement
+import org.osate.aadlv3.aadlv3.AnnotationBlock
 
 class Instantiator {
 	
@@ -591,7 +593,7 @@ class Instantiator {
 	
 	def void instantiateStateVariables(StateVariable sv, ComponentInstance context){
 		val svi = createStateVariableInstance(sv);
-		svi.annotations.addAll(sv.allAnnotations)
+		svi.attachAnnotations(sv)
 		context.stateVariables += svi;
 		val enum = sv.stateType.baseType
 		if (enum instanceof EnumerationType){
@@ -613,7 +615,7 @@ class Instantiator {
 	// Behavior Rules
 	def void instantiateBehavior(Behavior br, ComponentInstance context) {
 		val bri = br.createBehaviorInstance;
-		bri.annotations.addAll(br.allAnnotations)
+		bri.attachAnnotations(br)
 		bri.sink = br.sink;
 		bri.source = br.source;
 		if (br.condition !== null) {
@@ -677,7 +679,7 @@ class Instantiator {
 	// Behavior Rules
 	def void instantiateStateTransition(StateTransition st, ComponentInstance context) {
 		val sti = st.createStateTransitionInstance;
-		sti.annotations.addAll(st.allAnnotations)
+		sti.attachAnnotations(st)
 		var behaviorCondition = st.condition.copy
 		// now replace ConditionElements by respective instances
 		val cos = EcoreUtil2.eAllOfType(behaviorCondition, BinaryOperation);
@@ -723,7 +725,7 @@ class Instantiator {
 
 	def void instantiateStateSynchronization(StateSynchronization st, ComponentInstance context) {
 		val sti = st.createStateSynchronizationInstance;
-		sti.annotations.addAll(st.allAnnotations)
+		sti.attachAnnotations(st)
 		var behaviorCondition = st.condition.copy
 		// now replace ConditionElements by respective instances
 		val cos = EcoreUtil2.eAllOfType(behaviorCondition, BinaryOperation);
@@ -769,7 +771,7 @@ class Instantiator {
 	// Generator
 	def void instantiateGenerator(Generator g, ComponentInstance context) {
 		val gi = g.createGeneratorInstance()
-		gi.annotations.addAll(g.allAnnotations)
+		gi.attachAnnotations(g)
 		context.generators += gi
 		val literals = g.value
 		if (literals instanceof ECollection) {
@@ -792,6 +794,18 @@ class Instantiator {
 				val sti = findStateInstance(svi, state as EnumerationLiteral)
 				io.inStates.add(sti)
 			}
+		}
+	}
+
+	def void attachAnnotations(InstanceObject target, NamedElement ne){
+		for (tag : ne.annotations){
+			target.annotations += tag.copy
+		}
+		val context = ne.eContainer
+		if (context instanceof AnnotationBlock){
+			val tag = Aadlv3Factory.eINSTANCE.createAnnotation
+			tag.tag = context.name
+			target.annotations += tag
 		}
 	}
 

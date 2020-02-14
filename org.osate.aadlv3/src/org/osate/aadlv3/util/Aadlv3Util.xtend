@@ -1611,26 +1611,7 @@ class Aadlv3Util {
 	}
 	
 	def static boolean hasAnnotation(NamedElement ne, String annotationName) {
-		if (ne.annotations.exists[an|an.name == annotationName]) {
-			return true;
-		}
-		val ab = ne.eContainer
-		if (ab instanceof AnnotationBlock) {
-			if (ab.annotations.exists[an|an.name == annotationName]) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	
-	def static Iterable <Annotation> getAllAnnotations(NamedElement ne) {
-		val ab = ne.eContainer
-		if (ab instanceof AnnotationBlock) {
-			return ab.annotations + ne.annotations
-		} else {
-			return ne.annotations
-		}
+		return ne.annotations.exists[an|an.tag == annotationName] 
 	}
 	
 	def static <T extends EObject> Iterable<T> allElementsOfType(Classifier cl, Class<T> type){

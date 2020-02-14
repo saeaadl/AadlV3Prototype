@@ -391,7 +391,7 @@ public class AadlV3SemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     Annotation returns Annotation
 	 *
 	 * Constraint:
-	 *     (name=ID (parameters+=AnnotationParameter parameters+=AnnotationParameter*)?)
+	 *     (tag=ID (parameters+=AnnotationParameter parameters+=AnnotationParameter*)?)
 	 */
 	protected void sequence_Annotation(ISerializationContext context, Annotation semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

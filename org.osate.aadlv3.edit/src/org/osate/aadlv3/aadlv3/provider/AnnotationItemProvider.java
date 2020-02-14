@@ -69,24 +69,24 @@ public class AnnotationItemProvider extends ItemProviderAdapter implements IEdit
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addNamePropertyDescriptor(object);
+			addTagPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Name feature.
+	 * This adds a property descriptor for the Tag feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addNamePropertyDescriptor(Object object) {
+	protected void addTagPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
 				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Annotation_name_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Annotation_name_feature",
+						getResourceLocator(), getString("_UI_Annotation_tag_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_Annotation_tag_feature",
 								"_UI_Annotation_type"),
-						Aadlv3Package.Literals.ANNOTATION__NAME, true, false, false,
+						Aadlv3Package.Literals.ANNOTATION__TAG, true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -139,7 +139,7 @@ public class AnnotationItemProvider extends ItemProviderAdapter implements IEdit
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Annotation) object).getName();
+		String label = ((Annotation) object).getTag();
 		return label == null || label.length() == 0 ? getString("_UI_Annotation_type")
 				: getString("_UI_Annotation_type") + " " + label;
 	}
@@ -156,7 +156,7 @@ public class AnnotationItemProvider extends ItemProviderAdapter implements IEdit
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Annotation.class)) {
-		case Aadlv3Package.ANNOTATION__NAME:
+		case Aadlv3Package.ANNOTATION__TAG:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		case Aadlv3Package.ANNOTATION__PARAMETERS:

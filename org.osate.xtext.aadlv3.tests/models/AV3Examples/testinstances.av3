@@ -2,7 +2,8 @@ package testinstances is
 workingset testinstances is
 	
 //	paex: system PropertyAssociationExample::conntop.c1;
-	portex: system PortConnectionExample::conntop.i "@EM" "causetrace" ;
+//	portex: system PortConnectionExample::conntop.i "@EM" "causetrace" ;
+	EMex: system ErrorFlowExample::conntop.i "@EM" "causetrace" ;
 //	tokenex: system TokenPropagationExample::conntop.i "causetrace" "causegraph" "effecttrace" 
 //	;
 //	Simpletokenex: system SimpleTokenPropagationExample::conntop.i "@SEC" "effecttrace"//"causetrace" "causegraph" "effecttrace" 

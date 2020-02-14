@@ -15433,9 +15433,9 @@ rule__Annotation__Group__1__Impl
 	}
 :
 (
-	{ before(grammarAccess.getAnnotationAccess().getNameAssignment_1()); }
-	(rule__Annotation__NameAssignment_1)
-	{ after(grammarAccess.getAnnotationAccess().getNameAssignment_1()); }
+	{ before(grammarAccess.getAnnotationAccess().getTagAssignment_1()); }
+	(rule__Annotation__TagAssignment_1)
+	{ after(grammarAccess.getAnnotationAccess().getTagAssignment_1()); }
 )
 ;
 finally {
@@ -21766,15 +21766,15 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Annotation__NameAssignment_1
+rule__Annotation__TagAssignment_1
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getAnnotationAccess().getNameIDTerminalRuleCall_1_0()); }
+		{ before(grammarAccess.getAnnotationAccess().getTagIDTerminalRuleCall_1_0()); }
 		RULE_ID
-		{ after(grammarAccess.getAnnotationAccess().getNameIDTerminalRuleCall_1_0()); }
+		{ after(grammarAccess.getAnnotationAccess().getTagIDTerminalRuleCall_1_0()); }
 	)
 ;
 finally {

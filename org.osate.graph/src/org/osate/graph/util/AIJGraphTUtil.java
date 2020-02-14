@@ -14,6 +14,8 @@ import org.jgrapht.graph.AsSubgraph;
 import org.jgrapht.graph.DefaultDirectedGraph;
 import org.jgrapht.graph.SimpleDirectedGraph;
 import org.osate.aadlv3.aadlv3.Literal;
+import org.osate.aadlv3.aadlv3.NamedElement;
+import org.osate.aadlv3.util.AIv3API;
 import org.osate.av3instance.av3instance.AssociationInstance;
 import org.osate.av3instance.av3instance.BehaviorInstance;
 import org.osate.av3instance.av3instance.ComponentInstance;
@@ -54,6 +56,7 @@ public class AIJGraphTUtil {
 	
 	
 	private static void addPath(Graph<EObject, RefEObjectEdge> g, EObject src, EObject dst, EObject refEObject) {
+			System.out.println(src+" XXX "+dst );
 		g.addVertex(dst);
 		g.addVertex(src);
 		RefEObjectEdge edge = new RefEObjectEdge(refEObject);
