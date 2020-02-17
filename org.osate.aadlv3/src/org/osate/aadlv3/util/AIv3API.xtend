@@ -279,7 +279,7 @@ class AIv3API {
 	def static BehaviorInstance containingBehaviorInstance(EObject io){
 		var res = io
 		while (!(res instanceof BehaviorInstance) && res !== null){
-			res = res.eContainer as InstanceObject
+			res = res.eContainer
 		}
 		res as BehaviorInstance
 	}
@@ -612,14 +612,14 @@ class AIv3API {
 	 */
 	def static Collection<ConstrainedInstanceObject> findContainingConditionCIOs(InstanceObject desiredTarget, Literal targetLiteral, String behaviorSpecName){
 		val dstCi = containingComponentInstanceOrSelf(desiredTarget);
-		val bris = dstCi.behaviors.filter[bri|bri.behavior.hasAnnotation(behaviorSpecName) && bri.condition !== null]
+		val bris = dstCi.behaviors.filter[bri|bri.hasAnnotation(behaviorSpecName) && bri.condition !== null]
 		val cios = bris.map[bri|bri.condition.eAllOfType(ConstrainedInstanceObject)].flatten.toList
 		return cios.filter[target|target.instanceObject === desiredTarget && ((target.constraint !== null&& targetLiteral !== null)?target.constraint.contains(targetLiteral):true/*targetLiteral === null*/)].toList
 	}
 	
 	def static Collection<ConstrainedInstanceObject> findContainingConditionCIOs(InstanceObject context, InstanceObject desiredTarget, Literal targetLiteral, String behaviorSpecName){
 		val dstCi = containingComponentInstanceOrSelf(context);
-		val bris = dstCi.behaviors.filter[bri|bri.behavior.hasAnnotation(behaviorSpecName) && bri.condition !== null]
+		val bris = dstCi.behaviors.filter[bri|bri.hasAnnotation(behaviorSpecName) && bri.condition !== null]
 		val cios = bris.map[bri|bri.condition.eAllOfType(ConstrainedInstanceObject)].flatten
 		return cios.filter[target|target.instanceObject === desiredTarget && ((target.constraint !== null&& targetLiteral !== null)?target.constraint.contains(targetLiteral):true/*targetLiteral === null*/)].toList
 	}

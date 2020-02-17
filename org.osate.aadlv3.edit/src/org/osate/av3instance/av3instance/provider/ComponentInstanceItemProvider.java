@@ -169,12 +169,7 @@ public class ComponentInstanceItemProvider extends InstanceObjectItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ComponentInstance) object).getName();
-		String type = ((ComponentInstance) object).getCategory() == null ? "interface"
-				: ((ComponentInstance) object).getCategory().getLiteral();
-		type = type.substring(0, 1).toUpperCase() + type.substring(1);
-		return label == null || label.length() == 0 ? getString("_UI_ComponentInstance_type") : //$NON-NLS-1$
-				type + " " + label; //$NON-NLS-1$ 
+		return ((ComponentInstance) object).toString();
 	}
 
 	/**

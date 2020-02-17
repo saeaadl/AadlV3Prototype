@@ -15,6 +15,8 @@
  */
 package org.osate.av3instance.av3instance.impl;
 
+import static org.osate.aadlv3.util.AIv3API.getInstanceObjectPath;
+
 import org.eclipse.emf.ecore.EClass;
 import org.osate.av3instance.av3instance.Av3instancePackage;
 import org.osate.av3instance.av3instance.StateInstance;
@@ -44,6 +46,19 @@ public class StateInstanceImpl extends InstanceObjectImpl implements StateInstan
 	@Override
 	protected EClass eStaticClass() {
 		return Av3instancePackage.Literals.STATE_INSTANCE;
+	}
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy())
+			return super.toString();
+
+		String result = this.getName();
+		return result;
 	}
 
 } //StateInstanceImpl

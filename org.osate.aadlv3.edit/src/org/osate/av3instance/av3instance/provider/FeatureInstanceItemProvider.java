@@ -176,13 +176,8 @@ public class FeatureInstanceItemProvider extends InstanceObjectItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((FeatureInstance) object).getName();
-		String type = ((FeatureInstance) object).getCategory().getLiteral();
-		type = type.substring(0, 1).toUpperCase() + type.substring(1);
-		return label == null || label.length() == 0 ? getString("_UI_FeatureInstance_type") : //$NON-NLS-1$
-				type + " " + label; //$NON-NLS-1$ 
+		return ((FeatureInstance) object).toString();
 	}
-
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.

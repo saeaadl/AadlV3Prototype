@@ -150,13 +150,11 @@ public class StateVariableInstanceItemProvider extends InstanceObjectItemProvide
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((StateVariableInstance) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_StateVariableInstance_type") : //$NON-NLS-1$
-				getString("_UI_StateVariableInstance_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		return ((StateVariableInstance) object).toString();
 	}
 
 	/**

@@ -156,10 +156,7 @@ public class ConstrainedInstanceObjectItemProvider extends InstanceObjectItemPro
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ConstrainedInstanceObject) object).getInstanceObject().getName();
-		Literal constraint = ((ConstrainedInstanceObject) object).getConstraint();
-		String type = constraint != null ? constraint.toString() : "";
-		return type.length() == 0 ? label : label + ":" + type; //$NON-NLS-1$ 
+		return ((ConstrainedInstanceObject)object).toString();
 	}
 
 	/**

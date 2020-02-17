@@ -15,6 +15,8 @@
  */
 package org.osate.av3instance.av3instance.impl;
 
+import static org.osate.aadlv3.util.AIv3API.getInstanceObjectPath;
+
 import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 
@@ -293,6 +295,19 @@ public class StateVariableInstanceImpl extends InstanceObjectImpl implements Sta
 			return states != null && !states.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy())
+			return super.toString();
+
+		String result = "State " + getInstanceObjectPath(this) + getCurrentState()!=null?": "+ getCurrentState().toString():"";
+		return result;
 	}
 
 } //StateVariableInstanceImpl

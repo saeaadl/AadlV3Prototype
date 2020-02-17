@@ -347,8 +347,8 @@ public class ConstrainedInstanceObjectImpl extends InstanceObjectImpl implements
 	public String toString() {
 		if (eIsProxy())
 			return super.toString();
-		return this.getInstanceObject().toString()
-				+ (this.getConstraint() != null ? ":" + this.getConstraint().toString() : "");
+		return "("+this.getInstanceObject().toString()
+				+ (this.getConstraint() != null ? ":" + this.getConstraint().toString() : "")+")";
 	}
 
 	@Override
