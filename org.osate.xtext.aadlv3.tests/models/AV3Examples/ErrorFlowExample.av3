@@ -10,9 +10,10 @@ package ErrorFlowExample is
 		p1: out feature ;
 //		reading : flow source p1 -> p1;
 	@EM{
-		s: state threestate = s0;
+//		s: state threestate = s0;
 		e1: generator (ServiceOmission) ;
-		sense2:  flow e1 -> p1 ;
+		sense2:  flow e1 in (ServiceOmission) -> p1=ServiceOmission ;
+//		sense3:  flow e1 -> p1 ;
 	};
 	end;
 	
@@ -22,11 +23,13 @@ package ErrorFlowExample is
 //		taction: flow  p1 -> effect;
 	@EM{
 //		s : state threestate = s0;
-		eact1: generator  (ServiceOmission) ;
+//		eact1: generator  (ServiceOmission) ;
+
 //		actuate1: transition eact1 in (ServiceOmission) -> s = s1 when s in (s0) ;
 //		actuate2: flow p1 in (ServiceOmission) -> sink when s in (s0);
 //		actuate3: flow p1 in (ServiceOmission) -> effect=ServiceOmission when s in( s1);
-		actuate4: flow any( p1 in (ServiceOmission), eact1 in (ServiceOmission)) -> effect=ServiceOmission;
+//		actuate4: flow any( p1 in (ServiceOmission), eact1 in (ServiceOmission)) -> effect=ServiceOmission;
+		actuate5: flow  p1 in (ServiceOmission) -> effect=ServiceOmission;
 	};
 	end;
 	
@@ -62,13 +65,14 @@ package ErrorFlowExample is
 	
 	system conntop.i is
 		sense1: abstract sense;
-		sense2: abstract sense;
-		processing: abstract filter;
+//		sense2: abstract sense;
+//		processing: abstract filter;
 		actuate: abstract actuate;
 		hw : system hardwareplatform.impl;
-		sensetocontrol1: connection sense1.p1 -> processing.insignal1;
-		sensetocontrol2: connection sense2.p1 -> processing.insignal2;
-		controltoactuate: connection processing.outsignal -> actuate.p1;
+//		sensetocontrol1: connection sense1.p1 -> processing.insignal1;
+//		sensetocontrol2: connection sense2.p1 -> processing.insignal2;
+//		controltoactuate: connection processing.outsignal -> actuate.p1;
+		senstoactuate: connection sense1.p1 -> actuate.p1;
 		effectprop: connection actuate.effect -> effect;
 	@EM{
 		effect2:flow actuate.effect in (ServiceOmission) ->  effect=ServiceOmission;

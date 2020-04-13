@@ -192,7 +192,7 @@ public class AIJGraphTUtil {
 						// add ce io as path source to handle unhandled tokens
 						addPath(directedGraph, ce.getInstanceObject(), action, bri);
 						// generator to generator cond
-						handleGenerators(directedGraph, ce,bri);
+						handleGeneratorConditions(directedGraph, ce,bri);
 					}
 					if (bri.getAnnotations().isEmpty()) {
 						outfiAsBehavior.add(action.getInstanceObject());
@@ -217,7 +217,7 @@ public class AIJGraphTUtil {
 						// edge from condition elements to target state
 						handleConditionExpression(directedGraph, ce, ts,sti);
 						// generator to generator cond
-						handleGenerators(directedGraph, ce,sti);
+						handleGeneratorConditions(directedGraph, ce,sti);
 						InstanceObject srcio = ce.getInstanceObject();
 						// Subcomponent composite rule
 						Iterable<ConstrainedInstanceObject> subactions = findContainedActionCIOs(srcio,ce.getConstraint());
@@ -249,7 +249,7 @@ public class AIJGraphTUtil {
 							addPath(directedGraph, infi, outfi,ci);
 						}
 					}
-					for (GeneratorInstance gi : getAllGeneratorInstances(ci)) {
+					for (GeneratorInstance gi : ci.getGenerators()) {
 						handleGenerators(directedGraph, gi, outfi, ci);
 					}
 				}
@@ -259,35 +259,43 @@ public class AIJGraphTUtil {
 		return directedGraph;
 	}
 	
-	private static void handleGenerators(Graph<EObject, RefEObjectEdge> directedGraph, ConstrainedInstanceObject ce,
+	private static void handleGeneratorConditions(Graph<EObject, RefEObjectEdge> directedGraph, ConstrainedInstanceObject ce,
 			InstanceObject context) {
 		if (ce.getInstanceObject() instanceof GeneratorInstance) {
 			GeneratorInstance gi = (GeneratorInstance) getRealInstanceObject(ce);
-			handleGenerators(directedGraph, gi, ce, context);
+			EList<ConstrainedInstanceObject> cios = gi.getGeneratedLiterals();
+			Literal constraint = getRealConstraint(ce);
+			if (constraint == null) {
+				if (cios.isEmpty()) {
+					addPath(directedGraph, gi, ce, context);
+				} else {
+					for (ConstrainedInstanceObject cio : cios) {
+						addPath(directedGraph, cio, ce, context);
+					}
+				}
+			} else {
+				// only those satisfying the constraint
+				for (ConstrainedInstanceObject cio : cios) {
+					if (constraint.contains(cio.getConstraint())) {
+						addPath(directedGraph, cio, ce, context);
+					}
+				}
+			}
 		}
 	}
 
-	private static void handleGenerators(Graph<EObject, RefEObjectEdge> directedGraph, GeneratorInstance gi, InstanceObject target,
-			InstanceObject context) {
+	private static void handleGenerators(Graph<EObject, RefEObjectEdge> directedGraph, GeneratorInstance gi,
+			InstanceObject target, InstanceObject context) {
 		EList<ConstrainedInstanceObject> cios = gi.getGeneratedLiterals();
-		Literal constraint = getRealConstraint(target);
-		if (constraint == null) {
-			if (cios.isEmpty()) {
-				addPath(directedGraph, gi, target, context);
-			} else {
-				for (ConstrainedInstanceObject cio : cios) {
-					addPath(directedGraph, cio, target, context);
-				}
-			}
+		if (cios.isEmpty()) {
+			addPath(directedGraph, gi, target, context);
 		} else {
-			// only those satisfying the constraint
 			for (ConstrainedInstanceObject cio : cios) {
-				if (constraint.contains(cio.getConstraint())) {
-					addPath(directedGraph, cio, target, context);
-				}
+				addPath(directedGraph, cio, target, context);
 			}
 		}
 	}
+
 	
 	private static void handleConditionExpression(Graph<EObject, RefEObjectEdge> directedGraph, ConstrainedInstanceObject ce, InstanceObject target, InstanceObject context) {
 		Literal current = ce;
