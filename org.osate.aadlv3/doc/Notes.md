@@ -5,6 +5,25 @@ There is a develop.setup and an aadlv3.setup. The latter adds the github reposit
 
 I have two projects set up. The first uses Xtext to generate the Ecore model for AADL V3. It uses a curly bracket syntax. The second one uses this Ecore model and defines a grammar that is more like AADL V2.
 
+
+Usage and Examples
+==================
+
+Examples can be found in org.osate.xtext.aadlv3.tests. It is set up as a project so it can be included in a workspace used by an instance of AADLV3 started from the development environment.
+
+To instantiate example model you create a package with a working set (see example simpleinstances and testinstances). 
+Working set is not an AADL V3 langauge concept but a declarative build and execute script.
+For each instance to be created you specify the root classifier to be used as starting point of instantiation. 
+In addition, you can specify certain analyses to be performed on the instance model. 
+In testinstances you can see examples of safety analysis - specifying @EM as the type of annotated behavior of interest and the specific analysis. 
+The result is the creation of the isntance model and if specified the appropriate token trace representing fault cause trace, tree and fault effect traces. these files can then be viewed in the EMF based instance editor or through a Sirius based graphical viewer for a table view (similar to the EMV2 viewer).
+While in OSATE 2 the viewer is invoked automatically, here you have to open it on the trace file (*.tt) yourself.
+
+See InstantiateWorkingSetHandler.java for more details.
+
+There is also code in place for product line constraint checking, which is documented in constraintsandtokens. See the simpleinstances example and the Xtext grammar rule for workingset in org.osate.xtext.aadlv3. 
+
+
 Concept Topics
 ==============
 
